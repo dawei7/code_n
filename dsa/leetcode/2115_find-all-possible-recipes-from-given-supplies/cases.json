@@ -8,13 +8,31 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "recipes": ["bread"],
-        "ingredients": [["yeast", "flour"]],
-        "supplies": ["yeast", "flour", "corn"]
+        "recipes": [
+          "bread"
+        ],
+        "ingredients": [
+          [
+            "yeast",
+            "flour"
+          ]
+        ],
+        "supplies": [
+          "yeast",
+          "flour",
+          "corn"
+        ]
       },
-      "expected": ["bread"],
-      "validator": {"kind": "unordered_list"},
-      "tags": ["sample", "initial-supplies"]
+      "expected": [
+        "bread"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "initial-supplies"
+      ]
     },
     {
       "id": "sample-two-step-chain",
@@ -22,13 +40,37 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "recipes": ["bread", "sandwich"],
-        "ingredients": [["yeast", "flour"], ["bread", "meat"]],
-        "supplies": ["yeast", "flour", "meat"]
+        "recipes": [
+          "bread",
+          "sandwich"
+        ],
+        "ingredients": [
+          [
+            "yeast",
+            "flour"
+          ],
+          [
+            "bread",
+            "meat"
+          ]
+        ],
+        "supplies": [
+          "yeast",
+          "flour",
+          "meat"
+        ]
       },
-      "expected": ["bread", "sandwich"],
-      "validator": {"kind": "unordered_list"},
-      "tags": ["sample", "dependency-chain"]
+      "expected": [
+        "bread",
+        "sandwich"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "dependency-chain"
+      ]
     },
     {
       "id": "sample-three-step-chain",
@@ -36,17 +78,44 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "recipes": ["bread", "sandwich", "burger"],
-        "ingredients": [
-          ["yeast", "flour"],
-          ["bread", "meat"],
-          ["sandwich", "meat", "bread"]
+        "recipes": [
+          "bread",
+          "sandwich",
+          "burger"
         ],
-        "supplies": ["yeast", "flour", "meat"]
+        "ingredients": [
+          [
+            "yeast",
+            "flour"
+          ],
+          [
+            "bread",
+            "meat"
+          ],
+          [
+            "sandwich",
+            "meat",
+            "bread"
+          ]
+        ],
+        "supplies": [
+          "yeast",
+          "flour",
+          "meat"
+        ]
       },
-      "expected": ["bread", "sandwich", "burger"],
-      "validator": {"kind": "unordered_list"},
-      "tags": ["sample", "multiple-levels"]
+      "expected": [
+        "bread",
+        "sandwich",
+        "burger"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "multiple-levels"
+      ]
     },
     {
       "id": "trial-missing-external-item",
@@ -54,13 +123,27 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "recipes": ["bread"],
-        "ingredients": [["yeast", "flour"]],
-        "supplies": ["yeast"]
+        "recipes": [
+          "bread"
+        ],
+        "ingredients": [
+          [
+            "yeast",
+            "flour"
+          ]
+        ],
+        "supplies": [
+          "yeast"
+        ]
       },
       "expected": [],
-      "validator": {"kind": "unordered_list"},
-      "tags": ["missing-ingredient", "impossible"]
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "missing-ingredient",
+        "impossible"
+      ]
     },
     {
       "id": "trial-unseeded-cycle",
@@ -68,46 +151,125 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "recipes": ["a", "b"],
-        "ingredients": [["b"], ["a"]],
-        "supplies": ["seed"]
+        "recipes": [
+          "a",
+          "b"
+        ],
+        "ingredients": [
+          [
+            "b"
+          ],
+          [
+            "a"
+          ]
+        ],
+        "supplies": [
+          "seed"
+        ]
       },
       "expected": [],
-      "validator": {"kind": "unordered_list"},
-      "tags": ["cycle", "impossible"]
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "cycle",
+        "impossible"
+      ]
     },
     {
       "id": "real-productive-and-cyclic-components",
-      "name": "hidden: a productive chain coexists with a blocked cycle",
-      "kind": "real",
-      "visible": false,
+      "name": "a productive chain coexists with a blocked cycle",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "recipes": ["a", "b", "c", "d"],
-        "ingredients": [["x"], ["a"], ["d"], ["c"]],
-        "supplies": ["x"]
+        "recipes": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ],
+        "ingredients": [
+          [
+            "x"
+          ],
+          [
+            "a"
+          ],
+          [
+            "d"
+          ],
+          [
+            "c"
+          ]
+        ],
+        "supplies": [
+          "x"
+        ]
       },
-      "expected": ["a", "b"],
-      "validator": {"kind": "unordered_list"},
-      "tags": ["hidden", "mixed-components", "cycle"]
+      "expected": [
+        "a",
+        "b"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "mixed-components",
+        "cycle"
+      ]
     },
     {
       "id": "real-shared-dependency",
-      "name": "hidden: one recipe unlocks several dependents",
-      "kind": "real",
-      "visible": false,
+      "name": "one recipe unlocks several dependents",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "recipes": ["dough", "pie", "roll", "feast"],
-        "ingredients": [
-          ["flour", "water"],
-          ["dough", "fruit"],
-          ["dough", "salt"],
-          ["pie", "roll"]
+        "recipes": [
+          "dough",
+          "pie",
+          "roll",
+          "feast"
         ],
-        "supplies": ["flour", "water", "fruit", "salt"]
+        "ingredients": [
+          [
+            "flour",
+            "water"
+          ],
+          [
+            "dough",
+            "fruit"
+          ],
+          [
+            "dough",
+            "salt"
+          ],
+          [
+            "pie",
+            "roll"
+          ]
+        ],
+        "supplies": [
+          "flour",
+          "water",
+          "fruit",
+          "salt"
+        ]
       },
-      "expected": ["dough", "pie", "roll", "feast"],
-      "validator": {"kind": "unordered_list"},
-      "tags": ["hidden", "fan-out", "fan-in"]
+      "expected": [
+        "dough",
+        "pie",
+        "roll",
+        "feast"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "fan-out",
+        "fan-in"
+      ]
     }
   ]
 }

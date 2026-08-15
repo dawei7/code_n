@@ -175,8 +175,8 @@
     {
       "id": "real-changing-order",
       "name": "real: products repeatedly reorder minima",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -203,8 +203,8 @@
     {
       "id": "real-identity-many-steps",
       "name": "real: identity multiplication repeats first minimum",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -229,8 +229,8 @@
     {
       "id": "real-large-multiplier",
       "name": "real: factor five quickly raises selected values",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -257,8 +257,8 @@
     {
       "id": "real-duplicate-groups",
       "name": "real: several tied value groups",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -287,8 +287,8 @@
     {
       "id": "real-maximum-length",
       "name": "real: one hundred positions and ten updates",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

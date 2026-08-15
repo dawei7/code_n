@@ -105,8 +105,8 @@
     {
       "id": "real-immediate-break",
       "name": "real: later matching pair is unreachable after a break",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -126,8 +126,8 @@
     {
       "id": "real-break-late",
       "name": "real: several operations precede a late break",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -151,8 +151,8 @@
     {
       "id": "real-boundary-values",
       "name": "real: boundary values form equal scores",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

@@ -95,9 +95,9 @@
     },
     {
       "id": "real-two-elements",
-      "name": "hidden: each element is the other side's sum",
-      "kind": "real",
-      "visible": false,
+      "name": "each element is the other side's sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -116,9 +116,9 @@
     },
     {
       "id": "real-symmetric",
-      "name": "hidden: symmetric outer values",
-      "kind": "real",
-      "visible": false,
+      "name": "symmetric outer values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -138,9 +138,9 @@
     },
     {
       "id": "real-increasing",
-      "name": "hidden: increasing values",
-      "kind": "real",
-      "visible": false,
+      "name": "increasing values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -168,9 +168,9 @@
     },
     {
       "id": "real-decreasing",
-      "name": "hidden: decreasing values",
-      "kind": "real",
-      "visible": false,
+      "name": "decreasing values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -202,9 +202,9 @@
     },
     {
       "id": "real-alternating-magnitudes",
-      "name": "hidden: alternating small and large values",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating small and large values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

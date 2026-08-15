@@ -364,9 +364,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: repeated red orders do not duplicate exclusion",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated red orders do not duplicate exclusion",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "SalesPerson": [
@@ -449,9 +449,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: no-order, blue-only, red, and mixed salespeople",
-      "kind": "real",
-      "visible": false,
+      "name": "no-order, blue-only, red, and mixed salespeople",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "SalesPerson": [

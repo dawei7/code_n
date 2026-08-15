@@ -1,13 +1,123 @@
 {
   "challenge_id": "lc_3443",
   "cases": [
-    {"id":"sample-one-change","name":"sample: remove one cancellation","kind":"sample","visible":true,"input":{"s":"NWSE","k":1},"expected":3,"tags":["sample"]},
-    {"id":"sample-full-distance","name":"sample: changes make every move outward","kind":"sample","visible":true,"input":{"s":"NSWWEW","k":3},"expected":6,"tags":["sample"]},
-    {"id":"trial-no-changes","name":"trial: preserve the original path","kind":"trial","visible":true,"input":{"s":"EWWE","k":0},"expected":1,"tags":["trial","k-zero"]},
-    {"id":"trial-maximum-before-end","name":"trial: later moves return toward origin","kind":"trial","visible":true,"input":{"s":"NNSS","k":0},"expected":2,"tags":["trial","prefix"]},
-    {"id":"trial-single-move","name":"trial: minimum path length","kind":"trial","visible":true,"input":{"s":"S","k":1},"expected":1,"tags":["trial","minimum-n"]},
-    {"id":"real-partial-budget","name":"real: budget removes some cancellations","kind":"real","visible":false,"input":{"s":"NNSSEEW","k":1},"expected":4,"tags":["real","partial-budget"]},
-    {"id":"real-zero-budget-zigzag","name":"real: repeated cancellations without changes","kind":"real","visible":false,"input":{"s":"NSNSNSNS","k":0},"expected":1,"tags":["real","cancellation"]},
-    {"id":"real-large-budget","name":"real: budget exceeds needed changes","kind":"real","visible":false,"input":{"s":"NESWNESW","k":8},"expected":8,"tags":["real","full-distance"]}
+    {
+      "id": "sample-one-change",
+      "name": "sample: remove one cancellation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "NWSE",
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-full-distance",
+      "name": "sample: changes make every move outward",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "NSWWEW",
+        "k": 3
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-no-changes",
+      "name": "trial: preserve the original path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "EWWE",
+        "k": 0
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "k-zero"
+      ]
+    },
+    {
+      "id": "trial-maximum-before-end",
+      "name": "trial: later moves return toward origin",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "NNSS",
+        "k": 0
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "prefix"
+      ]
+    },
+    {
+      "id": "trial-single-move",
+      "name": "trial: minimum path length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "S",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "real-partial-budget",
+      "name": "real: budget removes some cancellations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "NNSSEEW",
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "partial-budget"
+      ]
+    },
+    {
+      "id": "real-zero-budget-zigzag",
+      "name": "real: repeated cancellations without changes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "NSNSNSNS",
+        "k": 0
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "cancellation"
+      ]
+    },
+    {
+      "id": "real-large-budget",
+      "name": "real: budget exceeds needed changes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "NESWNESW",
+        "k": 8
+      },
+      "expected": 8,
+      "tags": [
+        "real",
+        "full-distance"
+      ]
+    }
   ]
 }

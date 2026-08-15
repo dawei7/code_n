@@ -7,108 +7,238 @@
       "name": "sample: unequal first and last words use the entire array",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["leetcode", "leetcode", "codeforces"]},
+      "input": {
+        "words": [
+          "leetcode",
+          "leetcode",
+          "codeforces"
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "full-span"]
+      "tags": [
+        "sample",
+        "full-span"
+      ]
     },
     {
       "id": "sample-interior-to-last",
       "name": "sample: the earliest unequal interior word pairs with the last",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["a", "b", "c", "a", "a"]},
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "c",
+          "a",
+          "a"
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "matching-endpoints"]
+      "tags": [
+        "sample",
+        "matching-endpoints"
+      ]
     },
     {
       "id": "sample-all-equal",
       "name": "sample: no pair exists when all words are equal",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["z", "z", "z"]},
+      "input": {
+        "words": [
+          "z",
+          "z",
+          "z"
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "no-valid-pair"]
+      "tags": [
+        "sample",
+        "no-valid-pair"
+      ]
     },
     {
       "id": "trial-single-word",
       "name": "trial: one position cannot form a distinct-index pair",
       "kind": "trial",
       "visible": true,
-      "input": {"words": ["a"]},
+      "input": {
+        "words": [
+          "a"
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "minimum-boundary"]
+      "tags": [
+        "trial",
+        "minimum-boundary"
+      ]
     },
     {
       "id": "trial-adjacent-unequal",
       "name": "trial: inclusive distance between adjacent words is two",
       "kind": "trial",
       "visible": true,
-      "input": {"words": ["a", "b"]},
+      "input": {
+        "words": [
+          "a",
+          "b"
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "inclusive-distance"]
+      "tags": [
+        "trial",
+        "inclusive-distance"
+      ]
     },
     {
       "id": "trial-adjacent-equal",
       "name": "trial: two equal words provide no valid pair",
       "kind": "trial",
       "visible": true,
-      "input": {"words": ["same", "same"]},
+      "input": {
+        "words": [
+          "same",
+          "same"
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "no-valid-pair"]
+      "tags": [
+        "trial",
+        "no-valid-pair"
+      ]
     },
     {
       "id": "real-farthest-from-last",
-      "name": "hidden: matching endpoints and an early unequal word favor the last",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["a", "b", "a", "a"]},
+      "name": "matching endpoints and an early unequal word favor the last",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "a",
+          "a"
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "matching-endpoints", "right-endpoint"]
+      "tags": [
+        "hidden",
+        "matching-endpoints",
+        "right-endpoint"
+      ]
     },
     {
       "id": "real-farthest-from-first",
-      "name": "hidden: matching endpoints and a late unequal word favor the first",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["a", "a", "a", "b", "a"]},
+      "name": "matching endpoints and a late unequal word favor the first",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "a",
+          "a",
+          "b",
+          "a"
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "matching-endpoints", "left-endpoint"]
+      "tags": [
+        "hidden",
+        "matching-endpoints",
+        "left-endpoint"
+      ]
     },
     {
       "id": "real-two-interior-groups",
-      "name": "hidden: several unequal interior words offer competing endpoint spans",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["red", "blue", "blue", "red", "green", "red"]},
+      "name": "several unequal interior words offer competing endpoint spans",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "red",
+          "blue",
+          "blue",
+          "red",
+          "green",
+          "red"
+        ]
+      },
       "expected": 5,
-      "tags": ["hidden", "multiple-candidates"]
+      "tags": [
+        "hidden",
+        "multiple-candidates"
+      ]
     },
     {
       "id": "real-repeated-end-blocks",
-      "name": "hidden: unequal blocks near both ends leave a long interior span",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["aa", "aa", "bb", "bb", "bb", "aa", "aa"]},
+      "name": "unequal blocks near both ends leave a long interior span",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aa",
+          "aa",
+          "bb",
+          "bb",
+          "bb",
+          "aa",
+          "aa"
+        ]
+      },
       "expected": 5,
-      "tags": ["hidden", "matching-endpoints", "repeated-blocks"]
+      "tags": [
+        "hidden",
+        "matching-endpoints",
+        "repeated-blocks"
+      ]
     },
     {
       "id": "real-word-length-boundary",
-      "name": "hidden: ten-letter words are compared by complete string equality",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["abcdefghij", "abcdefghij", "jihgfedcba", "abcdefghij"]},
+      "name": "ten-letter words are compared by complete string equality",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcdefghij",
+          "abcdefghij",
+          "jihgfedcba",
+          "abcdefghij"
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "word-length-boundary"]
+      "tags": [
+        "hidden",
+        "word-length-boundary"
+      ]
     },
     {
       "id": "real-long-equal-array",
-      "name": "hidden: a longer uniform array still has no valid pair",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x", "x"]},
+      "name": "a longer uniform array still has no valid pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x"
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden", "no-valid-pair", "full-scan"]
+      "tags": [
+        "hidden",
+        "no-valid-pair",
+        "full-scan"
+      ]
     }
   ]
 }

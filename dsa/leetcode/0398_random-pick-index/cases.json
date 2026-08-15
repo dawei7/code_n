@@ -164,9 +164,9 @@
     },
     {
       "id": "hidden-many-values",
-      "name": "hidden: interleaved occurrence lists",
-      "kind": "real",
-      "visible": false,
+      "name": "interleaved occurrence lists",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -202,9 +202,9 @@
     },
     {
       "id": "hidden-last-only",
-      "name": "hidden: target occurs only at final index",
-      "kind": "real",
-      "visible": false,
+      "name": "target occurs only at final index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -233,9 +233,9 @@
     },
     {
       "id": "hidden-all-equal",
-      "name": "hidden: every index is eligible",
-      "kind": "real",
-      "visible": false,
+      "name": "every index is eligible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,

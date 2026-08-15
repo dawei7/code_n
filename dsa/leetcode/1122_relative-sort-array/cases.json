@@ -165,9 +165,9 @@
     },
     {
       "id": "real-domain-ends",
-      "name": "hidden: zero and one thousand",
-      "kind": "real",
-      "visible": false,
+      "name": "zero and one thousand",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr1": [
           1000,
@@ -197,9 +197,9 @@
     },
     {
       "id": "real-interleaved",
-      "name": "hidden: interleaved duplicate groups",
-      "kind": "real",
-      "visible": false,
+      "name": "interleaved duplicate groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr1": [
           8,
@@ -236,9 +236,9 @@
     },
     {
       "id": "real-leftover-duplicates",
-      "name": "hidden: repeated leftover values",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated leftover values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr1": [
           9,

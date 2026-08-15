@@ -1,13 +1,212 @@
 {
   "challenge_id": "lc_2653",
   "cases": [
-    {"id":"sample-mixed","name":"sample: mixed windows","kind":"sample","visible":true,"input":{"nums":[1,-1,-3,-2,3],"k":3,"x":2},"expected":[-1,-2,-2],"tags":["sample","mixed-signs"]},
-    {"id":"sample-negative","name":"sample: every value is negative","kind":"sample","visible":true,"input":{"nums":[-1,-2,-3,-4,-5],"k":2,"x":2},"expected":[-1,-2,-3,-4],"tags":["sample","all-negative"]},
-    {"id":"sample-first-negative","name":"sample: first negative or zero","kind":"sample","visible":true,"input":{"nums":[-3,1,2,-3,0,-3],"k":2,"x":1},"expected":[-3,0,-3,-3,-3],"tags":["sample","insufficient-negatives"]},
-    {"id":"trial-positive","name":"trial: all windows lack negatives","kind":"trial","visible":true,"input":{"nums":[5,4,3,2,1],"k":3,"x":1},"expected":[0,0,0],"tags":["positive","zero-beauty"]},
-    {"id":"trial-duplicates","name":"trial: duplicate negatives count separately","kind":"trial","visible":true,"input":{"nums":[-5,-5,-1,0],"k":3,"x":2},"expected":[-5,-1],"tags":["duplicates","frequency"]},
-    {"id":"real-insufficient","name":"hidden: fewer than x negatives","kind":"real","visible":false,"input":{"nums":[0,-1,2,-2],"k":3,"x":3},"expected":[0,0],"tags":["hidden","insufficient-negatives"]},
-    {"id":"real-unit-window","name":"hidden: unit windows and extreme values","kind":"real","visible":false,"input":{"nums":[-50,0,50,-1],"k":1,"x":1},"expected":[-50,0,0,-1],"tags":["hidden","unit-window","bounds"]},
-    {"id":"real-full-window","name":"hidden: one full-array window","kind":"real","visible":false,"input":{"nums":[-50,50,-49,49],"k":4,"x":2},"expected":[-49],"tags":["hidden","full-window","bounds"]}
+    {
+      "id": "sample-mixed",
+      "name": "sample: mixed windows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -1,
+          -3,
+          -2,
+          3
+        ],
+        "k": 3,
+        "x": 2
+      },
+      "expected": [
+        -1,
+        -2,
+        -2
+      ],
+      "tags": [
+        "sample",
+        "mixed-signs"
+      ]
+    },
+    {
+      "id": "sample-negative",
+      "name": "sample: every value is negative",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          -3,
+          -4,
+          -5
+        ],
+        "k": 2,
+        "x": 2
+      },
+      "expected": [
+        -1,
+        -2,
+        -3,
+        -4
+      ],
+      "tags": [
+        "sample",
+        "all-negative"
+      ]
+    },
+    {
+      "id": "sample-first-negative",
+      "name": "sample: first negative or zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -3,
+          1,
+          2,
+          -3,
+          0,
+          -3
+        ],
+        "k": 2,
+        "x": 1
+      },
+      "expected": [
+        -3,
+        0,
+        -3,
+        -3,
+        -3
+      ],
+      "tags": [
+        "sample",
+        "insufficient-negatives"
+      ]
+    },
+    {
+      "id": "trial-positive",
+      "name": "trial: all windows lack negatives",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "k": 3,
+        "x": 1
+      },
+      "expected": [
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "positive",
+        "zero-beauty"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: duplicate negatives count separately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          -5,
+          -1,
+          0
+        ],
+        "k": 3,
+        "x": 2
+      },
+      "expected": [
+        -5,
+        -1
+      ],
+      "tags": [
+        "duplicates",
+        "frequency"
+      ]
+    },
+    {
+      "id": "real-insufficient",
+      "name": "fewer than x negatives",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          -1,
+          2,
+          -2
+        ],
+        "k": 3,
+        "x": 3
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "insufficient-negatives"
+      ]
+    },
+    {
+      "id": "real-unit-window",
+      "name": "unit windows and extreme values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -50,
+          0,
+          50,
+          -1
+        ],
+        "k": 1,
+        "x": 1
+      },
+      "expected": [
+        -50,
+        0,
+        0,
+        -1
+      ],
+      "tags": [
+        "hidden",
+        "unit-window",
+        "bounds"
+      ]
+    },
+    {
+      "id": "real-full-window",
+      "name": "one full-array window",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -50,
+          50,
+          -49,
+          49
+        ],
+        "k": 4,
+        "x": 2
+      },
+      "expected": [
+        -49
+      ],
+      "tags": [
+        "hidden",
+        "full-window",
+        "bounds"
+      ]
+    }
   ]
 }

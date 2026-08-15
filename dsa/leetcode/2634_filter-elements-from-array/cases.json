@@ -6,81 +6,223 @@
       "name": "sample: values greater than ten",
       "kind": "sample",
       "visible": true,
-      "input": {"arr": [0, 10, 20, 30], "fnName": "greaterThan", "fnArg": 10, "arrPlan": null},
-      "expected": [20, 30],
-      "tags": ["sample", "value-predicate", "threshold"]
+      "input": {
+        "arr": [
+          0,
+          10,
+          20,
+          30
+        ],
+        "fnName": "greaterThan",
+        "fnArg": 10,
+        "arrPlan": null
+      },
+      "expected": [
+        20,
+        30
+      ],
+      "tags": [
+        "sample",
+        "value-predicate",
+        "threshold"
+      ]
     },
     {
       "id": "sample-first-index",
       "name": "sample: callback uses index",
       "kind": "sample",
       "visible": true,
-      "input": {"arr": [1, 2, 3], "fnName": "firstIndex", "fnArg": null, "arrPlan": null},
-      "expected": [1],
-      "tags": ["sample", "index-predicate"]
+      "input": {
+        "arr": [
+          1,
+          2,
+          3
+        ],
+        "fnName": "firstIndex",
+        "fnArg": null,
+        "arrPlan": null
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "sample",
+        "index-predicate"
+      ]
     },
     {
       "id": "sample-plus-one-truthiness",
       "name": "sample: numeric callback result uses truthiness",
       "kind": "sample",
       "visible": true,
-      "input": {"arr": [-2, -1, 0, 1, 2], "fnName": "plusOne", "fnArg": null, "arrPlan": null},
-      "expected": [-2, 0, 1, 2],
-      "tags": ["sample", "truthiness", "zero"]
+      "input": {
+        "arr": [
+          -2,
+          -1,
+          0,
+          1,
+          2
+        ],
+        "fnName": "plusOne",
+        "fnArg": null,
+        "arrPlan": null
+      },
+      "expected": [
+        -2,
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "sample",
+        "truthiness",
+        "zero"
+      ]
     },
     {
       "id": "trial-empty",
       "name": "trial: empty source array",
       "kind": "trial",
       "visible": true,
-      "input": {"arr": [], "fnName": "alwaysTrue", "fnArg": null, "arrPlan": null},
+      "input": {
+        "arr": [],
+        "fnName": "alwaysTrue",
+        "fnArg": null,
+        "arrPlan": null
+      },
       "expected": [],
-      "tags": ["trial", "empty-array"]
+      "tags": [
+        "trial",
+        "empty-array"
+      ]
     },
     {
       "id": "trial-even-values",
       "name": "trial: preserve order among even values",
       "kind": "trial",
       "visible": true,
-      "input": {"arr": [4, 3, 2, 1, 0, -2], "fnName": "even", "fnArg": null, "arrPlan": null},
-      "expected": [4, 2, 0, -2],
-      "tags": ["trial", "stable-order", "even"]
+      "input": {
+        "arr": [
+          4,
+          3,
+          2,
+          1,
+          0,
+          -2
+        ],
+        "fnName": "even",
+        "fnArg": null,
+        "arrPlan": null
+      },
+      "expected": [
+        4,
+        2,
+        0,
+        -2
+      ],
+      "tags": [
+        "trial",
+        "stable-order",
+        "even"
+      ]
     },
     {
       "id": "real-identity-truthiness",
       "name": "real: identity removes only zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"arr": [-7, 0, 9], "fnName": "identity", "fnArg": null, "arrPlan": null},
-      "expected": [-7, 9],
-      "tags": ["real", "truthiness", "negative-number"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          -7,
+          0,
+          9
+        ],
+        "fnName": "identity",
+        "fnArg": null,
+        "arrPlan": null
+      },
+      "expected": [
+        -7,
+        9
+      ],
+      "tags": [
+        "real",
+        "truthiness",
+        "negative-number"
+      ]
     },
     {
       "id": "real-even-indices",
       "name": "real: numeric index is passed to callback",
-      "kind": "real",
-      "visible": false,
-      "input": {"arr": [9, 8, 7, 6, 5], "fnName": "evenIndex", "fnArg": null, "arrPlan": null},
-      "expected": [9, 7, 5],
-      "tags": ["real", "index", "stable-order"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          9,
+          8,
+          7,
+          6,
+          5
+        ],
+        "fnName": "evenIndex",
+        "fnArg": null,
+        "arrPlan": null
+      },
+      "expected": [
+        9,
+        7,
+        5
+      ],
+      "tags": [
+        "real",
+        "index",
+        "stable-order"
+      ]
     },
     {
       "id": "real-strict-threshold",
       "name": "real: threshold equality is excluded",
-      "kind": "real",
-      "visible": false,
-      "input": {"arr": [4, 5, 6], "fnName": "greaterThan", "fnArg": 5, "arrPlan": null},
-      "expected": [6],
-      "tags": ["real", "strict-comparison", "boundary"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          4,
+          5,
+          6
+        ],
+        "fnName": "greaterThan",
+        "fnArg": 5,
+        "arrPlan": null
+      },
+      "expected": [
+        6
+      ],
+      "tags": [
+        "real",
+        "strict-comparison",
+        "boundary"
+      ]
     },
     {
       "id": "real-no-matches",
       "name": "real: callback rejects every item",
-      "kind": "real",
-      "visible": false,
-      "input": {"arr": [1, 2, 3], "fnName": "alwaysFalse", "fnArg": null, "arrPlan": null},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3
+        ],
+        "fnName": "alwaysFalse",
+        "fnArg": null,
+        "arrPlan": null
+      },
       "expected": [],
-      "tags": ["real", "no-matches"]
+      "tags": [
+        "real",
+        "no-matches"
+      ]
     }
   ]
 }

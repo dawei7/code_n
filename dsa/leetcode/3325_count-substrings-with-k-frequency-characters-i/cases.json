@@ -79,8 +79,8 @@
     {
       "id": "real-full-string-only",
       "name": "real: only the full string reaches the threshold",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ababa",
         "k": 3
@@ -94,8 +94,8 @@
     {
       "id": "real-multiple-starts",
       "name": "real: valid suffixes begin at multiple starts",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaab",
         "k": 2

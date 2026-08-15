@@ -120,9 +120,9 @@
     },
     {
       "id": "real-nonadjacent-best",
-      "name": "hidden: nonadjacent active pair is optimal",
-      "kind": "real",
-      "visible": false,
+      "name": "nonadjacent active pair is optimal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -148,9 +148,9 @@
     },
     {
       "id": "real-negative-answer",
-      "name": "hidden: maximum equation value is negative",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum equation value is negative",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -172,9 +172,9 @@
     },
     {
       "id": "real-equal-scores",
-      "name": "hidden: newer equal score safely dominates",
-      "kind": "real",
-      "visible": false,
+      "name": "newer equal score safely dominates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -205,9 +205,9 @@
     },
     {
       "id": "real-coordinate-boundaries",
-      "name": "hidden: extreme coordinates and values",
-      "kind": "real",
-      "visible": false,
+      "name": "extreme coordinates and values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -229,9 +229,9 @@
     },
     {
       "id": "real-mixed-windows",
-      "name": "hidden: repeated expiration and insertion",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated expiration and insertion",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [

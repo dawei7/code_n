@@ -215,8 +215,8 @@
     {
       "id": "real-boundary-labels",
       "name": "real: ball labels use both ends of a huge range",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "limit": 1000000000,
         "queries": [
@@ -247,8 +247,8 @@
     {
       "id": "real-maximum-color",
       "name": "real: colors reach the upper bound",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "limit": 5,
         "queries": [
@@ -278,8 +278,8 @@
     {
       "id": "real-color-splits",
       "name": "real: recoloring one of two shared balls adds a color",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "limit": 4,
         "queries": [
@@ -320,8 +320,8 @@
     {
       "id": "real-many-overwrites",
       "name": "real: overwrites remove and reintroduce colors",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "limit": 5,
         "queries": [
@@ -367,8 +367,8 @@
     {
       "id": "real-swap-color-ownership",
       "name": "real: colors move between balls without being unassigned explicitly",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "limit": 2,
         "queries": [
@@ -404,8 +404,8 @@
     {
       "id": "real-three-way-sharing",
       "name": "real: one shared color persists until its final owner changes",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "limit": 4,
         "queries": [

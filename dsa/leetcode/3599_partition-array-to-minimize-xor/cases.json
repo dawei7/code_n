@@ -103,8 +103,8 @@
     {
       "id": "real-singletons",
       "name": "real: every element must be its own part",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -124,8 +124,8 @@
     {
       "id": "real-all-equal",
       "name": "real: repeated values create several zero XOR choices",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -147,8 +147,8 @@
     {
       "id": "real-non-greedy-cuts",
       "name": "real: the best cut is not determined by segment length",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -170,8 +170,8 @@
     {
       "id": "real-large-values",
       "name": "real: large values exercise the full XOR range",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -190,8 +190,8 @@
     {
       "id": "real-many-parts",
       "name": "real: several part counts compete across prefixes",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           31,

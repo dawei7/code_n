@@ -78,9 +78,9 @@
     },
     {
       "id": "real-full-palindrome",
-      "name": "hidden: divisor one repairs a nearly palindromic whole string",
-      "kind": "real",
-      "visible": false,
+      "name": "divisor one repairs a nearly palindromic whole string",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abca",
         "k": 1
@@ -93,9 +93,9 @@
     },
     {
       "id": "real-forced-pairs",
-      "name": "hidden: maximum k forces three length-two parts",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum k forces three length-two parts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcabc",
         "k": 3
@@ -108,9 +108,9 @@
     },
     {
       "id": "real-uniform-string",
-      "name": "hidden: every legal partition of a uniform string costs zero",
-      "kind": "real",
-      "visible": false,
+      "name": "every legal partition of a uniform string costs zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaaaaa",
         "k": 3

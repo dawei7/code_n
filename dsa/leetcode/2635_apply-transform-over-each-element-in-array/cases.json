@@ -6,72 +6,199 @@
       "name": "sample: increment every value",
       "kind": "sample",
       "visible": true,
-      "input": {"arr": [1, 2, 3], "fnName": "plusOne", "fnArg": null, "arrPlan": null},
-      "expected": [2, 3, 4],
-      "tags": ["sample", "value-transform"]
+      "input": {
+        "arr": [
+          1,
+          2,
+          3
+        ],
+        "fnName": "plusOne",
+        "fnArg": null,
+        "arrPlan": null
+      },
+      "expected": [
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "sample",
+        "value-transform"
+      ]
     },
     {
       "id": "sample-plus-index",
       "name": "sample: add each index",
       "kind": "sample",
       "visible": true,
-      "input": {"arr": [1, 2, 3], "fnName": "plusIndex", "fnArg": null, "arrPlan": null},
-      "expected": [1, 3, 5],
-      "tags": ["sample", "index-transform"]
+      "input": {
+        "arr": [
+          1,
+          2,
+          3
+        ],
+        "fnName": "plusIndex",
+        "fnArg": null,
+        "arrPlan": null
+      },
+      "expected": [
+        1,
+        3,
+        5
+      ],
+      "tags": [
+        "sample",
+        "index-transform"
+      ]
     },
     {
       "id": "sample-constant",
       "name": "sample: constant transformation",
       "kind": "sample",
       "visible": true,
-      "input": {"arr": [10, 20, 30], "fnName": "constant", "fnArg": 42, "arrPlan": null},
-      "expected": [42, 42, 42],
-      "tags": ["sample", "constant"]
+      "input": {
+        "arr": [
+          10,
+          20,
+          30
+        ],
+        "fnName": "constant",
+        "fnArg": 42,
+        "arrPlan": null
+      },
+      "expected": [
+        42,
+        42,
+        42
+      ],
+      "tags": [
+        "sample",
+        "constant"
+      ]
     },
     {
       "id": "trial-empty",
       "name": "trial: empty source array",
       "kind": "trial",
       "visible": true,
-      "input": {"arr": [], "fnName": "square", "fnArg": null, "arrPlan": null},
+      "input": {
+        "arr": [],
+        "fnName": "square",
+        "fnArg": null,
+        "arrPlan": null
+      },
       "expected": [],
-      "tags": ["trial", "empty-array"]
+      "tags": [
+        "trial",
+        "empty-array"
+      ]
     },
     {
       "id": "trial-square-negatives",
       "name": "trial: square negative and zero values",
       "kind": "trial",
       "visible": true,
-      "input": {"arr": [-3, 0, 4], "fnName": "square", "fnArg": null, "arrPlan": null},
-      "expected": [9, 0, 16],
-      "tags": ["trial", "negative", "zero"]
+      "input": {
+        "arr": [
+          -3,
+          0,
+          4
+        ],
+        "fnName": "square",
+        "fnArg": null,
+        "arrPlan": null
+      },
+      "expected": [
+        9,
+        0,
+        16
+      ],
+      "tags": [
+        "trial",
+        "negative",
+        "zero"
+      ]
     },
     {
       "id": "real-index-only",
       "name": "real: callback may depend only on index",
-      "kind": "real",
-      "visible": false,
-      "input": {"arr": [99, 99, 99, 99], "fnName": "index", "fnArg": null, "arrPlan": null},
-      "expected": [0, 1, 2, 3],
-      "tags": ["real", "index", "position"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          99,
+          99,
+          99,
+          99
+        ],
+        "fnName": "index",
+        "fnArg": null,
+        "arrPlan": null
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "real",
+        "index",
+        "position"
+      ]
     },
     {
       "id": "real-scale-and-index",
       "name": "real: combine value, multiplier, and index",
-      "kind": "real",
-      "visible": false,
-      "input": {"arr": [2, 2, 2], "fnName": "scalePlusIndex", "fnArg": 5, "arrPlan": null},
-      "expected": [10, 11, 12],
-      "tags": ["real", "value", "index", "multiplier"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          2,
+          2
+        ],
+        "fnName": "scalePlusIndex",
+        "fnArg": 5,
+        "arrPlan": null
+      },
+      "expected": [
+        10,
+        11,
+        12
+      ],
+      "tags": [
+        "real",
+        "value",
+        "index",
+        "multiplier"
+      ]
     },
     {
       "id": "real-negate",
       "name": "real: transformed values retain positions",
-      "kind": "real",
-      "visible": false,
-      "input": {"arr": [-5, 7, 0], "fnName": "negate", "fnArg": null, "arrPlan": null},
-      "expected": [5, -7, 0],
-      "tags": ["real", "negative-output", "order"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          -5,
+          7,
+          0
+        ],
+        "fnName": "negate",
+        "fnArg": null,
+        "arrPlan": null
+      },
+      "expected": [
+        5,
+        -7,
+        0
+      ],
+      "tags": [
+        "real",
+        "negative-output",
+        "order"
+      ]
     }
   ]
 }

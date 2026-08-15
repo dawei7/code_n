@@ -130,8 +130,8 @@
     {
       "id": "real-k-equals-length",
       "name": "real: whole-circle blocks exclude a different endpoint edge",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": [
           0,
@@ -151,8 +151,8 @@
     {
       "id": "real-wraparound-only",
       "name": "real: valid groups can cross the array boundary",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": [
           0,
@@ -172,8 +172,8 @@
     {
       "id": "real-two-broken-edges",
       "name": "real: separated equal pairs invalidate overlapping windows",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": [
           0,
@@ -195,8 +195,8 @@
     {
       "id": "real-long-alternating-run",
       "name": "real: one long run contributes several overlapping groups",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": [
           1,
@@ -219,8 +219,8 @@
     {
       "id": "real-minimum-k",
       "name": "real: k three matches local middle-tile alternation",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": [
           1,
@@ -241,8 +241,8 @@
     {
       "id": "real-alternating-prefix-suffix",
       "name": "real: prefix and suffix join into a circular run",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": [
           0,

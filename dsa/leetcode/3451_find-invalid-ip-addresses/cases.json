@@ -181,9 +181,9 @@
     },
     {
       "id": "real-count-and-ip-order",
-      "name": "hidden: count then IP descending order",
-      "kind": "real",
-      "visible": false,
+      "name": "count then IP descending order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "logs": [
@@ -252,9 +252,9 @@
     },
     {
       "id": "real-large-octet-positions",
-      "name": "hidden: oversized value in every octet position",
-      "kind": "real",
-      "visible": false,
+      "name": "oversized value in every octet position",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "logs": [
@@ -317,9 +317,9 @@
     },
     {
       "id": "real-no-invalid-rows",
-      "name": "hidden: all rows avoid the three invalidity rules",
-      "kind": "real",
-      "visible": false,
+      "name": "all rows avoid the three invalidity rules",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "logs": [

@@ -311,9 +311,9 @@
     },
     {
       "id": "hidden-movie-average",
-      "name": "hidden: average not rating sum",
-      "kind": "real",
-      "visible": false,
+      "name": "average not rating sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Movies": [
@@ -382,9 +382,9 @@
     },
     {
       "id": "hidden-movie-lexical",
-      "name": "hidden: lexical movie tie-break",
-      "kind": "real",
-      "visible": false,
+      "name": "lexical movie tie-break",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Movies": [
@@ -443,9 +443,9 @@
     },
     {
       "id": "hidden-output-order",
-      "name": "hidden: user row precedes movie row",
-      "kind": "real",
-      "visible": false,
+      "name": "user row precedes movie row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Movies": [

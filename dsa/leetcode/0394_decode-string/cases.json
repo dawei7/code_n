@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-nested-prefix",
-      "name": "hidden: nested prefix and suffix",
-      "kind": "real",
-      "visible": false,
+      "name": "nested prefix and suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "2[x3[ab]y]"
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-adjacent-nesting",
-      "name": "hidden: adjacent groups at two levels",
-      "kind": "real",
-      "visible": false,
+      "name": "adjacent groups at two levels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "a2[b2[c]d]e"
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "hidden-one-repeat",
-      "name": "hidden: repeat count one",
-      "kind": "real",
-      "visible": false,
+      "name": "repeat count one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "1[a2[b]c]"
       },

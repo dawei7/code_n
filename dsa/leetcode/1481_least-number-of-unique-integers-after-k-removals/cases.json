@@ -72,9 +72,9 @@
     },
     {
       "id": "real-zero-removals",
-      "name": "hidden: preserve every distinct value when k is zero",
-      "kind": "real",
-      "visible": false,
+      "name": "preserve every distinct value when k is zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           7,
@@ -95,9 +95,9 @@
     },
     {
       "id": "real-remove-all",
-      "name": "hidden: remove the entire array",
-      "kind": "real",
-      "visible": false,
+      "name": "remove the entire array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           4,
@@ -117,9 +117,9 @@
     },
     {
       "id": "real-partial-next-frequency",
-      "name": "hidden: leftover budget cannot eliminate next value",
-      "kind": "real",
-      "visible": false,
+      "name": "leftover budget cannot eliminate next value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -142,9 +142,9 @@
     },
     {
       "id": "real-equal-frequencies",
-      "name": "hidden: ties among elimination costs",
-      "kind": "real",
-      "visible": false,
+      "name": "ties among elimination costs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -166,9 +166,9 @@
     },
     {
       "id": "real-all-unique",
-      "name": "hidden: every removal eliminates one value",
-      "kind": "real",
-      "visible": false,
+      "name": "every removal eliminates one value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           10,
@@ -187,9 +187,9 @@
     },
     {
       "id": "real-one-distinct-partial",
-      "name": "hidden: partial removal of the only value",
-      "kind": "real",
-      "visible": false,
+      "name": "partial removal of the only value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           6,
@@ -208,9 +208,9 @@
     },
     {
       "id": "real-one-element-remove",
-      "name": "hidden: one element removed",
-      "kind": "real",
-      "visible": false,
+      "name": "one element removed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1000000000

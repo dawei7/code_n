@@ -108,9 +108,9 @@
     },
     {
       "id": "hidden-all-ones-two",
-      "name": "hidden: all-one two by two",
-      "kind": "real",
-      "visible": false,
+      "name": "all-one two by two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -130,9 +130,9 @@
     },
     {
       "id": "hidden-three-by-three",
-      "name": "hidden: maximum dimensions",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum dimensions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [

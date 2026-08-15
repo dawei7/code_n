@@ -1,14 +1,167 @@
 {
   "challenge_id": "lc_2935",
   "cases": [
-    {"id":"sample-small-chain","name":"sample: overlapping strong partners","kind":"sample","visible":true,"input":{"nums":[1,2,3,4,5]},"expected":7,"tags":["sample"]},
-    {"id":"sample-only-self-pairs","name":"sample: distant values leave only self-pairs","kind":"sample","visible":true,"input":{"nums":[10,100]},"expected":0,"tags":["sample","self-pair"]},
-    {"id":"sample-separated-groups","name":"sample: smaller group has the larger XOR","kind":"sample","visible":true,"input":{"nums":[500,520,2500,3000]},"expected":1020,"tags":["sample"]},
-    {"id":"trial-single-value","name":"trial: singleton uses its self-pair","kind":"trial","visible":true,"input":{"nums":[42]},"expected":0,"tags":["minimum","self-pair"]},
-    {"id":"trial-equality-boundary","name":"trial: exactly twice the smaller remains strong","kind":"trial","visible":true,"input":{"nums":[4,8]},"expected":12,"tags":["inclusive-boundary"]},
-    {"id":"trial-outside-boundary","name":"trial: one above twice the smaller is removed","kind":"trial","visible":true,"input":{"nums":[4,9]},"expected":0,"tags":["window-removal"]},
-    {"id":"real-duplicates","name":"hidden: removing one duplicate preserves other copies","kind":"real","visible":false,"input":{"nums":[7,7,7]},"expected":0,"tags":["hidden","duplicates"]},
-    {"id":"real-twenty-bit-boundary","name":"hidden: values at the twenty-bit upper boundary","kind":"real","visible":false,"input":{"nums":[524288,1048575]},"expected":524287,"tags":["hidden","bit-boundary"]},
-    {"id":"real-power-neighbors","name":"hidden: nearby powers expose high XOR bits","kind":"real","visible":false,"input":{"nums":[1,2,8,15,16,31,32,63,64,127]},"expected":127,"tags":["hidden","bit-pattern"]}
+    {
+      "id": "sample-small-chain",
+      "name": "sample: overlapping strong partners",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-only-self-pairs",
+      "name": "sample: distant values leave only self-pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          100
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "self-pair"
+      ]
+    },
+    {
+      "id": "sample-separated-groups",
+      "name": "sample: smaller group has the larger XOR",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          500,
+          520,
+          2500,
+          3000
+        ]
+      },
+      "expected": 1020,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: singleton uses its self-pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          42
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "minimum",
+        "self-pair"
+      ]
+    },
+    {
+      "id": "trial-equality-boundary",
+      "name": "trial: exactly twice the smaller remains strong",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          8
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "inclusive-boundary"
+      ]
+    },
+    {
+      "id": "trial-outside-boundary",
+      "name": "trial: one above twice the smaller is removed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          9
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "window-removal"
+      ]
+    },
+    {
+      "id": "real-duplicates",
+      "name": "removing one duplicate preserves other copies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-twenty-bit-boundary",
+      "name": "values at the twenty-bit upper boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          524288,
+          1048575
+        ]
+      },
+      "expected": 524287,
+      "tags": [
+        "hidden",
+        "bit-boundary"
+      ]
+    },
+    {
+      "id": "real-power-neighbors",
+      "name": "nearby powers expose high XOR bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          8,
+          15,
+          16,
+          31,
+          32,
+          63,
+          64,
+          127
+        ]
+      },
+      "expected": 127,
+      "tags": [
+        "hidden",
+        "bit-pattern"
+      ]
+    }
   ]
 }

@@ -176,9 +176,9 @@
     },
     {
       "id": "real-zero-run",
-      "name": "hidden: every subarray of a zero run is good",
-      "kind": "real",
-      "visible": false,
+      "name": "every subarray of a zero run is good",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -198,9 +198,9 @@
     },
     {
       "id": "real-neutral-middle",
-      "name": "hidden: a neutral middle zero preserves pair witnesses",
-      "kind": "real",
-      "visible": false,
+      "name": "a neutral middle zero preserves pair witnesses",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -220,9 +220,9 @@
     },
     {
       "id": "real-alternating-incompatible",
-      "name": "hidden: repeated values do not rescue incompatible pairs",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated values do not rescue incompatible pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -243,9 +243,9 @@
     },
     {
       "id": "real-multiple-rightmost-witnesses",
-      "name": "hidden: intervals are assigned to their rightmost equal witness",
-      "kind": "real",
-      "visible": false,
+      "name": "intervals are assigned to their rightmost equal witness",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -267,9 +267,9 @@
     },
     {
       "id": "real-maximum-repeated",
-      "name": "hidden: maximum legal values surround a neutral zero",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum legal values surround a neutral zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -289,9 +289,9 @@
     },
     {
       "id": "real-high-disjoint-bits",
-      "name": "hidden: disjoint high-bit values have an absent combined OR",
-      "kind": "real",
-      "visible": false,
+      "name": "disjoint high-bit values have an absent combined OR",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           536870912,
@@ -310,9 +310,9 @@
     },
     {
       "id": "real-mixed-blockers",
-      "name": "hidden: several witnesses and blockers interact",
-      "kind": "real",
-      "visible": false,
+      "name": "several witnesses and blockers interact",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,

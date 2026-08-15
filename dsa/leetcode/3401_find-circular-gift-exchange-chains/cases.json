@@ -209,8 +209,8 @@
     {
       "id": "real-three-chain-ordering",
       "name": "real: three different chain statistics receive ordered ids",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "SecretSanta": [
@@ -294,8 +294,8 @@
     {
       "id": "real-same-length-different-totals",
       "name": "real: several equal-length chains remain separate when totals differ",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "SecretSanta": [

@@ -213,9 +213,9 @@
     },
     {
       "id": "real-cycle",
-      "name": "hidden: positive cycle is safely ignored",
-      "kind": "real",
-      "visible": false,
+      "name": "positive cycle is safely ignored",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "Graph",
@@ -270,9 +270,9 @@
     },
     {
       "id": "real-parallel-directions",
-      "name": "hidden: opposite directions are independent",
-      "kind": "real",
-      "visible": false,
+      "name": "opposite directions are independent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "Graph",
@@ -317,9 +317,9 @@
     },
     {
       "id": "real-large-cost",
-      "name": "hidden: path total exceeds one edge limit",
-      "kind": "real",
-      "visible": false,
+      "name": "path total exceeds one edge limit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "Graph",

@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-paired-alphabet",
-      "name": "hidden: paired ascending alphabet prefix",
-      "kind": "real",
-      "visible": false,
+      "name": "paired ascending alphabet prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aabbccddeeff"
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-reverse-input",
-      "name": "hidden: physical input order does not matter",
-      "kind": "real",
-      "visible": false,
+      "name": "physical input order does not matter",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zyxwv"
       },

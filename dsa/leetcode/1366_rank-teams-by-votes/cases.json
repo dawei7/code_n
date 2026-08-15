@@ -93,9 +93,9 @@
     },
     {
       "id": "hidden-complete-tie",
-      "name": "hidden: six ballots tie every position",
-      "kind": "real",
-      "visible": false,
+      "name": "six ballots tie every position",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "votes": [
           "BCA",
@@ -114,9 +114,9 @@
     },
     {
       "id": "hidden-first-position",
-      "name": "hidden: first-place majority dominates",
-      "kind": "real",
-      "visible": false,
+      "name": "first-place majority dominates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "votes": [
           "BACD",

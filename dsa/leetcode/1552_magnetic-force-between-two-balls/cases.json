@@ -132,9 +132,9 @@
     },
     {
       "id": "real-even-spacing",
-      "name": "hidden: evenly spaced positions",
-      "kind": "real",
-      "visible": false,
+      "name": "evenly spaced positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "position": [
           2,
@@ -155,9 +155,9 @@
     },
     {
       "id": "real-cluster-and-outlier",
-      "name": "hidden: cluster plus distant outlier",
-      "kind": "real",
-      "visible": false,
+      "name": "cluster plus distant outlier",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "position": [
           1,
@@ -177,9 +177,9 @@
     },
     {
       "id": "real-large-coordinates",
-      "name": "hidden: large coordinate endpoints",
-      "kind": "real",
-      "visible": false,
+      "name": "large coordinate endpoints",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "position": [
           1,
@@ -197,9 +197,9 @@
     },
     {
       "id": "real-tight-bottleneck",
-      "name": "hidden: one tight gap when all baskets used",
-      "kind": "real",
-      "visible": false,
+      "name": "one tight gap when all baskets used",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "position": [
           1,
@@ -218,9 +218,9 @@
     },
     {
       "id": "real-many-candidates",
-      "name": "hidden: multiple optimal placement choices",
-      "kind": "real",
-      "visible": false,
+      "name": "multiple optimal placement choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "position": [
           1,
@@ -240,9 +240,9 @@
     },
     {
       "id": "real-nonuniform-six",
-      "name": "hidden: nonuniform six-position instance",
-      "kind": "real",
-      "visible": false,
+      "name": "nonuniform six-position instance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "position": [
           3,

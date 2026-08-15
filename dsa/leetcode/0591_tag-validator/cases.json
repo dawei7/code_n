@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: CDATA cannot be top-level",
-      "kind": "real",
-      "visible": false,
+      "name": "CDATA cannot be top-level",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "code": "<![CDATA[text]]>"
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: append text and multiple CDATA sections",
-      "kind": "real",
-      "visible": false,
+      "name": "append text and multiple CDATA sections",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "code": "<ROOT>x<![CDATA[</ROOT>]]><C></C><![CDATA[<C>]]>y</ROOT>"
       },

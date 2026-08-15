@@ -129,9 +129,9 @@
     },
     {
       "id": "real-single-cell",
-      "name": "hidden: one cell is both protected endpoints",
-      "kind": "real",
-      "visible": false,
+      "name": "one cell is both protected endpoints",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -147,9 +147,9 @@
     },
     {
       "id": "real-two-endpoints",
-      "name": "hidden: a two-cell path has no legal flip",
-      "kind": "real",
-      "visible": false,
+      "name": "a two-cell path has no legal flip",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -166,9 +166,9 @@
     },
     {
       "id": "real-single-column-bottleneck",
-      "name": "hidden: an interior cell cuts a one-column path",
-      "kind": "real",
-      "visible": false,
+      "name": "an interior cell cuts a one-column path",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

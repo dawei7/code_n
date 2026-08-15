@@ -60,7 +60,7 @@
       "id": "trial-empty",
       "name": "trial: empty input",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "nums": [],
         "n": 7
@@ -75,7 +75,7 @@
       "id": "trial-missing-one",
       "name": "trial: first value starts above one",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "nums": [
           2
@@ -90,9 +90,9 @@
     },
     {
       "id": "hidden-large-gap",
-      "name": "hidden: several gaps between inputs",
-      "kind": "real",
-      "visible": false,
+      "name": "several gaps between inputs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -110,9 +110,9 @@
     },
     {
       "id": "hidden-binary-coverage",
-      "name": "hidden: powers already cover target",
-      "kind": "real",
-      "visible": false,
+      "name": "powers already cover target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -130,9 +130,9 @@
     },
     {
       "id": "hidden-maximum-empty",
-      "name": "hidden: maximum target without inputs",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum target without inputs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [],
         "n": 2147483647

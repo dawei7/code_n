@@ -1,7 +1,290 @@
-{"challenge_id":"lc_2686","cases":[
-{"id":"sample-four-dates","name":"sample: mixed percentages across four dates","kind":"sample","visible":true,"input":{"tables":{"Delivery":[{"delivery_id":1,"customer_id":1,"order_date":"2019-08-01","customer_pref_delivery_date":"2019-08-02"},{"delivery_id":2,"customer_id":2,"order_date":"2019-08-01","customer_pref_delivery_date":"2019-08-01"},{"delivery_id":3,"customer_id":1,"order_date":"2019-08-01","customer_pref_delivery_date":"2019-08-01"},{"delivery_id":4,"customer_id":3,"order_date":"2019-08-02","customer_pref_delivery_date":"2019-08-13"},{"delivery_id":5,"customer_id":3,"order_date":"2019-08-02","customer_pref_delivery_date":"2019-08-02"},{"delivery_id":6,"customer_id":2,"order_date":"2019-08-02","customer_pref_delivery_date":"2019-08-02"},{"delivery_id":7,"customer_id":4,"order_date":"2019-08-03","customer_pref_delivery_date":"2019-08-03"},{"delivery_id":8,"customer_id":1,"order_date":"2019-08-03","customer_pref_delivery_date":"2019-08-03"},{"delivery_id":9,"customer_id":5,"order_date":"2019-08-04","customer_pref_delivery_date":"2019-08-08"},{"delivery_id":10,"customer_id":2,"order_date":"2019-08-04","customer_pref_delivery_date":"2019-08-18"}]}},"expected":{"columns":["order_date","immediate_percentage"],"rows":[["2019-08-01",66.67],["2019-08-02",66.67],["2019-08-03",100.0],["2019-08-04",0.0]]},"tags":["sample","rounding","ordering"]},
-{"id":"trial-all-immediate","name":"trial: every order is immediate","kind":"trial","visible":true,"input":{"tables":{"Delivery":[{"delivery_id":1,"customer_id":10,"order_date":"2024-01-05","customer_pref_delivery_date":"2024-01-05"},{"delivery_id":2,"customer_id":11,"order_date":"2024-01-05","customer_pref_delivery_date":"2024-01-05"}]}},"expected":{"columns":["order_date","immediate_percentage"],"rows":[["2024-01-05",100.0]]},"tags":["all-immediate"]},
-{"id":"trial-all-scheduled","name":"trial: every order is scheduled","kind":"trial","visible":true,"input":{"tables":{"Delivery":[{"delivery_id":1,"customer_id":10,"order_date":"2024-02-01","customer_pref_delivery_date":"2024-02-03"},{"delivery_id":2,"customer_id":11,"order_date":"2024-02-01","customer_pref_delivery_date":"2024-02-02"}]}},"expected":{"columns":["order_date","immediate_percentage"],"rows":[["2024-02-01",0.0]]},"tags":["all-scheduled"]},
-{"id":"real-round-third","name":"hidden: one of three rounds to two decimals","kind":"real","visible":false,"input":{"tables":{"Delivery":[{"delivery_id":1,"customer_id":1,"order_date":"2024-03-10","customer_pref_delivery_date":"2024-03-10"},{"delivery_id":2,"customer_id":1,"order_date":"2024-03-10","customer_pref_delivery_date":"2024-03-11"},{"delivery_id":3,"customer_id":2,"order_date":"2024-03-10","customer_pref_delivery_date":"2024-03-12"}]}},"expected":{"columns":["order_date","immediate_percentage"],"rows":[["2024-03-10",33.33]]},"tags":["hidden","rounding"]},
-{"id":"real-date-order","name":"hidden: dates sort independently of insertion order","kind":"real","visible":false,"input":{"tables":{"Delivery":[{"delivery_id":1,"customer_id":1,"order_date":"2024-05-03","customer_pref_delivery_date":"2024-05-03"},{"delivery_id":2,"customer_id":2,"order_date":"2024-05-01","customer_pref_delivery_date":"2024-05-02"},{"delivery_id":3,"customer_id":1,"order_date":"2024-05-02","customer_pref_delivery_date":"2024-05-02"},{"delivery_id":4,"customer_id":3,"order_date":"2024-05-01","customer_pref_delivery_date":"2024-05-01"}]}},"expected":{"columns":["order_date","immediate_percentage"],"rows":[["2024-05-01",50.0],["2024-05-02",100.0],["2024-05-03",100.0]]},"tags":["hidden","ordering"]}
-]}
+{
+  "challenge_id": "lc_2686",
+  "cases": [
+    {
+      "id": "sample-four-dates",
+      "name": "sample: mixed percentages across four dates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Delivery": [
+            {
+              "delivery_id": 1,
+              "customer_id": 1,
+              "order_date": "2019-08-01",
+              "customer_pref_delivery_date": "2019-08-02"
+            },
+            {
+              "delivery_id": 2,
+              "customer_id": 2,
+              "order_date": "2019-08-01",
+              "customer_pref_delivery_date": "2019-08-01"
+            },
+            {
+              "delivery_id": 3,
+              "customer_id": 1,
+              "order_date": "2019-08-01",
+              "customer_pref_delivery_date": "2019-08-01"
+            },
+            {
+              "delivery_id": 4,
+              "customer_id": 3,
+              "order_date": "2019-08-02",
+              "customer_pref_delivery_date": "2019-08-13"
+            },
+            {
+              "delivery_id": 5,
+              "customer_id": 3,
+              "order_date": "2019-08-02",
+              "customer_pref_delivery_date": "2019-08-02"
+            },
+            {
+              "delivery_id": 6,
+              "customer_id": 2,
+              "order_date": "2019-08-02",
+              "customer_pref_delivery_date": "2019-08-02"
+            },
+            {
+              "delivery_id": 7,
+              "customer_id": 4,
+              "order_date": "2019-08-03",
+              "customer_pref_delivery_date": "2019-08-03"
+            },
+            {
+              "delivery_id": 8,
+              "customer_id": 1,
+              "order_date": "2019-08-03",
+              "customer_pref_delivery_date": "2019-08-03"
+            },
+            {
+              "delivery_id": 9,
+              "customer_id": 5,
+              "order_date": "2019-08-04",
+              "customer_pref_delivery_date": "2019-08-08"
+            },
+            {
+              "delivery_id": 10,
+              "customer_id": 2,
+              "order_date": "2019-08-04",
+              "customer_pref_delivery_date": "2019-08-18"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "order_date",
+          "immediate_percentage"
+        ],
+        "rows": [
+          [
+            "2019-08-01",
+            66.67
+          ],
+          [
+            "2019-08-02",
+            66.67
+          ],
+          [
+            "2019-08-03",
+            100.0
+          ],
+          [
+            "2019-08-04",
+            0.0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "rounding",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-all-immediate",
+      "name": "trial: every order is immediate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Delivery": [
+            {
+              "delivery_id": 1,
+              "customer_id": 10,
+              "order_date": "2024-01-05",
+              "customer_pref_delivery_date": "2024-01-05"
+            },
+            {
+              "delivery_id": 2,
+              "customer_id": 11,
+              "order_date": "2024-01-05",
+              "customer_pref_delivery_date": "2024-01-05"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "order_date",
+          "immediate_percentage"
+        ],
+        "rows": [
+          [
+            "2024-01-05",
+            100.0
+          ]
+        ]
+      },
+      "tags": [
+        "all-immediate"
+      ]
+    },
+    {
+      "id": "trial-all-scheduled",
+      "name": "trial: every order is scheduled",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Delivery": [
+            {
+              "delivery_id": 1,
+              "customer_id": 10,
+              "order_date": "2024-02-01",
+              "customer_pref_delivery_date": "2024-02-03"
+            },
+            {
+              "delivery_id": 2,
+              "customer_id": 11,
+              "order_date": "2024-02-01",
+              "customer_pref_delivery_date": "2024-02-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "order_date",
+          "immediate_percentage"
+        ],
+        "rows": [
+          [
+            "2024-02-01",
+            0.0
+          ]
+        ]
+      },
+      "tags": [
+        "all-scheduled"
+      ]
+    },
+    {
+      "id": "real-round-third",
+      "name": "one of three rounds to two decimals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Delivery": [
+            {
+              "delivery_id": 1,
+              "customer_id": 1,
+              "order_date": "2024-03-10",
+              "customer_pref_delivery_date": "2024-03-10"
+            },
+            {
+              "delivery_id": 2,
+              "customer_id": 1,
+              "order_date": "2024-03-10",
+              "customer_pref_delivery_date": "2024-03-11"
+            },
+            {
+              "delivery_id": 3,
+              "customer_id": 2,
+              "order_date": "2024-03-10",
+              "customer_pref_delivery_date": "2024-03-12"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "order_date",
+          "immediate_percentage"
+        ],
+        "rows": [
+          [
+            "2024-03-10",
+            33.33
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "rounding"
+      ]
+    },
+    {
+      "id": "real-date-order",
+      "name": "dates sort independently of insertion order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Delivery": [
+            {
+              "delivery_id": 1,
+              "customer_id": 1,
+              "order_date": "2024-05-03",
+              "customer_pref_delivery_date": "2024-05-03"
+            },
+            {
+              "delivery_id": 2,
+              "customer_id": 2,
+              "order_date": "2024-05-01",
+              "customer_pref_delivery_date": "2024-05-02"
+            },
+            {
+              "delivery_id": 3,
+              "customer_id": 1,
+              "order_date": "2024-05-02",
+              "customer_pref_delivery_date": "2024-05-02"
+            },
+            {
+              "delivery_id": 4,
+              "customer_id": 3,
+              "order_date": "2024-05-01",
+              "customer_pref_delivery_date": "2024-05-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "order_date",
+          "immediate_percentage"
+        ],
+        "rows": [
+          [
+            "2024-05-01",
+            50.0
+          ],
+          [
+            "2024-05-02",
+            100.0
+          ],
+          [
+            "2024-05-03",
+            100.0
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    }
+  ]
+}

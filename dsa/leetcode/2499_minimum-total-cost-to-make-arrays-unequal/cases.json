@@ -130,9 +130,9 @@
     },
     {
       "id": "real-one-cheap-helper",
-      "name": "hidden: one low-index helper repairs a lone conflict",
-      "kind": "real",
-      "visible": false,
+      "name": "one low-index helper repairs a lone conflict",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -153,9 +153,9 @@
     },
     {
       "id": "real-discussion-imbalance",
-      "name": "hidden: one helper repairs a repeated conflicting value",
-      "kind": "real",
-      "visible": false,
+      "name": "one helper repairs a repeated conflicting value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -179,9 +179,9 @@
     },
     {
       "id": "real-several-helpers",
-      "name": "hidden: several safe helpers are all required",
-      "kind": "real",
-      "visible": false,
+      "name": "several safe helpers are all required",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -209,9 +209,9 @@
     },
     {
       "id": "real-all-same-impossible",
-      "name": "hidden: identical constant arrays cannot be separated",
-      "kind": "real",
-      "visible": false,
+      "name": "identical constant arrays cannot be separated",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,

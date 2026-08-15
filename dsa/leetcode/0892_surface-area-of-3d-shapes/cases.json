@@ -141,9 +141,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: all positions empty",
-      "kind": "real",
-      "visible": false,
+      "name": "all positions empty",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -164,9 +164,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: equal adjacent towers",
-      "kind": "real",
-      "visible": false,
+      "name": "equal adjacent towers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -187,9 +187,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: unequal adjacent towers",
-      "kind": "real",
-      "visible": false,
+      "name": "unequal adjacent towers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -210,9 +210,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: separated diagonal towers",
-      "kind": "real",
-      "visible": false,
+      "name": "separated diagonal towers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -233,9 +233,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: dense equal-height block",
-      "kind": "real",
-      "visible": false,
+      "name": "dense equal-height block",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

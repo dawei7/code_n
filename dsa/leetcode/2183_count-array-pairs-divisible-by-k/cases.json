@@ -2,13 +2,163 @@
   "schema_version": 1,
   "challenge_id": "lc_2183",
   "cases": [
-    {"id":"sample-seven","name":"sample: seven products divisible by two","kind":"sample","visible":true,"input":{"nums":[1,2,3,4,5],"k":2},"expected":7,"tags":["sample","mixed-parity"]},
-    {"id":"sample-none","name":"sample: no product supplies factor five","kind":"sample","visible":true,"input":{"nums":[1,2,3,4],"k":5},"expected":0,"tags":["sample","no-pairs"]},
-    {"id":"trial-single","name":"one value cannot form a pair","kind":"trial","visible":true,"input":{"nums":[60],"k":60},"expected":0,"tags":["single-element"]},
-    {"id":"trial-k-one","name":"k one accepts every index pair","kind":"trial","visible":true,"input":{"nums":[7,11,13,17],"k":1},"expected":6,"tags":["k-one","all-pairs"]},
-    {"id":"trial-complementary","name":"separate factors combine across a pair","kind":"trial","visible":true,"input":{"nums":[2,3,5],"k":6},"expected":1,"tags":["complementary-factors"]},
-    {"id":"real-divisible-value","name":"hidden: a multiple of k pairs with every other value","kind":"real","visible":false,"input":{"nums":[1,7,30,4],"k":30},"expected":3,"tags":["hidden","multiple-of-k"]},
-    {"id":"real-divisor-classes","name":"hidden: several gcd classes interact","kind":"real","visible":false,"input":{"nums":[2,4,6,9,10,15],"k":12},"expected":5,"tags":["hidden","gcd-classes"]},
-    {"id":"real-duplicates","name":"hidden: duplicate positions remain separate pairs","kind":"real","visible":false,"input":{"nums":[6,6,6,6],"k":9},"expected":6,"tags":["hidden","duplicates","shared-factors"]}
+    {
+      "id": "sample-seven",
+      "name": "sample: seven products divisible by two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "k": 2
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "mixed-parity"
+      ]
+    },
+    {
+      "id": "sample-none",
+      "name": "sample: no product supplies factor five",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 5
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "no-pairs"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "one value cannot form a pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          60
+        ],
+        "k": 60
+      },
+      "expected": 0,
+      "tags": [
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-k-one",
+      "name": "k one accepts every index pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          11,
+          13,
+          17
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "k-one",
+        "all-pairs"
+      ]
+    },
+    {
+      "id": "trial-complementary",
+      "name": "separate factors combine across a pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5
+        ],
+        "k": 6
+      },
+      "expected": 1,
+      "tags": [
+        "complementary-factors"
+      ]
+    },
+    {
+      "id": "real-divisible-value",
+      "name": "a multiple of k pairs with every other value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          7,
+          30,
+          4
+        ],
+        "k": 30
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "multiple-of-k"
+      ]
+    },
+    {
+      "id": "real-divisor-classes",
+      "name": "several gcd classes interact",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6,
+          9,
+          10,
+          15
+        ],
+        "k": 12
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "gcd-classes"
+      ]
+    },
+    {
+      "id": "real-duplicates",
+      "name": "duplicate positions remain separate pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          6,
+          6,
+          6
+        ],
+        "k": 9
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "duplicates",
+        "shared-factors"
+      ]
+    }
   ]
 }

@@ -136,8 +136,8 @@
     {
       "id": "real-maximum-k-unused",
       "name": "real: extra teleport allowance need not be used",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -164,8 +164,8 @@
     {
       "id": "real-one-teleport-cost",
       "name": "real: one teleport leaves cost twelve",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -204,8 +204,8 @@
     {
       "id": "real-second-teleport-helps",
       "name": "real: second teleport lowers optimum",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -244,8 +244,8 @@
     {
       "id": "real-zero-valued-route",
       "name": "real: zero-valued destinations allow zero cost",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -275,8 +275,8 @@
     {
       "id": "real-rectangular-grid",
       "name": "real: rectangular grid uses same layered recurrence",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -301,8 +301,8 @@
     {
       "id": "real-maximum-values",
       "name": "real: equal maximum target permits direct teleport",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

@@ -7,63 +7,233 @@
       "name": "sample: crossing row and column orders",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[3, 1], [2, 5]]},
-      "expected": [[2, 1], [1, 2]],
-      "tags": ["sample", "matrix"]
+      "input": {
+        "grid": [
+          [
+            3,
+            1
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "tags": [
+        "sample",
+        "matrix"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: single cell",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[10]]},
-      "expected": [[1]],
-      "tags": ["sample", "minimum"]
+      "input": {
+        "grid": [
+          [
+            10
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1
+        ]
+      ],
+      "tags": [
+        "sample",
+        "minimum"
+      ]
     },
     {
       "id": "trial-one-row",
       "name": "one row becomes its rank order",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[5, 1, 9, 3]]},
-      "expected": [[3, 1, 4, 2]],
-      "tags": ["row", "ranking"]
+      "input": {
+        "grid": [
+          [
+            5,
+            1,
+            9,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        [
+          3,
+          1,
+          4,
+          2
+        ]
+      ],
+      "tags": [
+        "row",
+        "ranking"
+      ]
     },
     {
       "id": "trial-one-column",
       "name": "one column becomes its rank order",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[4], [1], [9]]},
-      "expected": [[2], [1], [3]],
-      "tags": ["column", "ranking"]
+      "input": {
+        "grid": [
+          [
+            4
+          ],
+          [
+            1
+          ],
+          [
+            9
+          ]
+        ]
+      },
+      "expected": [
+        [
+          2
+        ],
+        [
+          1
+        ],
+        [
+          3
+        ]
+      ],
+      "tags": [
+        "column",
+        "ranking"
+      ]
     },
     {
       "id": "trial-independent-equal-scores",
       "name": "unrelated cells may share replacement values",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[2, 4, 5], [7, 3, 9]]},
-      "expected": [[1, 2, 3], [2, 1, 4]],
-      "tags": ["partial-order"]
+      "input": {
+        "grid": [
+          [
+            2,
+            4,
+            5
+          ],
+          [
+            7,
+            3,
+            9
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          2,
+          1,
+          4
+        ]
+      ],
+      "tags": [
+        "partial-order"
+      ]
     },
     {
       "id": "real-two-by-three",
-      "name": "hidden: alternating local orders",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[9, 1, 7], [4, 8, 2]]},
-      "expected": [[3, 1, 2], [2, 3, 1]],
-      "tags": ["hidden", "matrix"]
+      "name": "alternating local orders",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            9,
+            1,
+            7
+          ],
+          [
+            4,
+            8,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          3,
+          1,
+          2
+        ],
+        [
+          2,
+          3,
+          1
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "matrix"
+      ]
     },
     {
       "id": "real-three-by-three",
-      "name": "hidden: row and column chains interact",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[8, 3, 6], [1, 9, 5], [7, 2, 4]]},
-      "expected": [[5, 2, 4], [1, 4, 3], [3, 1, 2]],
-      "tags": ["hidden", "chains"]
+      "name": "row and column chains interact",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            8,
+            3,
+            6
+          ],
+          [
+            1,
+            9,
+            5
+          ],
+          [
+            7,
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        [
+          5,
+          2,
+          4
+        ],
+        [
+          1,
+          4,
+          3
+        ],
+        [
+          3,
+          1,
+          2
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "chains"
+      ]
     }
   ]
 }

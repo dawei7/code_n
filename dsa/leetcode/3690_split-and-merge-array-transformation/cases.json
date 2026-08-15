@@ -7,81 +7,226 @@
       "name": "sample: move the leading singleton to the end",
       "kind": "sample",
       "visible": true,
-      "input": {"nums1": [3, 1, 2], "nums2": [1, 2, 3]},
+      "input": {
+        "nums1": [
+          3,
+          1,
+          2
+        ],
+        "nums2": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "single-operation"]
+      "tags": [
+        "sample",
+        "single-operation"
+      ]
     },
     {
       "id": "sample-duplicate-reversal",
       "name": "sample: six-element reversal with duplicate ones",
       "kind": "sample",
       "visible": true,
-      "input": {"nums1": [1, 1, 2, 3, 4, 5], "nums2": [5, 4, 3, 2, 1, 1]},
+      "input": {
+        "nums1": [
+          1,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "nums2": [
+          5,
+          4,
+          3,
+          2,
+          1,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "duplicates", "multiple-operations"]
+      "tags": [
+        "sample",
+        "duplicates",
+        "multiple-operations"
+      ]
     },
     {
       "id": "trial-already-equal",
       "name": "trial: equal arrays require zero operations",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [1, 2, 3], "nums2": [1, 2, 3]},
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3
+        ],
+        "nums2": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "identity"]
+      "tags": [
+        "trial",
+        "identity"
+      ]
     },
     {
       "id": "trial-two-element-swap",
       "name": "trial: swap two elements with one block move",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [1, 2], "nums2": [2, 1]},
+      "input": {
+        "nums1": [
+          1,
+          2
+        ],
+        "nums2": [
+          2,
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-duplicate-middle-move",
       "name": "trial: repeated values still permit a one-move target",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [1, 1, 2], "nums2": [1, 2, 1]},
+      "input": {
+        "nums1": [
+          1,
+          1,
+          2
+        ],
+        "nums2": [
+          1,
+          2,
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "duplicates"]
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
     },
     {
       "id": "real-reverse-four",
-      "name": "hidden: reversing four unique values needs three moves",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [1, 2, 3, 4], "nums2": [4, 3, 2, 1]},
+      "name": "reversing four unique values needs three moves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "nums2": [
+          4,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "reversal"]
+      "tags": [
+        "hidden",
+        "reversal"
+      ]
     },
     {
       "id": "real-two-independent-swaps",
-      "name": "hidden: two separated swaps require two moves",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [1, 2, 3, 4], "nums2": [2, 1, 4, 3]},
+      "name": "two separated swaps require two moves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "nums2": [
+          2,
+          1,
+          4,
+          3
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "multiple-operations"]
+      "tags": [
+        "hidden",
+        "multiple-operations"
+      ]
     },
     {
       "id": "real-maximum-distinct-reversal",
-      "name": "hidden: maximum-length distinct reversal reaches distance four",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [1, 2, 3, 4, 5, 6], "nums2": [6, 5, 4, 3, 2, 1]},
+      "name": "maximum-length distinct reversal reaches distance four",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "nums2": [
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "maximum-length", "reversal"]
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "reversal"
+      ]
     },
     {
       "id": "real-negative-duplicates",
-      "name": "hidden: values and duplicates do not change move semantics",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [0, -1, 0, 2], "nums2": [0, 2, -1, 0]},
+      "name": "values and duplicates do not change move semantics",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          0,
+          -1,
+          0,
+          2
+        ],
+        "nums2": [
+          0,
+          2,
+          -1,
+          0
+        ]
+      },
       "expected": 1,
-      "tags": ["hidden", "negative", "duplicates"]
+      "tags": [
+        "hidden",
+        "negative",
+        "duplicates"
+      ]
     }
   ]
 }

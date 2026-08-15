@@ -2,13 +2,223 @@
   "schema_version": 1,
   "challenge_id": "lc_2151",
   "cases": [
-    {"id": "sample-mutual-good", "name": "sample: two mutually supporting people", "kind": "sample", "visible": true, "input": {"statements": [[2, 1, 2], [1, 2, 2], [2, 0, 2]]}, "expected": 2, "tags": ["sample", "mutual-support"]},
-    {"id": "sample-mutual-bad", "name": "sample: each person calls the other bad", "kind": "sample", "visible": true, "input": {"statements": [[2, 0], [0, 2]]}, "expected": 1, "tags": ["sample", "mutual-accusation"]},
-    {"id": "trial-no-statements", "name": "all people may be good when nobody speaks", "kind": "trial", "visible": true, "input": {"statements": [[2, 2], [2, 2]]}, "expected": 2, "tags": ["all-unknown"]},
-    {"id": "trial-mutual-confirmation", "name": "mutual good statements are consistent", "kind": "trial", "visible": true, "input": {"statements": [[2, 1], [1, 2]]}, "expected": 2, "tags": ["mutual-good"]},
-    {"id": "trial-one-accusation", "name": "one accusation limits the pair to one good person", "kind": "trial", "visible": true, "input": {"statements": [[2, 0], [2, 2]]}, "expected": 1, "tags": ["one-sided"]},
-    {"id": "real-good-chain", "name": "hidden: a consistent good chain permits everyone", "kind": "real", "visible": false, "input": {"statements": [[2, 1, 2], [2, 2, 1], [2, 2, 2]]}, "expected": 3, "tags": ["hidden", "chain"]},
-    {"id": "real-no-good-person", "name": "hidden: every possible good person triggers a contradiction", "kind": "real", "visible": false, "input": {"statements": [[2, 1, 0], [1, 2, 1], [0, 1, 2]]}, "expected": 0, "tags": ["hidden", "contradiction-cycle"]},
-    {"id": "real-bad-statements-ignored", "name": "hidden: statements from excluded people impose no constraints", "kind": "real", "visible": false, "input": {"statements": [[2, 1, 1, 2], [1, 2, 1, 2], [1, 1, 2, 2], [0, 0, 0, 2]]}, "expected": 3, "tags": ["hidden", "ignored-bad-statements"]}
+    {
+      "id": "sample-mutual-good",
+      "name": "sample: two mutually supporting people",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "statements": [
+          [
+            2,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            2,
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "mutual-support"
+      ]
+    },
+    {
+      "id": "sample-mutual-bad",
+      "name": "sample: each person calls the other bad",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "statements": [
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "mutual-accusation"
+      ]
+    },
+    {
+      "id": "trial-no-statements",
+      "name": "all people may be good when nobody speaks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "statements": [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "all-unknown"
+      ]
+    },
+    {
+      "id": "trial-mutual-confirmation",
+      "name": "mutual good statements are consistent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "statements": [
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "mutual-good"
+      ]
+    },
+    {
+      "id": "trial-one-accusation",
+      "name": "one accusation limits the pair to one good person",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "statements": [
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "one-sided"
+      ]
+    },
+    {
+      "id": "real-good-chain",
+      "name": "a consistent good chain permits everyone",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "statements": [
+          [
+            2,
+            1,
+            2
+          ],
+          [
+            2,
+            2,
+            1
+          ],
+          [
+            2,
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "chain"
+      ]
+    },
+    {
+      "id": "real-no-good-person",
+      "name": "every possible good person triggers a contradiction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "statements": [
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "contradiction-cycle"
+      ]
+    },
+    {
+      "id": "real-bad-statements-ignored",
+      "name": "statements from excluded people impose no constraints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "statements": [
+          [
+            2,
+            1,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            2,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "ignored-bad-statements"
+      ]
+    }
   ]
 }

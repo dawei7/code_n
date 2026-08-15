@@ -127,9 +127,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: full reverse order",
-      "kind": "real",
-      "visible": false,
+      "name": "full reverse order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pushed": [
           0,
@@ -156,9 +156,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: lower value blocked",
-      "kind": "real",
-      "visible": false,
+      "name": "lower value blocked",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pushed": [
           1,
@@ -179,9 +179,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: late obstruction",
-      "kind": "real",
-      "visible": false,
+      "name": "late obstruction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pushed": [
           1,
@@ -204,9 +204,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: longer mixed valid sequence",
-      "kind": "real",
-      "visible": false,
+      "name": "longer mixed valid sequence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pushed": [
           10,

@@ -135,9 +135,9 @@
     },
     {
       "id": "real-duplicate-backtrack",
-      "name": "hidden: duplicate letters are restored while moving the first difference left",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate letters are restored while moving the first difference left",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aabc",
         "target": "abca"
@@ -154,9 +154,9 @@
     },
     {
       "id": "real-duplicate-next",
-      "name": "hidden: repeated letters still produce the next distinct permutation",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated letters still produce the next distinct permutation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aabb",
         "target": "abab"
@@ -173,9 +173,9 @@
     },
     {
       "id": "real-missing-target-letter",
-      "name": "hidden: an unavailable equal letter triggers an increase at that position",
-      "kind": "real",
-      "visible": false,
+      "name": "an unavailable equal letter triggers an increase at that position",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abdz",
         "target": "abcz"
@@ -191,9 +191,9 @@
     },
     {
       "id": "real-target-above-maximum",
-      "name": "hidden: a target above the maximum permutation has no answer",
-      "kind": "real",
-      "visible": false,
+      "name": "a target above the maximum permutation has no answer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcd",
         "target": "zzzz"
@@ -209,9 +209,9 @@
     },
     {
       "id": "real-maximum-length",
-      "name": "hidden: maximum-length input remains linear",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum-length input remains linear",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
         "target": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
@@ -227,4 +227,3 @@
     }
   ]
 }
-

@@ -6,90 +6,200 @@
       "name": "sample: two operations reduce the OR",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 5, 3, 2, 7], "k": 2},
+      "input": {
+        "nums": [
+          3,
+          5,
+          3,
+          2,
+          7
+        ],
+        "k": 2
+      },
       "expected": 3,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-four-merges",
       "name": "sample: four operations leave two values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [7, 3, 15, 14, 2, 8], "k": 4},
+      "input": {
+        "nums": [
+          7,
+          3,
+          15,
+          14,
+          2,
+          8
+        ],
+        "k": 4
+      },
       "expected": 2,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-no-improvement",
       "name": "sample: one operation cannot lower the OR",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [10, 7, 10, 3, 9, 14, 9, 4], "k": 1},
+      "input": {
+        "nums": [
+          10,
+          7,
+          10,
+          3,
+          9,
+          14,
+          9,
+          4
+        ],
+        "k": 1
+      },
       "expected": 15,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "trial-no-operations",
       "name": "trial: zero operations preserves the original OR",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 4, 8], "k": 0},
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "k": 0
+      },
       "expected": 15,
-      "tags": ["trial", "zero-budget"]
+      "tags": [
+        "trial",
+        "zero-budget"
+      ]
     },
     {
       "id": "trial-merge-entire-array",
       "name": "trial: merging the entire array leaves its AND",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7, 3, 15], "k": 2},
+      "input": {
+        "nums": [
+          7,
+          3,
+          15
+        ],
+        "k": 2
+      },
       "expected": 3,
-      "tags": ["trial", "maximum-budget"]
+      "tags": [
+        "trial",
+        "maximum-budget"
+      ]
     },
     {
       "id": "real-single-zero",
       "name": "real: a single zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0], "k": 0},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ],
+        "k": 0
+      },
       "expected": 0,
-      "tags": ["real", "singleton", "zero"]
+      "tags": [
+        "real",
+        "singleton",
+        "zero"
+      ]
     },
     {
       "id": "real-zero-separates-high-values",
       "name": "real: enough merges absorb both sides into zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [7, 0, 7], "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          0,
+          7
+        ],
+        "k": 2
+      },
       "expected": 0,
-      "tags": ["real", "zero", "maximum-budget"]
+      "tags": [
+        "real",
+        "zero",
+        "maximum-budget"
+      ]
     },
     {
       "id": "real-disjoint-high-bits",
       "name": "real: one merge clears every bit",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [536870912, 536870911], "k": 1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          536870912,
+          536870911
+        ],
+        "k": 1
+      },
       "expected": 0,
-      "tags": ["real", "high-bit"]
+      "tags": [
+        "real",
+        "high-bit"
+      ]
     },
     {
       "id": "real-boundary-choice",
       "name": "real: the best adjacent boundary is not determined locally",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 3, 12, 10, 7], "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          3,
+          12,
+          10,
+          7
+        ],
+        "k": 2
+      },
       "expected": 7,
-      "tags": ["real", "partition"]
+      "tags": [
+        "real",
+        "partition"
+      ]
     },
     {
       "id": "real-budget-cannot-clear-or",
       "name": "real: all candidate merges retain the complete OR",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [14, 7, 11, 13], "k": 1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          14,
+          7,
+          11,
+          13
+        ],
+        "k": 1
+      },
       "expected": 15,
-      "tags": ["real", "infeasible-mask"]
+      "tags": [
+        "real",
+        "infeasible-mask"
+      ]
     }
   ]
 }

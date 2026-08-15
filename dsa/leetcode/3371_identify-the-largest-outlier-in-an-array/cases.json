@@ -121,9 +121,9 @@
     },
     {
       "id": "real-boundary-values",
-      "name": "hidden: extreme source values with zero sum element",
-      "kind": "real",
-      "visible": false,
+      "name": "extreme source values with zero sum element",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -1000,
@@ -140,9 +140,9 @@
     },
     {
       "id": "real-repeated-specials",
-      "name": "hidden: many duplicate specials and duplicate role values",
-      "kind": "real",
-      "visible": false,
+      "name": "many duplicate specials and duplicate role values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -161,9 +161,9 @@
     },
     {
       "id": "real-zero-sum-specials",
-      "name": "hidden: balanced specials produce zero sum element",
-      "kind": "real",
-      "visible": false,
+      "name": "balanced specials produce zero sum element",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -5,
@@ -182,9 +182,9 @@
     },
     {
       "id": "real-parity-rejections",
-      "name": "hidden: odd remainders reject tempting larger candidates",
-      "kind": "real",
-      "visible": false,
+      "name": "odd remainders reject tempting larger candidates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

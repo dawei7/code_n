@@ -1,9 +1,251 @@
-{"schema_version":1,"challenge_id":"lc_2689","cases":[
-{"id":"sample-asymmetric","name":"sample: target lies in right leaf after left subtree","kind":"sample","visible":true,"input":{"root":{"len":10,"val":"","left":{"len":4,"val":"","left":{"len":0,"val":"g","left":null,"right":null},"right":{"len":0,"val":"rta","left":null,"right":null}},"right":{"len":0,"val":"abcpoe","left":null,"right":null}},"k":6},"expected":"b","tags":["sample","asymmetric"]},
-{"id":"sample-balanced","name":"sample: balanced four-leaf rope","kind":"sample","visible":true,"input":{"root":{"len":12,"val":"","left":{"len":6,"val":"","left":{"len":0,"val":"abc","left":null,"right":null},"right":{"len":0,"val":"efg","left":null,"right":null}},"right":{"len":6,"val":"","left":{"len":0,"val":"hij","left":null,"right":null},"right":{"len":0,"val":"klm","left":null,"right":null}}},"k":3},"expected":"c","tags":["sample","balanced"]},
-{"id":"sample-single-leaf","name":"sample: root is a leaf","kind":"sample","visible":true,"input":{"root":{"len":0,"val":"ropetree","left":null,"right":null},"k":8},"expected":"e","tags":["sample","leaf"]},
-{"id":"trial-left-boundary","name":"trial: last character of left subtree","kind":"trial","visible":true,"input":{"root":{"len":5,"val":"","left":{"len":0,"val":"ab","left":null,"right":null},"right":{"len":0,"val":"cde","left":null,"right":null}},"k":2},"expected":"b","tags":["boundary","left"]},
-{"id":"trial-right-boundary","name":"trial: first character of right subtree","kind":"trial","visible":true,"input":{"root":{"len":5,"val":"","left":{"len":0,"val":"ab","left":null,"right":null},"right":{"len":0,"val":"cde","left":null,"right":null}},"k":3},"expected":"c","tags":["boundary","right"]},
-{"id":"real-right-only","name":"hidden: internal node has only a right child","kind":"real","visible":false,"input":{"root":{"len":4,"val":"","left":null,"right":{"len":0,"val":"wxyz","left":null,"right":null}},"k":1},"expected":"w","tags":["hidden","missing-child"]},
-{"id":"real-deep-target","name":"hidden: position descends through several right children","kind":"real","visible":false,"input":{"root":{"len":7,"val":"","left":{"len":0,"val":"a","left":null,"right":null},"right":{"len":6,"val":"","left":{"len":0,"val":"bc","left":null,"right":null},"right":{"len":4,"val":"","left":{"len":0,"val":"d","left":null,"right":null},"right":{"len":0,"val":"efg","left":null,"right":null}}}},"k":7},"expected":"g","tags":["hidden","deep"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2689",
+  "cases": [
+    {
+      "id": "sample-asymmetric",
+      "name": "sample: target lies in right leaf after left subtree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": {
+          "len": 10,
+          "val": "",
+          "left": {
+            "len": 4,
+            "val": "",
+            "left": {
+              "len": 0,
+              "val": "g",
+              "left": null,
+              "right": null
+            },
+            "right": {
+              "len": 0,
+              "val": "rta",
+              "left": null,
+              "right": null
+            }
+          },
+          "right": {
+            "len": 0,
+            "val": "abcpoe",
+            "left": null,
+            "right": null
+          }
+        },
+        "k": 6
+      },
+      "expected": "b",
+      "tags": [
+        "sample",
+        "asymmetric"
+      ]
+    },
+    {
+      "id": "sample-balanced",
+      "name": "sample: balanced four-leaf rope",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": {
+          "len": 12,
+          "val": "",
+          "left": {
+            "len": 6,
+            "val": "",
+            "left": {
+              "len": 0,
+              "val": "abc",
+              "left": null,
+              "right": null
+            },
+            "right": {
+              "len": 0,
+              "val": "efg",
+              "left": null,
+              "right": null
+            }
+          },
+          "right": {
+            "len": 6,
+            "val": "",
+            "left": {
+              "len": 0,
+              "val": "hij",
+              "left": null,
+              "right": null
+            },
+            "right": {
+              "len": 0,
+              "val": "klm",
+              "left": null,
+              "right": null
+            }
+          }
+        },
+        "k": 3
+      },
+      "expected": "c",
+      "tags": [
+        "sample",
+        "balanced"
+      ]
+    },
+    {
+      "id": "sample-single-leaf",
+      "name": "sample: root is a leaf",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": {
+          "len": 0,
+          "val": "ropetree",
+          "left": null,
+          "right": null
+        },
+        "k": 8
+      },
+      "expected": "e",
+      "tags": [
+        "sample",
+        "leaf"
+      ]
+    },
+    {
+      "id": "trial-left-boundary",
+      "name": "trial: last character of left subtree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": {
+          "len": 5,
+          "val": "",
+          "left": {
+            "len": 0,
+            "val": "ab",
+            "left": null,
+            "right": null
+          },
+          "right": {
+            "len": 0,
+            "val": "cde",
+            "left": null,
+            "right": null
+          }
+        },
+        "k": 2
+      },
+      "expected": "b",
+      "tags": [
+        "boundary",
+        "left"
+      ]
+    },
+    {
+      "id": "trial-right-boundary",
+      "name": "trial: first character of right subtree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": {
+          "len": 5,
+          "val": "",
+          "left": {
+            "len": 0,
+            "val": "ab",
+            "left": null,
+            "right": null
+          },
+          "right": {
+            "len": 0,
+            "val": "cde",
+            "left": null,
+            "right": null
+          }
+        },
+        "k": 3
+      },
+      "expected": "c",
+      "tags": [
+        "boundary",
+        "right"
+      ]
+    },
+    {
+      "id": "real-right-only",
+      "name": "internal node has only a right child",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": {
+          "len": 4,
+          "val": "",
+          "left": null,
+          "right": {
+            "len": 0,
+            "val": "wxyz",
+            "left": null,
+            "right": null
+          }
+        },
+        "k": 1
+      },
+      "expected": "w",
+      "tags": [
+        "hidden",
+        "missing-child"
+      ]
+    },
+    {
+      "id": "real-deep-target",
+      "name": "position descends through several right children",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": {
+          "len": 7,
+          "val": "",
+          "left": {
+            "len": 0,
+            "val": "a",
+            "left": null,
+            "right": null
+          },
+          "right": {
+            "len": 6,
+            "val": "",
+            "left": {
+              "len": 0,
+              "val": "bc",
+              "left": null,
+              "right": null
+            },
+            "right": {
+              "len": 4,
+              "val": "",
+              "left": {
+                "len": 0,
+                "val": "d",
+                "left": null,
+                "right": null
+              },
+              "right": {
+                "len": 0,
+                "val": "efg",
+                "left": null,
+                "right": null
+              }
+            }
+          }
+        },
+        "k": 7
+      },
+      "expected": "g",
+      "tags": [
+        "hidden",
+        "deep"
+      ]
+    }
+  ]
+}

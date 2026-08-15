@@ -165,9 +165,9 @@
     },
     {
       "id": "real-reject-longer-runs",
-      "name": "hidden: longer and separated shorter runs do not qualify",
-      "kind": "real",
-      "visible": false,
+      "name": "longer and separated shorter runs do not qualify",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Products": [
@@ -204,9 +204,9 @@
     },
     {
       "id": "real-long-and-exact-runs",
-      "name": "hidden: an independent exact run still qualifies",
-      "kind": "real",
-      "visible": false,
+      "name": "an independent exact run still qualifies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Products": [
@@ -249,9 +249,9 @@
     },
     {
       "id": "real-punctuation-boundaries",
-      "name": "hidden: punctuation bounds digit runs",
-      "kind": "real",
-      "visible": false,
+      "name": "punctuation bounds digit runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Products": [

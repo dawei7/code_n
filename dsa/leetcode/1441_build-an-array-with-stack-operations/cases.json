@@ -120,9 +120,9 @@
     },
     {
       "id": "real-alternating",
-      "name": "hidden: alternate discarded and retained values",
-      "kind": "real",
-      "visible": false,
+      "name": "alternate discarded and retained values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": [
           2,
@@ -149,9 +149,9 @@
     },
     {
       "id": "real-final-n",
-      "name": "hidden: target ends at stream boundary",
-      "kind": "real",
-      "visible": false,
+      "name": "target ends at stream boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": [
           1,

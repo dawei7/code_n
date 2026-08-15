@@ -72,9 +72,9 @@
     },
     {
       "id": "real-largest-leftover-center",
-      "name": "hidden: choose the largest leftover center",
-      "kind": "real",
-      "visible": false,
+      "name": "choose the largest leftover center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": "1233219"
       },
@@ -86,9 +86,9 @@
     },
     {
       "id": "real-extra-zero-center",
-      "name": "hidden: odd zero count supplies the center",
-      "kind": "real",
-      "visible": false,
+      "name": "odd zero count supplies the center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": "00022"
       },
@@ -100,9 +100,9 @@
     },
     {
       "id": "real-no-pairs",
-      "name": "hidden: select the largest single digit",
-      "kind": "real",
-      "visible": false,
+      "name": "select the largest single digit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": "54321"
       },

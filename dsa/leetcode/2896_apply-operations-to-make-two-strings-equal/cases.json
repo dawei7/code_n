@@ -6,54 +6,98 @@
       "name": "sample: optimal plan mixes both operation types",
       "kind": "sample",
       "visible": true,
-      "input": {"s1": "1100011000", "s2": "0101001010", "x": 2},
+      "input": {
+        "s1": "1100011000",
+        "s2": "0101001010",
+        "x": 2
+      },
       "expected": 4,
-      "tags": ["sample", "mixed-operations"]
+      "tags": [
+        "sample",
+        "mixed-operations"
+      ]
     },
     {
       "id": "sample-odd-mismatch-count",
       "name": "sample: odd mismatch parity is impossible",
       "kind": "sample",
       "visible": true,
-      "input": {"s1": "10110", "s2": "00011", "x": 4},
+      "input": {
+        "s1": "10110",
+        "s2": "00011",
+        "x": 4
+      },
       "expected": -1,
-      "tags": ["sample", "impossible", "parity"]
+      "tags": [
+        "sample",
+        "impossible",
+        "parity"
+      ]
     },
     {
       "id": "trial-identical-strings",
       "name": "no operation is needed for equal strings",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "00010", "s2": "00010", "x": 9},
+      "input": {
+        "s1": "00010",
+        "s2": "00010",
+        "x": 9
+      },
       "expected": 0,
-      "tags": ["boundary", "zero-mismatches"]
+      "tags": [
+        "boundary",
+        "zero-mismatches"
+      ]
     },
     {
       "id": "trial-adjacent-pair-cheaper",
       "name": "one adjacent flip beats an expensive arbitrary flip",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "00", "s2": "11", "x": 100},
+      "input": {
+        "s1": "00",
+        "s2": "11",
+        "x": 100
+      },
       "expected": 1,
-      "tags": ["adjacent-pair", "cost-comparison"]
+      "tags": [
+        "adjacent-pair",
+        "cost-comparison"
+      ]
     },
     {
       "id": "trial-arbitrary-pair-cheaper",
       "name": "one arbitrary flip beats moving distant mismatches together",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "000000", "s2": "100001", "x": 3},
+      "input": {
+        "s1": "000000",
+        "s2": "100001",
+        "x": 3
+      },
       "expected": 3,
-      "tags": ["distant-pair", "arbitrary-operation"]
+      "tags": [
+        "distant-pair",
+        "arbitrary-operation"
+      ]
     },
     {
       "id": "real-overlapping-adjacent-transitions",
-      "name": "hidden: local adjacent choices interact across four mismatches",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "101101", "s2": "000000", "x": 6},
+      "name": "local adjacent choices interact across four mismatches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "101101",
+        "s2": "000000",
+        "x": 6
+      },
       "expected": 4,
-      "tags": ["hidden", "dynamic-programming", "four-mismatches"]
+      "tags": [
+        "hidden",
+        "dynamic-programming",
+        "four-mismatches"
+      ]
     }
   ]
 }

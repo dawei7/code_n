@@ -157,9 +157,9 @@
     },
     {
       "id": "real-one-short",
-      "name": "hidden: direct route is one fuel short",
-      "kind": "real",
-      "visible": false,
+      "name": "direct route is one fuel short",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "locations": [
           1,
@@ -178,9 +178,9 @@
     },
     {
       "id": "real-return-once",
-      "name": "hidden: leave the destination and return once",
-      "kind": "real",
-      "visible": false,
+      "name": "leave the destination and return once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "locations": [
           1,
@@ -199,9 +199,9 @@
     },
     {
       "id": "real-two-arrivals",
-      "name": "hidden: stop at the first or second arrival",
-      "kind": "real",
-      "visible": false,
+      "name": "stop at the first or second arrival",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "locations": [
           1,
@@ -220,9 +220,9 @@
     },
     {
       "id": "real-unsorted-coordinates",
-      "name": "hidden: coordinate order differs from city indices",
-      "kind": "real",
-      "visible": false,
+      "name": "coordinate order differs from city indices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "locations": [
           10,
@@ -243,9 +243,9 @@
     },
     {
       "id": "real-indirect-exact",
-      "name": "hidden: unsorted direct destination at exact distance",
-      "kind": "real",
-      "visible": false,
+      "name": "unsorted direct destination at exact distance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "locations": [
           5,
@@ -265,9 +265,9 @@
     },
     {
       "id": "real-three-city-revisits",
-      "name": "hidden: several revisiting routes with four fuel",
-      "kind": "real",
-      "visible": false,
+      "name": "several revisiting routes with four fuel",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "locations": [
           1,

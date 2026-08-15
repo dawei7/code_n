@@ -183,9 +183,9 @@
     },
     {
       "id": "real-first-array-before-second",
-      "name": "hidden: the first array is exhausted before the second",
-      "kind": "real",
-      "visible": false,
+      "name": "the first array is exhausted before the second",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           [
@@ -241,9 +241,9 @@
     },
     {
       "id": "real-second-array-before-first",
-      "name": "hidden: the second array is exhausted before the first",
-      "kind": "real",
-      "visible": false,
+      "name": "the second array is exhausted before the first",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           [
@@ -299,9 +299,9 @@
     },
     {
       "id": "real-complete-overlap",
-      "name": "hidden: every ID receives two contributions",
-      "kind": "real",
-      "visible": false,
+      "name": "every ID receives two contributions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           [
@@ -353,9 +353,9 @@
     },
     {
       "id": "real-unequal-mixed",
-      "name": "hidden: overlap and unequal tails merge together",
-      "kind": "real",
-      "visible": false,
+      "name": "overlap and unequal tails merge together",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           [
@@ -415,9 +415,9 @@
     },
     {
       "id": "real-maximum-id-and-values",
-      "name": "hidden: summed value may exceed an individual value bound",
-      "kind": "real",
-      "visible": false,
+      "name": "summed value may exceed an individual value bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           [

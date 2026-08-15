@@ -79,9 +79,9 @@
     },
     {
       "id": "hidden-two-upper",
-      "name": "hidden: upper value in two-number range",
-      "kind": "real",
-      "visible": false,
+      "name": "upper value in two-number range",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 2,
         "pick": 2
@@ -94,9 +94,9 @@
     },
     {
       "id": "hidden-large-middle",
-      "name": "hidden: large search range",
-      "kind": "real",
-      "visible": false,
+      "name": "large search range",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4096,
         "pick": 2049
@@ -109,9 +109,9 @@
     },
     {
       "id": "hidden-near-end",
-      "name": "hidden: one below upper bound",
-      "kind": "real",
-      "visible": false,
+      "name": "one below upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 999,
         "pick": 998

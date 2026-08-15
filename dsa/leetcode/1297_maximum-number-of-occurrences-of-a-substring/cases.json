@@ -89,9 +89,9 @@
     },
     {
       "id": "hidden-periodic",
-      "name": "hidden: periodic three-letter pattern",
-      "kind": "real",
-      "visible": false,
+      "name": "periodic three-letter pattern",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcabcabc",
         "maxLetters": 3,
@@ -106,9 +106,9 @@
     },
     {
       "id": "hidden-repeated-letter",
-      "name": "hidden: repeated letter with a length range",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated letter with a length range",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaa",
         "maxLetters": 1,

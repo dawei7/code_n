@@ -2,13 +2,115 @@
   "schema_version": 1,
   "challenge_id": "lc_2272",
   "cases": [
-    {"id":"sample-largest-three","name":"sample: best substring has four majors and one minor","kind":"sample","visible":true,"input":{"s":"aababbb"},"expected":3,"tags":["sample","mixed-counts"]},
-    {"id":"sample-all-distinct","name":"sample: all distinct characters have zero variance","kind":"sample","visible":true,"input":{"s":"abcde"},"expected":0,"tags":["sample","all-distinct"]},
-    {"id":"trial-single-character","name":"one-character string has zero variance","kind":"trial","visible":true,"input":{"s":"a"},"expected":0,"tags":["minimum-length","single-distinct"]},
-    {"id":"trial-one-distinct","name":"a repeated single character still has zero variance","kind":"trial","visible":true,"input":{"s":"aaaa"},"expected":0,"tags":["single-distinct"]},
-    {"id":"trial-one-minor","name":"one trailing minor yields a difference of two","kind":"trial","visible":true,"input":{"s":"aaab"},"expected":2,"tags":["single-minor"]},
-    {"id":"real-minor-first","name":"hidden: the only minor precedes the major-heavy suffix","kind":"real","visible":false,"input":{"s":"baaaa"},"expected":3,"tags":["hidden","minor-first"]},
-    {"id":"real-alternating","name":"hidden: alternating counts differ by at most one","kind":"real","visible":false,"input":{"s":"ababab"},"expected":1,"tags":["hidden","alternating"]},
-    {"id":"real-third-characters","name":"hidden: ignored third characters preserve substring contiguity","kind":"real","visible":false,"input":{"s":"abcaaaa"},"expected":4,"tags":["hidden","multiple-pairs"]}
+    {
+      "id": "sample-largest-three",
+      "name": "sample: best substring has four majors and one minor",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aababbb"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "mixed-counts"
+      ]
+    },
+    {
+      "id": "sample-all-distinct",
+      "name": "sample: all distinct characters have zero variance",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcde"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "all-distinct"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "one-character string has zero variance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": 0,
+      "tags": [
+        "minimum-length",
+        "single-distinct"
+      ]
+    },
+    {
+      "id": "trial-one-distinct",
+      "name": "a repeated single character still has zero variance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa"
+      },
+      "expected": 0,
+      "tags": [
+        "single-distinct"
+      ]
+    },
+    {
+      "id": "trial-one-minor",
+      "name": "one trailing minor yields a difference of two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaab"
+      },
+      "expected": 2,
+      "tags": [
+        "single-minor"
+      ]
+    },
+    {
+      "id": "real-minor-first",
+      "name": "the only minor precedes the major-heavy suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "baaaa"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "minor-first"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "alternating counts differ by at most one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ababab"
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-third-characters",
+      "name": "ignored third characters preserve substring contiguity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcaaaa"
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "multiple-pairs"
+      ]
+    }
   ]
 }

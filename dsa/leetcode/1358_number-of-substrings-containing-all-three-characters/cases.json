@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-long-prefix",
-      "name": "hidden: many starts share one ending",
-      "kind": "real",
-      "visible": false,
+      "name": "many starts share one ending",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaabc"
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-reverse-and-repeat",
-      "name": "hidden: changing latest occurrence",
-      "kind": "real",
-      "visible": false,
+      "name": "changing latest occurrence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "cbaabc"
       },

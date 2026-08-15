@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-alternating",
-      "name": "hidden: repeated alternating blocks",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated alternating blocks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "text": "ababab"
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-one-character-run",
-      "name": "hidden: three nested echo lengths",
-      "kind": "real",
-      "visible": false,
+      "name": "three nested echo lengths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "text": "zzzzzz"
       },

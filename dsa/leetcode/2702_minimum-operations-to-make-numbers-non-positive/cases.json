@@ -1,12 +1,197 @@
-{"schema_version":1,"challenge_id":"lc_2702","cases":[
-{"id":"sample-one","name":"sample: mixed values need three operations","kind":"sample","visible":true,"input":{"nums":[3,4,1,7,6],"x":4,"y":2},"expected":3,"tags":["sample"]},
-{"id":"sample-two","name":"sample: one operation reaches zero","kind":"sample","visible":true,"input":{"nums":[1,2,1],"x":2,"y":1},"expected":1,"tags":["sample"]},
-{"id":"trial-single","name":"trial: single index always receives x","kind":"trial","visible":true,"input":{"nums":[5],"x":3,"y":1},"expected":2,"tags":["single-element"]},
-{"id":"trial-one-operation","name":"trial: selected and shared decrements both matter","kind":"trial","visible":true,"input":{"nums":[10,1,1],"x":10,"y":1},"expected":1,"tags":["one-operation"]},
-{"id":"trial-shared-enough","name":"trial: shared decrements determine the optimum","kind":"trial","visible":true,"input":{"nums":[4,4,4],"x":5,"y":2},"expected":2,"tags":["shared-decrement"]},
-{"id":"real-equal-values","name":"hidden: equal values compete for selections","kind":"real","visible":false,"input":{"nums":[5,5,5,5],"x":3,"y":1},"expected":4,"tags":["hidden","selection-budget"]},
-{"id":"real-large-gap","name":"hidden: large selected advantage","kind":"real","visible":false,"input":{"nums":[100,1],"x":100,"y":1},"expected":1,"tags":["hidden","large-gap"]},
-{"id":"real-near-equal-decrements","name":"hidden: x and y differ by one","kind":"real","visible":false,"input":{"nums":[20,20],"x":6,"y":5},"expected":4,"tags":["hidden","small-extra"]},
-{"id":"real-large-values","name":"hidden: arithmetic uses large integers","kind":"real","visible":false,"input":{"nums":[1000000000,1000000000],"x":1000000000,"y":1},"expected":2,"tags":["hidden","large-values"]},
-{"id":"real-zero-lower-bound","name":"hidden: positive inputs always require an operation","kind":"real","visible":false,"input":{"nums":[1],"x":1000000000,"y":999999999},"expected":1,"tags":["hidden","lower-bound"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2702",
+  "cases": [
+    {
+      "id": "sample-one",
+      "name": "sample: mixed values need three operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          1,
+          7,
+          6
+        ],
+        "x": 4,
+        "y": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-two",
+      "name": "sample: one operation reaches zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1
+        ],
+        "x": 2,
+        "y": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: single index always receives x",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "x": 3,
+        "y": 1
+      },
+      "expected": 2,
+      "tags": [
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-one-operation",
+      "name": "trial: selected and shared decrements both matter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1,
+          1
+        ],
+        "x": 10,
+        "y": 1
+      },
+      "expected": 1,
+      "tags": [
+        "one-operation"
+      ]
+    },
+    {
+      "id": "trial-shared-enough",
+      "name": "trial: shared decrements determine the optimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4
+        ],
+        "x": 5,
+        "y": 2
+      },
+      "expected": 2,
+      "tags": [
+        "shared-decrement"
+      ]
+    },
+    {
+      "id": "real-equal-values",
+      "name": "equal values compete for selections",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "x": 3,
+        "y": 1
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "selection-budget"
+      ]
+    },
+    {
+      "id": "real-large-gap",
+      "name": "large selected advantage",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          1
+        ],
+        "x": 100,
+        "y": 1
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "large-gap"
+      ]
+    },
+    {
+      "id": "real-near-equal-decrements",
+      "name": "x and y differ by one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          20,
+          20
+        ],
+        "x": 6,
+        "y": 5
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "small-extra"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "arithmetic uses large integers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000
+        ],
+        "x": 1000000000,
+        "y": 1
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "large-values"
+      ]
+    },
+    {
+      "id": "real-zero-lower-bound",
+      "name": "positive inputs always require an operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "x": 1000000000,
+        "y": 999999999
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "lower-bound"
+      ]
+    }
+  ]
+}

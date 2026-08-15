@@ -142,9 +142,9 @@
     },
     {
       "id": "real-no-split-blocks",
-      "name": "hidden: dominant prefix followed by another-value block",
-      "kind": "real",
-      "visible": false,
+      "name": "dominant prefix followed by another-value block",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -164,9 +164,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: values near the upper bound",
-      "kind": "real",
-      "visible": false,
+      "name": "values near the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,

@@ -215,9 +215,9 @@
     },
     {
       "id": "real-deep-lineage",
-      "name": "hidden: one long descendant chain",
-      "kind": "real",
-      "visible": false,
+      "name": "one long descendant chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "kingName": "a",
         "operations": [
@@ -265,9 +265,9 @@
     },
     {
       "id": "real-dead-middle-ancestor",
-      "name": "hidden: dead middle ancestor keeps descendants connected",
-      "kind": "real",
-      "visible": false,
+      "name": "dead middle ancestor keeps descendants connected",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "kingName": "a",
         "operations": [
@@ -322,9 +322,9 @@
     },
     {
       "id": "real-branch-preorder",
-      "name": "hidden: descendants precede younger sibling branches",
-      "kind": "real",
-      "visible": false,
+      "name": "descendants precede younger sibling branches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "kingName": "a",
         "operations": [
@@ -391,9 +391,9 @@
     },
     {
       "id": "real-several-deaths",
-      "name": "hidden: deaths in separate branches",
-      "kind": "real",
-      "visible": false,
+      "name": "deaths in separate branches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "kingName": "a",
         "operations": [
@@ -462,9 +462,9 @@
     },
     {
       "id": "real-query-before-and-after-birth",
-      "name": "hidden: later birth updates subsequent query only",
-      "kind": "real",
-      "visible": false,
+      "name": "later birth updates subsequent query only",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "kingName": "a",
         "operations": [
@@ -501,9 +501,9 @@
     },
     {
       "id": "real-repeated-query",
-      "name": "hidden: repeated queries preserve state",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated queries preserve state",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "kingName": "a",
         "operations": [
@@ -541,4 +541,3 @@
     }
   ]
 }
-

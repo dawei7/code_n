@@ -197,8 +197,8 @@
     {
       "id": "real-all-ones",
       "name": "real: three by three uniform grid",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           [
@@ -227,8 +227,8 @@
     {
       "id": "real-maximum-values",
       "name": "real: maximum fruit counts in a four by four grid",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           [
@@ -266,8 +266,8 @@
     {
       "id": "real-turning-paths",
       "name": "real: both side paths change direction to reach high-value rooms",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           [
@@ -316,8 +316,8 @@
     {
       "id": "real-varied-five-by-five",
       "name": "real: varied five by five grid",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           [

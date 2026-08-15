@@ -95,8 +95,8 @@
     {
       "id": "real-complete-graph",
       "name": "real: complete graph degree sequence",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "degrees": [
           3,
@@ -114,8 +114,8 @@
     {
       "id": "real-star",
       "name": "real: star graph sequence",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "degrees": [
           4,
@@ -134,8 +134,8 @@
     {
       "id": "real-odd-cycle",
       "name": "real: five-cycle degree sequence",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "degrees": [
           2,
@@ -154,8 +154,8 @@
     {
       "id": "real-prefix-inequality-fails",
       "name": "real: even sum still violates prefix bound",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "degrees": [
           4,
@@ -174,8 +174,8 @@
     {
       "id": "real-mixed-graphical",
       "name": "real: mixed repeated degrees are graphical",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "degrees": [
           3,
@@ -195,8 +195,8 @@
     {
       "id": "real-three-universal-impossible",
       "name": "real: universal vertices force excess degree",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "degrees": [
           5,
@@ -216,8 +216,8 @@
     {
       "id": "real-large-complete",
       "name": "real: larger complete graph",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "degrees": [
           99,

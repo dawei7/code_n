@@ -185,9 +185,9 @@
     },
     {
       "id": "hidden-frequency-order-overrides-first",
-      "name": "hidden: descending counts override first-occurrence order",
-      "kind": "real",
-      "visible": false,
+      "name": "descending counts override first-occurrence order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaeeeeiiiu"
       },
@@ -200,9 +200,9 @@
     },
     {
       "id": "hidden-natural-language-pattern",
-      "name": "hidden: mixed word has several frequency groups",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed word has several frequency groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "onomatopoeia"
       },
@@ -215,9 +215,9 @@
     },
     {
       "id": "hidden-tie-with-consonants",
-      "name": "hidden: tied types use first occurrence while consonants stay fixed",
-      "kind": "real",
-      "visible": false,
+      "name": "tied types use first occurrence while consonants stay fixed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zazezaze"
       },
@@ -230,9 +230,9 @@
     },
     {
       "id": "hidden-long-equal-cycle",
-      "name": "hidden: long equal-frequency cycle groups all five types",
-      "kind": "real",
-      "visible": false,
+      "name": "long equal-frequency cycle groups all five types",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiouaeiou"
       },
@@ -246,4 +246,3 @@
     }
   ]
 }
-

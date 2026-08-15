@@ -7,158 +7,908 @@
       "name": "sample: fully and mostly consistent users qualify",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"reactions": [
-        {"user_id": 1, "content_id": 101, "reaction": "like"},
-        {"user_id": 1, "content_id": 102, "reaction": "like"},
-        {"user_id": 1, "content_id": 103, "reaction": "like"},
-        {"user_id": 1, "content_id": 104, "reaction": "wow"},
-        {"user_id": 1, "content_id": 105, "reaction": "like"},
-        {"user_id": 2, "content_id": 201, "reaction": "like"},
-        {"user_id": 2, "content_id": 202, "reaction": "wow"},
-        {"user_id": 2, "content_id": 203, "reaction": "sad"},
-        {"user_id": 2, "content_id": 204, "reaction": "like"},
-        {"user_id": 2, "content_id": 205, "reaction": "wow"},
-        {"user_id": 3, "content_id": 301, "reaction": "love"},
-        {"user_id": 3, "content_id": 302, "reaction": "love"},
-        {"user_id": 3, "content_id": 303, "reaction": "love"},
-        {"user_id": 3, "content_id": 304, "reaction": "love"},
-        {"user_id": 3, "content_id": 305, "reaction": "love"}
-      ]}},
-      "expected": {"columns": ["user_id", "dominant_reaction", "reaction_ratio"], "rows": [[3, "love", 1.0], [1, "like", 0.8]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["sample", "threshold", "ordering"]
+      "input": {
+        "tables": {
+          "reactions": [
+            {
+              "user_id": 1,
+              "content_id": 101,
+              "reaction": "like"
+            },
+            {
+              "user_id": 1,
+              "content_id": 102,
+              "reaction": "like"
+            },
+            {
+              "user_id": 1,
+              "content_id": 103,
+              "reaction": "like"
+            },
+            {
+              "user_id": 1,
+              "content_id": 104,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 1,
+              "content_id": 105,
+              "reaction": "like"
+            },
+            {
+              "user_id": 2,
+              "content_id": 201,
+              "reaction": "like"
+            },
+            {
+              "user_id": 2,
+              "content_id": 202,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 2,
+              "content_id": 203,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 2,
+              "content_id": 204,
+              "reaction": "like"
+            },
+            {
+              "user_id": 2,
+              "content_id": 205,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 3,
+              "content_id": 301,
+              "reaction": "love"
+            },
+            {
+              "user_id": 3,
+              "content_id": 302,
+              "reaction": "love"
+            },
+            {
+              "user_id": 3,
+              "content_id": 303,
+              "reaction": "love"
+            },
+            {
+              "user_id": 3,
+              "content_id": 304,
+              "reaction": "love"
+            },
+            {
+              "user_id": 3,
+              "content_id": 305,
+              "reaction": "love"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "dominant_reaction",
+          "reaction_ratio"
+        ],
+        "rows": [
+          [
+            3,
+            "love",
+            1.0
+          ],
+          [
+            1,
+            "like",
+            0.8
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "threshold",
+        "ordering"
+      ]
     },
     {
       "id": "trial-exact-threshold",
       "name": "trial: three of five reaches exactly sixty percent",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"reactions": [
-        {"user_id": 4, "content_id": 1, "reaction": "like"},
-        {"user_id": 4, "content_id": 2, "reaction": "like"},
-        {"user_id": 4, "content_id": 3, "reaction": "like"},
-        {"user_id": 4, "content_id": 4, "reaction": "sad"},
-        {"user_id": 4, "content_id": 5, "reaction": "wow"}
-      ]}},
-      "expected": {"columns": ["user_id", "dominant_reaction", "reaction_ratio"], "rows": [[4, "like", 0.6]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "inclusive-threshold", "exact-arithmetic"]
+      "input": {
+        "tables": {
+          "reactions": [
+            {
+              "user_id": 4,
+              "content_id": 1,
+              "reaction": "like"
+            },
+            {
+              "user_id": 4,
+              "content_id": 2,
+              "reaction": "like"
+            },
+            {
+              "user_id": 4,
+              "content_id": 3,
+              "reaction": "like"
+            },
+            {
+              "user_id": 4,
+              "content_id": 4,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 4,
+              "content_id": 5,
+              "reaction": "wow"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "dominant_reaction",
+          "reaction_ratio"
+        ],
+        "rows": [
+          [
+            4,
+            "like",
+            0.6
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "inclusive-threshold",
+        "exact-arithmetic"
+      ]
     },
     {
       "id": "trial-too-few-items",
       "name": "trial: four reactions are excluded despite perfect consistency",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"reactions": [
-        {"user_id": 5, "content_id": 1, "reaction": "love"},
-        {"user_id": 5, "content_id": 2, "reaction": "love"},
-        {"user_id": 5, "content_id": 3, "reaction": "love"},
-        {"user_id": 5, "content_id": 4, "reaction": "love"}
-      ]}},
-      "expected": {"columns": ["user_id", "dominant_reaction", "reaction_ratio"], "rows": []},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "minimum-content-count", "empty-result"]
+      "input": {
+        "tables": {
+          "reactions": [
+            {
+              "user_id": 5,
+              "content_id": 1,
+              "reaction": "love"
+            },
+            {
+              "user_id": 5,
+              "content_id": 2,
+              "reaction": "love"
+            },
+            {
+              "user_id": 5,
+              "content_id": 3,
+              "reaction": "love"
+            },
+            {
+              "user_id": 5,
+              "content_id": 4,
+              "reaction": "love"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "dominant_reaction",
+          "reaction_ratio"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "minimum-content-count",
+        "empty-result"
+      ]
     },
     {
       "id": "trial-no-dominant-type",
       "name": "trial: enough items but no reaction reaches sixty percent",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"reactions": [
-        {"user_id": 6, "content_id": 1, "reaction": "like"},
-        {"user_id": 6, "content_id": 2, "reaction": "like"},
-        {"user_id": 6, "content_id": 3, "reaction": "wow"},
-        {"user_id": 6, "content_id": 4, "reaction": "wow"},
-        {"user_id": 6, "content_id": 5, "reaction": "sad"}
-      ]}},
-      "expected": {"columns": ["user_id", "dominant_reaction", "reaction_ratio"], "rows": []},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "below-threshold", "empty-result"]
+      "input": {
+        "tables": {
+          "reactions": [
+            {
+              "user_id": 6,
+              "content_id": 1,
+              "reaction": "like"
+            },
+            {
+              "user_id": 6,
+              "content_id": 2,
+              "reaction": "like"
+            },
+            {
+              "user_id": 6,
+              "content_id": 3,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 6,
+              "content_id": 4,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 6,
+              "content_id": 5,
+              "reaction": "sad"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "dominant_reaction",
+          "reaction_ratio"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "below-threshold",
+        "empty-result"
+      ]
     },
     {
       "id": "trial-rounded-ratio",
       "name": "trial: four of six rounds to two decimal places",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"reactions": [
-        {"user_id": 8, "content_id": 1, "reaction": "wow"},
-        {"user_id": 8, "content_id": 2, "reaction": "wow"},
-        {"user_id": 8, "content_id": 3, "reaction": "wow"},
-        {"user_id": 8, "content_id": 4, "reaction": "wow"},
-        {"user_id": 8, "content_id": 5, "reaction": "sad"},
-        {"user_id": 8, "content_id": 6, "reaction": "sad"}
-      ]}},
-      "expected": {"columns": ["user_id", "dominant_reaction", "reaction_ratio"], "rows": [[8, "wow", 0.67]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "rounding", "six-items"]
+      "input": {
+        "tables": {
+          "reactions": [
+            {
+              "user_id": 8,
+              "content_id": 1,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 8,
+              "content_id": 2,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 8,
+              "content_id": 3,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 8,
+              "content_id": 4,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 8,
+              "content_id": 5,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 8,
+              "content_id": 6,
+              "reaction": "sad"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "dominant_reaction",
+          "reaction_ratio"
+        ],
+        "rows": [
+          [
+            8,
+            "wow",
+            0.67
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "rounding",
+        "six-items"
+      ]
     },
     {
       "id": "trial-user-id-tie-break",
       "name": "trial: equal ratios use ascending user ids",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"reactions": [
-        {"user_id": 10, "content_id": 1, "reaction": "like"}, {"user_id": 10, "content_id": 2, "reaction": "like"}, {"user_id": 10, "content_id": 3, "reaction": "like"}, {"user_id": 10, "content_id": 4, "reaction": "like"}, {"user_id": 10, "content_id": 5, "reaction": "sad"},
-        {"user_id": 2, "content_id": 1, "reaction": "love"}, {"user_id": 2, "content_id": 2, "reaction": "love"}, {"user_id": 2, "content_id": 3, "reaction": "love"}, {"user_id": 2, "content_id": 4, "reaction": "love"}, {"user_id": 2, "content_id": 5, "reaction": "wow"}
-      ]}},
-      "expected": {"columns": ["user_id", "dominant_reaction", "reaction_ratio"], "rows": [[2, "love", 0.8], [10, "like", 0.8]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "ordering-tie", "multiple-users"]
+      "input": {
+        "tables": {
+          "reactions": [
+            {
+              "user_id": 10,
+              "content_id": 1,
+              "reaction": "like"
+            },
+            {
+              "user_id": 10,
+              "content_id": 2,
+              "reaction": "like"
+            },
+            {
+              "user_id": 10,
+              "content_id": 3,
+              "reaction": "like"
+            },
+            {
+              "user_id": 10,
+              "content_id": 4,
+              "reaction": "like"
+            },
+            {
+              "user_id": 10,
+              "content_id": 5,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 2,
+              "content_id": 1,
+              "reaction": "love"
+            },
+            {
+              "user_id": 2,
+              "content_id": 2,
+              "reaction": "love"
+            },
+            {
+              "user_id": 2,
+              "content_id": 3,
+              "reaction": "love"
+            },
+            {
+              "user_id": 2,
+              "content_id": 4,
+              "reaction": "love"
+            },
+            {
+              "user_id": 2,
+              "content_id": 5,
+              "reaction": "wow"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "dominant_reaction",
+          "reaction_ratio"
+        ],
+        "rows": [
+          [
+            2,
+            "love",
+            0.8
+          ],
+          [
+            10,
+            "like",
+            0.8
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "ordering-tie",
+        "multiple-users"
+      ]
     },
     {
       "id": "real-complete-consistency",
-      "name": "hidden: one reaction type occupies every row",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"reactions": [
-        {"user_id": 11, "content_id": 10, "reaction": "care"},
-        {"user_id": 11, "content_id": 20, "reaction": "care"},
-        {"user_id": 11, "content_id": 30, "reaction": "care"},
-        {"user_id": 11, "content_id": 40, "reaction": "care"},
-        {"user_id": 11, "content_id": 50, "reaction": "care"}
-      ]}},
-      "expected": {"columns": ["user_id", "dominant_reaction", "reaction_ratio"], "rows": [[11, "care", 1.0]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["hidden", "complete-consistency", "content-ids"]
+      "name": "one reaction type occupies every row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "reactions": [
+            {
+              "user_id": 11,
+              "content_id": 10,
+              "reaction": "care"
+            },
+            {
+              "user_id": 11,
+              "content_id": 20,
+              "reaction": "care"
+            },
+            {
+              "user_id": 11,
+              "content_id": 30,
+              "reaction": "care"
+            },
+            {
+              "user_id": 11,
+              "content_id": 40,
+              "reaction": "care"
+            },
+            {
+              "user_id": 11,
+              "content_id": 50,
+              "reaction": "care"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "dominant_reaction",
+          "reaction_ratio"
+        ],
+        "rows": [
+          [
+            11,
+            "care",
+            1.0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "complete-consistency",
+        "content-ids"
+      ]
     },
     {
       "id": "real-descending-ratios",
-      "name": "hidden: larger rounded ratios sort first",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"reactions": [
-        {"user_id": 20, "content_id": 1, "reaction": "love"}, {"user_id": 20, "content_id": 2, "reaction": "love"}, {"user_id": 20, "content_id": 3, "reaction": "love"}, {"user_id": 20, "content_id": 4, "reaction": "love"}, {"user_id": 20, "content_id": 5, "reaction": "love"}, {"user_id": 20, "content_id": 6, "reaction": "sad"}, {"user_id": 20, "content_id": 7, "reaction": "wow"},
-        {"user_id": 21, "content_id": 1, "reaction": "wow"}, {"user_id": 21, "content_id": 2, "reaction": "wow"}, {"user_id": 21, "content_id": 3, "reaction": "wow"}, {"user_id": 21, "content_id": 4, "reaction": "wow"}, {"user_id": 21, "content_id": 5, "reaction": "wow"}, {"user_id": 21, "content_id": 6, "reaction": "wow"}, {"user_id": 21, "content_id": 7, "reaction": "wow"}, {"user_id": 21, "content_id": 8, "reaction": "sad"}, {"user_id": 21, "content_id": 9, "reaction": "sad"}, {"user_id": 21, "content_id": 10, "reaction": "like"}
-      ]}},
-      "expected": {"columns": ["user_id", "dominant_reaction", "reaction_ratio"], "rows": [[20, "love", 0.71], [21, "wow", 0.7]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["hidden", "descending-order", "different-totals"]
+      "name": "larger rounded ratios sort first",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "reactions": [
+            {
+              "user_id": 20,
+              "content_id": 1,
+              "reaction": "love"
+            },
+            {
+              "user_id": 20,
+              "content_id": 2,
+              "reaction": "love"
+            },
+            {
+              "user_id": 20,
+              "content_id": 3,
+              "reaction": "love"
+            },
+            {
+              "user_id": 20,
+              "content_id": 4,
+              "reaction": "love"
+            },
+            {
+              "user_id": 20,
+              "content_id": 5,
+              "reaction": "love"
+            },
+            {
+              "user_id": 20,
+              "content_id": 6,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 20,
+              "content_id": 7,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 21,
+              "content_id": 1,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 21,
+              "content_id": 2,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 21,
+              "content_id": 3,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 21,
+              "content_id": 4,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 21,
+              "content_id": 5,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 21,
+              "content_id": 6,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 21,
+              "content_id": 7,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 21,
+              "content_id": 8,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 21,
+              "content_id": 9,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 21,
+              "content_id": 10,
+              "reaction": "like"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "dominant_reaction",
+          "reaction_ratio"
+        ],
+        "rows": [
+          [
+            20,
+            "love",
+            0.71
+          ],
+          [
+            21,
+            "wow",
+            0.7
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "descending-order",
+        "different-totals"
+      ]
     },
     {
       "id": "real-rounded-order-tie",
-      "name": "hidden: equal displayed ratios use user id even when raw shares differ",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"reactions": [
-        {"user_id": 3, "content_id": 1, "reaction": "like"}, {"user_id": 3, "content_id": 2, "reaction": "like"}, {"user_id": 3, "content_id": 3, "reaction": "like"}, {"user_id": 3, "content_id": 4, "reaction": "like"}, {"user_id": 3, "content_id": 5, "reaction": "like"}, {"user_id": 3, "content_id": 6, "reaction": "like"}, {"user_id": 3, "content_id": 7, "reaction": "like"}, {"user_id": 3, "content_id": 8, "reaction": "like"}, {"user_id": 3, "content_id": 9, "reaction": "sad"}, {"user_id": 3, "content_id": 10, "reaction": "sad"}, {"user_id": 3, "content_id": 11, "reaction": "sad"}, {"user_id": 3, "content_id": 12, "reaction": "sad"}, {"user_id": 3, "content_id": 13, "reaction": "sad"},
-        {"user_id": 7, "content_id": 1, "reaction": "wow"}, {"user_id": 7, "content_id": 2, "reaction": "wow"}, {"user_id": 7, "content_id": 3, "reaction": "wow"}, {"user_id": 7, "content_id": 4, "reaction": "wow"}, {"user_id": 7, "content_id": 5, "reaction": "wow"}, {"user_id": 7, "content_id": 6, "reaction": "wow"}, {"user_id": 7, "content_id": 7, "reaction": "wow"}, {"user_id": 7, "content_id": 8, "reaction": "wow"}, {"user_id": 7, "content_id": 9, "reaction": "wow"}, {"user_id": 7, "content_id": 10, "reaction": "wow"}, {"user_id": 7, "content_id": 11, "reaction": "wow"}, {"user_id": 7, "content_id": 12, "reaction": "wow"}, {"user_id": 7, "content_id": 13, "reaction": "wow"}, {"user_id": 7, "content_id": 14, "reaction": "sad"}, {"user_id": 7, "content_id": 15, "reaction": "sad"}, {"user_id": 7, "content_id": 16, "reaction": "sad"}, {"user_id": 7, "content_id": 17, "reaction": "sad"}, {"user_id": 7, "content_id": 18, "reaction": "sad"}, {"user_id": 7, "content_id": 19, "reaction": "sad"}, {"user_id": 7, "content_id": 20, "reaction": "sad"}, {"user_id": 7, "content_id": 21, "reaction": "sad"}
-      ]}},
-      "expected": {"columns": ["user_id", "dominant_reaction", "reaction_ratio"], "rows": [[3, "like", 0.62], [7, "wow", 0.62]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["hidden", "rounded-ordering", "secondary-key"]
+      "name": "equal displayed ratios use user id even when raw shares differ",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "reactions": [
+            {
+              "user_id": 3,
+              "content_id": 1,
+              "reaction": "like"
+            },
+            {
+              "user_id": 3,
+              "content_id": 2,
+              "reaction": "like"
+            },
+            {
+              "user_id": 3,
+              "content_id": 3,
+              "reaction": "like"
+            },
+            {
+              "user_id": 3,
+              "content_id": 4,
+              "reaction": "like"
+            },
+            {
+              "user_id": 3,
+              "content_id": 5,
+              "reaction": "like"
+            },
+            {
+              "user_id": 3,
+              "content_id": 6,
+              "reaction": "like"
+            },
+            {
+              "user_id": 3,
+              "content_id": 7,
+              "reaction": "like"
+            },
+            {
+              "user_id": 3,
+              "content_id": 8,
+              "reaction": "like"
+            },
+            {
+              "user_id": 3,
+              "content_id": 9,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 3,
+              "content_id": 10,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 3,
+              "content_id": 11,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 3,
+              "content_id": 12,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 3,
+              "content_id": 13,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 7,
+              "content_id": 1,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 7,
+              "content_id": 2,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 7,
+              "content_id": 3,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 7,
+              "content_id": 4,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 7,
+              "content_id": 5,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 7,
+              "content_id": 6,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 7,
+              "content_id": 7,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 7,
+              "content_id": 8,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 7,
+              "content_id": 9,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 7,
+              "content_id": 10,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 7,
+              "content_id": 11,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 7,
+              "content_id": 12,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 7,
+              "content_id": 13,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 7,
+              "content_id": 14,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 7,
+              "content_id": 15,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 7,
+              "content_id": 16,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 7,
+              "content_id": 17,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 7,
+              "content_id": 18,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 7,
+              "content_id": 19,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 7,
+              "content_id": 20,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 7,
+              "content_id": 21,
+              "reaction": "sad"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "dominant_reaction",
+          "reaction_ratio"
+        ],
+        "rows": [
+          [
+            3,
+            "like",
+            0.62
+          ],
+          [
+            7,
+            "wow",
+            0.62
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "rounded-ordering",
+        "secondary-key"
+      ]
     },
     {
       "id": "real-shared-content-ids",
-      "name": "hidden: content ids are distinct per user rather than globally",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"reactions": [
-        {"user_id": 30, "content_id": 1, "reaction": "like"}, {"user_id": 30, "content_id": 2, "reaction": "like"}, {"user_id": 30, "content_id": 3, "reaction": "like"}, {"user_id": 30, "content_id": 4, "reaction": "sad"}, {"user_id": 30, "content_id": 5, "reaction": "sad"},
-        {"user_id": 31, "content_id": 1, "reaction": "love"}, {"user_id": 31, "content_id": 2, "reaction": "love"}, {"user_id": 31, "content_id": 3, "reaction": "love"}, {"user_id": 31, "content_id": 4, "reaction": "wow"}, {"user_id": 31, "content_id": 5, "reaction": "wow"}
-      ]}},
-      "expected": {"columns": ["user_id", "dominant_reaction", "reaction_ratio"], "rows": [[30, "like", 0.6], [31, "love", 0.6]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["hidden", "composite-primary-key", "multiple-users"]
+      "name": "content ids are distinct per user rather than globally",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "reactions": [
+            {
+              "user_id": 30,
+              "content_id": 1,
+              "reaction": "like"
+            },
+            {
+              "user_id": 30,
+              "content_id": 2,
+              "reaction": "like"
+            },
+            {
+              "user_id": 30,
+              "content_id": 3,
+              "reaction": "like"
+            },
+            {
+              "user_id": 30,
+              "content_id": 4,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 30,
+              "content_id": 5,
+              "reaction": "sad"
+            },
+            {
+              "user_id": 31,
+              "content_id": 1,
+              "reaction": "love"
+            },
+            {
+              "user_id": 31,
+              "content_id": 2,
+              "reaction": "love"
+            },
+            {
+              "user_id": 31,
+              "content_id": 3,
+              "reaction": "love"
+            },
+            {
+              "user_id": 31,
+              "content_id": 4,
+              "reaction": "wow"
+            },
+            {
+              "user_id": 31,
+              "content_id": 5,
+              "reaction": "wow"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "dominant_reaction",
+          "reaction_ratio"
+        ],
+        "rows": [
+          [
+            30,
+            "like",
+            0.6
+          ],
+          [
+            31,
+            "love",
+            0.6
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "composite-primary-key",
+        "multiple-users"
+      ]
     }
   ]
 }

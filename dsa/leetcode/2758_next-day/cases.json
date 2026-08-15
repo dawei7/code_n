@@ -1,10 +1,121 @@
-{"schema_version":1,"challenge_id":"lc_2758","cases":[
-{"id":"sample-ordinary","name":"sample: ordinary day","kind":"sample","visible":true,"input":{"date":"2014-06-20"},"expected":"2014-06-21","tags":["sample","ordinary"]},
-{"id":"sample-month-boundary","name":"sample: month boundary","kind":"sample","visible":true,"input":{"date":"2017-10-31"},"expected":"2017-11-01","tags":["sample","month-boundary"]},
-{"id":"trial-leap-day","name":"trial: enter leap day","kind":"trial","visible":true,"input":{"date":"2020-02-28"},"expected":"2020-02-29","tags":["leap-year","february"]},
-{"id":"trial-leave-leap-day","name":"trial: leave leap day","kind":"trial","visible":true,"input":{"date":"2020-02-29"},"expected":"2020-03-01","tags":["leap-year","month-boundary"]},
-{"id":"real-common-february","name":"hidden: common-year February boundary","kind":"real","visible":false,"input":{"date":"2019-02-28"},"expected":"2019-03-01","tags":["hidden","common-year","month-boundary"]},
-{"id":"real-year-boundary","name":"hidden: year boundary","kind":"real","visible":false,"input":{"date":"2023-12-31"},"expected":"2024-01-01","tags":["hidden","year-boundary"]},
-{"id":"real-century-common-year","name":"hidden: century excluded from leap years","kind":"real","visible":false,"input":{"date":"2100-02-28"},"expected":"2100-03-01","tags":["hidden","century","common-year"]},
-{"id":"real-epoch-eve","name":"hidden: cross the Unix epoch","kind":"real","visible":false,"input":{"date":"1969-12-31"},"expected":"1970-01-01","tags":["hidden","epoch","year-boundary"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2758",
+  "cases": [
+    {
+      "id": "sample-ordinary",
+      "name": "sample: ordinary day",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "date": "2014-06-20"
+      },
+      "expected": "2014-06-21",
+      "tags": [
+        "sample",
+        "ordinary"
+      ]
+    },
+    {
+      "id": "sample-month-boundary",
+      "name": "sample: month boundary",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "date": "2017-10-31"
+      },
+      "expected": "2017-11-01",
+      "tags": [
+        "sample",
+        "month-boundary"
+      ]
+    },
+    {
+      "id": "trial-leap-day",
+      "name": "trial: enter leap day",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "date": "2020-02-28"
+      },
+      "expected": "2020-02-29",
+      "tags": [
+        "leap-year",
+        "february"
+      ]
+    },
+    {
+      "id": "trial-leave-leap-day",
+      "name": "trial: leave leap day",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "date": "2020-02-29"
+      },
+      "expected": "2020-03-01",
+      "tags": [
+        "leap-year",
+        "month-boundary"
+      ]
+    },
+    {
+      "id": "real-common-february",
+      "name": "common-year February boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "date": "2019-02-28"
+      },
+      "expected": "2019-03-01",
+      "tags": [
+        "hidden",
+        "common-year",
+        "month-boundary"
+      ]
+    },
+    {
+      "id": "real-year-boundary",
+      "name": "year boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "date": "2023-12-31"
+      },
+      "expected": "2024-01-01",
+      "tags": [
+        "hidden",
+        "year-boundary"
+      ]
+    },
+    {
+      "id": "real-century-common-year",
+      "name": "century excluded from leap years",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "date": "2100-02-28"
+      },
+      "expected": "2100-03-01",
+      "tags": [
+        "hidden",
+        "century",
+        "common-year"
+      ]
+    },
+    {
+      "id": "real-epoch-eve",
+      "name": "cross the Unix epoch",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "date": "1969-12-31"
+      },
+      "expected": "1970-01-01",
+      "tags": [
+        "hidden",
+        "epoch",
+        "year-boundary"
+      ]
+    }
+  ]
+}

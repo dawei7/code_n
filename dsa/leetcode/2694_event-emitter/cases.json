@@ -1,10 +1,512 @@
-{"schema_version":1,"challenge_id":"lc_2694","cases":[
-{"id":"sample-empty-then-two-listeners","name":"sample: empty emission followed by two ordered listeners","kind":"sample","visible":true,"input":{"actions":["EventEmitter","emit","subscribe","subscribe","emit"],"values":[[],["firstEvent"],["firstEvent",{"type":"constant","value":5}],["firstEvent",{"type":"constant","value":6}],["firstEvent"]]},"expected":[[],["emitted",[]],["subscribed"],["subscribed"],["emitted",[5,6]]],"tags":["sample","order","empty-event"]},
-{"id":"sample-forward-arguments","name":"sample: optional argument arrays are forwarded","kind":"sample","visible":true,"input":{"actions":["EventEmitter","subscribe","emit","emit"],"values":[[],["firstEvent",{"type":"join","separator":","}],["firstEvent",[1,2,3]],["firstEvent",[3,4,6]]]},"expected":[[],["subscribed"],["emitted",["1,2,3"]],["emitted",["3,4,6"]]],"tags":["sample","arguments"]},
-{"id":"sample-unsubscribe-only-listener","name":"sample: unsubscribing the only listener empties the event","kind":"sample","visible":true,"input":{"actions":["EventEmitter","subscribe","emit","unsubscribe","emit"],"values":[[],["firstEvent",{"type":"join","separator":","}],["firstEvent",[1,2,3]],[0],["firstEvent",[4,5,6]]]},"expected":[[],["subscribed"],["emitted",["1,2,3"]],["unsubscribed",0],["emitted",[]]],"tags":["sample","unsubscribe"]},
-{"id":"sample-remove-first","name":"sample: removing the first listener preserves the second","kind":"sample","visible":true,"input":{"actions":["EventEmitter","subscribe","subscribe","unsubscribe","emit"],"values":[[],["firstEvent",{"type":"add","value":1}],["firstEvent",{"type":"add","value":2}],[0],["firstEvent",[5]]]},"expected":[[],["subscribed"],["subscribed"],["unsubscribed",0],["emitted",[7]]],"tags":["sample","remove-first"]},
-{"id":"trial-event-isolation","name":"trial: event names maintain independent listener lists","kind":"trial","visible":true,"input":{"actions":["EventEmitter","subscribe","subscribe","emit","emit"],"values":[[],["alpha",{"type":"constant","value":"A"}],["beta",{"type":"constant","value":"B"}],["beta"],["alpha"]]},"expected":[[],["subscribed"],["subscribed"],["emitted",["B"]],["emitted",["A"]]],"tags":["event-isolation"]},
-{"id":"trial-no-arguments","name":"trial: omitted args defaults to an empty array","kind":"trial","visible":true,"input":{"actions":["EventEmitter","subscribe","emit"],"values":[[],["ping",{"type":"argumentCount"}],["ping"]]},"expected":[[],["subscribed"],["emitted",[0]]],"tags":["optional-arguments"]},
-{"id":"real-remove-middle","name":"hidden: removing the middle listener preserves relative order","kind":"real","visible":false,"input":{"actions":["EventEmitter","subscribe","subscribe","subscribe","unsubscribe","emit"],"values":[[],["number",{"type":"multiply","value":2}],["number",{"type":"add","value":10}],["number",{"type":"multiply","value":3}],[1],["number",[4]]]},"expected":[[],["subscribed"],["subscribed"],["subscribed"],["unsubscribed",1],["emitted",[8,12]]],"tags":["hidden","remove-middle","order"]},
-{"id":"real-event-survives-other-unsubscribe","name":"hidden: unsubscribing one event does not affect another","kind":"real","visible":false,"input":{"actions":["EventEmitter","subscribe","subscribe","unsubscribe","emit","emit"],"values":[[],["left",{"type":"constant","value":1}],["right",{"type":"constant","value":2}],[0],["left"],["right"]]},"expected":[[],["subscribed"],["subscribed"],["unsubscribed",0],["emitted",[]],["emitted",[2]]],"tags":["hidden","event-isolation","unsubscribe"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2694",
+  "cases": [
+    {
+      "id": "sample-empty-then-two-listeners",
+      "name": "sample: empty emission followed by two ordered listeners",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "actions": [
+          "EventEmitter",
+          "emit",
+          "subscribe",
+          "subscribe",
+          "emit"
+        ],
+        "values": [
+          [],
+          [
+            "firstEvent"
+          ],
+          [
+            "firstEvent",
+            {
+              "type": "constant",
+              "value": 5
+            }
+          ],
+          [
+            "firstEvent",
+            {
+              "type": "constant",
+              "value": 6
+            }
+          ],
+          [
+            "firstEvent"
+          ]
+        ]
+      },
+      "expected": [
+        [],
+        [
+          "emitted",
+          []
+        ],
+        [
+          "subscribed"
+        ],
+        [
+          "subscribed"
+        ],
+        [
+          "emitted",
+          [
+            5,
+            6
+          ]
+        ]
+      ],
+      "tags": [
+        "sample",
+        "order",
+        "empty-event"
+      ]
+    },
+    {
+      "id": "sample-forward-arguments",
+      "name": "sample: optional argument arrays are forwarded",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "actions": [
+          "EventEmitter",
+          "subscribe",
+          "emit",
+          "emit"
+        ],
+        "values": [
+          [],
+          [
+            "firstEvent",
+            {
+              "type": "join",
+              "separator": ","
+            }
+          ],
+          [
+            "firstEvent",
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          [
+            "firstEvent",
+            [
+              3,
+              4,
+              6
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        [],
+        [
+          "subscribed"
+        ],
+        [
+          "emitted",
+          [
+            "1,2,3"
+          ]
+        ],
+        [
+          "emitted",
+          [
+            "3,4,6"
+          ]
+        ]
+      ],
+      "tags": [
+        "sample",
+        "arguments"
+      ]
+    },
+    {
+      "id": "sample-unsubscribe-only-listener",
+      "name": "sample: unsubscribing the only listener empties the event",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "actions": [
+          "EventEmitter",
+          "subscribe",
+          "emit",
+          "unsubscribe",
+          "emit"
+        ],
+        "values": [
+          [],
+          [
+            "firstEvent",
+            {
+              "type": "join",
+              "separator": ","
+            }
+          ],
+          [
+            "firstEvent",
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          [
+            0
+          ],
+          [
+            "firstEvent",
+            [
+              4,
+              5,
+              6
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        [],
+        [
+          "subscribed"
+        ],
+        [
+          "emitted",
+          [
+            "1,2,3"
+          ]
+        ],
+        [
+          "unsubscribed",
+          0
+        ],
+        [
+          "emitted",
+          []
+        ]
+      ],
+      "tags": [
+        "sample",
+        "unsubscribe"
+      ]
+    },
+    {
+      "id": "sample-remove-first",
+      "name": "sample: removing the first listener preserves the second",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "actions": [
+          "EventEmitter",
+          "subscribe",
+          "subscribe",
+          "unsubscribe",
+          "emit"
+        ],
+        "values": [
+          [],
+          [
+            "firstEvent",
+            {
+              "type": "add",
+              "value": 1
+            }
+          ],
+          [
+            "firstEvent",
+            {
+              "type": "add",
+              "value": 2
+            }
+          ],
+          [
+            0
+          ],
+          [
+            "firstEvent",
+            [
+              5
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        [],
+        [
+          "subscribed"
+        ],
+        [
+          "subscribed"
+        ],
+        [
+          "unsubscribed",
+          0
+        ],
+        [
+          "emitted",
+          [
+            7
+          ]
+        ]
+      ],
+      "tags": [
+        "sample",
+        "remove-first"
+      ]
+    },
+    {
+      "id": "trial-event-isolation",
+      "name": "trial: event names maintain independent listener lists",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "actions": [
+          "EventEmitter",
+          "subscribe",
+          "subscribe",
+          "emit",
+          "emit"
+        ],
+        "values": [
+          [],
+          [
+            "alpha",
+            {
+              "type": "constant",
+              "value": "A"
+            }
+          ],
+          [
+            "beta",
+            {
+              "type": "constant",
+              "value": "B"
+            }
+          ],
+          [
+            "beta"
+          ],
+          [
+            "alpha"
+          ]
+        ]
+      },
+      "expected": [
+        [],
+        [
+          "subscribed"
+        ],
+        [
+          "subscribed"
+        ],
+        [
+          "emitted",
+          [
+            "B"
+          ]
+        ],
+        [
+          "emitted",
+          [
+            "A"
+          ]
+        ]
+      ],
+      "tags": [
+        "event-isolation"
+      ]
+    },
+    {
+      "id": "trial-no-arguments",
+      "name": "trial: omitted args defaults to an empty array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "actions": [
+          "EventEmitter",
+          "subscribe",
+          "emit"
+        ],
+        "values": [
+          [],
+          [
+            "ping",
+            {
+              "type": "argumentCount"
+            }
+          ],
+          [
+            "ping"
+          ]
+        ]
+      },
+      "expected": [
+        [],
+        [
+          "subscribed"
+        ],
+        [
+          "emitted",
+          [
+            0
+          ]
+        ]
+      ],
+      "tags": [
+        "optional-arguments"
+      ]
+    },
+    {
+      "id": "real-remove-middle",
+      "name": "removing the middle listener preserves relative order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "actions": [
+          "EventEmitter",
+          "subscribe",
+          "subscribe",
+          "subscribe",
+          "unsubscribe",
+          "emit"
+        ],
+        "values": [
+          [],
+          [
+            "number",
+            {
+              "type": "multiply",
+              "value": 2
+            }
+          ],
+          [
+            "number",
+            {
+              "type": "add",
+              "value": 10
+            }
+          ],
+          [
+            "number",
+            {
+              "type": "multiply",
+              "value": 3
+            }
+          ],
+          [
+            1
+          ],
+          [
+            "number",
+            [
+              4
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        [],
+        [
+          "subscribed"
+        ],
+        [
+          "subscribed"
+        ],
+        [
+          "subscribed"
+        ],
+        [
+          "unsubscribed",
+          1
+        ],
+        [
+          "emitted",
+          [
+            8,
+            12
+          ]
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "remove-middle",
+        "order"
+      ]
+    },
+    {
+      "id": "real-event-survives-other-unsubscribe",
+      "name": "unsubscribing one event does not affect another",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "actions": [
+          "EventEmitter",
+          "subscribe",
+          "subscribe",
+          "unsubscribe",
+          "emit",
+          "emit"
+        ],
+        "values": [
+          [],
+          [
+            "left",
+            {
+              "type": "constant",
+              "value": 1
+            }
+          ],
+          [
+            "right",
+            {
+              "type": "constant",
+              "value": 2
+            }
+          ],
+          [
+            0
+          ],
+          [
+            "left"
+          ],
+          [
+            "right"
+          ]
+        ]
+      },
+      "expected": [
+        [],
+        [
+          "subscribed"
+        ],
+        [
+          "subscribed"
+        ],
+        [
+          "unsubscribed",
+          0
+        ],
+        [
+          "emitted",
+          []
+        ],
+        [
+          "emitted",
+          [
+            2
+          ]
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "event-isolation",
+        "unsubscribe"
+      ]
+    }
+  ]
+}

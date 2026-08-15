@@ -190,9 +190,9 @@
     },
     {
       "id": "real-overlap-chain",
-      "name": "hidden: a chain's middle hubs overlap only their neighbors",
-      "kind": "real",
-      "visible": false,
+      "name": "a chain's middle hubs overlap only their neighbors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "startTime": [
           1,
@@ -216,9 +216,9 @@
     },
     {
       "id": "real-nested-intervals",
-      "name": "hidden: nested intervals all overlap every possible hub",
-      "kind": "real",
-      "visible": false,
+      "name": "nested intervals all overlap every possible hub",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "startTime": [
           1,
@@ -242,9 +242,9 @@
     },
     {
       "id": "real-many-touch-one-endpoint",
-      "name": "hidden: four intervals meeting at one endpoint form a full team",
-      "kind": "real",
-      "visible": false,
+      "name": "four intervals meeting at one endpoint form a full team",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "startTime": [
           1,
@@ -268,9 +268,9 @@
     },
     {
       "id": "real-unsorted-input",
-      "name": "hidden: employee order does not affect interval counting",
-      "kind": "real",
-      "visible": false,
+      "name": "employee order does not affect interval counting",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "startTime": [
           10,
@@ -294,9 +294,9 @@
     },
     {
       "id": "real-long-hub-last",
-      "name": "hidden: the final input employee overlaps every earlier interval",
-      "kind": "real",
-      "visible": false,
+      "name": "the final input employee overlaps every earlier interval",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "startTime": [
           2,
@@ -320,9 +320,9 @@
     },
     {
       "id": "real-time-boundaries",
-      "name": "hidden: maximum time endpoints still obey inclusive overlap",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum time endpoints still obey inclusive overlap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "startTime": [
           1,
@@ -344,9 +344,9 @@
     },
     {
       "id": "real-two-components",
-      "name": "hidden: the larger of two interval components determines the answer",
-      "kind": "real",
-      "visible": false,
+      "name": "the larger of two interval components determines the answer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "startTime": [
           1,

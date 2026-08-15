@@ -94,9 +94,9 @@
     },
     {
       "id": "hidden-unsorted",
-      "name": "hidden: input order does not affect count",
-      "kind": "real",
-      "visible": false,
+      "name": "input order does not affect count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -113,9 +113,9 @@
     },
     {
       "id": "hidden-larger",
-      "name": "hidden: several reused values",
-      "kind": "real",
-      "visible": false,
+      "name": "several reused values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -132,9 +132,9 @@
     },
     {
       "id": "hidden-all-too-large",
-      "name": "hidden: every value exceeds target",
-      "kind": "real",
-      "visible": false,
+      "name": "every value exceeds target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -150,4 +150,3 @@
     }
   ]
 }
-

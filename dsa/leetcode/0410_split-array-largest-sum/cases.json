@@ -106,9 +106,9 @@
     },
     {
       "id": "hidden-dominant",
-      "name": "hidden: one value dominates every partition",
-      "kind": "real",
-      "visible": false,
+      "name": "one value dominates every partition",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -127,9 +127,9 @@
     },
     {
       "id": "hidden-equal",
-      "name": "hidden: equal values split evenly",
-      "kind": "real",
-      "visible": false,
+      "name": "equal values split evenly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -149,9 +149,9 @@
     },
     {
       "id": "hidden-many-groups",
-      "name": "hidden: exact nontrivial group count",
-      "kind": "real",
-      "visible": false,
+      "name": "exact nontrivial group count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,

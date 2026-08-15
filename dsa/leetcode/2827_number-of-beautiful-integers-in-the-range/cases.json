@@ -6,90 +6,164 @@
       "name": "sample: two beautiful multiples of three",
       "kind": "sample",
       "visible": true,
-      "input": {"low": 10, "high": 20, "k": 3},
+      "input": {
+        "low": 10,
+        "high": 20,
+        "k": 3
+      },
       "expected": 2,
-      "tags": ["sample", "inclusive-range"]
+      "tags": [
+        "sample",
+        "inclusive-range"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: ten is the only beautiful integer",
       "kind": "sample",
       "visible": true,
-      "input": {"low": 1, "high": 10, "k": 1},
+      "input": {
+        "low": 1,
+        "high": 10,
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["sample", "lower-bound"]
+      "tags": [
+        "sample",
+        "lower-bound"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: singleton is not beautiful",
       "kind": "sample",
       "visible": true,
-      "input": {"low": 5, "high": 5, "k": 2},
+      "input": {
+        "low": 5,
+        "high": 5,
+        "k": 2
+      },
       "expected": 0,
-      "tags": ["sample", "singleton"]
+      "tags": [
+        "sample",
+        "singleton"
+      ]
     },
     {
       "id": "trial-beautiful-singleton",
       "name": "trial: singleton satisfies both conditions",
       "kind": "trial",
       "visible": true,
-      "input": {"low": 12, "high": 12, "k": 3},
+      "input": {
+        "low": 12,
+        "high": 12,
+        "k": 3
+      },
       "expected": 1,
-      "tags": ["trial", "singleton", "inclusive"]
+      "tags": [
+        "trial",
+        "singleton",
+        "inclusive"
+      ]
     },
     {
       "id": "trial-unbalanced-singleton",
       "name": "trial: divisible but parity counts differ",
       "kind": "trial",
       "visible": true,
-      "input": {"low": 11, "high": 11, "k": 1},
+      "input": {
+        "low": 11,
+        "high": 11,
+        "k": 1
+      },
       "expected": 0,
-      "tags": ["trial", "digit-balance"]
+      "tags": [
+        "trial",
+        "digit-balance"
+      ]
     },
     {
       "id": "trial-all-two-digit-beautiful",
       "name": "trial: all balanced two-digit integers",
       "kind": "trial",
       "visible": true,
-      "input": {"low": 1, "high": 99, "k": 1},
+      "input": {
+        "low": 1,
+        "high": 99,
+        "k": 1
+      },
       "expected": 45,
-      "tags": ["trial", "leading-zero", "two-digits"]
+      "tags": [
+        "trial",
+        "leading-zero",
+        "two-digits"
+      ]
     },
     {
       "id": "real-odd-digit-length",
-      "name": "hidden: no three-digit number can balance parity counts",
-      "kind": "real",
-      "visible": false,
-      "input": {"low": 100, "high": 999, "k": 1},
+      "name": "no three-digit number can balance parity counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 100,
+        "high": 999,
+        "k": 1
+      },
       "expected": 0,
-      "tags": ["hidden", "odd-digit-count"]
+      "tags": [
+        "hidden",
+        "odd-digit-count"
+      ]
     },
     {
       "id": "real-leading-zero-boundary",
-      "name": "hidden: crossing into a three-digit bound adds no answer",
-      "kind": "real",
-      "visible": false,
-      "input": {"low": 1, "high": 100, "k": 1},
+      "name": "crossing into a three-digit bound adds no answer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 1,
+        "high": 100,
+        "k": 1
+      },
       "expected": 45,
-      "tags": ["hidden", "digit-length-boundary"]
+      "tags": [
+        "hidden",
+        "digit-length-boundary"
+      ]
     },
     {
       "id": "real-zero-is-even",
-      "name": "hidden: four-digit multiples containing zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"low": 1000, "high": 9999, "k": 20},
+      "name": "four-digit multiples containing zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 1000,
+        "high": 9999,
+        "k": 20
+      },
       "expected": 125,
-      "tags": ["hidden", "zero-digit", "maximum-k"]
+      "tags": [
+        "hidden",
+        "zero-digit",
+        "maximum-k"
+      ]
     },
     {
       "id": "real-maximum-endpoint",
-      "name": "hidden: narrow range ending at one billion",
-      "kind": "real",
-      "visible": false,
-      "input": {"low": 999999900, "high": 1000000000, "k": 20},
+      "name": "narrow range ending at one billion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 999999900,
+        "high": 1000000000,
+        "k": 20
+      },
       "expected": 0,
-      "tags": ["hidden", "maximum-bound", "maximum-k"]
+      "tags": [
+        "hidden",
+        "maximum-bound",
+        "maximum-k"
+      ]
     }
   ]
 }

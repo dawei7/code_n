@@ -71,9 +71,9 @@
     },
     {
       "id": "real-late-start",
-      "name": "hidden: late valid start",
-      "kind": "real",
-      "visible": false,
+      "name": "late valid start",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "gas": [
           5,

@@ -54,9 +54,9 @@
     },
     {
       "id": "real-row-five",
-      "name": "hidden: row five",
-      "kind": "real",
-      "visible": false,
+      "name": "row five",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rowIndex": 5
       },

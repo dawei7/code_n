@@ -1,9 +1,100 @@
-{"challenge_id":"lc_2982","cases":[
-{"id":"sample-overlap","name":"sample: overlapping occurrences","kind":"sample","visible":true,"input":{"s":"aaaa"},"expected":2,"tags":["sample","overlap"]},
-{"id":"sample-none","name":"sample: no repeated special substring","kind":"sample","visible":true,"input":{"s":"abcdef"},"expected":-1,"tags":["sample"]},
-{"id":"sample-separated","name":"sample: separated one-letter occurrences","kind":"sample","visible":true,"input":{"s":"abcaba"},"expected":1,"tags":["sample","separate-runs"]},
-{"id":"trial-one-run","name":"trial: three occurrences inside one run","kind":"trial","visible":true,"input":{"s":"zzzzzz"},"expected":4,"tags":["single-run"]},
-{"id":"trial-two-runs","name":"trial: occurrences split across two runs","kind":"trial","visible":true,"input":{"s":"aaaabaaaa"},"expected":3,"tags":["two-runs"]},
-{"id":"real-three-runs","name":"real: one occurrence from each of three runs","kind":"real","visible":false,"input":{"s":"xxxaxxxbxxx"},"expected":3,"tags":["hidden","three-runs"]},
-{"id":"real-competing","name":"real: choose the best character","kind":"real","visible":false,"input":{"s":"aaaaabbbbaaaabbbb"},"expected":4,"tags":["hidden","competing-letters"]}
-]}
+{
+  "challenge_id": "lc_2982",
+  "cases": [
+    {
+      "id": "sample-overlap",
+      "name": "sample: overlapping occurrences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aaaa"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "sample-none",
+      "name": "sample: no repeated special substring",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcdef"
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-separated",
+      "name": "sample: separated one-letter occurrences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcaba"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "separate-runs"
+      ]
+    },
+    {
+      "id": "trial-one-run",
+      "name": "trial: three occurrences inside one run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zzzzzz"
+      },
+      "expected": 4,
+      "tags": [
+        "single-run"
+      ]
+    },
+    {
+      "id": "trial-two-runs",
+      "name": "trial: occurrences split across two runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaabaaaa"
+      },
+      "expected": 3,
+      "tags": [
+        "two-runs"
+      ]
+    },
+    {
+      "id": "real-three-runs",
+      "name": "real: one occurrence from each of three runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "xxxaxxxbxxx"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "three-runs"
+      ]
+    },
+    {
+      "id": "real-competing",
+      "name": "real: choose the best character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaabbbbaaaabbbb"
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "competing-letters"
+      ]
+    }
+  ]
+}

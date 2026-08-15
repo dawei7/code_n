@@ -75,9 +75,9 @@
     },
     {
       "id": "real-all-zeros",
-      "name": "hidden: every zero can form its own segment",
-      "kind": "real",
-      "visible": false,
+      "name": "every zero can form its own segment",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -94,9 +94,9 @@
     },
     {
       "id": "real-positive-global-and",
-      "name": "hidden: repeated positive segment scores cannot match the minimum sum",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated positive segment scores cannot match the minimum sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -113,9 +113,9 @@
     },
     {
       "id": "real-one-late-reset",
-      "name": "hidden: the first zero AND appears only at the end",
-      "kind": "real",
-      "visible": false,
+      "name": "the first zero AND appears only at the end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -132,9 +132,9 @@
     },
     {
       "id": "real-leftover-after-last-reset",
-      "name": "hidden: a nonzero suffix joins the final zero segment",
-      "kind": "real",
-      "visible": false,
+      "name": "a nonzero suffix joins the final zero segment",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,

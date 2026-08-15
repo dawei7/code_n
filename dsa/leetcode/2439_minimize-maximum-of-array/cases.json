@@ -7,72 +7,152 @@
       "name": "sample: prefix average determines five",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 7, 1, 6]},
+      "input": {
+        "nums": [
+          3,
+          7,
+          1,
+          6
+        ]
+      },
       "expected": 5,
-      "tags": ["sample", "prefix-ceiling"]
+      "tags": [
+        "sample",
+        "prefix-ceiling"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: first value cannot move right",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [10, 1]},
+      "input": {
+        "nums": [
+          10,
+          1
+        ]
+      },
       "expected": 10,
-      "tags": ["sample", "one-direction"]
+      "tags": [
+        "sample",
+        "one-direction"
+      ]
     },
     {
       "id": "trial-all-zero",
       "name": "trial: zero remains zero",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 0]},
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "zero"]
+      "tags": [
+        "trial",
+        "zero"
+      ]
     },
     {
       "id": "trial-heavy-tail",
       "name": "trial: trailing mass spreads left",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 0, 10]},
+      "input": {
+        "nums": [
+          0,
+          0,
+          10
+        ]
+      },
       "expected": 4,
-      "tags": ["trial", "ceiling"]
+      "tags": [
+        "trial",
+        "ceiling"
+      ]
     },
     {
       "id": "real-late-prefix-peak",
-      "name": "hidden: full prefix determines answer",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9, 0, 0, 100]},
+      "name": "full prefix determines answer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          0,
+          0,
+          100
+        ]
+      },
       "expected": 28,
-      "tags": ["hidden", "late-peak"]
+      "tags": [
+        "hidden",
+        "late-peak"
+      ]
     },
     {
       "id": "real-increasing",
-      "name": "hidden: increasing values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 4, 5]},
+      "name": "increasing values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "multiple-prefixes"]
+      "tags": [
+        "hidden",
+        "multiple-prefixes"
+      ]
     },
     {
       "id": "real-maximum-first",
-      "name": "hidden: maximum constraint at first index",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000, 0]},
+      "name": "maximum constraint at first index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          0
+        ]
+      },
       "expected": 1000000000,
-      "tags": ["hidden", "large-value"]
+      "tags": [
+        "hidden",
+        "large-value"
+      ]
     },
     {
       "id": "real-maximum-tail",
-      "name": "hidden: maximum value shared across ten slots",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 0, 0, 0, 0, 0, 0, 0, 0, 1000000000]},
+      "name": "maximum value shared across ten slots",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1000000000
+        ]
+      },
       "expected": 100000000,
-      "tags": ["hidden", "large-prefix-sum"]
+      "tags": [
+        "hidden",
+        "large-prefix-sum"
+      ]
     }
   ]
 }

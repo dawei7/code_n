@@ -61,7 +61,7 @@
       "id": "trial-positive",
       "name": "trial: several positive ranges",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -81,7 +81,7 @@
       "id": "trial-equal-prefixes",
       "name": "trial: all zero subarrays",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -98,9 +98,9 @@
     },
     {
       "id": "hidden-negative-range",
-      "name": "hidden: negative inclusive interval",
-      "kind": "real",
-      "visible": false,
+      "name": "negative inclusive interval",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -3,
@@ -120,9 +120,9 @@
     },
     {
       "id": "hidden-exact-bound",
-      "name": "hidden: equal lower and upper",
-      "kind": "real",
-      "visible": false,
+      "name": "equal lower and upper",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -140,9 +140,9 @@
     },
     {
       "id": "hidden-wide-values",
-      "name": "hidden: prefix sums exceed signed element scale",
-      "kind": "real",
-      "visible": false,
+      "name": "prefix sums exceed signed element scale",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2147483647,

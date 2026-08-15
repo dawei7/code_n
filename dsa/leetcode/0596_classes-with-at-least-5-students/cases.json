@@ -296,9 +296,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: more than five students",
-      "kind": "real",
-      "visible": false,
+      "name": "more than five students",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Courses": [
@@ -346,9 +346,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: multiple qualifying and nonqualifying classes",
-      "kind": "real",
-      "visible": false,
+      "name": "multiple qualifying and nonqualifying classes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Courses": [

@@ -101,9 +101,9 @@
     },
     {
       "id": "real-suffix",
-      "name": "hidden: shortest valid removal is a suffix",
-      "kind": "real",
-      "visible": false,
+      "name": "shortest valid removal is a suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -120,9 +120,9 @@
     },
     {
       "id": "real-interior",
-      "name": "hidden: shortest valid removal is interior",
-      "kind": "real",
-      "visible": false,
+      "name": "shortest valid removal is interior",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -140,9 +140,9 @@
     },
     {
       "id": "real-single-divisible",
-      "name": "hidden: single element already divisible",
-      "kind": "real",
-      "visible": false,
+      "name": "single element already divisible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5
@@ -157,9 +157,9 @@
     },
     {
       "id": "real-single-impossible",
-      "name": "hidden: single element cannot be removed",
-      "kind": "real",
-      "visible": false,
+      "name": "single element cannot be removed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5
@@ -175,9 +175,9 @@
     },
     {
       "id": "real-divisor-one",
-      "name": "hidden: every sum is divisible by one",
-      "kind": "real",
-      "visible": false,
+      "name": "every sum is divisible by one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           999999999,
@@ -194,9 +194,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: large values require a two-element suffix",
-      "kind": "real",
-      "visible": false,
+      "name": "large values require a two-element suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,

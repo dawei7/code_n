@@ -7,81 +7,311 @@
       "name": "sample: length five with a clockwise turn",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[2,2,1,2,2],[2,0,2,2,0],[2,0,1,1,0],[1,0,2,2,2],[2,0,0,2,2]]},
+      "input": {
+        "grid": [
+          [
+            2,
+            2,
+            1,
+            2,
+            2
+          ],
+          [
+            2,
+            0,
+            2,
+            2,
+            0
+          ],
+          [
+            2,
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            0,
+            0,
+            2,
+            2
+          ]
+        ]
+      },
       "expected": 5,
-      "tags": ["sample", "turn"]
+      "tags": [
+        "sample",
+        "turn"
+      ]
     },
     {
       "id": "sample-four-with-turn",
       "name": "sample: direction changes after two cells",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[2,2,2,2,2],[2,0,2,2,0],[2,0,1,1,0],[1,0,2,2,2],[2,0,0,2,2]]},
+      "input": {
+        "grid": [
+          [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            0,
+            2,
+            2,
+            0
+          ],
+          [
+            2,
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            0,
+            0,
+            2,
+            2
+          ]
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "turn"]
+      "tags": [
+        "sample",
+        "turn"
+      ]
     },
     {
       "id": "sample-straight-five",
       "name": "sample: longest segment needs no turn",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1,2,2,2,2],[2,2,2,2,0],[2,0,0,0,0],[0,0,2,2,2],[2,0,0,2,0]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            0,
+            0,
+            2,
+            0
+          ]
+        ]
+      },
       "expected": 5,
-      "tags": ["sample", "straight"]
+      "tags": [
+        "sample",
+        "straight"
+      ]
     },
     {
       "id": "sample-single-cell",
       "name": "sample: one starting cell",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1]]},
+      "input": {
+        "grid": [
+          [
+            1
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "single-cell"]
+      "tags": [
+        "sample",
+        "single-cell"
+      ]
     },
     {
       "id": "trial-no-start",
       "name": "trial: matrix contains no one",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[2,0],[0,2]]},
+      "input": {
+        "grid": [
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "no-start"]
+      "tags": [
+        "trial",
+        "no-start"
+      ]
     },
     {
       "id": "trial-clockwise-corner",
       "name": "trial: clockwise turn completes the segment",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[1,0,2],[0,2,0],[0,0,2]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            2
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "clockwise"]
+      "tags": [
+        "trial",
+        "clockwise"
+      ]
     },
     {
       "id": "real-counterclockwise-forbidden",
       "name": "real: counterclockwise continuation cannot be used",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[0,2,2],[2,2,2],[1,2,2]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            1,
+            2,
+            2
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["real", "counterclockwise"]
+      "tags": [
+        "real",
+        "counterclockwise"
+      ]
     },
     {
       "id": "real-single-row",
       "name": "real: horizontal adjacency is not diagonal",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[1,2,0,2]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            0,
+            2
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["real", "one-row"]
+      "tags": [
+        "real",
+        "one-row"
+      ]
     },
     {
       "id": "real-sequence-break",
       "name": "real: repeated two breaks the required alternation",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[1,0,0,0],[0,2,0,0],[2,0,2,0],[0,0,0,0]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["real", "sequence"]
+      "tags": [
+        "real",
+        "sequence"
+      ]
     }
   ]
 }

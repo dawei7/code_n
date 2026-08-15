@@ -312,9 +312,9 @@
     },
     {
       "id": "hidden-restrictive-distance",
-      "name": "hidden: a restrictive gap changes the best combination",
-      "kind": "real",
-      "visible": false,
+      "name": "a restrictive gap changes the best combination",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -335,9 +335,9 @@
     },
     {
       "id": "hidden-duplicate-valleys",
-      "name": "hidden: equal valleys require skipping one duplicate",
-      "kind": "real",
-      "visible": false,
+      "name": "equal valleys require skipping one duplicate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -358,9 +358,9 @@
     },
     {
       "id": "hidden-large-alternating-score",
-      "name": "hidden: one hundred alternating values require a 64-bit-capable sum",
-      "kind": "real",
-      "visible": false,
+      "name": "one hundred alternating values require a 64-bit-capable sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -476,9 +476,9 @@
     },
     {
       "id": "hidden-large-k-singleton",
-      "name": "hidden: a large k leaves only the largest singleton",
-      "kind": "real",
-      "visible": false,
+      "name": "a large k leaves only the largest singleton",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -501,4 +501,3 @@
     }
   ]
 }
-

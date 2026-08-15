@@ -102,8 +102,8 @@
     {
       "id": "real-upper-bound",
       "name": "real: upper date boundary",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "date": "2100-12-31"
       },
@@ -116,8 +116,8 @@
     {
       "id": "real-century-start",
       "name": "real: first day of leap century",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "date": "2000-01-01"
       },
@@ -130,8 +130,8 @@
     {
       "id": "real-month-thirty-days",
       "name": "real: final day of a thirty-day month",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "date": "1999-04-30"
       },
@@ -144,8 +144,8 @@
     {
       "id": "real-month-thirty-one-days",
       "name": "real: final day of a thirty-one-day month",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "date": "2099-07-31"
       },
@@ -158,8 +158,8 @@
     {
       "id": "real-interior-leap-day",
       "name": "real: leap day near upper boundary",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "date": "2096-02-29"
       },

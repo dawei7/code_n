@@ -94,8 +94,8 @@
     {
       "id": "nontrivial-invalid-complement",
       "name": "several short tuples fall below the threshold",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "aaaabbbcc",
         "k": 7
@@ -110,8 +110,8 @@
     {
       "id": "modular-product",
       "name": "many independent runs require modular arithmetic",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabb",
         "k": 1

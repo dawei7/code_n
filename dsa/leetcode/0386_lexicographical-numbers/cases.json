@@ -124,9 +124,9 @@
     },
     {
       "id": "hidden-carry",
-      "name": "hidden: climb after exhausted nines",
-      "kind": "real",
-      "visible": false,
+      "name": "climb after exhausted nines",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 199
       },
@@ -338,9 +338,9 @@
     },
     {
       "id": "hidden-power",
-      "name": "hidden: exact power of ten",
-      "kind": "real",
-      "visible": false,
+      "name": "exact power of ten",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000
       },
@@ -1353,9 +1353,9 @@
     },
     {
       "id": "hidden-mid-prefix",
-      "name": "hidden: bound inside a prefix",
-      "kind": "real",
-      "visible": false,
+      "name": "bound inside a prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 57
       },

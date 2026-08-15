@@ -6,90 +6,155 @@
       "name": "sample: increment one selected character",
       "kind": "sample",
       "visible": true,
-      "input": {"str1": "abc", "str2": "ad"},
+      "input": {
+        "str1": "abc",
+        "str2": "ad"
+      },
       "expected": true,
-      "tags": ["sample", "increment"]
+      "tags": [
+        "sample",
+        "increment"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: cyclic wrap from z to a",
       "kind": "sample",
       "visible": true,
-      "input": {"str1": "zc", "str2": "ad"},
+      "input": {
+        "str1": "zc",
+        "str2": "ad"
+      },
       "expected": true,
-      "tags": ["sample", "cyclic-wrap"]
+      "tags": [
+        "sample",
+        "cyclic-wrap"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: target requires more than one increment",
       "kind": "sample",
       "visible": true,
-      "input": {"str1": "ab", "str2": "d"},
+      "input": {
+        "str1": "ab",
+        "str2": "d"
+      },
       "expected": false,
-      "tags": ["sample", "impossible"]
+      "tags": [
+        "sample",
+        "impossible"
+      ]
     },
     {
       "id": "trial-unchanged-subsequence",
       "name": "trial: no increment is needed",
       "kind": "trial",
       "visible": true,
-      "input": {"str1": "algorithm", "str2": "aim"},
+      "input": {
+        "str1": "algorithm",
+        "str2": "aim"
+      },
       "expected": true,
-      "tags": ["trial", "unchanged", "subsequence"]
+      "tags": [
+        "trial",
+        "unchanged",
+        "subsequence"
+      ]
     },
     {
       "id": "trial-target-longer",
       "name": "trial: target is longer than the source",
       "kind": "trial",
       "visible": true,
-      "input": {"str1": "az", "str2": "aba"},
+      "input": {
+        "str1": "az",
+        "str2": "aba"
+      },
       "expected": false,
-      "tags": ["trial", "length"]
+      "tags": [
+        "trial",
+        "length"
+      ]
     },
     {
       "id": "trial-every-position-increments",
       "name": "trial: every selected source position increments",
       "kind": "trial",
       "visible": true,
-      "input": {"str1": "abyz", "str2": "bcza"},
+      "input": {
+        "str1": "abyz",
+        "str2": "bcza"
+      },
       "expected": true,
-      "tags": ["trial", "all-increment", "cyclic-wrap"]
+      "tags": [
+        "trial",
+        "all-increment",
+        "cyclic-wrap"
+      ]
     },
     {
       "id": "real-no-double-increment",
-      "name": "hidden: one character cannot advance twice",
-      "kind": "real",
-      "visible": false,
-      "input": {"str1": "a", "str2": "c"},
+      "name": "one character cannot advance twice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "str1": "a",
+        "str2": "c"
+      },
       "expected": false,
-      "tags": ["hidden", "single-step"]
+      "tags": [
+        "hidden",
+        "single-step"
+      ]
     },
     {
       "id": "real-skip-before-matches",
-      "name": "hidden: skip unusable characters before ordered matches",
-      "kind": "real",
-      "visible": false,
-      "input": {"str1": "xxyaaz", "str2": "zba"},
+      "name": "skip unusable characters before ordered matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "str1": "xxyaaz",
+        "str2": "zba"
+      },
       "expected": true,
-      "tags": ["hidden", "skipping", "order", "cyclic-wrap"]
+      "tags": [
+        "hidden",
+        "skipping",
+        "order",
+        "cyclic-wrap"
+      ]
     },
     {
       "id": "real-order-prevents-match",
-      "name": "hidden: individually available letters occur in the wrong order",
-      "kind": "real",
-      "visible": false,
-      "input": {"str1": "ba", "str2": "bc"},
+      "name": "individually available letters occur in the wrong order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "str1": "ba",
+        "str2": "bc"
+      },
       "expected": false,
-      "tags": ["hidden", "order"]
+      "tags": [
+        "hidden",
+        "order"
+      ]
     },
     {
       "id": "real-repeated-distinct-positions",
-      "name": "hidden: repeated target letters require distinct source positions",
-      "kind": "real",
-      "visible": false,
-      "input": {"str1": "aaaa", "str2": "bbbb"},
+      "name": "repeated target letters require distinct source positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "str1": "aaaa",
+        "str2": "bbbb"
+      },
       "expected": true,
-      "tags": ["hidden", "duplicates", "all-increment"]
+      "tags": [
+        "hidden",
+        "duplicates",
+        "all-increment"
+      ]
     }
   ]
 }

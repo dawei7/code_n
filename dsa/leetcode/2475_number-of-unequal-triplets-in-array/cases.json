@@ -2,13 +2,171 @@
   "schema_version": 1,
   "challenge_id": "lc_2475",
   "cases": [
-    {"id":"sample-1","name":"sample: one duplicated value limits triplets","kind":"sample","visible":true,"input":{"nums":[4,4,2,4,3]},"expected":3,"tags":["sample","duplicates"]},
-    {"id":"sample-2","name":"sample: all values equal","kind":"sample","visible":true,"input":{"nums":[1,1,1,1,1]},"expected":0,"tags":["sample","all-equal"]},
-    {"id":"trial-three-distinct","name":"trial: exactly one index triplet","kind":"trial","visible":true,"input":{"nums":[1,2,3]},"expected":1,"tags":["trial","minimum-length"]},
-    {"id":"trial-two-distinct-values","name":"trial: fewer than three distinct values","kind":"trial","visible":true,"input":{"nums":[1,2,1,2,1]},"expected":0,"tags":["trial","two-values"]},
-    {"id":"real-three-equal-groups","name":"hidden: multiply choices from three equal-frequency groups","kind":"real","visible":false,"input":{"nums":[1,1,2,2,3,3]},"expected":8,"tags":["hidden","frequency-product"]},
-    {"id":"real-unequal-group-sizes","name":"hidden: sum products across four value groups","kind":"real","visible":false,"input":{"nums":[1,2,2,3,3,3,4,4,4,4]},"expected":50,"tags":["hidden","frequency-groups"]},
-    {"id":"real-all-distinct","name":"hidden: every choice of three positions qualifies","kind":"real","visible":false,"input":{"nums":[9,7,5,3,1]},"expected":10,"tags":["hidden","all-distinct"]},
-    {"id":"real-interleaved-duplicates","name":"hidden: physical ordering does not change value-group choices","kind":"real","visible":false,"input":{"nums":[1,2,3,1,2,3,4]},"expected":20,"tags":["hidden","interleaved"]}
+    {
+      "id": "sample-1",
+      "name": "sample: one duplicated value limits triplets",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          2,
+          4,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all values equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "all-equal"
+      ]
+    },
+    {
+      "id": "trial-three-distinct",
+      "name": "trial: exactly one index triplet",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-two-distinct-values",
+      "name": "trial: fewer than three distinct values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "two-values"
+      ]
+    },
+    {
+      "id": "real-three-equal-groups",
+      "name": "multiply choices from three equal-frequency groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "frequency-product"
+      ]
+    },
+    {
+      "id": "real-unequal-group-sizes",
+      "name": "sum products across four value groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 50,
+      "tags": [
+        "hidden",
+        "frequency-groups"
+      ]
+    },
+    {
+      "id": "real-all-distinct",
+      "name": "every choice of three positions qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          7,
+          5,
+          3,
+          1
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "all-distinct"
+      ]
+    },
+    {
+      "id": "real-interleaved-duplicates",
+      "name": "physical ordering does not change value-group choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "hidden",
+        "interleaved"
+      ]
+    }
   ]
 }

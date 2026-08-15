@@ -1,10 +1,293 @@
 {
-  "challenge_id":"lc_2668",
-  "cases":[
-    {"id":"sample-mixed-history","name":"sample: employees with one or two salaries","kind":"sample","visible":true,"input":{"tables":{"Salary":[{"emp_id":1,"firstname":"Todd","lastname":"Wilson","salary":"110000","department_id":"D1006"},{"emp_id":1,"firstname":"Todd","lastname":"Wilson","salary":"106119","department_id":"D1006"},{"emp_id":2,"firstname":"Justin","lastname":"Simon","salary":"128922","department_id":"D1005"},{"emp_id":2,"firstname":"Justin","lastname":"Simon","salary":"130000","department_id":"D1005"},{"emp_id":3,"firstname":"Kelly","lastname":"Rosario","salary":"42689","department_id":"D1002"}]}},"expected":{"columns":["emp_id","firstname","lastname","salary","department_id"],"rows":[[1,"Todd","Wilson","110000","D1006"],[2,"Justin","Simon","130000","D1005"],[3,"Kelly","Rosario","42689","D1002"]]},"tags":["sample","history"]},
-    {"id":"trial-single-row","name":"trial: one employee with one record","kind":"trial","visible":true,"input":{"tables":{"Salary":[{"emp_id":7,"firstname":"Ada","lastname":"Lovelace","salary":"900","department_id":"D1"}]}},"expected":{"columns":["emp_id","firstname","lastname","salary","department_id"],"rows":[[7,"Ada","Lovelace","900","D1"]]},"tags":["single"]},
-    {"id":"trial-numeric-not-lexical","name":"trial: varchar salaries require numeric ordering","kind":"trial","visible":true,"input":{"tables":{"Salary":[{"emp_id":4,"firstname":"Lin","lastname":"Q","salary":"900","department_id":"D2"},{"emp_id":4,"firstname":"Lin","lastname":"Q","salary":"1000","department_id":"D3"}]}},"expected":{"columns":["emp_id","firstname","lastname","salary","department_id"],"rows":[[4,"Lin","Q","1000","D3"]]},"tags":["numeric-cast","varchar"]},
-    {"id":"real-input-order","name":"hidden: output sorts employee identifiers","kind":"real","visible":false,"input":{"tables":{"Salary":[{"emp_id":9,"firstname":"N","lastname":"Z","salary":"80","department_id":"B"},{"emp_id":2,"firstname":"A","lastname":"B","salary":"50","department_id":"A"},{"emp_id":9,"firstname":"N","lastname":"Z","salary":"120","department_id":"C"}]}},"expected":{"columns":["emp_id","firstname","lastname","salary","department_id"],"rows":[[2,"A","B","50","A"],[9,"N","Z","120","C"]]},"tags":["hidden","ordering"]},
-    {"id":"real-many-records","name":"hidden: maximum among several histories","kind":"real","visible":false,"input":{"tables":{"Salary":[{"emp_id":1,"firstname":"I","lastname":"J","salary":"7","department_id":"X"},{"emp_id":1,"firstname":"I","lastname":"J","salary":"70","department_id":"Y"},{"emp_id":1,"firstname":"I","lastname":"J","salary":"700","department_id":"Z"}]}},"expected":{"columns":["emp_id","firstname","lastname","salary","department_id"],"rows":[[1,"I","J","700","Z"]]},"tags":["hidden","maximum"]}
+  "challenge_id": "lc_2668",
+  "cases": [
+    {
+      "id": "sample-mixed-history",
+      "name": "sample: employees with one or two salaries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Salary": [
+            {
+              "emp_id": 1,
+              "firstname": "Todd",
+              "lastname": "Wilson",
+              "salary": "110000",
+              "department_id": "D1006"
+            },
+            {
+              "emp_id": 1,
+              "firstname": "Todd",
+              "lastname": "Wilson",
+              "salary": "106119",
+              "department_id": "D1006"
+            },
+            {
+              "emp_id": 2,
+              "firstname": "Justin",
+              "lastname": "Simon",
+              "salary": "128922",
+              "department_id": "D1005"
+            },
+            {
+              "emp_id": 2,
+              "firstname": "Justin",
+              "lastname": "Simon",
+              "salary": "130000",
+              "department_id": "D1005"
+            },
+            {
+              "emp_id": 3,
+              "firstname": "Kelly",
+              "lastname": "Rosario",
+              "salary": "42689",
+              "department_id": "D1002"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "emp_id",
+          "firstname",
+          "lastname",
+          "salary",
+          "department_id"
+        ],
+        "rows": [
+          [
+            1,
+            "Todd",
+            "Wilson",
+            "110000",
+            "D1006"
+          ],
+          [
+            2,
+            "Justin",
+            "Simon",
+            "130000",
+            "D1005"
+          ],
+          [
+            3,
+            "Kelly",
+            "Rosario",
+            "42689",
+            "D1002"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "history"
+      ]
+    },
+    {
+      "id": "trial-single-row",
+      "name": "trial: one employee with one record",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Salary": [
+            {
+              "emp_id": 7,
+              "firstname": "Ada",
+              "lastname": "Lovelace",
+              "salary": "900",
+              "department_id": "D1"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "emp_id",
+          "firstname",
+          "lastname",
+          "salary",
+          "department_id"
+        ],
+        "rows": [
+          [
+            7,
+            "Ada",
+            "Lovelace",
+            "900",
+            "D1"
+          ]
+        ]
+      },
+      "tags": [
+        "single"
+      ]
+    },
+    {
+      "id": "trial-numeric-not-lexical",
+      "name": "trial: varchar salaries require numeric ordering",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Salary": [
+            {
+              "emp_id": 4,
+              "firstname": "Lin",
+              "lastname": "Q",
+              "salary": "900",
+              "department_id": "D2"
+            },
+            {
+              "emp_id": 4,
+              "firstname": "Lin",
+              "lastname": "Q",
+              "salary": "1000",
+              "department_id": "D3"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "emp_id",
+          "firstname",
+          "lastname",
+          "salary",
+          "department_id"
+        ],
+        "rows": [
+          [
+            4,
+            "Lin",
+            "Q",
+            "1000",
+            "D3"
+          ]
+        ]
+      },
+      "tags": [
+        "numeric-cast",
+        "varchar"
+      ]
+    },
+    {
+      "id": "real-input-order",
+      "name": "output sorts employee identifiers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Salary": [
+            {
+              "emp_id": 9,
+              "firstname": "N",
+              "lastname": "Z",
+              "salary": "80",
+              "department_id": "B"
+            },
+            {
+              "emp_id": 2,
+              "firstname": "A",
+              "lastname": "B",
+              "salary": "50",
+              "department_id": "A"
+            },
+            {
+              "emp_id": 9,
+              "firstname": "N",
+              "lastname": "Z",
+              "salary": "120",
+              "department_id": "C"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "emp_id",
+          "firstname",
+          "lastname",
+          "salary",
+          "department_id"
+        ],
+        "rows": [
+          [
+            2,
+            "A",
+            "B",
+            "50",
+            "A"
+          ],
+          [
+            9,
+            "N",
+            "Z",
+            "120",
+            "C"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-many-records",
+      "name": "maximum among several histories",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Salary": [
+            {
+              "emp_id": 1,
+              "firstname": "I",
+              "lastname": "J",
+              "salary": "7",
+              "department_id": "X"
+            },
+            {
+              "emp_id": 1,
+              "firstname": "I",
+              "lastname": "J",
+              "salary": "70",
+              "department_id": "Y"
+            },
+            {
+              "emp_id": 1,
+              "firstname": "I",
+              "lastname": "J",
+              "salary": "700",
+              "department_id": "Z"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "emp_id",
+          "firstname",
+          "lastname",
+          "salary",
+          "department_id"
+        ],
+        "rows": [
+          [
+            1,
+            "I",
+            "J",
+            "700",
+            "Z"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "maximum"
+      ]
+    }
   ]
 }

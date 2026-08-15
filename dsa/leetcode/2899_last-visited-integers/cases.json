@@ -101,9 +101,9 @@
     },
     {
       "id": "real-several-query-runs",
-      "name": "hidden: several resets and lookup runs",
-      "kind": "real",
-      "visible": false,
+      "name": "several resets and lookup runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -135,9 +135,9 @@
     },
     {
       "id": "real-maximum-length",
-      "name": "hidden: maximum-length input queries every seen value",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum-length input queries every seen value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

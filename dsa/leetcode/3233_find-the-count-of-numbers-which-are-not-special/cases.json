@@ -93,8 +93,8 @@
     {
       "id": "real-first-special-boundary",
       "name": "real: interval ends at first special value",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 1,
         "r": 4
@@ -107,8 +107,8 @@
     {
       "id": "real-around-nine",
       "name": "real: interval surrounds a prime square",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 8,
         "r": 10
@@ -121,8 +121,8 @@
     {
       "id": "real-single-twenty-five",
       "name": "real: singleton square of five",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 25,
         "r": 25
@@ -135,8 +135,8 @@
     {
       "id": "real-around-forty-nine",
       "name": "real: interval surrounds square of seven",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 48,
         "r": 50
@@ -149,8 +149,8 @@
     {
       "id": "real-large-nonsquare-singleton",
       "name": "real: large prime value is not a prime square",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 999999937,
         "r": 999999937
@@ -164,8 +164,8 @@
     {
       "id": "real-upper-end-interval",
       "name": "real: interval ending at the maximum endpoint",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 999950000,
         "r": 1000000000

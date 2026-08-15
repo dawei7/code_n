@@ -116,9 +116,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: frequent third types",
-      "kind": "real",
-      "visible": false,
+      "name": "frequent third types",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           0,
@@ -137,9 +137,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: long trailing run",
-      "kind": "real",
-      "visible": false,
+      "name": "long trailing run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           1,
@@ -159,9 +159,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: type zero and boundary type",
-      "kind": "real",
-      "visible": false,
+      "name": "type zero and boundary type",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           5,
@@ -179,9 +179,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: overlapping optimal windows",
-      "kind": "real",
-      "visible": false,
+      "name": "overlapping optimal windows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           3,

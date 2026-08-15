@@ -107,9 +107,9 @@
     },
     {
       "id": "hidden-around-center",
-      "name": "hidden: equal-score routes around an obstacle",
-      "kind": "real",
-      "visible": false,
+      "name": "equal-score routes around an obstacle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           "E11",
@@ -128,9 +128,9 @@
     },
     {
       "id": "hidden-weighted-route",
-      "name": "hidden: one side has the unique maximum score",
-      "kind": "real",
-      "visible": false,
+      "name": "one side has the unique maximum score",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           "E99",
@@ -149,9 +149,9 @@
     },
     {
       "id": "hidden-modulo-zero-path-count",
-      "name": "hidden: reachable optimum has zero count after modulo reduction",
-      "kind": "real",
-      "visible": false,
+      "name": "reachable optimum has zero count after modulo reduction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           "E111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",

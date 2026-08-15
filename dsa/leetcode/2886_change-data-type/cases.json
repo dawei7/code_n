@@ -6,36 +6,202 @@
       "name": "sample: convert two float grades",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"students": [{"student_id": 1, "name": "Ava", "age": 6, "grade": 73.0}, {"student_id": 2, "name": "Kate", "age": 15, "grade": 87.0}]}},
-      "expected": {"columns": ["student_id", "name", "age", "grade"], "rows": [[1, "Ava", 6, 73], [2, "Kate", 15, 87]]},
-      "tags": ["sample", "dtype-conversion"]
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 1,
+              "name": "Ava",
+              "age": 6,
+              "grade": 73.0
+            },
+            {
+              "student_id": 2,
+              "name": "Kate",
+              "age": 15,
+              "grade": 87.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "name",
+          "age",
+          "grade"
+        ],
+        "rows": [
+          [
+            1,
+            "Ava",
+            6,
+            73
+          ],
+          [
+            2,
+            "Kate",
+            15,
+            87
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "dtype-conversion"
+      ]
     },
     {
       "id": "trial-single-perfect-grade",
       "name": "single student with the maximum grade",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"students": [{"student_id": 9, "name": "Mina", "age": 18, "grade": 100.0}]}},
-      "expected": {"columns": ["student_id", "name", "age", "grade"], "rows": [[9, "Mina", 18, 100]]},
-      "tags": ["boundary", "single-row"]
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 9,
+              "name": "Mina",
+              "age": 18,
+              "grade": 100.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "name",
+          "age",
+          "grade"
+        ],
+        "rows": [
+          [
+            9,
+            "Mina",
+            18,
+            100
+          ]
+        ]
+      },
+      "tags": [
+        "boundary",
+        "single-row"
+      ]
     },
     {
       "id": "trial-zero-and-unsorted-ids",
       "name": "zero grade and unsorted identifiers preserve row order",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"students": [{"student_id": 20, "name": "Noah", "age": 7, "grade": 0.0}, {"student_id": 8, "name": "Iris", "age": 13, "grade": 55.0}]}},
-      "expected": {"columns": ["student_id", "name", "age", "grade"], "rows": [[20, "Noah", 7, 0], [8, "Iris", 13, 55]]},
-      "tags": ["boundary", "zero", "order"]
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 20,
+              "name": "Noah",
+              "age": 7,
+              "grade": 0.0
+            },
+            {
+              "student_id": 8,
+              "name": "Iris",
+              "age": 13,
+              "grade": 55.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "name",
+          "age",
+          "grade"
+        ],
+        "rows": [
+          [
+            20,
+            "Noah",
+            7,
+            0
+          ],
+          [
+            8,
+            "Iris",
+            13,
+            55
+          ]
+        ]
+      },
+      "tags": [
+        "boundary",
+        "zero",
+        "order"
+      ]
     },
     {
       "id": "real-varied-grades",
-      "name": "hidden: varied grades and duplicate names",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"students": [{"student_id": 42, "name": "Lee", "age": 16, "grade": 81.0}, {"student_id": 3, "name": "Lee", "age": 12, "grade": 99.0}, {"student_id": 77, "name": "Bo", "age": 19, "grade": 64.0}]}},
-      "expected": {"columns": ["student_id", "name", "age", "grade"], "rows": [[42, "Lee", 16, 81], [3, "Lee", 12, 99], [77, "Bo", 19, 64]]},
-      "tags": ["hidden", "repeated-value", "data-preservation"]
+      "name": "varied grades and duplicate names",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 42,
+              "name": "Lee",
+              "age": 16,
+              "grade": 81.0
+            },
+            {
+              "student_id": 3,
+              "name": "Lee",
+              "age": 12,
+              "grade": 99.0
+            },
+            {
+              "student_id": 77,
+              "name": "Bo",
+              "age": 19,
+              "grade": 64.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "name",
+          "age",
+          "grade"
+        ],
+        "rows": [
+          [
+            42,
+            "Lee",
+            16,
+            81
+          ],
+          [
+            3,
+            "Lee",
+            12,
+            99
+          ],
+          [
+            77,
+            "Bo",
+            19,
+            64
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "repeated-value",
+        "data-preservation"
+      ]
     }
   ]
 }

@@ -98,9 +98,9 @@
     },
     {
       "id": "real-single-nontiring",
-      "name": "hidden: one non-tiring day",
-      "kind": "real",
-      "visible": false,
+      "name": "one non-tiring day",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hours": [
           0
@@ -114,9 +114,9 @@
     },
     {
       "id": "real-middle",
-      "name": "hidden: longest interval begins after index zero",
-      "kind": "real",
-      "visible": false,
+      "name": "longest interval begins after index zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hours": [
           6,
@@ -136,9 +136,9 @@
     },
     {
       "id": "real-late-recovery",
-      "name": "hidden: late tiring run overcomes prefix deficit",
-      "kind": "real",
-      "visible": false,
+      "name": "late tiring run overcomes prefix deficit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hours": [
           6,
@@ -158,9 +158,9 @@
     },
     {
       "id": "real-hour-bounds",
-      "name": "hidden: lower and upper hour bounds",
-      "kind": "real",
-      "visible": false,
+      "name": "lower and upper hour bounds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hours": [
           0,

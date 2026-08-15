@@ -2,13 +2,244 @@
   "schema_version": 1,
   "challenge_id": "lc_2812",
   "cases": [
-    {"id":"sample-thief-endpoints","name":"sample: thieves at both endpoints force zero","kind":"sample","visible":true,"input":{"grid":[[1,0,0],[0,0,0],[0,0,1]]},"expected":0,"tags":["sample","endpoint-thieves"]},
-    {"id":"sample-single-corner-thief","name":"sample: route stays two cells from corner thief","kind":"sample","visible":true,"input":{"grid":[[0,0,1],[0,0,0],[0,0,0]]},"expected":2,"tags":["sample","single-thief"]},
-    {"id":"sample-opposite-thieves","name":"sample: middle route balances two thieves","kind":"sample","visible":true,"input":{"grid":[[0,0,0,1],[0,0,0,0],[0,0,0,0],[1,0,0,0]]},"expected":2,"tags":["sample","multiple-thieves"]},
-    {"id":"trial-single-cell","name":"trial: only cell contains the required thief","kind":"trial","visible":true,"input":{"grid":[[1]]},"expected":0,"tags":["trial","minimum"]},
-    {"id":"trial-start-thief","name":"trial: thief at start fixes bottleneck at zero","kind":"trial","visible":true,"input":{"grid":[[1,0],[0,0]]},"expected":0,"tags":["trial","start-thief"]},
-    {"id":"real-central-thief","name":"hidden: path skirts a central thief","kind":"real","visible":false,"input":{"grid":[[0,0,0],[0,1,0],[0,0,0]]},"expected":1,"tags":["hidden","central-thief"]},
-    {"id":"real-thief-barrier","name":"hidden: thief row creates zero-safeness barrier","kind":"real","visible":false,"input":{"grid":[[0,0,0],[1,1,1],[0,0,0]]},"expected":0,"tags":["hidden","barrier"]},
-    {"id":"real-distant-corner","name":"hidden: one distant corner thief","kind":"real","visible":false,"input":{"grid":[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,1]]},"expected":0,"tags":["hidden","destination-thief"]}
+    {
+      "id": "sample-thief-endpoints",
+      "name": "sample: thieves at both endpoints force zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "endpoint-thieves"
+      ]
+    },
+    {
+      "id": "sample-single-corner-thief",
+      "name": "sample: route stays two cells from corner thief",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "single-thief"
+      ]
+    },
+    {
+      "id": "sample-opposite-thieves",
+      "name": "sample: middle route balances two thieves",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "multiple-thieves"
+      ]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "trial: only cell contains the required thief",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-start-thief",
+      "name": "trial: thief at start fixes bottleneck at zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "start-thief"
+      ]
+    },
+    {
+      "id": "real-central-thief",
+      "name": "path skirts a central thief",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "central-thief"
+      ]
+    },
+    {
+      "id": "real-thief-barrier",
+      "name": "thief row creates zero-safeness barrier",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "barrier"
+      ]
+    },
+    {
+      "id": "real-distant-corner",
+      "name": "one distant corner thief",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "destination-thief"
+      ]
+    }
   ]
 }

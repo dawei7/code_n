@@ -89,9 +89,9 @@
     },
     {
       "id": "real-single-zero",
-      "name": "hidden: one zero digit",
-      "kind": "real",
-      "visible": false,
+      "name": "one zero digit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "0",
         "m": 1000000000
@@ -107,9 +107,9 @@
     },
     {
       "id": "real-large-divisor-hit",
-      "name": "hidden: the final prefix equals the maximum divisor",
-      "kind": "real",
-      "visible": false,
+      "name": "the final prefix equals the maximum divisor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "1000000000",
         "m": 1000000000
@@ -133,9 +133,9 @@
     },
     {
       "id": "real-repeated-ones",
-      "name": "hidden: periodic divisibility by three",
-      "kind": "real",
-      "visible": false,
+      "name": "periodic divisibility by three",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "111111",
         "m": 3
@@ -155,9 +155,9 @@
     },
     {
       "id": "real-no-divisible-prefix",
-      "name": "hidden: no prefix has zero remainder",
-      "kind": "real",
-      "visible": false,
+      "name": "no prefix has zero remainder",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "12345",
         "m": 97
@@ -176,9 +176,9 @@
     },
     {
       "id": "real-overflow-length",
-      "name": "hidden: long numeric value is handled as remainders",
-      "kind": "real",
-      "visible": false,
+      "name": "long numeric value is handled as remainders",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "987654321012345678909876543210",
         "m": 999999937

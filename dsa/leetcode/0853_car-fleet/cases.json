@@ -142,9 +142,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: every car has same arrival time",
-      "kind": "real",
-      "visible": false,
+      "name": "every car has same arrival time",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": 20,
         "position": [
@@ -168,9 +168,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: every car remains separate",
-      "kind": "real",
-      "visible": false,
+      "name": "every car remains separate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": 20,
         "position": [
@@ -194,9 +194,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: cascading mixed merges",
-      "kind": "real",
-      "visible": false,
+      "name": "cascading mixed merges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": 20,
         "position": [
@@ -220,9 +220,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: input ordered from rear to front",
-      "kind": "real",
-      "visible": false,
+      "name": "input ordered from rear to front",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": 30,
         "position": [
@@ -246,9 +246,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: closest car is fastest",
-      "kind": "real",
-      "visible": false,
+      "name": "closest car is fastest",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": 25,
         "position": [
@@ -270,9 +270,9 @@
     },
     {
       "id": "hidden-6",
-      "name": "hidden: two simultaneous groups",
-      "kind": "real",
-      "visible": false,
+      "name": "two simultaneous groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": 12,
         "position": [

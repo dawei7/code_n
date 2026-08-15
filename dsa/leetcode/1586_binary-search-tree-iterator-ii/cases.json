@@ -166,9 +166,9 @@
     },
     {
       "id": "real-full-balanced",
-      "name": "hidden: traverse and partially rewind balanced tree",
-      "kind": "real",
-      "visible": false,
+      "name": "traverse and partially rewind balanced tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           4,
@@ -220,9 +220,9 @@
     },
     {
       "id": "real-right-skewed",
-      "name": "hidden: right-skewed tree with reversals",
-      "kind": "real",
-      "visible": false,
+      "name": "right-skewed tree with reversals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -267,9 +267,9 @@
     },
     {
       "id": "real-left-skewed",
-      "name": "hidden: left-skewed tree in ascending iterator order",
-      "kind": "real",
-      "visible": false,
+      "name": "left-skewed tree in ascending iterator order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           5,
@@ -315,9 +315,9 @@
     },
     {
       "id": "real-root-with-one-left",
-      "name": "hidden: two-node left child tree",
-      "kind": "real",
-      "visible": false,
+      "name": "two-node left child tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           2,
@@ -349,9 +349,9 @@
     },
     {
       "id": "real-root-with-one-right",
-      "name": "hidden: two-node right child tree",
-      "kind": "real",
-      "visible": false,
+      "name": "two-node right child tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -384,9 +384,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: preserve large BST values",
-      "kind": "real",
-      "visible": false,
+      "name": "preserve large BST values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           500000,

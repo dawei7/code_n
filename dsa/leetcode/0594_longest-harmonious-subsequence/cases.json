@@ -102,9 +102,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: choose heavier later pair",
-      "kind": "real",
-      "visible": false,
+      "name": "choose heavier later pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -126,9 +126,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: gap of two does not qualify",
-      "kind": "real",
-      "visible": false,
+      "name": "gap of two does not qualify",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,

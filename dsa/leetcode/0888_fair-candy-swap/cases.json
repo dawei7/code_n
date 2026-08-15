@@ -172,9 +172,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: unequal box counts",
-      "kind": "real",
-      "visible": false,
+      "name": "unequal box counts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "aliceSizes": [
           5,
@@ -202,9 +202,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: partner occurs in the middle",
-      "kind": "real",
-      "visible": false,
+      "name": "partner occurs in the middle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "aliceSizes": [
           1,
@@ -230,9 +230,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: sizes near the maximum",
-      "kind": "real",
-      "visible": false,
+      "name": "sizes near the maximum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "aliceSizes": [
           100000,
@@ -257,9 +257,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: Alice has more candy across equal lengths",
-      "kind": "real",
-      "visible": false,
+      "name": "Alice has more candy across equal lengths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "aliceSizes": [
           2,
@@ -286,9 +286,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: multiple distinct valid value pairs",
-      "kind": "real",
-      "visible": false,
+      "name": "multiple distinct valid value pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "aliceSizes": [
           1,

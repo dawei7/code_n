@@ -1,12 +1,265 @@
-{"schema_version":1,"challenge_id":"lc_2705","cases":[
-{"id":"sample-array","name":"sample: remove falsy array elements","kind":"sample","visible":true,"input":{"obj":[null,0,false,1]},"expected":[1],"tags":["sample","array"]},
-{"id":"sample-object","name":"sample: compact object and nested array","kind":"sample","visible":true,"input":{"obj":{"a":null,"b":[false,1]}},"expected":{"b":[1]},"tags":["sample","object"]},
-{"id":"sample-empty-containers","name":"sample: retain nested containers after compaction","kind":"sample","visible":true,"input":{"obj":[null,0,5,[0],[false,16]]},"expected":[5,[],[16]],"tags":["sample","empty-container"]},
-{"id":"trial-empty-object","name":"trial: empty root object remains empty","kind":"trial","visible":true,"input":{"obj":{}},"expected":{},"tags":["empty-object"]},
-{"id":"trial-truthy-primitives","name":"trial: preserve every truthy JSON primitive","kind":"trial","visible":true,"input":{"obj":{"negative":-1,"positive":2,"text":"x","zero":0,"empty":""}},"expected":{"negative":-1,"positive":2,"text":"x"},"tags":["truthiness","primitives"]},
-{"id":"real-deep-object","name":"hidden: compact several object levels","kind":"real","visible":false,"input":{"obj":{"a":{"b":{"c":false,"d":7},"e":null},"f":true}},"expected":{"a":{"b":{"d":7}},"f":true},"tags":["hidden","deep"]},
-{"id":"real-mixed-arrays","name":"hidden: nested arrays close removed positions","kind":"real","visible":false,"input":{"obj":[[0,1,false,2],[],[null,[0,3]]]},"expected":[[1,2],[],[[3]]],"tags":["hidden","nested-arrays"]},
-{"id":"real-empty-nested-object","name":"hidden: object made empty remains retained","kind":"real","visible":false,"input":{"obj":{"keep":{"remove":0},"drop":false}},"expected":{"keep":{}},"tags":["hidden","empty-object"]},
-{"id":"real-array-of-objects","name":"hidden: compact objects inside an array","kind":"real","visible":false,"input":{"obj":[{"a":0,"b":1},false,{"c":"","d":[2,null]}]},"expected":[{"b":1},{"d":[2]}],"tags":["hidden","mixed-containers"]},
-{"id":"real-all-falsy-root-array","name":"hidden: all falsy array entries produce empty array","kind":"real","visible":false,"input":{"obj":[0,false,null,""]},"expected":[],"tags":["hidden","all-falsy"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2705",
+  "cases": [
+    {
+      "id": "sample-array",
+      "name": "sample: remove falsy array elements",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "obj": [
+          null,
+          0,
+          false,
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "sample",
+        "array"
+      ]
+    },
+    {
+      "id": "sample-object",
+      "name": "sample: compact object and nested array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "obj": {
+          "a": null,
+          "b": [
+            false,
+            1
+          ]
+        }
+      },
+      "expected": {
+        "b": [
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "object"
+      ]
+    },
+    {
+      "id": "sample-empty-containers",
+      "name": "sample: retain nested containers after compaction",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "obj": [
+          null,
+          0,
+          5,
+          [
+            0
+          ],
+          [
+            false,
+            16
+          ]
+        ]
+      },
+      "expected": [
+        5,
+        [],
+        [
+          16
+        ]
+      ],
+      "tags": [
+        "sample",
+        "empty-container"
+      ]
+    },
+    {
+      "id": "trial-empty-object",
+      "name": "trial: empty root object remains empty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj": {}
+      },
+      "expected": {},
+      "tags": [
+        "empty-object"
+      ]
+    },
+    {
+      "id": "trial-truthy-primitives",
+      "name": "trial: preserve every truthy JSON primitive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj": {
+          "negative": -1,
+          "positive": 2,
+          "text": "x",
+          "zero": 0,
+          "empty": ""
+        }
+      },
+      "expected": {
+        "negative": -1,
+        "positive": 2,
+        "text": "x"
+      },
+      "tags": [
+        "truthiness",
+        "primitives"
+      ]
+    },
+    {
+      "id": "real-deep-object",
+      "name": "compact several object levels",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj": {
+          "a": {
+            "b": {
+              "c": false,
+              "d": 7
+            },
+            "e": null
+          },
+          "f": true
+        }
+      },
+      "expected": {
+        "a": {
+          "b": {
+            "d": 7
+          }
+        },
+        "f": true
+      },
+      "tags": [
+        "hidden",
+        "deep"
+      ]
+    },
+    {
+      "id": "real-mixed-arrays",
+      "name": "nested arrays close removed positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj": [
+          [
+            0,
+            1,
+            false,
+            2
+          ],
+          [],
+          [
+            null,
+            [
+              0,
+              3
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          2
+        ],
+        [],
+        [
+          [
+            3
+          ]
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "nested-arrays"
+      ]
+    },
+    {
+      "id": "real-empty-nested-object",
+      "name": "object made empty remains retained",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj": {
+          "keep": {
+            "remove": 0
+          },
+          "drop": false
+        }
+      },
+      "expected": {
+        "keep": {}
+      },
+      "tags": [
+        "hidden",
+        "empty-object"
+      ]
+    },
+    {
+      "id": "real-array-of-objects",
+      "name": "compact objects inside an array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj": [
+          {
+            "a": 0,
+            "b": 1
+          },
+          false,
+          {
+            "c": "",
+            "d": [
+              2,
+              null
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "b": 1
+        },
+        {
+          "d": [
+            2
+          ]
+        }
+      ],
+      "tags": [
+        "hidden",
+        "mixed-containers"
+      ]
+    },
+    {
+      "id": "real-all-falsy-root-array",
+      "name": "all falsy array entries produce empty array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj": [
+          0,
+          false,
+          null,
+          ""
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "hidden",
+        "all-falsy"
+      ]
+    }
+  ]
+}

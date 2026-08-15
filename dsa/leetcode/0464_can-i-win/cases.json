@@ -7,63 +7,105 @@
       "name": "sample: second player can complement every opening",
       "kind": "sample",
       "visible": true,
-      "input": {"maxChoosableInteger": 10, "desiredTotal": 11},
+      "input": {
+        "maxChoosableInteger": 10,
+        "desiredTotal": 11
+      },
       "expected": false,
-      "tags": ["sample", "losing"]
+      "tags": [
+        "sample",
+        "losing"
+      ]
     },
     {
       "id": "sample-zero-target",
       "name": "sample: target is already reached",
       "kind": "sample",
       "visible": true,
-      "input": {"maxChoosableInteger": 10, "desiredTotal": 0},
+      "input": {
+        "maxChoosableInteger": 10,
+        "desiredTotal": 0
+      },
       "expected": true,
-      "tags": ["sample", "boundary"]
+      "tags": [
+        "sample",
+        "boundary"
+      ]
     },
     {
       "id": "sample-immediate",
       "name": "sample: first player wins immediately",
       "kind": "sample",
       "visible": true,
-      "input": {"maxChoosableInteger": 10, "desiredTotal": 1},
+      "input": {
+        "maxChoosableInteger": 10,
+        "desiredTotal": 1
+      },
       "expected": true,
-      "tags": ["sample", "immediate"]
+      "tags": [
+        "sample",
+        "immediate"
+      ]
     },
     {
       "id": "trial-unreachable",
       "name": "trial: all choices sum below the target",
       "kind": "trial",
       "visible": true,
-      "input": {"maxChoosableInteger": 5, "desiredTotal": 50},
+      "input": {
+        "maxChoosableInteger": 5,
+        "desiredTotal": 50
+      },
       "expected": false,
-      "tags": ["trial", "unreachable"]
+      "tags": [
+        "trial",
+        "unreachable"
+      ]
     },
     {
       "id": "trial-small-loss",
       "name": "trial: opponent answers every small opening",
       "kind": "trial",
       "visible": true,
-      "input": {"maxChoosableInteger": 5, "desiredTotal": 6},
+      "input": {
+        "maxChoosableInteger": 5,
+        "desiredTotal": 6
+      },
       "expected": false,
-      "tags": ["trial", "losing"]
+      "tags": [
+        "trial",
+        "losing"
+      ]
     },
     {
       "id": "hidden-small-win",
-      "name": "hidden: first player has a forcing move",
-      "kind": "real",
-      "visible": false,
-      "input": {"maxChoosableInteger": 4, "desiredTotal": 6},
+      "name": "first player has a forcing move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "maxChoosableInteger": 4,
+        "desiredTotal": 6
+      },
       "expected": true,
-      "tags": ["hidden", "winning"]
+      "tags": [
+        "hidden",
+        "winning"
+      ]
     },
     {
       "id": "hidden-deep-loss",
-      "name": "hidden: deeper memoized losing game",
-      "kind": "real",
-      "visible": false,
-      "input": {"maxChoosableInteger": 10, "desiredTotal": 40},
+      "name": "deeper memoized losing game",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "maxChoosableInteger": 10,
+        "desiredTotal": 40
+      },
       "expected": false,
-      "tags": ["hidden", "memoization"]
+      "tags": [
+        "hidden",
+        "memoization"
+      ]
     }
   ]
 }

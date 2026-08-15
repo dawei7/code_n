@@ -186,9 +186,9 @@
     },
     {
       "id": "real-descending",
-      "name": "hidden: no later building is tall enough",
-      "kind": "real",
-      "visible": false,
+      "name": "no later building is tall enough",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "heights": [
           9,
@@ -223,9 +223,9 @@
     },
     {
       "id": "real-skip-insufficient-height",
-      "name": "hidden: skip buildings that satisfy only one person",
-      "kind": "real",
-      "visible": false,
+      "name": "skip buildings that satisfy only one person",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "heights": [
           5,
@@ -260,9 +260,9 @@
     },
     {
       "id": "real-equal-intermediate",
-      "name": "hidden: equal height is not reachable",
-      "kind": "real",
-      "visible": false,
+      "name": "equal height is not reachable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "heights": [
           5,
@@ -297,9 +297,9 @@
     },
     {
       "id": "real-increasing",
-      "name": "hidden: the later start is immediately reachable",
-      "kind": "real",
-      "visible": false,
+      "name": "the later start is immediately reachable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "heights": [
           1,

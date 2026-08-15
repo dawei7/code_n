@@ -406,8 +406,8 @@
     {
       "id": "real-outside-major-cannot-fill-gap",
       "name": "real: an A outside the major cannot replace a missing course",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -458,8 +458,8 @@
     {
       "id": "real-extra-course-does-not-hurt",
       "name": "real: an extra non-major grade does not affect complete major coverage",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -520,8 +520,8 @@
     {
       "id": "real-two-majors-ordered",
       "name": "real: qualifying students from different majors are sorted",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -590,8 +590,8 @@
     {
       "id": "real-major-with-no-courses",
       "name": "real: a major with no offered courses is excluded",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -637,8 +637,8 @@
     {
       "id": "real-wrong-course-id",
       "name": "real: A grades in unrelated courses leave a required course missing",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -701,8 +701,8 @@
     {
       "id": "real-mixed-students",
       "name": "real: only fully covered A students survive a mixed cohort",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -790,4 +790,3 @@
     }
   ]
 }
-

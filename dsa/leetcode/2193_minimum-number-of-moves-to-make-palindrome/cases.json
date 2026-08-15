@@ -2,13 +2,114 @@
   "schema_version": 1,
   "challenge_id": "lc_2193",
   "cases": [
-    {"id":"sample-two-pairs","name":"sample: two equal pairs need two swaps","kind":"sample","visible":true,"input":{"s":"aabb"},"expected":2,"tags":["sample","even-length"]},
-    {"id":"sample-letelt","name":"sample: two moves produce lettel","kind":"sample","visible":true,"input":{"s":"letelt"},"expected":2,"tags":["sample","multiple-letters"]},
-    {"id":"trial-single","name":"one character is already palindromic","kind":"trial","visible":true,"input":{"s":"z"},"expected":0,"tags":["single-character"]},
-    {"id":"trial-existing","name":"existing odd palindrome needs no swaps","kind":"trial","visible":true,"input":{"s":"racecar"},"expected":0,"tags":["already-palindrome"]},
-    {"id":"trial-center-shift","name":"unmatched character moves once toward the center","kind":"trial","visible":true,"input":{"s":"ntiin"},"expected":1,"tags":["odd-center"]},
-    {"id":"real-mamad","name":"hidden: several greedy pair shifts interact","kind":"real","visible":false,"input":{"s":"mamad"},"expected":3,"tags":["hidden","odd-length"]},
-    {"id":"real-center-after-pairs","name":"hidden: odd character crosses multiple positions","kind":"real","visible":false,"input":{"s":"aabbc"},"expected":4,"tags":["hidden","center-shift"]},
-    {"id":"real-three-pairs","name":"hidden: three grouped pairs require six swaps","kind":"real","visible":false,"input":{"s":"aabbcc"},"expected":6,"tags":["hidden","grouped-pairs"]}
+    {
+      "id": "sample-two-pairs",
+      "name": "sample: two equal pairs need two swaps",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aabb"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "even-length"
+      ]
+    },
+    {
+      "id": "sample-letelt",
+      "name": "sample: two moves produce lettel",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "letelt"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "multiple-letters"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "one character is already palindromic",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z"
+      },
+      "expected": 0,
+      "tags": [
+        "single-character"
+      ]
+    },
+    {
+      "id": "trial-existing",
+      "name": "existing odd palindrome needs no swaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "racecar"
+      },
+      "expected": 0,
+      "tags": [
+        "already-palindrome"
+      ]
+    },
+    {
+      "id": "trial-center-shift",
+      "name": "unmatched character moves once toward the center",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ntiin"
+      },
+      "expected": 1,
+      "tags": [
+        "odd-center"
+      ]
+    },
+    {
+      "id": "real-mamad",
+      "name": "several greedy pair shifts interact",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "mamad"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "odd-length"
+      ]
+    },
+    {
+      "id": "real-center-after-pairs",
+      "name": "odd character crosses multiple positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabbc"
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "center-shift"
+      ]
+    },
+    {
+      "id": "real-three-pairs",
+      "name": "three grouped pairs require six swaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabbcc"
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "grouped-pairs"
+      ]
+    }
   ]
 }

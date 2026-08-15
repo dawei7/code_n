@@ -1,10 +1,157 @@
-{"challenge_id":"lc_3011","cases":[
-{"id":"sample-sortable-blocks","name":"sample: each popcount block can be sorted","kind":"sample","visible":true,"input":{"nums":[8,4,2,30,15]},"expected":true,"tags":["sample"]},
-{"id":"sample-already-sorted","name":"sample: no swaps are needed","kind":"sample","visible":true,"input":{"nums":[1,2,3,4,5]},"expected":true,"tags":["sample","sorted"]},
-{"id":"sample-blocked-value","name":"sample: value cannot cross block boundary","kind":"sample","visible":true,"input":{"nums":[3,16,8,4,2]},"expected":false,"tags":["sample","blocked"]},
-{"id":"trial-single","name":"trial: one element","kind":"trial","visible":true,"input":{"nums":[256]},"expected":true,"tags":["single","boundary"]},
-{"id":"trial-one-reversible-block","name":"trial: one equal-popcount block","kind":"trial","visible":true,"input":{"nums":[12,10,9,6,5,3]},"expected":true,"tags":["one-block"]},
-{"id":"real-separated-same-count","name":"real: equal-popcount values are separated","kind":"real","visible":false,"input":{"nums":[8,7,4]},"expected":false,"tags":["hidden","separated"]},
-{"id":"real-duplicate-boundary","name":"real: equality across block ranges is safe","kind":"real","visible":false,"input":{"nums":[2,2,3,5]},"expected":true,"tags":["hidden","duplicates"]},
-{"id":"real-upper-values","name":"real: upper contract values form valid ranges","kind":"real","visible":false,"input":{"nums":[128,64,192,160,256]},"expected":true,"tags":["hidden","boundary"]}
-]}
+{
+  "challenge_id": "lc_3011",
+  "cases": [
+    {
+      "id": "sample-sortable-blocks",
+      "name": "sample: each popcount block can be sorted",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          4,
+          2,
+          30,
+          15
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-already-sorted",
+      "name": "sample: no swaps are needed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "sorted"
+      ]
+    },
+    {
+      "id": "sample-blocked-value",
+      "name": "sample: value cannot cross block boundary",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          16,
+          8,
+          4,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "blocked"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          256
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "single",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-one-reversible-block",
+      "name": "trial: one equal-popcount block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          10,
+          9,
+          6,
+          5,
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "one-block"
+      ]
+    },
+    {
+      "id": "real-separated-same-count",
+      "name": "real: equal-popcount values are separated",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          7,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "separated"
+      ]
+    },
+    {
+      "id": "real-duplicate-boundary",
+      "name": "real: equality across block ranges is safe",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-upper-values",
+      "name": "real: upper contract values form valid ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          128,
+          64,
+          192,
+          160,
+          256
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    }
+  ]
+}

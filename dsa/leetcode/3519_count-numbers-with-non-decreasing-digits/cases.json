@@ -6,98 +6,171 @@
       "name": "sample: decimal range interpreted in base eight",
       "kind": "sample",
       "visible": true,
-      "input": {"l": "23", "r": "28", "b": 8},
+      "input": {
+        "l": "23",
+        "r": "28",
+        "b": 8
+      },
       "expected": 3,
-      "tags": ["sample", "base-eight", "mixed-validity"]
+      "tags": [
+        "sample",
+        "base-eight",
+        "mixed-validity"
+      ]
     },
     {
       "id": "sample-binary-range",
       "name": "sample: binary representations",
       "kind": "sample",
       "visible": true,
-      "input": {"l": "2", "r": "7", "b": 2},
+      "input": {
+        "l": "2",
+        "r": "7",
+        "b": 2
+      },
       "expected": 2,
-      "tags": ["sample", "base-two", "mixed-lengths"]
+      "tags": [
+        "sample",
+        "base-two",
+        "mixed-lengths"
+      ]
     },
     {
       "id": "trial-zero-only",
       "name": "trial: zero is a one-digit representation",
       "kind": "trial",
       "visible": true,
-      "input": {"l": "0", "r": "0", "b": 10},
+      "input": {
+        "l": "0",
+        "r": "0",
+        "b": 10
+      },
       "expected": 1,
-      "tags": ["trial", "zero", "single-value"]
+      "tags": [
+        "trial",
+        "zero",
+        "single-value"
+      ]
     },
     {
       "id": "trial-all-positive-single-digits",
       "name": "trial: every positive decimal digit",
       "kind": "trial",
       "visible": true,
-      "input": {"l": "1", "r": "9", "b": 10},
+      "input": {
+        "l": "1",
+        "r": "9",
+        "b": 10
+      },
       "expected": 9,
-      "tags": ["trial", "single-digit", "all-valid"]
+      "tags": [
+        "trial",
+        "single-digit",
+        "all-valid"
+      ]
     },
     {
       "id": "trial-first-two-digit-boundary",
       "name": "trial: decrease at the units digit",
       "kind": "trial",
       "visible": true,
-      "input": {"l": "10", "r": "12", "b": 10},
+      "input": {
+        "l": "10",
+        "r": "12",
+        "b": 10
+      },
       "expected": 2,
-      "tags": ["trial", "base-ten", "boundary"]
+      "tags": [
+        "trial",
+        "base-ten",
+        "boundary"
+      ]
     },
     {
       "id": "trial-binary-all-ones",
       "name": "trial: valid binary numbers are all ones",
       "kind": "trial",
       "visible": true,
-      "input": {"l": "1", "r": "15", "b": 2},
+      "input": {
+        "l": "1",
+        "r": "15",
+        "b": 2
+      },
       "expected": 4,
-      "tags": ["trial", "base-two", "multiple-lengths"]
+      "tags": [
+        "trial",
+        "base-two",
+        "multiple-lengths"
+      ]
     },
     {
       "id": "real-crossing-digit-length",
       "name": "real: decimal range crosses a digit length",
-      "kind": "real",
-      "visible": false,
-      "input": {"l": "98", "r": "123", "b": 10},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": "98",
+        "r": "123",
+        "b": 10
+      },
       "expected": 12,
-      "tags": ["real", "base-ten", "length-boundary"]
+      "tags": [
+        "real",
+        "base-ten",
+        "length-boundary"
+      ]
     },
     {
       "id": "real-ternary-range",
       "name": "real: mixed ternary digit patterns",
-      "kind": "real",
-      "visible": false,
-      "input": {"l": "1", "r": "100", "b": 3},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": "1",
+        "r": "100",
+        "b": 3
+      },
       "expected": 14,
-      "tags": ["real", "base-three", "mixed-validity"]
+      "tags": [
+        "real",
+        "base-three",
+        "mixed-validity"
+      ]
     },
     {
       "id": "real-single-huge-invalid-value",
       "name": "real: hundred-digit decreasing endpoint",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": "1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
         "r": "1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
         "b": 10
       },
       "expected": 0,
-      "tags": ["real", "maximum-length", "single-value"]
+      "tags": [
+        "real",
+        "maximum-length",
+        "single-value"
+      ]
     },
     {
       "id": "real-hundred-digit-modulo",
       "name": "real: full hundred-digit decimal prefix",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": "1",
         "r": "9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999",
         "b": 10
       },
       "expected": 421481429,
-      "tags": ["real", "maximum-length", "modulo", "base-ten"]
+      "tags": [
+        "real",
+        "maximum-length",
+        "modulo",
+        "base-ten"
+      ]
     }
   ]
 }

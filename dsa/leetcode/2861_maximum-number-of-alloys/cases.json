@@ -6,72 +6,268 @@
       "name": "sample: first machine is affordable",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "k": 2, "budget": 15, "composition": [[1, 1, 1], [1, 1, 10]], "stock": [0, 0, 0], "cost": [1, 2, 3]},
+      "input": {
+        "n": 3,
+        "k": 2,
+        "budget": 15,
+        "composition": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            10
+          ]
+        ],
+        "stock": [
+          0,
+          0,
+          0
+        ],
+        "cost": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "binary-search"]
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: stocked metal favors the second machine",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "k": 2, "budget": 15, "composition": [[1, 1, 1], [1, 1, 10]], "stock": [0, 0, 100], "cost": [1, 2, 3]},
+      "input": {
+        "n": 3,
+        "k": 2,
+        "budget": 15,
+        "composition": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            10
+          ]
+        ],
+        "stock": [
+          0,
+          0,
+          100
+        ],
+        "cost": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 5,
-      "tags": ["sample", "stock"]
+      "tags": [
+        "sample",
+        "stock"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: third machine uses the balanced recipe",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 2, "k": 3, "budget": 10, "composition": [[2, 1], [1, 2], [1, 1]], "stock": [1, 1], "cost": [5, 5]},
+      "input": {
+        "n": 2,
+        "k": 3,
+        "budget": 10,
+        "composition": [
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "stock": [
+          1,
+          1
+        ],
+        "cost": [
+          5,
+          5
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "machine-choice"]
+      "tags": [
+        "sample",
+        "machine-choice"
+      ]
     },
     {
       "id": "trial-zero-budget-stock-only",
       "name": "trial: zero budget uses only existing stock",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "k": 2, "budget": 0, "composition": [[1, 2], [2, 1]], "stock": [4, 5], "cost": [3, 4]},
+      "input": {
+        "n": 2,
+        "k": 2,
+        "budget": 0,
+        "composition": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "stock": [
+          4,
+          5
+        ],
+        "cost": [
+          3,
+          4
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "zero-budget"]
+      "tags": [
+        "trial",
+        "zero-budget"
+      ]
     },
     {
       "id": "trial-no-stock-no-budget",
       "name": "trial: no stock and no budget produce nothing",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "k": 1, "budget": 0, "composition": [[1]], "stock": [0], "cost": [100]},
+      "input": {
+        "n": 1,
+        "k": 1,
+        "budget": 0,
+        "composition": [
+          [
+            1
+          ]
+        ],
+        "stock": [
+          0
+        ],
+        "cost": [
+          100
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "zero-answer"]
+      "tags": [
+        "trial",
+        "zero-answer"
+      ]
     },
     {
       "id": "trial-machine-cost-tradeoff",
       "name": "trial: the best recipe depends on stock and prices",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "k": 2, "budget": 10, "composition": [[1, 3], [2, 1]], "stock": [5, 0], "cost": [2, 1]},
+      "input": {
+        "n": 2,
+        "k": 2,
+        "budget": 10,
+        "composition": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "stock": [
+          5,
+          0
+        ],
+        "cost": [
+          2,
+          1
+        ]
+      },
       "expected": 4,
-      "tags": ["trial", "machine-choice"]
+      "tags": [
+        "trial",
+        "machine-choice"
+      ]
     },
     {
       "id": "real-stock-only-upper-bound",
-      "name": "hidden: stock alone supports one hundred alloys",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1, "k": 1, "budget": 0, "composition": [[100]], "stock": [10000], "cost": [1]},
+      "name": "stock alone supports one hundred alloys",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 1,
+        "budget": 0,
+        "composition": [
+          [
+            100
+          ]
+        ],
+        "stock": [
+          10000
+        ],
+        "cost": [
+          1
+        ]
+      },
       "expected": 100,
-      "tags": ["hidden", "stock-only", "upper-bound"]
+      "tags": [
+        "hidden",
+        "stock-only",
+        "upper-bound"
+      ]
     },
     {
       "id": "real-large-values-zero-answer",
-      "name": "hidden: abundant one metal cannot replace another",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 2, "k": 1, "budget": 100, "composition": [[100, 100]], "stock": [100000000, 0], "cost": [1, 100]},
+      "name": "abundant one metal cannot replace another",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "k": 1,
+        "budget": 100,
+        "composition": [
+          [
+            100,
+            100
+          ]
+        ],
+        "stock": [
+          100000000,
+          0
+        ],
+        "cost": [
+          1,
+          100
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden", "large-stock", "limiting-metal"]
+      "tags": [
+        "hidden",
+        "large-stock",
+        "limiting-metal"
+      ]
     }
   ]
 }

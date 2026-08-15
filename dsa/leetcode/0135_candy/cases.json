@@ -54,9 +54,9 @@
     },
     {
       "id": "real-long-slope",
-      "name": "hidden: long slope then drop",
-      "kind": "real",
-      "visible": false,
+      "name": "long slope then drop",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ratings": [
           1,

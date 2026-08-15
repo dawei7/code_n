@@ -6,36 +6,317 @@
       "name": "sample: melt two products across four quarters",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"report": [{"product": "Umbrella", "quarter_1": 417, "quarter_2": 224, "quarter_3": 379, "quarter_4": 611}, {"product": "SleepingBag", "quarter_1": 800, "quarter_2": 936, "quarter_3": 93, "quarter_4": 875}]}},
-      "expected": {"columns": ["product", "quarter", "sales"], "rows": [["Umbrella", "quarter_1", 417], ["SleepingBag", "quarter_1", 800], ["Umbrella", "quarter_2", 224], ["SleepingBag", "quarter_2", 936], ["Umbrella", "quarter_3", 379], ["SleepingBag", "quarter_3", 93], ["Umbrella", "quarter_4", 611], ["SleepingBag", "quarter_4", 875]]},
-      "tags": ["sample", "wide-to-long"]
+      "input": {
+        "tables": {
+          "report": [
+            {
+              "product": "Umbrella",
+              "quarter_1": 417,
+              "quarter_2": 224,
+              "quarter_3": 379,
+              "quarter_4": 611
+            },
+            {
+              "product": "SleepingBag",
+              "quarter_1": 800,
+              "quarter_2": 936,
+              "quarter_3": 93,
+              "quarter_4": 875
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product",
+          "quarter",
+          "sales"
+        ],
+        "rows": [
+          [
+            "Umbrella",
+            "quarter_1",
+            417
+          ],
+          [
+            "SleepingBag",
+            "quarter_1",
+            800
+          ],
+          [
+            "Umbrella",
+            "quarter_2",
+            224
+          ],
+          [
+            "SleepingBag",
+            "quarter_2",
+            936
+          ],
+          [
+            "Umbrella",
+            "quarter_3",
+            379
+          ],
+          [
+            "SleepingBag",
+            "quarter_3",
+            93
+          ],
+          [
+            "Umbrella",
+            "quarter_4",
+            611
+          ],
+          [
+            "SleepingBag",
+            "quarter_4",
+            875
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "wide-to-long"
+      ]
     },
     {
       "id": "trial-single-product",
       "name": "one product produces four quarter rows",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"report": [{"product": "Notebook", "quarter_1": 12, "quarter_2": 18, "quarter_3": 15, "quarter_4": 21}]}},
-      "expected": {"columns": ["product", "quarter", "sales"], "rows": [["Notebook", "quarter_1", 12], ["Notebook", "quarter_2", 18], ["Notebook", "quarter_3", 15], ["Notebook", "quarter_4", 21]]},
-      "tags": ["single-product", "four-rows"]
+      "input": {
+        "tables": {
+          "report": [
+            {
+              "product": "Notebook",
+              "quarter_1": 12,
+              "quarter_2": 18,
+              "quarter_3": 15,
+              "quarter_4": 21
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product",
+          "quarter",
+          "sales"
+        ],
+        "rows": [
+          [
+            "Notebook",
+            "quarter_1",
+            12
+          ],
+          [
+            "Notebook",
+            "quarter_2",
+            18
+          ],
+          [
+            "Notebook",
+            "quarter_3",
+            15
+          ],
+          [
+            "Notebook",
+            "quarter_4",
+            21
+          ]
+        ]
+      },
+      "tags": [
+        "single-product",
+        "four-rows"
+      ]
     },
     {
       "id": "trial-repeated-sales",
       "name": "repeated sales values retain product and quarter identities",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"report": [{"product": "Lamp", "quarter_1": 7, "quarter_2": 7, "quarter_3": 11, "quarter_4": 9}, {"product": "Desk", "quarter_1": 3, "quarter_2": 8, "quarter_3": 8, "quarter_4": 14}]}},
-      "expected": {"columns": ["product", "quarter", "sales"], "rows": [["Lamp", "quarter_1", 7], ["Desk", "quarter_1", 3], ["Lamp", "quarter_2", 7], ["Desk", "quarter_2", 8], ["Lamp", "quarter_3", 11], ["Desk", "quarter_3", 8], ["Lamp", "quarter_4", 9], ["Desk", "quarter_4", 14]]},
-      "tags": ["repeated-values", "row-order"]
+      "input": {
+        "tables": {
+          "report": [
+            {
+              "product": "Lamp",
+              "quarter_1": 7,
+              "quarter_2": 7,
+              "quarter_3": 11,
+              "quarter_4": 9
+            },
+            {
+              "product": "Desk",
+              "quarter_1": 3,
+              "quarter_2": 8,
+              "quarter_3": 8,
+              "quarter_4": 14
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product",
+          "quarter",
+          "sales"
+        ],
+        "rows": [
+          [
+            "Lamp",
+            "quarter_1",
+            7
+          ],
+          [
+            "Desk",
+            "quarter_1",
+            3
+          ],
+          [
+            "Lamp",
+            "quarter_2",
+            7
+          ],
+          [
+            "Desk",
+            "quarter_2",
+            8
+          ],
+          [
+            "Lamp",
+            "quarter_3",
+            11
+          ],
+          [
+            "Desk",
+            "quarter_3",
+            8
+          ],
+          [
+            "Lamp",
+            "quarter_4",
+            9
+          ],
+          [
+            "Desk",
+            "quarter_4",
+            14
+          ]
+        ]
+      },
+      "tags": [
+        "repeated-values",
+        "row-order"
+      ]
     },
     {
       "id": "real-three-products-boundary-values",
-      "name": "hidden: three products preserve zero and signed values",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"report": [{"product": "Alpha", "quarter_1": 0, "quarter_2": 9, "quarter_3": -2, "quarter_4": 14}, {"product": "Beta", "quarter_1": 5, "quarter_2": 0, "quarter_3": 17, "quarter_4": -1}, {"product": "Gamma", "quarter_1": -4, "quarter_2": 12, "quarter_3": 0, "quarter_4": 6}]}},
-      "expected": {"columns": ["product", "quarter", "sales"], "rows": [["Alpha", "quarter_1", 0], ["Beta", "quarter_1", 5], ["Gamma", "quarter_1", -4], ["Alpha", "quarter_2", 9], ["Beta", "quarter_2", 0], ["Gamma", "quarter_2", 12], ["Alpha", "quarter_3", -2], ["Beta", "quarter_3", 17], ["Gamma", "quarter_3", 0], ["Alpha", "quarter_4", 14], ["Beta", "quarter_4", -1], ["Gamma", "quarter_4", 6]]},
-      "tags": ["hidden", "three-products", "signed-values"]
+      "name": "three products preserve zero and signed values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "report": [
+            {
+              "product": "Alpha",
+              "quarter_1": 0,
+              "quarter_2": 9,
+              "quarter_3": -2,
+              "quarter_4": 14
+            },
+            {
+              "product": "Beta",
+              "quarter_1": 5,
+              "quarter_2": 0,
+              "quarter_3": 17,
+              "quarter_4": -1
+            },
+            {
+              "product": "Gamma",
+              "quarter_1": -4,
+              "quarter_2": 12,
+              "quarter_3": 0,
+              "quarter_4": 6
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product",
+          "quarter",
+          "sales"
+        ],
+        "rows": [
+          [
+            "Alpha",
+            "quarter_1",
+            0
+          ],
+          [
+            "Beta",
+            "quarter_1",
+            5
+          ],
+          [
+            "Gamma",
+            "quarter_1",
+            -4
+          ],
+          [
+            "Alpha",
+            "quarter_2",
+            9
+          ],
+          [
+            "Beta",
+            "quarter_2",
+            0
+          ],
+          [
+            "Gamma",
+            "quarter_2",
+            12
+          ],
+          [
+            "Alpha",
+            "quarter_3",
+            -2
+          ],
+          [
+            "Beta",
+            "quarter_3",
+            17
+          ],
+          [
+            "Gamma",
+            "quarter_3",
+            0
+          ],
+          [
+            "Alpha",
+            "quarter_4",
+            14
+          ],
+          [
+            "Beta",
+            "quarter_4",
+            -1
+          ],
+          [
+            "Gamma",
+            "quarter_4",
+            6
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "three-products",
+        "signed-values"
+      ]
     }
   ]
 }

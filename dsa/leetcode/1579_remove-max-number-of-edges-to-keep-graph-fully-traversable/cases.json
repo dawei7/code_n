@@ -166,9 +166,9 @@
     },
     {
       "id": "real-redundant-types",
-      "name": "hidden: extra private edges duplicate shared reachability",
-      "kind": "real",
-      "visible": false,
+      "name": "extra private edges duplicate shared reachability",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "edges": [
@@ -208,9 +208,9 @@
     },
     {
       "id": "real-shared-cycle",
-      "name": "hidden: one edge in a shared triangle is removable",
-      "kind": "real",
-      "visible": false,
+      "name": "one edge in a shared triangle is removable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "edges": [
@@ -239,9 +239,9 @@
     },
     {
       "id": "real-mixed-bridge",
-      "name": "hidden: private edges bridge two shared components",
-      "kind": "real",
-      "visible": false,
+      "name": "private edges bridge two shared components",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [
@@ -275,9 +275,9 @@
     },
     {
       "id": "real-bob-disconnected",
-      "name": "hidden: Alice connects but Bob remains disconnected",
-      "kind": "real",
-      "visible": false,
+      "name": "Alice connects but Bob remains disconnected",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [
@@ -311,9 +311,9 @@
     },
     {
       "id": "real-complex-redundancy",
-      "name": "hidden: useful shared edges maximize overlap",
-      "kind": "real",
-      "visible": false,
+      "name": "useful shared edges maximize overlap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [
@@ -363,9 +363,9 @@
     },
     {
       "id": "real-shared-plus-private-cycle",
-      "name": "hidden: shared tree makes private cycles removable",
-      "kind": "real",
-      "visible": false,
+      "name": "shared tree makes private cycles removable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [
@@ -405,9 +405,9 @@
     },
     {
       "id": "real-alice-only",
-      "name": "hidden: Bob has no path between two nodes",
-      "kind": "real",
-      "visible": false,
+      "name": "Bob has no path between two nodes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 2,
         "edges": [
@@ -427,9 +427,9 @@
     },
     {
       "id": "real-shared-order-late",
-      "name": "hidden: shared edge appears after private alternatives",
-      "kind": "real",
-      "visible": false,
+      "name": "shared edge appears after private alternatives",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "edges": [

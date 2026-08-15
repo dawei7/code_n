@@ -8,11 +8,78 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "operations": ["FoodRatings","highestRated","highestRated","changeRating","highestRated","changeRating","highestRated"],
-        "arguments": [[["kimchi","miso","sushi","moussaka","ramen","bulgogi"],["korean","japanese","japanese","greek","japanese","korean"],[9,12,8,15,14,7]],["korean"],["japanese"],["sushi",16],["japanese"],["ramen",16],["japanese"]]
+        "operations": [
+          "FoodRatings",
+          "highestRated",
+          "highestRated",
+          "changeRating",
+          "highestRated",
+          "changeRating",
+          "highestRated"
+        ],
+        "arguments": [
+          [
+            [
+              "kimchi",
+              "miso",
+              "sushi",
+              "moussaka",
+              "ramen",
+              "bulgogi"
+            ],
+            [
+              "korean",
+              "japanese",
+              "japanese",
+              "greek",
+              "japanese",
+              "korean"
+            ],
+            [
+              9,
+              12,
+              8,
+              15,
+              14,
+              7
+            ]
+          ],
+          [
+            "korean"
+          ],
+          [
+            "japanese"
+          ],
+          [
+            "sushi",
+            16
+          ],
+          [
+            "japanese"
+          ],
+          [
+            "ramen",
+            16
+          ],
+          [
+            "japanese"
+          ]
+        ]
       },
-      "expected": [null,"kimchi","ramen",null,"sushi",null,"ramen"],
-      "tags": ["sample","stateful","tie"]
+      "expected": [
+        null,
+        "kimchi",
+        "ramen",
+        null,
+        "sushi",
+        null,
+        "ramen"
+      ],
+      "tags": [
+        "sample",
+        "stateful",
+        "tie"
+      ]
     },
     {
       "id": "trial-initial-tie",
@@ -20,11 +87,49 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["FoodRatings","highestRated","changeRating","highestRated"],
-        "arguments": [[["apple","apricot"],["fruit","fruit"],[5,5]],["fruit"],["apricot",6],["fruit"]]
+        "operations": [
+          "FoodRatings",
+          "highestRated",
+          "changeRating",
+          "highestRated"
+        ],
+        "arguments": [
+          [
+            [
+              "apple",
+              "apricot"
+            ],
+            [
+              "fruit",
+              "fruit"
+            ],
+            [
+              5,
+              5
+            ]
+          ],
+          [
+            "fruit"
+          ],
+          [
+            "apricot",
+            6
+          ],
+          [
+            "fruit"
+          ]
+        ]
       },
-      "expected": [null,"apple",null,"apricot"],
-      "tags": ["tie","lexicographic"]
+      "expected": [
+        null,
+        "apple",
+        null,
+        "apricot"
+      ],
+      "tags": [
+        "tie",
+        "lexicographic"
+      ]
     },
     {
       "id": "trial-cuisine-isolation",
@@ -32,11 +137,56 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["FoodRatings","highestRated","changeRating","highestRated","highestRated"],
-        "arguments": [[["taco","tofu","tea"],["mexican","vegan","vegan"],[8,8,5]],["vegan"],["tea",9],["vegan"],["mexican"]]
+        "operations": [
+          "FoodRatings",
+          "highestRated",
+          "changeRating",
+          "highestRated",
+          "highestRated"
+        ],
+        "arguments": [
+          [
+            [
+              "taco",
+              "tofu",
+              "tea"
+            ],
+            [
+              "mexican",
+              "vegan",
+              "vegan"
+            ],
+            [
+              8,
+              8,
+              5
+            ]
+          ],
+          [
+            "vegan"
+          ],
+          [
+            "tea",
+            9
+          ],
+          [
+            "vegan"
+          ],
+          [
+            "mexican"
+          ]
+        ]
       },
-      "expected": [null,"tofu",null,"tea","taco"],
-      "tags": ["multiple-cuisines"]
+      "expected": [
+        null,
+        "tofu",
+        null,
+        "tea",
+        "taco"
+      ],
+      "tags": [
+        "multiple-cuisines"
+      ]
     },
     {
       "id": "trial-single-food",
@@ -44,11 +194,40 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["FoodRatings","changeRating","highestRated"],
-        "arguments": [[["tea"],["drink"],[10]],["tea",1],["drink"]]
+        "operations": [
+          "FoodRatings",
+          "changeRating",
+          "highestRated"
+        ],
+        "arguments": [
+          [
+            [
+              "tea"
+            ],
+            [
+              "drink"
+            ],
+            [
+              10
+            ]
+          ],
+          [
+            "tea",
+            1
+          ],
+          [
+            "drink"
+          ]
+        ]
       },
-      "expected": [null,null,"tea"],
-      "tags": ["boundary"]
+      "expected": [
+        null,
+        null,
+        "tea"
+      ],
+      "tags": [
+        "boundary"
+      ]
     },
     {
       "id": "trial-decrease-former-leader",
@@ -56,35 +235,178 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["FoodRatings","highestRated","changeRating","highestRated"],
-        "arguments": [[["a","b","c"],["x","x","x"],[9,8,7]],["x"],["a",1],["x"]]
+        "operations": [
+          "FoodRatings",
+          "highestRated",
+          "changeRating",
+          "highestRated"
+        ],
+        "arguments": [
+          [
+            [
+              "a",
+              "b",
+              "c"
+            ],
+            [
+              "x",
+              "x",
+              "x"
+            ],
+            [
+              9,
+              8,
+              7
+            ]
+          ],
+          [
+            "x"
+          ],
+          [
+            "a",
+            1
+          ],
+          [
+            "x"
+          ]
+        ]
       },
-      "expected": [null,"a",null,"b"],
-      "tags": ["decrease","stale-entry"]
+      "expected": [
+        null,
+        "a",
+        null,
+        "b"
+      ],
+      "tags": [
+        "decrease",
+        "stale-entry"
+      ]
     },
     {
       "id": "real-repeated-updates",
-      "name": "hidden: several stale entries for one food",
-      "kind": "real",
-      "visible": false,
+      "name": "several stale entries for one food",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["FoodRatings","changeRating","changeRating","changeRating","highestRated","changeRating","highestRated"],
-        "arguments": [[["aa","ab","ac"],["x","x","x"],[3,4,5]],["aa",9],["aa",2],["ab",8],["x"],["ab",1],["x"]]
+        "operations": [
+          "FoodRatings",
+          "changeRating",
+          "changeRating",
+          "changeRating",
+          "highestRated",
+          "changeRating",
+          "highestRated"
+        ],
+        "arguments": [
+          [
+            [
+              "aa",
+              "ab",
+              "ac"
+            ],
+            [
+              "x",
+              "x",
+              "x"
+            ],
+            [
+              3,
+              4,
+              5
+            ]
+          ],
+          [
+            "aa",
+            9
+          ],
+          [
+            "aa",
+            2
+          ],
+          [
+            "ab",
+            8
+          ],
+          [
+            "x"
+          ],
+          [
+            "ab",
+            1
+          ],
+          [
+            "x"
+          ]
+        ]
       },
-      "expected": [null,null,null,null,"ab",null,"ac"],
-      "tags": ["hidden","lazy-deletion"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        "ab",
+        null,
+        "ac"
+      ],
+      "tags": [
+        "hidden",
+        "lazy-deletion"
+      ]
     },
     {
       "id": "real-tie-after-decreases",
-      "name": "hidden: stale maxima reveal a lexicographic tie",
-      "kind": "real",
-      "visible": false,
+      "name": "stale maxima reveal a lexicographic tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["FoodRatings","changeRating","changeRating","highestRated"],
-        "arguments": [[["az","ba","bb"],["x","x","x"],[10,9,8]],["az",7],["bb",9],["x"]]
+        "operations": [
+          "FoodRatings",
+          "changeRating",
+          "changeRating",
+          "highestRated"
+        ],
+        "arguments": [
+          [
+            [
+              "az",
+              "ba",
+              "bb"
+            ],
+            [
+              "x",
+              "x",
+              "x"
+            ],
+            [
+              10,
+              9,
+              8
+            ]
+          ],
+          [
+            "az",
+            7
+          ],
+          [
+            "bb",
+            9
+          ],
+          [
+            "x"
+          ]
+        ]
       },
-      "expected": [null,null,null,"ba"],
-      "tags": ["hidden","tie","stale-entry"]
+      "expected": [
+        null,
+        null,
+        null,
+        "ba"
+      ],
+      "tags": [
+        "hidden",
+        "tie",
+        "stale-entry"
+      ]
     }
   ]
 }

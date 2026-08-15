@@ -2,14 +2,522 @@
   "schema_version": 1,
   "challenge_id": "lc_3140",
   "cases": [
-    {"id":"sample-official","name":"sample: length-three run","kind":"sample","visible":true,"input":{"tables":{"Cinema":[{"seat_id":1,"free":1},{"seat_id":2,"free":0},{"seat_id":3,"free":1},{"seat_id":4,"free":1},{"seat_id":5,"free":1}]}},"expected":{"columns":["first_seat_id","last_seat_id","consecutive_seats_len"],"rows":[[3,5,3]]},"validator":{"kind":"ordered_table"},"tags":["sample","single-maximum"]},
-    {"id":"trial-single-seat","name":"trial: one available seat","kind":"trial","visible":true,"input":{"tables":{"Cinema":[{"seat_id":1,"free":1}]}},"expected":{"columns":["first_seat_id","last_seat_id","consecutive_seats_len"],"rows":[[1,1,1]]},"validator":{"kind":"ordered_table"},"tags":["edge","singleton"]},
-    {"id":"trial-tied-runs","name":"trial: two longest runs are both returned","kind":"trial","visible":true,"input":{"tables":{"Cinema":[{"seat_id":1,"free":1},{"seat_id":2,"free":1},{"seat_id":3,"free":0},{"seat_id":4,"free":1},{"seat_id":5,"free":1}]}},"expected":{"columns":["first_seat_id","last_seat_id","consecutive_seats_len"],"rows":[[1,2,2],[4,5,2]]},"validator":{"kind":"ordered_table"},"tags":["tie","ordering"]},
-    {"id":"trial-isolated-tie","name":"trial: every isolated available seat ties","kind":"trial","visible":true,"input":{"tables":{"Cinema":[{"seat_id":1,"free":1},{"seat_id":2,"free":0},{"seat_id":3,"free":1},{"seat_id":4,"free":0},{"seat_id":5,"free":1}]}},"expected":{"columns":["first_seat_id","last_seat_id","consecutive_seats_len"],"rows":[[1,1,1],[3,3,1],[5,5,1]]},"validator":{"kind":"ordered_table"},"tags":["tie","isolated"]},
-    {"id":"real-missing-seat-ids","name":"real: missing IDs split available runs","kind":"real","visible":false,"input":{"tables":{"Cinema":[{"seat_id":1,"free":1},{"seat_id":3,"free":1},{"seat_id":4,"free":1},{"seat_id":8,"free":1}]}},"expected":{"columns":["first_seat_id","last_seat_id","consecutive_seats_len"],"rows":[[3,4,2]]},"validator":{"kind":"ordered_table"},"tags":["real","id-gap"]},
-    {"id":"real-unordered-input","name":"real: physical row order is irrelevant","kind":"real","visible":false,"input":{"tables":{"Cinema":[{"seat_id":7,"free":1},{"seat_id":2,"free":1},{"seat_id":6,"free":1},{"seat_id":1,"free":1},{"seat_id":5,"free":0},{"seat_id":3,"free":0}]}},"expected":{"columns":["first_seat_id","last_seat_id","consecutive_seats_len"],"rows":[[1,2,2],[6,7,2]]},"validator":{"kind":"ordered_table"},"tags":["real","unordered","tie"]},
-    {"id":"real-long-run-at-boundary","name":"real: longest run reaches the final seat","kind":"real","visible":false,"input":{"tables":{"Cinema":[{"seat_id":10,"free":0},{"seat_id":11,"free":1},{"seat_id":12,"free":0},{"seat_id":13,"free":1},{"seat_id":14,"free":1},{"seat_id":15,"free":1},{"seat_id":16,"free":1}]}},"expected":{"columns":["first_seat_id","last_seat_id","consecutive_seats_len"],"rows":[[13,16,4]]},"validator":{"kind":"ordered_table"},"tags":["real","boundary"]},
-    {"id":"real-occupied-boundaries","name":"real: occupied seats bound the winning island","kind":"real","visible":false,"input":{"tables":{"Cinema":[{"seat_id":20,"free":0},{"seat_id":21,"free":1},{"seat_id":22,"free":1},{"seat_id":23,"free":1},{"seat_id":24,"free":0},{"seat_id":25,"free":1},{"seat_id":26,"free":1}]}},"expected":{"columns":["first_seat_id","last_seat_id","consecutive_seats_len"],"rows":[[21,23,3]]},"validator":{"kind":"ordered_table"},"tags":["real","occupied-split"]},
-    {"id":"real-three-way-tie","name":"real: three equal runs remain ordered","kind":"real","visible":false,"input":{"tables":{"Cinema":[{"seat_id":30,"free":1},{"seat_id":31,"free":1},{"seat_id":32,"free":0},{"seat_id":40,"free":1},{"seat_id":41,"free":1},{"seat_id":50,"free":1},{"seat_id":51,"free":1}]}},"expected":{"columns":["first_seat_id","last_seat_id","consecutive_seats_len"],"rows":[[30,31,2],[40,41,2],[50,51,2]]},"validator":{"kind":"ordered_table"},"tags":["real","tie","id-gap"]}
+    {
+      "id": "sample-official",
+      "name": "sample: length-three run",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Cinema": [
+            {
+              "seat_id": 1,
+              "free": 1
+            },
+            {
+              "seat_id": 2,
+              "free": 0
+            },
+            {
+              "seat_id": 3,
+              "free": 1
+            },
+            {
+              "seat_id": 4,
+              "free": 1
+            },
+            {
+              "seat_id": 5,
+              "free": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "first_seat_id",
+          "last_seat_id",
+          "consecutive_seats_len"
+        ],
+        "rows": [
+          [
+            3,
+            5,
+            3
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "single-maximum"
+      ]
+    },
+    {
+      "id": "trial-single-seat",
+      "name": "trial: one available seat",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Cinema": [
+            {
+              "seat_id": 1,
+              "free": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "first_seat_id",
+          "last_seat_id",
+          "consecutive_seats_len"
+        ],
+        "rows": [
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "edge",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-tied-runs",
+      "name": "trial: two longest runs are both returned",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Cinema": [
+            {
+              "seat_id": 1,
+              "free": 1
+            },
+            {
+              "seat_id": 2,
+              "free": 1
+            },
+            {
+              "seat_id": 3,
+              "free": 0
+            },
+            {
+              "seat_id": 4,
+              "free": 1
+            },
+            {
+              "seat_id": 5,
+              "free": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "first_seat_id",
+          "last_seat_id",
+          "consecutive_seats_len"
+        ],
+        "rows": [
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            4,
+            5,
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "tie",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-isolated-tie",
+      "name": "trial: every isolated available seat ties",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Cinema": [
+            {
+              "seat_id": 1,
+              "free": 1
+            },
+            {
+              "seat_id": 2,
+              "free": 0
+            },
+            {
+              "seat_id": 3,
+              "free": 1
+            },
+            {
+              "seat_id": 4,
+              "free": 0
+            },
+            {
+              "seat_id": 5,
+              "free": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "first_seat_id",
+          "last_seat_id",
+          "consecutive_seats_len"
+        ],
+        "rows": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            3,
+            1
+          ],
+          [
+            5,
+            5,
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "tie",
+        "isolated"
+      ]
+    },
+    {
+      "id": "real-missing-seat-ids",
+      "name": "real: missing IDs split available runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Cinema": [
+            {
+              "seat_id": 1,
+              "free": 1
+            },
+            {
+              "seat_id": 3,
+              "free": 1
+            },
+            {
+              "seat_id": 4,
+              "free": 1
+            },
+            {
+              "seat_id": 8,
+              "free": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "first_seat_id",
+          "last_seat_id",
+          "consecutive_seats_len"
+        ],
+        "rows": [
+          [
+            3,
+            4,
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "id-gap"
+      ]
+    },
+    {
+      "id": "real-unordered-input",
+      "name": "real: physical row order is irrelevant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Cinema": [
+            {
+              "seat_id": 7,
+              "free": 1
+            },
+            {
+              "seat_id": 2,
+              "free": 1
+            },
+            {
+              "seat_id": 6,
+              "free": 1
+            },
+            {
+              "seat_id": 1,
+              "free": 1
+            },
+            {
+              "seat_id": 5,
+              "free": 0
+            },
+            {
+              "seat_id": 3,
+              "free": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "first_seat_id",
+          "last_seat_id",
+          "consecutive_seats_len"
+        ],
+        "rows": [
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            6,
+            7,
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "unordered",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-long-run-at-boundary",
+      "name": "real: longest run reaches the final seat",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Cinema": [
+            {
+              "seat_id": 10,
+              "free": 0
+            },
+            {
+              "seat_id": 11,
+              "free": 1
+            },
+            {
+              "seat_id": 12,
+              "free": 0
+            },
+            {
+              "seat_id": 13,
+              "free": 1
+            },
+            {
+              "seat_id": 14,
+              "free": 1
+            },
+            {
+              "seat_id": 15,
+              "free": 1
+            },
+            {
+              "seat_id": 16,
+              "free": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "first_seat_id",
+          "last_seat_id",
+          "consecutive_seats_len"
+        ],
+        "rows": [
+          [
+            13,
+            16,
+            4
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-occupied-boundaries",
+      "name": "real: occupied seats bound the winning island",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Cinema": [
+            {
+              "seat_id": 20,
+              "free": 0
+            },
+            {
+              "seat_id": 21,
+              "free": 1
+            },
+            {
+              "seat_id": 22,
+              "free": 1
+            },
+            {
+              "seat_id": 23,
+              "free": 1
+            },
+            {
+              "seat_id": 24,
+              "free": 0
+            },
+            {
+              "seat_id": 25,
+              "free": 1
+            },
+            {
+              "seat_id": 26,
+              "free": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "first_seat_id",
+          "last_seat_id",
+          "consecutive_seats_len"
+        ],
+        "rows": [
+          [
+            21,
+            23,
+            3
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "occupied-split"
+      ]
+    },
+    {
+      "id": "real-three-way-tie",
+      "name": "real: three equal runs remain ordered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Cinema": [
+            {
+              "seat_id": 30,
+              "free": 1
+            },
+            {
+              "seat_id": 31,
+              "free": 1
+            },
+            {
+              "seat_id": 32,
+              "free": 0
+            },
+            {
+              "seat_id": 40,
+              "free": 1
+            },
+            {
+              "seat_id": 41,
+              "free": 1
+            },
+            {
+              "seat_id": 50,
+              "free": 1
+            },
+            {
+              "seat_id": 51,
+              "free": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "first_seat_id",
+          "last_seat_id",
+          "consecutive_seats_len"
+        ],
+        "rows": [
+          [
+            30,
+            31,
+            2
+          ],
+          [
+            40,
+            41,
+            2
+          ],
+          [
+            50,
+            51,
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "tie",
+        "id-gap"
+      ]
+    }
   ]
 }

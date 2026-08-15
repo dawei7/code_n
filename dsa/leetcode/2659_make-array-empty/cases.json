@@ -1,13 +1,153 @@
 {
   "challenge_id": "lc_2659",
   "cases": [
-    {"id":"sample-wrap","name":"sample: rotate before the first removal","kind":"sample","visible":true,"input":{"nums":[3,4,-1]},"expected":5,"tags":["sample","wrap"]},
-    {"id":"sample-one-rotation","name":"sample: one later rotation","kind":"sample","visible":true,"input":{"nums":[1,2,4,3]},"expected":5,"tags":["sample","rotation"]},
-    {"id":"sample-sorted","name":"sample: already increasing","kind":"sample","visible":true,"input":{"nums":[1,2,3]},"expected":3,"tags":["sample","increasing"]},
-    {"id":"trial-single","name":"trial: one element","kind":"trial","visible":true,"input":{"nums":[7]},"expected":1,"tags":["minimum-n"]},
-    {"id":"trial-descending","name":"trial: every target needs a full pass","kind":"trial","visible":true,"input":{"nums":[4,3,2,1]},"expected":10,"tags":["descending","worst-rotations"]},
-    {"id":"real-middle-minimum","name":"hidden: minimum begins in the middle","kind":"real","visible":false,"input":{"nums":[2,1,3]},"expected":5,"tags":["hidden","middle-minimum"]},
-    {"id":"real-negative","name":"hidden: mixed negative values","kind":"real","visible":false,"input":{"nums":[0,-3,5,-1,2]},"expected":9,"tags":["hidden","negative"]},
-    {"id":"real-alternating","name":"hidden: several circular wraps","kind":"real","visible":false,"input":{"nums":[6,1,5,2,4,3]},"expected":12,"tags":["hidden","multiple-wraps"]}
+    {
+      "id": "sample-wrap",
+      "name": "sample: rotate before the first removal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          -1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "wrap"
+      ]
+    },
+    {
+      "id": "sample-one-rotation",
+      "name": "sample: one later rotation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          3
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "rotation"
+      ]
+    },
+    {
+      "id": "sample-sorted",
+      "name": "sample: already increasing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "increasing"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "trial-descending",
+      "name": "trial: every target needs a full pass",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "descending",
+        "worst-rotations"
+      ]
+    },
+    {
+      "id": "real-middle-minimum",
+      "name": "minimum begins in the middle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "middle-minimum"
+      ]
+    },
+    {
+      "id": "real-negative",
+      "name": "mixed negative values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          -3,
+          5,
+          -1,
+          2
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "several circular wraps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          1,
+          5,
+          2,
+          4,
+          3
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "hidden",
+        "multiple-wraps"
+      ]
+    }
   ]
 }

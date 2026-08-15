@@ -7,150 +7,531 @@
       "name": "sample: two nonzero values occupy the required zero suffix",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [0,1,0,3,12]},
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          3,
+          12
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "two-swaps", "arbitrary-indices"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "two-swaps",
+        "arbitrary-indices"
+      ]
     },
     {
       "id": "sample-one-swap",
       "name": "sample: one distant swap completes the partition",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [0,1,0,2]},
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          2
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "one-swap", "arbitrary-indices"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "one-swap",
+        "arbitrary-indices"
+      ]
     },
     {
       "id": "sample-already-valid",
       "name": "sample: the zero already forms the suffix",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1,2,0]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          0
+        ]
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "already-partitioned"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "already-partitioned"
+      ]
     },
     {
       "id": "trial-no-zeroes",
       "name": "trial: an array without zeroes needs no operation",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1,2,3]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "no-zeroes"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "no-zeroes"
+      ]
     },
     {
       "id": "trial-all-zeroes",
       "name": "trial: an all-zero array is already valid",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0,0,0]},
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "all-zeroes"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-zeroes"
+      ]
     },
     {
       "id": "trial-single-zero",
       "name": "trial: a one-element zero array is valid",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0]},
+      "input": {
+        "nums": [
+          0
+        ]
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-length", "zero"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "zero"
+      ]
     },
     {
       "id": "trial-single-nonzero",
       "name": "trial: a one-element nonzero array is valid",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [100]},
+      "input": {
+        "nums": [
+          100
+        ]
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-length", "maximum-value"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "maximum-value"
+      ]
     },
     {
       "id": "trial-reversed-pair",
       "name": "trial: one reversed zero-nonzero pair needs one swap",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0,1]},
+      "input": {
+        "nums": [
+          0,
+          1
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-swap", "boundary"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-swap",
+        "boundary"
+      ]
     },
     {
       "id": "real-one-zero-at-front",
-      "name": "hidden: one leading zero pairs with the final nonzero",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0,1,2,3,4]},
+      "name": "one leading zero pairs with the final nonzero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "one-zero", "leading-zero"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "one-zero",
+        "leading-zero"
+      ]
     },
     {
       "id": "real-one-nonzero-at-end",
-      "name": "hidden: one trailing nonzero is the only suffix mismatch",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0,0,0,1]},
+      "name": "one trailing nonzero is the only suffix mismatch",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "zero-majority", "trailing-nonzero"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "zero-majority",
+        "trailing-nonzero"
+      ]
     },
     {
       "id": "real-alternating-values",
-      "name": "hidden: alternating zeroes and nonzeroes create two mismatches",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0,1,0,1,0,1]},
+      "name": "alternating zeroes and nonzeroes create two mismatches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "alternating", "multiple-swaps"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "alternating",
+        "multiple-swaps"
+      ]
     },
     {
       "id": "real-partitioned-duplicates",
-      "name": "hidden: a complete zero suffix needs no swaps",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5,4,3,0,0,0]},
+      "name": "a complete zero suffix needs no swaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "already-partitioned", "multiple-zeroes"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "already-partitioned",
+        "multiple-zeroes"
+      ]
     },
     {
       "id": "real-nonzero-values-irrelevant",
-      "name": "hidden: nonzero magnitudes do not affect the mismatch count",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0,100,0,2,3,0]},
+      "name": "nonzero magnitudes do not affect the mismatch count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          100,
+          0,
+          2,
+          3,
+          0
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-value", "value-irrelevance"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "value-irrelevance"
+      ]
     },
     {
       "id": "real-maximum-complete-reversal",
-      "name": "hidden: maximum length places every zero in the wrong half",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50]},
+      "name": "maximum length places every zero in the wrong half",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50
+        ]
+      },
       "expected": 50,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-length", "maximum-swaps"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "maximum-swaps"
+      ]
     },
     {
       "id": "real-maximum-alternating",
-      "name": "hidden: maximum-length alternating values correct half the suffix",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]},
+      "name": "maximum-length alternating values correct half the suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
       "expected": 25,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-length", "alternating"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "alternating"
+      ]
     }
   ]
 }

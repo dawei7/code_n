@@ -1,12 +1,134 @@
 {
   "challenge_id": "lc_2527",
   "cases": [
-    {"id": "sample-1", "name": "sample: two disjoint set bits", "kind": "sample", "visible": true, "input": {"nums": [1, 4]}, "expected": 5, "tags": ["sample", "bit-parity"]},
-    {"id": "sample-2", "name": "sample: mixed ten-value array", "kind": "sample", "visible": true, "input": {"nums": [15, 45, 20, 2, 34, 35, 5, 44, 32, 30]}, "expected": 34, "tags": ["sample", "mixed-bits"]},
-    {"id": "trial-single-value", "name": "trial: one index forms one triplet", "kind": "trial", "visible": true, "input": {"nums": [7]}, "expected": 7, "tags": ["trial", "minimum-length"]},
-    {"id": "trial-pair-cancels", "name": "trial: duplicate values cancel under XOR", "kind": "trial", "visible": true, "input": {"nums": [5, 5]}, "expected": 0, "tags": ["trial", "cancellation"]},
-    {"id": "real-three-way-cancellation", "name": "hidden: three values XOR to zero", "kind": "real", "visible": false, "input": {"nums": [1, 2, 3]}, "expected": 0, "tags": ["hidden", "overlapping-bits"]},
-    {"id": "real-odd-duplicate-count", "name": "hidden: odd multiplicity leaves one copy", "kind": "real", "visible": false, "input": {"nums": [42, 42, 42]}, "expected": 42, "tags": ["hidden", "parity"]},
-    {"id": "real-large-values", "name": "hidden: duplicate maximum values cancel", "kind": "real", "visible": false, "input": {"nums": [1000000000, 1000000000, 999999999]}, "expected": 999999999, "tags": ["hidden", "upper-bound"]}
+    {
+      "id": "sample-1",
+      "name": "sample: two disjoint set bits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "bit-parity"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: mixed ten-value array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          15,
+          45,
+          20,
+          2,
+          34,
+          35,
+          5,
+          44,
+          32,
+          30
+        ]
+      },
+      "expected": 34,
+      "tags": [
+        "sample",
+        "mixed-bits"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one index forms one triplet",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-pair-cancels",
+      "name": "trial: duplicate values cancel under XOR",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "cancellation"
+      ]
+    },
+    {
+      "id": "real-three-way-cancellation",
+      "name": "three values XOR to zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "overlapping-bits"
+      ]
+    },
+    {
+      "id": "real-odd-duplicate-count",
+      "name": "odd multiplicity leaves one copy",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          42,
+          42,
+          42
+        ]
+      },
+      "expected": 42,
+      "tags": [
+        "hidden",
+        "parity"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "duplicate maximum values cancel",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000,
+          999999999
+        ]
+      },
+      "expected": 999999999,
+      "tags": [
+        "hidden",
+        "upper-bound"
+      ]
+    }
   ]
 }

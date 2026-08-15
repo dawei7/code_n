@@ -1,13 +1,336 @@
 {
   "challenge_id": "lc_2658",
   "cases": [
-    {"id":"sample-components","name":"sample: choose the richest component","kind":"sample","visible":true,"input":{"grid":[[0,2,1,0],[4,0,0,3],[1,0,0,4],[0,3,2,0]]},"expected":7,"tags":["sample","components"]},
-    {"id":"sample-isolated","name":"sample: isolated one-fish cells","kind":"sample","visible":true,"input":{"grid":[[1,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,1]]},"expected":1,"tags":["sample","isolated"]},
-    {"id":"trial-land","name":"trial: no water cells","kind":"trial","visible":true,"input":{"grid":[[0,0],[0,0]]},"expected":0,"tags":["all-land","zero"]},
-    {"id":"trial-single","name":"trial: one water cell","kind":"trial","visible":true,"input":{"grid":[[10]]},"expected":10,"tags":["single-cell","maximum-value"]},
-    {"id":"real-connected","name":"hidden: every cell is connected","kind":"real","visible":false,"input":{"grid":[[1,2],[3,4]]},"expected":10,"tags":["hidden","fully-connected"]},
-    {"id":"real-diagonal","name":"hidden: diagonal water cells are separate","kind":"real","visible":false,"input":{"grid":[[5,0],[0,7]]},"expected":7,"tags":["hidden","diagonal"]},
-    {"id":"real-irregular","name":"hidden: irregular components","kind":"real","visible":false,"input":{"grid":[[1,1,0],[0,2,3],[4,0,3]]},"expected":10,"tags":["hidden","irregular"]},
-    {"id":"real-maximum-grid","name":"hidden: maximum dimensions and values","kind":"real","visible":false,"input":{"grid":[[10,10,10,10,10,10,10,10,10,10],[10,10,10,10,10,10,10,10,10,10],[10,10,10,10,10,10,10,10,10,10],[10,10,10,10,10,10,10,10,10,10],[10,10,10,10,10,10,10,10,10,10],[10,10,10,10,10,10,10,10,10,10],[10,10,10,10,10,10,10,10,10,10],[10,10,10,10,10,10,10,10,10,10],[10,10,10,10,10,10,10,10,10,10],[10,10,10,10,10,10,10,10,10,10]]},"expected":1000,"tags":["hidden","maximum-dimensions","maximum-value"]}
+    {
+      "id": "sample-components",
+      "name": "sample: choose the richest component",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            2,
+            1,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            3
+          ],
+          [
+            1,
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            3,
+            2,
+            0
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "components"
+      ]
+    },
+    {
+      "id": "sample-isolated",
+      "name": "sample: isolated one-fish cells",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "isolated"
+      ]
+    },
+    {
+      "id": "trial-land",
+      "name": "trial: no water cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "all-land",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one water cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            10
+          ]
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "single-cell",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "real-connected",
+      "name": "every cell is connected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "fully-connected"
+      ]
+    },
+    {
+      "id": "real-diagonal",
+      "name": "diagonal water cells are separate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            0
+          ],
+          [
+            0,
+            7
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "diagonal"
+      ]
+    },
+    {
+      "id": "real-irregular",
+      "name": "irregular components",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            4,
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "irregular"
+      ]
+    },
+    {
+      "id": "real-maximum-grid",
+      "name": "maximum dimensions and values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ],
+          [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10
+          ]
+        ]
+      },
+      "expected": 1000,
+      "tags": [
+        "hidden",
+        "maximum-dimensions",
+        "maximum-value"
+      ]
+    }
   ]
 }

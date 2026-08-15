@@ -222,9 +222,9 @@
     },
     {
       "id": "real-overlap",
-      "name": "hidden: overlapping interior and boundary rectangles",
-      "kind": "real",
-      "visible": false,
+      "name": "overlapping interior and boundary rectangles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [

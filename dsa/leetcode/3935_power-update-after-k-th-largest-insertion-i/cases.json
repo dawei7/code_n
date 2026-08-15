@@ -7,150 +7,560 @@
       "name": "sample: insertions select first and second largest",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2], "p": 4, "queries": [[3,1],[1,2]]},
-      "expected": [64,4096],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "rank-change", "sequential-power"]
+      "input": {
+        "nums": [
+          2
+        ],
+        "p": 4,
+        "queries": [
+          [
+            3,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        64,
+        4096
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "rank-change",
+        "sequential-power"
+      ]
     },
     {
       "id": "sample-third-then-second",
       "name": "sample: selected ranks change after duplicate insertion",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [7,5], "p": 6, "queries": [[4,3],[7,2]]},
-      "expected": [1296,220296870],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "duplicate", "modular-power"]
+      "input": {
+        "nums": [
+          7,
+          5
+        ],
+        "p": 6,
+        "queries": [
+          [
+            4,
+            3
+          ],
+          [
+            7,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        1296,
+        220296870
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "duplicate",
+        "modular-power"
+      ]
     },
     {
       "id": "trial-single-query-top",
       "name": "trial: one query selects the existing maximum",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5], "p": 2, "queries": [[3,1]]},
-      "expected": [32],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-query", "largest"]
+      "input": {
+        "nums": [
+          5
+        ],
+        "p": 2,
+        "queries": [
+          [
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        32
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-query",
+        "largest"
+      ]
     },
     {
       "id": "trial-full-rank",
       "name": "trial: the first query requests the complete multiset",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [4,2], "p": 3, "queries": [[1,3]]},
-      "expected": [3],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "first-rank", "minimum"]
+      "input": {
+        "nums": [
+          4,
+          2
+        ],
+        "p": 3,
+        "queries": [
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "first-rank",
+        "minimum"
+      ]
     },
     {
       "id": "trial-duplicate-boundary",
       "name": "trial: duplicates occupy separate requested ranks",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5,5], "p": 2, "queries": [[5,2],[4,3]]},
-      "expected": [32,33554432],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "duplicates", "boundary"]
+      "input": {
+        "nums": [
+          5,
+          5
+        ],
+        "p": 2,
+        "queries": [
+          [
+            5,
+            2
+          ],
+          [
+            4,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        32,
+        33554432
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicates",
+        "boundary"
+      ]
     },
     {
       "id": "trial-rank-increases-nine",
       "name": "trial: requested rank increases by the maximum allowed amount",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1,2,3,4,5,6,7,8,9,10], "p": 2, "queries": [[11,1],[1,10]]},
-      "expected": [2048,4194304],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "rank-increase", "difference-nine"]
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "p": 2,
+        "queries": [
+          [
+            11,
+            1
+          ],
+          [
+            1,
+            10
+          ]
+        ]
+      },
+      "expected": [
+        2048,
+        4194304
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "rank-increase",
+        "difference-nine"
+      ]
     },
     {
       "id": "trial-rank-decreases-nine",
       "name": "trial: requested rank decreases by the maximum allowed amount",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1,2,3,4,5,6,7,8,9,10], "p": 2, "queries": [[1,10],[11,1]]},
-      "expected": [2,2048],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "rank-decrease", "difference-nine"]
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "p": 2,
+        "queries": [
+          [
+            1,
+            10
+          ],
+          [
+            11,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        2048
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "rank-decrease",
+        "difference-nine"
+      ]
     },
     {
       "id": "trial-base-one",
       "name": "trial: modular powers preserve a base of one",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3,1], "p": 1, "queries": [[2,2],[4,1]]},
-      "expected": [1,1],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "base-one", "sequential-state"]
+      "input": {
+        "nums": [
+          3,
+          1
+        ],
+        "p": 1,
+        "queries": [
+          [
+            2,
+            2
+          ],
+          [
+            4,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "base-one",
+        "sequential-state"
+      ]
     },
     {
       "id": "real-insert-above-boundary",
-      "name": "hidden: a new value enters the top partition",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10,8,6], "p": 2, "queries": [[9,2],[7,2]]},
-      "expected": [512,993282280],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "top-insertion", "fixed-rank"]
+      "name": "a new value enters the top partition",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          8,
+          6
+        ],
+        "p": 2,
+        "queries": [
+          [
+            9,
+            2
+          ],
+          [
+            7,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        512,
+        993282280
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "top-insertion",
+        "fixed-rank"
+      ]
     },
     {
       "id": "real-insert-below-boundary",
-      "name": "hidden: lower insertions leave the selected rank unchanged",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10,9,1], "p": 3, "queries": [[2,2],[8,2]]},
-      "expected": [19683,968803245],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "remaining-insertion", "fixed-rank"]
+      "name": "lower insertions leave the selected rank unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          9,
+          1
+        ],
+        "p": 3,
+        "queries": [
+          [
+            2,
+            2
+          ],
+          [
+            8,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        19683,
+        968803245
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "remaining-insertion",
+        "fixed-rank"
+      ]
     },
     {
       "id": "real-multiple-boundary-duplicates",
-      "name": "hidden: equal boundary values survive rank movement",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [7,5,5,3], "p": 4, "queries": [[5,3],[6,4],[5,2]]},
-      "expected": [1024,898961331,322050759],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "duplicates", "rank-movement"]
+      "name": "equal boundary values survive rank movement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          5,
+          5,
+          3
+        ],
+        "p": 4,
+        "queries": [
+          [
+            5,
+            3
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            5,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        1024,
+        898961331,
+        322050759
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "duplicates",
+        "rank-movement"
+      ]
     },
     {
       "id": "real-maximum-values",
-      "name": "hidden: maximum values exercise large modular exponents",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000], "p": 1000000, "queries": [[999999,1],[1000000,2]]},
-      "expected": [493118025,381320024],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-value", "maximum-base"]
+      "name": "maximum values exercise large modular exponents",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000
+        ],
+        "p": 1000000,
+        "queries": [
+          [
+            999999,
+            1
+          ],
+          [
+            1000000,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        493118025,
+        381320024
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "maximum-base"
+      ]
     },
     {
       "id": "real-alternating-rank-extremes",
-      "name": "hidden: ranks alternate by nine in both directions",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9,8,7,6,5,4,3,2,1], "p": 7, "queries": [[10,1],[1,10],[11,1],[2,10]]},
-      "expected": [282475249,282475249,211118144,414008646],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "alternating-rank", "difference-nine"]
+      "name": "ranks alternate by nine in both directions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "p": 7,
+        "queries": [
+          [
+            10,
+            1
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            2,
+            10
+          ]
+        ]
+      },
+      "expected": [
+        282475249,
+        282475249,
+        211118144,
+        414008646
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "alternating-rank",
+        "difference-nine"
+      ]
     },
     {
       "id": "real-first-complete-rank",
-      "name": "hidden: first rebalance transfers every current value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4,2,9], "p": 5, "queries": [[1,4],[8,3]]},
-      "expected": [5,625],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "first-rank", "complete-partition"]
+      "name": "first rebalance transfers every current value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          9
+        ],
+        "p": 5,
+        "queries": [
+          [
+            1,
+            4
+          ],
+          [
+            8,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        5,
+        625
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "first-rank",
+        "complete-partition"
+      ]
     },
     {
       "id": "real-modular-wrap-and-rank-change",
-      "name": "hidden: sequential updates cross the modulus under changing ranks",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2,3], "p": 1000000, "queries": [[4,1],[1,4],[5,2]]},
-      "expected": [49000000,49000000,247022675],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "modular-wrap", "sequential-state"]
+      "name": "sequential updates cross the modulus under changing ranks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3
+        ],
+        "p": 1000000,
+        "queries": [
+          [
+            4,
+            1
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            5,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        49000000,
+        49000000,
+        247022675
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "modular-wrap",
+        "sequential-state"
+      ]
     }
   ]
 }

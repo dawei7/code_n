@@ -94,9 +94,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: triangular coverage with two eggs",
-      "kind": "real",
-      "visible": false,
+      "name": "triangular coverage with two eggs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 2,
         "n": 100
@@ -109,9 +109,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: exact three-egg coverage boundary",
-      "kind": "real",
-      "visible": false,
+      "name": "exact three-egg coverage boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 3,
         "n": 25
@@ -124,9 +124,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: four eggs across five hundred floors",
-      "kind": "real",
-      "visible": false,
+      "name": "four eggs across five hundred floors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 4,
         "n": 500
@@ -139,9 +139,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: maximum eggs and floors",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum eggs and floors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 100,
         "n": 10000
@@ -154,9 +154,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: extra egg on one floor",
-      "kind": "real",
-      "visible": false,
+      "name": "extra egg on one floor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 2,
         "n": 1

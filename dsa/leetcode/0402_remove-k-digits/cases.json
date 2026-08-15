@@ -79,9 +79,9 @@
     },
     {
       "id": "hidden-descending",
-      "name": "hidden: every new digit triggers a pop",
-      "kind": "real",
-      "visible": false,
+      "name": "every new digit triggers a pop",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": "9876543210",
         "k": 5
@@ -94,9 +94,9 @@
     },
     {
       "id": "hidden-equal",
-      "name": "hidden: all digits equal",
-      "kind": "real",
-      "visible": false,
+      "name": "all digits equal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": "777777",
         "k": 3
@@ -109,9 +109,9 @@
     },
     {
       "id": "hidden-mixed-zeroes",
-      "name": "hidden: internal zeroes dominate larger prefix",
-      "kind": "real",
-      "visible": false,
+      "name": "internal zeroes dominate larger prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": "120304050",
         "k": 4

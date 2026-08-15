@@ -94,9 +94,9 @@
     },
     {
       "id": "hidden-mixed",
-      "name": "hidden: mixed signs",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed signs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -114,9 +114,9 @@
     },
     {
       "id": "hidden-duplicates",
-      "name": "hidden: repeated values",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -134,9 +134,9 @@
     },
     {
       "id": "hidden-two",
-      "name": "hidden: two-element boundary",
-      "kind": "real",
-      "visible": false,
+      "name": "two-element boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -10,

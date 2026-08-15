@@ -167,8 +167,8 @@
     {
       "id": "real-rows-already-palindromic",
       "name": "real: rows already palindromic",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -191,8 +191,8 @@
     {
       "id": "real-columns-already-palindromic",
       "name": "real: columns already palindromic",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -217,8 +217,8 @@
     {
       "id": "real-one-row-mismatch",
       "name": "real: exactly one horizontal mismatch",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -242,8 +242,8 @@
     {
       "id": "real-one-column-mismatch",
       "name": "real: exactly one vertical mismatch",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -269,8 +269,8 @@
     {
       "id": "real-rectangular-grid",
       "name": "real: non-square matrix",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

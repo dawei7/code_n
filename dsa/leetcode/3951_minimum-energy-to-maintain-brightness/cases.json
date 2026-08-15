@@ -7,150 +7,443 @@
       "name": "sample: two bulbs illuminate the full five-position line",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 5, "brightness": 5, "intervals": [[6, 12]]},
+      "input": {
+        "n": 5,
+        "brightness": 5,
+        "intervals": [
+          [
+            6,
+            12
+          ]
+        ]
+      },
       "expected": 14,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "single-interval", "full-brightness"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "single-interval",
+        "full-brightness"
+      ]
     },
     {
       "id": "sample-two-singletons",
       "name": "sample: disjoint singleton times each need one bulb",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 2, "brightness": 1, "intervals": [[0, 0], [2, 2]]},
+      "input": {
+        "n": 2,
+        "brightness": 1,
+        "intervals": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "disjoint", "singleton-intervals"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "disjoint",
+        "singleton-intervals"
+      ]
     },
     {
       "id": "sample-overlapping-intervals",
       "name": "sample: overlapping intervals count their union once",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 4, "brightness": 2, "intervals": [[1, 3], [2, 4]]},
+      "input": {
+        "n": 4,
+        "brightness": 2,
+        "intervals": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "overlap", "union"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "overlap",
+        "union"
+      ]
     },
     {
       "id": "trial-smallest-line",
       "name": "trial: one bulb and one time unit",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "brightness": 1, "intervals": [[0, 0]]},
+      "input": {
+        "n": 1,
+        "brightness": 1,
+        "intervals": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "boundary", "single-bulb"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "boundary",
+        "single-bulb"
+      ]
     },
     {
       "id": "trial-adjacent-intervals",
       "name": "trial: adjacent intervals cover six distinct times",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 10, "brightness": 6, "intervals": [[0, 2], [3, 5]]},
+      "input": {
+        "n": 10,
+        "brightness": 6,
+        "intervals": [
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
       "expected": 12,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "adjacent-intervals", "two-bulbs"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "adjacent-intervals",
+        "two-bulbs"
+      ]
     },
     {
       "id": "trial-brightness-not-multiple-of-three",
       "name": "trial: seven illuminated positions require three bulbs",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 7, "brightness": 7, "intervals": [[4, 8]]},
+      "input": {
+        "n": 7,
+        "brightness": 7,
+        "intervals": [
+          [
+            4,
+            8
+          ]
+        ]
+      },
       "expected": 15,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "ceiling", "full-brightness"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "ceiling",
+        "full-brightness"
+      ]
     },
     {
       "id": "trial-shared-endpoint",
       "name": "trial: a shared endpoint is counted once",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 9, "brightness": 9, "intervals": [[1, 3], [3, 5]]},
+      "input": {
+        "n": 9,
+        "brightness": 9,
+        "intervals": [
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
       "expected": 15,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "overlap", "shared-endpoint"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "overlap",
+        "shared-endpoint"
+      ]
     },
     {
       "id": "trial-unsorted-transitive-overlap",
       "name": "trial: unsorted intervals merge transitively",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 6, "brightness": 4, "intervals": [[10, 12], [0, 2], [2, 11]]},
+      "input": {
+        "n": 6,
+        "brightness": 4,
+        "intervals": [
+          [
+            10,
+            12
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            11
+          ]
+        ]
+      },
       "expected": 26,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "unsorted", "transitive-overlap"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "unsorted",
+        "transitive-overlap"
+      ]
     },
     {
       "id": "trial-mixed-disjoint-lengths",
       "name": "trial: several disjoint components sum their lengths",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 3, "brightness": 3, "intervals": [[0, 0], [2, 4], [10, 10]]},
+      "input": {
+        "n": 3,
+        "brightness": 3,
+        "intervals": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            10,
+            10
+          ]
+        ]
+      },
       "expected": 5,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "disjoint", "mixed-lengths"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "disjoint",
+        "mixed-lengths"
+      ]
     },
     {
       "id": "real-full-brightness-single-time",
-      "name": "hidden: one active time still needs ceiling brightness bulbs",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 100, "brightness": 100, "intervals": [[100, 100]]},
+      "name": "one active time still needs ceiling brightness bulbs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100,
+        "brightness": 100,
+        "intervals": [
+          [
+            100,
+            100
+          ]
+        ]
+      },
       "expected": 34,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "full-brightness", "singleton-interval"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "full-brightness",
+        "singleton-interval"
+      ]
     },
     {
       "id": "real-nested-intervals",
-      "name": "hidden: nested intervals add no active time",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 8, "brightness": 2, "intervals": [[0, 10], [2, 4], [5, 9]]},
+      "name": "nested intervals add no active time",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8,
+        "brightness": 2,
+        "intervals": [
+          [
+            0,
+            10
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            5,
+            9
+          ]
+        ]
+      },
       "expected": 11,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "nested", "union"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "nested",
+        "union"
+      ]
     },
     {
       "id": "real-consecutive-singletons",
-      "name": "hidden: three adjacent singleton intervals remain three times",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 20, "brightness": 7, "intervals": [[0, 0], [1, 1], [2, 2]]},
+      "name": "three adjacent singleton intervals remain three times",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 20,
+        "brightness": 7,
+        "intervals": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
       "expected": 9,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "adjacent-intervals", "ceiling"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "adjacent-intervals",
+        "ceiling"
+      ]
     },
     {
       "id": "real-maximum-boundaries",
-      "name": "hidden: maximum line, brightness, and time endpoint",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000000, "brightness": 1000000, "intervals": [[1000000000, 1000000000]]},
+      "name": "maximum line, brightness, and time endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000,
+        "brightness": 1000000,
+        "intervals": [
+          [
+            1000000000,
+            1000000000
+          ]
+        ]
+      },
       "expected": 333334,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "boundary", "maximum-values"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "boundary",
+        "maximum-values"
+      ]
     },
     {
       "id": "real-duplicate-intervals",
-      "name": "hidden: duplicate intervals do not multiply active time",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 6, "brightness": 3, "intervals": [[0, 5], [0, 5], [0, 5]]},
+      "name": "duplicate intervals do not multiply active time",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "brightness": 3,
+        "intervals": [
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            5
+          ]
+        ]
+      },
       "expected": 6,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "duplicates", "overlap"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "duplicates",
+        "overlap"
+      ]
     },
     {
       "id": "real-unsorted-components",
-      "name": "hidden: unsorted overlaps form two union components",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 10, "brightness": 4, "intervals": [[10, 20], [0, 2], [4, 6], [2, 5]]},
+      "name": "unsorted overlaps form two union components",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "brightness": 4,
+        "intervals": [
+          [
+            10,
+            20
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
       "expected": 36,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "unsorted", "multiple-components"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "unsorted",
+        "multiple-components"
+      ]
     }
   ]
 }

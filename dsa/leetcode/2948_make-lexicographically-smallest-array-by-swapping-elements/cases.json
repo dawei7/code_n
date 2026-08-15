@@ -148,9 +148,9 @@
     },
     {
       "id": "real-duplicates",
-      "name": "hidden: duplicate values share one component",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate values share one component",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -175,9 +175,9 @@
     },
     {
       "id": "real-large-limit",
-      "name": "hidden: every value belongs to one component",
-      "kind": "real",
-      "visible": false,
+      "name": "every value belongs to one component",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -202,9 +202,9 @@
     },
     {
       "id": "real-already-smallest",
-      "name": "hidden: reachable arrangement is already lexicographically minimal",
-      "kind": "real",
-      "visible": false,
+      "name": "reachable arrangement is already lexicographically minimal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -227,9 +227,9 @@
     },
     {
       "id": "real-gap-boundary",
-      "name": "hidden: adjacent difference equal to limit connects values",
-      "kind": "real",
-      "visible": false,
+      "name": "adjacent difference equal to limit connects values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,

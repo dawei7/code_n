@@ -95,9 +95,9 @@
     },
     {
       "id": "real-full-two-by-two",
-      "name": "hidden: all cells have apples",
-      "kind": "real",
-      "visible": false,
+      "name": "all cells have apples",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pizza": [
           "AA",
@@ -113,9 +113,9 @@
     },
     {
       "id": "real-one-row",
-      "name": "hidden: choose two vertical boundaries in one row",
-      "kind": "real",
-      "visible": false,
+      "name": "choose two vertical boundaries in one row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pizza": [
           "AAAA"
@@ -130,9 +130,9 @@
     },
     {
       "id": "real-one-column",
-      "name": "hidden: every horizontal boundary is required",
-      "kind": "real",
-      "visible": false,
+      "name": "every horizontal boundary is required",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pizza": [
           "A",
@@ -150,9 +150,9 @@
     },
     {
       "id": "real-separated-apples",
-      "name": "hidden: empty bands constrain valid cuts",
-      "kind": "real",
-      "visible": false,
+      "name": "empty bands constrain valid cuts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pizza": [
           "A..A",

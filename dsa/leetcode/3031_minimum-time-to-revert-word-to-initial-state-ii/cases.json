@@ -93,9 +93,9 @@
     },
     {
       "id": "real-k-equals-length",
-      "name": "hidden: removing the complete word permits immediate reconstruction",
-      "kind": "real",
-      "visible": false,
+      "name": "removing the complete word permits immediate reconstruction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "algorithm",
         "k": 9
@@ -108,9 +108,9 @@
     },
     {
       "id": "real-nondivisible-length",
-      "name": "hidden: complete removal may require a final partial original block",
-      "kind": "real",
-      "visible": false,
+      "name": "complete removal may require a final partial original block",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "aaaaab",
         "k": 2
@@ -123,9 +123,9 @@
     },
     {
       "id": "real-late-overlap",
-      "name": "hidden: only the second reachable suffix matches",
-      "kind": "real",
-      "visible": false,
+      "name": "only the second reachable suffix matches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "xyzabcxyz",
         "k": 3
@@ -138,9 +138,9 @@
     },
     {
       "id": "real-long-no-border",
-      "name": "hidden: a long near-uniform string mismatches only at each suffix end",
-      "kind": "real",
-      "visible": false,
+      "name": "a long near-uniform string mismatches only at each suffix end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
         "k": 1

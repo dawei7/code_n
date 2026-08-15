@@ -1,1 +1,195 @@
-{"challenge_id":"lc_2726","cases":[{"id":"sample-add-subtract","name":"sample: chained addition and subtraction","kind":"sample","visible":true,"input":{"actions":["Calculator","add","subtract","getResult"],"values":[10,5,7]},"expected":8,"tags":["sample","chaining"]},{"id":"sample-multiply-power","name":"sample: multiplication before power","kind":"sample","visible":true,"input":{"actions":["Calculator","multiply","power","getResult"],"values":[2,5,2]},"expected":100,"tags":["sample","power"]},{"id":"sample-division-zero","name":"sample: division by zero error","kind":"sample","visible":true,"input":{"actions":["Calculator","divide","getResult"],"values":[20,0]},"expected":"Division by zero is not allowed","tags":["sample","error"]},{"id":"trial-no-arithmetic","name":"trial: constructor followed by result","kind":"trial","visible":true,"input":{"actions":["Calculator","getResult"],"values":[-3]},"expected":-3,"tags":["trial","minimum"]},{"id":"real-all-operations","name":"hidden: all arithmetic methods in one chain","kind":"real","visible":false,"input":{"actions":["Calculator","add","subtract","multiply","divide","power","getResult"],"values":[8,2,3,4,7,2]},"expected":16,"tags":["hidden","all-operations"]},{"id":"real-fraction","name":"hidden: fractional division result","kind":"real","visible":false,"input":{"actions":["Calculator","divide","add","getResult"],"values":[5,2,0.5]},"expected":3,"tags":["hidden","fraction"]},{"id":"real-negative","name":"hidden: negative running result","kind":"real","visible":false,"input":{"actions":["Calculator","subtract","multiply","getResult"],"values":[1,4,3]},"expected":-9,"tags":["hidden","negative"]},{"id":"real-zero-power","name":"hidden: zero exponent","kind":"real","visible":false,"input":{"actions":["Calculator","power","getResult"],"values":[12,0]},"expected":1,"tags":["hidden","zero-exponent"]}]}
+{
+  "challenge_id": "lc_2726",
+  "cases": [
+    {
+      "id": "sample-add-subtract",
+      "name": "sample: chained addition and subtraction",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "actions": [
+          "Calculator",
+          "add",
+          "subtract",
+          "getResult"
+        ],
+        "values": [
+          10,
+          5,
+          7
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "chaining"
+      ]
+    },
+    {
+      "id": "sample-multiply-power",
+      "name": "sample: multiplication before power",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "actions": [
+          "Calculator",
+          "multiply",
+          "power",
+          "getResult"
+        ],
+        "values": [
+          2,
+          5,
+          2
+        ]
+      },
+      "expected": 100,
+      "tags": [
+        "sample",
+        "power"
+      ]
+    },
+    {
+      "id": "sample-division-zero",
+      "name": "sample: division by zero error",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "actions": [
+          "Calculator",
+          "divide",
+          "getResult"
+        ],
+        "values": [
+          20,
+          0
+        ]
+      },
+      "expected": "Division by zero is not allowed",
+      "tags": [
+        "sample",
+        "error"
+      ]
+    },
+    {
+      "id": "trial-no-arithmetic",
+      "name": "trial: constructor followed by result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "actions": [
+          "Calculator",
+          "getResult"
+        ],
+        "values": [
+          -3
+        ]
+      },
+      "expected": -3,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "real-all-operations",
+      "name": "all arithmetic methods in one chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "actions": [
+          "Calculator",
+          "add",
+          "subtract",
+          "multiply",
+          "divide",
+          "power",
+          "getResult"
+        ],
+        "values": [
+          8,
+          2,
+          3,
+          4,
+          7,
+          2
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "hidden",
+        "all-operations"
+      ]
+    },
+    {
+      "id": "real-fraction",
+      "name": "fractional division result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "actions": [
+          "Calculator",
+          "divide",
+          "add",
+          "getResult"
+        ],
+        "values": [
+          5,
+          2,
+          0.5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "fraction"
+      ]
+    },
+    {
+      "id": "real-negative",
+      "name": "negative running result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "actions": [
+          "Calculator",
+          "subtract",
+          "multiply",
+          "getResult"
+        ],
+        "values": [
+          1,
+          4,
+          3
+        ]
+      },
+      "expected": -9,
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    },
+    {
+      "id": "real-zero-power",
+      "name": "zero exponent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "actions": [
+          "Calculator",
+          "power",
+          "getResult"
+        ],
+        "values": [
+          12,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "zero-exponent"
+      ]
+    }
+  ]
+}

@@ -208,8 +208,8 @@
     {
       "id": "real-disconnected",
       "name": "real: no edge can reach the isolated vertex",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [
@@ -243,8 +243,8 @@
     {
       "id": "real-excess-budget",
       "name": "real: upgrade budget exceeds selected optional edges",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [
@@ -285,8 +285,8 @@
     {
       "id": "real-ignore-weak-cycle",
       "name": "real: weak cycle edges are not selected",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "edges": [
@@ -345,8 +345,8 @@
     {
       "id": "real-mandatory-tree",
       "name": "real: all selected edges are mandatory",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [
@@ -387,8 +387,8 @@
     {
       "id": "real-parallel-choices",
       "name": "real: stronger parallel choices dominate before upgrades",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "edges": [

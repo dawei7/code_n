@@ -10,108 +10,610 @@
       "input": {
         "tables": {
           "Purchases": [
-            { "user_id": 11, "purchase_date": "2023-11-03", "amount_spend": 1126 },
-            { "user_id": 15, "purchase_date": "2023-11-10", "amount_spend": 7473 },
-            { "user_id": 17, "purchase_date": "2023-11-17", "amount_spend": 2414 },
-            { "user_id": 12, "purchase_date": "2023-11-24", "amount_spend": 9692 },
-            { "user_id": 8, "purchase_date": "2023-11-24", "amount_spend": 5117 },
-            { "user_id": 1, "purchase_date": "2023-11-24", "amount_spend": 5241 },
-            { "user_id": 10, "purchase_date": "2023-11-22", "amount_spend": 8266 },
-            { "user_id": 13, "purchase_date": "2023-11-21", "amount_spend": 12000 }
+            {
+              "user_id": 11,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1126
+            },
+            {
+              "user_id": 15,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 7473
+            },
+            {
+              "user_id": 17,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2414
+            },
+            {
+              "user_id": 12,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 9692
+            },
+            {
+              "user_id": 8,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5117
+            },
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5241
+            },
+            {
+              "user_id": 10,
+              "purchase_date": "2023-11-22",
+              "amount_spend": 8266
+            },
+            {
+              "user_id": 13,
+              "purchase_date": "2023-11-21",
+              "amount_spend": 12000
+            }
           ],
           "Users": [
-            { "user_id": 11, "membership": "Premium" },
-            { "user_id": 15, "membership": "VIP" },
-            { "user_id": 17, "membership": "Standard" },
-            { "user_id": 12, "membership": "VIP" },
-            { "user_id": 8, "membership": "Premium" },
-            { "user_id": 1, "membership": "VIP" },
-            { "user_id": 10, "membership": "Standard" },
-            { "user_id": 13, "membership": "Premium" }
+            {
+              "user_id": 11,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 15,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 17,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 12,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 8,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 1,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 10,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 13,
+              "membership": "Premium"
+            }
           ]
         }
       },
       "expected": {
-        "columns": ["week_of_month", "membership", "total_amount"],
-        "rows": [[1, "Premium", 1126], [1, "VIP", 0], [2, "Premium", 0], [2, "VIP", 7473], [3, "Premium", 0], [3, "VIP", 0], [4, "Premium", 5117], [4, "VIP", 14933]]
+        "columns": [
+          "week_of_month",
+          "membership",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            1,
+            "Premium",
+            1126
+          ],
+          [
+            1,
+            "VIP",
+            0
+          ],
+          [
+            2,
+            "Premium",
+            0
+          ],
+          [
+            2,
+            "VIP",
+            7473
+          ],
+          [
+            3,
+            "Premium",
+            0
+          ],
+          [
+            3,
+            "VIP",
+            0
+          ],
+          [
+            4,
+            "Premium",
+            5117
+          ],
+          [
+            4,
+            "VIP",
+            14933
+          ]
+        ]
       },
-      "validator": { "kind": "ordered_table" },
-      "tags": ["sample", "zero-fill", "aggregation"]
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "zero-fill",
+        "aggregation"
+      ]
     },
     {
       "id": "trial-non-friday-ignored",
       "name": "trial: purchases on other weekdays are ignored",
       "kind": "trial",
       "visible": true,
-      "input": { "tables": {
-        "Purchases": [{ "user_id": 1, "purchase_date": "2023-11-02", "amount_spend": 50 }],
-        "Users": [{ "user_id": 1, "membership": "Premium" }]
-      } },
-      "expected": { "columns": ["week_of_month", "membership", "total_amount"], "rows": [[1, "Premium", 0], [1, "VIP", 0], [2, "Premium", 0], [2, "VIP", 0], [3, "Premium", 0], [3, "VIP", 0], [4, "Premium", 0], [4, "VIP", 0]] },
-      "validator": { "kind": "ordered_table" },
-      "tags": ["trial", "date-filter", "zero-fill"]
+      "input": {
+        "tables": {
+          "Purchases": [
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-02",
+              "amount_spend": 50
+            }
+          ],
+          "Users": [
+            {
+              "user_id": 1,
+              "membership": "Premium"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "week_of_month",
+          "membership",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            1,
+            "Premium",
+            0
+          ],
+          [
+            1,
+            "VIP",
+            0
+          ],
+          [
+            2,
+            "Premium",
+            0
+          ],
+          [
+            2,
+            "VIP",
+            0
+          ],
+          [
+            3,
+            "Premium",
+            0
+          ],
+          [
+            3,
+            "VIP",
+            0
+          ],
+          [
+            4,
+            "Premium",
+            0
+          ],
+          [
+            4,
+            "VIP",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "date-filter",
+        "zero-fill"
+      ]
     },
     {
       "id": "trial-multiple-purchases",
       "name": "trial: several members and purchases share one Friday",
       "kind": "trial",
       "visible": true,
-      "input": { "tables": {
-        "Purchases": [
-          { "user_id": 1, "purchase_date": "2023-11-03", "amount_spend": 10 },
-          { "user_id": 1, "purchase_date": "2023-11-03", "amount_spend": 20 },
-          { "user_id": 2, "purchase_date": "2023-11-03", "amount_spend": 5 },
-          { "user_id": 3, "purchase_date": "2023-11-03", "amount_spend": 7 }
+      "input": {
+        "tables": {
+          "Purchases": [
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 10
+            },
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 20
+            },
+            {
+              "user_id": 2,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 3,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 7
+            }
+          ],
+          "Users": [
+            {
+              "user_id": 1,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 2,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 3,
+              "membership": "VIP"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "week_of_month",
+          "membership",
+          "total_amount"
         ],
-        "Users": [{ "user_id": 1, "membership": "Premium" }, { "user_id": 2, "membership": "Premium" }, { "user_id": 3, "membership": "VIP" }]
-      } },
-      "expected": { "columns": ["week_of_month", "membership", "total_amount"], "rows": [[1, "Premium", 35], [1, "VIP", 7], [2, "Premium", 0], [2, "VIP", 0], [3, "Premium", 0], [3, "VIP", 0], [4, "Premium", 0], [4, "VIP", 0]] },
-      "validator": { "kind": "ordered_table" },
-      "tags": ["trial", "sum", "same-date"]
+        "rows": [
+          [
+            1,
+            "Premium",
+            35
+          ],
+          [
+            1,
+            "VIP",
+            7
+          ],
+          [
+            2,
+            "Premium",
+            0
+          ],
+          [
+            2,
+            "VIP",
+            0
+          ],
+          [
+            3,
+            "Premium",
+            0
+          ],
+          [
+            3,
+            "VIP",
+            0
+          ],
+          [
+            4,
+            "Premium",
+            0
+          ],
+          [
+            4,
+            "VIP",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "sum",
+        "same-date"
+      ]
     },
     {
       "id": "trial-standard-excluded",
       "name": "trial: Standard purchases never contribute",
       "kind": "trial",
       "visible": true,
-      "input": { "tables": {
-        "Purchases": [{ "user_id": 1, "purchase_date": "2023-11-03", "amount_spend": 99 }, { "user_id": 2, "purchase_date": "2023-11-10", "amount_spend": 4 }],
-        "Users": [{ "user_id": 1, "membership": "Standard" }, { "user_id": 2, "membership": "Premium" }]
-      } },
-      "expected": { "columns": ["week_of_month", "membership", "total_amount"], "rows": [[1, "Premium", 0], [1, "VIP", 0], [2, "Premium", 4], [2, "VIP", 0], [3, "Premium", 0], [3, "VIP", 0], [4, "Premium", 0], [4, "VIP", 0]] },
-      "validator": { "kind": "ordered_table" },
-      "tags": ["trial", "membership-filter"]
+      "input": {
+        "tables": {
+          "Purchases": [
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 99
+            },
+            {
+              "user_id": 2,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            }
+          ],
+          "Users": [
+            {
+              "user_id": 1,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 2,
+              "membership": "Premium"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "week_of_month",
+          "membership",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            1,
+            "Premium",
+            0
+          ],
+          [
+            1,
+            "VIP",
+            0
+          ],
+          [
+            2,
+            "Premium",
+            4
+          ],
+          [
+            2,
+            "VIP",
+            0
+          ],
+          [
+            3,
+            "Premium",
+            0
+          ],
+          [
+            3,
+            "VIP",
+            0
+          ],
+          [
+            4,
+            "Premium",
+            0
+          ],
+          [
+            4,
+            "VIP",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "membership-filter"
+      ]
     },
     {
       "id": "real-all-four-fridays",
-      "name": "hidden: both memberships purchase every Friday",
-      "kind": "real",
-      "visible": false,
-      "input": { "tables": {
-        "Purchases": [
-          { "user_id": 1, "purchase_date": "2023-11-03", "amount_spend": 1 }, { "user_id": 1, "purchase_date": "2023-11-10", "amount_spend": 2 },
-          { "user_id": 1, "purchase_date": "2023-11-17", "amount_spend": 3 }, { "user_id": 1, "purchase_date": "2023-11-24", "amount_spend": 4 },
-          { "user_id": 2, "purchase_date": "2023-11-03", "amount_spend": 10 }, { "user_id": 2, "purchase_date": "2023-11-10", "amount_spend": 20 },
-          { "user_id": 2, "purchase_date": "2023-11-17", "amount_spend": 30 }, { "user_id": 2, "purchase_date": "2023-11-24", "amount_spend": 40 }
+      "name": "both memberships purchase every Friday",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Purchases": [
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 2,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 10
+            },
+            {
+              "user_id": 2,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 20
+            },
+            {
+              "user_id": 2,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 30
+            },
+            {
+              "user_id": 2,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 40
+            }
+          ],
+          "Users": [
+            {
+              "user_id": 1,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 2,
+              "membership": "VIP"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "week_of_month",
+          "membership",
+          "total_amount"
         ],
-        "Users": [{ "user_id": 1, "membership": "Premium" }, { "user_id": 2, "membership": "VIP" }]
-      } },
-      "expected": { "columns": ["week_of_month", "membership", "total_amount"], "rows": [[1, "Premium", 1], [1, "VIP", 10], [2, "Premium", 2], [2, "VIP", 20], [3, "Premium", 3], [3, "VIP", 30], [4, "Premium", 4], [4, "VIP", 40]] },
-      "validator": { "kind": "ordered_table" },
-      "tags": ["real", "all-weeks", "ordering"]
+        "rows": [
+          [
+            1,
+            "Premium",
+            1
+          ],
+          [
+            1,
+            "VIP",
+            10
+          ],
+          [
+            2,
+            "Premium",
+            2
+          ],
+          [
+            2,
+            "VIP",
+            20
+          ],
+          [
+            3,
+            "Premium",
+            3
+          ],
+          [
+            3,
+            "VIP",
+            30
+          ],
+          [
+            4,
+            "Premium",
+            4
+          ],
+          [
+            4,
+            "VIP",
+            40
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "all-weeks",
+        "ordering"
+      ]
     },
     {
       "id": "real-no-qualifying-members",
-      "name": "hidden: no Premium or VIP users still returns eight rows",
-      "kind": "real",
-      "visible": false,
-      "input": { "tables": {
-        "Purchases": [{ "user_id": 9, "purchase_date": "2023-11-24", "amount_spend": 500 }],
-        "Users": [{ "user_id": 9, "membership": "Standard" }]
-      } },
-      "expected": { "columns": ["week_of_month", "membership", "total_amount"], "rows": [[1, "Premium", 0], [1, "VIP", 0], [2, "Premium", 0], [2, "VIP", 0], [3, "Premium", 0], [3, "VIP", 0], [4, "Premium", 0], [4, "VIP", 0]] },
-      "validator": { "kind": "ordered_table" },
-      "tags": ["real", "dimension-grid", "zero-fill"]
+      "name": "no Premium or VIP users still returns eight rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Purchases": [
+            {
+              "user_id": 9,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 500
+            }
+          ],
+          "Users": [
+            {
+              "user_id": 9,
+              "membership": "Standard"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "week_of_month",
+          "membership",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            1,
+            "Premium",
+            0
+          ],
+          [
+            1,
+            "VIP",
+            0
+          ],
+          [
+            2,
+            "Premium",
+            0
+          ],
+          [
+            2,
+            "VIP",
+            0
+          ],
+          [
+            3,
+            "Premium",
+            0
+          ],
+          [
+            3,
+            "VIP",
+            0
+          ],
+          [
+            4,
+            "Premium",
+            0
+          ],
+          [
+            4,
+            "VIP",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "dimension-grid",
+        "zero-fill"
+      ]
     }
   ]
 }

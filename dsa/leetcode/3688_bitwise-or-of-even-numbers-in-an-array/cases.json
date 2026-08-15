@@ -7,72 +7,147 @@
       "name": "sample: OR the even values two four and six",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4, 5, 6]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
       "expected": 6,
-      "tags": ["sample", "mixed-parity"]
+      "tags": [
+        "sample",
+        "mixed-parity"
+      ]
     },
     {
       "id": "sample-no-even-values",
       "name": "sample: all odd values return zero",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [7, 9, 11]},
+      "input": {
+        "nums": [
+          7,
+          9,
+          11
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "all-odd"]
+      "tags": [
+        "sample",
+        "all-odd"
+      ]
     },
     {
       "id": "sample-distinct-bits",
       "name": "sample: eight and sixteen combine to twenty-four",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 8, 16]},
+      "input": {
+        "nums": [
+          1,
+          8,
+          16
+        ]
+      },
       "expected": 24,
-      "tags": ["sample", "distinct-bits"]
+      "tags": [
+        "sample",
+        "distinct-bits"
+      ]
     },
     {
       "id": "trial-single-even",
       "name": "trial: one even value is returned unchanged",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2]},
+      "input": {
+        "nums": [
+          2
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "singleton", "even"]
+      "tags": [
+        "trial",
+        "singleton",
+        "even"
+      ]
     },
     {
       "id": "trial-duplicate-even-values",
       "name": "trial: duplicate OR contributions are idempotent",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 2, 4]},
+      "input": {
+        "nums": [
+          2,
+          2,
+          4
+        ]
+      },
       "expected": 6,
-      "tags": ["trial", "duplicates"]
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
     },
     {
       "id": "real-single-odd",
-      "name": "hidden: minimum odd singleton returns identity",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1]},
+      "name": "minimum odd singleton returns identity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden", "singleton", "all-odd"]
+      "tags": [
+        "hidden",
+        "singleton",
+        "all-odd"
+      ]
     },
     {
       "id": "real-overlapping-high-bits",
-      "name": "hidden: overlapping even bit patterns combine correctly",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [64, 32, 96]},
+      "name": "overlapping even bit patterns combine correctly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          64,
+          32,
+          96
+        ]
+      },
       "expected": 96,
-      "tags": ["hidden", "overlapping-bits"]
+      "tags": [
+        "hidden",
+        "overlapping-bits"
+      ]
     },
     {
       "id": "real-odd-values-excluded",
-      "name": "hidden: odd values cannot contribute their bits",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100, 99, 2, 7]},
+      "name": "odd values cannot contribute their bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          99,
+          2,
+          7
+        ]
+      },
       "expected": 102,
-      "tags": ["hidden", "mixed-parity", "maximum"]
+      "tags": [
+        "hidden",
+        "mixed-parity",
+        "maximum"
+      ]
     }
   ]
 }

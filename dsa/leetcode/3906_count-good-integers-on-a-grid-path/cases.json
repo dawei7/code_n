@@ -157,9 +157,9 @@
     },
     {
       "id": "hidden-digit-width-transition",
-      "name": "hidden: the interval crosses from three to four written digits",
-      "kind": "real",
-      "visible": false,
+      "name": "the interval crosses from three to four written digits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 999,
         "r": 1001,
@@ -174,9 +174,9 @@
     },
     {
       "id": "hidden-maximum-upper-bound",
-      "name": "hidden: the largest legal value decreases immediately from nine",
-      "kind": "real",
-      "visible": false,
+      "name": "the largest legal value decreases immediately from nine",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 9000000000000000,
         "r": 9000000000000000,
@@ -191,9 +191,9 @@
     },
     {
       "id": "hidden-high-good-singleton",
-      "name": "hidden: a high value has non-decreasing first-column and bottom-row digits",
-      "kind": "real",
-      "visible": false,
+      "name": "a high value has non-decreasing first-column and bottom-row digits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 1234567899999999,
         "r": 1234567899999999,
@@ -208,9 +208,9 @@
     },
     {
       "id": "hidden-high-invalid-singleton",
-      "name": "hidden: a high value decreases across the top row",
-      "kind": "real",
-      "visible": false,
+      "name": "a high value decreases across the top row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 8765432100000000,
         "r": 8765432100000000,
@@ -225,9 +225,9 @@
     },
     {
       "id": "hidden-cross-trillion-boundary",
-      "name": "hidden: prefix subtraction spans a thirteen-digit boundary",
-      "kind": "real",
-      "visible": false,
+      "name": "prefix subtraction spans a thirteen-digit boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 999999999999,
         "r": 1000000000199,

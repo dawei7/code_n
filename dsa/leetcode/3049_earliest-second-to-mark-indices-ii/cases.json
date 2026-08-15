@@ -139,8 +139,8 @@
     {
       "id": "real-mark-unrestricted",
       "name": "real: zero indices may be marked when another index is designated",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -164,8 +164,8 @@
     {
       "id": "real-repeated-first-occurrences",
       "name": "real: repeated occurrences provide free marking capacity",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -188,8 +188,8 @@
     {
       "id": "real-unavailable-reset",
       "name": "real: an absent positive index must use ordinary decrements",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,

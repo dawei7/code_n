@@ -124,9 +124,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: reverse sorted",
-      "kind": "real",
-      "visible": false,
+      "name": "reverse sorted",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -150,9 +150,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: all equal",
-      "kind": "real",
-      "visible": false,
+      "name": "all equal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -174,9 +174,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: mixed duplicate negatives",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed duplicate negatives",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -203,9 +203,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: value boundaries",
-      "kind": "real",
-      "visible": false,
+      "name": "value boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           50000,
@@ -225,9 +225,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: two descending values",
-      "kind": "real",
-      "visible": false,
+      "name": "two descending values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

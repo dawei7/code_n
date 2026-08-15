@@ -180,9 +180,9 @@
     },
     {
       "id": "real-branching-prefixes",
-      "name": "hidden: branches leave the active suggestion interval",
-      "kind": "real",
-      "visible": false,
+      "name": "branches leave the active suggestion interval",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "products": [
           "bags",
@@ -219,9 +219,9 @@
     },
     {
       "id": "real-four-matching-products",
-      "name": "hidden: lexicographic cap changes at a deeper prefix",
-      "kind": "real",
-      "visible": false,
+      "name": "lexicographic cap changes at a deeper prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "products": [
           "car",
@@ -261,9 +261,9 @@
     },
     {
       "id": "real-first-character-miss",
-      "name": "hidden: no product shares the first character",
-      "kind": "real",
-      "visible": false,
+      "name": "no product shares the first character",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "products": [
           "alpha",

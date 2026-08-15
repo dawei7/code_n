@@ -79,9 +79,9 @@
     },
     {
       "id": "hidden-middle-alphabet",
-      "name": "hidden: added middle alphabet letter",
-      "kind": "real",
-      "visible": false,
+      "name": "added middle alphabet letter",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "leetcode",
         "t": "teelcodqe"
@@ -94,9 +94,9 @@
     },
     {
       "id": "hidden-many-duplicates",
-      "name": "hidden: multiplicities cancel",
-      "kind": "real",
-      "visible": false,
+      "name": "multiplicities cancel",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "mmnnoopp",
         "t": "pomnopmno"
@@ -109,9 +109,9 @@
     },
     {
       "id": "hidden-extra-z",
-      "name": "hidden: extra letter after repeated groups",
-      "kind": "real",
-      "visible": false,
+      "name": "extra letter after repeated groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aabbccddeeff",
         "t": "fedcbazfedcba"

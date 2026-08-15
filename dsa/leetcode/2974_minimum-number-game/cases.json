@@ -1,8 +1,153 @@
-{"challenge_id":"lc_2974","cases":[
-{"id":"sample-four-values","name":"sample: two rounds","kind":"sample","visible":true,"input":{"nums":[5,4,2,3]},"expected":[3,2,5,4],"tags":["sample"]},
-{"id":"sample-two-values","name":"sample: one round","kind":"sample","visible":true,"input":{"nums":[2,5]},"expected":[5,2],"tags":["sample"]},
-{"id":"trial-duplicates","name":"trial: duplicate pairs","kind":"trial","visible":true,"input":{"nums":[4,4,1,1]},"expected":[1,1,4,4],"tags":["duplicates"]},
-{"id":"trial-all-equal","name":"trial: every removal has the same value","kind":"trial","visible":true,"input":{"nums":[7,7,7,7,7,7]},"expected":[7,7,7,7,7,7],"tags":["duplicates"]},
-{"id":"real-unsorted","name":"real: several unsorted rounds","kind":"real","visible":false,"input":{"nums":[9,1,8,2,7,3,6,4]},"expected":[2,1,4,3,7,6,9,8],"tags":["hidden","sorting"]},
-{"id":"real-value-boundaries","name":"real: minimum and maximum allowed values","kind":"real","visible":false,"input":{"nums":[100,1,100,1]},"expected":[1,1,100,100],"tags":["hidden","value-boundary"]}
-]}
+{
+  "challenge_id": "lc_2974",
+  "cases": [
+    {
+      "id": "sample-four-values",
+      "name": "sample: two rounds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        3,
+        2,
+        5,
+        4
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-two-values",
+      "name": "sample: one round",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          5
+        ]
+      },
+      "expected": [
+        5,
+        2
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: duplicate pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        4,
+        4
+      ],
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: every removal has the same value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-unsorted",
+      "name": "real: several unsorted rounds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          1,
+          8,
+          2,
+          7,
+          3,
+          6,
+          4
+        ]
+      },
+      "expected": [
+        2,
+        1,
+        4,
+        3,
+        7,
+        6,
+        9,
+        8
+      ],
+      "tags": [
+        "hidden",
+        "sorting"
+      ]
+    },
+    {
+      "id": "real-value-boundaries",
+      "name": "real: minimum and maximum allowed values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          1,
+          100,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        100,
+        100
+      ],
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
+    }
+  ]
+}

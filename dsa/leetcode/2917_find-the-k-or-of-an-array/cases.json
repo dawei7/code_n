@@ -109,9 +109,9 @@
     },
     {
       "id": "real-zero-singleton",
-      "name": "hidden: zero has no set bits",
-      "kind": "real",
-      "visible": false,
+      "name": "zero has no set bits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0
@@ -127,9 +127,9 @@
     },
     {
       "id": "real-all-values-required",
-      "name": "hidden: only the common intersection survives",
-      "kind": "real",
-      "visible": false,
+      "name": "only the common intersection survives",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -146,9 +146,9 @@
     },
     {
       "id": "real-highest-permitted-bit",
-      "name": "hidden: bit 30 and low bits qualify independently",
-      "kind": "real",
-      "visible": false,
+      "name": "bit 30 and low bits qualify independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1073741824,

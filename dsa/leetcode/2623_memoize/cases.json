@@ -6,63 +6,270 @@
       "name": "sample: repeated sum tuple is cached",
       "kind": "sample",
       "visible": true,
-      "input": {"fnName": "sum", "actions": ["call", "call", "getCallCount", "call", "getCallCount"], "values": [[2, 2], [2, 2], [], [1, 2], []]},
-      "expected": [4, 4, 1, 3, 2],
-      "tags": ["sample", "sum"]
+      "input": {
+        "fnName": "sum",
+        "actions": [
+          "call",
+          "call",
+          "getCallCount",
+          "call",
+          "getCallCount"
+        ],
+        "values": [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [],
+          [
+            1,
+            2
+          ],
+          []
+        ]
+      },
+      "expected": [
+        4,
+        4,
+        1,
+        3,
+        2
+      ],
+      "tags": [
+        "sample",
+        "sum"
+      ]
     },
     {
       "id": "sample-factorial",
       "name": "sample: factorial results are cached by input",
       "kind": "sample",
       "visible": true,
-      "input": {"fnName": "factorial", "actions": ["call", "call", "call", "getCallCount", "call", "getCallCount"], "values": [[2], [3], [2], [], [3], []]},
-      "expected": [2, 6, 2, 2, 6, 2],
-      "tags": ["sample", "factorial"]
+      "input": {
+        "fnName": "factorial",
+        "actions": [
+          "call",
+          "call",
+          "call",
+          "getCallCount",
+          "call",
+          "getCallCount"
+        ],
+        "values": [
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            2
+          ],
+          [],
+          [
+            3
+          ],
+          []
+        ]
+      },
+      "expected": [
+        2,
+        6,
+        2,
+        2,
+        6,
+        2
+      ],
+      "tags": [
+        "sample",
+        "factorial"
+      ]
     },
     {
       "id": "sample-fibonacci",
       "name": "sample: one fibonacci wrapper call invokes source once",
       "kind": "sample",
       "visible": true,
-      "input": {"fnName": "fib", "actions": ["call", "getCallCount"], "values": [[5], []]},
-      "expected": [8, 1],
-      "tags": ["sample", "fibonacci"]
+      "input": {
+        "fnName": "fib",
+        "actions": [
+          "call",
+          "getCallCount"
+        ],
+        "values": [
+          [
+            5
+          ],
+          []
+        ]
+      },
+      "expected": [
+        8,
+        1
+      ],
+      "tags": [
+        "sample",
+        "fibonacci"
+      ]
     },
     {
       "id": "trial-argument-order",
       "name": "trial: swapped arguments use different cache entries",
       "kind": "trial",
       "visible": true,
-      "input": {"fnName": "sum", "actions": ["call", "call", "call", "getCallCount"], "values": [[3, 2], [2, 3], [3, 2], []]},
-      "expected": [5, 5, 5, 2],
-      "tags": ["trial", "argument-order"]
+      "input": {
+        "fnName": "sum",
+        "actions": [
+          "call",
+          "call",
+          "call",
+          "getCallCount"
+        ],
+        "values": [
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            2
+          ],
+          []
+        ]
+      },
+      "expected": [
+        5,
+        5,
+        5,
+        2
+      ],
+      "tags": [
+        "trial",
+        "argument-order"
+      ]
     },
     {
       "id": "trial-zero-result",
       "name": "trial: zero result is recognized as cached",
       "kind": "trial",
       "visible": true,
-      "input": {"fnName": "sum", "actions": ["call", "call", "getCallCount"], "values": [[0, 0], [0, 0], []]},
-      "expected": [0, 0, 1],
-      "tags": ["trial", "falsy-result"]
+      "input": {
+        "fnName": "sum",
+        "actions": [
+          "call",
+          "call",
+          "getCallCount"
+        ],
+        "values": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          []
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        1
+      ],
+      "tags": [
+        "trial",
+        "falsy-result"
+      ]
     },
     {
       "id": "real-distinct-and-repeat",
-      "name": "hidden: several tuples retain independent results",
-      "kind": "real",
-      "visible": false,
-      "input": {"fnName": "factorial", "actions": ["call", "call", "call", "call", "getCallCount"], "values": [[1], [10], [1], [10], []]},
-      "expected": [1, 3628800, 1, 3628800, 2],
-      "tags": ["hidden", "multiple-keys", "boundary"]
+      "name": "several tuples retain independent results",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fnName": "factorial",
+        "actions": [
+          "call",
+          "call",
+          "call",
+          "call",
+          "getCallCount"
+        ],
+        "values": [
+          [
+            1
+          ],
+          [
+            10
+          ],
+          [
+            1
+          ],
+          [
+            10
+          ],
+          []
+        ]
+      },
+      "expected": [
+        1,
+        3628800,
+        1,
+        3628800,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "multiple-keys",
+        "boundary"
+      ]
     },
     {
       "id": "real-repeated-fibonacci",
-      "name": "hidden: expensive source call is reused",
-      "kind": "real",
-      "visible": false,
-      "input": {"fnName": "fib", "actions": ["call", "call", "call", "getCallCount"], "values": [[10], [9], [10], []]},
-      "expected": [89, 55, 89, 2],
-      "tags": ["hidden", "fibonacci", "repeat"]
+      "name": "expensive source call is reused",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fnName": "fib",
+        "actions": [
+          "call",
+          "call",
+          "call",
+          "getCallCount"
+        ],
+        "values": [
+          [
+            10
+          ],
+          [
+            9
+          ],
+          [
+            10
+          ],
+          []
+        ]
+      },
+      "expected": [
+        89,
+        55,
+        89,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "fibonacci",
+        "repeat"
+      ]
     }
   ]
 }

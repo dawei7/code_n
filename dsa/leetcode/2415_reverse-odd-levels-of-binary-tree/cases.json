@@ -163,9 +163,9 @@
     },
     {
       "id": "real-duplicates",
-      "name": "hidden: equal values remain indistinguishable",
-      "kind": "real",
-      "visible": false,
+      "name": "equal values remain indistinguishable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           5,
@@ -193,9 +193,9 @@
     },
     {
       "id": "real-minimum-swap",
-      "name": "hidden: smallest nontrivial perfect tree",
-      "kind": "real",
-      "visible": false,
+      "name": "smallest nontrivial perfect tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -215,9 +215,9 @@
     },
     {
       "id": "real-five-levels",
-      "name": "hidden: deeper perfect tree preserves even levels",
-      "kind": "real",
-      "visible": false,
+      "name": "deeper perfect tree preserves even levels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           0,

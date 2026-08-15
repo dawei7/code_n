@@ -7,110 +7,332 @@
       "name": "sample: six operations fit the square budget",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 7, 5]},
+      "input": {
+        "nums": [
+          3,
+          7,
+          5
+        ]
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "ceiling-division", "mixed-remainders"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "ceiling-division",
+        "mixed-remainders"
+      ]
     },
     {
       "id": "sample-single-one",
       "name": "sample: one subtraction reaches zero",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1]},
+      "input": {
+        "nums": [
+          1
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "single-element", "minimum-value"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "single-element",
+        "minimum-value"
+      ]
     },
     {
       "id": "trial-single-two",
       "name": "trial: k one exceeds its one-operation budget",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2]},
+      "input": {
+        "nums": [
+          2
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-element", "infeasible-one"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-element",
+        "infeasible-one"
+      ]
     },
     {
       "id": "trial-many-ones",
       "name": "trial: array length forces k above every value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 1, 1]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "length-bound", "exact-budget"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "length-bound",
+        "exact-budget"
+      ]
     },
     {
       "id": "trial-divisible-values",
       "name": "trial: exact divisions still obey the square budget",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [6, 6]},
+      "input": {
+        "nums": [
+          6,
+          6
+        ]
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "divisible", "budget-boundary"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "divisible",
+        "budget-boundary"
+      ]
     },
     {
       "id": "trial-ceiling-remainder",
       "name": "trial: a remainder requires one additional operation",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 3]},
+      "input": {
+        "nums": [
+          2,
+          3
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "ceiling", "overshoot"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "ceiling",
+        "overshoot"
+      ]
     },
     {
       "id": "real-single-maximum-value",
-      "name": "hidden: maximum value needs a cube-root-scale k",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000]},
+      "name": "maximum value needs a cube-root-scale k",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000
+        ]
+      },
       "expected": 47,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-value", "minimality"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "minimality"
+      ]
     },
     {
       "id": "real-one-hundred-ones",
-      "name": "hidden: square budget is controlled only by array length",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
+      "name": "square budget is controlled only by array length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 10,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "length-bound", "exact-square"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "length-bound",
+        "exact-square"
+      ]
     },
     {
       "id": "real-maximum-with-small-values",
-      "name": "hidden: small elements contribute their own operations",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000, 1, 1]},
+      "name": "small elements contribute their own operations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          1,
+          1
+        ]
+      },
       "expected": 47,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-value", "mixed-scale"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "mixed-scale"
+      ]
     },
     {
       "id": "real-equality-at-answer",
-      "name": "hidden: equality with k squared is accepted",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 4]},
+      "name": "equality with k squared is accepted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "at-most", "equality"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "at-most",
+        "equality"
+      ]
     },
     {
       "id": "real-four-equal-values",
-      "name": "hidden: the first feasible k follows several failed candidates",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, 8, 8, 8]},
+      "name": "the first feasible k follows several failed candidates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          8,
+          8,
+          8
+        ]
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "repeated-values", "binary-search-boundary"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "repeated-values",
+        "binary-search-boundary"
+      ]
     }
   ]
 }

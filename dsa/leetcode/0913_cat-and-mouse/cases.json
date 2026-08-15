@@ -196,9 +196,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: Cat controls Mouse's only neighbor",
-      "kind": "real",
-      "visible": false,
+      "name": "Cat controls Mouse's only neighbor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "graph": [
           [
@@ -225,9 +225,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: branching graph with a forced outcome",
-      "kind": "real",
-      "visible": false,
+      "name": "branching graph with a forced outcome",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "graph": [
           [
@@ -256,9 +256,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: official draw with reordered adjacency",
-      "kind": "real",
-      "visible": false,
+      "name": "official draw with reordered adjacency",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "graph": [
           [
@@ -297,9 +297,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: longer forced escape",
-      "kind": "real",
-      "visible": false,
+      "name": "longer forced escape",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "graph": [
           [
@@ -354,4 +354,3 @@
     }
   ]
 }
-

@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: alternating four-bit bound",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating four-bit bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: largest alternating five-bit pattern",
-      "kind": "real",
-      "visible": false,
+      "name": "largest alternating five-bit pattern",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 21
       },

@@ -99,8 +99,8 @@
     {
       "id": "real-no-change-full-array",
       "name": "real: the entire array shares a common factor",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -120,8 +120,8 @@
     {
       "id": "real-change-every-element",
       "name": "real: enough changes eliminate stable singletons",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -139,8 +139,8 @@
     {
       "id": "real-one-index-hits-two",
       "name": "real: one middle edit covers two overlapping stable pairs",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -159,8 +159,8 @@
     {
       "id": "real-ones-separate-regions",
       "name": "real: existing ones split stable regions",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -181,8 +181,8 @@
     {
       "id": "real-long-power-chain",
       "name": "real: one edit bisects a long stable region",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -203,8 +203,8 @@
     {
       "id": "real-large-coprime-values",
       "name": "real: large coprime neighbors are not jointly stable",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,

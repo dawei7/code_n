@@ -114,9 +114,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: heavier odd-index total",
-      "kind": "real",
-      "visible": false,
+      "name": "heavier odd-index total",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           1,
@@ -133,9 +133,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: six descending piles",
-      "kind": "real",
-      "visible": false,
+      "name": "six descending piles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           7,
@@ -154,9 +154,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: eight increasing piles with odd sum",
-      "kind": "real",
-      "visible": false,
+      "name": "eight increasing piles with odd sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           1,
@@ -177,9 +177,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: near-maximum equal piles",
-      "kind": "real",
-      "visible": false,
+      "name": "near-maximum equal piles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           500,
@@ -196,9 +196,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: alternating large and small piles",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating large and small piles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           50,

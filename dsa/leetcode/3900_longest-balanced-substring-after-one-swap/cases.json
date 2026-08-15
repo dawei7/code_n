@@ -7,126 +7,212 @@
       "name": "sample: one swap creates a balanced length-four prefix",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "100001"},
+      "input": {
+        "s": "100001"
+      },
       "expected": 4,
-      "tags": ["sample", "one-swap", "minority-bound"]
+      "tags": [
+        "sample",
+        "one-swap",
+        "minority-bound"
+      ]
     },
     {
       "id": "sample-all-ones",
       "name": "sample: an all-one string has only the empty balanced substring",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "111"},
+      "input": {
+        "s": "111"
+      },
       "expected": 0,
-      "tags": ["sample", "all-one", "empty-substring"]
+      "tags": [
+        "sample",
+        "all-one",
+        "empty-substring"
+      ]
     },
     {
       "id": "trial-minimum-all-zero",
       "name": "trial: a single zero cannot form a non-empty balanced substring",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "0"},
+      "input": {
+        "s": "0"
+      },
       "expected": 0,
-      "tags": ["trial", "minimum-length", "all-zero"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "all-zero"
+      ]
     },
     {
       "id": "trial-minimum-balanced",
       "name": "trial: two unlike characters are already balanced",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "01"},
+      "input": {
+        "s": "01"
+      },
       "expected": 2,
-      "tags": ["trial", "already-balanced", "no-swap"]
+      "tags": [
+        "trial",
+        "already-balanced",
+        "no-swap"
+      ]
     },
     {
       "id": "trial-clustered-balanced-whole",
       "name": "trial: equal global counts make the whole string balanced",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "000111"},
+      "input": {
+        "s": "000111"
+      },
       "expected": 6,
-      "tags": ["trial", "whole-string", "clustered"]
+      "tags": [
+        "trial",
+        "whole-string",
+        "clustered"
+      ]
     },
     {
       "id": "trial-alternating-balanced-whole",
       "name": "trial: the optional swap may be skipped for an alternating string",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "010101"},
+      "input": {
+        "s": "010101"
+      },
       "expected": 6,
-      "tags": ["trial", "whole-string", "alternating", "no-swap"]
+      "tags": [
+        "trial",
+        "whole-string",
+        "alternating",
+        "no-swap"
+      ]
     },
     {
       "id": "trial-single-minority",
       "name": "trial: one minority bit limits the answer to two",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "0001"},
+      "input": {
+        "s": "0001"
+      },
       "expected": 2,
-      "tags": ["trial", "one-swap", "single-minority"]
+      "tags": [
+        "trial",
+        "one-swap",
+        "single-minority"
+      ]
     },
     {
       "id": "trial-two-minority-bits",
       "name": "trial: one swap attains the global minority bound",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "000011"},
+      "input": {
+        "s": "000011"
+      },
       "expected": 4,
-      "tags": ["trial", "one-swap", "minority-bound"]
+      "tags": [
+        "trial",
+        "one-swap",
+        "minority-bound"
+      ]
     },
     {
       "id": "trial-odd-length",
       "name": "trial: a balanced substring has even length inside an odd string",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "000011111"},
+      "input": {
+        "s": "000011111"
+      },
       "expected": 8,
-      "tags": ["trial", "odd-input-length", "even-result"]
+      "tags": [
+        "trial",
+        "odd-input-length",
+        "even-result"
+      ]
     },
     {
       "id": "hidden-symmetric-majority",
-      "name": "hidden: exchanging the bit roles preserves the answer",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "111100"},
+      "name": "exchanging the bit roles preserves the answer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111100"
+      },
       "expected": 4,
-      "tags": ["hidden", "symmetry", "one-swap"]
+      "tags": [
+        "hidden",
+        "symmetry",
+        "one-swap"
+      ]
     },
     {
       "id": "hidden-repairable-length-six",
-      "name": "hidden: an outside zero repairs a length-six window",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "01111100"},
+      "name": "an outside zero repairs a length-six window",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "01111100"
+      },
       "expected": 6,
-      "tags": ["hidden", "outside-bit", "imbalance-two"]
+      "tags": [
+        "hidden",
+        "outside-bit",
+        "imbalance-two"
+      ]
     },
     {
       "id": "hidden-balanced-prefix",
-      "name": "hidden: the longest answer may require no swap despite unequal totals",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "10101011"},
+      "name": "the longest answer may require no swap despite unequal totals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "10101011"
+      },
       "expected": 6,
-      "tags": ["hidden", "balanced-prefix", "no-swap"]
+      "tags": [
+        "hidden",
+        "balanced-prefix",
+        "no-swap"
+      ]
     },
     {
       "id": "hidden-separated-minority",
-      "name": "hidden: distant minority bits make the global count bound unattainable",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "011111111101111111110"},
+      "name": "distant minority bits make the global count bound unattainable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "011111111101111111110"
+      },
       "expected": 4,
-      "tags": ["hidden", "separated-minority", "adversarial"]
+      "tags": [
+        "hidden",
+        "separated-minority",
+        "adversarial"
+      ]
     },
     {
       "id": "hidden-irregular-adversarial",
-      "name": "hidden: irregular runs defeat a count-only answer",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "10110011000001101011111011011110010011100101101111100111000111010001011101101100"},
+      "name": "irregular runs defeat a count-only answer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "10110011000001101011111011011110010011100101101111100111000111010001011101101100"
+      },
       "expected": 38,
-      "tags": ["hidden", "irregular-runs", "prefix-balance", "adversarial"]
+      "tags": [
+        "hidden",
+        "irregular-runs",
+        "prefix-balance",
+        "adversarial"
+      ]
     }
   ]
 }

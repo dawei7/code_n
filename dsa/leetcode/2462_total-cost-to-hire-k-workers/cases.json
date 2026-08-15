@@ -1,13 +1,180 @@
 {
   "challenge_id": "lc_2462",
   "cases": [
-    {"id":"sample-1","name":"sample: both candidate pools are replenished","kind":"sample","visible":true,"input":{"costs":[17,12,10,2,7,2,11,20,8],"k":3,"candidates":4},"expected":11,"tags":["sample","heap"]},
-    {"id":"sample-2","name":"sample: overlapping candidate regions cover all workers","kind":"sample","visible":true,"input":{"costs":[1,2,4,1],"k":3,"candidates":3},"expected":4,"tags":["sample","overlap"]},
-    {"id":"trial-one-from-each-side","name":"trial: one candidate is exposed from each end","kind":"trial","visible":true,"input":{"costs":[1,2,4,1],"k":3,"candidates":1},"expected":4,"tags":["trial","replenishment"]},
-    {"id":"trial-right-replenishment","name":"trial: successive inexpensive workers enter from the right","kind":"trial","visible":true,"input":{"costs":[9,8,7,1,2],"k":3,"candidates":1},"expected":10,"tags":["trial","right-side"]},
-    {"id":"real-one-worker","name":"hidden: the only worker is hired","kind":"real","visible":false,"input":{"costs":[2],"k":1,"candidates":1},"expected":2,"tags":["hidden","minimum-size"]},
-    {"id":"real-equal-costs","name":"hidden: equal costs repeatedly use the smallest index","kind":"real","visible":false,"input":{"costs":[3,3,3,3,3,3],"k":4,"candidates":2},"expected":12,"tags":["hidden","tie-breaking"]},
-    {"id":"real-middle-becomes-exposed","name":"hidden: an inexpensive middle worker becomes eligible later","kind":"real","visible":false,"input":{"costs":[4,4,1,4,4],"k":3,"candidates":2},"expected":9,"tags":["hidden","middle"]},
-    {"id":"real-hire-every-worker","name":"hidden: candidate pools eventually hire the entire array","kind":"real","visible":false,"input":{"costs":[7,1,6,2,5],"k":5,"candidates":2},"expected":21,"tags":["hidden","all-workers"]}
+    {
+      "id": "sample-1",
+      "name": "sample: both candidate pools are replenished",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "costs": [
+          17,
+          12,
+          10,
+          2,
+          7,
+          2,
+          11,
+          20,
+          8
+        ],
+        "k": 3,
+        "candidates": 4
+      },
+      "expected": 11,
+      "tags": [
+        "sample",
+        "heap"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: overlapping candidate regions cover all workers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "costs": [
+          1,
+          2,
+          4,
+          1
+        ],
+        "k": 3,
+        "candidates": 3
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-one-from-each-side",
+      "name": "trial: one candidate is exposed from each end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [
+          1,
+          2,
+          4,
+          1
+        ],
+        "k": 3,
+        "candidates": 1
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "replenishment"
+      ]
+    },
+    {
+      "id": "trial-right-replenishment",
+      "name": "trial: successive inexpensive workers enter from the right",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [
+          9,
+          8,
+          7,
+          1,
+          2
+        ],
+        "k": 3,
+        "candidates": 1
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "right-side"
+      ]
+    },
+    {
+      "id": "real-one-worker",
+      "name": "the only worker is hired",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [
+          2
+        ],
+        "k": 1,
+        "candidates": 1
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "minimum-size"
+      ]
+    },
+    {
+      "id": "real-equal-costs",
+      "name": "equal costs repeatedly use the smallest index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "k": 4,
+        "candidates": 2
+      },
+      "expected": 12,
+      "tags": [
+        "hidden",
+        "tie-breaking"
+      ]
+    },
+    {
+      "id": "real-middle-becomes-exposed",
+      "name": "an inexpensive middle worker becomes eligible later",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [
+          4,
+          4,
+          1,
+          4,
+          4
+        ],
+        "k": 3,
+        "candidates": 2
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "middle"
+      ]
+    },
+    {
+      "id": "real-hire-every-worker",
+      "name": "candidate pools eventually hire the entire array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [
+          7,
+          1,
+          6,
+          2,
+          5
+        ],
+        "k": 5,
+        "candidates": 2
+      },
+      "expected": 21,
+      "tags": [
+        "hidden",
+        "all-workers"
+      ]
+    }
   ]
 }

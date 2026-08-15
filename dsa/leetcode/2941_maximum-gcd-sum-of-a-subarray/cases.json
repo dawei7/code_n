@@ -99,9 +99,9 @@
     },
     {
       "id": "real-best-pair",
-      "name": "hidden: a later pair has the strongest gcd-sum",
-      "kind": "real",
-      "visible": false,
+      "name": "a later pair has the strongest gcd-sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -118,9 +118,9 @@
     },
     {
       "id": "real-gcd-transitions",
-      "name": "hidden: several suffix gcd values merge",
-      "kind": "real",
-      "visible": false,
+      "name": "several suffix gcd values merge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           30,
@@ -138,9 +138,9 @@
     },
     {
       "id": "real-longer-than-k",
-      "name": "hidden: the best range is longer than k",
-      "kind": "real",
-      "visible": false,
+      "name": "the best range is longer than k",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -158,9 +158,9 @@
     },
     {
       "id": "real-single-element-array",
-      "name": "hidden: minimum array length",
-      "kind": "real",
-      "visible": false,
+      "name": "minimum array length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7
@@ -175,9 +175,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: result requires a wide integer",
-      "kind": "real",
-      "visible": false,
+      "name": "result requires a wide integer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,

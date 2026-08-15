@@ -2,13 +2,238 @@
   "schema_version": 1,
   "challenge_id": "lc_2285",
   "cases": [
-    {"id":"sample-dense-core","name":"sample: highest value goes to the degree-three city","kind":"sample","visible":true,"input":{"n":5,"roads":[[0,1],[1,2],[2,3],[0,2],[1,3],[2,4]]},"expected":43,"tags":["sample","degree-order"]},
-    {"id":"sample-disconnected","name":"sample: disconnected roads and one isolated city","kind":"sample","visible":true,"input":{"n":5,"roads":[[0,3],[2,4],[1,3]]},"expected":20,"tags":["sample","disconnected"]},
-    {"id":"trial-one-road","name":"two cities joined by the only road","kind":"trial","visible":true,"input":{"n":2,"roads":[[0,1]]},"expected":3,"tags":["minimum-cities","single-road"]},
-    {"id":"trial-star","name":"star center receives the largest value","kind":"trial","visible":true,"input":{"n":4,"roads":[[0,1],[0,2],[0,3]]},"expected":18,"tags":["star","high-degree"]},
-    {"id":"trial-path","name":"path gives the two interior cities the largest values","kind":"trial","visible":true,"input":{"n":4,"roads":[[0,1],[1,2],[2,3]]},"expected":17,"tags":["path","degree-ties"]},
-    {"id":"real-isolated","name":"hidden: isolated cities consume the smallest assignments","kind":"real","visible":false,"input":{"n":5,"roads":[[1,4]]},"expected":9,"tags":["hidden","isolated"]},
-    {"id":"real-cycle","name":"hidden: every degree is equal in a cycle","kind":"real","visible":false,"input":{"n":5,"roads":[[0,1],[1,2],[2,3],[3,4],[4,0]]},"expected":30,"tags":["hidden","equal-degrees"]},
-    {"id":"real-two-components","name":"hidden: degree ordering spans disconnected components","kind":"real","visible":false,"input":{"n":6,"roads":[[0,1],[0,2],[3,4],[4,5]]},"expected":32,"tags":["hidden","disconnected","degree-order"]}
+    {
+      "id": "sample-dense-core",
+      "name": "sample: highest value goes to the degree-three city",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": 43,
+      "tags": [
+        "sample",
+        "degree-order"
+      ]
+    },
+    {
+      "id": "sample-disconnected",
+      "name": "sample: disconnected roads and one isolated city",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "roads": [
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "sample",
+        "disconnected"
+      ]
+    },
+    {
+      "id": "trial-one-road",
+      "name": "two cities joined by the only road",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "roads": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "minimum-cities",
+        "single-road"
+      ]
+    },
+    {
+      "id": "trial-star",
+      "name": "star center receives the largest value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "star",
+        "high-degree"
+      ]
+    },
+    {
+      "id": "trial-path",
+      "name": "path gives the two interior cities the largest values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 17,
+      "tags": [
+        "path",
+        "degree-ties"
+      ]
+    },
+    {
+      "id": "real-isolated",
+      "name": "isolated cities consume the smallest assignments",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "roads": [
+          [
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "isolated"
+      ]
+    },
+    {
+      "id": "real-cycle",
+      "name": "every degree is equal in a cycle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            0
+          ]
+        ]
+      },
+      "expected": 30,
+      "tags": [
+        "hidden",
+        "equal-degrees"
+      ]
+    },
+    {
+      "id": "real-two-components",
+      "name": "degree ordering spans disconnected components",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": 32,
+      "tags": [
+        "hidden",
+        "disconnected",
+        "degree-order"
+      ]
+    }
   ]
 }

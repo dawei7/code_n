@@ -80,9 +80,9 @@
     },
     {
       "id": "real-negative-path",
-      "name": "hidden: negative values improve path",
-      "kind": "real",
-      "visible": false,
+      "name": "negative values improve path",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "triangle": [
           [

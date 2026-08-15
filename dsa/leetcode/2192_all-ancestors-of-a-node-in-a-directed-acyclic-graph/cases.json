@@ -2,13 +2,412 @@
   "schema_version": 1,
   "challenge_id": "lc_2192",
   "cases": [
-    {"id":"sample-branching-dag","name":"sample: branching graph has shared descendants","kind":"sample","visible":true,"input":{"n":8,"edges":[[0,3],[0,4],[1,3],[2,4],[2,7],[3,5],[3,6],[3,7],[4,6]]},"expected":[[],[],[],[0,1],[0,2],[0,1,3],[0,1,2,3,4],[0,1,2,3]],"tags":["sample","branching","shared-descendants"]},
-    {"id":"sample-complete-order","name":"sample: complete ordered DAG gives every earlier ancestor","kind":"sample","visible":true,"input":{"n":5,"edges":[[0,1],[0,2],[0,3],[0,4],[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]},"expected":[[],[0],[0,1],[0,1,2],[0,1,2,3]],"tags":["sample","dense-dag"]},
-    {"id":"trial-single-node","name":"one isolated node has no ancestors","kind":"trial","visible":true,"input":{"n":1,"edges":[]},"expected":[[]],"tags":["single-node","no-edges"]},
-    {"id":"trial-disconnected","name":"disconnected nodes retain empty lists","kind":"trial","visible":true,"input":{"n":4,"edges":[[0,1]]},"expected":[[],[0],[],[]],"tags":["disconnected"]},
-    {"id":"trial-chain","name":"a chain accumulates every earlier node","kind":"trial","visible":true,"input":{"n":4,"edges":[[0,1],[1,2],[2,3]]},"expected":[[],[0],[0,1],[0,1,2]],"tags":["chain","transitive"]},
-    {"id":"real-diamond","name":"hidden: two paths do not duplicate a shared ancestor","kind":"real","visible":false,"input":{"n":4,"edges":[[0,1],[0,2],[1,3],[2,3]]},"expected":[[],[0],[0],[0,1,2]],"tags":["hidden","diamond","deduplication"]},
-    {"id":"real-unordered-edges","name":"hidden: edge order does not affect sorted ancestors","kind":"real","visible":false,"input":{"n":6,"edges":[[4,5],[0,2],[2,5],[1,4],[0,3],[3,4]]},"expected":[[],[],[0],[0],[0,1,3],[0,1,2,3,4]],"tags":["hidden","unordered-edges"]},
-    {"id":"real-two-components","name":"hidden: transitive ancestors stay inside each component","kind":"real","visible":false,"input":{"n":7,"edges":[[0,1],[1,2],[3,4],[3,5],[5,6]]},"expected":[[],[0],[0,1],[],[3],[3],[3,5]],"tags":["hidden","components"]}
+    {
+      "id": "sample-branching-dag",
+      "name": "sample: branching graph has shared descendants",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 8,
+        "edges": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        [],
+        [],
+        [],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          0,
+          1,
+          2,
+          3
+        ]
+      ],
+      "tags": [
+        "sample",
+        "branching",
+        "shared-descendants"
+      ]
+    },
+    {
+      "id": "sample-complete-order",
+      "name": "sample: complete ordered DAG gives every earlier ancestor",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        [],
+        [
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          2,
+          3
+        ]
+      ],
+      "tags": [
+        "sample",
+        "dense-dag"
+      ]
+    },
+    {
+      "id": "trial-single-node",
+      "name": "one isolated node has no ancestors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "edges": []
+      },
+      "expected": [
+        []
+      ],
+      "tags": [
+        "single-node",
+        "no-edges"
+      ]
+    },
+    {
+      "id": "trial-disconnected",
+      "name": "disconnected nodes retain empty lists",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [],
+        [
+          0
+        ],
+        [],
+        []
+      ],
+      "tags": [
+        "disconnected"
+      ]
+    },
+    {
+      "id": "trial-chain",
+      "name": "a chain accumulates every earlier node",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        [],
+        [
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ]
+      ],
+      "tags": [
+        "chain",
+        "transitive"
+      ]
+    },
+    {
+      "id": "real-diamond",
+      "name": "two paths do not duplicate a shared ancestor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        [],
+        [
+          0
+        ],
+        [
+          0
+        ],
+        [
+          0,
+          1,
+          2
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "diamond",
+        "deduplication"
+      ]
+    },
+    {
+      "id": "real-unordered-edges",
+      "name": "edge order does not affect sorted ancestors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            4,
+            5
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        [],
+        [],
+        [
+          0
+        ],
+        [
+          0
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "unordered-edges"
+      ]
+    },
+    {
+      "id": "real-two-components",
+      "name": "transitive ancestors stay inside each component",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            5,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        [],
+        [
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [],
+        [
+          3
+        ],
+        [
+          3
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "components"
+      ]
+    }
   ]
 }

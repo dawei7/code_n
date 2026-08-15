@@ -79,9 +79,9 @@
     },
     {
       "id": "real-all-ones",
-      "name": "hidden: products of ones are coprime",
-      "kind": "real",
-      "visible": false,
+      "name": "products of ones are coprime",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -96,9 +96,9 @@
     },
     {
       "id": "real-second-index",
-      "name": "hidden: first crossing closes at index one",
-      "kind": "real",
-      "visible": false,
+      "name": "first crossing closes at index one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -115,9 +115,9 @@
     },
     {
       "id": "real-prime-interval",
-      "name": "hidden: one prime interval closes before another begins",
-      "kind": "real",
-      "visible": false,
+      "name": "one prime interval closes before another begins",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -135,9 +135,9 @@
     },
     {
       "id": "real-overlapping-intervals",
-      "name": "hidden: overlapping prime intervals cover all cuts",
-      "kind": "real",
-      "visible": false,
+      "name": "overlapping prime intervals cover all cuts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -154,9 +154,9 @@
     },
     {
       "id": "real-leading-one",
-      "name": "hidden: a leading one creates an immediate split",
-      "kind": "real",
-      "visible": false,
+      "name": "a leading one creates an immediate split",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -175,9 +175,9 @@
     },
     {
       "id": "real-same-prime",
-      "name": "hidden: both sides contain the same only prime",
-      "kind": "real",
-      "visible": false,
+      "name": "both sides contain the same only prime",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -192,9 +192,9 @@
     },
     {
       "id": "real-maximum-values",
-      "name": "hidden: disjoint factors near the value ceiling",
-      "kind": "real",
-      "visible": false,
+      "name": "disjoint factors near the value ceiling",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,

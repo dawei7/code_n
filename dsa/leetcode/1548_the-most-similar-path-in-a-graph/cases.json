@@ -303,9 +303,9 @@
     },
     {
       "id": "real-star-revisits",
-      "name": "hidden: star route repeatedly revisits center",
-      "kind": "real",
-      "visible": false,
+      "name": "star route repeatedly revisits center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "roads": [
@@ -359,9 +359,9 @@
     },
     {
       "id": "real-no-exact-name",
-      "name": "hidden: every route has mismatches",
-      "kind": "real",
-      "visible": false,
+      "name": "every route has mismatches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "roads": [
@@ -407,9 +407,9 @@
     },
     {
       "id": "real-complete-no-stay",
-      "name": "hidden: complete graph still forbids staying put",
-      "kind": "real",
-      "visible": false,
+      "name": "complete graph still forbids staying put",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "roads": [
@@ -468,9 +468,9 @@
     },
     {
       "id": "real-duplicate-names",
-      "name": "hidden: duplicate names create tied states",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate names create tied states",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "roads": [
@@ -528,9 +528,9 @@
     },
     {
       "id": "real-long-line",
-      "name": "hidden: longer sparse graph target",
-      "kind": "real",
-      "visible": false,
+      "name": "longer sparse graph target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 7,
         "roads": [
@@ -598,9 +598,9 @@
     },
     {
       "id": "real-mixed-cycle-chord",
-      "name": "hidden: cycle plus chord changes predecessor choice",
-      "kind": "real",
-      "visible": false,
+      "name": "cycle plus chord changes predecessor choice",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "roads": [

@@ -124,8 +124,8 @@
     {
       "id": "real-hub-initially-fixed",
       "name": "real: zero hub begins correctly placed",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -147,8 +147,8 @@
     {
       "id": "real-high-bit-answer",
       "name": "real: high-bit cycle has answer twelve",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -179,8 +179,8 @@
     {
       "id": "real-two-cycle-zero",
       "name": "real: swapped values have disjoint bits",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -199,8 +199,8 @@
     {
       "id": "real-multiple-cycles",
       "name": "real: separate cycles share only one bit",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,

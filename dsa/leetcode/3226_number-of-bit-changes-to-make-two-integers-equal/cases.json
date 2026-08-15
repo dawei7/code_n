@@ -2,17 +2,174 @@
   "schema_version": 1,
   "challenge_id": "lc_3226",
   "cases": [
-    {"id":"sample-clear-two","name":"sample: clear two extra bits","kind":"sample","visible":true,"input":{"n":13,"k":4},"expected":2,"tags":["sample"]},
-    {"id":"sample-equal","name":"sample: equal integers need no changes","kind":"sample","visible":true,"input":{"n":21,"k":21},"expected":0,"tags":["sample"]},
-    {"id":"sample-impossible","name":"sample: required bit is absent","kind":"sample","visible":true,"input":{"n":14,"k":13},"expected":-1,"tags":["sample"]},
-    {"id":"trial-clear-low-bit","name":"trial: clear one low bit","kind":"trial","visible":true,"input":{"n":7,"k":6},"expected":1,"tags":["one-change"]},
-    {"id":"trial-clear-high-bit","name":"trial: clear the highest bit","kind":"trial","visible":true,"input":{"n":12,"k":4},"expected":1,"tags":["highest-bit"]},
-    {"id":"trial-n-greater-impossible","name":"trial: greater numeric value can still be impossible","kind":"trial","visible":true,"input":{"n":8,"k":7},"expected":-1,"tags":["subset-check"]},
-    {"id":"real-minimum-equal","name":"real: minimum inputs are equal","kind":"real","visible":false,"input":{"n":1,"k":1},"expected":0,"tags":["minimum"]},
-    {"id":"real-all-four-bits","name":"real: clear three of four set bits","kind":"real","visible":false,"input":{"n":15,"k":8},"expected":3,"tags":["population-count"]},
-    {"id":"real-alternating-subset","name":"real: alternating target bits form a subset","kind":"real","visible":false,"input":{"n":63,"k":42},"expected":3,"tags":["subset-check"]},
-    {"id":"real-adjacent-impossible","name":"real: adjacent values need a forbidden set","kind":"real","visible":false,"input":{"n":16,"k":15},"expected":-1,"tags":["impossible"]},
-    {"id":"real-maximum-equal","name":"real: maximum legal inputs are equal","kind":"real","visible":false,"input":{"n":1000000,"k":1000000},"expected":0,"tags":["maximum"]},
-    {"id":"real-maximum-subset","name":"real: retain one set bit from the maximum value","kind":"real","visible":false,"input":{"n":1000000,"k":524288},"expected":6,"tags":["maximum","population-count"]}
+    {
+      "id": "sample-clear-two",
+      "name": "sample: clear two extra bits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 13,
+        "k": 4
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-equal",
+      "name": "sample: equal integers need no changes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 21,
+        "k": 21
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: required bit is absent",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 14,
+        "k": 13
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-clear-low-bit",
+      "name": "trial: clear one low bit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "k": 6
+      },
+      "expected": 1,
+      "tags": [
+        "one-change"
+      ]
+    },
+    {
+      "id": "trial-clear-high-bit",
+      "name": "trial: clear the highest bit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 12,
+        "k": 4
+      },
+      "expected": 1,
+      "tags": [
+        "highest-bit"
+      ]
+    },
+    {
+      "id": "trial-n-greater-impossible",
+      "name": "trial: greater numeric value can still be impossible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8,
+        "k": 7
+      },
+      "expected": -1,
+      "tags": [
+        "subset-check"
+      ]
+    },
+    {
+      "id": "real-minimum-equal",
+      "name": "real: minimum inputs are equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "real-all-four-bits",
+      "name": "real: clear three of four set bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 15,
+        "k": 8
+      },
+      "expected": 3,
+      "tags": [
+        "population-count"
+      ]
+    },
+    {
+      "id": "real-alternating-subset",
+      "name": "real: alternating target bits form a subset",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 63,
+        "k": 42
+      },
+      "expected": 3,
+      "tags": [
+        "subset-check"
+      ]
+    },
+    {
+      "id": "real-adjacent-impossible",
+      "name": "real: adjacent values need a forbidden set",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 16,
+        "k": 15
+      },
+      "expected": -1,
+      "tags": [
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-maximum-equal",
+      "name": "real: maximum legal inputs are equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000,
+        "k": 1000000
+      },
+      "expected": 0,
+      "tags": [
+        "maximum"
+      ]
+    },
+    {
+      "id": "real-maximum-subset",
+      "name": "real: retain one set bit from the maximum value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000,
+        "k": 524288
+      },
+      "expected": 6,
+      "tags": [
+        "maximum",
+        "population-count"
+      ]
+    }
   ]
 }

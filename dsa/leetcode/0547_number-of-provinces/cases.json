@@ -160,9 +160,9 @@
     },
     {
       "id": "hidden-interleaved",
-      "name": "hidden: component indices are interleaved",
-      "kind": "real",
-      "visible": false,
+      "name": "component indices are interleaved",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "isConnected": [
           [
@@ -199,9 +199,9 @@
     },
     {
       "id": "hidden-star",
-      "name": "hidden: one hub connects every city",
-      "kind": "real",
-      "visible": false,
+      "name": "one hub connects every city",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "isConnected": [
           [
@@ -249,9 +249,9 @@
     },
     {
       "id": "hidden-mixed",
-      "name": "hidden: components have different sizes",
-      "kind": "real",
-      "visible": false,
+      "name": "components have different sizes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "isConnected": [
           [
@@ -312,4 +312,3 @@
     }
   ]
 }
-

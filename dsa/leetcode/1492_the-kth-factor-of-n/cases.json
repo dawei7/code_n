@@ -98,9 +98,9 @@
     },
     {
       "id": "real-large-half",
-      "name": "hidden: first factor above square root",
-      "kind": "real",
-      "visible": false,
+      "name": "first factor above square root",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 36,
         "k": 6
@@ -114,9 +114,9 @@
     },
     {
       "id": "real-prime-missing",
-      "name": "hidden: prime with impossible rank",
-      "kind": "real",
-      "visible": false,
+      "name": "prime with impossible rank",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 997,
         "k": 997
@@ -131,9 +131,9 @@
     },
     {
       "id": "real-highly-composite",
-      "name": "hidden: interior factor of a composite",
-      "kind": "real",
-      "visible": false,
+      "name": "interior factor of a composite",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 720,
         "k": 20

@@ -7,81 +7,469 @@
       "name": "sample: add edit execute remove and execute",
       "kind": "sample",
       "visible": true,
-      "input": {"operations":["TaskManager","add","edit","execTop","rmv","add","execTop"],"arguments":[[[[1,101,10],[2,102,20],[3,103,15]]],[4,104,5],[102,8],[],[101],[5,105,15],[]]},
-      "expected": [null,null,null,3,null,null,5],
-      "tags": ["sample", "stateful"]
+      "input": {
+        "operations": [
+          "TaskManager",
+          "add",
+          "edit",
+          "execTop",
+          "rmv",
+          "add",
+          "execTop"
+        ],
+        "arguments": [
+          [
+            [
+              [
+                1,
+                101,
+                10
+              ],
+              [
+                2,
+                102,
+                20
+              ],
+              [
+                3,
+                103,
+                15
+              ]
+            ]
+          ],
+          [
+            4,
+            104,
+            5
+          ],
+          [
+            102,
+            8
+          ],
+          [],
+          [
+            101
+          ],
+          [
+            5,
+            105,
+            15
+          ],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        3,
+        null,
+        null,
+        5
+      ],
+      "tags": [
+        "sample",
+        "stateful"
+      ]
     },
     {
       "id": "trial-priority-and-task-ties",
       "name": "trial: priority wins before task ID tie-breaking",
       "kind": "trial",
       "visible": true,
-      "input": {"operations":["TaskManager","execTop","execTop","execTop","execTop"],"arguments":[[[[1,10,5],[2,20,5],[3,15,6]]],[],[],[],[]]},
-      "expected": [null,3,2,1,-1],
-      "tags": ["priority", "task-id-tie", "empty"]
+      "input": {
+        "operations": [
+          "TaskManager",
+          "execTop",
+          "execTop",
+          "execTop",
+          "execTop"
+        ],
+        "arguments": [
+          [
+            [
+              [
+                1,
+                10,
+                5
+              ],
+              [
+                2,
+                20,
+                5
+              ],
+              [
+                3,
+                15,
+                6
+              ]
+            ]
+          ],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        3,
+        2,
+        1,
+        -1
+      ],
+      "tags": [
+        "priority",
+        "task-id-tie",
+        "empty"
+      ]
     },
     {
       "id": "trial-edit-decrease",
       "name": "trial: decreasing a priority leaves an obsolete high rank",
       "kind": "trial",
       "visible": true,
-      "input": {"operations":["TaskManager","edit","execTop","execTop"],"arguments":[[[[1,1,10],[2,2,9]]],[1,8],[],[]]},
-      "expected": [null,null,2,1],
-      "tags": ["edit", "stale-entry"]
+      "input": {
+        "operations": [
+          "TaskManager",
+          "edit",
+          "execTop",
+          "execTop"
+        ],
+        "arguments": [
+          [
+            [
+              [
+                1,
+                1,
+                10
+              ],
+              [
+                2,
+                2,
+                9
+              ]
+            ]
+          ],
+          [
+            1,
+            8
+          ],
+          [],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        2,
+        1
+      ],
+      "tags": [
+        "edit",
+        "stale-entry"
+      ]
     },
     {
       "id": "trial-edit-to-tie",
       "name": "trial: an edit creates a priority tie",
       "kind": "trial",
       "visible": true,
-      "input": {"operations":["TaskManager","edit","execTop","execTop"],"arguments":[[[[1,10,5],[2,20,9]]],[10,9],[],[]]},
-      "expected": [null,null,2,1],
-      "tags": ["edit", "task-id-tie"]
+      "input": {
+        "operations": [
+          "TaskManager",
+          "edit",
+          "execTop",
+          "execTop"
+        ],
+        "arguments": [
+          [
+            [
+              [
+                1,
+                10,
+                5
+              ],
+              [
+                2,
+                20,
+                9
+              ]
+            ]
+          ],
+          [
+            10,
+            9
+          ],
+          [],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        2,
+        1
+      ],
+      "tags": [
+        "edit",
+        "task-id-tie"
+      ]
     },
     {
       "id": "trial-remove-top",
       "name": "trial: removing the top task exposes the next task",
       "kind": "trial",
       "visible": true,
-      "input": {"operations":["TaskManager","rmv","execTop","execTop"],"arguments":[[[[1,1,10],[2,2,5]]],[1],[],[]]},
-      "expected": [null,null,2,-1],
-      "tags": ["remove", "empty"]
+      "input": {
+        "operations": [
+          "TaskManager",
+          "rmv",
+          "execTop",
+          "execTop"
+        ],
+        "arguments": [
+          [
+            [
+              [
+                1,
+                1,
+                10
+              ],
+              [
+                2,
+                2,
+                5
+              ]
+            ]
+          ],
+          [
+            1
+          ],
+          [],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        2,
+        -1
+      ],
+      "tags": [
+        "remove",
+        "empty"
+      ]
     },
     {
       "id": "real-reuse-task-id",
       "name": "real: a removed task ID is reused by a new user",
-      "kind": "real",
-      "visible": false,
-      "input": {"operations":["TaskManager","rmv","add","edit","execTop","execTop","execTop"],"arguments":[[[[1,101,8],[2,102,20],[3,103,5]]],[101],[50,101,8],[102,9],[],[],[]]},
-      "expected": [null,null,null,null,2,50,3],
-      "tags": ["real", "task-id-reuse", "stale-entry"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "TaskManager",
+          "rmv",
+          "add",
+          "edit",
+          "execTop",
+          "execTop",
+          "execTop"
+        ],
+        "arguments": [
+          [
+            [
+              [
+                1,
+                101,
+                8
+              ],
+              [
+                2,
+                102,
+                20
+              ],
+              [
+                3,
+                103,
+                5
+              ]
+            ]
+          ],
+          [
+            101
+          ],
+          [
+            50,
+            101,
+            8
+          ],
+          [
+            102,
+            9
+          ],
+          [],
+          [],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        2,
+        50,
+        3
+      ],
+      "tags": [
+        "real",
+        "task-id-reuse",
+        "stale-entry"
+      ]
     },
     {
       "id": "real-repeated-edits",
       "name": "real: repeated edits leave several stale ranks",
-      "kind": "real",
-      "visible": false,
-      "input": {"operations":["TaskManager","edit","edit","add","execTop","execTop","execTop"],"arguments":[[[[1,1,5]]],[1,10],[1,3],[2,2,8],[],[],[]]},
-      "expected": [null,null,null,null,2,1,-1],
-      "tags": ["real", "repeated-edit", "stale-entry"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "TaskManager",
+          "edit",
+          "edit",
+          "add",
+          "execTop",
+          "execTop",
+          "execTop"
+        ],
+        "arguments": [
+          [
+            [
+              [
+                1,
+                1,
+                5
+              ]
+            ]
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            2,
+            8
+          ],
+          [],
+          [],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        2,
+        1,
+        -1
+      ],
+      "tags": [
+        "real",
+        "repeated-edit",
+        "stale-entry"
+      ]
     },
     {
       "id": "real-zero-values",
       "name": "real: zero-valued IDs and priorities remain valid",
-      "kind": "real",
-      "visible": false,
-      "input": {"operations":["TaskManager","execTop","execTop","execTop"],"arguments":[[[[0,0,0],[1,1,0]]],[],[],[]]},
-      "expected": [null,1,0,-1],
-      "tags": ["real", "zero-values", "task-id-tie"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "TaskManager",
+          "execTop",
+          "execTop",
+          "execTop"
+        ],
+        "arguments": [
+          [
+            [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ]
+          ],
+          [],
+          [],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        1,
+        0,
+        -1
+      ],
+      "tags": [
+        "real",
+        "zero-values",
+        "task-id-tie"
+      ]
     },
     {
       "id": "real-maximum-priority",
       "name": "real: maximum priorities still use task ID tie-breaking",
-      "kind": "real",
-      "visible": false,
-      "input": {"operations":["TaskManager","execTop","execTop"],"arguments":[[[[7,1,1000000000],[8,100000,1000000000]]],[],[]]},
-      "expected": [null,8,7],
-      "tags": ["real", "maximum-priority", "maximum-task-id"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "TaskManager",
+          "execTop",
+          "execTop"
+        ],
+        "arguments": [
+          [
+            [
+              [
+                7,
+                1,
+                1000000000
+              ],
+              [
+                8,
+                100000,
+                1000000000
+              ]
+            ]
+          ],
+          [],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        8,
+        7
+      ],
+      "tags": [
+        "real",
+        "maximum-priority",
+        "maximum-task-id"
+      ]
     }
   ]
 }

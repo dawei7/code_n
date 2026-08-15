@@ -108,9 +108,9 @@
     },
     {
       "id": "real-power-of-ten",
-      "name": "hidden: a power of ten reduces to one",
-      "kind": "real",
-      "visible": false,
+      "name": "a power of ten reduces to one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000000
       },
@@ -126,9 +126,9 @@
     },
     {
       "id": "real-upper-bound",
-      "name": "hidden: the maximum legal power of ten reduces to one",
-      "kind": "real",
-      "visible": false,
+      "name": "the maximum legal power of ten reduces to one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000000000000000
       },
@@ -144,9 +144,9 @@
     },
     {
       "id": "real-largest-no-zero-value",
-      "name": "hidden: a large all-nonzero value is preserved",
-      "kind": "real",
-      "visible": false,
+      "name": "a large all-nonzero value is preserved",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 999999999999999
       },
@@ -162,9 +162,9 @@
     },
     {
       "id": "real-alternating-full-width",
-      "name": "hidden: alternating digits span the full fifteen-digit width",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating digits span the full fifteen-digit width",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 101010101010101
       },
@@ -180,9 +180,9 @@
     },
     {
       "id": "real-long-internal-run",
-      "name": "hidden: a long internal zero run joins its boundary digits",
-      "kind": "real",
-      "visible": false,
+      "name": "a long internal zero run joins its boundary digits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 900000009
       },
@@ -197,9 +197,9 @@
     },
     {
       "id": "real-separated-boundary-ones",
-      "name": "hidden: retained digits at both ends survive a long zero run",
-      "kind": "real",
-      "visible": false,
+      "name": "retained digits at both ends survive a long zero run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100000000000001
       },

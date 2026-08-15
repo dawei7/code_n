@@ -257,8 +257,8 @@
     {
       "id": "real-subset-masks",
       "name": "real: narrower masks remove optional permissions",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_permissions": [
@@ -303,8 +303,8 @@
     {
       "id": "real-alternating-patterns",
       "name": "real: alternating bit patterns cover a full byte",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_permissions": [
@@ -349,8 +349,8 @@
     {
       "id": "real-repeated-and-outlier",
       "name": "real: one outlier changes both aggregates",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_permissions": [
@@ -396,8 +396,8 @@
     {
       "id": "real-large-permissions",
       "name": "real: high non-sign bits are preserved",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_permissions": [
@@ -438,8 +438,8 @@
     {
       "id": "real-one-common-flag",
       "name": "real: exactly one flag belongs to every user",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_permissions": [
@@ -484,8 +484,8 @@
     {
       "id": "real-sparse-and-dense",
       "name": "real: sparse and dense masks combine correctly",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_permissions": [
@@ -530,4 +530,3 @@
     }
   ]
 }
-

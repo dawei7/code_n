@@ -111,9 +111,9 @@
     },
     {
       "id": "real-duplicates",
-      "name": "hidden: duplicate twos extend coverage after adding one",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate twos extend coverage after adding one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "coins": [
           2,
@@ -130,9 +130,9 @@
     },
     {
       "id": "real-unsorted-gaps",
-      "name": "hidden: unsorted coins leave several separated gaps",
-      "kind": "real",
-      "visible": false,
+      "name": "unsorted coins leave several separated gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "coins": [
           9,
@@ -150,9 +150,9 @@
     },
     {
       "id": "real-large-coin-unused",
-      "name": "hidden: a coin above the target cannot close earlier gaps",
-      "kind": "real",
-      "visible": false,
+      "name": "a coin above the target cannot close earlier gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "coins": [
           100,
@@ -169,9 +169,9 @@
     },
     {
       "id": "real-power-chain",
-      "name": "hidden: sparse powers already cover every value",
-      "kind": "real",
-      "visible": false,
+      "name": "sparse powers already cover every value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "coins": [
           16,

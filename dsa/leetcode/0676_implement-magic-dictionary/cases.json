@@ -212,9 +212,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: two differences do not qualify",
-      "kind": "real",
-      "visible": false,
+      "name": "two differences do not qualify",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "MagicDictionary",
@@ -245,9 +245,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: different lengths",
-      "kind": "real",
-      "visible": false,
+      "name": "different lengths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "MagicDictionary",
@@ -284,9 +284,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: alternate word validates exact query",
-      "kind": "real",
-      "visible": false,
+      "name": "alternate word validates exact query",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "MagicDictionary",

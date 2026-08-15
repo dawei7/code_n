@@ -74,9 +74,9 @@
     },
     {
       "id": "real-single-equal",
-      "name": "hidden: minimum length equal strings",
-      "kind": "real",
-      "visible": false,
+      "name": "minimum length equal strings",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "x",
         "s2": "x"
@@ -88,9 +88,9 @@
     },
     {
       "id": "real-many-pairs",
-      "name": "hidden: several same-orientation pairs",
-      "kind": "real",
-      "visible": false,
+      "name": "several same-orientation pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "xxxxyyyy",
         "s2": "yyyyxxxx"

@@ -199,8 +199,8 @@
     {
       "id": "real-left-edge-violation",
       "name": "real: violation at query left edge",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -230,8 +230,8 @@
     {
       "id": "real-right-edge-violation",
       "name": "real: violation at query right edge",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -261,8 +261,8 @@
     {
       "id": "real-separated-violations",
       "name": "real: queries isolate separated violations",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -309,8 +309,8 @@
     {
       "id": "real-duplicate-query-order",
       "name": "real: duplicate queries preserve answer order",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -357,8 +357,8 @@
     {
       "id": "real-value-boundaries",
       "name": "real: values at the allowed maximum",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           99999,
@@ -400,8 +400,8 @@
     {
       "id": "real-many-singletons",
       "name": "real: every singleton query is special",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,

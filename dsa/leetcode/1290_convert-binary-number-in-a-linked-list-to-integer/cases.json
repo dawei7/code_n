@@ -92,9 +92,9 @@
     },
     {
       "id": "hidden-alternating",
-      "name": "hidden: alternating bits",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating bits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           1,
@@ -127,9 +127,9 @@
     },
     {
       "id": "hidden-thirty-ones",
-      "name": "hidden: maximum-length all-one list",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum-length all-one list",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           1,

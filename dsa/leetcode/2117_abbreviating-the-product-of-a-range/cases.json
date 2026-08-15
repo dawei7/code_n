@@ -7,63 +7,107 @@
       "name": "sample: no trailing zeros or abbreviation",
       "kind": "sample",
       "visible": true,
-      "input": {"left": 1, "right": 4},
+      "input": {
+        "left": 1,
+        "right": 4
+      },
       "expected": "24e0",
-      "tags": ["sample", "small-product"]
+      "tags": [
+        "sample",
+        "small-product"
+      ]
     },
     {
       "id": "sample-two-zeros",
       "name": "sample: trailing zeros reveal a short product",
       "kind": "sample",
       "visible": true,
-      "input": {"left": 2, "right": 11},
+      "input": {
+        "left": 2,
+        "right": 11
+      },
       "expected": "399168e2",
-      "tags": ["sample", "trailing-zeros"]
+      "tags": [
+        "sample",
+        "trailing-zeros"
+      ]
     },
     {
       "id": "sample-ten-digits",
       "name": "sample: exactly ten significant digits remain unabbreviated",
       "kind": "sample",
       "visible": true,
-      "input": {"left": 371, "right": 375},
+      "input": {
+        "left": 371,
+        "right": 375
+      },
       "expected": "7219856259e3",
-      "tags": ["sample", "ten-digit-boundary"]
+      "tags": [
+        "sample",
+        "ten-digit-boundary"
+      ]
     },
     {
       "id": "trial-single-ten",
       "name": "a one-value range may consist entirely of a trailing zero",
       "kind": "trial",
       "visible": true,
-      "input": {"left": 10, "right": 10},
+      "input": {
+        "left": 10,
+        "right": 10
+      },
       "expected": "1e1",
-      "tags": ["single-value", "zero-removal"]
+      "tags": [
+        "single-value",
+        "zero-removal"
+      ]
     },
     {
       "id": "trial-eleven-digits",
       "name": "eleven significant digits trigger abbreviation",
       "kind": "trial",
       "visible": true,
-      "input": {"left": 1, "right": 16},
+      "input": {
+        "left": 1,
+        "right": 16
+      },
       "expected": "20922...89888e3",
-      "tags": ["abbreviation-boundary", "prefix", "suffix"]
+      "tags": [
+        "abbreviation-boundary",
+        "prefix",
+        "suffix"
+      ]
     },
     {
       "id": "real-zero-padded-suffix",
-      "name": "hidden: an abbreviated suffix preserves its leading zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"left": 1, "right": 18},
+      "name": "an abbreviated suffix preserves its leading zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "left": 1,
+        "right": 18
+      },
       "expected": "64023...05728e3",
-      "tags": ["hidden", "zero-padding"]
+      "tags": [
+        "hidden",
+        "zero-padding"
+      ]
     },
     {
       "id": "real-large-range",
-      "name": "hidden: a wide interior range has many trailing zeros",
-      "kind": "real",
-      "visible": false,
-      "input": {"left": 123, "right": 456},
+      "name": "a wide interior range has many trailing zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "left": 123,
+        "right": 456
+      },
       "expected": "15268...09088e84",
-      "tags": ["hidden", "wide-range", "many-zeros"]
+      "tags": [
+        "hidden",
+        "wide-range",
+        "many-zeros"
+      ]
     }
   ]
 }

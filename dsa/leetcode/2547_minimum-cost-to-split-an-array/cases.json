@@ -110,9 +110,9 @@
     },
     {
       "id": "real-single-element",
-      "name": "hidden: one element costs one partition",
-      "kind": "real",
-      "visible": false,
+      "name": "one element costs one partition",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0
@@ -127,9 +127,9 @@
     },
     {
       "id": "real-second-copy-jump",
-      "name": "hidden: a second occurrence contributes both copies",
-      "kind": "real",
-      "visible": false,
+      "name": "a second occurrence contributes both copies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -146,9 +146,9 @@
     },
     {
       "id": "real-mixed-repetitions",
-      "name": "hidden: competing cut positions",
-      "kind": "real",
-      "visible": false,
+      "name": "competing cut positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,

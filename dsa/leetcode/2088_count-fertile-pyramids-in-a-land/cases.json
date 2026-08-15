@@ -7,18 +7,52 @@
       "name": "sample: adjacent apexes form two upright pyramids",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[0, 1, 1, 0], [1, 1, 1, 1]]},
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "upright"]
+      "tags": [
+        "sample",
+        "upright"
+      ]
     },
     {
       "id": "sample-one-each-orientation",
       "name": "sample: full two-row square has both orientations",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1, 1, 1], [1, 1, 1]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "both-orientations"]
+      "tags": [
+        "sample",
+        "both-orientations"
+      ]
     },
     {
       "id": "sample-mixed-four-rows",
@@ -27,59 +61,171 @@
       "visible": true,
       "input": {
         "grid": [
-          [1, 1, 1, 1, 0],
-          [1, 1, 1, 1, 1],
-          [1, 1, 1, 1, 1],
-          [0, 1, 0, 0, 1]
+          [
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            1
+          ]
         ]
       },
       "expected": 13,
-      "tags": ["sample", "overlapping"]
+      "tags": [
+        "sample",
+        "overlapping"
+      ]
     },
     {
       "id": "trial-single-cell",
       "name": "a height-one fertile cell is not a pyramid",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[1]]},
+      "input": {
+        "grid": [
+          [
+            1
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["minimum", "height-one"]
+      "tags": [
+        "minimum",
+        "height-one"
+      ]
     },
     {
       "id": "real-upright-only",
-      "name": "hidden: one isolated upright pyramid",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[0, 1, 0], [1, 1, 1], [0, 0, 0]]},
+      "name": "one isolated upright pyramid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["hidden", "upright-only"]
+      "tags": [
+        "hidden",
+        "upright-only"
+      ]
     },
     {
       "id": "real-inverse-only",
-      "name": "hidden: one isolated inverse pyramid",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[1, 1, 1], [0, 1, 0], [0, 0, 0]]},
+      "name": "one isolated inverse pyramid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["hidden", "inverse-only"]
+      "tags": [
+        "hidden",
+        "inverse-only"
+      ]
     },
     {
       "id": "real-single-row",
-      "name": "hidden: width alone cannot create height",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[1, 1, 1, 1, 1]]},
+      "name": "width alone cannot create height",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden", "single-row"]
+      "tags": [
+        "hidden",
+        "single-row"
+      ]
     },
     {
       "id": "real-barren-grid",
-      "name": "hidden: barren cells form no plots",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[0, 0, 0], [0, 0, 0], [0, 0, 0]]},
+      "name": "barren cells form no plots",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden", "all-zero"]
+      "tags": [
+        "hidden",
+        "all-zero"
+      ]
     }
   ]
 }

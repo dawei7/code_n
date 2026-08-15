@@ -6,90 +6,197 @@
       "name": "sample: target is the last element",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 4, 5], "target": 5},
+      "input": {
+        "nums": [
+          3,
+          4,
+          5
+        ],
+        "target": 5
+      },
       "expected": 2,
-      "tags": ["sample", "last-index"]
+      "tags": [
+        "sample",
+        "last-index"
+      ]
     },
     {
       "id": "sample-absent-middle",
       "name": "sample: target lies between stored values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 4, 5], "target": 2},
+      "input": {
+        "nums": [
+          1,
+          4,
+          5
+        ],
+        "target": 2
+      },
       "expected": -1,
-      "tags": ["sample", "absent"]
+      "tags": [
+        "sample",
+        "absent"
+      ]
     },
     {
       "id": "sample-duplicates",
       "name": "sample: return the end of a duplicate run",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 4, 6, 6, 6, 6, 7], "target": 6},
+      "input": {
+        "nums": [
+          3,
+          4,
+          6,
+          6,
+          6,
+          6,
+          7
+        ],
+        "target": 6
+      },
       "expected": 5,
-      "tags": ["sample", "duplicates"]
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-single-found",
       "name": "trial: one-element array contains target",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7], "target": 7},
+      "input": {
+        "nums": [
+          7
+        ],
+        "target": 7
+      },
       "expected": 0,
-      "tags": ["trial", "single-element"]
+      "tags": [
+        "trial",
+        "single-element"
+      ]
     },
     {
       "id": "trial-single-absent",
       "name": "trial: one-element array misses target",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7], "target": 6},
+      "input": {
+        "nums": [
+          7
+        ],
+        "target": 6
+      },
       "expected": -1,
-      "tags": ["trial", "single-element", "absent"]
+      "tags": [
+        "trial",
+        "single-element",
+        "absent"
+      ]
     },
     {
       "id": "real-all-duplicates",
-      "name": "hidden: every value matches",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 2, 2, 2], "target": 2},
+      "name": "every value matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "target": 2
+      },
       "expected": 3,
-      "tags": ["hidden", "duplicates"]
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
     },
     {
       "id": "real-before-range",
-      "name": "hidden: target is smaller than every value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-3, 0, 4], "target": -4},
+      "name": "target is smaller than every value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -3,
+          0,
+          4
+        ],
+        "target": -4
+      },
       "expected": -1,
-      "tags": ["hidden", "below-range"]
+      "tags": [
+        "hidden",
+        "below-range"
+      ]
     },
     {
       "id": "real-after-range",
-      "name": "hidden: target is larger than every value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-3, 0, 4], "target": 5},
+      "name": "target is larger than every value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -3,
+          0,
+          4
+        ],
+        "target": 5
+      },
       "expected": -1,
-      "tags": ["hidden", "above-range"]
+      "tags": [
+        "hidden",
+        "above-range"
+      ]
     },
     {
       "id": "real-negative-duplicates",
-      "name": "hidden: negative duplicate run",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-5, -3, -3, -3, 0], "target": -3},
+      "name": "negative duplicate run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          -3,
+          -3,
+          -3,
+          0
+        ],
+        "target": -3
+      },
       "expected": 3,
-      "tags": ["hidden", "negative", "duplicates"]
+      "tags": [
+        "hidden",
+        "negative",
+        "duplicates"
+      ]
     },
     {
       "id": "real-minimum-boundary",
-      "name": "hidden: target is the minimum legal value at index zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-10000, -1, 0, 10000], "target": -10000},
+      "name": "target is the minimum legal value at index zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -10000,
+          -1,
+          0,
+          10000
+        ],
+        "target": -10000
+      },
       "expected": 0,
-      "tags": ["hidden", "boundary", "first-index"]
+      "tags": [
+        "hidden",
+        "boundary",
+        "first-index"
+      ]
     }
   ]
 }

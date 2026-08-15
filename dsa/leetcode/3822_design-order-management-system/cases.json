@@ -8,12 +8,90 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "operations": ["OrderManagementSystem", "addOrder", "addOrder", "addOrder", "getOrdersAtPrice", "modifyOrder", "modifyOrder", "getOrdersAtPrice", "cancelOrder", "cancelOrder", "getOrdersAtPrice"],
-        "arguments": [[], [1, "buy", 1], [2, "buy", 1], [3, "sell", 2], ["buy", 1], [1, 3], [2, 1], ["buy", 1], [3], [2], ["buy", 1]]
+        "operations": [
+          "OrderManagementSystem",
+          "addOrder",
+          "addOrder",
+          "addOrder",
+          "getOrdersAtPrice",
+          "modifyOrder",
+          "modifyOrder",
+          "getOrdersAtPrice",
+          "cancelOrder",
+          "cancelOrder",
+          "getOrdersAtPrice"
+        ],
+        "arguments": [
+          [],
+          [
+            1,
+            "buy",
+            1
+          ],
+          [
+            2,
+            "buy",
+            1
+          ],
+          [
+            3,
+            "sell",
+            2
+          ],
+          [
+            "buy",
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            "buy",
+            1
+          ],
+          [
+            3
+          ],
+          [
+            2
+          ],
+          [
+            "buy",
+            1
+          ]
+        ]
       },
-      "expected": [null, null, null, null, [2, 1], null, null, [2], null, null, []],
-      "validator": {"kind": "ordered_results_unordered_lists"},
-      "tags": ["sample", "stateful-trace", "unordered-results"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        [
+          2,
+          1
+        ],
+        null,
+        null,
+        [
+          2
+        ],
+        null,
+        null,
+        []
+      ],
+      "validator": {
+        "kind": "ordered_results_unordered_lists"
+      },
+      "tags": [
+        "sample",
+        "stateful-trace",
+        "unordered-results"
+      ]
     },
     {
       "id": "trial-independent-type-price-buckets",
@@ -21,12 +99,75 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["OrderManagementSystem", "addOrder", "addOrder", "addOrder", "getOrdersAtPrice", "getOrdersAtPrice", "getOrdersAtPrice", "getOrdersAtPrice"],
-        "arguments": [[], [10, "buy", 4], [11, "sell", 4], [12, "buy", 5], ["buy", 4], ["sell", 4], ["buy", 5], ["sell", 5]]
+        "operations": [
+          "OrderManagementSystem",
+          "addOrder",
+          "addOrder",
+          "addOrder",
+          "getOrdersAtPrice",
+          "getOrdersAtPrice",
+          "getOrdersAtPrice",
+          "getOrdersAtPrice"
+        ],
+        "arguments": [
+          [],
+          [
+            10,
+            "buy",
+            4
+          ],
+          [
+            11,
+            "sell",
+            4
+          ],
+          [
+            12,
+            "buy",
+            5
+          ],
+          [
+            "buy",
+            4
+          ],
+          [
+            "sell",
+            4
+          ],
+          [
+            "buy",
+            5
+          ],
+          [
+            "sell",
+            5
+          ]
+        ]
       },
-      "expected": [null, null, null, null, [10], [11], [12], []],
-      "validator": {"kind": "ordered_results_unordered_lists"},
-      "tags": ["trial", "type-price-key", "empty-result"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        [
+          10
+        ],
+        [
+          11
+        ],
+        [
+          12
+        ],
+        []
+      ],
+      "validator": {
+        "kind": "ordered_results_unordered_lists"
+      },
+      "tags": [
+        "trial",
+        "type-price-key",
+        "empty-result"
+      ]
     },
     {
       "id": "trial-modify-joins-and-leaves-buckets",
@@ -34,12 +175,75 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["OrderManagementSystem", "addOrder", "addOrder", "modifyOrder", "getOrdersAtPrice", "modifyOrder", "getOrdersAtPrice", "getOrdersAtPrice"],
-        "arguments": [[], [1, "buy", 2], [2, "buy", 3], [2, 2], ["buy", 2], [1, 4], ["buy", 2], ["buy", 4]]
+        "operations": [
+          "OrderManagementSystem",
+          "addOrder",
+          "addOrder",
+          "modifyOrder",
+          "getOrdersAtPrice",
+          "modifyOrder",
+          "getOrdersAtPrice",
+          "getOrdersAtPrice"
+        ],
+        "arguments": [
+          [],
+          [
+            1,
+            "buy",
+            2
+          ],
+          [
+            2,
+            "buy",
+            3
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            "buy",
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            "buy",
+            2
+          ],
+          [
+            "buy",
+            4
+          ]
+        ]
       },
-      "expected": [null, null, null, null, [1, 2], null, [2], [1]],
-      "validator": {"kind": "ordered_results_unordered_lists"},
-      "tags": ["trial", "modify", "bucket-transition"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        [
+          1,
+          2
+        ],
+        null,
+        [
+          2
+        ],
+        [
+          1
+        ]
+      ],
+      "validator": {
+        "kind": "ordered_results_unordered_lists"
+      },
+      "tags": [
+        "trial",
+        "modify",
+        "bucket-transition"
+      ]
     },
     {
       "id": "trial-unchanged-price",
@@ -47,12 +251,45 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["OrderManagementSystem", "addOrder", "modifyOrder", "getOrdersAtPrice"],
-        "arguments": [[], [77, "sell", 19], [77, 19], ["sell", 19]]
+        "operations": [
+          "OrderManagementSystem",
+          "addOrder",
+          "modifyOrder",
+          "getOrdersAtPrice"
+        ],
+        "arguments": [
+          [],
+          [
+            77,
+            "sell",
+            19
+          ],
+          [
+            77,
+            19
+          ],
+          [
+            "sell",
+            19
+          ]
+        ]
       },
-      "expected": [null, null, null, [77]],
-      "validator": {"kind": "ordered_results_unordered_lists"},
-      "tags": ["trial", "unchanged-price", "idempotent-modification"]
+      "expected": [
+        null,
+        null,
+        null,
+        [
+          77
+        ]
+      ],
+      "validator": {
+        "kind": "ordered_results_unordered_lists"
+      },
+      "tags": [
+        "trial",
+        "unchanged-price",
+        "idempotent-modification"
+      ]
     },
     {
       "id": "trial-cancel-only-match",
@@ -60,77 +297,378 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["OrderManagementSystem", "addOrder", "getOrdersAtPrice", "cancelOrder", "getOrdersAtPrice"],
-        "arguments": [[], [8, "buy", 6], ["buy", 6], [8], ["buy", 6]]
+        "operations": [
+          "OrderManagementSystem",
+          "addOrder",
+          "getOrdersAtPrice",
+          "cancelOrder",
+          "getOrdersAtPrice"
+        ],
+        "arguments": [
+          [],
+          [
+            8,
+            "buy",
+            6
+          ],
+          [
+            "buy",
+            6
+          ],
+          [
+            8
+          ],
+          [
+            "buy",
+            6
+          ]
+        ]
       },
-      "expected": [null, null, [8], null, []],
-      "validator": {"kind": "ordered_results_unordered_lists"},
-      "tags": ["trial", "cancel", "empty-bucket"]
+      "expected": [
+        null,
+        null,
+        [
+          8
+        ],
+        null,
+        []
+      ],
+      "validator": {
+        "kind": "ordered_results_unordered_lists"
+      },
+      "tags": [
+        "trial",
+        "cancel",
+        "empty-bucket"
+      ]
     },
     {
       "id": "real-modification-preserves-type",
-      "name": "hidden: price modification does not change order type",
-      "kind": "real",
-      "visible": false,
+      "name": "price modification does not change order type",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["OrderManagementSystem", "addOrder", "modifyOrder", "getOrdersAtPrice", "getOrdersAtPrice", "getOrdersAtPrice"],
-        "arguments": [[], [25, "sell", 7], [25, 9], ["sell", 7], ["sell", 9], ["buy", 9]]
+        "operations": [
+          "OrderManagementSystem",
+          "addOrder",
+          "modifyOrder",
+          "getOrdersAtPrice",
+          "getOrdersAtPrice",
+          "getOrdersAtPrice"
+        ],
+        "arguments": [
+          [],
+          [
+            25,
+            "sell",
+            7
+          ],
+          [
+            25,
+            9
+          ],
+          [
+            "sell",
+            7
+          ],
+          [
+            "sell",
+            9
+          ],
+          [
+            "buy",
+            9
+          ]
+        ]
       },
-      "expected": [null, null, null, [], [25], []],
-      "validator": {"kind": "ordered_results_unordered_lists"},
-      "tags": ["hidden", "immutable-type", "old-bucket"]
+      "expected": [
+        null,
+        null,
+        null,
+        [],
+        [
+          25
+        ],
+        []
+      ],
+      "validator": {
+        "kind": "ordered_results_unordered_lists"
+      },
+      "tags": [
+        "hidden",
+        "immutable-type",
+        "old-bucket"
+      ]
     },
     {
       "id": "real-cancel-one-of-several",
-      "name": "hidden: cancellation removes only the specified order",
-      "kind": "real",
-      "visible": false,
+      "name": "cancellation removes only the specified order",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["OrderManagementSystem", "addOrder", "addOrder", "addOrder", "cancelOrder", "getOrdersAtPrice"],
-        "arguments": [[], [3, "buy", 11], [7, "buy", 11], [9, "buy", 11], [7], ["buy", 11]]
+        "operations": [
+          "OrderManagementSystem",
+          "addOrder",
+          "addOrder",
+          "addOrder",
+          "cancelOrder",
+          "getOrdersAtPrice"
+        ],
+        "arguments": [
+          [],
+          [
+            3,
+            "buy",
+            11
+          ],
+          [
+            7,
+            "buy",
+            11
+          ],
+          [
+            9,
+            "buy",
+            11
+          ],
+          [
+            7
+          ],
+          [
+            "buy",
+            11
+          ]
+        ]
       },
-      "expected": [null, null, null, null, null, [3, 9]],
-      "validator": {"kind": "ordered_results_unordered_lists"},
-      "tags": ["hidden", "cancel", "shared-bucket"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        [
+          3,
+          9
+        ]
+      ],
+      "validator": {
+        "kind": "ordered_results_unordered_lists"
+      },
+      "tags": [
+        "hidden",
+        "cancel",
+        "shared-bucket"
+      ]
     },
     {
       "id": "real-multiple-bucket-transitions",
-      "name": "hidden: repeated modifications keep exactly one current membership",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated modifications keep exactly one current membership",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["OrderManagementSystem", "addOrder", "modifyOrder", "modifyOrder", "modifyOrder", "getOrdersAtPrice", "getOrdersAtPrice", "getOrdersAtPrice"],
-        "arguments": [[], [40, "buy", 1], [40, 2], [40, 3], [40, 2], ["buy", 1], ["buy", 2], ["buy", 3]]
+        "operations": [
+          "OrderManagementSystem",
+          "addOrder",
+          "modifyOrder",
+          "modifyOrder",
+          "modifyOrder",
+          "getOrdersAtPrice",
+          "getOrdersAtPrice",
+          "getOrdersAtPrice"
+        ],
+        "arguments": [
+          [],
+          [
+            40,
+            "buy",
+            1
+          ],
+          [
+            40,
+            2
+          ],
+          [
+            40,
+            3
+          ],
+          [
+            40,
+            2
+          ],
+          [
+            "buy",
+            1
+          ],
+          [
+            "buy",
+            2
+          ],
+          [
+            "buy",
+            3
+          ]
+        ]
       },
-      "expected": [null, null, null, null, null, [], [40], []],
-      "validator": {"kind": "ordered_results_unordered_lists"},
-      "tags": ["hidden", "repeated-modify", "single-membership"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        [],
+        [
+          40
+        ],
+        []
+      ],
+      "validator": {
+        "kind": "ordered_results_unordered_lists"
+      },
+      "tags": [
+        "hidden",
+        "repeated-modify",
+        "single-membership"
+      ]
     },
     {
       "id": "real-value-boundaries",
-      "name": "hidden: maximum ID and price values remain valid",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum ID and price values remain valid",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["OrderManagementSystem", "addOrder", "getOrdersAtPrice", "modifyOrder", "getOrdersAtPrice", "getOrdersAtPrice"],
-        "arguments": [[], [2000, "sell", 1000000000], ["sell", 1000000000], [2000, 1], ["sell", 1000000000], ["sell", 1]]
+        "operations": [
+          "OrderManagementSystem",
+          "addOrder",
+          "getOrdersAtPrice",
+          "modifyOrder",
+          "getOrdersAtPrice",
+          "getOrdersAtPrice"
+        ],
+        "arguments": [
+          [],
+          [
+            2000,
+            "sell",
+            1000000000
+          ],
+          [
+            "sell",
+            1000000000
+          ],
+          [
+            2000,
+            1
+          ],
+          [
+            "sell",
+            1000000000
+          ],
+          [
+            "sell",
+            1
+          ]
+        ]
       },
-      "expected": [null, null, [2000], null, [], [2000]],
-      "validator": {"kind": "ordered_results_unordered_lists"},
-      "tags": ["hidden", "value-boundaries", "modify"]
+      "expected": [
+        null,
+        null,
+        [
+          2000
+        ],
+        null,
+        [],
+        [
+          2000
+        ]
+      ],
+      "validator": {
+        "kind": "ordered_results_unordered_lists"
+      },
+      "tags": [
+        "hidden",
+        "value-boundaries",
+        "modify"
+      ]
     },
     {
       "id": "real-independent-orders-after-cancel",
-      "name": "hidden: canceled and active orders remain distinguishable",
-      "kind": "real",
-      "visible": false,
+      "name": "canceled and active orders remain distinguishable",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["OrderManagementSystem", "addOrder", "addOrder", "addOrder", "cancelOrder", "modifyOrder", "getOrdersAtPrice", "getOrdersAtPrice", "getOrdersAtPrice"],
-        "arguments": [[], [101, "sell", 30], [102, "sell", 30], [103, "buy", 30], [101], [102, 31], ["sell", 30], ["sell", 31], ["buy", 30]]
+        "operations": [
+          "OrderManagementSystem",
+          "addOrder",
+          "addOrder",
+          "addOrder",
+          "cancelOrder",
+          "modifyOrder",
+          "getOrdersAtPrice",
+          "getOrdersAtPrice",
+          "getOrdersAtPrice"
+        ],
+        "arguments": [
+          [],
+          [
+            101,
+            "sell",
+            30
+          ],
+          [
+            102,
+            "sell",
+            30
+          ],
+          [
+            103,
+            "buy",
+            30
+          ],
+          [
+            101
+          ],
+          [
+            102,
+            31
+          ],
+          [
+            "sell",
+            30
+          ],
+          [
+            "sell",
+            31
+          ],
+          [
+            "buy",
+            30
+          ]
+        ]
       },
-      "expected": [null, null, null, null, null, null, [], [102], [103]],
-      "validator": {"kind": "ordered_results_unordered_lists"},
-      "tags": ["hidden", "cancel", "modify", "bucket-isolation"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        [],
+        [
+          102
+        ],
+        [
+          103
+        ]
+      ],
+      "validator": {
+        "kind": "ordered_results_unordered_lists"
+      },
+      "tags": [
+        "hidden",
+        "cancel",
+        "modify",
+        "bucket-isolation"
+      ]
     }
   ]
 }

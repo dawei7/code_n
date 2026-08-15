@@ -241,9 +241,9 @@
     },
     {
       "id": "hidden-minimum-pair",
-      "name": "hidden: an even value counts the smaller minimum odd",
-      "kind": "real",
-      "visible": false,
+      "name": "an even value counts the smaller minimum odd",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -262,9 +262,9 @@
     },
     {
       "id": "hidden-equal-pattern",
-      "name": "hidden: equal same-parity values remain independent suffix entries",
-      "kind": "real",
-      "visible": false,
+      "name": "equal same-parity values remain independent suffix entries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -287,9 +287,9 @@
     },
     {
       "id": "hidden-billion-bound",
-      "name": "hidden: maximum values preserve parity and numeric order",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum values preserve parity and numeric order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -312,9 +312,9 @@
     },
     {
       "id": "hidden-large-gaps",
-      "name": "hidden: coordinate gaps do not change rank comparisons",
-      "kind": "real",
-      "visible": false,
+      "name": "coordinate gaps do not change rank comparisons",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -337,9 +337,9 @@
     },
     {
       "id": "hidden-irregular-ten",
-      "name": "hidden: irregular suffixes combine greater and smaller values",
-      "kind": "real",
-      "visible": false,
+      "name": "irregular suffixes combine greater and smaller values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,

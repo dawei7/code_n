@@ -94,9 +94,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: repeated-letter three-cycle",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated-letter three-cycle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "aabc",
         "s2": "abca"
@@ -109,9 +109,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: six-letter left rotation",
-      "kind": "real",
-      "visible": false,
+      "name": "six-letter left rotation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "abcdef",
         "s2": "bcdefa"
@@ -124,9 +124,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: reverse distinct letters",
-      "kind": "real",
-      "visible": false,
+      "name": "reverse distinct letters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "abcdef",
         "s2": "fedcba"
@@ -139,9 +139,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: two repeated blocks exchange",
-      "kind": "real",
-      "visible": false,
+      "name": "two repeated blocks exchange",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "aaabbb",
         "s2": "bbbaaa"
@@ -154,9 +154,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: repeated pairs reverse",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated pairs reverse",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "aabbcc",
         "s2": "ccbbaa"
@@ -169,9 +169,9 @@
     },
     {
       "id": "hidden-6",
-      "name": "hidden: six-letter right rotation",
-      "kind": "real",
-      "visible": false,
+      "name": "six-letter right rotation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "abcdef",
         "s2": "fabcde"

@@ -141,9 +141,9 @@
     },
     {
       "id": "real-last-arrival-replaces",
-      "name": "hidden: only the final arrival is better",
-      "kind": "real",
-      "visible": false,
+      "name": "only the final arrival is better",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranks": [
           10,
@@ -162,9 +162,9 @@
     },
     {
       "id": "real-best-rank-early",
-      "name": "hidden: rank one prevents all future replacements",
-      "kind": "real",
-      "visible": false,
+      "name": "rank one prevents all future replacements",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranks": [
           100,
@@ -184,9 +184,9 @@
     },
     {
       "id": "real-maximum-values",
-      "name": "hidden: maximum legal values and one improvement",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum legal values and one improvement",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranks": [
           100000,
@@ -203,9 +203,9 @@
     },
     {
       "id": "real-nonconsecutive-records",
-      "name": "hidden: record lows occur after several worse arrivals",
-      "kind": "real",
-      "visible": false,
+      "name": "record lows occur after several worse arrivals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranks": [
           50,
@@ -225,9 +225,9 @@
     },
     {
       "id": "real-all-equal",
-      "name": "hidden: equal ranks never replace",
-      "kind": "real",
-      "visible": false,
+      "name": "equal ranks never replace",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranks": [
           42,
@@ -246,9 +246,9 @@
     },
     {
       "id": "real-maximum-length-equal",
-      "name": "hidden: maximum input length with no replacements",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum input length with no replacements",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranks": [
           77777,

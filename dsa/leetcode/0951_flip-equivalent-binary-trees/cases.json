@@ -123,9 +123,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: different root values",
-      "kind": "real",
-      "visible": false,
+      "name": "different root values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           1
@@ -142,9 +142,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: child cannot be aligned",
-      "kind": "real",
-      "visible": false,
+      "name": "child cannot be aligned",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           1,
@@ -170,9 +170,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: one-child orientation",
-      "kind": "real",
-      "visible": false,
+      "name": "one-child orientation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           1,

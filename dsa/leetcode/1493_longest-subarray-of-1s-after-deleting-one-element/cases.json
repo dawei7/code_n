@@ -120,9 +120,9 @@
     },
     {
       "id": "real-all-zeros",
-      "name": "hidden: no run can be created",
-      "kind": "real",
-      "visible": false,
+      "name": "no run can be created",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -140,9 +140,9 @@
     },
     {
       "id": "real-equal-merges",
-      "name": "hidden: equal choices around two zeros",
-      "kind": "real",
-      "visible": false,
+      "name": "equal choices around two zeros",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -161,9 +161,9 @@
     },
     {
       "id": "real-shrink-past-old-zero",
-      "name": "hidden: later window is longer",
-      "kind": "real",
-      "visible": false,
+      "name": "later window is longer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -188,9 +188,9 @@
     },
     {
       "id": "real-trailing-zero",
-      "name": "hidden: deleting trailing zero preserves run",
-      "kind": "real",
-      "visible": false,
+      "name": "deleting trailing zero preserves run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

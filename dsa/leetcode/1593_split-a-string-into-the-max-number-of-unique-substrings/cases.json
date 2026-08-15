@@ -7,108 +7,168 @@
       "name": "sample: repeated blocks and trailing copies",
       "kind": "sample",
       "visible": true,
-      "input": { "s": "ababccc" },
+      "input": {
+        "s": "ababccc"
+      },
       "expected": 5,
-      "tags": ["sample", "repeated-substrings"]
+      "tags": [
+        "sample",
+        "repeated-substrings"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: repeated character around a distinct center",
       "kind": "sample",
       "visible": true,
-      "input": { "s": "aba" },
+      "input": {
+        "s": "aba"
+      },
       "expected": 2,
-      "tags": ["sample", "duplicate-singleton"]
+      "tags": [
+        "sample",
+        "duplicate-singleton"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: two equal characters",
       "kind": "sample",
       "visible": true,
-      "input": { "s": "aa" },
+      "input": {
+        "s": "aa"
+      },
       "expected": 1,
-      "tags": ["sample", "minimum-duplicate"]
+      "tags": [
+        "sample",
+        "minimum-duplicate"
+      ]
     },
     {
       "id": "edge-single-character",
       "name": "edge: one character",
       "kind": "trial",
       "visible": true,
-      "input": { "s": "a" },
+      "input": {
+        "s": "a"
+      },
       "expected": 1,
-      "tags": ["edge", "minimum-length"]
+      "tags": [
+        "edge",
+        "minimum-length"
+      ]
     },
     {
       "id": "edge-all-distinct",
       "name": "edge: every character can stand alone",
       "kind": "trial",
       "visible": true,
-      "input": { "s": "abcdef" },
+      "input": {
+        "s": "abcdef"
+      },
       "expected": 6,
-      "tags": ["edge", "all-distinct"]
+      "tags": [
+        "edge",
+        "all-distinct"
+      ]
     },
     {
       "id": "real-equal-runs-can-use-different-lengths",
-      "name": "hidden: equal run admits unequal pieces",
-      "kind": "real",
-      "visible": false,
-      "input": { "s": "aaaa" },
+      "name": "equal run admits unequal pieces",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa"
+      },
       "expected": 2,
-      "tags": ["repeated-characters", "different-lengths"]
+      "tags": [
+        "repeated-characters",
+        "different-lengths"
+      ]
     },
     {
       "id": "real-overlapping-repetitions",
-      "name": "hidden: overlapping repeated pattern",
-      "kind": "real",
-      "visible": false,
-      "input": { "s": "ababa" },
+      "name": "overlapping repeated pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ababa"
+      },
       "expected": 3,
-      "tags": ["overlap", "backtracking"]
+      "tags": [
+        "overlap",
+        "backtracking"
+      ]
     },
     {
       "id": "real-repeated-block",
-      "name": "hidden: two copies of a three-character block",
-      "kind": "real",
-      "visible": false,
-      "input": { "s": "abcabc" },
+      "name": "two copies of a three-character block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcabc"
+      },
       "expected": 4,
-      "tags": ["repeated-block", "backtracking"]
+      "tags": [
+        "repeated-block",
+        "backtracking"
+      ]
     },
     {
       "id": "real-greedy-shortest-is-not-enough",
-      "name": "hidden: locally short choices need revision",
-      "kind": "real",
-      "visible": false,
-      "input": { "s": "abac" },
+      "name": "locally short choices need revision",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abac"
+      },
       "expected": 3,
-      "tags": ["greedy-trap", "backtracking"]
+      "tags": [
+        "greedy-trap",
+        "backtracking"
+      ]
     },
     {
       "id": "real-mixed-long-maximum",
-      "name": "hidden: mixed repeats at maximum length",
-      "kind": "real",
-      "visible": false,
-      "input": { "s": "wwwzfvedwfvhsww" },
+      "name": "mixed repeats at maximum length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "wwwzfvedwfvhsww"
+      },
       "expected": 11,
-      "tags": ["maximum-length", "mixed-repetitions"]
+      "tags": [
+        "maximum-length",
+        "mixed-repetitions"
+      ]
     },
     {
       "id": "real-periodic-maximum-length",
-      "name": "hidden: periodic maximum-length string",
-      "kind": "real",
-      "visible": false,
-      "input": { "s": "abababababababab" },
+      "name": "periodic maximum-length string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abababababababab"
+      },
       "expected": 7,
-      "tags": ["maximum-length", "periodic"]
+      "tags": [
+        "maximum-length",
+        "periodic"
+      ]
     },
     {
       "id": "real-distinct-maximum-length",
-      "name": "hidden: all distinct at maximum length",
-      "kind": "real",
-      "visible": false,
-      "input": { "s": "abcdefghijklmnop" },
+      "name": "all distinct at maximum length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnop"
+      },
       "expected": 16,
-      "tags": ["maximum-length", "all-distinct"]
+      "tags": [
+        "maximum-length",
+        "all-distinct"
+      ]
     }
   ]
 }

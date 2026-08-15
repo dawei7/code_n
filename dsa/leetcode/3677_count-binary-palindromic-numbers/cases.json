@@ -7,72 +7,113 @@
       "name": "sample: six palindromes through nine",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 9},
+      "input": {
+        "n": 9
+      },
       "expected": 6,
-      "tags": ["sample", "palindromic-bound"]
+      "tags": [
+        "sample",
+        "palindromic-bound"
+      ]
     },
     {
       "id": "sample-zero",
       "name": "sample: zero counts as a palindrome",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 0},
+      "input": {
+        "n": 0
+      },
       "expected": 1,
-      "tags": ["sample", "zero", "minimum-bound"]
+      "tags": [
+        "sample",
+        "zero",
+        "minimum-bound"
+      ]
     },
     {
       "id": "trial-one",
       "name": "trial: zero and one both qualify",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1},
+      "input": {
+        "n": 1
+      },
       "expected": 2,
-      "tags": ["trial", "single-bit"]
+      "tags": [
+        "trial",
+        "single-bit"
+      ]
     },
     {
       "id": "trial-below-next-palindrome",
       "name": "trial: eight lies below binary 1001",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 8},
+      "input": {
+        "n": 8
+      },
       "expected": 5,
-      "tags": ["trial", "boundary-mirror-excluded"]
+      "tags": [
+        "trial",
+        "boundary-mirror-excluded"
+      ]
     },
     {
       "id": "trial-all-four-bit-values",
       "name": "trial: both four-bit palindromes fit through fifteen",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 15},
+      "input": {
+        "n": 15
+      },
       "expected": 7,
-      "tags": ["trial", "complete-bit-length"]
+      "tags": [
+        "trial",
+        "complete-bit-length"
+      ]
     },
     {
       "id": "real-nonpalindromic-prefix-boundary",
-      "name": "hidden: compare the mirrored leading half with the bound",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 100},
+      "name": "compare the mirrored leading half with the bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100
+      },
       "expected": 20,
-      "tags": ["hidden", "boundary-prefix"]
+      "tags": [
+        "hidden",
+        "boundary-prefix"
+      ]
     },
     {
       "id": "real-complete-eight-bits",
-      "name": "hidden: all palindromes through eight bits",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 255},
+      "name": "all palindromes through eight bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 255
+      },
       "expected": 31,
-      "tags": ["hidden", "complete-bit-length"]
+      "tags": [
+        "hidden",
+        "complete-bit-length"
+      ]
     },
     {
       "id": "real-maximum-bound",
-      "name": "hidden: count through the maximum legal input",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000000000000000},
+      "name": "count through the maximum legal input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000000000000
+      },
       "expected": 63356754,
-      "tags": ["hidden", "maximum-bound"]
+      "tags": [
+        "hidden",
+        "maximum-bound"
+      ]
     }
   ]
 }

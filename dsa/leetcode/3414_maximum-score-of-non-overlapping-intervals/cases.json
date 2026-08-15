@@ -161,8 +161,8 @@
     {
       "id": "real-overlap-boundaries",
       "name": "real: touching boundaries still overlap",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "intervals": [
           [
@@ -211,8 +211,8 @@
     {
       "id": "real-identical-tie",
       "name": "real: identical intervals prefer smallest original index",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "intervals": [
           [
@@ -244,8 +244,8 @@
     {
       "id": "real-four-interval-cap",
       "name": "real: at most four equal disjoint intervals",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "intervals": [
           [
@@ -290,8 +290,8 @@
     {
       "id": "real-unsorted-endpoints",
       "name": "real: input order differs from right-end order",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "intervals": [
           [

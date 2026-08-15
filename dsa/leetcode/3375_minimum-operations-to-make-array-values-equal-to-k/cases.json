@@ -119,9 +119,9 @@
     },
     {
       "id": "real-single-below",
-      "name": "hidden: one value below target is unreachable",
-      "kind": "real",
-      "visible": false,
+      "name": "one value below target is unreachable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1
@@ -137,9 +137,9 @@
     },
     {
       "id": "real-below-among-many-levels",
-      "name": "hidden: one low value invalidates many reducible levels",
-      "kind": "real",
-      "visible": false,
+      "name": "one low value invalidates many reducible levels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -160,9 +160,9 @@
     },
     {
       "id": "real-maximum-target",
-      "name": "hidden: maximum target with all equal values",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum target with all equal values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,

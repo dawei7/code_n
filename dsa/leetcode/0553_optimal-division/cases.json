@@ -93,9 +93,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: tail contains one",
-      "kind": "real",
-      "visible": false,
+      "name": "tail contains one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -111,9 +111,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: longer expression",
-      "kind": "real",
-      "visible": false,
+      "name": "longer expression",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -131,9 +131,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: all values are one",
-      "kind": "real",
-      "visible": false,
+      "name": "all values are one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -150,4 +150,3 @@
     }
   ]
 }
-

@@ -6,72 +6,159 @@
       "name": "sample: sum from zero",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4], "fnName": "sum", "init": 0},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "fnName": "sum",
+        "init": 0
+      },
       "expected": 10,
-      "tags": ["sample", "sum"]
+      "tags": [
+        "sample",
+        "sum"
+      ]
     },
     {
       "id": "sample-sum-squares",
       "name": "sample: add squares to initial value",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4], "fnName": "sumSquares", "init": 100},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "fnName": "sumSquares",
+        "init": 100
+      },
       "expected": 130,
-      "tags": ["sample", "sum-squares"]
+      "tags": [
+        "sample",
+        "sum-squares"
+      ]
     },
     {
       "id": "sample-empty",
       "name": "sample: empty array returns initial value",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [], "fnName": "zero", "init": 25},
+      "input": {
+        "nums": [],
+        "fnName": "zero",
+        "init": 25
+      },
       "expected": 25,
-      "tags": ["sample", "empty"]
+      "tags": [
+        "sample",
+        "empty"
+      ]
     },
     {
       "id": "trial-product",
       "name": "trial: multiplication uses supplied identity",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 3, 4], "fnName": "product", "init": 1},
+      "input": {
+        "nums": [
+          2,
+          3,
+          4
+        ],
+        "fnName": "product",
+        "init": 1
+      },
       "expected": 24,
-      "tags": ["trial", "product"]
+      "tags": [
+        "trial",
+        "product"
+      ]
     },
     {
       "id": "trial-order-sensitive",
       "name": "trial: subtraction preserves left-to-right order",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3, 5, 2], "fnName": "subtract", "init": 20},
+      "input": {
+        "nums": [
+          3,
+          5,
+          2
+        ],
+        "fnName": "subtract",
+        "init": 20
+      },
       "expected": 10,
-      "tags": ["trial", "order-sensitive"]
+      "tags": [
+        "trial",
+        "order-sensitive"
+      ]
     },
     {
       "id": "real-nonzero-sum-init",
       "name": "real: sum begins from nonzero initial value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 1000, 7], "fnName": "sum", "init": 9},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1000,
+          7
+        ],
+        "fnName": "sum",
+        "init": 9
+      },
       "expected": 1016,
-      "tags": ["real", "nonzero-init", "boundary-values"]
+      "tags": [
+        "real",
+        "nonzero-init",
+        "boundary-values"
+      ]
     },
     {
       "id": "real-maximum",
       "name": "real: reducer may retain the accumulator",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 12, 3, 12], "fnName": "maximum", "init": 8},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          12,
+          3,
+          12
+        ],
+        "fnName": "maximum",
+        "init": 8
+      },
       "expected": 12,
-      "tags": ["real", "maximum", "repeated-value"]
+      "tags": [
+        "real",
+        "maximum",
+        "repeated-value"
+      ]
     },
     {
       "id": "real-single-element",
       "name": "real: reducer is called once",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [6], "fnName": "sumSquares", "init": 4},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6
+        ],
+        "fnName": "sumSquares",
+        "init": 4
+      },
       "expected": 40,
-      "tags": ["real", "single-element"]
+      "tags": [
+        "real",
+        "single-element"
+      ]
     }
   ]
 }

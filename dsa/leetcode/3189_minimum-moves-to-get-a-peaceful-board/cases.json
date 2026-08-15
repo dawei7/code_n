@@ -143,9 +143,9 @@
     },
     {
       "id": "real-shared-middle-column",
-      "name": "hidden: all rooks share an interior column",
-      "kind": "real",
-      "visible": false,
+      "name": "all rooks share an interior column",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rooks": [
           [
@@ -178,9 +178,9 @@
     },
     {
       "id": "real-four-corners",
-      "name": "hidden: duplicated endpoint rows and columns",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicated endpoint rows and columns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rooks": [
           [
@@ -210,9 +210,9 @@
     },
     {
       "id": "real-cyclic-peaceful",
-      "name": "hidden: cyclic columns are already peaceful",
-      "kind": "real",
-      "visible": false,
+      "name": "cyclic columns are already peaceful",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rooks": [
           [
@@ -242,9 +242,9 @@
     },
     {
       "id": "real-compact-block",
-      "name": "hidden: a compact block must spread in both axes",
-      "kind": "real",
-      "visible": false,
+      "name": "a compact block must spread in both axes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rooks": [
           [
@@ -273,9 +273,9 @@
     },
     {
       "id": "real-asymmetric-layout",
-      "name": "hidden: irregular gaps contribute independently",
-      "kind": "real",
-      "visible": false,
+      "name": "irregular gaps contribute independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rooks": [
           [
@@ -312,9 +312,9 @@
     },
     {
       "id": "real-shuffled-duplicate-columns",
-      "name": "hidden: input order does not affect rank matching",
-      "kind": "real",
-      "visible": false,
+      "name": "input order does not affect rank matching",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rooks": [
           [
@@ -356,9 +356,9 @@
     },
     {
       "id": "real-maximum-board",
-      "name": "hidden: maximum board with one shared column",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum board with one shared column",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rooks": [
           [

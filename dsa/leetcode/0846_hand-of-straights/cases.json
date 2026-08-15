@@ -136,9 +136,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: separated valid pairs",
-      "kind": "real",
-      "visible": false,
+      "name": "separated valid pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hand": [
           10,
@@ -156,9 +156,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: zero begins a valid partition",
-      "kind": "real",
-      "visible": false,
+      "name": "zero begins a valid partition",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hand": [
           0,
@@ -176,9 +176,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: duplicate starts lack successors",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate starts lack successors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hand": [
           0,
@@ -198,9 +198,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: one complete group",
-      "kind": "real",
-      "visible": false,
+      "name": "one complete group",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hand": [
           4,
@@ -218,9 +218,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: equal cards cannot be consecutive",
-      "kind": "real",
-      "visible": false,
+      "name": "equal cards cannot be consecutive",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hand": [
           5,
@@ -236,9 +236,9 @@
     },
     {
       "id": "hidden-6",
-      "name": "hidden: many parallel groups",
-      "kind": "real",
-      "visible": false,
+      "name": "many parallel groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hand": [
           1,

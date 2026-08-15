@@ -132,9 +132,9 @@
     },
     {
       "id": "real-target-last",
-      "name": "hidden: target row appears last",
-      "kind": "real",
-      "visible": false,
+      "name": "target row appears last",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [

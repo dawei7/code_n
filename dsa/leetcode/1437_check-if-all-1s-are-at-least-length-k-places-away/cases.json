@@ -110,9 +110,9 @@
     },
     {
       "id": "real-exact",
-      "name": "hidden: exactly k positions between ones",
-      "kind": "real",
-      "visible": false,
+      "name": "exactly k positions between ones",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -130,9 +130,9 @@
     },
     {
       "id": "real-off-by-one",
-      "name": "hidden: one fewer than k positions",
-      "kind": "real",
-      "visible": false,
+      "name": "one fewer than k positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

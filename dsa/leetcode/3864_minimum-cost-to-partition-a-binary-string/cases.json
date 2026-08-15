@@ -124,9 +124,9 @@
     },
     {
       "id": "real-sensitive-pair",
-      "name": "hidden: splitting two sensitive characters is cheaper",
-      "kind": "real",
-      "visible": false,
+      "name": "splitting two sensitive characters is cheaper",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "11",
         "encCost": 1,
@@ -144,9 +144,9 @@
     },
     {
       "id": "real-expensive-sensitive-pair",
-      "name": "hidden: mixed pair splits under high encryption cost",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed pair splits under high encryption cost",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "10",
         "encCost": 100,
@@ -164,9 +164,9 @@
     },
     {
       "id": "real-cheap-encryption-pair",
-      "name": "hidden: mixed pair stays intact when flat cost is high",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed pair stays intact when flat cost is high",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "10",
         "encCost": 1,
@@ -184,9 +184,9 @@
     },
     {
       "id": "real-odd-halves",
-      "name": "hidden: even root may split into unsplittable odd halves",
-      "kind": "real",
-      "visible": false,
+      "name": "even root may split into unsplittable odd halves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "111000",
         "encCost": 2,
@@ -204,9 +204,9 @@
     },
     {
       "id": "real-long-zero-segment",
-      "name": "hidden: zero-only power of two remains one segment",
-      "kind": "real",
-      "visible": false,
+      "name": "zero-only power of two remains one segment",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "00000000",
         "encCost": 100,
@@ -224,9 +224,9 @@
     },
     {
       "id": "real-alternating-deep-split",
-      "name": "hidden: alternating power of two splits to characters",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating power of two splits to characters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "10101010",
         "encCost": 3,
@@ -244,9 +244,9 @@
     },
     {
       "id": "real-all-sensitive-deep-split",
-      "name": "hidden: sensitive power of two splits fully",
-      "kind": "real",
-      "visible": false,
+      "name": "sensitive power of two splits fully",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "11111111",
         "encCost": 2,

@@ -2,13 +2,114 @@
   "schema_version": 1,
   "challenge_id": "lc_2309",
   "cases": [
-    {"id":"sample-only-e","name":"sample: E is the only letter in both cases","kind":"sample","visible":true,"input":{"s":"lEeTcOdE"},"expected":"E","tags":["sample","case-pair"]},
-    {"id":"sample-greatest-r","name":"sample: R outranks other qualifying letters","kind":"sample","visible":true,"input":{"s":"arRAzFif"},"expected":"R","tags":["sample","greatest"]},
-    {"id":"sample-no-match","name":"sample: alternating cases do not form a pair","kind":"sample","visible":true,"input":{"s":"AbCdEfGhIjK"},"expected":"","tags":["sample","no-match"]},
-    {"id":"trial-single-character","name":"one character cannot supply both cases","kind":"trial","visible":true,"input":{"s":"z"},"expected":"","tags":["minimum-length"]},
-    {"id":"trial-z-pair","name":"Z is returned when both of its forms occur","kind":"trial","visible":true,"input":{"s":"zZ"},"expected":"Z","tags":["maximum-letter"]},
-    {"id":"trial-order-independent","name":"occurrence order does not affect qualification","kind":"trial","visible":true,"input":{"s":"Qabcq"},"expected":"Q","tags":["order"]},
-    {"id":"real-duplicates","name":"hidden: repeated lowercases still produce one answer","kind":"real","visible":false,"input":{"s":"mmmmMaaA"},"expected":"M","tags":["hidden","duplicates"]},
-    {"id":"real-lower-greater-unpaired","name":"hidden: an unpaired greater lowercase is ignored","kind":"real","visible":false,"input":{"s":"yAaYz"},"expected":"Y","tags":["hidden","unpaired"]}
+    {
+      "id": "sample-only-e",
+      "name": "sample: E is the only letter in both cases",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "lEeTcOdE"
+      },
+      "expected": "E",
+      "tags": [
+        "sample",
+        "case-pair"
+      ]
+    },
+    {
+      "id": "sample-greatest-r",
+      "name": "sample: R outranks other qualifying letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "arRAzFif"
+      },
+      "expected": "R",
+      "tags": [
+        "sample",
+        "greatest"
+      ]
+    },
+    {
+      "id": "sample-no-match",
+      "name": "sample: alternating cases do not form a pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "AbCdEfGhIjK"
+      },
+      "expected": "",
+      "tags": [
+        "sample",
+        "no-match"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "one character cannot supply both cases",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z"
+      },
+      "expected": "",
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-z-pair",
+      "name": "Z is returned when both of its forms occur",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zZ"
+      },
+      "expected": "Z",
+      "tags": [
+        "maximum-letter"
+      ]
+    },
+    {
+      "id": "trial-order-independent",
+      "name": "occurrence order does not affect qualification",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "Qabcq"
+      },
+      "expected": "Q",
+      "tags": [
+        "order"
+      ]
+    },
+    {
+      "id": "real-duplicates",
+      "name": "repeated lowercases still produce one answer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "mmmmMaaA"
+      },
+      "expected": "M",
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-lower-greater-unpaired",
+      "name": "an unpaired greater lowercase is ignored",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "yAaYz"
+      },
+      "expected": "Y",
+      "tags": [
+        "hidden",
+        "unpaired"
+      ]
+    }
   ]
 }

@@ -99,9 +99,9 @@
     },
     {
       "id": "hidden-lower-bound",
-      "name": "hidden: smallest candidate near lower bound",
-      "kind": "real",
-      "visible": false,
+      "name": "smallest candidate near lower bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "low": 10,
         "high": 12
@@ -116,9 +116,9 @@
     },
     {
       "id": "hidden-full-domain",
-      "name": "hidden: every possible candidate",
-      "kind": "real",
-      "visible": false,
+      "name": "every possible candidate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "low": 10,
         "high": 1000000000

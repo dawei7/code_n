@@ -2,17 +2,279 @@
   "schema_version": 1,
   "challenge_id": "lc_3779",
   "cases": [
-    {"id":"sample-1","name":"sample: one removal exposes a distinct suffix","kind":"sample","visible":true,"input":{"nums":[3,8,3,6,5,8]},"expected":1,"validator":{"kind":"exact"},"tags":["sample","one-operation"]},
-    {"id":"sample-2","name":"sample: fewer than three duplicated values are all removed","kind":"sample","visible":true,"input":{"nums":[2,2]},"expected":1,"validator":{"kind":"exact"},"tags":["sample","short-array"]},
-    {"id":"sample-3","name":"sample: an initially distinct array needs no operation","kind":"sample","visible":true,"input":{"nums":[4,3,5,1,2]},"expected":0,"validator":{"kind":"exact"},"tags":["sample","already-distinct"]},
-    {"id":"trial-single-value","name":"trial: one value is distinct","kind":"trial","visible":true,"input":{"nums":[1]},"expected":0,"validator":{"kind":"exact"},"tags":["trial","minimum-length"]},
-    {"id":"trial-three-equal","name":"trial: one operation removes exactly three equal values","kind":"trial","visible":true,"input":{"nums":[1,1,1]},"expected":1,"validator":{"kind":"exact"},"tags":["trial","exact-chunk"]},
-    {"id":"trial-duplicate-before-boundary","name":"trial: removing one full chunk separates duplicate copies","kind":"trial","visible":true,"input":{"nums":[1,2,9,3,4,9]},"expected":1,"validator":{"kind":"exact"},"tags":["trial","chunk-boundary"]},
-    {"id":"real-duplicate-only-in-prefix","name":"hidden: prefix duplicates disappear after one removal","kind":"real","visible":false,"input":{"nums":[1,1,2,3,4]},"expected":1,"validator":{"kind":"exact"},"tags":["hidden","removed-duplicate"]},
-    {"id":"real-three-operations","name":"hidden: a duplicate in the final pair forces removal of every chunk","kind":"real","visible":false,"input":{"nums":[1,2,3,4,5,6,7,7]},"expected":3,"validator":{"kind":"exact"},"tags":["hidden","partial-final-chunk"]},
-    {"id":"real-cross-prefix-copy","name":"hidden: a removed early copy no longer duplicates the suffix","kind":"real","visible":false,"input":{"nums":[1,2,3,1,4]},"expected":1,"validator":{"kind":"exact"},"tags":["hidden","cross-boundary"]},
-    {"id":"real-all-equal-seven","name":"hidden: seven equal values stop at a one-element suffix","kind":"real","visible":false,"input":{"nums":[5,5,5,5,5,5,5]},"expected":2,"validator":{"kind":"exact"},"tags":["hidden","one-element-suffix"]},
-    {"id":"real-two-operations","name":"hidden: the second surviving chunk still contains a duplicate","kind":"real","visible":false,"input":{"nums":[1,2,3,4,5,4]},"expected":2,"validator":{"kind":"exact"},"tags":["hidden","two-operations"]},
-    {"id":"real-maximum-value","name":"hidden: the upper value bound behaves like any other key","kind":"real","visible":false,"input":{"nums":[100000,1,2,100000]},"expected":1,"validator":{"kind":"exact"},"tags":["hidden","value-bound"]}
+    {
+      "id": "sample-1",
+      "name": "sample: one removal exposes a distinct suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          8,
+          3,
+          6,
+          5,
+          8
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "one-operation"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: fewer than three duplicated values are all removed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "short-array"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: an initially distinct array needs no operation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          5,
+          1,
+          2
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "already-distinct"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one value is distinct",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-three-equal",
+      "name": "trial: one operation removes exactly three equal values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "exact-chunk"
+      ]
+    },
+    {
+      "id": "trial-duplicate-before-boundary",
+      "name": "trial: removing one full chunk separates duplicate copies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          9,
+          3,
+          4,
+          9
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "chunk-boundary"
+      ]
+    },
+    {
+      "id": "real-duplicate-only-in-prefix",
+      "name": "prefix duplicates disappear after one removal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "removed-duplicate"
+      ]
+    },
+    {
+      "id": "real-three-operations",
+      "name": "a duplicate in the final pair forces removal of every chunk",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          7
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "partial-final-chunk"
+      ]
+    },
+    {
+      "id": "real-cross-prefix-copy",
+      "name": "a removed early copy no longer duplicates the suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1,
+          4
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "cross-boundary"
+      ]
+    },
+    {
+      "id": "real-all-equal-seven",
+      "name": "seven equal values stop at a one-element suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "one-element-suffix"
+      ]
+    },
+    {
+      "id": "real-two-operations",
+      "name": "the second surviving chunk still contains a duplicate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          4
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "two-operations"
+      ]
+    },
+    {
+      "id": "real-maximum-value",
+      "name": "the upper value bound behaves like any other key",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          1,
+          2,
+          100000
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "value-bound"
+      ]
+    }
   ]
 }

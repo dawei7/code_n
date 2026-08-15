@@ -7,90 +7,300 @@
       "name": "sample: the best qualifying triangle has twice-area two",
       "kind": "sample",
       "visible": true,
-      "input": {"coords": [[1, 1], [1, 2], [3, 2], [3, 3]]},
+      "input": {
+        "coords": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "vertical-base", "horizontal-base"]
+      "tags": [
+        "sample",
+        "vertical-base",
+        "horizontal-base"
+      ]
     },
     {
       "id": "sample-no-axis-parallel-side",
       "name": "sample: diagonal points provide no qualifying side",
       "kind": "sample",
       "visible": true,
-      "input": {"coords": [[1, 1], [2, 2], [3, 3]]},
+      "input": {
+        "coords": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
       "expected": -1,
-      "tags": ["sample", "impossible", "distinct-coordinates"]
+      "tags": [
+        "sample",
+        "impossible",
+        "distinct-coordinates"
+      ]
     },
     {
       "id": "trial-horizontal-base",
       "name": "trial: a horizontal base uses the farthest vertical extreme",
       "kind": "trial",
       "visible": true,
-      "input": {"coords": [[1, 2], [5, 2], [3, 10]]},
+      "input": {
+        "coords": [
+          [
+            1,
+            2
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            3,
+            10
+          ]
+        ]
+      },
       "expected": 32,
-      "tags": ["trial", "horizontal-base", "global-y-extreme"]
+      "tags": [
+        "trial",
+        "horizontal-base",
+        "global-y-extreme"
+      ]
     },
     {
       "id": "trial-vertical-base",
       "name": "trial: a vertical base uses the farthest horizontal extreme",
       "kind": "trial",
       "visible": true,
-      "input": {"coords": [[4, 1], [4, 7], [10, 3]]},
+      "input": {
+        "coords": [
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            10,
+            3
+          ]
+        ]
+      },
       "expected": 36,
-      "tags": ["trial", "vertical-base", "global-x-extreme"]
+      "tags": [
+        "trial",
+        "vertical-base",
+        "global-x-extreme"
+      ]
     },
     {
       "id": "trial-single-point",
       "name": "trial: one point cannot form a triangle",
       "kind": "trial",
       "visible": true,
-      "input": {"coords": [[1000000, 1000000]]},
+      "input": {
+        "coords": [
+          [
+            1000000,
+            1000000
+          ]
+        ]
+      },
       "expected": -1,
-      "tags": ["trial", "minimum-size", "impossible"]
+      "tags": [
+        "trial",
+        "minimum-size",
+        "impossible"
+      ]
     },
     {
       "id": "real-zero-area-collinear",
       "name": "real: an axis-parallel line alone has zero area",
-      "kind": "real",
-      "visible": false,
-      "input": {"coords": [[1, 5], [4, 5], [9, 5], [12, 5]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coords": [
+          [
+            1,
+            5
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            9,
+            5
+          ],
+          [
+            12,
+            5
+          ]
+        ]
+      },
       "expected": -1,
-      "tags": ["real", "zero-area", "collinear"]
+      "tags": [
+        "real",
+        "zero-area",
+        "collinear"
+      ]
     },
     {
       "id": "real-orientation-competition",
       "name": "real: compare the best vertical and horizontal bases",
-      "kind": "real",
-      "visible": false,
-      "input": {"coords": [[1, 1], [1, 5], [10, 2], [3, 10], [8, 10]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coords": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            3,
+            10
+          ],
+          [
+            8,
+            10
+          ]
+        ]
+      },
       "expected": 45,
-      "tags": ["real", "both-orientations", "maximum"]
+      "tags": [
+        "real",
+        "both-orientations",
+        "maximum"
+      ]
     },
     {
       "id": "real-interior-line",
       "name": "real: an interior base line chooses the farther global side",
-      "kind": "real",
-      "visible": false,
-      "input": {"coords": [[5, 1], [5, 9], [1, 4], [12, 7]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coords": [
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            12,
+            7
+          ]
+        ]
+      },
       "expected": 56,
-      "tags": ["real", "interior-line", "farthest-extreme"]
+      "tags": [
+        "real",
+        "interior-line",
+        "farthest-extreme"
+      ]
     },
     {
       "id": "real-coordinate-limit",
       "name": "real: coordinate limits produce a large integer result",
-      "kind": "real",
-      "visible": false,
-      "input": {"coords": [[1, 1], [1, 1000000], [1000000, 500000]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coords": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1000000
+          ],
+          [
+            1000000,
+            500000
+          ]
+        ]
+      },
       "expected": 999998000001,
-      "tags": ["real", "coordinate-boundary", "large-result"]
+      "tags": [
+        "real",
+        "coordinate-boundary",
+        "large-result"
+      ]
     },
     {
       "id": "real-shorter-base-farther-height",
       "name": "real: base length and height must be maximized as a product",
-      "kind": "real",
-      "visible": false,
-      "input": {"coords": [[2, 1], [2, 11], [8, 3], [8, 12], [20, 7]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coords": [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            11
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            8,
+            12
+          ],
+          [
+            20,
+            7
+          ]
+        ]
+      },
       "expected": 180,
-      "tags": ["real", "product", "vertical-groups"]
+      "tags": [
+        "real",
+        "product",
+        "vertical-groups"
+      ]
     }
   ]
 }

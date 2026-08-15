@@ -145,9 +145,9 @@
     },
     {
       "id": "hidden-two-nodes",
-      "name": "hidden: repeated draws from two nodes",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated draws from two nodes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           10,
@@ -201,9 +201,9 @@
     },
     {
       "id": "hidden-all-equal",
-      "name": "hidden: all node values equal",
-      "kind": "real",
-      "visible": false,
+      "name": "all node values equal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           3,

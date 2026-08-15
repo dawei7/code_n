@@ -1,13 +1,319 @@
 {
   "challenge_id": "lc_2933",
   "cases": [
-    {"id":"sample-one-high-access","name":"sample: one employee has a qualifying triple","kind":"sample","visible":true,"input":{"access_times":[["a","0549"],["b","0457"],["a","0532"],["a","0621"],["b","0540"]]},"expected":["a"],"validator":{"kind":"unordered_list"},"tags":["sample"]},
-    {"id":"sample-two-high-access","name":"sample: two employees qualify independently","kind":"sample","visible":true,"input":{"access_times":[["d","0002"],["c","0808"],["c","0829"],["e","0215"],["d","1508"],["d","1444"],["d","1410"],["c","0809"]]},"expected":["c","d"],"validator":{"kind":"unordered_list"},"tags":["sample"]},
-    {"id":"sample-shared-span","name":"sample: both triples span exactly 59 minutes","kind":"sample","visible":true,"input":{"access_times":[["cd","1025"],["ab","1025"],["cd","1046"],["cd","1055"],["ab","1124"],["ab","1120"]]},"expected":["ab","cd"],"validator":{"kind":"unordered_list"},"tags":["sample","strict-boundary"]},
-    {"id":"trial-exact-hour","name":"trial: exactly sixty minutes does not qualify","kind":"trial","visible":true,"input":{"access_times":[["a","0800"],["a","0830"],["a","0900"]]},"expected":[],"validator":{"kind":"unordered_list"},"tags":["exact-hour"]},
-    {"id":"trial-fifty-nine-minutes","name":"trial: a fifty-nine-minute span qualifies","kind":"trial","visible":true,"input":{"access_times":[["a","0800"],["a","0830"],["a","0859"]]},"expected":["a"],"validator":{"kind":"unordered_list"},"tags":["strict-boundary"]},
-    {"id":"real-no-midnight-wrap","name":"hidden: start and end of day are not adjacent","kind":"real","visible":false,"input":{"access_times":[["night","2350"],["night","0005"],["night","0020"]]},"expected":[],"validator":{"kind":"unordered_list"},"tags":["hidden","midnight"]},
-    {"id":"real-repeated-minute","name":"hidden: separate accesses at one minute all count","kind":"real","visible":false,"input":{"access_times":[["repeat","1200"],["repeat","1200"],["repeat","1200"]]},"expected":["repeat"],"validator":{"kind":"unordered_list"},"tags":["hidden","duplicates"]},
-    {"id":"real-mixed-employees","name":"hidden: only selected employee timelines qualify","kind":"real","visible":false,"input":{"access_times":[["amy","1010"],["bob","0900"],["amy","1000"],["cara","2359"],["bob","1000"],["amy","1059"],["bob","1100"],["cara","0000"],["cara","0058"]]},"expected":["amy"],"validator":{"kind":"unordered_list"},"tags":["hidden","mixed"]}
+    {
+      "id": "sample-one-high-access",
+      "name": "sample: one employee has a qualifying triple",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "access_times": [
+          [
+            "a",
+            "0549"
+          ],
+          [
+            "b",
+            "0457"
+          ],
+          [
+            "a",
+            "0532"
+          ],
+          [
+            "a",
+            "0621"
+          ],
+          [
+            "b",
+            "0540"
+          ]
+        ]
+      },
+      "expected": [
+        "a"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-two-high-access",
+      "name": "sample: two employees qualify independently",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "access_times": [
+          [
+            "d",
+            "0002"
+          ],
+          [
+            "c",
+            "0808"
+          ],
+          [
+            "c",
+            "0829"
+          ],
+          [
+            "e",
+            "0215"
+          ],
+          [
+            "d",
+            "1508"
+          ],
+          [
+            "d",
+            "1444"
+          ],
+          [
+            "d",
+            "1410"
+          ],
+          [
+            "c",
+            "0809"
+          ]
+        ]
+      },
+      "expected": [
+        "c",
+        "d"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-shared-span",
+      "name": "sample: both triples span exactly 59 minutes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "access_times": [
+          [
+            "cd",
+            "1025"
+          ],
+          [
+            "ab",
+            "1025"
+          ],
+          [
+            "cd",
+            "1046"
+          ],
+          [
+            "cd",
+            "1055"
+          ],
+          [
+            "ab",
+            "1124"
+          ],
+          [
+            "ab",
+            "1120"
+          ]
+        ]
+      },
+      "expected": [
+        "ab",
+        "cd"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "strict-boundary"
+      ]
+    },
+    {
+      "id": "trial-exact-hour",
+      "name": "trial: exactly sixty minutes does not qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "access_times": [
+          [
+            "a",
+            "0800"
+          ],
+          [
+            "a",
+            "0830"
+          ],
+          [
+            "a",
+            "0900"
+          ]
+        ]
+      },
+      "expected": [],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "exact-hour"
+      ]
+    },
+    {
+      "id": "trial-fifty-nine-minutes",
+      "name": "trial: a fifty-nine-minute span qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "access_times": [
+          [
+            "a",
+            "0800"
+          ],
+          [
+            "a",
+            "0830"
+          ],
+          [
+            "a",
+            "0859"
+          ]
+        ]
+      },
+      "expected": [
+        "a"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "strict-boundary"
+      ]
+    },
+    {
+      "id": "real-no-midnight-wrap",
+      "name": "start and end of day are not adjacent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "access_times": [
+          [
+            "night",
+            "2350"
+          ],
+          [
+            "night",
+            "0005"
+          ],
+          [
+            "night",
+            "0020"
+          ]
+        ]
+      },
+      "expected": [],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "midnight"
+      ]
+    },
+    {
+      "id": "real-repeated-minute",
+      "name": "separate accesses at one minute all count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "access_times": [
+          [
+            "repeat",
+            "1200"
+          ],
+          [
+            "repeat",
+            "1200"
+          ],
+          [
+            "repeat",
+            "1200"
+          ]
+        ]
+      },
+      "expected": [
+        "repeat"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-mixed-employees",
+      "name": "only selected employee timelines qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "access_times": [
+          [
+            "amy",
+            "1010"
+          ],
+          [
+            "bob",
+            "0900"
+          ],
+          [
+            "amy",
+            "1000"
+          ],
+          [
+            "cara",
+            "2359"
+          ],
+          [
+            "bob",
+            "1000"
+          ],
+          [
+            "amy",
+            "1059"
+          ],
+          [
+            "bob",
+            "1100"
+          ],
+          [
+            "cara",
+            "0000"
+          ],
+          [
+            "cara",
+            "0058"
+          ]
+        ]
+      },
+      "expected": [
+        "amy"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    }
   ]
 }

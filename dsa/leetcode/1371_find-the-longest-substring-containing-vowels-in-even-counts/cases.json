@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-grouped-pairs",
-      "name": "hidden: grouped vowel pairs",
-      "kind": "real",
-      "visible": false,
+      "name": "grouped vowel pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaeeiioouu"
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-consonant-suffix",
-      "name": "hidden: consonants after one odd vowel",
-      "kind": "real",
-      "visible": false,
+      "name": "consonants after one odd vowel",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abc"
       },

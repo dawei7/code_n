@@ -1,14 +1,175 @@
 {
   "challenge_id": "lc_3496",
   "cases": [
-    {"id":"sample-odd","name":"sample: choose one survivor","kind":"sample","visible":true,"input":{"nums":[2,4,1]},"expected":6,"tags":["sample","odd-length"]},
-    {"id":"sample-even","name":"sample: choose an adjacent survivor pair","kind":"sample","visible":true,"input":{"nums":[5,-1,4,2]},"expected":7,"tags":["sample","even-length"]},
-    {"id":"trial-single","name":"trial: one element permits no operation","kind":"trial","visible":true,"input":{"nums":[9]},"expected":0,"tags":["trial","boundary"]},
-    {"id":"trial-two","name":"trial: two elements permit no operation","kind":"trial","visible":true,"input":{"nums":[-7,12]},"expected":0,"tags":["trial","boundary"]},
-    {"id":"trial-negative-pair","name":"trial: leave the most negative adjacent pair","kind":"trial","visible":true,"input":{"nums":[10,-8,-7,10]},"expected":20,"tags":["trial","negative-values"]},
-    {"id":"real-odd-mixed","name":"real: odd mixed values","kind":"real","visible":false,"input":{"nums":[1,-5,3,7,2]},"expected":13,"tags":["real","minimum-survivor"]},
-    {"id":"real-all-negative","name":"real: every possible score is negative","kind":"real","visible":false,"input":{"nums":[-1,-2,-3]},"expected":-3,"tags":["real","negative-values"]},
-    {"id":"real-even-interior","name":"real: best survivor pair is interior","kind":"real","visible":false,"input":{"nums":[6,5,-10,-9,8,4]},"expected":23,"tags":["real","adjacent-pair"]},
-    {"id":"real-repeated-minima","name":"real: repeated minimum survivors","kind":"real","visible":false,"input":{"nums":[4,-6,9,-6,4,3,8]},"expected":22,"tags":["real","ties"]}
+    {
+      "id": "sample-odd",
+      "name": "sample: choose one survivor",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "odd-length"
+      ]
+    },
+    {
+      "id": "sample-even",
+      "name": "sample: choose an adjacent survivor pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          -1,
+          4,
+          2
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "even-length"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one element permits no operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-two",
+      "name": "trial: two elements permit no operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -7,
+          12
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-negative-pair",
+      "name": "trial: leave the most negative adjacent pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          -8,
+          -7,
+          10
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "trial",
+        "negative-values"
+      ]
+    },
+    {
+      "id": "real-odd-mixed",
+      "name": "real: odd mixed values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -5,
+          3,
+          7,
+          2
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "real",
+        "minimum-survivor"
+      ]
+    },
+    {
+      "id": "real-all-negative",
+      "name": "real: every possible score is negative",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          -3
+        ]
+      },
+      "expected": -3,
+      "tags": [
+        "real",
+        "negative-values"
+      ]
+    },
+    {
+      "id": "real-even-interior",
+      "name": "real: best survivor pair is interior",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          5,
+          -10,
+          -9,
+          8,
+          4
+        ]
+      },
+      "expected": 23,
+      "tags": [
+        "real",
+        "adjacent-pair"
+      ]
+    },
+    {
+      "id": "real-repeated-minima",
+      "name": "real: repeated minimum survivors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          -6,
+          9,
+          -6,
+          4,
+          3,
+          8
+        ]
+      },
+      "expected": 22,
+      "tags": [
+        "real",
+        "ties"
+      ]
+    }
   ]
 }

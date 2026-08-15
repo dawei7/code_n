@@ -123,9 +123,9 @@
     },
     {
       "id": "real-target-above",
-      "name": "hidden: target exceeds every reachable value",
-      "kind": "real",
-      "visible": false,
+      "name": "target exceeds every reachable value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           5,
@@ -143,9 +143,9 @@
     },
     {
       "id": "real-no-zero",
-      "name": "hidden: positive common bits prevent zero",
-      "kind": "real",
-      "visible": false,
+      "name": "positive common bits prevent zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           7,
@@ -164,9 +164,9 @@
     },
     {
       "id": "real-bit-transitions",
-      "name": "hidden: several distinct AND states survive",
-      "kind": "real",
-      "visible": false,
+      "name": "several distinct AND states survive",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1023,
@@ -186,9 +186,9 @@
     },
     {
       "id": "real-alternating",
-      "name": "hidden: alternating masks create duplicates and collapses",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating masks create duplicates and collapses",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           43690,

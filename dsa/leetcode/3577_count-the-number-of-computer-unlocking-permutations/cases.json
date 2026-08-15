@@ -7,90 +7,222 @@
       "name": "sample: the root unlocks both later computers",
       "kind": "sample",
       "visible": true,
-      "input": {"complexity": [1, 2, 3]},
+      "input": {
+        "complexity": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "valid", "factorial"]
+      "tags": [
+        "sample",
+        "valid",
+        "factorial"
+      ]
     },
     {
       "id": "sample-root-tied",
       "name": "sample: equal root complexity blocks a later computer",
       "kind": "sample",
       "visible": true,
-      "input": {"complexity": [3, 3, 3, 4, 4, 4]},
+      "input": {
+        "complexity": [
+          3,
+          3,
+          3,
+          4,
+          4,
+          4
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "duplicate-minimum", "impossible"]
+      "tags": [
+        "sample",
+        "duplicate-minimum",
+        "impossible"
+      ]
     },
     {
       "id": "trial-minimum-length-valid",
       "name": "trial: two computers have one valid order",
       "kind": "trial",
       "visible": true,
-      "input": {"complexity": [1, 2]},
+      "input": {
+        "complexity": [
+          1,
+          2
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length", "valid"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "valid"
+      ]
     },
     {
       "id": "trial-minimum-length-invalid",
       "name": "trial: a smaller second computer cannot be unlocked",
       "kind": "trial",
       "visible": true,
-      "input": {"complexity": [2, 1]},
+      "input": {
+        "complexity": [
+          2,
+          1
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "minimum-length", "smaller-later-value"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "smaller-later-value"
+      ]
     },
     {
       "id": "trial-nonmonotonic-valid",
       "name": "trial: later complexities need not be sorted",
       "kind": "trial",
       "visible": true,
-      "input": {"complexity": [2, 9, 3, 8, 4]},
+      "input": {
+        "complexity": [
+          2,
+          9,
+          3,
+          8,
+          4
+        ]
+      },
       "expected": 24,
-      "tags": ["trial", "nonmonotonic", "factorial"]
+      "tags": [
+        "trial",
+        "nonmonotonic",
+        "factorial"
+      ]
     },
     {
       "id": "real-root-duplicate-at-end",
       "name": "real: a duplicate of the root at the final label is fatal",
-      "kind": "real",
-      "visible": false,
-      "input": {"complexity": [4, 9, 7, 5, 4]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "complexity": [
+          4,
+          9,
+          7,
+          5,
+          4
+        ]
+      },
       "expected": 0,
-      "tags": ["real", "strict-inequality", "duplicate-root"]
+      "tags": [
+        "real",
+        "strict-inequality",
+        "duplicate-root"
+      ]
     },
     {
       "id": "real-smaller-value-in-middle",
       "name": "real: one value below the root makes completion impossible",
-      "kind": "real",
-      "visible": false,
-      "input": {"complexity": [6, 10, 8, 2, 9]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "complexity": [
+          6,
+          10,
+          8,
+          2,
+          9
+        ]
+      },
       "expected": 0,
-      "tags": ["real", "smaller-later-value", "impossible"]
+      "tags": [
+        "real",
+        "smaller-later-value",
+        "impossible"
+      ]
     },
     {
       "id": "real-repeated-values-above-root",
       "name": "real: repeated non-root complexities remain unlockable",
-      "kind": "real",
-      "visible": false,
-      "input": {"complexity": [1, 5, 5, 2, 2, 9]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "complexity": [
+          1,
+          5,
+          5,
+          2,
+          2,
+          9
+        ]
+      },
       "expected": 120,
-      "tags": ["real", "duplicates-above-root", "valid"]
+      "tags": [
+        "real",
+        "duplicates-above-root",
+        "valid"
+      ]
     },
     {
       "id": "real-eight-computers",
       "name": "real: every ordering after the root contributes",
-      "kind": "real",
-      "visible": false,
-      "input": {"complexity": [3, 11, 4, 10, 5, 9, 6, 8]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "complexity": [
+          3,
+          11,
+          4,
+          10,
+          5,
+          9,
+          6,
+          8
+        ]
+      },
       "expected": 5040,
-      "tags": ["real", "nonmonotonic", "factorial"]
+      "tags": [
+        "real",
+        "nonmonotonic",
+        "factorial"
+      ]
     },
     {
       "id": "real-modular-factorial",
       "name": "real: factorial is reduced modulo the required modulus",
-      "kind": "real",
-      "visible": false,
-      "input": {"complexity": [1, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "complexity": [
+          1,
+          20,
+          19,
+          18,
+          17,
+          16,
+          15,
+          14,
+          13,
+          12,
+          11,
+          10,
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2
+        ]
+      },
       "expected": 557316307,
-      "tags": ["real", "modulo", "factorial"]
+      "tags": [
+        "real",
+        "modulo",
+        "factorial"
+      ]
     }
   ]
 }

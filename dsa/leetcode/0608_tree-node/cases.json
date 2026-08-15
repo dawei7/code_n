@@ -252,9 +252,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: unsorted rows",
-      "kind": "real",
-      "visible": false,
+      "name": "unsorted rows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tree": [
@@ -316,9 +316,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: several inner nodes and leaves",
-      "kind": "real",
-      "visible": false,
+      "name": "several inner nodes and leaves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tree": [

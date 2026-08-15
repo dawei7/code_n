@@ -120,9 +120,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: repeated violations",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated violations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -142,9 +142,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: large boundary values",
-      "kind": "real",
-      "visible": false,
+      "name": "large boundary values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,
@@ -160,9 +160,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: equality after a low value",
-      "kind": "real",
-      "visible": false,
+      "name": "equality after a low value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -180,9 +180,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: multiple later minima",
-      "kind": "real",
-      "visible": false,
+      "name": "multiple later minima",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -202,4 +202,3 @@
     }
   ]
 }
-

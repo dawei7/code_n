@@ -2,13 +2,115 @@
   "schema_version": 1,
   "challenge_id": "lc_2231",
   "cases": [
-    {"id":"sample-four-digits","name":"sample: odd and even digits reorder independently","kind":"sample","visible":true,"input":{"num":1234},"expected":3412,"tags":["sample","mixed-parity"]},
-    {"id":"sample-five-digits","name":"sample: repeated odd digits remain available","kind":"sample","visible":true,"input":{"num":65875},"expected":87655,"tags":["sample","duplicates"]},
-    {"id":"trial-single-digit","name":"one digit cannot change","kind":"trial","visible":true,"input":{"num":7},"expected":7,"tags":["single-digit"]},
-    {"id":"trial-all-even","name":"all-even digits sort descending","kind":"trial","visible":true,"input":{"num":24068},"expected":86420,"tags":["one-parity","zero"]},
-    {"id":"trial-all-odd","name":"all-odd digits sort descending","kind":"trial","visible":true,"input":{"num":13579},"expected":97531,"tags":["one-parity"]},
-    {"id":"real-parity-pattern","name":"hidden: the original parity pattern remains fixed","kind":"real","visible":false,"input":{"num":102938475},"expected":984752031,"tags":["hidden","mixed-parity"]},
-    {"id":"real-repeated-digits","name":"hidden: repeated values are handled independently","kind":"real","visible":false,"input":{"num":11223344},"expected":33441122,"tags":["hidden","duplicates"]},
-    {"id":"real-upper-bound","name":"hidden: the legal upper bound is unchanged","kind":"real","visible":false,"input":{"num":1000000000},"expected":1000000000,"tags":["hidden","upper-bound"]}
+    {
+      "id": "sample-four-digits",
+      "name": "sample: odd and even digits reorder independently",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 1234
+      },
+      "expected": 3412,
+      "tags": [
+        "sample",
+        "mixed-parity"
+      ]
+    },
+    {
+      "id": "sample-five-digits",
+      "name": "sample: repeated odd digits remain available",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 65875
+      },
+      "expected": 87655,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-single-digit",
+      "name": "one digit cannot change",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 7
+      },
+      "expected": 7,
+      "tags": [
+        "single-digit"
+      ]
+    },
+    {
+      "id": "trial-all-even",
+      "name": "all-even digits sort descending",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 24068
+      },
+      "expected": 86420,
+      "tags": [
+        "one-parity",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-all-odd",
+      "name": "all-odd digits sort descending",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 13579
+      },
+      "expected": 97531,
+      "tags": [
+        "one-parity"
+      ]
+    },
+    {
+      "id": "real-parity-pattern",
+      "name": "the original parity pattern remains fixed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 102938475
+      },
+      "expected": 984752031,
+      "tags": [
+        "hidden",
+        "mixed-parity"
+      ]
+    },
+    {
+      "id": "real-repeated-digits",
+      "name": "repeated values are handled independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 11223344
+      },
+      "expected": 33441122,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-upper-bound",
+      "name": "the legal upper bound is unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1000000000
+      },
+      "expected": 1000000000,
+      "tags": [
+        "hidden",
+        "upper-bound"
+      ]
+    }
   ]
 }

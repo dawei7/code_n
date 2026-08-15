@@ -168,9 +168,9 @@
     },
     {
       "id": "real-longer-chain",
-      "name": "hidden: several adjacent mirrors redirect repeatedly",
-      "kind": "real",
-      "visible": false,
+      "name": "several adjacent mirrors redirect repeatedly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -201,9 +201,9 @@
     },
     {
       "id": "real-dense-pattern",
-      "name": "hidden: alternating dense mirror pattern",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating dense mirror pattern",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -240,9 +240,9 @@
     },
     {
       "id": "real-empty-rectangle",
-      "name": "hidden: empty rectangular grid",
-      "kind": "real",
-      "visible": false,
+      "name": "empty rectangular grid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -296,9 +296,9 @@
     },
     {
       "id": "real-modulo",
-      "name": "hidden: empty grid requires modulo reduction",
-      "kind": "real",
-      "visible": false,
+      "name": "empty grid requires modulo reduction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

@@ -95,9 +95,9 @@
     },
     {
       "id": "real-maximum-rate-two",
-      "name": "hidden: maximum bottles at exchange rate two",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum bottles at exchange rate two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "numBottles": 100,
         "numExchange": 2
@@ -111,9 +111,9 @@
     },
     {
       "id": "real-equal-maximums",
-      "name": "hidden: maximum count equals maximum threshold",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum count equals maximum threshold",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "numBottles": 100,
         "numExchange": 100
@@ -127,9 +127,9 @@
     },
     {
       "id": "real-remainder-chain",
-      "name": "hidden: several rounds leave an unusable remainder",
-      "kind": "real",
-      "visible": false,
+      "name": "several rounds leave an unusable remainder",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "numBottles": 10,
         "numExchange": 3
@@ -143,9 +143,9 @@
     },
     {
       "id": "real-one-short",
-      "name": "hidden: initial bottles are one short of exchange",
-      "kind": "real",
-      "visible": false,
+      "name": "initial bottles are one short of exchange",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "numBottles": 99,
         "numExchange": 100
@@ -159,4 +159,3 @@
     }
   ]
 }
-

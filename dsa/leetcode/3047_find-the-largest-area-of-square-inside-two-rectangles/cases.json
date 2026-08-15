@@ -231,8 +231,8 @@
     {
       "id": "real-large-contained",
       "name": "real: contained rectangle produces a large 64-bit area",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bottomLeft": [
           [
@@ -265,8 +265,8 @@
     {
       "id": "real-nonadjacent-pair",
       "name": "real: best overlap comes from nonadjacent input positions",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bottomLeft": [
           [

@@ -122,9 +122,9 @@
     },
     {
       "id": "hidden-no-exact-limit",
-      "name": "hidden: optimum stays below limit",
-      "kind": "real",
-      "visible": false,
+      "name": "optimum stays below limit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -153,9 +153,9 @@
     },
     {
       "id": "hidden-repeated-prefix",
-      "name": "hidden: repeated prefix sums",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated prefix sums",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -181,9 +181,9 @@
     },
     {
       "id": "hidden-single-column",
-      "name": "hidden: constrained vertical interval",
-      "kind": "real",
-      "visible": false,
+      "name": "constrained vertical interval",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -209,4 +209,3 @@
     }
   ]
 }
-

@@ -2,18 +2,313 @@
   "schema_version": 1,
   "challenge_id": "lc_3806",
   "cases": [
-    {"id":"sample-1","name":"sample: raise two selected values to six","kind":"sample","visible":true,"input":{"nums":[3,1,2],"k":8,"m":2},"expected":6,"validator":{"kind":"exact"},"tags":["sample","subset","increments"]},
-    {"id":"sample-2","name":"sample: three values share the four bit","kind":"sample","visible":true,"input":{"nums":[1,2,8,4],"k":7,"m":3},"expected":4,"validator":{"kind":"exact"},"tags":["sample","subset","unused-budget"]},
-    {"id":"sample-3","name":"sample: increment both ones to two","kind":"sample","visible":true,"input":{"nums":[1,1],"k":3,"m":2},"expected":2,"validator":{"kind":"exact"},"tags":["sample","all-indices","unused-budget"]},
-    {"id":"trial-single-value","name":"trial: one selected value uses its increment","kind":"trial","visible":true,"input":{"nums":[5],"k":1,"m":1},"expected":6,"validator":{"kind":"exact"},"tags":["trial","single-index"]},
-    {"id":"trial-carry-boundary","name":"trial: one increment crosses a power of two","kind":"trial","visible":true,"input":{"nums":[7],"k":1,"m":1},"expected":8,"validator":{"kind":"exact"},"tags":["trial","carry","single-index"]},
-    {"id":"trial-choose-one","name":"trial: choose the best one-element subset","kind":"trial","visible":true,"input":{"nums":[1,2,3],"k":1,"m":1},"expected":4,"validator":{"kind":"exact"},"tags":["trial","subset","m-one"]},
-    {"id":"trial-all-elements","name":"trial: every array element must participate","kind":"trial","visible":true,"input":{"nums":[1,2,3],"k":1,"m":3},"expected":2,"validator":{"kind":"exact"},"tags":["trial","all-indices","small-budget"]},
-    {"id":"real-no-operation-needed","name":"hidden: the optimum leaves duplicate values unchanged","kind":"real","visible":false,"input":{"nums":[5,5,5],"k":1,"m":2},"expected":5,"validator":{"kind":"exact"},"tags":["hidden","unused-budget","duplicates"]},
-    {"id":"real-shared-bit-without-equality","name":"hidden: selected values need only share mask bits","kind":"real","visible":false,"input":{"nums":[5,10],"k":3,"m":2},"expected":8,"validator":{"kind":"exact"},"tags":["hidden","shared-bits","carry"]},
-    {"id":"real-two-carries","name":"hidden: both selected values cross the same boundary","kind":"real","visible":false,"input":{"nums":[7,7],"k":2,"m":2},"expected":8,"validator":{"kind":"exact"},"tags":["hidden","carry","all-indices"]},
-    {"id":"real-mixed-bit-patterns","name":"hidden: mixed values require a composite candidate mask","kind":"real","visible":false,"input":{"nums":[15,1,7,3],"k":10,"m":3},"expected":10,"validator":{"kind":"exact"},"tags":["hidden","mixed-bits","subset"]},
-    {"id":"real-large-values-and-budget","name":"hidden: numeric and operation upper bounds","kind":"real","visible":false,"input":{"nums":[1000000000,999999999,500000000],"k":1000000000,"m":2},"expected":1499999999,"validator":{"kind":"exact"},"tags":["hidden","value-boundary","budget-boundary"]},
-    {"id":"real-larger-selection","name":"hidden: select three values from five bit patterns","kind":"real","visible":false,"input":{"nums":[2,4,6,8,10],"k":15,"m":3},"expected":13,"validator":{"kind":"exact"},"tags":["hidden","subset","mixed-bits"]}
+    {
+      "id": "sample-1",
+      "name": "sample: raise two selected values to six",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          2
+        ],
+        "k": 8,
+        "m": 2
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "subset",
+        "increments"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: three values share the four bit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          8,
+          4
+        ],
+        "k": 7,
+        "m": 3
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "subset",
+        "unused-budget"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: increment both ones to two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 3,
+        "m": 2
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "all-indices",
+        "unused-budget"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one selected value uses its increment",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 1,
+        "m": 1
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-index"
+      ]
+    },
+    {
+      "id": "trial-carry-boundary",
+      "name": "trial: one increment crosses a power of two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 1,
+        "m": 1
+      },
+      "expected": 8,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "carry",
+        "single-index"
+      ]
+    },
+    {
+      "id": "trial-choose-one",
+      "name": "trial: choose the best one-element subset",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 1,
+        "m": 1
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "subset",
+        "m-one"
+      ]
+    },
+    {
+      "id": "trial-all-elements",
+      "name": "trial: every array element must participate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 1,
+        "m": 3
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-indices",
+        "small-budget"
+      ]
+    },
+    {
+      "id": "real-no-operation-needed",
+      "name": "the optimum leaves duplicate values unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ],
+        "k": 1,
+        "m": 2
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "unused-budget",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-shared-bit-without-equality",
+      "name": "selected values need only share mask bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          10
+        ],
+        "k": 3,
+        "m": 2
+      },
+      "expected": 8,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "shared-bits",
+        "carry"
+      ]
+    },
+    {
+      "id": "real-two-carries",
+      "name": "both selected values cross the same boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7
+        ],
+        "k": 2,
+        "m": 2
+      },
+      "expected": 8,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "carry",
+        "all-indices"
+      ]
+    },
+    {
+      "id": "real-mixed-bit-patterns",
+      "name": "mixed values require a composite candidate mask",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          15,
+          1,
+          7,
+          3
+        ],
+        "k": 10,
+        "m": 3
+      },
+      "expected": 10,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "mixed-bits",
+        "subset"
+      ]
+    },
+    {
+      "id": "real-large-values-and-budget",
+      "name": "numeric and operation upper bounds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          999999999,
+          500000000
+        ],
+        "k": 1000000000,
+        "m": 2
+      },
+      "expected": 1499999999,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "value-boundary",
+        "budget-boundary"
+      ]
+    },
+    {
+      "id": "real-larger-selection",
+      "name": "select three values from five bit patterns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6,
+          8,
+          10
+        ],
+        "k": 15,
+        "m": 3
+      },
+      "expected": 13,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "subset",
+        "mixed-bits"
+      ]
+    }
   ]
 }

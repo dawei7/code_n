@@ -100,8 +100,8 @@
     {
       "id": "real-dominant-uses-all",
       "name": "real dominant uses all",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": 3,
         "b": 3,
@@ -119,8 +119,8 @@
     {
       "id": "real-unequal-balanced",
       "name": "real unequal balanced",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": 4,
         "b": 5,

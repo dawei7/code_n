@@ -61,9 +61,9 @@
     },
     {
       "id": "real-repair-one-character",
-      "name": "hidden: shrink only until the added character is valid",
-      "kind": "real",
-      "visible": false,
+      "name": "shrink only until the added character is valid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abaccc"
       },
@@ -75,9 +75,9 @@
     },
     {
       "id": "real-best-prefix",
-      "name": "hidden: optimum occurs before a trailing third copy",
-      "kind": "real",
-      "visible": false,
+      "name": "optimum occurs before a trailing third copy",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ccaabbb"
       },
@@ -89,9 +89,9 @@
     },
     {
       "id": "real-three-cycles",
-      "name": "hidden: every third copy forces the oldest copy out",
-      "kind": "real",
-      "visible": false,
+      "name": "every third copy forces the oldest copy out",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcabcabc"
       },
@@ -103,9 +103,9 @@
     },
     {
       "id": "real-best-before-end",
-      "name": "hidden: final characters do not improve the maximum",
-      "kind": "real",
-      "visible": false,
+      "name": "final characters do not improve the maximum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zzxyzz"
       },

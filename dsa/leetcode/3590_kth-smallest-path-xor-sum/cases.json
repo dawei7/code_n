@@ -7,81 +7,448 @@
       "name": "sample: repeated path XORs occupy one distinct rank",
       "kind": "sample",
       "visible": true,
-      "input": {"par": [-1, 0, 0], "vals": [1, 1, 1], "queries": [[0, 1], [0, 2], [0, 3]]},
-      "expected": [0, 1, -1],
-      "tags": ["sample", "duplicates", "distinct-ranks"]
+      "input": {
+        "par": [
+          -1,
+          0,
+          0
+        ],
+        "vals": [
+          1,
+          1,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        -1
+      ],
+      "tags": [
+        "sample",
+        "duplicates",
+        "distinct-ranks"
+      ]
     },
     {
       "id": "sample-chain-subtrees",
       "name": "sample: queries use root-based XORs inside nested subtrees",
       "kind": "sample",
       "visible": true,
-      "input": {"par": [-1, 0, 1], "vals": [5, 2, 7], "queries": [[0, 1], [1, 2], [1, 3], [2, 1]]},
-      "expected": [0, 7, -1, 0],
-      "tags": ["sample", "chain", "original-root"]
+      "input": {
+        "par": [
+          -1,
+          0,
+          1
+        ],
+        "vals": [
+          5,
+          2,
+          7
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        7,
+        -1,
+        0
+      ],
+      "tags": [
+        "sample",
+        "chain",
+        "original-root"
+      ]
     },
     {
       "id": "trial-single-node",
       "name": "trial: a singleton subtree has exactly one distinct sum",
       "kind": "trial",
       "visible": true,
-      "input": {"par": [-1], "vals": [7], "queries": [[0, 1], [0, 2]]},
-      "expected": [7, -1],
-      "tags": ["trial", "singleton", "missing-rank"]
+      "input": {
+        "par": [
+          -1
+        ],
+        "vals": [
+          7
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        7,
+        -1
+      ],
+      "tags": [
+        "trial",
+        "singleton",
+        "missing-rank"
+      ]
     },
     {
       "id": "trial-star-duplicates",
       "name": "trial: sibling branches can produce the same path XOR",
       "kind": "trial",
       "visible": true,
-      "input": {"par": [-1, 0, 0, 0], "vals": [4, 1, 6, 1], "queries": [[0, 1], [0, 2], [0, 3], [0, 4], [1, 1]]},
-      "expected": [2, 4, 5, -1, 5],
-      "tags": ["trial", "star", "duplicate-merge"]
+      "input": {
+        "par": [
+          -1,
+          0,
+          0,
+          0
+        ],
+        "vals": [
+          4,
+          1,
+          6,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        4,
+        5,
+        -1,
+        5
+      ],
+      "tags": [
+        "trial",
+        "star",
+        "duplicate-merge"
+      ]
     },
     {
       "id": "trial-all-zero-xors",
       "name": "trial: every nested subtree deduplicates identical zero sums",
       "kind": "trial",
       "visible": true,
-      "input": {"par": [-1, 0, 1, 2], "vals": [0, 0, 0, 0], "queries": [[0, 1], [0, 2], [2, 1], [3, 1]]},
-      "expected": [0, -1, 0, 0],
-      "tags": ["trial", "zero", "deduplication"]
+      "input": {
+        "par": [
+          -1,
+          0,
+          1,
+          2
+        ],
+        "vals": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        -1,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "zero",
+        "deduplication"
+      ]
     },
     {
       "id": "real-branched-distinct-values",
       "name": "real: several child bags merge into ordered subtree sets",
-      "kind": "real",
-      "visible": false,
-      "input": {"par": [-1, 0, 0, 1, 1, 2], "vals": [7, 3, 4, 6, 1, 2], "queries": [[0, 1], [0, 6], [1, 1], [1, 2], [1, 3], [2, 2]]},
-      "expected": [1, 7, 2, 4, 5, 3],
-      "tags": ["real", "balanced-branches", "ordered-set"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "par": [
+          -1,
+          0,
+          0,
+          1,
+          1,
+          2
+        ],
+        "vals": [
+          7,
+          3,
+          4,
+          6,
+          1,
+          2
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        7,
+        2,
+        4,
+        5,
+        3
+      ],
+      "tags": [
+        "real",
+        "balanced-branches",
+        "ordered-set"
+      ]
     },
     {
       "id": "real-parent-after-child-index",
       "name": "real: traversal follows parent links rather than numeric order",
-      "kind": "real",
-      "visible": false,
-      "input": {"par": [-1, 2, 0], "vals": [1, 2, 4], "queries": [[0, 1], [0, 3], [2, 1], [2, 2], [1, 1]]},
-      "expected": [1, 7, 5, 7, 7],
-      "tags": ["real", "parent-order", "iterative-traversal"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "par": [
+          -1,
+          2,
+          0
+        ],
+        "vals": [
+          1,
+          2,
+          4
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        7,
+        5,
+        7,
+        7
+      ],
+      "tags": [
+        "real",
+        "parent-order",
+        "iterative-traversal"
+      ]
     },
     {
       "id": "real-high-value-xors",
       "name": "real: XOR sums may differ substantially from individual values",
-      "kind": "real",
-      "visible": false,
-      "input": {"par": [-1, 0, 1], "vals": [100000, 100000, 99999], "queries": [[0, 1], [0, 2], [0, 3], [1, 1], [1, 2]]},
-      "expected": [0, 99999, 100000, 0, 99999],
-      "tags": ["real", "value-boundary", "xor"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "par": [
+          -1,
+          0,
+          1
+        ],
+        "vals": [
+          100000,
+          100000,
+          99999
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        99999,
+        100000,
+        0,
+        99999
+      ],
+      "tags": [
+        "real",
+        "value-boundary",
+        "xor"
+      ]
     },
     {
       "id": "real-query-order-preserved",
       "name": "real: grouped processing restores the original query order",
-      "kind": "real",
-      "visible": false,
-      "input": {"par": [-1, 0, 0, 1, 2], "vals": [8, 3, 5, 7, 6], "queries": [[2, 2], [0, 3], [1, 1], [2, 1], [0, 1]]},
-      "expected": [13, 12, 11, 11, 8],
-      "tags": ["real", "query-grouping", "answer-order"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "par": [
+          -1,
+          0,
+          0,
+          1,
+          2
+        ],
+        "vals": [
+          8,
+          3,
+          5,
+          7,
+          6
+        ],
+        "queries": [
+          [
+            2,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        13,
+        12,
+        11,
+        11,
+        8
+      ],
+      "tags": [
+        "real",
+        "query-grouping",
+        "answer-order"
+      ]
     }
   ]
 }

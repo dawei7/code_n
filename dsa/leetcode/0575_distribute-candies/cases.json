@@ -109,9 +109,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: exactly two candies",
-      "kind": "real",
-      "visible": false,
+      "name": "exactly two candies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "candyType": [
           9,
@@ -126,9 +126,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: distinct count below capacity",
-      "kind": "real",
-      "visible": false,
+      "name": "distinct count below capacity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "candyType": [
           2,

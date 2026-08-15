@@ -154,9 +154,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: repeated leaf values",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated leaf values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           0,
@@ -178,9 +178,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: internal values are ignored",
-      "kind": "real",
-      "visible": false,
+      "name": "internal values are ignored",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           100,
@@ -205,9 +205,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: final leaf differs",
-      "kind": "real",
-      "visible": false,
+      "name": "final leaf differs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           10,
@@ -234,9 +234,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: zero and maximum leaf values",
-      "kind": "real",
-      "visible": false,
+      "name": "zero and maximum leaf values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           20,
@@ -258,9 +258,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: mirrored chains reverse the sequence",
-      "kind": "real",
-      "visible": false,
+      "name": "mirrored chains reverse the sequence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           1,

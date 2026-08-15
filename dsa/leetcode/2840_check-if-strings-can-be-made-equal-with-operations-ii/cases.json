@@ -6,90 +6,156 @@
       "name": "sample: both parity groups are rearranged",
       "kind": "sample",
       "visible": true,
-      "input": {"s1": "abcdba", "s2": "cabdab"},
+      "input": {
+        "s1": "abcdba",
+        "s2": "cabdab"
+      },
       "expected": true,
-      "tags": ["sample", "both-parities"]
+      "tags": [
+        "sample",
+        "both-parities"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: overall letters match but parity groups do not",
       "kind": "sample",
       "visible": true,
-      "input": {"s1": "abe", "s2": "bea"},
+      "input": {
+        "s1": "abe",
+        "s2": "bea"
+      },
       "expected": false,
-      "tags": ["sample", "cross-parity"]
+      "tags": [
+        "sample",
+        "cross-parity"
+      ]
     },
     {
       "id": "trial-single-equal",
       "name": "trial: equal one-character strings",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "a", "s2": "a"},
+      "input": {
+        "s1": "a",
+        "s2": "a"
+      },
       "expected": true,
-      "tags": ["trial", "minimum-length", "zero-operations"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "zero-operations"
+      ]
     },
     {
       "id": "trial-single-different",
       "name": "trial: different one-character strings",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "a", "s2": "b"},
+      "input": {
+        "s1": "a",
+        "s2": "b"
+      },
       "expected": false,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-two-crossed",
       "name": "trial: length two has no movable pair",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "ab", "s2": "ba"},
+      "input": {
+        "s1": "ab",
+        "s2": "ba"
+      },
       "expected": false,
-      "tags": ["trial", "length-two", "cross-parity"]
+      "tags": [
+        "trial",
+        "length-two",
+        "cross-parity"
+      ]
     },
     {
       "id": "real-operation-i-pattern",
-      "name": "hidden: both parity pairs swap in length four",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "abcd", "s2": "cdab"},
+      "name": "both parity pairs swap in length four",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "abcd",
+        "s2": "cdab"
+      },
       "expected": true,
-      "tags": ["hidden", "both-parities"]
+      "tags": [
+        "hidden",
+        "both-parities"
+      ]
     },
     {
       "id": "real-duplicate-counts",
-      "name": "hidden: duplicate multiplicities agree by parity",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "aabbccaa", "s2": "cbbcaaaa"},
+      "name": "duplicate multiplicities agree by parity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "aabbccaa",
+        "s2": "cbbcaaaa"
+      },
       "expected": true,
-      "tags": ["hidden", "duplicates", "frequency"]
+      "tags": [
+        "hidden",
+        "duplicates",
+        "frequency"
+      ]
     },
     {
       "id": "real-overall-anagram-trap",
-      "name": "hidden: a global anagram crosses parity",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "abcdefgh", "s2": "bacdefgh"},
+      "name": "a global anagram crosses parity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "abcdefgh",
+        "s2": "bacdefgh"
+      },
       "expected": false,
-      "tags": ["hidden", "anagram-trap", "cross-parity"]
+      "tags": [
+        "hidden",
+        "anagram-trap",
+        "cross-parity"
+      ]
     },
     {
       "id": "real-odd-length-reachable",
-      "name": "hidden: unequal parity group sizes remain independently sortable",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "abcde", "s2": "cbade"},
+      "name": "unequal parity group sizes remain independently sortable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "abcde",
+        "s2": "cbade"
+      },
       "expected": true,
-      "tags": ["hidden", "odd-length", "even-parity"]
+      "tags": [
+        "hidden",
+        "odd-length",
+        "even-parity"
+      ]
     },
     {
       "id": "real-one-duplicate-missing",
-      "name": "hidden: one parity-specific multiplicity differs",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "aaaabbbb", "s2": "aaaabbba"},
+      "name": "one parity-specific multiplicity differs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "aaaabbbb",
+        "s2": "aaaabbba"
+      },
       "expected": false,
-      "tags": ["hidden", "duplicates", "frequency-mismatch"]
+      "tags": [
+        "hidden",
+        "duplicates",
+        "frequency-mismatch"
+      ]
     }
   ]
 }

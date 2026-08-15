@@ -216,8 +216,8 @@
     {
       "id": "real-four-cycle",
       "name": "real: minimum feedback vertices in a cycle",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "ab",

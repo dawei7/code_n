@@ -260,9 +260,9 @@
     },
     {
       "id": "hidden-later-consecutive",
-      "name": "hidden: a later consecutive pair does not qualify",
-      "kind": "real",
-      "visible": false,
+      "name": "a later consecutive pair does not qualify",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Activity": [
@@ -304,9 +304,9 @@
     },
     {
       "id": "hidden-multiple-later",
-      "name": "hidden: multiple later sessions count one player",
-      "kind": "real",
-      "visible": false,
+      "name": "multiple later sessions count one player",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Activity": [
@@ -366,4 +366,3 @@
     }
   ]
 }
-

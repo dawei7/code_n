@@ -2,13 +2,199 @@
   "schema_version": 1,
   "challenge_id": "lc_2279",
   "cases": [
-    {"id":"sample-three-of-four","name":"sample: two rocks complete three bags total","kind":"sample","visible":true,"input":{"capacity":[2,3,4,5],"rocks":[1,2,4,4],"additionalRocks":2},"expected":3,"tags":["sample","already-full"]},
-    {"id":"sample-large-surplus","name":"sample: surplus is left after every bag is full","kind":"sample","visible":true,"input":{"capacity":[10,2,2],"rocks":[2,2,0],"additionalRocks":100},"expected":3,"tags":["sample","surplus"]},
-    {"id":"trial-already-full","name":"already-full bag is counted when no other deficit is affordable","kind":"trial","visible":true,"input":{"capacity":[5,5],"rocks":[5,0],"additionalRocks":1},"expected":1,"tags":["already-full","unaffordable"]},
-    {"id":"trial-exact-budget","name":"exact budget completes the two cheapest bags","kind":"trial","visible":true,"input":{"capacity":[3,5,7],"rocks":[1,2,6],"additionalRocks":3},"expected":2,"tags":["exact-budget","sorting"]},
-    {"id":"trial-equal-deficits","name":"equal deficits allow any two of three bags","kind":"trial","visible":true,"input":{"capacity":[4,4,4],"rocks":[2,2,2],"additionalRocks":4},"expected":2,"tags":["equal-deficits"]},
-    {"id":"real-deficit-not-capacity","name":"hidden: smallest total capacity is not the only useful order","kind":"real","visible":false,"input":{"capacity":[100,3,4],"rocks":[99,0,0],"additionalRocks":4},"expected":2,"tags":["hidden","ordering"]},
-    {"id":"real-zero-budget-effect","name":"hidden: zero deficits consume none of the budget","kind":"real","visible":false,"input":{"capacity":[7,8,9],"rocks":[7,2,9],"additionalRocks":1},"expected":2,"tags":["hidden","already-full"]},
-    {"id":"real-all-empty","name":"hidden: budget fills the cheapest empty bags only","kind":"real","visible":false,"input":{"capacity":[6,1,4,2],"rocks":[0,0,0,0],"additionalRocks":7},"expected":3,"tags":["hidden","empty-bags","sorting"]}
+    {
+      "id": "sample-three-of-four",
+      "name": "sample: two rocks complete three bags total",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "capacity": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "rocks": [
+          1,
+          2,
+          4,
+          4
+        ],
+        "additionalRocks": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "already-full"
+      ]
+    },
+    {
+      "id": "sample-large-surplus",
+      "name": "sample: surplus is left after every bag is full",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "capacity": [
+          10,
+          2,
+          2
+        ],
+        "rocks": [
+          2,
+          2,
+          0
+        ],
+        "additionalRocks": 100
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "surplus"
+      ]
+    },
+    {
+      "id": "trial-already-full",
+      "name": "already-full bag is counted when no other deficit is affordable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": [
+          5,
+          5
+        ],
+        "rocks": [
+          5,
+          0
+        ],
+        "additionalRocks": 1
+      },
+      "expected": 1,
+      "tags": [
+        "already-full",
+        "unaffordable"
+      ]
+    },
+    {
+      "id": "trial-exact-budget",
+      "name": "exact budget completes the two cheapest bags",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": [
+          3,
+          5,
+          7
+        ],
+        "rocks": [
+          1,
+          2,
+          6
+        ],
+        "additionalRocks": 3
+      },
+      "expected": 2,
+      "tags": [
+        "exact-budget",
+        "sorting"
+      ]
+    },
+    {
+      "id": "trial-equal-deficits",
+      "name": "equal deficits allow any two of three bags",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": [
+          4,
+          4,
+          4
+        ],
+        "rocks": [
+          2,
+          2,
+          2
+        ],
+        "additionalRocks": 4
+      },
+      "expected": 2,
+      "tags": [
+        "equal-deficits"
+      ]
+    },
+    {
+      "id": "real-deficit-not-capacity",
+      "name": "smallest total capacity is not the only useful order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": [
+          100,
+          3,
+          4
+        ],
+        "rocks": [
+          99,
+          0,
+          0
+        ],
+        "additionalRocks": 4
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-zero-budget-effect",
+      "name": "zero deficits consume none of the budget",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": [
+          7,
+          8,
+          9
+        ],
+        "rocks": [
+          7,
+          2,
+          9
+        ],
+        "additionalRocks": 1
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "already-full"
+      ]
+    },
+    {
+      "id": "real-all-empty",
+      "name": "budget fills the cheapest empty bags only",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": [
+          6,
+          1,
+          4,
+          2
+        ],
+        "rocks": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "additionalRocks": 7
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "empty-bags",
+        "sorting"
+      ]
+    }
   ]
 }

@@ -138,9 +138,9 @@
     },
     {
       "id": "real-consecutive-deletions",
-      "name": "hidden: consecutive deleted ancestors",
-      "kind": "real",
-      "visible": false,
+      "name": "consecutive deleted ancestors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -186,9 +186,9 @@
     },
     {
       "id": "real-no-deletions",
-      "name": "hidden: empty deletion list preserves the tree",
-      "kind": "real",
-      "visible": false,
+      "name": "empty deletion list preserves the tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           10,
@@ -222,9 +222,9 @@
     },
     {
       "id": "real-delete-all",
-      "name": "hidden: deleting all nodes returns no roots",
-      "kind": "real",
-      "visible": false,
+      "name": "deleting all nodes returns no roots",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           4,

@@ -100,9 +100,9 @@
     },
     {
       "id": "real-deep",
-      "name": "hidden: one deeply nested component",
-      "kind": "real",
-      "visible": false,
+      "name": "one deeply nested component",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "seq": "(((((())))))"
       },
@@ -130,9 +130,9 @@
     },
     {
       "id": "real-mixed-components",
-      "name": "hidden: components with different depths",
-      "kind": "real",
-      "visible": false,
+      "name": "components with different depths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "seq": "((()))()(()(()))"
       },
@@ -164,9 +164,9 @@
     },
     {
       "id": "real-sibling-nesting",
-      "name": "hidden: nested siblings at several levels",
-      "kind": "real",
-      "visible": false,
+      "name": "nested siblings at several levels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "seq": "(()(()))((())())"
       },

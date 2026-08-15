@@ -2,17 +2,429 @@
   "schema_version": 1,
   "challenge_id": "lc_3625",
   "cases": [
-    {"id":"sample-two-trapezoids","name":"sample: two distinct trapezoids","kind":"sample","visible":true,"input":{"points":[[-3,2],[3,0],[2,3],[3,2],[2,-3]]},"expected":2,"tags":["sample","mixed-slopes"]},
-    {"id":"sample-horizontal-bases","name":"sample: one horizontal trapezoid","kind":"sample","visible":true,"input":{"points":[[0,0],[1,0],[0,1],[2,1]]},"expected":1,"tags":["sample","horizontal"]},
-    {"id":"trial-square-once","name":"trial: a square is counted once","kind":"trial","visible":true,"input":{"points":[[0,0],[2,0],[2,2],[0,2]]},"expected":1,"tags":["trial","parallelogram"]},
-    {"id":"trial-four-collinear","name":"trial: four collinear points are degenerate","kind":"trial","visible":true,"input":{"points":[[0,0],[1,1],[2,2],[3,3]]},"expected":0,"tags":["trial","collinear"]},
-    {"id":"trial-interior-point","name":"trial: one point lies inside a triangle","kind":"trial","visible":true,"input":{"points":[[0,0],[4,0],[0,4],[1,2]]},"expected":0,"tags":["trial","non-convex"]},
-    {"id":"trial-three-collinear-top","name":"trial: several choices share one horizontal line","kind":"trial","visible":true,"input":{"points":[[0,0],[2,0],[1,2],[3,2],[5,2]]},"expected":3,"tags":["trial","same-line-exclusion"]},
-    {"id":"trial-negative-vertical","name":"trial: negative coordinates and vertical bases","kind":"trial","visible":true,"input":{"points":[[-4,-1],[-4,3],[-1,-2],[-1,2],[2,5]]},"expected":1,"tags":["trial","vertical","negative-coordinates"]},
-    {"id":"real-parabola-six","name":"hidden: symmetric chords on a parabola","kind":"real","visible":false,"input":{"points":[[-2,4],[-1,1],[0,0],[1,1],[2,4],[3,9]]},"expected":7,"tags":["hidden","rational-slopes"]},
-    {"id":"real-two-row-grid","name":"hidden: two rows contain many shared slopes","kind":"real","visible":false,"input":{"points":[[0,0],[2,0],[4,0],[0,2],[2,2],[4,2]]},"expected":9,"tags":["hidden","parallelograms","collinear"]},
-    {"id":"real-vertical-groups","name":"hidden: unequal vertical line populations","kind":"real","visible":false,"input":{"points":[[0,-2],[0,1],[2,-3],[2,0],[2,4],[5,2]]},"expected":3,"tags":["hidden","vertical","same-line-exclusion"]},
-    {"id":"real-general-position","name":"hidden: no four points form a trapezoid","kind":"real","visible":false,"input":{"points":[[0,0],[1,2],[3,1],[4,5],[7,3]]},"expected":0,"tags":["hidden","zero-answer"]},
-    {"id":"real-mixed-parallel-families","name":"hidden: horizontal and diagonal families overlap","kind":"real","visible":false,"input":{"points":[[-2,0],[0,0],[2,0],[-1,2],[1,2],[0,4]]},"expected":6,"tags":["hidden","multiple-slopes","parallelograms"]}
+    {
+      "id": "sample-two-trapezoids",
+      "name": "sample: two distinct trapezoids",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            -3,
+            2
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            -3
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "mixed-slopes"
+      ]
+    },
+    {
+      "id": "sample-horizontal-bases",
+      "name": "sample: one horizontal trapezoid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "horizontal"
+      ]
+    },
+    {
+      "id": "trial-square-once",
+      "name": "trial: a square is counted once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "parallelogram"
+      ]
+    },
+    {
+      "id": "trial-four-collinear",
+      "name": "trial: four collinear points are degenerate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "collinear"
+      ]
+    },
+    {
+      "id": "trial-interior-point",
+      "name": "trial: one point lies inside a triangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "non-convex"
+      ]
+    },
+    {
+      "id": "trial-three-collinear-top",
+      "name": "trial: several choices share one horizontal line",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            5,
+            2
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "same-line-exclusion"
+      ]
+    },
+    {
+      "id": "trial-negative-vertical",
+      "name": "trial: negative coordinates and vertical bases",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            -4,
+            -1
+          ],
+          [
+            -4,
+            3
+          ],
+          [
+            -1,
+            -2
+          ],
+          [
+            -1,
+            2
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "vertical",
+        "negative-coordinates"
+      ]
+    },
+    {
+      "id": "real-parabola-six",
+      "name": "symmetric chords on a parabola",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            -2,
+            4
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            9
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "rational-slopes"
+      ]
+    },
+    {
+      "id": "real-two-row-grid",
+      "name": "two rows contain many shared slopes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            4,
+            2
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "parallelograms",
+        "collinear"
+      ]
+    },
+    {
+      "id": "real-vertical-groups",
+      "name": "unequal vertical line populations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            -2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            -3
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            5,
+            2
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "vertical",
+        "same-line-exclusion"
+      ]
+    },
+    {
+      "id": "real-general-position",
+      "name": "no four points form a trapezoid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            7,
+            3
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "zero-answer"
+      ]
+    },
+    {
+      "id": "real-mixed-parallel-families",
+      "name": "horizontal and diagonal families overlap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            -2,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            -1,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            4
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "multiple-slopes",
+        "parallelograms"
+      ]
+    }
   ]
 }

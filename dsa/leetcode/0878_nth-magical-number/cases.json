@@ -100,9 +100,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: larger coprime divisors",
-      "kind": "real",
-      "visible": false,
+      "name": "larger coprime divisors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 20,
         "a": 7,
@@ -116,9 +116,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: one divisor is twice the other",
-      "kind": "real",
-      "visible": false,
+      "name": "one divisor is twice the other",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10,
         "a": 3,
@@ -132,9 +132,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: overlapping composite divisors",
-      "kind": "real",
-      "visible": false,
+      "name": "overlapping composite divisors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 50,
         "a": 14,
@@ -148,9 +148,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: upper-bound equal divisors and modulo",
-      "kind": "real",
-      "visible": false,
+      "name": "upper-bound equal divisors and modulo",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000000000,
         "a": 40000,
@@ -165,9 +165,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: neighboring maximum divisors",
-      "kind": "real",
-      "visible": false,
+      "name": "neighboring maximum divisors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100,
         "a": 39999,

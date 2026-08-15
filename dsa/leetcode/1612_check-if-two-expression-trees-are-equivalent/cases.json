@@ -123,9 +123,9 @@
     },
     {
       "id": "real-commuted-pair",
-      "name": "hidden: two operands are swapped",
-      "kind": "real",
-      "visible": false,
+      "name": "two operands are swapped",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           "+",
@@ -145,9 +145,9 @@
     },
     {
       "id": "real-balanced-reordered",
-      "name": "hidden: perfect trees reorder all leaves",
-      "kind": "real",
-      "visible": false,
+      "name": "perfect trees reorder all leaves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           "+",
@@ -176,9 +176,9 @@
     },
     {
       "id": "real-shape-different",
-      "name": "hidden: skewed and balanced grouping are equivalent",
-      "kind": "real",
-      "visible": false,
+      "name": "skewed and balanced grouping are equivalent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           "+",
@@ -211,9 +211,9 @@
     },
     {
       "id": "real-set-equal-counts-differ",
-      "name": "hidden: equal variable sets have different coefficients",
-      "kind": "real",
-      "visible": false,
+      "name": "equal variable sets have different coefficients",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           "+",
@@ -236,9 +236,9 @@
     },
     {
       "id": "real-duplicate-equivalent",
-      "name": "hidden: duplicate coefficients match after reordering",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate coefficients match after reordering",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           "+",
@@ -267,9 +267,9 @@
     },
     {
       "id": "real-one-extra-leaf",
-      "name": "hidden: one expression has an additional term",
-      "kind": "real",
-      "visible": false,
+      "name": "one expression has an additional term",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           "+",
@@ -292,9 +292,9 @@
     },
     {
       "id": "real-many-variables",
-      "name": "hidden: several distinct coefficients all match",
-      "kind": "real",
-      "visible": false,
+      "name": "several distinct coefficients all match",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           "+",

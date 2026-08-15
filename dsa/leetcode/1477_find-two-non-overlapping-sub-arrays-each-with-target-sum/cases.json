@@ -103,9 +103,9 @@
     },
     {
       "id": "real-adjacent-windows",
-      "name": "hidden: adjacent target windows are legal",
-      "kind": "real",
-      "visible": false,
+      "name": "adjacent target windows are legal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -126,9 +126,9 @@
     },
     {
       "id": "real-singleton-versus-long",
-      "name": "hidden: global pair mixes singleton and longer window",
-      "kind": "real",
-      "visible": false,
+      "name": "global pair mixes singleton and longer window",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           5,
@@ -150,9 +150,9 @@
     },
     {
       "id": "real-many-overlaps",
-      "name": "hidden: prefix minimum selects disjoint partners",
-      "kind": "real",
-      "visible": false,
+      "name": "prefix minimum selects disjoint partners",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -174,9 +174,9 @@
     },
     {
       "id": "real-value-bound",
-      "name": "hidden: maximum values and compound target window",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum values and compound target window",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1000,

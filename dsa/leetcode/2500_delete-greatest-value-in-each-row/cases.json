@@ -97,9 +97,9 @@
     },
     {
       "id": "real-one-column",
-      "name": "hidden: one operation across several rows",
-      "kind": "real",
-      "visible": false,
+      "name": "one operation across several rows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -121,9 +121,9 @@
     },
     {
       "id": "real-rectangular",
-      "name": "hidden: rectangular matrix with interleaved row orders",
-      "kind": "real",
-      "visible": false,
+      "name": "rectangular matrix with interleaved row orders",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -154,9 +154,9 @@
     },
     {
       "id": "real-all-equal",
-      "name": "hidden: every deletion has the same value",
-      "kind": "real",
-      "visible": false,
+      "name": "every deletion has the same value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

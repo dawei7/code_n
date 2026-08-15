@@ -180,9 +180,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: rectangular matrix to one row",
-      "kind": "real",
-      "visible": false,
+      "name": "rectangular matrix to one row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -216,9 +216,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: one cell",
-      "kind": "real",
-      "visible": false,
+      "name": "one cell",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -240,9 +240,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: incompatible nonmultiple shape",
-      "kind": "real",
-      "visible": false,
+      "name": "incompatible nonmultiple shape",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -268,4 +268,3 @@
     }
   ]
 }
-

@@ -475,9 +475,9 @@
     },
     {
       "id": "real-order-id-tie",
-      "name": "hidden: order id sorts latest-day rows",
-      "kind": "real",
-      "visible": false,
+      "name": "order id sorts latest-day rows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customers": [
@@ -559,9 +559,9 @@
     },
     {
       "id": "real-older-ties-excluded",
-      "name": "hidden: older tied date is excluded",
-      "kind": "real",
-      "visible": false,
+      "name": "older tied date is excluded",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customers": [
@@ -627,9 +627,9 @@
     },
     {
       "id": "real-product-name-order",
-      "name": "hidden: product name is primary ordering key",
-      "kind": "real",
-      "visible": false,
+      "name": "product name is primary ordering key",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customers": [
@@ -696,9 +696,9 @@
     },
     {
       "id": "real-customer-irrelevant",
-      "name": "hidden: customer identity does not alter latest date",
-      "kind": "real",
-      "visible": false,
+      "name": "customer identity does not alter latest date",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customers": [

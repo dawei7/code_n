@@ -2,13 +2,116 @@
   "schema_version": 1,
   "challenge_id": "lc_2283",
   "cases": [
-    {"id":"sample-valid","name":"sample: every indexed frequency agrees","kind":"sample","visible":true,"input":{"num":"1210"},"expected":true,"tags":["sample","valid"]},
-    {"id":"sample-invalid","name":"sample: zero and one frequencies disagree","kind":"sample","visible":true,"input":{"num":"030"},"expected":false,"tags":["sample","invalid"]},
-    {"id":"trial-valid-alternative","name":"another valid four-digit description","kind":"trial","visible":true,"input":{"num":"2020"},"expected":true,"tags":["valid"]},
-    {"id":"trial-single-zero","name":"single zero actually occurs once","kind":"trial","visible":true,"input":{"num":"0"},"expected":false,"tags":["minimum-length","zero"]},
-    {"id":"trial-single-one","name":"single one gives the wrong zero count","kind":"trial","visible":true,"input":{"num":"1"},"expected":false,"tags":["minimum-length"]},
-    {"id":"real-five-digit-valid","name":"hidden: valid description with two trailing requirements","kind":"real","visible":false,"input":{"num":"21200"},"expected":true,"tags":["hidden","valid"]},
-    {"id":"real-ten-digit-valid","name":"hidden: valid maximum-length self-description","kind":"real","visible":false,"input":{"num":"6210001000"},"expected":true,"tags":["hidden","maximum-length","valid"]},
-    {"id":"real-leading-zero","name":"hidden: leading zero remains a counted digit","kind":"real","visible":false,"input":{"num":"010"},"expected":false,"tags":["hidden","leading-zero"]}
+    {
+      "id": "sample-valid",
+      "name": "sample: every indexed frequency agrees",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": "1210"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "valid"
+      ]
+    },
+    {
+      "id": "sample-invalid",
+      "name": "sample: zero and one frequencies disagree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": "030"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "invalid"
+      ]
+    },
+    {
+      "id": "trial-valid-alternative",
+      "name": "another valid four-digit description",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "2020"
+      },
+      "expected": true,
+      "tags": [
+        "valid"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "single zero actually occurs once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "0"
+      },
+      "expected": false,
+      "tags": [
+        "minimum-length",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "single one gives the wrong zero count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "1"
+      },
+      "expected": false,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "real-five-digit-valid",
+      "name": "valid description with two trailing requirements",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "21200"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "valid"
+      ]
+    },
+    {
+      "id": "real-ten-digit-valid",
+      "name": "valid maximum-length self-description",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "6210001000"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "valid"
+      ]
+    },
+    {
+      "id": "real-leading-zero",
+      "name": "leading zero remains a counted digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "010"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "leading-zero"
+      ]
+    }
   ]
 }

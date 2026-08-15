@@ -236,9 +236,9 @@
     },
     {
       "id": "hidden-future-push",
-      "name": "hidden: old increment does not affect later push",
-      "kind": "real",
-      "visible": false,
+      "name": "old increment does not affect later push",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "max_size": 3,
         "operations": [
@@ -285,9 +285,9 @@
     },
     {
       "id": "hidden-empty-increment",
-      "name": "hidden: increment while empty is discarded",
-      "kind": "real",
-      "visible": false,
+      "name": "increment while empty is discarded",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "max_size": 2,
         "operations": [

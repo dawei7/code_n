@@ -6,90 +6,325 @@
       "name": "sample: undefined object property",
       "kind": "sample",
       "visible": true,
-      "input": {"value": {"a": 0, "b": 3}, "undefinedPaths": [["a"]], "objectPlan": null},
-      "expected": {"a": null, "b": 3},
-      "tags": ["sample", "object"]
+      "input": {
+        "value": {
+          "a": 0,
+          "b": 3
+        },
+        "undefinedPaths": [
+          [
+            "a"
+          ]
+        ],
+        "objectPlan": null
+      },
+      "expected": {
+        "a": null,
+        "b": 3
+      },
+      "tags": [
+        "sample",
+        "object"
+      ]
     },
     {
       "id": "sample-object-and-array",
       "name": "sample: object and nested array values",
       "kind": "sample",
       "visible": true,
-      "input": {"value": {"a": 0, "b": ["a", 0]}, "undefinedPaths": [["a"], ["b", 1]], "objectPlan": null},
-      "expected": {"a": null, "b": ["a", null]},
-      "tags": ["sample", "nested-array"]
+      "input": {
+        "value": {
+          "a": 0,
+          "b": [
+            "a",
+            0
+          ]
+        },
+        "undefinedPaths": [
+          [
+            "a"
+          ],
+          [
+            "b",
+            1
+          ]
+        ],
+        "objectPlan": null
+      },
+      "expected": {
+        "a": null,
+        "b": [
+          "a",
+          null
+        ]
+      },
+      "tags": [
+        "sample",
+        "nested-array"
+      ]
     },
     {
       "id": "trial-root-array",
       "name": "trial: undefined elements in root array",
       "kind": "trial",
       "visible": true,
-      "input": {"value": [0, 0], "undefinedPaths": [[0], [1]], "objectPlan": null},
-      "expected": [null, null],
-      "tags": ["trial", "root-array"]
+      "input": {
+        "value": [
+          0,
+          0
+        ],
+        "undefinedPaths": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "objectPlan": null
+      },
+      "expected": [
+        null,
+        null
+      ],
+      "tags": [
+        "trial",
+        "root-array"
+      ]
     },
     {
       "id": "trial-preserve-null-and-falsy",
       "name": "trial: preserve null and falsy values",
       "kind": "trial",
       "visible": true,
-      "input": {"value": [null, false, 0, "", 1], "undefinedPaths": [[4]], "objectPlan": null},
-      "expected": [null, false, 0, "", null],
-      "tags": ["trial", "null", "falsy-values"]
+      "input": {
+        "value": [
+          null,
+          false,
+          0,
+          "",
+          1
+        ],
+        "undefinedPaths": [
+          [
+            4
+          ]
+        ],
+        "objectPlan": null
+      },
+      "expected": [
+        null,
+        false,
+        0,
+        "",
+        null
+      ],
+      "tags": [
+        "trial",
+        "null",
+        "falsy-values"
+      ]
     },
     {
       "id": "trial-empty-containers",
       "name": "trial: empty nested containers",
       "kind": "trial",
       "visible": true,
-      "input": {"value": {"array": [], "object": {}}, "undefinedPaths": [], "objectPlan": null},
-      "expected": {"array": [], "object": {}},
-      "tags": ["trial", "empty-containers"]
+      "input": {
+        "value": {
+          "array": [],
+          "object": {}
+        },
+        "undefinedPaths": [],
+        "objectPlan": null
+      },
+      "expected": {
+        "array": [],
+        "object": {}
+      },
+      "tags": [
+        "trial",
+        "empty-containers"
+      ]
     },
     {
       "id": "real-deep-mixed-nesting",
       "name": "real: deep mixed nesting",
-      "kind": "real",
-      "visible": false,
-      "input": {"value": {"a": [{"b": [1, {"c": 0}]}]}, "undefinedPaths": [["a", 0, "b", 1, "c"]], "objectPlan": null},
-      "expected": {"a": [{"b": [1, {"c": null}]}]},
-      "tags": ["real", "deep-nesting"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "value": {
+          "a": [
+            {
+              "b": [
+                1,
+                {
+                  "c": 0
+                }
+              ]
+            }
+          ]
+        },
+        "undefinedPaths": [
+          [
+            "a",
+            0,
+            "b",
+            1,
+            "c"
+          ]
+        ],
+        "objectPlan": null
+      },
+      "expected": {
+        "a": [
+          {
+            "b": [
+              1,
+              {
+                "c": null
+              }
+            ]
+          }
+        ]
+      },
+      "tags": [
+        "real",
+        "deep-nesting"
+      ]
     },
     {
       "id": "real-multiple-siblings",
       "name": "real: multiple undefined siblings",
-      "kind": "real",
-      "visible": false,
-      "input": {"value": {"first": 0, "middle": 7, "last": 0}, "undefinedPaths": [["first"], ["last"]], "objectPlan": null},
-      "expected": {"first": null, "middle": 7, "last": null},
-      "tags": ["real", "siblings"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "value": {
+          "first": 0,
+          "middle": 7,
+          "last": 0
+        },
+        "undefinedPaths": [
+          [
+            "first"
+          ],
+          [
+            "last"
+          ]
+        ],
+        "objectPlan": null
+      },
+      "expected": {
+        "first": null,
+        "middle": 7,
+        "last": null
+      },
+      "tags": [
+        "real",
+        "siblings"
+      ]
     },
     {
       "id": "real-array-of-objects",
       "name": "real: undefined fields inside array objects",
-      "kind": "real",
-      "visible": false,
-      "input": {"value": [{"x": 0}, {"x": 2}, {"x": 0}], "undefinedPaths": [[0, "x"], [2, "x"]], "objectPlan": null},
-      "expected": [{"x": null}, {"x": 2}, {"x": null}],
-      "tags": ["real", "array-of-objects"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "value": [
+          {
+            "x": 0
+          },
+          {
+            "x": 2
+          },
+          {
+            "x": 0
+          }
+        ],
+        "undefinedPaths": [
+          [
+            0,
+            "x"
+          ],
+          [
+            2,
+            "x"
+          ]
+        ],
+        "objectPlan": null
+      },
+      "expected": [
+        {
+          "x": null
+        },
+        {
+          "x": 2
+        },
+        {
+          "x": null
+        }
+      ],
+      "tags": [
+        "real",
+        "array-of-objects"
+      ]
     },
     {
       "id": "real-preserve-strings-and-numbers",
       "name": "real: preserve ordinary scalar values",
-      "kind": "real",
-      "visible": false,
-      "input": {"value": {"text": "undefined", "number": -4.5, "nested": [true, "null"]}, "undefinedPaths": [], "objectPlan": null},
-      "expected": {"text": "undefined", "number": -4.5, "nested": [true, "null"]},
-      "tags": ["real", "scalar-values"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "value": {
+          "text": "undefined",
+          "number": -4.5,
+          "nested": [
+            true,
+            "null"
+          ]
+        },
+        "undefinedPaths": [],
+        "objectPlan": null
+      },
+      "expected": {
+        "text": "undefined",
+        "number": -4.5,
+        "nested": [
+          true,
+          "null"
+        ]
+      },
+      "tags": [
+        "real",
+        "scalar-values"
+      ]
     },
     {
       "id": "real-separate-null-and-undefined",
       "name": "real: existing null beside undefined",
-      "kind": "real",
-      "visible": false,
-      "input": {"value": {"existing": null, "missing": 0}, "undefinedPaths": [["missing"]], "objectPlan": null},
-      "expected": {"existing": null, "missing": null},
-      "tags": ["real", "null", "undefined"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "value": {
+          "existing": null,
+          "missing": 0
+        },
+        "undefinedPaths": [
+          [
+            "missing"
+          ]
+        ],
+        "objectPlan": null
+      },
+      "expected": {
+        "existing": null,
+        "missing": null
+      },
+      "tags": [
+        "real",
+        "null",
+        "undefined"
+      ]
     }
   ]
 }

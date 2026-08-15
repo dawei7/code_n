@@ -7,63 +7,137 @@
       "name": "sample: repeat a range-two interval twice",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 3, 2], "k": 2},
+      "input": {
+        "nums": [
+          1,
+          3,
+          2
+        ],
+        "k": 2
+      },
       "expected": 4,
-      "tags": ["sample", "repeated-choice"]
+      "tags": [
+        "sample",
+        "repeated-choice"
+      ]
     },
     {
       "id": "sample-range-four-thrice",
       "name": "sample: repeat the global range three times",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 2, 5, 1], "k": 3},
+      "input": {
+        "nums": [
+          4,
+          2,
+          5,
+          1
+        ],
+        "k": 3
+      },
       "expected": 12,
-      "tags": ["sample", "global-extrema"]
+      "tags": [
+        "sample",
+        "global-extrema"
+      ]
     },
     {
       "id": "trial-singleton-many-choices",
       "name": "trial: repeated singleton choices remain zero",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7], "k": 10},
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 10
+      },
       "expected": 0,
-      "tags": ["trial", "singleton", "zero-range"]
+      "tags": [
+        "trial",
+        "singleton",
+        "zero-range"
+      ]
     },
     {
       "id": "trial-one-choice",
       "name": "trial: one choice attains the global range",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [8, 2, 6], "k": 1},
+      "input": {
+        "nums": [
+          8,
+          2,
+          6
+        ],
+        "k": 1
+      },
       "expected": 6,
-      "tags": ["trial", "single-choice"]
+      "tags": [
+        "trial",
+        "single-choice"
+      ]
     },
     {
       "id": "real-all-equal",
-      "name": "hidden: equal values have zero range",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 5, 5, 5], "k": 100000},
+      "name": "equal values have zero range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "k": 100000
+      },
       "expected": 0,
-      "tags": ["hidden", "duplicates", "zero-range"]
+      "tags": [
+        "hidden",
+        "duplicates",
+        "zero-range"
+      ]
     },
     {
       "id": "real-extrema-inside",
-      "name": "hidden: extrema need not occur at array endpoints",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9, 1, 7, 10, 4], "k": 4},
+      "name": "extrema need not occur at array endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          1,
+          7,
+          10,
+          4
+        ],
+        "k": 4
+      },
       "expected": 36,
-      "tags": ["hidden", "interior-extrema"]
+      "tags": [
+        "hidden",
+        "interior-extrema"
+      ]
     },
     {
       "id": "real-maximum-product",
-      "name": "hidden: maximum range and k require a wide integer",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 1000000000], "k": 100000},
+      "name": "maximum range and k require a wide integer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1000000000
+        ],
+        "k": 100000
+      },
       "expected": 100000000000000,
-      "tags": ["hidden", "maximum", "wide-integer"]
+      "tags": [
+        "hidden",
+        "maximum",
+        "wide-integer"
+      ]
     }
   ]
 }

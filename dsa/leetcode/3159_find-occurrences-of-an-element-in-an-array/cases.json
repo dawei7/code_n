@@ -164,8 +164,8 @@
     {
       "id": "real-repeated-query",
       "name": "real: repeated queries reuse one occurrence index",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -196,8 +196,8 @@
     {
       "id": "real-maximum-query",
       "name": "real: maximum occurrence number is unavailable",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -219,8 +219,8 @@
     {
       "id": "real-maximum-target",
       "name": "real: target and values reach the upper bound",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10000,
@@ -248,8 +248,8 @@
     {
       "id": "real-alternating",
       "name": "real: alternating target positions",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -283,8 +283,8 @@
     {
       "id": "real-single-middle-occurrence",
       "name": "real: one target lies between other values",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -312,8 +312,8 @@
     {
       "id": "real-unsorted-queries",
       "name": "real: answers follow query order rather than index order",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,

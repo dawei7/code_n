@@ -7,8 +7,14 @@
       "name": "sample: one operation",
       "kind": "sample",
       "visible": true,
-      "input": {"num": 4, "t": 1},
-      "tags": ["sample", "single-operation"],
+      "input": {
+        "num": 4,
+        "t": 1
+      },
+      "tags": [
+        "sample",
+        "single-operation"
+      ],
       "expected": 6
     },
     {
@@ -16,8 +22,14 @@
       "name": "sample: two operations",
       "kind": "sample",
       "visible": true,
-      "input": {"num": 3, "t": 2},
-      "tags": ["sample", "multiple-operations"],
+      "input": {
+        "num": 3,
+        "t": 2
+      },
+      "tags": [
+        "sample",
+        "multiple-operations"
+      ],
       "expected": 7
     },
     {
@@ -25,8 +37,14 @@
       "name": "trial: both inputs at their minimum",
       "kind": "trial",
       "visible": true,
-      "input": {"num": 1, "t": 1},
-      "tags": ["trial", "minimum"],
+      "input": {
+        "num": 1,
+        "t": 1
+      },
+      "tags": [
+        "trial",
+        "minimum"
+      ],
       "expected": 3
     },
     {
@@ -34,44 +52,75 @@
       "name": "trial: minimum number with maximum budget",
       "kind": "trial",
       "visible": true,
-      "input": {"num": 1, "t": 50},
-      "tags": ["trial", "maximum-budget"],
+      "input": {
+        "num": 1,
+        "t": 50
+      },
+      "tags": [
+        "trial",
+        "maximum-budget"
+      ],
       "expected": 101
     },
     {
       "id": "real-maximum-number",
-      "name": "hidden: maximum number with one operation",
-      "kind": "real",
-      "visible": false,
-      "input": {"num": 50, "t": 1},
-      "tags": ["hidden", "maximum-number"],
+      "name": "maximum number with one operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 50,
+        "t": 1
+      },
+      "tags": [
+        "hidden",
+        "maximum-number"
+      ],
       "expected": 52
     },
     {
       "id": "real-both-maximum",
-      "name": "hidden: both inputs at their maximum",
-      "kind": "real",
-      "visible": false,
-      "input": {"num": 50, "t": 50},
-      "tags": ["hidden", "maximum"],
+      "name": "both inputs at their maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 50,
+        "t": 50
+      },
+      "tags": [
+        "hidden",
+        "maximum"
+      ],
       "expected": 150
     },
     {
       "id": "real-balanced-interior",
-      "name": "hidden: equal interior inputs",
-      "kind": "real",
-      "visible": false,
-      "input": {"num": 25, "t": 25},
-      "tags": ["hidden", "interior"],
+      "name": "equal interior inputs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 25,
+        "t": 25
+      },
+      "tags": [
+        "hidden",
+        "interior"
+      ],
       "expected": 75
     },
     {
       "id": "real-asymmetric-interior",
-      "name": "hidden: asymmetric interior inputs",
-      "kind": "real",
-      "visible": false,
-      "input": {"num": 17, "t": 43},
-      "tags": ["hidden", "interior", "asymmetric"],
+      "name": "asymmetric interior inputs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 17,
+        "t": 43
+      },
+      "tags": [
+        "hidden",
+        "interior",
+        "asymmetric"
+      ],
       "expected": 103
     }
   ]

@@ -6,72 +6,157 @@
       "name": "sample: only the final window is valid",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 1, 4, 1]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          4,
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "mixed-windows"]
+      "tags": [
+        "sample",
+        "mixed-windows"
+      ]
     },
     {
       "id": "sample-single-invalid-window",
       "name": "sample: the only window is invalid",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 1, 1]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "minimum-length"]
+      "tags": [
+        "sample",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-negative-valid-window",
       "name": "trial: negative values satisfy the same exact relation",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-1, -4, -1]},
+      "input": {
+        "nums": [
+          -1,
+          -4,
+          -1
+        ]
+      },
       "expected": 1,
-      "tags": ["negative", "minimum-length"]
+      "tags": [
+        "negative",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-overlapping-valid-windows",
       "name": "trial: valid windows may overlap",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 4, 1, 4, 1]},
+      "input": {
+        "nums": [
+          1,
+          4,
+          1,
+          4,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["overlap", "multiple"]
+      "tags": [
+        "overlap",
+        "multiple"
+      ]
     },
     {
       "id": "real-all-zero-windows",
       "name": "real: every all-zero window is valid",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 0, 0, 0, 0, 0]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 4,
-      "tags": ["zero", "all-valid"]
+      "tags": [
+        "zero",
+        "all-valid"
+      ]
     },
     {
       "id": "real-odd-middle-not-floor-half",
       "name": "real: exact half does not use floor division",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 1, 0]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0
+        ]
+      },
       "expected": 0,
-      "tags": ["odd-middle", "exact-arithmetic"]
+      "tags": [
+        "odd-middle",
+        "exact-arithmetic"
+      ]
     },
     {
       "id": "real-mixed-sign-and-zero",
       "name": "real: count separated negative and zero matches",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-2, -8, -2, 0, 0, 0]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          -8,
+          -2,
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 2,
-      "tags": ["negative", "zero", "separated"]
+      "tags": [
+        "negative",
+        "zero",
+        "separated"
+      ]
     },
     {
       "id": "real-boundary-values",
       "name": "real: endpoint values may use both constraint extremes",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100, 100, -50, -100, 50]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          100,
+          -50,
+          -100,
+          50
+        ]
+      },
       "expected": 1,
-      "tags": ["bounds", "mixed-sign"]
+      "tags": [
+        "bounds",
+        "mixed-sign"
+      ]
     }
   ]
 }

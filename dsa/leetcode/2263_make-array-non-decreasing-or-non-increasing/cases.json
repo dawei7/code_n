@@ -2,13 +2,155 @@
   "schema_version": 1,
   "challenge_id": "lc_2263",
   "cases": [
-    {"id":"sample-non-increasing-cheaper","name":"sample: four operations produce a non-increasing array","kind":"sample","visible":true,"input":{"nums":[3,2,4,5,0]},"expected":4,"tags":["sample","non-increasing"]},
-    {"id":"sample-already-increasing","name":"sample: non-decreasing input needs no changes","kind":"sample","visible":true,"input":{"nums":[2,2,3,4]},"expected":0,"tags":["sample","zero-cost"]},
-    {"id":"sample-single","name":"sample: one value is monotonic","kind":"sample","visible":true,"input":{"nums":[0]},"expected":0,"tags":["sample","single"]},
-    {"id":"trial-already-decreasing","name":"strictly decreasing input also needs no changes","kind":"trial","visible":true,"input":{"nums":[9,7,4,1]},"expected":0,"tags":["non-increasing","zero-cost"]},
-    {"id":"trial-small-peak","name":"one unit removes a small interior peak","kind":"trial","visible":true,"input":{"nums":[1,3,2]},"expected":1,"tags":["peak","one-operation"]},
-    {"id":"real-extreme-valley","name":"hidden: either direction pays the same extreme adjustment","kind":"real","visible":false,"input":{"nums":[0,1000,0]},"expected":1000,"tags":["hidden","boundary-values","tie"]},
-    {"id":"real-alternating","name":"hidden: alternating values merge into isotonic blocks","kind":"real","visible":false,"input":{"nums":[5,1,5,1]},"expected":4,"tags":["hidden","alternating"]},
-    {"id":"real-central-valleys","name":"hidden: the cheaper monotonic fit spans several blocks","kind":"real","visible":false,"input":{"nums":[3,1,2,1,3]},"expected":3,"tags":["hidden","blocks"]}
+    {
+      "id": "sample-non-increasing-cheaper",
+      "name": "sample: four operations produce a non-increasing array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          4,
+          5,
+          0
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "non-increasing"
+      ]
+    },
+    {
+      "id": "sample-already-increasing",
+      "name": "sample: non-decreasing input needs no changes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero-cost"
+      ]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: one value is monotonic",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-already-decreasing",
+      "name": "strictly decreasing input also needs no changes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          7,
+          4,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "non-increasing",
+        "zero-cost"
+      ]
+    },
+    {
+      "id": "trial-small-peak",
+      "name": "one unit removes a small interior peak",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "peak",
+        "one-operation"
+      ]
+    },
+    {
+      "id": "real-extreme-valley",
+      "name": "either direction pays the same extreme adjustment",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1000,
+          0
+        ]
+      },
+      "expected": 1000,
+      "tags": [
+        "hidden",
+        "boundary-values",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "alternating values merge into isotonic blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          5,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-central-valleys",
+      "name": "the cheaper monotonic fit spans several blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "blocks"
+      ]
+    }
   ]
 }

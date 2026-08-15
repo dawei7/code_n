@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-even-six",
-      "name": "hidden: another even length",
-      "kind": "real",
-      "visible": false,
+      "name": "another even length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-maximum",
-      "name": "hidden: maximum legal length",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum legal length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 500
       },

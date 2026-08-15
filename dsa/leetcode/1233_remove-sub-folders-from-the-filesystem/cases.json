@@ -123,9 +123,9 @@
     },
     {
       "id": "real-prefix-trap",
-      "name": "hidden: textual prefixes without slash boundaries remain",
-      "kind": "real",
-      "visible": false,
+      "name": "textual prefixes without slash boundaries remain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "folder": [
           "/a",
@@ -150,9 +150,9 @@
     },
     {
       "id": "real-interleaved-roots",
-      "name": "hidden: unordered descendants under several roots",
-      "kind": "real",
-      "visible": false,
+      "name": "unordered descendants under several roots",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "folder": [
           "/m/n/o",

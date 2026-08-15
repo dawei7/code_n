@@ -123,9 +123,9 @@
     },
     {
       "id": "hidden-same-start",
-      "name": "hidden: widest shared-start interval comes first logically",
-      "kind": "real",
-      "visible": false,
+      "name": "widest shared-start interval comes first logically",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "intervals": [
           [
@@ -150,9 +150,9 @@
     },
     {
       "id": "hidden-same-end",
-      "name": "hidden: earliest start covers equal-end intervals",
-      "kind": "real",
-      "visible": false,
+      "name": "earliest start covers equal-end intervals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "intervals": [
           [

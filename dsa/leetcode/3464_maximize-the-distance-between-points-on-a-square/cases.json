@@ -186,8 +186,8 @@
     {
       "id": "real-dense-boundary",
       "name": "real: irregular dense boundary choices",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "side": 6,
         "points": [
@@ -243,8 +243,8 @@
     {
       "id": "real-sparse-wraparound",
       "name": "real: optimal selection crosses the perimeter seam",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "side": 5,
         "points": [
@@ -288,8 +288,8 @@
     {
       "id": "real-five-points",
       "name": "real: choose five from mixed edges",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "side": 7,
         "points": [
@@ -341,8 +341,8 @@
     {
       "id": "real-clustered-bottom",
       "name": "real: clustered points constrain a sparse selection",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "side": 10,
         "points": [
@@ -390,8 +390,8 @@
     {
       "id": "real-complete-side-four",
       "name": "real: select half of a complete small boundary",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "side": 4,
         "points": [

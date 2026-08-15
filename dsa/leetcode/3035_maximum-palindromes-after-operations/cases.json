@@ -1,14 +1,162 @@
 {
   "challenge_id": "lc_3035",
   "cases": [
-    {"id":"sample-all-three","name":"sample: redistribution makes every word palindromic","kind":"sample","visible":true,"input":{"words":["abbb","ba","aa"]},"expected":3,"tags":["sample","all-words"]},
-    {"id":"sample-two-words","name":"sample: odd and even palindromes share letters","kind":"sample","visible":true,"input":{"words":["abc","ab"]},"expected":2,"tags":["sample","redistribution"]},
-    {"id":"sample-only-singleton","name":"sample: no equal pair exists for length-two words","kind":"sample","visible":true,"input":{"words":["cd","ef","a"]},"expected":1,"tags":["sample","single-character"]},
-    {"id":"trial-one-word","name":"a single character is always a palindrome","kind":"trial","visible":true,"input":{"words":["z"]},"expected":1,"tags":["minimum-input","single-character"]},
-    {"id":"trial-centers-and-pairs","name":"odd centers do not consume matching pairs","kind":"trial","visible":true,"input":{"words":["a","a","caa"]},"expected":3,"tags":["odd-length","centers"]},
-    {"id":"trial-no-pairs","name":"two even words cannot be palindromes without a pair","kind":"trial","visible":true,"input":{"words":["ab","cd"]},"expected":0,"tags":["no-pairs","even-length"]},
-    {"id":"real-shortest-first","name":"hidden: scarce pair is assigned to the shortest even word","kind":"real","visible":false,"input":{"words":["abcde","f","gg"]},"expected":2,"tags":["hidden","greedy-order"]},
-    {"id":"real-global-pair-budget","name":"hidden: characters are shared across original word boundaries","kind":"real","visible":false,"input":{"words":["abc","def","aabb"]},"expected":2,"tags":["hidden","global-frequency"]},
-    {"id":"real-length-boundary","name":"hidden: long words at the length limit","kind":"real","visible":false,"input":{"words":["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"]},"expected":2,"tags":["hidden","maximum-word-length"]}
+    {
+      "id": "sample-all-three",
+      "name": "sample: redistribution makes every word palindromic",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abbb",
+          "ba",
+          "aa"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "all-words"
+      ]
+    },
+    {
+      "id": "sample-two-words",
+      "name": "sample: odd and even palindromes share letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "ab"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "redistribution"
+      ]
+    },
+    {
+      "id": "sample-only-singleton",
+      "name": "sample: no equal pair exists for length-two words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "cd",
+          "ef",
+          "a"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-character"
+      ]
+    },
+    {
+      "id": "trial-one-word",
+      "name": "a single character is always a palindrome",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "z"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "minimum-input",
+        "single-character"
+      ]
+    },
+    {
+      "id": "trial-centers-and-pairs",
+      "name": "odd centers do not consume matching pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "a",
+          "caa"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "odd-length",
+        "centers"
+      ]
+    },
+    {
+      "id": "trial-no-pairs",
+      "name": "two even words cannot be palindromes without a pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "cd"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "no-pairs",
+        "even-length"
+      ]
+    },
+    {
+      "id": "real-shortest-first",
+      "name": "scarce pair is assigned to the shortest even word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcde",
+          "f",
+          "gg"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "greedy-order"
+      ]
+    },
+    {
+      "id": "real-global-pair-budget",
+      "name": "characters are shared across original word boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "def",
+          "aabb"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "global-frequency"
+      ]
+    },
+    {
+      "id": "real-length-boundary",
+      "name": "long words at the length limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "maximum-word-length"
+      ]
+    }
   ]
 }

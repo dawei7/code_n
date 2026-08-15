@@ -137,9 +137,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: mirrored equality structure",
-      "kind": "real",
-      "visible": false,
+      "name": "mirrored equality structure",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "noon",
@@ -165,9 +165,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: first and last positions agree",
-      "kind": "real",
-      "visible": false,
+      "name": "first and last positions agree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "zbxz",
@@ -191,9 +191,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: repeated three-letter block",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated three-letter block",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abcabc",
@@ -219,9 +219,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: duplicate matching words are preserved",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate matching words are preserved",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "mee",
@@ -246,9 +246,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: one-character duplicates",
-      "kind": "real",
-      "visible": false,
+      "name": "one-character duplicates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "z",

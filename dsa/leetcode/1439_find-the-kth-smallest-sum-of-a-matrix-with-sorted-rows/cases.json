@@ -132,9 +132,9 @@
     },
     {
       "id": "real-first",
-      "name": "hidden: first rank chooses every row minimum",
-      "kind": "real",
-      "visible": false,
+      "name": "first rank chooses every row minimum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -160,9 +160,9 @@
     },
     {
       "id": "real-overlap",
-      "name": "hidden: overlapping pair sums",
-      "kind": "real",
-      "visible": false,
+      "name": "overlapping pair sums",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [

@@ -219,9 +219,9 @@
     },
     {
       "id": "real-interleaved",
-      "name": "hidden: interleaved boundary updates and sums",
-      "kind": "real",
-      "visible": false,
+      "name": "interleaved boundary updates and sums",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           3,

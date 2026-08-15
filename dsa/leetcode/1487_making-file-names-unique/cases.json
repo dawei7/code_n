@@ -102,9 +102,9 @@
     },
     {
       "id": "real-existing-suffix-reused",
-      "name": "hidden: duplicate literal suffix becomes nested",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate literal suffix becomes nested",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "names": [
           "kaido",
@@ -126,9 +126,9 @@
     },
     {
       "id": "real-gap-before-preoccupied",
-      "name": "hidden: choose free suffix before occupied larger suffix",
-      "kind": "real",
-      "visible": false,
+      "name": "choose free suffix before occupied larger suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "names": [
           "x",
@@ -151,9 +151,9 @@
     },
     {
       "id": "real-parenthesized-literal",
-      "name": "hidden: parenthesized request is independent base",
-      "kind": "real",
-      "visible": false,
+      "name": "parenthesized request is independent base",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "names": [
           "a(1)",
@@ -176,9 +176,9 @@
     },
     {
       "id": "real-generated-then-requested",
-      "name": "hidden: later request collides with generated name",
-      "kind": "real",
-      "visible": false,
+      "name": "later request collides with generated name",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "names": [
           "doc",
@@ -199,9 +199,9 @@
     },
     {
       "id": "real-maximum-length",
-      "name": "hidden: suffix a maximum-length requested name",
-      "kind": "real",
-      "visible": false,
+      "name": "suffix a maximum-length requested name",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "names": [
           "abcdefghijklmnopqrst",

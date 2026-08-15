@@ -6,81 +6,127 @@
       "name": "sample: every initial bit is clear",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 0},
+      "input": {
+        "n": 0
+      },
       "expected": 0,
-      "tags": ["sample", "minimum", "all-zero-bits"]
+      "tags": [
+        "sample",
+        "minimum",
+        "all-zero-bits"
+      ]
     },
     {
       "id": "sample-separated-bits",
       "name": "sample: two separated set bits",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 33},
+      "input": {
+        "n": 33
+      },
       "expected": 33,
-      "tags": ["sample", "sparse"]
+      "tags": [
+        "sample",
+        "sparse"
+      ]
     },
     {
       "id": "trial-lowest-bit-only",
       "name": "only the lowest bit is set",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1},
+      "input": {
+        "n": 1
+      },
       "expected": 1,
-      "tags": ["lowest-bit", "power-of-two"]
+      "tags": [
+        "lowest-bit",
+        "power-of-two"
+      ]
     },
     {
       "id": "trial-highest-bit-only",
       "name": "only the highest legal bit is set",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 536870912},
+      "input": {
+        "n": 536870912
+      },
       "expected": 536870912,
-      "tags": ["highest-bit", "power-of-two"]
+      "tags": [
+        "highest-bit",
+        "power-of-two"
+      ]
     },
     {
       "id": "trial-low-five-bits",
       "name": "five consecutive low bits are set",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 31},
+      "input": {
+        "n": 31
+      },
       "expected": 31,
-      "tags": ["consecutive-bits"]
+      "tags": [
+        "consecutive-bits"
+      ]
     },
     {
       "id": "trial-alternating-low-first",
       "name": "alternating bits beginning with the low bit",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 357913941},
+      "input": {
+        "n": 357913941
+      },
       "expected": 357913941,
-      "tags": ["alternating-bits"]
+      "tags": [
+        "alternating-bits"
+      ]
     },
     {
       "id": "real-maximum",
-      "name": "hidden: every legal bit is set",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1073741823},
+      "name": "every legal bit is set",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1073741823
+      },
       "expected": 1073741823,
-      "tags": ["hidden", "maximum", "all-one-bits"]
+      "tags": [
+        "hidden",
+        "maximum",
+        "all-one-bits"
+      ]
     },
     {
       "id": "real-alternating-high-first",
-      "name": "hidden: complementary alternating bit pattern",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 715827882},
+      "name": "complementary alternating bit pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 715827882
+      },
       "expected": 715827882,
-      "tags": ["hidden", "alternating-bits"]
+      "tags": [
+        "hidden",
+        "alternating-bits"
+      ]
     },
     {
       "id": "real-low-and-high-bits",
-      "name": "hidden: both boundary bits and one interior bit",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 536870945},
+      "name": "both boundary bits and one interior bit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 536870945
+      },
       "expected": 536870945,
-      "tags": ["hidden", "sparse", "boundaries"]
+      "tags": [
+        "hidden",
+        "sparse",
+        "boundaries"
+      ]
     }
   ]
 }

@@ -2,13 +2,148 @@
   "schema_version": 1,
   "challenge_id": "lc_2187",
   "cases": [
-    {"id":"sample-five","name":"sample: three buses reach five trips at time three","kind":"sample","visible":true,"input":{"time":[1,2,3],"totalTrips":5},"expected":3,"tags":["sample","parallel-buses"]},
-    {"id":"sample-single","name":"sample: one bus completes its first trip","kind":"sample","visible":true,"input":{"time":[2],"totalTrips":1},"expected":2,"tags":["sample","single-bus"]},
-    {"id":"trial-simultaneous","name":"two equal buses finish the third trip at time ten","kind":"trial","visible":true,"input":{"time":[5,5],"totalTrips":3},"expected":10,"tags":["simultaneous-completions"]},
-    {"id":"trial-fastest-dominates","name":"fast bus reaches the target as a slow bus joins","kind":"trial","visible":true,"input":{"time":[1,10],"totalTrips":10},"expected":10,"tags":["fastest-bus"]},
-    {"id":"trial-max-duration","name":"one maximum-duration bus completes one trip","kind":"trial","visible":true,"input":{"time":[10000000],"totalTrips":1},"expected":10000000,"tags":["maximum-duration","single-bus"]},
-    {"id":"real-many-trips","name":"hidden: coprime bus durations share a large target","kind":"real","visible":false,"input":{"time":[17,19],"totalTrips":1000},"expected":8976,"tags":["hidden","large-target"]},
-    {"id":"real-overshoot","name":"hidden: earliest instant can exceed the target count","kind":"real","visible":false,"input":{"time":[2,2,3],"totalTrips":4},"expected":4,"tags":["hidden","overshoot"]},
-    {"id":"real-unsorted","name":"hidden: duration order does not affect the result","kind":"real","visible":false,"input":{"time":[9,3,6],"totalTrips":8},"expected":15,"tags":["hidden","unsorted"]}
+    {
+      "id": "sample-five",
+      "name": "sample: three buses reach five trips at time three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "time": [
+          1,
+          2,
+          3
+        ],
+        "totalTrips": 5
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "parallel-buses"
+      ]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: one bus completes its first trip",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "time": [
+          2
+        ],
+        "totalTrips": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "single-bus"
+      ]
+    },
+    {
+      "id": "trial-simultaneous",
+      "name": "two equal buses finish the third trip at time ten",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "time": [
+          5,
+          5
+        ],
+        "totalTrips": 3
+      },
+      "expected": 10,
+      "tags": [
+        "simultaneous-completions"
+      ]
+    },
+    {
+      "id": "trial-fastest-dominates",
+      "name": "fast bus reaches the target as a slow bus joins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "time": [
+          1,
+          10
+        ],
+        "totalTrips": 10
+      },
+      "expected": 10,
+      "tags": [
+        "fastest-bus"
+      ]
+    },
+    {
+      "id": "trial-max-duration",
+      "name": "one maximum-duration bus completes one trip",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "time": [
+          10000000
+        ],
+        "totalTrips": 1
+      },
+      "expected": 10000000,
+      "tags": [
+        "maximum-duration",
+        "single-bus"
+      ]
+    },
+    {
+      "id": "real-many-trips",
+      "name": "coprime bus durations share a large target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "time": [
+          17,
+          19
+        ],
+        "totalTrips": 1000
+      },
+      "expected": 8976,
+      "tags": [
+        "hidden",
+        "large-target"
+      ]
+    },
+    {
+      "id": "real-overshoot",
+      "name": "earliest instant can exceed the target count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "time": [
+          2,
+          2,
+          3
+        ],
+        "totalTrips": 4
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "overshoot"
+      ]
+    },
+    {
+      "id": "real-unsorted",
+      "name": "duration order does not affect the result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "time": [
+          9,
+          3,
+          6
+        ],
+        "totalTrips": 8
+      },
+      "expected": 15,
+      "tags": [
+        "hidden",
+        "unsorted"
+      ]
+    }
   ]
 }

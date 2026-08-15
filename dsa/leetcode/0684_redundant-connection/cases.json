@@ -170,9 +170,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: extra edge appears early",
-      "kind": "real",
-      "visible": false,
+      "name": "extra edge appears early",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -204,9 +204,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: branch attached to a cycle",
-      "kind": "real",
-      "visible": false,
+      "name": "branch attached to a cycle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -242,9 +242,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: cycle among high labels",
-      "kind": "real",
-      "visible": false,
+      "name": "cycle among high labels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -280,4 +280,3 @@
     }
   ]
 }
-

@@ -85,9 +85,9 @@
     },
     {
       "id": "real-two-separated-wins",
-      "name": "hidden: two separated wins",
-      "kind": "real",
-      "visible": false,
+      "name": "two separated wins",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           2,

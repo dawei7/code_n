@@ -98,9 +98,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: disorder reaches final index",
-      "kind": "real",
-      "visible": false,
+      "name": "disorder reaches final index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -118,9 +118,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: negative values and duplicates",
-      "kind": "real",
-      "visible": false,
+      "name": "negative values and duplicates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -3,

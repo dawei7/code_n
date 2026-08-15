@@ -118,9 +118,9 @@
     },
     {
       "id": "real-star",
-      "name": "hidden: best path crosses a high-price center",
-      "kind": "real",
-      "visible": false,
+      "name": "best path crosses a high-price center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [
@@ -153,9 +153,9 @@
     },
     {
       "id": "real-weighted-chain",
-      "name": "hidden: endpoint exclusion dominates a weighted chain",
-      "kind": "real",
-      "visible": false,
+      "name": "endpoint exclusion dominates a weighted chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [
@@ -188,9 +188,9 @@
     },
     {
       "id": "real-three-branches",
-      "name": "hidden: combine two of three child branches",
-      "kind": "real",
-      "visible": false,
+      "name": "combine two of three child branches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [

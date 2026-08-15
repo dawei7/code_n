@@ -6,72 +6,151 @@
       "name": "sample: richest pile changes after reductions",
       "kind": "sample",
       "visible": true,
-      "input": {"gifts": [25, 64, 9, 4, 100], "k": 4},
+      "input": {
+        "gifts": [
+          25,
+          64,
+          9,
+          4,
+          100
+        ],
+        "k": 4
+      },
       "expected": 29,
-      "tags": ["sample", "heap"]
+      "tags": [
+        "sample",
+        "heap"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: piles of one are unchanged",
       "kind": "sample",
       "visible": true,
-      "input": {"gifts": [1, 1, 1, 1], "k": 4},
+      "input": {
+        "gifts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 4
+      },
       "expected": 4,
-      "tags": ["sample", "fixed-point"]
+      "tags": [
+        "sample",
+        "fixed-point"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: non-perfect square rounds down",
       "kind": "sample",
       "visible": true,
-      "input": {"gifts": [10], "k": 1},
+      "input": {
+        "gifts": [
+          10
+        ],
+        "k": 1
+      },
       "expected": 3,
-      "tags": ["sample", "floor-square-root"]
+      "tags": [
+        "sample",
+        "floor-square-root"
+      ]
     },
     {
       "id": "trial-single-pile-repeated",
       "name": "trial: repeatedly reduce the same pile",
       "kind": "trial",
       "visible": true,
-      "input": {"gifts": [1000000000], "k": 3},
+      "input": {
+        "gifts": [
+          1000000000
+        ],
+        "k": 3
+      },
       "expected": 13,
-      "tags": ["trial", "large-value", "repeated"]
+      "tags": [
+        "trial",
+        "large-value",
+        "repeated"
+      ]
     },
     {
       "id": "trial-tied-richest",
       "name": "trial: either tied richest pile may be chosen",
       "kind": "trial",
       "visible": true,
-      "input": {"gifts": [9, 9], "k": 1},
+      "input": {
+        "gifts": [
+          9,
+          9
+        ],
+        "k": 1
+      },
       "expected": 12,
-      "tags": ["trial", "tie"]
+      "tags": [
+        "trial",
+        "tie"
+      ]
     },
     {
       "id": "real-more-operations-than-piles",
-      "name": "hidden: operations revisit reduced piles",
-      "kind": "real",
-      "visible": false,
-      "input": {"gifts": [4, 2], "k": 3},
+      "name": "operations revisit reduced piles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "gifts": [
+          4,
+          2
+        ],
+        "k": 3
+      },
       "expected": 2,
-      "tags": ["hidden", "repeated"]
+      "tags": [
+        "hidden",
+        "repeated"
+      ]
     },
     {
       "id": "real-eventual-ones",
-      "name": "hidden: many remaining operations preserve ones",
-      "kind": "real",
-      "visible": false,
-      "input": {"gifts": [2, 2, 2], "k": 1000},
+      "name": "many remaining operations preserve ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "gifts": [
+          2,
+          2,
+          2
+        ],
+        "k": 1000
+      },
       "expected": 3,
-      "tags": ["hidden", "fixed-point", "maximum-k"]
+      "tags": [
+        "hidden",
+        "fixed-point",
+        "maximum-k"
+      ]
     },
     {
       "id": "real-largest-pile-can-repeat",
-      "name": "hidden: reduced maximum remains the maximum",
-      "kind": "real",
-      "visible": false,
-      "input": {"gifts": [10000, 2, 2], "k": 2},
+      "name": "reduced maximum remains the maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "gifts": [
+          10000,
+          2,
+          2
+        ],
+        "k": 2
+      },
       "expected": 14,
-      "tags": ["hidden", "repeated-maximum"]
+      "tags": [
+        "hidden",
+        "repeated-maximum"
+      ]
     }
   ]
 }

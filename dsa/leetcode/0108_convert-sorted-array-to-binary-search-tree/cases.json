@@ -78,9 +78,9 @@
     },
     {
       "id": "real-seven-values",
-      "name": "hidden: seven values",
-      "kind": "real",
-      "visible": false,
+      "name": "seven values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -5,

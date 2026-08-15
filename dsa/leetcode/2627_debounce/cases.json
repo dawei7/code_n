@@ -6,72 +6,356 @@
       "name": "sample: later call cancels pending execution",
       "kind": "sample",
       "visible": true,
-      "input": {"t": 50, "calls": [{"t": 50, "inputs": [1]}, {"t": 75, "inputs": [2]}]},
-      "expected": [{"t": 125, "inputs": [2]}],
-      "tags": ["sample", "cancellation"]
+      "input": {
+        "t": 50,
+        "calls": [
+          {
+            "t": 50,
+            "inputs": [
+              1
+            ]
+          },
+          {
+            "t": 75,
+            "inputs": [
+              2
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "t": 125,
+          "inputs": [
+            2
+          ]
+        }
+      ],
+      "tags": [
+        "sample",
+        "cancellation"
+      ]
     },
     {
       "id": "sample-separated-calls",
       "name": "sample: quiet interval allows both calls",
       "kind": "sample",
       "visible": true,
-      "input": {"t": 20, "calls": [{"t": 50, "inputs": [1]}, {"t": 100, "inputs": [2]}]},
-      "expected": [{"t": 70, "inputs": [1]}, {"t": 120, "inputs": [2]}],
-      "tags": ["sample", "separate-bursts"]
+      "input": {
+        "t": 20,
+        "calls": [
+          {
+            "t": 50,
+            "inputs": [
+              1
+            ]
+          },
+          {
+            "t": 100,
+            "inputs": [
+              2
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "t": 70,
+          "inputs": [
+            1
+          ]
+        },
+        {
+          "t": 120,
+          "inputs": [
+            2
+          ]
+        }
+      ],
+      "tags": [
+        "sample",
+        "separate-bursts"
+      ]
     },
     {
       "id": "sample-same-time",
       "name": "sample: later same-time call wins",
       "kind": "sample",
       "visible": true,
-      "input": {"t": 150, "calls": [{"t": 50, "inputs": [1, 2]}, {"t": 300, "inputs": [3, 4]}, {"t": 300, "inputs": [5, 6]}]},
-      "expected": [{"t": 200, "inputs": [1, 2]}, {"t": 450, "inputs": [5, 6]}],
-      "tags": ["sample", "same-time", "argument-forwarding"]
+      "input": {
+        "t": 150,
+        "calls": [
+          {
+            "t": 50,
+            "inputs": [
+              1,
+              2
+            ]
+          },
+          {
+            "t": 300,
+            "inputs": [
+              3,
+              4
+            ]
+          },
+          {
+            "t": 300,
+            "inputs": [
+              5,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "t": 200,
+          "inputs": [
+            1,
+            2
+          ]
+        },
+        {
+          "t": 450,
+          "inputs": [
+            5,
+            6
+          ]
+        }
+      ],
+      "tags": [
+        "sample",
+        "same-time",
+        "argument-forwarding"
+      ]
     },
     {
       "id": "trial-zero-delay",
       "name": "trial: zero delay executes an isolated call immediately",
       "kind": "trial",
       "visible": true,
-      "input": {"t": 0, "calls": [{"t": 0, "inputs": []}]},
-      "expected": [{"t": 0, "inputs": []}],
-      "tags": ["trial", "zero-delay", "empty-arguments"]
+      "input": {
+        "t": 0,
+        "calls": [
+          {
+            "t": 0,
+            "inputs": []
+          }
+        ]
+      },
+      "expected": [
+        {
+          "t": 0,
+          "inputs": []
+        }
+      ],
+      "tags": [
+        "trial",
+        "zero-delay",
+        "empty-arguments"
+      ]
     },
     {
       "id": "trial-three-call-burst",
       "name": "trial: burst restarts the complete delay",
       "kind": "trial",
       "visible": true,
-      "input": {"t": 40, "calls": [{"t": 0, "inputs": [1]}, {"t": 10, "inputs": [2]}, {"t": 20, "inputs": [3]}]},
-      "expected": [{"t": 60, "inputs": [3]}],
-      "tags": ["trial", "burst", "delay-reset"]
+      "input": {
+        "t": 40,
+        "calls": [
+          {
+            "t": 0,
+            "inputs": [
+              1
+            ]
+          },
+          {
+            "t": 10,
+            "inputs": [
+              2
+            ]
+          },
+          {
+            "t": 20,
+            "inputs": [
+              3
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "t": 60,
+          "inputs": [
+            3
+          ]
+        }
+      ],
+      "tags": [
+        "trial",
+        "burst",
+        "delay-reset"
+      ]
     },
     {
       "id": "real-just-separated",
       "name": "real: call after quiet interval starts a new burst",
-      "kind": "real",
-      "visible": false,
-      "input": {"t": 30, "calls": [{"t": 0, "inputs": [7]}, {"t": 31, "inputs": [8]}]},
-      "expected": [{"t": 30, "inputs": [7]}, {"t": 61, "inputs": [8]}],
-      "tags": ["real", "boundary-spacing"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "t": 30,
+        "calls": [
+          {
+            "t": 0,
+            "inputs": [
+              7
+            ]
+          },
+          {
+            "t": 31,
+            "inputs": [
+              8
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "t": 30,
+          "inputs": [
+            7
+          ]
+        },
+        {
+          "t": 61,
+          "inputs": [
+            8
+          ]
+        }
+      ],
+      "tags": [
+        "real",
+        "boundary-spacing"
+      ]
     },
     {
       "id": "real-maximum-calls",
       "name": "real: ten same-time calls retain only the last arguments",
-      "kind": "real",
-      "visible": false,
-      "input": {"t": 25, "calls": [{"t": 100, "inputs": [0]}, {"t": 100, "inputs": [1]}, {"t": 100, "inputs": [2]}, {"t": 100, "inputs": [3]}, {"t": 100, "inputs": [4]}, {"t": 100, "inputs": [5]}, {"t": 100, "inputs": [6]}, {"t": 100, "inputs": [7]}, {"t": 100, "inputs": [8]}, {"t": 100, "inputs": [9]}]},
-      "expected": [{"t": 125, "inputs": [9]}],
-      "tags": ["real", "maximum-calls", "same-time"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "t": 25,
+        "calls": [
+          {
+            "t": 100,
+            "inputs": [
+              0
+            ]
+          },
+          {
+            "t": 100,
+            "inputs": [
+              1
+            ]
+          },
+          {
+            "t": 100,
+            "inputs": [
+              2
+            ]
+          },
+          {
+            "t": 100,
+            "inputs": [
+              3
+            ]
+          },
+          {
+            "t": 100,
+            "inputs": [
+              4
+            ]
+          },
+          {
+            "t": 100,
+            "inputs": [
+              5
+            ]
+          },
+          {
+            "t": 100,
+            "inputs": [
+              6
+            ]
+          },
+          {
+            "t": 100,
+            "inputs": [
+              7
+            ]
+          },
+          {
+            "t": 100,
+            "inputs": [
+              8
+            ]
+          },
+          {
+            "t": 100,
+            "inputs": [
+              9
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "t": 125,
+          "inputs": [
+            9
+          ]
+        }
+      ],
+      "tags": [
+        "real",
+        "maximum-calls",
+        "same-time"
+      ]
     },
     {
       "id": "real-maximum-delay",
       "name": "real: maximum delay is added to the call time",
-      "kind": "real",
-      "visible": false,
-      "input": {"t": 1000, "calls": [{"t": 1000, "inputs": [4, 5, 6]}]},
-      "expected": [{"t": 2000, "inputs": [4, 5, 6]}],
-      "tags": ["real", "maximum-delay", "argument-forwarding"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "t": 1000,
+        "calls": [
+          {
+            "t": 1000,
+            "inputs": [
+              4,
+              5,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "t": 2000,
+          "inputs": [
+            4,
+            5,
+            6
+          ]
+        }
+      ],
+      "tags": [
+        "real",
+        "maximum-delay",
+        "argument-forwarding"
+      ]
     }
   ]
 }

@@ -6,108 +6,315 @@
       "name": "sample: two isolated free days",
       "kind": "sample",
       "visible": true,
-      "input": {"days": 10, "meetings": [[5, 7], [1, 3], [9, 10]]},
+      "input": {
+        "days": 10,
+        "meetings": [
+          [
+            5,
+            7
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            9,
+            10
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "unsorted", "separated"]
+      "tags": [
+        "sample",
+        "unsorted",
+        "separated"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: overlapping meetings cover the first four days",
       "kind": "sample",
       "visible": true,
-      "input": {"days": 5, "meetings": [[2, 4], [1, 3]]},
+      "input": {
+        "days": 5,
+        "meetings": [
+          [
+            2,
+            4
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "overlap"]
+      "tags": [
+        "sample",
+        "overlap"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: one meeting covers every day",
       "kind": "sample",
       "visible": true,
-      "input": {"days": 6, "meetings": [[1, 6]]},
+      "input": {
+        "days": 6,
+        "meetings": [
+          [
+            1,
+            6
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "full-coverage"]
+      "tags": [
+        "sample",
+        "full-coverage"
+      ]
     },
     {
       "id": "trial-single-day-meeting",
       "name": "trial: one middle day is occupied",
       "kind": "trial",
       "visible": true,
-      "input": {"days": 5, "meetings": [[3, 3]]},
+      "input": {
+        "days": 5,
+        "meetings": [
+          [
+            3,
+            3
+          ]
+        ]
+      },
       "expected": 4,
-      "tags": ["singleton-interval", "free-boundaries"]
+      "tags": [
+        "singleton-interval",
+        "free-boundaries"
+      ]
     },
     {
       "id": "trial-duplicates-and-nesting",
       "name": "trial: duplicate and nested intervals add no coverage",
       "kind": "trial",
       "visible": true,
-      "input": {"days": 10, "meetings": [[2, 8], [3, 4], [2, 8]]},
+      "input": {
+        "days": 10,
+        "meetings": [
+          [
+            2,
+            8
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            2,
+            8
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["duplicates", "nested"]
+      "tags": [
+        "duplicates",
+        "nested"
+      ]
     },
     {
       "id": "trial-adjacent-intervals",
       "name": "trial: adjacent intervals leave no internal gap",
       "kind": "trial",
       "visible": true,
-      "input": {"days": 8, "meetings": [[1, 2], [3, 4], [6, 6]]},
+      "input": {
+        "days": 8,
+        "meetings": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            6,
+            6
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["adjacent", "singleton-interval"]
+      "tags": [
+        "adjacent",
+        "singleton-interval"
+      ]
     },
     {
       "id": "real-unsorted-separated",
       "name": "real: several separated intervals arrive unsorted",
-      "kind": "real",
-      "visible": false,
-      "input": {"days": 20, "meetings": [[15, 18], [2, 4], [8, 10]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "days": 20,
+        "meetings": [
+          [
+            15,
+            18
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            8,
+            10
+          ]
+        ]
+      },
       "expected": 10,
-      "tags": ["real", "unsorted", "separated"]
+      "tags": [
+        "real",
+        "unsorted",
+        "separated"
+      ]
     },
     {
       "id": "real-overlap-chain",
       "name": "real: endpoint overlaps connect a full chain",
-      "kind": "real",
-      "visible": false,
-      "input": {"days": 10, "meetings": [[5, 7], [1, 3], [3, 5]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "days": 10,
+        "meetings": [
+          [
+            5,
+            7
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["real", "overlap-chain", "inclusive"]
+      "tags": [
+        "real",
+        "overlap-chain",
+        "inclusive"
+      ]
     },
     {
       "id": "real-billion-day-boundaries",
       "name": "real: meetings occupy only the first and last days",
-      "kind": "real",
-      "visible": false,
-      "input": {"days": 1000000000, "meetings": [[1000000000, 1000000000], [1, 1]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "days": 1000000000,
+        "meetings": [
+          [
+            1000000000,
+            1000000000
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 999999998,
-      "tags": ["real", "large-days", "boundaries"]
+      "tags": [
+        "real",
+        "large-days",
+        "boundaries"
+      ]
     },
     {
       "id": "real-overlaps-cover-all",
       "name": "real: overlapping intervals jointly cover the timeline",
-      "kind": "real",
-      "visible": false,
-      "input": {"days": 12, "meetings": [[1, 5], [4, 10], [9, 12]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "days": 12,
+        "meetings": [
+          [
+            1,
+            5
+          ],
+          [
+            4,
+            10
+          ],
+          [
+            9,
+            12
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["real", "overlap-chain", "full-coverage"]
+      "tags": [
+        "real",
+        "overlap-chain",
+        "full-coverage"
+      ]
     },
     {
       "id": "real-broad-with-nested",
       "name": "real: a broad interval contains a smaller meeting",
-      "kind": "real",
-      "visible": false,
-      "input": {"days": 30, "meetings": [[5, 25], [10, 12], [1, 3], [27, 29]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "days": 30,
+        "meetings": [
+          [
+            5,
+            25
+          ],
+          [
+            10,
+            12
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            27,
+            29
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["real", "nested", "multiple-gaps"]
+      "tags": [
+        "real",
+        "nested",
+        "multiple-gaps"
+      ]
     },
     {
       "id": "real-one-day-timeline",
       "name": "real: the only work day has a meeting",
-      "kind": "real",
-      "visible": false,
-      "input": {"days": 1, "meetings": [[1, 1]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "days": 1,
+        "meetings": [
+          [
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["real", "minimum-domain", "full-coverage"]
+      "tags": [
+        "real",
+        "minimum-domain",
+        "full-coverage"
+      ]
     }
   ]
 }

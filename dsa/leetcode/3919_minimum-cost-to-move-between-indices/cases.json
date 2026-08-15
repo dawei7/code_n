@@ -7,126 +7,661 @@
       "name": "sample: closest moves and a direct gap have different costs",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [-5, -2, 3], "queries": [[0, 2], [2, 0], [1, 2]]},
-      "expected": [6, 2, 5],
-      "tags": ["sample", "directional-costs", "direct-move"]
+      "input": {
+        "nums": [
+          -5,
+          -2,
+          3
+        ],
+        "queries": [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        6,
+        2,
+        5
+      ],
+      "tags": [
+        "sample",
+        "directional-costs",
+        "direct-move"
+      ]
     },
     {
       "id": "sample-four-indices",
       "name": "sample: both directions combine discounted and full-gap edges",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [0, 2, 3, 9], "queries": [[3, 0], [1, 2], [2, 0]]},
-      "expected": [4, 1, 3],
-      "tags": ["sample", "closest-chain", "prefix-sums"]
+      "input": {
+        "nums": [
+          0,
+          2,
+          3,
+          9
+        ],
+        "queries": [
+          [
+            3,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        1,
+        3
+      ],
+      "tags": [
+        "sample",
+        "closest-chain",
+        "prefix-sums"
+      ]
     },
     {
       "id": "trial-minimum-array",
       "name": "trial: two endpoints are each other's closest index",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 1], "queries": [[0, 1], [1, 0], [0, 0], [1, 1]]},
-      "expected": [1, 1, 0, 0],
-      "tags": ["trial", "minimum-length", "same-index"]
+      "input": {
+        "nums": [
+          0,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "minimum-length",
+        "same-index"
+      ]
     },
     {
       "id": "trial-maximum-coordinate-gap",
       "name": "trial: the endpoint discount overrides the maximum value gap",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-1000000000, 1000000000], "queries": [[0, 1], [1, 0]]},
-      "expected": [1, 1],
-      "tags": ["trial", "coordinate-boundary", "endpoint-discount"]
+      "input": {
+        "nums": [
+          -1000000000,
+          1000000000
+        ],
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "trial",
+        "coordinate-boundary",
+        "endpoint-discount"
+      ]
     },
     {
       "id": "trial-equal-gaps",
       "name": "trial: ties select the smaller adjacent index",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 2, 4], "queries": [[1, 2], [1, 0], [0, 2], [2, 0], [0, 1], [2, 1]]},
-      "expected": [2, 1, 3, 2, 1, 1],
-      "tags": ["trial", "tie-break", "directional-asymmetry"]
+      "input": {
+        "nums": [
+          0,
+          2,
+          4
+        ],
+        "queries": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        1,
+        3,
+        2,
+        1,
+        1
+      ],
+      "tags": [
+        "trial",
+        "tie-break",
+        "directional-asymmetry"
+      ]
     },
     {
       "id": "trial-small-middle-gap",
       "name": "trial: a narrow middle gap directs both adjacent indices inward",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 5, 6, 20], "queries": [[0, 3], [3, 0], [1, 3], [3, 1], [0, 2], [2, 0]]},
-      "expected": [16, 7, 15, 2, 2, 6],
-      "tags": ["trial", "unequal-gaps", "both-directions"]
+      "input": {
+        "nums": [
+          0,
+          5,
+          6,
+          20
+        ],
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        16,
+        7,
+        15,
+        2,
+        2,
+        6
+      ],
+      "tags": [
+        "trial",
+        "unequal-gaps",
+        "both-directions"
+      ]
     },
     {
       "id": "trial-large-middle-gap",
       "name": "trial: a wide middle gap remains full cost in both directions",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 1, 6, 7], "queries": [[0, 3], [3, 0], [1, 2], [2, 1], [0, 2], [2, 0]]},
-      "expected": [7, 7, 5, 5, 6, 6],
-      "tags": ["trial", "wide-gap", "direct-cost"]
+      "input": {
+        "nums": [
+          0,
+          1,
+          6,
+          7
+        ],
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        7,
+        7,
+        5,
+        5,
+        6,
+        6
+      ],
+      "tags": [
+        "trial",
+        "wide-gap",
+        "direct-cost"
+      ]
     },
     {
       "id": "trial-negative-and-positive",
       "name": "trial: travel crosses zero through irregular gaps",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-20, -19, -10, -8, 5, 6], "queries": [[0, 5], [5, 0], [1, 4], [4, 1], [2, 5], [5, 2]]},
-      "expected": [25, 25, 23, 23, 15, 15],
-      "tags": ["trial", "negative-values", "irregular-gaps"]
+      "input": {
+        "nums": [
+          -20,
+          -19,
+          -10,
+          -8,
+          5,
+          6
+        ],
+        "queries": [
+          [
+            0,
+            5
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            5,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        25,
+        25,
+        23,
+        23,
+        15,
+        15
+      ],
+      "tags": [
+        "trial",
+        "negative-values",
+        "irregular-gaps"
+      ]
     },
     {
       "id": "trial-same-index-mixed",
       "name": "trial: a zero-length query is mixed with asymmetric routes",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-10, -3, 0, 8, 9], "queries": [[0, 4], [4, 0], [2, 2], [1, 3], [3, 1]]},
-      "expected": [11, 17, 0, 9, 9],
-      "tags": ["trial", "same-index", "asymmetric-total"]
+      "input": {
+        "nums": [
+          -10,
+          -3,
+          0,
+          8,
+          9
+        ],
+        "queries": [
+          [
+            0,
+            4
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        11,
+        17,
+        0,
+        9,
+        9
+      ],
+      "tags": [
+        "trial",
+        "same-index",
+        "asymmetric-total"
+      ]
     },
     {
       "id": "trial-varying-gap-pattern",
       "name": "trial: alternating gap comparisons exercise both prefixes",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 3, 4, 8, 10, 17], "queries": [[0, 5], [5, 0], [1, 4], [4, 1], [2, 3], [3, 2]]},
-      "expected": [14, 10, 6, 6, 4, 4],
-      "tags": ["trial", "varying-gaps", "directional-prefixes"]
+      "input": {
+        "nums": [
+          0,
+          3,
+          4,
+          8,
+          10,
+          17
+        ],
+        "queries": [
+          [
+            0,
+            5
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        14,
+        10,
+        6,
+        6,
+        4,
+        4
+      ],
+      "tags": [
+        "trial",
+        "varying-gaps",
+        "directional-prefixes"
+      ]
     },
     {
       "id": "hidden-unit-gaps",
-      "name": "hidden: every equal unit gap discounts only toward smaller indices internally",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 1, 2, 3, 4, 5], "queries": [[0, 5], [5, 0], [2, 4], [4, 2]]},
-      "expected": [5, 5, 2, 2],
-      "tags": ["hidden", "unit-gaps", "tie-break"]
+      "name": "every equal unit gap discounts only toward smaller indices internally",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "queries": [
+          [
+            0,
+            5
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        5,
+        5,
+        2,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "unit-gaps",
+        "tie-break"
+      ]
     },
     {
       "id": "hidden-large-accumulated-cost",
-      "name": "hidden: accumulated costs require integers wider than 32 bits",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-1000000000, -999999999, 0, 999999999, 1000000000], "queries": [[0, 4], [4, 0], [1, 3], [3, 1]]},
-      "expected": [2000000000, 1000000002, 1999999998, 1000000000],
-      "tags": ["hidden", "large-cost", "integer-width"]
+      "name": "accumulated costs require integers wider than 32 bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1000000000,
+          -999999999,
+          0,
+          999999999,
+          1000000000
+        ],
+        "queries": [
+          [
+            0,
+            4
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        2000000000,
+        1000000002,
+        1999999998,
+        1000000000
+      ],
+      "tags": [
+        "hidden",
+        "large-cost",
+        "integer-width"
+      ]
     },
     {
       "id": "hidden-repeated-ties",
-      "name": "hidden: repeated wide ties preserve the smaller-index rule",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 100, 101, 201, 202], "queries": [[0, 4], [4, 0], [1, 3], [3, 1], [2, 4], [4, 2]]},
-      "expected": [103, 202, 101, 101, 101, 101],
-      "tags": ["hidden", "repeated-pattern", "tie-break"]
+      "name": "repeated wide ties preserve the smaller-index rule",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          100,
+          101,
+          201,
+          202
+        ],
+        "queries": [
+          [
+            0,
+            4
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        103,
+        202,
+        101,
+        101,
+        101,
+        101
+      ],
+      "tags": [
+        "hidden",
+        "repeated-pattern",
+        "tie-break"
+      ]
     },
     {
       "id": "hidden-monotone-gap-decrease",
-      "name": "hidden: decreasing gaps make rightward closest moves form a chain",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 4, 7, 9, 10], "queries": [[0, 4], [4, 0], [1, 4], [4, 1], [2, 0], [0, 2]]},
-      "expected": [4, 10, 3, 6, 7, 2],
-      "tags": ["hidden", "decreasing-gaps", "closest-chain"]
+      "name": "decreasing gaps make rightward closest moves form a chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          4,
+          7,
+          9,
+          10
+        ],
+        "queries": [
+          [
+            0,
+            4
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        10,
+        3,
+        6,
+        7,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "decreasing-gaps",
+        "closest-chain"
+      ]
     }
   ]
 }

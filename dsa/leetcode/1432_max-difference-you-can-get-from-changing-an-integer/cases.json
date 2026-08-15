@@ -73,9 +73,9 @@
     },
     {
       "id": "real-repeated-one",
-      "name": "hidden: leading one repeats before reducible digit",
-      "kind": "real",
-      "visible": false,
+      "name": "leading one repeats before reducible digit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 1101057
       },
@@ -87,9 +87,9 @@
     },
     {
       "id": "real-all-nine",
-      "name": "hidden: maximum is already fixed",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum is already fixed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 99999
       },
@@ -101,9 +101,9 @@
     },
     {
       "id": "real-upper-bound",
-      "name": "hidden: largest legal input",
-      "kind": "real",
-      "visible": false,
+      "name": "largest legal input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 100000000
       },

@@ -98,9 +98,9 @@
     },
     {
       "id": "real-leading-run",
-      "name": "hidden: longest maximum run occurs first",
-      "kind": "real",
-      "visible": false,
+      "name": "longest maximum run occurs first",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -118,9 +118,9 @@
     },
     {
       "id": "real-trailing-run",
-      "name": "hidden: longest maximum run occurs last",
-      "kind": "real",
-      "visible": false,
+      "name": "longest maximum run occurs last",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -138,9 +138,9 @@
     },
     {
       "id": "real-maximum-value",
-      "name": "hidden: legal maximum integer repeats",
-      "kind": "real",
-      "visible": false,
+      "name": "legal maximum integer repeats",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,

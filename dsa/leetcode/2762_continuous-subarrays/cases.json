@@ -1,1 +1,189 @@
-{"schema_version":1,"challenge_id":"lc_2762","cases":[{"id":"sample-mixed-ranges","name":"sample: one valid length-three window","kind":"sample","visible":true,"input":{"nums":[5,4,2,4]},"expected":8,"tags":["sample","mixed-ranges"]},{"id":"sample-all-valid","name":"sample: every subarray is continuous","kind":"sample","visible":true,"input":{"nums":[1,2,3]},"expected":6,"tags":["sample","all-valid"]},{"id":"trial-single","name":"trial: singleton array","kind":"trial","visible":true,"input":{"nums":[7]},"expected":1,"tags":["single-element"]},{"id":"trial-equal","name":"trial: all equal values","kind":"trial","visible":true,"input":{"nums":[7,7,7]},"expected":6,"tags":["equal-values","all-valid"]},{"id":"real-inclusive-two","name":"hidden: difference exactly two is valid","kind":"real","visible":false,"input":{"nums":[1,3]},"expected":3,"tags":["hidden","inclusive-boundary"]},{"id":"real-gap-three","name":"hidden: difference three breaks the pair","kind":"real","visible":false,"input":{"nums":[1,4]},"expected":2,"tags":["hidden","invalid-pair"]},{"id":"real-restart","name":"hidden: later window remains valid after a jump","kind":"real","visible":false,"input":{"nums":[1,4,2]},"expected":4,"tags":["hidden","shrink","restart"]},{"id":"real-max-values","name":"hidden: values near the upper bound","kind":"real","visible":false,"input":{"nums":[1000000000,999999998,999999999]},"expected":6,"tags":["hidden","value-boundary"]},{"id":"real-wide-valid-window","name":"hidden: several values within one width-two range","kind":"real","visible":false,"input":{"nums":[31,30,31,32]},"expected":10,"tags":["hidden","duplicates","all-valid"]},{"id":"real-multiple-shrinks","name":"hidden: multiple extremes leave across the scan","kind":"real","visible":false,"input":{"nums":[5,4,2,4,7,6,5]},"expected":14,"tags":["hidden","multiple-windows"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2762",
+  "cases": [
+    {
+      "id": "sample-mixed-ranges",
+      "name": "sample: one valid length-three window",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          2,
+          4
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "mixed-ranges"
+      ]
+    },
+    {
+      "id": "sample-all-valid",
+      "name": "sample: every subarray is continuous",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "all-valid"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: singleton array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-equal",
+      "name": "trial: all equal values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "equal-values",
+        "all-valid"
+      ]
+    },
+    {
+      "id": "real-inclusive-two",
+      "name": "difference exactly two is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "inclusive-boundary"
+      ]
+    },
+    {
+      "id": "real-gap-three",
+      "name": "difference three breaks the pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "invalid-pair"
+      ]
+    },
+    {
+      "id": "real-restart",
+      "name": "later window remains valid after a jump",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "shrink",
+        "restart"
+      ]
+    },
+    {
+      "id": "real-max-values",
+      "name": "values near the upper bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          999999998,
+          999999999
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-wide-valid-window",
+      "name": "several values within one width-two range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          31,
+          30,
+          31,
+          32
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "duplicates",
+        "all-valid"
+      ]
+    },
+    {
+      "id": "real-multiple-shrinks",
+      "name": "multiple extremes leave across the scan",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          2,
+          4,
+          7,
+          6,
+          5
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "hidden",
+        "multiple-windows"
+      ]
+    }
+  ]
+}

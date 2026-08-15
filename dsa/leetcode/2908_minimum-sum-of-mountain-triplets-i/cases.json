@@ -101,9 +101,9 @@
     },
     {
       "id": "real-competing-peaks",
-      "name": "hidden: side minima differ between competing peaks",
-      "kind": "real",
-      "visible": false,
+      "name": "side minima differ between competing peaks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -122,9 +122,9 @@
     },
     {
       "id": "real-late-smaller-right",
-      "name": "hidden: the best right endpoint need not be adjacent",
-      "kind": "real",
-      "visible": false,
+      "name": "the best right endpoint need not be adjacent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -142,9 +142,9 @@
     },
     {
       "id": "real-all-equal",
-      "name": "hidden: equal values never satisfy strict mountain sides",
-      "kind": "real",
-      "visible": false,
+      "name": "equal values never satisfy strict mountain sides",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

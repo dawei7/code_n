@@ -205,9 +205,9 @@
     },
     {
       "id": "real-zero-rectangle",
-      "name": "hidden: all-zero rectangle has minimum zero",
-      "kind": "real",
-      "visible": false,
+      "name": "all-zero rectangle has minimum zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -234,9 +234,9 @@
     },
     {
       "id": "real-maximum-two-by-two",
-      "name": "hidden: odd path length preserves maximum value",
-      "kind": "real",
-      "visible": false,
+      "name": "odd path length preserves maximum value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -261,9 +261,9 @@
     },
     {
       "id": "real-maximum-two-by-three",
-      "name": "hidden: even path length cancels repeated values",
-      "kind": "real",
-      "visible": false,
+      "name": "even path length cancels repeated values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -290,9 +290,9 @@
     },
     {
       "id": "real-distinct-powers",
-      "name": "hidden: compare three distinct-value routes",
-      "kind": "real",
-      "visible": false,
+      "name": "compare three distinct-value routes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -319,9 +319,9 @@
     },
     {
       "id": "real-three-by-three",
-      "name": "hidden: several intermediate XOR states compete",
-      "kind": "real",
-      "visible": false,
+      "name": "several intermediate XOR states compete",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -353,9 +353,9 @@
     },
     {
       "id": "real-single-row-boundaries",
-      "name": "hidden: boundary values on one forced path",
-      "kind": "real",
-      "visible": false,
+      "name": "boundary values on one forced path",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -379,9 +379,9 @@
     },
     {
       "id": "real-four-by-four-zero-minimum",
-      "name": "hidden: one of many paths reaches XOR zero",
-      "kind": "real",
-      "visible": false,
+      "name": "one of many paths reaches XOR zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

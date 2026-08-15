@@ -1,8 +1,322 @@
-{"challenge_id":"lc_2986","cases":[
-{"id":"sample-third-transaction","name":"sample: one qualifying user among three","kind":"sample","visible":true,"input":{"tables":{"Transactions":[{"user_id":1,"spend":65.56,"transaction_date":"2023-11-18 13:49:42"},{"user_id":1,"spend":96.0,"transaction_date":"2023-11-30 02:47:26"},{"user_id":1,"spend":7.44,"transaction_date":"2023-11-02 12:15:23"},{"user_id":1,"spend":49.78,"transaction_date":"2023-11-12 00:13:46"},{"user_id":2,"spend":40.89,"transaction_date":"2023-11-21 04:39:15"},{"user_id":2,"spend":100.44,"transaction_date":"2023-11-20 07:39:34"},{"user_id":3,"spend":37.33,"transaction_date":"2023-11-03 06:22:02"},{"user_id":3,"spend":13.89,"transaction_date":"2023-11-11 16:00:14"},{"user_id":3,"spend":7.0,"transaction_date":"2023-11-29 22:32:36"}]}},"expected":{"columns":["user_id","third_transaction_spend","third_transaction_date"],"rows":[[1,65.56,"2023-11-18 13:49:42"]]},"validator":{"kind":"ordered_table"},"tags":["sample","chronology"]},
-{"id":"trial-exactly-three","name":"trial: exactly three qualifying transactions","kind":"trial","visible":true,"input":{"tables":{"Transactions":[{"user_id":4,"spend":2.0,"transaction_date":"2023-01-01 00:00:00"},{"user_id":4,"spend":3.0,"transaction_date":"2023-01-02 00:00:00"},{"user_id":4,"spend":9.0,"transaction_date":"2023-01-03 00:00:00"}]}},"expected":{"columns":["user_id","third_transaction_spend","third_transaction_date"],"rows":[[4,9.0,"2023-01-03 00:00:00"]]},"validator":{"kind":"ordered_table"},"tags":["three-rows"]},
-{"id":"trial-strict-equality","name":"trial: equality with predecessor fails","kind":"trial","visible":true,"input":{"tables":{"Transactions":[{"user_id":5,"spend":8.0,"transaction_date":"2023-02-01 00:00:00"},{"user_id":5,"spend":2.0,"transaction_date":"2023-02-02 00:00:00"},{"user_id":5,"spend":8.0,"transaction_date":"2023-02-03 00:00:00"}]}},"expected":{"columns":["user_id","third_transaction_spend","third_transaction_date"],"rows":[]},"validator":{"kind":"ordered_table"},"tags":["strict"]},
-{"id":"trial-later-does-not-substitute","name":"trial: qualifying fourth row does not replace third","kind":"trial","visible":true,"input":{"tables":{"Transactions":[{"user_id":6,"spend":5.0,"transaction_date":"2023-03-01 00:00:00"},{"user_id":6,"spend":6.0,"transaction_date":"2023-03-02 00:00:00"},{"user_id":6,"spend":4.0,"transaction_date":"2023-03-03 00:00:00"},{"user_id":6,"spend":20.0,"transaction_date":"2023-03-04 00:00:00"}]}},"expected":{"columns":["user_id","third_transaction_spend","third_transaction_date"],"rows":[]},"validator":{"kind":"ordered_table"},"tags":["third-only"]},
-{"id":"real-user-order","name":"real: qualifying users sort ascending","kind":"real","visible":false,"input":{"tables":{"Transactions":[{"user_id":9,"spend":1.0,"transaction_date":"2023-04-01 00:00:00"},{"user_id":9,"spend":2.0,"transaction_date":"2023-04-02 00:00:00"},{"user_id":9,"spend":5.0,"transaction_date":"2023-04-03 00:00:00"},{"user_id":2,"spend":3.0,"transaction_date":"2023-04-01 00:00:00"},{"user_id":2,"spend":4.0,"transaction_date":"2023-04-02 00:00:00"},{"user_id":2,"spend":7.0,"transaction_date":"2023-04-03 00:00:00"}]}},"expected":{"columns":["user_id","third_transaction_spend","third_transaction_date"],"rows":[[2,7.0,"2023-04-03 00:00:00"],[9,5.0,"2023-04-03 00:00:00"]]},"validator":{"kind":"ordered_table"},"tags":["hidden","ordering"]},
-{"id":"real-short-history","name":"real: user with two rows is absent","kind":"real","visible":false,"input":{"tables":{"Transactions":[{"user_id":7,"spend":1.0,"transaction_date":"2023-05-01 00:00:00"},{"user_id":7,"spend":10.0,"transaction_date":"2023-05-02 00:00:00"}]}},"expected":{"columns":["user_id","third_transaction_spend","third_transaction_date"],"rows":[]},"validator":{"kind":"ordered_table"},"tags":["hidden","short-history"]}
-]}
+{
+  "challenge_id": "lc_2986",
+  "cases": [
+    {
+      "id": "sample-third-transaction",
+      "name": "sample: one qualifying user among three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "user_id": 1,
+              "spend": 65.56,
+              "transaction_date": "2023-11-18 13:49:42"
+            },
+            {
+              "user_id": 1,
+              "spend": 96.0,
+              "transaction_date": "2023-11-30 02:47:26"
+            },
+            {
+              "user_id": 1,
+              "spend": 7.44,
+              "transaction_date": "2023-11-02 12:15:23"
+            },
+            {
+              "user_id": 1,
+              "spend": 49.78,
+              "transaction_date": "2023-11-12 00:13:46"
+            },
+            {
+              "user_id": 2,
+              "spend": 40.89,
+              "transaction_date": "2023-11-21 04:39:15"
+            },
+            {
+              "user_id": 2,
+              "spend": 100.44,
+              "transaction_date": "2023-11-20 07:39:34"
+            },
+            {
+              "user_id": 3,
+              "spend": 37.33,
+              "transaction_date": "2023-11-03 06:22:02"
+            },
+            {
+              "user_id": 3,
+              "spend": 13.89,
+              "transaction_date": "2023-11-11 16:00:14"
+            },
+            {
+              "user_id": 3,
+              "spend": 7.0,
+              "transaction_date": "2023-11-29 22:32:36"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "third_transaction_spend",
+          "third_transaction_date"
+        ],
+        "rows": [
+          [
+            1,
+            65.56,
+            "2023-11-18 13:49:42"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "chronology"
+      ]
+    },
+    {
+      "id": "trial-exactly-three",
+      "name": "trial: exactly three qualifying transactions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "user_id": 4,
+              "spend": 2.0,
+              "transaction_date": "2023-01-01 00:00:00"
+            },
+            {
+              "user_id": 4,
+              "spend": 3.0,
+              "transaction_date": "2023-01-02 00:00:00"
+            },
+            {
+              "user_id": 4,
+              "spend": 9.0,
+              "transaction_date": "2023-01-03 00:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "third_transaction_spend",
+          "third_transaction_date"
+        ],
+        "rows": [
+          [
+            4,
+            9.0,
+            "2023-01-03 00:00:00"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "three-rows"
+      ]
+    },
+    {
+      "id": "trial-strict-equality",
+      "name": "trial: equality with predecessor fails",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "user_id": 5,
+              "spend": 8.0,
+              "transaction_date": "2023-02-01 00:00:00"
+            },
+            {
+              "user_id": 5,
+              "spend": 2.0,
+              "transaction_date": "2023-02-02 00:00:00"
+            },
+            {
+              "user_id": 5,
+              "spend": 8.0,
+              "transaction_date": "2023-02-03 00:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "third_transaction_spend",
+          "third_transaction_date"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "strict"
+      ]
+    },
+    {
+      "id": "trial-later-does-not-substitute",
+      "name": "trial: qualifying fourth row does not replace third",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "user_id": 6,
+              "spend": 5.0,
+              "transaction_date": "2023-03-01 00:00:00"
+            },
+            {
+              "user_id": 6,
+              "spend": 6.0,
+              "transaction_date": "2023-03-02 00:00:00"
+            },
+            {
+              "user_id": 6,
+              "spend": 4.0,
+              "transaction_date": "2023-03-03 00:00:00"
+            },
+            {
+              "user_id": 6,
+              "spend": 20.0,
+              "transaction_date": "2023-03-04 00:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "third_transaction_spend",
+          "third_transaction_date"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "third-only"
+      ]
+    },
+    {
+      "id": "real-user-order",
+      "name": "real: qualifying users sort ascending",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "user_id": 9,
+              "spend": 1.0,
+              "transaction_date": "2023-04-01 00:00:00"
+            },
+            {
+              "user_id": 9,
+              "spend": 2.0,
+              "transaction_date": "2023-04-02 00:00:00"
+            },
+            {
+              "user_id": 9,
+              "spend": 5.0,
+              "transaction_date": "2023-04-03 00:00:00"
+            },
+            {
+              "user_id": 2,
+              "spend": 3.0,
+              "transaction_date": "2023-04-01 00:00:00"
+            },
+            {
+              "user_id": 2,
+              "spend": 4.0,
+              "transaction_date": "2023-04-02 00:00:00"
+            },
+            {
+              "user_id": 2,
+              "spend": 7.0,
+              "transaction_date": "2023-04-03 00:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "third_transaction_spend",
+          "third_transaction_date"
+        ],
+        "rows": [
+          [
+            2,
+            7.0,
+            "2023-04-03 00:00:00"
+          ],
+          [
+            9,
+            5.0,
+            "2023-04-03 00:00:00"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-short-history",
+      "name": "real: user with two rows is absent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "user_id": 7,
+              "spend": 1.0,
+              "transaction_date": "2023-05-01 00:00:00"
+            },
+            {
+              "user_id": 7,
+              "spend": 10.0,
+              "transaction_date": "2023-05-02 00:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "third_transaction_spend",
+          "third_transaction_date"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "short-history"
+      ]
+    }
+  ]
+}

@@ -1,10 +1,142 @@
-{"schema_version":1,"challenge_id":"lc_3760","cases":[
-{"id":"sample-alternating","name":"sample: alternating letters allow two starts","kind":"sample","visible":true,"input":{"s":"abab"},"expected":2,"validator":{"kind":"exact"},"tags":["sample","alternating"]},
-{"id":"sample-all-distinct","name":"sample: every position can begin a piece","kind":"sample","visible":true,"input":{"s":"abcd"},"expected":4,"validator":{"kind":"exact"},"tags":["sample","all-distinct"]},
-{"id":"sample-one-distinct","name":"sample: repeated one-letter alphabet permits one piece","kind":"sample","visible":true,"input":{"s":"aaaa"},"expected":1,"validator":{"kind":"exact"},"tags":["sample","all-equal"]},
-{"id":"trial-full-alphabet","name":"trial: all lowercase letters attain twenty-six pieces","kind":"trial","visible":true,"input":{"s":"abcdefghijklmnopqrstuvwxyz"},"expected":26,"validator":{"kind":"exact"},"tags":["trial","alphabet-boundary"]},
-{"id":"trial-interleaved-first-occurrences","name":"trial: later first occurrences determine new starts","kind":"trial","visible":true,"input":{"s":"abacada"},"expected":4,"validator":{"kind":"exact"},"tags":["trial","first-occurrence"]},
-{"id":"real-singleton","name":"hidden: one character forms one substring","kind":"real","visible":false,"input":{"s":"z"},"expected":1,"validator":{"kind":"exact"},"tags":["hidden","singleton"]},
-{"id":"real-repeated-suffix","name":"hidden: repeated suffix letters add no new starts","kind":"real","visible":false,"input":{"s":"abcaa"},"expected":3,"validator":{"kind":"exact"},"tags":["hidden","duplicates"]},
-{"id":"real-reverse-alphabet","name":"hidden: order does not change the distinct-letter bound","kind":"real","visible":false,"input":{"s":"zyxwvutsrqponmlkjihgfedcba"},"expected":26,"validator":{"kind":"exact"},"tags":["hidden","reverse"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3760",
+  "cases": [
+    {
+      "id": "sample-alternating",
+      "name": "sample: alternating letters allow two starts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abab"
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "alternating"
+      ]
+    },
+    {
+      "id": "sample-all-distinct",
+      "name": "sample: every position can begin a piece",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcd"
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "all-distinct"
+      ]
+    },
+    {
+      "id": "sample-one-distinct",
+      "name": "sample: repeated one-letter alphabet permits one piece",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aaaa"
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "all-equal"
+      ]
+    },
+    {
+      "id": "trial-full-alphabet",
+      "name": "trial: all lowercase letters attain twenty-six pieces",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": 26,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "alphabet-boundary"
+      ]
+    },
+    {
+      "id": "trial-interleaved-first-occurrences",
+      "name": "trial: later first occurrences determine new starts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abacada"
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "first-occurrence"
+      ]
+    },
+    {
+      "id": "real-singleton",
+      "name": "one character forms one substring",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z"
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "singleton"
+      ]
+    },
+    {
+      "id": "real-repeated-suffix",
+      "name": "repeated suffix letters add no new starts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcaa"
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-reverse-alphabet",
+      "name": "order does not change the distinct-letter bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zyxwvutsrqponmlkjihgfedcba"
+      },
+      "expected": 26,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "reverse"
+      ]
+    }
+  ]
+}

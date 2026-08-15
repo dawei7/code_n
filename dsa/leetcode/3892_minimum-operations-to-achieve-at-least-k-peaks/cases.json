@@ -165,9 +165,9 @@
     },
     {
       "id": "real-equal-odd-cycle",
-      "name": "hidden: two positions on an equal odd cycle each cost one",
-      "kind": "real",
-      "visible": false,
+      "name": "two positions on an equal odd cycle each cost one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -187,9 +187,9 @@
     },
     {
       "id": "real-equal-odd-cycle-impossible",
-      "name": "hidden: an odd cycle cannot reach a majority of peaks",
-      "kind": "real",
-      "visible": false,
+      "name": "an odd cycle cannot reach a majority of peaks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -209,9 +209,9 @@
     },
     {
       "id": "real-negative-values",
-      "name": "hidden: negative values use the same strict local threshold",
-      "kind": "real",
-      "visible": false,
+      "name": "negative values use the same strict local threshold",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -5,
@@ -229,9 +229,9 @@
     },
     {
       "id": "real-lower-bound-values",
-      "name": "hidden: equal minimum-bound values each need one increment",
-      "kind": "real",
-      "visible": false,
+      "name": "equal minimum-bound values each need one increment",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -100000,
@@ -251,9 +251,9 @@
     },
     {
       "id": "real-even-maximum-count",
-      "name": "hidden: an even cycle compares its two alternating maximum sets",
-      "kind": "real",
-      "visible": false,
+      "name": "an even cycle compares its two alternating maximum sets",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -274,9 +274,9 @@
     },
     {
       "id": "real-cheapest-costs-adjacent",
-      "name": "hidden: the individually cheapest positions are adjacent",
-      "kind": "real",
-      "visible": false,
+      "name": "the individually cheapest positions are adjacent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -296,9 +296,9 @@
     },
     {
       "id": "real-wrapped-endpoints-conflict",
-      "name": "hidden: cheap first and last positions conflict through the wrap edge",
-      "kind": "real",
-      "visible": false,
+      "name": "cheap first and last positions conflict through the wrap edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,

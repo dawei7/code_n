@@ -101,9 +101,9 @@
     },
     {
       "id": "hidden-small-primes",
-      "name": "hidden: small prime values",
-      "kind": "real",
-      "visible": false,
+      "name": "small prime values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -121,9 +121,9 @@
     },
     {
       "id": "hidden-million-boundary",
-      "name": "hidden: maximum element value",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum element value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,

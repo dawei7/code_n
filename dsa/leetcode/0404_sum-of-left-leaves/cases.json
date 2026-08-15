@@ -95,9 +95,9 @@
     },
     {
       "id": "hidden-right-leaf",
-      "name": "hidden: only leaf is a right child",
-      "kind": "real",
-      "visible": false,
+      "name": "only leaf is a right child",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -113,9 +113,9 @@
     },
     {
       "id": "hidden-negative",
-      "name": "hidden: signed left leaf values",
-      "kind": "real",
-      "visible": false,
+      "name": "signed left leaf values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           5,
@@ -135,9 +135,9 @@
     },
     {
       "id": "hidden-balanced",
-      "name": "hidden: several left and right leaves",
-      "kind": "real",
-      "visible": false,
+      "name": "several left and right leaves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,

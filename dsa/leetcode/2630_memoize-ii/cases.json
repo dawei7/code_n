@@ -6,81 +6,328 @@
       "name": "sample: repeated numeric tuple",
       "kind": "sample",
       "visible": true,
-      "input": {"fnName": "sum", "calls": [[2, 2], [2, 2], [1, 2]], "callPlan": null},
-      "expected": {"lastValue": 3, "callCount": 2},
-      "tags": ["sample", "cache-hit", "numbers"]
+      "input": {
+        "fnName": "sum",
+        "calls": [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "callPlan": null
+      },
+      "expected": {
+        "lastValue": 3,
+        "callCount": 2
+      },
+      "tags": [
+        "sample",
+        "cache-hit",
+        "numbers"
+      ]
     },
     {
       "id": "sample-fresh-objects",
       "name": "sample: structurally equal fresh objects miss",
       "kind": "sample",
       "visible": true,
-      "input": {"fnName": "merge", "calls": [[{"fresh": {"x": 1}}, {"fresh": {"y": 2}}], [{"fresh": {"x": 1}}, {"fresh": {"y": 2}}], [{"fresh": {"x": 1}}, {"fresh": {"y": 2}}]], "callPlan": null},
-      "expected": {"lastValue": {"x": 1, "y": 2}, "callCount": 3},
-      "tags": ["sample", "object-identity", "fresh-references"]
+      "input": {
+        "fnName": "merge",
+        "calls": [
+          [
+            {
+              "fresh": {
+                "x": 1
+              }
+            },
+            {
+              "fresh": {
+                "y": 2
+              }
+            }
+          ],
+          [
+            {
+              "fresh": {
+                "x": 1
+              }
+            },
+            {
+              "fresh": {
+                "y": 2
+              }
+            }
+          ],
+          [
+            {
+              "fresh": {
+                "x": 1
+              }
+            },
+            {
+              "fresh": {
+                "y": 2
+              }
+            }
+          ]
+        ],
+        "callPlan": null
+      },
+      "expected": {
+        "lastValue": {
+          "x": 1,
+          "y": 2
+        },
+        "callCount": 3
+      },
+      "tags": [
+        "sample",
+        "object-identity",
+        "fresh-references"
+      ]
     },
     {
       "id": "sample-shared-objects",
       "name": "sample: shared object references hit",
       "kind": "sample",
       "visible": true,
-      "input": {"fnName": "merge", "calls": [[{"ref": "left", "value": {"x": 1}}, {"ref": "right", "value": {"y": 2}}], [{"ref": "left"}, {"ref": "right"}], [{"ref": "left"}, {"ref": "right"}]], "callPlan": null},
-      "expected": {"lastValue": {"x": 1, "y": 2}, "callCount": 1},
-      "tags": ["sample", "object-identity", "shared-references"]
+      "input": {
+        "fnName": "merge",
+        "calls": [
+          [
+            {
+              "ref": "left",
+              "value": {
+                "x": 1
+              }
+            },
+            {
+              "ref": "right",
+              "value": {
+                "y": 2
+              }
+            }
+          ],
+          [
+            {
+              "ref": "left"
+            },
+            {
+              "ref": "right"
+            }
+          ],
+          [
+            {
+              "ref": "left"
+            },
+            {
+              "ref": "right"
+            }
+          ]
+        ],
+        "callPlan": null
+      },
+      "expected": {
+        "lastValue": {
+          "x": 1,
+          "y": 2
+        },
+        "callCount": 1
+      },
+      "tags": [
+        "sample",
+        "object-identity",
+        "shared-references"
+      ]
     },
     {
       "id": "trial-argument-order",
       "name": "trial: argument order belongs to the key",
       "kind": "trial",
       "visible": true,
-      "input": {"fnName": "sum", "calls": [[1, 2], [2, 1], [1, 2]], "callPlan": null},
-      "expected": {"lastValue": 3, "callCount": 2},
-      "tags": ["trial", "argument-order"]
+      "input": {
+        "fnName": "sum",
+        "calls": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "callPlan": null
+      },
+      "expected": {
+        "lastValue": 3,
+        "callCount": 2
+      },
+      "tags": [
+        "trial",
+        "argument-order"
+      ]
     },
     {
       "id": "trial-arity",
       "name": "trial: tuple length belongs to the key",
       "kind": "trial",
       "visible": true,
-      "input": {"fnName": "argumentCount", "calls": [[7], [7], [7, 8], [7, 8]], "callPlan": null},
-      "expected": {"lastValue": 2, "callCount": 2},
-      "tags": ["trial", "arity"]
+      "input": {
+        "fnName": "argumentCount",
+        "calls": [
+          [
+            7
+          ],
+          [
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            7,
+            8
+          ]
+        ],
+        "callPlan": null
+      },
+      "expected": {
+        "lastValue": 2,
+        "callCount": 2
+      },
+      "tags": [
+        "trial",
+        "arity"
+      ]
     },
     {
       "id": "real-zero-arguments",
       "name": "real: empty tuple is cached",
-      "kind": "real",
-      "visible": false,
-      "input": {"fnName": "constantSeven", "calls": [[], [], []], "callPlan": null},
-      "expected": {"lastValue": 7, "callCount": 1},
-      "tags": ["real", "zero-arguments"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fnName": "constantSeven",
+        "calls": [
+          [],
+          [],
+          []
+        ],
+        "callPlan": null
+      },
+      "expected": {
+        "lastValue": 7,
+        "callCount": 1
+      },
+      "tags": [
+        "real",
+        "zero-arguments"
+      ]
     },
     {
       "id": "real-undefined-result",
       "name": "real: undefined is a cached result",
-      "kind": "real",
-      "visible": false,
-      "input": {"fnName": "returnUndefined", "calls": [[5], [5], [5]], "callPlan": null},
-      "expected": {"lastValue": {"type": "undefined"}, "callCount": 1},
-      "tags": ["real", "undefined", "falsy-result"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fnName": "returnUndefined",
+        "calls": [
+          [
+            5
+          ],
+          [
+            5
+          ],
+          [
+            5
+          ]
+        ],
+        "callPlan": null
+      },
+      "expected": {
+        "lastValue": {
+          "type": "undefined"
+        },
+        "callCount": 1
+      },
+      "tags": [
+        "real",
+        "undefined",
+        "falsy-result"
+      ]
     },
     {
       "id": "real-false-result",
       "name": "real: false is a cached result",
-      "kind": "real",
-      "visible": false,
-      "input": {"fnName": "returnFalse", "calls": [[0], [0]], "callPlan": null},
-      "expected": {"lastValue": false, "callCount": 1},
-      "tags": ["real", "false", "falsy-result"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fnName": "returnFalse",
+        "calls": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "callPlan": null
+      },
+      "expected": {
+        "lastValue": false,
+        "callCount": 1
+      },
+      "tags": [
+        "real",
+        "false",
+        "falsy-result"
+      ]
     },
     {
       "id": "real-strict-type",
       "name": "real: number and string keys differ",
-      "kind": "real",
-      "visible": false,
-      "input": {"fnName": "identity", "calls": [[1], ["1"], [1], ["1"]], "callPlan": null},
-      "expected": {"lastValue": "1", "callCount": 2},
-      "tags": ["real", "strict-equality", "type"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fnName": "identity",
+        "calls": [
+          [
+            1
+          ],
+          [
+            "1"
+          ],
+          [
+            1
+          ],
+          [
+            "1"
+          ]
+        ],
+        "callPlan": null
+      },
+      "expected": {
+        "lastValue": "1",
+        "callCount": 2
+      },
+      "tags": [
+        "real",
+        "strict-equality",
+        "type"
+      ]
     }
   ]
 }

@@ -105,9 +105,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: shared middle words",
-      "kind": "real",
-      "visible": false,
+      "name": "shared middle words",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "a b c",
         "s2": "b c d"
@@ -126,9 +126,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: separate duplicate groups",
-      "kind": "real",
-      "visible": false,
+      "name": "separate duplicate groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "a a b",
         "s2": "c c d"
@@ -147,9 +147,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: no frequency equals one",
-      "kind": "real",
-      "visible": false,
+      "name": "no frequency equals one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "x y x y",
         "s2": "z z"
@@ -165,9 +165,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: longer words with one shared word",
-      "kind": "real",
-      "visible": false,
+      "name": "longer words with one shared word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "longword tiny",
         "s2": "tiny another"
@@ -186,9 +186,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: the only word is shared",
-      "kind": "real",
-      "visible": false,
+      "name": "the only word is shared",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "a",
         "s2": "a"

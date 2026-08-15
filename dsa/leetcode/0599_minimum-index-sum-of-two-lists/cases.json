@@ -152,9 +152,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: exact case-sensitive strings",
-      "kind": "real",
-      "visible": false,
+      "name": "exact case-sensitive strings",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "list1": [
           "Cafe",
@@ -180,9 +180,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: best appears late in second list",
-      "kind": "real",
-      "visible": false,
+      "name": "best appears late in second list",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "list1": [
           "p",

@@ -7,72 +7,112 @@
       "name": "sample: ordinary reversed pair",
       "kind": "sample",
       "visible": true,
-      "input": {"num": 443},
+      "input": {
+        "num": 443
+      },
       "expected": true,
-      "tags": ["sample", "witness"]
+      "tags": [
+        "sample",
+        "witness"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: no representation",
       "kind": "sample",
       "visible": true,
-      "input": {"num": 63},
+      "input": {
+        "num": 63
+      },
       "expected": false,
-      "tags": ["sample", "no-witness"]
+      "tags": [
+        "sample",
+        "no-witness"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: reversal creates leading zero",
       "kind": "sample",
       "visible": true,
-      "input": {"num": 181},
+      "input": {
+        "num": 181
+      },
       "expected": true,
-      "tags": ["sample", "leading-zero"]
+      "tags": [
+        "sample",
+        "leading-zero"
+      ]
     },
     {
       "id": "trial-zero",
       "name": "trial: zero is its own witness",
       "kind": "trial",
       "visible": true,
-      "input": {"num": 0},
+      "input": {
+        "num": 0
+      },
       "expected": true,
-      "tags": ["trial", "zero"]
+      "tags": [
+        "trial",
+        "zero"
+      ]
     },
     {
       "id": "trial-single-digit",
       "name": "trial: five plus five",
       "kind": "trial",
       "visible": true,
-      "input": {"num": 10},
+      "input": {
+        "num": 10
+      },
       "expected": true,
-      "tags": ["trial", "single-digit"]
+      "tags": [
+        "trial",
+        "single-digit"
+      ]
     },
     {
       "id": "real-one",
-      "name": "hidden: one has no representation",
-      "kind": "real",
-      "visible": false,
-      "input": {"num": 1},
+      "name": "one has no representation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1
+      },
       "expected": false,
-      "tags": ["hidden", "small-boundary"]
+      "tags": [
+        "hidden",
+        "small-boundary"
+      ]
     },
     {
       "id": "real-three-digit-witness",
-      "name": "hidden: witness differs from its reversal",
-      "kind": "real",
-      "visible": false,
-      "input": {"num": 666},
+      "name": "witness differs from its reversal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 666
+      },
       "expected": true,
-      "tags": ["hidden", "witness"]
+      "tags": [
+        "hidden",
+        "witness"
+      ]
     },
     {
       "id": "real-three-digit-no-witness",
-      "name": "hidden: three-digit value has no witness",
-      "kind": "real",
-      "visible": false,
-      "input": {"num": 200},
+      "name": "three-digit value has no witness",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 200
+      },
       "expected": false,
-      "tags": ["hidden", "no-witness"]
+      "tags": [
+        "hidden",
+        "no-witness"
+      ]
     }
   ]
 }

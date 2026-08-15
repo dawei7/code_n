@@ -147,9 +147,9 @@
     },
     {
       "id": "real-only-whole-tree",
-      "name": "hidden: no proper subtree has divisible sum",
-      "kind": "real",
-      "visible": false,
+      "name": "no proper subtree has divisible sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "edges": [
@@ -177,9 +177,9 @@
     },
     {
       "id": "real-zero-leaf",
-      "name": "hidden: a zero-valued leaf separates independently",
-      "kind": "real",
-      "visible": false,
+      "name": "a zero-valued leaf separates independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [
@@ -212,9 +212,9 @@
     },
     {
       "id": "real-nested-cuts",
-      "name": "hidden: divisible nested subtrees are cut bottom-up",
-      "kind": "real",
-      "visible": false,
+      "name": "divisible nested subtrees are cut bottom-up",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [

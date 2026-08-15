@@ -174,9 +174,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: four nodes",
-      "kind": "real",
-      "visible": false,
+      "name": "four nodes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4
       },
@@ -191,9 +191,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: nine nodes",
-      "kind": "real",
-      "visible": false,
+      "name": "nine nodes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 9
       },
@@ -419,9 +419,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: eight nodes",
-      "kind": "real",
-      "visible": false,
+      "name": "eight nodes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 8
       },
@@ -436,9 +436,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: maximum even node count",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum even node count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 20
       },
@@ -454,9 +454,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: ten nodes",
-      "kind": "real",
-      "visible": false,
+      "name": "ten nodes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10
       },

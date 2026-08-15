@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: valley of three values",
-      "kind": "real",
-      "visible": false,
+      "name": "valley of three values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "DI"
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: two rises then drop",
-      "kind": "real",
-      "visible": false,
+      "name": "two rises then drop",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "IID"
       },
@@ -116,9 +116,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: repeated alternating pattern",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated alternating pattern",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "IDIDID"
       },
@@ -130,9 +130,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: grouped runs",
-      "kind": "real",
-      "visible": false,
+      "name": "grouped runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "IIIDDDII"
       },

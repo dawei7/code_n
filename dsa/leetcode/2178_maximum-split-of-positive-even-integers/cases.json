@@ -2,13 +2,162 @@
   "schema_version": 1,
   "challenge_id": "lc_2178",
   "cases": [
-    {"id":"sample-twelve","name":"sample: two four six is maximum","kind":"sample","visible":true,"input":{"finalSum":12},"expected":[2,4,6],"validator":{"kind":"maximum_even_split"},"tags":["sample","triangular-total"]},
-    {"id":"sample-odd","name":"sample: odd total has no split","kind":"sample","visible":true,"input":{"finalSum":7},"expected":[],"validator":{"kind":"maximum_even_split"},"tags":["sample","odd"]},
-    {"id":"sample-twenty-eight","name":"sample: multiple optimal four-term answers exist","kind":"sample","visible":true,"input":{"finalSum":28},"expected":[2,4,6,16],"validator":{"kind":"maximum_even_split"},"tags":["sample","nonunique-output"]},
-    {"id":"trial-smallest-even","name":"two forms a one-term split","kind":"trial","visible":true,"input":{"finalSum":2},"expected":[2],"validator":{"kind":"maximum_even_split"},"tags":["smallest-even"]},
-    {"id":"trial-remainder-merge","name":"remainder is merged without duplicating a term","kind":"trial","visible":true,"input":{"finalSum":14},"expected":[2,4,8],"validator":{"kind":"maximum_even_split"},"tags":["remainder","uniqueness"]},
-    {"id":"real-one","name":"hidden: smallest odd total is impossible","kind":"real","visible":false,"input":{"finalSum":1},"expected":[],"validator":{"kind":"maximum_even_split"},"tags":["hidden","minimum","odd"]},
-    {"id":"real-large-triangular","name":"hidden: exact large prefix total needs no remainder","kind":"real","visible":false,"input":{"finalSum":1001000},"expected":[2],"validator":{"kind":"maximum_even_split"},"tags":["hidden","large","triangular-total"]},
-    {"id":"real-maximum","name":"hidden: maximum even total preserves exact arithmetic","kind":"real","visible":false,"input":{"finalSum":10000000000},"expected":[2],"validator":{"kind":"maximum_even_split"},"tags":["hidden","maximum","large-output"]}
+    {
+      "id": "sample-twelve",
+      "name": "sample: two four six is maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "finalSum": 12
+      },
+      "expected": [
+        2,
+        4,
+        6
+      ],
+      "validator": {
+        "kind": "maximum_even_split"
+      },
+      "tags": [
+        "sample",
+        "triangular-total"
+      ]
+    },
+    {
+      "id": "sample-odd",
+      "name": "sample: odd total has no split",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "finalSum": 7
+      },
+      "expected": [],
+      "validator": {
+        "kind": "maximum_even_split"
+      },
+      "tags": [
+        "sample",
+        "odd"
+      ]
+    },
+    {
+      "id": "sample-twenty-eight",
+      "name": "sample: multiple optimal four-term answers exist",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "finalSum": 28
+      },
+      "expected": [
+        2,
+        4,
+        6,
+        16
+      ],
+      "validator": {
+        "kind": "maximum_even_split"
+      },
+      "tags": [
+        "sample",
+        "nonunique-output"
+      ]
+    },
+    {
+      "id": "trial-smallest-even",
+      "name": "two forms a one-term split",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "finalSum": 2
+      },
+      "expected": [
+        2
+      ],
+      "validator": {
+        "kind": "maximum_even_split"
+      },
+      "tags": [
+        "smallest-even"
+      ]
+    },
+    {
+      "id": "trial-remainder-merge",
+      "name": "remainder is merged without duplicating a term",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "finalSum": 14
+      },
+      "expected": [
+        2,
+        4,
+        8
+      ],
+      "validator": {
+        "kind": "maximum_even_split"
+      },
+      "tags": [
+        "remainder",
+        "uniqueness"
+      ]
+    },
+    {
+      "id": "real-one",
+      "name": "smallest odd total is impossible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "finalSum": 1
+      },
+      "expected": [],
+      "validator": {
+        "kind": "maximum_even_split"
+      },
+      "tags": [
+        "hidden",
+        "minimum",
+        "odd"
+      ]
+    },
+    {
+      "id": "real-large-triangular",
+      "name": "exact large prefix total needs no remainder",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "finalSum": 1001000
+      },
+      "expected": [
+        2
+      ],
+      "validator": {
+        "kind": "maximum_even_split"
+      },
+      "tags": [
+        "hidden",
+        "large",
+        "triangular-total"
+      ]
+    },
+    {
+      "id": "real-maximum",
+      "name": "maximum even total preserves exact arithmetic",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "finalSum": 10000000000
+      },
+      "expected": [
+        2
+      ],
+      "validator": {
+        "kind": "maximum_even_split"
+      },
+      "tags": [
+        "hidden",
+        "maximum",
+        "large-output"
+      ]
+    }
   ]
 }

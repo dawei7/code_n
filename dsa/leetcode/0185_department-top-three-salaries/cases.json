@@ -273,9 +273,9 @@
     },
     {
       "id": "real-short-department",
-      "name": "hidden: department with two salary levels",
-      "kind": "real",
-      "visible": false,
+      "name": "department with two salary levels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Employee": [

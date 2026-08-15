@@ -264,9 +264,9 @@
     },
     {
       "id": "hidden-descending-constraints",
-      "name": "hidden: progressively shorter people",
-      "kind": "real",
-      "visible": false,
+      "name": "progressively shorter people",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "people": [
           [
@@ -316,9 +316,9 @@
     },
     {
       "id": "hidden-reverse",
-      "name": "hidden: reverse height order",
-      "kind": "real",
-      "visible": false,
+      "name": "reverse height order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "people": [
           [
@@ -368,9 +368,9 @@
     },
     {
       "id": "hidden-interleaved",
-      "name": "hidden: tall and short constraints interleave",
-      "kind": "real",
-      "visible": false,
+      "name": "tall and short constraints interleave",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "people": [
           [

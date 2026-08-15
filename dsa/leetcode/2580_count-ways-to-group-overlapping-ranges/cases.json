@@ -99,9 +99,9 @@
     },
     {
       "id": "real-two-disjoint-ranges",
-      "name": "hidden: two independent singleton components",
-      "kind": "real",
-      "visible": false,
+      "name": "two independent singleton components",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranges": [
           [
@@ -122,9 +122,9 @@
     },
     {
       "id": "real-nested-ranges",
-      "name": "hidden: nested intervals form one component",
-      "kind": "real",
-      "visible": false,
+      "name": "nested intervals form one component",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranges": [
           [
@@ -153,9 +153,9 @@
     },
     {
       "id": "real-duplicate-ranges",
-      "name": "hidden: duplicate point ranges overlap",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate point ranges overlap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranges": [
           [
@@ -181,9 +181,9 @@
     },
     {
       "id": "real-unsorted-components",
-      "name": "hidden: unsorted input forms three components",
-      "kind": "real",
-      "visible": false,
+      "name": "unsorted input forms three components",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranges": [
           [
@@ -217,9 +217,9 @@
     },
     {
       "id": "real-maximum-coordinate",
-      "name": "hidden: overlap at the maximum coordinate",
-      "kind": "real",
-      "visible": false,
+      "name": "overlap at the maximum coordinate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranges": [
           [
@@ -244,9 +244,9 @@
     },
     {
       "id": "real-modulo-many-components",
-      "name": "hidden: many components require modular exponentiation",
-      "kind": "real",
-      "visible": false,
+      "name": "many components require modular exponentiation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ranges": [
           [

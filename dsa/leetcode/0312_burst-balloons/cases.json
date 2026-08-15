@@ -88,9 +88,9 @@
     },
     {
       "id": "real-middle-first",
-      "name": "hidden: optimal order bursts the middle first",
-      "kind": "real",
-      "visible": false,
+      "name": "optimal order bursts the middle first",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,

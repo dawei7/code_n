@@ -6,90 +6,245 @@
       "name": "sample: adjacent values around five",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [5, 4, 6], "k": 1},
+      "input": {
+        "nums": [
+          5,
+          4,
+          6
+        ],
+        "k": 1
+      },
       "expected": 5,
-      "tags": ["sample", "single-chain"]
+      "tags": [
+        "sample",
+        "single-chain"
+      ]
     },
     {
       "id": "sample-two",
       "name": "sample: one forbidden pair",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 3, 5, 8], "k": 5},
+      "input": {
+        "nums": [
+          2,
+          3,
+          5,
+          8
+        ],
+        "k": 5
+      },
       "expected": 12,
-      "tags": ["sample", "one-conflict"]
+      "tags": [
+        "sample",
+        "one-conflict"
+      ]
     },
     {
       "id": "sample-three",
       "name": "sample: every subset is valid",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [10, 5, 9, 11], "k": 20},
+      "input": {
+        "nums": [
+          10,
+          5,
+          9,
+          11
+        ],
+        "k": 20
+      },
       "expected": 16,
-      "tags": ["sample", "no-conflicts"]
+      "tags": [
+        "sample",
+        "no-conflicts"
+      ]
     },
     {
       "id": "trial-single",
       "name": "trial: one value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7], "k": 3},
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 3
+      },
       "expected": 2,
-      "tags": ["trial", "minimum-length", "empty-subset"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "empty-subset"
+      ]
     },
     {
       "id": "trial-four-chain",
       "name": "trial: four values form one conflict chain",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7, 1, 5, 3], "k": 2},
+      "input": {
+        "nums": [
+          7,
+          1,
+          5,
+          3
+        ],
+        "k": 2
+      },
       "expected": 8,
-      "tags": ["trial", "chain", "unsorted"]
+      "tags": [
+        "trial",
+        "chain",
+        "unsorted"
+      ]
     },
     {
       "id": "trial-two-groups",
       "name": "trial: two independent remainder groups",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 4, 2, 5], "k": 3},
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          5
+        ],
+        "k": 3
+      },
       "expected": 9,
-      "tags": ["trial", "independent-groups"]
+      "tags": [
+        "trial",
+        "independent-groups"
+      ]
     },
     {
       "id": "real-separated-components",
       "name": "real: one remainder class contains two components",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [11, 1, 9, 3], "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          11,
+          1,
+          9,
+          3
+        ],
+        "k": 2
+      },
       "expected": 9,
-      "tags": ["real", "component-gap", "same-remainder"]
+      "tags": [
+        "real",
+        "component-gap",
+        "same-remainder"
+      ]
     },
     {
       "id": "real-three-chain",
       "name": "real: choosing the middle excludes both ends only pairwise",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [7, 1, 4], "k": 3},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          1,
+          4
+        ],
+        "k": 3
+      },
       "expected": 5,
-      "tags": ["real", "three-chain", "dynamic-programming"]
+      "tags": [
+        "real",
+        "three-chain",
+        "dynamic-programming"
+      ]
     },
     {
       "id": "real-boundary-conflict",
       "name": "real: values at opposite numeric boundaries conflict",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000, 1], "k": 999},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000,
+          1
+        ],
+        "k": 999
+      },
       "expected": 3,
-      "tags": ["real", "numeric-boundary", "conflict"]
+      "tags": [
+        "real",
+        "numeric-boundary",
+        "conflict"
+      ]
     },
     {
       "id": "real-maximum-independent",
       "name": "real: maximum length with no possible conflict",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50], "k": 1000},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50
+        ],
+        "k": 1000
+      },
       "expected": 1125899906842624,
-      "tags": ["real", "maximum-length", "large-answer"]
+      "tags": [
+        "real",
+        "maximum-length",
+        "large-answer"
+      ]
     }
   ]
 }

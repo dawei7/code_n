@@ -2,12 +2,103 @@
   "schema_version": 1,
   "challenge_id": "lc_2119",
   "cases": [
-    {"id": "sample-restored", "name": "sample: no trailing zero is lost", "kind": "sample", "visible": true, "input": {"num": 526}, "expected": true, "tags": ["sample", "restored"]},
-    {"id": "sample-trailing-zeros", "name": "sample: two trailing zeros disappear", "kind": "sample", "visible": true, "input": {"num": 1800}, "expected": false, "tags": ["sample", "trailing-zeros"]},
-    {"id": "sample-zero", "name": "sample: zero is the special divisible case", "kind": "sample", "visible": true, "input": {"num": 0}, "expected": true, "tags": ["sample", "zero"]},
-    {"id": "trial-single-digit", "name": "every positive single digit is restored", "kind": "trial", "visible": true, "input": {"num": 7}, "expected": true, "tags": ["single-digit"]},
-    {"id": "trial-internal-zero", "name": "an internal zero survives both reversals", "kind": "trial", "visible": true, "input": {"num": 1010}, "expected": false, "tags": ["internal-zero", "trailing-zero"]},
-    {"id": "real-palindrome", "name": "hidden: being a palindrome is not required", "kind": "real", "visible": false, "input": {"num": 123456}, "expected": true, "tags": ["hidden", "non-palindrome"]},
-    {"id": "real-upper-bound", "name": "hidden: the maximum value ends in zeros", "kind": "real", "visible": false, "input": {"num": 1000000}, "expected": false, "tags": ["hidden", "maximum", "many-zeros"]}
+    {
+      "id": "sample-restored",
+      "name": "sample: no trailing zero is lost",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 526
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "restored"
+      ]
+    },
+    {
+      "id": "sample-trailing-zeros",
+      "name": "sample: two trailing zeros disappear",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 1800
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "trailing-zeros"
+      ]
+    },
+    {
+      "id": "sample-zero",
+      "name": "sample: zero is the special divisible case",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 0
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-single-digit",
+      "name": "every positive single digit is restored",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 7
+      },
+      "expected": true,
+      "tags": [
+        "single-digit"
+      ]
+    },
+    {
+      "id": "trial-internal-zero",
+      "name": "an internal zero survives both reversals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1010
+      },
+      "expected": false,
+      "tags": [
+        "internal-zero",
+        "trailing-zero"
+      ]
+    },
+    {
+      "id": "real-palindrome",
+      "name": "being a palindrome is not required",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 123456
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "non-palindrome"
+      ]
+    },
+    {
+      "id": "real-upper-bound",
+      "name": "the maximum value ends in zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1000000
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "maximum",
+        "many-zeros"
+      ]
+    }
   ]
 }

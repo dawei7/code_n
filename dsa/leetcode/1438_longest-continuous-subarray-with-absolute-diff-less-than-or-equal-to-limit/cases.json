@@ -106,9 +106,9 @@
     },
     {
       "id": "real-all-equal",
-      "name": "hidden: all equal values fill the array",
-      "kind": "real",
-      "visible": false,
+      "name": "all equal values fill the array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -127,9 +127,9 @@
     },
     {
       "id": "real-decreasing",
-      "name": "hidden: decreasing values require repeated expiry",
-      "kind": "real",
-      "visible": false,
+      "name": "decreasing values require repeated expiry",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -149,9 +149,9 @@
     },
     {
       "id": "real-late-window",
-      "name": "hidden: longest window begins after invalid prefix",
-      "kind": "real",
-      "visible": false,
+      "name": "longest window begins after invalid prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,

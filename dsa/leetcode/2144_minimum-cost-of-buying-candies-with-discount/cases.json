@@ -2,13 +2,154 @@
   "schema_version": 1,
   "challenge_id": "lc_2144",
   "cases": [
-    {"id": "sample-one-group", "name": "sample: one discounted group", "kind": "sample", "visible": true, "input": {"cost": [1,2,3]}, "expected": 5, "tags": ["sample", "one-group"]},
-    {"id": "sample-two-groups", "name": "sample: two discounted groups", "kind": "sample", "visible": true, "input": {"cost": [6,5,7,9,2,2]}, "expected": 23, "tags": ["sample", "multiple-groups"]},
-    {"id": "sample-two-candies", "name": "sample: no free candy is available", "kind": "sample", "visible": true, "input": {"cost": [5,5]}, "expected": 10, "tags": ["sample", "no-discount"]},
-    {"id": "trial-single-candy", "name": "one candy must be purchased", "kind": "trial", "visible": true, "input": {"cost": [7]}, "expected": 7, "tags": ["single-candy"]},
-    {"id": "trial-equal-group", "name": "one of three equal candies is free", "kind": "trial", "visible": true, "input": {"cost": [4,4,4]}, "expected": 8, "tags": ["equal-costs"]},
-    {"id": "real-four-candies", "name": "hidden: one discounted group leaves one paid candy", "kind": "real", "visible": false, "input": {"cost": [1,2,3,4]}, "expected": 8, "tags": ["hidden", "remainder-one"]},
-    {"id": "real-five-candies", "name": "hidden: one discounted group leaves two paid candies", "kind": "real", "visible": false, "input": {"cost": [10,9,8,7,6]}, "expected": 32, "tags": ["hidden", "remainder-two"]},
-    {"id": "real-duplicate-tiers", "name": "hidden: duplicate prices cross group boundaries", "kind": "real", "visible": false, "input": {"cost": [3,3,2,2,1,1,1]}, "expected": 10, "tags": ["hidden", "duplicates"]}
+    {
+      "id": "sample-one-group",
+      "name": "sample: one discounted group",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "cost": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "one-group"
+      ]
+    },
+    {
+      "id": "sample-two-groups",
+      "name": "sample: two discounted groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "cost": [
+          6,
+          5,
+          7,
+          9,
+          2,
+          2
+        ]
+      },
+      "expected": 23,
+      "tags": [
+        "sample",
+        "multiple-groups"
+      ]
+    },
+    {
+      "id": "sample-two-candies",
+      "name": "sample: no free candy is available",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "cost": [
+          5,
+          5
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "no-discount"
+      ]
+    },
+    {
+      "id": "trial-single-candy",
+      "name": "one candy must be purchased",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          7
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "single-candy"
+      ]
+    },
+    {
+      "id": "trial-equal-group",
+      "name": "one of three equal candies is free",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "equal-costs"
+      ]
+    },
+    {
+      "id": "real-four-candies",
+      "name": "one discounted group leaves one paid candy",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "remainder-one"
+      ]
+    },
+    {
+      "id": "real-five-candies",
+      "name": "one discounted group leaves two paid candies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          10,
+          9,
+          8,
+          7,
+          6
+        ]
+      },
+      "expected": 32,
+      "tags": [
+        "hidden",
+        "remainder-two"
+      ]
+    },
+    {
+      "id": "real-duplicate-tiers",
+      "name": "duplicate prices cross group boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          3,
+          3,
+          2,
+          2,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    }
   ]
 }

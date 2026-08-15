@@ -169,9 +169,9 @@
     },
     {
       "id": "hidden-interleaved-pairs",
-      "name": "hidden: interleaved pair requests",
-      "kind": "real",
-      "visible": false,
+      "name": "interleaved pair requests",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "groupSizes": [
           2,
@@ -208,9 +208,9 @@
     },
     {
       "id": "hidden-repeated-groups",
-      "name": "hidden: several groups share a size",
-      "kind": "real",
-      "visible": false,
+      "name": "several groups share a size",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "groupSizes": [
           2,

@@ -225,9 +225,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: disjoint prefixes",
-      "kind": "real",
-      "visible": false,
+      "name": "disjoint prefixes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "MapSum",
@@ -268,9 +268,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: replacement preserves descendants",
-      "kind": "real",
-      "visible": false,
+      "name": "replacement preserves descendants",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "MapSum",
@@ -312,9 +312,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: exact key prefix",
-      "kind": "real",
-      "visible": false,
+      "name": "exact key prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "MapSum",
@@ -350,4 +350,3 @@
     }
   ]
 }
-

@@ -88,9 +88,9 @@
     },
     {
       "id": "real-shortest-ties",
-      "name": "hidden: shortest tied words follow original order",
-      "kind": "real",
-      "visible": false,
+      "name": "shortest tied words follow original order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "text": "Three one two six"
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "real-repeated-words",
-      "name": "hidden: repeated words remain separate entries",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated words remain separate entries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "text": "Longer a bb a ccc bb"
       },

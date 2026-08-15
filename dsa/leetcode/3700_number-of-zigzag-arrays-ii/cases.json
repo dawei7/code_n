@@ -7,108 +7,198 @@
       "name": "sample: two values permit two alternating arrays",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "l": 4, "r": 5},
+      "input": {
+        "n": 3,
+        "l": 4,
+        "r": 5
+      },
       "expected": 2,
-      "tags": ["sample", "minimum-range"]
+      "tags": [
+        "sample",
+        "minimum-range"
+      ]
     },
     {
       "id": "sample-three-values",
       "name": "sample: all ten valid length-three arrays",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "l": 1, "r": 3},
+      "input": {
+        "n": 3,
+        "l": 1,
+        "r": 3
+      },
       "expected": 10,
-      "tags": ["sample", "minimum-length"]
+      "tags": [
+        "sample",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-two-values-length-four",
       "name": "trial: extending two values preserves two choices",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 4, "l": 1, "r": 2},
+      "input": {
+        "n": 4,
+        "l": 1,
+        "r": 2
+      },
       "expected": 2,
-      "tags": ["trial", "minimum-range"]
+      "tags": [
+        "trial",
+        "minimum-range"
+      ]
     },
     {
       "id": "trial-three-values-length-four",
       "name": "trial: one additional matrix transition",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 4, "l": 1, "r": 3},
+      "input": {
+        "n": 4,
+        "l": 1,
+        "r": 3
+      },
       "expected": 16,
-      "tags": ["trial", "matrix-transition"]
+      "tags": [
+        "trial",
+        "matrix-transition"
+      ]
     },
     {
       "id": "trial-four-values-length-five",
       "name": "trial: several alternating transitions over four values",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 5, "l": 1, "r": 4},
+      "input": {
+        "n": 5,
+        "l": 1,
+        "r": 4
+      },
       "expected": 140,
-      "tags": ["trial", "matrix-transition"]
+      "tags": [
+        "trial",
+        "matrix-transition"
+      ]
     },
     {
       "id": "trial-shifted-three-values",
       "name": "trial: shifting a three-value range preserves the result",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 10, "l": 50, "r": 52},
+      "input": {
+        "n": 10,
+        "l": 50,
+        "r": 52
+      },
       "expected": 288,
-      "tags": ["trial", "shift-invariance"]
+      "tags": [
+        "trial",
+        "shift-invariance"
+      ]
     },
     {
       "id": "real-maximum-length-two-values",
-      "name": "hidden: maximum length over the minimum range",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000000000, "l": 1, "r": 2},
+      "name": "maximum length over the minimum range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000000,
+        "l": 1,
+        "r": 2
+      },
       "expected": 2,
-      "tags": ["hidden", "maximum-length", "minimum-range"]
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "minimum-range"
+      ]
     },
     {
       "id": "real-maximum-length-three-values",
-      "name": "hidden: a huge exponent over three values",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000000000, "l": 1, "r": 3},
+      "name": "a huge exponent over three values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000000,
+        "l": 1,
+        "r": 3
+      },
       "expected": 16,
-      "tags": ["hidden", "maximum-length", "modulo"]
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "modulo"
+      ]
     },
     {
       "id": "real-large-exponent-four-values",
-      "name": "hidden: binary exponentiation uses a mixed-bit exponent",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 123456789, "l": 10, "r": 13},
+      "name": "binary exponentiation uses a mixed-bit exponent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 123456789,
+        "l": 10,
+        "r": 13
+      },
       "expected": 64603622,
-      "tags": ["hidden", "binary-exponentiation", "shift-invariance"]
+      "tags": [
+        "hidden",
+        "binary-exponentiation",
+        "shift-invariance"
+      ]
     },
     {
       "id": "real-moderate-matrix",
-      "name": "hidden: an eight-value transition matrix with modular growth",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000, "l": 1, "r": 8},
+      "name": "an eight-value transition matrix with modular growth",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000,
+        "l": 1,
+        "r": 8
+      },
       "expected": 674068812,
-      "tags": ["hidden", "modulo", "matrix-power"]
+      "tags": [
+        "hidden",
+        "modulo",
+        "matrix-power"
+      ]
     },
     {
       "id": "real-maximum-range-minimum-length",
-      "name": "hidden: maximum legal value range at minimum length",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 3, "l": 1, "r": 75},
+      "name": "maximum legal value range at minimum length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "l": 1,
+        "r": 75
+      },
       "expected": 275650,
-      "tags": ["hidden", "maximum-range", "minimum-length"]
+      "tags": [
+        "hidden",
+        "maximum-range",
+        "minimum-length"
+      ]
     },
     {
       "id": "real-modulo-five-values",
-      "name": "hidden: repeated powers require modular reduction",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 100, "l": 20, "r": 24},
+      "name": "repeated powers require modular reduction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100,
+        "l": 20,
+        "r": 24
+      },
       "expected": 14409613,
-      "tags": ["hidden", "modulo", "shift-invariance"]
+      "tags": [
+        "hidden",
+        "modulo",
+        "shift-invariance"
+      ]
     }
   ]
 }

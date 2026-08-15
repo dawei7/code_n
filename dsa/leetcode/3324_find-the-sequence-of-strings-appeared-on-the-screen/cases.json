@@ -131,8 +131,8 @@
     {
       "id": "real-a-then-z",
       "name": "real: zero increments followed by twenty-five",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": "az"
       },
@@ -173,8 +173,8 @@
     {
       "id": "real-z-then-a",
       "name": "real: long first cycle then append only",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": "za"
       },

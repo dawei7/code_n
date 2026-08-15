@@ -330,8 +330,8 @@
     {
       "id": "real-positive-difference",
       "name": "real: subordinate earns more than CEO",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -377,8 +377,8 @@
     {
       "id": "real-zero-difference",
       "name": "real: equal salaries",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -424,8 +424,8 @@
     {
       "id": "real-two-branches",
       "name": "real: two branches at several levels",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -506,8 +506,8 @@
     {
       "id": "real-unordered-input",
       "name": "real: input rows are not hierarchical order",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -576,8 +576,8 @@
     {
       "id": "real-nonconsecutive-identifiers",
       "name": "real: nonconsecutive identifiers",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -634,8 +634,8 @@
     {
       "id": "real-wide-second-level",
       "name": "real: several reports under one manager",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -717,8 +717,8 @@
     {
       "id": "real-four-level-hierarchy",
       "name": "real: four subordinate levels",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [

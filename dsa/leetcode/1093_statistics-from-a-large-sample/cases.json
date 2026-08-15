@@ -1129,9 +1129,9 @@
     },
     {
       "id": "real-large-frequency",
-      "name": "hidden: maximum allowed represented population",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum allowed represented population",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "count": [
           0,
@@ -1410,9 +1410,9 @@
     },
     {
       "id": "real-separated-odd",
-      "name": "hidden: separated bins and odd population",
-      "kind": "real",
-      "visible": false,
+      "name": "separated bins and odd population",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "count": [
           0,

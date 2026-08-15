@@ -94,8 +94,8 @@
     {
       "id": "mixed-long-evolution",
       "name": "several near-boundary letters over many rounds",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "xyz",
         "t": 100
@@ -110,8 +110,8 @@
     {
       "id": "full-alphabet-long-evolution",
       "name": "every starting letter over one thousand rounds",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcdefghijklmnopqrstuvwxyz",
         "t": 1000

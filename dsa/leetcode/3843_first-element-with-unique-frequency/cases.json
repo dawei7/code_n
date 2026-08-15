@@ -7,120 +7,298 @@
       "name": "sample: frequency two belongs only to thirty",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [20, 10, 30, 30]},
+      "input": {
+        "nums": [
+          20,
+          10,
+          30,
+          30
+        ]
+      },
       "expected": 30,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "shared-singletons", "unique-frequency"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "shared-singletons",
+        "unique-frequency"
+      ]
     },
     {
       "id": "sample-all-frequencies-unique",
       "name": "sample: every distinct value has a different frequency",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [20, 20, 10, 30, 30, 30]},
+      "input": {
+        "nums": [
+          20,
+          20,
+          10,
+          30,
+          30,
+          30
+        ]
+      },
       "expected": 20,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "all-frequencies-unique", "first-element"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "all-frequencies-unique",
+        "first-element"
+      ]
     },
     {
       "id": "sample-no-unique-frequency",
       "name": "sample: both values occur twice",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [10, 10, 20, 20]},
+      "input": {
+        "nums": [
+          10,
+          10,
+          20,
+          20
+        ]
+      },
       "expected": -1,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "equal-frequencies", "sentinel"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "equal-frequencies",
+        "sentinel"
+      ]
     },
     {
       "id": "trial-single-element",
       "name": "trial: one value has the only represented frequency",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1]},
+      "input": {
+        "nums": [
+          1
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-length", "lower-bound"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "lower-bound"
+      ]
     },
     {
       "id": "trial-all-distinct",
       "name": "trial: five distinct values share frequency one",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, 4, 3, 2, 1]},
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": -1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "all-distinct", "shared-frequency"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-distinct",
+        "shared-frequency"
+      ]
     },
     {
       "id": "trial-qualifier-occurs-last",
       "name": "trial: singleton qualifies only after two repeated values",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 2, 3, 3, 4]},
+      "input": {
+        "nums": [
+          2,
+          2,
+          3,
+          3,
+          4
+        ]
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "late-answer", "singleton"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "late-answer",
+        "singleton"
+      ]
     },
     {
       "id": "real-earliest-of-several-qualifiers",
-      "name": "hidden: the first value wins when all frequencies differ",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9, 1, 2, 1, 2, 1]},
+      "name": "the first value wins when all frequencies differ",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          1,
+          2,
+          1,
+          2,
+          1
+        ]
+      },
       "expected": 9,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "several-qualifiers", "order"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "several-qualifiers",
+        "order"
+      ]
     },
     {
       "id": "real-colliding-prefix-frequencies",
-      "name": "hidden: early values share a frequency before a later qualifier",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 1, 1, 2, 2, 2, 4]},
+      "name": "early values share a frequency before a later qualifier",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          1,
+          2,
+          2,
+          2,
+          4
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "frequency-collision", "later-answer"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "frequency-collision",
+        "later-answer"
+      ]
     },
     {
       "id": "real-unique-high-frequency",
-      "name": "hidden: only the four-occurrence value qualifies",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3, 3, 4, 5, 5, 5, 4, 5]},
+      "name": "only the four-occurrence value qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          4,
+          5,
+          5,
+          5,
+          4,
+          5
+        ]
+      },
       "expected": 5,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "high-frequency", "shared-pairs"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "high-frequency",
+        "shared-pairs"
+      ]
     },
     {
       "id": "real-two-frequency-groups",
-      "name": "hidden: every represented frequency belongs to two values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 2, 2, 3, 3, 3, 4, 4, 4]},
+      "name": "every represented frequency belongs to two values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          4,
+          4,
+          4
+        ]
+      },
       "expected": -1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "multiple-frequency-groups", "sentinel"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "multiple-frequency-groups",
+        "sentinel"
+      ]
     },
     {
       "id": "real-upper-bound-value-first",
-      "name": "hidden: the upper-bound value is the earliest qualifier",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000, 1, 100000]},
+      "name": "the upper-bound value is the earliest qualifier",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          1,
+          100000
+        ]
+      },
       "expected": 100000,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "upper-bound", "first-element"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "upper-bound",
+        "first-element"
+      ]
     },
     {
       "id": "real-answer-after-shared-pairs",
-      "name": "hidden: two frequency-two values precede frequency-three and four values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, 7, 8, 6, 7, 6, 6, 5, 5, 5, 5]},
+      "name": "two frequency-two values precede frequency-three and four values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          7,
+          8,
+          6,
+          7,
+          6,
+          6,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
       "expected": 6,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "mixed-frequencies", "order"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "mixed-frequencies",
+        "order"
+      ]
     }
   ]
 }

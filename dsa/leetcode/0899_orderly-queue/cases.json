@@ -94,9 +94,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: full selectable prefix",
-      "kind": "real",
-      "visible": false,
+      "name": "full selectable prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zyxwv",
         "k": 5
@@ -109,9 +109,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: repeated minimum rotation",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated minimum rotation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "bbaaccaadd",
         "k": 1
@@ -125,9 +125,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: alternating letters with two choices",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating letters with two choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zazazaza",
         "k": 2
@@ -140,9 +140,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: late smallest rotation",
-      "kind": "real",
-      "visible": false,
+      "name": "late smallest rotation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "bcdefga",
         "k": 1

@@ -78,9 +78,9 @@
     },
     {
       "id": "real-span-covers-retained-character",
-      "name": "hidden: removed endpoints make the full middle span count",
-      "kind": "real",
-      "visible": false,
+      "name": "removed endpoints make the full middle span count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abc",
         "t": "axbyc"
@@ -93,9 +93,9 @@
     },
     {
       "id": "real-repeated-character-capacity",
-      "name": "hidden: retain one of several equal characters",
-      "kind": "real",
-      "visible": false,
+      "name": "retain one of several equal characters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "a",
         "t": "aaaa"
@@ -108,9 +108,9 @@
     },
     {
       "id": "real-separated-end-removals",
-      "name": "hidden: removing both ends charges their entire span",
-      "kind": "real",
-      "visible": false,
+      "name": "removing both ends charges their entire span",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "xyz",
         "t": "axyzb"
@@ -123,9 +123,9 @@
     },
     {
       "id": "real-long-middle-interval",
-      "name": "hidden: remove a longer middle block",
-      "kind": "real",
-      "visible": false,
+      "name": "remove a longer middle block",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abacaba",
         "t": "bzzzaa"

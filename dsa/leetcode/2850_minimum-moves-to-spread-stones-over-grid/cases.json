@@ -6,54 +6,182 @@
       "name": "sample: one surplus stone crosses three edges",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1, 1, 0], [1, 1, 1], [1, 2, 1]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "single-surplus"]
+      "tags": [
+        "sample",
+        "single-surplus"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: two piles supply four empty cells",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1, 3, 0], [1, 0, 0], [1, 0, 3]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            3,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            3
+          ]
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "multiple-sources"]
+      "tags": [
+        "sample",
+        "multiple-sources"
+      ]
     },
     {
       "id": "trial-already-balanced",
       "name": "trial: every cell already contains one stone",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[1, 1, 1], [1, 1, 1], [1, 1, 1]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "balanced"]
+      "tags": [
+        "trial",
+        "balanced"
+      ]
     },
     {
       "id": "trial-single-adjacent-transfer",
       "name": "trial: one adjacent transfer is sufficient",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[2, 0, 1], [1, 1, 1], [1, 1, 1]]},
+      "input": {
+        "grid": [
+          [
+            2,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "adjacent"]
+      "tags": [
+        "trial",
+        "adjacent"
+      ]
     },
     {
       "id": "real-assignment-choice-matters",
-      "name": "hidden: choose the globally best source-target matching",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[0, 2, 0], [2, 1, 1], [0, 1, 2]]},
+      "name": "choose the globally best source-target matching",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "assignment", "greedy-trap"]
+      "tags": [
+        "hidden",
+        "assignment",
+        "greedy-trap"
+      ]
     },
     {
       "id": "real-corner-pile",
-      "name": "hidden: one corner supplies four empty cells",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[5, 0, 0], [0, 1, 1], [0, 1, 1]]},
+      "name": "one corner supplies four empty cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 6,
-      "tags": ["hidden", "corner", "repeated-source"]
+      "tags": [
+        "hidden",
+        "corner",
+        "repeated-source"
+      ]
     }
   ]
 }

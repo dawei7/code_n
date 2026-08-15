@@ -98,9 +98,9 @@
     },
     {
       "id": "real-left-endpoint-high",
-      "name": "hidden: first element is never eligible",
-      "kind": "real",
-      "visible": false,
+      "name": "first element is never eligible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mountain": [
           100,
@@ -117,9 +117,9 @@
     },
     {
       "id": "real-right-endpoint-high",
-      "name": "hidden: last element is never eligible",
-      "kind": "real",
-      "visible": false,
+      "name": "last element is never eligible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mountain": [
           1,
@@ -138,9 +138,9 @@
     },
     {
       "id": "real-many-peaks",
-      "name": "hidden: alternating values create several peaks",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating values create several peaks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mountain": [
           1,
@@ -164,9 +164,9 @@
     },
     {
       "id": "real-equal-left",
-      "name": "hidden: equality with the left neighbor disqualifies",
-      "kind": "real",
-      "visible": false,
+      "name": "equality with the left neighbor disqualifies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mountain": [
           4,
@@ -186,9 +186,9 @@
     },
     {
       "id": "real-decreasing",
-      "name": "hidden: decreasing array has no interior peak",
-      "kind": "real",
-      "visible": false,
+      "name": "decreasing array has no interior peak",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mountain": [
           5,

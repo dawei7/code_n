@@ -304,8 +304,8 @@
     {
       "id": "real-many-odd",
       "name": "real: an odd-only date returns zero even sum",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "transactions": [
@@ -351,8 +351,8 @@
     {
       "id": "real-same-date-mixed",
       "name": "real: alternating parity on one date",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "transactions": [
@@ -403,8 +403,8 @@
     {
       "id": "real-year-boundary",
       "name": "real: dates sort across a year boundary",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "transactions": [
@@ -450,8 +450,8 @@
     {
       "id": "real-large-amounts",
       "name": "real: large amounts aggregate by parity",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "transactions": [
@@ -497,8 +497,8 @@
     {
       "id": "real-repeated-dates",
       "name": "real: multiple groups receive independent sums",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "transactions": [
@@ -554,8 +554,8 @@
     {
       "id": "real-four-dates",
       "name": "real: four dates with varied group sizes",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "transactions": [

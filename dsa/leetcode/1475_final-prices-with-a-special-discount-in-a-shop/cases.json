@@ -123,9 +123,9 @@
     },
     {
       "id": "real-all-equal",
-      "name": "hidden: each equal successor discounts its predecessor",
-      "kind": "real",
-      "visible": false,
+      "name": "each equal successor discounts its predecessor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           5,
@@ -147,9 +147,9 @@
     },
     {
       "id": "real-nearest-not-smallest",
-      "name": "hidden: nearest qualifying price wins",
-      "kind": "real",
-      "visible": false,
+      "name": "nearest qualifying price wins",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           12,
@@ -171,9 +171,9 @@
     },
     {
       "id": "real-stack-multiple-pop",
-      "name": "hidden: one price resolves several waiting items",
-      "kind": "real",
-      "visible": false,
+      "name": "one price resolves several waiting items",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           3,
@@ -197,9 +197,9 @@
     },
     {
       "id": "real-price-bounds",
-      "name": "hidden: inclusive price bounds",
-      "kind": "real",
-      "visible": false,
+      "name": "inclusive price bounds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           1000,

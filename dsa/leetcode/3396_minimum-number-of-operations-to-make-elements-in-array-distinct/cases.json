@@ -142,8 +142,8 @@
     {
       "id": "real-distinct-suffix-begins-late",
       "name": "real: several duplicate pairs disappear after two operations",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -167,8 +167,8 @@
     {
       "id": "real-maximum-all-equal",
       "name": "real: maximum length leaves one value after thirty-three operations",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,

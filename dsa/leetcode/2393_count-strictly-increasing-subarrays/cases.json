@@ -79,9 +79,9 @@
     },
     {
       "id": "real-decreasing",
-      "name": "hidden: only singleton ranges qualify",
-      "kind": "real",
-      "visible": false,
+      "name": "only singleton ranges qualify",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -99,9 +99,9 @@
     },
     {
       "id": "real-several-runs",
-      "name": "hidden: triangular counts from several run lengths",
-      "kind": "real",
-      "visible": false,
+      "name": "triangular counts from several run lengths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -120,9 +120,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: upper-bound values preserve strict comparison",
-      "kind": "real",
-      "visible": false,
+      "name": "upper-bound values preserve strict comparison",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           999998,

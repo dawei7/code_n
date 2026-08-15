@@ -81,9 +81,9 @@
     },
     {
       "id": "real-single-letter",
-      "name": "hidden: one alphabetic character",
-      "kind": "real",
-      "visible": false,
+      "name": "one alphabetic character",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "strs": [
           "a"
@@ -98,9 +98,9 @@
     },
     {
       "id": "real-single-zero",
-      "name": "hidden: one zero digit has numeric value zero",
-      "kind": "real",
-      "visible": false,
+      "name": "one zero digit has numeric value zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "strs": [
           "0"
@@ -115,9 +115,9 @@
     },
     {
       "id": "real-all-zeroes",
-      "name": "hidden: many leading zeroes still represent zero",
-      "kind": "real",
-      "visible": false,
+      "name": "many leading zeroes still represent zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "strs": [
           "000000000",
@@ -134,9 +134,9 @@
     },
     {
       "id": "real-maximum-numeric",
-      "name": "hidden: a nine-digit numeric string",
-      "kind": "real",
-      "visible": false,
+      "name": "a nine-digit numeric string",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "strs": [
           "999999999",
@@ -153,9 +153,9 @@
     },
     {
       "id": "real-letter-anywhere",
-      "name": "hidden: any letter selects the full string length",
-      "kind": "real",
-      "visible": false,
+      "name": "any letter selects the full string length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "strs": [
           "1a2345678",

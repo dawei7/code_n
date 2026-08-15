@@ -7,63 +7,130 @@
       "name": "sample: the full array equalizes two values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2]},
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "full-array-operation"]
+      "tags": [
+        "sample",
+        "full-array-operation"
+      ]
     },
     {
       "id": "sample-already-equal",
       "name": "sample: an equal array needs no operation",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [5, 5, 5]},
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "already-equal"]
+      "tags": [
+        "sample",
+        "already-equal"
+      ]
     },
     {
       "id": "trial-single-element",
       "name": "trial: a singleton is already equal",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [100000]},
+      "input": {
+        "nums": [
+          100000
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-same-and-different-values",
       "name": "trial: different values need one operation even when one contains the other bits",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7, 3, 7]},
+      "input": {
+        "nums": [
+          7,
+          3,
+          7
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "bitwise-and"]
+      "tags": [
+        "trial",
+        "bitwise-and"
+      ]
     },
     {
       "id": "real-difference-at-end",
-      "name": "hidden: a differing final value prevents zero operations",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [42, 42, 42, 42, 41]},
+      "name": "a differing final value prevents zero operations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          42,
+          42,
+          42,
+          42,
+          41
+        ]
+      },
       "expected": 1,
-      "tags": ["hidden", "full-scan"]
+      "tags": [
+        "hidden",
+        "full-scan"
+      ]
     },
     {
       "id": "real-all-maximum-values",
-      "name": "hidden: equal maximum values need no operation",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000, 100000, 100000, 100000]},
+      "name": "equal maximum values need no operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          100000,
+          100000,
+          100000
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden", "maximum-value"]
+      "tags": [
+        "hidden",
+        "maximum-value"
+      ]
     },
     {
       "id": "real-many-distinct-values",
-      "name": "hidden: one full-array operation handles many distinct values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 4, 8, 16, 32, 64]},
+      "name": "one full-array operation handles many distinct values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          32,
+          64
+        ]
+      },
       "expected": 1,
-      "tags": ["hidden", "many-distinct"]
+      "tags": [
+        "hidden",
+        "many-distinct"
+      ]
     }
   ]
 }

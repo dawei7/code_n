@@ -182,9 +182,9 @@
     },
     {
       "id": "real-second-best-tie",
-      "name": "hidden: a tied second odd residue satisfies the distinctness rule",
-      "kind": "real",
-      "visible": false,
+      "name": "a tied second odd residue satisfies the distinctness rule",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -206,9 +206,9 @@
     },
     {
       "id": "real-k-two-conflict",
-      "name": "hidden: k = 2 leaves only the opposite residue",
-      "kind": "real",
-      "visible": false,
+      "name": "k = 2 leaves only the opposite residue",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -231,9 +231,9 @@
     },
     {
       "id": "real-odd-length-mixed",
-      "name": "hidden: an odd-length array has one extra even-index element",
-      "kind": "real",
-      "visible": false,
+      "name": "an odd-length array has one extra even-index element",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -255,9 +255,9 @@
     },
     {
       "id": "real-even-antipodes",
-      "name": "hidden: even-modulus antipodal residues exercise the half-circle boundary",
-      "kind": "real",
-      "visible": false,
+      "name": "even-modulus antipodal residues exercise the half-circle boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -279,9 +279,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: billion-scale values are reduced before optimization",
-      "kind": "real",
-      "visible": false,
+      "name": "billion-scale values are reduced before optimization",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -304,9 +304,9 @@
     },
     {
       "id": "real-uniform-remainders",
-      "name": "hidden: both parity groups are spread around the entire residue cycle",
-      "kind": "real",
-      "visible": false,
+      "name": "both parity groups are spread around the entire residue cycle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -343,9 +343,9 @@
     },
     {
       "id": "real-sparse-large-modulus",
-      "name": "hidden: sparse residues with a large modulus retain the best distinct pair",
-      "kind": "real",
-      "visible": false,
+      "name": "sparse residues with a large modulus retain the best distinct pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

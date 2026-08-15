@@ -101,9 +101,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: all-zero even-length bed",
-      "kind": "real",
-      "visible": false,
+      "name": "all-zero even-length bed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "flowerbed": [
           0,
@@ -123,9 +123,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: separated gaps have limited capacity",
-      "kind": "real",
-      "visible": false,
+      "name": "separated gaps have limited capacity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "flowerbed": [
           1,

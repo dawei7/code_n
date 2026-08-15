@@ -151,9 +151,9 @@
     },
     {
       "id": "real-boundaries-cancel",
-      "name": "hidden: both boundary bulb numbers cancel",
-      "kind": "real",
-      "visible": false,
+      "name": "both boundary bulb numbers cancel",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bulbs": [
           1,
@@ -174,9 +174,9 @@
     },
     {
       "id": "real-pairs-and-one-odd",
-      "name": "hidden: several even pairs and one odd occurrence",
-      "kind": "real",
-      "visible": false,
+      "name": "several even pairs and one odd occurrence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bulbs": [
           2,
@@ -202,9 +202,9 @@
     },
     {
       "id": "real-center-survives",
-      "name": "hidden: boundary values cancel around a surviving middle bulb",
-      "kind": "real",
-      "visible": false,
+      "name": "boundary values cancel around a surviving middle bulb",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bulbs": [
           100,
@@ -228,9 +228,9 @@
     },
     {
       "id": "real-complete-domain",
-      "name": "hidden: every bulb number occurs exactly once",
-      "kind": "real",
-      "visible": false,
+      "name": "every bulb number occurs exactly once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bulbs": [
           1,
@@ -448,9 +448,9 @@
     },
     {
       "id": "real-fifty-canceling-pairs",
-      "name": "hidden: maximum length contains fifty canceling pairs",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum length contains fifty canceling pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bulbs": [
           1,
@@ -567,9 +567,9 @@
     },
     {
       "id": "real-mixed-multiplicities",
-      "name": "hidden: odd and even multiplicities interleave",
-      "kind": "real",
-      "visible": false,
+      "name": "odd and even multiplicities interleave",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bulbs": [
           7,

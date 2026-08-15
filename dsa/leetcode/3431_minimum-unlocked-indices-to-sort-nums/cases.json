@@ -1,15 +1,267 @@
 {
   "challenge_id": "lc_3431",
   "cases": [
-    {"id":"sample-no-unlocks","name":"sample: required positions already unlocked","kind":"sample","visible":true,"input":{"nums":[1,2,1,2,3,2],"locked":[1,0,1,1,0,1]},"expected":0,"tags":["sample"]},
-    {"id":"sample-two-unlocks","name":"sample: two required unlocks","kind":"sample","visible":true,"input":{"nums":[1,2,1,1,3,2,2],"locked":[1,0,1,1,0,1,0]},"expected":2,"tags":["sample"]},
-    {"id":"sample-impossible","name":"sample: three cannot cross one","kind":"sample","visible":true,"input":{"nums":[1,2,1,2,3,2,1],"locked":[0,0,0,0,0,0,0]},"expected":-1,"tags":["sample","impossible"]},
-    {"id":"trial-single-value","name":"trial: one value","kind":"trial","visible":true,"input":{"nums":[2],"locked":[1]},"expected":0,"tags":["trial","minimum-n"]},
-    {"id":"trial-two-one-region","name":"trial: only two-one inversions","kind":"trial","visible":true,"input":{"nums":[2,2,1,1],"locked":[1,0,1,1]},"expected":2,"tags":["trial","two-one"]},
-    {"id":"real-three-two-region","name":"real: only three-two inversions","kind":"real","visible":false,"input":{"nums":[1,3,3,2,2],"locked":[1,1,0,1,1]},"expected":2,"tags":["real","three-two"]},
-    {"id":"real-both-regions","name":"real: both required intervals","kind":"real","visible":false,"input":{"nums":[2,1,1,3,2],"locked":[1,0,1,1,0]},"expected":2,"tags":["real","both-regions"]},
-    {"id":"real-already-sorted","name":"real: sorted with every index locked","kind":"real","visible":false,"input":{"nums":[1,1,2,2,3,3],"locked":[1,1,1,1,1,1]},"expected":0,"tags":["real","sorted"]},
-    {"id":"real-no-twos","name":"real: no middle value","kind":"real","visible":false,"input":{"nums":[1,1,3,3],"locked":[1,1,1,1]},"expected":0,"tags":["real","missing-value"]},
-    {"id":"real-direct-obstruction","name":"real: direct impossible pair","kind":"real","visible":false,"input":{"nums":[3,1],"locked":[0,0]},"expected":-1,"tags":["real","impossible"]}
+    {
+      "id": "sample-no-unlocks",
+      "name": "sample: required positions already unlocked",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          3,
+          2
+        ],
+        "locked": [
+          1,
+          0,
+          1,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-two-unlocks",
+      "name": "sample: two required unlocks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          1,
+          3,
+          2,
+          2
+        ],
+        "locked": [
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: three cannot cross one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          3,
+          2,
+          1
+        ],
+        "locked": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ],
+        "locked": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "trial-two-one-region",
+      "name": "trial: only two-one inversions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          1,
+          1
+        ],
+        "locked": [
+          1,
+          0,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "two-one"
+      ]
+    },
+    {
+      "id": "real-three-two-region",
+      "name": "real: only three-two inversions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          3,
+          2,
+          2
+        ],
+        "locked": [
+          1,
+          1,
+          0,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "three-two"
+      ]
+    },
+    {
+      "id": "real-both-regions",
+      "name": "real: both required intervals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          1,
+          3,
+          2
+        ],
+        "locked": [
+          1,
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "both-regions"
+      ]
+    },
+    {
+      "id": "real-already-sorted",
+      "name": "real: sorted with every index locked",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ],
+        "locked": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "sorted"
+      ]
+    },
+    {
+      "id": "real-no-twos",
+      "name": "real: no middle value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          3,
+          3
+        ],
+        "locked": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "missing-value"
+      ]
+    },
+    {
+      "id": "real-direct-obstruction",
+      "name": "real: direct impossible pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1
+        ],
+        "locked": [
+          0,
+          0
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "real",
+        "impossible"
+      ]
+    }
   ]
 }

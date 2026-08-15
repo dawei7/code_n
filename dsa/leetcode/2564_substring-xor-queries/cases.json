@@ -143,9 +143,9 @@
     },
     {
       "id": "real-leading-zeroes",
-      "name": "hidden: leading zeroes lose the shortest-length tie",
-      "kind": "real",
-      "visible": false,
+      "name": "leading zeroes lose the shortest-length tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "0011",
         "queries": [
@@ -168,9 +168,9 @@
     },
     {
       "id": "real-leftmost-tie",
-      "name": "hidden: equal-length matches choose the smallest left index",
-      "kind": "real",
-      "visible": false,
+      "name": "equal-length matches choose the smallest left index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "10101",
         "queries": [
@@ -193,9 +193,9 @@
     },
     {
       "id": "real-mixed-results",
-      "name": "hidden: found and missing targets preserve query order",
-      "kind": "real",
-      "visible": false,
+      "name": "found and missing targets preserve query order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "11001",
         "queries": [

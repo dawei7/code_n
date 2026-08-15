@@ -1,14 +1,196 @@
 {
   "challenge_id": "lc_2471",
   "cases": [
-    {"id":"sample-1","name":"sample: two levels require three swaps","kind":"sample","visible":true,"input":{"root":[1,4,3,7,6,8,5,null,null,null,null,9,null,10]},"expected":3,"tags":["sample","multiple-levels"]},
-    {"id":"sample-2","name":"sample: reversed values across two levels","kind":"sample","visible":true,"input":{"root":[1,3,2,7,6,5,4]},"expected":3,"tags":["sample","reversed-levels"]},
-    {"id":"sample-3","name":"sample: every level is already sorted","kind":"sample","visible":true,"input":{"root":[1,2,3,4,5,6]},"expected":0,"tags":["sample","already-sorted"]},
-    {"id":"trial-single-node","name":"trial: a one-node level needs no swap","kind":"trial","visible":true,"input":{"root":[1]},"expected":0,"tags":["trial","single-node"]},
-    {"id":"trial-one-reversed-level","name":"trial: one pair is reversed","kind":"trial","visible":true,"input":{"root":[1,3,2]},"expected":1,"tags":["trial","one-swap"]},
-    {"id":"real-three-cycle","name":"hidden: one level forms a three-cycle","kind":"real","visible":false,"input":{"root":[1,5,6,4,2,3]},"expected":2,"tags":["hidden","cycle"]},
-    {"id":"real-sparse-levels","name":"hidden: sparse children still retain left-to-right level order","kind":"real","visible":false,"input":{"root":[5,3,2,null,4,1]},"expected":2,"tags":["hidden","sparse-tree"]},
-    {"id":"real-skewed-tree","name":"hidden: every skewed-tree level has one node","kind":"real","visible":false,"input":{"root":[4,3,null,2,null,1]},"expected":0,"tags":["hidden","skewed-tree"]},
-    {"id":"real-one-fixed-point","name":"hidden: a level mixes a cycle with a fixed point","kind":"real","visible":false,"input":{"root":[1,2,3,7,4,6,5]},"expected":2,"tags":["hidden","fixed-point"]}
+    {
+      "id": "sample-1",
+      "name": "sample: two levels require three swaps",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          4,
+          3,
+          7,
+          6,
+          8,
+          5,
+          null,
+          null,
+          null,
+          null,
+          9,
+          null,
+          10
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "multiple-levels"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: reversed values across two levels",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          3,
+          2,
+          7,
+          6,
+          5,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "reversed-levels"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: every level is already sorted",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "already-sorted"
+      ]
+    },
+    {
+      "id": "trial-single-node",
+      "name": "trial: a one-node level needs no swap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "single-node"
+      ]
+    },
+    {
+      "id": "trial-one-reversed-level",
+      "name": "trial: one pair is reversed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "one-swap"
+      ]
+    },
+    {
+      "id": "real-three-cycle",
+      "name": "one level forms a three-cycle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          5,
+          6,
+          4,
+          2,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "cycle"
+      ]
+    },
+    {
+      "id": "real-sparse-levels",
+      "name": "sparse children still retain left-to-right level order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          5,
+          3,
+          2,
+          null,
+          4,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "sparse-tree"
+      ]
+    },
+    {
+      "id": "real-skewed-tree",
+      "name": "every skewed-tree level has one node",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          4,
+          3,
+          null,
+          2,
+          null,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "skewed-tree"
+      ]
+    },
+    {
+      "id": "real-one-fixed-point",
+      "name": "a level mixes a cycle with a fixed point",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          7,
+          4,
+          6,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "fixed-point"
+      ]
+    }
   ]
 }

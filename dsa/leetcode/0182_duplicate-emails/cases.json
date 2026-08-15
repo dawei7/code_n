@@ -116,9 +116,9 @@
     },
     {
       "id": "real-several",
-      "name": "hidden: several duplicated groups",
-      "kind": "real",
-      "visible": false,
+      "name": "several duplicated groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Person": [

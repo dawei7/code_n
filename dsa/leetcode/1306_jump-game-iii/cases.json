@@ -109,9 +109,9 @@
     },
     {
       "id": "hidden-left-boundary-jump",
-      "name": "hidden: only useful jump goes to index zero",
-      "kind": "real",
-      "visible": false,
+      "name": "only useful jump goes to index zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,
@@ -131,9 +131,9 @@
     },
     {
       "id": "hidden-disconnected-zero",
-      "name": "hidden: zero lies in another component",
-      "kind": "real",
-      "visible": false,
+      "name": "zero lies in another component",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,

@@ -6,54 +6,86 @@
       "name": "official example: budget between dimensions two and three",
       "kind": "sample",
       "visible": true,
-      "input": {"s": 10},
+      "input": {
+        "s": 10
+      },
       "expected": 2,
-      "tags": ["sample", "threshold"]
+      "tags": [
+        "sample",
+        "threshold"
+      ]
     },
     {
       "id": "official-example-zero-budget",
       "name": "official example: zero budget still permits dimension one",
       "kind": "sample",
       "visible": true,
-      "input": {"s": 0},
+      "input": {
+        "s": 0
+      },
       "expected": 1,
-      "tags": ["sample", "minimum-budget"]
+      "tags": [
+        "sample",
+        "minimum-budget"
+      ]
     },
     {
       "id": "trial-exact-dimension-two",
       "name": "trial: exact total for dimension two",
       "kind": "trial",
       "visible": true,
-      "input": {"s": 3},
+      "input": {
+        "s": 3
+      },
       "expected": 2,
-      "tags": ["trial", "exact-threshold"]
+      "tags": [
+        "trial",
+        "exact-threshold"
+      ]
     },
     {
       "id": "trial-one-below-dimension-three",
       "name": "trial: one below the next dimension threshold",
       "kind": "trial",
       "visible": true,
-      "input": {"s": 44},
+      "input": {
+        "s": 44
+      },
       "expected": 2,
-      "tags": ["trial", "boundary"]
+      "tags": [
+        "trial",
+        "boundary"
+      ]
     },
     {
       "id": "real-million-budget",
       "name": "real: medium budget crosses several bit boundaries",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": 1000000},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": 1000000
+      },
       "expected": 19,
-      "tags": ["real", "bit-boundaries", "binary-search"]
+      "tags": [
+        "real",
+        "bit-boundaries",
+        "binary-search"
+      ]
     },
     {
       "id": "real-maximum-budget",
       "name": "real: maximum legal budget",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": 1000000000000000},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": 1000000000000000
+      },
       "expected": 1196,
-      "tags": ["real", "maximum-budget", "large-answer"]
+      "tags": [
+        "real",
+        "maximum-budget",
+        "large-answer"
+      ]
     }
   ]
 }

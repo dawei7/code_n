@@ -81,9 +81,9 @@
     },
     {
       "id": "real-all-negative",
-      "name": "hidden: empty subsequence leads all negative choices",
-      "kind": "real",
-      "visible": false,
+      "name": "empty subsequence leads all negative choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -1,
@@ -100,9 +100,9 @@
     },
     {
       "id": "real-equal-positive-values",
-      "name": "hidden: equal positive values retain multiplicity",
-      "kind": "real",
-      "visible": false,
+      "name": "equal positive values retain multiplicity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -118,9 +118,9 @@
     },
     {
       "id": "real-last-rank",
-      "name": "hidden: request the smallest of all subsequence sums",
-      "kind": "real",
-      "visible": false,
+      "name": "request the smallest of all subsequence sums",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -137,9 +137,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: sums cross 32-bit signed range",
-      "kind": "real",
-      "visible": false,
+      "name": "sums cross 32-bit signed range",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,

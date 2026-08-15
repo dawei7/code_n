@@ -7,110 +7,514 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "edges": [[0,1,1],[1,2,3],[1,3,1],[2,4,6],[4,7,2],[3,5,2],[3,6,5],[6,8,3]],
-        "nums": [1,1,0,3,1,2,1,1,0]
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            3,
+            1
+          ],
+          [
+            2,
+            4,
+            6
+          ],
+          [
+            4,
+            7,
+            2
+          ],
+          [
+            3,
+            5,
+            2
+          ],
+          [
+            3,
+            6,
+            5
+          ],
+          [
+            6,
+            8,
+            3
+          ]
+        ],
+        "nums": [
+          1,
+          1,
+          0,
+          3,
+          1,
+          2,
+          1,
+          1,
+          0
+        ]
       },
-      "expected": [9, 3],
-      "tags": ["sample", "tie-break"]
+      "expected": [
+        9,
+        3
+      ],
+      "tags": [
+        "sample",
+        "tie-break"
+      ]
     },
     {
       "id": "sample-direct-edge",
       "name": "sample: direct child is longest",
       "kind": "sample",
       "visible": true,
-      "input": {"edges": [[1,0,3],[0,2,4],[0,3,5]], "nums": [1,1,0,2]},
-      "expected": [5, 2],
-      "tags": ["sample", "rooted-tree"]
+      "input": {
+        "edges": [
+          [
+            1,
+            0,
+            3
+          ],
+          [
+            0,
+            2,
+            4
+          ],
+          [
+            0,
+            3,
+            5
+          ]
+        ],
+        "nums": [
+          1,
+          1,
+          0,
+          2
+        ]
+      },
+      "expected": [
+        5,
+        2
+      ],
+      "tags": [
+        "sample",
+        "rooted-tree"
+      ]
     },
     {
       "id": "trial-one-duplicate-allowed",
       "name": "trial: one duplicated value remains legal",
       "kind": "trial",
       "visible": true,
-      "input": {"edges": [[0,1,2],[1,2,3],[2,3,4]], "nums": [1,2,1,3]},
-      "expected": [9, 4],
-      "tags": ["trial", "one-duplicate"]
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ]
+        ],
+        "nums": [
+          1,
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": [
+        9,
+        4
+      ],
+      "tags": [
+        "trial",
+        "one-duplicate"
+      ]
     },
     {
       "id": "trial-same-value-edge",
       "name": "trial: a value may occur exactly twice",
       "kind": "trial",
       "visible": true,
-      "input": {"edges": [[0,1,17]], "nums": [5,5]},
-      "expected": [17, 2],
-      "tags": ["trial", "duplicate"]
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            17
+          ]
+        ],
+        "nums": [
+          5,
+          5
+        ]
+      },
+      "expected": [
+        17,
+        2
+      ],
+      "tags": [
+        "trial",
+        "duplicate"
+      ]
     },
     {
       "id": "real-third-occurrence",
       "name": "real: a third occurrence forces the start forward",
-      "kind": "real",
-      "visible": false,
-      "input": {"edges": [[0,1,2],[1,2,3],[2,3,4],[3,4,5]], "nums": [1,2,1,3,1]},
-      "expected": [12, 4],
-      "tags": ["real", "third-occurrence", "window"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ],
+          [
+            3,
+            4,
+            5
+          ]
+        ],
+        "nums": [
+          1,
+          2,
+          1,
+          3,
+          1
+        ]
+      },
+      "expected": [
+        12,
+        4
+      ],
+      "tags": [
+        "real",
+        "third-occurrence",
+        "window"
+      ]
     },
     {
       "id": "real-two-duplicated-values",
       "name": "real: two duplicate pairs cannot coexist",
-      "kind": "real",
-      "visible": false,
-      "input": {"edges": [[0,1,1],[1,2,2],[2,3,3]], "nums": [1,2,1,2]},
-      "expected": [5, 3],
-      "tags": ["real", "two-duplicates", "window"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            2,
+            3,
+            3
+          ]
+        ],
+        "nums": [
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": [
+        5,
+        3
+      ],
+      "tags": [
+        "real",
+        "two-duplicates",
+        "window"
+      ]
     },
     {
       "id": "real-all-same-chain",
       "name": "real: all equal values limit paths to two nodes",
-      "kind": "real",
-      "visible": false,
-      "input": {"edges": [[0,1,2],[1,2,5],[2,3,3]], "nums": [7,7,7,7]},
-      "expected": [5, 2],
-      "tags": ["real", "all-equal"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            5
+          ],
+          [
+            2,
+            3,
+            3
+          ]
+        ],
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": [
+        5,
+        2
+      ],
+      "tags": [
+        "real",
+        "all-equal"
+      ]
     },
     {
       "id": "real-tie-prefers-fewer-nodes",
       "name": "real: equal length prefers fewer nodes",
-      "kind": "real",
-      "visible": false,
-      "input": {"edges": [[0,1,2],[1,2,3],[0,3,5]], "nums": [0,1,2,3]},
-      "expected": [5, 2],
-      "tags": ["real", "tie-break"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            3,
+            5
+          ]
+        ],
+        "nums": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        5,
+        2
+      ],
+      "tags": [
+        "real",
+        "tie-break"
+      ]
     },
     {
       "id": "real-no-cross-branch-path",
       "name": "real: paths cannot connect separate child branches",
-      "kind": "real",
-      "visible": false,
-      "input": {"edges": [[0,1,8],[0,2,11],[0,3,7]], "nums": [0,1,2,3]},
-      "expected": [11, 2],
-      "tags": ["real", "ancestor-descendant", "branches"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            8
+          ],
+          [
+            0,
+            2,
+            11
+          ],
+          [
+            0,
+            3,
+            7
+          ]
+        ],
+        "nums": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        11,
+        2
+      ],
+      "tags": [
+        "real",
+        "ancestor-descendant",
+        "branches"
+      ]
     },
     {
       "id": "real-duplicates-on-separate-branches",
       "name": "real: repeated values on separate branches do not interact",
-      "kind": "real",
-      "visible": false,
-      "input": {"edges": [[0,1,3],[1,3,4],[0,2,5],[2,4,6]], "nums": [9,1,1,9,9]},
-      "expected": [11, 3],
-      "tags": ["real", "branches", "duplicates"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            1,
+            3,
+            4
+          ],
+          [
+            0,
+            2,
+            5
+          ],
+          [
+            2,
+            4,
+            6
+          ]
+        ],
+        "nums": [
+          9,
+          1,
+          1,
+          9,
+          9
+        ]
+      },
+      "expected": [
+        11,
+        3
+      ],
+      "tags": [
+        "real",
+        "branches",
+        "duplicates"
+      ]
     },
     {
       "id": "real-nonroot-best-start",
       "name": "real: the optimal path starts below the root",
-      "kind": "real",
-      "visible": false,
-      "input": {"edges": [[0,1,1],[1,2,10],[2,3,11],[3,4,12]], "nums": [4,5,4,5,6]},
-      "expected": [33, 4],
-      "tags": ["real", "moving-start"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            10
+          ],
+          [
+            2,
+            3,
+            11
+          ],
+          [
+            3,
+            4,
+            12
+          ]
+        ],
+        "nums": [
+          4,
+          5,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": [
+        33,
+        4
+      ],
+      "tags": [
+        "real",
+        "moving-start"
+      ]
     },
     {
       "id": "real-weighted-choice",
       "name": "real: edge weights determine the best legal suffix",
-      "kind": "real",
-      "visible": false,
-      "input": {"edges": [[0,1,100],[1,2,1],[2,3,1],[3,4,100]], "nums": [1,2,1,2,3]},
-      "expected": [102, 4],
-      "tags": ["real", "weights", "window"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            100
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            3,
+            4,
+            100
+          ]
+        ],
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        102,
+        4
+      ],
+      "tags": [
+        "real",
+        "weights",
+        "window"
+      ]
     }
   ]
 }

@@ -2,12 +2,275 @@
   "schema_version": 1,
   "challenge_id": "lc_519",
   "cases": [
-    {"id": "sample-reset", "name": "sample: reset makes a coordinate available again", "kind": "sample", "visible": true, "input": {"m": 2, "n": 2, "random_values": [0], "operations": ["flip","flip","reset","flip"]}, "expected": [[0,0],[1,1],null,[0,0]], "validator": {"kind": "random_flip_matrix_trace"}, "tags": ["sample", "reset"]},
-    {"id": "sample-single", "name": "sample: one-cell matrix", "kind": "sample", "visible": true, "input": {"m": 1, "n": 1, "random_values": [0.75], "operations": ["flip","reset","flip"]}, "expected": [[0,0],null,[0,0]], "validator": {"kind": "random_flip_matrix_trace"}, "tags": ["sample", "singleton"]},
-    {"id": "sample-row", "name": "sample: distinct cells from one row", "kind": "sample", "visible": true, "input": {"m": 1, "n": 3, "random_values": [0.9], "operations": ["flip","flip"]}, "expected": [[0,2],[0,1]], "validator": {"kind": "random_flip_matrix_trace"}, "tags": ["sample", "row"]},
-    {"id": "trial-full", "name": "trial: flip every cell exactly once", "kind": "trial", "visible": true, "input": {"m": 2, "n": 2, "random_values": [0.99], "operations": ["flip","flip","flip","flip"]}, "expected": [[1,1],[1,0],[0,1],[0,0]], "validator": {"kind": "random_flip_matrix_trace"}, "tags": ["trial", "exhaust"]},
-    {"id": "trial-reset-only", "name": "trial: resets produce null trace entries", "kind": "trial", "visible": true, "input": {"m": 3, "n": 4, "random_values": [0.5], "operations": ["reset","reset"]}, "expected": [null,null], "validator": {"kind": "random_flip_matrix_trace"}, "tags": ["trial", "reset"]},
-    {"id": "hidden-column", "name": "hidden: coordinates remain inside one column", "kind": "real", "visible": false, "input": {"m": 4, "n": 1, "random_values": [0.25,0.75], "operations": ["flip","flip","flip"]}, "expected": [[1,0],[2,0],[0,0]], "validator": {"kind": "random_flip_matrix_trace"}, "tags": ["hidden", "column"]},
-    {"id": "hidden-reset-cycle", "name": "hidden: uniqueness restarts after reset", "kind": "real", "visible": false, "input": {"m": 2, "n": 3, "random_values": [0.4,0.8], "operations": ["flip","flip","reset","flip","flip"]}, "expected": [[0,2],[1,1],null,[0,2],[1,1]], "validator": {"kind": "random_flip_matrix_trace"}, "tags": ["hidden", "reset"]}
+    {
+      "id": "sample-reset",
+      "name": "sample: reset makes a coordinate available again",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 2,
+        "random_values": [
+          0
+        ],
+        "operations": [
+          "flip",
+          "flip",
+          "reset",
+          "flip"
+        ]
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        null,
+        [
+          0,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "random_flip_matrix_trace"
+      },
+      "tags": [
+        "sample",
+        "reset"
+      ]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: one-cell matrix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 1,
+        "random_values": [
+          0.75
+        ],
+        "operations": [
+          "flip",
+          "reset",
+          "flip"
+        ]
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        null,
+        [
+          0,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "random_flip_matrix_trace"
+      },
+      "tags": [
+        "sample",
+        "singleton"
+      ]
+    },
+    {
+      "id": "sample-row",
+      "name": "sample: distinct cells from one row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 3,
+        "random_values": [
+          0.9
+        ],
+        "operations": [
+          "flip",
+          "flip"
+        ]
+      },
+      "expected": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "validator": {
+        "kind": "random_flip_matrix_trace"
+      },
+      "tags": [
+        "sample",
+        "row"
+      ]
+    },
+    {
+      "id": "trial-full",
+      "name": "trial: flip every cell exactly once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 2,
+        "random_values": [
+          0.99
+        ],
+        "operations": [
+          "flip",
+          "flip",
+          "flip",
+          "flip"
+        ]
+      },
+      "expected": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "random_flip_matrix_trace"
+      },
+      "tags": [
+        "trial",
+        "exhaust"
+      ]
+    },
+    {
+      "id": "trial-reset-only",
+      "name": "trial: resets produce null trace entries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 4,
+        "random_values": [
+          0.5
+        ],
+        "operations": [
+          "reset",
+          "reset"
+        ]
+      },
+      "expected": [
+        null,
+        null
+      ],
+      "validator": {
+        "kind": "random_flip_matrix_trace"
+      },
+      "tags": [
+        "trial",
+        "reset"
+      ]
+    },
+    {
+      "id": "hidden-column",
+      "name": "coordinates remain inside one column",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 4,
+        "n": 1,
+        "random_values": [
+          0.25,
+          0.75
+        ],
+        "operations": [
+          "flip",
+          "flip",
+          "flip"
+        ]
+      },
+      "expected": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "random_flip_matrix_trace"
+      },
+      "tags": [
+        "hidden",
+        "column"
+      ]
+    },
+    {
+      "id": "hidden-reset-cycle",
+      "name": "uniqueness restarts after reset",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 3,
+        "random_values": [
+          0.4,
+          0.8
+        ],
+        "operations": [
+          "flip",
+          "flip",
+          "reset",
+          "flip",
+          "flip"
+        ]
+      },
+      "expected": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        null,
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "validator": {
+        "kind": "random_flip_matrix_trace"
+      },
+      "tags": [
+        "hidden",
+        "reset"
+      ]
+    }
   ]
 }

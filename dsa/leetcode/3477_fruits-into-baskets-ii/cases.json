@@ -90,9 +90,9 @@
     },
     {
       "id": "real-all-unplaced",
-      "name": "hidden: every basket is too small",
-      "kind": "real",
-      "visible": false,
+      "name": "every basket is too small",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           5,
@@ -113,9 +113,9 @@
     },
     {
       "id": "real-no-reuse",
-      "name": "hidden: a sufficient basket cannot be reused",
-      "kind": "real",
-      "visible": false,
+      "name": "a sufficient basket cannot be reused",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           2,
@@ -134,9 +134,9 @@
     },
     {
       "id": "real-skip-insufficient-prefix",
-      "name": "hidden: scan past several small available baskets",
-      "kind": "real",
-      "visible": false,
+      "name": "scan past several small available baskets",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           8,
@@ -157,9 +157,9 @@
     },
     {
       "id": "real-fruit-order-matters",
-      "name": "hidden: fruit processing order is preserved",
-      "kind": "real",
-      "visible": false,
+      "name": "fruit processing order is preserved",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           2,
@@ -178,9 +178,9 @@
     },
     {
       "id": "real-duplicate-values",
-      "name": "hidden: duplicate quantities and capacities are distinct positions",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate quantities and capacities are distinct positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           3,
@@ -203,9 +203,9 @@
     },
     {
       "id": "real-single-fit",
-      "name": "hidden: minimum length with an exact fit",
-      "kind": "real",
-      "visible": false,
+      "name": "minimum length with an exact fit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           1
@@ -222,9 +222,9 @@
     },
     {
       "id": "real-single-unfit",
-      "name": "hidden: minimum length with no fit",
-      "kind": "real",
-      "visible": false,
+      "name": "minimum length with no fit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           2
@@ -241,9 +241,9 @@
     },
     {
       "id": "real-maximum-values",
-      "name": "hidden: legal maximum quantity and capacity",
-      "kind": "real",
-      "visible": false,
+      "name": "legal maximum quantity and capacity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           1000,

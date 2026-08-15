@@ -58,9 +58,9 @@
     },
     {
       "id": "real-consecutive-stars",
-      "name": "hidden: one run removes the entire prefix",
-      "kind": "real",
-      "visible": false,
+      "name": "one run removes the entire prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abc***"
       },
@@ -72,9 +72,9 @@
     },
     {
       "id": "real-retained-suffix",
-      "name": "hidden: suffix remains after consecutive removals",
-      "kind": "real",
-      "visible": false,
+      "name": "suffix remains after consecutive removals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ab**c"
       },
@@ -86,9 +86,9 @@
     },
     {
       "id": "real-multiple-runs",
-      "name": "hidden: separate star runs alter the surviving prefix",
-      "kind": "real",
-      "visible": false,
+      "name": "separate star runs alter the surviving prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abc*d**e"
       },

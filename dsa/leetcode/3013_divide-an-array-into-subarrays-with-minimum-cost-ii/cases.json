@@ -110,8 +110,8 @@
     {
       "id": "equal-window-values",
       "name": "real: equal costs retain their multiplicity",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           20,
@@ -133,8 +133,8 @@
     {
       "id": "late-optimal-window",
       "name": "real: the cheapest legal span occurs at the end",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           50,
@@ -156,8 +156,8 @@
     {
       "id": "large-values",
       "name": "real: the optimum mixes a large and small interior value",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,

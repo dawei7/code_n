@@ -1,9 +1,105 @@
-{"challenge_id":"lc_3007","cases":[
-{"id":"sample-all-bits","name":"sample: every bit position counts","kind":"sample","visible":true,"input":{"k":9,"x":1},"expected":6,"tags":["sample"]},
-{"id":"sample-even-positions","name":"sample: every second bit position counts","kind":"sample","visible":true,"input":{"k":7,"x":2},"expected":9,"tags":["sample"]},
-{"id":"trial-smallest-budget","name":"trial: smallest budget and x one","kind":"trial","visible":true,"input":{"k":1,"x":1},"expected":1,"tags":["boundary"]},
-{"id":"trial-zero-price-prefix","name":"trial: zero-price numbers precede selected bit","kind":"trial","visible":true,"input":{"k":1,"x":8},"expected":128,"tags":["bit-position"]},
-{"id":"trial-third-positions","name":"trial: every third position counts","kind":"trial","visible":true,"input":{"k":100,"x":3},"expected":109,"tags":["mixed"]},
-{"id":"real-small-second-position","name":"real: smallest budget at second positions","kind":"real","visible":false,"input":{"k":1,"x":2},"expected":2,"tags":["hidden","boundary"]},
-{"id":"real-large-budget","name":"real: large budget with every bit selected","kind":"real","visible":false,"input":{"k":10000,"x":1},"expected":1878,"tags":["hidden","large-budget"]}
-]}
+{
+  "challenge_id": "lc_3007",
+  "cases": [
+    {
+      "id": "sample-all-bits",
+      "name": "sample: every bit position counts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 9,
+        "x": 1
+      },
+      "expected": 6,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-even-positions",
+      "name": "sample: every second bit position counts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 7,
+        "x": 2
+      },
+      "expected": 9,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-smallest-budget",
+      "name": "trial: smallest budget and x one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 1,
+        "x": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-zero-price-prefix",
+      "name": "trial: zero-price numbers precede selected bit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 1,
+        "x": 8
+      },
+      "expected": 128,
+      "tags": [
+        "bit-position"
+      ]
+    },
+    {
+      "id": "trial-third-positions",
+      "name": "trial: every third position counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 100,
+        "x": 3
+      },
+      "expected": 109,
+      "tags": [
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-small-second-position",
+      "name": "real: smallest budget at second positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 1,
+        "x": 2
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-large-budget",
+      "name": "real: large budget with every bit selected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 10000,
+        "x": 1
+      },
+      "expected": 1878,
+      "tags": [
+        "hidden",
+        "large-budget"
+      ]
+    }
+  ]
+}

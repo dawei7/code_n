@@ -429,9 +429,9 @@
     },
     {
       "id": "real-ratio-rounding",
-      "name": "hidden: ratio rounds to two decimal places",
-      "kind": "real",
-      "visible": false,
+      "name": "ratio rounds to two decimal places",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "stores": [
@@ -496,9 +496,9 @@
     },
     {
       "id": "real-ratio-then-name-order",
-      "name": "hidden: equal ratios use store-name ordering",
-      "kind": "real",
-      "visible": false,
+      "name": "equal ratios use store-name ordering",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "stores": [
@@ -632,9 +632,9 @@
     },
     {
       "id": "real-store-without-inventory",
-      "name": "hidden: stores without inventory do not appear",
-      "kind": "real",
-      "visible": false,
+      "name": "stores without inventory do not appear",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "stores": [
@@ -704,9 +704,9 @@
     },
     {
       "id": "real-middle-products-irrelevant",
-      "name": "hidden: middle-priced quantities do not affect extremes",
-      "kind": "real",
-      "visible": false,
+      "name": "middle-priced quantities do not affect extremes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "stores": [

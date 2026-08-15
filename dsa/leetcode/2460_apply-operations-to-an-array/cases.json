@@ -6,72 +6,198 @@
       "name": "sample: two merges create three trailing zeros",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1,2,2,1,1,0]},
-      "expected": [1,4,2,0,0,0],
-      "tags": ["sample", "simulation"]
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          1,
+          1,
+          0
+        ]
+      },
+      "expected": [
+        1,
+        4,
+        2,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "sample",
+        "simulation"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: leading zero moves to the end",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [0,1]},
-      "expected": [1,0],
-      "tags": ["sample", "stable-compaction"]
+      "input": {
+        "nums": [
+          0,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        0
+      ],
+      "tags": [
+        "sample",
+        "stable-compaction"
+      ]
     },
     {
       "id": "trial-three-equal-values",
       "name": "trial: sequential processing merges only the first pair",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2,2,2]},
-      "expected": [4,2,0],
-      "tags": ["trial", "sequential"]
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": [
+        4,
+        2,
+        0
+      ],
+      "tags": [
+        "trial",
+        "sequential"
+      ]
     },
     {
       "id": "trial-existing-zeroes",
       "name": "trial: equal zeros remain zeros before compaction",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [8,4,7,0,0,6]},
-      "expected": [8,4,7,6,0,0],
-      "tags": ["trial", "zeros"]
+      "input": {
+        "nums": [
+          8,
+          4,
+          7,
+          0,
+          0,
+          6
+        ]
+      },
+      "expected": [
+        8,
+        4,
+        7,
+        6,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "zeros"
+      ]
     },
     {
       "id": "real-leading-zeroes",
-      "name": "hidden: leading zeros and one nonzero merge",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0,0,1,1,1]},
-      "expected": [2,1,0,0,0],
-      "tags": ["hidden", "sequential"]
+      "name": "leading zeros and one nonzero merge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        2,
+        1,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "sequential"
+      ]
     },
     {
       "id": "real-independent-pairs",
-      "name": "hidden: two adjacent pairs merge independently",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3,3,3,3]},
-      "expected": [6,6,0,0],
-      "tags": ["hidden", "multiple-merges"]
+      "name": "two adjacent pairs merge independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": [
+        6,
+        6,
+        0,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "multiple-merges"
+      ]
     },
     {
       "id": "real-all-zeroes",
-      "name": "hidden: all values remain zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0,0,0,0]},
-      "expected": [0,0,0,0],
-      "tags": ["hidden", "all-zero"]
+      "name": "all values remain zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "all-zero"
+      ]
     },
     {
       "id": "real-no-changes",
-      "name": "hidden: distinct nonzero values need no changes",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1,2,3,4,5]},
-      "expected": [1,2,3,4,5],
-      "tags": ["hidden", "no-op"]
+      "name": "distinct nonzero values need no changes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "tags": [
+        "hidden",
+        "no-op"
+      ]
     }
   ]
 }

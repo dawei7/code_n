@@ -74,8 +74,8 @@
     {
       "id": "real-separated-repeat",
       "name": "real: equal letters separated by other characters",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "abca"
       },
@@ -88,8 +88,8 @@
     {
       "id": "real-mixed-run-lengths",
       "name": "real: several different run lengths",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "aaabbaa"
       },

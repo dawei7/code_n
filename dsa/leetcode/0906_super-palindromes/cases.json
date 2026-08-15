@@ -79,9 +79,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: gap before 121",
-      "kind": "real",
-      "visible": false,
+      "name": "gap before 121",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "left": "10",
         "right": "120"
@@ -94,9 +94,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: adjacent known super-palindromes",
-      "kind": "real",
-      "visible": false,
+      "name": "adjacent known super-palindromes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "left": "121",
         "right": "484"
@@ -109,9 +109,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: excludes both surrounding values",
-      "kind": "real",
-      "visible": false,
+      "name": "excludes both surrounding values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "left": "122",
         "right": "483"
@@ -124,9 +124,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: exact five-digit value",
-      "kind": "real",
-      "visible": false,
+      "name": "exact five-digit value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "left": "10201",
         "right": "10201"
@@ -139,9 +139,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: multiple five-digit values",
-      "kind": "real",
-      "visible": false,
+      "name": "multiple five-digit values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "left": "1000",
         "right": "50000"
@@ -154,14 +154,14 @@
     },
     {
       "id": "hidden-6",
-      "name": "hidden: maximum allowed upper bound",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum allowed upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
-      "left": "999999999999999999",
-      "right": "999999999999999999"
-    },
-    "expected": 0,
+        "left": "999999999999999999",
+        "right": "999999999999999999"
+      },
+      "expected": 0,
       "tags": [
         "hidden",
         "upper-bound"

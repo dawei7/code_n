@@ -2,13 +2,169 @@
   "schema_version": 1,
   "challenge_id": "lc_2135",
   "cases": [
-    {"id": "sample-two-obtainable", "name": "sample: two targets have valid predecessors", "kind": "sample", "visible": true, "input": {"startWords": ["ant","act","tack"], "targetWords": ["tack","act","acti"]}, "expected": 2, "tags": ["sample", "rearrangement"]},
-    {"id": "sample-one-obtainable", "name": "sample: adding exactly one letter limits the match", "kind": "sample", "visible": true, "input": {"startWords": ["ab","a"], "targetWords": ["abc","abcd"]}, "expected": 1, "tags": ["sample", "length"]},
-    {"id": "trial-order-irrelevant", "name": "letter order does not affect conversion", "kind": "trial", "visible": true, "input": {"startWords": ["abc"], "targetWords": ["dcba"]}, "expected": 1, "tags": ["rearrangement"]},
-    {"id": "trial-existing-not-enough", "name": "an identical start word is not a conversion", "kind": "trial", "visible": true, "input": {"startWords": ["act"], "targetWords": ["act"]}, "expected": 0, "tags": ["exactly-one-letter"]},
-    {"id": "real-multiple-predecessors", "name": "hidden: any one valid predecessor is sufficient", "kind": "real", "visible": false, "input": {"startWords": ["ab","ac","bc"], "targetWords": ["abc"]}, "expected": 1, "tags": ["hidden", "multiple-sources"]},
-    {"id": "real-target-occurrences", "name": "hidden: duplicate target occurrences count separately", "kind": "real", "visible": false, "input": {"startWords": ["xy"], "targetWords": ["xyz","zyx","xyz"]}, "expected": 3, "tags": ["hidden", "duplicates"]},
-    {"id": "real-single-letter-source", "name": "hidden: one-letter source accepts a new letter", "kind": "real", "visible": false, "input": {"startWords": ["z"], "targetWords": ["az","za","z"]}, "expected": 2, "tags": ["hidden", "single-letter"]},
-    {"id": "real-no-predecessor", "name": "hidden: unrelated letter sets do not match", "kind": "real", "visible": false, "input": {"startWords": ["ab","cd"], "targetWords": ["efg","abcd"]}, "expected": 0, "tags": ["hidden", "zero-result"]}
+    {
+      "id": "sample-two-obtainable",
+      "name": "sample: two targets have valid predecessors",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "startWords": [
+          "ant",
+          "act",
+          "tack"
+        ],
+        "targetWords": [
+          "tack",
+          "act",
+          "acti"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "rearrangement"
+      ]
+    },
+    {
+      "id": "sample-one-obtainable",
+      "name": "sample: adding exactly one letter limits the match",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "startWords": [
+          "ab",
+          "a"
+        ],
+        "targetWords": [
+          "abc",
+          "abcd"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "length"
+      ]
+    },
+    {
+      "id": "trial-order-irrelevant",
+      "name": "letter order does not affect conversion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startWords": [
+          "abc"
+        ],
+        "targetWords": [
+          "dcba"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "rearrangement"
+      ]
+    },
+    {
+      "id": "trial-existing-not-enough",
+      "name": "an identical start word is not a conversion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startWords": [
+          "act"
+        ],
+        "targetWords": [
+          "act"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "exactly-one-letter"
+      ]
+    },
+    {
+      "id": "real-multiple-predecessors",
+      "name": "any one valid predecessor is sufficient",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startWords": [
+          "ab",
+          "ac",
+          "bc"
+        ],
+        "targetWords": [
+          "abc"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "multiple-sources"
+      ]
+    },
+    {
+      "id": "real-target-occurrences",
+      "name": "duplicate target occurrences count separately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startWords": [
+          "xy"
+        ],
+        "targetWords": [
+          "xyz",
+          "zyx",
+          "xyz"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-single-letter-source",
+      "name": "one-letter source accepts a new letter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startWords": [
+          "z"
+        ],
+        "targetWords": [
+          "az",
+          "za",
+          "z"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "single-letter"
+      ]
+    },
+    {
+      "id": "real-no-predecessor",
+      "name": "unrelated letter sets do not match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startWords": [
+          "ab",
+          "cd"
+        ],
+        "targetWords": [
+          "efg",
+          "abcd"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "zero-result"
+      ]
+    }
   ]
 }

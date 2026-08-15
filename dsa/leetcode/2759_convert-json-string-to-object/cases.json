@@ -101,9 +101,9 @@
     },
     {
       "id": "real-null-string-punctuation",
-      "name": "hidden: null and punctuation inside strings",
-      "kind": "real",
-      "visible": false,
+      "name": "null and punctuation inside strings",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "str": "{\"nothing\":null,\"text\":\",:[]{}\",\"word\":\"hello world\"}"
       },
@@ -120,9 +120,9 @@
     },
     {
       "id": "real-deep-mixture",
-      "name": "hidden: recursively mixed values",
-      "kind": "real",
-      "visible": false,
+      "name": "recursively mixed values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "str": "{\"a\":[false,{\"b\":[null,true,7]}],\"c\":\"done\"}"
       },
@@ -147,9 +147,9 @@
     },
     {
       "id": "real-prototype-key",
-      "name": "hidden: prototype-like key is ordinary data",
-      "kind": "real",
-      "visible": false,
+      "name": "prototype-like key is ordinary data",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "str": "{\"__proto__\":{\"safe\":true},\"constructor\":5}"
       },
@@ -166,9 +166,9 @@
     },
     {
       "id": "real-duplicate-key",
-      "name": "hidden: later duplicate key wins",
-      "kind": "real",
-      "visible": false,
+      "name": "later duplicate key wins",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "str": "{\"x\":1,\"x\":2}"
       },

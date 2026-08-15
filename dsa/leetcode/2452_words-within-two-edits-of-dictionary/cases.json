@@ -6,72 +6,191 @@
       "name": "sample: zero one and two edits qualify",
       "kind": "sample",
       "visible": true,
-      "input": {"queries": ["word", "note", "ants", "wood"], "dictionary": ["wood", "joke", "moat"]},
-      "expected": ["word", "note", "wood"],
-      "tags": ["sample", "edit-boundary"]
+      "input": {
+        "queries": [
+          "word",
+          "note",
+          "ants",
+          "wood"
+        ],
+        "dictionary": [
+          "wood",
+          "joke",
+          "moat"
+        ]
+      },
+      "expected": [
+        "word",
+        "note",
+        "wood"
+      ],
+      "tags": [
+        "sample",
+        "edit-boundary"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: three mismatches reject",
       "kind": "sample",
       "visible": true,
-      "input": {"queries": ["yes"], "dictionary": ["not"]},
+      "input": {
+        "queries": [
+          "yes"
+        ],
+        "dictionary": [
+          "not"
+        ]
+      },
       "expected": [],
-      "tags": ["sample", "rejected"]
+      "tags": [
+        "sample",
+        "rejected"
+      ]
     },
     {
       "id": "trial-exact-matches",
       "name": "trial: exact dictionary matches",
       "kind": "trial",
       "visible": true,
-      "input": {"queries": ["ac", "ab"], "dictionary": ["ac", "ab"]},
-      "expected": ["ac", "ab"],
-      "tags": ["trial", "zero-edits"]
+      "input": {
+        "queries": [
+          "ac",
+          "ab"
+        ],
+        "dictionary": [
+          "ac",
+          "ab"
+        ]
+      },
+      "expected": [
+        "ac",
+        "ab"
+      ],
+      "tags": [
+        "trial",
+        "zero-edits"
+      ]
     },
     {
       "id": "trial-shared-prefix",
       "name": "trial: two nearby queries and one distant query",
       "kind": "trial",
       "visible": true,
-      "input": {"queries": ["abcd", "abce", "zzzz"], "dictionary": ["abcf"]},
-      "expected": ["abcd", "abce"],
-      "tags": ["trial", "shared-prefix"]
+      "input": {
+        "queries": [
+          "abcd",
+          "abce",
+          "zzzz"
+        ],
+        "dictionary": [
+          "abcf"
+        ]
+      },
+      "expected": [
+        "abcd",
+        "abce"
+      ],
+      "tags": [
+        "trial",
+        "shared-prefix"
+      ]
     },
     {
       "id": "real-single-character",
-      "name": "hidden: every one-character query qualifies",
-      "kind": "real",
-      "visible": false,
-      "input": {"queries": ["a", "z", "m"], "dictionary": ["q"]},
-      "expected": ["a", "z", "m"],
-      "tags": ["hidden", "minimum-length"]
+      "name": "every one-character query qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          "a",
+          "z",
+          "m"
+        ],
+        "dictionary": [
+          "q"
+        ]
+      },
+      "expected": [
+        "a",
+        "z",
+        "m"
+      ],
+      "tags": [
+        "hidden",
+        "minimum-length"
+      ]
     },
     {
       "id": "real-late-witness",
-      "name": "hidden: qualifying witness is last",
-      "kind": "real",
-      "visible": false,
-      "input": {"queries": ["aaaa", "bbbb", "cccc"], "dictionary": ["zzzz", "yyyy", "aaaz"]},
-      "expected": ["aaaa"],
-      "tags": ["hidden", "late-witness"]
+      "name": "qualifying witness is last",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          "aaaa",
+          "bbbb",
+          "cccc"
+        ],
+        "dictionary": [
+          "zzzz",
+          "yyyy",
+          "aaaz"
+        ]
+      },
+      "expected": [
+        "aaaa"
+      ],
+      "tags": [
+        "hidden",
+        "late-witness"
+      ]
     },
     {
       "id": "real-duplicate-query",
-      "name": "hidden: qualifying duplicate occurrences are preserved",
-      "kind": "real",
-      "visible": false,
-      "input": {"queries": ["code", "xxxx", "code"], "dictionary": ["cope"]},
-      "expected": ["code", "code"],
-      "tags": ["hidden", "duplicates", "order"]
+      "name": "qualifying duplicate occurrences are preserved",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          "code",
+          "xxxx",
+          "code"
+        ],
+        "dictionary": [
+          "cope"
+        ]
+      },
+      "expected": [
+        "code",
+        "code"
+      ],
+      "tags": [
+        "hidden",
+        "duplicates",
+        "order"
+      ]
     },
     {
       "id": "real-exactly-two",
-      "name": "hidden: exactly two trailing edits",
-      "kind": "real",
-      "visible": false,
-      "input": {"queries": ["abcdefghij"], "dictionary": ["abcdefghxy"]},
-      "expected": ["abcdefghij"],
-      "tags": ["hidden", "exactly-two"]
+      "name": "exactly two trailing edits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          "abcdefghij"
+        ],
+        "dictionary": [
+          "abcdefghxy"
+        ]
+      },
+      "expected": [
+        "abcdefghij"
+      ],
+      "tags": [
+        "hidden",
+        "exactly-two"
+      ]
     }
   ]
 }

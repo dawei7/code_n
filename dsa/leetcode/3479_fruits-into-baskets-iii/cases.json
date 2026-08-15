@@ -96,9 +96,9 @@
     },
     {
       "id": "real-all-unplaced",
-      "name": "hidden: root maximum rejects every fruit",
-      "kind": "real",
-      "visible": false,
+      "name": "root maximum rejects every fruit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           9,
@@ -121,9 +121,9 @@
     },
     {
       "id": "real-no-reuse",
-      "name": "hidden: a consumed leaf cannot be selected again",
-      "kind": "real",
-      "visible": false,
+      "name": "a consumed leaf cannot be selected again",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           2,
@@ -142,9 +142,9 @@
     },
     {
       "id": "real-skip-left-subtree",
-      "name": "hidden: search skips an insufficient left range",
-      "kind": "real",
-      "visible": false,
+      "name": "search skips an insufficient left range",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           8,
@@ -167,9 +167,9 @@
     },
     {
       "id": "real-fruit-order",
-      "name": "hidden: updates preserve fruit processing order",
-      "kind": "real",
-      "visible": false,
+      "name": "updates preserve fruit processing order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           2,
@@ -190,9 +190,9 @@
     },
     {
       "id": "real-duplicate-capacities",
-      "name": "hidden: duplicate capacities remain distinct leaves",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate capacities remain distinct leaves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           3,
@@ -215,9 +215,9 @@
     },
     {
       "id": "real-single-fit",
-      "name": "hidden: one-leaf tree with an exact fit",
-      "kind": "real",
-      "visible": false,
+      "name": "one-leaf tree with an exact fit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           1
@@ -234,9 +234,9 @@
     },
     {
       "id": "real-single-unfit",
-      "name": "hidden: one-leaf tree with no fit",
-      "kind": "real",
-      "visible": false,
+      "name": "one-leaf tree with no fit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           2
@@ -253,9 +253,9 @@
     },
     {
       "id": "real-maximum-values",
-      "name": "hidden: legal maximum quantities and capacities",
-      "kind": "real",
-      "visible": false,
+      "name": "legal maximum quantities and capacities",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "fruits": [
           1000000000,

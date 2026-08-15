@@ -131,9 +131,9 @@
     },
     {
       "id": "real-prototype-names",
-      "name": "hidden: inherited names become own properties",
-      "kind": "real",
-      "visible": false,
+      "name": "inherited names become own properties",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "keysArr": [
           "toString",
@@ -158,9 +158,9 @@
     },
     {
       "id": "real-proto-property",
-      "name": "hidden: __proto__ is an own data property",
-      "kind": "real",
-      "visible": false,
+      "name": "__proto__ is an own data property",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "keysArr": [
           "__proto__",
@@ -189,9 +189,9 @@
     },
     {
       "id": "real-object-conversion",
-      "name": "hidden: object keys collide after String conversion",
-      "kind": "real",
-      "visible": false,
+      "name": "object keys collide after String conversion",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "keysArr": [
           {
@@ -219,9 +219,9 @@
     },
     {
       "id": "real-array-conversion",
-      "name": "hidden: arrays can share a converted property name",
-      "kind": "real",
-      "visible": false,
+      "name": "arrays can share a converted property name",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "keysArr": [
           [
@@ -251,9 +251,9 @@
     },
     {
       "id": "real-values-preserved",
-      "name": "hidden: JSON values are stored without transformation",
-      "kind": "real",
-      "visible": false,
+      "name": "JSON values are stored without transformation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "keysArr": [
           "array",

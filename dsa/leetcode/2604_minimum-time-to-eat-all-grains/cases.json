@@ -96,9 +96,9 @@
     },
     {
       "id": "real-duplicate-grains",
-      "name": "hidden: coincident grains are all eaten together",
-      "kind": "real",
-      "visible": false,
+      "name": "coincident grains are all eaten together",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hens": [
           2,
@@ -118,9 +118,9 @@
     },
     {
       "id": "real-greedy-assignment",
-      "name": "hidden: an early hen should leave later grains",
-      "kind": "real",
-      "visible": false,
+      "name": "an early hen should leave later grains",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hens": [
           100,
@@ -141,9 +141,9 @@
     },
     {
       "id": "real-coordinate-bound",
-      "name": "hidden: maximum coordinate distance",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum coordinate distance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hens": [
           0

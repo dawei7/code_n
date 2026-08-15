@@ -447,9 +447,9 @@
     },
     {
       "id": "real-budget-order",
-      "name": "hidden: level peers sort by subtree budget",
-      "kind": "real",
-      "visible": false,
+      "name": "level peers sort by subtree budget",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -533,9 +533,9 @@
     },
     {
       "id": "real-name-tiebreak",
-      "name": "hidden: names break equal level and budget",
-      "kind": "real",
-      "visible": false,
+      "name": "names break equal level and budget",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -605,9 +605,9 @@
     },
     {
       "id": "real-shuffled-nonconsecutive",
-      "name": "hidden: row and identifier order are irrelevant",
-      "kind": "real",
-      "visible": false,
+      "name": "row and identifier order are irrelevant",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -691,9 +691,9 @@
     },
     {
       "id": "real-balanced-branches",
-      "name": "hidden: two multi-level branches",
-      "kind": "real",
-      "visible": false,
+      "name": "two multi-level branches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -819,9 +819,9 @@
     },
     {
       "id": "real-leaf-own-budget",
-      "name": "hidden: leaf budget equals own salary",
-      "kind": "real",
-      "visible": false,
+      "name": "leaf budget equals own salary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -891,9 +891,9 @@
     },
     {
       "id": "real-department-does-not-partition",
-      "name": "hidden: reports cross department boundaries",
-      "kind": "real",
-      "visible": false,
+      "name": "reports cross department boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [
@@ -977,9 +977,9 @@
     },
     {
       "id": "real-budget-includes-self",
-      "name": "hidden: own salary remains in every controlled budget",
-      "kind": "real",
-      "visible": false,
+      "name": "own salary remains in every controlled budget",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [

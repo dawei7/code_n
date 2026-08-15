@@ -94,9 +94,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: boundary between repeated five-letter blocks",
-      "kind": "real",
-      "visible": false,
+      "name": "boundary between repeated five-letter blocks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ab2c3",
         "k": 10
@@ -109,9 +109,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: first position of the second copy",
-      "kind": "real",
-      "visible": false,
+      "name": "first position of the second copy",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abc2",
         "k": 4
@@ -124,9 +124,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: final position of the second copy",
-      "kind": "real",
-      "visible": false,
+      "name": "final position of the second copy",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abc2",
         "k": 6
@@ -139,9 +139,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: nested repetitions with appended letters",
-      "kind": "real",
-      "visible": false,
+      "name": "nested repetitions with appended letters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "a2b3c4d5",
         "k": 100
@@ -154,9 +154,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: repeated multi-letter prefix and suffix",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated multi-letter prefix and suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "xy3z2",
         "k": 8

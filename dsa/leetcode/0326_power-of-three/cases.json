@@ -47,7 +47,7 @@
       "id": "trial-exponent-zero",
       "name": "trial: three to exponent zero",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "n": 1
       },
@@ -61,7 +61,7 @@
       "id": "trial-extra-factor",
       "name": "trial: divisible by three with another factor",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "n": 45
       },
@@ -73,9 +73,9 @@
     },
     {
       "id": "hidden-largest-power",
-      "name": "hidden: largest signed-32-bit power",
-      "kind": "real",
-      "visible": false,
+      "name": "largest signed-32-bit power",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1162261467
       },
@@ -87,9 +87,9 @@
     },
     {
       "id": "hidden-below-largest",
-      "name": "hidden: value below largest power",
-      "kind": "real",
-      "visible": false,
+      "name": "value below largest power",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1162261466
       },
@@ -101,9 +101,9 @@
     },
     {
       "id": "hidden-smaller-power",
-      "name": "hidden: middle exponent",
-      "kind": "real",
-      "visible": false,
+      "name": "middle exponent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 59049
       },

@@ -114,9 +114,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: alternating directions",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating directions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -134,9 +134,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: increasing after equal prefix",
-      "kind": "real",
-      "visible": false,
+      "name": "increasing after equal prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -3,
@@ -156,9 +156,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: late decrease after rising prefix",
-      "kind": "real",
-      "visible": false,
+      "name": "late decrease after rising prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -177,9 +177,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: full value range",
-      "kind": "real",
-      "visible": false,
+      "name": "full value range",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -100000,

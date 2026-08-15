@@ -358,9 +358,9 @@
     },
     {
       "id": "real-repeated-index-updates",
-      "name": "hidden: repeatedly reclassify the same index",
-      "kind": "real",
-      "visible": false,
+      "name": "repeatedly reclassify the same index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -415,9 +415,9 @@
     },
     {
       "id": "real-max-value",
-      "name": "hidden: classify and replace the maximum legal value",
-      "kind": "real",
-      "visible": false,
+      "name": "classify and replace the maximum legal value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000000000,
@@ -462,9 +462,9 @@
     },
     {
       "id": "real-overlapping-ranges",
-      "name": "hidden: overlapping ranges count different classes",
-      "kind": "real",
-      "visible": false,
+      "name": "overlapping ranges count different classes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -515,9 +515,9 @@
     },
     {
       "id": "real-updates-at-boundaries",
-      "name": "hidden: update both ends of the array",
-      "kind": "real",
-      "visible": false,
+      "name": "update both ends of the array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -569,9 +569,9 @@
     },
     {
       "id": "real-query-does-not-mutate",
-      "name": "hidden: repeated queries observe unchanged state",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated queries observe unchanged state",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -619,9 +619,9 @@
     },
     {
       "id": "real-depth-five-after-updates",
-      "name": "hidden: unattainable depth remains empty after changes",
-      "kind": "real",
-      "visible": false,
+      "name": "unattainable depth remains empty after changes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

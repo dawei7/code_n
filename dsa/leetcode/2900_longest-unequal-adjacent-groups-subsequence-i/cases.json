@@ -116,9 +116,9 @@
     },
     {
       "id": "real-many-runs",
-      "name": "hidden: several runs contain skipped representatives",
-      "kind": "real",
-      "visible": false,
+      "name": "several runs contain skipped representatives",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "wa",
@@ -155,9 +155,9 @@
     },
     {
       "id": "real-maximum-length-alternating",
-      "name": "hidden: every word is selected at maximum legal length",
-      "kind": "real",
-      "visible": false,
+      "name": "every word is selected at maximum legal length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "aa",

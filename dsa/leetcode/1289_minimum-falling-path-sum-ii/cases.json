@@ -128,9 +128,9 @@
     },
     {
       "id": "hidden-mixed",
-      "name": "hidden: mixed positive and negative values",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed positive and negative values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -158,9 +158,9 @@
     },
     {
       "id": "hidden-four",
-      "name": "hidden: four rows with changing best column",
-      "kind": "real",
-      "visible": false,
+      "name": "four rows with changing best column",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

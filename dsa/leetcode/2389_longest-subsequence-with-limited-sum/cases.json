@@ -102,9 +102,9 @@
     },
     {
       "id": "real-mixed-budgets",
-      "name": "hidden: budgets cover zero through every value",
-      "kind": "real",
-      "visible": false,
+      "name": "budgets cover zero through every value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -129,9 +129,9 @@
     },
     {
       "id": "real-duplicates",
-      "name": "hidden: repeated values and repeated queries",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated values and repeated queries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -157,9 +157,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: prefix sums exceed individual value bounds",
-      "kind": "real",
-      "visible": false,
+      "name": "prefix sums exceed individual value bounds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,

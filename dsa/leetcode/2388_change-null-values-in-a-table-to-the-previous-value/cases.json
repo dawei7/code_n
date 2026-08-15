@@ -179,9 +179,9 @@
     },
     {
       "id": "real-alternating",
-      "name": "hidden: each named drink fills the following row",
-      "kind": "real",
-      "visible": false,
+      "name": "each named drink fills the following row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "CoffeeShop": [
@@ -243,9 +243,9 @@
     },
     {
       "id": "real-repeated-name",
-      "name": "hidden: repeated drink names remain separate updates",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated drink names remain separate updates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "CoffeeShop": [
@@ -299,9 +299,9 @@
     },
     {
       "id": "real-nonnumeric-order",
-      "name": "hidden: identifier order does not define previous row",
-      "kind": "real",
-      "visible": false,
+      "name": "identifier order does not define previous row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "CoffeeShop": [

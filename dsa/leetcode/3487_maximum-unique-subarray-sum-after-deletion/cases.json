@@ -6,108 +6,244 @@
       "name": "sample: keep all positive distinct values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1,2,3,4,5]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
       "expected": 15,
-      "tags": ["sample", "positive"]
+      "tags": [
+        "sample",
+        "positive"
+      ]
     },
     {
       "id": "sample-duplicates-and-zero",
       "name": "sample: delete duplicate positives and zero",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1,1,0,1,1]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          0,
+          1,
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "duplicates", "zero"]
+      "tags": [
+        "sample",
+        "duplicates",
+        "zero"
+      ]
     },
     {
       "id": "sample-mixed-signs",
       "name": "sample: delete negative and redundant values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1,2,-1,-2,1,0,-1]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          -1,
+          -2,
+          1,
+          0,
+          -1
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "mixed-signs"]
+      "tags": [
+        "sample",
+        "mixed-signs"
+      ]
     },
     {
       "id": "trial-all-negative",
       "name": "trial: non-empty result keeps the greatest negative",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-5,-1,-3]},
+      "input": {
+        "nums": [
+          -5,
+          -1,
+          -3
+        ]
+      },
       "expected": -1,
-      "tags": ["trial", "all-negative"]
+      "tags": [
+        "trial",
+        "all-negative"
+      ]
     },
     {
       "id": "trial-zero-with-negatives",
       "name": "trial: zero beats every negative value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-9,0,-4,0]},
+      "input": {
+        "nums": [
+          -9,
+          0,
+          -4,
+          0
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "zero", "non-positive"]
+      "tags": [
+        "trial",
+        "zero",
+        "non-positive"
+      ]
     },
     {
       "id": "real-single-positive",
       "name": "real: one positive element",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100
+        ]
+      },
       "expected": 100,
-      "tags": ["real", "single", "upper-bound"]
+      "tags": [
+        "real",
+        "single",
+        "upper-bound"
+      ]
     },
     {
       "id": "real-single-negative",
       "name": "real: one negative element",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-100]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -100
+        ]
+      },
       "expected": -100,
-      "tags": ["real", "single", "lower-bound"]
+      "tags": [
+        "real",
+        "single",
+        "lower-bound"
+      ]
     },
     {
       "id": "real-repeated-distinct-positives",
       "name": "real: each positive value contributes once",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5,2,5,2,7,7,3,5]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          2,
+          5,
+          2,
+          7,
+          7,
+          3,
+          5
+        ]
+      },
       "expected": 17,
-      "tags": ["real", "duplicates", "set"]
+      "tags": [
+        "real",
+        "duplicates",
+        "set"
+      ]
     },
     {
       "id": "real-delete-between-kept-values",
       "name": "real: deletions make separated positives adjacent",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5,-100,4,-99,5,3]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          -100,
+          4,
+          -99,
+          5,
+          3
+        ]
+      },
       "expected": 12,
-      "tags": ["real", "deletion", "order"]
+      "tags": [
+        "real",
+        "deletion",
+        "order"
+      ]
     },
     {
       "id": "real-opposite-signs-are-distinct",
       "name": "real: opposite signs are different values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-8,8,-3,3,8]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -8,
+          8,
+          -3,
+          3,
+          8
+        ]
+      },
       "expected": 11,
-      "tags": ["real", "signs", "duplicates"]
+      "tags": [
+        "real",
+        "signs",
+        "duplicates"
+      ]
     },
     {
       "id": "real-boundary-duplicates",
       "name": "real: boundary values and duplicates",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-100,100,100,-100,0]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -100,
+          100,
+          100,
+          -100,
+          0
+        ]
+      },
       "expected": 100,
-      "tags": ["real", "boundaries"]
+      "tags": [
+        "real",
+        "boundaries"
+      ]
     },
     {
       "id": "real-order-does-not-restrict-selection",
       "name": "real: arbitrary deletions remove intervening elements",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9,-1,8,-2,7,-3,9]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          -1,
+          8,
+          -2,
+          7,
+          -3,
+          9
+        ]
+      },
       "expected": 24,
-      "tags": ["real", "arbitrary-deletions"]
+      "tags": [
+        "real",
+        "arbitrary-deletions"
+      ]
     }
   ]
 }

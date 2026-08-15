@@ -111,9 +111,9 @@
     },
     {
       "id": "hidden-higher-barrier",
-      "name": "hidden: higher intermediate blocks destination",
-      "kind": "real",
-      "visible": false,
+      "name": "higher intermediate blocks destination",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           5,
@@ -130,9 +130,9 @@
     },
     {
       "id": "hidden-both-directions",
-      "name": "hidden: best path changes direction",
-      "kind": "real",
-      "visible": false,
+      "name": "best path changes direction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           5,

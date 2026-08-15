@@ -79,9 +79,9 @@
     },
     {
       "id": "hidden-repeated-true",
-      "name": "hidden: repeated characters use separate positions",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated characters use separate positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaa",
         "t": "baacada"
@@ -94,9 +94,9 @@
     },
     {
       "id": "hidden-repeated-false",
-      "name": "hidden: insufficient repeated positions",
-      "kind": "real",
-      "visible": false,
+      "name": "insufficient repeated positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaa",
         "t": "baacada"
@@ -109,9 +109,9 @@
     },
     {
       "id": "hidden-order",
-      "name": "hidden: all characters exist in wrong order",
-      "kind": "real",
-      "visible": false,
+      "name": "all characters exist in wrong order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ace",
         "t": "aec"

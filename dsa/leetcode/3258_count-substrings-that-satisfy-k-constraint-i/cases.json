@@ -1,17 +1,185 @@
 {
   "challenge_id": "lc_3258",
   "cases": [
-    {"id":"sample-alternating-k-one","name":"sample: three alternating substrings are invalid","kind":"sample","visible":true,"input":{"s":"10101","k":1},"expected":12,"tags":["sample","alternating"]},
-    {"id":"sample-alternating-k-two","name":"sample: only length-six and length-seven intervals fail","kind":"sample","visible":true,"input":{"s":"1010101","k":2},"expected":25,"tags":["sample","alternating"]},
-    {"id":"sample-all-ones","name":"sample: every homogeneous substring is valid","kind":"sample","visible":true,"input":{"s":"11111","k":1},"expected":15,"tags":["sample","homogeneous"]},
-    {"id":"trial-single-zero","name":"trial: minimum-length string","kind":"trial","visible":true,"input":{"s":"0","k":1},"expected":1,"tags":["minimum","single"]},
-    {"id":"trial-two-blocks","name":"trial: two zeroes followed by two ones","kind":"trial","visible":true,"input":{"s":"0011","k":1},"expected":9,"tags":["blocks","boundary"]},
-    {"id":"trial-long-blocks","name":"trial: both runs exceed k","kind":"trial","visible":true,"input":{"s":"000111","k":1},"expected":17,"tags":["blocks","invalid"]},
-    {"id":"trial-long-alternation","name":"trial: many windows exceed both counts","kind":"trial","visible":true,"input":{"s":"0101010101","k":1},"expected":27,"tags":["alternating","longer"]},
-    {"id":"real-all-zeroes","name":"real: zero-heavy substrings remain valid through the one bound","kind":"real","visible":false,"input":{"s":"00000","k":2},"expected":15,"tags":["homogeneous","or-condition"]},
-    {"id":"real-k-two-mixed","name":"real: a zero block between ones","kind":"real","visible":false,"input":{"s":"1100011","k":2},"expected":25,"tags":["mixed","k-two"]},
-    {"id":"real-k-half-length","name":"real: k makes every interval valid","kind":"real","visible":false,"input":{"s":"011010","k":3},"expected":21,"tags":["all-valid","large-k"]},
-    {"id":"real-zero-heavy-alternation","name":"real: alternating center with zero borders","kind":"real","visible":false,"input":{"s":"0010100","k":1},"expected":20,"tags":["mixed","zero-heavy"]},
-    {"id":"real-dense-mixed","name":"real: dense mixed binary profile","kind":"real","visible":false,"input":{"s":"101100101","k":2},"expected":35,"tags":["mixed","k-two"]}
+    {
+      "id": "sample-alternating-k-one",
+      "name": "sample: three alternating substrings are invalid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "10101",
+        "k": 1
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "alternating"
+      ]
+    },
+    {
+      "id": "sample-alternating-k-two",
+      "name": "sample: only length-six and length-seven intervals fail",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1010101",
+        "k": 2
+      },
+      "expected": 25,
+      "tags": [
+        "sample",
+        "alternating"
+      ]
+    },
+    {
+      "id": "sample-all-ones",
+      "name": "sample: every homogeneous substring is valid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "11111",
+        "k": 1
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "homogeneous"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: minimum-length string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "minimum",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-two-blocks",
+      "name": "trial: two zeroes followed by two ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0011",
+        "k": 1
+      },
+      "expected": 9,
+      "tags": [
+        "blocks",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-long-blocks",
+      "name": "trial: both runs exceed k",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000111",
+        "k": 1
+      },
+      "expected": 17,
+      "tags": [
+        "blocks",
+        "invalid"
+      ]
+    },
+    {
+      "id": "trial-long-alternation",
+      "name": "trial: many windows exceed both counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0101010101",
+        "k": 1
+      },
+      "expected": 27,
+      "tags": [
+        "alternating",
+        "longer"
+      ]
+    },
+    {
+      "id": "real-all-zeroes",
+      "name": "real: zero-heavy substrings remain valid through the one bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "00000",
+        "k": 2
+      },
+      "expected": 15,
+      "tags": [
+        "homogeneous",
+        "or-condition"
+      ]
+    },
+    {
+      "id": "real-k-two-mixed",
+      "name": "real: a zero block between ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1100011",
+        "k": 2
+      },
+      "expected": 25,
+      "tags": [
+        "mixed",
+        "k-two"
+      ]
+    },
+    {
+      "id": "real-k-half-length",
+      "name": "real: k makes every interval valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "011010",
+        "k": 3
+      },
+      "expected": 21,
+      "tags": [
+        "all-valid",
+        "large-k"
+      ]
+    },
+    {
+      "id": "real-zero-heavy-alternation",
+      "name": "real: alternating center with zero borders",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0010100",
+        "k": 1
+      },
+      "expected": 20,
+      "tags": [
+        "mixed",
+        "zero-heavy"
+      ]
+    },
+    {
+      "id": "real-dense-mixed",
+      "name": "real: dense mixed binary profile",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "101100101",
+        "k": 2
+      },
+      "expected": 35,
+      "tags": [
+        "mixed",
+        "k-two"
+      ]
+    }
   ]
 }

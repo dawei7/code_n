@@ -85,9 +85,9 @@
     },
     {
       "id": "real-late-coprime",
-      "name": "hidden: gcd becomes one at the end",
-      "kind": "real",
-      "visible": false,
+      "name": "gcd becomes one at the end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           42,
@@ -103,9 +103,9 @@
     },
     {
       "id": "real-many-common",
-      "name": "hidden: repeated common divisor",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated common divisor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           84,

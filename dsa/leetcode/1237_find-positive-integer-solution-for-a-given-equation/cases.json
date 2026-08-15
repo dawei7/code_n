@@ -109,9 +109,9 @@
     },
     {
       "id": "real-cubic",
-      "name": "hidden: sum of cubes",
-      "kind": "real",
-      "visible": false,
+      "name": "sum of cubes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "customfunction": 7,
         "z": 9
@@ -136,9 +136,9 @@
     },
     {
       "id": "real-asymmetric-eight",
-      "name": "hidden: asymmetric x squared times y",
-      "kind": "real",
-      "visible": false,
+      "name": "asymmetric x squared times y",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "customfunction": 8,
         "z": 36
@@ -171,9 +171,9 @@
     },
     {
       "id": "real-asymmetric-nine",
-      "name": "hidden: asymmetric x times y squared",
-      "kind": "real",
-      "visible": false,
+      "name": "asymmetric x times y squared",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "customfunction": 9,
         "z": 36

@@ -251,8 +251,8 @@
     {
       "id": "real-ancestor-descendant",
       "name": "real: one endpoint is the other's ancestor",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -305,8 +305,8 @@
     {
       "id": "real-unordered-edges",
       "name": "real: unordered and reversed edges preserve paths",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -355,8 +355,8 @@
     {
       "id": "real-unbalanced-tree",
       "name": "real: queries cross shallow and deep branches",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -418,8 +418,8 @@
     {
       "id": "real-duplicate-queries",
       "name": "real: duplicate queries are answered independently",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -469,8 +469,8 @@
     {
       "id": "real-modular-distance",
       "name": "real: long path answer wraps modulo",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [

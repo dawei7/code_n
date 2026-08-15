@@ -67,9 +67,9 @@
     },
     {
       "id": "real-zero-single",
-      "name": "hidden: zero appears once",
-      "kind": "real",
-      "visible": false,
+      "name": "zero appears once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,

@@ -214,9 +214,9 @@
     },
     {
       "id": "hidden-endpoint-ones",
-      "name": "hidden: two endpoint ones with zero interior are coherent",
-      "kind": "real",
-      "visible": false,
+      "name": "two endpoint ones with zero interior are coherent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "1000001"
       },
@@ -229,9 +229,9 @@
     },
     {
       "id": "hidden-alternating",
-      "name": "hidden: alternating bits favor retaining one existing one",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating bits favor retaining one existing one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "010101"
       },
@@ -244,9 +244,9 @@
     },
     {
       "id": "hidden-ones-heavy",
-      "name": "hidden: flipping two endpoint zeros produces all ones",
-      "kind": "real",
-      "visible": false,
+      "name": "flipping two endpoint zeros produces all ones",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "011110"
       },
@@ -259,9 +259,9 @@
     },
     {
       "id": "hidden-grouped-middle-ones",
-      "name": "hidden: grouped middle ones favor retaining one one",
-      "kind": "real",
-      "visible": false,
+      "name": "grouped middle ones favor retaining one one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "000111000"
       },

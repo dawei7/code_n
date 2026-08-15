@@ -116,9 +116,9 @@
     },
     {
       "id": "real-mixed-repeats",
-      "name": "hidden: mixed repeated indices",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed repeated indices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "m": 4,
         "n": 5,
@@ -152,9 +152,9 @@
     },
     {
       "id": "real-one-row",
-      "name": "hidden: one row and several columns",
-      "kind": "real",
-      "visible": false,
+      "name": "one row and several columns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "m": 1,
         "n": 5,

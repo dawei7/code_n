@@ -95,9 +95,9 @@
     },
     {
       "id": "real-density-over-price",
-      "name": "hidden: density outranks total price",
-      "kind": "real",
-      "visible": false,
+      "name": "density outranks total price",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -119,9 +119,9 @@
     },
     {
       "id": "real-single-exact",
-      "name": "hidden: one item exactly fills the bag",
-      "kind": "real",
-      "visible": false,
+      "name": "one item exactly fills the bag",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -139,9 +139,9 @@
     },
     {
       "id": "real-equal-density",
-      "name": "hidden: tied densities allow either order",
-      "kind": "real",
-      "visible": false,
+      "name": "tied densities allow either order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -163,9 +163,9 @@
     },
     {
       "id": "real-small-shortfall",
-      "name": "hidden: shortfall by one unit is impossible",
-      "kind": "real",
-      "visible": false,
+      "name": "shortfall by one unit is impossible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [

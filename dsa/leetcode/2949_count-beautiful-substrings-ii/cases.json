@@ -88,9 +88,9 @@
     },
     {
       "id": "real-cubed-prime-factor",
-      "name": "hidden: a cubed prime factor requires four vowels",
-      "kind": "real",
-      "visible": false,
+      "name": "a cubed prime factor requires four vowels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abababab",
         "k": 8
@@ -103,9 +103,9 @@
     },
     {
       "id": "real-two-prime-factors",
-      "name": "hidden: the complete string first reaches the required period",
-      "kind": "real",
-      "visible": false,
+      "name": "the complete string first reaches the required period",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abababababab",
         "k": 18
@@ -118,9 +118,9 @@
     },
     {
       "id": "real-all-vowels",
-      "name": "hidden: all vowels never balance",
-      "kind": "real",
-      "visible": false,
+      "name": "all vowels never balance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aeiouaeiou",
         "k": 1000
@@ -133,9 +133,9 @@
     },
     {
       "id": "real-mixed-periods",
-      "name": "hidden: several balanced lengths meet the derived period",
-      "kind": "real",
-      "visible": false,
+      "name": "several balanced lengths meet the derived period",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "leetcodeisgreat",
         "k": 3
@@ -148,4 +148,3 @@
     }
   ]
 }
-

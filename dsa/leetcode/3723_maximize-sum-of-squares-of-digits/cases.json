@@ -134,9 +134,9 @@
     },
     {
       "id": "real-one-remainder",
-      "name": "hidden: one remainder follows all nines",
-      "kind": "real",
-      "visible": false,
+      "name": "one remainder follows all nines",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 4,
         "sum": 19
@@ -152,9 +152,9 @@
     },
     {
       "id": "real-zero-padding",
-      "name": "hidden: several zero digits preserve the requested length",
-      "kind": "real",
-      "visible": false,
+      "name": "several zero digits preserve the requested length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 8,
         "sum": 10
@@ -171,9 +171,9 @@
     },
     {
       "id": "real-just-above-capacity",
-      "name": "hidden: one above capacity is impossible",
-      "kind": "real",
-      "visible": false,
+      "name": "one above capacity is impossible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 3,
         "sum": 28
@@ -190,9 +190,9 @@
     },
     {
       "id": "real-large-feasible",
-      "name": "hidden: a larger feasible result follows the same digit concentration",
-      "kind": "real",
-      "visible": false,
+      "name": "a larger feasible result follows the same digit concentration",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 100,
         "sum": 451
@@ -208,9 +208,9 @@
     },
     {
       "id": "real-maximum-inputs-infeasible",
-      "name": "hidden: maximum source inputs fail feasibility immediately",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum source inputs fail feasibility immediately",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 200000,
         "sum": 2000000
@@ -227,4 +227,3 @@
     }
   ]
 }
-

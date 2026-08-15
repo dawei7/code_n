@@ -124,9 +124,9 @@
     },
     {
       "id": "real-remove-prefix",
-      "name": "hidden: remove only the first value",
-      "kind": "real",
-      "visible": false,
+      "name": "remove only the first value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           4,
@@ -143,9 +143,9 @@
     },
     {
       "id": "real-equal-boundary-join",
-      "name": "hidden: equality permits a shorter join",
-      "kind": "real",
-      "visible": false,
+      "name": "equality permits a shorter join",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -167,9 +167,9 @@
     },
     {
       "id": "real-short-middle",
-      "name": "hidden: remove two disruptive middle values",
-      "kind": "real",
-      "visible": false,
+      "name": "remove two disruptive middle values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -192,9 +192,9 @@
     },
     {
       "id": "real-long-middle-dip",
-      "name": "hidden: remove a low run between ordered sides",
-      "kind": "real",
-      "visible": false,
+      "name": "remove a low run between ordered sides",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -217,9 +217,9 @@
     },
     {
       "id": "real-preserve-both-sides",
-      "name": "hidden: retain a prefix and suffix around two large values",
-      "kind": "real",
-      "visible": false,
+      "name": "retain a prefix and suffix around two large values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -240,9 +240,9 @@
     },
     {
       "id": "real-descending-blocks",
-      "name": "hidden: descending duplicate blocks",
-      "kind": "real",
-      "visible": false,
+      "name": "descending duplicate blocks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           3,
@@ -262,9 +262,9 @@
     },
     {
       "id": "real-upper-bound-values",
-      "name": "hidden: maximum values remain sorted with equality",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum values remain sorted with equality",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,

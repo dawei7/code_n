@@ -87,9 +87,9 @@
     },
     {
       "id": "real-single-value",
-      "name": "hidden: one value cannot form a pair",
-      "kind": "real",
-      "visible": false,
+      "name": "one value cannot form a pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5
@@ -105,9 +105,9 @@
     },
     {
       "id": "real-all-duplicates",
-      "name": "hidden: all duplicate-index combinations count",
-      "kind": "real",
-      "visible": false,
+      "name": "all duplicate-index combinations count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -126,9 +126,9 @@
     },
     {
       "id": "real-negative-and-positive",
-      "name": "hidden: negative and positive endpoints mix",
-      "kind": "real",
-      "visible": false,
+      "name": "negative and positive endpoints mix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -3,
@@ -148,9 +148,9 @@
     },
     {
       "id": "real-extreme-values",
-      "name": "hidden: extreme values land on inclusive bounds",
-      "kind": "real",
-      "visible": false,
+      "name": "extreme values land on inclusive bounds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -1000000000,
@@ -169,9 +169,9 @@
     },
     {
       "id": "real-zero-sum",
-      "name": "hidden: only one mixed-sign pair sums to zero",
-      "kind": "real",
-      "visible": false,
+      "name": "only one mixed-sign pair sums to zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -2,

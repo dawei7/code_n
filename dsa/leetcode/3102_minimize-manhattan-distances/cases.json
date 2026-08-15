@@ -153,8 +153,8 @@
     {
       "id": "real-extreme-coordinates",
       "name": "real: maximum coordinates exercise the integer range",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -180,8 +180,8 @@
     {
       "id": "real-discussion-configuration",
       "name": "real: mixed points with competing transformed extremes",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -219,8 +219,8 @@
     {
       "id": "real-vertical-line",
       "name": "real: one-dimensional spread on a vertical line",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -250,8 +250,8 @@
     {
       "id": "real-difference-axis",
       "name": "real: the x-minus-y projection controls the diameter",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -281,8 +281,8 @@
     {
       "id": "real-mixed-interior",
       "name": "real: an interior point is not a useful removal",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [

@@ -162,9 +162,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: branching hierarchy",
-      "kind": "real",
-      "visible": false,
+      "name": "branching hierarchy",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "employees": [
           {
@@ -203,9 +203,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: negative subtree total",
-      "kind": "real",
-      "visible": false,
+      "name": "negative subtree total",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "employees": [
           {
@@ -237,9 +237,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: nonconsecutive ids",
-      "kind": "real",
-      "visible": false,
+      "name": "nonconsecutive ids",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "employees": [
           {
@@ -272,4 +272,3 @@
     }
   ]
 }
-

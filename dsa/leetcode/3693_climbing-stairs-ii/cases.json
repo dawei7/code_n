@@ -7,108 +7,259 @@
       "name": "sample: mixed jump lengths minimize increasing costs",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 4, "costs": [1, 2, 3, 4]},
+      "input": {
+        "n": 4,
+        "costs": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
       "expected": 13,
-      "tags": ["sample", "mixed-jumps"]
+      "tags": [
+        "sample",
+        "mixed-jumps"
+      ]
     },
     {
       "id": "sample-two-length-two-jumps",
       "name": "sample: two length-two jumps avoid expensive landings",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 4, "costs": [5, 1, 6, 2]},
+      "input": {
+        "n": 4,
+        "costs": [
+          5,
+          1,
+          6,
+          2
+        ]
+      },
       "expected": 11,
-      "tags": ["sample", "length-two"]
+      "tags": [
+        "sample",
+        "length-two"
+      ]
     },
     {
       "id": "sample-direct-length-three-jump",
       "name": "sample: a direct length-three jump is optimal",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "costs": [9, 8, 3]},
+      "input": {
+        "n": 3,
+        "costs": [
+          9,
+          8,
+          3
+        ]
+      },
       "expected": 12,
-      "tags": ["sample", "length-three"]
+      "tags": [
+        "sample",
+        "length-three"
+      ]
     },
     {
       "id": "trial-single-step",
       "name": "trial: one landing pays its cost and distance square",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "costs": [1]},
+      "input": {
+        "n": 1,
+        "costs": [
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "minimum-n"]
+      "tags": [
+        "trial",
+        "minimum-n"
+      ]
     },
     {
       "id": "trial-skip-expensive-first-step",
       "name": "trial: length-two jump skips the expensive first step",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "costs": [10000, 1]},
+      "input": {
+        "n": 2,
+        "costs": [
+          10000,
+          1
+        ]
+      },
       "expected": 5,
-      "tags": ["trial", "boundary", "maximum-cost"]
+      "tags": [
+        "trial",
+        "boundary",
+        "maximum-cost"
+      ]
     },
     {
       "id": "trial-cheap-endpoints-beat-direct-jump",
       "name": "trial: two jumps through a cheap step beat a direct jump",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 3, "costs": [1, 10000, 1]},
+      "input": {
+        "n": 3,
+        "costs": [
+          1,
+          10000,
+          1
+        ]
+      },
       "expected": 7,
-      "tags": ["trial", "route-choice"]
+      "tags": [
+        "trial",
+        "route-choice"
+      ]
     },
     {
       "id": "trial-repeated-three-step-landings",
       "name": "trial: repeated length-three jumps use sparse cheap landings",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 6, "costs": [10000, 10000, 1, 10000, 10000, 1]},
+      "input": {
+        "n": 6,
+        "costs": [
+          10000,
+          10000,
+          1,
+          10000,
+          10000,
+          1
+        ]
+      },
       "expected": 20,
-      "tags": ["trial", "length-three", "sparse-cheap"]
+      "tags": [
+        "trial",
+        "length-three",
+        "sparse-cheap"
+      ]
     },
     {
       "id": "real-irregular-costs",
-      "name": "hidden: irregular costs require comparing all predecessors",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 8, "costs": [3, 1, 4, 1, 5, 9, 2, 6]},
+      "name": "irregular costs require comparing all predecessors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8,
+        "costs": [
+          3,
+          1,
+          4,
+          1,
+          5,
+          9,
+          2,
+          6
+        ]
+      },
       "expected": 28,
-      "tags": ["hidden", "mixed-jumps"]
+      "tags": [
+        "hidden",
+        "mixed-jumps"
+      ]
     },
     {
       "id": "real-all-maximum-costs",
-      "name": "hidden: all maximum landing costs favor fewer jumps",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 10, "costs": [10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000]},
+      "name": "all maximum landing costs favor fewer jumps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "costs": [
+          10000,
+          10000,
+          10000,
+          10000,
+          10000,
+          10000,
+          10000,
+          10000,
+          10000,
+          10000
+        ]
+      },
       "expected": 40026,
-      "tags": ["hidden", "maximum-cost"]
+      "tags": [
+        "hidden",
+        "maximum-cost"
+      ]
     },
     {
       "id": "real-alternating-low-high",
-      "name": "hidden: alternating costs mix one- and two-step choices",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 7, "costs": [2, 9, 2, 9, 2, 9, 2]},
+      "name": "alternating costs mix one- and two-step choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "costs": [
+          2,
+          9,
+          2,
+          9,
+          2,
+          9,
+          2
+        ]
+      },
       "expected": 21,
-      "tags": ["hidden", "alternating"]
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
     },
     {
       "id": "real-cheap-even-steps",
-      "name": "hidden: cheap even steps compete with jump penalties",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 9, "costs": [7, 1, 7, 1, 7, 1, 7, 1, 7]},
+      "name": "cheap even steps compete with jump penalties",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 9,
+        "costs": [
+          7,
+          1,
+          7,
+          1,
+          7,
+          1,
+          7,
+          1,
+          7
+        ]
+      },
       "expected": 28,
-      "tags": ["hidden", "alternating", "final-landing"]
+      "tags": [
+        "hidden",
+        "alternating",
+        "final-landing"
+      ]
     },
     {
       "id": "real-expensive-blocks",
-      "name": "hidden: expensive blocks require changing jump lengths",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 7, "costs": [1, 2, 10000, 1, 2, 10000, 1]},
+      "name": "expensive blocks require changing jump lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "costs": [
+          1,
+          2,
+          10000,
+          1,
+          2,
+          10000,
+          1
+        ]
+      },
       "expected": 18,
-      "tags": ["hidden", "route-choice"]
+      "tags": [
+        "hidden",
+        "route-choice"
+      ]
     }
   ]
 }

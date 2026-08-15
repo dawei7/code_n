@@ -2,17 +2,473 @@
   "schema_version": 1,
   "challenge_id": "lc_3778",
   "cases": [
-    {"id":"sample-1","name":"sample: only path contains two equal maximum edges","kind":"sample","visible":true,"input":{"n":5,"edges":[[0,1,2],[1,2,7],[2,3,7],[3,4,4]]},"expected":13,"validator":{"kind":"exact"},"tags":["sample","tied-maximum"]},
-    {"id":"sample-2","name":"sample: excluding the direct edge yields zero","kind":"sample","visible":true,"input":{"n":3,"edges":[[0,1,1],[1,2,1],[0,2,50000]]},"expected":0,"validator":{"kind":"exact"},"tags":["sample","direct-edge"]},
-    {"id":"trial-single-edge","name":"trial: a one-edge graph has zero cost","kind":"trial","visible":true,"input":{"n":2,"edges":[[0,1,42]]},"expected":0,"validator":{"kind":"exact"},"tags":["trial","minimum-graph"]},
-    {"id":"trial-first-tied-maximum","name":"trial: only the first of two maximum chain edges is free","kind":"trial","visible":true,"input":{"n":4,"edges":[[0,1,5],[1,2,5],[2,3,1]]},"expected":6,"validator":{"kind":"exact"},"tags":["trial","tie-order"]},
-    {"id":"trial-choose-heavier-path","name":"trial: a heavy edge can make its path cheapest after exclusion","kind":"trial","visible":true,"input":{"n":4,"edges":[[0,1,10],[1,3,1],[0,2,6],[2,3,6]]},"expected":1,"validator":{"kind":"exact"},"tags":["trial","path-choice"]},
-    {"id":"trial-ordinary-shortest-differs","name":"trial: the best excluded-edge path is not the ordinary shortest path","kind":"trial","visible":true,"input":{"n":5,"edges":[[0,1,3],[1,4,3],[0,2,10],[2,3,1],[3,4,1]]},"expected":2,"validator":{"kind":"exact"},"tags":["trial","discount-changes-route"]},
-    {"id":"real-three-edge-alternative","name":"hidden: a large edge dominates a shorter route","kind":"real","visible":false,"input":{"n":5,"edges":[[0,1,2],[1,4,8],[0,2,4],[2,3,4],[3,4,4]]},"expected":2,"validator":{"kind":"exact"},"tags":["hidden","alternative-routes"]},
-    {"id":"real-cross-connected-graph","name":"hidden: cycles and cross edges do not invalidate the free-edge model","kind":"real","visible":false,"input":{"n":6,"edges":[[0,1,8],[1,5,2],[0,2,5],[2,3,5],[3,5,5],[1,2,1],[3,4,1],[4,5,20]]},"expected":2,"validator":{"kind":"exact"},"tags":["hidden","cycles"]},
-    {"id":"real-large-equal-weights","name":"hidden: the answer can exceed one edge weight","kind":"real","visible":false,"input":{"n":4,"edges":[[0,1,50000],[1,2,50000],[2,3,50000]]},"expected":100000,"validator":{"kind":"exact"},"tags":["hidden","large-result"]},
-    {"id":"real-all-unit-chain","name":"hidden: exactly one of four equal edges is excluded","kind":"real","visible":false,"input":{"n":5,"edges":[[0,1,1],[1,2,1],[2,3,1],[3,4,1]]},"expected":3,"validator":{"kind":"exact"},"tags":["hidden","all-tied"]},
-    {"id":"real-two-tied-paths","name":"hidden: compare routes with different repeated maxima","kind":"real","visible":false,"input":{"n":5,"edges":[[0,1,9],[1,2,1],[2,4,9],[0,3,6],[3,4,6]]},"expected":6,"validator":{"kind":"exact"},"tags":["hidden","route-comparison"]},
-    {"id":"real-direct-beats-triangle","name":"hidden: any direct source-target edge can be fully excluded","kind":"real","visible":false,"input":{"n":3,"edges":[[0,1,2],[1,2,3],[0,2,4]]},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","direct-path"]}
+    {
+      "id": "sample-1",
+      "name": "sample: only path contains two equal maximum edges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            7
+          ],
+          [
+            2,
+            3,
+            7
+          ],
+          [
+            3,
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": 13,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "tied-maximum"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: excluding the direct edge yields zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            50000
+          ]
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "direct-edge"
+      ]
+    },
+    {
+      "id": "trial-single-edge",
+      "name": "trial: a one-edge graph has zero cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            1,
+            42
+          ]
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-graph"
+      ]
+    },
+    {
+      "id": "trial-first-tied-maximum",
+      "name": "trial: only the first of two maximum chain edges is free",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1,
+            5
+          ],
+          [
+            1,
+            2,
+            5
+          ],
+          [
+            2,
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "tie-order"
+      ]
+    },
+    {
+      "id": "trial-choose-heavier-path",
+      "name": "trial: a heavy edge can make its path cheapest after exclusion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1,
+            10
+          ],
+          [
+            1,
+            3,
+            1
+          ],
+          [
+            0,
+            2,
+            6
+          ],
+          [
+            2,
+            3,
+            6
+          ]
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "path-choice"
+      ]
+    },
+    {
+      "id": "trial-ordinary-shortest-differs",
+      "name": "trial: the best excluded-edge path is not the ordinary shortest path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            1,
+            4,
+            3
+          ],
+          [
+            0,
+            2,
+            10
+          ],
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            3,
+            4,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "discount-changes-route"
+      ]
+    },
+    {
+      "id": "real-three-edge-alternative",
+      "name": "a large edge dominates a shorter route",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            4,
+            8
+          ],
+          [
+            0,
+            2,
+            4
+          ],
+          [
+            2,
+            3,
+            4
+          ],
+          [
+            3,
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "alternative-routes"
+      ]
+    },
+    {
+      "id": "real-cross-connected-graph",
+      "name": "cycles and cross edges do not invalidate the free-edge model",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1,
+            8
+          ],
+          [
+            1,
+            5,
+            2
+          ],
+          [
+            0,
+            2,
+            5
+          ],
+          [
+            2,
+            3,
+            5
+          ],
+          [
+            3,
+            5,
+            5
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            3,
+            4,
+            1
+          ],
+          [
+            4,
+            5,
+            20
+          ]
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "cycles"
+      ]
+    },
+    {
+      "id": "real-large-equal-weights",
+      "name": "the answer can exceed one edge weight",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1,
+            50000
+          ],
+          [
+            1,
+            2,
+            50000
+          ],
+          [
+            2,
+            3,
+            50000
+          ]
+        ]
+      },
+      "expected": 100000,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "large-result"
+      ]
+    },
+    {
+      "id": "real-all-unit-chain",
+      "name": "exactly one of four equal edges is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            3,
+            4,
+            1
+          ]
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "all-tied"
+      ]
+    },
+    {
+      "id": "real-two-tied-paths",
+      "name": "compare routes with different repeated maxima",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1,
+            9
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            4,
+            9
+          ],
+          [
+            0,
+            3,
+            6
+          ],
+          [
+            3,
+            4,
+            6
+          ]
+        ]
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "route-comparison"
+      ]
+    },
+    {
+      "id": "real-direct-beats-triangle",
+      "name": "any direct source-target edge can be fully excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "direct-path"
+      ]
+    }
   ]
 }

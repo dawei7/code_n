@@ -8,11 +8,57 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "operations": ["StockPrice", "update", "update", "current", "maximum", "update", "maximum", "update", "minimum"],
-        "arguments": [[], [1, 10], [2, 5], [], [], [1, 3], [], [4, 2], []]
+        "operations": [
+          "StockPrice",
+          "update",
+          "update",
+          "current",
+          "maximum",
+          "update",
+          "maximum",
+          "update",
+          "minimum"
+        ],
+        "arguments": [
+          [],
+          [
+            1,
+            10
+          ],
+          [
+            2,
+            5
+          ],
+          [],
+          [],
+          [
+            1,
+            3
+          ],
+          [],
+          [
+            4,
+            2
+          ],
+          []
+        ]
       },
-      "expected": [null, null, null, 5, 10, null, 5, null, 2],
-      "tags": ["sample", "correction", "all-queries"]
+      "expected": [
+        null,
+        null,
+        null,
+        5,
+        10,
+        null,
+        5,
+        null,
+        2
+      ],
+      "tags": [
+        "sample",
+        "correction",
+        "all-queries"
+      ]
     },
     {
       "id": "trial-out-of-order-current",
@@ -20,11 +66,41 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["StockPrice", "update", "update", "current", "minimum", "maximum"],
-        "arguments": [[], [5, 100], [2, 200], [], [], []]
+        "operations": [
+          "StockPrice",
+          "update",
+          "update",
+          "current",
+          "minimum",
+          "maximum"
+        ],
+        "arguments": [
+          [],
+          [
+            5,
+            100
+          ],
+          [
+            2,
+            200
+          ],
+          [],
+          [],
+          []
+        ]
       },
-      "expected": [null, null, null, 100, 100, 200],
-      "tags": ["out-of-order", "current"]
+      "expected": [
+        null,
+        null,
+        null,
+        100,
+        100,
+        200
+      ],
+      "tags": [
+        "out-of-order",
+        "current"
+      ]
     },
     {
       "id": "trial-correct-only-record",
@@ -32,47 +108,196 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["StockPrice", "update", "update", "current", "minimum", "maximum"],
-        "arguments": [[], [7, 20], [7, 12], [], [], []]
+        "operations": [
+          "StockPrice",
+          "update",
+          "update",
+          "current",
+          "minimum",
+          "maximum"
+        ],
+        "arguments": [
+          [],
+          [
+            7,
+            20
+          ],
+          [
+            7,
+            12
+          ],
+          [],
+          [],
+          []
+        ]
       },
-      "expected": [null, null, null, 12, 12, 12],
-      "tags": ["single-timestamp", "correction"]
+      "expected": [
+        null,
+        null,
+        null,
+        12,
+        12,
+        12
+      ],
+      "tags": [
+        "single-timestamp",
+        "correction"
+      ]
     },
     {
       "id": "real-correct-both-extremes",
-      "name": "hidden: successive corrections invalidate both heap extremes",
-      "kind": "real",
-      "visible": false,
+      "name": "successive corrections invalidate both heap extremes",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["StockPrice", "update", "update", "update", "minimum", "maximum", "current", "update", "current", "minimum", "maximum"],
-        "arguments": [[], [1, 2], [2, 8], [1, 10], [], [], [], [2, 12], [], [], []]
+        "operations": [
+          "StockPrice",
+          "update",
+          "update",
+          "update",
+          "minimum",
+          "maximum",
+          "current",
+          "update",
+          "current",
+          "minimum",
+          "maximum"
+        ],
+        "arguments": [
+          [],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            1,
+            10
+          ],
+          [],
+          [],
+          [],
+          [
+            2,
+            12
+          ],
+          [],
+          [],
+          []
+        ]
       },
-      "expected": [null, null, null, null, 8, 10, 8, null, 12, 10, 12],
-      "tags": ["hidden", "stale-minimum", "stale-maximum"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        8,
+        10,
+        8,
+        null,
+        12,
+        10,
+        12
+      ],
+      "tags": [
+        "hidden",
+        "stale-minimum",
+        "stale-maximum"
+      ]
     },
     {
       "id": "real-domain-boundaries",
-      "name": "hidden: maximum timestamp and price bounds",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum timestamp and price bounds",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["StockPrice", "update", "update", "current", "minimum", "maximum"],
-        "arguments": [[], [1, 1], [1000000000, 1000000000], [], [], []]
+        "operations": [
+          "StockPrice",
+          "update",
+          "update",
+          "current",
+          "minimum",
+          "maximum"
+        ],
+        "arguments": [
+          [],
+          [
+            1,
+            1
+          ],
+          [
+            1000000000,
+            1000000000
+          ],
+          [],
+          [],
+          []
+        ]
       },
-      "expected": [null, null, null, 1000000000, 1, 1000000000],
-      "tags": ["hidden", "bounds"]
+      "expected": [
+        null,
+        null,
+        null,
+        1000000000,
+        1,
+        1000000000
+      ],
+      "tags": [
+        "hidden",
+        "bounds"
+      ]
     },
     {
       "id": "real-duplicate-prices",
-      "name": "hidden: one correction preserves another equal price",
-      "kind": "real",
-      "visible": false,
+      "name": "one correction preserves another equal price",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["StockPrice", "update", "update", "update", "maximum", "minimum", "current"],
-        "arguments": [[], [1, 9], [3, 9], [1, 4], [], [], []]
+        "operations": [
+          "StockPrice",
+          "update",
+          "update",
+          "update",
+          "maximum",
+          "minimum",
+          "current"
+        ],
+        "arguments": [
+          [],
+          [
+            1,
+            9
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            1,
+            4
+          ],
+          [],
+          [],
+          []
+        ]
       },
-      "expected": [null, null, null, null, 9, 4, 9],
-      "tags": ["hidden", "duplicate-price", "correction"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        9,
+        4,
+        9
+      ],
+      "tags": [
+        "hidden",
+        "duplicate-price",
+        "correction"
+      ]
     }
   ]
 }

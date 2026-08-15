@@ -133,8 +133,8 @@
     {
       "id": "real-nested-fallback",
       "name": "real: nested prefix fallback finds the first occurrence",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stream": {
           "bits": [
@@ -163,8 +163,8 @@
     {
       "id": "real-late-single-bit",
       "name": "real: one-bit pattern appears after several reads",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stream": {
           "bits": [
@@ -187,8 +187,8 @@
     {
       "id": "real-large-pattern",
       "name": "real: large pattern matches at zero",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stream": {
           "repeated_bit": 0,
@@ -4305,8 +4305,8 @@
     {
       "id": "real-late-pattern",
       "name": "real: match begins after a long uniform prefix",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stream": {
           "repeated_bit": 0,

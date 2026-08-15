@@ -105,9 +105,9 @@
     },
     {
       "id": "hidden-dense",
-      "name": "hidden: dense stones allow many states",
-      "kind": "real",
-      "visible": false,
+      "name": "dense stones allow many states",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stones": [
           0,
@@ -130,9 +130,9 @@
     },
     {
       "id": "hidden-late-gap",
-      "name": "hidden: many reachable stones before failure",
-      "kind": "real",
-      "visible": false,
+      "name": "many reachable stones before failure",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stones": [
           0,
@@ -152,9 +152,9 @@
     },
     {
       "id": "hidden-alternate-path",
-      "name": "hidden: successful path needs non-obvious jump choices",
-      "kind": "real",
-      "visible": false,
+      "name": "successful path needs non-obvious jump choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stones": [
           0,

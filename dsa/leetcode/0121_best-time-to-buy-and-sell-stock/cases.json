@@ -61,9 +61,9 @@
     },
     {
       "id": "real-late-best-sell",
-      "name": "hidden: best sell at the end",
-      "kind": "real",
-      "visible": false,
+      "name": "best sell at the end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           9,

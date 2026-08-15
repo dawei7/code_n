@@ -6,99 +6,232 @@
       "name": "sample: longer subsequence gives product six",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3], "k": 2, "limit": 10},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 2,
+        "limit": 10
+      },
       "expected": 6,
-      "tags": ["sample", "alternating-sum", "product-choice"]
+      "tags": [
+        "sample",
+        "alternating-sum",
+        "product-choice"
+      ]
     },
     {
       "id": "sample-no-alternating-sum",
       "name": "sample: target alternating sum is unreachable",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [0, 2, 3], "k": -5, "limit": 12},
+      "input": {
+        "nums": [
+          0,
+          2,
+          3
+        ],
+        "k": -5,
+        "limit": 12
+      },
       "expected": -1,
-      "tags": ["sample", "impossible"]
+      "tags": [
+        "sample",
+        "impossible"
+      ]
     },
     {
       "id": "sample-limit-excludes-largest",
       "name": "sample: product limit excludes four elements",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 2, 3, 3], "k": 0, "limit": 9},
+      "input": {
+        "nums": [
+          2,
+          2,
+          3,
+          3
+        ],
+        "k": 0,
+        "limit": 9
+      },
       "expected": 9,
-      "tags": ["sample", "product-limit", "equal-pairs"]
+      "tags": [
+        "sample",
+        "product-limit",
+        "equal-pairs"
+      ]
     },
     {
       "id": "trial-over-limit-reset-by-zero",
       "name": "trial: zero rescues an initially excessive product",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 0], "k": 2, "limit": 1},
+      "input": {
+        "nums": [
+          2,
+          0
+        ],
+        "k": 2,
+        "limit": 1
+      },
       "expected": 0,
-      "tags": ["trial", "zero", "semantic-trap"]
+      "tags": [
+        "trial",
+        "zero",
+        "semantic-trap"
+      ]
     },
     {
       "id": "trial-zero-singleton",
       "name": "trial: zero alone is a valid non-empty subsequence",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0], "k": 0, "limit": 1},
+      "input": {
+        "nums": [
+          0
+        ],
+        "k": 0,
+        "limit": 1
+      },
       "expected": 0,
-      "tags": ["trial", "zero", "minimum-length"]
+      "tags": [
+        "trial",
+        "zero",
+        "minimum-length"
+      ]
     },
     {
       "id": "real-empty-subsequence-forbidden",
       "name": "real: empty subsequence cannot satisfy target zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2], "k": 0, "limit": 10},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ],
+        "k": 0,
+        "limit": 10
+      },
       "expected": -1,
-      "tags": ["real", "non-empty", "semantic-trap"]
+      "tags": [
+        "real",
+        "non-empty",
+        "semantic-trap"
+      ]
     },
     {
       "id": "real-fallback-positive-product",
       "name": "real: oversized product leaves smaller valid choice",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3], "k": 2, "limit": 5},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 2,
+        "limit": 5
+      },
       "expected": 2,
-      "tags": ["real", "product-limit", "maximum"]
+      "tags": [
+        "real",
+        "product-limit",
+        "maximum"
+      ]
     },
     {
       "id": "real-product-one",
       "name": "real: repeated ones preserve product one",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 1, 1], "k": 0, "limit": 1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 0,
+        "limit": 1
+      },
       "expected": 1,
-      "tags": ["real", "product-one", "even-length"]
+      "tags": [
+        "real",
+        "product-one",
+        "even-length"
+      ]
     },
     {
       "id": "real-order-and-parity",
       "name": "real: all three positions produce target one",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 3, 2], "k": 1, "limit": 12},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          2
+        ],
+        "k": 1,
+        "limit": 12
+      },
       "expected": 12,
-      "tags": ["real", "order", "parity", "exact-limit"]
+      "tags": [
+        "real",
+        "order",
+        "parity",
+        "exact-limit"
+      ]
     },
     {
       "id": "real-zero-only-feasible-product",
       "name": "real: only a zero product remains within the limit",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 2, 0, 4], "k": -2, "limit": 4},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          0,
+          4
+        ],
+        "k": -2,
+        "limit": 4
+      },
       "expected": 0,
-      "tags": ["real", "zero", "negative-target"]
+      "tags": [
+        "real",
+        "zero",
+        "negative-target"
+      ]
     },
     {
       "id": "real-maximum-exact-limit",
       "name": "real: mixed values attain the limit exactly",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3, 0, 5, 2, 1, 4], "k": 2, "limit": 60},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          0,
+          5,
+          2,
+          1,
+          4
+        ],
+        "k": 2,
+        "limit": 60
+      },
       "expected": 60,
-      "tags": ["real", "mixed-values", "exact-limit"]
+      "tags": [
+        "real",
+        "mixed-values",
+        "exact-limit"
+      ]
     }
   ]
 }

@@ -88,9 +88,9 @@
     },
     {
       "id": "real-duplicates",
-      "name": "hidden: repeated characters preserve multiplicity",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated characters preserve multiplicity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaa111"
       },
@@ -105,9 +105,9 @@
     },
     {
       "id": "real-imbalanced",
-      "name": "hidden: two extra digits are impossible",
-      "kind": "real",
-      "visible": false,
+      "name": "two extra digits are impossible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "a123"
       },

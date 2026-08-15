@@ -6,72 +6,113 @@
       "name": "sample: both fixed pairs initially disagree",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "1001"},
+      "input": {
+        "s": "1001"
+      },
       "expected": 2,
-      "tags": ["sample", "two-changes"]
+      "tags": [
+        "sample",
+        "two-changes"
+      ]
     },
     {
       "id": "sample-single-pair",
       "name": "sample: one mismatched pair needs one change",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "10"},
+      "input": {
+        "s": "10"
+      },
       "expected": 1,
-      "tags": ["sample", "minimum-length"]
+      "tags": [
+        "sample",
+        "minimum-length"
+      ]
     },
     {
       "id": "sample-uniform-string",
       "name": "sample: a uniform even-length string is already beautiful",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "0000"},
+      "input": {
+        "s": "0000"
+      },
       "expected": 0,
-      "tags": ["sample", "already-beautiful"]
+      "tags": [
+        "sample",
+        "already-beautiful"
+      ]
     },
     {
       "id": "trial-alternating-pairs",
       "name": "every pair in an alternating string needs one change",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "0101"},
+      "input": {
+        "s": "0101"
+      },
       "expected": 2,
-      "tags": ["alternating", "all-pairs-mismatch"]
+      "tags": [
+        "alternating",
+        "all-pairs-mismatch"
+      ]
     },
     {
       "id": "trial-one-middle-mismatch",
       "name": "only the middle pair requires a change",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "111000"},
+      "input": {
+        "s": "111000"
+      },
       "expected": 1,
-      "tags": ["single-change", "run-boundary"]
+      "tags": [
+        "single-change",
+        "run-boundary"
+      ]
     },
     {
       "id": "real-many-even-runs",
-      "name": "hidden: several uniform even runs need no changes",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "00110011"},
+      "name": "several uniform even runs need no changes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "00110011"
+      },
       "expected": 0,
-      "tags": ["hidden", "multiple-parts"]
+      "tags": [
+        "hidden",
+        "multiple-parts"
+      ]
     },
     {
       "id": "real-balanced-but-not-beautiful",
-      "name": "hidden: equal zero and one counts do not make mismatched pairs valid",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "0110"},
+      "name": "equal zero and one counts do not make mismatched pairs valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0110"
+      },
       "expected": 2,
-      "tags": ["hidden", "semantic-trap"]
+      "tags": [
+        "hidden",
+        "semantic-trap"
+      ]
     },
     {
       "id": "real-long-alternating",
-      "name": "hidden: a long alternating string changes one bit per pair",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "0101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101"},
+      "name": "a long alternating string changes one bit per pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101"
+      },
       "expected": 50,
-      "tags": ["hidden", "long-input", "alternating"]
+      "tags": [
+        "hidden",
+        "long-input",
+        "alternating"
+      ]
     }
   ]
 }

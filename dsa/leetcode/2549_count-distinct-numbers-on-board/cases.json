@@ -72,9 +72,9 @@
     },
     {
       "id": "real-mid-domain",
-      "name": "hidden: mid-domain formula value",
-      "kind": "real",
-      "visible": false,
+      "name": "mid-domain formula value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 57
       },
@@ -85,9 +85,9 @@
     },
     {
       "id": "real-maximum",
-      "name": "hidden: maximum legal input",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum legal input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100
       },

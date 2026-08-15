@@ -73,9 +73,9 @@
     },
     {
       "id": "real-single-pass",
-      "name": "hidden: decoded ampersand is not parsed again",
-      "kind": "real",
-      "visible": false,
+      "name": "decoded ampersand is not parsed again",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "text": "&amp;gt;&amp;amp;"
       },
@@ -87,9 +87,9 @@
     },
     {
       "id": "real-incomplete",
-      "name": "hidden: unknown and incomplete spellings",
-      "kind": "real",
-      "visible": false,
+      "name": "unknown and incomplete spellings",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "text": "a &unknown; b &amp c &lt;"
       },

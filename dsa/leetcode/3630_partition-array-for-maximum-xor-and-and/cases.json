@@ -129,9 +129,9 @@
     },
     {
       "id": "real-two-overlapping-bits",
-      "name": "hidden: overlapping bits across two values",
-      "kind": "real",
-      "visible": false,
+      "name": "overlapping bits across two values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -146,9 +146,9 @@
     },
     {
       "id": "real-three-overlapping",
-      "name": "hidden: three values with shared bits",
-      "kind": "real",
-      "visible": false,
+      "name": "three values with shared bits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -164,9 +164,9 @@
     },
     {
       "id": "real-consecutive-values",
-      "name": "hidden: consecutive small values",
-      "kind": "real",
-      "visible": false,
+      "name": "consecutive small values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -184,9 +184,9 @@
     },
     {
       "id": "real-near-limit-values",
-      "name": "hidden: values near the upper bound",
-      "kind": "real",
-      "visible": false,
+      "name": "values near the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -201,9 +201,9 @@
     },
     {
       "id": "real-and-interactions",
-      "name": "hidden: several competing AND subsets",
-      "kind": "real",
-      "visible": false,
+      "name": "several competing AND subsets",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -220,9 +220,9 @@
     },
     {
       "id": "real-paired-duplicates",
-      "name": "hidden: duplicate pairs alter XOR cancellation",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate pairs alter XOR cancellation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -240,9 +240,9 @@
     },
     {
       "id": "real-high-disjoint-bits",
-      "name": "hidden: high bits and their union",
-      "kind": "real",
-      "visible": false,
+      "name": "high bits and their union",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           536870912,

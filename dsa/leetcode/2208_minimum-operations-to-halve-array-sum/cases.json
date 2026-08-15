@@ -2,13 +2,149 @@
   "schema_version": 1,
   "challenge_id": "lc_2208",
   "cases": [
-    {"id":"sample-mixed-four","name":"sample: dominant value is halved twice","kind":"sample","visible":true,"input":{"nums":[5,19,8,1]},"expected":3,"tags":["sample","repeated-selection"]},
-    {"id":"sample-mixed-three","name":"sample: three operations remove at least half","kind":"sample","visible":true,"input":{"nums":[3,8,20]},"expected":3,"tags":["sample","fractional"]},
-    {"id":"trial-single-value","name":"one value needs exactly one operation","kind":"trial","visible":true,"input":{"nums":[10]},"expected":1,"tags":["minimum-length","exact-target"]},
-    {"id":"trial-two-equal-values","name":"each equal value is halved once","kind":"trial","visible":true,"input":{"nums":[4,4]},"expected":2,"tags":["ties"]},
-    {"id":"real-one-dominant-value","name":"hidden: repeatedly halve the dominant value","kind":"real","visible":false,"input":{"nums":[100,1,1]},"expected":2,"tags":["hidden","dominant"]},
-    {"id":"real-many-ones","name":"hidden: each unit contributes one half","kind":"real","visible":false,"input":{"nums":[1,1,1,1,1,1]},"expected":6,"tags":["hidden","equal-values"]},
-    {"id":"real-switching-maximum","name":"hidden: the maximum changes after each reduction","kind":"real","visible":false,"input":{"nums":[9,8,7]},"expected":3,"tags":["hidden","heap-order"]},
-    {"id":"real-large-value-boundary","name":"hidden: maximum legal magnitude remains precise","kind":"real","visible":false,"input":{"nums":[10000000,1]},"expected":2,"tags":["hidden","value-boundary","precision"]}
+    {
+      "id": "sample-mixed-four",
+      "name": "sample: dominant value is halved twice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          19,
+          8,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "repeated-selection"
+      ]
+    },
+    {
+      "id": "sample-mixed-three",
+      "name": "sample: three operations remove at least half",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          8,
+          20
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "fractional"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "one value needs exactly one operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "minimum-length",
+        "exact-target"
+      ]
+    },
+    {
+      "id": "trial-two-equal-values",
+      "name": "each equal value is halved once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "ties"
+      ]
+    },
+    {
+      "id": "real-one-dominant-value",
+      "name": "repeatedly halve the dominant value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "dominant"
+      ]
+    },
+    {
+      "id": "real-many-ones",
+      "name": "each unit contributes one half",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "equal-values"
+      ]
+    },
+    {
+      "id": "real-switching-maximum",
+      "name": "the maximum changes after each reduction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          8,
+          7
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "heap-order"
+      ]
+    },
+    {
+      "id": "real-large-value-boundary",
+      "name": "maximum legal magnitude remains precise",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10000000,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "value-boundary",
+        "precision"
+      ]
+    }
   ]
 }

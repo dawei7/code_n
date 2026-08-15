@@ -146,9 +146,9 @@
     },
     {
       "id": "real-duplicate-workers",
-      "name": "hidden: repeated skills provide multiple exact assignments",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated skills provide multiple exact assignments",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "workers": [
           2,
@@ -182,9 +182,9 @@
     },
     {
       "id": "real-more-workers-than-tasks",
-      "name": "hidden: tasks cannot be reused when workers outnumber them",
-      "kind": "real",
-      "visible": false,
+      "name": "tasks cannot be reused when workers outnumber them",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "workers": [
           1,
@@ -210,9 +210,9 @@
     },
     {
       "id": "real-best-leftover-across-groups",
-      "name": "hidden: extra worker chooses the best leftover group globally",
-      "kind": "real",
-      "visible": false,
+      "name": "extra worker chooses the best leftover group globally",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "workers": [
           1,
@@ -245,9 +245,9 @@
     },
     {
       "id": "real-no-regular-match",
-      "name": "hidden: several unmatched tasks compete for one extra worker",
-      "kind": "real",
-      "visible": false,
+      "name": "several unmatched tasks compete for one extra worker",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "workers": [
           7,
@@ -276,9 +276,9 @@
     },
     {
       "id": "real-single-exact-task",
-      "name": "hidden: one exact task is completed only once",
-      "kind": "real",
-      "visible": false,
+      "name": "one exact task is completed only once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "workers": [
           5
@@ -298,9 +298,9 @@
     },
     {
       "id": "real-large-profit-total",
-      "name": "hidden: total profit exceeds 32-bit range",
-      "kind": "real",
-      "visible": false,
+      "name": "total profit exceeds 32-bit range",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "workers": [
           1,
@@ -334,9 +334,9 @@
     },
     {
       "id": "real-ties-and-order",
-      "name": "hidden: equal profits and arbitrary input order",
-      "kind": "real",
-      "visible": false,
+      "name": "equal profits and arbitrary input order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "workers": [
           4,

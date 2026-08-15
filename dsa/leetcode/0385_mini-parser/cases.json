@@ -11,7 +11,9 @@
         "s": "324"
       },
       "expected": 324,
-      "validator": {"kind": "nested_integer"},
+      "validator": {
+        "kind": "nested_integer"
+      },
       "tags": [
         "sample",
         "scalar"
@@ -34,7 +36,9 @@
           ]
         ]
       ],
-      "validator": {"kind": "nested_integer"},
+      "validator": {
+        "kind": "nested_integer"
+      },
       "tags": [
         "sample",
         "nested"
@@ -49,7 +53,9 @@
         "s": "-7"
       },
       "expected": -7,
-      "validator": {"kind": "nested_integer"},
+      "validator": {
+        "kind": "nested_integer"
+      },
       "tags": [
         "sample",
         "negative"
@@ -64,7 +70,9 @@
         "s": "[]"
       },
       "expected": [],
-      "validator": {"kind": "nested_integer"},
+      "validator": {
+        "kind": "nested_integer"
+      },
       "tags": [
         "trial",
         "empty"
@@ -86,7 +94,9 @@
           -30
         ]
       ],
-      "validator": {"kind": "nested_integer"},
+      "validator": {
+        "kind": "nested_integer"
+      },
       "tags": [
         "trial",
         "empty",
@@ -95,9 +105,9 @@
     },
     {
       "id": "hidden-zeroes",
-      "name": "hidden: zero at several depths",
-      "kind": "real",
-      "visible": false,
+      "name": "zero at several depths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "[0,[0],[[0]],10]"
       },
@@ -113,7 +123,9 @@
         ],
         10
       ],
-      "validator": {"kind": "nested_integer"},
+      "validator": {
+        "kind": "nested_integer"
+      },
       "tags": [
         "hidden",
         "zero"
@@ -121,9 +133,9 @@
     },
     {
       "id": "hidden-siblings",
-      "name": "hidden: nested sibling lists",
-      "kind": "real",
-      "visible": false,
+      "name": "nested sibling lists",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "[[1,2],[3,[4,5]],6]"
       },
@@ -141,7 +153,9 @@
         ],
         6
       ],
-      "validator": {"kind": "nested_integer"},
+      "validator": {
+        "kind": "nested_integer"
+      },
       "tags": [
         "hidden",
         "siblings"
@@ -149,9 +163,9 @@
     },
     {
       "id": "hidden-multi-digit",
-      "name": "hidden: signed multi-digit limits",
-      "kind": "real",
-      "visible": false,
+      "name": "signed multi-digit limits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "[-12345,[67890,-42]]"
       },
@@ -162,7 +176,9 @@
           -42
         ]
       ],
-      "validator": {"kind": "nested_integer"},
+      "validator": {
+        "kind": "nested_integer"
+      },
       "tags": [
         "hidden",
         "multi-digit"

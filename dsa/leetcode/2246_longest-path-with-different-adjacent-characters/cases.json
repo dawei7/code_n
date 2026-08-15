@@ -2,13 +2,172 @@
   "schema_version": 1,
   "challenge_id": "lc_2246",
   "cases": [
-    {"id":"sample-subtree-path","name":"sample: longest path descends from the root","kind":"sample","visible":true,"input":{"parent":[-1,0,0,1,1,2],"s":"abacbe"},"expected":3,"tags":["sample","branch"]},
-    {"id":"sample-two-root-branches","name":"sample: two compatible children join through root","kind":"sample","visible":true,"input":{"parent":[-1,0,0,0],"s":"aabc"},"expected":3,"tags":["sample","two-branches"]},
-    {"id":"trial-single-node","name":"one node is a valid path","kind":"trial","visible":true,"input":{"parent":[-1],"s":"z"},"expected":1,"tags":["single-node"]},
-    {"id":"trial-alternating-chain","name":"an alternating chain is entirely valid","kind":"trial","visible":true,"input":{"parent":[-1,0,1,2,3,4],"s":"ababab"},"expected":6,"tags":["chain"]},
-    {"id":"trial-equal-chain","name":"equal adjacent characters break every edge","kind":"trial","visible":true,"input":{"parent":[-1,0,1,2],"s":"aaaa"},"expected":1,"tags":["equal-characters"]},
-    {"id":"real-below-root","name":"hidden: longest valid path lies below an incompatible root edge","kind":"real","visible":false,"input":{"parent":[-1,0,1,1,2,2],"s":"aabcde"},"expected":4,"tags":["hidden","subtree"]},
-    {"id":"real-nonadjacent-equal","name":"hidden: equal nonadjacent characters remain legal","kind":"real","visible":false,"input":{"parent":[-1,0,1,2,3],"s":"ababa"},"expected":5,"tags":["hidden","nonadjacent-equality"]},
-    {"id":"real-three-branches","name":"hidden: only the two longest child branches form one path","kind":"real","visible":false,"input":{"parent":[-1,0,0,0,1,4,2,3,7,8],"s":"abcbcdedef"},"expected":8,"tags":["hidden","top-two-branches"]}
+    {
+      "id": "sample-subtree-path",
+      "name": "sample: longest path descends from the root",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          1,
+          1,
+          2
+        ],
+        "s": "abacbe"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "branch"
+      ]
+    },
+    {
+      "id": "sample-two-root-branches",
+      "name": "sample: two compatible children join through root",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          0
+        ],
+        "s": "aabc"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "two-branches"
+      ]
+    },
+    {
+      "id": "trial-single-node",
+      "name": "one node is a valid path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1
+        ],
+        "s": "z"
+      },
+      "expected": 1,
+      "tags": [
+        "single-node"
+      ]
+    },
+    {
+      "id": "trial-alternating-chain",
+      "name": "an alternating chain is entirely valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "s": "ababab"
+      },
+      "expected": 6,
+      "tags": [
+        "chain"
+      ]
+    },
+    {
+      "id": "trial-equal-chain",
+      "name": "equal adjacent characters break every edge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          1,
+          2
+        ],
+        "s": "aaaa"
+      },
+      "expected": 1,
+      "tags": [
+        "equal-characters"
+      ]
+    },
+    {
+      "id": "real-below-root",
+      "name": "longest valid path lies below an incompatible root edge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          1,
+          1,
+          2,
+          2
+        ],
+        "s": "aabcde"
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "subtree"
+      ]
+    },
+    {
+      "id": "real-nonadjacent-equal",
+      "name": "equal nonadjacent characters remain legal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          1,
+          2,
+          3
+        ],
+        "s": "ababa"
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "nonadjacent-equality"
+      ]
+    },
+    {
+      "id": "real-three-branches",
+      "name": "only the two longest child branches form one path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parent": [
+          -1,
+          0,
+          0,
+          0,
+          1,
+          4,
+          2,
+          3,
+          7,
+          8
+        ],
+        "s": "abcbcdedef"
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "top-two-branches"
+      ]
+    }
   ]
 }

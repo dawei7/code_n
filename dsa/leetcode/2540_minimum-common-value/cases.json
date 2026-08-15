@@ -96,9 +96,9 @@
     },
     {
       "id": "real-final-match",
-      "name": "hidden: only the final entries match",
-      "kind": "real",
-      "visible": false,
+      "name": "only the final entries match",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -119,9 +119,9 @@
     },
     {
       "id": "real-singletons",
-      "name": "hidden: equal one-element arrays",
-      "kind": "real",
-      "visible": false,
+      "name": "equal one-element arrays",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1000000000

@@ -192,9 +192,9 @@
     },
     {
       "id": "real-reference-values",
-      "name": "hidden: structured values are forwarded unchanged",
-      "kind": "real",
-      "visible": false,
+      "name": "structured values are forwarded unchanged",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tasks": [
           {
@@ -244,9 +244,9 @@
     },
     {
       "id": "real-maximum-functions",
-      "name": "hidden: ten wrappers preserve all positions",
-      "kind": "real",
-      "visible": false,
+      "name": "ten wrappers preserve all positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tasks": [
           {
@@ -352,9 +352,9 @@
     },
     {
       "id": "real-reverse-completion-order",
-      "name": "hidden: settlement order does not reorder wrappers",
-      "kind": "real",
-      "visible": false,
+      "name": "settlement order does not reorder wrappers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tasks": [
           {

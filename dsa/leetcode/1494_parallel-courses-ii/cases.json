@@ -152,9 +152,9 @@
     },
     {
       "id": "real-diamond",
-      "name": "hidden: two roots feed a common chain",
-      "kind": "real",
-      "visible": false,
+      "name": "two roots feed a common chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "relations": [
@@ -181,9 +181,9 @@
     },
     {
       "id": "real-two-branches-merge",
-      "name": "hidden: independent branches merge at final course",
-      "kind": "real",
-      "visible": false,
+      "name": "independent branches merge at final course",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "relations": [
@@ -219,9 +219,9 @@
     },
     {
       "id": "real-capacity-one",
-      "name": "hidden: all courses consume separate semesters",
-      "kind": "real",
-      "visible": false,
+      "name": "all courses consume separate semesters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 7,
         "relations": [
@@ -256,9 +256,9 @@
     },
     {
       "id": "real-choice-unlocks-chain",
-      "name": "hidden: subset choice affects future availability",
-      "kind": "real",
-      "visible": false,
+      "name": "subset choice affects future availability",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 7,
         "relations": [

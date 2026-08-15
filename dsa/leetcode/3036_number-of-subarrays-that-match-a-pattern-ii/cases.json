@@ -126,8 +126,8 @@
     {
       "id": "real-full-window",
       "name": "real: pattern spans the complete array",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -152,8 +152,8 @@
     {
       "id": "real-no-match",
       "name": "real: no increasing pair",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -174,8 +174,8 @@
     {
       "id": "real-prefix-fallback",
       "name": "real: mismatch falls back to a pattern border",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -202,8 +202,8 @@
     {
       "id": "real-value-limits",
       "name": "real: extreme values and overlapping matches",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

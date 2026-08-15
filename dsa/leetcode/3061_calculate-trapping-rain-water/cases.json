@@ -7,80 +7,295 @@
       "name": "sample: standard multi-basin landscape",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"Heights": [
-        {"id": 1, "height": 0}, {"id": 2, "height": 1},
-        {"id": 3, "height": 0}, {"id": 4, "height": 2},
-        {"id": 5, "height": 1}, {"id": 6, "height": 0},
-        {"id": 7, "height": 1}, {"id": 8, "height": 3},
-        {"id": 9, "height": 2}, {"id": 10, "height": 1},
-        {"id": 11, "height": 2}, {"id": 12, "height": 1}
-      ]}},
-      "expected": {"columns": ["total_trapped_water"], "rows": [[6]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["sample", "multiple-basins"]
+      "input": {
+        "tables": {
+          "Heights": [
+            {
+              "id": 1,
+              "height": 0
+            },
+            {
+              "id": 2,
+              "height": 1
+            },
+            {
+              "id": 3,
+              "height": 0
+            },
+            {
+              "id": 4,
+              "height": 2
+            },
+            {
+              "id": 5,
+              "height": 1
+            },
+            {
+              "id": 6,
+              "height": 0
+            },
+            {
+              "id": 7,
+              "height": 1
+            },
+            {
+              "id": 8,
+              "height": 3
+            },
+            {
+              "id": 9,
+              "height": 2
+            },
+            {
+              "id": 10,
+              "height": 1
+            },
+            {
+              "id": 11,
+              "height": 2
+            },
+            {
+              "id": 12,
+              "height": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "total_trapped_water"
+        ],
+        "rows": [
+          [
+            6
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "multiple-basins"
+      ]
     },
     {
       "id": "sample-simple-basin",
       "name": "sample: equal walls around one depression",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"Heights": [
-        {"id": 1, "height": 3}, {"id": 2, "height": 0}, {"id": 3, "height": 3}
-      ]}},
-      "expected": {"columns": ["total_trapped_water"], "rows": [[3]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["sample", "equal-boundaries"]
+      "input": {
+        "tables": {
+          "Heights": [
+            {
+              "id": 1,
+              "height": 3
+            },
+            {
+              "id": 2,
+              "height": 0
+            },
+            {
+              "id": 3,
+              "height": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "total_trapped_water"
+        ],
+        "rows": [
+          [
+            3
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "equal-boundaries"
+      ]
     },
     {
       "id": "trial-monotone",
       "name": "trial: increasing bars trap no water",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"Heights": [
-        {"id": 1, "height": 0}, {"id": 2, "height": 1},
-        {"id": 3, "height": 2}, {"id": 4, "height": 3}
-      ]}},
-      "expected": {"columns": ["total_trapped_water"], "rows": [[0]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "monotone", "zero-water"]
+      "input": {
+        "tables": {
+          "Heights": [
+            {
+              "id": 1,
+              "height": 0
+            },
+            {
+              "id": 2,
+              "height": 1
+            },
+            {
+              "id": 3,
+              "height": 2
+            },
+            {
+              "id": 4,
+              "height": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "total_trapped_water"
+        ],
+        "rows": [
+          [
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "monotone",
+        "zero-water"
+      ]
     },
     {
       "id": "real-single-bar",
-      "name": "hidden: one bar has no basin",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"Heights": [{"id": 1, "height": 7}]}},
-      "expected": {"columns": ["total_trapped_water"], "rows": [[0]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["singleton", "zero-water"]
+      "name": "one bar has no basin",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Heights": [
+            {
+              "id": 1,
+              "height": 7
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "total_trapped_water"
+        ],
+        "rows": [
+          [
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "singleton",
+        "zero-water"
+      ]
     },
     {
       "id": "real-asymmetric-basin",
-      "name": "hidden: lower right wall controls the level",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"Heights": [
-        {"id": 1, "height": 4}, {"id": 2, "height": 1},
-        {"id": 3, "height": 2}, {"id": 4, "height": 0},
-        {"id": 5, "height": 3}
-      ]}},
-      "expected": {"columns": ["total_trapped_water"], "rows": [[6]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["asymmetric", "right-boundary"]
+      "name": "lower right wall controls the level",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Heights": [
+            {
+              "id": 1,
+              "height": 4
+            },
+            {
+              "id": 2,
+              "height": 1
+            },
+            {
+              "id": 3,
+              "height": 2
+            },
+            {
+              "id": 4,
+              "height": 0
+            },
+            {
+              "id": 5,
+              "height": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "total_trapped_water"
+        ],
+        "rows": [
+          [
+            6
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "asymmetric",
+        "right-boundary"
+      ]
     },
     {
       "id": "real-separated-basins",
-      "name": "hidden: sum independent depressions",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"Heights": [
-        {"id": 1, "height": 2}, {"id": 2, "height": 0},
-        {"id": 3, "height": 2}, {"id": 4, "height": 0},
-        {"id": 5, "height": 2}
-      ]}},
-      "expected": {"columns": ["total_trapped_water"], "rows": [[4]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["multiple-basins", "equal-boundaries"]
+      "name": "sum independent depressions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Heights": [
+            {
+              "id": 1,
+              "height": 2
+            },
+            {
+              "id": 2,
+              "height": 0
+            },
+            {
+              "id": 3,
+              "height": 2
+            },
+            {
+              "id": 4,
+              "height": 0
+            },
+            {
+              "id": 5,
+              "height": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "total_trapped_water"
+        ],
+        "rows": [
+          [
+            4
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "multiple-basins",
+        "equal-boundaries"
+      ]
     }
   ]
 }

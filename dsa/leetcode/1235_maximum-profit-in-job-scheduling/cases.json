@@ -146,9 +146,9 @@
     },
     {
       "id": "real-long-dominates",
-      "name": "hidden: one long job dominates several short jobs",
-      "kind": "real",
-      "visible": false,
+      "name": "one long job dominates several short jobs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "startTime": [
           1,
@@ -177,9 +177,9 @@
     },
     {
       "id": "real-mixed-choice",
-      "name": "hidden: optimal schedule mixes early and late jobs",
-      "kind": "real",
-      "visible": false,
+      "name": "optimal schedule mixes early and late jobs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "startTime": [
           1,
@@ -206,7 +206,7 @@
           40
         ]
       },
-            "expected": 88,
+      "expected": 88,
       "tags": [
         "hidden",
         "mixed-choice"

@@ -489,8 +489,8 @@
     {
       "id": "real-elective-grade-c",
       "name": "real: C does not qualify an elective",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -565,8 +565,8 @@
     {
       "id": "real-exact-gpa-boundary",
       "name": "real: average GPA exactly 2.5 qualifies",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -645,8 +645,8 @@
     {
       "id": "real-outside-major-lowers-gpa",
       "name": "real: an outside-major course lowers the overall GPA",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -735,8 +735,8 @@
     {
       "id": "real-outside-major-grade-ignored",
       "name": "real: outside-major letter grade does not affect course gates",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -829,8 +829,8 @@
     {
       "id": "real-retakes-distinct-courses",
       "name": "real: retakes count once while every GPA remains",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -923,8 +923,8 @@
     {
       "id": "real-mixed-majors-ordered",
       "name": "real: qualifying students from different majors are ordered",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [
@@ -1045,8 +1045,8 @@
     {
       "id": "real-lower-retake-with-qualifying-attempt",
       "name": "real: a qualifying attempt covers a course despite another lower attempt",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "students": [

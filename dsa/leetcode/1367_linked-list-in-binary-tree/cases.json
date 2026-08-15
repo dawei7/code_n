@@ -137,9 +137,9 @@
     },
     {
       "id": "hidden-overlap-fallback",
-      "name": "hidden: overlapping prefix restarts in chain",
-      "kind": "real",
-      "visible": false,
+      "name": "overlapping prefix restarts in chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           1,
@@ -172,9 +172,9 @@
     },
     {
       "id": "hidden-direction-mismatch",
-      "name": "hidden: value order exists but not downward",
-      "kind": "real",
-      "visible": false,
+      "name": "value order exists but not downward",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           3,

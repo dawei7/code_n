@@ -2,15 +2,143 @@
   "schema_version": 1,
   "challenge_id": "lc_2299",
   "cases": [
-    {"id":"sample-strong","name":"sample: every strength rule is satisfied","kind":"sample","visible":true,"input":{"password":"IloveLe3tcode!"},"expected":true,"tags":["sample","strong"]},
-    {"id":"sample-missing-and-adjacent","name":"sample: missing digit and adjacent hyphens both fail","kind":"sample","visible":true,"input":{"password":"Me+You--IsMyDream"},"expected":false,"tags":["sample","missing-digit","adjacent"]},
-    {"id":"sample-too-short","name":"sample: all categories cannot overcome a short length","kind":"sample","visible":true,"input":{"password":"1aB!"},"expected":false,"tags":["sample","length"]},
-    {"id":"trial-exact-eight","name":"exactly eight characters can be strong","kind":"trial","visible":true,"input":{"password":"aB3!xY7@"},"expected":true,"tags":["length-boundary"]},
-    {"id":"trial-adjacent-letter","name":"adjacent equal lowercase letters fail","kind":"trial","visible":true,"input":{"password":"aA1!bcdd"},"expected":false,"tags":["adjacent"]},
-    {"id":"trial-separated-repeat","name":"separated repeated characters are allowed","kind":"trial","visible":true,"input":{"password":"aA1!aB2@"},"expected":true,"tags":["nonadjacent-repeat"]},
-    {"id":"real-no-lowercase","name":"hidden: missing lowercase category fails","kind":"real","visible":false,"input":{"password":"ABCDEF1!"},"expected":false,"tags":["hidden","missing-lowercase"]},
-    {"id":"real-no-uppercase","name":"hidden: missing uppercase category fails","kind":"real","visible":false,"input":{"password":"abcdef1!"},"expected":false,"tags":["hidden","missing-uppercase"]},
-    {"id":"real-no-special","name":"hidden: letters and digits alone are insufficient","kind":"real","visible":false,"input":{"password":"Abcdef12"},"expected":false,"tags":["hidden","missing-special"]},
-    {"id":"real-special-adjacent","name":"hidden: adjacent equal special characters fail","kind":"real","visible":false,"input":{"password":"Abc1!!xy"},"expected":false,"tags":["hidden","adjacent-special"]}
+    {
+      "id": "sample-strong",
+      "name": "sample: every strength rule is satisfied",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "password": "IloveLe3tcode!"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "strong"
+      ]
+    },
+    {
+      "id": "sample-missing-and-adjacent",
+      "name": "sample: missing digit and adjacent hyphens both fail",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "password": "Me+You--IsMyDream"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "missing-digit",
+        "adjacent"
+      ]
+    },
+    {
+      "id": "sample-too-short",
+      "name": "sample: all categories cannot overcome a short length",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "password": "1aB!"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "length"
+      ]
+    },
+    {
+      "id": "trial-exact-eight",
+      "name": "exactly eight characters can be strong",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "password": "aB3!xY7@"
+      },
+      "expected": true,
+      "tags": [
+        "length-boundary"
+      ]
+    },
+    {
+      "id": "trial-adjacent-letter",
+      "name": "adjacent equal lowercase letters fail",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "password": "aA1!bcdd"
+      },
+      "expected": false,
+      "tags": [
+        "adjacent"
+      ]
+    },
+    {
+      "id": "trial-separated-repeat",
+      "name": "separated repeated characters are allowed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "password": "aA1!aB2@"
+      },
+      "expected": true,
+      "tags": [
+        "nonadjacent-repeat"
+      ]
+    },
+    {
+      "id": "real-no-lowercase",
+      "name": "missing lowercase category fails",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "password": "ABCDEF1!"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "missing-lowercase"
+      ]
+    },
+    {
+      "id": "real-no-uppercase",
+      "name": "missing uppercase category fails",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "password": "abcdef1!"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "missing-uppercase"
+      ]
+    },
+    {
+      "id": "real-no-special",
+      "name": "letters and digits alone are insufficient",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "password": "Abcdef12"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "missing-special"
+      ]
+    },
+    {
+      "id": "real-special-adjacent",
+      "name": "adjacent equal special characters fail",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "password": "Abc1!!xy"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "adjacent-special"
+      ]
+    }
   ]
 }

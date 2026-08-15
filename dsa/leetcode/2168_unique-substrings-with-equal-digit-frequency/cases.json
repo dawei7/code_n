@@ -2,14 +2,133 @@
   "schema_version": 1,
   "challenge_id": "lc_2168",
   "cases": [
-    {"id": "sample-repeated-balanced", "name": "sample: repeated balanced substring counts once", "kind": "sample", "visible": true, "input": {"s": "1212"}, "expected": 5, "tags": ["sample", "deduplication"]},
-    {"id": "sample-palindrome", "name": "sample: balanced substrings in a palindrome", "kind": "sample", "visible": true, "input": {"s": "12321"}, "expected": 9, "tags": ["sample", "palindrome"]},
-    {"id": "trial-single-zero", "name": "one zero is one qualifying value", "kind": "trial", "visible": true, "input": {"s": "0"}, "expected": 1, "tags": ["minimum-length", "zero"]},
-    {"id": "trial-one-distinct-digit", "name": "all lengths qualify for one repeated digit", "kind": "trial", "visible": true, "input": {"s": "000"}, "expected": 3, "tags": ["single-distinct-digit", "repetition"]},
-    {"id": "trial-all-distinct", "name": "every substring of ten distinct digits qualifies", "kind": "trial", "visible": true, "input": {"s": "0123456789"}, "expected": 55, "tags": ["all-digits", "all-distinct"]},
-    {"id": "trial-blocks", "name": "equal-size digit blocks include balanced unions", "kind": "trial", "visible": true, "input": {"s": "1122"}, "expected": 6, "tags": ["blocks", "balanced"]},
-    {"id": "real-alternating", "name": "hidden: duplicate alternating values are deduplicated", "kind": "real", "visible": false, "input": {"s": "10101"}, "expected": 6, "tags": ["hidden", "alternating", "deduplication"]},
-    {"id": "real-zero-nine-clusters", "name": "hidden: repeated clusters contain several balanced scales", "kind": "real", "visible": false, "input": {"s": "999000999"}, "expected": 14, "tags": ["hidden", "clusters"]},
-    {"id": "real-three-blocks", "name": "hidden: three equal-frequency blocks", "kind": "real", "visible": false, "input": {"s": "001122"}, "expected": 11, "tags": ["hidden", "three-digits", "blocks"]}
+    {
+      "id": "sample-repeated-balanced",
+      "name": "sample: repeated balanced substring counts once",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1212"
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "deduplication"
+      ]
+    },
+    {
+      "id": "sample-palindrome",
+      "name": "sample: balanced substrings in a palindrome",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "12321"
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "palindrome"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "one zero is one qualifying value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0"
+      },
+      "expected": 1,
+      "tags": [
+        "minimum-length",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-one-distinct-digit",
+      "name": "all lengths qualify for one repeated digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000"
+      },
+      "expected": 3,
+      "tags": [
+        "single-distinct-digit",
+        "repetition"
+      ]
+    },
+    {
+      "id": "trial-all-distinct",
+      "name": "every substring of ten distinct digits qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0123456789"
+      },
+      "expected": 55,
+      "tags": [
+        "all-digits",
+        "all-distinct"
+      ]
+    },
+    {
+      "id": "trial-blocks",
+      "name": "equal-size digit blocks include balanced unions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1122"
+      },
+      "expected": 6,
+      "tags": [
+        "blocks",
+        "balanced"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "duplicate alternating values are deduplicated",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "10101"
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "alternating",
+        "deduplication"
+      ]
+    },
+    {
+      "id": "real-zero-nine-clusters",
+      "name": "repeated clusters contain several balanced scales",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "999000999"
+      },
+      "expected": 14,
+      "tags": [
+        "hidden",
+        "clusters"
+      ]
+    },
+    {
+      "id": "real-three-blocks",
+      "name": "three equal-frequency blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "001122"
+      },
+      "expected": 11,
+      "tags": [
+        "hidden",
+        "three-digits",
+        "blocks"
+      ]
+    }
   ]
 }

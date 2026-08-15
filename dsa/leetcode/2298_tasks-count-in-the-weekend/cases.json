@@ -2,12 +2,344 @@
   "schema_version": 1,
   "challenge_id": "lc_2298",
   "cases": [
-    {"id":"sample-balanced","name":"sample: three weekend and three working-day tasks","kind":"sample","visible":true,"input":{"tables":{"Tasks":[{"task_id":1,"assignee_id":1,"submit_date":"2022-06-13"},{"task_id":2,"assignee_id":6,"submit_date":"2022-06-14"},{"task_id":3,"assignee_id":6,"submit_date":"2022-06-15"},{"task_id":4,"assignee_id":3,"submit_date":"2022-06-18"},{"task_id":5,"assignee_id":5,"submit_date":"2022-06-19"},{"task_id":6,"assignee_id":7,"submit_date":"2022-06-19"}]}},"expected":{"columns":["weekend_cnt","working_cnt"],"rows":[[3,3]]},"validator":{"kind":"unordered_table"},"tags":["sample","mixed-week"]},
-    {"id":"trial-all-working","name":"only Monday through Friday dates","kind":"trial","visible":true,"input":{"tables":{"Tasks":[{"task_id":1,"assignee_id":1,"submit_date":"2024-01-01"},{"task_id":2,"assignee_id":1,"submit_date":"2024-01-03"},{"task_id":3,"assignee_id":2,"submit_date":"2024-01-05"}]}},"expected":{"columns":["weekend_cnt","working_cnt"],"rows":[[0,3]]},"validator":{"kind":"unordered_table"},"tags":["all-working"]},
-    {"id":"trial-all-weekend","name":"one Saturday and one Sunday","kind":"trial","visible":true,"input":{"tables":{"Tasks":[{"task_id":1,"assignee_id":4,"submit_date":"2024-01-06"},{"task_id":2,"assignee_id":5,"submit_date":"2024-01-07"}]}},"expected":{"columns":["weekend_cnt","working_cnt"],"rows":[[2,0]]},"validator":{"kind":"unordered_table"},"tags":["all-weekend"]},
-    {"id":"trial-full-week","name":"all seven weekday values are partitioned","kind":"trial","visible":true,"input":{"tables":{"Tasks":[{"task_id":1,"assignee_id":1,"submit_date":"2024-01-01"},{"task_id":2,"assignee_id":1,"submit_date":"2024-01-02"},{"task_id":3,"assignee_id":1,"submit_date":"2024-01-03"},{"task_id":4,"assignee_id":1,"submit_date":"2024-01-04"},{"task_id":5,"assignee_id":1,"submit_date":"2024-01-05"},{"task_id":6,"assignee_id":1,"submit_date":"2024-01-06"},{"task_id":7,"assignee_id":1,"submit_date":"2024-01-07"}]}},"expected":{"columns":["weekend_cnt","working_cnt"],"rows":[[2,5]]},"validator":{"kind":"unordered_table"},"tags":["complete-week"]},
-    {"id":"real-repeated-assignee","name":"hidden: repeated assignee rows count separately","kind":"real","visible":false,"input":{"tables":{"Tasks":[{"task_id":1,"assignee_id":9,"submit_date":"2023-09-09"},{"task_id":2,"assignee_id":9,"submit_date":"2023-09-10"},{"task_id":3,"assignee_id":9,"submit_date":"2023-09-11"}]}},"expected":{"columns":["weekend_cnt","working_cnt"],"rows":[[2,1]]},"validator":{"kind":"unordered_table"},"tags":["hidden","assignee-irrelevant"]},
-    {"id":"real-year-boundary","name":"hidden: weekday classification crosses a year boundary","kind":"real","visible":false,"input":{"tables":{"Tasks":[{"task_id":1,"assignee_id":1,"submit_date":"2023-12-31"},{"task_id":2,"assignee_id":2,"submit_date":"2024-01-01"}]}},"expected":{"columns":["weekend_cnt","working_cnt"],"rows":[[1,1]]},"validator":{"kind":"unordered_table"},"tags":["hidden","year-boundary"]},
-    {"id":"real-leap-day","name":"hidden: leap-day weekday is handled by date arithmetic","kind":"real","visible":false,"input":{"tables":{"Tasks":[{"task_id":1,"assignee_id":3,"submit_date":"2024-02-29"},{"task_id":2,"assignee_id":3,"submit_date":"2024-03-02"}]}},"expected":{"columns":["weekend_cnt","working_cnt"],"rows":[[1,1]]},"validator":{"kind":"unordered_table"},"tags":["hidden","leap-day"]}
+    {
+      "id": "sample-balanced",
+      "name": "sample: three weekend and three working-day tasks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tasks": [
+            {
+              "task_id": 1,
+              "assignee_id": 1,
+              "submit_date": "2022-06-13"
+            },
+            {
+              "task_id": 2,
+              "assignee_id": 6,
+              "submit_date": "2022-06-14"
+            },
+            {
+              "task_id": 3,
+              "assignee_id": 6,
+              "submit_date": "2022-06-15"
+            },
+            {
+              "task_id": 4,
+              "assignee_id": 3,
+              "submit_date": "2022-06-18"
+            },
+            {
+              "task_id": 5,
+              "assignee_id": 5,
+              "submit_date": "2022-06-19"
+            },
+            {
+              "task_id": 6,
+              "assignee_id": 7,
+              "submit_date": "2022-06-19"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "weekend_cnt",
+          "working_cnt"
+        ],
+        "rows": [
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "sample",
+        "mixed-week"
+      ]
+    },
+    {
+      "id": "trial-all-working",
+      "name": "only Monday through Friday dates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tasks": [
+            {
+              "task_id": 1,
+              "assignee_id": 1,
+              "submit_date": "2024-01-01"
+            },
+            {
+              "task_id": 2,
+              "assignee_id": 1,
+              "submit_date": "2024-01-03"
+            },
+            {
+              "task_id": 3,
+              "assignee_id": 2,
+              "submit_date": "2024-01-05"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "weekend_cnt",
+          "working_cnt"
+        ],
+        "rows": [
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "all-working"
+      ]
+    },
+    {
+      "id": "trial-all-weekend",
+      "name": "one Saturday and one Sunday",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tasks": [
+            {
+              "task_id": 1,
+              "assignee_id": 4,
+              "submit_date": "2024-01-06"
+            },
+            {
+              "task_id": 2,
+              "assignee_id": 5,
+              "submit_date": "2024-01-07"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "weekend_cnt",
+          "working_cnt"
+        ],
+        "rows": [
+          [
+            2,
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "all-weekend"
+      ]
+    },
+    {
+      "id": "trial-full-week",
+      "name": "all seven weekday values are partitioned",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tasks": [
+            {
+              "task_id": 1,
+              "assignee_id": 1,
+              "submit_date": "2024-01-01"
+            },
+            {
+              "task_id": 2,
+              "assignee_id": 1,
+              "submit_date": "2024-01-02"
+            },
+            {
+              "task_id": 3,
+              "assignee_id": 1,
+              "submit_date": "2024-01-03"
+            },
+            {
+              "task_id": 4,
+              "assignee_id": 1,
+              "submit_date": "2024-01-04"
+            },
+            {
+              "task_id": 5,
+              "assignee_id": 1,
+              "submit_date": "2024-01-05"
+            },
+            {
+              "task_id": 6,
+              "assignee_id": 1,
+              "submit_date": "2024-01-06"
+            },
+            {
+              "task_id": 7,
+              "assignee_id": 1,
+              "submit_date": "2024-01-07"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "weekend_cnt",
+          "working_cnt"
+        ],
+        "rows": [
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "complete-week"
+      ]
+    },
+    {
+      "id": "real-repeated-assignee",
+      "name": "repeated assignee rows count separately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tasks": [
+            {
+              "task_id": 1,
+              "assignee_id": 9,
+              "submit_date": "2023-09-09"
+            },
+            {
+              "task_id": 2,
+              "assignee_id": 9,
+              "submit_date": "2023-09-10"
+            },
+            {
+              "task_id": 3,
+              "assignee_id": 9,
+              "submit_date": "2023-09-11"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "weekend_cnt",
+          "working_cnt"
+        ],
+        "rows": [
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "hidden",
+        "assignee-irrelevant"
+      ]
+    },
+    {
+      "id": "real-year-boundary",
+      "name": "weekday classification crosses a year boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tasks": [
+            {
+              "task_id": 1,
+              "assignee_id": 1,
+              "submit_date": "2023-12-31"
+            },
+            {
+              "task_id": 2,
+              "assignee_id": 2,
+              "submit_date": "2024-01-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "weekend_cnt",
+          "working_cnt"
+        ],
+        "rows": [
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "hidden",
+        "year-boundary"
+      ]
+    },
+    {
+      "id": "real-leap-day",
+      "name": "leap-day weekday is handled by date arithmetic",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tasks": [
+            {
+              "task_id": 1,
+              "assignee_id": 3,
+              "submit_date": "2024-02-29"
+            },
+            {
+              "task_id": 2,
+              "assignee_id": 3,
+              "submit_date": "2024-03-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "weekend_cnt",
+          "working_cnt"
+        ],
+        "rows": [
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "hidden",
+        "leap-day"
+      ]
+    }
   ]
 }

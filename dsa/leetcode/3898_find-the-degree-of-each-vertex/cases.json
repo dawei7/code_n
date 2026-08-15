@@ -353,9 +353,9 @@
     },
     {
       "id": "real-complete-five",
-      "name": "hidden: every vertex in a five-vertex clique has degree four",
-      "kind": "real",
-      "visible": false,
+      "name": "every vertex in a five-vertex clique has degree four",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -410,9 +410,9 @@
     },
     {
       "id": "real-empty-six",
-      "name": "hidden: an empty six-vertex graph has all-zero degrees",
-      "kind": "real",
-      "visible": false,
+      "name": "an empty six-vertex graph has all-zero degrees",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -481,9 +481,9 @@
     },
     {
       "id": "real-two-triangles",
-      "name": "hidden: two disconnected triangles are both two-regular",
-      "kind": "real",
-      "visible": false,
+      "name": "two disconnected triangles are both two-regular",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -552,9 +552,9 @@
     },
     {
       "id": "real-mixed-seven",
-      "name": "hidden: an irregular graph exercises distinct row totals",
-      "kind": "real",
-      "visible": false,
+      "name": "an irregular graph exercises distinct row totals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -639,9 +639,9 @@
     },
     {
       "id": "real-complete-bipartite",
-      "name": "hidden: the two sides of K3,4 have complementary degrees",
-      "kind": "real",
-      "visible": false,
+      "name": "the two sides of K3,4 have complementary degrees",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -726,9 +726,9 @@
     },
     {
       "id": "real-maximum-complete",
-      "name": "hidden: a maximum-size complete graph reaches degree ninety-nine",
-      "kind": "real",
-      "visible": false,
+      "name": "a maximum-size complete graph reaches degree ninety-nine",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -11044,4 +11044,3 @@
     }
   ]
 }
-

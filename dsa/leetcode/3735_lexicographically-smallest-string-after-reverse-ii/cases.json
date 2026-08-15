@@ -1,14 +1,211 @@
-{"schema_version":1,"challenge_id":"lc_3735","cases":[
-{"id":"sample-prefix-three","name":"sample: reverse the first three characters","kind":"sample","visible":true,"input":{"s":"dcab"},"expected":"acdb","validator":{"kind":"exact"},"tags":["sample","prefix-reversal"]},
-{"id":"sample-suffix-three","name":"sample: reverse the last three characters","kind":"sample","visible":true,"input":{"s":"abba"},"expected":"aabb","validator":{"kind":"exact"},"tags":["sample","suffix-reversal"]},
-{"id":"sample-prefix-two","name":"sample: reverse the first two characters","kind":"sample","visible":true,"input":{"s":"zxy"},"expected":"xzy","validator":{"kind":"exact"},"tags":["sample","prefix-reversal"]},
-{"id":"trial-single-character","name":"trial: a one-character reversal leaves the string unchanged","kind":"trial","visible":true,"input":{"s":"a"},"expected":"a","validator":{"kind":"exact"},"tags":["trial","single-character"]},
-{"id":"trial-two-descending","name":"trial: full reversal sorts a descending pair","kind":"trial","visible":true,"input":{"s":"ba"},"expected":"ab","validator":{"kind":"exact"},"tags":["trial","full-reversal"]},
-{"id":"trial-two-increasing","name":"trial: k one preserves an already minimal pair","kind":"trial","visible":true,"input":{"s":"ab"},"expected":"ab","validator":{"kind":"exact"},"tags":["trial","k-one"]},
-{"id":"real-full-reversal","name":"hidden: reversing the complete descending string is optimal","kind":"real","visible":false,"input":{"s":"cba"},"expected":"abc","validator":{"kind":"exact"},"tags":["hidden","full-reversal"]},
-{"id":"real-already-increasing","name":"hidden: the legal no-visible-change operation retains the minimum","kind":"real","visible":false,"input":{"s":"abcd"},"expected":"abcd","validator":{"kind":"exact"},"tags":["hidden","k-one"]},
-{"id":"real-all-equal","name":"hidden: every reversal of equal characters is identical","kind":"real","visible":false,"input":{"s":"aaaa"},"expected":"aaaa","validator":{"kind":"exact"},"tags":["hidden","duplicates"]},
-{"id":"real-prefix-choice","name":"hidden: one prefix reversal beats every suffix choice","kind":"real","visible":false,"input":{"s":"baca"},"expected":"abca","validator":{"kind":"exact"},"tags":["hidden","prefix-reversal"]},
-{"id":"real-suffix-choice","name":"hidden: a suffix reversal improves after a shared prefix","kind":"real","visible":false,"input":{"s":"azby"},"expected":"aybz","validator":{"kind":"exact"},"tags":["hidden","suffix-reversal"]},
-{"id":"real-longer-prefix","name":"hidden: a longer prefix reversal exposes the smallest leading character","kind":"real","visible":false,"input":{"s":"cabbaa"},"expected":"aabbac","validator":{"kind":"exact"},"tags":["hidden","prefix-reversal","duplicates"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3735",
+  "cases": [
+    {
+      "id": "sample-prefix-three",
+      "name": "sample: reverse the first three characters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "dcab"
+      },
+      "expected": "acdb",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "prefix-reversal"
+      ]
+    },
+    {
+      "id": "sample-suffix-three",
+      "name": "sample: reverse the last three characters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abba"
+      },
+      "expected": "aabb",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "suffix-reversal"
+      ]
+    },
+    {
+      "id": "sample-prefix-two",
+      "name": "sample: reverse the first two characters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "zxy"
+      },
+      "expected": "xzy",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "prefix-reversal"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: a one-character reversal leaves the string unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": "a",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-character"
+      ]
+    },
+    {
+      "id": "trial-two-descending",
+      "name": "trial: full reversal sorts a descending pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ba"
+      },
+      "expected": "ab",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "full-reversal"
+      ]
+    },
+    {
+      "id": "trial-two-increasing",
+      "name": "trial: k one preserves an already minimal pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab"
+      },
+      "expected": "ab",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "k-one"
+      ]
+    },
+    {
+      "id": "real-full-reversal",
+      "name": "reversing the complete descending string is optimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "cba"
+      },
+      "expected": "abc",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "full-reversal"
+      ]
+    },
+    {
+      "id": "real-already-increasing",
+      "name": "the legal no-visible-change operation retains the minimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcd"
+      },
+      "expected": "abcd",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "k-one"
+      ]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "every reversal of equal characters is identical",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa"
+      },
+      "expected": "aaaa",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-prefix-choice",
+      "name": "one prefix reversal beats every suffix choice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "baca"
+      },
+      "expected": "abca",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "prefix-reversal"
+      ]
+    },
+    {
+      "id": "real-suffix-choice",
+      "name": "a suffix reversal improves after a shared prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "azby"
+      },
+      "expected": "aybz",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "suffix-reversal"
+      ]
+    },
+    {
+      "id": "real-longer-prefix",
+      "name": "a longer prefix reversal exposes the smallest leading character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "cabbaa"
+      },
+      "expected": "aabbac",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "prefix-reversal",
+        "duplicates"
+      ]
+    }
+  ]
+}

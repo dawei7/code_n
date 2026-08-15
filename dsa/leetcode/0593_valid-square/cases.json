@@ -149,9 +149,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: large translated square",
-      "kind": "real",
-      "visible": false,
+      "name": "large translated square",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "p1": [
           100,
@@ -178,9 +178,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: negative-coordinate rotated square",
-      "kind": "real",
-      "visible": false,
+      "name": "negative-coordinate rotated square",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "p1": [
           -3,

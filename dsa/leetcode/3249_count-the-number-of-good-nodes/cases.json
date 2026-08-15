@@ -1,17 +1,541 @@
 {
   "challenge_id": "lc_3249",
   "cases": [
-    {"id":"sample-perfect-binary","name":"sample: every node is good in a perfect binary tree","kind":"sample","visible":true,"input":{"edges":[[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]]},"expected":7,"tags":["sample","balanced"]},
-    {"id":"sample-uneven-spine","name":"sample: side leaves make three spine nodes unequal","kind":"sample","visible":true,"input":{"edges":[[0,1],[1,2],[2,3],[3,4],[0,5],[1,6],[2,7],[3,8]]},"expected":6,"tags":["sample","unequal"]},
-    {"id":"sample-only-nine-bad","name":"sample: exactly one internal node is bad","kind":"sample","visible":true,"input":{"edges":[[0,1],[1,2],[1,3],[1,4],[0,5],[5,6],[6,7],[7,8],[0,9],[9,10],[9,12],[10,11]]},"expected":12,"tags":["sample","mixed"]},
-    {"id":"trial-two-nodes","name":"trial: minimum tree","kind":"trial","visible":true,"input":{"edges":[[0,1]]},"expected":2,"tags":["minimum","single-child"]},
-    {"id":"trial-star","name":"trial: root has five equal leaf subtrees","kind":"trial","visible":true,"input":{"edges":[[0,1],[0,2],[0,3],[0,4],[0,5]]},"expected":6,"tags":["star","many-children"]},
-    {"id":"trial-chain","name":"trial: every node has at most one child","kind":"trial","visible":true,"input":{"edges":[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7]]},"expected":8,"tags":["chain","single-child"]},
-    {"id":"trial-root-unequal","name":"trial: root child subtrees differ","kind":"trial","visible":true,"input":{"edges":[[0,1],[0,2],[1,3]]},"expected":3,"tags":["root","unequal"]},
-    {"id":"real-two-bad-internals","name":"real: root and one internal node are bad","kind":"real","visible":false,"input":{"edges":[[0,1],[0,2],[1,3],[1,4],[2,5],[2,6],[5,7]]},"expected":6,"tags":["nested","unequal"]},
-    {"id":"real-equal-large-children","name":"real: root children have equal nontrivial sizes","kind":"real","visible":false,"input":{"edges":[[0,1],[0,2],[0,3],[1,4],[2,5],[3,6]]},"expected":7,"tags":["equal-subtrees","ternary"]},
-    {"id":"real-unordered-labels","name":"real: shuffled edges and labels preserve the rooted structure","kind":"real","visible":false,"input":{"edges":[[6,3],[0,4],[4,6],[2,5],[0,2],[4,1]]},"expected":5,"tags":["edge-order","labels"]},
-    {"id":"real-balanced-four-levels","name":"real: complete four-level binary tree","kind":"real","visible":false,"input":{"edges":[[0,1],[0,2],[1,3],[1,4],[2,5],[2,6],[3,7],[3,8],[4,9],[4,10],[5,11],[5,12],[6,13],[6,14]]},"expected":15,"tags":["balanced","deep"]},
-    {"id":"real-mixed-branches","name":"real: several branching arities and subtree sizes","kind":"real","visible":false,"input":{"edges":[[0,1],[0,2],[0,3],[1,4],[1,5],[2,6],[6,7],[3,8],[3,9],[3,10],[8,11],[9,12],[10,13],[10,14]]},"expected":13,"tags":["mixed","branching"]}
+    {
+      "id": "sample-perfect-binary",
+      "name": "sample: every node is good in a perfect binary tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "balanced"
+      ]
+    },
+    {
+      "id": "sample-uneven-spine",
+      "name": "sample: side leaves make three spine nodes unequal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            8
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "unequal"
+      ]
+    },
+    {
+      "id": "sample-only-nine-bad",
+      "name": "sample: exactly one internal node is bad",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            9,
+            12
+          ],
+          [
+            10,
+            11
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-two-nodes",
+      "name": "trial: minimum tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "minimum",
+        "single-child"
+      ]
+    },
+    {
+      "id": "trial-star",
+      "name": "trial: root has five equal leaf subtrees",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "star",
+        "many-children"
+      ]
+    },
+    {
+      "id": "trial-chain",
+      "name": "trial: every node has at most one child",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ]
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "chain",
+        "single-child"
+      ]
+    },
+    {
+      "id": "trial-root-unequal",
+      "name": "trial: root child subtrees differ",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "root",
+        "unequal"
+      ]
+    },
+    {
+      "id": "real-two-bad-internals",
+      "name": "real: root and one internal node are bad",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            5,
+            7
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "nested",
+        "unequal"
+      ]
+    },
+    {
+      "id": "real-equal-large-children",
+      "name": "real: root children have equal nontrivial sizes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            6
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "equal-subtrees",
+        "ternary"
+      ]
+    },
+    {
+      "id": "real-unordered-labels",
+      "name": "real: shuffled edges and labels preserve the rooted structure",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            6,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            4,
+            1
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "edge-order",
+        "labels"
+      ]
+    },
+    {
+      "id": "real-balanced-four-levels",
+      "name": "real: complete four-level binary tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            4,
+            9
+          ],
+          [
+            4,
+            10
+          ],
+          [
+            5,
+            11
+          ],
+          [
+            5,
+            12
+          ],
+          [
+            6,
+            13
+          ],
+          [
+            6,
+            14
+          ]
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "balanced",
+        "deep"
+      ]
+    },
+    {
+      "id": "real-mixed-branches",
+      "name": "real: several branching arities and subtree sizes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            3,
+            10
+          ],
+          [
+            8,
+            11
+          ],
+          [
+            9,
+            12
+          ],
+          [
+            10,
+            13
+          ],
+          [
+            10,
+            14
+          ]
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "mixed",
+        "branching"
+      ]
+    }
   ]
 }

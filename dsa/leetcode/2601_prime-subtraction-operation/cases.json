@@ -6,72 +6,145 @@
       "name": "sample: prime subtraction creates increasing order",
       "kind": "sample",
       "visible": true,
-      "input": { "nums": [4,9,6,10] },
+      "input": {
+        "nums": [
+          4,
+          9,
+          6,
+          10
+        ]
+      },
       "expected": true,
-      "tags": ["sample", "prime-subtraction"]
+      "tags": [
+        "sample",
+        "prime-subtraction"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: already strictly increasing",
       "kind": "sample",
       "visible": true,
-      "input": { "nums": [6,8,11,12] },
+      "input": {
+        "nums": [
+          6,
+          8,
+          11,
+          12
+        ]
+      },
       "expected": true,
-      "tags": ["sample", "no-operation"]
+      "tags": [
+        "sample",
+        "no-operation"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: final value cannot exceed predecessor",
       "kind": "sample",
       "visible": true,
-      "input": { "nums": [5,8,3] },
+      "input": {
+        "nums": [
+          5,
+          8,
+          3
+        ]
+      },
       "expected": false,
-      "tags": ["sample", "impossible"]
+      "tags": [
+        "sample",
+        "impossible"
+      ]
     },
     {
       "id": "trial-equal-twos",
       "name": "trial: equal smallest subtractable values",
       "kind": "trial",
       "visible": true,
-      "input": { "nums": [2,2] },
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
       "expected": false,
-      "tags": ["trial", "small-values"]
+      "tags": [
+        "trial",
+        "small-values"
+      ]
     },
     {
       "id": "trial-single-value",
       "name": "trial: one element is always increasing",
       "kind": "trial",
       "visible": true,
-      "input": { "nums": [1] },
+      "input": {
+        "nums": [
+          1
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "minimum"]
+      "tags": [
+        "trial",
+        "minimum"
+      ]
     },
     {
       "id": "real-equal-large-values",
-      "name": "hidden: equal values use different primes",
-      "kind": "real",
-      "visible": false,
-      "input": { "nums": [20,20,20,20] },
+      "name": "equal values use different primes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          20,
+          20,
+          20,
+          20
+        ]
+      },
       "expected": true,
-      "tags": ["hidden", "equal-values"]
+      "tags": [
+        "hidden",
+        "equal-values"
+      ]
     },
     {
       "id": "real-prime-gap-boundary",
-      "name": "hidden: strict predecessor boundary chooses lower prime",
-      "kind": "real",
-      "visible": false,
-      "input": { "nums": [8,8,9] },
+      "name": "strict predecessor boundary chooses lower prime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          8,
+          9
+        ]
+      },
       "expected": true,
-      "tags": ["hidden", "strict-boundary"]
+      "tags": [
+        "hidden",
+        "strict-boundary"
+      ]
     },
     {
       "id": "real-late-failure",
-      "name": "hidden: choices succeed until the final element",
-      "kind": "real",
-      "visible": false,
-      "input": { "nums": [4,7,10,2] },
+      "name": "choices succeed until the final element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          7,
+          10,
+          2
+        ]
+      },
       "expected": false,
-      "tags": ["hidden", "late-failure"]
+      "tags": [
+        "hidden",
+        "late-failure"
+      ]
     }
   ]
 }

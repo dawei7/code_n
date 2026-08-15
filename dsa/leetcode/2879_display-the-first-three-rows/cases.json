@@ -183,9 +183,9 @@
     },
     {
       "id": "real-order-and-cutoff",
-      "name": "hidden: repeated values preserve order and later rows are excluded",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated values preserve order and later rows are excluded",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "employees": [

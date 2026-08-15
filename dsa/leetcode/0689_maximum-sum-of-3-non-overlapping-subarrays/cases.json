@@ -141,9 +141,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: later total is larger",
-      "kind": "real",
-      "visible": false,
+      "name": "later total is larger",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -170,9 +170,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: adjacent windows are legal",
-      "kind": "real",
-      "visible": false,
+      "name": "adjacent windows are legal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -198,9 +198,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: right-side tie chooses earlier start",
-      "kind": "real",
-      "visible": false,
+      "name": "right-side tie chooses earlier start",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -225,4 +225,3 @@
     }
   ]
 }
-

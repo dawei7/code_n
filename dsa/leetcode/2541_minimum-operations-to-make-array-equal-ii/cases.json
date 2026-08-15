@@ -100,9 +100,9 @@
     },
     {
       "id": "real-nondivisible",
-      "name": "hidden: balanced totals but non-divisible differences",
-      "kind": "real",
-      "visible": false,
+      "name": "balanced totals but non-divisible differences",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           2,
@@ -122,9 +122,9 @@
     },
     {
       "id": "real-multiple-deficits",
-      "name": "hidden: one surplus fills two deficits",
-      "kind": "real",
-      "visible": false,
+      "name": "one surplus fills two deficits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           9,
@@ -148,9 +148,9 @@
     },
     {
       "id": "real-unit-sum-mismatch",
-      "name": "hidden: divisible differences with nonzero balance",
-      "kind": "real",
-      "visible": false,
+      "name": "divisible differences with nonzero balance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,

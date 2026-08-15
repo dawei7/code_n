@@ -6,135 +6,508 @@
       "name": "sample: overlapping components are trimmed on both sides",
       "kind": "sample",
       "visible": true,
-      "input": {"occupiedIntervals": [[2, 6], [4, 8], [10, 10], [10, 12], [14, 16]], "freeStart": 7, "freeEnd": 11},
-      "expected": [[2, 6], [12, 12], [14, 16]],
-      "tags": ["sample", "overlap", "two-sided-removal"]
+      "input": {
+        "occupiedIntervals": [
+          [
+            2,
+            6
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            10,
+            12
+          ],
+          [
+            14,
+            16
+          ]
+        ],
+        "freeStart": 7,
+        "freeEnd": 11
+      },
+      "expected": [
+        [
+          2,
+          6
+        ],
+        [
+          12,
+          12
+        ],
+        [
+          14,
+          16
+        ]
+      ],
+      "tags": [
+        "sample",
+        "overlap",
+        "two-sided-removal"
+      ]
     },
     {
       "id": "sample-right-trim",
       "name": "sample: overlapping inputs merge before right-side removal",
       "kind": "sample",
       "visible": true,
-      "input": {"occupiedIntervals": [[1, 5], [2, 3]], "freeStart": 3, "freeEnd": 8},
-      "expected": [[1, 2]],
-      "tags": ["sample", "overlap", "right-trim"]
+      "input": {
+        "occupiedIntervals": [
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "freeStart": 3,
+        "freeEnd": 8
+      },
+      "expected": [
+        [
+          1,
+          2
+        ]
+      ],
+      "tags": [
+        "sample",
+        "overlap",
+        "right-trim"
+      ]
     },
     {
       "id": "trial-free-before-single-interval",
       "name": "trial: disjoint free interval leaves one component unchanged",
       "kind": "trial",
       "visible": true,
-      "input": {"occupiedIntervals": [[5, 7]], "freeStart": 1, "freeEnd": 2},
-      "expected": [[5, 7]],
-      "tags": ["trial", "disjoint", "minimum-length"]
+      "input": {
+        "occupiedIntervals": [
+          [
+            5,
+            7
+          ]
+        ],
+        "freeStart": 1,
+        "freeEnd": 2
+      },
+      "expected": [
+        [
+          5,
+          7
+        ]
+      ],
+      "tags": [
+        "trial",
+        "disjoint",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-exact-removal",
       "name": "trial: free interval exactly removes the occupied set",
       "kind": "trial",
       "visible": true,
-      "input": {"occupiedIntervals": [[5, 7]], "freeStart": 5, "freeEnd": 7},
+      "input": {
+        "occupiedIntervals": [
+          [
+            5,
+            7
+          ]
+        ],
+        "freeStart": 5,
+        "freeEnd": 7
+      },
       "expected": [],
-      "tags": ["trial", "complete-removal", "empty-result"]
+      "tags": [
+        "trial",
+        "complete-removal",
+        "empty-result"
+      ]
     },
     {
       "id": "trial-touch-chain-unsorted",
       "name": "trial: unsorted consecutive components merge transitively",
       "kind": "trial",
       "visible": true,
-      "input": {"occupiedIntervals": [[5, 5], [1, 2], [3, 4]], "freeStart": 10, "freeEnd": 10},
-      "expected": [[1, 5]],
-      "tags": ["trial", "touching", "unsorted"]
+      "input": {
+        "occupiedIntervals": [
+          [
+            5,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "freeStart": 10,
+        "freeEnd": 10
+      },
+      "expected": [
+        [
+          1,
+          5
+        ]
+      ],
+      "tags": [
+        "trial",
+        "touching",
+        "unsorted"
+      ]
     },
     {
       "id": "trial-one-point-gap",
       "name": "trial: an unoccupied integer keeps components separate",
       "kind": "trial",
       "visible": true,
-      "input": {"occupiedIntervals": [[1, 1], [3, 3]], "freeStart": 10, "freeEnd": 10},
-      "expected": [[1, 1], [3, 3]],
-      "tags": ["trial", "non-touching", "singleton"]
+      "input": {
+        "occupiedIntervals": [
+          [
+            1,
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "freeStart": 10,
+        "freeEnd": 10
+      },
+      "expected": [
+        [
+          1,
+          1
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "tags": [
+        "trial",
+        "non-touching",
+        "singleton"
+      ]
     },
     {
       "id": "trial-split-component",
       "name": "trial: interior free interval splits one component",
       "kind": "trial",
       "visible": true,
-      "input": {"occupiedIntervals": [[1, 10]], "freeStart": 4, "freeEnd": 6},
-      "expected": [[1, 3], [7, 10]],
-      "tags": ["trial", "split", "inclusive-boundary"]
+      "input": {
+        "occupiedIntervals": [
+          [
+            1,
+            10
+          ]
+        ],
+        "freeStart": 4,
+        "freeEnd": 6
+      },
+      "expected": [
+        [
+          1,
+          3
+        ],
+        [
+          7,
+          10
+        ]
+      ],
+      "tags": [
+        "trial",
+        "split",
+        "inclusive-boundary"
+      ]
     },
     {
       "id": "trial-left-trim",
       "name": "trial: free interval removes the left occupied boundary",
       "kind": "trial",
       "visible": true,
-      "input": {"occupiedIntervals": [[1, 5]], "freeStart": 1, "freeEnd": 2},
-      "expected": [[3, 5]],
-      "tags": ["trial", "left-trim", "inclusive-boundary"]
+      "input": {
+        "occupiedIntervals": [
+          [
+            1,
+            5
+          ]
+        ],
+        "freeStart": 1,
+        "freeEnd": 2
+      },
+      "expected": [
+        [
+          3,
+          5
+        ]
+      ],
+      "tags": [
+        "trial",
+        "left-trim",
+        "inclusive-boundary"
+      ]
     },
     {
       "id": "real-right-trim",
-      "name": "hidden: free interval extends beyond the occupied right boundary",
-      "kind": "real",
-      "visible": false,
-      "input": {"occupiedIntervals": [[1, 5]], "freeStart": 4, "freeEnd": 8},
-      "expected": [[1, 3]],
-      "tags": ["hidden", "right-trim", "inclusive-boundary"]
+      "name": "free interval extends beyond the occupied right boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "occupiedIntervals": [
+          [
+            1,
+            5
+          ]
+        ],
+        "freeStart": 4,
+        "freeEnd": 8
+      },
+      "expected": [
+        [
+          1,
+          3
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "right-trim",
+        "inclusive-boundary"
+      ]
     },
     {
       "id": "real-free-between-components",
-      "name": "hidden: free points already absent do not change the union",
-      "kind": "real",
-      "visible": false,
-      "input": {"occupiedIntervals": [[1, 2], [8, 9]], "freeStart": 4, "freeEnd": 6},
-      "expected": [[1, 2], [8, 9]],
-      "tags": ["hidden", "disjoint", "multiple-components"]
+      "name": "free points already absent do not change the union",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "occupiedIntervals": [
+          [
+            1,
+            2
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "freeStart": 4,
+        "freeEnd": 6
+      },
+      "expected": [
+        [
+          1,
+          2
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "disjoint",
+        "multiple-components"
+      ]
     },
     {
       "id": "real-transitive-overlap-and-touch",
-      "name": "hidden: overlap and touching form one unsorted chain",
-      "kind": "real",
-      "visible": false,
-      "input": {"occupiedIntervals": [[8, 10], [3, 6], [1, 3], [7, 7]], "freeStart": 4, "freeEnd": 8},
-      "expected": [[1, 3], [9, 10]],
-      "tags": ["hidden", "transitive-merge", "split"]
+      "name": "overlap and touching form one unsorted chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "occupiedIntervals": [
+          [
+            8,
+            10
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            7,
+            7
+          ]
+        ],
+        "freeStart": 4,
+        "freeEnd": 8
+      },
+      "expected": [
+        [
+          1,
+          3
+        ],
+        [
+          9,
+          10
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "transitive-merge",
+        "split"
+      ]
     },
     {
       "id": "real-duplicates-and-nesting",
-      "name": "hidden: duplicate and nested intervals collapse before a point removal",
-      "kind": "real",
-      "visible": false,
-      "input": {"occupiedIntervals": [[4, 6], [4, 6], [5, 5]], "freeStart": 5, "freeEnd": 5},
-      "expected": [[4, 4], [6, 6]],
-      "tags": ["hidden", "duplicates", "singleton-removal"]
+      "name": "duplicate and nested intervals collapse before a point removal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "occupiedIntervals": [
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        "freeStart": 5,
+        "freeEnd": 5
+      },
+      "expected": [
+        [
+          4,
+          4
+        ],
+        [
+          6,
+          6
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "duplicates",
+        "singleton-removal"
+      ]
     },
     {
       "id": "real-free-spans-components",
-      "name": "hidden: one free interval trims and removes several components",
-      "kind": "real",
-      "visible": false,
-      "input": {"occupiedIntervals": [[1, 2], [10, 12], [20, 22]], "freeStart": 2, "freeEnd": 21},
-      "expected": [[1, 1], [22, 22]],
-      "tags": ["hidden", "multiple-components", "complete-removal"]
+      "name": "one free interval trims and removes several components",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "occupiedIntervals": [
+          [
+            1,
+            2
+          ],
+          [
+            10,
+            12
+          ],
+          [
+            20,
+            22
+          ]
+        ],
+        "freeStart": 2,
+        "freeEnd": 21
+      },
+      "expected": [
+        [
+          1,
+          1
+        ],
+        [
+          22,
+          22
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "multiple-components",
+        "complete-removal"
+      ]
     },
     {
       "id": "real-maximum-coordinate-touch",
-      "name": "hidden: touching intervals merge at the maximum coordinate",
-      "kind": "real",
-      "visible": false,
-      "input": {"occupiedIntervals": [[999999998, 999999999], [1000000000, 1000000000]], "freeStart": 1000000000, "freeEnd": 1000000000},
-      "expected": [[999999998, 999999999]],
-      "tags": ["hidden", "maximum-coordinate", "touching"]
+      "name": "touching intervals merge at the maximum coordinate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "occupiedIntervals": [
+          [
+            999999998,
+            999999999
+          ],
+          [
+            1000000000,
+            1000000000
+          ]
+        ],
+        "freeStart": 1000000000,
+        "freeEnd": 1000000000
+      },
+      "expected": [
+        [
+          999999998,
+          999999999
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "maximum-coordinate",
+        "touching"
+      ]
     },
     {
       "id": "real-overlapping-bridge-split",
-      "name": "hidden: free interval crosses the overlap that joined two inputs",
-      "kind": "real",
-      "visible": false,
-      "input": {"occupiedIntervals": [[1, 5], [4, 8]], "freeStart": 3, "freeEnd": 6},
-      "expected": [[1, 2], [7, 8]],
-      "tags": ["hidden", "overlap", "two-sided-removal"]
+      "name": "free interval crosses the overlap that joined two inputs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "occupiedIntervals": [
+          [
+            1,
+            5
+          ],
+          [
+            4,
+            8
+          ]
+        ],
+        "freeStart": 3,
+        "freeEnd": 6
+      },
+      "expected": [
+        [
+          1,
+          2
+        ],
+        [
+          7,
+          8
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "overlap",
+        "two-sided-removal"
+      ]
     }
   ]
 }

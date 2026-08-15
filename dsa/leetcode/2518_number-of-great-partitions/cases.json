@@ -7,81 +7,206 @@
       "name": "sample: six great ordered partitions",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4], "k": 4},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 4
+      },
       "expected": 6,
-      "tags": ["sample", "ordered-groups"]
+      "tags": [
+        "sample",
+        "ordered-groups"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: total can satisfy only one side at a time",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 3, 3], "k": 4},
+      "input": {
+        "nums": [
+          3,
+          3,
+          3
+        ],
+        "k": 4
+      },
       "expected": 0,
-      "tags": ["sample", "impossible"]
+      "tags": [
+        "sample",
+        "impossible"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: equal values remain distinct by index",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [6, 6], "k": 2},
+      "input": {
+        "nums": [
+          6,
+          6
+        ],
+        "k": 2
+      },
       "expected": 2,
-      "tags": ["sample", "duplicate-values"]
+      "tags": [
+        "sample",
+        "duplicate-values"
+      ]
     },
     {
       "id": "trial-two-ones",
       "name": "trial: two ones split into two ordered partitions",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1], "k": 1},
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 1
+      },
       "expected": 2,
-      "tags": ["trial", "minimum-feasible"]
+      "tags": [
+        "trial",
+        "minimum-feasible"
+      ]
     },
     {
       "id": "trial-balanced-equal-values",
       "name": "trial: exactly two elements must enter each group",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 2, 2, 2], "k": 4},
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "k": 4
+      },
       "expected": 6,
-      "tags": ["trial", "duplicate-values"]
+      "tags": [
+        "trial",
+        "duplicate-values"
+      ]
     },
     {
       "id": "real-single-element",
-      "name": "hidden: one element cannot populate both groups",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100], "k": 1},
+      "name": "one element cannot populate both groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100
+        ],
+        "k": 1
+      },
       "expected": 0,
-      "tags": ["hidden", "single-element"]
+      "tags": [
+        "hidden",
+        "single-element"
+      ]
     },
     {
       "id": "real-total-too-small",
-      "name": "hidden: total sum is below twice k",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3], "k": 4},
+      "name": "total sum is below twice k",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 4
+      },
       "expected": 0,
-      "tags": ["hidden", "impossible"]
+      "tags": [
+        "hidden",
+        "impossible"
+      ]
     },
     {
       "id": "real-every-nonempty-side-works",
-      "name": "hidden: every proper nonempty assignment is great",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 6, 7], "k": 5},
+      "name": "every proper nonempty assignment is great",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          6,
+          7
+        ],
+        "k": 5
+      },
       "expected": 6,
-      "tags": ["hidden", "all-positive"]
+      "tags": [
+        "hidden",
+        "all-positive"
+      ]
     },
     {
       "id": "real-modulo",
-      "name": "hidden: many indexed assignments require modulo reduction",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "k": 1},
+      "name": "many indexed assignments require modulo reduction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 1
+      },
       "expected": 511620081,
-      "tags": ["hidden", "modulo"]
+      "tags": [
+        "hidden",
+        "modulo"
+      ]
     }
   ]
 }

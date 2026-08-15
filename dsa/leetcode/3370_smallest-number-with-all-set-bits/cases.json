@@ -127,8 +127,8 @@
     {
       "id": "boundary-16",
       "name": "boundary: n equals 16",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 16
       },
@@ -141,8 +141,8 @@
     {
       "id": "boundary-31",
       "name": "boundary: n equals 31",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 31
       },
@@ -155,8 +155,8 @@
     {
       "id": "boundary-32",
       "name": "boundary: n equals 32",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 32
       },
@@ -169,8 +169,8 @@
     {
       "id": "boundary-63",
       "name": "boundary: n equals 63",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 63
       },
@@ -183,8 +183,8 @@
     {
       "id": "boundary-64",
       "name": "boundary: n equals 64",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 64
       },
@@ -197,8 +197,8 @@
     {
       "id": "boundary-127",
       "name": "boundary: n equals 127",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 127
       },
@@ -211,8 +211,8 @@
     {
       "id": "boundary-128",
       "name": "boundary: n equals 128",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 128
       },
@@ -225,8 +225,8 @@
     {
       "id": "boundary-255",
       "name": "boundary: n equals 255",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 255
       },
@@ -239,8 +239,8 @@
     {
       "id": "boundary-256",
       "name": "boundary: n equals 256",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 256
       },
@@ -253,8 +253,8 @@
     {
       "id": "boundary-511",
       "name": "boundary: n equals 511",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 511
       },
@@ -267,8 +267,8 @@
     {
       "id": "boundary-512",
       "name": "boundary: n equals 512",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 512
       },
@@ -281,8 +281,8 @@
     {
       "id": "boundary-1000",
       "name": "boundary: n equals 1000",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000
       },
@@ -294,4 +294,3 @@
     }
   ]
 }
-

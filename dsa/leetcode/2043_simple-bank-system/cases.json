@@ -8,11 +8,61 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "operations": ["Bank", "withdraw", "transfer", "deposit", "transfer", "withdraw"],
-        "arguments": [[[10, 100, 20, 50, 30]], [3, 10], [5, 1, 20], [5, 20], [3, 4, 15], [10, 50]]
+        "operations": [
+          "Bank",
+          "withdraw",
+          "transfer",
+          "deposit",
+          "transfer",
+          "withdraw"
+        ],
+        "arguments": [
+          [
+            [
+              10,
+              100,
+              20,
+              50,
+              30
+            ]
+          ],
+          [
+            3,
+            10
+          ],
+          [
+            5,
+            1,
+            20
+          ],
+          [
+            5,
+            20
+          ],
+          [
+            3,
+            4,
+            15
+          ],
+          [
+            10,
+            50
+          ]
+        ]
       },
-      "expected": [null, true, true, true, false, false],
-      "tags": ["sample", "all-operations", "invalid-account"]
+      "expected": [
+        null,
+        true,
+        true,
+        true,
+        false,
+        false
+      ],
+      "tags": [
+        "sample",
+        "all-operations",
+        "invalid-account"
+      ]
     },
     {
       "id": "trial-deposit-then-insufficient",
@@ -20,11 +70,36 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["Bank", "deposit", "withdraw"],
-        "arguments": [[[5]], [1, 4], [1, 10]]
+        "operations": [
+          "Bank",
+          "deposit",
+          "withdraw"
+        ],
+        "arguments": [
+          [
+            [
+              5
+            ]
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            10
+          ]
+        ]
       },
-      "expected": [null, true, false],
-      "tags": ["deposit", "insufficient-funds"]
+      "expected": [
+        null,
+        true,
+        false
+      ],
+      "tags": [
+        "deposit",
+        "insufficient-funds"
+      ]
     },
     {
       "id": "trial-transfer-then-withdraw",
@@ -32,59 +107,205 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["Bank", "transfer", "withdraw"],
-        "arguments": [[[8, 2]], [1, 2, 3], [2, 4]]
+        "operations": [
+          "Bank",
+          "transfer",
+          "withdraw"
+        ],
+        "arguments": [
+          [
+            [
+              8,
+              2
+            ]
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ]
       },
-      "expected": [null, true, true],
-      "tags": ["transfer", "state"]
+      "expected": [
+        null,
+        true,
+        true
+      ],
+      "tags": [
+        "transfer",
+        "state"
+      ]
     },
     {
       "id": "real-invalid-destination-is-atomic",
-      "name": "hidden: failed transfer preserves the valid source balance",
-      "kind": "real",
-      "visible": false,
+      "name": "failed transfer preserves the valid source balance",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["Bank", "transfer", "withdraw"],
-        "arguments": [[[10]], [1, 2, 5], [1, 10]]
+        "operations": [
+          "Bank",
+          "transfer",
+          "withdraw"
+        ],
+        "arguments": [
+          [
+            [
+              10
+            ]
+          ],
+          [
+            1,
+            2,
+            5
+          ],
+          [
+            1,
+            10
+          ]
+        ]
       },
-      "expected": [null, false, true],
-      "tags": ["hidden", "atomic-failure", "invalid-destination"]
+      "expected": [
+        null,
+        false,
+        true
+      ],
+      "tags": [
+        "hidden",
+        "atomic-failure",
+        "invalid-destination"
+      ]
     },
     {
       "id": "real-exact-balance-and-zero",
-      "name": "hidden: exact and zero withdrawals are valid",
-      "kind": "real",
-      "visible": false,
+      "name": "exact and zero withdrawals are valid",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["Bank", "withdraw", "withdraw", "deposit"],
-        "arguments": [[[7]], [1, 7], [1, 0], [1, 0]]
+        "operations": [
+          "Bank",
+          "withdraw",
+          "withdraw",
+          "deposit"
+        ],
+        "arguments": [
+          [
+            [
+              7
+            ]
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ]
       },
-      "expected": [null, true, true, true],
-      "tags": ["hidden", "exact-balance", "zero-money"]
+      "expected": [
+        null,
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "hidden",
+        "exact-balance",
+        "zero-money"
+      ]
     },
     {
       "id": "real-self-transfer",
-      "name": "hidden: a self-transfer preserves available funds",
-      "kind": "real",
-      "visible": false,
+      "name": "a self-transfer preserves available funds",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["Bank", "transfer", "withdraw"],
-        "arguments": [[[7]], [1, 1, 7], [1, 7]]
+        "operations": [
+          "Bank",
+          "transfer",
+          "withdraw"
+        ],
+        "arguments": [
+          [
+            [
+              7
+            ]
+          ],
+          [
+            1,
+            1,
+            7
+          ],
+          [
+            1,
+            7
+          ]
+        ]
       },
-      "expected": [null, true, true],
-      "tags": ["hidden", "self-transfer"]
+      "expected": [
+        null,
+        true,
+        true
+      ],
+      "tags": [
+        "hidden",
+        "self-transfer"
+      ]
     },
     {
       "id": "real-money-boundary",
-      "name": "hidden: balances can grow beyond the transaction bound",
-      "kind": "real",
-      "visible": false,
+      "name": "balances can grow beyond the transaction bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["Bank", "deposit", "transfer", "withdraw"],
-        "arguments": [[[1000000000000, 0]], [1, 1000000000000], [1, 2, 1500000000000], [2, 1500000000000]]
+        "operations": [
+          "Bank",
+          "deposit",
+          "transfer",
+          "withdraw"
+        ],
+        "arguments": [
+          [
+            [
+              1000000000000,
+              0
+            ]
+          ],
+          [
+            1,
+            1000000000000
+          ],
+          [
+            1,
+            2,
+            1500000000000
+          ],
+          [
+            2,
+            1500000000000
+          ]
+        ]
       },
-      "expected": [null, true, true, true],
-      "tags": ["hidden", "money-boundary", "wide-balance"]
+      "expected": [
+        null,
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "hidden",
+        "money-boundary",
+        "wide-balance"
+      ]
     }
   ]
 }

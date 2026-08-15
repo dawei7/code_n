@@ -160,9 +160,9 @@
     },
     {
       "id": "real-repeated-odds",
-      "name": "hidden: repeated odd values do not affect even uniqueness",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated odd values do not affect even uniqueness",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -184,9 +184,9 @@
     },
     {
       "id": "real-maximum-repeated",
-      "name": "hidden: repeated maximum even is skipped",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated maximum even is skipped",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           99,
@@ -207,9 +207,9 @@
     },
     {
       "id": "real-all-evens-repeated",
-      "name": "hidden: every even frequency exceeds one",
-      "kind": "real",
-      "visible": false,
+      "name": "every even frequency exceeds one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -232,9 +232,9 @@
     },
     {
       "id": "real-first-element",
-      "name": "hidden: a qualifying first element returns immediately in the second pass",
-      "kind": "real",
-      "visible": false,
+      "name": "a qualifying first element returns immediately in the second pass",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -255,9 +255,9 @@
     },
     {
       "id": "real-only-repeated-even",
-      "name": "hidden: odds plus one repeated even still return the fallback",
-      "kind": "real",
-      "visible": false,
+      "name": "odds plus one repeated even still return the fallback",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -279,9 +279,9 @@
     },
     {
       "id": "real-maximum-length",
-      "name": "hidden: a unique maximum value follows ninety-nine nonqualifying entries",
-      "kind": "real",
-      "visible": false,
+      "name": "a unique maximum value follows ninety-nine nonqualifying entries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,

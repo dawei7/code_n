@@ -7,120 +7,290 @@
       "name": "sample: two different repeated prefixes",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["apple", "apply", "banana", "bandit"], "k": 2},
+      "input": {
+        "words": [
+          "apple",
+          "apply",
+          "banana",
+          "bandit"
+        ],
+        "k": 2
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "two-groups", "explained"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "two-groups",
+        "explained"
+      ]
     },
     {
       "id": "sample-one-prefix",
       "name": "sample: one shared three-letter prefix",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["car", "cat", "cartoon"], "k": 3},
+      "input": {
+        "words": [
+          "car",
+          "cat",
+          "cartoon"
+        ],
+        "k": 3
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "one-group", "singleton-prefix"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "one-group",
+        "singleton-prefix"
+      ]
     },
     {
       "id": "sample-duplicates",
       "name": "sample: duplicate strings remain separate words",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["bat", "dog", "dog", "doggy", "bat"], "k": 3},
+      "input": {
+        "words": [
+          "bat",
+          "dog",
+          "dog",
+          "doggy",
+          "bat"
+        ],
+        "k": 3
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "duplicates", "explained"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "duplicates",
+        "explained"
+      ]
     },
     {
       "id": "trial-short-words-ignored",
       "name": "trial: short words are ignored before grouping",
       "kind": "trial",
       "visible": true,
-      "input": {"words": ["a", "ab", "abc", "abcd"], "k": 3},
+      "input": {
+        "words": [
+          "a",
+          "ab",
+          "abc",
+          "abcd"
+        ],
+        "k": 3
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "short-words", "one-group"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "short-words",
+        "one-group"
+      ]
     },
     {
       "id": "trial-all-short",
       "name": "trial: no word reaches the prefix length",
       "kind": "trial",
       "visible": true,
-      "input": {"words": ["a", "bb", "ccc"], "k": 4},
+      "input": {
+        "words": [
+          "a",
+          "bb",
+          "ccc"
+        ],
+        "k": 4
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "all-short", "zero-groups"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-short",
+        "zero-groups"
+      ]
     },
     {
       "id": "trial-duplicate-pair",
       "name": "trial: two identical words form one group",
       "kind": "trial",
       "visible": true,
-      "input": {"words": ["same", "same"], "k": 4},
+      "input": {
+        "words": [
+          "same",
+          "same"
+        ],
+        "k": 4
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "duplicates", "distinct-indices"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicates",
+        "distinct-indices"
+      ]
     },
     {
       "id": "trial-all-singletons",
       "name": "trial: every valid prefix occurs once",
       "kind": "trial",
       "visible": true,
-      "input": {"words": ["apple", "angle", "berry", "bison"], "k": 2},
+      "input": {
+        "words": [
+          "apple",
+          "angle",
+          "berry",
+          "bison"
+        ],
+        "k": 2
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "singleton-prefixes", "zero-groups"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "singleton-prefixes",
+        "zero-groups"
+      ]
     },
     {
       "id": "real-many-pairs-one-group",
-      "name": "hidden: four words with one prefix still count once",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["aaa", "aab", "aac", "aad"], "k": 2},
+      "name": "four words with one prefix still count once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aaa",
+          "aab",
+          "aac",
+          "aad"
+        ],
+        "k": 2
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "groups-not-pairs", "large-group"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "groups-not-pairs",
+        "large-group"
+      ]
     },
     {
       "id": "real-groups-and-singleton",
-      "name": "hidden: two repeated prefixes and one singleton",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["abx", "aby", "abz", "cdx", "cdy", "efg"], "k": 2},
+      "name": "two repeated prefixes and one singleton",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abx",
+          "aby",
+          "abz",
+          "cdx",
+          "cdy",
+          "efg"
+        ],
+        "k": 2
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "multiple-groups", "singleton-prefix"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "multiple-groups",
+        "singleton-prefix"
+      ]
     },
     {
       "id": "real-one-letter-prefix",
-      "name": "hidden: minimum prefix length",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["a", "apple", "ant", "b", "boat", "c"], "k": 1},
+      "name": "minimum prefix length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "apple",
+          "ant",
+          "b",
+          "boat",
+          "c"
+        ],
+        "k": 1
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "minimum-k", "multiple-groups"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "minimum-k",
+        "multiple-groups"
+      ]
     },
     {
       "id": "real-maximum-prefix-length",
-      "name": "hidden: maximum prefix length excludes a ninety-nine-character word",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"], "k": 100},
+      "name": "maximum prefix length excludes a ninety-nine-character word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        ],
+        "k": 100
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-k", "short-word"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-k",
+        "short-word"
+      ]
     },
     {
       "id": "real-longer-words-same-prefix",
-      "name": "hidden: suffix differences do not affect connectivity",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["prefixone", "prefixtwo", "prefab", "prevent"], "k": 4},
+      "name": "suffix differences do not affect connectivity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "prefixone",
+          "prefixtwo",
+          "prefab",
+          "prevent"
+        ],
+        "k": 4
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "longer-words", "suffix-ignored"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "longer-words",
+        "suffix-ignored"
+      ]
     }
   ]
 }

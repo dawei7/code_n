@@ -142,8 +142,8 @@
     {
       "id": "real-last-occurrence",
       "name": "real: marking at last occurrences preserves enough work time",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -166,8 +166,8 @@
     {
       "id": "real-insufficient-time",
       "name": "real: every index appears but required work exceeds the sequence",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10

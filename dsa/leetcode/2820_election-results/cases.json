@@ -198,9 +198,9 @@
     },
     {
       "id": "real-abstentions",
-      "name": "hidden: abstentions do not change totals",
-      "kind": "real",
-      "visible": false,
+      "name": "abstentions do not change totals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Votes": [
@@ -244,9 +244,9 @@
     },
     {
       "id": "real-three-way-tie",
-      "name": "hidden: full and split votes form a three-way tie",
-      "kind": "real",
-      "visible": false,
+      "name": "full and split votes form a three-way tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Votes": [
@@ -325,9 +325,9 @@
     },
     {
       "id": "real-only-abstentions",
-      "name": "hidden: an election with only abstentions has no candidate row",
-      "kind": "real",
-      "visible": false,
+      "name": "an election with only abstentions has no candidate row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Votes": [
@@ -356,4 +356,3 @@
     }
   ]
 }
-

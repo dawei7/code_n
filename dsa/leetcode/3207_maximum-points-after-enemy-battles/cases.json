@@ -113,8 +113,8 @@
     {
       "id": "real-unsorted-minimum-last",
       "name": "real: the minimum may occur at the final position",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "enemyEnergies": [
           20,
@@ -132,8 +132,8 @@
     {
       "id": "real-large-current-energy",
       "name": "real: large starting energy produces many repeated scores",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "enemyEnergies": [
           100,
@@ -150,8 +150,8 @@
     {
       "id": "real-billion-energy-values",
       "name": "real: billion-value enemies require wide totals",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "enemyEnergies": [
           1000000000,
@@ -168,8 +168,8 @@
     {
       "id": "real-remainder-energy",
       "name": "real: leftover energy below the minimum earns no point",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "enemyEnergies": [
           6,
@@ -186,8 +186,8 @@
     {
       "id": "real-many-conversions",
       "name": "real: every nonminimum enemy contributes energy",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "enemyEnergies": [
           8,
@@ -207,8 +207,8 @@
     {
       "id": "real-single-unaffordable",
       "name": "real: one unaffordable enemy cannot be marked first",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "enemyEnergies": [
           9

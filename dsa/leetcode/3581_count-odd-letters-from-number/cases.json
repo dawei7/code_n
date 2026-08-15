@@ -7,90 +7,151 @@
       "name": "sample: five letters have odd parity in four-one",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 41},
+      "input": {
+        "n": 41
+      },
       "expected": 5,
-      "tags": ["sample", "two-digits", "mixed-words"]
+      "tags": [
+        "sample",
+        "two-digits",
+        "mixed-words"
+      ]
     },
     {
       "id": "sample-two-zero",
       "name": "sample: zero contributes to the concatenated digit names",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 20},
+      "input": {
+        "n": 20
+      },
       "expected": 5,
-      "tags": ["sample", "zero-digit", "mixed-words"]
+      "tags": [
+        "sample",
+        "zero-digit",
+        "mixed-words"
+      ]
     },
     {
       "id": "trial-single-one",
       "name": "trial: every letter of one occurs once",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1},
+      "input": {
+        "n": 1
+      },
       "expected": 3,
-      "tags": ["trial", "single-digit", "minimum-input"]
+      "tags": [
+        "trial",
+        "single-digit",
+        "minimum-input"
+      ]
     },
     {
       "id": "trial-single-nine",
       "name": "trial: repeated letters within one digit word cancel",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 9},
+      "input": {
+        "n": 9
+      },
       "expected": 2,
-      "tags": ["trial", "single-digit", "internal-cancellation"]
+      "tags": [
+        "trial",
+        "single-digit",
+        "internal-cancellation"
+      ]
     },
     {
       "id": "trial-repeated-one",
       "name": "trial: two identical digit words cancel every letter",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 11},
+      "input": {
+        "n": 11
+      },
       "expected": 0,
-      "tags": ["trial", "repeated-digit", "complete-cancellation"]
+      "tags": [
+        "trial",
+        "repeated-digit",
+        "complete-cancellation"
+      ]
     },
     {
       "id": "real-leading-one-and-zeros",
       "name": "real: nine zero words cancel in pairs except one",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000000000},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000000
+      },
       "expected": 3,
-      "tags": ["real", "upper-bound", "ten-digits", "zero-digit"]
+      "tags": [
+        "real",
+        "upper-bound",
+        "ten-digits",
+        "zero-digit"
+      ]
     },
     {
       "id": "real-nine-repeated",
       "name": "real: an odd number of identical digit words preserves its parity",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 999999999},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 999999999
+      },
       "expected": 2,
-      "tags": ["real", "nine-digits", "repeated-digit"]
+      "tags": [
+        "real",
+        "nine-digits",
+        "repeated-digit"
+      ]
     },
     {
       "id": "real-alternating-one-zero",
       "name": "real: cross-word letter parity is accumulated globally",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 101010101},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 101010101
+      },
       "expected": 3,
-      "tags": ["real", "alternating-digits", "zero-digit"]
+      "tags": [
+        "real",
+        "alternating-digits",
+        "zero-digit"
+      ]
     },
     {
       "id": "real-alternating-eight-zero",
       "name": "real: internal and cross-word cancellations combine",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 808080808},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 808080808
+      },
       "expected": 5,
-      "tags": ["real", "alternating-digits", "parity-cancellation"]
+      "tags": [
+        "real",
+        "alternating-digits",
+        "parity-cancellation"
+      ]
     },
     {
       "id": "real-all-nonzero-digits",
       "name": "real: many different digit names share letters",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 123456789},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 123456789
+      },
       "expected": 6,
-      "tags": ["real", "nine-digits", "distinct-digits"]
+      "tags": [
+        "real",
+        "nine-digits",
+        "distinct-digits"
+      ]
     }
   ]
 }

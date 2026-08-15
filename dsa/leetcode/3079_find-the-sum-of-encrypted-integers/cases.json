@@ -6,65 +6,176 @@
       "name": "sample: one-digit values remain unchanged",
       "kind": "sample",
       "visible": true,
-      "input": { "nums": [1, 2, 3] },
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 6,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-multi-digit",
       "name": "sample: repeat each number's largest digit",
       "kind": "sample",
       "visible": true,
-      "input": { "nums": [10, 21, 31] },
+      "input": {
+        "nums": [
+          10,
+          21,
+          31
+        ]
+      },
       "expected": 66,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "trial-zero-digits",
       "name": "trial: zero digits are replaced too",
       "kind": "trial",
       "visible": true,
-      "input": { "nums": [90, 101, 808] },
+      "input": {
+        "nums": [
+          90,
+          101,
+          808
+        ]
+      },
       "expected": 1098,
-      "tags": ["trial", "zero-digit"]
+      "tags": [
+        "trial",
+        "zero-digit"
+      ]
     },
     {
       "id": "trial-corrected-authored-example",
       "name": "trial: mixed one- and two-digit values",
       "kind": "trial",
       "visible": true,
-      "input": { "nums": [5, 9, 12] },
+      "input": {
+        "nums": [
+          5,
+          9,
+          12
+        ]
+      },
       "expected": 36,
-      "tags": ["trial", "mixed-lengths"]
+      "tags": [
+        "trial",
+        "mixed-lengths"
+      ]
     },
     {
       "id": "real-four-digit-boundary",
       "name": "real: the only legal four-digit value",
-      "kind": "real",
-      "visible": false,
-      "input": { "nums": [1000, 999, 909, 1] },
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000,
+          999,
+          909,
+          1
+        ]
+      },
       "expected": 3110,
-      "tags": ["real", "boundary", "zero-digit"]
+      "tags": [
+        "real",
+        "boundary",
+        "zero-digit"
+      ]
     },
     {
       "id": "real-varied-digits",
       "name": "real: varied legal digit patterns",
-      "kind": "real",
-      "visible": false,
-      "input": { "nums": [12, 345, 700, 86, 222] },
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          345,
+          700,
+          86,
+          222
+        ]
+      },
       "expected": 1664,
-      "tags": ["real", "mixed-lengths"]
+      "tags": [
+        "real",
+        "mixed-lengths"
+      ]
     },
     {
       "id": "real-maximum-array-length",
       "name": "real: fifty values at the four-digit boundary",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "nums": [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000]
+        "nums": [
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000
+        ]
       },
       "expected": 55550,
-      "tags": ["real", "maximum-length", "boundary"]
+      "tags": [
+        "real",
+        "maximum-length",
+        "boundary"
+      ]
     }
   ]
 }

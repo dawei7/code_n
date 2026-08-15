@@ -7,73 +7,236 @@
       "name": "sample: count qualifying domains",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"Emails": [
-        {"id": 336, "email": "hwkiy@test.edu"},
-        {"id": 489, "email": "adcmaf@outlook.com"},
-        {"id": 449, "email": "vrzmwyum@yahoo.com"},
-        {"id": 95, "email": "tof@test.edu"},
-        {"id": 320, "email": "jxhbagkpm@example.org"},
-        {"id": 411, "email": "zxcf@outlook.com"}
-      ]}},
-      "expected": {"columns": ["email_domain", "count"], "rows": [["outlook.com", 2], ["yahoo.com", 1]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["sample", "grouping", "suffix", "ordering"]
+      "input": {
+        "tables": {
+          "Emails": [
+            {
+              "id": 336,
+              "email": "hwkiy@test.edu"
+            },
+            {
+              "id": 489,
+              "email": "adcmaf@outlook.com"
+            },
+            {
+              "id": 449,
+              "email": "vrzmwyum@yahoo.com"
+            },
+            {
+              "id": 95,
+              "email": "tof@test.edu"
+            },
+            {
+              "id": 320,
+              "email": "jxhbagkpm@example.org"
+            },
+            {
+              "id": 411,
+              "email": "zxcf@outlook.com"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "email_domain",
+          "count"
+        ],
+        "rows": [
+          [
+            "outlook.com",
+            2
+          ],
+          [
+            "yahoo.com",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "grouping",
+        "suffix",
+        "ordering"
+      ]
     },
     {
       "id": "sample-shared-domain",
       "name": "sample: different local parts share one domain",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"Emails": [
-        {"id": 1, "email": "a@site.com"},
-        {"id": 2, "email": "b@site.com"},
-        {"id": 3, "email": "c@site.com"}
-      ]}},
-      "expected": {"columns": ["email_domain", "count"], "rows": [["site.com", 3]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["sample", "shared-domain"]
+      "input": {
+        "tables": {
+          "Emails": [
+            {
+              "id": 1,
+              "email": "a@site.com"
+            },
+            {
+              "id": 2,
+              "email": "b@site.com"
+            },
+            {
+              "id": 3,
+              "email": "c@site.com"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "email_domain",
+          "count"
+        ],
+        "rows": [
+          [
+            "site.com",
+            3
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "shared-domain"
+      ]
     },
     {
       "id": "trial-no-com-domains",
       "name": "trial: no qualifying suffix",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"Emails": [
-        {"id": 4, "email": "a@school.edu"},
-        {"id": 5, "email": "b@group.org"}
-      ]}},
-      "expected": {"columns": ["email_domain", "count"], "rows": []},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "empty-output"]
+      "input": {
+        "tables": {
+          "Emails": [
+            {
+              "id": 4,
+              "email": "a@school.edu"
+            },
+            {
+              "id": 5,
+              "email": "b@group.org"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "email_domain",
+          "count"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "empty-output"
+      ]
     },
     {
       "id": "real-exact-suffix",
-      "name": "hidden: com must be the final suffix",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"Emails": [
-        {"id": 6, "email": "a@shop.com.org"},
-        {"id": 7, "email": "b@company.net"},
-        {"id": 8, "email": "c@shop.com"}
-      ]}},
-      "expected": {"columns": ["email_domain", "count"], "rows": [["shop.com", 1]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["suffix", "semantic-trap"]
+      "name": "com must be the final suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Emails": [
+            {
+              "id": 6,
+              "email": "a@shop.com.org"
+            },
+            {
+              "id": 7,
+              "email": "b@company.net"
+            },
+            {
+              "id": 8,
+              "email": "c@shop.com"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "email_domain",
+          "count"
+        ],
+        "rows": [
+          [
+            "shop.com",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "suffix",
+        "semantic-trap"
+      ]
     },
     {
       "id": "real-domain-order",
-      "name": "hidden: sort domains rather than counts",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"Emails": [
-        {"id": 9, "email": "u@zeta.com"},
-        {"id": 10, "email": "v@alpha.com"},
-        {"id": 11, "email": "w@zeta.com"},
-        {"id": 12, "email": "x@middle.com"}
-      ]}},
-      "expected": {"columns": ["email_domain", "count"], "rows": [["alpha.com", 1], ["middle.com", 1], ["zeta.com", 2]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["ordering", "counts"]
+      "name": "sort domains rather than counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Emails": [
+            {
+              "id": 9,
+              "email": "u@zeta.com"
+            },
+            {
+              "id": 10,
+              "email": "v@alpha.com"
+            },
+            {
+              "id": 11,
+              "email": "w@zeta.com"
+            },
+            {
+              "id": 12,
+              "email": "x@middle.com"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "email_domain",
+          "count"
+        ],
+        "rows": [
+          [
+            "alpha.com",
+            1
+          ],
+          [
+            "middle.com",
+            1
+          ],
+          [
+            "zeta.com",
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "ordering",
+        "counts"
+      ]
     }
   ]
 }

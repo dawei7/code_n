@@ -1,1 +1,125 @@
-{"challenge_id":"lc_3320","cases":[{"id":"sample-all-fire","name":"sample: three Fire rounds","kind":"sample","visible":true,"input":{"s":"FFF"},"expected":3,"tags":["sample","repeated-alice"]},{"id":"sample-mixed-five","name":"sample: mixed five-round battle","kind":"sample","visible":true,"input":{"s":"FWEFW"},"expected":18,"tags":["sample","mixed"]},{"id":"trial-single-fire","name":"trial: one Fire round","kind":"trial","visible":true,"input":{"s":"F"},"expected":1,"tags":["minimum"]},{"id":"trial-single-water","name":"trial: one Water round","kind":"trial","visible":true,"input":{"s":"W"},"expected":1,"tags":["minimum"]},{"id":"trial-two-round-cycle","name":"trial: two different Alice moves","kind":"trial","visible":true,"input":{"s":"FW"},"expected":2,"tags":["short"]},{"id":"trial-full-cycle","name":"trial: one full creature cycle","kind":"trial","visible":true,"input":{"s":"FWE"},"expected":4,"tags":["cycle"]},{"id":"trial-repeated-earth","name":"trial: repeated ending creature","kind":"trial","visible":true,"input":{"s":"WEE"},"expected":5,"tags":["repeated-alice"]},{"id":"real-alternating-pairs","name":"real: alternating Fire and Earth","kind":"real","visible":false,"input":{"s":"FEFE"},"expected":10,"tags":["alternating"]},{"id":"real-two-full-cycles","name":"real: two complete cycles","kind":"real","visible":false,"input":{"s":"FWEFWE"},"expected":38,"tags":["cycle","score-difference"]}]}
+{
+  "challenge_id": "lc_3320",
+  "cases": [
+    {
+      "id": "sample-all-fire",
+      "name": "sample: three Fire rounds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "FFF"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "repeated-alice"
+      ]
+    },
+    {
+      "id": "sample-mixed-five",
+      "name": "sample: mixed five-round battle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "FWEFW"
+      },
+      "expected": 18,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-single-fire",
+      "name": "trial: one Fire round",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "F"
+      },
+      "expected": 1,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-single-water",
+      "name": "trial: one Water round",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "W"
+      },
+      "expected": 1,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-two-round-cycle",
+      "name": "trial: two different Alice moves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "FW"
+      },
+      "expected": 2,
+      "tags": [
+        "short"
+      ]
+    },
+    {
+      "id": "trial-full-cycle",
+      "name": "trial: one full creature cycle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "FWE"
+      },
+      "expected": 4,
+      "tags": [
+        "cycle"
+      ]
+    },
+    {
+      "id": "trial-repeated-earth",
+      "name": "trial: repeated ending creature",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "WEE"
+      },
+      "expected": 5,
+      "tags": [
+        "repeated-alice"
+      ]
+    },
+    {
+      "id": "real-alternating-pairs",
+      "name": "real: alternating Fire and Earth",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "FEFE"
+      },
+      "expected": 10,
+      "tags": [
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-two-full-cycles",
+      "name": "real: two complete cycles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "FWEFWE"
+      },
+      "expected": 38,
+      "tags": [
+        "cycle",
+        "score-difference"
+      ]
+    }
+  ]
+}

@@ -97,9 +97,9 @@
     },
     {
       "id": "hidden-break",
-      "name": "hidden: difference change separates runs",
-      "kind": "real",
-      "visible": false,
+      "name": "difference change separates runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -119,9 +119,9 @@
     },
     {
       "id": "hidden-no-slices",
-      "name": "hidden: every adjacent difference changes",
-      "kind": "real",
-      "visible": false,
+      "name": "every adjacent difference changes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -139,9 +139,9 @@
     },
     {
       "id": "hidden-overlapping",
-      "name": "hidden: several overlapping slices",
-      "kind": "real",
-      "visible": false,
+      "name": "several overlapping slices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,

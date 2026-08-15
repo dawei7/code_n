@@ -1,13 +1,174 @@
 {
   "challenge_id": "lc_2936",
   "cases": [
-    {"id":"sample-single-block","name":"sample: all values form one block","kind":"sample","visible":true,"input":{"nums":[3,3,3,3,3]},"expected":1,"tags":["sample"]},
-    {"id":"sample-varied-blocks","name":"sample: five blocks with varied lengths","kind":"sample","visible":true,"input":{"nums":[1,1,1,3,9,9,9,2,10,10]},"expected":5,"tags":["sample"]},
-    {"id":"sample-all-singletons","name":"sample: every value starts a block","kind":"sample","visible":true,"input":{"nums":[1,2,3,4,5,6,7]},"expected":7,"tags":["sample"]},
-    {"id":"trial-single-element","name":"trial: one element is one block","kind":"trial","visible":true,"input":{"nums":[42]},"expected":1,"tags":["minimum"]},
-    {"id":"trial-two-long-blocks","name":"trial: boundary lies between equal halves","kind":"trial","visible":true,"input":{"nums":[1,1,1,1,2,2,2,2]},"expected":2,"tags":["binary-search"]},
-    {"id":"real-uneven-lengths","name":"hidden: short blocks surround a long block","kind":"real","visible":false,"input":{"nums":[7,8,8,8,8,8,9]},"expected":3,"tags":["hidden","uneven-blocks"]},
-    {"id":"real-large-values","name":"hidden: value magnitude does not affect boundaries","kind":"real","visible":false,"input":{"nums":[1000000000,1000000000,5,5,5,999999999]},"expected":3,"tags":["hidden","value-boundary"]},
-    {"id":"real-many-singletons","name":"hidden: immediate unequal probes repeatedly advance","kind":"real","visible":false,"input":{"nums":[11,22,33,44,55,66,77,88,99,100]},"expected":10,"tags":["hidden","singleton-blocks"]}
+    {
+      "id": "sample-single-block",
+      "name": "sample: all values form one block",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-varied-blocks",
+      "name": "sample: five blocks with varied lengths",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          3,
+          9,
+          9,
+          9,
+          2,
+          10,
+          10
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-singletons",
+      "name": "sample: every value starts a block",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: one element is one block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          42
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-two-long-blocks",
+      "name": "trial: boundary lies between equal halves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "binary-search"
+      ]
+    },
+    {
+      "id": "real-uneven-lengths",
+      "name": "short blocks surround a long block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          8,
+          8,
+          8,
+          8,
+          8,
+          9
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "uneven-blocks"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "value magnitude does not affect boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000,
+          5,
+          5,
+          5,
+          999999999
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-many-singletons",
+      "name": "immediate unequal probes repeatedly advance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          11,
+          22,
+          33,
+          44,
+          55,
+          66,
+          77,
+          88,
+          99,
+          100
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "singleton-blocks"
+      ]
+    }
   ]
 }

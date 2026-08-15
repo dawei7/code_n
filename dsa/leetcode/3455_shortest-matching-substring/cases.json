@@ -95,8 +95,8 @@
     {
       "id": "real-empty-middle",
       "name": "real: empty middle literal block",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abxxcd",
         "p": "ab**cd"
@@ -110,8 +110,8 @@
     {
       "id": "real-empty-last",
       "name": "real: empty last literal block",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "xxabc",
         "p": "ab*c*"
@@ -125,8 +125,8 @@
     {
       "id": "real-adjacent-blocks",
       "name": "real: both stars match empty sequences",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zzabczz",
         "p": "a*b*c"
@@ -140,8 +140,8 @@
     {
       "id": "real-repetitive-no-complete-chain",
       "name": "real: many partial occurrences but no chain",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaaaaaab",
         "p": "aaaa*b*aaaa"

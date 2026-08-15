@@ -2,13 +2,123 @@
   "schema_version": 1,
   "challenge_id": "lc_2235",
   "cases": [
-    {"id":"sample-positive","name":"sample: add two positive integers","kind":"sample","visible":true,"input":{"num1":12,"num2":5},"expected":17,"tags":["sample","positive"]},
-    {"id":"sample-mixed-sign","name":"sample: negative plus positive","kind":"sample","visible":true,"input":{"num1":-10,"num2":4},"expected":-6,"tags":["sample","mixed-sign"]},
-    {"id":"trial-cancellation","name":"opposite values cancel","kind":"trial","visible":true,"input":{"num1":-7,"num2":7},"expected":0,"tags":["cancellation","zero"]},
-    {"id":"trial-zero","name":"zero is the additive identity","kind":"trial","visible":true,"input":{"num1":0,"num2":43},"expected":43,"tags":["zero"]},
-    {"id":"trial-two-negatives","name":"add two negative integers","kind":"trial","visible":true,"input":{"num1":-18,"num2":-27},"expected":-45,"tags":["negative"]},
-    {"id":"real-lower-bound","name":"hidden: both inputs at the lower bound","kind":"real","visible":false,"input":{"num1":-100,"num2":-100},"expected":-200,"tags":["hidden","lower-bound"]},
-    {"id":"real-upper-bound","name":"hidden: both inputs at the upper bound","kind":"real","visible":false,"input":{"num1":100,"num2":100},"expected":200,"tags":["hidden","upper-bound"]},
-    {"id":"real-order","name":"hidden: mixed signs with positive result","kind":"real","visible":false,"input":{"num1":100,"num2":-99},"expected":1,"tags":["hidden","mixed-sign"]}
+    {
+      "id": "sample-positive",
+      "name": "sample: add two positive integers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num1": 12,
+        "num2": 5
+      },
+      "expected": 17,
+      "tags": [
+        "sample",
+        "positive"
+      ]
+    },
+    {
+      "id": "sample-mixed-sign",
+      "name": "sample: negative plus positive",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num1": -10,
+        "num2": 4
+      },
+      "expected": -6,
+      "tags": [
+        "sample",
+        "mixed-sign"
+      ]
+    },
+    {
+      "id": "trial-cancellation",
+      "name": "opposite values cancel",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": -7,
+        "num2": 7
+      },
+      "expected": 0,
+      "tags": [
+        "cancellation",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-zero",
+      "name": "zero is the additive identity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 0,
+        "num2": 43
+      },
+      "expected": 43,
+      "tags": [
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-two-negatives",
+      "name": "add two negative integers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": -18,
+        "num2": -27
+      },
+      "expected": -45,
+      "tags": [
+        "negative"
+      ]
+    },
+    {
+      "id": "real-lower-bound",
+      "name": "both inputs at the lower bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": -100,
+        "num2": -100
+      },
+      "expected": -200,
+      "tags": [
+        "hidden",
+        "lower-bound"
+      ]
+    },
+    {
+      "id": "real-upper-bound",
+      "name": "both inputs at the upper bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 100,
+        "num2": 100
+      },
+      "expected": 200,
+      "tags": [
+        "hidden",
+        "upper-bound"
+      ]
+    },
+    {
+      "id": "real-order",
+      "name": "mixed signs with positive result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 100,
+        "num2": -99
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "mixed-sign"
+      ]
+    }
   ]
 }

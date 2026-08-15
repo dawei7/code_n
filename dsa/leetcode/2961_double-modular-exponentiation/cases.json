@@ -150,8 +150,8 @@
     {
       "id": "real-target-above-moduli",
       "name": "real: target cannot equal any residue",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "variables": [
           [
@@ -178,8 +178,8 @@
     {
       "id": "real-mixed-residues",
       "name": "real: separated matching rows",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "variables": [
           [
@@ -215,8 +215,8 @@
     {
       "id": "real-order-preserved",
       "name": "real: every row matches in index order",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "variables": [
           [

@@ -1,1 +1,207 @@
-{"schema_version":1,"challenge_id":"lc_2761","cases":[{"id":"sample-two-pairs","name":"sample: two ordered prime pairs","kind":"sample","visible":true,"input":{"n":10},"expected":[[3,7],[5,5]],"tags":["sample","multiple-pairs"]},{"id":"sample-no-pair","name":"sample: target two has no pair","kind":"sample","visible":true,"input":{"n":2},"expected":[],"tags":["sample","empty"]},{"id":"trial-odd-target","name":"trial: odd target uses prime two","kind":"trial","visible":true,"input":{"n":5},"expected":[[2,3]],"tags":["odd-target"]},{"id":"trial-equal-primes","name":"trial: equal prime members","kind":"trial","visible":true,"input":{"n":6},"expected":[[3,3]],"tags":["equal-members"]},{"id":"real-minimum","name":"hidden: minimum target","kind":"real","visible":false,"input":{"n":1},"expected":[],"tags":["hidden","minimum","empty"]},{"id":"real-small-even","name":"hidden: smallest representable even target","kind":"real","visible":false,"input":{"n":4},"expected":[[2,2]],"tags":["hidden","small","equal-members"]},{"id":"real-one-nontrivial-pair","name":"hidden: one pair above the minimum","kind":"real","visible":false,"input":{"n":12},"expected":[[5,7]],"tags":["hidden","single-pair"]},{"id":"real-many-pairs","name":"hidden: many ordered pairs","kind":"real","visible":false,"input":{"n":100},"expected":[[3,97],[11,89],[17,83],[29,71],[41,59],[47,53]],"tags":["hidden","multiple-pairs","ordering"]},{"id":"real-odd-composite-complement","name":"hidden: odd target without a prime complement","kind":"real","visible":false,"input":{"n":9},"expected":[[2,7]],"tags":["hidden","odd-target"]},{"id":"real-no-odd-pair","name":"hidden: odd target whose complement is composite","kind":"real","visible":false,"input":{"n":11},"expected":[],"tags":["hidden","odd-target","empty"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2761",
+  "cases": [
+    {
+      "id": "sample-two-pairs",
+      "name": "sample: two ordered prime pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 10
+      },
+      "expected": [
+        [
+          3,
+          7
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "tags": [
+        "sample",
+        "multiple-pairs"
+      ]
+    },
+    {
+      "id": "sample-no-pair",
+      "name": "sample: target two has no pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "expected": [],
+      "tags": [
+        "sample",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-odd-target",
+      "name": "trial: odd target uses prime two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5
+      },
+      "expected": [
+        [
+          2,
+          3
+        ]
+      ],
+      "tags": [
+        "odd-target"
+      ]
+    },
+    {
+      "id": "trial-equal-primes",
+      "name": "trial: equal prime members",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6
+      },
+      "expected": [
+        [
+          3,
+          3
+        ]
+      ],
+      "tags": [
+        "equal-members"
+      ]
+    },
+    {
+      "id": "real-minimum",
+      "name": "minimum target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": [],
+      "tags": [
+        "hidden",
+        "minimum",
+        "empty"
+      ]
+    },
+    {
+      "id": "real-small-even",
+      "name": "smallest representable even target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4
+      },
+      "expected": [
+        [
+          2,
+          2
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "small",
+        "equal-members"
+      ]
+    },
+    {
+      "id": "real-one-nontrivial-pair",
+      "name": "one pair above the minimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 12
+      },
+      "expected": [
+        [
+          5,
+          7
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "single-pair"
+      ]
+    },
+    {
+      "id": "real-many-pairs",
+      "name": "many ordered pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100
+      },
+      "expected": [
+        [
+          3,
+          97
+        ],
+        [
+          11,
+          89
+        ],
+        [
+          17,
+          83
+        ],
+        [
+          29,
+          71
+        ],
+        [
+          41,
+          59
+        ],
+        [
+          47,
+          53
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "multiple-pairs",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-odd-composite-complement",
+      "name": "odd target without a prime complement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 9
+      },
+      "expected": [
+        [
+          2,
+          7
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "odd-target"
+      ]
+    },
+    {
+      "id": "real-no-odd-pair",
+      "name": "odd target whose complement is composite",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 11
+      },
+      "expected": [],
+      "tags": [
+        "hidden",
+        "odd-target",
+        "empty"
+      ]
+    }
+  ]
+}

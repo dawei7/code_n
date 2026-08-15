@@ -128,8 +128,8 @@
     {
       "id": "real-negative-optimum",
       "name": "real: maximum profit may stay negative",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           100,
@@ -150,8 +150,8 @@
     {
       "id": "real-middle-window",
       "name": "real: best block begins inside array",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           9,
@@ -178,8 +178,8 @@
     {
       "id": "real-longer-window",
       "name": "real: four-day gain combines both halves",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           5,
@@ -208,8 +208,8 @@
     {
       "id": "real-all-sells",
       "name": "real: existing sells make modification harmful",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           1,
@@ -238,8 +238,8 @@
     {
       "id": "real-all-buys",
       "name": "real: forced hold and sell replace buys",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           6,
@@ -268,8 +268,8 @@
     {
       "id": "real-large-prices",
       "name": "real: large products use wide accumulator",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           100000,

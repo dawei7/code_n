@@ -6,90 +6,204 @@
       "name": "sample: four decrements reach a multiple",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 9, 7], "k": 5},
+      "input": {
+        "nums": [
+          3,
+          9,
+          7
+        ],
+        "k": 5
+      },
       "expected": 4,
-      "tags": ["sample", "nonzero-remainder"]
+      "tags": [
+        "sample",
+        "nonzero-remainder"
+      ]
     },
     {
       "id": "sample-already-divisible",
       "name": "sample: sum is already divisible",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 1, 3], "k": 4},
+      "input": {
+        "nums": [
+          4,
+          1,
+          3
+        ],
+        "k": 4
+      },
       "expected": 0,
-      "tags": ["sample", "zero-operations"]
+      "tags": [
+        "sample",
+        "zero-operations"
+      ]
     },
     {
       "id": "sample-total-below-divisor",
       "name": "sample: reduce the entire total to zero",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 2], "k": 6},
+      "input": {
+        "nums": [
+          3,
+          2
+        ],
+        "k": 6
+      },
       "expected": 5,
-      "tags": ["sample", "sum-below-k"]
+      "tags": [
+        "sample",
+        "sum-below-k"
+      ]
     },
     {
       "id": "trial-single-element",
       "name": "trial: one element",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1], "k": 100},
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 100
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length", "maximum-k"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "maximum-k"
+      ]
     },
     {
       "id": "trial-k-one",
       "name": "trial: every sum is divisible by one",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7, 11, 13], "k": 1},
+      "input": {
+        "nums": [
+          7,
+          11,
+          13
+        ],
+        "k": 1
+      },
       "expected": 0,
-      "tags": ["trial", "minimum-k", "zero-operations"]
+      "tags": [
+        "trial",
+        "minimum-k",
+        "zero-operations"
+      ]
     },
     {
       "id": "trial-largest-remainder",
       "name": "trial: remainder is one below the divisor",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 1], "k": 4},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 4
+      },
       "expected": 3,
-      "tags": ["trial", "k-minus-one", "decrement-direction"]
+      "tags": [
+        "trial",
+        "k-minus-one",
+        "decrement-direction"
+      ]
     },
     {
       "id": "real-large-values-largest-remainder",
       "name": "real: large values produce remainder ninety-nine",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [999, 1000], "k": 100},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          999,
+          1000
+        ],
+        "k": 100
+      },
       "expected": 99,
-      "tags": ["real", "value-boundary", "maximum-remainder"]
+      "tags": [
+        "real",
+        "value-boundary",
+        "maximum-remainder"
+      ]
     },
     {
       "id": "real-distribution-does-not-matter",
       "name": "real: only the total controls the result",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10, 1, 1, 1], "k": 7},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1,
+          1,
+          1
+        ],
+        "k": 7
+      },
       "expected": 6,
-      "tags": ["real", "total-sum", "semantic-trap"]
+      "tags": [
+        "real",
+        "total-sum",
+        "semantic-trap"
+      ]
     },
     {
       "id": "real-exact-large-multiple",
       "name": "real: maximum values form an exact multiple",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000, 1000, 1000, 1000, 1000], "k": 100},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000,
+          1000,
+          1000,
+          1000,
+          1000
+        ],
+        "k": 100
+      },
       "expected": 0,
-      "tags": ["real", "value-boundary", "zero-operations"]
+      "tags": [
+        "real",
+        "value-boundary",
+        "zero-operations"
+      ]
     },
     {
       "id": "real-many-small-values",
       "name": "real: array length affects the total only",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "k": 6},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 6
+      },
       "expected": 5,
-      "tags": ["real", "repeated-values", "nonzero-remainder"]
+      "tags": [
+        "real",
+        "repeated-values",
+        "nonzero-remainder"
+      ]
     }
   ]
 }

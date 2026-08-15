@@ -86,9 +86,9 @@
     },
     {
       "id": "real-balanced-leaf",
-      "name": "hidden: farthest node lies across the root",
-      "kind": "real",
-      "visible": false,
+      "name": "farthest node lies across the root",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -109,9 +109,9 @@
     },
     {
       "id": "real-sparse-cross-branch",
-      "name": "hidden: sparse tree preserves parent-child distances",
-      "kind": "real",
-      "visible": false,
+      "name": "sparse tree preserves parent-child distances",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           8,
@@ -134,9 +134,9 @@
     },
     {
       "id": "real-deep-opposite-leaf",
-      "name": "hidden: deepest leaf infects the opposite branch last",
-      "kind": "real",
-      "visible": false,
+      "name": "deepest leaf infects the opposite branch last",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,

@@ -152,9 +152,9 @@
     },
     {
       "id": "real-delete-tail",
-      "name": "hidden: incomplete deletion block reaches tail",
-      "kind": "real",
-      "visible": false,
+      "name": "incomplete deletion block reaches tail",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           1,
@@ -180,9 +180,9 @@
     },
     {
       "id": "real-duplicates",
-      "name": "hidden: repeated values remain position based",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated values remain position based",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           7,
@@ -210,9 +210,9 @@
     },
     {
       "id": "real-alternating",
-      "name": "hidden: keep one and delete one",
-      "kind": "real",
-      "visible": false,
+      "name": "keep one and delete one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           9,
@@ -242,9 +242,9 @@
     },
     {
       "id": "real-large-keep-and-delete",
-      "name": "hidden: bounds larger than list",
-      "kind": "real",
-      "visible": false,
+      "name": "bounds larger than list",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           10,

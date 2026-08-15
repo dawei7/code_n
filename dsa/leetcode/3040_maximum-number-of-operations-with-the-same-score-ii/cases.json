@@ -84,8 +84,8 @@
     {
       "id": "real-last-two-wins",
       "name": "real: removing the last two values gives the unique best start",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -104,8 +104,8 @@
     {
       "id": "real-endpoints-win",
       "name": "real: removing both endpoints gives the unique best start",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -124,8 +124,8 @@
     {
       "id": "real-greedy-trap",
       "name": "real: a locally valid pair can block the optimal continuation",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -148,8 +148,8 @@
     {
       "id": "real-minimum-length",
       "name": "real: one operation consumes the minimum-length array",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -165,8 +165,8 @@
     {
       "id": "real-no-continuation",
       "name": "real: every first move stops immediately",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

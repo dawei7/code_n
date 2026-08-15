@@ -97,9 +97,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: extra letters are ignored",
-      "kind": "real",
-      "visible": false,
+      "name": "extra letters are ignored",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stickers": [
           "ab",
@@ -115,9 +115,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: duplicate target letters",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate target letters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stickers": [
           "ab",
@@ -134,9 +134,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: target covered by one large sticker",
-      "kind": "real",
-      "visible": false,
+      "name": "target covered by one large sticker",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stickers": [
           "xyz",
@@ -153,4 +153,3 @@
     }
   ]
 }
-

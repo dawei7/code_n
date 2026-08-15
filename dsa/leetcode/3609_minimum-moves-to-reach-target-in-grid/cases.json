@@ -181,9 +181,9 @@
     },
     {
       "id": "hidden-mixed-route",
-      "name": "hidden: alternate larger coordinates",
-      "kind": "real",
-      "visible": false,
+      "name": "alternate larger coordinates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sx": 2,
         "sy": 1,
@@ -198,9 +198,9 @@
     },
     {
       "id": "hidden-odd-doubling-region",
-      "name": "hidden: odd larger coordinate has no predecessor",
-      "kind": "real",
-      "visible": false,
+      "name": "odd larger coordinate has no predecessor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sx": 2,
         "sy": 1,
@@ -216,9 +216,9 @@
     },
     {
       "id": "hidden-incompatible-equality",
-      "name": "hidden: non-axis start cannot enter equality",
-      "kind": "real",
-      "visible": false,
+      "name": "non-axis start cannot enter equality",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sx": 2,
         "sy": 1,
@@ -234,9 +234,9 @@
     },
     {
       "id": "hidden-reverse-overshoot",
-      "name": "hidden: forced predecessor falls below the start",
-      "kind": "real",
-      "visible": false,
+      "name": "forced predecessor falls below the start",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sx": 5,
         "sy": 4,
@@ -252,9 +252,9 @@
     },
     {
       "id": "hidden-large-power",
-      "name": "hidden: repeated doubling near the coordinate limit",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated doubling near the coordinate limit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sx": 1,
         "sy": 0,
@@ -270,9 +270,9 @@
     },
     {
       "id": "hidden-billion-unreachable",
-      "name": "hidden: one billion is not a power-of-two axis target",
-      "kind": "real",
-      "visible": false,
+      "name": "one billion is not a power-of-two axis target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sx": 1,
         "sy": 0,

@@ -107,9 +107,9 @@
     },
     {
       "id": "real-single-invalid",
-      "name": "hidden: one invalid singleton",
-      "kind": "real",
-      "visible": false,
+      "name": "one invalid singleton",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2
@@ -125,9 +125,9 @@
     },
     {
       "id": "real-all-valid-duplicates",
-      "name": "hidden: every duplicate-index subset is valid",
-      "kind": "real",
-      "visible": false,
+      "name": "every duplicate-index subset is valid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -146,9 +146,9 @@
     },
     {
       "id": "real-none-valid",
-      "name": "hidden: smallest singleton already exceeds target",
-      "kind": "real",
-      "visible": false,
+      "name": "smallest singleton already exceeds target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -165,9 +165,9 @@
     },
     {
       "id": "real-value-boundary",
-      "name": "hidden: only the small boundary singleton is valid",
-      "kind": "real",
-      "visible": false,
+      "name": "only the small boundary singleton is valid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,
@@ -184,9 +184,9 @@
     },
     {
       "id": "real-modulo",
-      "name": "hidden: large all-valid count is reduced modulo the modulus",
-      "kind": "real",
-      "visible": false,
+      "name": "large all-valid count is reduced modulo the modulus",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

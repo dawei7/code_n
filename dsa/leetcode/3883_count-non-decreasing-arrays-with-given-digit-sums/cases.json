@@ -169,9 +169,9 @@
     },
     {
       "id": "real-two-equal-requests",
-      "name": "hidden: equal adjacent values remain legal",
-      "kind": "real",
-      "visible": false,
+      "name": "equal adjacent values remain legal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "digitSum": [
           1,
@@ -190,9 +190,9 @@
     },
     {
       "id": "real-three-equal-requests",
-      "name": "hidden: three repeated digit-sum-one requests",
-      "kind": "real",
-      "visible": false,
+      "name": "three repeated digit-sum-one requests",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "digitSum": [
           1,
@@ -212,9 +212,9 @@
     },
     {
       "id": "real-source-prefix-extended",
-      "name": "hidden: every source pair has one legal continuation",
-      "kind": "real",
-      "visible": false,
+      "name": "every source pair has one legal continuation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "digitSum": [
           25,
@@ -234,9 +234,9 @@
     },
     {
       "id": "real-4999-to-5000",
-      "name": "hidden: the upper endpoint follows the maximum digit-sum value",
-      "kind": "real",
-      "visible": false,
+      "name": "the upper endpoint follows the maximum digit-sum value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "digitSum": [
           31,
@@ -255,9 +255,9 @@
     },
     {
       "id": "real-no-value-after-4999",
-      "name": "hidden: no digit-sum-four value can follow 4999",
-      "kind": "real",
-      "visible": false,
+      "name": "no digit-sum-four value can follow 4999",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "digitSum": [
           31,
@@ -276,9 +276,9 @@
     },
     {
       "id": "real-four-sum-two",
-      "name": "hidden: four positions draw from ten matching values",
-      "kind": "real",
-      "visible": false,
+      "name": "four positions draw from ten matching values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "digitSum": [
           2,
@@ -299,9 +299,9 @@
     },
     {
       "id": "real-five-before-31",
-      "name": "hidden: every digit-sum-five value except 5000 can precede 4999",
-      "kind": "real",
-      "visible": false,
+      "name": "every digit-sum-five value except 5000 can precede 4999",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "digitSum": [
           5,

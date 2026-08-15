@@ -120,9 +120,9 @@
     },
     {
       "id": "real-divisor-one",
-      "name": "hidden: every pair works modulo one",
-      "kind": "real",
-      "visible": false,
+      "name": "every pair works modulo one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1000000000,
@@ -141,9 +141,9 @@
     },
     {
       "id": "real-odd-zero-class",
-      "name": "hidden: odd zero-remainder count cannot pair",
-      "kind": "real",
-      "visible": false,
+      "name": "odd zero-remainder count cannot pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,
@@ -162,9 +162,9 @@
     },
     {
       "id": "real-odd-half-class",
-      "name": "hidden: odd half-k remainder count cannot pair",
-      "kind": "real",
-      "visible": false,
+      "name": "odd half-k remainder count cannot pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           2,
@@ -186,9 +186,9 @@
     },
     {
       "id": "real-large-signed-values",
-      "name": "hidden: signed boundary values form complements",
-      "kind": "real",
-      "visible": false,
+      "name": "signed boundary values form complements",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           -1000000000,
@@ -207,9 +207,9 @@
     },
     {
       "id": "real-complement-imbalance",
-      "name": "hidden: one complementary class has excess members",
-      "kind": "real",
-      "visible": false,
+      "name": "one complementary class has excess members",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,

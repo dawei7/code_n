@@ -105,9 +105,9 @@
     },
     {
       "id": "real-late-run",
-      "name": "hidden: best run forms after smaller replacement",
-      "kind": "real",
-      "visible": false,
+      "name": "best run forms after smaller replacement",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,

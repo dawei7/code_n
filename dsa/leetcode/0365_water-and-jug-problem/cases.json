@@ -84,9 +84,9 @@
     },
     {
       "id": "hidden-one-full-jug",
-      "name": "hidden: other jug alone measures target",
-      "kind": "real",
-      "visible": false,
+      "name": "other jug alone measures target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "x": 0,
         "y": 5,
@@ -100,9 +100,9 @@
     },
     {
       "id": "hidden-even-gcd",
-      "name": "hidden: nontrivial gcd reaches target",
-      "kind": "real",
-      "visible": false,
+      "name": "nontrivial gcd reaches target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "x": 6,
         "y": 10,
@@ -116,9 +116,9 @@
     },
     {
       "id": "hidden-over-capacity",
-      "name": "hidden: divisible target exceeds total capacity",
-      "kind": "real",
-      "visible": false,
+      "name": "divisible target exceeds total capacity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "x": 6,
         "y": 10,
@@ -132,4 +132,3 @@
     }
   ]
 }
-

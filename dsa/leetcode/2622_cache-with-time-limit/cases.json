@@ -6,54 +6,310 @@
       "name": "sample: value is visible before and absent after expiration",
       "kind": "sample",
       "visible": true,
-      "input": {"actions": ["TimeLimitedCache", "set", "get", "count", "get"], "values": [[], [1, 42, 100], [1], [], [1]], "timeDelays": [0, 0, 50, 50, 150]},
-      "expected": [null, false, 42, 1, -1],
-      "tags": ["sample", "expiration"]
+      "input": {
+        "actions": [
+          "TimeLimitedCache",
+          "set",
+          "get",
+          "count",
+          "get"
+        ],
+        "values": [
+          [],
+          [
+            1,
+            42,
+            100
+          ],
+          [
+            1
+          ],
+          [],
+          [
+            1
+          ]
+        ],
+        "timeDelays": [
+          0,
+          0,
+          50,
+          50,
+          150
+        ]
+      },
+      "expected": [
+        null,
+        false,
+        42,
+        1,
+        -1
+      ],
+      "tags": [
+        "sample",
+        "expiration"
+      ]
     },
     {
       "id": "sample-overwrite",
       "name": "sample: overwrite replaces value and deadline",
       "kind": "sample",
       "visible": true,
-      "input": {"actions": ["TimeLimitedCache", "set", "set", "get", "get", "get", "count"], "values": [[], [1, 42, 50], [1, 50, 100], [1], [1], [1], []], "timeDelays": [0, 0, 40, 50, 120, 200, 250]},
-      "expected": [null, false, true, 50, 50, -1, 0],
-      "tags": ["sample", "overwrite"]
+      "input": {
+        "actions": [
+          "TimeLimitedCache",
+          "set",
+          "set",
+          "get",
+          "get",
+          "get",
+          "count"
+        ],
+        "values": [
+          [],
+          [
+            1,
+            42,
+            50
+          ],
+          [
+            1,
+            50,
+            100
+          ],
+          [
+            1
+          ],
+          [
+            1
+          ],
+          [
+            1
+          ],
+          []
+        ],
+        "timeDelays": [
+          0,
+          0,
+          40,
+          50,
+          120,
+          200,
+          250
+        ]
+      },
+      "expected": [
+        null,
+        false,
+        true,
+        50,
+        50,
+        -1,
+        0
+      ],
+      "tags": [
+        "sample",
+        "overwrite"
+      ]
     },
     {
       "id": "trial-multiple-keys",
       "name": "trial: count tracks independent active keys",
       "kind": "trial",
       "visible": true,
-      "input": {"actions": ["TimeLimitedCache", "set", "set", "count", "get", "count"], "values": [[], [1, 10, 30], [2, 20, 80], [], [1], []], "timeDelays": [0, 0, 5, 10, 45, 45]},
-      "expected": [null, false, false, 2, -1, 1],
-      "tags": ["trial", "multiple-keys"]
+      "input": {
+        "actions": [
+          "TimeLimitedCache",
+          "set",
+          "set",
+          "count",
+          "get",
+          "count"
+        ],
+        "values": [
+          [],
+          [
+            1,
+            10,
+            30
+          ],
+          [
+            2,
+            20,
+            80
+          ],
+          [],
+          [
+            1
+          ],
+          []
+        ],
+        "timeDelays": [
+          0,
+          0,
+          5,
+          10,
+          45,
+          45
+        ]
+      },
+      "expected": [
+        null,
+        false,
+        false,
+        2,
+        -1,
+        1
+      ],
+      "tags": [
+        "trial",
+        "multiple-keys"
+      ]
     },
     {
       "id": "trial-zero-duration",
       "name": "trial: zero-duration entry exists during the current turn",
       "kind": "trial",
       "visible": true,
-      "input": {"actions": ["TimeLimitedCache", "set", "get", "count", "get"], "values": [[], [7, 9, 0], [7], [], [7]], "timeDelays": [0, 0, 0, 0, 10]},
-      "expected": [null, false, 9, 1, -1],
-      "tags": ["trial", "zero-duration"]
+      "input": {
+        "actions": [
+          "TimeLimitedCache",
+          "set",
+          "get",
+          "count",
+          "get"
+        ],
+        "values": [
+          [],
+          [
+            7,
+            9,
+            0
+          ],
+          [
+            7
+          ],
+          [],
+          [
+            7
+          ]
+        ],
+        "timeDelays": [
+          0,
+          0,
+          0,
+          0,
+          10
+        ]
+      },
+      "expected": [
+        null,
+        false,
+        9,
+        1,
+        -1
+      ],
+      "tags": [
+        "trial",
+        "zero-duration"
+      ]
     },
     {
       "id": "real-reinsert-expired-key",
-      "name": "hidden: reinserting an expired key is not an overwrite",
-      "kind": "real",
-      "visible": false,
-      "input": {"actions": ["TimeLimitedCache", "set", "set", "get"], "values": [[], [4, 1, 20], [4, 2, 40], [4]], "timeDelays": [0, 0, 35, 50]},
-      "expected": [null, false, false, 2],
-      "tags": ["hidden", "reinsert"]
+      "name": "reinserting an expired key is not an overwrite",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "actions": [
+          "TimeLimitedCache",
+          "set",
+          "set",
+          "get"
+        ],
+        "values": [
+          [],
+          [
+            4,
+            1,
+            20
+          ],
+          [
+            4,
+            2,
+            40
+          ],
+          [
+            4
+          ]
+        ],
+        "timeDelays": [
+          0,
+          0,
+          35,
+          50
+        ]
+      },
+      "expected": [
+        null,
+        false,
+        false,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "reinsert"
+      ]
     },
     {
       "id": "real-stale-timer-cancelled",
-      "name": "hidden: old timer cannot delete a replacement",
-      "kind": "real",
-      "visible": false,
-      "input": {"actions": ["TimeLimitedCache", "set", "set", "get", "get"], "values": [[], [5, 10, 30], [5, 11, 80], [5], [5]], "timeDelays": [0, 0, 20, 40, 110]},
-      "expected": [null, false, true, 11, -1],
-      "tags": ["hidden", "stale-timer"]
+      "name": "old timer cannot delete a replacement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "actions": [
+          "TimeLimitedCache",
+          "set",
+          "set",
+          "get",
+          "get"
+        ],
+        "values": [
+          [],
+          [
+            5,
+            10,
+            30
+          ],
+          [
+            5,
+            11,
+            80
+          ],
+          [
+            5
+          ],
+          [
+            5
+          ]
+        ],
+        "timeDelays": [
+          0,
+          0,
+          20,
+          40,
+          110
+        ]
+      },
+      "expected": [
+        null,
+        false,
+        true,
+        11,
+        -1
+      ],
+      "tags": [
+        "hidden",
+        "stale-timer"
+      ]
     }
   ]
 }

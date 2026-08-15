@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-length-only",
-      "name": "hidden: overlength password without repeat runs",
-      "kind": "real",
-      "visible": false,
+      "name": "overlength password without repeat runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "password": "ABABABABABABABABABAB1"
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-long-run",
-      "name": "hidden: deletion and replacement costs overlap",
-      "kind": "real",
-      "visible": false,
+      "name": "deletion and replacement costs overlap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "password": "aaaaaaaaaaaaaaaaaaaaa"
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "hidden-mixed-remainders",
-      "name": "hidden: repeat runs have different deletion priorities",
-      "kind": "real",
-      "visible": false,
+      "name": "repeat runs have different deletion priorities",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "password": "bbaaaaaaaaaaaaaaacccccc"
       },
@@ -116,9 +116,9 @@
     },
     {
       "id": "hidden-missing-classes",
-      "name": "hidden: one long digit run lacks two classes",
-      "kind": "real",
-      "visible": false,
+      "name": "one long digit run lacks two classes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "password": "1111111111"
       },

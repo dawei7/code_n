@@ -86,19 +86,25 @@
       "visible": true,
       "input": {
         "s": "a",
-        "wordDict": ["a"]
+        "wordDict": [
+          "a"
+        ]
       },
-      "expected": ["a"],
+      "expected": [
+        "a"
+      ],
       "validator": {
         "kind": "unordered_list"
       },
-      "tags": ["boundary"]
+      "tags": [
+        "boundary"
+      ]
     },
     {
       "id": "real-small-ambiguous",
-      "name": "hidden: small ambiguous string",
-      "kind": "real",
-      "visible": false,
+      "name": "small ambiguous string",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaa",
         "wordDict": [

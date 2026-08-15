@@ -2,14 +2,295 @@
   "schema_version": 1,
   "challenge_id": "lc_2290",
   "cases": [
-    {"id":"sample-two-removals","name":"sample: every corner path needs two removals","kind":"sample","visible":true,"input":{"grid":[[0,1,1],[1,1,0],[1,1,0]]},"expected":2,"tags":["sample","weighted-path"]},
-    {"id":"sample-zero-route","name":"sample: a longer empty route costs zero","kind":"sample","visible":true,"input":{"grid":[[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]]},"expected":0,"tags":["sample","zero-cost-path"]},
-    {"id":"trial-single-row","name":"two obstacles are unavoidable in one row","kind":"trial","visible":true,"input":{"grid":[[0,1,1,0]]},"expected":2,"tags":["single-row"]},
-    {"id":"trial-single-column","name":"two obstacles are unavoidable in one column","kind":"trial","visible":true,"input":{"grid":[[0],[1],[0],[1],[0]]},"expected":2,"tags":["single-column"]},
-    {"id":"trial-filled-interior","name":"three internal obstacles lie on every shortest route","kind":"trial","visible":true,"input":{"grid":[[0,1,1],[1,1,1],[1,1,0]]},"expected":3,"tags":["dense-obstacles"]},
-    {"id":"real-long-zero-detour","name":"hidden: a winding empty route beats obstacle shortcuts","kind":"real","visible":false,"input":{"grid":[[0,1,1,1],[0,0,0,1],[1,1,0,0]]},"expected":0,"tags":["hidden","detour"]},
-    {"id":"real-one-wall","name":"hidden: crossing one vertical wall is necessary","kind":"real","visible":false,"input":{"grid":[[0,1,0],[0,1,0],[0,1,0],[0,1,0]]},"expected":1,"tags":["hidden","minimum-cut"]},
-    {"id":"real-winding-grid","name":"hidden: zero corridors contain cycles and branches","kind":"real","visible":false,"input":{"grid":[[0,1,1,0],[0,1,0,0],[0,0,0,1],[1,1,0,0]]},"expected":0,"tags":["hidden","cycles"]},
-    {"id":"real-cheaper-long-path","name":"hidden: cost takes priority over step count","kind":"real","visible":false,"input":{"grid":[[0,1,0,0],[0,1,0,1],[0,0,0,1],[1,1,0,0]]},"expected":0,"tags":["hidden","weighted-choice"]}
+    {
+      "id": "sample-two-removals",
+      "name": "sample: every corner path needs two removals",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "weighted-path"
+      ]
+    },
+    {
+      "id": "sample-zero-route",
+      "name": "sample: a longer empty route costs zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero-cost-path"
+      ]
+    },
+    {
+      "id": "trial-single-row",
+      "name": "two obstacles are unavoidable in one row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "single-row"
+      ]
+    },
+    {
+      "id": "trial-single-column",
+      "name": "two obstacles are unavoidable in one column",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "single-column"
+      ]
+    },
+    {
+      "id": "trial-filled-interior",
+      "name": "three internal obstacles lie on every shortest route",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "dense-obstacles"
+      ]
+    },
+    {
+      "id": "real-long-zero-detour",
+      "name": "a winding empty route beats obstacle shortcuts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "detour"
+      ]
+    },
+    {
+      "id": "real-one-wall",
+      "name": "crossing one vertical wall is necessary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "minimum-cut"
+      ]
+    },
+    {
+      "id": "real-winding-grid",
+      "name": "zero corridors contain cycles and branches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "cycles"
+      ]
+    },
+    {
+      "id": "real-cheaper-long-path",
+      "name": "cost takes priority over step count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "weighted-choice"
+      ]
+    }
   ]
 }

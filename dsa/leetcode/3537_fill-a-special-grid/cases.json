@@ -180,8 +180,8 @@
     {
       "id": "real-four-levels",
       "name": "real: four recursive levels",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4
       },
@@ -483,8 +483,8 @@
     {
       "id": "real-sixty-four-side",
       "name": "real: sixty-four-cell side",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6
       },

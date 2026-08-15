@@ -158,9 +158,9 @@
     },
     {
       "id": "hidden-mixed",
-      "name": "hidden: uneven branches",
-      "kind": "real",
-      "visible": false,
+      "name": "uneven branches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           8,
@@ -206,9 +206,9 @@
     },
     {
       "id": "hidden-two",
-      "name": "hidden: two-node tree",
-      "kind": "real",
-      "visible": false,
+      "name": "two-node tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           2,

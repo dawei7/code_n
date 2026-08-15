@@ -279,9 +279,9 @@
     },
     {
       "id": "real-nonnumeric-topological-order",
-      "name": "hidden: node numbers are not a topological order",
-      "kind": "real",
-      "visible": false,
+      "name": "node numbers are not a topological order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -328,9 +328,9 @@
     },
     {
       "id": "real-high-score-over-budget",
-      "name": "hidden: expensive high-bottleneck route loses to affordable route",
-      "kind": "real",
-      "visible": false,
+      "name": "expensive high-bottleneck route loses to affordable route",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -377,9 +377,9 @@
     },
     {
       "id": "real-zero-among-positive",
-      "name": "hidden: a zero edge determines the valid path score",
-      "kind": "real",
-      "visible": false,
+      "name": "a zero edge determines the valid path score",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -420,9 +420,9 @@
     },
     {
       "id": "real-repeated-costs",
-      "name": "hidden: repeated edge costs form several thresholds",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated edge costs form several thresholds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -469,9 +469,9 @@
     },
     {
       "id": "real-large-costs",
-      "name": "hidden: large recovery costs require wide totals",
-      "kind": "real",
-      "visible": false,
+      "name": "large recovery costs require wide totals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -507,9 +507,9 @@
     },
     {
       "id": "real-wrong-direction",
-      "name": "hidden: edges cannot be traversed backward",
-      "kind": "real",
-      "visible": false,
+      "name": "edges cannot be traversed backward",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [

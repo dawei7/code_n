@@ -150,9 +150,9 @@
     },
     {
       "id": "real-collinear",
-      "name": "hidden: best board covers three collinear darts",
-      "kind": "real",
-      "visible": false,
+      "name": "best board covers three collinear darts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "darts": [
           [
@@ -182,9 +182,9 @@
     },
     {
       "id": "real-mutually-far",
-      "name": "hidden: no two darts share a board",
-      "kind": "real",
-      "visible": false,
+      "name": "no two darts share a board",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "darts": [
           [
@@ -210,9 +210,9 @@
     },
     {
       "id": "real-square",
-      "name": "hidden: square fits inside an offset circle",
-      "kind": "real",
-      "visible": false,
+      "name": "square fits inside an offset circle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "darts": [
           [
@@ -242,9 +242,9 @@
     },
     {
       "id": "real-negative-cluster",
-      "name": "hidden: translated negative-coordinate cluster",
-      "kind": "real",
-      "visible": false,
+      "name": "translated negative-coordinate cluster",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "darts": [
           [

@@ -79,9 +79,9 @@
     },
     {
       "id": "real-maximum-values",
-      "name": "hidden: maximum constraints require a wide integer result",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum constraints require a wide integer result",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,
@@ -97,9 +97,9 @@
     },
     {
       "id": "real-repeated-values",
-      "name": "hidden: a later prefix maximum improves the difference",
-      "kind": "real",
-      "visible": false,
+      "name": "a later prefix maximum improves the difference",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -119,9 +119,9 @@
     },
     {
       "id": "real-best-indices-separated",
-      "name": "hidden: all three best indices are separated by distractions",
-      "kind": "real",
-      "visible": false,
+      "name": "all three best indices are separated by distractions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -141,9 +141,9 @@
     },
     {
       "id": "real-flat-array",
-      "name": "hidden: equal values produce zero",
-      "kind": "real",
-      "visible": false,
+      "name": "equal values produce zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,

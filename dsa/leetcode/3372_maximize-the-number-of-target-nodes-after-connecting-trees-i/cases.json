@@ -237,9 +237,9 @@
     },
     {
       "id": "real-large-radius",
-      "name": "hidden: radius covers both entire trees",
-      "kind": "real",
-      "visible": false,
+      "name": "radius covers both entire trees",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges1": [
           [
@@ -280,9 +280,9 @@
     },
     {
       "id": "real-two-stars",
-      "name": "hidden: star centers and leaves have different first counts",
-      "kind": "real",
-      "visible": false,
+      "name": "star centers and leaves have different first counts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges1": [
           [
@@ -340,9 +340,9 @@
     },
     {
       "id": "real-second-center-choice",
-      "name": "hidden: best second endpoint is internal to a path",
-      "kind": "real",
-      "visible": false,
+      "name": "best second endpoint is internal to a path",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges1": [
           [

@@ -257,9 +257,9 @@
     },
     {
       "id": "real-independent-subjects",
-      "name": "hidden: subjects for one student are independent",
-      "kind": "real",
-      "visible": false,
+      "name": "subjects for one student are independent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Scores": [
@@ -331,9 +331,9 @@
     },
     {
       "id": "real-unsorted-insertion",
-      "name": "hidden: insertion order differs from date and output order",
-      "kind": "real",
-      "visible": false,
+      "name": "insertion order differs from date and output order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Scores": [
@@ -411,9 +411,9 @@
     },
     {
       "id": "real-score-boundaries",
-      "name": "hidden: scores at zero and one hundred",
-      "kind": "real",
-      "visible": false,
+      "name": "scores at zero and one hundred",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Scores": [
@@ -467,9 +467,9 @@
     },
     {
       "id": "real-many-exams",
-      "name": "hidden: only first and latest of many exams matter",
-      "kind": "real",
-      "visible": false,
+      "name": "only first and latest of many exams matter",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Scores": [

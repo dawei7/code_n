@@ -160,9 +160,9 @@
     },
     {
       "id": "real-choose-second-water",
-      "name": "hidden: a later water option has shorter duration",
-      "kind": "real",
-      "visible": false,
+      "name": "a later water option has shorter duration",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "landStartTime": [
           2
@@ -187,9 +187,9 @@
     },
     {
       "id": "real-choose-second-land",
-      "name": "hidden: a later land option has shorter duration",
-      "kind": "real",
-      "visible": false,
+      "name": "a later land option has shorter duration",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "landStartTime": [
           1,
@@ -214,9 +214,9 @@
     },
     {
       "id": "real-water-first-by-duration",
-      "name": "hidden: water-first order avoids a long second ride",
-      "kind": "real",
-      "visible": false,
+      "name": "water-first order avoids a long second ride",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "landStartTime": [
           5,
@@ -243,9 +243,9 @@
     },
     {
       "id": "real-land-first-by-duration",
-      "name": "hidden: land-first order avoids a long second ride",
-      "kind": "real",
-      "visible": false,
+      "name": "land-first order avoids a long second ride",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "landStartTime": [
           1,
@@ -272,9 +272,9 @@
     },
     {
       "id": "real-many-options",
-      "name": "hidden: compare several openings and durations",
-      "kind": "real",
-      "visible": false,
+      "name": "compare several openings and durations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "landStartTime": [
           4,
@@ -305,9 +305,9 @@
     },
     {
       "id": "real-upper-values",
-      "name": "hidden: opening times and durations at the upper bound",
-      "kind": "real",
-      "visible": false,
+      "name": "opening times and durations at the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "landStartTime": [
           1000,

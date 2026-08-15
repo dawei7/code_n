@@ -110,9 +110,9 @@
     },
     {
       "id": "real-crossing-closure",
-      "name": "hidden: interval expansion crosses several labels",
-      "kind": "real",
-      "visible": false,
+      "name": "interval expansion crosses several labels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abacbcdefed"
       },
@@ -128,9 +128,9 @@
     },
     {
       "id": "real-separated-groups",
-      "name": "hidden: several closed groups remain disjoint",
-      "kind": "real",
-      "visible": false,
+      "name": "several closed groups remain disjoint",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abacddcxyyx"
       },
@@ -147,9 +147,9 @@
     },
     {
       "id": "real-repeated-singletons",
-      "name": "hidden: singleton letters sit inside a repeated outer letter",
-      "kind": "real",
-      "visible": false,
+      "name": "singleton letters sit inside a repeated outer letter",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aebfcgda"
       },
@@ -169,9 +169,9 @@
     },
     {
       "id": "real-alphabet-mix",
-      "name": "hidden: dense repeated labels and terminal singleton",
-      "kind": "real",
-      "visible": false,
+      "name": "dense repeated labels and terminal singleton",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "eccbbbbdecf"
       },
@@ -188,4 +188,3 @@
     }
   ]
 }
-

@@ -108,9 +108,9 @@
     },
     {
       "id": "real-suffix-two",
-      "name": "hidden: reversing the final pair can beat every prefix reversal",
-      "kind": "real",
-      "visible": false,
+      "name": "reversing the final pair can beat every prefix reversal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abdc"
       },
@@ -125,9 +125,9 @@
     },
     {
       "id": "real-repeated-characters",
-      "name": "hidden: duplicate-heavy candidates are compared normally",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate-heavy candidates are compared normally",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "baaa"
       },
@@ -142,9 +142,9 @@
     },
     {
       "id": "real-prefix-tie-depth",
-      "name": "hidden: candidates sharing an initial letter differ later",
-      "kind": "real",
-      "visible": false,
+      "name": "candidates sharing an initial letter differ later",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "cabca"
       },
@@ -159,9 +159,9 @@
     },
     {
       "id": "real-all-equal",
-      "name": "hidden: every legal operation yields the same string",
-      "kind": "real",
-      "visible": false,
+      "name": "every legal operation yields the same string",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaaa"
       },
@@ -177,9 +177,9 @@
     },
     {
       "id": "real-two-characters",
-      "name": "hidden: both full and endpoint reversals are considered",
-      "kind": "real",
-      "visible": false,
+      "name": "both full and endpoint reversals are considered",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ba"
       },
@@ -194,9 +194,9 @@
     },
     {
       "id": "real-maximum-length",
-      "name": "hidden: maximum-length repeated input remains unchanged",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum-length repeated input remains unchanged",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
       },
@@ -212,4 +212,3 @@
     }
   ]
 }
-

@@ -135,9 +135,9 @@
     },
     {
       "id": "real-smallest-cube-sum",
-      "name": "hidden: one plus one cubed is only one canonical representation",
-      "kind": "real",
-      "visible": false,
+      "name": "one plus one cubed is only one canonical representation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 2
       },
@@ -150,9 +150,9 @@
     },
     {
       "id": "real-distinct-base-single-pair",
-      "name": "hidden: one cubed plus two cubed is still only one representation",
-      "kind": "real",
-      "visible": false,
+      "name": "one cubed plus two cubed is still only one representation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 9
       },
@@ -165,9 +165,9 @@
     },
     {
       "id": "real-after-second-good",
-      "name": "hidden: moving just beyond 4104 adds no duplicate result",
-      "kind": "real",
-      "visible": false,
+      "name": "moving just beyond 4104 adds no duplicate result",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4105
       },
@@ -183,9 +183,9 @@
     },
     {
       "id": "real-gap-after-second-good",
-      "name": "hidden: a wider bound still contains only the first two values",
-      "kind": "real",
-      "visible": false,
+      "name": "a wider bound still contains only the first two values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10000
       },
@@ -201,9 +201,9 @@
     },
     {
       "id": "real-before-third-good",
-      "name": "hidden: one less than 13832 excludes the third value",
-      "kind": "real",
-      "visible": false,
+      "name": "one less than 13832 excludes the third value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 13831
       },
@@ -219,9 +219,9 @@
     },
     {
       "id": "real-before-fourth-good",
-      "name": "hidden: one less than 20683 retains the first three values",
-      "kind": "real",
-      "visible": false,
+      "name": "one less than 20683 retains the first three values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 20682
       },
@@ -238,9 +238,9 @@
     },
     {
       "id": "real-fourth-good-inclusive",
-      "name": "hidden: 20683 adds the fourth distinct cube-sum collision",
-      "kind": "real",
-      "visible": false,
+      "name": "20683 adds the fourth distinct cube-sum collision",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 20683
       },
@@ -258,4 +258,3 @@
     }
   ]
 }
-

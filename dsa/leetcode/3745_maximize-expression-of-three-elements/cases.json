@@ -1,12 +1,222 @@
-{"schema_version":1,"challenge_id":"lc_3745","cases":[
-{"id":"sample-positive","name":"sample: two largest positives minus one","kind":"sample","visible":true,"input":{"nums":[1,4,2,5]},"expected":8,"validator":{"kind":"exact"},"tags":["sample","positive-values"]},
-{"id":"sample-negative-subtrahend","name":"sample: subtract a negative value","kind":"sample","visible":true,"input":{"nums":[-2,0,5,-2,4]},"expected":11,"validator":{"kind":"exact"},"tags":["sample","negative-values"]},
-{"id":"trial-three-increasing","name":"trial: every position is used","kind":"trial","visible":true,"input":{"nums":[1,2,3]},"expected":4,"validator":{"kind":"exact"},"tags":["trial","three-elements"]},
-{"id":"trial-all-equal","name":"trial: equal values come from distinct positions","kind":"trial","visible":true,"input":{"nums":[5,5,5]},"expected":5,"validator":{"kind":"exact"},"tags":["trial","duplicates"]},
-{"id":"trial-all-negative","name":"trial: maximize among three negative values","kind":"trial","visible":true,"input":{"nums":[-5,-4,-3]},"expected":-2,"validator":{"kind":"exact"},"tags":["trial","all-negative"]},
-{"id":"real-duplicate-minimum","name":"hidden: two minimum occurrences fill different roles","kind":"real","visible":false,"input":{"nums":[1,1,2]},"expected":2,"validator":{"kind":"exact"},"tags":["hidden","duplicates"]},
-{"id":"real-duplicate-maximum","name":"hidden: two maximum occurrences are both added","kind":"real","visible":false,"input":{"nums":[1,2,2]},"expected":3,"validator":{"kind":"exact"},"tags":["hidden","duplicates"]},
-{"id":"real-value-boundaries","name":"hidden: both numeric boundaries maximize the expression","kind":"real","visible":false,"input":{"nums":[-100,100,100]},"expected":300,"validator":{"kind":"exact"},"tags":["hidden","value-boundaries"]},
-{"id":"real-minimum-last","name":"hidden: smallest value appears at the final index","kind":"real","visible":false,"input":{"nums":[8,7,6,-4]},"expected":19,"validator":{"kind":"exact"},"tags":["hidden","unsorted"]},
-{"id":"real-maxima-separated","name":"hidden: largest values appear away from array ends","kind":"real","visible":false,"input":{"nums":[0,9,-3,8,2]},"expected":20,"validator":{"kind":"exact"},"tags":["hidden","unsorted"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3745",
+  "cases": [
+    {
+      "id": "sample-positive",
+      "name": "sample: two largest positives minus one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          5
+        ]
+      },
+      "expected": 8,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "positive-values"
+      ]
+    },
+    {
+      "id": "sample-negative-subtrahend",
+      "name": "sample: subtract a negative value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          0,
+          5,
+          -2,
+          4
+        ]
+      },
+      "expected": 11,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "negative-values"
+      ]
+    },
+    {
+      "id": "trial-three-increasing",
+      "name": "trial: every position is used",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "three-elements"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: equal values come from distinct positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-all-negative",
+      "name": "trial: maximize among three negative values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          -4,
+          -3
+        ]
+      },
+      "expected": -2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-negative"
+      ]
+    },
+    {
+      "id": "real-duplicate-minimum",
+      "name": "two minimum occurrences fill different roles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-duplicate-maximum",
+      "name": "two maximum occurrences are both added",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-value-boundaries",
+      "name": "both numeric boundaries maximize the expression",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -100,
+          100,
+          100
+        ]
+      },
+      "expected": 300,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "value-boundaries"
+      ]
+    },
+    {
+      "id": "real-minimum-last",
+      "name": "smallest value appears at the final index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          7,
+          6,
+          -4
+        ]
+      },
+      "expected": 19,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "real-maxima-separated",
+      "name": "largest values appear away from array ends",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          9,
+          -3,
+          8,
+          2
+        ]
+      },
+      "expected": 20,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "unsorted"
+      ]
+    }
+  ]
+}

@@ -7,140 +7,339 @@
       "name": "sample: the entire array already alternates",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 1, 3, 2]},
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          2
+        ]
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "no-removal", "entire-array"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "no-removal",
+        "entire-array"
+      ]
     },
     {
       "id": "sample-remove-middle",
       "name": "sample: removing one middle element creates the best bridge",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 2, 1, 2, 3, 2, 1]},
+      "input": {
+        "nums": [
+          3,
+          2,
+          1,
+          2,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "middle-removal", "bridge"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "middle-removal",
+        "bridge"
+      ]
     },
     {
       "id": "sample-equal-pair",
       "name": "sample: equal values permit only a singleton",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [100000, 100000]},
+      "input": {
+        "nums": [
+          100000,
+          100000
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "equality", "singleton", "maximum-value"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "equality",
+        "singleton",
+        "maximum-value"
+      ]
     },
     {
       "id": "trial-up-first",
       "name": "trial: a full alternating run starts upward",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 3, 2, 4]},
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          4
+        ]
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "up-first", "no-removal"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "up-first",
+        "no-removal"
+      ]
     },
     {
       "id": "trial-down-first",
       "name": "trial: a full alternating run starts downward",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [4, 1, 3, 2]},
+      "input": {
+        "nums": [
+          4,
+          1,
+          3,
+          2
+        ]
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "down-first", "no-removal"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "down-first",
+        "no-removal"
+      ]
     },
     {
       "id": "trial-delete-one-of-equals",
       "name": "trial: deleting one repeated value joins two long runs",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 1, 1, 2, 1]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          1,
+          2,
+          1
+        ]
+      },
       "expected": 5,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "equality", "middle-removal", "full-join"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "equality",
+        "middle-removal",
+        "full-join"
+      ]
     },
     {
       "id": "real-all-equal",
-      "name": "hidden: an all-equal array has no strict comparison",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 5, 5, 5]},
+      "name": "an all-equal array has no strict comparison",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "all-equal", "singleton"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "all-equal",
+        "singleton"
+      ]
     },
     {
       "id": "real-strictly-increasing",
-      "name": "hidden: repeated upward comparisons cannot alternate",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 4, 5]},
+      "name": "repeated upward comparisons cannot alternate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "strictly-increasing", "repeated-direction"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "strictly-increasing",
+        "repeated-direction"
+      ]
     },
     {
       "id": "real-post-contest-regression",
-      "name": "hidden: strict bridge alone is insufficient when side directions repeat",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 3, 2, 1]},
+      "name": "strict bridge alone is insufficient when side directions repeat",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "regression", "repeated-direction", "bridge"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "regression",
+        "repeated-direction",
+        "bridge"
+      ]
     },
     {
       "id": "real-maximum-alternating",
-      "name": "hidden: maximum-bound values can form a complete run",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000, 1, 100000, 1, 100000]},
+      "name": "maximum-bound values can form a complete run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          1,
+          100000,
+          1,
+          100000
+        ]
+      },
       "expected": 5,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-value", "no-removal"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "no-removal"
+      ]
     },
     {
       "id": "real-two-unequal",
-      "name": "hidden: two unequal values are alternating",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3, 1]},
+      "name": "two unequal values are alternating",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "minimum-length", "strict-comparison"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "minimum-length",
+        "strict-comparison"
+      ]
     },
     {
       "id": "real-partial-join",
-      "name": "hidden: a deletion may join only suffix and prefix portions",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 4, 2, 3, 5, 4, 2]},
+      "name": "a deletion may join only suffix and prefix portions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          3,
+          5,
+          4,
+          2
+        ]
+      },
       "expected": 5,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "partial-join", "directional-state"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "partial-join",
+        "directional-state"
+      ]
     },
     {
       "id": "real-equal-bridge",
-      "name": "hidden: equal bridge endpoints cannot connect",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3, 2, 1, 3, 2, 1]},
+      "name": "equal bridge endpoints cannot connect",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          1,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "equal-bridge", "no-crossing"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "equal-bridge",
+        "no-crossing"
+      ]
     },
     {
       "id": "real-delete-central-duplicate",
-      "name": "hidden: deleting a central duplicate restores a seven-value run",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 3, 2, 4, 4, 2, 3, 1]},
+      "name": "deleting a central duplicate restores a seven-value run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          4,
+          4,
+          2,
+          3,
+          1
+        ]
+      },
       "expected": 7,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "central-duplicate", "long-join"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "central-duplicate",
+        "long-join"
+      ]
     }
   ]
 }

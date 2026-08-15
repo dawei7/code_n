@@ -166,9 +166,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: rectangle nested inside another",
-      "kind": "real",
-      "visible": false,
+      "name": "rectangle nested inside another",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangles": [
           [
@@ -193,9 +193,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: partial overlap",
-      "kind": "real",
-      "visible": false,
+      "name": "partial overlap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangles": [
           [
@@ -220,9 +220,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: perpendicular strips",
-      "kind": "real",
-      "visible": false,
+      "name": "perpendicular strips",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangles": [
           [
@@ -247,9 +247,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: corner contact only",
-      "kind": "real",
-      "visible": false,
+      "name": "corner contact only",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangles": [
           [
@@ -274,9 +274,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: chain of overlapping squares",
-      "kind": "real",
-      "visible": false,
+      "name": "chain of overlapping squares",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangles": [
           [
@@ -313,9 +313,9 @@
     },
     {
       "id": "hidden-6",
-      "name": "hidden: same vertical span with gaps",
-      "kind": "real",
-      "visible": false,
+      "name": "same vertical span with gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangles": [
           [

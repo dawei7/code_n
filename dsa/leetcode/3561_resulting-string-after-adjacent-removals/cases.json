@@ -7,108 +7,177 @@
       "name": "sample: leftmost choice determines the survivor",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abc"},
+      "input": {
+        "s": "abc"
+      },
       "expected": "c",
-      "tags": ["sample", "leftmost-order"]
+      "tags": [
+        "sample",
+        "leftmost-order"
+      ]
     },
     {
       "id": "sample-cascade-to-empty",
       "name": "sample: first removal exposes another pair",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "adcb"},
+      "input": {
+        "s": "adcb"
+      },
       "expected": "",
-      "tags": ["sample", "cascade", "empty"]
+      "tags": [
+        "sample",
+        "cascade",
+        "empty"
+      ]
     },
     {
       "id": "sample-circular-pair",
       "name": "sample: circular pair leaves a stable suffix",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "zadb"},
+      "input": {
+        "s": "zadb"
+      },
       "expected": "db",
-      "tags": ["sample", "circular-alphabet"]
+      "tags": [
+        "sample",
+        "circular-alphabet"
+      ]
     },
     {
       "id": "trial-single-character",
       "name": "trial: one character cannot be removed",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "a"},
+      "input": {
+        "s": "a"
+      },
       "expected": "a",
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-wrap-forward",
       "name": "trial: a followed by z is consecutive",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "az"},
+      "input": {
+        "s": "az"
+      },
       "expected": "",
-      "tags": ["trial", "circular-alphabet", "forward"]
+      "tags": [
+        "trial",
+        "circular-alphabet",
+        "forward"
+      ]
     },
     {
       "id": "trial-wrap-reverse",
       "name": "trial: z followed by a is consecutive",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "za"},
+      "input": {
+        "s": "za"
+      },
       "expected": "",
-      "tags": ["trial", "circular-alphabet", "reverse"]
+      "tags": [
+        "trial",
+        "circular-alphabet",
+        "reverse"
+      ]
     },
     {
       "id": "real-no-removals",
       "name": "real: a stable string remains unchanged",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "acegik"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "acegik"
+      },
       "expected": "acegik",
-      "tags": ["real", "stable", "no-removal"]
+      "tags": [
+        "real",
+        "stable",
+        "no-removal"
+      ]
     },
     {
       "id": "real-two-stage-wrap-cascade",
       "name": "real: ordinary removal exposes a circular pair",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abza"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abza"
+      },
       "expected": "",
-      "tags": ["real", "cascade", "circular-alphabet"]
+      "tags": [
+        "real",
+        "cascade",
+        "circular-alphabet"
+      ]
     },
     {
       "id": "real-equal-letters-survive",
       "name": "real: equal adjacent letters are not consecutive",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "bacc"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bacc"
+      },
       "expected": "cc",
-      "tags": ["real", "equal-letters", "partial-removal"]
+      "tags": [
+        "real",
+        "equal-letters",
+        "partial-removal"
+      ]
     },
     {
       "id": "real-circular-pair-before-ordinary-pair",
       "name": "real: leftmost circular pair is removed first",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "azby"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "azby"
+      },
       "expected": "by",
-      "tags": ["real", "leftmost-order", "circular-alphabet"]
+      "tags": [
+        "real",
+        "leftmost-order",
+        "circular-alphabet"
+      ]
     },
     {
       "id": "real-alphabet-chain",
       "name": "real: the full alphabet cancels in adjacent pairs",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdefghijklmnopqrstuvwxyz"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz"
+      },
       "expected": "",
-      "tags": ["real", "long-chain", "empty"]
+      "tags": [
+        "real",
+        "long-chain",
+        "empty"
+      ]
     },
     {
       "id": "real-repeated-letters",
       "name": "real: repeated identical letters all remain",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "mmmmmmmm"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "mmmmmmmm"
+      },
       "expected": "mmmmmmmm",
-      "tags": ["real", "equal-letters", "stable"]
+      "tags": [
+        "real",
+        "equal-letters",
+        "stable"
+      ]
     }
   ]
 }

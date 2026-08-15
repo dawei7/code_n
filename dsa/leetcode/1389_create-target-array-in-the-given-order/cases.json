@@ -151,9 +151,9 @@
     },
     {
       "id": "hidden-repeated-index",
-      "name": "hidden: same middle position reused",
-      "kind": "real",
-      "visible": false,
+      "name": "same middle position reused",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -181,9 +181,9 @@
     },
     {
       "id": "hidden-duplicates",
-      "name": "hidden: duplicate values",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,

@@ -187,9 +187,9 @@
     },
     {
       "id": "real-zero-neutral",
-      "name": "hidden: zero does not improve the best positive singleton",
-      "kind": "real",
-      "visible": false,
+      "name": "zero does not improve the best positive singleton",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           0,
@@ -209,9 +209,9 @@
     },
     {
       "id": "real-duplicate-chain-restart",
-      "name": "hidden: a path can restart beyond a duplicate ancestor",
-      "kind": "real",
-      "visible": false,
+      "name": "a path can restart beyond a duplicate ancestor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           5,
@@ -234,9 +234,9 @@
     },
     {
       "id": "real-all-equal",
-      "name": "hidden: an all-equal tree permits only singleton paths",
-      "kind": "real",
-      "visible": false,
+      "name": "an all-equal tree permits only singleton paths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           7,
@@ -258,9 +258,9 @@
     },
     {
       "id": "real-value-boundaries",
-      "name": "hidden: extreme negative root makes the positive endpoint best",
-      "kind": "real",
-      "visible": false,
+      "name": "extreme negative root makes the positive endpoint best",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           -1000,
@@ -280,9 +280,9 @@
     },
     {
       "id": "real-large-positive-crossing",
-      "name": "hidden: three distinct high values form the best cross path",
-      "kind": "real",
-      "visible": false,
+      "name": "three distinct high values form the best cross path",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1000,
@@ -302,9 +302,9 @@
     },
     {
       "id": "real-off-path-duplicate",
-      "name": "hidden: a duplicate outside the chosen route is harmless",
-      "kind": "real",
-      "visible": false,
+      "name": "a duplicate outside the chosen route is harmless",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           10,
@@ -328,9 +328,9 @@
     },
     {
       "id": "real-mixed-sign-crossing",
-      "name": "hidden: a mixed-sign path crosses the root",
-      "kind": "real",
-      "visible": false,
+      "name": "a mixed-sign path crosses the root",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           0,

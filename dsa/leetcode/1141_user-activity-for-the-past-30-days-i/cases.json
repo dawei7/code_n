@@ -238,9 +238,9 @@
     },
     {
       "id": "real-multiple-sessions",
-      "name": "hidden: one user across sessions counts once",
-      "kind": "real",
-      "visible": false,
+      "name": "one user across sessions counts once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Activity": [
@@ -284,9 +284,9 @@
     },
     {
       "id": "real-every-type",
-      "name": "hidden: every enum activity is valid",
-      "kind": "real",
-      "visible": false,
+      "name": "every enum activity is valid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Activity": [
@@ -336,9 +336,9 @@
     },
     {
       "id": "real-user-several-days",
-      "name": "hidden: a user contributes once on each day",
-      "kind": "real",
-      "visible": false,
+      "name": "a user contributes once on each day",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Activity": [

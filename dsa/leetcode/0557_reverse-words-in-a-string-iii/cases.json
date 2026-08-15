@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: apostrophe reverses with its word",
-      "kind": "real",
-      "visible": false,
+      "name": "apostrophe reverses with its word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "can't stop"
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: capitalization moves within words",
-      "kind": "real",
-      "visible": false,
+      "name": "capitalization moves within words",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "A bc DEF"
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: one lowercase character",
-      "kind": "real",
-      "visible": false,
+      "name": "one lowercase character",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "z"
       },
@@ -116,4 +116,3 @@
     }
   ]
 }
-

@@ -118,9 +118,9 @@
     },
     {
       "id": "real-equal-values",
-      "name": "hidden: equal values create no strict edge",
-      "kind": "real",
-      "visible": false,
+      "name": "equal values create no strict edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -141,9 +141,9 @@
     },
     {
       "id": "real-duplicate-connected",
-      "name": "hidden: duplicates connect through a smaller value",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicates connect through a smaller value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -164,9 +164,9 @@
     },
     {
       "id": "real-several-regions",
-      "name": "hidden: alternating inversion regions",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating inversion regions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -194,9 +194,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: values near the upper bound",
-      "kind": "real",
-      "visible": false,
+      "name": "values near the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,

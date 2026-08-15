@@ -85,8 +85,8 @@
     {
       "id": "real-one-dimensional-row",
       "name": "real: one-row grid reduces to column bands",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1,
         "m": 20,
@@ -101,8 +101,8 @@
     {
       "id": "real-one-dimensional-column",
       "name": "real: one-column grid reduces to row bands",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 20,
         "m": 1,
@@ -117,8 +117,8 @@
     {
       "id": "real-partial-final-bands",
       "name": "real: both dimensions end with partial bands",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 12,
         "m": 18,
@@ -133,8 +133,8 @@
     {
       "id": "real-rectangular",
       "name": "real: rectangular dimensions need different counts",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100,
         "m": 37,
@@ -149,8 +149,8 @@
     {
       "id": "real-maximum-grid-zero-radius",
       "name": "real: maximum grid with zero radius",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000,
         "m": 1000,
@@ -166,8 +166,8 @@
     {
       "id": "real-maximum-radius",
       "name": "real: maximum radius covers maximum grid",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000,
         "m": 1000,

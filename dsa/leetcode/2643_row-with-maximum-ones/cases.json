@@ -141,9 +141,9 @@
     },
     {
       "id": "real-all-zero",
-      "name": "hidden: all rows contain no ones",
-      "kind": "real",
-      "visible": false,
+      "name": "all rows contain no ones",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -174,9 +174,9 @@
     },
     {
       "id": "real-all-one-tie",
-      "name": "hidden: fully populated rows tie",
-      "kind": "real",
-      "visible": false,
+      "name": "fully populated rows tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -204,9 +204,9 @@
     },
     {
       "id": "real-late-winner",
-      "name": "hidden: final row uniquely wins",
-      "kind": "real",
-      "visible": false,
+      "name": "final row uniquely wins",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [

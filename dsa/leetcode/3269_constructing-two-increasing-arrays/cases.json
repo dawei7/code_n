@@ -147,8 +147,8 @@
     {
       "id": "real-all-zeroes",
       "name": "real: two runs of even requirements",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           0,
@@ -171,8 +171,8 @@
     {
       "id": "real-all-ones",
       "name": "real: two runs of odd requirements",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -195,8 +195,8 @@
     {
       "id": "real-alternating",
       "name": "real: opposing alternating patterns",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           0,
@@ -224,8 +224,8 @@
     {
       "id": "real-blocks",
       "name": "real: parity blocks create interleaving choices",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           0,
@@ -253,8 +253,8 @@
     {
       "id": "real-mixed-twelve",
       "name": "real: twelve mixed positions",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           0,

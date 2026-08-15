@@ -6,112 +6,373 @@
       "name": "sample: five good pairs with unit multiplier",
       "kind": "sample",
       "visible": true,
-      "input": {"nums1": [1, 3, 4], "nums2": [1, 3, 4], "k": 1},
+      "input": {
+        "nums1": [
+          1,
+          3,
+          4
+        ],
+        "nums2": [
+          1,
+          3,
+          4
+        ],
+        "k": 1
+      },
       "expected": 5,
-      "tags": ["sample", "unit-multiplier"]
+      "tags": [
+        "sample",
+        "unit-multiplier"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: two scaled divisors of twelve",
       "kind": "sample",
       "visible": true,
-      "input": {"nums1": [1, 2, 4, 12], "nums2": [2, 4], "k": 3},
+      "input": {
+        "nums1": [
+          1,
+          2,
+          4,
+          12
+        ],
+        "nums2": [
+          2,
+          4
+        ],
+        "k": 3
+      },
       "expected": 2,
-      "tags": ["sample", "scaled-divisor"]
+      "tags": [
+        "sample",
+        "scaled-divisor"
+      ]
     },
     {
       "id": "trial-single-good-pair",
       "name": "trial: one pair is good",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [10], "nums2": [2], "k": 1},
+      "input": {
+        "nums1": [
+          10
+        ],
+        "nums2": [
+          2
+        ],
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["single", "good"]
+      "tags": [
+        "single",
+        "good"
+      ]
     },
     {
       "id": "trial-duplicates-count-indices",
       "name": "trial: duplicate values count as separate indices",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [6, 6, 12], "nums2": [1, 2, 2], "k": 3},
+      "input": {
+        "nums1": [
+          6,
+          6,
+          12
+        ],
+        "nums2": [
+          1,
+          2,
+          2
+        ],
+        "k": 3
+      },
       "expected": 9,
-      "tags": ["duplicates", "multiplicity"]
+      "tags": [
+        "duplicates",
+        "multiplicity"
+      ]
     },
     {
       "id": "trial-no-good-pairs",
       "name": "trial: no scaled value divides any dividend",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [5, 7, 11], "nums2": [2, 3], "k": 4},
+      "input": {
+        "nums1": [
+          5,
+          7,
+          11
+        ],
+        "nums2": [
+          2,
+          3
+        ],
+        "k": 4
+      },
       "expected": 0,
-      "tags": ["zero", "large-divisor"]
+      "tags": [
+        "zero",
+        "large-divisor"
+      ]
     },
     {
       "id": "trial-mixed-divisibility",
       "name": "trial: different dividends accept different divisors",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [6, 12], "nums2": [1, 2, 3], "k": 2},
+      "input": {
+        "nums1": [
+          6,
+          12
+        ],
+        "nums2": [
+          1,
+          2,
+          3
+        ],
+        "k": 2
+      },
       "expected": 5,
-      "tags": ["mixed", "scaled-divisor"]
+      "tags": [
+        "mixed",
+        "scaled-divisor"
+      ]
     },
     {
       "id": "real-duplicates-on-both-sides",
       "name": "real: every duplicate index combination contributes",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [4, 4], "nums2": [2, 2], "k": 1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          4,
+          4
+        ],
+        "nums2": [
+          2,
+          2
+        ],
+        "k": 1
+      },
       "expected": 4,
-      "tags": ["real", "duplicates"]
+      "tags": [
+        "real",
+        "duplicates"
+      ]
     },
     {
       "id": "real-value-boundary-divisors",
       "name": "real: divisors at the maximum array value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [50, 25, 10], "nums2": [1, 2, 5, 10, 25, 50], "k": 1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          50,
+          25,
+          10
+        ],
+        "nums2": [
+          1,
+          2,
+          5,
+          10,
+          25,
+          50
+        ],
+        "k": 1
+      },
       "expected": 13,
-      "tags": ["real", "value-boundary"]
+      "tags": [
+        "real",
+        "value-boundary"
+      ]
     },
     {
       "id": "real-maximum-multiplier",
       "name": "real: maximum multiplier leaves one exact divisor",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [50], "nums2": [1, 50], "k": 50},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          50
+        ],
+        "nums2": [
+          1,
+          50
+        ],
+        "k": 50
+      },
       "expected": 1,
-      "tags": ["real", "multiplier-boundary"]
+      "tags": [
+        "real",
+        "multiplier-boundary"
+      ]
     },
     {
       "id": "real-divisibility-direction",
       "name": "real: scaled nums2 values divide nums1 values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [8, 16, 32], "nums2": [2, 4, 8], "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          8,
+          16,
+          32
+        ],
+        "nums2": [
+          2,
+          4,
+          8
+        ],
+        "k": 2
+      },
       "expected": 8,
-      "tags": ["real", "divisibility-direction"]
+      "tags": [
+        "real",
+        "divisibility-direction"
+      ]
     },
     {
       "id": "real-denominator-exceeds-dividend",
       "name": "real: every scaled divisor exceeds each dividend",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [1, 2, 3], "nums2": [1], "k": 4},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3
+        ],
+        "nums2": [
+          1
+        ],
+        "k": 4
+      },
       "expected": 0,
-      "tags": ["real", "large-divisor"]
+      "tags": [
+        "real",
+        "large-divisor"
+      ]
     },
     {
       "id": "real-maximum-pair-count",
       "name": "real: all 2500 index pairs are good at maximum lengths",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "nums1": [50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50],
-        "nums2": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        "nums1": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50
+        ],
+        "nums2": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
         "k": 50
       },
       "expected": 2500,
-      "tags": ["real", "length-boundary", "all-pairs"]
+      "tags": [
+        "real",
+        "length-boundary",
+        "all-pairs"
+      ]
     }
   ]
 }

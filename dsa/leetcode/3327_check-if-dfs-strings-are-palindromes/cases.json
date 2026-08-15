@@ -127,8 +127,8 @@
     {
       "id": "real-internal-palindrome",
       "name": "real: internal palindrome inside non-palindromic root",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "parent": [
           -1,
@@ -154,8 +154,8 @@
     {
       "id": "real-ordered-children",
       "name": "real: child indices determine postorder text",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "parent": [
           -1,

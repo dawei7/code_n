@@ -133,9 +133,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: prefix lexical ordering",
-      "kind": "real",
-      "visible": false,
+      "name": "prefix lexical ordering",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "a",
@@ -157,9 +157,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: lower frequency lexical ties",
-      "kind": "real",
-      "visible": false,
+      "name": "lower frequency lexical ties",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "z",
@@ -181,9 +181,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: repeated single distinct word",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated single distinct word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "only",
@@ -202,4 +202,3 @@
     }
   ]
 }
-

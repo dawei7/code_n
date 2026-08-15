@@ -208,9 +208,9 @@
     },
     {
       "id": "hidden-billion-symmetric",
-      "name": "hidden: the maximum peak with equal endpoints ties",
-      "kind": "real",
-      "visible": false,
+      "name": "the maximum peak with equal endpoints ties",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -227,9 +227,9 @@
     },
     {
       "id": "hidden-large-descending-tail",
-      "name": "hidden: one near-billion tail value dominates a small prefix",
-      "kind": "real",
-      "visible": false,
+      "name": "one near-billion tail value dominates a small prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -248,9 +248,9 @@
     },
     {
       "id": "hidden-large-ascending-prefix",
-      "name": "hidden: several large prefix values dominate a short tail",
-      "kind": "real",
-      "visible": false,
+      "name": "several large prefix values dominate a short tail",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           999999997,
@@ -269,9 +269,9 @@
     },
     {
       "id": "hidden-mixed-descending",
-      "name": "hidden: descending tail wins after a three-value rise",
-      "kind": "real",
-      "visible": false,
+      "name": "descending tail wins after a three-value rise",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -291,9 +291,9 @@
     },
     {
       "id": "hidden-ascending-control",
-      "name": "hidden: a larger prepeak total wins despite several tail values",
-      "kind": "real",
-      "visible": false,
+      "name": "a larger prepeak total wins despite several tail values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           20,

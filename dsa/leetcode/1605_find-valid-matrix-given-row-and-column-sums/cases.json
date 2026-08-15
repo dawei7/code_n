@@ -171,9 +171,9 @@
     },
     {
       "id": "real-single-column",
-      "name": "hidden: one column equals the row margins",
-      "kind": "real",
-      "visible": false,
+      "name": "one column equals the row margins",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rowSum": [
           0,
@@ -209,9 +209,9 @@
     },
     {
       "id": "real-rectangular-wide",
-      "name": "hidden: more columns than rows",
-      "kind": "real",
-      "visible": false,
+      "name": "more columns than rows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rowSum": [
           6,
@@ -251,9 +251,9 @@
     },
     {
       "id": "real-rectangular-tall",
-      "name": "hidden: more rows than columns",
-      "kind": "real",
-      "visible": false,
+      "name": "more rows than columns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rowSum": [
           1,
@@ -299,9 +299,9 @@
     },
     {
       "id": "real-equal-advances-both",
-      "name": "hidden: equal active margins finish together",
-      "kind": "real",
-      "visible": false,
+      "name": "equal active margins finish together",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rowSum": [
           4,
@@ -341,9 +341,9 @@
     },
     {
       "id": "real-zero-prefixes",
-      "name": "hidden: leading and interior zero margins",
-      "kind": "real",
-      "visible": false,
+      "name": "leading and interior zero margins",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rowSum": [
           0,
@@ -399,9 +399,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: large allowed margin values",
-      "kind": "real",
-      "visible": false,
+      "name": "large allowed margin values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rowSum": [
           100000000,
@@ -434,9 +434,9 @@
     },
     {
       "id": "real-many-valid",
-      "name": "hidden: balanced margins admit many arrangements",
-      "kind": "real",
-      "visible": false,
+      "name": "balanced margins admit many arrangements",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rowSum": [
           7,
@@ -476,4 +476,3 @@
     }
   ]
 }
-

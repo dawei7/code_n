@@ -100,9 +100,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: candidate repeated in both branches",
-      "kind": "real",
-      "visible": false,
+      "name": "candidate repeated in both branches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -122,9 +122,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: large second value",
-      "kind": "real",
-      "visible": false,
+      "name": "large second value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -140,4 +140,3 @@
     }
   ]
 }
-

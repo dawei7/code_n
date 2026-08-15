@@ -488,9 +488,9 @@
     },
     {
       "id": "real-shared-middle",
-      "name": "hidden: one timestamp shared amid distinct entries",
-      "kind": "real",
-      "visible": false,
+      "name": "one timestamp shared amid distinct entries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [
@@ -550,9 +550,9 @@
     },
     {
       "id": "real-huge-gaps",
-      "name": "hidden: values carry across very large gaps",
-      "kind": "real",
-      "visible": false,
+      "name": "values carry across very large gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [
@@ -593,9 +593,9 @@
     },
     {
       "id": "real-maximum-shared-timestamp",
-      "name": "hidden: both singletons use the maximum timestamp",
-      "kind": "real",
-      "visible": false,
+      "name": "both singletons use the maximum timestamp",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [
@@ -623,9 +623,9 @@
     },
     {
       "id": "real-maximum-value-sum",
-      "name": "hidden: two maximum input values sum without truncation",
-      "kind": "real",
-      "visible": false,
+      "name": "two maximum input values sum without truncation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [
@@ -653,9 +653,9 @@
     },
     {
       "id": "real-singletons-different-order",
-      "name": "hidden: earlier singleton uses the later series value",
-      "kind": "real",
-      "visible": false,
+      "name": "earlier singleton uses the later series value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [
@@ -687,9 +687,9 @@
     },
     {
       "id": "real-values-rise-and-fall",
-      "name": "hidden: maintained values are not monotone",
-      "kind": "real",
-      "visible": false,
+      "name": "maintained values are not monotone",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [
@@ -753,9 +753,9 @@
     },
     {
       "id": "real-overlapping-last-timestamp",
-      "name": "hidden: shared maximum timestamp updates both values",
-      "kind": "real",
-      "visible": false,
+      "name": "shared maximum timestamp updates both values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [
@@ -800,9 +800,9 @@
     },
     {
       "id": "real-shared-endpoints",
-      "name": "hidden: both endpoints are shared with a middle gap",
-      "kind": "real",
-      "visible": false,
+      "name": "both endpoints are shared with a middle gap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [
@@ -850,9 +850,9 @@
     },
     {
       "id": "real-unit-values",
-      "name": "hidden: every union timestamp aggregates unit values",
-      "kind": "real",
-      "visible": false,
+      "name": "every union timestamp aggregates unit values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [
@@ -916,9 +916,9 @@
     },
     {
       "id": "real-longer-mixed-merge",
-      "name": "hidden: ten union timestamps with overlaps and gaps",
-      "kind": "real",
-      "visible": false,
+      "name": "ten union timestamps with overlaps and gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "series1": [
           [

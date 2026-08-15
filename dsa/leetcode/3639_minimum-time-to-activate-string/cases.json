@@ -145,9 +145,9 @@
     },
     {
       "id": "real-second-step",
-      "name": "hidden: activation occurs after two replacements",
-      "kind": "real",
-      "visible": false,
+      "name": "activation occurs after two replacements",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcdef",
         "order": [
@@ -168,9 +168,9 @@
     },
     {
       "id": "real-adjacent-stars",
-      "name": "hidden: adjacent activations avoid double counting",
-      "kind": "real",
-      "visible": false,
+      "name": "adjacent activations avoid double counting",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcdef",
         "order": [
@@ -191,9 +191,9 @@
     },
     {
       "id": "real-separated-stars",
-      "name": "hidden: separated activations split inactive runs",
-      "kind": "real",
-      "visible": false,
+      "name": "separated activations split inactive runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcdefg",
         "order": [
@@ -215,9 +215,9 @@
     },
     {
       "id": "real-full-count",
-      "name": "hidden: every position is needed for every substring",
-      "kind": "real",
-      "visible": false,
+      "name": "every position is needed for every substring",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "hello",
         "order": [
@@ -237,9 +237,9 @@
     },
     {
       "id": "real-letters-irrelevant",
-      "name": "hidden: original character values do not affect counts",
-      "kind": "real",
-      "visible": false,
+      "name": "original character values do not affect counts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zzxyzz",
         "order": [
@@ -260,9 +260,9 @@
     },
     {
       "id": "real-large-impossible",
-      "name": "hidden: k may exceed the quadratic substring total",
-      "kind": "real",
-      "visible": false,
+      "name": "k may exceed the quadratic substring total",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abc",
         "order": [

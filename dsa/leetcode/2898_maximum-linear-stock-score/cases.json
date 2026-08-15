@@ -6,54 +6,114 @@
       "name": "sample: separated days form the maximum linear selection",
       "kind": "sample",
       "visible": true,
-      "input": {"prices": [1, 5, 3, 7, 8]},
+      "input": {
+        "prices": [
+          1,
+          5,
+          3,
+          7,
+          8
+        ]
+      },
       "expected": 20,
-      "tags": ["sample", "noncontiguous-subsequence"]
+      "tags": [
+        "sample",
+        "noncontiguous-subsequence"
+      ]
     },
     {
       "id": "sample-all-days-linear",
       "name": "sample: every day belongs to one linear selection",
       "kind": "sample",
       "visible": true,
-      "input": {"prices": [5, 6, 7, 8, 9]},
+      "input": {
+        "prices": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
       "expected": 35,
-      "tags": ["sample", "whole-array"]
+      "tags": [
+        "sample",
+        "whole-array"
+      ]
     },
     {
       "id": "trial-single-day",
       "name": "one day is itself a valid linear selection",
       "kind": "trial",
       "visible": true,
-      "input": {"prices": [7]},
+      "input": {
+        "prices": [
+          7
+        ]
+      },
       "expected": 7,
-      "tags": ["boundary", "single-element"]
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
     },
     {
       "id": "trial-two-competing-groups",
       "name": "three separated days beat the other invariant group",
       "kind": "trial",
       "visible": true,
-      "input": {"prices": [10, 1, 12, 3, 14]},
+      "input": {
+        "prices": [
+          10,
+          1,
+          12,
+          3,
+          14
+        ]
+      },
       "expected": 36,
-      "tags": ["multiple-groups", "maximum-sum"]
+      "tags": [
+        "multiple-groups",
+        "maximum-sum"
+      ]
     },
     {
       "id": "trial-equal-prices-are-singletons",
       "name": "equal prices on different days have different invariants",
       "kind": "trial",
       "visible": true,
-      "input": {"prices": [4, 4, 4]},
+      "input": {
+        "prices": [
+          4,
+          4,
+          4
+        ]
+      },
       "expected": 4,
-      "tags": ["equal-values", "singleton-groups"]
+      "tags": [
+        "equal-values",
+        "singleton-groups"
+      ]
     },
     {
       "id": "real-sum-exceeds-32-bit",
-      "name": "hidden: a linear group sum may exceed signed 32-bit range",
-      "kind": "real",
-      "visible": false,
-      "input": {"prices": [999999997, 999999998, 999999999, 1000000000]},
+      "name": "a linear group sum may exceed signed 32-bit range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          999999997,
+          999999998,
+          999999999,
+          1000000000
+        ]
+      },
       "expected": 3999999994,
-      "tags": ["hidden", "large-sum", "maximum-values"]
+      "tags": [
+        "hidden",
+        "large-sum",
+        "maximum-values"
+      ]
     }
   ]
 }

@@ -136,9 +136,9 @@
     },
     {
       "id": "real-two-value-blocks",
-      "name": "hidden: low fillers and repeated high values",
-      "kind": "real",
-      "visible": false,
+      "name": "low fillers and repeated high values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -164,9 +164,9 @@
     },
     {
       "id": "real-max-values",
-      "name": "hidden: medians can reach the maximum value",
-      "kind": "real",
-      "visible": false,
+      "name": "medians can reach the maximum value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -185,9 +185,9 @@
     },
     {
       "id": "real-many-duplicates",
-      "name": "hidden: duplicate boundaries between fillers and pairs",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate boundaries between fillers and pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -213,9 +213,9 @@
     },
     {
       "id": "real-interleaved",
-      "name": "hidden: input order does not affect grouping",
-      "kind": "real",
-      "visible": false,
+      "name": "input order does not affect grouping",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -240,9 +240,9 @@
     },
     {
       "id": "real-three-groups",
-      "name": "hidden: choose three medians greedily",
-      "kind": "real",
-      "visible": false,
+      "name": "choose three medians greedily",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           11,
@@ -264,9 +264,9 @@
     },
     {
       "id": "real-small-positive",
-      "name": "hidden: all values at the minimum",
-      "kind": "real",
-      "visible": false,
+      "name": "all values at the minimum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

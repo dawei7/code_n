@@ -110,9 +110,9 @@
     },
     {
       "id": "real-query-is-shorter",
-      "name": "hidden: a full query may be a suffix of longer words",
-      "kind": "real",
-      "visible": false,
+      "name": "a full query may be a suffix of longer words",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "wordsContainer": [
           "ending",
@@ -135,9 +135,9 @@
     },
     {
       "id": "real-container-word-ends-early",
-      "name": "hidden: terminal word remains best at an internal path",
-      "kind": "real",
-      "visible": false,
+      "name": "terminal word remains best at an internal path",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "wordsContainer": [
           "a",
@@ -160,9 +160,9 @@
     },
     {
       "id": "real-no-match-shortest-index",
-      "name": "hidden: empty suffix uses shortest then earliest",
-      "kind": "real",
-      "visible": false,
+      "name": "empty suffix uses shortest then earliest",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "wordsContainer": [
           "long",
@@ -186,9 +186,9 @@
     },
     {
       "id": "real-mixed-branches",
-      "name": "hidden: queries stop at different trie depths",
-      "kind": "real",
-      "visible": false,
+      "name": "queries stop at different trie depths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "wordsContainer": [
           "motion",

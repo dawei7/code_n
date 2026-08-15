@@ -78,9 +78,9 @@
     },
     {
       "id": "real-descending",
-      "name": "hidden: descending consecutive values",
-      "kind": "real",
-      "visible": false,
+      "name": "descending consecutive values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -99,9 +99,9 @@
     },
     {
       "id": "real-isolated-pair",
-      "name": "hidden: one missing interior value",
-      "kind": "real",
-      "visible": false,
+      "name": "one missing interior value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -116,9 +116,9 @@
     },
     {
       "id": "real-bridge",
-      "name": "hidden: a new value closes an existing gap",
-      "kind": "real",
-      "visible": false,
+      "name": "a new value closes an existing gap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -135,9 +135,9 @@
     },
     {
       "id": "real-duplicates-only",
-      "name": "hidden: all values equal",
-      "kind": "real",
-      "visible": false,
+      "name": "all values equal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -155,9 +155,9 @@
     },
     {
       "id": "real-mixed-duplicates",
-      "name": "hidden: mixed duplicates and gaps",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed duplicates and gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -176,9 +176,9 @@
     },
     {
       "id": "real-multiple-gaps",
-      "name": "hidden: several gaps appear and close",
-      "kind": "real",
-      "visible": false,
+      "name": "several gaps appear and close",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,

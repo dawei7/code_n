@@ -6,81 +6,185 @@
       "name": "sample: pick the two happiest children",
       "kind": "sample",
       "visible": true,
-      "input": { "happiness": [1, 2, 3], "k": 2 },
+      "input": {
+        "happiness": [
+          1,
+          2,
+          3
+        ],
+        "k": 2
+      },
       "expected": 4,
-      "tags": ["sample", "greedy"]
+      "tags": [
+        "sample",
+        "greedy"
+      ]
     },
     {
       "id": "sample-zero-after-decrement",
       "name": "sample: later choices drop to zero",
       "kind": "sample",
       "visible": true,
-      "input": { "happiness": [1, 1, 1, 1], "k": 2 },
+      "input": {
+        "happiness": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 2
+      },
       "expected": 1,
-      "tags": ["sample", "zero-floor"]
+      "tags": [
+        "sample",
+        "zero-floor"
+      ]
     },
     {
       "id": "sample-one-selection",
       "name": "sample: one selection takes the maximum",
       "kind": "sample",
       "visible": true,
-      "input": { "happiness": [2, 3, 4, 5], "k": 1 },
+      "input": {
+        "happiness": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "k": 1
+      },
       "expected": 5,
-      "tags": ["sample", "k-one"]
+      "tags": [
+        "sample",
+        "k-one"
+      ]
     },
     {
       "id": "trial-positive-contributions",
       "name": "trial: all selected contributions stay positive",
       "kind": "trial",
       "visible": true,
-      "input": { "happiness": [10, 8, 6, 4], "k": 3 },
+      "input": {
+        "happiness": [
+          10,
+          8,
+          6,
+          4
+        ],
+        "k": 3
+      },
       "expected": 21,
-      "tags": ["trial", "decrements"]
+      "tags": [
+        "trial",
+        "decrements"
+      ]
     },
     {
       "id": "trial-select-all",
       "name": "trial: select every child",
       "kind": "trial",
       "visible": true,
-      "input": { "happiness": [5, 3, 2], "k": 3 },
+      "input": {
+        "happiness": [
+          5,
+          3,
+          2
+        ],
+        "k": 3
+      },
       "expected": 7,
-      "tags": ["trial", "k-all"]
+      "tags": [
+        "trial",
+        "k-all"
+      ]
     },
     {
       "id": "trial-zero-tail",
       "name": "trial: exact selection count includes zero contribution",
       "kind": "trial",
       "visible": true,
-      "input": { "happiness": [2, 2, 1], "k": 3 },
+      "input": {
+        "happiness": [
+          2,
+          2,
+          1
+        ],
+        "k": 3
+      },
       "expected": 3,
-      "tags": ["trial", "zero-floor", "k-all"]
+      "tags": [
+        "trial",
+        "zero-floor",
+        "k-all"
+      ]
     },
     {
       "id": "real-unsorted-values",
       "name": "real: unsorted values need greedy ordering",
-      "kind": "real",
-      "visible": false,
-      "input": { "happiness": [12, 1, 9, 3, 7, 2], "k": 4 },
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "happiness": [
+          12,
+          1,
+          9,
+          3,
+          7,
+          2
+        ],
+        "k": 4
+      },
       "expected": 25,
-      "tags": ["real", "sorting"]
+      "tags": [
+        "real",
+        "sorting"
+      ]
     },
     {
       "id": "real-upper-bound-values",
       "name": "real: happiness values at the upper bound",
-      "kind": "real",
-      "visible": false,
-      "input": { "happiness": [100000000, 100000000, 100000000], "k": 3 },
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "happiness": [
+          100000000,
+          100000000,
+          100000000
+        ],
+        "k": 3
+      },
       "expected": 299999997,
-      "tags": ["real", "bounds", "duplicates"]
+      "tags": [
+        "real",
+        "bounds",
+        "duplicates"
+      ]
     },
     {
       "id": "real-many-equal-low-values",
       "name": "real: only the first equal low value contributes",
-      "kind": "real",
-      "visible": false,
-      "input": { "happiness": [1, 1, 1, 1, 1, 1, 1, 1], "k": 8 },
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "happiness": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 8
+      },
       "expected": 1,
-      "tags": ["real", "duplicates", "zero-tail"]
+      "tags": [
+        "real",
+        "duplicates",
+        "zero-tail"
+      ]
     }
   ]
 }

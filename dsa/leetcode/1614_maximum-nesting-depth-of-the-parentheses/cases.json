@@ -7,90 +7,137 @@
       "name": "sample: nested arithmetic expression",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "(1+(2*3)+((8)/4))+1"},
+      "input": {
+        "s": "(1+(2*3)+((8)/4))+1"
+      },
       "expected": 3,
-      "tags": ["sample", "arithmetic"]
+      "tags": [
+        "sample",
+        "arithmetic"
+      ]
     },
     {
       "id": "sample-separate-groups",
       "name": "sample: separate groups reach increasing depths",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "(1)+((2))+(((3)))"},
+      "input": {
+        "s": "(1)+((2))+(((3)))"
+      },
       "expected": 3,
-      "tags": ["sample", "separate-groups"]
+      "tags": [
+        "sample",
+        "separate-groups"
+      ]
     },
     {
       "id": "sample-parentheses-only",
       "name": "sample: mixed parentheses-only groups",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "()(())((()()))"},
+      "input": {
+        "s": "()(())((()()))"
+      },
       "expected": 3,
-      "tags": ["sample", "parentheses-only"]
+      "tags": [
+        "sample",
+        "parentheses-only"
+      ]
     },
     {
       "id": "trial-no-parentheses",
       "name": "trial: expression without parentheses",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "1+2*3-4/2"},
+      "input": {
+        "s": "1+2*3-4/2"
+      },
       "expected": 0,
-      "tags": ["zero-depth"]
+      "tags": [
+        "zero-depth"
+      ]
     },
     {
       "id": "trial-single-pair",
       "name": "trial: one enclosing pair",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "(0)"},
+      "input": {
+        "s": "(0)"
+      },
       "expected": 1,
-      "tags": ["single-pair"]
+      "tags": [
+        "single-pair"
+      ]
     },
     {
       "id": "trial-adjacent",
       "name": "trial: adjacent groups do not accumulate",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "()()()()"},
+      "input": {
+        "s": "()()()()"
+      },
       "expected": 1,
-      "tags": ["adjacent-groups"]
+      "tags": [
+        "adjacent-groups"
+      ]
     },
     {
       "id": "real-deep-prefix",
-      "name": "hidden: deepest run occurs at the beginning",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "((((1))))+((2))"},
+      "name": "deepest run occurs at the beginning",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "((((1))))+((2))"
+      },
       "expected": 4,
-      "tags": ["deep-prefix", "multiple-groups"]
+      "tags": [
+        "deep-prefix",
+        "multiple-groups"
+      ]
     },
     {
       "id": "real-deep-suffix",
-      "name": "hidden: deepest run occurs at the end",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "(1)+((2))+(((((3)))))"},
+      "name": "deepest run occurs at the end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "(1)+((2))+(((((3)))))"
+      },
       "expected": 5,
-      "tags": ["deep-suffix", "multiple-groups"]
+      "tags": [
+        "deep-suffix",
+        "multiple-groups"
+      ]
     },
     {
       "id": "real-mixed-operators",
-      "name": "hidden: every supported operator is ignored",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "((9-3)/(2+1))*(4+5)"},
+      "name": "every supported operator is ignored",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "((9-3)/(2+1))*(4+5)"
+      },
       "expected": 2,
-      "tags": ["operators", "arithmetic"]
+      "tags": [
+        "operators",
+        "arithmetic"
+      ]
     },
     {
       "id": "real-maximum-depth",
-      "name": "hidden: legal length supports fifty nested pairs",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "(((((((((((((((((((((((((((((((((((((((((((((((((())))))))))))))))))))))))))))))))))))))))))))))))))"},
+      "name": "legal length supports fifty nested pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "(((((((((((((((((((((((((((((((((((((((((((((((((())))))))))))))))))))))))))))))))))))))))))))))))))"
+      },
       "expected": 50,
-      "tags": ["maximum-length", "maximum-depth"]
+      "tags": [
+        "maximum-length",
+        "maximum-depth"
+      ]
     }
   ]
 }

@@ -142,9 +142,9 @@
     },
     {
       "id": "real-two-points",
-      "name": "hidden: exactly two points determine a line",
-      "kind": "real",
-      "visible": false,
+      "name": "exactly two points determine a line",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "coordinates": [
           [
@@ -165,9 +165,9 @@
     },
     {
       "id": "real-negative-diagonal",
-      "name": "hidden: collinear points with a negative slope",
-      "kind": "real",
-      "visible": false,
+      "name": "collinear points with a negative slope",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "coordinates": [
           [
@@ -200,9 +200,9 @@
     },
     {
       "id": "real-late-outlier",
-      "name": "hidden: final point departs from the line",
-      "kind": "real",
-      "visible": false,
+      "name": "final point departs from the line",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "coordinates": [
           [

@@ -1,8 +1,367 @@
-{"challenge_id":"lc_2988","cases":[
-{"id":"sample-largest-departments","name":"sample: two departments tie for largest","kind":"sample","visible":true,"input":{"tables":{"Employees":[{"emp_id":156,"emp_name":"Michael","dep_id":107,"position":"Manager"},{"emp_id":112,"emp_name":"Lucas","dep_id":107,"position":"Consultant"},{"emp_id":8,"emp_name":"Isabella","dep_id":101,"position":"Manager"},{"emp_id":160,"emp_name":"Joseph","dep_id":100,"position":"Manager"},{"emp_id":80,"emp_name":"Aiden","dep_id":100,"position":"Engineer"},{"emp_id":190,"emp_name":"Skylar","dep_id":100,"position":"Freelancer"},{"emp_id":196,"emp_name":"Stella","dep_id":101,"position":"Coordinator"},{"emp_id":167,"emp_name":"Audrey","dep_id":100,"position":"Consultant"},{"emp_id":97,"emp_name":"Nathan","dep_id":101,"position":"Supervisor"},{"emp_id":128,"emp_name":"Ian","dep_id":101,"position":"Administrator"},{"emp_id":81,"emp_name":"Ethan","dep_id":107,"position":"Administrator"}]}},"expected":{"columns":["manager_name","dep_id"],"rows":[["Joseph",100],["Isabella",101]]},"validator":{"kind":"ordered_table"},"tags":["sample","ties"]},
-{"id":"trial-single-department","name":"trial: only department is largest","kind":"trial","visible":true,"input":{"tables":{"Employees":[{"emp_id":1,"emp_name":"Mara","dep_id":5,"position":"Manager"},{"emp_id":2,"emp_name":"Lee","dep_id":5,"position":"Engineer"}]}},"expected":{"columns":["manager_name","dep_id"],"rows":[["Mara",5]]},"validator":{"kind":"ordered_table"},"tags":["single-department"]},
-{"id":"trial-unique-largest","name":"trial: one department has more employees","kind":"trial","visible":true,"input":{"tables":{"Employees":[{"emp_id":1,"emp_name":"A","dep_id":1,"position":"Manager"},{"emp_id":2,"emp_name":"B","dep_id":1,"position":"Engineer"},{"emp_id":3,"emp_name":"C","dep_id":2,"position":"Manager"}]}},"expected":{"columns":["manager_name","dep_id"],"rows":[["A",1]]},"validator":{"kind":"ordered_table"},"tags":["unique-largest"]},
-{"id":"trial-three-way-tie","name":"trial: all tied managers survive","kind":"trial","visible":true,"input":{"tables":{"Employees":[{"emp_id":1,"emp_name":"M3","dep_id":30,"position":"Manager"},{"emp_id":2,"emp_name":"M1","dep_id":10,"position":"Manager"},{"emp_id":3,"emp_name":"M2","dep_id":20,"position":"Manager"}]}},"expected":{"columns":["manager_name","dep_id"],"rows":[["M1",10],["M2",20],["M3",30]]},"validator":{"kind":"ordered_table"},"tags":["ties","ordering"]},
-{"id":"real-count-nonmanagers","name":"real: nonmanager rows determine department size","kind":"real","visible":false,"input":{"tables":{"Employees":[{"emp_id":1,"emp_name":"Small","dep_id":1,"position":"Manager"},{"emp_id":2,"emp_name":"Large","dep_id":2,"position":"Manager"},{"emp_id":3,"emp_name":"Worker1","dep_id":2,"position":"Engineer"},{"emp_id":4,"emp_name":"Worker2","dep_id":2,"position":"Analyst"}]}},"expected":{"columns":["manager_name","dep_id"],"rows":[["Large",2]]},"validator":{"kind":"ordered_table"},"tags":["hidden","count-all"]},
-{"id":"real-department-order","name":"real: department IDs control output order","kind":"real","visible":false,"input":{"tables":{"Employees":[{"emp_id":1,"emp_name":"High","dep_id":99,"position":"Manager"},{"emp_id":2,"emp_name":"Low","dep_id":3,"position":"Manager"},{"emp_id":3,"emp_name":"HWorker","dep_id":99,"position":"Engineer"},{"emp_id":4,"emp_name":"LWorker","dep_id":3,"position":"Engineer"}]}},"expected":{"columns":["manager_name","dep_id"],"rows":[["Low",3],["High",99]]},"validator":{"kind":"ordered_table"},"tags":["hidden","ordering"]}
-]}
+{
+  "challenge_id": "lc_2988",
+  "cases": [
+    {
+      "id": "sample-largest-departments",
+      "name": "sample: two departments tie for largest",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employees": [
+            {
+              "emp_id": 156,
+              "emp_name": "Michael",
+              "dep_id": 107,
+              "position": "Manager"
+            },
+            {
+              "emp_id": 112,
+              "emp_name": "Lucas",
+              "dep_id": 107,
+              "position": "Consultant"
+            },
+            {
+              "emp_id": 8,
+              "emp_name": "Isabella",
+              "dep_id": 101,
+              "position": "Manager"
+            },
+            {
+              "emp_id": 160,
+              "emp_name": "Joseph",
+              "dep_id": 100,
+              "position": "Manager"
+            },
+            {
+              "emp_id": 80,
+              "emp_name": "Aiden",
+              "dep_id": 100,
+              "position": "Engineer"
+            },
+            {
+              "emp_id": 190,
+              "emp_name": "Skylar",
+              "dep_id": 100,
+              "position": "Freelancer"
+            },
+            {
+              "emp_id": 196,
+              "emp_name": "Stella",
+              "dep_id": 101,
+              "position": "Coordinator"
+            },
+            {
+              "emp_id": 167,
+              "emp_name": "Audrey",
+              "dep_id": 100,
+              "position": "Consultant"
+            },
+            {
+              "emp_id": 97,
+              "emp_name": "Nathan",
+              "dep_id": 101,
+              "position": "Supervisor"
+            },
+            {
+              "emp_id": 128,
+              "emp_name": "Ian",
+              "dep_id": 101,
+              "position": "Administrator"
+            },
+            {
+              "emp_id": 81,
+              "emp_name": "Ethan",
+              "dep_id": 107,
+              "position": "Administrator"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "manager_name",
+          "dep_id"
+        ],
+        "rows": [
+          [
+            "Joseph",
+            100
+          ],
+          [
+            "Isabella",
+            101
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "ties"
+      ]
+    },
+    {
+      "id": "trial-single-department",
+      "name": "trial: only department is largest",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employees": [
+            {
+              "emp_id": 1,
+              "emp_name": "Mara",
+              "dep_id": 5,
+              "position": "Manager"
+            },
+            {
+              "emp_id": 2,
+              "emp_name": "Lee",
+              "dep_id": 5,
+              "position": "Engineer"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "manager_name",
+          "dep_id"
+        ],
+        "rows": [
+          [
+            "Mara",
+            5
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "single-department"
+      ]
+    },
+    {
+      "id": "trial-unique-largest",
+      "name": "trial: one department has more employees",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employees": [
+            {
+              "emp_id": 1,
+              "emp_name": "A",
+              "dep_id": 1,
+              "position": "Manager"
+            },
+            {
+              "emp_id": 2,
+              "emp_name": "B",
+              "dep_id": 1,
+              "position": "Engineer"
+            },
+            {
+              "emp_id": 3,
+              "emp_name": "C",
+              "dep_id": 2,
+              "position": "Manager"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "manager_name",
+          "dep_id"
+        ],
+        "rows": [
+          [
+            "A",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "unique-largest"
+      ]
+    },
+    {
+      "id": "trial-three-way-tie",
+      "name": "trial: all tied managers survive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employees": [
+            {
+              "emp_id": 1,
+              "emp_name": "M3",
+              "dep_id": 30,
+              "position": "Manager"
+            },
+            {
+              "emp_id": 2,
+              "emp_name": "M1",
+              "dep_id": 10,
+              "position": "Manager"
+            },
+            {
+              "emp_id": 3,
+              "emp_name": "M2",
+              "dep_id": 20,
+              "position": "Manager"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "manager_name",
+          "dep_id"
+        ],
+        "rows": [
+          [
+            "M1",
+            10
+          ],
+          [
+            "M2",
+            20
+          ],
+          [
+            "M3",
+            30
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "ties",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-count-nonmanagers",
+      "name": "real: nonmanager rows determine department size",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employees": [
+            {
+              "emp_id": 1,
+              "emp_name": "Small",
+              "dep_id": 1,
+              "position": "Manager"
+            },
+            {
+              "emp_id": 2,
+              "emp_name": "Large",
+              "dep_id": 2,
+              "position": "Manager"
+            },
+            {
+              "emp_id": 3,
+              "emp_name": "Worker1",
+              "dep_id": 2,
+              "position": "Engineer"
+            },
+            {
+              "emp_id": 4,
+              "emp_name": "Worker2",
+              "dep_id": 2,
+              "position": "Analyst"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "manager_name",
+          "dep_id"
+        ],
+        "rows": [
+          [
+            "Large",
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "count-all"
+      ]
+    },
+    {
+      "id": "real-department-order",
+      "name": "real: department IDs control output order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employees": [
+            {
+              "emp_id": 1,
+              "emp_name": "High",
+              "dep_id": 99,
+              "position": "Manager"
+            },
+            {
+              "emp_id": 2,
+              "emp_name": "Low",
+              "dep_id": 3,
+              "position": "Manager"
+            },
+            {
+              "emp_id": 3,
+              "emp_name": "HWorker",
+              "dep_id": 99,
+              "position": "Engineer"
+            },
+            {
+              "emp_id": 4,
+              "emp_name": "LWorker",
+              "dep_id": 3,
+              "position": "Engineer"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "manager_name",
+          "dep_id"
+        ],
+        "rows": [
+          [
+            "Low",
+            3
+          ],
+          [
+            "High",
+            99
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    }
+  ]
+}

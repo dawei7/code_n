@@ -60,9 +60,9 @@
     },
     {
       "id": "real-paired-zeroes",
-      "name": "hidden: zeroes lead both constructed numbers",
-      "kind": "real",
-      "visible": false,
+      "name": "zeroes lead both constructed numbers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 1001
       },
@@ -74,9 +74,9 @@
     },
     {
       "id": "real-duplicate-middle-digits",
-      "name": "hidden: duplicate digits are distributed evenly",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate digits are distributed evenly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 2932
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "real-nine-repeated-digits",
-      "name": "hidden: longest ordinary all-nine input",
-      "kind": "real",
-      "visible": false,
+      "name": "longest ordinary all-nine input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 999999999
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "real-maximum-input",
-      "name": "hidden: maximum input places nine zeroes first",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum input places nine zeroes first",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 1000000000
       },
@@ -117,9 +117,9 @@
     },
     {
       "id": "real-all-distinct-nonzero",
-      "name": "hidden: ascending place-value assignment",
-      "kind": "real",
-      "visible": false,
+      "name": "ascending place-value assignment",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 123456789
       },
@@ -131,9 +131,9 @@
     },
     {
       "id": "real-many-zeroes",
-      "name": "hidden: zeroes consume most positions",
-      "kind": "real",
-      "visible": false,
+      "name": "zeroes consume most positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 100000
       },
@@ -146,4 +146,3 @@
     }
   ]
 }
-

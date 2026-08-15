@@ -82,9 +82,9 @@
     },
     {
       "id": "real-one-at-each-end",
-      "name": "hidden: neutralizing both endpoints is optimal",
-      "kind": "real",
-      "visible": false,
+      "name": "neutralizing both endpoints is optimal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -102,9 +102,9 @@
     },
     {
       "id": "real-four-values",
-      "name": "hidden: four values leave a two-value range",
-      "kind": "real",
-      "visible": false,
+      "name": "four values leave a two-value range",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -121,9 +121,9 @@
     },
     {
       "id": "real-all-equal",
-      "name": "hidden: equal values keep both scores zero",
-      "kind": "real",
-      "visible": false,
+      "name": "equal values keep both scores zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -141,9 +141,9 @@
     },
     {
       "id": "real-duplicate-extremes",
-      "name": "hidden: duplicate extrema preserve multiplicity",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate extrema preserve multiplicity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -162,9 +162,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: large values use the same range arithmetic",
-      "kind": "real",
-      "visible": false,
+      "name": "large values use the same range arithmetic",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

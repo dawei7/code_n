@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: negative improper intermediate",
-      "kind": "real",
-      "visible": false,
+      "name": "negative improper intermediate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "expression": "-7/4+3/2"
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: improper positive result",
-      "kind": "real",
-      "visible": false,
+      "name": "improper positive result",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "expression": "1/2+1/2+1/2"
       },

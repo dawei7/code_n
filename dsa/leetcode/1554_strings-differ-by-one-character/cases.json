@@ -116,9 +116,9 @@
     },
     {
       "id": "real-final-character",
-      "name": "hidden: difference at final index",
-      "kind": "real",
-      "visible": false,
+      "name": "difference at final index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "dict": [
           "abcde",
@@ -135,9 +135,9 @@
     },
     {
       "id": "real-two-differences",
-      "name": "hidden: exactly two mismatches are rejected",
-      "kind": "real",
-      "visible": false,
+      "name": "exactly two mismatches are rejected",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "dict": [
           "aaaa",
@@ -154,9 +154,9 @@
     },
     {
       "id": "real-shared-wildcards",
-      "name": "hidden: many masked patterns share partial text",
-      "kind": "real",
-      "visible": false,
+      "name": "many masked patterns share partial text",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "dict": [
           "cat",
@@ -174,9 +174,9 @@
     },
     {
       "id": "real-long-words",
-      "name": "hidden: long equal prefix and suffix",
-      "kind": "real",
-      "visible": false,
+      "name": "long equal prefix and suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "dict": [
           "abcdefghijklmnopqrst",
@@ -193,9 +193,9 @@
     },
     {
       "id": "real-no-pair-five",
-      "name": "hidden: several words remain separated",
-      "kind": "real",
-      "visible": false,
+      "name": "several words remain separated",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "dict": [
           "aaaaa",
@@ -214,9 +214,9 @@
     },
     {
       "id": "real-late-qualifier",
-      "name": "hidden: qualifying pair appears last",
-      "kind": "real",
-      "visible": false,
+      "name": "qualifying pair appears last",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "dict": [
           "abcd",

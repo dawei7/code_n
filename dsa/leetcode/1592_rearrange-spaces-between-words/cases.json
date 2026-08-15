@@ -74,9 +74,9 @@
     },
     {
       "id": "real-leading-and-trailing",
-      "name": "hidden: all spaces move into one gap",
-      "kind": "real",
-      "visible": false,
+      "name": "all spaces move into one gap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "text": " a  b "
       },
@@ -89,9 +89,9 @@
     },
     {
       "id": "real-three-words-even",
-      "name": "hidden: six spaces divide across two gaps",
-      "kind": "real",
-      "visible": false,
+      "name": "six spaces divide across two gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "text": "  a b  c "
       },
@@ -103,9 +103,9 @@
     },
     {
       "id": "real-three-words-remainder",
-      "name": "hidden: five spaces leave one trailing",
-      "kind": "real",
-      "visible": false,
+      "name": "five spaces leave one trailing",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "text": " a b c  "
       },
@@ -117,9 +117,9 @@
     },
     {
       "id": "real-trailing-single-word",
-      "name": "hidden: existing trailing spaces stay after sole word",
-      "kind": "real",
-      "visible": false,
+      "name": "existing trailing spaces stay after sole word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "text": "alone   "
       },
@@ -131,9 +131,9 @@
     },
     {
       "id": "real-long-words",
-      "name": "hidden: preserve multi-letter word order",
-      "kind": "real",
-      "visible": false,
+      "name": "preserve multi-letter word order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "text": "  alpha beta   gamma  "
       },

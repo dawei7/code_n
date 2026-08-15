@@ -1,14 +1,198 @@
 {
   "challenge_id": "lc_2572",
   "cases": [
-    {"id":"sample-1","name":"sample: square values are excluded","kind":"sample","visible":true,"input":{"nums":[3,4,4,5]},"expected":3,"tags":["sample","square-factor"]},
-    {"id":"sample-2","name":"sample: one is square-free","kind":"sample","visible":true,"input":{"nums":[1]},"expected":1,"tags":["sample","one"]},
-    {"id":"trial-distinct-primes","name":"trial: every non-empty subset is valid","kind":"trial","visible":true,"input":{"nums":[2,3,5]},"expected":7,"tags":["trial","disjoint-masks"]},
-    {"id":"trial-ones-and-overlap","name":"trial: ones multiply choices without using a prime","kind":"trial","visible":true,"input":{"nums":[1,1,2,6]},"expected":11,"tags":["trial","ones","overlap"]},
-    {"id":"real-only-square-value","name":"hidden: an intrinsic square factor invalidates the value","kind":"real","visible":false,"input":{"nums":[4]},"expected":0,"tags":["hidden","invalid-value"]},
-    {"id":"real-duplicate-prime","name":"hidden: duplicate equal primes are separate singleton choices","kind":"real","visible":false,"input":{"nums":[2,2,2]},"expected":3,"tags":["hidden","duplicate-indices"]},
-    {"id":"real-pairwise-overlap","name":"hidden: every pair repeats a prime","kind":"real","visible":false,"input":{"nums":[6,10,15]},"expected":3,"tags":["hidden","mask-conflict"]},
-    {"id":"real-invalid-values-with-ones","name":"hidden: invalid values are excluded while ones remain optional","kind":"real","visible":false,"input":{"nums":[1,1,4,9,25]},"expected":3,"tags":["hidden","ones","invalid-values"]},
-    {"id":"real-many-ones","name":"hidden: many ones require modular exponentiation","kind":"real","visible":false,"input":{"nums":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"expected":294967267,"tags":["hidden","modulo"]}
+    {
+      "id": "sample-1",
+      "name": "sample: square values are excluded",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          4,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "square-factor"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one is square-free",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "one"
+      ]
+    },
+    {
+      "id": "trial-distinct-primes",
+      "name": "trial: every non-empty subset is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "disjoint-masks"
+      ]
+    },
+    {
+      "id": "trial-ones-and-overlap",
+      "name": "trial: ones multiply choices without using a prime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          6
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "trial",
+        "ones",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-only-square-value",
+      "name": "an intrinsic square factor invalidates the value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "invalid-value"
+      ]
+    },
+    {
+      "id": "real-duplicate-prime",
+      "name": "duplicate equal primes are separate singleton choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "duplicate-indices"
+      ]
+    },
+    {
+      "id": "real-pairwise-overlap",
+      "name": "every pair repeats a prime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          10,
+          15
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "mask-conflict"
+      ]
+    },
+    {
+      "id": "real-invalid-values-with-ones",
+      "name": "invalid values are excluded while ones remain optional",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          4,
+          9,
+          25
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "ones",
+        "invalid-values"
+      ]
+    },
+    {
+      "id": "real-many-ones",
+      "name": "many ones require modular exponentiation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 294967267,
+      "tags": [
+        "hidden",
+        "modulo"
+      ]
+    }
   ]
 }

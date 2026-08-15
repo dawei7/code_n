@@ -63,9 +63,9 @@
     },
     {
       "id": "real-gcd-two",
-      "name": "hidden: even coordinates with gcd two",
-      "kind": "real",
-      "visible": false,
+      "name": "even coordinates with gcd two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "targetX": 6,
         "targetY": 10
@@ -78,9 +78,9 @@
     },
     {
       "id": "real-even-nonpower",
-      "name": "hidden: even gcd still contains an odd factor",
-      "kind": "real",
-      "visible": false,
+      "name": "even gcd still contains an odd factor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "targetX": 12,
         "targetY": 18
@@ -93,9 +93,9 @@
     },
     {
       "id": "real-equal-power",
-      "name": "hidden: equal power-of-two coordinates",
-      "kind": "real",
-      "visible": false,
+      "name": "equal power-of-two coordinates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "targetX": 536870912,
         "targetY": 536870912

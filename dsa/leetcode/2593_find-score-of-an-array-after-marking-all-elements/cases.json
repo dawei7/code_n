@@ -1,19 +1,277 @@
 {
   "challenge_id": "lc_2593",
   "cases": [
-    {"id":"sample-1","name":"sample: three selections total seven","kind":"sample","visible":true,"input":{"nums":[2,1,3,4,5,2]},"expected":7,"tags":["sample","greedy"]},
-    {"id":"sample-2","name":"sample: separated equal minima","kind":"sample","visible":true,"input":{"nums":[2,3,5,1,3,2]},"expected":5,"tags":["sample","tie-breaking"]},
-    {"id":"trial-single","name":"trial: the only value contributes","kind":"trial","visible":true,"input":{"nums":[1]},"expected":1,"tags":["trial","minimum-length"]},
-    {"id":"trial-tie-by-index","name":"trial: equal minima use the smaller index first","kind":"trial","visible":true,"input":{"nums":[5,1,1,5]},"expected":6,"tags":["trial","tie-breaking"]},
-    {"id":"real-two-increasing","name":"hidden: one choice marks both positions","kind":"real","visible":false,"input":{"nums":[1,2]},"expected":1,"tags":["hidden","boundary"]},
-    {"id":"real-two-decreasing","name":"hidden: right minimum marks its neighbor","kind":"real","visible":false,"input":{"nums":[2,1]},"expected":1,"tags":["hidden","boundary"]},
-    {"id":"real-all-equal","name":"hidden: equal values are selected at alternating indices","kind":"real","visible":false,"input":{"nums":[4,4,4,4,4,4]},"expected":12,"tags":["hidden","duplicates"]},
-    {"id":"real-increasing","name":"hidden: increasing values select alternating positions","kind":"real","visible":false,"input":{"nums":[1,2,3,4,5]},"expected":9,"tags":["hidden","increasing"]},
-    {"id":"real-descending","name":"hidden: descending values select alternating suffix positions","kind":"real","visible":false,"input":{"nums":[5,4,3,2,1]},"expected":9,"tags":["hidden","descending"]},
-    {"id":"real-adjacent-valleys","name":"hidden: the earlier equal valley suppresses the later one","kind":"real","visible":false,"input":{"nums":[3,1,2,1,3]},"expected":2,"tags":["hidden","tie-breaking"]},
-    {"id":"real-separated-minima","name":"hidden: every separated minimum contributes","kind":"real","visible":false,"input":{"nums":[2,1,2,1,2,1,2]},"expected":3,"tags":["hidden","repeated-minimum"]},
-    {"id":"real-value-boundary","name":"hidden: largest legal value may contribute","kind":"real","visible":false,"input":{"nums":[1000000,1,1000000]},"expected":1,"tags":["hidden","value-boundary"]},
-    {"id":"real-three-valleys","name":"hidden: descending minima mark the whole array","kind":"real","visible":false,"input":{"nums":[10,3,8,2,9,1]},"expected":6,"tags":["hidden","unsorted"]},
-    {"id":"real-three-equal","name":"hidden: tie order leaves the last equal value available","kind":"real","visible":false,"input":{"nums":[1,1,1]},"expected":2,"tags":["hidden","duplicates","tie-breaking"]}
+    {
+      "id": "sample-1",
+      "name": "sample: three selections total seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          4,
+          5,
+          2
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: separated equal minima",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5,
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "tie-breaking"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: the only value contributes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-tie-by-index",
+      "name": "trial: equal minima use the smaller index first",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          1,
+          5
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "tie-breaking"
+      ]
+    },
+    {
+      "id": "real-two-increasing",
+      "name": "one choice marks both positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-two-decreasing",
+      "name": "right minimum marks its neighbor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "equal values are selected at alternating indices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-increasing",
+      "name": "increasing values select alternating positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "increasing"
+      ]
+    },
+    {
+      "id": "real-descending",
+      "name": "descending values select alternating suffix positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "descending"
+      ]
+    },
+    {
+      "id": "real-adjacent-valleys",
+      "name": "the earlier equal valley suppresses the later one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "tie-breaking"
+      ]
+    },
+    {
+      "id": "real-separated-minima",
+      "name": "every separated minimum contributes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "repeated-minimum"
+      ]
+    },
+    {
+      "id": "real-value-boundary",
+      "name": "largest legal value may contribute",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000,
+          1,
+          1000000
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-three-valleys",
+      "name": "descending minima mark the whole array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          3,
+          8,
+          2,
+          9,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "real-three-equal",
+      "name": "tie order leaves the last equal value available",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "duplicates",
+        "tie-breaking"
+      ]
+    }
   ]
 }

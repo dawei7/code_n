@@ -7,150 +7,266 @@
       "name": "sample: both adjacent differences are within the limit",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "132"},
+      "input": {
+        "s": "132"
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "inclusive-boundary"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "inclusive-boundary"
+      ]
     },
     {
       "id": "sample-second-pair-fails",
       "name": "sample: a later adjacent difference exceeds the limit",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "129"},
+      "input": {
+        "s": "129"
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "later-violation"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "later-violation"
+      ]
     },
     {
       "id": "trial-equal-digits",
       "name": "trial: equal digits have zero difference",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "00"},
+      "input": {
+        "s": "00"
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-length", "equal-digits"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "equal-digits"
+      ]
     },
     {
       "id": "trial-exact-limit",
       "name": "trial: difference exactly two is accepted",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "24"},
+      "input": {
+        "s": "24"
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-length", "inclusive-boundary"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "inclusive-boundary"
+      ]
     },
     {
       "id": "trial-just-over-limit",
       "name": "trial: difference three is rejected",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "25"},
+      "input": {
+        "s": "25"
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-length", "threshold"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "threshold"
+      ]
     },
     {
       "id": "trial-direction-changes",
       "name": "trial: rising and falling pairs are both measured absolutely",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "21012"},
+      "input": {
+        "s": "21012"
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "absolute-difference", "direction-changes"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "absolute-difference",
+        "direction-changes"
+      ]
     },
     {
       "id": "trial-leading-zeroes",
       "name": "trial: leading zeroes remain ordinary digits",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "001220"},
+      "input": {
+        "s": "001220"
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "leading-zeroes", "repeated-digits"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "leading-zeroes",
+        "repeated-digits"
+      ]
     },
     {
       "id": "trial-first-pair-fails",
       "name": "trial: the first pair already violates the condition",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "9012"},
+      "input": {
+        "s": "9012"
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "early-violation"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "early-violation"
+      ]
     },
     {
       "id": "real-alternating-exact-twos",
-      "name": "hidden: every pair lies exactly on the allowed boundary",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "0246420"},
+      "name": "every pair lies exactly on the allowed boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0246420"
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "inclusive-boundary", "alternating"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "inclusive-boundary",
+        "alternating"
+      ]
     },
     {
       "id": "real-interior-violation",
-      "name": "hidden: one interior jump invalidates otherwise close pairs",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "123721"},
+      "name": "one interior jump invalidates otherwise close pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "123721"
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "interior-violation"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "interior-violation"
+      ]
     },
     {
       "id": "real-all-equal-maximum-length",
-      "name": "hidden: maximum-length string with all equal digits",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"},
+      "name": "maximum-length string with all equal digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-length", "equal-digits"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "equal-digits"
+      ]
     },
     {
       "id": "real-valid-maximum-length",
-      "name": "hidden: maximum-length string changes direction repeatedly",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "0123210123210123210123210123210123210123210123210123210123210123210123210123210123210123210123210123"},
+      "name": "maximum-length string changes direction repeatedly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0123210123210123210123210123210123210123210123210123210123210123210123210123210123210123210123210123"
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-length", "direction-changes"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "direction-changes"
+      ]
     },
     {
       "id": "real-late-maximum-length-violation",
-      "name": "hidden: only the final pair of a maximum-length string fails",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "0123210123210123210123210123210123210123210123210123210123210123210123210123210123210123210123210129"},
+      "name": "only the final pair of a maximum-length string fails",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0123210123210123210123210123210123210123210123210123210123210123210123210123210123210123210123210129"
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-length", "late-violation"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "late-violation"
+      ]
     },
     {
       "id": "real-zero-through-nine",
-      "name": "hidden: a long monotone run uses unit differences",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "0123456789"},
+      "name": "a long monotone run uses unit differences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0123456789"
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "monotone", "unit-differences"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "monotone",
+        "unit-differences"
+      ]
     },
     {
       "id": "real-last-pairs-at-limit",
-      "name": "hidden: descending unit steps finish with two boundary jumps",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "987654321024"},
+      "name": "descending unit steps finish with two boundary jumps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "987654321024"
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "direction-change", "inclusive-boundary"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "direction-change",
+        "inclusive-boundary"
+      ]
     }
   ]
 }

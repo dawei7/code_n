@@ -448,9 +448,9 @@
     },
     {
       "id": "hidden-mixed-odd-sums",
-      "name": "hidden: different odd coordinate sums floor independently",
-      "kind": "real",
-      "visible": false,
+      "name": "different odd coordinate sums floor independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -479,9 +479,9 @@
     },
     {
       "id": "hidden-cube-generation-two",
-      "name": "hidden: a cube interior point needs a previous generation",
-      "kind": "real",
-      "visible": false,
+      "name": "a cube interior point needs a previous generation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -540,9 +540,9 @@
     },
     {
       "id": "hidden-cube-face-generation-two",
-      "name": "hidden: a cube face point appears in generation two",
-      "kind": "real",
-      "visible": false,
+      "name": "a cube face point appears in generation two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -601,9 +601,9 @@
     },
     {
       "id": "hidden-maximum-initial-count",
-      "name": "hidden: twenty points close inside a small cube and cannot reach six",
-      "kind": "real",
-      "visible": false,
+      "name": "twenty points close inside a small cube and cannot reach six",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [

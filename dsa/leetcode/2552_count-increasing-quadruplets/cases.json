@@ -102,9 +102,9 @@
     },
     {
       "id": "real-mixed",
-      "name": "hidden: nonregular permutation",
-      "kind": "real",
-      "visible": false,
+      "name": "nonregular permutation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -124,9 +124,9 @@
     },
     {
       "id": "real-late-small",
-      "name": "hidden: small values appearing late cannot be first indices",
-      "kind": "real",
-      "visible": false,
+      "name": "small values appearing late cannot be first indices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,

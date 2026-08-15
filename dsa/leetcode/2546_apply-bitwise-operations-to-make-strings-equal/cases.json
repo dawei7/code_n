@@ -78,9 +78,9 @@
     },
     {
       "id": "real-different-one-counts",
-      "name": "hidden: one counts need not match",
-      "kind": "real",
-      "visible": false,
+      "name": "one counts need not match",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "00000001",
         "target": "11111111"
@@ -93,9 +93,9 @@
     },
     {
       "id": "real-identical-nonzero",
-      "name": "hidden: identical nonzero strings need no operations",
-      "kind": "real",
-      "visible": false,
+      "name": "identical nonzero strings need no operations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "010101",
         "target": "010101"
@@ -108,9 +108,9 @@
     },
     {
       "id": "real-minimum-length",
-      "name": "hidden: minimum-length mismatch classes",
-      "kind": "real",
-      "visible": false,
+      "name": "minimum-length mismatch classes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "00",
         "target": "10"

@@ -7,90 +7,235 @@
       "name": "sample: duplicate fours precede five by reflection",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 5, 4]},
-      "expected": [4, 4, 5],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "duplicates", "leading-zero-reflection"]
+      "input": {
+        "nums": [
+          4,
+          5,
+          4
+        ]
+      },
+      "expected": [
+        4,
+        4,
+        5
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "duplicates",
+        "leading-zero-reflection"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: equal reflections use the original-value tie-break",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 6, 5, 8]},
-      "expected": [8, 3, 6, 5],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "tie-break", "mixed-reflections"]
+      "input": {
+        "nums": [
+          3,
+          6,
+          5,
+          8
+        ]
+      },
+      "expected": [
+        8,
+        3,
+        6,
+        5
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "tie-break",
+        "mixed-reflections"
+      ]
     },
     {
       "id": "trial-single-value",
       "name": "trial: a singleton remains unchanged",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1]},
-      "expected": [1],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-length"]
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-all-powers-of-two",
       "name": "trial: powers of two all reflect to one",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [8, 1, 4, 2]},
-      "expected": [1, 2, 4, 8],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "equal-reflections", "tie-break"]
+      "input": {
+        "nums": [
+          8,
+          1,
+          4,
+          2
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "equal-reflections",
+        "tie-break"
+      ]
     },
     {
       "id": "trial-distinct-reflections",
       "name": "trial: reflected keys determine a non-numeric ordering",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 7, 10, 12]},
-      "expected": [2, 12, 10, 7],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "mixed-reflections"]
+      "input": {
+        "nums": [
+          2,
+          7,
+          10,
+          12
+        ]
+      },
+      "expected": [
+        2,
+        12,
+        10,
+        7
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "mixed-reflections"
+      ]
     },
     {
       "id": "trial-shifted-equal-reflections",
       "name": "trial: repeated trailing zeros preserve the same reflection",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [24, 6, 12, 3]},
-      "expected": [3, 6, 12, 24],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "equal-reflections", "tie-break"]
+      "input": {
+        "nums": [
+          24,
+          6,
+          12,
+          3
+        ]
+      },
+      "expected": [
+        3,
+        6,
+        12,
+        24
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "equal-reflections",
+        "tie-break"
+      ]
     },
     {
       "id": "real-duplicates-among-ties",
-      "name": "hidden: duplicate values remain repeated among equal keys",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, 1, 8]},
-      "expected": [1, 8, 8],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "duplicates", "equal-reflections"]
+      "name": "duplicate values remain repeated among equal keys",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          1,
+          8
+        ]
+      },
+      "expected": [
+        1,
+        8,
+        8
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "duplicates",
+        "equal-reflections"
+      ]
     },
     {
       "id": "real-palindromic-bits",
-      "name": "hidden: binary palindromes equal their reflections",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9, 7, 5]},
-      "expected": [5, 7, 9],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "palindromic-bits"]
+      "name": "binary palindromes equal their reflections",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          7,
+          5
+        ]
+      },
+      "expected": [
+        5,
+        7,
+        9
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "palindromic-bits"
+      ]
     },
     {
       "id": "real-upper-value-boundary",
-      "name": "hidden: the maximum value and large powers of two",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000, 1, 536870912]},
-      "expected": [1, 536870912, 1000000000],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "value-boundary", "leading-zero-reflection"]
+      "name": "the maximum value and large powers of two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1,
+          536870912
+        ]
+      },
+      "expected": [
+        1,
+        536870912,
+        1000000000
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "value-boundary",
+        "leading-zero-reflection"
+      ]
     }
   ]
 }

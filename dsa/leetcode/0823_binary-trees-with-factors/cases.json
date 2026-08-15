@@ -131,9 +131,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: unsorted chained input",
-      "kind": "real",
-      "visible": false,
+      "name": "unsorted chained input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           16,
@@ -151,9 +151,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: unsorted factors for a later composite",
-      "kind": "real",
-      "visible": false,
+      "name": "unsorted factors for a later composite",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           18,
@@ -171,9 +171,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: products reach the value boundary",
-      "kind": "real",
-      "visible": false,
+      "name": "products reach the value boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1000000000,
@@ -190,9 +190,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: repeated power factorizations require the modulus",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated power factorizations require the modulus",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           2,
@@ -226,9 +226,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: large primes remain leaves",
-      "kind": "real",
-      "visible": false,
+      "name": "large primes remain leaves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           999999937,
@@ -245,4 +245,3 @@
     }
   ]
 }
-

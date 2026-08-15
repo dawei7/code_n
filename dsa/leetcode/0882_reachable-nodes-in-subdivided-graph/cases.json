@@ -175,9 +175,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: reach only a prefix of one chain",
-      "kind": "real",
-      "visible": false,
+      "name": "reach only a prefix of one chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -197,9 +197,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: chain approached from both endpoints",
-      "kind": "real",
-      "visible": false,
+      "name": "chain approached from both endpoints",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -229,9 +229,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: disconnected subdivided component",
-      "kind": "real",
-      "visible": false,
+      "name": "disconnected subdivided component",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -251,9 +251,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: zero subdivisions around a cycle",
-      "kind": "real",
-      "visible": false,
+      "name": "zero subdivisions around a cycle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -283,9 +283,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: shorter indirect route beats long direct chain",
-      "kind": "real",
-      "visible": false,
+      "name": "shorter indirect route beats long direct chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [

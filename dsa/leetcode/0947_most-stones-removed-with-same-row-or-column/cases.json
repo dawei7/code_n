@@ -186,9 +186,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: two removable components",
-      "kind": "real",
-      "visible": false,
+      "name": "two removable components",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stones": [
           [
@@ -221,9 +221,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: all share a column",
-      "kind": "real",
-      "visible": false,
+      "name": "all share a column",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stones": [
           [
@@ -256,9 +256,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: upper coordinate bound",
-      "kind": "real",
-      "visible": false,
+      "name": "upper coordinate bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stones": [
           [

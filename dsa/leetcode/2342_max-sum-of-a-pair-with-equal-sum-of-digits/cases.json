@@ -2,12 +2,131 @@
   "schema_version": 1,
   "challenge_id": "lc_2342",
   "cases": [
-    {"id":"sample-two-groups","name":"sample: choose the larger of two eligible groups","kind":"sample","visible":true,"input":{"nums":[18,43,36,13,7]},"expected":54,"tags":["sample","multiple-groups"]},
-    {"id":"sample-no-pair","name":"sample: every digit sum differs","kind":"sample","visible":true,"input":{"nums":[10,12,19,14]},"expected":-1,"tags":["sample","no-pair"]},
-    {"id":"trial-one-value","name":"one value cannot supply two indices","kind":"trial","visible":true,"input":{"nums":[1]},"expected":-1,"tags":["boundary"]},
-    {"id":"trial-three-compatible","name":"the two largest compatible values win","kind":"trial","visible":true,"input":{"nums":[51,42,33]},"expected":93,"tags":["same-digit-sum"]},
-    {"id":"trial-equal-values","name":"equal values at distinct indices may pair","kind":"trial","visible":true,"input":{"nums":[9,9,9]},"expected":18,"tags":["duplicates"]},
-    {"id":"real-numeric-boundary","name":"hidden: the largest legal value pairs with one","kind":"real","visible":false,"input":{"nums":[1000000000,1,200000000]},"expected":1000000001,"tags":["hidden","maximum-value"]},
-    {"id":"real-late-largest","name":"hidden: later values replace earlier group maxima","kind":"real","visible":false,"input":{"nums":[18,90,27,81,72]},"expected":171,"tags":["hidden","replacement"]}
+    {
+      "id": "sample-two-groups",
+      "name": "sample: choose the larger of two eligible groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          18,
+          43,
+          36,
+          13,
+          7
+        ]
+      },
+      "expected": 54,
+      "tags": [
+        "sample",
+        "multiple-groups"
+      ]
+    },
+    {
+      "id": "sample-no-pair",
+      "name": "sample: every digit sum differs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          12,
+          19,
+          14
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "no-pair"
+      ]
+    },
+    {
+      "id": "trial-one-value",
+      "name": "one value cannot supply two indices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-three-compatible",
+      "name": "the two largest compatible values win",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          51,
+          42,
+          33
+        ]
+      },
+      "expected": 93,
+      "tags": [
+        "same-digit-sum"
+      ]
+    },
+    {
+      "id": "trial-equal-values",
+      "name": "equal values at distinct indices may pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          9,
+          9
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-numeric-boundary",
+      "name": "the largest legal value pairs with one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1,
+          200000000
+        ]
+      },
+      "expected": 1000000001,
+      "tags": [
+        "hidden",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "real-late-largest",
+      "name": "later values replace earlier group maxima",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          18,
+          90,
+          27,
+          81,
+          72
+        ]
+      },
+      "expected": 171,
+      "tags": [
+        "hidden",
+        "replacement"
+      ]
+    }
   ]
 }

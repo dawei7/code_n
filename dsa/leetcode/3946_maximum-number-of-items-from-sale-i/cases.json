@@ -250,9 +250,9 @@
     },
     {
       "id": "real-divisibility-chain",
-      "name": "hidden: nested factors create overlapping activation rewards",
-      "kind": "real",
-      "visible": false,
+      "name": "nested factors create overlapping activation rewards",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -286,9 +286,9 @@
     },
     {
       "id": "real-three-duplicate-factors",
-      "name": "hidden: three indexed types share one factor",
-      "kind": "real",
-      "visible": false,
+      "name": "three indexed types share one factor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -318,9 +318,9 @@
     },
     {
       "id": "real-pairwise-nondivisible",
-      "name": "hidden: no activation produces a free copy",
-      "kind": "real",
-      "visible": false,
+      "name": "no activation produces a free copy",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -350,9 +350,9 @@
     },
     {
       "id": "real-three-sources-one-target",
-      "name": "hidden: one indexed target is awarded three times",
-      "kind": "real",
-      "visible": false,
+      "name": "one indexed target is awarded three times",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -386,9 +386,9 @@
     },
     {
       "id": "real-maximum-factor-and-budget",
-      "name": "hidden: one maximum-priced maximum-factor item is affordable",
-      "kind": "real",
-      "visible": false,
+      "name": "one maximum-priced maximum-factor item is affordable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -412,9 +412,9 @@
     },
     {
       "id": "real-maximum-item-count",
-      "name": "hidden: one of one thousand equal-factor types can be activated",
-      "kind": "real",
-      "visible": false,
+      "name": "one of one thousand equal-factor types can be activated",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [
@@ -4433,9 +4433,9 @@
     },
     {
       "id": "real-mixed-thirty-types",
-      "name": "hidden: mixed prices and factors require the complete DP",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed prices and factors require the complete DP",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "items": [
           [

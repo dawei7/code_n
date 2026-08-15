@@ -181,9 +181,9 @@
     },
     {
       "id": "real-all-zeros",
-      "name": "hidden: zero-only array has no pair",
-      "kind": "real",
-      "visible": false,
+      "name": "zero-only array has no pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -204,9 +204,9 @@
     },
     {
       "id": "real-reverse-separated",
-      "name": "hidden: reverse-order values remain valid",
-      "kind": "real",
-      "visible": false,
+      "name": "reverse-order values remain valid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -228,9 +228,9 @@
     },
     {
       "id": "real-alternating",
-      "name": "hidden: every transition supplies distance one",
-      "kind": "real",
-      "visible": false,
+      "name": "every transition supplies distance one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -251,9 +251,9 @@
     },
     {
       "id": "real-value-blocks",
-      "name": "hidden: the block boundary is the closest pair",
-      "kind": "real",
-      "visible": false,
+      "name": "the block boundary is the closest pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -276,9 +276,9 @@
     },
     {
       "id": "real-two-sided-twos",
-      "name": "hidden: choose the nearer two around one",
-      "kind": "real",
-      "visible": false,
+      "name": "choose the nearer two around one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -301,9 +301,9 @@
     },
     {
       "id": "real-maximum-separation",
-      "name": "hidden: only pair spans the maximum legal array",
-      "kind": "real",
-      "visible": false,
+      "name": "only pair spans the maximum legal array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -420,9 +420,9 @@
     },
     {
       "id": "real-late-adjacent-improvement",
-      "name": "hidden: a late adjacent pair improves an earlier distance",
-      "kind": "real",
-      "visible": false,
+      "name": "a late adjacent pair improves an earlier distance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

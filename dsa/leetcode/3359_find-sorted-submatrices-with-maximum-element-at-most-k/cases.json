@@ -6,81 +6,244 @@
       "name": "sample: threshold removes prefixes from two rows",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[4, 3, 2, 1], [8, 7, 6, 1]], "k": 3},
+      "input": {
+        "grid": [
+          [
+            4,
+            3,
+            2,
+            1
+          ],
+          [
+            8,
+            7,
+            6,
+            1
+          ]
+        ],
+        "k": 3
+      },
       "expected": 8,
-      "tags": ["sample", "threshold", "mixed-heights"]
+      "tags": [
+        "sample",
+        "threshold",
+        "mixed-heights"
+      ]
     },
     {
       "id": "sample-all-equal",
       "name": "sample: every rectangle of an equal matrix qualifies",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1, 1, 1], [1, 1, 1], [1, 1, 1]], "k": 1},
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "k": 1
+      },
       "expected": 36,
-      "tags": ["sample", "equal-values", "all-rectangles"]
+      "tags": [
+        "sample",
+        "equal-values",
+        "all-rectangles"
+      ]
     },
     {
       "id": "sample-single-cell",
       "name": "sample: one qualifying cell",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1]], "k": 1},
+      "input": {
+        "grid": [
+          [
+            1
+          ]
+        ],
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["sample", "single-cell"]
+      "tags": [
+        "sample",
+        "single-cell"
+      ]
     },
     {
       "id": "trial-increasing-row",
       "name": "trial: an increasing row permits only single columns",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[1, 2, 3]], "k": 3},
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "k": 3
+      },
       "expected": 3,
-      "tags": ["increasing-row", "ordering-breaks"]
+      "tags": [
+        "increasing-row",
+        "ordering-breaks"
+      ]
     },
     {
       "id": "trial-threshold-resets-run",
       "name": "trial: an oversized cell separates valid suffixes",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[3, 2, 4, 1]], "k": 3},
+      "input": {
+        "grid": [
+          [
+            3,
+            2,
+            4,
+            1
+          ]
+        ],
+        "k": 3
+      },
       "expected": 4,
-      "tags": ["threshold", "run-reset"]
+      "tags": [
+        "threshold",
+        "run-reset"
+      ]
     },
     {
       "id": "trial-no-qualifying-cell",
       "name": "trial: every value exceeds the threshold",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[2, 2], [2, 2], [2, 2]], "k": 1},
+      "input": {
+        "grid": [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        "k": 1
+      },
       "expected": 0,
-      "tags": ["zero-answer", "threshold"]
+      "tags": [
+        "zero-answer",
+        "threshold"
+      ]
     },
     {
       "id": "real-mixed-widths",
       "name": "real: row suffix widths vary across vertical intervals",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[3, 2, 4, 1], [3, 1, 1, 1]], "k": 3},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            3,
+            2,
+            4,
+            1
+          ],
+          [
+            3,
+            1,
+            1,
+            1
+          ]
+        ],
+        "k": 3
+      },
       "expected": 18,
-      "tags": ["real", "subarray-minima", "mixed-widths"]
+      "tags": [
+        "real",
+        "subarray-minima",
+        "mixed-widths"
+      ]
     },
     {
       "id": "real-order-and-threshold-interaction",
       "name": "real: ordering breaks and oversized values interact",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[5, 4, 3], [2, 3, 1], [2, 2, 1]], "k": 3},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            4,
+            3
+          ],
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            2,
+            2,
+            1
+          ]
+        ],
+        "k": 3
+      },
       "expected": 17,
-      "tags": ["real", "threshold", "ordering-breaks"]
+      "tags": [
+        "real",
+        "threshold",
+        "ordering-breaks"
+      ]
     },
     {
       "id": "real-multirow-nonincreasing",
       "name": "real: several rows share different valid suffix lengths",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[4, 3, 2], [3, 3, 1], [2, 2, 1]], "k": 3},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            4,
+            3,
+            2
+          ],
+          [
+            3,
+            3,
+            1
+          ],
+          [
+            2,
+            2,
+            1
+          ]
+        ],
+        "k": 3
+      },
       "expected": 27,
-      "tags": ["real", "equal-values", "mixed-widths"]
+      "tags": [
+        "real",
+        "equal-values",
+        "mixed-widths"
+      ]
     }
   ]
 }

@@ -163,9 +163,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: mixed full and single-child subtrees",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed full and single-child subtrees",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "preorder": [
           1,
@@ -202,9 +202,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: complete four-level tree",
-      "kind": "real",
-      "visible": false,
+      "name": "complete four-level tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "preorder": [
           1,
@@ -268,9 +268,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: six-node ambiguous chain",
-      "kind": "real",
-      "visible": false,
+      "name": "six-node ambiguous chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "preorder": [
           1,
@@ -312,9 +312,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: unequal subtree sizes",
-      "kind": "real",
-      "visible": false,
+      "name": "unequal subtree sizes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "preorder": [
           1,
@@ -348,9 +348,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: nested first child and right leaf",
-      "kind": "real",
-      "visible": false,
+      "name": "nested first child and right leaf",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "preorder": [
           1,

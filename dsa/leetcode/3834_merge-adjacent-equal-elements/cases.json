@@ -177,9 +177,9 @@
     },
     {
       "id": "real-separated-duplicates",
-      "name": "hidden: repeated values separated by neighbors never merge",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated values separated by neighbors never merge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -207,9 +207,9 @@
     },
     {
       "id": "real-independent-pairs",
-      "name": "hidden: two non-cascading pairs merge independently",
-      "kind": "real",
-      "visible": false,
+      "name": "two non-cascading pairs merge independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -232,9 +232,9 @@
     },
     {
       "id": "real-odd-equal-run",
-      "name": "hidden: an odd equal run leaves one original value",
-      "kind": "real",
-      "visible": false,
+      "name": "an odd equal run leaves one original value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -257,9 +257,9 @@
     },
     {
       "id": "real-maximum-values",
-      "name": "hidden: maximum inputs produce a value above the input bound",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum inputs produce a value above the input bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -280,9 +280,9 @@
     },
     {
       "id": "real-multi-stage-order",
-      "name": "hidden: several stages preserve the deterministic merge order",
-      "kind": "real",
-      "visible": false,
+      "name": "several stages preserve the deterministic merge order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -307,4 +307,3 @@
     }
   ]
 }
-

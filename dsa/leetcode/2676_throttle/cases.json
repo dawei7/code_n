@@ -1,13 +1,428 @@
 {
   "challenge_id": "lc_2676",
   "cases": [
-    {"id":"sample-one-call","name":"sample: first call executes immediately","kind":"sample","visible":true,"input":{"t":100,"calls":[{"t":20,"inputs":[1]}]},"expected":[{"t":20,"inputs":[1]}],"tags":["sample","leading"]},
-    {"id":"sample-one-trailing","name":"sample: blocked call executes at the window end","kind":"sample","visible":true,"input":{"t":50,"calls":[{"t":50,"inputs":[1]},{"t":75,"inputs":[2]}]},"expected":[{"t":50,"inputs":[1]},{"t":100,"inputs":[2]}],"tags":["sample","trailing"]},
-    {"id":"sample-overwrite-chain","name":"sample: latest arguments chain throttle windows","kind":"sample","visible":true,"input":{"t":70,"calls":[{"t":50,"inputs":[1]},{"t":75,"inputs":[2]},{"t":90,"inputs":[8]},{"t":140,"inputs":[5,7]},{"t":300,"inputs":[9,4]}]},"expected":[{"t":50,"inputs":[1]},{"t":120,"inputs":[8]},{"t":190,"inputs":[5,7]},{"t":300,"inputs":[9,4]}],"tags":["sample","overwrite"]},
-    {"id":"trial-zero-delay","name":"trial: zero-delay same-time calls retain the latest trailing call","kind":"trial","visible":true,"input":{"t":0,"calls":[{"t":0,"inputs":[1]},{"t":0,"inputs":[2]},{"t":0,"inputs":[3]}]},"expected":[{"t":0,"inputs":[1]},{"t":0,"inputs":[3]}],"tags":["boundary","zero-delay"]},
-    {"id":"trial-empty-arguments","name":"trial: an empty argument tuple is still pending work","kind":"trial","visible":true,"input":{"t":25,"calls":[{"t":10,"inputs":[4]},{"t":20,"inputs":[]}]},"expected":[{"t":10,"inputs":[4]},{"t":35,"inputs":[]}],"tags":["empty-arguments"]},
-    {"id":"real-boundary-call","name":"hidden: a call registered at the release time becomes the trailing call","kind":"real","visible":false,"input":{"t":50,"calls":[{"t":0,"inputs":[1]},{"t":50,"inputs":[2]}]},"expected":[{"t":0,"inputs":[1]},{"t":50,"inputs":[2]}],"tags":["hidden","boundary-order"]},
-    {"id":"real-separated-bursts","name":"hidden: idle windows restore immediate execution","kind":"real","visible":false,"input":{"t":30,"calls":[{"t":0,"inputs":[1]},{"t":10,"inputs":[2]},{"t":100,"inputs":[3]},{"t":110,"inputs":[4]}]},"expected":[{"t":0,"inputs":[1]},{"t":30,"inputs":[2]},{"t":100,"inputs":[3]},{"t":130,"inputs":[4]}],"tags":["hidden","bursts"]},
-    {"id":"real-maximum-calls","name":"hidden: ten blocked calls keep only the newest arguments","kind":"real","visible":false,"input":{"t":1000,"calls":[{"t":0,"inputs":[0]},{"t":1,"inputs":[1]},{"t":2,"inputs":[2]},{"t":3,"inputs":[3]},{"t":4,"inputs":[4]},{"t":5,"inputs":[5]},{"t":6,"inputs":[6]},{"t":7,"inputs":[7]},{"t":8,"inputs":[8]},{"t":9,"inputs":[9]}]},"expected":[{"t":0,"inputs":[0]},{"t":1000,"inputs":[9]}],"tags":["hidden","maximum"]}
+    {
+      "id": "sample-one-call",
+      "name": "sample: first call executes immediately",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "t": 100,
+        "calls": [
+          {
+            "t": 20,
+            "inputs": [
+              1
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "t": 20,
+          "inputs": [
+            1
+          ]
+        }
+      ],
+      "tags": [
+        "sample",
+        "leading"
+      ]
+    },
+    {
+      "id": "sample-one-trailing",
+      "name": "sample: blocked call executes at the window end",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "t": 50,
+        "calls": [
+          {
+            "t": 50,
+            "inputs": [
+              1
+            ]
+          },
+          {
+            "t": 75,
+            "inputs": [
+              2
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "t": 50,
+          "inputs": [
+            1
+          ]
+        },
+        {
+          "t": 100,
+          "inputs": [
+            2
+          ]
+        }
+      ],
+      "tags": [
+        "sample",
+        "trailing"
+      ]
+    },
+    {
+      "id": "sample-overwrite-chain",
+      "name": "sample: latest arguments chain throttle windows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "t": 70,
+        "calls": [
+          {
+            "t": 50,
+            "inputs": [
+              1
+            ]
+          },
+          {
+            "t": 75,
+            "inputs": [
+              2
+            ]
+          },
+          {
+            "t": 90,
+            "inputs": [
+              8
+            ]
+          },
+          {
+            "t": 140,
+            "inputs": [
+              5,
+              7
+            ]
+          },
+          {
+            "t": 300,
+            "inputs": [
+              9,
+              4
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "t": 50,
+          "inputs": [
+            1
+          ]
+        },
+        {
+          "t": 120,
+          "inputs": [
+            8
+          ]
+        },
+        {
+          "t": 190,
+          "inputs": [
+            5,
+            7
+          ]
+        },
+        {
+          "t": 300,
+          "inputs": [
+            9,
+            4
+          ]
+        }
+      ],
+      "tags": [
+        "sample",
+        "overwrite"
+      ]
+    },
+    {
+      "id": "trial-zero-delay",
+      "name": "trial: zero-delay same-time calls retain the latest trailing call",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "t": 0,
+        "calls": [
+          {
+            "t": 0,
+            "inputs": [
+              1
+            ]
+          },
+          {
+            "t": 0,
+            "inputs": [
+              2
+            ]
+          },
+          {
+            "t": 0,
+            "inputs": [
+              3
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "t": 0,
+          "inputs": [
+            1
+          ]
+        },
+        {
+          "t": 0,
+          "inputs": [
+            3
+          ]
+        }
+      ],
+      "tags": [
+        "boundary",
+        "zero-delay"
+      ]
+    },
+    {
+      "id": "trial-empty-arguments",
+      "name": "trial: an empty argument tuple is still pending work",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "t": 25,
+        "calls": [
+          {
+            "t": 10,
+            "inputs": [
+              4
+            ]
+          },
+          {
+            "t": 20,
+            "inputs": []
+          }
+        ]
+      },
+      "expected": [
+        {
+          "t": 10,
+          "inputs": [
+            4
+          ]
+        },
+        {
+          "t": 35,
+          "inputs": []
+        }
+      ],
+      "tags": [
+        "empty-arguments"
+      ]
+    },
+    {
+      "id": "real-boundary-call",
+      "name": "a call registered at the release time becomes the trailing call",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "t": 50,
+        "calls": [
+          {
+            "t": 0,
+            "inputs": [
+              1
+            ]
+          },
+          {
+            "t": 50,
+            "inputs": [
+              2
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "t": 0,
+          "inputs": [
+            1
+          ]
+        },
+        {
+          "t": 50,
+          "inputs": [
+            2
+          ]
+        }
+      ],
+      "tags": [
+        "hidden",
+        "boundary-order"
+      ]
+    },
+    {
+      "id": "real-separated-bursts",
+      "name": "idle windows restore immediate execution",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "t": 30,
+        "calls": [
+          {
+            "t": 0,
+            "inputs": [
+              1
+            ]
+          },
+          {
+            "t": 10,
+            "inputs": [
+              2
+            ]
+          },
+          {
+            "t": 100,
+            "inputs": [
+              3
+            ]
+          },
+          {
+            "t": 110,
+            "inputs": [
+              4
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "t": 0,
+          "inputs": [
+            1
+          ]
+        },
+        {
+          "t": 30,
+          "inputs": [
+            2
+          ]
+        },
+        {
+          "t": 100,
+          "inputs": [
+            3
+          ]
+        },
+        {
+          "t": 130,
+          "inputs": [
+            4
+          ]
+        }
+      ],
+      "tags": [
+        "hidden",
+        "bursts"
+      ]
+    },
+    {
+      "id": "real-maximum-calls",
+      "name": "ten blocked calls keep only the newest arguments",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "t": 1000,
+        "calls": [
+          {
+            "t": 0,
+            "inputs": [
+              0
+            ]
+          },
+          {
+            "t": 1,
+            "inputs": [
+              1
+            ]
+          },
+          {
+            "t": 2,
+            "inputs": [
+              2
+            ]
+          },
+          {
+            "t": 3,
+            "inputs": [
+              3
+            ]
+          },
+          {
+            "t": 4,
+            "inputs": [
+              4
+            ]
+          },
+          {
+            "t": 5,
+            "inputs": [
+              5
+            ]
+          },
+          {
+            "t": 6,
+            "inputs": [
+              6
+            ]
+          },
+          {
+            "t": 7,
+            "inputs": [
+              7
+            ]
+          },
+          {
+            "t": 8,
+            "inputs": [
+              8
+            ]
+          },
+          {
+            "t": 9,
+            "inputs": [
+              9
+            ]
+          }
+        ]
+      },
+      "expected": [
+        {
+          "t": 0,
+          "inputs": [
+            0
+          ]
+        },
+        {
+          "t": 1000,
+          "inputs": [
+            9
+          ]
+        }
+      ],
+      "tags": [
+        "hidden",
+        "maximum"
+      ]
+    }
   ]
 }

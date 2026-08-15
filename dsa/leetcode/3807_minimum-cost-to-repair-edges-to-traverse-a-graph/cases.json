@@ -2,16 +2,429 @@
   "schema_version": 1,
   "challenge_id": "lc_3807",
   "cases": [
-    {"id":"sample-1","name":"sample: one-edge limit requires the expensive direct edge","kind":"sample","visible":true,"input":{"n":3,"edges":[[0,1,10],[1,2,10],[0,2,100]],"k":1},"expected":100,"validator":{"kind":"exact"},"tags":["sample","direct-edge","hop-limit"]},
-    {"id":"sample-2","name":"sample: minimum feasible two-edge threshold","kind":"sample","visible":true,"input":{"n":6,"edges":[[0,2,5],[2,3,6],[3,4,7],[4,5,5],[0,1,10],[1,5,12],[0,3,9],[1,2,8],[2,4,11]],"k":2},"expected":12,"validator":{"kind":"exact"},"tags":["sample","binary-search","two-edges"]},
-    {"id":"sample-3","name":"sample: destination is disconnected","kind":"sample","visible":true,"input":{"n":3,"edges":[[0,1,1]],"k":1},"expected":-1,"validator":{"kind":"exact"},"tags":["sample","disconnected"]},
-    {"id":"trial-single-edge","name":"trial: only one repair cost exists","kind":"trial","visible":true,"input":{"n":2,"edges":[[0,1,7]],"k":2},"expected":7,"validator":{"kind":"exact"},"tags":["trial","single-edge"]},
-    {"id":"trial-chain-within-limit","name":"trial: two-edge chain fits the limit","kind":"trial","visible":true,"input":{"n":3,"edges":[[0,1,4],[1,2,5]],"k":2},"expected":5,"validator":{"kind":"exact"},"tags":["trial","chain","threshold-maximum"]},
-    {"id":"trial-chain-exceeds-limit","name":"trial: connected graph has no short enough route","kind":"trial","visible":true,"input":{"n":3,"edges":[[0,1,4],[1,2,5]],"k":1},"expected":-1,"validator":{"kind":"exact"},"tags":["trial","chain","hop-limit"]},
-    {"id":"real-competing-two-edge-routes","name":"hidden: choose the route with the smaller bottleneck","kind":"real","visible":false,"input":{"n":4,"edges":[[0,1,5],[1,3,8],[0,2,6],[2,3,7]],"k":2},"expected":7,"validator":{"kind":"exact"},"tags":["hidden","competing-paths","bottleneck"]},
-    {"id":"real-direct-beats-longer-chain","name":"hidden: expensive direct edge satisfies the hop limit","kind":"real","visible":false,"input":{"n":4,"edges":[[0,1,1],[1,2,1],[2,3,1],[0,3,50]],"k":1},"expected":50,"validator":{"kind":"exact"},"tags":["hidden","direct-edge","hop-limit"]},
-    {"id":"real-cycle-and-shortcut","name":"hidden: cycle edges do not replace a valid shortcut","kind":"real","visible":false,"input":{"n":5,"edges":[[0,1,2],[1,2,3],[2,3,4],[3,0,5],[2,4,9],[0,4,12]],"k":3},"expected":9,"validator":{"kind":"exact"},"tags":["hidden","cycle","shortcut"]},
-    {"id":"real-equal-cost-paths","name":"hidden: repeated edge costs share one threshold","kind":"real","visible":false,"input":{"n":5,"edges":[[0,1,6],[1,4,6],[0,2,6],[2,3,6],[3,4,6]],"k":2},"expected":6,"validator":{"kind":"exact"},"tags":["hidden","equal-costs","multiple-paths"]},
-    {"id":"real-large-cost-boundary","name":"hidden: repair cost reaches the numeric upper bound","kind":"real","visible":false,"input":{"n":3,"edges":[[0,1,999999999],[1,2,1000000000]],"k":2},"expected":1000000000,"validator":{"kind":"exact"},"tags":["hidden","cost-boundary","chain"]}
+    {
+      "id": "sample-1",
+      "name": "sample: one-edge limit requires the expensive direct edge",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            10
+          ],
+          [
+            1,
+            2,
+            10
+          ],
+          [
+            0,
+            2,
+            100
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 100,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "direct-edge",
+        "hop-limit"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: minimum feasible two-edge threshold",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            2,
+            5
+          ],
+          [
+            2,
+            3,
+            6
+          ],
+          [
+            3,
+            4,
+            7
+          ],
+          [
+            4,
+            5,
+            5
+          ],
+          [
+            0,
+            1,
+            10
+          ],
+          [
+            1,
+            5,
+            12
+          ],
+          [
+            0,
+            3,
+            9
+          ],
+          [
+            1,
+            2,
+            8
+          ],
+          [
+            2,
+            4,
+            11
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 12,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "binary-search",
+        "two-edges"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: destination is disconnected",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ]
+        ],
+        "k": 1
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "disconnected"
+      ]
+    },
+    {
+      "id": "trial-single-edge",
+      "name": "trial: only one repair cost exists",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            1,
+            7
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 7,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-edge"
+      ]
+    },
+    {
+      "id": "trial-chain-within-limit",
+      "name": "trial: two-edge chain fits the limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            4
+          ],
+          [
+            1,
+            2,
+            5
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "chain",
+        "threshold-maximum"
+      ]
+    },
+    {
+      "id": "trial-chain-exceeds-limit",
+      "name": "trial: connected graph has no short enough route",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            4
+          ],
+          [
+            1,
+            2,
+            5
+          ]
+        ],
+        "k": 1
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "chain",
+        "hop-limit"
+      ]
+    },
+    {
+      "id": "real-competing-two-edge-routes",
+      "name": "choose the route with the smaller bottleneck",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1,
+            5
+          ],
+          [
+            1,
+            3,
+            8
+          ],
+          [
+            0,
+            2,
+            6
+          ],
+          [
+            2,
+            3,
+            7
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 7,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "competing-paths",
+        "bottleneck"
+      ]
+    },
+    {
+      "id": "real-direct-beats-longer-chain",
+      "name": "expensive direct edge satisfies the hop limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            0,
+            3,
+            50
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 50,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "direct-edge",
+        "hop-limit"
+      ]
+    },
+    {
+      "id": "real-cycle-and-shortcut",
+      "name": "cycle edges do not replace a valid shortcut",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ],
+          [
+            3,
+            0,
+            5
+          ],
+          [
+            2,
+            4,
+            9
+          ],
+          [
+            0,
+            4,
+            12
+          ]
+        ],
+        "k": 3
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "cycle",
+        "shortcut"
+      ]
+    },
+    {
+      "id": "real-equal-cost-paths",
+      "name": "repeated edge costs share one threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1,
+            6
+          ],
+          [
+            1,
+            4,
+            6
+          ],
+          [
+            0,
+            2,
+            6
+          ],
+          [
+            2,
+            3,
+            6
+          ],
+          [
+            3,
+            4,
+            6
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "equal-costs",
+        "multiple-paths"
+      ]
+    },
+    {
+      "id": "real-large-cost-boundary",
+      "name": "repair cost reaches the numeric upper bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            999999999
+          ],
+          [
+            1,
+            2,
+            1000000000
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 1000000000,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "cost-boundary",
+        "chain"
+      ]
+    }
   ]
 }

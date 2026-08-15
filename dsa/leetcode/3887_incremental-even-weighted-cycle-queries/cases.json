@@ -233,9 +233,9 @@
     },
     {
       "id": "real-rejection-does-not-mutate",
-      "name": "hidden: a rejected triangle edge cannot affect later proposals",
-      "kind": "real",
-      "visible": false,
+      "name": "a rejected triangle edge cannot affect later proposals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [
@@ -275,9 +275,9 @@
     },
     {
       "id": "real-merge-components-and-reject-chord",
-      "name": "hidden: several components merge before an inconsistent chord",
-      "kind": "real",
-      "visible": false,
+      "name": "several components merge before an inconsistent chord",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "edges": [
@@ -327,9 +327,9 @@
     },
     {
       "id": "real-multiple-consistent-chords",
-      "name": "hidden: several redundant edges agree with one potential assignment",
-      "kind": "real",
-      "visible": false,
+      "name": "several redundant edges agree with one potential assignment",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "edges": [
@@ -379,9 +379,9 @@
     },
     {
       "id": "real-all-one-odd-cycle",
-      "name": "hidden: an odd-length all-one cycle rejects its closing edge",
-      "kind": "real",
-      "visible": false,
+      "name": "an odd-length all-one cycle rejects its closing edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "edges": [
@@ -421,9 +421,9 @@
     },
     {
       "id": "real-all-one-even-cycle",
-      "name": "hidden: an even-length all-one cycle accepts its closing edge",
-      "kind": "real",
-      "visible": false,
+      "name": "an even-length all-one cycle accepts its closing edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "edges": [
@@ -468,9 +468,9 @@
     },
     {
       "id": "real-multiple-inconsistent-chords",
-      "name": "hidden: multiple bad chords are rejected while a later good chord remains valid",
-      "kind": "real",
-      "visible": false,
+      "name": "multiple bad chords are rejected while a later good chord remains valid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [
@@ -515,9 +515,9 @@
     },
     {
       "id": "real-maximum-vertex-labels",
-      "name": "hidden: parity relations work at the maximum vertex labels",
-      "kind": "real",
-      "visible": false,
+      "name": "parity relations work at the maximum vertex labels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 50000,
         "edges": [
@@ -552,9 +552,9 @@
     },
     {
       "id": "real-disconnected-mixed-cycles",
-      "name": "hidden: even and odd cycles are evaluated independently across components",
-      "kind": "real",
-      "visible": false,
+      "name": "even and odd cycles are evaluated independently across components",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 8,
         "edges": [

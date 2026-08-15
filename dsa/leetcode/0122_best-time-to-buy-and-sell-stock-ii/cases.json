@@ -80,9 +80,9 @@
     },
     {
       "id": "real-separated-climbs",
-      "name": "hidden: separated climbs",
-      "kind": "real",
-      "visible": false,
+      "name": "separated climbs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           2,

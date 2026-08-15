@@ -163,9 +163,9 @@
     },
     {
       "id": "real-middle-switch-six",
-      "name": "hidden: the best even-length set switches parity in the middle",
-      "kind": "real",
-      "visible": false,
+      "name": "the best even-length set switches parity in the middle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -185,9 +185,9 @@
     },
     {
       "id": "real-middle-switch-eight",
-      "name": "hidden: a longer array requires one interior phase switch",
-      "kind": "real",
-      "visible": false,
+      "name": "a longer array requires one interior phase switch",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -209,9 +209,9 @@
     },
     {
       "id": "real-all-equal-odd",
-      "name": "hidden: every forced odd-position peak costs one",
-      "kind": "real",
-      "visible": false,
+      "name": "every forced odd-position peak costs one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -232,9 +232,9 @@
     },
     {
       "id": "real-all-equal-even",
-      "name": "hidden: every maximum even-length pattern has equal cost",
-      "kind": "real",
-      "visible": false,
+      "name": "every maximum even-length pattern has equal cost",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -256,9 +256,9 @@
     },
     {
       "id": "real-strictly-descending",
-      "name": "hidden: each forced peak in a descending odd array costs two",
-      "kind": "real",
-      "visible": false,
+      "name": "each forced peak in a descending odd array costs two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -281,9 +281,9 @@
     },
     {
       "id": "real-strictly-ascending",
-      "name": "hidden: each chosen peak in an ascending even array costs two",
-      "kind": "real",
-      "visible": false,
+      "name": "each chosen peak in an ascending even array costs two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -307,9 +307,9 @@
     },
     {
       "id": "real-answer-exceeds-32-bit",
-      "name": "hidden: five forced low peaks produce a 64-bit total",
-      "kind": "real",
-      "visible": false,
+      "name": "five forced low peaks produce a 64-bit total",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,

@@ -2,13 +2,140 @@
   "schema_version": 1,
   "challenge_id": "lc_2177",
   "cases": [
-    {"id":"sample-representable","name":"sample: thirty-three has middle eleven","kind":"sample","visible":true,"input":{"num":33},"expected":[10,11,12],"tags":["sample","divisible-by-three"]},
-    {"id":"sample-impossible","name":"sample: four is not divisible by three","kind":"sample","visible":true,"input":{"num":4},"expected":[],"tags":["sample","impossible"]},
-    {"id":"trial-zero","name":"zero uses negative one through one","kind":"trial","visible":true,"input":{"num":0},"expected":[-1,0,1],"tags":["zero","negative-result"]},
-    {"id":"trial-smallest-positive","name":"one is impossible","kind":"trial","visible":true,"input":{"num":1},"expected":[],"tags":["small","impossible"]},
-    {"id":"trial-three","name":"three is zero one two","kind":"trial","visible":true,"input":{"num":3},"expected":[0,1,2],"tags":["small","boundary"]},
-    {"id":"real-large-divisible","name":"hidden: large divisible input remains exact","kind":"real","visible":false,"input":{"num":999999999999999},"expected":[333333333333332,333333333333333,333333333333334],"tags":["hidden","large","integer-arithmetic"]},
-    {"id":"real-maximum-impossible","name":"hidden: maximum input is not divisible by three","kind":"real","visible":false,"input":{"num":1000000000000000},"expected":[],"tags":["hidden","maximum","impossible"]},
-    {"id":"real-large-neighbor","name":"hidden: a large multiple returns consecutive neighbors","kind":"real","visible":false,"input":{"num":300000000000000},"expected":[99999999999999,100000000000000,100000000000001],"tags":["hidden","large","consecutive"]}
+    {
+      "id": "sample-representable",
+      "name": "sample: thirty-three has middle eleven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 33
+      },
+      "expected": [
+        10,
+        11,
+        12
+      ],
+      "tags": [
+        "sample",
+        "divisible-by-three"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: four is not divisible by three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 4
+      },
+      "expected": [],
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-zero",
+      "name": "zero uses negative one through one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 0
+      },
+      "expected": [
+        -1,
+        0,
+        1
+      ],
+      "tags": [
+        "zero",
+        "negative-result"
+      ]
+    },
+    {
+      "id": "trial-smallest-positive",
+      "name": "one is impossible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1
+      },
+      "expected": [],
+      "tags": [
+        "small",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-three",
+      "name": "three is zero one two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 3
+      },
+      "expected": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "small",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-large-divisible",
+      "name": "large divisible input remains exact",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 999999999999999
+      },
+      "expected": [
+        333333333333332,
+        333333333333333,
+        333333333333334
+      ],
+      "tags": [
+        "hidden",
+        "large",
+        "integer-arithmetic"
+      ]
+    },
+    {
+      "id": "real-maximum-impossible",
+      "name": "maximum input is not divisible by three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1000000000000000
+      },
+      "expected": [],
+      "tags": [
+        "hidden",
+        "maximum",
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-large-neighbor",
+      "name": "a large multiple returns consecutive neighbors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 300000000000000
+      },
+      "expected": [
+        99999999999999,
+        100000000000000,
+        100000000000001
+      ],
+      "tags": [
+        "hidden",
+        "large",
+        "consecutive"
+      ]
+    }
   ]
 }

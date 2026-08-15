@@ -1,14 +1,122 @@
 {
-  "challenge_id":"lc_3304",
-  "cases":[
-    {"id":"sample-five","name":"sample: fifth character","kind":"sample","visible":true,"input":{"k":5},"expected":"b","tags":["sample"]},
-    {"id":"sample-ten","name":"sample: tenth character","kind":"sample","visible":true,"input":{"k":10},"expected":"c","tags":["sample"]},
-    {"id":"trial-first","name":"trial: initial character","kind":"trial","visible":true,"input":{"k":1},"expected":"a","tags":["minimum"]},
-    {"id":"trial-second","name":"trial: first transformed character","kind":"trial","visible":true,"input":{"k":2},"expected":"b","tags":["power-of-two"]},
-    {"id":"trial-fourth","name":"trial: two accumulated shifts","kind":"trial","visible":true,"input":{"k":4},"expected":"c","tags":["bit-count"]},
-    {"id":"trial-eight","name":"trial: three accumulated shifts","kind":"trial","visible":true,"input":{"k":8},"expected":"d","tags":["bit-count"]},
-    {"id":"real-power-boundary","name":"real: position after a power of two","kind":"real","visible":false,"input":{"k":257},"expected":"b","tags":["boundary"]},
-    {"id":"real-many-bits","name":"real: position with eight set bits","kind":"real","visible":false,"input":{"k":256},"expected":"i","tags":["bit-count"]},
-    {"id":"real-maximum","name":"real: maximum legal position","kind":"real","visible":false,"input":{"k":500},"expected":"h","tags":["maximum"]}
+  "challenge_id": "lc_3304",
+  "cases": [
+    {
+      "id": "sample-five",
+      "name": "sample: fifth character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 5
+      },
+      "expected": "b",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-ten",
+      "name": "sample: tenth character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 10
+      },
+      "expected": "c",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-first",
+      "name": "trial: initial character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 1
+      },
+      "expected": "a",
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-second",
+      "name": "trial: first transformed character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 2
+      },
+      "expected": "b",
+      "tags": [
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "trial-fourth",
+      "name": "trial: two accumulated shifts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 4
+      },
+      "expected": "c",
+      "tags": [
+        "bit-count"
+      ]
+    },
+    {
+      "id": "trial-eight",
+      "name": "trial: three accumulated shifts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 8
+      },
+      "expected": "d",
+      "tags": [
+        "bit-count"
+      ]
+    },
+    {
+      "id": "real-power-boundary",
+      "name": "real: position after a power of two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 257
+      },
+      "expected": "b",
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-many-bits",
+      "name": "real: position with eight set bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 256
+      },
+      "expected": "i",
+      "tags": [
+        "bit-count"
+      ]
+    },
+    {
+      "id": "real-maximum",
+      "name": "real: maximum legal position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 500
+      },
+      "expected": "h",
+      "tags": [
+        "maximum"
+      ]
+    }
   ]
 }

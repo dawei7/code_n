@@ -7,108 +7,211 @@
       "name": "sample: three digits become three descending components",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 537},
-      "expected": [500, 30, 7],
-      "tags": ["sample", "multiple-components"]
+      "input": {
+        "n": 537
+      },
+      "expected": [
+        500,
+        30,
+        7
+      ],
+      "tags": [
+        "sample",
+        "multiple-components"
+      ]
     },
     {
       "id": "sample-internal-zero",
       "name": "sample: an internal zero contributes no component",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 102},
-      "expected": [100, 2],
-      "tags": ["sample", "internal-zero"]
+      "input": {
+        "n": 102
+      },
+      "expected": [
+        100,
+        2
+      ],
+      "tags": [
+        "sample",
+        "internal-zero"
+      ]
     },
     {
       "id": "sample-single-digit",
       "name": "sample: one digit is already a component",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 6},
-      "expected": [6],
-      "tags": ["sample", "single-component"]
+      "input": {
+        "n": 6
+      },
+      "expected": [
+        6
+      ],
+      "tags": [
+        "sample",
+        "single-component"
+      ]
     },
     {
       "id": "trial-minimum-input",
       "name": "trial: the minimum positive input is one component",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1},
-      "expected": [1],
-      "tags": ["trial", "minimum-input"]
+      "input": {
+        "n": 1
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "trial",
+        "minimum-input"
+      ]
     },
     {
       "id": "trial-power-of-ten",
       "name": "trial: ten is a single place-value component",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 10},
-      "expected": [10],
-      "tags": ["trial", "power-of-ten"]
+      "input": {
+        "n": 10
+      },
+      "expected": [
+        10
+      ],
+      "tags": [
+        "trial",
+        "power-of-ten"
+      ]
     },
     {
       "id": "trial-two-adjacent-digits",
       "name": "trial: adjacent nonzero digits remain separate components",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 11},
-      "expected": [10, 1],
-      "tags": ["trial", "adjacent-digits"]
+      "input": {
+        "n": 11
+      },
+      "expected": [
+        10,
+        1
+      ],
+      "tags": [
+        "trial",
+        "adjacent-digits"
+      ]
     },
     {
       "id": "trial-larger-power-of-ten",
       "name": "trial: a larger power of ten remains one component",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1000},
-      "expected": [1000],
-      "tags": ["trial", "power-of-ten"]
+      "input": {
+        "n": 1000
+      },
+      "expected": [
+        1000
+      ],
+      "tags": [
+        "trial",
+        "power-of-ten"
+      ]
     },
     {
       "id": "real-maximum-input",
-      "name": "hidden: the maximum input is a single component",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000000000},
-      "expected": [1000000000],
-      "tags": ["hidden", "maximum-input"]
+      "name": "the maximum input is a single component",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000000
+      },
+      "expected": [
+        1000000000
+      ],
+      "tags": [
+        "hidden",
+        "maximum-input"
+      ]
     },
     {
       "id": "real-separated-end-digits",
-      "name": "hidden: zeros separate the highest and lowest components",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 900000009},
-      "expected": [900000000, 9],
-      "tags": ["hidden", "internal-zeros"]
+      "name": "zeros separate the highest and lowest components",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 900000009
+      },
+      "expected": [
+        900000000,
+        9
+      ],
+      "tags": [
+        "hidden",
+        "internal-zeros"
+      ]
     },
     {
       "id": "real-alternating-digits",
-      "name": "hidden: alternating zeros omit every other position",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 101010101},
-      "expected": [100000000, 1000000, 10000, 100, 1],
-      "tags": ["hidden", "internal-zeros"]
+      "name": "alternating zeros omit every other position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 101010101
+      },
+      "expected": [
+        100000000,
+        1000000,
+        10000,
+        100,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "internal-zeros"
+      ]
     },
     {
       "id": "real-all-nines",
-      "name": "hidden: every decimal position contributes at its maximum digit",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 999999999},
-      "expected": [900000000, 90000000, 9000000, 900000, 90000, 9000, 900, 90, 9],
-      "tags": ["hidden", "all-positions"]
+      "name": "every decimal position contributes at its maximum digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 999999999
+      },
+      "expected": [
+        900000000,
+        90000000,
+        9000000,
+        900000,
+        90000,
+        9000,
+        900,
+        90,
+        9
+      ],
+      "tags": [
+        "hidden",
+        "all-positions"
+      ]
     },
     {
       "id": "real-sparse-middle-component",
-      "name": "hidden: sparse nonzero digits retain descending order",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 100020003},
-      "expected": [100000000, 20000, 3],
-      "tags": ["hidden", "internal-zeros"]
+      "name": "sparse nonzero digits retain descending order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100020003
+      },
+      "expected": [
+        100000000,
+        20000,
+        3
+      ],
+      "tags": [
+        "hidden",
+        "internal-zeros"
+      ]
     }
   ]
 }

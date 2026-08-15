@@ -131,8 +131,8 @@
     {
       "id": "query-order",
       "name": "real: two equal thresholds succeed before a larger one",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -153,8 +153,8 @@
     {
       "id": "queries-shorter",
       "name": "real: processing stops after exhausting queries",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,

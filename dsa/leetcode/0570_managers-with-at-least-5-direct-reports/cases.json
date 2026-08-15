@@ -355,9 +355,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: six reports plus unrelated employee",
-      "kind": "real",
-      "visible": false,
+      "name": "six reports plus unrelated employee",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Employee": [
@@ -429,9 +429,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: no report relationships",
-      "kind": "real",
-      "visible": false,
+      "name": "no report relationships",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Employee": [
@@ -457,4 +457,3 @@
     }
   ]
 }
-

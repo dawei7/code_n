@@ -109,8 +109,8 @@
     {
       "id": "real-whole-alphabet",
       "name": "real: alphabet split into thirteen pairs",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcdefghijklmnopqrstuvwxyz",
         "k": 2
@@ -124,8 +124,8 @@
     {
       "id": "real-whole-string",
       "name": "real: one group spans the whole string",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "leetcode",
         "k": 8
@@ -139,8 +139,8 @@
     {
       "id": "real-repeated-z",
       "name": "real: repeated maximum letters in groups",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zzzzzzzzzzzz",
         "k": 3
@@ -154,8 +154,8 @@
     {
       "id": "real-four-groups",
       "name": "real: varied four-character groups",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "algorithmhashing",
         "k": 4
@@ -169,8 +169,8 @@
     {
       "id": "real-long-pattern",
       "name": "real: one hundred deterministic characters",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "dulctkbsjarizqhypgxofwnevmdulctkbsjarizqhypgxofwnevmdulctkbsjarizqhypgxofwnevmdulctkbsjarizqhypgxofw",
         "k": 10

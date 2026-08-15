@@ -1,14 +1,131 @@
 {
   "challenge_id": "lc_3498",
   "cases": [
-    {"id":"sample-abc","name":"sample: increasing letters","kind":"sample","visible":true,"input":{"s":"abc"},"expected":148,"tags":["sample","distinct-letters"]},
-    {"id":"sample-zaza","name":"sample: repeated alternating letters","kind":"sample","visible":true,"input":{"s":"zaza"},"expected":160,"tags":["sample","repeated-letters"]},
-    {"id":"trial-a","name":"trial: one highest-value letter","kind":"trial","visible":true,"input":{"s":"a"},"expected":26,"tags":["trial","minimum-length"]},
-    {"id":"trial-z","name":"trial: one lowest-value letter","kind":"trial","visible":true,"input":{"s":"z"},"expected":1,"tags":["trial","minimum-length"]},
-    {"id":"trial-az","name":"trial: opposite alphabet endpoints","kind":"trial","visible":true,"input":{"s":"az"},"expected":28,"tags":["trial","position-weight"]},
-    {"id":"real-za","name":"real: position changes the endpoint weights","kind":"real","visible":false,"input":{"s":"za"},"expected":53,"tags":["real","position-weight"]},
-    {"id":"real-repeated-a","name":"real: repeated maximum values","kind":"real","visible":false,"input":{"s":"aaaaa"},"expected":390,"tags":["real","repeated-letters"]},
-    {"id":"real-alphabet","name":"real: complete lowercase alphabet","kind":"real","visible":false,"input":{"s":"abcdefghijklmnopqrstuvwxyz"},"expected":3276,"tags":["real","alphabet-boundary"]},
-    {"id":"real-palindrome","name":"real: equal letters at different positions","kind":"real","visible":false,"input":{"s":"level"},"expected":237,"tags":["real","repeated-letters"]}
+    {
+      "id": "sample-abc",
+      "name": "sample: increasing letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abc"
+      },
+      "expected": 148,
+      "tags": [
+        "sample",
+        "distinct-letters"
+      ]
+    },
+    {
+      "id": "sample-zaza",
+      "name": "sample: repeated alternating letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "zaza"
+      },
+      "expected": 160,
+      "tags": [
+        "sample",
+        "repeated-letters"
+      ]
+    },
+    {
+      "id": "trial-a",
+      "name": "trial: one highest-value letter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": 26,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-z",
+      "name": "trial: one lowest-value letter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-az",
+      "name": "trial: opposite alphabet endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "az"
+      },
+      "expected": 28,
+      "tags": [
+        "trial",
+        "position-weight"
+      ]
+    },
+    {
+      "id": "real-za",
+      "name": "real: position changes the endpoint weights",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "za"
+      },
+      "expected": 53,
+      "tags": [
+        "real",
+        "position-weight"
+      ]
+    },
+    {
+      "id": "real-repeated-a",
+      "name": "real: repeated maximum values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaa"
+      },
+      "expected": 390,
+      "tags": [
+        "real",
+        "repeated-letters"
+      ]
+    },
+    {
+      "id": "real-alphabet",
+      "name": "real: complete lowercase alphabet",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": 3276,
+      "tags": [
+        "real",
+        "alphabet-boundary"
+      ]
+    },
+    {
+      "id": "real-palindrome",
+      "name": "real: equal letters at different positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "level"
+      },
+      "expected": 237,
+      "tags": [
+        "real",
+        "repeated-letters"
+      ]
+    }
   ]
 }

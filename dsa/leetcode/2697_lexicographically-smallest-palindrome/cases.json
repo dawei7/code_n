@@ -1,1 +1,131 @@
-{"schema_version":1,"challenge_id":"lc_2697","cases":[{"id":"sample-one-change","name":"sample: one interior mirrored pair differs","kind":"sample","visible":true,"input":{"s":"egcfe"},"expected":"efcfe","tags":["sample","odd-length"]},{"id":"sample-even-two-changes","name":"sample: both mirrored pairs differ","kind":"sample","visible":true,"input":{"s":"abcd"},"expected":"abba","tags":["sample","even-length"]},{"id":"sample-outer-change","name":"sample: only the outer pair differs","kind":"sample","visible":true,"input":{"s":"seven"},"expected":"neven","tags":["sample","outer-pair"]},{"id":"trial-single-character","name":"trial: one character is already a palindrome","kind":"trial","visible":true,"input":{"s":"a"},"expected":"a","tags":["single-character","unchanged"]},{"id":"trial-already-palindrome","name":"trial: an existing palindrome remains unchanged","kind":"trial","visible":true,"input":{"s":"racecar"},"expected":"racecar","tags":["already-palindrome"]},{"id":"trial-two-characters","name":"trial: smaller endpoint wins","kind":"trial","visible":true,"input":{"s":"za"},"expected":"aa","tags":["two-characters","lexicographic"]},{"id":"real-independent-pairs","name":"hidden: each mirrored pair is resolved independently","kind":"real","visible":false,"input":{"s":"atie"},"expected":"aiia","tags":["hidden","independent-pairs"]},{"id":"real-all-pairs-differ","name":"hidden: every mirrored pair differs","kind":"real","visible":false,"input":{"s":"zyxw"},"expected":"wxxw","tags":["hidden","all-mismatch"]},{"id":"real-middle-preserved","name":"hidden: the odd middle character is preserved","kind":"real","visible":false,"input":{"s":"azbyc"},"expected":"aybya","tags":["hidden","middle-character"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2697",
+  "cases": [
+    {
+      "id": "sample-one-change",
+      "name": "sample: one interior mirrored pair differs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "egcfe"
+      },
+      "expected": "efcfe",
+      "tags": [
+        "sample",
+        "odd-length"
+      ]
+    },
+    {
+      "id": "sample-even-two-changes",
+      "name": "sample: both mirrored pairs differ",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcd"
+      },
+      "expected": "abba",
+      "tags": [
+        "sample",
+        "even-length"
+      ]
+    },
+    {
+      "id": "sample-outer-change",
+      "name": "sample: only the outer pair differs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "seven"
+      },
+      "expected": "neven",
+      "tags": [
+        "sample",
+        "outer-pair"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: one character is already a palindrome",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": "a",
+      "tags": [
+        "single-character",
+        "unchanged"
+      ]
+    },
+    {
+      "id": "trial-already-palindrome",
+      "name": "trial: an existing palindrome remains unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "racecar"
+      },
+      "expected": "racecar",
+      "tags": [
+        "already-palindrome"
+      ]
+    },
+    {
+      "id": "trial-two-characters",
+      "name": "trial: smaller endpoint wins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "za"
+      },
+      "expected": "aa",
+      "tags": [
+        "two-characters",
+        "lexicographic"
+      ]
+    },
+    {
+      "id": "real-independent-pairs",
+      "name": "each mirrored pair is resolved independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "atie"
+      },
+      "expected": "aiia",
+      "tags": [
+        "hidden",
+        "independent-pairs"
+      ]
+    },
+    {
+      "id": "real-all-pairs-differ",
+      "name": "every mirrored pair differs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zyxw"
+      },
+      "expected": "wxxw",
+      "tags": [
+        "hidden",
+        "all-mismatch"
+      ]
+    },
+    {
+      "id": "real-middle-preserved",
+      "name": "the odd middle character is preserved",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "azbyc"
+      },
+      "expected": "aybya",
+      "tags": [
+        "hidden",
+        "middle-character"
+      ]
+    }
+  ]
+}

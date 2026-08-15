@@ -1,14 +1,178 @@
 {
   "challenge_id": "lc_2855",
   "cases": [
-    {"id":"sample-1","name":"sample: two right shifts sort a rotation","kind":"sample","visible":true,"input":{"nums":[3,4,5,1,2]},"expected":2,"tags":["sample","rotation"]},
-    {"id":"sample-2","name":"sample: already sorted","kind":"sample","visible":true,"input":{"nums":[1,3,5]},"expected":0,"tags":["sample","sorted"]},
-    {"id":"sample-3","name":"sample: one descent is not sufficient","kind":"sample","visible":true,"input":{"nums":[2,1,4]},"expected":-1,"tags":["sample","impossible","boundary"]},
-    {"id":"trial-single-value","name":"trial: one value is already sorted","kind":"trial","visible":true,"input":{"nums":[7]},"expected":0,"tags":["trial","single"]},
-    {"id":"trial-two-values","name":"trial: descending pair needs one shift","kind":"trial","visible":true,"input":{"nums":[2,1]},"expected":1,"tags":["trial","minimum-rotation"]},
-    {"id":"real-pivot-near-front","name":"hidden: long suffix moves to the front","kind":"real","visible":false,"input":{"nums":[5,1,2,3,4]},"expected":4,"tags":["hidden","pivot-near-front"]},
-    {"id":"real-pivot-near-end","name":"hidden: one trailing value moves to the front","kind":"real","visible":false,"input":{"nums":[2,3,4,5,1]},"expected":1,"tags":["hidden","pivot-near-end"]},
-    {"id":"real-two-descents","name":"hidden: two internal descents make sorting impossible","kind":"real","visible":false,"input":{"nums":[3,1,4,2]},"expected":-1,"tags":["hidden","multiple-breaks"]},
-    {"id":"real-longer-valid-rotation","name":"hidden: distinct nonconsecutive values preserve the same order rule","kind":"real","visible":false,"input":{"nums":[40,50,60,70,5,10,20,30]},"expected":4,"tags":["hidden","distinct-values","rotation"]}
+    {
+      "id": "sample-1",
+      "name": "sample: two right shifts sort a rotation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "rotation"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: already sorted",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "sorted"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one descent is not sufficient",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          4
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one value is already sorted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-two-values",
+      "name": "trial: descending pair needs one shift",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-rotation"
+      ]
+    },
+    {
+      "id": "real-pivot-near-front",
+      "name": "long suffix moves to the front",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "pivot-near-front"
+      ]
+    },
+    {
+      "id": "real-pivot-near-end",
+      "name": "one trailing value moves to the front",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          4,
+          5,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "pivot-near-end"
+      ]
+    },
+    {
+      "id": "real-two-descents",
+      "name": "two internal descents make sorting impossible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          4,
+          2
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "multiple-breaks"
+      ]
+    },
+    {
+      "id": "real-longer-valid-rotation",
+      "name": "distinct nonconsecutive values preserve the same order rule",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          40,
+          50,
+          60,
+          70,
+          5,
+          10,
+          20,
+          30
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "distinct-values",
+        "rotation"
+      ]
+    }
   ]
 }

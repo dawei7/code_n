@@ -136,9 +136,9 @@
     },
     {
       "id": "real-midnight-does-not-wrap",
-      "name": "hidden: a single day does not wrap through midnight",
-      "kind": "real",
-      "visible": false,
+      "name": "a single day does not wrap through midnight",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "keyName": [
           "night",
@@ -159,9 +159,9 @@
     },
     {
       "id": "real-input-order",
-      "name": "hidden: chronological order differs from input order",
-      "kind": "real",
-      "visible": false,
+      "name": "chronological order differs from input order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "keyName": [
           "zoe",
@@ -186,9 +186,9 @@
     },
     {
       "id": "real-multiple-sorted",
-      "name": "hidden: several alerts must be alphabetically sorted",
-      "kind": "real",
-      "visible": false,
+      "name": "several alerts must be alphabetically sorted",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "keyName": [
           "zoe",
@@ -225,9 +225,9 @@
     },
     {
       "id": "real-four-reported-once",
-      "name": "hidden: four qualifying uses report one unique name",
-      "kind": "real",
-      "visible": false,
+      "name": "four qualifying uses report one unique name",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "keyName": [
           "bob",
@@ -252,9 +252,9 @@
     },
     {
       "id": "real-distinct-name-pairs",
-      "name": "hidden: equal timestamps for different names remain independent",
-      "kind": "real",
-      "visible": false,
+      "name": "equal timestamps for different names remain independent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "keyName": [
           "ann",
@@ -283,9 +283,9 @@
     },
     {
       "id": "real-later-window",
-      "name": "hidden: qualifying triple occurs after earlier distant uses",
-      "kind": "real",
-      "visible": false,
+      "name": "qualifying triple occurs after earlier distant uses",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "keyName": [
           "kai",
@@ -312,9 +312,9 @@
     },
     {
       "id": "real-no-alerts-many-groups",
-      "name": "hidden: several employees remain below the threshold",
-      "kind": "real",
-      "visible": false,
+      "name": "several employees remain below the threshold",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "keyName": [
           "a",
@@ -341,4 +341,3 @@
     }
   ]
 }
-

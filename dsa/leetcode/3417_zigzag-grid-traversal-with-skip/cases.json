@@ -126,8 +126,8 @@
     {
       "id": "real-four-by-four",
       "name": "real: square traversal with alternating rows",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

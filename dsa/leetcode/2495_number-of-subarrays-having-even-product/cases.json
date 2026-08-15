@@ -76,9 +76,9 @@
     },
     {
       "id": "real-single-odd",
-      "name": "hidden: one odd element",
-      "kind": "real",
-      "visible": false,
+      "name": "one odd element",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           99999
@@ -93,9 +93,9 @@
     },
     {
       "id": "real-even-at-start",
-      "name": "hidden: an early even value certifies one start per endpoint",
-      "kind": "real",
-      "visible": false,
+      "name": "an early even value certifies one start per endpoint",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -112,9 +112,9 @@
     },
     {
       "id": "real-even-at-end",
-      "name": "hidden: a final even value certifies every start",
-      "kind": "real",
-      "visible": false,
+      "name": "a final even value certifies every start",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -132,9 +132,9 @@
     },
     {
       "id": "real-several-evens",
-      "name": "hidden: contributions change at several even indices",
-      "kind": "real",
-      "visible": false,
+      "name": "contributions change at several even indices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -151,9 +151,9 @@
     },
     {
       "id": "real-long-odd-runs",
-      "name": "hidden: separated even values and odd runs",
-      "kind": "real",
-      "visible": false,
+      "name": "separated even values and odd runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

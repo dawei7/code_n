@@ -118,9 +118,9 @@
     },
     {
       "id": "hidden-gap",
-      "name": "hidden: missing value inside a required run",
-      "kind": "real",
-      "visible": false,
+      "name": "missing value inside a required run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -138,9 +138,9 @@
     },
     {
       "id": "hidden-insufficient-successor",
-      "name": "hidden: successor multiplicity is too small",
-      "kind": "real",
-      "visible": false,
+      "name": "successor multiplicity is too small",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

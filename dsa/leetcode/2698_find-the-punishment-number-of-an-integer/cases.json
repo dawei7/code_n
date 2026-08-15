@@ -1,1 +1,130 @@
-{"schema_version":1,"challenge_id":"lc_2698","cases":[{"id":"sample-ten","name":"sample: qualifying values through ten","kind":"sample","visible":true,"input":{"n":10},"expected":182,"tags":["sample","partition"]},{"id":"sample-thirty-seven","name":"sample: multi-piece partition for thirty-six","kind":"sample","visible":true,"input":{"n":37},"expected":1478,"tags":["sample","three-pieces"]},{"id":"trial-one","name":"trial: one qualifies as a single piece","kind":"trial","visible":true,"input":{"n":1},"expected":1,"tags":["minimum","single-piece"]},{"id":"trial-before-nine","name":"trial: no additional qualifier before nine","kind":"trial","visible":true,"input":{"n":8},"expected":1,"tags":["range-boundary"]},{"id":"trial-nine","name":"trial: eight plus one qualifies nine","kind":"trial","visible":true,"input":{"n":9},"expected":82,"tags":["two-pieces"]},{"id":"real-thirty-six","name":"hidden: endpoint itself qualifies with three pieces","kind":"real","visible":false,"input":{"n":36},"expected":1478,"tags":["hidden","endpoint"]},{"id":"real-forty-five","name":"hidden: a partition containing zeroes","kind":"real","visible":false,"input":{"n":45},"expected":3503,"tags":["hidden","zero-piece"]},{"id":"real-one-hundred","name":"hidden: three-digit upper bound","kind":"real","visible":false,"input":{"n":100},"expected":41334,"tags":["hidden","hundred"]},{"id":"real-maximum","name":"hidden: complete legal domain","kind":"real","visible":false,"input":{"n":1000},"expected":10804657,"tags":["hidden","maximum-n"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2698",
+  "cases": [
+    {
+      "id": "sample-ten",
+      "name": "sample: qualifying values through ten",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 10
+      },
+      "expected": 182,
+      "tags": [
+        "sample",
+        "partition"
+      ]
+    },
+    {
+      "id": "sample-thirty-seven",
+      "name": "sample: multi-piece partition for thirty-six",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 37
+      },
+      "expected": 1478,
+      "tags": [
+        "sample",
+        "three-pieces"
+      ]
+    },
+    {
+      "id": "trial-one",
+      "name": "trial: one qualifies as a single piece",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 1,
+      "tags": [
+        "minimum",
+        "single-piece"
+      ]
+    },
+    {
+      "id": "trial-before-nine",
+      "name": "trial: no additional qualifier before nine",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8
+      },
+      "expected": 1,
+      "tags": [
+        "range-boundary"
+      ]
+    },
+    {
+      "id": "trial-nine",
+      "name": "trial: eight plus one qualifies nine",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 9
+      },
+      "expected": 82,
+      "tags": [
+        "two-pieces"
+      ]
+    },
+    {
+      "id": "real-thirty-six",
+      "name": "endpoint itself qualifies with three pieces",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 36
+      },
+      "expected": 1478,
+      "tags": [
+        "hidden",
+        "endpoint"
+      ]
+    },
+    {
+      "id": "real-forty-five",
+      "name": "a partition containing zeroes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 45
+      },
+      "expected": 3503,
+      "tags": [
+        "hidden",
+        "zero-piece"
+      ]
+    },
+    {
+      "id": "real-one-hundred",
+      "name": "three-digit upper bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100
+      },
+      "expected": 41334,
+      "tags": [
+        "hidden",
+        "hundred"
+      ]
+    },
+    {
+      "id": "real-maximum",
+      "name": "complete legal domain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000
+      },
+      "expected": 10804657,
+      "tags": [
+        "hidden",
+        "maximum-n"
+      ]
+    }
+  ]
+}

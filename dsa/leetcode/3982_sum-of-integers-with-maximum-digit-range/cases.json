@@ -6,144 +6,303 @@
       "name": "sample: two values share the maximum digit range",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [5724, 111, 350]},
+      "input": {
+        "nums": [
+          5724,
+          111,
+          350
+        ]
+      },
       "expected": 6074,
-      "tags": ["sample", "tie", "internal-zero"]
+      "tags": [
+        "sample",
+        "tie",
+        "internal-zero"
+      ]
     },
     {
       "id": "sample-both-range-nine",
       "name": "sample: both values have digit range nine",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [90, 900]},
+      "input": {
+        "nums": [
+          90,
+          900
+        ]
+      },
       "expected": 990,
-      "tags": ["sample", "all-qualify", "zero-digit"]
+      "tags": [
+        "sample",
+        "all-qualify",
+        "zero-digit"
+      ]
     },
     {
       "id": "trial-single-value",
       "name": "trial: one value is returned unchanged",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [10]},
+      "input": {
+        "nums": [
+          10
+        ]
+      },
       "expected": 10,
-      "tags": ["trial", "minimum-length", "single-value"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "single-value"
+      ]
     },
     {
       "id": "trial-all-zero-ranges",
       "name": "trial: every repeated-digit value has range zero",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [11, 22, 33]},
+      "input": {
+        "nums": [
+          11,
+          22,
+          33
+        ]
+      },
       "expected": 66,
-      "tags": ["trial", "range-zero", "all-qualify"]
+      "tags": [
+        "trial",
+        "range-zero",
+        "all-qualify"
+      ]
     },
     {
       "id": "trial-unique-zero-rich-winner",
       "name": "trial: zero supplies the minimum digit of the winner",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [98, 123, 700]},
+      "input": {
+        "nums": [
+          98,
+          123,
+          700
+        ]
+      },
       "expected": 700,
-      "tags": ["trial", "unique-winner", "zero-digit"]
+      "tags": [
+        "trial",
+        "unique-winner",
+        "zero-digit"
+      ]
     },
     {
       "id": "trial-reversed-digits-tie",
       "name": "trial: reversed decimal digits preserve the range",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [123, 321]},
+      "input": {
+        "nums": [
+          123,
+          321
+        ]
+      },
       "expected": 444,
-      "tags": ["trial", "tie", "digit-order"]
+      "tags": [
+        "trial",
+        "tie",
+        "digit-order"
+      ]
     },
     {
       "id": "trial-middle-value-wins",
       "name": "trial: only the middle value reaches range nine",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [101, 90, 555]},
+      "input": {
+        "nums": [
+          101,
+          90,
+          555
+        ]
+      },
       "expected": 90,
-      "tags": ["trial", "unique-winner", "mixed-ranges"]
+      "tags": [
+        "trial",
+        "unique-winner",
+        "mixed-ranges"
+      ]
     },
     {
       "id": "real-leading-small-value-loses",
-      "name": "hidden: a later two-digit value has the wider range",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10, 99, 91]},
+      "name": "a later two-digit value has the wider range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          99,
+          91
+        ]
+      },
       "expected": 91,
-      "tags": ["hidden", "late-reset", "two-digits"]
+      "tags": [
+        "hidden",
+        "late-reset",
+        "two-digits"
+      ]
     },
     {
       "id": "real-upper-bound-present",
-      "name": "hidden: the upper-bound value need not have the widest range",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000, 99999, 54321]},
+      "name": "the upper-bound value need not have the widest range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          99999,
+          54321
+        ]
+      },
       "expected": 54321,
-      "tags": ["hidden", "upper-bound", "unique-winner"]
+      "tags": [
+        "hidden",
+        "upper-bound",
+        "unique-winner"
+      ]
     },
     {
       "id": "real-two-qualifying-values",
-      "name": "hidden: two different values tie above repeated digits",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [12, 21, 111, 222]},
+      "name": "two different values tie above repeated digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          21,
+          111,
+          222
+        ]
+      },
       "expected": 33,
-      "tags": ["hidden", "tie", "mixed-ranges"]
+      "tags": [
+        "hidden",
+        "tie",
+        "mixed-ranges"
+      ]
     },
     {
       "id": "real-range-nine-tie",
-      "name": "hidden: two five-digit values tie at range nine",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [99990, 10999, 80808]},
+      "name": "two five-digit values tie at range nine",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          99990,
+          10999,
+          80808
+        ]
+      },
       "expected": 110989,
-      "tags": ["hidden", "range-nine", "tie"]
+      "tags": [
+        "hidden",
+        "range-nine",
+        "tie"
+      ]
     },
     {
       "id": "real-powers-of-ten-all-tie",
-      "name": "hidden: powers of ten all have digit range one",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100, 1000, 10000, 100000]},
+      "name": "powers of ten all have digit range one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          1000,
+          10000,
+          100000
+        ]
+      },
       "expected": 111100,
-      "tags": ["hidden", "zero-digit", "all-qualify"]
+      "tags": [
+        "hidden",
+        "zero-digit",
+        "all-qualify"
+      ]
     },
     {
       "id": "real-range-nine-after-smaller-ranges",
-      "name": "hidden: the final value replaces every earlier contributor",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [98765, 12345, 55555, 90909]},
+      "name": "the final value replaces every earlier contributor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          98765,
+          12345,
+          55555,
+          90909
+        ]
+      },
       "expected": 90909,
-      "tags": ["hidden", "late-reset", "range-nine"]
+      "tags": [
+        "hidden",
+        "late-reset",
+        "range-nine"
+      ]
     },
     {
       "id": "real-two-digit-reversal-tie",
-      "name": "hidden: only the wider reversed pair contributes",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [19, 91, 28, 82]},
+      "name": "only the wider reversed pair contributes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          19,
+          91,
+          28,
+          82
+        ]
+      },
       "expected": 110,
-      "tags": ["hidden", "digit-order", "tie"]
+      "tags": [
+        "hidden",
+        "digit-order",
+        "tie"
+      ]
     },
     {
       "id": "real-both-domain-boundaries",
-      "name": "hidden: minimum and maximum legal values tie",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10, 100000]},
+      "name": "minimum and maximum legal values tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          100000
+        ]
+      },
       "expected": 100010,
-      "tags": ["hidden", "domain-boundaries", "tie"]
+      "tags": [
+        "hidden",
+        "domain-boundaries",
+        "tie"
+      ]
     },
     {
       "id": "real-duplicate-positions-count-separately",
-      "name": "hidden: duplicate maximum-range values are not deduplicated",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [90, 90, 900]},
+      "name": "duplicate maximum-range values are not deduplicated",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          90,
+          90,
+          900
+        ]
+      },
       "expected": 1080,
-      "tags": ["hidden", "duplicates", "all-qualify"]
+      "tags": [
+        "hidden",
+        "duplicates",
+        "all-qualify"
+      ]
     }
   ]
 }

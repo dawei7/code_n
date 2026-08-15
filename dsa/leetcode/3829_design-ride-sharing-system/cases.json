@@ -8,12 +8,68 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "operations": ["RideSharingSystem", "addRider", "addDriver", "addRider", "matchDriverWithRider", "addDriver", "cancelRider", "matchDriverWithRider", "matchDriverWithRider"],
-        "arguments": [[], [3], [2], [1], [], [5], [3], [], []]
+        "operations": [
+          "RideSharingSystem",
+          "addRider",
+          "addDriver",
+          "addRider",
+          "matchDriverWithRider",
+          "addDriver",
+          "cancelRider",
+          "matchDriverWithRider",
+          "matchDriverWithRider"
+        ],
+        "arguments": [
+          [],
+          [
+            3
+          ],
+          [
+            2
+          ],
+          [
+            1
+          ],
+          [],
+          [
+            5
+          ],
+          [
+            3
+          ],
+          [],
+          []
+        ]
       },
-      "expected": [null, null, null, null, [2, 3], null, null, [5, 1], [-1, -1]],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "fifo", "matched-cancellation", "empty-system"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        [
+          2,
+          3
+        ],
+        null,
+        null,
+        [
+          5,
+          1
+        ],
+        [
+          -1,
+          -1
+        ]
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "fifo",
+        "matched-cancellation",
+        "empty-system"
+      ]
     },
     {
       "id": "sample-canceled-waiting-rider",
@@ -21,12 +77,61 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "operations": ["RideSharingSystem", "addRider", "addDriver", "addDriver", "matchDriverWithRider", "addRider", "cancelRider", "matchDriverWithRider"],
-        "arguments": [[], [8], [8], [6], [], [2], [2], []]
+        "operations": [
+          "RideSharingSystem",
+          "addRider",
+          "addDriver",
+          "addDriver",
+          "matchDriverWithRider",
+          "addRider",
+          "cancelRider",
+          "matchDriverWithRider"
+        ],
+        "arguments": [
+          [],
+          [
+            8
+          ],
+          [
+            8
+          ],
+          [
+            6
+          ],
+          [],
+          [
+            2
+          ],
+          [
+            2
+          ],
+          []
+        ]
       },
-      "expected": [null, null, null, null, [8, 8], null, null, [-1, -1]],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "rider-cancellation", "waiting-driver"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        [
+          8,
+          8
+        ],
+        null,
+        null,
+        [
+          -1,
+          -1
+        ]
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "rider-cancellation",
+        "waiting-driver"
+      ]
     },
     {
       "id": "trial-empty-match",
@@ -34,12 +139,30 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["RideSharingSystem", "matchDriverWithRider"],
-        "arguments": [[], []]
+        "operations": [
+          "RideSharingSystem",
+          "matchDriverWithRider"
+        ],
+        "arguments": [
+          [],
+          []
+        ]
       },
-      "expected": [null, [-1, -1]],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "empty-system", "unsuccessful-match"]
+      "expected": [
+        null,
+        [
+          -1,
+          -1
+        ]
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "empty-system",
+        "unsuccessful-match"
+      ]
     },
     {
       "id": "trial-driver-waits-after-failed-match",
@@ -47,12 +170,46 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["RideSharingSystem", "addDriver", "matchDriverWithRider", "addRider", "matchDriverWithRider"],
-        "arguments": [[], [9], [], [4], []]
+        "operations": [
+          "RideSharingSystem",
+          "addDriver",
+          "matchDriverWithRider",
+          "addRider",
+          "matchDriverWithRider"
+        ],
+        "arguments": [
+          [],
+          [
+            9
+          ],
+          [],
+          [
+            4
+          ],
+          []
+        ]
       },
-      "expected": [null, null, [-1, -1], null, [9, 4]],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "waiting-driver", "non-consuming-failure"]
+      "expected": [
+        null,
+        null,
+        [
+          -1,
+          -1
+        ],
+        null,
+        [
+          9,
+          4
+        ]
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "waiting-driver",
+        "non-consuming-failure"
+      ]
     },
     {
       "id": "trial-rider-waits-after-failed-match",
@@ -60,12 +217,46 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["RideSharingSystem", "addRider", "matchDriverWithRider", "addDriver", "matchDriverWithRider"],
-        "arguments": [[], [7], [], [5], []]
+        "operations": [
+          "RideSharingSystem",
+          "addRider",
+          "matchDriverWithRider",
+          "addDriver",
+          "matchDriverWithRider"
+        ],
+        "arguments": [
+          [],
+          [
+            7
+          ],
+          [],
+          [
+            5
+          ],
+          []
+        ]
       },
-      "expected": [null, null, [-1, -1], null, [5, 7]],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "waiting-rider", "non-consuming-failure"]
+      "expected": [
+        null,
+        null,
+        [
+          -1,
+          -1
+        ],
+        null,
+        [
+          5,
+          7
+        ]
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "waiting-rider",
+        "non-consuming-failure"
+      ]
     },
     {
       "id": "trial-two-fifo-queues",
@@ -73,12 +264,56 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["RideSharingSystem", "addRider", "addRider", "addDriver", "addDriver", "matchDriverWithRider", "matchDriverWithRider"],
-        "arguments": [[], [20], [10], [3], [1], [], []]
+        "operations": [
+          "RideSharingSystem",
+          "addRider",
+          "addRider",
+          "addDriver",
+          "addDriver",
+          "matchDriverWithRider",
+          "matchDriverWithRider"
+        ],
+        "arguments": [
+          [],
+          [
+            20
+          ],
+          [
+            10
+          ],
+          [
+            3
+          ],
+          [
+            1
+          ],
+          [],
+          []
+        ]
       },
-      "expected": [null, null, null, null, null, [3, 20], [1, 10]],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "fifo", "independent-order"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        [
+          3,
+          20
+        ],
+        [
+          1,
+          10
+        ]
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "fifo",
+        "independent-order"
+      ]
     },
     {
       "id": "trial-cancel-earliest-rider",
@@ -86,77 +321,327 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": ["RideSharingSystem", "addRider", "addRider", "addDriver", "cancelRider", "matchDriverWithRider"],
-        "arguments": [[], [1], [2], [8], [1], []]
+        "operations": [
+          "RideSharingSystem",
+          "addRider",
+          "addRider",
+          "addDriver",
+          "cancelRider",
+          "matchDriverWithRider"
+        ],
+        "arguments": [
+          [],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            8
+          ],
+          [
+            1
+          ],
+          []
+        ]
       },
-      "expected": [null, null, null, null, null, [8, 2]],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "cancel-front", "lazy-cleanup"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        [
+          8,
+          2
+        ]
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "cancel-front",
+        "lazy-cleanup"
+      ]
     },
     {
       "id": "real-cancel-before-add",
-      "name": "hidden: cancellation before addition has no future effect",
-      "kind": "real",
-      "visible": false,
+      "name": "cancellation before addition has no future effect",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["RideSharingSystem", "cancelRider", "addRider", "addDriver", "matchDriverWithRider"],
-        "arguments": [[], [6], [6], [4], []]
+        "operations": [
+          "RideSharingSystem",
+          "cancelRider",
+          "addRider",
+          "addDriver",
+          "matchDriverWithRider"
+        ],
+        "arguments": [
+          [],
+          [
+            6
+          ],
+          [
+            6
+          ],
+          [
+            4
+          ],
+          []
+        ]
       },
-      "expected": [null, null, null, null, [4, 6]],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "cancel-before-add", "no-effect"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        [
+          4,
+          6
+        ]
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "cancel-before-add",
+        "no-effect"
+      ]
     },
     {
       "id": "real-cancel-middle-rider",
-      "name": "hidden: canceling a middle rider preserves FIFO order",
-      "kind": "real",
-      "visible": false,
+      "name": "canceling a middle rider preserves FIFO order",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["RideSharingSystem", "addRider", "addRider", "addRider", "cancelRider", "addDriver", "addDriver", "matchDriverWithRider", "matchDriverWithRider"],
-        "arguments": [[], [1], [2], [3], [2], [10], [11], [], []]
+        "operations": [
+          "RideSharingSystem",
+          "addRider",
+          "addRider",
+          "addRider",
+          "cancelRider",
+          "addDriver",
+          "addDriver",
+          "matchDriverWithRider",
+          "matchDriverWithRider"
+        ],
+        "arguments": [
+          [],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            2
+          ],
+          [
+            10
+          ],
+          [
+            11
+          ],
+          [],
+          []
+        ]
       },
-      "expected": [null, null, null, null, null, null, null, [10, 1], [11, 3]],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "cancel-middle", "fifo"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        [
+          10,
+          1
+        ],
+        [
+          11,
+          3
+        ]
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "cancel-middle",
+        "fifo"
+      ]
     },
     {
       "id": "real-cancel-after-match",
-      "name": "hidden: canceling an already matched rider is harmless",
-      "kind": "real",
-      "visible": false,
+      "name": "canceling an already matched rider is harmless",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["RideSharingSystem", "addRider", "addDriver", "matchDriverWithRider", "cancelRider", "matchDriverWithRider"],
-        "arguments": [[], [5], [7], [], [5], []]
+        "operations": [
+          "RideSharingSystem",
+          "addRider",
+          "addDriver",
+          "matchDriverWithRider",
+          "cancelRider",
+          "matchDriverWithRider"
+        ],
+        "arguments": [
+          [],
+          [
+            5
+          ],
+          [
+            7
+          ],
+          [],
+          [
+            5
+          ],
+          []
+        ]
       },
-      "expected": [null, null, null, [7, 5], null, [-1, -1]],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "matched-cancellation", "no-effect"]
+      "expected": [
+        null,
+        null,
+        null,
+        [
+          7,
+          5
+        ],
+        null,
+        [
+          -1,
+          -1
+        ]
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "matched-cancellation",
+        "no-effect"
+      ]
     },
     {
       "id": "real-equal-id-namespaces",
-      "name": "hidden: rider and driver may share the same numeric ID",
-      "kind": "real",
-      "visible": false,
+      "name": "rider and driver may share the same numeric ID",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["RideSharingSystem", "addRider", "addDriver", "matchDriverWithRider"],
-        "arguments": [[], [1000], [1000], []]
+        "operations": [
+          "RideSharingSystem",
+          "addRider",
+          "addDriver",
+          "matchDriverWithRider"
+        ],
+        "arguments": [
+          [],
+          [
+            1000
+          ],
+          [
+            1000
+          ],
+          []
+        ]
       },
-      "expected": [null, null, null, [1000, 1000]],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-id", "independent-namespaces"]
+      "expected": [
+        null,
+        null,
+        null,
+        [
+          1000,
+          1000
+        ]
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-id",
+        "independent-namespaces"
+      ]
     },
     {
       "id": "real-long-canceled-prefix",
-      "name": "hidden: matching skips an entire canceled prefix",
-      "kind": "real",
-      "visible": false,
+      "name": "matching skips an entire canceled prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "operations": ["RideSharingSystem", "addRider", "addRider", "addRider", "addRider", "cancelRider", "cancelRider", "cancelRider", "addDriver", "matchDriverWithRider"],
-        "arguments": [[], [1], [2], [3], [4], [1], [2], [3], [9], []]
+        "operations": [
+          "RideSharingSystem",
+          "addRider",
+          "addRider",
+          "addRider",
+          "addRider",
+          "cancelRider",
+          "cancelRider",
+          "cancelRider",
+          "addDriver",
+          "matchDriverWithRider"
+        ],
+        "arguments": [
+          [],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            9
+          ],
+          []
+        ]
       },
-      "expected": [null, null, null, null, null, null, null, null, null, [9, 4]],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "long-canceled-prefix", "lazy-cleanup"]
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        [
+          9,
+          4
+        ]
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "long-canceled-prefix",
+        "lazy-cleanup"
+      ]
     }
   ]
 }

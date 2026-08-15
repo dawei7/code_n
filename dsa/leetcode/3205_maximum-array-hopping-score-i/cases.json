@@ -116,8 +116,8 @@
     {
       "id": "real-large-middle-peak",
       "name": "real: a middle peak dominates until the final hop",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -134,8 +134,8 @@
     {
       "id": "real-multiple-records",
       "name": "real: several right-to-left records determine the route",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -153,8 +153,8 @@
     {
       "id": "real-starting-value-irrelevant",
       "name": "real: changing the large starting value cannot earn points",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -171,8 +171,8 @@
     {
       "id": "real-maximum-values",
       "name": "real: maximum values require a wide accumulated score",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -191,8 +191,8 @@
     {
       "id": "real-late-spike",
       "name": "real: a late spike dominates all earlier intervals",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -211,8 +211,8 @@
     {
       "id": "real-alternating-peaks",
       "name": "real: alternating peaks retain only suffix records",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -232,4 +232,3 @@
     }
   ]
 }
-

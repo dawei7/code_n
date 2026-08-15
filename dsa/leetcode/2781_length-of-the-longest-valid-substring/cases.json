@@ -147,9 +147,9 @@
     },
     {
       "id": "real-separated-hits",
-      "name": "hidden: valid region after an early forbidden hit",
-      "kind": "real",
-      "visible": false,
+      "name": "valid region after an early forbidden hit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "xabcde",
         "forbidden": [
@@ -164,9 +164,9 @@
     },
     {
       "id": "real-mixed-patterns",
-      "name": "hidden: several forbidden lengths and positions",
-      "kind": "real",
-      "visible": false,
+      "name": "several forbidden lengths and positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "abcdeffedcba",
         "forbidden": [

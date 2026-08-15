@@ -7,120 +7,282 @@
       "name": "sample: choose the best of three possible cuts",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [5, 1, 2, 1], "k": 2},
+      "input": {
+        "nums": [
+          5,
+          1,
+          2,
+          1
+        ],
+        "k": 2
+      },
       "expected": 25,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "two-groups", "unequal-segments"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "two-groups",
+        "unequal-segments"
+      ]
     },
     {
       "id": "sample-one-group",
       "name": "sample: the whole array is one subarray",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4], "k": 1},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 1
+      },
       "expected": 55,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "one-group", "whole-array"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "one-group",
+        "whole-array"
+      ]
     },
     {
       "id": "sample-every-element-separate",
       "name": "sample: every element must be its own subarray",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 1, 1], "k": 3},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 3
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "maximum-groups", "singletons"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "maximum-groups",
+        "singletons"
+      ]
     },
     {
       "id": "trial-single-value",
       "name": "trial: one value has one triangular contribution",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7], "k": 1},
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 1
+      },
       "expected": 28,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-length", "single-group"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "single-group"
+      ]
     },
     {
       "id": "trial-balanced-ones",
       "name": "trial: equal values favor equal-length groups",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 1, 1], "k": 2},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 2
+      },
       "expected": 6,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "balanced-partition", "convex-cost"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "balanced-partition",
+        "convex-cost"
+      ]
     },
     {
       "id": "trial-isolate-large-prefix",
       "name": "trial: isolate a large leading value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [10, 1, 1], "k": 2},
+      "input": {
+        "nums": [
+          10,
+          1,
+          1
+        ],
+        "k": 2
+      },
       "expected": 58,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "boundary-cut", "unequal-values"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "boundary-cut",
+        "unequal-values"
+      ]
     },
     {
       "id": "trial-middle-cuts",
       "name": "trial: optimum uses two interior cuts",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3, 1, 4, 1, 5], "k": 3},
+      "input": {
+        "nums": [
+          3,
+          1,
+          4,
+          1,
+          5
+        ],
+        "k": 3
+      },
       "expected": 40,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "three-groups", "interior-cuts"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "three-groups",
+        "interior-cuts"
+      ]
     },
     {
       "id": "real-all-singletons",
-      "name": "hidden: maximum k on a mixed array",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 1, 2, 1], "k": 4},
+      "name": "maximum k on a mixed array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          2,
+          1
+        ],
+        "k": 4
+      },
       "expected": 20,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-groups", "mixed-values"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-groups",
+        "mixed-values"
+      ]
     },
     {
       "id": "real-symmetric-peaks",
-      "name": "hidden: symmetric peaks make the central cut optimal",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, 1, 1, 8], "k": 2},
+      "name": "symmetric peaks make the central cut optimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          1,
+          1,
+          8
+        ],
+        "k": 2
+      },
       "expected": 90,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "symmetric", "tie-sensitive"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "symmetric",
+        "tie-sensitive"
+      ]
     },
     {
       "id": "real-maximum-element-one-group",
-      "name": "hidden: maximum element participates in one large triangular value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 10000], "k": 1},
+      "name": "maximum element participates in one large triangular value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10000
+        ],
+        "k": 1
+      },
       "expected": 50015001,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-value", "wide-integer"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "wide-integer"
+      ]
     },
     {
       "id": "real-maximum-element-separated",
-      "name": "hidden: separating the maximum value lowers the score",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 10000], "k": 2},
+      "name": "separating the maximum value lowers the score",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10000
+        ],
+        "k": 2
+      },
       "expected": 50005001,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-value", "singleton-groups"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "singleton-groups"
+      ]
     },
     {
       "id": "real-multiple-interior-options",
-      "name": "hidden: several competing interior split points",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 1, 7, 2, 6, 3], "k": 3},
+      "name": "several competing interior split points",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          7,
+          2,
+          6,
+          3
+        ],
+        "k": 3
+      },
       "expected": 105,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "three-groups", "competing-cuts"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "three-groups",
+        "competing-cuts"
+      ]
     }
   ]
 }

@@ -6,135 +6,318 @@
       "name": "sample: best pair uses indices two positions apart",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 3, 5, 2, 8], "k": 2},
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          2,
+          8
+        ],
+        "k": 2
+      },
       "expected": 13,
-      "tags": ["sample", "gap-constraint", "maximum-sum"]
+      "tags": [
+        "sample",
+        "gap-constraint",
+        "maximum-sum"
+      ]
     },
     {
       "id": "sample-every-pair-valid",
       "name": "sample: k equal to one permits every index pair",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [5, 1, 9], "k": 1},
+      "input": {
+        "nums": [
+          5,
+          1,
+          9
+        ],
+        "k": 1
+      },
       "expected": 14,
-      "tags": ["sample", "minimum-k", "all-pairs-valid"]
+      "tags": [
+        "sample",
+        "minimum-k",
+        "all-pairs-valid"
+      ]
     },
     {
       "id": "trial-minimum-array",
       "name": "trial: the only pair in a two-element array",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2], "k": 1},
+      "input": {
+        "nums": [
+          1,
+          2
+        ],
+        "k": 1
+      },
       "expected": 3,
-      "tags": ["trial", "minimum-length", "single-pair"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "single-pair"
+      ]
     },
     {
       "id": "trial-all-equal-endpoints",
       "name": "trial: all values equal with only endpoint pair valid",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7, 7, 7, 7], "k": 3},
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ],
+        "k": 3
+      },
       "expected": 14,
-      "tags": ["trial", "all-equal", "maximum-k"]
+      "tags": [
+        "trial",
+        "all-equal",
+        "maximum-k"
+      ]
     },
     {
       "id": "trial-k-one-top-values",
       "name": "trial: k equal to one selects the two greatest values",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [10, 1, 9, 8], "k": 1},
+      "input": {
+        "nums": [
+          10,
+          1,
+          9,
+          8
+        ],
+        "k": 1
+      },
       "expected": 19,
-      "tags": ["trial", "minimum-k", "nonadjacent-best"]
+      "tags": [
+        "trial",
+        "minimum-k",
+        "nonadjacent-best"
+      ]
     },
     {
       "id": "trial-maximum-k-endpoints",
       "name": "trial: interior maxima are invalid when k equals n minus one",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [9, 100, 100, 1], "k": 3},
+      "input": {
+        "nums": [
+          9,
+          100,
+          100,
+          1
+        ],
+        "k": 3
+      },
       "expected": 10,
-      "tags": ["trial", "maximum-k", "invalid-interior-maxima"]
+      "tags": [
+        "trial",
+        "maximum-k",
+        "invalid-interior-maxima"
+      ]
     },
     {
       "id": "trial-maximum-values",
       "name": "trial: maximum values produce a two-billion sum",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1000000000, 1, 1000000000], "k": 2},
+      "input": {
+        "nums": [
+          1000000000,
+          1,
+          1000000000
+        ],
+        "k": 2
+      },
       "expected": 2000000000,
-      "tags": ["trial", "maximum-value", "wide-sum"]
+      "tags": [
+        "trial",
+        "maximum-value",
+        "wide-sum"
+      ]
     },
     {
       "id": "real-late-right-with-early-maximum",
-      "name": "hidden: late right endpoint combines with the earliest maximum",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100, 1, 1, 1, 90], "k": 3},
+      "name": "late right endpoint combines with the earliest maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          1,
+          1,
+          1,
+          90
+        ],
+        "k": 3
+      },
       "expected": 190,
-      "tags": ["hidden", "early-prefix-maximum", "late-right"]
+      "tags": [
+        "hidden",
+        "early-prefix-maximum",
+        "late-right"
+      ]
     },
     {
       "id": "real-newly-eligible-left",
-      "name": "hidden: the best left value becomes eligible during the scan",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 100, 1, 90, 1], "k": 2},
+      "name": "the best left value becomes eligible during the scan",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          100,
+          1,
+          90,
+          1
+        ],
+        "k": 2
+      },
       "expected": 190,
-      "tags": ["hidden", "newly-eligible", "prefix-update"]
+      "tags": [
+        "hidden",
+        "newly-eligible",
+        "prefix-update"
+      ]
     },
     {
       "id": "real-largest-values-too-close",
-      "name": "hidden: the two largest values violate the distance requirement",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100, 99, 1], "k": 2},
+      "name": "the two largest values violate the distance requirement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          99,
+          1
+        ],
+        "k": 2
+      },
       "expected": 101,
-      "tags": ["hidden", "invalid-near-pair", "distance"]
+      "tags": [
+        "hidden",
+        "invalid-near-pair",
+        "distance"
+      ]
     },
     {
       "id": "real-increasing-array",
-      "name": "hidden: increasing values select the last two eligible endpoints",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 4, 5], "k": 2},
+      "name": "increasing values select the last two eligible endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "k": 2
+      },
       "expected": 8,
-      "tags": ["hidden", "increasing", "late-prefix"]
+      "tags": [
+        "hidden",
+        "increasing",
+        "late-prefix"
+      ]
     },
     {
       "id": "real-decreasing-array",
-      "name": "hidden: decreasing values select the first eligible pair",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 4, 3, 2, 1], "k": 2},
+      "name": "decreasing values select the first eligible pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "k": 2
+      },
       "expected": 8,
-      "tags": ["hidden", "decreasing", "early-prefix"]
+      "tags": [
+        "hidden",
+        "decreasing",
+        "early-prefix"
+      ]
     },
     {
       "id": "real-repeated-maxima",
-      "name": "hidden: repeated maxima become valid only at the required gap",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, 1, 8, 1, 8], "k": 3},
+      "name": "repeated maxima become valid only at the required gap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          1,
+          8,
+          1,
+          8
+        ],
+        "k": 3
+      },
       "expected": 16,
-      "tags": ["hidden", "repeated-maxima", "gap-boundary"]
+      "tags": [
+        "hidden",
+        "repeated-maxima",
+        "gap-boundary"
+      ]
     },
     {
       "id": "real-prefix-maximum-tie",
-      "name": "hidden: tied prefix maxima give the same best sum",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 5, 1, 10], "k": 2},
+      "name": "tied prefix maxima give the same best sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          1,
+          10
+        ],
+        "k": 2
+      },
       "expected": 15,
-      "tags": ["hidden", "prefix-tie", "late-right"]
+      "tags": [
+        "hidden",
+        "prefix-tie",
+        "late-right"
+      ]
     },
     {
       "id": "real-best-pair-is-interior",
-      "name": "hidden: optimum uses neither array endpoint",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 50, 1, 1, 40, 1], "k": 3},
+      "name": "optimum uses neither array endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          50,
+          1,
+          1,
+          40,
+          1
+        ],
+        "k": 3
+      },
       "expected": 90,
-      "tags": ["hidden", "interior-pair", "exact-gap"]
+      "tags": [
+        "hidden",
+        "interior-pair",
+        "exact-gap"
+      ]
     }
   ]
 }

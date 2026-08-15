@@ -6,72 +6,178 @@
       "name": "sample: reconstruct five values",
       "kind": "sample",
       "visible": true,
-      "input": {"pref": [5, 2, 0, 3, 1]},
-      "expected": [5, 7, 2, 3, 2],
-      "tags": ["sample", "mixed"]
+      "input": {
+        "pref": [
+          5,
+          2,
+          0,
+          3,
+          1
+        ]
+      },
+      "expected": [
+        5,
+        7,
+        2,
+        3,
+        2
+      ],
+      "tags": [
+        "sample",
+        "mixed"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: single prefix",
       "kind": "sample",
       "visible": true,
-      "input": {"pref": [13]},
-      "expected": [13],
-      "tags": ["sample", "single"]
+      "input": {
+        "pref": [
+          13
+        ]
+      },
+      "expected": [
+        13
+      ],
+      "tags": [
+        "sample",
+        "single"
+      ]
     },
     {
       "id": "trial-two-values",
       "name": "trial: two prefix values",
       "kind": "trial",
       "visible": true,
-      "input": {"pref": [5, 2]},
-      "expected": [5, 7],
-      "tags": ["trial", "pair"]
+      "input": {
+        "pref": [
+          5,
+          2
+        ]
+      },
+      "expected": [
+        5,
+        7
+      ],
+      "tags": [
+        "trial",
+        "pair"
+      ]
     },
     {
       "id": "trial-unchanged-prefix",
       "name": "trial: unchanged prefixes recover zeros",
       "kind": "trial",
       "visible": true,
-      "input": {"pref": [7, 7, 7]},
-      "expected": [7, 0, 0],
-      "tags": ["trial", "zero-values"]
+      "input": {
+        "pref": [
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": [
+        7,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "zero-values"
+      ]
     },
     {
       "id": "real-zero-first-prefix",
-      "name": "hidden: original begins with zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"pref": [0, 1, 1]},
-      "expected": [0, 1, 0],
-      "tags": ["hidden", "zero"]
+      "name": "original begins with zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pref": [
+          0,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "zero"
+      ]
     },
     {
       "id": "real-middle-zero-prefix",
-      "name": "hidden: prefix XOR becomes zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"pref": [1, 0, 3]},
-      "expected": [1, 1, 3],
-      "tags": ["hidden", "cancellation"]
+      "name": "prefix XOR becomes zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pref": [
+          1,
+          0,
+          3
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        3
+      ],
+      "tags": [
+        "hidden",
+        "cancellation"
+      ]
     },
     {
       "id": "real-maximum-values",
-      "name": "hidden: maximum legal prefix values",
-      "kind": "real",
-      "visible": false,
-      "input": {"pref": [1000000, 0, 1000000]},
-      "expected": [1000000, 1000000, 1000000],
-      "tags": ["hidden", "maximum"]
+      "name": "maximum legal prefix values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pref": [
+          1000000,
+          0,
+          1000000
+        ]
+      },
+      "expected": [
+        1000000,
+        1000000,
+        1000000
+      ],
+      "tags": [
+        "hidden",
+        "maximum"
+      ]
     },
     {
       "id": "real-alternating-prefix",
-      "name": "hidden: alternating prefixes",
-      "kind": "real",
-      "visible": false,
-      "input": {"pref": [0, 9, 0, 9, 0]},
-      "expected": [0, 9, 9, 9, 9],
-      "tags": ["hidden", "alternating"]
+      "name": "alternating prefixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pref": [
+          0,
+          9,
+          0,
+          9,
+          0
+        ]
+      },
+      "expected": [
+        0,
+        9,
+        9,
+        9,
+        9
+      ],
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
     }
   ]
 }

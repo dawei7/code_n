@@ -277,9 +277,9 @@
     },
     {
       "id": "hidden-varying-drops",
-      "name": "hidden: three separated drops have different magnitudes",
-      "kind": "real",
-      "visible": false,
+      "name": "three separated drops have different magnitudes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -299,9 +299,9 @@
     },
     {
       "id": "hidden-long-decreasing",
-      "name": "hidden: one hundred descending values exercise every boundary",
-      "kind": "real",
-      "visible": false,
+      "name": "one hundred descending values exercise every boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -415,9 +415,9 @@
     },
     {
       "id": "hidden-64-bit-alternating",
-      "name": "hidden: repeated maximum drops require a 64-bit total",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated maximum drops require a 64-bit total",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -532,4 +532,3 @@
     }
   ]
 }
-

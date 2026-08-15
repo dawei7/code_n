@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: all ones",
-      "kind": "real",
-      "visible": false,
+      "name": "all ones",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "111111"
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: equal opposing blocks",
-      "kind": "real",
-      "visible": false,
+      "name": "equal opposing blocks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "111000"
       },
@@ -116,9 +116,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: leading one before zeros",
-      "kind": "real",
-      "visible": false,
+      "name": "leading one before zeros",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "1000001"
       },
@@ -130,9 +130,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: alternating bits",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating bits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "101010"
       },
@@ -144,4 +144,3 @@
     }
   ]
 }
-

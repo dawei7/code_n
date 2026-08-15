@@ -125,8 +125,8 @@
     {
       "id": "real-three-remainder-noise",
       "name": "real: noise is skipped around a two-remainder pattern",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -150,8 +150,8 @@
     {
       "id": "real-k-larger-than-values",
       "name": "real: a large modulus preserves distinct small values",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -172,8 +172,8 @@
     {
       "id": "real-maximum-values",
       "name": "real: maximum values reduce to bounded remainders",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10000000,
@@ -192,8 +192,8 @@
     {
       "id": "real-repeated-blocks",
       "name": "real: repeated runs require ordered selections",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -217,8 +217,8 @@
     {
       "id": "real-single-remainder-dominates",
       "name": "real: one remainder class beats shorter alternations",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -240,8 +240,8 @@
     {
       "id": "real-k-five-mixed",
       "name": "real: mixed residues choose the best endpoint pair",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

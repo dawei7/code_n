@@ -94,9 +94,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: negative values and both child positions",
-      "kind": "real",
-      "visible": false,
+      "name": "negative values and both child positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           -1,
@@ -116,9 +116,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: nested right-only links",
-      "kind": "real",
-      "visible": false,
+      "name": "nested right-only links",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,

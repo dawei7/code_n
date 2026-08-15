@@ -116,7 +116,7 @@
       "id": "trial-one",
       "name": "trial: one ticket",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "tickets": [
           [
@@ -138,7 +138,7 @@
       "id": "trial-duplicate",
       "name": "trial: duplicate tickets are distinct",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "tickets": [
           [
@@ -168,9 +168,9 @@
     },
     {
       "id": "hidden-two-cycles",
-      "name": "hidden: lexical order between cycles",
-      "kind": "real",
-      "visible": false,
+      "name": "lexical order between cycles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tickets": [
           [
@@ -205,9 +205,9 @@
     },
     {
       "id": "hidden-prefix-codes",
-      "name": "hidden: compare complete airport codes",
-      "kind": "real",
-      "visible": false,
+      "name": "compare complete airport codes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tickets": [
           [
@@ -247,9 +247,9 @@
     },
     {
       "id": "hidden-branching",
-      "name": "hidden: nested Eulerian cycles",
-      "kind": "real",
-      "visible": false,
+      "name": "nested Eulerian cycles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tickets": [
           [

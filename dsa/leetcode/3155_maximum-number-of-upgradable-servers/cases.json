@@ -178,8 +178,8 @@
     {
       "id": "real-one-upgrade-after-sales",
       "name": "real: sales finance exactly one upgrade",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "count": [
           5
@@ -204,8 +204,8 @@
     {
       "id": "real-high-sale-price",
       "name": "real: high sale price funds half the servers",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "count": [
           6
@@ -230,8 +230,8 @@
     {
       "id": "real-maximum-balanced-values",
       "name": "real: maximum equal values",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "count": [
           100000
@@ -257,8 +257,8 @@
     {
       "id": "real-single-affordable",
       "name": "real: one server affordable without sale",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "count": [
           1
@@ -283,8 +283,8 @@
     {
       "id": "real-single-unaffordable",
       "name": "real: selling the only server leaves none to upgrade",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "count": [
           1
@@ -310,8 +310,8 @@
     {
       "id": "real-multiple-boundaries",
       "name": "real: independent floor and cap boundaries",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "count": [
           3,
@@ -351,4 +351,3 @@
     }
   ]
 }
-

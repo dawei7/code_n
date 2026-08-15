@@ -114,8 +114,8 @@
     {
       "id": "real-boundary-center-zero",
       "name": "real: index zero is counted through circular neighbors",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": [
           1,
@@ -133,8 +133,8 @@
     {
       "id": "real-boundary-final-center",
       "name": "real: the final index uses index zero as its right neighbor",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": [
           0,
@@ -152,8 +152,8 @@
     {
       "id": "real-odd-near-alternation",
       "name": "real: an odd cycle has a single broken boundary",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": [
           0,
@@ -171,8 +171,8 @@
     {
       "id": "real-two-color-runs",
       "name": "real: run boundaries alone do not make the middle alternate",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": [
           0,
@@ -193,8 +193,8 @@
     {
       "id": "real-multiple-isolated-tiles",
       "name": "real: isolated tiles of both colors are counted",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": [
           0,
@@ -215,8 +215,8 @@
     {
       "id": "real-long-mixed-circle",
       "name": "real: mixed internal and boundary groups are all checked",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": [
           1,

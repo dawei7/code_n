@@ -78,9 +78,9 @@
     },
     {
       "id": "real-repeated-reset",
-      "name": "hidden: negative separators split positive runs",
-      "kind": "real",
-      "visible": false,
+      "name": "negative separators split positive runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abxabyab",
         "chars": "xy",
@@ -97,9 +97,9 @@
     },
     {
       "id": "real-positive-override",
-      "name": "hidden: positive override dominates defaults",
-      "kind": "real",
-      "visible": false,
+      "name": "positive override dominates defaults",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zaz",
         "chars": "a",

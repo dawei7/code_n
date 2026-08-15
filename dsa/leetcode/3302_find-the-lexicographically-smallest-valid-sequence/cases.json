@@ -1,15 +1,182 @@
 {
   "challenge_id": "lc_3302",
   "cases": [
-    {"id":"sample-mismatch-first","name":"sample: earliest index is used as the mismatch","kind":"sample","visible":true,"input":{"word1":"vbcca","word2":"abc"},"expected":[0,1,2],"tags":["sample","mismatch"]},
-    {"id":"sample-mismatch-middle","name":"sample: middle target position uses the mismatch","kind":"sample","visible":true,"input":{"word1":"bacdc","word2":"abc"},"expected":[1,2,4],"tags":["sample","mismatch"]},
-    {"id":"sample-impossible","name":"sample: two unavoidable mismatches make selection impossible","kind":"sample","visible":true,"input":{"word1":"aaaaaa","word2":"aaabc"},"expected":[],"tags":["sample","impossible"]},
-    {"id":"sample-exact-prefix","name":"sample: exact target is the source prefix","kind":"sample","visible":true,"input":{"word1":"abc","word2":"ab"},"expected":[0,1],"tags":["sample","exact"]},
-    {"id":"trial-one-character","name":"trial: one-character target may always change index zero","kind":"trial","visible":true,"input":{"word1":"zzz","word2":"a"},"expected":[0],"tags":["minimum","mismatch"]},
-    {"id":"trial-earliest-mismatch","name":"trial: mismatch at zero beats a later exact start","kind":"trial","visible":true,"input":{"word1":"xabc","word2":"abc"},"expected":[0,2,3],"tags":["lexicographic"]},
-    {"id":"trial-save-suffix","name":"trial: suffix feasibility permits a middle mismatch","kind":"trial","visible":true,"input":{"word1":"abxde","word2":"abcd"},"expected":[0,1,2,3],"tags":["suffix"]},
-    {"id":"real-no-completion","name":"real: no selection stays within one mismatch","kind":"real","visible":false,"input":{"word1":"abcdef","word2":"azced"},"expected":[],"tags":["impossible"]},
-    {"id":"real-index-order","name":"real: smallest indices differ from exact-character choice","kind":"real","visible":false,"input":{"word1":"abcde","word2":"ace"},"expected":[0,1,4],"tags":["lexicographic","indices"]},
-    {"id":"real-delayed-final","name":"real: early mismatch requires a distant final match","kind":"real","visible":false,"input":{"word1":"axbxc","word2":"abc"},"expected":[0,1,4],"tags":["suffix","mismatch"]}
+    {
+      "id": "sample-mismatch-first",
+      "name": "sample: earliest index is used as the mismatch",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word1": "vbcca",
+        "word2": "abc"
+      },
+      "expected": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "sample",
+        "mismatch"
+      ]
+    },
+    {
+      "id": "sample-mismatch-middle",
+      "name": "sample: middle target position uses the mismatch",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word1": "bacdc",
+        "word2": "abc"
+      },
+      "expected": [
+        1,
+        2,
+        4
+      ],
+      "tags": [
+        "sample",
+        "mismatch"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: two unavoidable mismatches make selection impossible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word1": "aaaaaa",
+        "word2": "aaabc"
+      },
+      "expected": [],
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "sample-exact-prefix",
+      "name": "sample: exact target is the source prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word1": "abc",
+        "word2": "ab"
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "tags": [
+        "sample",
+        "exact"
+      ]
+    },
+    {
+      "id": "trial-one-character",
+      "name": "trial: one-character target may always change index zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "zzz",
+        "word2": "a"
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "minimum",
+        "mismatch"
+      ]
+    },
+    {
+      "id": "trial-earliest-mismatch",
+      "name": "trial: mismatch at zero beats a later exact start",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "xabc",
+        "word2": "abc"
+      },
+      "expected": [
+        0,
+        2,
+        3
+      ],
+      "tags": [
+        "lexicographic"
+      ]
+    },
+    {
+      "id": "trial-save-suffix",
+      "name": "trial: suffix feasibility permits a middle mismatch",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "abxde",
+        "word2": "abcd"
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "suffix"
+      ]
+    },
+    {
+      "id": "real-no-completion",
+      "name": "real: no selection stays within one mismatch",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "abcdef",
+        "word2": "azced"
+      },
+      "expected": [],
+      "tags": [
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-index-order",
+      "name": "real: smallest indices differ from exact-character choice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "abcde",
+        "word2": "ace"
+      },
+      "expected": [
+        0,
+        1,
+        4
+      ],
+      "tags": [
+        "lexicographic",
+        "indices"
+      ]
+    },
+    {
+      "id": "real-delayed-final",
+      "name": "real: early mismatch requires a distant final match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "axbxc",
+        "word2": "abc"
+      },
+      "expected": [
+        0,
+        1,
+        4
+      ],
+      "tags": [
+        "suffix",
+        "mismatch"
+      ]
+    }
   ]
 }

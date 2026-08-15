@@ -157,9 +157,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: no universal word",
-      "kind": "real",
-      "visible": false,
+      "name": "no universal word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words1": [
           "ab",
@@ -178,9 +178,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: duplicate requirements",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate requirements",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words1": [
           "letter",
@@ -205,9 +205,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: ten repeated letters",
-      "kind": "real",
-      "visible": false,
+      "name": "ten repeated letters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words1": [
           "aaaaaaaaaa",
@@ -228,9 +228,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: independent maxima",
-      "kind": "real",
-      "visible": false,
+      "name": "independent maxima",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words1": [
           "aabbcc",
@@ -251,4 +251,3 @@
     }
   ]
 }
-

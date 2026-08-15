@@ -7,72 +7,164 @@
       "name": "sample: two indices have enough smaller values on both sides",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 3, 6, 5, 2, 3], "k": 2},
+      "input": {
+        "nums": [
+          2,
+          3,
+          6,
+          5,
+          2,
+          3
+        ],
+        "k": 2
+      },
       "expected": 2,
-      "tags": ["sample", "two-sided-counts"]
+      "tags": [
+        "sample",
+        "two-sided-counts"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: equal values are not strictly smaller",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 1, 1], "k": 3},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 3
+      },
       "expected": 0,
-      "tags": ["sample", "strict-comparison"]
+      "tags": [
+        "sample",
+        "strict-comparison"
+      ]
     },
     {
       "id": "trial-single-peak",
       "name": "trial: the middle peak is one-big",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 3, 2], "k": 1},
+      "input": {
+        "nums": [
+          1,
+          3,
+          2
+        ],
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["trial", "single-match"]
+      "tags": [
+        "trial",
+        "single-match"
+      ]
     },
     {
       "id": "trial-equal-middle-values",
       "name": "trial: duplicate middle values both qualify",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 2, 1], "k": 1},
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "k": 1
+      },
       "expected": 2,
-      "tags": ["trial", "duplicates"]
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
     },
     {
       "id": "real-k-too-large-for-boundaries",
-      "name": "hidden: no index has two positions on each side",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 3, 2], "k": 2},
+      "name": "no index has two positions on each side",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2
+        ],
+        "k": 2
+      },
       "expected": 0,
-      "tags": ["hidden", "boundary-count"]
+      "tags": [
+        "hidden",
+        "boundary-count"
+      ]
     },
     {
       "id": "real-increasing",
-      "name": "hidden: increasing order has no smaller values to the right",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 4, 5], "k": 1},
+      "name": "increasing order has no smaller values to the right",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "k": 1
+      },
       "expected": 0,
-      "tags": ["hidden", "monotone"]
+      "tags": [
+        "hidden",
+        "monotone"
+      ]
     },
     {
       "id": "real-symmetric-mountain",
-      "name": "hidden: three central mountain positions are two-big",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 4, 3, 2, 1], "k": 2},
+      "name": "three central mountain positions are two-big",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          3,
+          2,
+          1
+        ],
+        "k": 2
+      },
       "expected": 3,
-      "tags": ["hidden", "symmetric"]
+      "tags": [
+        "hidden",
+        "symmetric"
+      ]
     },
     {
       "id": "real-unsorted",
-      "name": "hidden: only one interior value qualifies",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 1, 4, 2, 3], "k": 1},
+      "name": "only one interior value qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          4,
+          2,
+          3
+        ],
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["hidden", "mixed-order"]
+      "tags": [
+        "hidden",
+        "mixed-order"
+      ]
     }
   ]
 }

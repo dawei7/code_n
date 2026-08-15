@@ -1,18 +1,271 @@
 {
   "challenge_id": "lc_3139",
   "cases": [
-    {"id":"sample-1","name":"sample: two values require single increments","kind":"sample","visible":true,"input":{"nums":[4,1],"cost1":5,"cost2":2},"expected":15,"tags":["sample","two-values"]},
-    {"id":"sample-2","name":"sample: cheap pair operations","kind":"sample","visible":true,"input":{"nums":[2,3,3,3,5],"cost1":2,"cost2":1},"expected":6,"tags":["sample","pair-operation"]},
-    {"id":"sample-3","name":"sample: pair operation is too expensive","kind":"sample","visible":true,"input":{"nums":[3,5,3],"cost1":1,"cost2":3},"expected":4,"tags":["sample","single-operation"]},
-    {"id":"trial-single-element","name":"trial: one element is already equal","kind":"trial","visible":true,"input":{"nums":[9],"cost1":8,"cost2":1},"expected":0,"tags":["edge","single-element"]},
-    {"id":"trial-all-equal","name":"trial: equal values need no operations","kind":"trial","visible":true,"input":{"nums":[7,7,7,7],"cost1":4,"cost2":5},"expected":0,"tags":["edge","already-equal"]},
-    {"id":"trial-two-elements","name":"trial: pairing cannot close a two-value gap","kind":"trial","visible":true,"input":{"nums":[1,10],"cost1":3,"cost2":1},"expected":27,"tags":["semantic-trap","two-values"]},
-    {"id":"trial-parity-above-balance","name":"trial: parity makes the next target cheaper","kind":"trial","visible":true,"input":{"nums":[1,1,1,2,2],"cost1":4,"cost2":1},"expected":4,"tags":["parity","target-above-maximum"]},
-    {"id":"real-bottleneck-minimum","name":"real: one low value limits pairing","kind":"real","visible":false,"input":{"nums":[1,10,10,10],"cost1":3,"cost2":2},"expected":27,"tags":["real","bottleneck"]},
-    {"id":"real-target-above-maximum","name":"real: the cheapest target exceeds the current maximum","kind":"real","visible":false,"input":{"nums":[1,2,100],"cost1":50,"cost2":1},"expected":100,"tags":["real","target-transition"]},
-    {"id":"real-pair-equals-two-singles","name":"real: equal operation prices per increment","kind":"real","visible":false,"input":{"nums":[1,4,8,9],"cost1":6,"cost2":12},"expected":84,"tags":["real","cost-boundary"]},
-    {"id":"real-near-balanced-deficits","name":"real: unequal deficits become pairable above maximum","kind":"real","visible":false,"input":{"nums":[1,14,14,15],"cost1":5,"cost2":1},"expected":20,"tags":["real","balance-threshold"]},
-    {"id":"real-large-costs-modulo","name":"real: large raw cost is reduced modulo the modulus","kind":"real","visible":false,"input":{"nums":[8,1,3,9,2],"cost1":1000000,"cost2":999937},"expected":10999307,"tags":["real","modulo"]},
-    {"id":"real-maximum-value","name":"real: values reach the upper constraint","kind":"real","visible":false,"input":{"nums":[999999,1000000],"cost1":1000000,"cost2":1},"expected":1000000,"tags":["real","maximum-constraint","two-values"]}
+    {
+      "id": "sample-1",
+      "name": "sample: two values require single increments",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1
+        ],
+        "cost1": 5,
+        "cost2": 2
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "two-values"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: cheap pair operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          3,
+          3,
+          5
+        ],
+        "cost1": 2,
+        "cost2": 1
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "pair-operation"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: pair operation is too expensive",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          5,
+          3
+        ],
+        "cost1": 1,
+        "cost2": 3
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "single-operation"
+      ]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: one element is already equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9
+        ],
+        "cost1": 8,
+        "cost2": 1
+      },
+      "expected": 0,
+      "tags": [
+        "edge",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: equal values need no operations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ],
+        "cost1": 4,
+        "cost2": 5
+      },
+      "expected": 0,
+      "tags": [
+        "edge",
+        "already-equal"
+      ]
+    },
+    {
+      "id": "trial-two-elements",
+      "name": "trial: pairing cannot close a two-value gap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10
+        ],
+        "cost1": 3,
+        "cost2": 1
+      },
+      "expected": 27,
+      "tags": [
+        "semantic-trap",
+        "two-values"
+      ]
+    },
+    {
+      "id": "trial-parity-above-balance",
+      "name": "trial: parity makes the next target cheaper",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2
+        ],
+        "cost1": 4,
+        "cost2": 1
+      },
+      "expected": 4,
+      "tags": [
+        "parity",
+        "target-above-maximum"
+      ]
+    },
+    {
+      "id": "real-bottleneck-minimum",
+      "name": "real: one low value limits pairing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10,
+          10,
+          10
+        ],
+        "cost1": 3,
+        "cost2": 2
+      },
+      "expected": 27,
+      "tags": [
+        "real",
+        "bottleneck"
+      ]
+    },
+    {
+      "id": "real-target-above-maximum",
+      "name": "real: the cheapest target exceeds the current maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          100
+        ],
+        "cost1": 50,
+        "cost2": 1
+      },
+      "expected": 100,
+      "tags": [
+        "real",
+        "target-transition"
+      ]
+    },
+    {
+      "id": "real-pair-equals-two-singles",
+      "name": "real: equal operation prices per increment",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          8,
+          9
+        ],
+        "cost1": 6,
+        "cost2": 12
+      },
+      "expected": 84,
+      "tags": [
+        "real",
+        "cost-boundary"
+      ]
+    },
+    {
+      "id": "real-near-balanced-deficits",
+      "name": "real: unequal deficits become pairable above maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          14,
+          14,
+          15
+        ],
+        "cost1": 5,
+        "cost2": 1
+      },
+      "expected": 20,
+      "tags": [
+        "real",
+        "balance-threshold"
+      ]
+    },
+    {
+      "id": "real-large-costs-modulo",
+      "name": "real: large raw cost is reduced modulo the modulus",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          1,
+          3,
+          9,
+          2
+        ],
+        "cost1": 1000000,
+        "cost2": 999937
+      },
+      "expected": 10999307,
+      "tags": [
+        "real",
+        "modulo"
+      ]
+    },
+    {
+      "id": "real-maximum-value",
+      "name": "real: values reach the upper constraint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          999999,
+          1000000
+        ],
+        "cost1": 1000000,
+        "cost2": 1
+      },
+      "expected": 1000000,
+      "tags": [
+        "real",
+        "maximum-constraint",
+        "two-values"
+      ]
+    }
   ]
 }

@@ -125,9 +125,9 @@
     },
     {
       "id": "hidden-side",
-      "name": "hidden: child appears on the wrong side",
-      "kind": "real",
-      "visible": false,
+      "name": "child appears on the wrong side",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -147,9 +147,9 @@
     },
     {
       "id": "hidden-duplicates",
-      "name": "hidden: duplicate values with one structural match",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate values with one structural match",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -173,9 +173,9 @@
     },
     {
       "id": "hidden-negative",
-      "name": "hidden: negative values and structure match",
-      "kind": "real",
-      "visible": false,
+      "name": "negative values and structure match",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           0,

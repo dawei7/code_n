@@ -7,90 +7,206 @@
       "name": "sample: two adjacent flips make the alternating array positive",
       "kind": "sample",
       "visible": true,
-      "input": {"nums":[1,-1,1,-1,1],"k":3},
+      "input": {
+        "nums": [
+          1,
+          -1,
+          1,
+          -1,
+          1
+        ],
+        "k": 3
+      },
       "expected": true,
-      "tags": ["sample","alternating-signs","within-budget"]
+      "tags": [
+        "sample",
+        "alternating-signs",
+        "within-budget"
+      ]
     },
     {
       "id": "sample-product-invariant-impossible",
       "name": "sample: an even array with negative product cannot become uniform",
       "kind": "sample",
       "visible": true,
-      "input": {"nums":[-1,-1,-1,1,1,1],"k":5},
+      "input": {
+        "nums": [
+          -1,
+          -1,
+          -1,
+          1,
+          1,
+          1
+        ],
+        "k": 5
+      },
       "expected": false,
-      "tags": ["sample","impossible","sign-product"]
+      "tags": [
+        "sample",
+        "impossible",
+        "sign-product"
+      ]
     },
     {
       "id": "trial-single-positive",
       "name": "trial: a positive singleton is already uniform",
       "kind": "trial",
       "visible": true,
-      "input": {"nums":[1],"k":1},
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 1
+      },
       "expected": true,
-      "tags": ["trial","minimum-length","zero-operations"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "zero-operations"
+      ]
     },
     {
       "id": "trial-single-negative",
       "name": "trial: a negative singleton is already uniform",
       "kind": "trial",
       "visible": true,
-      "input": {"nums":[-1],"k":1},
+      "input": {
+        "nums": [
+          -1
+        ],
+        "k": 1
+      },
       "expected": true,
-      "tags": ["trial","minimum-length","negative-target"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "negative-target"
+      ]
     },
     {
       "id": "trial-two-opposite-signs",
       "name": "trial: flipping both opposite signs only swaps them",
       "kind": "trial",
       "visible": true,
-      "input": {"nums":[1,-1],"k":2},
+      "input": {
+        "nums": [
+          1,
+          -1
+        ],
+        "k": 2
+      },
       "expected": false,
-      "tags": ["trial","impossible","repeated-edge"]
+      "tags": [
+        "trial",
+        "impossible",
+        "repeated-edge"
+      ]
     },
     {
       "id": "real-one-short-of-budget",
       "name": "real: the unique feasible transformation needs two operations",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums":[1,-1,1],"k":1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -1,
+          1
+        ],
+        "k": 1
+      },
       "expected": false,
-      "tags": ["real","budget-boundary","insufficient-k"]
+      "tags": [
+        "real",
+        "budget-boundary",
+        "insufficient-k"
+      ]
     },
     {
       "id": "real-exact-budget",
       "name": "real: the unique feasible transformation uses the exact budget",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums":[1,-1,1],"k":2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -1,
+          1
+        ],
+        "k": 2
+      },
       "expected": true,
-      "tags": ["real","budget-boundary","exact-k"]
+      "tags": [
+        "real",
+        "budget-boundary",
+        "exact-k"
+      ]
     },
     {
       "id": "real-interior-flip",
       "name": "real: one interior operation makes four values negative",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums":[-1,1,1,-1],"k":1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          1,
+          1,
+          -1
+        ],
+        "k": 1
+      },
       "expected": true,
-      "tags": ["real","negative-target","interior-edge"]
+      "tags": [
+        "real",
+        "negative-target",
+        "interior-edge"
+      ]
     },
     {
       "id": "real-already-uniform",
       "name": "real: an already uniform array needs no operation",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums":[1,1,1,1],"k":1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 1
+      },
       "expected": true,
-      "tags": ["real","already-equal","zero-operations"]
+      "tags": [
+        "real",
+        "already-equal",
+        "zero-operations"
+      ]
     },
     {
       "id": "real-alternating-insufficient-budget",
       "name": "real: a longer alternating array exceeds the operation budget",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums":[-1,1,-1,1,-1,1,-1],"k":3},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          1,
+          -1,
+          1,
+          -1,
+          1,
+          -1
+        ],
+        "k": 3
+      },
       "expected": false,
-      "tags": ["real","alternating-signs","insufficient-k"]
+      "tags": [
+        "real",
+        "alternating-signs",
+        "insufficient-k"
+      ]
     }
   ]
 }

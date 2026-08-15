@@ -2,13 +2,116 @@
   "schema_version": 1,
   "challenge_id": "lc_2396",
   "cases": [
-    {"id":"sample-9","name":"sample: base three representation is not palindromic","kind":"sample","visible":true,"input":{"n":9},"expected":false,"tags":["sample","base-3"]},
-    {"id":"sample-4","name":"sample: minimum input is 100 in base two","kind":"sample","visible":true,"input":{"n":4},"expected":false,"tags":["sample","minimum"]},
-    {"id":"trial-5","name":"trial: first direct base n minus two witness","kind":"trial","visible":true,"input":{"n":5},"expected":false,"tags":["witness"]},
-    {"id":"trial-6","name":"trial: even input also has representation 12","kind":"trial","visible":true,"input":{"n":6},"expected":false,"tags":["witness","even"]},
-    {"id":"trial-7","name":"trial: odd input also has representation 12","kind":"trial","visible":true,"input":{"n":7},"expected":false,"tags":["witness","odd"]},
-    {"id":"real-power-of-two","name":"hidden: power of two still fails a required base","kind":"real","visible":false,"input":{"n":64},"expected":false,"tags":["hidden","power-of-two"]},
-    {"id":"real-large-prime","name":"hidden: primality does not affect the witness","kind":"real","visible":false,"input":{"n":99991},"expected":false,"tags":["hidden","prime"]},
-    {"id":"real-maximum","name":"hidden: maximum legal input","kind":"real","visible":false,"input":{"n":100000},"expected":false,"tags":["hidden","maximum"]}
+    {
+      "id": "sample-9",
+      "name": "sample: base three representation is not palindromic",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 9
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "base-3"
+      ]
+    },
+    {
+      "id": "sample-4",
+      "name": "sample: minimum input is 100 in base two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-5",
+      "name": "trial: first direct base n minus two witness",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5
+      },
+      "expected": false,
+      "tags": [
+        "witness"
+      ]
+    },
+    {
+      "id": "trial-6",
+      "name": "trial: even input also has representation 12",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6
+      },
+      "expected": false,
+      "tags": [
+        "witness",
+        "even"
+      ]
+    },
+    {
+      "id": "trial-7",
+      "name": "trial: odd input also has representation 12",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7
+      },
+      "expected": false,
+      "tags": [
+        "witness",
+        "odd"
+      ]
+    },
+    {
+      "id": "real-power-of-two",
+      "name": "power of two still fails a required base",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 64
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "real-large-prime",
+      "name": "primality does not affect the witness",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 99991
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "prime"
+      ]
+    },
+    {
+      "id": "real-maximum",
+      "name": "maximum legal input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100000
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "maximum"
+      ]
+    }
   ]
 }

@@ -7,63 +7,141 @@
       "name": "sample: one interior house differs",
       "kind": "sample",
       "visible": true,
-      "input": {"colors": [1, 1, 1, 6, 1, 1, 1]},
+      "input": {
+        "colors": [
+          1,
+          1,
+          1,
+          6,
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "matching-endpoints"]
+      "tags": [
+        "sample",
+        "matching-endpoints"
+      ]
     },
     {
       "id": "sample-different-endpoints",
       "name": "sample: endpoints span the street",
       "kind": "sample",
       "visible": true,
-      "input": {"colors": [1, 8, 3, 8, 3]},
+      "input": {
+        "colors": [
+          1,
+          8,
+          3,
+          8,
+          3
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "different-endpoints"]
+      "tags": [
+        "sample",
+        "different-endpoints"
+      ]
     },
     {
       "id": "sample-two-houses",
       "name": "sample: minimum length",
       "kind": "sample",
       "visible": true,
-      "input": {"colors": [0, 1]},
+      "input": {
+        "colors": [
+          0,
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "minimum-length"]
+      "tags": [
+        "sample",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-outlier-near-left",
       "name": "an early outlier is farther from the right end",
       "kind": "trial",
       "visible": true,
-      "input": {"colors": [5, 9, 5, 5, 5, 5]},
+      "input": {
+        "colors": [
+          5,
+          9,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
       "expected": 4,
-      "tags": ["right-endpoint"]
+      "tags": [
+        "right-endpoint"
+      ]
     },
     {
       "id": "real-outlier-near-right",
-      "name": "hidden: a late outlier is farther from the left end",
-      "kind": "real",
-      "visible": false,
-      "input": {"colors": [7, 7, 7, 7, 2, 7]},
+      "name": "a late outlier is farther from the left end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": [
+          7,
+          7,
+          7,
+          7,
+          2,
+          7
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "left-endpoint"]
+      "tags": [
+        "hidden",
+        "left-endpoint"
+      ]
     },
     {
       "id": "real-several-colors",
-      "name": "hidden: numeric color values have no ordering role",
-      "kind": "real",
-      "visible": false,
-      "input": {"colors": [100, 3, 3, 100, 0, 100]},
+      "name": "numeric color values have no ordering role",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": [
+          100,
+          3,
+          3,
+          100,
+          0,
+          100
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "multiple-colors"]
+      "tags": [
+        "hidden",
+        "multiple-colors"
+      ]
     },
     {
       "id": "real-long-endpoint-span",
-      "name": "hidden: differing endpoints are globally optimal",
-      "kind": "real",
-      "visible": false,
-      "input": {"colors": [4, 4, 4, 4, 8]},
+      "name": "differing endpoints are globally optimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": [
+          4,
+          4,
+          4,
+          4,
+          8
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "maximum-span"]
+      "tags": [
+        "hidden",
+        "maximum-span"
+      ]
     }
   ]
 }

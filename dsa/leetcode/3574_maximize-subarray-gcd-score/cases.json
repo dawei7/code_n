@@ -7,90 +7,199 @@
       "name": "sample: double the smaller element to raise the whole-array GCD",
       "kind": "sample",
       "visible": true,
-      "input": {"nums":[2,4],"k":1},
+      "input": {
+        "nums": [
+          2,
+          4
+        ],
+        "k": 1
+      },
       "expected": 8,
-      "tags": ["sample","gcd-increase","whole-array"]
+      "tags": [
+        "sample",
+        "gcd-increase",
+        "whole-array"
+      ]
     },
     {
       "id": "sample-singleton-wins",
       "name": "sample: a doubled singleton beats every longer subarray",
       "kind": "sample",
       "visible": true,
-      "input": {"nums":[3,5,7],"k":2},
+      "input": {
+        "nums": [
+          3,
+          5,
+          7
+        ],
+        "k": 2
+      },
       "expected": 14,
-      "tags": ["sample","singleton","odd-values"]
+      "tags": [
+        "sample",
+        "singleton",
+        "odd-values"
+      ]
     },
     {
       "id": "sample-insufficient-equal-minima",
       "name": "sample: one operation cannot improve three equal odd elements",
       "kind": "sample",
       "visible": true,
-      "input": {"nums":[5,5,5],"k":1},
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ],
+        "k": 1
+      },
       "expected": 15,
-      "tags": ["sample","operation-limit","unchanged-gcd"]
+      "tags": [
+        "sample",
+        "operation-limit",
+        "unchanged-gcd"
+      ]
     },
     {
       "id": "trial-two-minima-one-operation",
       "name": "trial: both minimum-exponent elements must be doubled",
       "kind": "trial",
       "visible": true,
-      "input": {"nums":[2,2],"k":1},
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "k": 1
+      },
       "expected": 4,
-      "tags": ["trial","minimum-exponent-count","insufficient-k"]
+      "tags": [
+        "trial",
+        "minimum-exponent-count",
+        "insufficient-k"
+      ]
     },
     {
       "id": "trial-double-only-minimum-exponents",
       "name": "trial: doubling two of three elements raises the shared GCD",
       "kind": "trial",
       "visible": true,
-      "input": {"nums":[4,8,12],"k":2},
+      "input": {
+        "nums": [
+          4,
+          8,
+          12
+        ],
+        "k": 2
+      },
       "expected": 24,
-      "tags": ["trial","two-adic-exponent","partial-doubling"]
+      "tags": [
+        "trial",
+        "two-adic-exponent",
+        "partial-doubling"
+      ]
     },
     {
       "id": "real-repeated-number-theory-pattern",
       "name": "real: selected minimum-exponent elements double a long subarray score",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums":[12,24,36,24,12,24],"k":3},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          24,
+          36,
+          24,
+          12,
+          24
+        ],
+        "k": 3
+      },
       "expected": 144,
-      "tags": ["real","whole-array","minimum-exponent-count"]
+      "tags": [
+        "real",
+        "whole-array",
+        "minimum-exponent-count"
+      ]
     },
     {
       "id": "real-odd-common-factor",
       "name": "real: odd-factor structure leaves a doubled singleton optimal",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums":[6,9,15],"k":2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          9,
+          15
+        ],
+        "k": 2
+      },
       "expected": 30,
-      "tags": ["real","odd-gcd","singleton"]
+      "tags": [
+        "real",
+        "odd-gcd",
+        "singleton"
+      ]
     },
     {
       "id": "real-minimum-length-prime",
       "name": "real: the sole element can always be doubled",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums":[999999937],"k":1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          999999937
+        ],
+        "k": 1
+      },
       "expected": 1999999874,
-      "tags": ["real","minimum-length","large-prime"]
+      "tags": [
+        "real",
+        "minimum-length",
+        "large-prime"
+      ]
     },
     {
       "id": "real-score-exceeds-int32",
       "name": "real: doubling two boundary values produces a 64-bit score",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums":[1000000000,1000000000],"k":2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000
+        ],
+        "k": 2
+      },
       "expected": 4000000000,
-      "tags": ["real","value-boundary","large-score"]
+      "tags": [
+        "real",
+        "value-boundary",
+        "large-score"
+      ]
     },
     {
       "id": "real-changing-minimum-exponent",
       "name": "real: extending a subarray changes its minimum power-of-two exponent",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums":[8,12,16,20],"k":1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          12,
+          16,
+          20
+        ],
+        "k": 1
+      },
       "expected": 40,
-      "tags": ["real","two-adic-exponent","extension"]
+      "tags": [
+        "real",
+        "two-adic-exponent",
+        "extension"
+      ]
     }
   ]
 }

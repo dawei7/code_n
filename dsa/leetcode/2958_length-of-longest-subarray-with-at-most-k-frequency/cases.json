@@ -137,8 +137,8 @@
     {
       "id": "real-large-values",
       "name": "real: large values and repeated endpoints",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -160,8 +160,8 @@
     {
       "id": "real-late-best",
       "name": "real: longest window occurs at the end",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -183,8 +183,8 @@
     {
       "id": "real-k-equals-length",
       "name": "real: k equals array length",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,

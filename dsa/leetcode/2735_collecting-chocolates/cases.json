@@ -1,1 +1,157 @@
-{"challenge_id":"lc_2735","cases":[{"id":"sample-rotations-help","name":"sample: two rotations reuse cheapest chocolate","kind":"sample","visible":true,"input":{"nums":[20,1,15],"x":5},"expected":13,"tags":["sample","rotations"]},{"id":"sample-no-rotation","name":"sample: initial purchases are optimal","kind":"sample","visible":true,"input":{"nums":[1,2,3],"x":4},"expected":6,"tags":["sample","no-rotation"]},{"id":"trial-one-chocolate","name":"trial: one type needs no operation","kind":"trial","visible":true,"input":{"nums":[7],"x":5},"expected":7,"tags":["trial","minimum"]},{"id":"trial-cheap-rotation","name":"trial: all types use one cheap source","kind":"trial","visible":true,"input":{"nums":[10,1,10,10],"x":1},"expected":7,"tags":["trial","full-cycle"]},{"id":"real-expensive-operation","name":"hidden: operation cost prevents rotation","kind":"real","visible":false,"input":{"nums":[5,2,4],"x":100},"expected":11,"tags":["hidden","expensive-operation"]},{"id":"real-equal-costs","name":"hidden: rotations cannot improve equal prices","kind":"real","visible":false,"input":{"nums":[5,5,5],"x":1},"expected":15,"tags":["hidden","equal"]},{"id":"real-large-values","name":"hidden: multiple rotations collapse large prices","kind":"real","visible":false,"input":{"nums":[1000000000,1,1000000000],"x":1},"expected":5,"tags":["hidden","large-values"]},{"id":"real-one-rotation-best","name":"hidden: exactly one rotation is optimal","kind":"real","visible":false,"input":{"nums":[100,1,50,2],"x":10},"expected":16,"tags":["hidden","one-rotation"]}]}
+{
+  "challenge_id": "lc_2735",
+  "cases": [
+    {
+      "id": "sample-rotations-help",
+      "name": "sample: two rotations reuse cheapest chocolate",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          20,
+          1,
+          15
+        ],
+        "x": 5
+      },
+      "expected": 13,
+      "tags": [
+        "sample",
+        "rotations"
+      ]
+    },
+    {
+      "id": "sample-no-rotation",
+      "name": "sample: initial purchases are optimal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "x": 4
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "no-rotation"
+      ]
+    },
+    {
+      "id": "trial-one-chocolate",
+      "name": "trial: one type needs no operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "x": 5
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-cheap-rotation",
+      "name": "trial: all types use one cheap source",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1,
+          10,
+          10
+        ],
+        "x": 1
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "full-cycle"
+      ]
+    },
+    {
+      "id": "real-expensive-operation",
+      "name": "operation cost prevents rotation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          2,
+          4
+        ],
+        "x": 100
+      },
+      "expected": 11,
+      "tags": [
+        "hidden",
+        "expensive-operation"
+      ]
+    },
+    {
+      "id": "real-equal-costs",
+      "name": "rotations cannot improve equal prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ],
+        "x": 1
+      },
+      "expected": 15,
+      "tags": [
+        "hidden",
+        "equal"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "multiple rotations collapse large prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1,
+          1000000000
+        ],
+        "x": 1
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "large-values"
+      ]
+    },
+    {
+      "id": "real-one-rotation-best",
+      "name": "exactly one rotation is optimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          1,
+          50,
+          2
+        ],
+        "x": 10
+      },
+      "expected": 16,
+      "tags": [
+        "hidden",
+        "one-rotation"
+      ]
+    }
+  ]
+}

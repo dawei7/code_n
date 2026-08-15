@@ -6,90 +6,160 @@
       "name": "sample: swap two complete blocks",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abcd", "t": "cdab", "k": 2},
+      "input": {
+        "s": "abcd",
+        "t": "cdab",
+        "k": 2
+      },
       "expected": true,
-      "tags": ["sample", "reordering"]
+      "tags": [
+        "sample",
+        "reordering"
+      ]
     },
     {
       "id": "sample-three-block-cycle",
       "name": "sample: reorder three repeated-letter blocks",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "aabbcc", "t": "bbaacc", "k": 3},
+      "input": {
+        "s": "aabbcc",
+        "t": "bbaacc",
+        "k": 3
+      },
       "expected": true,
-      "tags": ["sample", "reordering"]
+      "tags": [
+        "sample",
+        "reordering"
+      ]
     },
     {
       "id": "sample-boundary-mismatch",
       "name": "sample: same letters but incompatible block boundaries",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "aabbcc", "t": "bbaacc", "k": 2},
+      "input": {
+        "s": "aabbcc",
+        "t": "bbaacc",
+        "k": 2
+      },
       "expected": false,
-      "tags": ["sample", "boundary-mismatch"]
+      "tags": [
+        "sample",
+        "boundary-mismatch"
+      ]
     },
     {
       "id": "trial-single-block-equal",
       "name": "trial: one block requires exact string equality",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "algorithm", "t": "algorithm", "k": 1},
+      "input": {
+        "s": "algorithm",
+        "t": "algorithm",
+        "k": 1
+      },
       "expected": true,
-      "tags": ["edge", "single-block"]
+      "tags": [
+        "edge",
+        "single-block"
+      ]
     },
     {
       "id": "trial-single-block-anagram",
       "name": "trial: one block cannot internally rearrange letters",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abc", "t": "bca", "k": 1},
+      "input": {
+        "s": "abc",
+        "t": "bca",
+        "k": 1
+      },
       "expected": false,
-      "tags": ["edge", "single-block"]
+      "tags": [
+        "edge",
+        "single-block"
+      ]
     },
     {
       "id": "trial-character-blocks",
       "name": "trial: character-sized blocks can realize any anagram",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aabc", "t": "caba", "k": 4},
+      "input": {
+        "s": "aabc",
+        "t": "caba",
+        "k": 4
+      },
       "expected": true,
-      "tags": ["edge", "unit-blocks"]
+      "tags": [
+        "edge",
+        "unit-blocks"
+      ]
     },
     {
       "id": "real-duplicate-blocks",
       "name": "real: duplicate blocks preserve multiplicity",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaabaaab", "t": "abaaabaa", "k": 4},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaabaaab",
+        "t": "abaaabaa",
+        "k": 4
+      },
       "expected": true,
-      "tags": ["real", "duplicates"]
+      "tags": [
+        "real",
+        "duplicates"
+      ]
     },
     {
       "id": "real-multiplicity-mismatch",
       "name": "real: global anagram hides different block multiplicities",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "ababcd", "t": "abacbd", "k": 3},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ababcd",
+        "t": "abacbd",
+        "k": 3
+      },
       "expected": false,
-      "tags": ["real", "multiplicity"]
+      "tags": [
+        "real",
+        "multiplicity"
+      ]
     },
     {
       "id": "real-block-rotation",
       "name": "real: several long blocks rotate",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdefghijklmnopqrstuvwx", "t": "mnopqrstuvwxabcdefghijkl", "k": 6},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwx",
+        "t": "mnopqrstuvwxabcdefghijkl",
+        "k": 6
+      },
       "expected": true,
-      "tags": ["real", "longer-blocks"]
+      "tags": [
+        "real",
+        "longer-blocks"
+      ]
     },
     {
       "id": "real-near-match",
       "name": "real: one cross-boundary exchange invalidates the target",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaaabbbbccccdddd", "t": "bbbbaaaacccdcddd", "k": 4},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaabbbbccccdddd",
+        "t": "bbbbaaaacccdcddd",
+        "k": 4
+      },
       "expected": false,
-      "tags": ["real", "near-match"]
+      "tags": [
+        "real",
+        "near-match"
+      ]
     }
   ]
 }

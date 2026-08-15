@@ -28,7 +28,7 @@
       ],
       "validator": {
         "type": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       }
     },
     {
@@ -57,7 +57,7 @@
       ],
       "validator": {
         "type": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       }
     },
     {
@@ -86,7 +86,7 @@
       ],
       "validator": {
         "type": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       }
     },
     {
@@ -120,14 +120,14 @@
       ],
       "validator": {
         "type": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       }
     },
     {
       "id": "real-wide-empty-gap",
       "name": "real: minimum of a wide balancing interval",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "squares": [
           [
@@ -149,14 +149,14 @@
       ],
       "validator": {
         "type": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       }
     },
     {
       "id": "real-layered-overlaps",
       "name": "real: several independently counted overlaps",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "squares": [
           [
@@ -188,14 +188,14 @@
       ],
       "validator": {
         "type": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       }
     },
     {
       "id": "real-x-coordinate-irrelevant",
       "name": "real: x positions do not alter counted strips",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "squares": [
           [
@@ -222,14 +222,14 @@
       ],
       "validator": {
         "type": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       }
     },
     {
       "id": "real-large-coordinate",
       "name": "real: large coordinate and side length",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "squares": [
           [
@@ -246,7 +246,7 @@
       ],
       "validator": {
         "type": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       }
     }
   ]

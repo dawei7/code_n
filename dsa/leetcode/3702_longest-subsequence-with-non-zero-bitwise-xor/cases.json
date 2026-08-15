@@ -7,108 +7,227 @@
       "name": "sample: remove one element from a zero-XOR array",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "zero-total-xor"]
+      "tags": [
+        "sample",
+        "zero-total-xor"
+      ]
     },
     {
       "id": "sample-nonzero-total-xor",
       "name": "sample: the complete array has non-zero XOR",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 3, 4]},
+      "input": {
+        "nums": [
+          2,
+          3,
+          4
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "whole-array"]
+      "tags": [
+        "sample",
+        "whole-array"
+      ]
     },
     {
       "id": "trial-single-zero",
       "name": "trial: no qualifying subsequence from one zero",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0]},
+      "input": {
+        "nums": [
+          0
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "single-element", "all-zero"]
+      "tags": [
+        "trial",
+        "single-element",
+        "all-zero"
+      ]
     },
     {
       "id": "trial-single-nonzero",
       "name": "trial: one non-zero value is already valid",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7]},
+      "input": {
+        "nums": [
+          7
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "single-element", "whole-array"]
+      "tags": [
+        "trial",
+        "single-element",
+        "whole-array"
+      ]
     },
     {
       "id": "trial-all-zero",
       "name": "trial: every subsequence of zeros has XOR zero",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 0, 0]},
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "all-zero"]
+      "tags": [
+        "trial",
+        "all-zero"
+      ]
     },
     {
       "id": "trial-equal-pair",
       "name": "trial: deleting either equal value leaves a non-zero XOR",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, 5]},
+      "input": {
+        "nums": [
+          5,
+          5
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "zero-total-xor", "duplicates"]
+      "tags": [
+        "trial",
+        "zero-total-xor",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-zero-padding",
       "name": "trial: zeros remain in a whole-array valid subsequence",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 7, 0]},
+      "input": {
+        "nums": [
+          0,
+          7,
+          0
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "zeros", "whole-array"]
+      "tags": [
+        "trial",
+        "zeros",
+        "whole-array"
+      ]
     },
     {
       "id": "real-three-equal-values",
-      "name": "hidden: an odd number of equal non-zero values has non-zero XOR",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 1]},
+      "name": "an odd number of equal non-zero values has non-zero XOR",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "duplicates", "whole-array"]
+      "tags": [
+        "hidden",
+        "duplicates",
+        "whole-array"
+      ]
     },
     {
       "id": "real-zero-appended-to-sample",
-      "name": "hidden: an extra zero lengthens the best zero-total-XOR case",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 0]},
+      "name": "an extra zero lengthens the best zero-total-XOR case",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          0
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "zero-total-xor", "zeros"]
+      "tags": [
+        "hidden",
+        "zero-total-xor",
+        "zeros"
+      ]
     },
     {
       "id": "real-maximum-values",
-      "name": "hidden: duplicate maximum values cancel",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000, 1000000000, 0]},
+      "name": "duplicate maximum values cancel",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000,
+          0
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "maximum-value", "zero-total-xor"]
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "zero-total-xor"
+      ]
     },
     {
       "id": "real-multiple-zeros-and-pair",
-      "name": "hidden: remove one member of a canceling pair and retain every zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 0, 6, 6, 0]},
+      "name": "remove one member of a canceling pair and retain every zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          6,
+          6,
+          0
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "zeros", "zero-total-xor"]
+      "tags": [
+        "hidden",
+        "zeros",
+        "zero-total-xor"
+      ]
     },
     {
       "id": "real-mixed-nonzero-xor",
-      "name": "hidden: mixed duplicates still leave the complete XOR non-zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, 8, 4, 4, 2, 0, 0]},
+      "name": "mixed duplicates still leave the complete XOR non-zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          8,
+          4,
+          4,
+          2,
+          0,
+          0
+        ]
+      },
       "expected": 7,
-      "tags": ["hidden", "duplicates", "whole-array"]
+      "tags": [
+        "hidden",
+        "duplicates",
+        "whole-array"
+      ]
     }
   ]
 }

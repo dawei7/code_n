@@ -111,9 +111,9 @@
     },
     {
       "id": "real-star-tree",
-      "name": "hidden: star leaves have only one ancestor",
-      "kind": "real",
-      "visible": false,
+      "name": "star leaves have only one ancestor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "parent": [
@@ -161,9 +161,9 @@
     },
     {
       "id": "real-balanced-tree",
-      "name": "hidden: composed jumps in balanced tree",
-      "kind": "real",
-      "visible": false,
+      "name": "composed jumps in balanced tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 15,
         "parent": [
@@ -228,9 +228,9 @@
     },
     {
       "id": "real-single-node",
-      "name": "hidden: single-node tree",
-      "kind": "real",
-      "visible": false,
+      "name": "single-node tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1,
         "parent": [
@@ -257,9 +257,9 @@
     },
     {
       "id": "real-power-of-two-jumps",
-      "name": "hidden: exact power-of-two ancestors",
-      "kind": "real",
-      "visible": false,
+      "name": "exact power-of-two ancestors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 9,
         "parent": [
@@ -318,9 +318,9 @@
     },
     {
       "id": "real-repeated-independent-queries",
-      "name": "hidden: queries do not mutate tree state",
-      "kind": "real",
-      "visible": false,
+      "name": "queries do not mutate tree state",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "parent": [

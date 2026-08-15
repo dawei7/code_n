@@ -133,9 +133,9 @@
     },
     {
       "id": "real-one-date-one-product",
-      "name": "hidden: one distinct pair repeated",
-      "kind": "real",
-      "visible": false,
+      "name": "one distinct pair repeated",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Activities": [
@@ -176,9 +176,9 @@
     },
     {
       "id": "real-same-product-different-dates",
-      "name": "hidden: product contributes independently by date",
-      "kind": "real",
-      "visible": false,
+      "name": "product contributes independently by date",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Activities": [
@@ -237,9 +237,9 @@
     },
     {
       "id": "real-lexicographic-numbers",
-      "name": "hidden: lexicographic rather than numeric-looking order",
-      "kind": "real",
-      "visible": false,
+      "name": "lexicographic rather than numeric-looking order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Activities": [

@@ -96,9 +96,9 @@
     },
     {
       "id": "hidden-reverse",
-      "name": "hidden: reverse order",
-      "kind": "real",
-      "visible": false,
+      "name": "reverse order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "flips": [
           5,
@@ -116,9 +116,9 @@
     },
     {
       "id": "hidden-late-first",
-      "name": "hidden: first position arrives late",
-      "kind": "real",
-      "visible": false,
+      "name": "first position arrives late",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "flips": [
           2,

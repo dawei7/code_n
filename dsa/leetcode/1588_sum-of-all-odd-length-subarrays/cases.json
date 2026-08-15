@@ -92,9 +92,9 @@
     },
     {
       "id": "real-all-ones",
-      "name": "hidden: repeated unit values",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated unit values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -112,9 +112,9 @@
     },
     {
       "id": "real-symmetric",
-      "name": "hidden: symmetric three-element array",
-      "kind": "real",
-      "visible": false,
+      "name": "symmetric three-element array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           5,
@@ -130,9 +130,9 @@
     },
     {
       "id": "real-two-value-boundaries",
-      "name": "hidden: minimum and maximum values",
-      "kind": "real",
-      "visible": false,
+      "name": "minimum and maximum values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -147,9 +147,9 @@
     },
     {
       "id": "real-six-increasing",
-      "name": "hidden: several odd lengths in an even array",
-      "kind": "real",
-      "visible": false,
+      "name": "several odd lengths in an even array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -168,9 +168,9 @@
     },
     {
       "id": "real-maximum-domain",
-      "name": "hidden: maximum length and values",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum length and values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1000,

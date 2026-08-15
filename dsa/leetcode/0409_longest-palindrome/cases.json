@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-many-odds",
-      "name": "hidden: several odd counts share one center",
-      "kind": "real",
-      "visible": false,
+      "name": "several odd counts share one center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaabbbccc"
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-one-uppercase-pair",
-      "name": "hidden: only uppercase values pair",
-      "kind": "real",
-      "visible": false,
+      "name": "only uppercase values pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abAAcd"
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "hidden-all-same",
-      "name": "hidden: repeated single character kind",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated single character kind",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zzzzzzz"
       },

@@ -73,9 +73,9 @@
     },
     {
       "id": "real-between-fibonacci",
-      "name": "hidden: several greedy remainders",
-      "kind": "real",
-      "visible": false,
+      "name": "several greedy remainders",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 4000
       },
@@ -87,9 +87,9 @@
     },
     {
       "id": "real-upper-bound",
-      "name": "hidden: maximum input",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 1000000000
       },

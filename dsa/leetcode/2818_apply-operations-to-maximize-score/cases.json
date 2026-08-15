@@ -101,9 +101,9 @@
     },
     {
       "id": "real-one-score-zero",
-      "name": "hidden: ones have prime score zero",
-      "kind": "real",
-      "visible": false,
+      "name": "ones have prime score zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -120,9 +120,9 @@
     },
     {
       "id": "real-all-equal-scores",
-      "name": "hidden: equal prime scores assign subarrays leftward",
-      "kind": "real",
-      "visible": false,
+      "name": "equal prime scores assign subarrays leftward",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -139,9 +139,9 @@
     },
     {
       "id": "real-mixed-ties",
-      "name": "hidden: strict and non-strict boundaries both matter",
-      "kind": "real",
-      "visible": false,
+      "name": "strict and non-strict boundaries both matter",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -159,9 +159,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: repeated maximum legal values exercise modulo powers",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated maximum legal values exercise modulo powers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,

@@ -56,9 +56,9 @@
     },
     {
       "id": "real-separated-blocks",
-      "name": "hidden: separated blocks",
-      "kind": "real",
-      "visible": false,
+      "name": "separated blocks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,

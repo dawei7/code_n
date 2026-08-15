@@ -2,13 +2,151 @@
   "schema_version": 1,
   "challenge_id": "lc_2306",
   "cases": [
-    {"id":"sample-six-names","name":"sample: three unordered selections give six names","kind":"sample","visible":true,"input":{"ideas":["coffee","donuts","time","toffee"]},"expected":6,"tags":["sample","shared-suffix"]},
-    {"id":"sample-no-valid","name":"sample: swapping recreates both originals","kind":"sample","visible":true,"input":{"ideas":["lack","back"]},"expected":0,"tags":["sample","shared-suffix"]},
-    {"id":"trial-two-distinct-suffixes","name":"two unrelated ideas contribute both orders","kind":"trial","visible":true,"input":{"ideas":["ab","cd"]},"expected":2,"tags":["ordered"]},
-    {"id":"trial-same-initial","name":"ideas with one initial cannot create a new name","kind":"trial","visible":true,"input":{"ideas":["apple","angle","axis"]},"expected":0,"tags":["same-initial"]},
-    {"id":"trial-empty-suffix","name":"one-letter ideas use the empty suffix","kind":"trial","visible":true,"input":{"ideas":["a","b","cat"]},"expected":4,"tags":["empty-suffix"]},
-    {"id":"real-partial-overlap","name":"hidden: shared suffixes are removed before multiplication","kind":"real","visible":false,"input":{"ideas":["ax","ay","bx","bz"]},"expected":2,"tags":["hidden","intersection"]},
-    {"id":"real-three-groups","name":"hidden: contributions accumulate across initial pairs","kind":"real","visible":false,"input":{"ideas":["aa","ab","bc","bd","ce"]},"expected":16,"tags":["hidden","multiple-groups"]},
-    {"id":"real-duplicate-suffix-many-groups","name":"hidden: one suffix shared across groups contributes nowhere","kind":"real","visible":false,"input":{"ideas":["ax","bx","cx","ay","bz","cw"]},"expected":6,"tags":["hidden","shared-suffix"]}
+    {
+      "id": "sample-six-names",
+      "name": "sample: three unordered selections give six names",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "ideas": [
+          "coffee",
+          "donuts",
+          "time",
+          "toffee"
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "shared-suffix"
+      ]
+    },
+    {
+      "id": "sample-no-valid",
+      "name": "sample: swapping recreates both originals",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "ideas": [
+          "lack",
+          "back"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "shared-suffix"
+      ]
+    },
+    {
+      "id": "trial-two-distinct-suffixes",
+      "name": "two unrelated ideas contribute both orders",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ideas": [
+          "ab",
+          "cd"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "ordered"
+      ]
+    },
+    {
+      "id": "trial-same-initial",
+      "name": "ideas with one initial cannot create a new name",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ideas": [
+          "apple",
+          "angle",
+          "axis"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "same-initial"
+      ]
+    },
+    {
+      "id": "trial-empty-suffix",
+      "name": "one-letter ideas use the empty suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ideas": [
+          "a",
+          "b",
+          "cat"
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "empty-suffix"
+      ]
+    },
+    {
+      "id": "real-partial-overlap",
+      "name": "shared suffixes are removed before multiplication",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ideas": [
+          "ax",
+          "ay",
+          "bx",
+          "bz"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "intersection"
+      ]
+    },
+    {
+      "id": "real-three-groups",
+      "name": "contributions accumulate across initial pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ideas": [
+          "aa",
+          "ab",
+          "bc",
+          "bd",
+          "ce"
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "hidden",
+        "multiple-groups"
+      ]
+    },
+    {
+      "id": "real-duplicate-suffix-many-groups",
+      "name": "one suffix shared across groups contributes nowhere",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ideas": [
+          "ax",
+          "bx",
+          "cx",
+          "ay",
+          "bz",
+          "cw"
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "shared-suffix"
+      ]
+    }
   ]
 }

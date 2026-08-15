@@ -7,72 +7,153 @@
       "name": "sample: four subarrays have gcd three",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [9, 3, 1, 2, 6, 3], "k": 3},
+      "input": {
+        "nums": [
+          9,
+          3,
+          1,
+          2,
+          6,
+          3
+        ],
+        "k": 3
+      },
       "expected": 4,
-      "tags": ["sample", "gcd"]
+      "tags": [
+        "sample",
+        "gcd"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: singleton misses target",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4], "k": 7},
+      "input": {
+        "nums": [
+          4
+        ],
+        "k": 7
+      },
       "expected": 0,
-      "tags": ["sample", "single-element"]
+      "tags": [
+        "sample",
+        "single-element"
+      ]
     },
     {
       "id": "trial-all-ones",
       "name": "trial: every subarray qualifies",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 1], "k": 1},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 1
+      },
       "expected": 6,
-      "tags": ["trial", "all-qualify"]
+      "tags": [
+        "trial",
+        "all-qualify"
+      ]
     },
     {
       "id": "trial-multiples",
       "name": "trial: extensions collapse to gcd three",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3, 6, 9], "k": 3},
+      "input": {
+        "nums": [
+          3,
+          6,
+          9
+        ],
+        "k": 3
+      },
       "expected": 4,
-      "tags": ["trial", "state-merge"]
+      "tags": [
+        "trial",
+        "state-merge"
+      ]
     },
     {
       "id": "real-reset-by-nonmultiple",
-      "name": "hidden: nonmultiple blocks qualifying spans",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [6, 3, 10, 15], "k": 3},
+      "name": "nonmultiple blocks qualifying spans",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          3,
+          10,
+          15
+        ],
+        "k": 3
+      },
       "expected": 2,
-      "tags": ["hidden", "nonmultiple"]
+      "tags": [
+        "hidden",
+        "nonmultiple"
+      ]
     },
     {
       "id": "real-gcd-emerges",
-      "name": "hidden: target gcd appears only after extension",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, 12, 18], "k": 2},
+      "name": "target gcd appears only after extension",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          12,
+          18
+        ],
+        "k": 2
+      },
       "expected": 1,
-      "tags": ["hidden", "gcd-transition"]
+      "tags": [
+        "hidden",
+        "gcd-transition"
+      ]
     },
     {
       "id": "real-large-values",
-      "name": "hidden: target at large value boundary",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000, 500000000], "k": 500000000},
+      "name": "target at large value boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          500000000
+        ],
+        "k": 500000000
+      },
       "expected": 2,
-      "tags": ["hidden", "large-values"]
+      "tags": [
+        "hidden",
+        "large-values"
+      ]
     },
     {
       "id": "real-no-match",
-      "name": "hidden: target divides no subarray gcd",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 4, 6], "k": 5},
+      "name": "target divides no subarray gcd",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6
+        ],
+        "k": 5
+      },
       "expected": 0,
-      "tags": ["hidden", "no-match"]
+      "tags": [
+        "hidden",
+        "no-match"
+      ]
     }
   ]
 }

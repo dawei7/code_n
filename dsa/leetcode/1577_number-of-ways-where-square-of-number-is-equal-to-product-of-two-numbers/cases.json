@@ -142,9 +142,9 @@
     },
     {
       "id": "real-type-2-only",
-      "name": "hidden: square from second array matches first pair",
-      "kind": "real",
-      "visible": false,
+      "name": "square from second array matches first pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -163,9 +163,9 @@
     },
     {
       "id": "real-two-directions",
-      "name": "hidden: different matches occur in both directions",
-      "kind": "real",
-      "visible": false,
+      "name": "different matches occur in both directions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           2,
@@ -186,9 +186,9 @@
     },
     {
       "id": "real-duplicate-twos",
-      "name": "hidden: duplicate twos preserve index multiplicity",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate twos preserve index multiplicity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           2,
@@ -209,9 +209,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: products require wide integer arithmetic",
-      "kind": "real",
-      "visible": false,
+      "name": "products require wide integer arithmetic",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           100000
@@ -230,9 +230,9 @@
     },
     {
       "id": "real-no-pair-first",
-      "name": "hidden: first singleton can only supply a square",
-      "kind": "real",
-      "visible": false,
+      "name": "first singleton can only supply a square",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           6
@@ -252,9 +252,9 @@
     },
     {
       "id": "real-repeated-factor-products",
-      "name": "hidden: different pairs share one product",
-      "kind": "real",
-      "visible": false,
+      "name": "different pairs share one product",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           6,
@@ -276,9 +276,9 @@
     },
     {
       "id": "real-no-match-small",
-      "name": "hidden: small arrays without a matching equality",
-      "kind": "real",
-      "visible": false,
+      "name": "small arrays without a matching equality",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           2,

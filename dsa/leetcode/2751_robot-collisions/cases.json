@@ -1,1 +1,225 @@
-{"schema_version":1,"challenge_id":"lc_2751","cases":[{"id":"sample-all-right","name":"sample: all right-moving robots survive","kind":"sample","visible":true,"input":{"positions":[5,4,3,2,1],"healths":[2,17,9,15,10],"directions":"RRRRR"},"expected":[2,17,9,15,10],"tags":["sample","no-collision"]},{"id":"sample-one-survivor","name":"sample: one robot survives two pairs","kind":"sample","visible":true,"input":{"positions":[3,5,2,6],"healths":[10,10,15,12],"directions":"RLRL"},"expected":[14],"tags":["sample","collision"]},{"id":"sample-none-survive","name":"sample: equal pairs remove every robot","kind":"sample","visible":true,"input":{"positions":[1,2,5,6],"healths":[10,10,11,11],"directions":"RLRL"},"expected":[],"tags":["sample","equal"]},{"id":"trial-original-order","name":"trial: survivors return in original order","kind":"trial","visible":true,"input":{"positions":[10,1,7,4],"healths":[5,3,4,6],"directions":"LRRL"},"expected":[4,5],"tags":["trial","order"]},{"id":"real-single","name":"hidden: one left-moving robot","kind":"real","visible":false,"input":{"positions":[100],"healths":[7],"directions":"L"},"expected":[7],"tags":["hidden","minimum"]},{"id":"real-all-left","name":"hidden: unsorted all-left robots never meet","kind":"real","visible":false,"input":{"positions":[3,1,2],"healths":[5,6,7],"directions":"LLL"},"expected":[5,6,7],"tags":["hidden","no-collision"]},{"id":"real-right-wins-chain","name":"hidden: right mover survives a collision chain","kind":"real","visible":false,"input":{"positions":[1,2,3],"healths":[5,2,2],"directions":"RLL"},"expected":[3],"tags":["hidden","chain"]},{"id":"real-left-wins-chain","name":"hidden: left mover survives a collision chain","kind":"real","visible":false,"input":{"positions":[1,2,3],"healths":[2,2,5],"directions":"RRL"},"expected":[3],"tags":["hidden","chain"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2751",
+  "cases": [
+    {
+      "id": "sample-all-right",
+      "name": "sample: all right-moving robots survive",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "positions": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "healths": [
+          2,
+          17,
+          9,
+          15,
+          10
+        ],
+        "directions": "RRRRR"
+      },
+      "expected": [
+        2,
+        17,
+        9,
+        15,
+        10
+      ],
+      "tags": [
+        "sample",
+        "no-collision"
+      ]
+    },
+    {
+      "id": "sample-one-survivor",
+      "name": "sample: one robot survives two pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "positions": [
+          3,
+          5,
+          2,
+          6
+        ],
+        "healths": [
+          10,
+          10,
+          15,
+          12
+        ],
+        "directions": "RLRL"
+      },
+      "expected": [
+        14
+      ],
+      "tags": [
+        "sample",
+        "collision"
+      ]
+    },
+    {
+      "id": "sample-none-survive",
+      "name": "sample: equal pairs remove every robot",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "positions": [
+          1,
+          2,
+          5,
+          6
+        ],
+        "healths": [
+          10,
+          10,
+          11,
+          11
+        ],
+        "directions": "RLRL"
+      },
+      "expected": [],
+      "tags": [
+        "sample",
+        "equal"
+      ]
+    },
+    {
+      "id": "trial-original-order",
+      "name": "trial: survivors return in original order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "positions": [
+          10,
+          1,
+          7,
+          4
+        ],
+        "healths": [
+          5,
+          3,
+          4,
+          6
+        ],
+        "directions": "LRRL"
+      },
+      "expected": [
+        4,
+        5
+      ],
+      "tags": [
+        "trial",
+        "order"
+      ]
+    },
+    {
+      "id": "real-single",
+      "name": "one left-moving robot",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "positions": [
+          100
+        ],
+        "healths": [
+          7
+        ],
+        "directions": "L"
+      },
+      "expected": [
+        7
+      ],
+      "tags": [
+        "hidden",
+        "minimum"
+      ]
+    },
+    {
+      "id": "real-all-left",
+      "name": "unsorted all-left robots never meet",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "positions": [
+          3,
+          1,
+          2
+        ],
+        "healths": [
+          5,
+          6,
+          7
+        ],
+        "directions": "LLL"
+      },
+      "expected": [
+        5,
+        6,
+        7
+      ],
+      "tags": [
+        "hidden",
+        "no-collision"
+      ]
+    },
+    {
+      "id": "real-right-wins-chain",
+      "name": "right mover survives a collision chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "positions": [
+          1,
+          2,
+          3
+        ],
+        "healths": [
+          5,
+          2,
+          2
+        ],
+        "directions": "RLL"
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "hidden",
+        "chain"
+      ]
+    },
+    {
+      "id": "real-left-wins-chain",
+      "name": "left mover survives a collision chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "positions": [
+          1,
+          2,
+          3
+        ],
+        "healths": [
+          2,
+          2,
+          5
+        ],
+        "directions": "RRL"
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "hidden",
+        "chain"
+      ]
+    }
+  ]
+}

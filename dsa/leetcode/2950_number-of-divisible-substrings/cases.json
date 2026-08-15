@@ -81,9 +81,9 @@
     },
     {
       "id": "real-highest-group",
-      "name": "hidden: every substring has mapped average nine",
-      "kind": "real",
-      "visible": false,
+      "name": "every substring has mapped average nine",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "xyzxyz"
       },
@@ -95,9 +95,9 @@
     },
     {
       "id": "real-group-boundaries",
-      "name": "hidden: letters straddle several mapping boundaries",
-      "kind": "real",
-      "visible": false,
+      "name": "letters straddle several mapping boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "bcefhiklnoqruvx"
       },
@@ -109,9 +109,9 @@
     },
     {
       "id": "real-mixed-averages",
-      "name": "hidden: different substrings realize different integer averages",
-      "kind": "real",
-      "visible": false,
+      "name": "different substrings realize different integer averages",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "azbycxdwev"
       },
@@ -123,9 +123,9 @@
     },
     {
       "id": "real-repeated-pattern",
-      "name": "hidden: repeated alphabet pattern creates overlapping matches",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated alphabet pattern creates overlapping matches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "leetcodealgorithm"
       },
@@ -137,4 +137,3 @@
     }
   ]
 }
-

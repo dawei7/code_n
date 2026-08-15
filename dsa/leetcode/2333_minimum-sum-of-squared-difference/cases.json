@@ -2,12 +2,174 @@
   "schema_version": 1,
   "challenge_id": "lc_2333",
   "cases": [
-    {"id":"sample-no-operations","name":"sample: unchanged squared differences","kind":"sample","visible":true,"input":{"nums1":[1,2,3,4],"nums2":[2,10,20,19],"k1":0,"k2":0},"expected":579,"tags":["sample","zero-operations"]},
-    {"id":"sample-balanced-reductions","name":"sample: operations reduce separate largest differences","kind":"sample","visible":true,"input":{"nums1":[1,4,10,12],"nums2":[5,8,6,9],"k1":1,"k2":1},"expected":43,"tags":["sample","greedy"]},
-    {"id":"trial-excess-operations","name":"operations exceed the total absolute difference","kind":"trial","visible":true,"input":{"nums1":[1],"nums2":[10],"k1":10,"k2":10},"expected":0,"tags":["boundary","zero-result"]},
-    {"id":"trial-one-reduction","name":"one operation targets either tied maximum","kind":"trial","visible":true,"input":{"nums1":[0,10],"nums2":[10,0],"k1":1,"k2":0},"expected":181,"tags":["ties"]},
-    {"id":"trial-multiple-levels","name":"batch reductions cross several difference levels","kind":"trial","visible":true,"input":{"nums1":[5,5,5],"nums2":[1,2,3],"k1":2,"k2":2},"expected":9,"tags":["levels"]},
-    {"id":"real-large-values","name":"hidden: upper-bound differences require a wide count table","kind":"real","visible":false,"input":{"nums1":[0,100000],"nums2":[100000,0],"k1":1,"k2":2},"expected":19999400005,"tags":["hidden","large-values"]},
-    {"id":"real-already-equal","name":"hidden: equal arrays already have zero cost","kind":"real","visible":false,"input":{"nums1":[7,7,7],"nums2":[7,7,7],"k1":0,"k2":0},"expected":0,"tags":["hidden","equal"]}
+    {
+      "id": "sample-no-operations",
+      "name": "sample: unchanged squared differences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "nums2": [
+          2,
+          10,
+          20,
+          19
+        ],
+        "k1": 0,
+        "k2": 0
+      },
+      "expected": 579,
+      "tags": [
+        "sample",
+        "zero-operations"
+      ]
+    },
+    {
+      "id": "sample-balanced-reductions",
+      "name": "sample: operations reduce separate largest differences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          4,
+          10,
+          12
+        ],
+        "nums2": [
+          5,
+          8,
+          6,
+          9
+        ],
+        "k1": 1,
+        "k2": 1
+      },
+      "expected": 43,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "trial-excess-operations",
+      "name": "operations exceed the total absolute difference",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          10
+        ],
+        "k1": 10,
+        "k2": 10
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "zero-result"
+      ]
+    },
+    {
+      "id": "trial-one-reduction",
+      "name": "one operation targets either tied maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          0,
+          10
+        ],
+        "nums2": [
+          10,
+          0
+        ],
+        "k1": 1,
+        "k2": 0
+      },
+      "expected": 181,
+      "tags": [
+        "ties"
+      ]
+    },
+    {
+      "id": "trial-multiple-levels",
+      "name": "batch reductions cross several difference levels",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          5,
+          5,
+          5
+        ],
+        "nums2": [
+          1,
+          2,
+          3
+        ],
+        "k1": 2,
+        "k2": 2
+      },
+      "expected": 9,
+      "tags": [
+        "levels"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "upper-bound differences require a wide count table",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          0,
+          100000
+        ],
+        "nums2": [
+          100000,
+          0
+        ],
+        "k1": 1,
+        "k2": 2
+      },
+      "expected": 19999400005,
+      "tags": [
+        "hidden",
+        "large-values"
+      ]
+    },
+    {
+      "id": "real-already-equal",
+      "name": "equal arrays already have zero cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          7,
+          7,
+          7
+        ],
+        "nums2": [
+          7,
+          7,
+          7
+        ],
+        "k1": 0,
+        "k2": 0
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "equal"
+      ]
+    }
   ]
 }

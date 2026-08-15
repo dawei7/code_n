@@ -148,8 +148,8 @@
     {
       "id": "real-long-word-cheaper",
       "name": "real: one long word beats reusable pieces",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": "mississippi",
         "words": [
@@ -179,8 +179,8 @@
     {
       "id": "real-impossible-suffix",
       "name": "real: a valid prefix cannot cover the final suffix",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": "abcde",
         "words": [
@@ -202,8 +202,8 @@
     {
       "id": "real-overlapping-not-allowed",
       "name": "real: overlapping matches do not form a concatenation",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": "aaaaa",
         "words": [
@@ -223,8 +223,8 @@
     {
       "id": "real-cost-tradeoff",
       "name": "real: dynamic programming compares multiple split points",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": "pineapple",
         "words": [
@@ -254,8 +254,8 @@
     {
       "id": "real-unused-word-longer",
       "name": "real: oversized matching alternatives are ignored at boundaries",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": "cat",
         "words": [
@@ -279,8 +279,8 @@
     {
       "id": "real-many-lengths",
       "name": "real: several dictionary lengths reach the same endpoint",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "target": "abcabc",
         "words": [

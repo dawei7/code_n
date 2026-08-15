@@ -97,9 +97,9 @@
     },
     {
       "id": "real-three-odd-operations",
-      "name": "hidden: one zero with a large odd k",
-      "kind": "real",
-      "visible": false,
+      "name": "one zero with a large odd k",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "0111",
         "k": 3
@@ -113,9 +113,9 @@
     },
     {
       "id": "real-even-multi-operation",
-      "name": "hidden: complement capacity controls even branch",
-      "kind": "real",
-      "visible": false,
+      "name": "complement capacity controls even branch",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "000011",
         "k": 5
@@ -129,9 +129,9 @@
     },
     {
       "id": "real-all-zeros-three-operations",
-      "name": "hidden: partition all zeros across repeated flips",
-      "kind": "real",
-      "visible": false,
+      "name": "partition all zeros across repeated flips",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "000000",
         "k": 2
@@ -145,9 +145,9 @@
     },
     {
       "id": "real-arrangement-irrelevant",
-      "name": "hidden: interleaved zeros share the same count state",
-      "kind": "real",
-      "visible": false,
+      "name": "interleaved zeros share the same count state",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "01010101",
         "k": 4

@@ -102,9 +102,9 @@
     },
     {
       "id": "real-zero-threshold",
-      "name": "hidden: every value already meets threshold zero",
-      "kind": "real",
-      "visible": false,
+      "name": "every value already meets threshold zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -124,9 +124,9 @@
     },
     {
       "id": "real-overlapping-windows",
-      "name": "hidden: optimal raised positions jointly cover several windows",
-      "kind": "real",
-      "visible": false,
+      "name": "optimal raised positions jointly cover several windows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -146,9 +146,9 @@
     },
     {
       "id": "real-middle-window-gap",
-      "name": "hidden: endpoint values leave the middle window uncovered",
-      "kind": "real",
-      "visible": false,
+      "name": "endpoint values leave the middle window uncovered",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -167,9 +167,9 @@
     },
     {
       "id": "real-billion-threshold-covered",
-      "name": "hidden: existing maximum value covers the only window",
-      "kind": "real",
-      "visible": false,
+      "name": "existing maximum value covers the only window",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,

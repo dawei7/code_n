@@ -113,9 +113,9 @@
     },
     {
       "id": "real-balanced-nonpower",
-      "name": "hidden: three distinct balanced factors",
-      "kind": "real",
-      "visible": false,
+      "name": "three distinct balanced factors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 72,
         "k": 3
@@ -135,9 +135,9 @@
     },
     {
       "id": "real-four-mixed-factors",
-      "name": "hidden: four-factor decomposition with repetition",
-      "kind": "real",
-      "visible": false,
+      "name": "four-factor decomposition with repetition",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 96,
         "k": 4
@@ -158,9 +158,9 @@
     },
     {
       "id": "real-maximum-perfect-power",
-      "name": "hidden: maximum n has five equal factors",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum n has five equal factors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100000,
         "k": 5

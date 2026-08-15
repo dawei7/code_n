@@ -1,11 +1,176 @@
-{"schema_version":1,"challenge_id":"lc_2704","cases":[
-{"id":"sample-to-be-success","name":"sample: equal numbers satisfy toBe","kind":"sample","visible":true,"input":{"val":5,"method":"toBe","other":5},"expected":{"value":true,"error":null},"tags":["sample","to-be"]},
-{"id":"sample-to-be-error","name":"sample: unequal values fail toBe","kind":"sample","visible":true,"input":{"val":5,"method":"toBe","other":null},"expected":{"value":null,"error":"Not Equal"},"tags":["sample","not-equal-error"]},
-{"id":"sample-not-to-be-success","name":"sample: unequal values satisfy notToBe","kind":"sample","visible":true,"input":{"val":5,"method":"notToBe","other":null},"expected":{"value":true,"error":null},"tags":["sample","not-to-be"]},
-{"id":"trial-not-to-be-error","name":"trial: equal strings fail notToBe","kind":"trial","visible":true,"input":{"val":"same","method":"notToBe","other":"same"},"expected":{"value":null,"error":"Equal"},"tags":["equal-error"]},
-{"id":"trial-strict-types","name":"trial: number and string remain unequal","kind":"trial","visible":true,"input":{"val":5,"method":"notToBe","other":"5"},"expected":{"value":true,"error":null},"tags":["strict-equality","types"]},
-{"id":"real-null-equality","name":"hidden: null is strictly equal to null","kind":"real","visible":false,"input":{"val":null,"method":"toBe","other":null},"expected":{"value":true,"error":null},"tags":["hidden","null"]},
-{"id":"real-boolean-mismatch","name":"hidden: distinct booleans fail toBe","kind":"real","visible":false,"input":{"val":false,"method":"toBe","other":true},"expected":{"value":null,"error":"Not Equal"},"tags":["hidden","boolean"]},
-{"id":"real-zero-false","name":"hidden: zero and false are strictly unequal","kind":"real","visible":false,"input":{"val":0,"method":"notToBe","other":false},"expected":{"value":true,"error":null},"tags":["hidden","no-coercion"]},
-{"id":"real-empty-strings","name":"hidden: equal empty strings fail notToBe","kind":"real","visible":false,"input":{"val":"","method":"notToBe","other":""},"expected":{"value":null,"error":"Equal"},"tags":["hidden","empty-string"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2704",
+  "cases": [
+    {
+      "id": "sample-to-be-success",
+      "name": "sample: equal numbers satisfy toBe",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "val": 5,
+        "method": "toBe",
+        "other": 5
+      },
+      "expected": {
+        "value": true,
+        "error": null
+      },
+      "tags": [
+        "sample",
+        "to-be"
+      ]
+    },
+    {
+      "id": "sample-to-be-error",
+      "name": "sample: unequal values fail toBe",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "val": 5,
+        "method": "toBe",
+        "other": null
+      },
+      "expected": {
+        "value": null,
+        "error": "Not Equal"
+      },
+      "tags": [
+        "sample",
+        "not-equal-error"
+      ]
+    },
+    {
+      "id": "sample-not-to-be-success",
+      "name": "sample: unequal values satisfy notToBe",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "val": 5,
+        "method": "notToBe",
+        "other": null
+      },
+      "expected": {
+        "value": true,
+        "error": null
+      },
+      "tags": [
+        "sample",
+        "not-to-be"
+      ]
+    },
+    {
+      "id": "trial-not-to-be-error",
+      "name": "trial: equal strings fail notToBe",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "val": "same",
+        "method": "notToBe",
+        "other": "same"
+      },
+      "expected": {
+        "value": null,
+        "error": "Equal"
+      },
+      "tags": [
+        "equal-error"
+      ]
+    },
+    {
+      "id": "trial-strict-types",
+      "name": "trial: number and string remain unequal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "val": 5,
+        "method": "notToBe",
+        "other": "5"
+      },
+      "expected": {
+        "value": true,
+        "error": null
+      },
+      "tags": [
+        "strict-equality",
+        "types"
+      ]
+    },
+    {
+      "id": "real-null-equality",
+      "name": "null is strictly equal to null",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "val": null,
+        "method": "toBe",
+        "other": null
+      },
+      "expected": {
+        "value": true,
+        "error": null
+      },
+      "tags": [
+        "hidden",
+        "null"
+      ]
+    },
+    {
+      "id": "real-boolean-mismatch",
+      "name": "distinct booleans fail toBe",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "val": false,
+        "method": "toBe",
+        "other": true
+      },
+      "expected": {
+        "value": null,
+        "error": "Not Equal"
+      },
+      "tags": [
+        "hidden",
+        "boolean"
+      ]
+    },
+    {
+      "id": "real-zero-false",
+      "name": "zero and false are strictly unequal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "val": 0,
+        "method": "notToBe",
+        "other": false
+      },
+      "expected": {
+        "value": true,
+        "error": null
+      },
+      "tags": [
+        "hidden",
+        "no-coercion"
+      ]
+    },
+    {
+      "id": "real-empty-strings",
+      "name": "equal empty strings fail notToBe",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "val": "",
+        "method": "notToBe",
+        "other": ""
+      },
+      "expected": {
+        "value": null,
+        "error": "Equal"
+      },
+      "tags": [
+        "hidden",
+        "empty-string"
+      ]
+    }
+  ]
+}

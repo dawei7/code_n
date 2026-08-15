@@ -2,14 +2,198 @@
   "schema_version": 1,
   "challenge_id": "lc_2289",
   "cases": [
-    {"id":"sample-three-rounds","name":"sample: overlapping cascades finish in three rounds","kind":"sample","visible":true,"input":{"nums":[5,3,4,4,7,3,6,11,8,5,11]},"expected":3,"tags":["sample","cascade"]},
-    {"id":"sample-already-sorted","name":"sample: non-decreasing input needs no deletion","kind":"sample","visible":true,"input":{"nums":[4,5,7,7,13]},"expected":0,"tags":["sample","non-decreasing"]},
-    {"id":"trial-strictly-decreasing","name":"all smaller followers disappear simultaneously","kind":"trial","visible":true,"input":{"nums":[5,4,3,2,1]},"expected":1,"tags":["simultaneous","decreasing"]},
-    {"id":"trial-long-cascade","name":"one leading maximum removes one value per round","kind":"trial","visible":true,"input":{"nums":[6,1,2,3,4,5]},"expected":5,"tags":["cascade","worst-shape"]},
-    {"id":"trial-single","name":"one element is already non-decreasing","kind":"trial","visible":true,"input":{"nums":[9]},"expected":0,"tags":["single-element"]},
-    {"id":"real-equal-values","name":"hidden: equal values do not trigger removal","kind":"real","visible":false,"input":{"nums":[7,2,2,3,3,4]},"expected":5,"tags":["hidden","equality","cascade"]},
-    {"id":"real-two-peaks","name":"hidden: separate descending regions resolve together","kind":"real","visible":false,"input":{"nums":[10,1,2,8,3,4,5]},"expected":3,"tags":["hidden","multiple-regions"]},
-    {"id":"real-late-drop","name":"hidden: a suffix cascade follows a long sorted prefix","kind":"real","visible":false,"input":{"nums":[1,2,3,9,4,5,6,7,8]},"expected":5,"tags":["hidden","late-cascade"]},
-    {"id":"real-alternating","name":"hidden: alternating peaks create two deletion rounds","kind":"real","visible":false,"input":{"nums":[5,1,6,2,7,3,8,4]},"expected":1,"tags":["hidden","simultaneous"]}
+    {
+      "id": "sample-three-rounds",
+      "name": "sample: overlapping cascades finish in three rounds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          3,
+          4,
+          4,
+          7,
+          3,
+          6,
+          11,
+          8,
+          5,
+          11
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "cascade"
+      ]
+    },
+    {
+      "id": "sample-already-sorted",
+      "name": "sample: non-decreasing input needs no deletion",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          5,
+          7,
+          7,
+          13
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "non-decreasing"
+      ]
+    },
+    {
+      "id": "trial-strictly-decreasing",
+      "name": "all smaller followers disappear simultaneously",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "simultaneous",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "trial-long-cascade",
+      "name": "one leading maximum removes one value per round",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "cascade",
+        "worst-shape"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "one element is already non-decreasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "single-element"
+      ]
+    },
+    {
+      "id": "real-equal-values",
+      "name": "equal values do not trigger removal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          2,
+          2,
+          3,
+          3,
+          4
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "equality",
+        "cascade"
+      ]
+    },
+    {
+      "id": "real-two-peaks",
+      "name": "separate descending regions resolve together",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1,
+          2,
+          8,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "multiple-regions"
+      ]
+    },
+    {
+      "id": "real-late-drop",
+      "name": "a suffix cascade follows a long sorted prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          9,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "late-cascade"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "alternating peaks create two deletion rounds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          6,
+          2,
+          7,
+          3,
+          8,
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "simultaneous"
+      ]
+    }
   ]
 }

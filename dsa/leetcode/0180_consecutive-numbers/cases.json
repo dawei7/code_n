@@ -136,9 +136,9 @@
     },
     {
       "id": "real-two-values",
-      "name": "hidden: two distinct qualifying runs",
-      "kind": "real",
-      "visible": false,
+      "name": "two distinct qualifying runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Logs": [

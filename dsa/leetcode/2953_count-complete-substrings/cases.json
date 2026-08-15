@@ -73,9 +73,9 @@
     },
     {
       "id": "real-breaking-gap",
-      "name": "hidden: alphabet difference three splits segments",
-      "kind": "real",
-      "visible": false,
+      "name": "alphabet difference three splits segments",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "ad",
         "k": 1
@@ -88,9 +88,9 @@
     },
     {
       "id": "real-overlapping-one-letter",
-      "name": "hidden: overlapping repeated-letter windows qualify",
-      "kind": "real",
-      "visible": false,
+      "name": "overlapping repeated-letter windows qualify",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "aaaa",
         "k": 2
@@ -103,9 +103,9 @@
     },
     {
       "id": "real-two-letters",
-      "name": "hidden: two letters each occur exactly twice",
-      "kind": "real",
-      "visible": false,
+      "name": "two letters each occur exactly twice",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "abab",
         "k": 2
@@ -118,9 +118,9 @@
     },
     {
       "id": "real-extra-frequency",
-      "name": "hidden: overrepresented letters disqualify longer windows",
-      "kind": "real",
-      "visible": false,
+      "name": "overrepresented letters disqualify longer windows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "aaabac",
         "k": 2
@@ -133,9 +133,9 @@
     },
     {
       "id": "real-many-segments",
-      "name": "hidden: large alphabet jumps create independent segments",
-      "kind": "real",
-      "visible": false,
+      "name": "large alphabet jumps create independent segments",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "abcxyzab",
         "k": 1
@@ -148,4 +148,3 @@
     }
   ]
 }
-

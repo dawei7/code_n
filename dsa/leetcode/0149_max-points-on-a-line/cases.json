@@ -90,9 +90,9 @@
     },
     {
       "id": "real-vertical-line",
-      "name": "hidden: vertical line",
-      "kind": "real",
-      "visible": false,
+      "name": "vertical line",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [

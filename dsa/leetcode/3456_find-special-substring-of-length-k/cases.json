@@ -80,8 +80,8 @@
     {
       "id": "real-single-character",
       "name": "real: one-character string and k one",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "q",
         "k": 1
@@ -95,8 +95,8 @@
     {
       "id": "real-no-singleton",
       "name": "real: k one but every run is longer",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aabbcc",
         "k": 1
@@ -110,8 +110,8 @@
     {
       "id": "real-first-run",
       "name": "real: qualifying run at the beginning",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "xxxyyzzzz",
         "k": 3
@@ -125,8 +125,8 @@
     {
       "id": "real-several-run-lengths",
       "name": "real: several runs but none has exact length",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aabbbbccccc",
         "k": 3
@@ -140,8 +140,8 @@
     {
       "id": "real-k-equals-length-nonuniform",
       "name": "real: k equals length but string is not uniform",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ab",
         "k": 2

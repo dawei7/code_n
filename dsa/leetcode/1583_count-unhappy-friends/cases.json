@@ -260,9 +260,9 @@
     },
     {
       "id": "real-six-four",
-      "name": "hidden: four unhappy among six",
-      "kind": "real",
-      "visible": false,
+      "name": "four unhappy among six",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "preferences": [
@@ -332,9 +332,9 @@
     },
     {
       "id": "real-six-stable",
-      "name": "hidden: stable six-person pairing",
-      "kind": "real",
-      "visible": false,
+      "name": "stable six-person pairing",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "preferences": [
@@ -404,9 +404,9 @@
     },
     {
       "id": "real-pair-order",
-      "name": "hidden: reversed endpoints",
-      "kind": "real",
-      "visible": false,
+      "name": "reversed endpoints",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "preferences": [
@@ -450,9 +450,9 @@
     },
     {
       "id": "real-stable-eight",
-      "name": "hidden: late partners without reciprocity",
-      "kind": "real",
-      "visible": false,
+      "name": "late partners without reciprocity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 8,
         "preferences": [
@@ -556,9 +556,9 @@
     },
     {
       "id": "real-reordered",
-      "name": "hidden: pair list reordered",
-      "kind": "real",
-      "visible": false,
+      "name": "pair list reordered",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "preferences": [
@@ -602,9 +602,9 @@
     },
     {
       "id": "real-asymmetric",
-      "name": "hidden: asymmetric witness cutoff",
-      "kind": "real",
-      "visible": false,
+      "name": "asymmetric witness cutoff",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "preferences": [
@@ -648,9 +648,9 @@
     },
     {
       "id": "real-minimum",
-      "name": "hidden: minimum pair reversed",
-      "kind": "real",
-      "visible": false,
+      "name": "minimum pair reversed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 2,
         "preferences": [

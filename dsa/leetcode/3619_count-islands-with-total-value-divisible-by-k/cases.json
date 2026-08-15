@@ -235,9 +235,9 @@
     },
     {
       "id": "real-vertical-and-horizontal",
-      "name": "hidden: bent four-directional components",
-      "kind": "real",
-      "visible": false,
+      "name": "bent four-directional components",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -276,9 +276,9 @@
     },
     {
       "id": "real-mixed-component-residues",
-      "name": "hidden: components have distinct modulo residues",
-      "kind": "real",
-      "visible": false,
+      "name": "components have distinct modulo residues",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -321,9 +321,9 @@
     },
     {
       "id": "real-maximum-cell-values",
-      "name": "hidden: large values are accumulated modulo k",
-      "kind": "real",
-      "visible": false,
+      "name": "large values are accumulated modulo k",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -353,9 +353,9 @@
     },
     {
       "id": "real-one-row",
-      "name": "hidden: horizontal islands in a single row",
-      "kind": "real",
-      "visible": false,
+      "name": "horizontal islands in a single row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -379,9 +379,9 @@
     },
     {
       "id": "real-one-column",
-      "name": "hidden: vertical islands in a single column",
-      "kind": "real",
-      "visible": false,
+      "name": "vertical islands in a single column",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -417,9 +417,9 @@
     },
     {
       "id": "real-maximum-cells-water",
-      "name": "hidden: maximum cell count with no land",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum cell count with no land",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

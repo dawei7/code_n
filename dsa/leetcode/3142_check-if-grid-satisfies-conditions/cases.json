@@ -6,108 +6,336 @@
       "name": "sample: valid constant columns",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1, 0, 2], [1, 0, 2]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            0,
+            2
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["sample", "valid"]
+      "tags": [
+        "sample",
+        "valid"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: both adjacency rules fail",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1, 1, 1], [0, 0, 0]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
       "expected": false,
-      "tags": ["sample", "invalid"]
+      "tags": [
+        "sample",
+        "invalid"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: one column is not constant",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1], [2], [3]]},
+      "input": {
+        "grid": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ]
+      },
       "expected": false,
-      "tags": ["sample", "vertical"]
+      "tags": [
+        "sample",
+        "vertical"
+      ]
     },
     {
       "id": "trial-single-cell",
       "name": "trial: one cell has no applicable neighbor",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[0]]},
+      "input": {
+        "grid": [
+          [
+            0
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["edge", "singleton"]
+      "tags": [
+        "edge",
+        "singleton"
+      ]
     },
     {
       "id": "trial-single-row-valid",
       "name": "trial: one row with distinct neighbors",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[3, 5, 3, 5, 3]]},
+      "input": {
+        "grid": [
+          [
+            3,
+            5,
+            3,
+            5,
+            3
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["edge", "single-row"]
+      "tags": [
+        "edge",
+        "single-row"
+      ]
     },
     {
       "id": "trial-single-column-valid",
       "name": "trial: one constant column",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[7], [7], [7], [7]]},
+      "input": {
+        "grid": [
+          [
+            7
+          ],
+          [
+            7
+          ],
+          [
+            7
+          ],
+          [
+            7
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["edge", "single-column"]
+      "tags": [
+        "edge",
+        "single-column"
+      ]
     },
     {
       "id": "trial-nonadjacent-repeat",
       "name": "trial: nonadjacent columns may repeat",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[2, 1, 2], [2, 1, 2], [2, 1, 2]]},
+      "input": {
+        "grid": [
+          [
+            2,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            2
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["valid", "semantics"]
+      "tags": [
+        "valid",
+        "semantics"
+      ]
     },
     {
       "id": "real-single-row-late-equality",
       "name": "real: late equality in one row",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[0, 1, 2, 3, 3]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            2,
+            3,
+            3
+          ]
+        ]
+      },
       "expected": false,
-      "tags": ["single-row", "late-break"]
+      "tags": [
+        "single-row",
+        "late-break"
+      ]
     },
     {
       "id": "real-single-column-late-mismatch",
       "name": "real: late mismatch in one column",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[4], [4], [4], [9]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            4
+          ],
+          [
+            4
+          ],
+          [
+            4
+          ],
+          [
+            9
+          ]
+        ]
+      },
       "expected": false,
-      "tags": ["single-column", "late-break"]
+      "tags": [
+        "single-column",
+        "late-break"
+      ]
     },
     {
       "id": "real-late-horizontal-break",
       "name": "real: final adjacent columns are equal",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[1, 2, 3, 4, 4], [1, 2, 3, 4, 4], [1, 2, 3, 4, 4]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3,
+            4,
+            4
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            4
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            4
+          ]
+        ]
+      },
       "expected": false,
-      "tags": ["horizontal", "late-break"]
+      "tags": [
+        "horizontal",
+        "late-break"
+      ]
     },
     {
       "id": "real-late-vertical-break",
       "name": "real: final row breaks a column",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[3, 4, 3, 4], [3, 4, 3, 4], [3, 4, 9, 4]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            3,
+            4,
+            3,
+            4
+          ],
+          [
+            3,
+            4,
+            3,
+            4
+          ],
+          [
+            3,
+            4,
+            9,
+            4
+          ]
+        ]
+      },
       "expected": false,
-      "tags": ["vertical", "late-break"]
+      "tags": [
+        "vertical",
+        "late-break"
+      ]
     },
     {
       "id": "real-valid-wide-values",
       "name": "real: valid grid across the digit range",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[0, 9, 0, 8, 7, 6], [0, 9, 0, 8, 7, 6], [0, 9, 0, 8, 7, 6], [0, 9, 0, 8, 7, 6]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            9,
+            0,
+            8,
+            7,
+            6
+          ],
+          [
+            0,
+            9,
+            0,
+            8,
+            7,
+            6
+          ],
+          [
+            0,
+            9,
+            0,
+            8,
+            7,
+            6
+          ],
+          [
+            0,
+            9,
+            0,
+            8,
+            7,
+            6
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["valid", "boundary-values"]
+      "tags": [
+        "valid",
+        "boundary-values"
+      ]
     }
   ]
 }

@@ -115,8 +115,8 @@
     {
       "id": "real-remove-all-internal",
       "name": "real: exactly all internal signs are removed",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 8,
         "n": 5,
@@ -145,8 +145,8 @@
     {
       "id": "real-two-consecutive",
       "name": "real: optimum may remove consecutive signs",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 12,
         "n": 6,
@@ -177,8 +177,8 @@
     {
       "id": "real-three-merges",
       "name": "real: several partitions compete",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 15,
         "n": 7,
@@ -211,8 +211,8 @@
     {
       "id": "real-wide-distance",
       "name": "real: a wide interval dominates the choice",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "l": 100000,
         "n": 4,

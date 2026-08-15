@@ -72,9 +72,9 @@
     },
     {
       "id": "real-two",
-      "name": "hidden: binary ten takes three operations",
-      "kind": "real",
-      "visible": false,
+      "name": "binary ten takes three operations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 2
       },
@@ -85,9 +85,9 @@
     },
     {
       "id": "real-alternating",
-      "name": "hidden: alternating bits exercise suffix XOR",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating bits exercise suffix XOR",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 42
       },
@@ -98,9 +98,9 @@
     },
     {
       "id": "real-all-ones",
-      "name": "hidden: consecutive set bits invert correctly",
-      "kind": "real",
-      "visible": false,
+      "name": "consecutive set bits invert correctly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 255
       },
@@ -111,9 +111,9 @@
     },
     {
       "id": "real-near-power",
-      "name": "hidden: value immediately below a power of two",
-      "kind": "real",
-      "visible": false,
+      "name": "value immediately below a power of two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1023
       },
@@ -125,9 +125,9 @@
     },
     {
       "id": "real-power-large",
-      "name": "hidden: larger isolated bit uses full reflected prefix",
-      "kind": "real",
-      "visible": false,
+      "name": "larger isolated bit uses full reflected prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 65536
       },
@@ -139,9 +139,9 @@
     },
     {
       "id": "real-mixed-large",
-      "name": "hidden: mixed high and low bits",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed high and low bits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 987654321
       },
@@ -153,9 +153,9 @@
     },
     {
       "id": "real-maximum",
-      "name": "hidden: maximum allowed input",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum allowed input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000000000
       },
@@ -166,4 +166,3 @@
     }
   ]
 }
-

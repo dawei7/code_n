@@ -2,16 +2,248 @@
   "schema_version": 1,
   "challenge_id": "lc_3805",
   "cases": [
-    {"id":"sample-1","name":"sample: six shifts align fusion with layout","kind":"sample","visible":true,"input":{"words":["fusion","layout"]},"expected":1,"validator":{"kind":"exact"},"tags":["sample","cyclic-shift"]},
-    {"id":"sample-2","name":"sample: one shifted pair and one duplicate pair","kind":"sample","visible":true,"input":{"words":["ab","aa","za","aa"]},"expected":2,"validator":{"kind":"exact"},"tags":["sample","duplicates","wraparound"]},
-    {"id":"trial-single-word","name":"trial: no pair exists for one word","kind":"trial","visible":true,"input":{"words":["a"]},"expected":0,"validator":{"kind":"exact"},"tags":["trial","minimum"]},
-    {"id":"trial-identical-words","name":"trial: equal words need zero operations","kind":"trial","visible":true,"input":{"words":["abc","abc"]},"expected":1,"validator":{"kind":"exact"},"tags":["trial","duplicates","zero-operations"]},
-    {"id":"trial-wraparound-group","name":"trial: three two-letter words share a wrapped pattern","kind":"trial","visible":true,"input":{"words":["az","ba","yx"]},"expected":3,"validator":{"kind":"exact"},"tags":["trial","wraparound","one-group"]},
-    {"id":"trial-single-character-group","name":"trial: all one-character words are similar","kind":"trial","visible":true,"input":{"words":["a","z","m","a"]},"expected":6,"validator":{"kind":"exact"},"tags":["trial","length-one","all-pairs"]},
-    {"id":"real-two-pattern-groups","name":"hidden: two normalized groups contribute independently","kind":"real","visible":false,"input":{"words":["abc","bcd","ace","dfh","xyz"]},"expected":4,"validator":{"kind":"exact"},"tags":["hidden","multiple-groups"]},
-    {"id":"real-wrapped-and-constant","name":"hidden: wrapped and constant pairs stay separate","kind":"real","visible":false,"input":{"words":["az","ba","zz","aa"]},"expected":2,"validator":{"kind":"exact"},"tags":["hidden","wraparound","constant-words"]},
-    {"id":"real-shared-prefix-differences","name":"hidden: matching initial offsets are insufficient","kind":"real","visible":false,"input":{"words":["abc","abd","abe","abf"]},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","full-key-required"]},
-    {"id":"real-three-shifted-one-outsider","name":"hidden: three cyclic copies and one outsider","kind":"real","visible":false,"input":{"words":["zaz","aba","cdc","zzz"]},"expected":3,"validator":{"kind":"exact"},"tags":["hidden","wraparound","group-counting"]},
-    {"id":"real-two-four-letter-groups","name":"hidden: constant and alternating patterns form separate groups","kind":"real","visible":false,"input":{"words":["zzzz","aaaa","mmmm","azaz","baba"]},"expected":4,"validator":{"kind":"exact"},"tags":["hidden","multiple-groups","duplicates-by-pattern"]}
+    {
+      "id": "sample-1",
+      "name": "sample: six shifts align fusion with layout",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "fusion",
+          "layout"
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "cyclic-shift"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one shifted pair and one duplicate pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "aa",
+          "za",
+          "aa"
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "duplicates",
+        "wraparound"
+      ]
+    },
+    {
+      "id": "trial-single-word",
+      "name": "trial: no pair exists for one word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a"
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-identical-words",
+      "name": "trial: equal words need zero operations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "abc"
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicates",
+        "zero-operations"
+      ]
+    },
+    {
+      "id": "trial-wraparound-group",
+      "name": "trial: three two-letter words share a wrapped pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "az",
+          "ba",
+          "yx"
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "wraparound",
+        "one-group"
+      ]
+    },
+    {
+      "id": "trial-single-character-group",
+      "name": "trial: all one-character words are similar",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "z",
+          "m",
+          "a"
+        ]
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "length-one",
+        "all-pairs"
+      ]
+    },
+    {
+      "id": "real-two-pattern-groups",
+      "name": "two normalized groups contribute independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "bcd",
+          "ace",
+          "dfh",
+          "xyz"
+        ]
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "multiple-groups"
+      ]
+    },
+    {
+      "id": "real-wrapped-and-constant",
+      "name": "wrapped and constant pairs stay separate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "az",
+          "ba",
+          "zz",
+          "aa"
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "wraparound",
+        "constant-words"
+      ]
+    },
+    {
+      "id": "real-shared-prefix-differences",
+      "name": "matching initial offsets are insufficient",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "abd",
+          "abe",
+          "abf"
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "full-key-required"
+      ]
+    },
+    {
+      "id": "real-three-shifted-one-outsider",
+      "name": "three cyclic copies and one outsider",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "zaz",
+          "aba",
+          "cdc",
+          "zzz"
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "wraparound",
+        "group-counting"
+      ]
+    },
+    {
+      "id": "real-two-four-letter-groups",
+      "name": "constant and alternating patterns form separate groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "zzzz",
+          "aaaa",
+          "mmmm",
+          "azaz",
+          "baba"
+        ]
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "multiple-groups",
+        "duplicates-by-pattern"
+      ]
+    }
   ]
 }

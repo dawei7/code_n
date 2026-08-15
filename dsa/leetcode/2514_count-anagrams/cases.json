@@ -7,72 +7,112 @@
       "name": "sample: multiply permutations of two words",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "too hot"},
+      "input": {
+        "s": "too hot"
+      },
       "expected": 18,
-      "tags": ["sample", "multiple-words"]
+      "tags": [
+        "sample",
+        "multiple-words"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: identical letters have one arrangement",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "aa"},
+      "input": {
+        "s": "aa"
+      },
       "expected": 1,
-      "tags": ["sample", "repeated-letters"]
+      "tags": [
+        "sample",
+        "repeated-letters"
+      ]
     },
     {
       "id": "trial-single-character",
       "name": "trial: one character",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "z"},
+      "input": {
+        "s": "z"
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-all-distinct",
       "name": "trial: all letters in both words are distinct",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abc def"},
+      "input": {
+        "s": "abc def"
+      },
       "expected": 36,
-      "tags": ["trial", "factorials"]
+      "tags": [
+        "trial",
+        "factorials"
+      ]
     },
     {
       "id": "trial-different-multiplicities",
       "name": "trial: repeated letters reduce each word independently",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aab bbbc"},
+      "input": {
+        "s": "aab bbbc"
+      },
       "expected": 12,
-      "tags": ["trial", "multinomial"]
+      "tags": [
+        "trial",
+        "multinomial"
+      ]
     },
     {
       "id": "real-word-order-fixed",
-      "name": "hidden: words remain in their original positions",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "ab ba"},
+      "name": "words remain in their original positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab ba"
+      },
       "expected": 4,
-      "tags": ["hidden", "word-boundaries"]
+      "tags": [
+        "hidden",
+        "word-boundaries"
+      ]
     },
     {
       "id": "real-modular-product",
-      "name": "hidden: a large product is reduced modulo the prime",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdefghij abcdefghij"},
+      "name": "a large product is reduced modulo the prime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghij abcdefghij"
+      },
       "expected": 189347824,
-      "tags": ["hidden", "modulo"]
+      "tags": [
+        "hidden",
+        "modulo"
+      ]
     },
     {
       "id": "real-all-identical-groups",
-      "name": "hidden: several fixed words each have one arrangement",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "zzzz yyyy x"},
+      "name": "several fixed words each have one arrangement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zzzz yyyy x"
+      },
       "expected": 1,
-      "tags": ["hidden", "multiple-words"]
+      "tags": [
+        "hidden",
+        "multiple-words"
+      ]
     }
   ]
 }

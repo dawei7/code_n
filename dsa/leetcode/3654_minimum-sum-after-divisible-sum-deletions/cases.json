@@ -101,8 +101,8 @@
     {
       "id": "real-disjoint-intervals",
       "name": "real: two disjoint intervals are deleted",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -123,8 +123,8 @@
     {
       "id": "real-merged-gap-deletion",
       "name": "real: gap-closing sequence merges to original interval",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -145,8 +145,8 @@
     {
       "id": "real-repeated-remainders",
       "name": "real: best cost among repeated remainders matters",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -168,8 +168,8 @@
     {
       "id": "real-singleton-deletions",
       "name": "real: individually divisible values disappear",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -189,8 +189,8 @@
     {
       "id": "real-large-values",
       "name": "real: large retained sums use wide integer",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,
@@ -209,8 +209,8 @@
     {
       "id": "real-large-modulus-boundary",
       "name": "real: modulus at maximum can delete exact sum",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           50000,

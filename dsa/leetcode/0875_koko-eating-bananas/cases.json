@@ -119,9 +119,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: largest pile controls one-hour-per-pile case",
-      "kind": "real",
-      "visible": false,
+      "name": "largest pile controls one-hour-per-pile case",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           2,
@@ -138,9 +138,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: total hours equal total bananas",
-      "kind": "real",
-      "visible": false,
+      "name": "total hours equal total bananas",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           2,
@@ -157,9 +157,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: upper-bound single pile",
-      "kind": "real",
-      "visible": false,
+      "name": "upper-bound single pile",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           1000000000
@@ -174,9 +174,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: ceiling division across equal piles",
-      "kind": "real",
-      "visible": false,
+      "name": "ceiling division across equal piles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           9,
@@ -192,9 +192,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: mixed pile ceiling boundary",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed pile ceiling boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           4,

@@ -103,9 +103,9 @@
     },
     {
       "id": "real-disjoint-row-ranges",
-      "name": "hidden: rows have widely separated ranges",
-      "kind": "real",
-      "visible": false,
+      "name": "rows have widely separated ranges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -133,9 +133,9 @@
     },
     {
       "id": "real-maximum-bound",
-      "name": "hidden: values approach the upper constraint",
-      "kind": "real",
-      "visible": false,
+      "name": "values approach the upper constraint",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

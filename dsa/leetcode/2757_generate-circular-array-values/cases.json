@@ -166,9 +166,9 @@
     },
     {
       "id": "real-exact-multiples",
-      "name": "hidden: jumps by full array multiples do not move",
-      "kind": "real",
-      "visible": false,
+      "name": "jumps by full array multiples do not move",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           8,
@@ -201,9 +201,9 @@
     },
     {
       "id": "real-large-remainders",
-      "name": "hidden: extreme jumps reduce to signed remainders",
-      "kind": "real",
-      "visible": false,
+      "name": "extreme jumps reduce to signed remainders",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,
@@ -235,9 +235,9 @@
     },
     {
       "id": "real-repeated-zero",
-      "name": "hidden: repeated zero jumps keep the suspended index",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated zero jumps keep the suspended index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           -3,
@@ -266,9 +266,9 @@
     },
     {
       "id": "real-maximum-steps",
-      "name": "hidden: maximum 100-step sequence preserves generator state",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum 100-step sequence preserves generator state",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           3,

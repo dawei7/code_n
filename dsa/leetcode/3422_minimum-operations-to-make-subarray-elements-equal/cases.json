@@ -128,9 +128,9 @@
     },
     {
       "id": "real-full-window",
-      "name": "hidden: k equals the array length",
-      "kind": "real",
-      "visible": false,
+      "name": "k equals the array length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -5,
@@ -149,9 +149,9 @@
     },
     {
       "id": "real-negative-values",
-      "name": "hidden: all values are negative",
-      "kind": "real",
-      "visible": false,
+      "name": "all values are negative",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -10,
@@ -170,9 +170,9 @@
     },
     {
       "id": "real-outlier",
-      "name": "hidden: median ignores a one-sided outlier",
-      "kind": "real",
-      "visible": false,
+      "name": "median ignores a one-sided outlier",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -193,9 +193,9 @@
     },
     {
       "id": "real-alternating",
-      "name": "hidden: repeated add and discard rebalancing",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated add and discard rebalancing",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -216,9 +216,9 @@
     },
     {
       "id": "real-value-boundaries",
-      "name": "hidden: values span both legal extremes",
-      "kind": "real",
-      "visible": false,
+      "name": "values span both legal extremes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -1000000,
@@ -236,9 +236,9 @@
     },
     {
       "id": "real-many-equal-windows",
-      "name": "hidden: several windows share the optimum",
-      "kind": "real",
-      "visible": false,
+      "name": "several windows share the optimum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,

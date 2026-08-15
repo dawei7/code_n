@@ -2,13 +2,159 @@
   "schema_version": 1,
   "challenge_id": "lc_2148",
   "cases": [
-    {"id": "sample-two-interior-values", "name": "sample: two distinct interior values", "kind": "sample", "visible": true, "input": {"nums": [11, 7, 2, 15]}, "expected": 2, "tags": ["sample", "distinct"]},
-    {"id": "sample-duplicate-interior", "name": "sample: duplicate interior occurrences", "kind": "sample", "visible": true, "input": {"nums": [-3, 3, 3, 90]}, "expected": 2, "tags": ["sample", "duplicates"]},
-    {"id": "trial-single-element", "name": "one element has neither required neighbor", "kind": "trial", "visible": true, "input": {"nums": [5]}, "expected": 0, "tags": ["minimum-length"]},
-    {"id": "trial-all-equal", "name": "equal values provide no strict comparisons", "kind": "trial", "visible": true, "input": {"nums": [4, 4, 4, 4]}, "expected": 0, "tags": ["all-equal", "strictness"]},
-    {"id": "trial-two-extremes", "name": "two values are both extrema", "kind": "trial", "visible": true, "input": {"nums": [-100000, 100000]}, "expected": 0, "tags": ["bounds", "two-elements"]},
-    {"id": "real-repeated-extrema", "name": "hidden: repeated extrema remain excluded", "kind": "real", "visible": false, "input": {"nums": [1, 1, 2, 3, 3]}, "expected": 1, "tags": ["hidden", "repeated-extrema"]},
-    {"id": "real-many-interior-duplicates", "name": "hidden: every interior occurrence counts", "kind": "real", "visible": false, "input": {"nums": [8, 2, 5, 5, 5, 8, 2]}, "expected": 3, "tags": ["hidden", "duplicates"]},
-    {"id": "real-unsorted-mixed-signs", "name": "hidden: order does not affect qualification", "kind": "real", "visible": false, "input": {"nums": [0, -5, 9, -1, 9, 3, -5]}, "expected": 3, "tags": ["hidden", "mixed-signs", "unsorted"]}
+    {
+      "id": "sample-two-interior-values",
+      "name": "sample: two distinct interior values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          11,
+          7,
+          2,
+          15
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "distinct"
+      ]
+    },
+    {
+      "id": "sample-duplicate-interior",
+      "name": "sample: duplicate interior occurrences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -3,
+          3,
+          3,
+          90
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "one element has neither required neighbor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "equal values provide no strict comparisons",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "all-equal",
+        "strictness"
+      ]
+    },
+    {
+      "id": "trial-two-extremes",
+      "name": "two values are both extrema",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -100000,
+          100000
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "bounds",
+        "two-elements"
+      ]
+    },
+    {
+      "id": "real-repeated-extrema",
+      "name": "repeated extrema remain excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "repeated-extrema"
+      ]
+    },
+    {
+      "id": "real-many-interior-duplicates",
+      "name": "every interior occurrence counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          2,
+          5,
+          5,
+          5,
+          8,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-unsorted-mixed-signs",
+      "name": "order does not affect qualification",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          -5,
+          9,
+          -1,
+          9,
+          3,
+          -5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "mixed-signs",
+        "unsorted"
+      ]
+    }
   ]
 }

@@ -7,150 +7,257 @@
       "name": "sample: one distinct character from every category",
       "kind": "sample",
       "visible": true,
-      "input": {"password": "aA1!"},
+      "input": {
+        "password": "aA1!"
+      },
       "expected": 11,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "all-categories"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "all-categories"
+      ]
     },
     {
       "id": "sample-repeated-characters",
       "name": "sample: repeated characters contribute only once",
       "kind": "sample",
       "visible": true,
-      "input": {"password": "bbB11#"},
+      "input": {
+        "password": "bbB11#"
+      },
       "expected": 11,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "duplicates"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-single-lowercase",
       "name": "trial: one lowercase letter contributes one point",
       "kind": "trial",
       "visible": true,
-      "input": {"password": "z"},
+      "input": {
+        "password": "z"
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "lowercase"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "lowercase"
+      ]
     },
     {
       "id": "trial-single-uppercase",
       "name": "trial: one uppercase letter contributes two points",
       "kind": "trial",
       "visible": true,
-      "input": {"password": "Z"},
+      "input": {
+        "password": "Z"
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "uppercase"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "uppercase"
+      ]
     },
     {
       "id": "trial-single-digit",
       "name": "trial: one digit contributes three points",
       "kind": "trial",
       "visible": true,
-      "input": {"password": "0"},
+      "input": {
+        "password": "0"
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "digit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "digit"
+      ]
     },
     {
       "id": "trial-single-special",
       "name": "trial: one special character contributes five points",
       "kind": "trial",
       "visible": true,
-      "input": {"password": "$"},
+      "input": {
+        "password": "$"
+      },
       "expected": 5,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "special"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "special"
+      ]
     },
     {
       "id": "trial-many-equal",
       "name": "trial: many copies of one character still score once",
       "kind": "trial",
       "visible": true,
-      "input": {"password": "aaaaaaaaaa"},
+      "input": {
+        "password": "aaaaaaaaaa"
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "duplicates"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-case-sensitive-pair",
       "name": "trial: lowercase and uppercase forms score independently",
       "kind": "trial",
       "visible": true,
-      "input": {"password": "aA"},
+      "input": {
+        "password": "aA"
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "case-sensitive"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "case-sensitive"
+      ]
     },
     {
       "id": "real-all-specials",
-      "name": "hidden: all four special characters contribute separately",
-      "kind": "real",
-      "visible": false,
-      "input": {"password": "!@#$"},
+      "name": "all four special characters contribute separately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "password": "!@#$"
+      },
       "expected": 20,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "specials"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "specials"
+      ]
     },
     {
       "id": "real-mixed-distinct",
-      "name": "hidden: mixed distinct categories use their own weights",
-      "kind": "real",
-      "visible": false,
-      "input": {"password": "abcXYZ019!$"},
+      "name": "mixed distinct categories use their own weights",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "password": "abcXYZ019!$"
+      },
       "expected": 28,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "mixed-categories"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "mixed-categories"
+      ]
     },
     {
       "id": "real-repeated-mixed",
-      "name": "hidden: repeated mixed categories are all deduplicated",
-      "kind": "real",
-      "visible": false,
-      "input": {"password": "aaAA00!!bbBB11@@"},
+      "name": "repeated mixed categories are all deduplicated",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "password": "aaAA00!!bbBB11@@"
+      },
       "expected": 22,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "duplicates", "mixed-categories"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "duplicates",
+        "mixed-categories"
+      ]
     },
     {
       "id": "real-all-lowercase",
-      "name": "hidden: every lowercase letter contributes one point",
-      "kind": "real",
-      "visible": false,
-      "input": {"password": "abcdefghijklmnopqrstuvwxyz"},
+      "name": "every lowercase letter contributes one point",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "password": "abcdefghijklmnopqrstuvwxyz"
+      },
       "expected": 26,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "lowercase-alphabet"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "lowercase-alphabet"
+      ]
     },
     {
       "id": "real-all-uppercase",
-      "name": "hidden: every uppercase letter contributes two points",
-      "kind": "real",
-      "visible": false,
-      "input": {"password": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
+      "name": "every uppercase letter contributes two points",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "password": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      },
       "expected": 52,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "uppercase-alphabet"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "uppercase-alphabet"
+      ]
     },
     {
       "id": "real-all-digits",
-      "name": "hidden: every digit contributes three points",
-      "kind": "real",
-      "visible": false,
-      "input": {"password": "0123456789"},
+      "name": "every digit contributes three points",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "password": "0123456789"
+      },
       "expected": 30,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "digits"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "digits"
+      ]
     },
     {
       "id": "real-complete-alphabet",
-      "name": "hidden: every legal character reaches the maximum strength",
-      "kind": "real",
-      "visible": false,
-      "input": {"password": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$"},
+      "name": "every legal character reaches the maximum strength",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "password": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$"
+      },
       "expected": 128,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "complete-alphabet", "maximum-strength"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "complete-alphabet",
+        "maximum-strength"
+      ]
     }
   ]
 }

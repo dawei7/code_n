@@ -1,10 +1,213 @@
-{"challenge_id":"lc_3002","cases":[
-{"id":"sample-repeated-overlap","name":"sample: repeated overlap","kind":"sample","visible":true,"input":{"nums1":[1,2,1,2],"nums2":[1,1,1,1]},"expected":2,"tags":["sample"]},
-{"id":"sample-one-diverse","name":"sample: one array is more diverse","kind":"sample","visible":true,"input":{"nums1":[1,2,3,4,5,6],"nums2":[2,3,2,3,2,3]},"expected":5,"tags":["sample"]},
-{"id":"sample-disjoint-groups","name":"sample: disjoint repeated groups","kind":"sample","visible":true,"input":{"nums1":[1,1,2,2,3,3],"nums2":[4,4,5,5,6,6]},"expected":6,"tags":["sample","disjoint"]},
-{"id":"trial-all-identical","name":"trial: every value is identical","kind":"trial","visible":true,"input":{"nums1":[7,7,7,7],"nums2":[7,7,7,7]},"expected":1,"tags":["duplicates"]},
-{"id":"trial-identical-sets","name":"trial: identical arrays can split shared values","kind":"trial","visible":true,"input":{"nums1":[1,2,3,4],"nums2":[1,2,3,4]},"expected":4,"tags":["shared"]},
-{"id":"real-minimum-length","name":"real: minimum even length","kind":"real","visible":false,"input":{"nums1":[1,2],"nums2":[2,3]},"expected":2,"tags":["hidden","boundary"]},
-{"id":"real-capacity-limits-union","name":"real: capacity limits a large union","kind":"real","visible":false,"input":{"nums1":[1,2,3,4,5,6,7,8],"nums2":[5,6,7,8,9,10,11,12]},"expected":8,"tags":["hidden","capacity"]},
-{"id":"real-large-values","name":"real: upper-bound values and duplicates","kind":"real","visible":false,"input":{"nums1":[1000000000,1000000000,2,2],"nums2":[1000000000,3,3,3]},"expected":3,"tags":["hidden","value-boundary"]}
-]}
+{
+  "challenge_id": "lc_3002",
+  "cases": [
+    {
+      "id": "sample-repeated-overlap",
+      "name": "sample: repeated overlap",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          1,
+          2
+        ],
+        "nums2": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-one-diverse",
+      "name": "sample: one array is more diverse",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "nums2": [
+          2,
+          3,
+          2,
+          3,
+          2,
+          3
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-disjoint-groups",
+      "name": "sample: disjoint repeated groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ],
+        "nums2": [
+          4,
+          4,
+          5,
+          5,
+          6,
+          6
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "disjoint"
+      ]
+    },
+    {
+      "id": "trial-all-identical",
+      "name": "trial: every value is identical",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          7,
+          7,
+          7,
+          7
+        ],
+        "nums2": [
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-identical-sets",
+      "name": "trial: identical arrays can split shared values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "nums2": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "shared"
+      ]
+    },
+    {
+      "id": "real-minimum-length",
+      "name": "real: minimum even length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2
+        ],
+        "nums2": [
+          2,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-capacity-limits-union",
+      "name": "real: capacity limits a large union",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "nums2": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "capacity"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "real: upper-bound values and duplicates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1000000000,
+          1000000000,
+          2,
+          2
+        ],
+        "nums2": [
+          1000000000,
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
+    }
+  ]
+}

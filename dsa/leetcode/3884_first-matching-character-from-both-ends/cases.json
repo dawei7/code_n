@@ -148,9 +148,9 @@
     },
     {
       "id": "real-palindrome-outer",
-      "name": "hidden: an outer palindrome match wins immediately",
-      "kind": "real",
-      "visible": false,
+      "name": "an outer palindrome match wins immediately",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abccba"
       },
@@ -166,9 +166,9 @@
     },
     {
       "id": "real-match-at-one",
-      "name": "hidden: reject the endpoints before an index-one match",
-      "kind": "real",
-      "visible": false,
+      "name": "reject the endpoints before an index-one match",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "xabbay"
       },
@@ -184,9 +184,9 @@
     },
     {
       "id": "real-all-equal",
-      "name": "hidden: repeated characters return zero",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated characters return zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "mmmmmmmm"
       },
@@ -202,9 +202,9 @@
     },
     {
       "id": "real-maximum-no-match",
-      "name": "hidden: maximum even length has no mirrored equality",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum even length has no mirrored equality",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
       },
@@ -220,9 +220,9 @@
     },
     {
       "id": "real-maximum-middle-match",
-      "name": "hidden: maximum even length first matches at index 49",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum even length first matches at index 49",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
       },
@@ -238,9 +238,9 @@
     },
     {
       "id": "real-maximum-odd-center",
-      "name": "hidden: a 99-character string first matches at its center",
-      "kind": "real",
-      "visible": false,
+      "name": "a 99-character string first matches at its center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
       },
@@ -256,9 +256,9 @@
     },
     {
       "id": "real-alphabet-no-match",
-      "name": "hidden: opposite alphabet positions all differ",
-      "kind": "real",
-      "visible": false,
+      "name": "opposite alphabet positions all differ",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcdefghijklmnopqrstuvwxyz"
       },

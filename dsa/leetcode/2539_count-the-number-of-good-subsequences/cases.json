@@ -73,9 +73,9 @@
     },
     {
       "id": "real-three-frequencies",
-      "name": "hidden: three distinct positive frequencies",
-      "kind": "real",
-      "visible": false,
+      "name": "three distinct positive frequencies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaabbc"
       },
@@ -87,9 +87,9 @@
     },
     {
       "id": "real-one-symbol",
-      "name": "hidden: every nonempty subset is good",
-      "kind": "real",
-      "visible": false,
+      "name": "every nonempty subset is good",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zzzzzzzzzz"
       },

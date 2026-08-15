@@ -109,9 +109,9 @@
     },
     {
       "id": "real-all-single-use",
-      "name": "hidden: six single uses meet three triangular levels",
-      "kind": "real",
-      "visible": false,
+      "name": "six single uses meet three triangular levels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "usageLimits": [
           1,
@@ -130,9 +130,9 @@
     },
     {
       "id": "real-uniform-middle-limit",
-      "name": "hidden: six equal limits stop before the sixth group",
-      "kind": "real",
-      "visible": false,
+      "name": "six equal limits stop before the sixth group",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "usageLimits": [
           3,
@@ -151,9 +151,9 @@
     },
     {
       "id": "real-mixed-complete",
-      "name": "hidden: shuffled capacities support every group",
-      "kind": "real",
-      "visible": false,
+      "name": "shuffled capacities support every group",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "usageLimits": [
           4,
@@ -173,9 +173,9 @@
     },
     {
       "id": "real-all-maximum",
-      "name": "hidden: every oversized limit is safely clamped",
-      "kind": "real",
-      "visible": false,
+      "name": "every oversized limit is safely clamped",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "usageLimits": [
           1000000000,

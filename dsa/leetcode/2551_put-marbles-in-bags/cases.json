@@ -102,9 +102,9 @@
     },
     {
       "id": "real-increasing",
-      "name": "hidden: choose extremes among increasing boundaries",
-      "kind": "real",
-      "visible": false,
+      "name": "choose extremes among increasing boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weights": [
           1,
@@ -124,9 +124,9 @@
     },
     {
       "id": "real-mixed",
-      "name": "hidden: nonmonotonic boundary costs",
-      "kind": "real",
-      "visible": false,
+      "name": "nonmonotonic boundary costs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weights": [
           8,
@@ -147,9 +147,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: score difference uses wide integers",
-      "kind": "real",
-      "visible": false,
+      "name": "score difference uses wide integers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weights": [
           1000000000,

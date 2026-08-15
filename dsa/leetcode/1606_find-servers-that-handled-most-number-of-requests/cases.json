@@ -160,9 +160,9 @@
     },
     {
       "id": "real-wrap-to-zero",
-      "name": "hidden: circular search wraps from the final server",
-      "kind": "real",
-      "visible": false,
+      "name": "circular search wraps from the final server",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 4,
         "arrival": [
@@ -194,9 +194,9 @@
     },
     {
       "id": "real-multiple-drops",
-      "name": "hidden: a long busy interval drops several requests",
-      "kind": "real",
-      "visible": false,
+      "name": "a long busy interval drops several requests",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 2,
         "arrival": [
@@ -228,9 +228,9 @@
     },
     {
       "id": "real-round-robin-tie",
-      "name": "hidden: short jobs preserve round-robin balance",
-      "kind": "real",
-      "visible": false,
+      "name": "short jobs preserve round-robin balance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 5,
         "arrival": [
@@ -275,9 +275,9 @@
     },
     {
       "id": "real-preferred-busy-next",
-      "name": "hidden: choose the first later available ID",
-      "kind": "real",
-      "visible": false,
+      "name": "choose the first later available ID",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 5,
         "arrival": [
@@ -311,9 +311,9 @@
     },
     {
       "id": "real-release-several",
-      "name": "hidden: several servers release before one arrival",
-      "kind": "real",
-      "visible": false,
+      "name": "several servers release before one arrival",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 3,
         "arrival": [
@@ -347,9 +347,9 @@
     },
     {
       "id": "real-skewed-busiest",
-      "name": "hidden: one server wins after repeated wraparound",
-      "kind": "real",
-      "visible": false,
+      "name": "one server wins after repeated wraparound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 3,
         "arrival": [
@@ -386,9 +386,9 @@
     },
     {
       "id": "real-large-times",
-      "name": "hidden: large times and durations retain exact comparisons",
-      "kind": "real",
-      "visible": false,
+      "name": "large times and durations retain exact comparisons",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 2,
         "arrival": [
@@ -415,4 +415,3 @@
     }
   ]
 }
-

@@ -2,17 +2,231 @@
   "schema_version": 1,
   "challenge_id": "lc_3483",
   "cases": [
-    {"id":"sample-distinct-digits","name":"sample: four distinct digits","kind":"sample","visible":true,"input":{"digits":[1,2,3,4]},"expected":12,"tags":["sample"]},
-    {"id":"sample-two-copies","name":"sample: repeated digit can be reused by copy","kind":"sample","visible":true,"input":{"digits":[0,2,2]},"expected":2,"tags":["sample"]},
-    {"id":"sample-all-sixes","name":"sample: three identical even digits","kind":"sample","visible":true,"input":{"digits":[6,6,6]},"expected":1,"tags":["sample"]},
-    {"id":"sample-no-even-digit","name":"sample: no valid units digit","kind":"sample","visible":true,"input":{"digits":[1,3,5]},"expected":0,"tags":["sample"]},
-    {"id":"trial-two-zeroes","name":"trial: zero can fill tens and units","kind":"trial","visible":true,"input":{"digits":[0,0,2]},"expected":1,"tags":["trial","zero"]},
-    {"id":"trial-three-distinct-with-zero","name":"trial: zero cannot be the hundreds digit","kind":"trial","visible":true,"input":{"digits":[0,1,2]},"expected":3,"tags":["trial","leading-zero"]},
-    {"id":"real-duplicate-odd-values","name":"hidden: duplicate odd digits affect prefixes","kind":"real","visible":false,"input":{"digits":[4,7,7,3]},"expected":3,"tags":["hidden","duplicates"]},
-    {"id":"real-several-zeroes-and-twos","name":"hidden: several copies still count values uniquely","kind":"real","visible":false,"input":{"digits":[0,0,0,2,2]},"expected":3,"tags":["hidden","deduplication"]},
-    {"id":"real-repeated-hundreds-and-tens","name":"hidden: one number needs two copies of a digit","kind":"real","visible":false,"input":{"digits":[1,1,2]},"expected":1,"tags":["hidden","frequency"]},
-    {"id":"real-extra-identical-copies","name":"hidden: extra copies do not duplicate an integer","kind":"real","visible":false,"input":{"digits":[2,2,2,2]},"expected":1,"tags":["hidden","distinct-numbers"]},
-    {"id":"real-all-decimal-digits","name":"hidden: maximum length with every digit","kind":"real","visible":false,"input":{"digits":[0,1,2,3,4,5,6,7,8,9]},"expected":328,"tags":["hidden","maximum-length"]},
-    {"id":"real-all-even-values","name":"hidden: every units choice is even","kind":"real","visible":false,"input":{"digits":[0,2,4,6,8]},"expected":48,"tags":["hidden","even-digits"]}
+    {
+      "id": "sample-distinct-digits",
+      "name": "sample: four distinct digits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "digits": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-two-copies",
+      "name": "sample: repeated digit can be reused by copy",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "digits": [
+          0,
+          2,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-sixes",
+      "name": "sample: three identical even digits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "digits": [
+          6,
+          6,
+          6
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-even-digit",
+      "name": "sample: no valid units digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "digits": [
+          1,
+          3,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-two-zeroes",
+      "name": "trial: zero can fill tens and units",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": [
+          0,
+          0,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-three-distinct-with-zero",
+      "name": "trial: zero cannot be the hundreds digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": [
+          0,
+          1,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "leading-zero"
+      ]
+    },
+    {
+      "id": "real-duplicate-odd-values",
+      "name": "duplicate odd digits affect prefixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": [
+          4,
+          7,
+          7,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-several-zeroes-and-twos",
+      "name": "several copies still count values uniquely",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": [
+          0,
+          0,
+          0,
+          2,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "deduplication"
+      ]
+    },
+    {
+      "id": "real-repeated-hundreds-and-tens",
+      "name": "one number needs two copies of a digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": [
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "frequency"
+      ]
+    },
+    {
+      "id": "real-extra-identical-copies",
+      "name": "extra copies do not duplicate an integer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": [
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "distinct-numbers"
+      ]
+    },
+    {
+      "id": "real-all-decimal-digits",
+      "name": "maximum length with every digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "expected": 328,
+      "tags": [
+        "hidden",
+        "maximum-length"
+      ]
+    },
+    {
+      "id": "real-all-even-values",
+      "name": "every units choice is even",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": [
+          0,
+          2,
+          4,
+          6,
+          8
+        ]
+      },
+      "expected": 48,
+      "tags": [
+        "hidden",
+        "even-digits"
+      ]
+    }
   ]
 }

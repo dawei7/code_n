@@ -84,9 +84,9 @@
     },
     {
       "id": "real-both-budgets",
-      "name": "hidden: letters with excess parentheses on both sides",
-      "kind": "real",
-      "visible": false,
+      "name": "letters with excess parentheses on both sides",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "(x))((y)"
       },

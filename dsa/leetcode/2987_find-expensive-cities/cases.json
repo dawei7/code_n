@@ -1,8 +1,304 @@
-{"challenge_id":"lc_2987","cases":[
-{"id":"sample-expensive-cities","name":"sample: two cities exceed national average","kind":"sample","visible":true,"input":{"tables":{"Listings":[{"listing_id":113,"city":"LosAngeles","price":7560386},{"listing_id":136,"city":"SanFrancisco","price":2380268},{"listing_id":92,"city":"Chicago","price":9833209},{"listing_id":60,"city":"Chicago","price":5147582},{"listing_id":8,"city":"Chicago","price":5274441},{"listing_id":79,"city":"SanFrancisco","price":8372065},{"listing_id":37,"city":"Chicago","price":7939595},{"listing_id":53,"city":"LosAngeles","price":4965123},{"listing_id":178,"city":"SanFrancisco","price":999207},{"listing_id":51,"city":"NewYork","price":5951718},{"listing_id":121,"city":"NewYork","price":2893760}]}},"expected":{"columns":["city"],"rows":[["Chicago"],["LosAngeles"]]},"validator":{"kind":"ordered_table"},"tags":["sample"]},
-{"id":"trial-single-city","name":"trial: single city equals national average","kind":"trial","visible":true,"input":{"tables":{"Listings":[{"listing_id":1,"city":"Bern","price":10},{"listing_id":2,"city":"Bern","price":20}]}},"expected":{"columns":["city"],"rows":[]},"validator":{"kind":"ordered_table"},"tags":["single-city","equality"]},
-{"id":"trial-two-singletons","name":"trial: higher singleton city qualifies","kind":"trial","visible":true,"input":{"tables":{"Listings":[{"listing_id":1,"city":"Alpha","price":1},{"listing_id":2,"city":"Zulu","price":9}]}},"expected":{"columns":["city"],"rows":[["Zulu"]]},"validator":{"kind":"ordered_table"},"tags":["two-cities"]},
-{"id":"trial-all-equal","name":"trial: all city averages equal national","kind":"trial","visible":true,"input":{"tables":{"Listings":[{"listing_id":1,"city":"A","price":1},{"listing_id":2,"city":"A","price":3},{"listing_id":3,"city":"B","price":2}]}},"expected":{"columns":["city"],"rows":[]},"validator":{"kind":"ordered_table"},"tags":["equality"]},
-{"id":"real-listing-weighted","name":"real: national average is listing weighted","kind":"real","visible":false,"input":{"tables":{"Listings":[{"listing_id":1,"city":"A","price":100},{"listing_id":2,"city":"B","price":0},{"listing_id":3,"city":"B","price":0},{"listing_id":4,"city":"B","price":0},{"listing_id":5,"city":"B","price":0}]}},"expected":{"columns":["city"],"rows":[["A"]]},"validator":{"kind":"ordered_table"},"tags":["hidden","weighting"]},
-{"id":"real-city-order","name":"real: several qualifying cities sort ascending","kind":"real","visible":false,"input":{"tables":{"Listings":[{"listing_id":1,"city":"Zulu","price":100},{"listing_id":2,"city":"Alpha","price":90},{"listing_id":3,"city":"Middle","price":0}]}},"expected":{"columns":["city"],"rows":[["Alpha"],["Zulu"]]},"validator":{"kind":"ordered_table"},"tags":["hidden","ordering"]}
-]}
+{
+  "challenge_id": "lc_2987",
+  "cases": [
+    {
+      "id": "sample-expensive-cities",
+      "name": "sample: two cities exceed national average",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Listings": [
+            {
+              "listing_id": 113,
+              "city": "LosAngeles",
+              "price": 7560386
+            },
+            {
+              "listing_id": 136,
+              "city": "SanFrancisco",
+              "price": 2380268
+            },
+            {
+              "listing_id": 92,
+              "city": "Chicago",
+              "price": 9833209
+            },
+            {
+              "listing_id": 60,
+              "city": "Chicago",
+              "price": 5147582
+            },
+            {
+              "listing_id": 8,
+              "city": "Chicago",
+              "price": 5274441
+            },
+            {
+              "listing_id": 79,
+              "city": "SanFrancisco",
+              "price": 8372065
+            },
+            {
+              "listing_id": 37,
+              "city": "Chicago",
+              "price": 7939595
+            },
+            {
+              "listing_id": 53,
+              "city": "LosAngeles",
+              "price": 4965123
+            },
+            {
+              "listing_id": 178,
+              "city": "SanFrancisco",
+              "price": 999207
+            },
+            {
+              "listing_id": 51,
+              "city": "NewYork",
+              "price": 5951718
+            },
+            {
+              "listing_id": 121,
+              "city": "NewYork",
+              "price": 2893760
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "city"
+        ],
+        "rows": [
+          [
+            "Chicago"
+          ],
+          [
+            "LosAngeles"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-city",
+      "name": "trial: single city equals national average",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Listings": [
+            {
+              "listing_id": 1,
+              "city": "Bern",
+              "price": 10
+            },
+            {
+              "listing_id": 2,
+              "city": "Bern",
+              "price": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "city"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "single-city",
+        "equality"
+      ]
+    },
+    {
+      "id": "trial-two-singletons",
+      "name": "trial: higher singleton city qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Listings": [
+            {
+              "listing_id": 1,
+              "city": "Alpha",
+              "price": 1
+            },
+            {
+              "listing_id": 2,
+              "city": "Zulu",
+              "price": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "city"
+        ],
+        "rows": [
+          [
+            "Zulu"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "two-cities"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: all city averages equal national",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Listings": [
+            {
+              "listing_id": 1,
+              "city": "A",
+              "price": 1
+            },
+            {
+              "listing_id": 2,
+              "city": "A",
+              "price": 3
+            },
+            {
+              "listing_id": 3,
+              "city": "B",
+              "price": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "city"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "equality"
+      ]
+    },
+    {
+      "id": "real-listing-weighted",
+      "name": "real: national average is listing weighted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Listings": [
+            {
+              "listing_id": 1,
+              "city": "A",
+              "price": 100
+            },
+            {
+              "listing_id": 2,
+              "city": "B",
+              "price": 0
+            },
+            {
+              "listing_id": 3,
+              "city": "B",
+              "price": 0
+            },
+            {
+              "listing_id": 4,
+              "city": "B",
+              "price": 0
+            },
+            {
+              "listing_id": 5,
+              "city": "B",
+              "price": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "city"
+        ],
+        "rows": [
+          [
+            "A"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "weighting"
+      ]
+    },
+    {
+      "id": "real-city-order",
+      "name": "real: several qualifying cities sort ascending",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Listings": [
+            {
+              "listing_id": 1,
+              "city": "Zulu",
+              "price": 100
+            },
+            {
+              "listing_id": 2,
+              "city": "Alpha",
+              "price": 90
+            },
+            {
+              "listing_id": 3,
+              "city": "Middle",
+              "price": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "city"
+        ],
+        "rows": [
+          [
+            "Alpha"
+          ],
+          [
+            "Zulu"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    }
+  ]
+}

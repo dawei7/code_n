@@ -7,91 +7,363 @@
       "name": "sample: prime batches leave room for two non-prime batches",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"Inventory": [
-        {"item_id":1374,"item_type":"prime_eligible","item_category":"Watches","square_footage":68.00},
-        {"item_id":4245,"item_type":"not_prime","item_category":"Art","square_footage":26.40},
-        {"item_id":5743,"item_type":"prime_eligible","item_category":"Software","square_footage":325.00},
-        {"item_id":8543,"item_type":"not_prime","item_category":"Clothing","square_footage":64.50},
-        {"item_id":2556,"item_type":"not_prime","item_category":"Shoes","square_footage":15.00},
-        {"item_id":2452,"item_type":"prime_eligible","item_category":"Scientific","square_footage":85.00},
-        {"item_id":3255,"item_type":"not_prime","item_category":"Furniture","square_footage":22.60},
-        {"item_id":1672,"item_type":"prime_eligible","item_category":"Beauty","square_footage":8.50},
-        {"item_id":4256,"item_type":"prime_eligible","item_category":"Furniture","square_footage":55.50},
-        {"item_id":6325,"item_type":"prime_eligible","item_category":"Food","square_footage":13.20}
-      ]}},
-      "expected": {"columns":["item_type","item_count"],"rows":[["prime_eligible",5400],["not_prime",8]]},
-      "validator": {"kind":"ordered_table"},
-      "tags": ["sample","priority-allocation"]
+      "input": {
+        "tables": {
+          "Inventory": [
+            {
+              "item_id": 1374,
+              "item_type": "prime_eligible",
+              "item_category": "Watches",
+              "square_footage": 68.0
+            },
+            {
+              "item_id": 4245,
+              "item_type": "not_prime",
+              "item_category": "Art",
+              "square_footage": 26.4
+            },
+            {
+              "item_id": 5743,
+              "item_type": "prime_eligible",
+              "item_category": "Software",
+              "square_footage": 325.0
+            },
+            {
+              "item_id": 8543,
+              "item_type": "not_prime",
+              "item_category": "Clothing",
+              "square_footage": 64.5
+            },
+            {
+              "item_id": 2556,
+              "item_type": "not_prime",
+              "item_category": "Shoes",
+              "square_footage": 15.0
+            },
+            {
+              "item_id": 2452,
+              "item_type": "prime_eligible",
+              "item_category": "Scientific",
+              "square_footage": 85.0
+            },
+            {
+              "item_id": 3255,
+              "item_type": "not_prime",
+              "item_category": "Furniture",
+              "square_footage": 22.6
+            },
+            {
+              "item_id": 1672,
+              "item_type": "prime_eligible",
+              "item_category": "Beauty",
+              "square_footage": 8.5
+            },
+            {
+              "item_id": 4256,
+              "item_type": "prime_eligible",
+              "item_category": "Furniture",
+              "square_footage": 55.5
+            },
+            {
+              "item_id": 6325,
+              "item_type": "prime_eligible",
+              "item_category": "Food",
+              "square_footage": 13.2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "item_type",
+          "item_count"
+        ],
+        "rows": [
+          [
+            "prime_eligible",
+            5400
+          ],
+          [
+            "not_prime",
+            8
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "priority-allocation"
+      ]
     },
     {
       "id": "sample-exact-prime-fill",
       "name": "sample: prime batches consume the entire warehouse",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"Inventory": [
-        {"item_id":1,"item_type":"prime_eligible","item_category":"A","square_footage":100000.0},
-        {"item_id":2,"item_type":"prime_eligible","item_category":"B","square_footage":150000.0},
-        {"item_id":3,"item_type":"not_prime","item_category":"C","square_footage":1.0}
-      ]}},
-      "expected": {"columns":["item_type","item_count"],"rows":[["prime_eligible",4],["not_prime",0]]},
-      "validator": {"kind":"ordered_table"},
-      "tags": ["sample","zero-remainder"]
+      "input": {
+        "tables": {
+          "Inventory": [
+            {
+              "item_id": 1,
+              "item_type": "prime_eligible",
+              "item_category": "A",
+              "square_footage": 100000.0
+            },
+            {
+              "item_id": 2,
+              "item_type": "prime_eligible",
+              "item_category": "B",
+              "square_footage": 150000.0
+            },
+            {
+              "item_id": 3,
+              "item_type": "not_prime",
+              "item_category": "C",
+              "square_footage": 1.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "item_type",
+          "item_count"
+        ],
+        "rows": [
+          [
+            "prime_eligible",
+            4
+          ],
+          [
+            "not_prime",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "zero-remainder"
+      ]
     },
     {
       "id": "sample-one-non-prime-batch",
       "name": "sample: leftover space fits one complete non-prime batch",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"Inventory": [
-        {"item_id":1,"item_type":"prime_eligible","item_category":"A","square_footage":200000.0},
-        {"item_id":2,"item_type":"not_prime","item_category":"B","square_footage":30000.0},
-        {"item_id":3,"item_type":"not_prime","item_category":"C","square_footage":40000.0}
-      ]}},
-      "expected": {"columns":["item_type","item_count"],"rows":[["prime_eligible",2],["not_prime",2]]},
-      "validator": {"kind":"ordered_table"},
-      "tags": ["sample","complete-batch","tie-order"]
+      "input": {
+        "tables": {
+          "Inventory": [
+            {
+              "item_id": 1,
+              "item_type": "prime_eligible",
+              "item_category": "A",
+              "square_footage": 200000.0
+            },
+            {
+              "item_id": 2,
+              "item_type": "not_prime",
+              "item_category": "B",
+              "square_footage": 30000.0
+            },
+            {
+              "item_id": 3,
+              "item_type": "not_prime",
+              "item_category": "C",
+              "square_footage": 40000.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "item_type",
+          "item_count"
+        ],
+        "rows": [
+          [
+            "prime_eligible",
+            2
+          ],
+          [
+            "not_prime",
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "complete-batch",
+        "tie-order"
+      ]
     },
     {
       "id": "trial-no-partial-batch",
       "name": "trial: leftover space cannot buy part of a non-prime batch",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"Inventory": [
-        {"item_id":1,"item_type":"prime_eligible","item_category":"A","square_footage":450000.0},
-        {"item_id":2,"item_type":"not_prime","item_category":"B","square_footage":30000.0},
-        {"item_id":3,"item_type":"not_prime","item_category":"C","square_footage":30000.0}
-      ]}},
-      "expected": {"columns":["item_type","item_count"],"rows":[["prime_eligible",1],["not_prime",0]]},
-      "validator": {"kind":"ordered_table"},
-      "tags": ["trial","floor-division"]
+      "input": {
+        "tables": {
+          "Inventory": [
+            {
+              "item_id": 1,
+              "item_type": "prime_eligible",
+              "item_category": "A",
+              "square_footage": 450000.0
+            },
+            {
+              "item_id": 2,
+              "item_type": "not_prime",
+              "item_category": "B",
+              "square_footage": 30000.0
+            },
+            {
+              "item_id": 3,
+              "item_type": "not_prime",
+              "item_category": "C",
+              "square_footage": 30000.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "item_type",
+          "item_count"
+        ],
+        "rows": [
+          [
+            "prime_eligible",
+            1
+          ],
+          [
+            "not_prime",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "floor-division"
+      ]
     },
     {
       "id": "real-decimal-floor",
-      "name": "hidden: decimal batch areas are floored only after division",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"Inventory": [
-        {"item_id":1,"item_type":"prime_eligible","item_category":"A","square_footage":333333.4},
-        {"item_id":2,"item_type":"not_prime","item_category":"B","square_footage":40000.2},
-        {"item_id":3,"item_type":"not_prime","item_category":"C","square_footage":43333.2}
-      ]}},
-      "expected": {"columns":["item_type","item_count"],"rows":[["not_prime",2],["prime_eligible",1]]},
-      "validator": {"kind":"ordered_table"},
-      "tags": ["hidden","decimal-boundary","descending-order"]
+      "name": "decimal batch areas are floored only after division",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Inventory": [
+            {
+              "item_id": 1,
+              "item_type": "prime_eligible",
+              "item_category": "A",
+              "square_footage": 333333.4
+            },
+            {
+              "item_id": 2,
+              "item_type": "not_prime",
+              "item_category": "B",
+              "square_footage": 40000.2
+            },
+            {
+              "item_id": 3,
+              "item_type": "not_prime",
+              "item_category": "C",
+              "square_footage": 43333.2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "item_type",
+          "item_count"
+        ],
+        "rows": [
+          [
+            "not_prime",
+            2
+          ],
+          [
+            "prime_eligible",
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "decimal-boundary",
+        "descending-order"
+      ]
     },
     {
       "id": "real-prime-priority",
-      "name": "hidden: non-prime capacity is computed only after maximal prime allocation",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"Inventory": [
-        {"item_id":1,"item_type":"prime_eligible","item_category":"A","square_footage":120000.0},
-        {"item_id":2,"item_type":"prime_eligible","item_category":"B","square_footage":80000.0},
-        {"item_id":3,"item_type":"not_prime","item_category":"C","square_footage":20000.0}
-      ]}},
-      "expected": {"columns":["item_type","item_count"],"rows":[["not_prime",5],["prime_eligible",4]]},
-      "validator": {"kind":"ordered_table"},
-      "tags": ["hidden","priority","descending-order"]
+      "name": "non-prime capacity is computed only after maximal prime allocation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Inventory": [
+            {
+              "item_id": 1,
+              "item_type": "prime_eligible",
+              "item_category": "A",
+              "square_footage": 120000.0
+            },
+            {
+              "item_id": 2,
+              "item_type": "prime_eligible",
+              "item_category": "B",
+              "square_footage": 80000.0
+            },
+            {
+              "item_id": 3,
+              "item_type": "not_prime",
+              "item_category": "C",
+              "square_footage": 20000.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "item_type",
+          "item_count"
+        ],
+        "rows": [
+          [
+            "not_prime",
+            5
+          ],
+          [
+            "prime_eligible",
+            4
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "priority",
+        "descending-order"
+      ]
     }
   ]
 }

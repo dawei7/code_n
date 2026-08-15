@@ -6,90 +6,229 @@
       "name": "sample: two qualifying windows tie at eighteen",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 6, 7, 3, 1, 7], "m": 3, "k": 4},
+      "input": {
+        "nums": [
+          2,
+          6,
+          7,
+          3,
+          1,
+          7
+        ],
+        "m": 3,
+        "k": 4
+      },
       "expected": 18,
-      "tags": ["sample", "sliding-window"]
+      "tags": [
+        "sample",
+        "sliding-window"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: minimum distinct threshold",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [5, 9, 9, 2, 4, 5, 4], "m": 1, "k": 3},
+      "input": {
+        "nums": [
+          5,
+          9,
+          9,
+          2,
+          4,
+          5,
+          4
+        ],
+        "m": 1,
+        "k": 3
+      },
       "expected": 23,
-      "tags": ["sample", "duplicates"]
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: no window has enough distinct values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 1, 2, 1, 2, 1], "m": 3, "k": 3},
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1
+        ],
+        "m": 3,
+        "k": 3
+      },
       "expected": 0,
-      "tags": ["sample", "no-valid-window"]
+      "tags": [
+        "sample",
+        "no-valid-window"
+      ]
     },
     {
       "id": "trial-exact-threshold",
       "name": "trial: candidate becomes valid at exactly the threshold",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [4, 4, 5, 6, 7], "m": 3, "k": 3},
+      "input": {
+        "nums": [
+          4,
+          4,
+          5,
+          6,
+          7
+        ],
+        "m": 3,
+        "k": 3
+      },
       "expected": 18,
-      "tags": ["trial", "threshold"]
+      "tags": [
+        "trial",
+        "threshold"
+      ]
     },
     {
       "id": "trial-more-than-threshold",
       "name": "trial: more than m distinct values remains valid",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [8, 7, 6, 5], "m": 2, "k": 4},
+      "input": {
+        "nums": [
+          8,
+          7,
+          6,
+          5
+        ],
+        "m": 2,
+        "k": 4
+      },
       "expected": 26,
-      "tags": ["trial", "at-least"]
+      "tags": [
+        "trial",
+        "at-least"
+      ]
     },
     {
       "id": "real-invalid-heavy-window",
-      "name": "hidden: larger repeated-value sum must be rejected",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100, 100, 100, 1, 2, 3], "m": 3, "k": 3},
+      "name": "larger repeated-value sum must be rejected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          100,
+          100,
+          1,
+          2,
+          3
+        ],
+        "m": 3,
+        "k": 3
+      },
       "expected": 103,
-      "tags": ["hidden", "eligibility"]
+      "tags": [
+        "hidden",
+        "eligibility"
+      ]
     },
     {
       "id": "real-frequency-survives-removal",
-      "name": "hidden: outgoing duplicate still remains in the window",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9, 9, 1, 2, 8], "m": 3, "k": 4},
+      "name": "outgoing duplicate still remains in the window",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          9,
+          1,
+          2,
+          8
+        ],
+        "m": 3,
+        "k": 4
+      },
       "expected": 21,
-      "tags": ["hidden", "frequency-map"]
+      "tags": [
+        "hidden",
+        "frequency-map"
+      ]
     },
     {
       "id": "real-single-element",
-      "name": "hidden: single-element windows",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [7, 1000000000, 4], "m": 1, "k": 1},
+      "name": "single-element windows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          1000000000,
+          4
+        ],
+        "m": 1,
+        "k": 1
+      },
       "expected": 1000000000,
-      "tags": ["hidden", "minimum-window", "maximum-value"]
+      "tags": [
+        "hidden",
+        "minimum-window",
+        "maximum-value"
+      ]
     },
     {
       "id": "real-only-full-array",
-      "name": "hidden: the full array is the only candidate",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 5, 6, 7, 5], "m": 3, "k": 5},
+      "name": "the full array is the only candidate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          6,
+          7,
+          5
+        ],
+        "m": 3,
+        "k": 5
+      },
       "expected": 28,
-      "tags": ["hidden", "full-window"]
+      "tags": [
+        "hidden",
+        "full-window"
+      ]
     },
     {
       "id": "real-late-maximum",
-      "name": "hidden: best qualifying window appears near the end",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, 1, 8, 2, 8, 3, 50, 51, 52, 1], "m": 3, "k": 4},
+      "name": "best qualifying window appears near the end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          1,
+          8,
+          2,
+          8,
+          3,
+          50,
+          51,
+          52,
+          1
+        ],
+        "m": 3,
+        "k": 4
+      },
       "expected": 156,
-      "tags": ["hidden", "late-window"]
+      "tags": [
+        "hidden",
+        "late-window"
+      ]
     }
   ]
 }

@@ -1,7 +1,260 @@
-{"challenge_id":"lc_2687","cases":[
-{"id":"sample-three-bikes","name":"sample: latest ride for three bikes","kind":"sample","visible":true,"input":{"tables":{"Bikes":[{"ride_id":1,"bike_number":"W00576","start_time":"2012-03-25 11:30:00","end_time":"2012-03-25 12:40:00"},{"ride_id":2,"bike_number":"W00300","start_time":"2012-03-25 10:30:00","end_time":"2012-03-25 10:50:00"},{"ride_id":3,"bike_number":"W00455","start_time":"2012-03-26 14:30:00","end_time":"2012-03-26 17:40:00"},{"ride_id":4,"bike_number":"W00455","start_time":"2012-03-25 12:30:00","end_time":"2012-03-25 13:40:00"},{"ride_id":5,"bike_number":"W00576","start_time":"2012-03-25 08:10:00","end_time":"2012-03-25 09:10:00"},{"ride_id":6,"bike_number":"W00576","start_time":"2012-03-28 02:30:00","end_time":"2012-03-28 02:50:00"}]}},"expected":{"columns":["bike_number","end_time"],"rows":[["W00576","2012-03-28 02:50:00"],["W00455","2012-03-26 17:40:00"],["W00300","2012-03-25 10:50:00"]]},"tags":["sample","grouping","ordering"]},
-{"id":"trial-single-ride","name":"trial: one bike and one ride","kind":"trial","visible":true,"input":{"tables":{"Bikes":[{"ride_id":1,"bike_number":"A1","start_time":"2024-01-01 09:00:00","end_time":"2024-01-01 10:00:00"}]}},"expected":{"columns":["bike_number","end_time"],"rows":[["A1","2024-01-01 10:00:00"]]},"tags":["single"]},
-{"id":"trial-later-ride","name":"trial: later ride replaces earlier ride","kind":"trial","visible":true,"input":{"tables":{"Bikes":[{"ride_id":1,"bike_number":"B2","start_time":"2024-02-01 09:00:00","end_time":"2024-02-01 10:00:00"},{"ride_id":2,"bike_number":"B2","start_time":"2024-02-02 09:00:00","end_time":"2024-02-02 10:00:00"}]}},"expected":{"columns":["bike_number","end_time"],"rows":[["B2","2024-02-02 10:00:00"]]},"tags":["maximum"]},
-{"id":"real-interleaved","name":"hidden: interleaved rides group by bike","kind":"real","visible":false,"input":{"tables":{"Bikes":[{"ride_id":1,"bike_number":"X","start_time":"2024-03-01 08:00:00","end_time":"2024-03-01 09:00:00"},{"ride_id":2,"bike_number":"Y","start_time":"2024-03-04 08:00:00","end_time":"2024-03-04 09:00:00"},{"ride_id":3,"bike_number":"X","start_time":"2024-03-05 08:00:00","end_time":"2024-03-05 09:00:00"},{"ride_id":4,"bike_number":"Z","start_time":"2024-03-02 08:00:00","end_time":"2024-03-02 09:00:00"}]}},"expected":{"columns":["bike_number","end_time"],"rows":[["X","2024-03-05 09:00:00"],["Y","2024-03-04 09:00:00"],["Z","2024-03-02 09:00:00"]]},"tags":["hidden","interleaved"]},
-{"id":"real-start-time-irrelevant","name":"hidden: latest end time controls the result","kind":"real","visible":false,"input":{"tables":{"Bikes":[{"ride_id":1,"bike_number":"R","start_time":"2024-04-10 08:00:00","end_time":"2024-04-10 08:30:00"},{"ride_id":2,"bike_number":"R","start_time":"2024-04-09 23:00:00","end_time":"2024-04-11 01:00:00"},{"ride_id":3,"bike_number":"S","start_time":"2024-04-10 12:00:00","end_time":"2024-04-10 12:30:00"}]}},"expected":{"columns":["bike_number","end_time"],"rows":[["R","2024-04-11 01:00:00"],["S","2024-04-10 12:30:00"]]},"tags":["hidden","end-time"]}
-]}
+{
+  "challenge_id": "lc_2687",
+  "cases": [
+    {
+      "id": "sample-three-bikes",
+      "name": "sample: latest ride for three bikes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Bikes": [
+            {
+              "ride_id": 1,
+              "bike_number": "W00576",
+              "start_time": "2012-03-25 11:30:00",
+              "end_time": "2012-03-25 12:40:00"
+            },
+            {
+              "ride_id": 2,
+              "bike_number": "W00300",
+              "start_time": "2012-03-25 10:30:00",
+              "end_time": "2012-03-25 10:50:00"
+            },
+            {
+              "ride_id": 3,
+              "bike_number": "W00455",
+              "start_time": "2012-03-26 14:30:00",
+              "end_time": "2012-03-26 17:40:00"
+            },
+            {
+              "ride_id": 4,
+              "bike_number": "W00455",
+              "start_time": "2012-03-25 12:30:00",
+              "end_time": "2012-03-25 13:40:00"
+            },
+            {
+              "ride_id": 5,
+              "bike_number": "W00576",
+              "start_time": "2012-03-25 08:10:00",
+              "end_time": "2012-03-25 09:10:00"
+            },
+            {
+              "ride_id": 6,
+              "bike_number": "W00576",
+              "start_time": "2012-03-28 02:30:00",
+              "end_time": "2012-03-28 02:50:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "bike_number",
+          "end_time"
+        ],
+        "rows": [
+          [
+            "W00576",
+            "2012-03-28 02:50:00"
+          ],
+          [
+            "W00455",
+            "2012-03-26 17:40:00"
+          ],
+          [
+            "W00300",
+            "2012-03-25 10:50:00"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "grouping",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-single-ride",
+      "name": "trial: one bike and one ride",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Bikes": [
+            {
+              "ride_id": 1,
+              "bike_number": "A1",
+              "start_time": "2024-01-01 09:00:00",
+              "end_time": "2024-01-01 10:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "bike_number",
+          "end_time"
+        ],
+        "rows": [
+          [
+            "A1",
+            "2024-01-01 10:00:00"
+          ]
+        ]
+      },
+      "tags": [
+        "single"
+      ]
+    },
+    {
+      "id": "trial-later-ride",
+      "name": "trial: later ride replaces earlier ride",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Bikes": [
+            {
+              "ride_id": 1,
+              "bike_number": "B2",
+              "start_time": "2024-02-01 09:00:00",
+              "end_time": "2024-02-01 10:00:00"
+            },
+            {
+              "ride_id": 2,
+              "bike_number": "B2",
+              "start_time": "2024-02-02 09:00:00",
+              "end_time": "2024-02-02 10:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "bike_number",
+          "end_time"
+        ],
+        "rows": [
+          [
+            "B2",
+            "2024-02-02 10:00:00"
+          ]
+        ]
+      },
+      "tags": [
+        "maximum"
+      ]
+    },
+    {
+      "id": "real-interleaved",
+      "name": "interleaved rides group by bike",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Bikes": [
+            {
+              "ride_id": 1,
+              "bike_number": "X",
+              "start_time": "2024-03-01 08:00:00",
+              "end_time": "2024-03-01 09:00:00"
+            },
+            {
+              "ride_id": 2,
+              "bike_number": "Y",
+              "start_time": "2024-03-04 08:00:00",
+              "end_time": "2024-03-04 09:00:00"
+            },
+            {
+              "ride_id": 3,
+              "bike_number": "X",
+              "start_time": "2024-03-05 08:00:00",
+              "end_time": "2024-03-05 09:00:00"
+            },
+            {
+              "ride_id": 4,
+              "bike_number": "Z",
+              "start_time": "2024-03-02 08:00:00",
+              "end_time": "2024-03-02 09:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "bike_number",
+          "end_time"
+        ],
+        "rows": [
+          [
+            "X",
+            "2024-03-05 09:00:00"
+          ],
+          [
+            "Y",
+            "2024-03-04 09:00:00"
+          ],
+          [
+            "Z",
+            "2024-03-02 09:00:00"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "interleaved"
+      ]
+    },
+    {
+      "id": "real-start-time-irrelevant",
+      "name": "latest end time controls the result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Bikes": [
+            {
+              "ride_id": 1,
+              "bike_number": "R",
+              "start_time": "2024-04-10 08:00:00",
+              "end_time": "2024-04-10 08:30:00"
+            },
+            {
+              "ride_id": 2,
+              "bike_number": "R",
+              "start_time": "2024-04-09 23:00:00",
+              "end_time": "2024-04-11 01:00:00"
+            },
+            {
+              "ride_id": 3,
+              "bike_number": "S",
+              "start_time": "2024-04-10 12:00:00",
+              "end_time": "2024-04-10 12:30:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "bike_number",
+          "end_time"
+        ],
+        "rows": [
+          [
+            "R",
+            "2024-04-11 01:00:00"
+          ],
+          [
+            "S",
+            "2024-04-10 12:30:00"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "end-time"
+      ]
+    }
+  ]
+}

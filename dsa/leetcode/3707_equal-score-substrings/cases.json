@@ -7,108 +7,174 @@
       "name": "sample: both halves score five",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "adcb"},
+      "input": {
+        "s": "adcb"
+      },
       "expected": true,
-      "tags": ["sample", "balanced"]
+      "tags": [
+        "sample",
+        "balanced"
+      ]
     },
     {
       "id": "sample-no-balance",
       "name": "sample: no split has equal scores",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "bace"},
+      "input": {
+        "s": "bace"
+      },
       "expected": false,
-      "tags": ["sample", "unbalanced"]
+      "tags": [
+        "sample",
+        "unbalanced"
+      ]
     },
     {
       "id": "trial-two-equal",
       "name": "trial: equal letters balance the only split",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aa"},
+      "input": {
+        "s": "aa"
+      },
       "expected": true,
-      "tags": ["trial", "minimum-length", "balanced"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "balanced"
+      ]
     },
     {
       "id": "trial-two-unequal",
       "name": "trial: unequal letters do not balance the only split",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "az"},
+      "input": {
+        "s": "az"
+      },
       "expected": false,
-      "tags": ["trial", "minimum-length", "unbalanced"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "unbalanced"
+      ]
     },
     {
       "id": "trial-single-left-letter",
       "name": "trial: the first letter alone balances the remaining suffix",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "cab"},
+      "input": {
+        "s": "cab"
+      },
       "expected": true,
-      "tags": ["trial", "early-split"]
+      "tags": [
+        "trial",
+        "early-split"
+      ]
     },
     {
       "id": "real-odd-total",
-      "name": "hidden: an odd total score cannot split equally",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaab"},
+      "name": "an odd total score cannot split equally",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaab"
+      },
       "expected": false,
-      "tags": ["hidden", "odd-total"]
+      "tags": [
+        "hidden",
+        "odd-total"
+      ]
     },
     {
       "id": "real-near-balance",
-      "name": "hidden: a near-half prefix still does not balance an odd total",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaaac"},
+      "name": "a near-half prefix still does not balance an odd total",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaac"
+      },
       "expected": false,
-      "tags": ["hidden", "late-scan", "unbalanced"]
+      "tags": [
+        "hidden",
+        "late-scan",
+        "unbalanced"
+      ]
     },
     {
       "id": "real-balanced-pairs",
-      "name": "hidden: two multi-letter sides have the same score",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "azby"},
+      "name": "two multi-letter sides have the same score",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "azby"
+      },
       "expected": true,
-      "tags": ["hidden", "middle-split"]
+      "tags": [
+        "hidden",
+        "middle-split"
+      ]
     },
     {
       "id": "real-z-boundary-balanced",
-      "name": "hidden: the maximum letter value balances many small letters",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "zaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "name": "the maximum letter value balances many small letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
       "expected": true,
-      "tags": ["hidden", "alphabet-boundary", "unequal-length-halves"]
+      "tags": [
+        "hidden",
+        "alphabet-boundary",
+        "unequal-length-halves"
+      ]
     },
     {
       "id": "real-no-empty-suffix",
-      "name": "hidden: the complete prefix is not a legal split",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abc"},
+      "name": "the complete prefix is not a legal split",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc"
+      },
       "expected": true,
-      "tags": ["hidden", "non-empty-substrings"]
+      "tags": [
+        "hidden",
+        "non-empty-substrings"
+      ]
     },
     {
       "id": "real-repeated-middle-balance",
-      "name": "hidden: a repeated-letter string balances at its midpoint",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "mmmmmmmm"},
+      "name": "a repeated-letter string balances at its midpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "mmmmmmmm"
+      },
       "expected": true,
-      "tags": ["hidden", "repeated-letters", "middle-split"]
+      "tags": [
+        "hidden",
+        "repeated-letters",
+        "middle-split"
+      ]
     },
     {
       "id": "real-maximum-length-odd-total",
-      "name": "hidden: maximum-length input requires checking every split",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"},
+      "name": "maximum-length input requires checking every split",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
+      },
       "expected": false,
-      "tags": ["hidden", "maximum-length", "full-scan"]
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "full-scan"
+      ]
     }
   ]
 }

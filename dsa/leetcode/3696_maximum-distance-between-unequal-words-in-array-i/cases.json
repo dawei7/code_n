@@ -7,108 +7,321 @@
       "name": "sample: the first and last words give distance three",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["leetcode", "leetcode", "codeforces"]},
+      "input": {
+        "words": [
+          "leetcode",
+          "leetcode",
+          "codeforces"
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "endpoint-pair"]
+      "tags": [
+        "sample",
+        "endpoint-pair"
+      ]
     },
     {
       "id": "sample-interior-to-last",
       "name": "sample: an interior word and the last word give distance four",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["a", "b", "c", "a", "a"]},
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "c",
+          "a",
+          "a"
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "repeated-endpoints"]
+      "tags": [
+        "sample",
+        "repeated-endpoints"
+      ]
     },
     {
       "id": "sample-all-equal",
       "name": "sample: equal words provide no valid pair",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["z", "z", "z"]},
+      "input": {
+        "words": [
+          "z",
+          "z",
+          "z"
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "all-equal"]
+      "tags": [
+        "sample",
+        "all-equal"
+      ]
     },
     {
       "id": "trial-single-word",
       "name": "trial: one word cannot form a pair",
       "kind": "trial",
       "visible": true,
-      "input": {"words": ["a"]},
+      "input": {
+        "words": [
+          "a"
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-two-unequal-words",
       "name": "trial: adjacent unequal words have inclusive distance two",
       "kind": "trial",
       "visible": true,
-      "input": {"words": ["a", "b"]},
+      "input": {
+        "words": [
+          "a",
+          "b"
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "inclusive-distance"]
+      "tags": [
+        "trial",
+        "inclusive-distance"
+      ]
     },
     {
       "id": "trial-different-last-word",
       "name": "trial: a different last word spans the whole array",
       "kind": "trial",
       "visible": true,
-      "input": {"words": ["a", "a", "b"]},
+      "input": {
+        "words": [
+          "a",
+          "a",
+          "b"
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "endpoint-pair"]
+      "tags": [
+        "trial",
+        "endpoint-pair"
+      ]
     },
     {
       "id": "trial-different-first-word",
       "name": "trial: a different first word also spans the whole array",
       "kind": "trial",
       "visible": true,
-      "input": {"words": ["b", "a", "a"]},
+      "input": {
+        "words": [
+          "b",
+          "a",
+          "a"
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "endpoint-pair"]
+      "tags": [
+        "trial",
+        "endpoint-pair"
+      ]
     },
     {
       "id": "real-equal-endpoints-one-difference",
-      "name": "hidden: one interior difference is two positions from either boundary",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["a", "b", "a"]},
+      "name": "one interior difference is two positions from either boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "a"
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "repeated-endpoints"]
+      "tags": [
+        "hidden",
+        "repeated-endpoints"
+      ]
     },
     {
       "id": "real-centered-difference",
-      "name": "hidden: a centered unequal word has equal endpoint distances",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["a", "a", "b", "a", "a"]},
+      "name": "a centered unequal word has equal endpoint distances",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "a",
+          "b",
+          "a",
+          "a"
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "centered-difference"]
+      "tags": [
+        "hidden",
+        "centered-difference"
+      ]
     },
     {
       "id": "real-unequal-interior-block",
-      "name": "hidden: an unequal interior block reaches four positions",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["a", "b", "b", "b", "a"]},
+      "name": "an unequal interior block reaches four positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "b",
+          "b",
+          "a"
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "repeated-endpoints"]
+      "tags": [
+        "hidden",
+        "repeated-endpoints"
+      ]
     },
     {
       "id": "real-maximum-length-single-difference",
-      "name": "hidden: one differing word in a maximum-length array",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "b", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"]},
+      "name": "one differing word in a maximum-length array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "b",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a"
+        ]
+      },
       "expected": 51,
-      "tags": ["hidden", "maximum-length", "centered-difference"]
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "centered-difference"
+      ]
     },
     {
       "id": "real-unequal-maximum-word-length-endpoints",
-      "name": "hidden: unequal ten-character endpoints span the array",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["aaaaaaaaaa", "m", "n", "o", "p", "zzzzzzzzzz"]},
+      "name": "unequal ten-character endpoints span the array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aaaaaaaaaa",
+          "m",
+          "n",
+          "o",
+          "p",
+          "zzzzzzzzzz"
+        ]
+      },
       "expected": 6,
-      "tags": ["hidden", "maximum-word-length", "endpoint-pair"]
+      "tags": [
+        "hidden",
+        "maximum-word-length",
+        "endpoint-pair"
+      ]
     }
   ]
 }

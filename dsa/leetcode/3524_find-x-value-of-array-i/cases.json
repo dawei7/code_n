@@ -2,14 +2,221 @@
   "schema_version": 1,
   "challenge_id": "lc_3524",
   "cases": [
-    {"id":"sample-three-remainders","name":"sample: products distributed over three remainders","kind":"sample","visible":true,"input":{"nums":[1,2,3,4,5],"k":3},"expected":[9,2,4],"tags":["sample","mixed"]},
-    {"id":"sample-powers-of-two","name":"sample: powers of two modulo four","kind":"sample","visible":true,"input":{"nums":[1,2,4,8,16,32],"k":4},"expected":[18,1,2,0],"tags":["sample","zero-remainder"]},
-    {"id":"sample-binary","name":"sample: repeated ones around a two","kind":"sample","visible":true,"input":{"nums":[1,1,2,1,1],"k":2},"expected":[9,6],"tags":["sample","binary-remainders"]},
-    {"id":"trial-single","name":"trial: one subarray","kind":"trial","visible":true,"input":{"nums":[7],"k":5},"expected":[0,0,1,0,0],"tags":["trial","single-element"]},
-    {"id":"trial-two-elements","name":"trial: singleton and pair products","kind":"trial","visible":true,"input":{"nums":[2,3],"k":4},"expected":[0,0,2,1],"tags":["trial","short-array"]},
-    {"id":"real-modulus-one","name":"real: all subarrays have remainder zero","kind":"real","visible":false,"input":{"nums":[9,8,7],"k":1},"expected":[6],"tags":["real","modulus-one"]},
-    {"id":"real-all-divisible","name":"real: every product is divisible by k","kind":"real","visible":false,"input":{"nums":[5,5,5],"k":5},"expected":[6,0,0,0,0],"tags":["real","zero-remainder"]},
-    {"id":"real-repeated-two","name":"real: products alternate between two remainders","kind":"real","visible":false,"input":{"nums":[2,2,2],"k":3},"expected":[0,2,4],"tags":["real","repeated-value"]},
-    {"id":"real-mixed-products","name":"real: all subarray lengths contribute","kind":"real","visible":false,"input":{"nums":[3,1,4],"k":5},"expected":[0,1,1,2,2],"tags":["real","mixed"]}
+    {
+      "id": "sample-three-remainders",
+      "name": "sample: products distributed over three remainders",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "k": 3
+      },
+      "expected": [
+        9,
+        2,
+        4
+      ],
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-powers-of-two",
+      "name": "sample: powers of two modulo four",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "k": 4
+      },
+      "expected": [
+        18,
+        1,
+        2,
+        0
+      ],
+      "tags": [
+        "sample",
+        "zero-remainder"
+      ]
+    },
+    {
+      "id": "sample-binary",
+      "name": "sample: repeated ones around a two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": [
+        9,
+        6
+      ],
+      "tags": [
+        "sample",
+        "binary-remainders"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one subarray",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 5
+      },
+      "expected": [
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-two-elements",
+      "name": "trial: singleton and pair products",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3
+        ],
+        "k": 4
+      },
+      "expected": [
+        0,
+        0,
+        2,
+        1
+      ],
+      "tags": [
+        "trial",
+        "short-array"
+      ]
+    },
+    {
+      "id": "real-modulus-one",
+      "name": "real: all subarrays have remainder zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          8,
+          7
+        ],
+        "k": 1
+      },
+      "expected": [
+        6
+      ],
+      "tags": [
+        "real",
+        "modulus-one"
+      ]
+    },
+    {
+      "id": "real-all-divisible",
+      "name": "real: every product is divisible by k",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ],
+        "k": 5
+      },
+      "expected": [
+        6,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "real",
+        "zero-remainder"
+      ]
+    },
+    {
+      "id": "real-repeated-two",
+      "name": "real: products alternate between two remainders",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ],
+        "k": 3
+      },
+      "expected": [
+        0,
+        2,
+        4
+      ],
+      "tags": [
+        "real",
+        "repeated-value"
+      ]
+    },
+    {
+      "id": "real-mixed-products",
+      "name": "real: all subarray lengths contribute",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          4
+        ],
+        "k": 5
+      },
+      "expected": [
+        0,
+        1,
+        1,
+        2,
+        2
+      ],
+      "tags": [
+        "real",
+        "mixed"
+      ]
+    }
   ]
 }

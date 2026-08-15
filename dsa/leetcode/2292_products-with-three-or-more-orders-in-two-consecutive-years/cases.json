@@ -2,12 +2,468 @@
   "schema_version": 1,
   "challenge_id": "lc_2292",
   "cases": [
-    {"id":"sample-one-product","name":"sample: three orders in each of two consecutive years","kind":"sample","visible":true,"input":{"tables":{"Orders":[{"order_id":1,"product_id":1,"quantity":7,"purchase_date":"2020-03-16"},{"order_id":2,"product_id":1,"quantity":4,"purchase_date":"2020-12-02"},{"order_id":3,"product_id":1,"quantity":7,"purchase_date":"2020-05-10"},{"order_id":4,"product_id":1,"quantity":6,"purchase_date":"2021-12-23"},{"order_id":5,"product_id":1,"quantity":5,"purchase_date":"2021-05-21"},{"order_id":6,"product_id":1,"quantity":6,"purchase_date":"2021-10-11"},{"order_id":7,"product_id":2,"quantity":6,"purchase_date":"2022-10-11"}]}},"expected":{"columns":["product_id"],"rows":[[1]]},"validator":{"kind":"unordered_table"},"tags":["sample","consecutive-years"]},
-    {"id":"trial-nonconsecutive","name":"qualifying counts separated by a missing year do not match","kind":"trial","visible":true,"input":{"tables":{"Orders":[{"order_id":1,"product_id":4,"quantity":1,"purchase_date":"2020-01-01"},{"order_id":2,"product_id":4,"quantity":1,"purchase_date":"2020-02-01"},{"order_id":3,"product_id":4,"quantity":1,"purchase_date":"2020-03-01"},{"order_id":4,"product_id":4,"quantity":1,"purchase_date":"2022-01-01"},{"order_id":5,"product_id":4,"quantity":1,"purchase_date":"2022-02-01"},{"order_id":6,"product_id":4,"quantity":1,"purchase_date":"2022-03-01"}]}},"expected":{"columns":["product_id"],"rows":[]},"validator":{"kind":"unordered_table"},"tags":["year-gap"]},
-    {"id":"trial-threshold-both-years","name":"six total orders are insufficient when one year has only two","kind":"trial","visible":true,"input":{"tables":{"Orders":[{"order_id":1,"product_id":7,"quantity":1,"purchase_date":"2023-01-01"},{"order_id":2,"product_id":7,"quantity":1,"purchase_date":"2023-02-01"},{"order_id":3,"product_id":7,"quantity":1,"purchase_date":"2024-01-01"},{"order_id":4,"product_id":7,"quantity":1,"purchase_date":"2024-02-01"},{"order_id":5,"product_id":7,"quantity":1,"purchase_date":"2024-03-01"},{"order_id":6,"product_id":7,"quantity":1,"purchase_date":"2024-04-01"}]}},"expected":{"columns":["product_id"],"rows":[]},"validator":{"kind":"unordered_table"},"tags":["per-year-threshold"]},
-    {"id":"trial-multiple-products","name":"independent qualifying products are all returned","kind":"trial","visible":true,"input":{"tables":{"Orders":[{"order_id":1,"product_id":1,"quantity":1,"purchase_date":"2020-01-01"},{"order_id":2,"product_id":1,"quantity":1,"purchase_date":"2020-02-01"},{"order_id":3,"product_id":1,"quantity":1,"purchase_date":"2020-03-01"},{"order_id":4,"product_id":1,"quantity":1,"purchase_date":"2021-01-01"},{"order_id":5,"product_id":1,"quantity":1,"purchase_date":"2021-02-01"},{"order_id":6,"product_id":1,"quantity":1,"purchase_date":"2021-03-01"},{"order_id":7,"product_id":2,"quantity":1,"purchase_date":"2022-01-01"},{"order_id":8,"product_id":2,"quantity":1,"purchase_date":"2022-02-01"},{"order_id":9,"product_id":2,"quantity":1,"purchase_date":"2022-03-01"},{"order_id":10,"product_id":2,"quantity":1,"purchase_date":"2023-01-01"},{"order_id":11,"product_id":2,"quantity":1,"purchase_date":"2023-02-01"},{"order_id":12,"product_id":2,"quantity":1,"purchase_date":"2023-03-01"}]}},"expected":{"columns":["product_id"],"rows":[[1],[2]]},"validator":{"kind":"unordered_table"},"tags":["multiple-products"]},
-    {"id":"real-quantity-ignored","name":"hidden: quantity does not replace the order count","kind":"real","visible":false,"input":{"tables":{"Orders":[{"order_id":1,"product_id":9,"quantity":100,"purchase_date":"2020-01-01"},{"order_id":2,"product_id":9,"quantity":100,"purchase_date":"2021-01-01"}]}},"expected":{"columns":["product_id"],"rows":[]},"validator":{"kind":"unordered_table"},"tags":["hidden","quantity"]},
-    {"id":"real-three-year-run","name":"hidden: several adjacent pairs emit one product row","kind":"real","visible":false,"input":{"tables":{"Orders":[{"order_id":1,"product_id":5,"quantity":1,"purchase_date":"2020-01-01"},{"order_id":2,"product_id":5,"quantity":1,"purchase_date":"2020-02-01"},{"order_id":3,"product_id":5,"quantity":1,"purchase_date":"2020-03-01"},{"order_id":4,"product_id":5,"quantity":1,"purchase_date":"2021-01-01"},{"order_id":5,"product_id":5,"quantity":1,"purchase_date":"2021-02-01"},{"order_id":6,"product_id":5,"quantity":1,"purchase_date":"2021-03-01"},{"order_id":7,"product_id":5,"quantity":1,"purchase_date":"2022-01-01"},{"order_id":8,"product_id":5,"quantity":1,"purchase_date":"2022-02-01"},{"order_id":9,"product_id":5,"quantity":1,"purchase_date":"2022-03-01"}]}},"expected":{"columns":["product_id"],"rows":[[5]]},"validator":{"kind":"unordered_table"},"tags":["hidden","deduplicate"]},
-    {"id":"real-two-orders-each","name":"hidden: two orders in each year remain below threshold","kind":"real","visible":false,"input":{"tables":{"Orders":[{"order_id":1,"product_id":3,"quantity":2,"purchase_date":"2021-04-01"},{"order_id":2,"product_id":3,"quantity":2,"purchase_date":"2021-05-01"},{"order_id":3,"product_id":3,"quantity":2,"purchase_date":"2022-04-01"},{"order_id":4,"product_id":3,"quantity":2,"purchase_date":"2022-05-01"}]}},"expected":{"columns":["product_id"],"rows":[]},"validator":{"kind":"unordered_table"},"tags":["hidden","threshold"]}
+    {
+      "id": "sample-one-product",
+      "name": "sample: three orders in each of two consecutive years",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "product_id": 1,
+              "quantity": 7,
+              "purchase_date": "2020-03-16"
+            },
+            {
+              "order_id": 2,
+              "product_id": 1,
+              "quantity": 4,
+              "purchase_date": "2020-12-02"
+            },
+            {
+              "order_id": 3,
+              "product_id": 1,
+              "quantity": 7,
+              "purchase_date": "2020-05-10"
+            },
+            {
+              "order_id": 4,
+              "product_id": 1,
+              "quantity": 6,
+              "purchase_date": "2021-12-23"
+            },
+            {
+              "order_id": 5,
+              "product_id": 1,
+              "quantity": 5,
+              "purchase_date": "2021-05-21"
+            },
+            {
+              "order_id": 6,
+              "product_id": 1,
+              "quantity": 6,
+              "purchase_date": "2021-10-11"
+            },
+            {
+              "order_id": 7,
+              "product_id": 2,
+              "quantity": 6,
+              "purchase_date": "2022-10-11"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id"
+        ],
+        "rows": [
+          [
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "sample",
+        "consecutive-years"
+      ]
+    },
+    {
+      "id": "trial-nonconsecutive",
+      "name": "qualifying counts separated by a missing year do not match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "product_id": 4,
+              "quantity": 1,
+              "purchase_date": "2020-01-01"
+            },
+            {
+              "order_id": 2,
+              "product_id": 4,
+              "quantity": 1,
+              "purchase_date": "2020-02-01"
+            },
+            {
+              "order_id": 3,
+              "product_id": 4,
+              "quantity": 1,
+              "purchase_date": "2020-03-01"
+            },
+            {
+              "order_id": 4,
+              "product_id": 4,
+              "quantity": 1,
+              "purchase_date": "2022-01-01"
+            },
+            {
+              "order_id": 5,
+              "product_id": 4,
+              "quantity": 1,
+              "purchase_date": "2022-02-01"
+            },
+            {
+              "order_id": 6,
+              "product_id": 4,
+              "quantity": 1,
+              "purchase_date": "2022-03-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "year-gap"
+      ]
+    },
+    {
+      "id": "trial-threshold-both-years",
+      "name": "six total orders are insufficient when one year has only two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "product_id": 7,
+              "quantity": 1,
+              "purchase_date": "2023-01-01"
+            },
+            {
+              "order_id": 2,
+              "product_id": 7,
+              "quantity": 1,
+              "purchase_date": "2023-02-01"
+            },
+            {
+              "order_id": 3,
+              "product_id": 7,
+              "quantity": 1,
+              "purchase_date": "2024-01-01"
+            },
+            {
+              "order_id": 4,
+              "product_id": 7,
+              "quantity": 1,
+              "purchase_date": "2024-02-01"
+            },
+            {
+              "order_id": 5,
+              "product_id": 7,
+              "quantity": 1,
+              "purchase_date": "2024-03-01"
+            },
+            {
+              "order_id": 6,
+              "product_id": 7,
+              "quantity": 1,
+              "purchase_date": "2024-04-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "per-year-threshold"
+      ]
+    },
+    {
+      "id": "trial-multiple-products",
+      "name": "independent qualifying products are all returned",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "product_id": 1,
+              "quantity": 1,
+              "purchase_date": "2020-01-01"
+            },
+            {
+              "order_id": 2,
+              "product_id": 1,
+              "quantity": 1,
+              "purchase_date": "2020-02-01"
+            },
+            {
+              "order_id": 3,
+              "product_id": 1,
+              "quantity": 1,
+              "purchase_date": "2020-03-01"
+            },
+            {
+              "order_id": 4,
+              "product_id": 1,
+              "quantity": 1,
+              "purchase_date": "2021-01-01"
+            },
+            {
+              "order_id": 5,
+              "product_id": 1,
+              "quantity": 1,
+              "purchase_date": "2021-02-01"
+            },
+            {
+              "order_id": 6,
+              "product_id": 1,
+              "quantity": 1,
+              "purchase_date": "2021-03-01"
+            },
+            {
+              "order_id": 7,
+              "product_id": 2,
+              "quantity": 1,
+              "purchase_date": "2022-01-01"
+            },
+            {
+              "order_id": 8,
+              "product_id": 2,
+              "quantity": 1,
+              "purchase_date": "2022-02-01"
+            },
+            {
+              "order_id": 9,
+              "product_id": 2,
+              "quantity": 1,
+              "purchase_date": "2022-03-01"
+            },
+            {
+              "order_id": 10,
+              "product_id": 2,
+              "quantity": 1,
+              "purchase_date": "2023-01-01"
+            },
+            {
+              "order_id": 11,
+              "product_id": 2,
+              "quantity": 1,
+              "purchase_date": "2023-02-01"
+            },
+            {
+              "order_id": 12,
+              "product_id": 2,
+              "quantity": 1,
+              "purchase_date": "2023-03-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id"
+        ],
+        "rows": [
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "multiple-products"
+      ]
+    },
+    {
+      "id": "real-quantity-ignored",
+      "name": "quantity does not replace the order count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "product_id": 9,
+              "quantity": 100,
+              "purchase_date": "2020-01-01"
+            },
+            {
+              "order_id": 2,
+              "product_id": 9,
+              "quantity": 100,
+              "purchase_date": "2021-01-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "hidden",
+        "quantity"
+      ]
+    },
+    {
+      "id": "real-three-year-run",
+      "name": "several adjacent pairs emit one product row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "product_id": 5,
+              "quantity": 1,
+              "purchase_date": "2020-01-01"
+            },
+            {
+              "order_id": 2,
+              "product_id": 5,
+              "quantity": 1,
+              "purchase_date": "2020-02-01"
+            },
+            {
+              "order_id": 3,
+              "product_id": 5,
+              "quantity": 1,
+              "purchase_date": "2020-03-01"
+            },
+            {
+              "order_id": 4,
+              "product_id": 5,
+              "quantity": 1,
+              "purchase_date": "2021-01-01"
+            },
+            {
+              "order_id": 5,
+              "product_id": 5,
+              "quantity": 1,
+              "purchase_date": "2021-02-01"
+            },
+            {
+              "order_id": 6,
+              "product_id": 5,
+              "quantity": 1,
+              "purchase_date": "2021-03-01"
+            },
+            {
+              "order_id": 7,
+              "product_id": 5,
+              "quantity": 1,
+              "purchase_date": "2022-01-01"
+            },
+            {
+              "order_id": 8,
+              "product_id": 5,
+              "quantity": 1,
+              "purchase_date": "2022-02-01"
+            },
+            {
+              "order_id": 9,
+              "product_id": 5,
+              "quantity": 1,
+              "purchase_date": "2022-03-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id"
+        ],
+        "rows": [
+          [
+            5
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "hidden",
+        "deduplicate"
+      ]
+    },
+    {
+      "id": "real-two-orders-each",
+      "name": "two orders in each year remain below threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "product_id": 3,
+              "quantity": 2,
+              "purchase_date": "2021-04-01"
+            },
+            {
+              "order_id": 2,
+              "product_id": 3,
+              "quantity": 2,
+              "purchase_date": "2021-05-01"
+            },
+            {
+              "order_id": 3,
+              "product_id": 3,
+              "quantity": 2,
+              "purchase_date": "2022-04-01"
+            },
+            {
+              "order_id": 4,
+              "product_id": 3,
+              "quantity": 2,
+              "purchase_date": "2022-05-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "hidden",
+        "threshold"
+      ]
+    }
   ]
 }

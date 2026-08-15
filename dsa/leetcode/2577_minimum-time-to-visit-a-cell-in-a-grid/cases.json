@@ -114,9 +114,9 @@
     },
     {
       "id": "real-release-exact-parity",
-      "name": "hidden: release time has reachable parity",
-      "kind": "real",
-      "visible": false,
+      "name": "release time has reachable parity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -139,9 +139,9 @@
     },
     {
       "id": "real-release-extra-second",
-      "name": "hidden: release time needs one extra second",
-      "kind": "real",
-      "visible": false,
+      "name": "release time needs one extra second",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -164,9 +164,9 @@
     },
     {
       "id": "real-maximum-release",
-      "name": "hidden: destination has the maximum release time",
-      "kind": "real",
-      "visible": false,
+      "name": "destination has the maximum release time",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -187,9 +187,9 @@
     },
     {
       "id": "real-nonmonotone-times",
-      "name": "hidden: shortest route crosses nonmonotone release times",
-      "kind": "real",
-      "visible": false,
+      "name": "shortest route crosses nonmonotone release times",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -223,9 +223,9 @@
     },
     {
       "id": "real-zero-first-neighbor",
-      "name": "hidden: a zero-valued first neighbor opens the route",
-      "kind": "real",
-      "visible": false,
+      "name": "a zero-valued first neighbor opens the route",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -253,9 +253,9 @@
     },
     {
       "id": "real-detour-with-waits",
-      "name": "hidden: detour remains reachable through oscillation",
-      "kind": "real",
-      "visible": false,
+      "name": "detour remains reachable through oscillation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

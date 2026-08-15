@@ -84,9 +84,9 @@
     },
     {
       "id": "real-uneven-clusters",
-      "name": "hidden: partition is not by equal group size",
-      "kind": "real",
-      "visible": false,
+      "name": "partition is not by equal group size",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "houses": [
           10,
@@ -106,9 +106,9 @@
     },
     {
       "id": "real-three-separated-groups",
-      "name": "hidden: large gaps determine partitions",
-      "kind": "real",
-      "visible": false,
+      "name": "large gaps determine partitions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "houses": [
           1,
@@ -128,9 +128,9 @@
     },
     {
       "id": "real-two-houses-even-median",
-      "name": "hidden: even group has an interval of medians",
-      "kind": "real",
-      "visible": false,
+      "name": "even group has an interval of medians",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "houses": [
           1,
@@ -146,9 +146,9 @@
     },
     {
       "id": "real-position-bounds",
-      "name": "hidden: inclusive position bounds",
-      "kind": "real",
-      "visible": false,
+      "name": "inclusive position bounds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "houses": [
           1,

@@ -74,9 +74,9 @@
     },
     {
       "id": "real-no-one",
-      "name": "hidden: a lone non-power cannot form one",
-      "kind": "real",
-      "visible": false,
+      "name": "a lone non-power cannot form one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7
@@ -90,9 +90,9 @@
     },
     {
       "id": "real-duplicates-and-gap",
-      "name": "hidden: duplicate powers do not fill a missing bit",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate powers do not fill a missing bit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -111,9 +111,9 @@
     },
     {
       "id": "real-extra-bits-do-not-help",
-      "name": "hidden: multi-bit values cannot isolate missing two",
-      "kind": "real",
-      "visible": false,
+      "name": "multi-bit values cannot isolate missing two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -131,9 +131,9 @@
     },
     {
       "id": "real-unsorted-powers",
-      "name": "hidden: input order does not affect expressibility",
-      "kind": "real",
-      "visible": false,
+      "name": "input order does not affect expressibility",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           16,
@@ -152,9 +152,9 @@
     },
     {
       "id": "real-all-legal-powers",
-      "name": "hidden: answer may exceed the element bound",
-      "kind": "real",
-      "visible": false,
+      "name": "answer may exceed the element bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

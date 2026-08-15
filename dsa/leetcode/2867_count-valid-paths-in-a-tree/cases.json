@@ -6,72 +6,248 @@
       "name": "sample: two prime labels in a branched tree",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 5, "edges": [[1, 2], [1, 3], [2, 4], [2, 5]]},
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "tree"]
+      "tags": [
+        "sample",
+        "tree"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: prime labels on separate branches",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 6, "edges": [[1, 2], [1, 3], [2, 4], [3, 5], [3, 6]]},
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ]
+        ]
+      },
       "expected": 6,
-      "tags": ["sample", "branches"]
+      "tags": [
+        "sample",
+        "branches"
+      ]
     },
     {
       "id": "trial-single-node",
       "name": "trial: no distinct endpoint pair",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "edges": []},
+      "input": {
+        "n": 1,
+        "edges": []
+      },
       "expected": 0,
-      "tags": ["trial", "minimum-size"]
+      "tags": [
+        "trial",
+        "minimum-size"
+      ]
     },
     {
       "id": "trial-one-edge",
       "name": "trial: one non-prime and one prime label",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "edges": [[1, 2]]},
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            1,
+            2
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "single-path"]
+      "tags": [
+        "trial",
+        "single-path"
+      ]
     },
     {
       "id": "trial-consecutive-primes",
       "name": "trial: adjacent prime labels invalidate longer paths",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 3, "edges": [[1, 2], [2, 3]]},
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "adjacent-primes"]
+      "tags": [
+        "trial",
+        "adjacent-primes"
+      ]
     },
     {
       "id": "real-prime-center",
-      "name": "hidden: one prime joins several non-prime components",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 7, "edges": [[2, 1], [2, 3], [2, 4], [2, 5], [2, 6], [2, 7]]},
+      "name": "one prime joins several non-prime components",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "edges": [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            7
+          ]
+        ]
+      },
       "expected": 6,
-      "tags": ["hidden", "component-pairs"]
+      "tags": [
+        "hidden",
+        "component-pairs"
+      ]
     },
     {
       "id": "real-chain",
-      "name": "hidden: several prime separators on a chain",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 10, "edges": [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9], [9, 10]]},
+      "name": "several prime separators on a chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            9,
+            10
+          ]
+        ]
+      },
       "expected": 12,
-      "tags": ["hidden", "chain", "multiple-primes"]
+      "tags": [
+        "hidden",
+        "chain",
+        "multiple-primes"
+      ]
     },
     {
       "id": "real-two-prime-branches",
-      "name": "hidden: paths through different prime branches stay separate",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 4, "edges": [[1, 2], [1, 3], [1, 4]]},
+      "name": "paths through different prime branches stay separate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ]
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "unordered-paths"]
+      "tags": [
+        "hidden",
+        "unordered-paths"
+      ]
     }
   ]
 }

@@ -1,12 +1,138 @@
 {
   "challenge_id": "lc_2667",
   "cases": [
-    {"id":"sample-no-arguments","name":"sample: call without arguments","kind":"sample","visible":true,"input":{"args":[]},"expected":"Hello World","tags":["sample","zero-arguments"]},
-    {"id":"sample-mixed-arguments","name":"sample: mixed values are ignored","kind":"sample","visible":true,"input":{"args":[{},null,42]},"expected":"Hello World","tags":["sample","mixed-types"]},
-    {"id":"trial-string-argument","name":"trial: unrelated string is ignored","kind":"trial","visible":true,"input":{"args":["goodbye"]},"expected":"Hello World","tags":["string"]},
-    {"id":"trial-boolean-argument","name":"trial: Boolean values are ignored","kind":"trial","visible":true,"input":{"args":[false,true]},"expected":"Hello World","tags":["boolean"]},
-    {"id":"real-nested-values","name":"hidden: nested arrays and objects are ignored","kind":"real","visible":false,"input":{"args":[[1,2,{"x":3}],{"nested":{"value":4}}]},"expected":"Hello World","tags":["hidden","nested"]},
-    {"id":"real-ten-arguments","name":"hidden: maximum argument count","kind":"real","visible":false,"input":{"args":[0,1,2,3,4,5,6,7,8,9]},"expected":"Hello World","tags":["hidden","maximum-arity"]},
-    {"id":"real-confusing-target-text","name":"hidden: near-match input cannot replace exact result","kind":"real","visible":false,"input":{"args":["hello world","Hello world","Hello World!"]},"expected":"Hello World","tags":["hidden","exact-string"]}
+    {
+      "id": "sample-no-arguments",
+      "name": "sample: call without arguments",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "args": []
+      },
+      "expected": "Hello World",
+      "tags": [
+        "sample",
+        "zero-arguments"
+      ]
+    },
+    {
+      "id": "sample-mixed-arguments",
+      "name": "sample: mixed values are ignored",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "args": [
+          {},
+          null,
+          42
+        ]
+      },
+      "expected": "Hello World",
+      "tags": [
+        "sample",
+        "mixed-types"
+      ]
+    },
+    {
+      "id": "trial-string-argument",
+      "name": "trial: unrelated string is ignored",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "args": [
+          "goodbye"
+        ]
+      },
+      "expected": "Hello World",
+      "tags": [
+        "string"
+      ]
+    },
+    {
+      "id": "trial-boolean-argument",
+      "name": "trial: Boolean values are ignored",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "args": [
+          false,
+          true
+        ]
+      },
+      "expected": "Hello World",
+      "tags": [
+        "boolean"
+      ]
+    },
+    {
+      "id": "real-nested-values",
+      "name": "nested arrays and objects are ignored",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "args": [
+          [
+            1,
+            2,
+            {
+              "x": 3
+            }
+          ],
+          {
+            "nested": {
+              "value": 4
+            }
+          }
+        ]
+      },
+      "expected": "Hello World",
+      "tags": [
+        "hidden",
+        "nested"
+      ]
+    },
+    {
+      "id": "real-ten-arguments",
+      "name": "maximum argument count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "args": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "expected": "Hello World",
+      "tags": [
+        "hidden",
+        "maximum-arity"
+      ]
+    },
+    {
+      "id": "real-confusing-target-text",
+      "name": "near-match input cannot replace exact result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "args": [
+          "hello world",
+          "Hello world",
+          "Hello World!"
+        ]
+      },
+      "expected": "Hello World",
+      "tags": [
+        "hidden",
+        "exact-string"
+      ]
+    }
   ]
 }

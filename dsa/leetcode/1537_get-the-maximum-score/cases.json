@@ -149,9 +149,9 @@
     },
     {
       "id": "real-independent-segments",
-      "name": "hidden: different arrays win consecutive segments",
-      "kind": "real",
-      "visible": false,
+      "name": "different arrays win consecutive segments",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -179,9 +179,9 @@
     },
     {
       "id": "real-no-shared-near-limit",
-      "name": "hidden: values near the element bound stay disjoint",
-      "kind": "real",
-      "visible": false,
+      "name": "values near the element bound stay disjoint",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           9999998,
@@ -200,9 +200,9 @@
     },
     {
       "id": "real-middle-and-tail-decisions",
-      "name": "hidden: best prefix and suffix come from different arrays",
-      "kind": "real",
-      "visible": false,
+      "name": "best prefix and suffix come from different arrays",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -230,9 +230,9 @@
     },
     {
       "id": "real-modulo-final-total",
-      "name": "hidden: final score exceeds the modulus",
-      "kind": "real",
-      "visible": false,
+      "name": "final score exceeds the modulus",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           9999900,

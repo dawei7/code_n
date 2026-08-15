@@ -97,9 +97,9 @@
     },
     {
       "id": "real-front-heavy",
-      "name": "hidden: large opening pile",
-      "kind": "real",
-      "visible": false,
+      "name": "large opening pile",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           100,
@@ -119,9 +119,9 @@
     },
     {
       "id": "real-alternating",
-      "name": "hidden: alternating pile values",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating pile values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           9,
@@ -142,9 +142,9 @@
     },
     {
       "id": "real-increasing",
-      "name": "hidden: increasing sequence",
-      "kind": "real",
-      "visible": false,
+      "name": "increasing sequence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "piles": [
           1,

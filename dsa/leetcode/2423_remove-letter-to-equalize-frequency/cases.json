@@ -6,72 +6,112 @@
       "name": "sample: reduce the only excess count",
       "kind": "sample",
       "visible": true,
-      "input": {"word": "abcc"},
+      "input": {
+        "word": "abcc"
+      },
       "expected": true,
-      "tags": ["sample", "decrement"]
+      "tags": [
+        "sample",
+        "decrement"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: two equal pairs cannot stay equal",
       "kind": "sample",
       "visible": true,
-      "input": {"word": "aazz"},
+      "input": {
+        "word": "aazz"
+      },
       "expected": false,
-      "tags": ["sample", "exactly-one"]
+      "tags": [
+        "sample",
+        "exactly-one"
+      ]
     },
     {
       "id": "trial-delete-unique-letter",
       "name": "trial: remove a frequency-one letter completely",
       "kind": "trial",
       "visible": true,
-      "input": {"word": "abbcc"},
+      "input": {
+        "word": "abbcc"
+      },
       "expected": true,
-      "tags": ["trial", "zero-count"]
+      "tags": [
+        "trial",
+        "zero-count"
+      ]
     },
     {
       "id": "trial-single-letter-type",
       "name": "trial: one distinct letter remains uniform",
       "kind": "trial",
       "visible": true,
-      "input": {"word": "aaa"},
+      "input": {
+        "word": "aaa"
+      },
       "expected": true,
-      "tags": ["trial", "one-type"]
+      "tags": [
+        "trial",
+        "one-type"
+      ]
     },
     {
       "id": "real-two-characters",
-      "name": "hidden: deleting from a two-character word",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "ab"},
+      "name": "deleting from a two-character word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "ab"
+      },
       "expected": true,
-      "tags": ["hidden", "minimum-length"]
+      "tags": [
+        "hidden",
+        "minimum-length"
+      ]
     },
     {
       "id": "real-three-equal-pairs",
-      "name": "hidden: mandatory deletion breaks equal pairs",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "aabbcc"},
+      "name": "mandatory deletion breaks equal pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aabbcc"
+      },
       "expected": false,
-      "tags": ["hidden", "exactly-one"]
+      "tags": [
+        "hidden",
+        "exactly-one"
+      ]
     },
     {
       "id": "real-one-excess-among-pairs",
-      "name": "hidden: decrement one count to match two others",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "aaabbbbcc"},
+      "name": "decrement one count to match two others",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaabbbbcc"
+      },
       "expected": false,
-      "tags": ["hidden", "multiple-frequencies"]
+      "tags": [
+        "hidden",
+        "multiple-frequencies"
+      ]
     },
     {
       "id": "real-balanced-three-and-three",
-      "name": "hidden: equal larger counts cannot survive deletion",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "aaabbb"},
+      "name": "equal larger counts cannot survive deletion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaabbb"
+      },
       "expected": false,
-      "tags": ["hidden", "balanced"]
+      "tags": [
+        "hidden",
+        "balanced"
+      ]
     }
   ]
 }

@@ -50,9 +50,9 @@
     },
     {
       "id": "real-two-from-zero",
-      "name": "hidden: two terms beginning at zero",
-      "kind": "real",
-      "visible": false,
+      "name": "two terms beginning at zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 2,
         "start": 0
@@ -66,9 +66,9 @@
     },
     {
       "id": "real-three-odd",
-      "name": "hidden: odd start and odd length",
-      "kind": "real",
-      "visible": false,
+      "name": "odd start and odd length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "start": 7
@@ -82,9 +82,9 @@
     },
     {
       "id": "real-six-even",
-      "name": "hidden: even progression across bit boundaries",
-      "kind": "real",
-      "visible": false,
+      "name": "even progression across bit boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "start": 2
@@ -97,9 +97,9 @@
     },
     {
       "id": "real-maximum-length",
-      "name": "hidden: maximum length and start",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum length and start",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000,
         "start": 1000
@@ -113,9 +113,9 @@
     },
     {
       "id": "real-long-odd-length",
-      "name": "hidden: long odd-length progression from zero",
-      "kind": "real",
-      "visible": false,
+      "name": "long odd-length progression from zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 999,
         "start": 0

@@ -7,120 +7,266 @@
       "name": "sample: skip a smaller middle value",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [5, 4, 7]},
+      "input": {
+        "nums": [
+          5,
+          4,
+          7
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "subsequence-gap", "shared-bit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "subsequence-gap",
+        "shared-bit"
+      ]
     },
     {
       "id": "sample-full-increasing-sequence",
       "name": "sample: the entire array shares a nonzero bit",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 3, 6]},
+      "input": {
+        "nums": [
+          2,
+          3,
+          6
+        ]
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "full-array", "shared-bit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "full-array",
+        "shared-bit"
+      ]
     },
     {
       "id": "sample-zero-then-one",
       "name": "sample: skip zero and keep one",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [0, 1]},
+      "input": {
+        "nums": [
+          0,
+          1
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "zero", "single-value"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "zero",
+        "single-value"
+      ]
     },
     {
       "id": "trial-all-zeros",
       "name": "trial: no subsequence has nonzero AND",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 0, 0]},
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "zero-only", "no-valid-subsequence"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero-only",
+        "no-valid-subsequence"
+      ]
     },
     {
       "id": "trial-decreasing-nonzero-values",
       "name": "trial: decreasing order permits only one selected value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7, 5, 3, 1]},
+      "input": {
+        "nums": [
+          7,
+          5,
+          3,
+          1
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "decreasing", "strict"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "decreasing",
+        "strict"
+      ]
     },
     {
       "id": "trial-duplicate-values",
       "name": "trial: equal values cannot extend strict increase",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3, 3, 3]},
+      "input": {
+        "nums": [
+          3,
+          3,
+          3
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "duplicates", "bisect-left"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicates",
+        "bisect-left"
+      ]
     },
     {
       "id": "trial-global-lis-has-zero-and",
       "name": "trial: the unrestricted LIS must be shortened for a shared bit",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "ordinary-lis-trap", "shared-bit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "ordinary-lis-trap",
+        "shared-bit"
+      ]
     },
     {
       "id": "real-disjoint-powers-of-two",
-      "name": "hidden: pairwise disjoint bits allow only singleton subsequences",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 4, 8, 16]},
+      "name": "pairwise disjoint bits allow only singleton subsequences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8,
+          16
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "disjoint-bits", "increasing"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "disjoint-bits",
+        "increasing"
+      ]
     },
     {
       "id": "real-highest-bit",
-      "name": "hidden: bit position twenty-nine supports a full LIS",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [536870912, 536870913, 536870914]},
+      "name": "bit position twenty-nine supports a full LIS",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          536870912,
+          536870913,
+          536870914
+        ]
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "highest-bit", "value-boundary"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "highest-bit",
+        "value-boundary"
+      ]
     },
     {
       "id": "real-zero-prefix",
-      "name": "hidden: several zeros contribute no valid bit",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 0, 2]},
+      "name": "several zeros contribute no valid bit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          2
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "zero-prefix", "single-nonzero"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "zero-prefix",
+        "single-nonzero"
+      ]
     },
     {
       "id": "real-noncontiguous-shared-bit",
-      "name": "hidden: the optimum skips intervening values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 1, 6, 3, 7]},
+      "name": "the optimum skips intervening values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          6,
+          3,
+          7
+        ]
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "subsequence-gaps", "multiple-bits"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "subsequence-gaps",
+        "multiple-bits"
+      ]
     },
     {
       "id": "real-maximum-value",
-      "name": "hidden: the maximum permitted value forms a valid singleton",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000]},
+      "name": "the maximum permitted value forms a valid singleton",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-value", "singleton"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "singleton"
+      ]
     }
   ]
 }

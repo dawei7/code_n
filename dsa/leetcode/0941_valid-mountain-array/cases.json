@@ -112,9 +112,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: second rise after descent",
-      "kind": "real",
-      "visible": false,
+      "name": "second rise after descent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,
@@ -132,9 +132,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: longer valid mountain",
-      "kind": "real",
-      "visible": false,
+      "name": "longer valid mountain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,
@@ -154,9 +154,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: interior plateau",
-      "kind": "real",
-      "visible": false,
+      "name": "interior plateau",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -175,9 +175,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: maximum value at peak",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum value at peak",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,

@@ -150,9 +150,9 @@
     },
     {
       "id": "real-duplicate-orders",
-      "name": "hidden: repeated orders do not duplicate output",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated orders do not duplicate output",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customers": [

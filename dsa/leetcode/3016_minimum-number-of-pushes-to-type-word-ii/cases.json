@@ -71,8 +71,8 @@
     {
       "id": "all-distinct",
       "name": "real: all lowercase letters occur once",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "abcdefghijklmnopqrstuvwxyz"
       },
@@ -84,8 +84,8 @@
     {
       "id": "all-equal-frequencies",
       "name": "real: every letter occurs twice",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
       },
@@ -97,8 +97,8 @@
     {
       "id": "dominant-letter",
       "name": "real: one dominant frequency remains at cost one",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "aaaaaaaaaaaaaaaaaaaabcdefghijk"
       },

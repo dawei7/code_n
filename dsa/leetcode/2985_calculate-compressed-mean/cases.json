@@ -1,8 +1,241 @@
-{"challenge_id":"lc_2985","cases":[
-{"id":"sample-compressed-mean","name":"sample: four compressed order sizes","kind":"sample","visible":true,"input":{"tables":{"Orders":[{"order_id":10,"item_count":1,"order_occurrences":500},{"order_id":11,"item_count":2,"order_occurrences":1000},{"order_id":12,"item_count":3,"order_occurrences":800},{"order_id":13,"item_count":4,"order_occurrences":1000}]}},"expected":{"columns":["average_items_per_order"],"rows":[[2.7]]},"validator":{"kind":"ordered_table"},"tags":["sample","weighted-mean"]},
-{"id":"trial-single-row","name":"trial: one compressed row","kind":"trial","visible":true,"input":{"tables":{"Orders":[{"order_id":1,"item_count":7,"order_occurrences":999}]}},"expected":{"columns":["average_items_per_order"],"rows":[[7.0]]},"validator":{"kind":"ordered_table"},"tags":["single-row"]},
-{"id":"trial-fractional","name":"trial: fractional weighted mean rounds","kind":"trial","visible":true,"input":{"tables":{"Orders":[{"order_id":1,"item_count":1,"order_occurrences":1},{"order_id":2,"item_count":2,"order_occurrences":2}]}},"expected":{"columns":["average_items_per_order"],"rows":[[1.67]]},"validator":{"kind":"ordered_table"},"tags":["rounding"]},
-{"id":"trial-equal-frequencies","name":"trial: equal frequencies match ordinary mean","kind":"trial","visible":true,"input":{"tables":{"Orders":[{"order_id":1,"item_count":2,"order_occurrences":5},{"order_id":2,"item_count":8,"order_occurrences":5}]}},"expected":{"columns":["average_items_per_order"],"rows":[[5.0]]},"validator":{"kind":"ordered_table"},"tags":["equal-weights"]},
-{"id":"real-skewed-frequency","name":"real: dominant compressed frequency","kind":"real","visible":false,"input":{"tables":{"Orders":[{"order_id":1,"item_count":1,"order_occurrences":1000},{"order_id":2,"item_count":100,"order_occurrences":1}]}},"expected":{"columns":["average_items_per_order"],"rows":[[1.1]]},"validator":{"kind":"ordered_table"},"tags":["hidden","skew"]},
-{"id":"real-integral-result","name":"real: weighted quotient is integral","kind":"real","visible":false,"input":{"tables":{"Orders":[{"order_id":4,"item_count":3,"order_occurrences":2},{"order_id":5,"item_count":9,"order_occurrences":2}]}},"expected":{"columns":["average_items_per_order"],"rows":[[6.0]]},"validator":{"kind":"ordered_table"},"tags":["hidden","integral"]}
-]}
+{
+  "challenge_id": "lc_2985",
+  "cases": [
+    {
+      "id": "sample-compressed-mean",
+      "name": "sample: four compressed order sizes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 10,
+              "item_count": 1,
+              "order_occurrences": 500
+            },
+            {
+              "order_id": 11,
+              "item_count": 2,
+              "order_occurrences": 1000
+            },
+            {
+              "order_id": 12,
+              "item_count": 3,
+              "order_occurrences": 800
+            },
+            {
+              "order_id": 13,
+              "item_count": 4,
+              "order_occurrences": 1000
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_items_per_order"
+        ],
+        "rows": [
+          [
+            2.7
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "weighted-mean"
+      ]
+    },
+    {
+      "id": "trial-single-row",
+      "name": "trial: one compressed row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "item_count": 7,
+              "order_occurrences": 999
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_items_per_order"
+        ],
+        "rows": [
+          [
+            7.0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "single-row"
+      ]
+    },
+    {
+      "id": "trial-fractional",
+      "name": "trial: fractional weighted mean rounds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "item_count": 1,
+              "order_occurrences": 1
+            },
+            {
+              "order_id": 2,
+              "item_count": 2,
+              "order_occurrences": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_items_per_order"
+        ],
+        "rows": [
+          [
+            1.67
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "rounding"
+      ]
+    },
+    {
+      "id": "trial-equal-frequencies",
+      "name": "trial: equal frequencies match ordinary mean",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "item_count": 2,
+              "order_occurrences": 5
+            },
+            {
+              "order_id": 2,
+              "item_count": 8,
+              "order_occurrences": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_items_per_order"
+        ],
+        "rows": [
+          [
+            5.0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "equal-weights"
+      ]
+    },
+    {
+      "id": "real-skewed-frequency",
+      "name": "real: dominant compressed frequency",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "item_count": 1,
+              "order_occurrences": 1000
+            },
+            {
+              "order_id": 2,
+              "item_count": 100,
+              "order_occurrences": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_items_per_order"
+        ],
+        "rows": [
+          [
+            1.1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "skew"
+      ]
+    },
+    {
+      "id": "real-integral-result",
+      "name": "real: weighted quotient is integral",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 4,
+              "item_count": 3,
+              "order_occurrences": 2
+            },
+            {
+              "order_id": 5,
+              "item_count": 9,
+              "order_occurrences": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_items_per_order"
+        ],
+        "rows": [
+          [
+            6.0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "integral"
+      ]
+    }
+  ]
+}

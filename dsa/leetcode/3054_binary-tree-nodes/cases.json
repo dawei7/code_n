@@ -1,12 +1,345 @@
 {
-  "schema_version":1,
-  "challenge_id":"lc_3054",
-  "cases":[
-    {"id":"sample-official","name":"sample: root, inner, and leaf nodes","kind":"sample","visible":true,"input":{"tables":{"Tree":[{"N":1,"P":2},{"N":3,"P":2},{"N":6,"P":8},{"N":9,"P":8},{"N":2,"P":5},{"N":8,"P":5},{"N":5,"P":null}]}},"expected":{"columns":["N","Type"],"rows":[[1,"Leaf"],[2,"Inner"],[3,"Leaf"],[5,"Root"],[6,"Leaf"],[8,"Inner"],[9,"Leaf"]]},"validator":{"kind":"ordered_table"},"tags":["sample","all-types"]},
-    {"id":"sample-singleton","name":"sample: a singleton is the root","kind":"sample","visible":true,"input":{"tables":{"Tree":[{"N":42,"P":null}]}},"expected":{"columns":["N","Type"],"rows":[[42,"Root"]]},"validator":{"kind":"ordered_table"},"tags":["sample","singleton"]},
-    {"id":"sample-chain","name":"sample: a three-node chain has one of each type","kind":"sample","visible":true,"input":{"tables":{"Tree":[{"N":30,"P":20},{"N":10,"P":null},{"N":20,"P":10}]}},"expected":{"columns":["N","Type"],"rows":[[10,"Root"],[20,"Inner"],[30,"Leaf"]]},"validator":{"kind":"ordered_table"},"tags":["sample","chain","ordering"]},
-    {"id":"trial-sparse-values","name":"trial: sparse values are classified by relationships","kind":"trial","visible":true,"input":{"tables":{"Tree":[{"N":100,"P":null},{"N":7,"P":100},{"N":999,"P":100}]}},"expected":{"columns":["N","Type"],"rows":[[7,"Leaf"],[100,"Root"],[999,"Leaf"]]},"validator":{"kind":"ordered_table"},"tags":["trial","sparse-ids"]},
-    {"id":"real-unbalanced","name":"hidden: an unbalanced tree preserves all roles","kind":"real","visible":false,"input":{"tables":{"Tree":[{"N":50,"P":null},{"N":20,"P":50},{"N":70,"P":50},{"N":10,"P":20},{"N":30,"P":20},{"N":5,"P":10}]}},"expected":{"columns":["N","Type"],"rows":[[5,"Leaf"],[10,"Inner"],[20,"Inner"],[30,"Leaf"],[50,"Root"],[70,"Leaf"]]},"validator":{"kind":"ordered_table"},"tags":["hidden","unbalanced"]},
-    {"id":"real-parent-null-filter","name":"hidden: root null does not poison parent membership","kind":"real","visible":false,"input":{"tables":{"Tree":[{"N":2,"P":1},{"N":1,"P":null}]}},"expected":{"columns":["N","Type"],"rows":[[1,"Root"],[2,"Leaf"]]},"validator":{"kind":"ordered_table"},"tags":["hidden","null-semantics"]}
+  "schema_version": 1,
+  "challenge_id": "lc_3054",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: root, inner, and leaf nodes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tree": [
+            {
+              "N": 1,
+              "P": 2
+            },
+            {
+              "N": 3,
+              "P": 2
+            },
+            {
+              "N": 6,
+              "P": 8
+            },
+            {
+              "N": 9,
+              "P": 8
+            },
+            {
+              "N": 2,
+              "P": 5
+            },
+            {
+              "N": 8,
+              "P": 5
+            },
+            {
+              "N": 5,
+              "P": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "N",
+          "Type"
+        ],
+        "rows": [
+          [
+            1,
+            "Leaf"
+          ],
+          [
+            2,
+            "Inner"
+          ],
+          [
+            3,
+            "Leaf"
+          ],
+          [
+            5,
+            "Root"
+          ],
+          [
+            6,
+            "Leaf"
+          ],
+          [
+            8,
+            "Inner"
+          ],
+          [
+            9,
+            "Leaf"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "all-types"
+      ]
+    },
+    {
+      "id": "sample-singleton",
+      "name": "sample: a singleton is the root",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tree": [
+            {
+              "N": 42,
+              "P": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "N",
+          "Type"
+        ],
+        "rows": [
+          [
+            42,
+            "Root"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "singleton"
+      ]
+    },
+    {
+      "id": "sample-chain",
+      "name": "sample: a three-node chain has one of each type",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tree": [
+            {
+              "N": 30,
+              "P": 20
+            },
+            {
+              "N": 10,
+              "P": null
+            },
+            {
+              "N": 20,
+              "P": 10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "N",
+          "Type"
+        ],
+        "rows": [
+          [
+            10,
+            "Root"
+          ],
+          [
+            20,
+            "Inner"
+          ],
+          [
+            30,
+            "Leaf"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "chain",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-sparse-values",
+      "name": "trial: sparse values are classified by relationships",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tree": [
+            {
+              "N": 100,
+              "P": null
+            },
+            {
+              "N": 7,
+              "P": 100
+            },
+            {
+              "N": 999,
+              "P": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "N",
+          "Type"
+        ],
+        "rows": [
+          [
+            7,
+            "Leaf"
+          ],
+          [
+            100,
+            "Root"
+          ],
+          [
+            999,
+            "Leaf"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "sparse-ids"
+      ]
+    },
+    {
+      "id": "real-unbalanced",
+      "name": "an unbalanced tree preserves all roles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tree": [
+            {
+              "N": 50,
+              "P": null
+            },
+            {
+              "N": 20,
+              "P": 50
+            },
+            {
+              "N": 70,
+              "P": 50
+            },
+            {
+              "N": 10,
+              "P": 20
+            },
+            {
+              "N": 30,
+              "P": 20
+            },
+            {
+              "N": 5,
+              "P": 10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "N",
+          "Type"
+        ],
+        "rows": [
+          [
+            5,
+            "Leaf"
+          ],
+          [
+            10,
+            "Inner"
+          ],
+          [
+            20,
+            "Inner"
+          ],
+          [
+            30,
+            "Leaf"
+          ],
+          [
+            50,
+            "Root"
+          ],
+          [
+            70,
+            "Leaf"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "unbalanced"
+      ]
+    },
+    {
+      "id": "real-parent-null-filter",
+      "name": "root null does not poison parent membership",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tree": [
+            {
+              "N": 2,
+              "P": 1
+            },
+            {
+              "N": 1,
+              "P": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "N",
+          "Type"
+        ],
+        "rows": [
+          [
+            1,
+            "Root"
+          ],
+          [
+            2,
+            "Leaf"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "null-semantics"
+      ]
+    }
   ]
 }

@@ -7,90 +7,266 @@
       "name": "sample: recover positive once and twice values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 2, 3, 2, 5, 5, 5, 7, 7]},
-      "expected": [3, 7],
-      "tags": ["sample", "positive-values", "mixed-order"]
+      "input": {
+        "nums": [
+          2,
+          2,
+          3,
+          2,
+          5,
+          5,
+          5,
+          7,
+          7
+        ]
+      },
+      "expected": [
+        3,
+        7
+      ],
+      "tags": [
+        "sample",
+        "positive-values",
+        "mixed-order"
+      ]
     },
     {
       "id": "sample-eight-six",
       "name": "sample: output order follows frequencies rather than positions",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 4, 6, 4, 9, 9, 9, 6, 8]},
-      "expected": [8, 6],
-      "tags": ["sample", "frequency-order", "positive-values"]
+      "input": {
+        "nums": [
+          4,
+          4,
+          6,
+          4,
+          9,
+          9,
+          9,
+          6,
+          8
+        ]
+      },
+      "expected": [
+        8,
+        6
+      ],
+      "tags": [
+        "sample",
+        "frequency-order",
+        "positive-values"
+      ]
     },
     {
       "id": "trial-minimum-length-zero-once",
       "name": "trial: minimum array with zero occurring once",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 0, 1]},
-      "expected": [0, 1],
-      "tags": ["trial", "minimum-length", "zero"]
+      "input": {
+        "nums": [
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "tags": [
+        "trial",
+        "minimum-length",
+        "zero"
+      ]
     },
     {
       "id": "trial-minimum-signed-boundaries",
       "name": "trial: signed minimum occurs once and maximum twice",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-2147483648, 2147483647, 2147483647]},
-      "expected": [-2147483648, 2147483647],
-      "tags": ["trial", "minimum-length", "signed-boundaries"]
+      "input": {
+        "nums": [
+          -2147483648,
+          2147483647,
+          2147483647
+        ]
+      },
+      "expected": [
+        -2147483648,
+        2147483647
+      ],
+      "tags": [
+        "trial",
+        "minimum-length",
+        "signed-boundaries"
+      ]
     },
     {
       "id": "trial-negative-twice",
       "name": "trial: zero once and a negative value twice",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-2, 0, -2]},
-      "expected": [0, -2],
-      "tags": ["trial", "negative", "zero"]
+      "input": {
+        "nums": [
+          -2,
+          0,
+          -2
+        ]
+      },
+      "expected": [
+        0,
+        -2
+      ],
+      "tags": [
+        "trial",
+        "negative",
+        "zero"
+      ]
     },
     {
       "id": "real-sign-bit-only-separation",
       "name": "real: exceptional values differ only at the sign bit",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-1, 2147483647, 5, 5, 2147483647, 5]},
-      "expected": [-1, 2147483647],
-      "tags": ["real", "sign-bit", "negative", "shared-low-bits"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          2147483647,
+          5,
+          5,
+          2147483647,
+          5
+        ]
+      },
+      "expected": [
+        -1,
+        2147483647
+      ],
+      "tags": [
+        "real",
+        "sign-bit",
+        "negative",
+        "shared-low-bits"
+      ]
     },
     {
       "id": "real-negative-once-positive-twice",
       "name": "real: mixed signs survive several triplicate groups",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [12, -7, 12, 3, 9, 3, 12, 9, 42, 3, 9, 42]},
-      "expected": [-7, 42],
-      "tags": ["real", "mixed-signs", "multiple-triplicates"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          -7,
+          12,
+          3,
+          9,
+          3,
+          12,
+          9,
+          42,
+          3,
+          9,
+          42
+        ]
+      },
+      "expected": [
+        -7,
+        42
+      ],
+      "tags": [
+        "real",
+        "mixed-signs",
+        "multiple-triplicates"
+      ]
     },
     {
       "id": "real-negative-triplicates",
       "name": "real: triplicate values can also be negative",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-9, 6, -9, -4, 11, 6, -9, 11, -4, 11, 6, 25]},
-      "expected": [25, -4],
-      "tags": ["real", "negative-triplicates", "shuffled"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -9,
+          6,
+          -9,
+          -4,
+          11,
+          6,
+          -9,
+          11,
+          -4,
+          11,
+          6,
+          25
+        ]
+      },
+      "expected": [
+        25,
+        -4
+      ],
+      "tags": [
+        "real",
+        "negative-triplicates",
+        "shuffled"
+      ]
     },
     {
       "id": "real-adjacent-exceptions",
       "name": "real: adjacent exceptional values do not affect bit counting",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100, 101, 101, -20, -20, -20, 0, 0, 0]},
-      "expected": [100, 101],
-      "tags": ["real", "adjacent-values", "zero-triplicate"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          101,
+          101,
+          -20,
+          -20,
+          -20,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": [
+        100,
+        101
+      ],
+      "tags": [
+        "real",
+        "adjacent-values",
+        "zero-triplicate"
+      ]
     },
     {
       "id": "real-both-exceptions-negative",
       "name": "real: both exceptional values may be negative",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [7, -13, 7, -8, 4, 4, 7, -8, 4]},
-      "expected": [-13, -8],
-      "tags": ["real", "both-negative", "mixed-order"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          -13,
+          7,
+          -8,
+          4,
+          4,
+          7,
+          -8,
+          4
+        ]
+      },
+      "expected": [
+        -13,
+        -8
+      ],
+      "tags": [
+        "real",
+        "both-negative",
+        "mixed-order"
+      ]
     }
   ]
 }

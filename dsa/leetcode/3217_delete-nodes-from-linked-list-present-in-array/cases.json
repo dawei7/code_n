@@ -2,17 +2,328 @@
   "schema_version": 1,
   "challenge_id": "lc_3217",
   "cases": [
-    {"id":"sample-leading-run","name":"sample: remove a leading run","kind":"sample","visible":true,"input":{"nums":[1,2,3],"head":[1,2,3,4,5]},"expected":[4,5],"tags":["sample"]},
-    {"id":"sample-repeated-value","name":"sample: remove every repeated forbidden value","kind":"sample","visible":true,"input":{"nums":[1],"head":[1,2,1,2,1,2]},"expected":[2,2,2],"tags":["sample"]},
-    {"id":"sample-no-match","name":"sample: preserve a list with no matching values","kind":"sample","visible":true,"input":{"nums":[5],"head":[1,2,3,4]},"expected":[1,2,3,4],"tags":["sample"]},
-    {"id":"trial-single-survivor","name":"trial: the only node survives","kind":"trial","visible":true,"input":{"nums":[2,3],"head":[1]},"expected":[1],"tags":["minimum-list"]},
-    {"id":"trial-tail-deletion","name":"trial: delete a trailing run","kind":"trial","visible":true,"input":{"nums":[8,9],"head":[1,2,8,9]},"expected":[1,2],"tags":["tail"]},
-    {"id":"trial-alternating","name":"trial: unlink alternating nodes","kind":"trial","visible":true,"input":{"nums":[2,4,6],"head":[1,2,3,4,5,6,7]},"expected":[1,3,5,7],"tags":["alternating"]},
-    {"id":"real-consecutive-middle","name":"real: unlink consecutive middle nodes","kind":"real","visible":false,"input":{"nums":[3,4,5],"head":[1,2,3,4,5,6,7]},"expected":[1,2,6,7],"tags":["consecutive"]},
-    {"id":"real-duplicate-survivors","name":"real: preserve duplicate allowed values","kind":"real","visible":false,"input":{"nums":[4],"head":[2,2,4,2,4,2]},"expected":[2,2,2,2],"tags":["duplicates"]},
-    {"id":"real-head-and-tail","name":"real: remove both boundaries","kind":"real","visible":false,"input":{"nums":[1,5],"head":[1,2,3,4,5]},"expected":[2,3,4],"tags":["boundaries"]},
-    {"id":"real-many-unused-values","name":"real: unused deletion values do not affect survivors","kind":"real","visible":false,"input":{"nums":[10,20,30,40],"head":[1,20,2,3]},"expected":[1,2,3],"tags":["unused-values"]},
-    {"id":"real-one-of-many-survives","name":"real: retain one node among many deletions","kind":"real","visible":false,"input":{"nums":[1,2,3,4],"head":[4,3,5,2,1]},"expected":[5],"tags":["single-survivor"]},
-    {"id":"real-value-boundaries","name":"real: handle minimum and maximum allowed values","kind":"real","visible":false,"input":{"nums":[1,100000],"head":[1,99999,100000,2]},"expected":[99999,2],"tags":["value-boundary"]}
+    {
+      "id": "sample-leading-run",
+      "name": "sample: remove a leading run",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "head": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": [
+        4,
+        5
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-repeated-value",
+      "name": "sample: remove every repeated forbidden value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "head": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        2
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-match",
+      "name": "sample: preserve a list with no matching values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "head": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-survivor",
+      "name": "trial: the only node survives",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3
+        ],
+        "head": [
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "minimum-list"
+      ]
+    },
+    {
+      "id": "trial-tail-deletion",
+      "name": "trial: delete a trailing run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          9
+        ],
+        "head": [
+          1,
+          2,
+          8,
+          9
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "tags": [
+        "tail"
+      ]
+    },
+    {
+      "id": "trial-alternating",
+      "name": "trial: unlink alternating nodes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6
+        ],
+        "head": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tags": [
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-consecutive-middle",
+      "name": "real: unlink consecutive middle nodes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          5
+        ],
+        "head": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        6,
+        7
+      ],
+      "tags": [
+        "consecutive"
+      ]
+    },
+    {
+      "id": "real-duplicate-survivors",
+      "name": "real: preserve duplicate allowed values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ],
+        "head": [
+          2,
+          2,
+          4,
+          2,
+          4,
+          2
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-head-and-tail",
+      "name": "real: remove both boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5
+        ],
+        "head": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": [
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "boundaries"
+      ]
+    },
+    {
+      "id": "real-many-unused-values",
+      "name": "real: unused deletion values do not affect survivors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          20,
+          30,
+          40
+        ],
+        "head": [
+          1,
+          20,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "unused-values"
+      ]
+    },
+    {
+      "id": "real-one-of-many-survives",
+      "name": "real: retain one node among many deletions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "head": [
+          4,
+          3,
+          5,
+          2,
+          1
+        ]
+      },
+      "expected": [
+        5
+      ],
+      "tags": [
+        "single-survivor"
+      ]
+    },
+    {
+      "id": "real-value-boundaries",
+      "name": "real: handle minimum and maximum allowed values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          100000
+        ],
+        "head": [
+          1,
+          99999,
+          100000,
+          2
+        ]
+      },
+      "expected": [
+        99999,
+        2
+      ],
+      "tags": [
+        "value-boundary"
+      ]
+    }
   ]
 }

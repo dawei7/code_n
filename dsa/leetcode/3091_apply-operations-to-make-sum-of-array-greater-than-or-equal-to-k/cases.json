@@ -62,9 +62,9 @@
     },
     {
       "id": "real-small-nonsquare",
-      "name": "hidden: first target needing unequal factors",
-      "kind": "real",
-      "visible": false,
+      "name": "first target needing unequal factors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 3
       },
@@ -76,9 +76,9 @@
     },
     {
       "id": "real-above-square",
-      "name": "hidden: target immediately above a square",
-      "kind": "real",
-      "visible": false,
+      "name": "target immediately above a square",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 10
       },
@@ -90,9 +90,9 @@
     },
     {
       "id": "real-balanced-rectangle",
-      "name": "hidden: adjacent factors hit the target exactly",
-      "kind": "real",
-      "visible": false,
+      "name": "adjacent factors hit the target exactly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 12
       },
@@ -104,9 +104,9 @@
     },
     {
       "id": "real-maximum",
-      "name": "hidden: largest legal target",
-      "kind": "real",
-      "visible": false,
+      "name": "largest legal target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "k": 100000
       },

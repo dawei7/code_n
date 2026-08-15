@@ -297,9 +297,9 @@
     },
     {
       "id": "real-stale-mode-candidates",
-      "name": "hidden: old high-frequency mode candidates become invalid",
-      "kind": "real",
-      "visible": false,
+      "name": "old high-frequency mode candidates become invalid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "StatisticsTracker",
@@ -364,9 +364,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: large values exercise the running total and upper median",
-      "kind": "real",
-      "visible": false,
+      "name": "large values exercise the running total and upper median",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "StatisticsTracker",
@@ -416,9 +416,9 @@
     },
     {
       "id": "real-drain-and-refill",
-      "name": "hidden: remove down to one value and refill around it",
-      "kind": "real",
-      "visible": false,
+      "name": "remove down to one value and refill around it",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "StatisticsTracker",
@@ -484,9 +484,9 @@
     },
     {
       "id": "real-alternating-extremes",
-      "name": "hidden: alternating extremes trigger repeated heap rebalancing",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating extremes trigger repeated heap rebalancing",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "StatisticsTracker",
@@ -562,4 +562,3 @@
     }
   ]
 }
-

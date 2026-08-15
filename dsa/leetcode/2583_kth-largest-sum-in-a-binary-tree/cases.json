@@ -89,9 +89,9 @@
     },
     {
       "id": "real-middle-rank",
-      "name": "hidden: middle rank in a partially filled tree",
-      "kind": "real",
-      "visible": false,
+      "name": "middle rank in a partially filled tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           5,
@@ -110,9 +110,9 @@
     },
     {
       "id": "real-too-few-levels",
-      "name": "hidden: k exceeds the number of levels",
-      "kind": "real",
-      "visible": false,
+      "name": "k exceeds the number of levels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -129,9 +129,9 @@
     },
     {
       "id": "real-right-skewed",
-      "name": "hidden: every node forms its own level",
-      "kind": "real",
-      "visible": false,
+      "name": "every node forms its own level",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           4,
@@ -152,9 +152,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: level sums require wide integer arithmetic",
-      "kind": "real",
-      "visible": false,
+      "name": "level sums require wide integer arithmetic",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1000000,
@@ -175,9 +175,9 @@
     },
     {
       "id": "real-uneven-tree",
-      "name": "hidden: missing children do not split a level",
-      "kind": "real",
-      "visible": false,
+      "name": "missing children do not split a level",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           10,
@@ -198,9 +198,9 @@
     },
     {
       "id": "real-equal-ranks",
-      "name": "hidden: duplicate sums occupy first and second ranks",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate sums occupy first and second ranks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           7,

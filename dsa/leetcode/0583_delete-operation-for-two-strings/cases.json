@@ -79,9 +79,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: no common characters",
-      "kind": "real",
-      "visible": false,
+      "name": "no common characters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word1": "abc",
         "word2": "xyz"
@@ -94,9 +94,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: crossing character order",
-      "kind": "real",
-      "visible": false,
+      "name": "crossing character order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word1": "abcde",
         "word2": "acebd"

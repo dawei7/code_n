@@ -2,13 +2,157 @@
   "schema_version": 1,
   "challenge_id": "lc_2815",
   "cases": [
-    {"id":"sample-no-pair","name":"sample: every largest digit differs","kind":"sample","visible":true,"input":{"nums":[112,131,411]},"expected":-1,"tags":["sample","no-pair"]},
-    {"id":"sample-one-bucket","name":"sample: all values share largest digit six","kind":"sample","visible":true,"input":{"nums":[2536,1613,3366,162]},"expected":5902,"tags":["sample","same-bucket"]},
-    {"id":"sample-two-buckets","name":"sample: choose the better of two eligible buckets","kind":"sample","visible":true,"input":{"nums":[51,71,17,24,42]},"expected":88,"tags":["sample","multiple-buckets"]},
-    {"id":"trial-two-equal","name":"trial: equal values at distinct indices form a pair","kind":"trial","visible":true,"input":{"nums":[9,9]},"expected":18,"tags":["trial","duplicate-values"]},
-    {"id":"trial-digit-position","name":"trial: digit position does not matter","kind":"trial","visible":true,"input":{"nums":[91,19,88]},"expected":110,"tags":["trial","digit-position"]},
-    {"id":"real-leading-maximum","name":"hidden: maximum digit occurs at the leading position","kind":"real","visible":false,"input":{"nums":[8123,7999,8456,7654]},"expected":16579,"tags":["hidden","leading-digit"]},
-    {"id":"real-maximum-value","name":"hidden: upper-bound value groups under digit one","kind":"real","visible":false,"input":{"nums":[10000,1111,2222,3333]},"expected":11111,"tags":["hidden","maximum-value"]},
-    {"id":"real-many-per-group","name":"hidden: retain only two largest conceptual values per group","kind":"real","visible":false,"input":{"nums":[61,62,63,64,65,54,55]},"expected":129,"tags":["hidden","many-candidates"]}
+    {
+      "id": "sample-no-pair",
+      "name": "sample: every largest digit differs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          112,
+          131,
+          411
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "no-pair"
+      ]
+    },
+    {
+      "id": "sample-one-bucket",
+      "name": "sample: all values share largest digit six",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2536,
+          1613,
+          3366,
+          162
+        ]
+      },
+      "expected": 5902,
+      "tags": [
+        "sample",
+        "same-bucket"
+      ]
+    },
+    {
+      "id": "sample-two-buckets",
+      "name": "sample: choose the better of two eligible buckets",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          51,
+          71,
+          17,
+          24,
+          42
+        ]
+      },
+      "expected": 88,
+      "tags": [
+        "sample",
+        "multiple-buckets"
+      ]
+    },
+    {
+      "id": "trial-two-equal",
+      "name": "trial: equal values at distinct indices form a pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          9
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "trial",
+        "duplicate-values"
+      ]
+    },
+    {
+      "id": "trial-digit-position",
+      "name": "trial: digit position does not matter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          91,
+          19,
+          88
+        ]
+      },
+      "expected": 110,
+      "tags": [
+        "trial",
+        "digit-position"
+      ]
+    },
+    {
+      "id": "real-leading-maximum",
+      "name": "maximum digit occurs at the leading position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8123,
+          7999,
+          8456,
+          7654
+        ]
+      },
+      "expected": 16579,
+      "tags": [
+        "hidden",
+        "leading-digit"
+      ]
+    },
+    {
+      "id": "real-maximum-value",
+      "name": "upper-bound value groups under digit one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10000,
+          1111,
+          2222,
+          3333
+        ]
+      },
+      "expected": 11111,
+      "tags": [
+        "hidden",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "real-many-per-group",
+      "name": "retain only two largest conceptual values per group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          61,
+          62,
+          63,
+          64,
+          65,
+          54,
+          55
+        ]
+      },
+      "expected": 129,
+      "tags": [
+        "hidden",
+        "many-candidates"
+      ]
+    }
   ]
 }

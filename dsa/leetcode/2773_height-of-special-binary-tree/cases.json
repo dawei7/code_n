@@ -6,90 +6,229 @@
       "name": "sample: three leaves at height two",
       "kind": "sample",
       "visible": true,
-      "input": {"root": [1, 2, 3, null, null, 4, 5]},
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          null,
+          null,
+          4,
+          5
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "balanced"]
+      "tags": [
+        "sample",
+        "balanced"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: one original leaf",
       "kind": "sample",
       "visible": true,
-      "input": {"root": [1, 2]},
+      "input": {
+        "root": [
+          1,
+          2
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "single-leaf"]
+      "tags": [
+        "sample",
+        "single-leaf"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: deepest branch has three edges",
       "kind": "sample",
       "visible": true,
-      "input": {"root": [1, 2, 3, null, null, 4, null, 5, 6]},
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          null,
+          null,
+          4,
+          null,
+          5,
+          6
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "sparse"]
+      "tags": [
+        "sample",
+        "sparse"
+      ]
     },
     {
       "id": "trial-right-child",
       "name": "trial: only child is on the right",
       "kind": "trial",
       "visible": true,
-      "input": {"root": [1, null, 2]},
+      "input": {
+        "root": [
+          1,
+          null,
+          2
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "single-leaf"]
+      "tags": [
+        "trial",
+        "single-leaf"
+      ]
     },
     {
       "id": "trial-perfect-tree",
       "name": "trial: perfect tree with four leaves",
       "kind": "trial",
       "visible": true,
-      "input": {"root": [1, 2, 3, 4, 5, 6, 7]},
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "perfect"]
+      "tags": [
+        "trial",
+        "perfect"
+      ]
     },
     {
       "id": "real-left-chain",
-      "name": "hidden: left-skewed tree",
-      "kind": "real",
-      "visible": false,
-      "input": {"root": [1, 2, null, 3, null, 4]},
+      "name": "left-skewed tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          null,
+          3,
+          null,
+          4
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "skewed"]
+      "tags": [
+        "hidden",
+        "skewed"
+      ]
     },
     {
       "id": "real-right-chain",
-      "name": "hidden: right-skewed tree",
-      "kind": "real",
-      "visible": false,
-      "input": {"root": [1, null, 2, null, 3, null, 4, null, 5]},
+      "name": "right-skewed tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          null,
+          2,
+          null,
+          3,
+          null,
+          4,
+          null,
+          5
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "skewed"]
+      "tags": [
+        "hidden",
+        "skewed"
+      ]
     },
     {
       "id": "real-uneven-branches",
-      "name": "hidden: shallower full branch and deeper sparse branch",
-      "kind": "real",
-      "visible": false,
-      "input": {"root": [1, 2, 3, 4, 5, null, 6, null, null, null, null, null, 7]},
+      "name": "shallower full branch and deeper sparse branch",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          null,
+          6,
+          null,
+          null,
+          null,
+          null,
+          null,
+          7
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "uneven"]
+      "tags": [
+        "hidden",
+        "uneven"
+      ]
     },
     {
       "id": "real-deep-fork",
-      "name": "hidden: deepest node follows a late fork",
-      "kind": "real",
-      "visible": false,
-      "input": {"root": [1, 2, null, 3, 4, null, null, 5]},
+      "name": "deepest node follows a late fork",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          null,
+          3,
+          4,
+          null,
+          null,
+          5
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "fork"]
+      "tags": [
+        "hidden",
+        "fork"
+      ]
     },
     {
       "id": "real-wide-tree",
-      "name": "hidden: complete final level",
-      "kind": "real",
-      "visible": false,
-      "input": {"root": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]},
+      "name": "complete final level",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "wide"]
+      "tags": [
+        "hidden",
+        "wide"
+      ]
     }
   ]
 }

@@ -226,9 +226,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: maximum query time",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum query time",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "persons": [
           0,
@@ -254,9 +254,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: queries in reverse order",
-      "kind": "real",
-      "visible": false,
+      "name": "queries in reverse order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "persons": [
           0,
@@ -298,9 +298,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: leader survives minority votes",
-      "kind": "real",
-      "visible": false,
+      "name": "leader survives minority votes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "persons": [
           2,
@@ -338,9 +338,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: repeated tie changes",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated tie changes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "persons": [
           0,

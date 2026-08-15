@@ -256,9 +256,9 @@
     },
     {
       "id": "real-withdrawal-removes-qualification",
-      "name": "hidden: withdrawal lowers a large deposit to threshold",
-      "kind": "real",
-      "visible": false,
+      "name": "withdrawal lowers a large deposit to threshold",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [
@@ -319,9 +319,9 @@
     },
     {
       "id": "real-user-without-transactions",
-      "name": "hidden: user without transactions remains at zero",
-      "kind": "real",
-      "visible": false,
+      "name": "user without transactions remains at zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [
@@ -363,9 +363,9 @@
     },
     {
       "id": "real-no-qualifying-users",
-      "name": "hidden: all balances stay below threshold",
-      "kind": "real",
-      "visible": false,
+      "name": "all balances stay below threshold",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [
@@ -408,9 +408,9 @@
     },
     {
       "id": "real-date-order-irrelevant",
-      "name": "hidden: transaction date order does not change the sum",
-      "kind": "real",
-      "visible": false,
+      "name": "transaction date order does not change the sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [
@@ -454,9 +454,9 @@
     },
     {
       "id": "real-large-signed-balance",
-      "name": "hidden: large positive and negative changes",
-      "kind": "real",
-      "visible": false,
+      "name": "large positive and negative changes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [

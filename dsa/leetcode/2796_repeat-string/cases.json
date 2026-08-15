@@ -6,72 +6,120 @@
       "name": "sample: repeat hello twice",
       "kind": "sample",
       "visible": true,
-      "input": {"str": "hello", "times": 2},
+      "input": {
+        "str": "hello",
+        "times": 2
+      },
       "expected": "hellohello",
-      "tags": ["sample", "two-copies"]
+      "tags": [
+        "sample",
+        "two-copies"
+      ]
     },
     {
       "id": "sample-code-three-times",
       "name": "sample: repeat code three times",
       "kind": "sample",
       "visible": true,
-      "input": {"str": "code", "times": 3},
+      "input": {
+        "str": "code",
+        "times": 3
+      },
       "expected": "codecodecode",
-      "tags": ["sample", "odd-count"]
+      "tags": [
+        "sample",
+        "odd-count"
+      ]
     },
     {
       "id": "sample-single-copy",
       "name": "sample: one copy preserves the receiver",
       "kind": "sample",
       "visible": true,
-      "input": {"str": "js", "times": 1},
+      "input": {
+        "str": "js",
+        "times": 1
+      },
       "expected": "js",
-      "tags": ["sample", "minimum-times"]
+      "tags": [
+        "sample",
+        "minimum-times"
+      ]
     },
     {
       "id": "trial-power-of-two",
       "name": "trial: power-of-two repetition uses one final block",
       "kind": "trial",
       "visible": true,
-      "input": {"str": "a", "times": 8},
+      "input": {
+        "str": "a",
+        "times": 8
+      },
       "expected": "aaaaaaaa",
-      "tags": ["trial", "power-of-two"]
+      "tags": [
+        "trial",
+        "power-of-two"
+      ]
     },
     {
       "id": "trial-multiple-set-bits",
       "name": "trial: count with several binary set bits",
       "kind": "trial",
       "visible": true,
-      "input": {"str": "ab", "times": 5},
+      "input": {
+        "str": "ab",
+        "times": 5
+      },
       "expected": "ababababab",
-      "tags": ["trial", "binary-decomposition"]
+      "tags": [
+        "trial",
+        "binary-decomposition"
+      ]
     },
     {
       "id": "real-spaces-and-punctuation",
-      "name": "hidden: preserve spaces and punctuation",
-      "kind": "real",
-      "visible": false,
-      "input": {"str": "a! ", "times": 4},
+      "name": "preserve spaces and punctuation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "str": "a! ",
+        "times": 4
+      },
       "expected": "a! a! a! a! ",
-      "tags": ["hidden", "content-preservation"]
+      "tags": [
+        "hidden",
+        "content-preservation"
+      ]
     },
     {
       "id": "real-mixed-binary-count",
-      "name": "hidden: larger count with mixed binary digits",
-      "kind": "real",
-      "visible": false,
-      "input": {"str": "xy", "times": 13},
+      "name": "larger count with mixed binary digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "str": "xy",
+        "times": 13
+      },
       "expected": "xyxyxyxyxyxyxyxyxyxyxyxyxy",
-      "tags": ["hidden", "mixed-bits"]
+      "tags": [
+        "hidden",
+        "mixed-bits"
+      ]
     },
     {
       "id": "real-longer-receiver",
-      "name": "hidden: preserve a longer receiver across copies",
-      "kind": "real",
-      "visible": false,
-      "input": {"str": "prototype", "times": 4},
+      "name": "preserve a longer receiver across copies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "str": "prototype",
+        "times": 4
+      },
       "expected": "prototypeprototypeprototypeprototype",
-      "tags": ["hidden", "longer-receiver"]
+      "tags": [
+        "hidden",
+        "longer-receiver"
+      ]
     }
   ]
 }

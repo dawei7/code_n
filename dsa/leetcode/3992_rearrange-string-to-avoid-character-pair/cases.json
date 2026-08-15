@@ -6,200 +6,400 @@
       "name": "sample: move one y before two x characters",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "aabc", "x": "a", "y": "c"},
+      "input": {
+        "s": "aabc",
+        "x": "a",
+        "y": "c"
+      },
       "expected": "cbaa",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["sample", "repeated-x", "permutation"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "sample",
+        "repeated-x",
+        "permutation"
+      ]
     },
     {
       "id": "sample-distinct-targets",
       "name": "sample: either valid placement of neutral characters is accepted",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "dcab", "x": "d", "y": "b"},
+      "input": {
+        "s": "dcab",
+        "x": "d",
+        "y": "b"
+      },
       "expected": "cabd",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["sample", "non-unique-output", "neutral-characters"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "sample",
+        "non-unique-output",
+        "neutral-characters"
+      ]
     },
     {
       "id": "sample-x-absent",
       "name": "sample: the ordering condition is automatic when x is absent",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "axe", "x": "o", "y": "x"},
+      "input": {
+        "s": "axe",
+        "x": "o",
+        "y": "x"
+      },
       "expected": "axe",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["sample", "absent-x", "non-unique-output"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "sample",
+        "absent-x",
+        "non-unique-output"
+      ]
     },
     {
       "id": "trial-single-x",
       "name": "trial: one-character string containing x",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "a", "x": "a", "y": "b"},
+      "input": {
+        "s": "a",
+        "x": "a",
+        "y": "b"
+      },
       "expected": "a",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["trial", "minimum-length", "absent-y"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "absent-y"
+      ]
     },
     {
       "id": "trial-single-neutral",
       "name": "trial: one-character string containing neither target",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "m", "x": "a", "y": "z"},
+      "input": {
+        "s": "m",
+        "x": "a",
+        "y": "z"
+      },
       "expected": "m",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["trial", "minimum-length", "both-absent"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "both-absent"
+      ]
     },
     {
       "id": "trial-two-targets-reversed",
       "name": "trial: swap the only x and y",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "xy", "x": "x", "y": "y"},
+      "input": {
+        "s": "xy",
+        "x": "x",
+        "y": "y"
+      },
       "expected": "yx",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["trial", "two-characters", "both-present"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "trial",
+        "two-characters",
+        "both-present"
+      ]
     },
     {
       "id": "trial-already-valid",
       "name": "trial: retain an already valid grouped arrangement",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "yyzzxx", "x": "x", "y": "y"},
+      "input": {
+        "s": "yyzzxx",
+        "x": "x",
+        "y": "y"
+      },
       "expected": "yyzzxx",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["trial", "already-valid", "neutral-characters"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "trial",
+        "already-valid",
+        "neutral-characters"
+      ]
     },
     {
       "id": "trial-interleaved-targets",
       "name": "trial: group several interleaved copies of both targets",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "xyyxxxy", "x": "x", "y": "y"},
+      "input": {
+        "s": "xyyxxxy",
+        "x": "x",
+        "y": "y"
+      },
       "expected": "yyyxxxx",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["trial", "duplicates", "interleaved"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "trial",
+        "duplicates",
+        "interleaved"
+      ]
     },
     {
       "id": "trial-x-absent-many-y",
       "name": "trial: repeated y with x absent",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "banana", "x": "z", "y": "a"},
+      "input": {
+        "s": "banana",
+        "x": "z",
+        "y": "a"
+      },
       "expected": "aaabnn",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["trial", "absent-x", "duplicates"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "trial",
+        "absent-x",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-y-absent-many-x",
       "name": "trial: repeated x with y absent",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "banana", "x": "a", "y": "z"},
+      "input": {
+        "s": "banana",
+        "x": "a",
+        "y": "z"
+      },
       "expected": "bnnaaa",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["trial", "absent-y", "duplicates"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "trial",
+        "absent-y",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-both-absent",
       "name": "trial: neither distinguished letter occurs",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "leetcode", "x": "a", "y": "z"},
+      "input": {
+        "s": "leetcode",
+        "x": "a",
+        "y": "z"
+      },
       "expected": "leetcode",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["trial", "both-absent", "unchanged"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "trial",
+        "both-absent",
+        "unchanged"
+      ]
     },
     {
       "id": "trial-neutral-order",
       "name": "trial: neutral characters may remain in their source order",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "cabdab", "x": "a", "y": "b"},
+      "input": {
+        "s": "cabdab",
+        "x": "a",
+        "y": "b"
+      },
       "expected": "bbcdaa",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["trial", "neutral-characters", "stable-partition"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "trial",
+        "neutral-characters",
+        "stable-partition"
+      ]
     },
     {
       "id": "real-all-x",
-      "name": "hidden: every character equals x",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaaa", "x": "a", "y": "b"},
+      "name": "every character equals x",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa",
+        "x": "a",
+        "y": "b"
+      },
       "expected": "aaaa",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["hidden", "all-x", "absent-y"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "hidden",
+        "all-x",
+        "absent-y"
+      ]
     },
     {
       "id": "real-all-y",
-      "name": "hidden: every character equals y",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "bbbb", "x": "a", "y": "b"},
+      "name": "every character equals y",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bbbb",
+        "x": "a",
+        "y": "b"
+      },
       "expected": "bbbb",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["hidden", "all-y", "absent-x"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "hidden",
+        "all-y",
+        "absent-x"
+      ]
     },
     {
       "id": "real-full-alphabet-x-less-y",
-      "name": "hidden: alphabet endpoints require z before a",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdefghijklmnopqrstuvwxyz", "x": "a", "y": "z"},
+      "name": "alphabet endpoints require z before a",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz",
+        "x": "a",
+        "y": "z"
+      },
       "expected": "zbcdefghijklmnopqrstuvwxya",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["hidden", "alphabet", "x-less-than-y"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "hidden",
+        "alphabet",
+        "x-less-than-y"
+      ]
     },
     {
       "id": "real-reverse-alphabet-x-greater-y",
-      "name": "hidden: reverse alphabet endpoints require a before z",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "zyxwvutsrqponmlkjihgfedcba", "x": "z", "y": "a"},
+      "name": "reverse alphabet endpoints require a before z",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zyxwvutsrqponmlkjihgfedcba",
+        "x": "z",
+        "y": "a"
+      },
       "expected": "ayxwvutsrqponmlkjihgfedcbz",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["hidden", "alphabet", "x-greater-than-y"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "hidden",
+        "alphabet",
+        "x-greater-than-y"
+      ]
     },
     {
       "id": "real-repeated-neutral-characters",
-      "name": "hidden: repeated targets surround repeated neutral characters",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "mississippi", "x": "i", "y": "s"},
+      "name": "repeated targets surround repeated neutral characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "mississippi",
+        "x": "i",
+        "y": "s"
+      },
       "expected": "ssssmppiiii",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["hidden", "duplicates", "neutral-characters"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "hidden",
+        "duplicates",
+        "neutral-characters"
+      ]
     },
     {
       "id": "real-only-targets-alternating",
-      "name": "hidden: alternating targets have no neutral group",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abababab", "x": "a", "y": "b"},
+      "name": "alternating targets have no neutral group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abababab",
+        "x": "a",
+        "y": "b"
+      },
       "expected": "bbbbaaaa",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["hidden", "alternating", "no-neutral-characters"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "hidden",
+        "alternating",
+        "no-neutral-characters"
+      ]
     },
     {
       "id": "real-maximum-mixed-length",
-      "name": "hidden: maximum length mixes both targets and neutral characters",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabcz", "x": "a", "y": "z"},
+      "name": "maximum length mixes both targets and neutral characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabczabcz",
+        "x": "a",
+        "y": "z"
+      },
       "expected": "zzzzzzzzzzzzzzzzzzzzzzzzzbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcaaaaaaaaaaaaaaaaaaaaaaaaa",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["hidden", "maximum-length", "mixed-characters"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "mixed-characters"
+      ]
     },
     {
       "id": "real-maximum-both-absent",
-      "name": "hidden: maximum length contains neither target",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm", "x": "a", "y": "z"},
+      "name": "maximum length contains neither target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
+        "x": "a",
+        "y": "z"
+      },
       "expected": "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
-      "validator": {"kind": "character_pair_rearrangement"},
-      "tags": ["hidden", "maximum-length", "both-absent"]
+      "validator": {
+        "kind": "character_pair_rearrangement"
+      },
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "both-absent"
+      ]
     }
   ]
 }

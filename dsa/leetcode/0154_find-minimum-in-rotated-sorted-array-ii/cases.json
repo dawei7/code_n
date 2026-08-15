@@ -59,9 +59,9 @@
     },
     {
       "id": "real-min-at-end",
-      "name": "hidden: minimum at end",
-      "kind": "real",
-      "visible": false,
+      "name": "minimum at end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,

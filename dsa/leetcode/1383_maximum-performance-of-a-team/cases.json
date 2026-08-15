@@ -149,9 +149,9 @@
     },
     {
       "id": "hidden-modulo",
-      "name": "hidden: raw optimum exceeds modulus",
-      "kind": "real",
-      "visible": false,
+      "name": "raw optimum exceeds modulus",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1,
         "speed": [
@@ -170,9 +170,9 @@
     },
     {
       "id": "hidden-fewer-than-k",
-      "name": "hidden: low efficiency makes smaller team better",
-      "kind": "real",
-      "visible": false,
+      "name": "low efficiency makes smaller team better",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "speed": [

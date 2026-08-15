@@ -6,72 +6,144 @@
       "name": "sample: concatenate two outer pairs",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [7, 52, 2, 4]},
+      "input": {
+        "nums": [
+          7,
+          52,
+          2,
+          4
+        ]
+      },
       "expected": 596,
-      "tags": ["sample", "two-pointers"]
+      "tags": [
+        "sample",
+        "two-pointers"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: odd length includes middle value",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [5, 14, 13, 8, 12]},
+      "input": {
+        "nums": [
+          5,
+          14,
+          13,
+          8,
+          12
+        ]
+      },
       "expected": 673,
-      "tags": ["sample", "odd-length"]
+      "tags": [
+        "sample",
+        "odd-length"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: one value is added directly",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1]},
+      "input": {
+        "nums": [
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "single-value"]
+      "tags": [
+        "sample",
+        "single-value"
+      ]
     },
     {
       "id": "trial-two-values",
       "name": "trial: concatenation order is left then right",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [10, 2]},
+      "input": {
+        "nums": [
+          10,
+          2
+        ]
+      },
       "expected": 102,
-      "tags": ["trial", "order"]
+      "tags": [
+        "trial",
+        "order"
+      ]
     },
     {
       "id": "trial-digit-boundaries",
       "name": "trial: right values cross powers of ten",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 10, 100, 1000]},
+      "input": {
+        "nums": [
+          1,
+          10,
+          100,
+          1000
+        ]
+      },
       "expected": 21100,
-      "tags": ["trial", "digit-width"]
+      "tags": [
+        "trial",
+        "digit-width"
+      ]
     },
     {
       "id": "real-odd-different-widths",
-      "name": "hidden: middle value follows a wide outer pair",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9, 99, 999]},
+      "name": "middle value follows a wide outer pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          99,
+          999
+        ]
+      },
       "expected": 10098,
-      "tags": ["hidden", "odd-length", "digit-width"]
+      "tags": [
+        "hidden",
+        "odd-length",
+        "digit-width"
+      ]
     },
     {
       "id": "real-largest-values",
-      "name": "hidden: concatenate two maximum input values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10000, 10000]},
+      "name": "concatenate two maximum input values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10000,
+          10000
+        ]
+      },
       "expected": 1000010000,
-      "tags": ["hidden", "maximum-value"]
+      "tags": [
+        "hidden",
+        "maximum-value"
+      ]
     },
     {
       "id": "real-direction-sensitive",
-      "name": "hidden: reversing the pair would change the result",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [12, 3]},
+      "name": "reversing the pair would change the result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          3
+        ]
+      },
       "expected": 123,
-      "tags": ["hidden", "order"]
+      "tags": [
+        "hidden",
+        "order"
+      ]
     }
   ]
 }

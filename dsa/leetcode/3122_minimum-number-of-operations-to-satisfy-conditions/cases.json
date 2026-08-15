@@ -2,17 +2,373 @@
   "schema_version": 1,
   "challenge_id": "lc_3122",
   "cases": [
-    { "id": "sample-1", "name": "sample: conditions already hold", "kind": "sample", "visible": true, "input": { "grid": [[1,0,2],[1,0,2]] }, "expected": 0, "tags": ["sample", "already-valid"] },
-    { "id": "sample-2", "name": "sample: alternating replacement", "kind": "sample", "visible": true, "input": { "grid": [[1,1,1],[0,0,0]] }, "expected": 3, "tags": ["sample", "adjacent-columns"] },
-    { "id": "sample-3", "name": "sample: one column", "kind": "sample", "visible": true, "input": { "grid": [[1],[2],[3]] }, "expected": 2, "tags": ["sample", "single-column"] },
-    { "id": "trial-single-cell", "name": "trial: one cell needs no operation", "kind": "trial", "visible": true, "input": { "grid": [[0]] }, "expected": 0, "tags": ["boundary", "single-cell"] },
-    { "id": "trial-single-row-distinct", "name": "trial: a distinct single row is valid", "kind": "trial", "visible": true, "input": { "grid": [[0,1,2,3]] }, "expected": 0, "tags": ["single-row", "already-valid"] },
-    { "id": "trial-single-row-collision", "name": "trial: break two adjacent collisions with one change", "kind": "trial", "visible": true, "input": { "grid": [[5,5,5]] }, "expected": 1, "tags": ["single-row", "adjacent-columns"] },
-    { "id": "trial-column-majority", "name": "trial: make one column equal to its majority digit", "kind": "trial", "visible": true, "input": { "grid": [[0],[0],[1],[0]] }, "expected": 1, "tags": ["single-column", "majority"] },
-    { "id": "trial-two-column-choice", "name": "trial: different column majorities", "kind": "trial", "visible": true, "input": { "grid": [[1,1],[1,2],[2,2]] }, "expected": 2, "tags": ["dynamic-programming", "majorities"] },
-    { "id": "real-alternating-columns", "name": "hidden: uniform alternating columns", "kind": "real", "visible": false, "input": { "grid": [[2,7,2,7,2],[2,7,2,7,2],[2,7,2,7,2],[2,7,2,7,2]] }, "expected": 0, "tags": ["real", "already-valid"] },
-    { "id": "real-identical-columns", "name": "hidden: identical best digit in every column", "kind": "real", "visible": false, "input": { "grid": [[9,9,9,9],[9,9,9,9],[9,9,9,9],[9,9,9,9]] }, "expected": 8, "tags": ["real", "forced-alternation"] },
-    { "id": "real-tied-frequencies", "name": "hidden: tied digit frequencies require global choices", "kind": "real", "visible": false, "input": { "grid": [[0,1,1,2,2,3],[0,1,4,2,5,3],[6,1,1,7,2,8],[0,9,1,2,2,3]] }, "expected": 10, "tags": ["real", "ties", "global-choice"] },
-    { "id": "real-all-digits", "name": "hidden: all ten digits across columns", "kind": "real", "visible": false, "input": { "grid": [[0,1,2,3,4,5,6,7,8,9],[0,1,2,3,4,5,6,7,8,9],[9,8,7,6,5,4,3,2,1,0]] }, "expected": 10, "tags": ["real", "all-digits"] }
+    {
+      "id": "sample-1",
+      "name": "sample: conditions already hold",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "already-valid"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: alternating replacement",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "adjacent-columns"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one column",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "single-column"
+      ]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "trial: one cell needs no operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-cell"
+      ]
+    },
+    {
+      "id": "trial-single-row-distinct",
+      "name": "trial: a distinct single row is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "single-row",
+        "already-valid"
+      ]
+    },
+    {
+      "id": "trial-single-row-collision",
+      "name": "trial: break two adjacent collisions with one change",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5,
+            5,
+            5
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "single-row",
+        "adjacent-columns"
+      ]
+    },
+    {
+      "id": "trial-column-majority",
+      "name": "trial: make one column equal to its majority digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "single-column",
+        "majority"
+      ]
+    },
+    {
+      "id": "trial-two-column-choice",
+      "name": "trial: different column majorities",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "dynamic-programming",
+        "majorities"
+      ]
+    },
+    {
+      "id": "real-alternating-columns",
+      "name": "uniform alternating columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2,
+            7,
+            2,
+            7,
+            2
+          ],
+          [
+            2,
+            7,
+            2,
+            7,
+            2
+          ],
+          [
+            2,
+            7,
+            2,
+            7,
+            2
+          ],
+          [
+            2,
+            7,
+            2,
+            7,
+            2
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "already-valid"
+      ]
+    },
+    {
+      "id": "real-identical-columns",
+      "name": "identical best digit in every column",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            9,
+            9,
+            9,
+            9
+          ],
+          [
+            9,
+            9,
+            9,
+            9
+          ],
+          [
+            9,
+            9,
+            9,
+            9
+          ],
+          [
+            9,
+            9,
+            9,
+            9
+          ]
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "real",
+        "forced-alternation"
+      ]
+    },
+    {
+      "id": "real-tied-frequencies",
+      "name": "tied digit frequencies require global choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1,
+            2,
+            2,
+            3
+          ],
+          [
+            0,
+            1,
+            4,
+            2,
+            5,
+            3
+          ],
+          [
+            6,
+            1,
+            1,
+            7,
+            2,
+            8
+          ],
+          [
+            0,
+            9,
+            1,
+            2,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "real",
+        "ties",
+        "global-choice"
+      ]
+    },
+    {
+      "id": "real-all-digits",
+      "name": "all ten digits across columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          [
+            9,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "real",
+        "all-digits"
+      ]
+    }
   ]
 }

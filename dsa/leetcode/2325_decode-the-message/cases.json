@@ -2,12 +2,108 @@
   "schema_version": 1,
   "challenge_id": "lc_2325",
   "cases": [
-    {"id":"sample-pangram-key","name":"sample: spaced pangram establishes the substitution","kind":"sample","visible":true,"input":{"key":"the quick brown fox jumps over the lazy dog","message":"vkbs bs t suepuv"},"expected":"this is a secret","tags":["sample","spaces"]},
-    {"id":"sample-permutation-key","name":"sample: a letter permutation decodes a pangram","kind":"sample","visible":true,"input":{"key":"eljuxhpwnyrdgtqkviszcfmabo","message":"zwx hnfx lqantp mnoeius ycgk vcnjrdb"},"expected":"the five boxing wizards jump quickly","tags":["sample","permutation"]},
-    {"id":"trial-identity","name":"alphabetical key leaves the message unchanged","kind":"trial","visible":true,"input":{"key":"abcdefghijklmnopqrstuvwxyz","message":"stay curious"},"expected":"stay curious","tags":["identity"]},
-    {"id":"trial-reverse","name":"reverse alphabet maps endpoints in opposite directions","kind":"trial","visible":true,"input":{"key":"zyxwvutsrqponmlkjihgfedcba","message":"abc xyz"},"expected":"zyx cba","tags":["reverse"]},
-    {"id":"trial-only-spaces","name":"spaces are preserved without substitution","kind":"trial","visible":true,"input":{"key":"abcdefghijklmnopqrstuvwxyz","message":"   "},"expected":"   ","tags":["spaces","boundary"]},
-    {"id":"real-repeated-key-letters","name":"hidden: repeated key letters do not advance the alphabet","kind":"real","visible":false,"input":{"key":"a a b b c c defghijklmnopqrstuvwxyz","message":"cab bag"},"expected":"cab bag","tags":["hidden","duplicates"]},
-    {"id":"real-rotated-key","name":"hidden: rotated alphabet checks first and last substitutions","kind":"real","visible":false,"input":{"key":"bcdefghijklmnopqrstuvwxyza","message":"abba zoo"},"expected":"zaaz ynn","tags":["hidden","rotation"]}
+    {
+      "id": "sample-pangram-key",
+      "name": "sample: spaced pangram establishes the substitution",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "key": "the quick brown fox jumps over the lazy dog",
+        "message": "vkbs bs t suepuv"
+      },
+      "expected": "this is a secret",
+      "tags": [
+        "sample",
+        "spaces"
+      ]
+    },
+    {
+      "id": "sample-permutation-key",
+      "name": "sample: a letter permutation decodes a pangram",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "key": "eljuxhpwnyrdgtqkviszcfmabo",
+        "message": "zwx hnfx lqantp mnoeius ycgk vcnjrdb"
+      },
+      "expected": "the five boxing wizards jump quickly",
+      "tags": [
+        "sample",
+        "permutation"
+      ]
+    },
+    {
+      "id": "trial-identity",
+      "name": "alphabetical key leaves the message unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "key": "abcdefghijklmnopqrstuvwxyz",
+        "message": "stay curious"
+      },
+      "expected": "stay curious",
+      "tags": [
+        "identity"
+      ]
+    },
+    {
+      "id": "trial-reverse",
+      "name": "reverse alphabet maps endpoints in opposite directions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "key": "zyxwvutsrqponmlkjihgfedcba",
+        "message": "abc xyz"
+      },
+      "expected": "zyx cba",
+      "tags": [
+        "reverse"
+      ]
+    },
+    {
+      "id": "trial-only-spaces",
+      "name": "spaces are preserved without substitution",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "key": "abcdefghijklmnopqrstuvwxyz",
+        "message": "   "
+      },
+      "expected": "   ",
+      "tags": [
+        "spaces",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-repeated-key-letters",
+      "name": "repeated key letters do not advance the alphabet",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "key": "a a b b c c defghijklmnopqrstuvwxyz",
+        "message": "cab bag"
+      },
+      "expected": "cab bag",
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-rotated-key",
+      "name": "rotated alphabet checks first and last substitutions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "key": "bcdefghijklmnopqrstuvwxyza",
+        "message": "abba zoo"
+      },
+      "expected": "zaaz ynn",
+      "tags": [
+        "hidden",
+        "rotation"
+      ]
+    }
   ]
 }

@@ -103,7 +103,7 @@
       "id": "trial-none",
       "name": "trial: no palindrome pairs",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "words": [
           "abc",
@@ -123,7 +123,7 @@
       "id": "trial-empty-long",
       "name": "trial: empty string with longer palindrome",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "words": [
           "",
@@ -151,9 +151,9 @@
     },
     {
       "id": "hidden-many-directions",
-      "name": "hidden: every distinct pair is palindromic",
-      "kind": "real",
-      "visible": false,
+      "name": "every distinct pair is palindromic",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "a",
@@ -197,9 +197,9 @@
     },
     {
       "id": "hidden-prefix-complements",
-      "name": "hidden: several prefix and suffix complements",
-      "kind": "real",
-      "visible": false,
+      "name": "several prefix and suffix complements",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "race",
@@ -231,9 +231,9 @@
     },
     {
       "id": "hidden-reverse-and-short",
-      "name": "hidden: complete reverse plus shorter word",
-      "kind": "real",
-      "visible": false,
+      "name": "complete reverse plus shorter word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abc",

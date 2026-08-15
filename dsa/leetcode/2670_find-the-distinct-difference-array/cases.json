@@ -1,10 +1,200 @@
-{"challenge_id":"lc_2670","cases":[
-{"id":"sample-all-unique","name":"sample: all values unique","kind":"sample","visible":true,"input":{"nums":[1,2,3,4,5]},"expected":[-3,-1,1,3,5],"tags":["sample","unique"]},
-{"id":"sample-repeated","name":"sample: repeated values on both sides","kind":"sample","visible":true,"input":{"nums":[3,2,3,4,2]},"expected":[-2,-1,0,2,3],"tags":["sample","duplicates"]},
-{"id":"trial-single","name":"trial: single element has empty suffix","kind":"trial","visible":true,"input":{"nums":[7]},"expected":[1],"tags":["boundary","single"]},
-{"id":"trial-all-equal","name":"trial: one distinct value throughout","kind":"trial","visible":true,"input":{"nums":[5,5,5]},"expected":[0,0,1],"tags":["duplicates"]},
-{"id":"real-alternating","name":"hidden: alternating duplicate values","kind":"real","visible":false,"input":{"nums":[1,2,1,2,1,2]},"expected":[-1,0,0,0,1,2],"tags":["hidden","alternating"]},
-{"id":"real-late-new-value","name":"hidden: new value appears near the end","kind":"real","visible":false,"input":{"nums":[1,1,1,2]},"expected":[-1,-1,0,2],"tags":["hidden","late-value"]},
-{"id":"real-early-last-occurrence","name":"hidden: suffix loses a value early","kind":"real","visible":false,"input":{"nums":[1,2,2,2]},"expected":[0,1,1,2],"tags":["hidden","last-occurrence"]},
-{"id":"real-mixed","name":"hidden: several frequency transitions","kind":"real","visible":false,"input":{"nums":[4,1,4,2,1,3]},"expected":[-3,-2,-1,1,2,4],"tags":["hidden","mixed"]}
-]}
+{
+  "challenge_id": "lc_2670",
+  "cases": [
+    {
+      "id": "sample-all-unique",
+      "name": "sample: all values unique",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": [
+        -3,
+        -1,
+        1,
+        3,
+        5
+      ],
+      "tags": [
+        "sample",
+        "unique"
+      ]
+    },
+    {
+      "id": "sample-repeated",
+      "name": "sample: repeated values on both sides",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          3,
+          4,
+          2
+        ]
+      },
+      "expected": [
+        -2,
+        -1,
+        0,
+        2,
+        3
+      ],
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: single element has empty suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: one distinct value throughout",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        1
+      ],
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "alternating duplicate values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": [
+        -1,
+        0,
+        0,
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-late-new-value",
+      "name": "new value appears near the end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": [
+        -1,
+        -1,
+        0,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "late-value"
+      ]
+    },
+    {
+      "id": "real-early-last-occurrence",
+      "name": "suffix loses a value early",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        1,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "last-occurrence"
+      ]
+    },
+    {
+      "id": "real-mixed",
+      "name": "several frequency transitions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          4,
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": [
+        -3,
+        -2,
+        -1,
+        1,
+        2,
+        4
+      ],
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    }
+  ]
+}

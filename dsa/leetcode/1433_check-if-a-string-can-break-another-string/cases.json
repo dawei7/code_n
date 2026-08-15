@@ -78,9 +78,9 @@
     },
     {
       "id": "real-sign-change",
-      "name": "hidden: neither prefix direction persists",
-      "kind": "real",
-      "visible": false,
+      "name": "neither prefix direction persists",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "az",
         "s2": "by"
@@ -93,9 +93,9 @@
     },
     {
       "id": "real-one-direction",
-      "name": "hidden: first string dominates with ties",
-      "kind": "real",
-      "visible": false,
+      "name": "first string dominates with ties",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s1": "zzzyyy",
         "s2": "zyxabc"

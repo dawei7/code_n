@@ -122,9 +122,9 @@
     },
     {
       "id": "real-center-excluded",
-      "name": "hidden: center value does not affect either block",
-      "kind": "real",
-      "visible": false,
+      "name": "center value does not affect either block",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -145,9 +145,9 @@
     },
     {
       "id": "real-failing-suffix",
-      "name": "hidden: descending suffix rejects the candidate",
-      "kind": "real",
-      "visible": false,
+      "name": "descending suffix rejects the candidate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -166,9 +166,9 @@
     },
     {
       "id": "real-boundary-values",
-      "name": "hidden: extreme values preserve ordering semantics",
-      "kind": "real",
-      "visible": false,
+      "name": "extreme values preserve ordering semantics",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,

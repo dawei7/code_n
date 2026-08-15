@@ -248,9 +248,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: GDP is irrelevant",
-      "kind": "real",
-      "visible": false,
+      "name": "GDP is irrelevant",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "World": [
@@ -304,9 +304,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: lexical names and mixed qualifiers",
-      "kind": "real",
-      "visible": false,
+      "name": "lexical names and mixed qualifiers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "World": [

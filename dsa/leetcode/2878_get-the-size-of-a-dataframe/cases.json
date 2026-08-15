@@ -160,9 +160,9 @@
     },
     {
       "id": "real-repeated-values",
-      "name": "hidden: repeated cell values do not affect dimensions",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated cell values do not affect dimensions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "players": [

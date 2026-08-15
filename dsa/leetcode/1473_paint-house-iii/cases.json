@@ -188,9 +188,9 @@
     },
     {
       "id": "real-target-one",
-      "name": "hidden: common color must respect fixed house",
-      "kind": "real",
-      "visible": false,
+      "name": "common color must respect fixed house",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "houses": [
           0,
@@ -228,9 +228,9 @@
     },
     {
       "id": "real-maximum-neighborhoods",
-      "name": "hidden: every adjacent color must differ",
-      "kind": "real",
-      "visible": false,
+      "name": "every adjacent color must differ",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "houses": [
           0,
@@ -268,9 +268,9 @@
     },
     {
       "id": "real-fixed-cost-ignored",
-      "name": "hidden: cost rows for painted houses are irrelevant",
-      "kind": "real",
-      "visible": false,
+      "name": "cost rows for painted houses are irrelevant",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "houses": [
           1,
@@ -303,9 +303,9 @@
     },
     {
       "id": "real-one-color-impossible",
-      "name": "hidden: one color cannot form two neighborhoods",
-      "kind": "real",
-      "visible": false,
+      "name": "one color cannot form two neighborhoods",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "houses": [
           0,
@@ -336,9 +336,9 @@
     },
     {
       "id": "real-fixed-and-unpainted-mix",
-      "name": "hidden: cheapest local colors are not globally feasible",
-      "kind": "real",
-      "visible": false,
+      "name": "cheapest local colors are not globally feasible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "houses": [
           1,

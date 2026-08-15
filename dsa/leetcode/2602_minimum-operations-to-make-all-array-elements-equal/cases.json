@@ -104,9 +104,9 @@
     },
     {
       "id": "real-low-mid-high",
-      "name": "hidden: targets below, within, and above the values",
-      "kind": "real",
-      "visible": false,
+      "name": "targets below, within, and above the values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -131,9 +131,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: operation totals require wide integers",
-      "kind": "real",
-      "visible": false,
+      "name": "operation totals require wide integers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,

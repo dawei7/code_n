@@ -262,8 +262,8 @@
     {
       "id": "real-maximum-bit-values",
       "name": "real: values at the numeric upper bound",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2147483647,
@@ -298,8 +298,8 @@
     {
       "id": "real-repeated-values",
       "name": "real: repeated equal values cancel by width",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -340,8 +340,8 @@
     {
       "id": "real-interior-best",
       "name": "real: best score lies strictly inside",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -380,8 +380,8 @@
     {
       "id": "real-singleton-subranges",
       "name": "real: singleton answers across a mixed array",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           31,
@@ -423,8 +423,8 @@
     {
       "id": "real-overlapping-boundaries",
       "name": "real: heavily overlapping query boundaries",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           13,

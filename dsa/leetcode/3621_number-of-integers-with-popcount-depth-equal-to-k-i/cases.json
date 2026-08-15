@@ -126,9 +126,9 @@
     },
     {
       "id": "real-at-power-depth-one",
-      "name": "hidden: include a power-of-two upper bound",
-      "kind": "real",
-      "visible": false,
+      "name": "include a power-of-two upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 32,
         "k": 1
@@ -142,9 +142,9 @@
     },
     {
       "id": "real-byte-all-ones-depth-three",
-      "name": "hidden: classify every eight-bit popcount",
-      "kind": "real",
-      "visible": false,
+      "name": "classify every eight-bit popcount",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 255,
         "k": 3
@@ -158,9 +158,9 @@
     },
     {
       "id": "real-twenty-bits-depth-two",
-      "name": "hidden: dense twenty-bit combination sums",
-      "kind": "real",
-      "visible": false,
+      "name": "dense twenty-bit combination sums",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1048575,
         "k": 2
@@ -174,9 +174,9 @@
     },
     {
       "id": "real-irregular-depth-two",
-      "name": "hidden: irregular prefix count for depth two",
-      "kind": "real",
-      "visible": false,
+      "name": "irregular prefix count for depth two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 123456789,
         "k": 2
@@ -190,9 +190,9 @@
     },
     {
       "id": "real-irregular-depth-three",
-      "name": "hidden: irregular prefix count for depth three",
-      "kind": "real",
-      "visible": false,
+      "name": "irregular prefix count for depth three",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 123456789,
         "k": 3
@@ -206,9 +206,9 @@
     },
     {
       "id": "real-max-depth-two",
-      "name": "hidden: maximum n with depth two",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum n with depth two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000000000000000,
         "k": 2
@@ -222,9 +222,9 @@
     },
     {
       "id": "real-max-depth-four",
-      "name": "hidden: maximum n reaches the deepest attainable class",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum n reaches the deepest attainable class",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000000000000000,
         "k": 4
@@ -238,9 +238,9 @@
     },
     {
       "id": "real-max-depth-five",
-      "name": "hidden: requested depth is unattainable",
-      "kind": "real",
-      "visible": false,
+      "name": "requested depth is unattainable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000000000000000,
         "k": 5

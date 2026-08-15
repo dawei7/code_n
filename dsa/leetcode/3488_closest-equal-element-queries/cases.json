@@ -6,108 +6,369 @@
       "name": "sample: direct, missing, and wrapped answers",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1,3,1,4,1,3,2], "queries": [0,3,5]},
-      "expected": [2,-1,3],
-      "tags": ["sample", "circular"]
+      "input": {
+        "nums": [
+          1,
+          3,
+          1,
+          4,
+          1,
+          3,
+          2
+        ],
+        "queries": [
+          0,
+          3,
+          5
+        ]
+      },
+      "expected": [
+        2,
+        -1,
+        3
+      ],
+      "tags": [
+        "sample",
+        "circular"
+      ]
     },
     {
       "id": "sample-all-unique",
       "name": "sample: all queried values are unique",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1,2,3,4], "queries": [0,1,2,3]},
-      "expected": [-1,-1,-1,-1],
-      "tags": ["sample", "unique"]
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "queries": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "tags": [
+        "sample",
+        "unique"
+      ]
     },
     {
       "id": "trial-boundary-neighbors",
       "name": "trial: equal values are adjacent across the boundary",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5,1,2,3,5], "queries": [0,4]},
-      "expected": [1,1],
-      "tags": ["trial", "wraparound"]
+      "input": {
+        "nums": [
+          5,
+          1,
+          2,
+          3,
+          5
+        ],
+        "queries": [
+          0,
+          4
+        ]
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "trial",
+        "wraparound"
+      ]
     },
     {
       "id": "trial-repeated-block",
       "name": "trial: repeated blocks and one unique value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2,2,2,3,3,4], "queries": [0,1,2,4,5]},
-      "expected": [1,1,1,1,-1],
-      "tags": ["trial", "duplicates"]
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          3,
+          3,
+          4
+        ],
+        "queries": [
+          0,
+          1,
+          2,
+          4,
+          5
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        1,
+        -1
+      ],
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
     },
     {
       "id": "real-single-element",
       "name": "real: the queried index cannot match itself",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9], "queries": [0]},
-      "expected": [-1],
-      "tags": ["real", "single"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9
+        ],
+        "queries": [
+          0
+        ]
+      },
+      "expected": [
+        -1
+      ],
+      "tags": [
+        "real",
+        "single"
+      ]
     },
     {
       "id": "real-two-equal-elements",
       "name": "real: two equal elements in a length-two circle",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [7,7], "queries": [0,1,0]},
-      "expected": [1,1,1],
-      "tags": ["real", "two-elements", "repeated-query"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7
+        ],
+        "queries": [
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "real",
+        "two-elements",
+        "repeated-query"
+      ]
     },
     {
       "id": "real-direct-versus-wrapped",
       "name": "real: choose the shorter circular direction",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8,1,1,1,8,1,1,1,1,1], "queries": [0,4]},
-      "expected": [4,4],
-      "tags": ["real", "directions"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          1,
+          1,
+          1,
+          8,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "queries": [
+          0,
+          4
+        ]
+      },
+      "expected": [
+        4,
+        4
+      ],
+      "tags": [
+        "real",
+        "directions"
+      ]
     },
     {
       "id": "real-multiple-occurrences",
       "name": "real: only adjacent occurrences in cyclic order matter",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4,1,4,2,3,4,6,7,4,9], "queries": [0,2,5,8]},
-      "expected": [2,2,3,2],
-      "tags": ["real", "multiple-occurrences"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          4,
+          2,
+          3,
+          4,
+          6,
+          7,
+          4,
+          9
+        ],
+        "queries": [
+          0,
+          2,
+          5,
+          8
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        3,
+        2
+      ],
+      "tags": [
+        "real",
+        "multiple-occurrences"
+      ]
     },
     {
       "id": "real-all-equal",
       "name": "real: every position has an equal neighbor",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [6,6,6,6,6], "queries": [0,1,2,3,4]},
-      "expected": [1,1,1,1,1],
-      "tags": ["real", "all-equal"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "queries": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "real",
+        "all-equal"
+      ]
     },
     {
       "id": "real-repeated-queries",
       "name": "real: duplicate query indices reuse preprocessing",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1,2,1,3,2,4], "queries": [1,1,4,4,5]},
-      "expected": [3,3,3,3,-1],
-      "tags": ["real", "repeated-query"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          3,
+          2,
+          4
+        ],
+        "queries": [
+          1,
+          1,
+          4,
+          4,
+          5
+        ]
+      },
+      "expected": [
+        3,
+        3,
+        3,
+        3,
+        -1
+      ],
+      "tags": [
+        "real",
+        "repeated-query"
+      ]
     },
     {
       "id": "real-mixed-groups",
       "name": "real: independent value groups have different gaps",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [7,8,7,9,8,10,7,11,8], "queries": [0,1,5,6,8]},
-      "expected": [2,2,-1,3,2],
-      "tags": ["real", "groups", "circular"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          8,
+          7,
+          9,
+          8,
+          10,
+          7,
+          11,
+          8
+        ],
+        "queries": [
+          0,
+          1,
+          5,
+          6,
+          8
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        -1,
+        3,
+        2
+      ],
+      "tags": [
+        "real",
+        "groups",
+        "circular"
+      ]
     },
     {
       "id": "real-large-value-bound",
       "name": "real: values at the upper bound remain ordinary keys",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000,1,2,1000000], "queries": [0,3]},
-      "expected": [1,1],
-      "tags": ["real", "value-boundary"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000,
+          1,
+          2,
+          1000000
+        ],
+        "queries": [
+          0,
+          3
+        ]
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "real",
+        "value-boundary"
+      ]
     }
   ]
 }

@@ -159,9 +159,9 @@
     },
     {
       "id": "real-interior-pair",
-      "name": "hidden: a two-element suffix is better than the unbalanced full array",
-      "kind": "real",
-      "visible": false,
+      "name": "a two-element suffix is better than the unbalanced full array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -180,9 +180,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: maximum-range values are classified only by parity",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum-range values are classified only by parity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -200,9 +200,9 @@
     },
     {
       "id": "real-long-duplicate-runs",
-      "name": "hidden: duplicate runs can make a long balanced subarray",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate runs can make a long balanced subarray",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -239,9 +239,9 @@
     },
     {
       "id": "real-all-distinct-balanced",
-      "name": "hidden: three distinct values of each parity balance the whole array",
-      "kind": "real",
-      "visible": false,
+      "name": "three distinct values of each parity balance the whole array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -264,9 +264,9 @@
     },
     {
       "id": "real-balanced-prefix",
-      "name": "hidden: the longest balance can be a prefix",
-      "kind": "real",
-      "visible": false,
+      "name": "the longest balance can be a prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -286,4 +286,3 @@
     }
   ]
 }
-

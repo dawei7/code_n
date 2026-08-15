@@ -7,80 +7,181 @@
       "name": "sample: both overlap directions produce a shortest answer",
       "kind": "sample",
       "visible": true,
-      "input": {"s1":"aba","s2":"bab"},
+      "input": {
+        "s1": "aba",
+        "s2": "bab"
+      },
       "expected": "abab",
-      "validator": {"kind":"shortest_superstring","word_params":["s1","s2"]},
-      "tags": ["sample","overlap","multiple-valid-answers"]
+      "validator": {
+        "kind": "shortest_superstring",
+        "word_params": [
+          "s1",
+          "s2"
+        ]
+      },
+      "tags": [
+        "sample",
+        "overlap",
+        "multiple-valid-answers"
+      ]
     },
     {
       "id": "sample-containment",
       "name": "sample: the longer string contains the shorter one",
       "kind": "sample",
       "visible": true,
-      "input": {"s1":"aa","s2":"aaa"},
+      "input": {
+        "s1": "aa",
+        "s2": "aaa"
+      },
       "expected": "aaa",
-      "validator": {"kind":"shortest_superstring","word_params":["s1","s2"]},
-      "tags": ["sample","containment"]
+      "validator": {
+        "kind": "shortest_superstring",
+        "word_params": [
+          "s1",
+          "s2"
+        ]
+      },
+      "tags": [
+        "sample",
+        "containment"
+      ]
     },
     {
       "id": "trial-no-overlap",
       "name": "trial: disjoint strings permit either concatenation order",
       "kind": "trial",
       "visible": true,
-      "input": {"s1":"abc","s2":"xyz"},
+      "input": {
+        "s1": "abc",
+        "s2": "xyz"
+      },
       "expected": "abcxyz",
-      "validator": {"kind":"shortest_superstring","word_params":["s1","s2"]},
-      "tags": ["trial","no-overlap","multiple-valid-answers"]
+      "validator": {
+        "kind": "shortest_superstring",
+        "word_params": [
+          "s1",
+          "s2"
+        ]
+      },
+      "tags": [
+        "trial",
+        "no-overlap",
+        "multiple-valid-answers"
+      ]
     },
     {
       "id": "trial-forward-overlap",
       "name": "trial: reuse a suffix of the first string",
       "kind": "trial",
       "visible": true,
-      "input": {"s1":"abcd","s2":"cdef"},
+      "input": {
+        "s1": "abcd",
+        "s2": "cdef"
+      },
       "expected": "abcdef",
-      "validator": {"kind":"shortest_superstring","word_params":["s1","s2"]},
-      "tags": ["trial","directional-overlap"]
+      "validator": {
+        "kind": "shortest_superstring",
+        "word_params": [
+          "s1",
+          "s2"
+        ]
+      },
+      "tags": [
+        "trial",
+        "directional-overlap"
+      ]
     },
     {
       "id": "real-reverse-order-better",
       "name": "real: the second string must come first for the best overlap",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1":"cdef","s2":"abcd"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "cdef",
+        "s2": "abcd"
+      },
       "expected": "abcdef",
-      "validator": {"kind":"shortest_superstring","word_params":["s1","s2"]},
-      "tags": ["real","reverse-order","directional-overlap"]
+      "validator": {
+        "kind": "shortest_superstring",
+        "word_params": [
+          "s1",
+          "s2"
+        ]
+      },
+      "tags": [
+        "real",
+        "reverse-order",
+        "directional-overlap"
+      ]
     },
     {
       "id": "real-middle-containment",
       "name": "real: detect containment away from either boundary",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1":"bc","s2":"zbcx"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "bc",
+        "s2": "zbcx"
+      },
       "expected": "zbcx",
-      "validator": {"kind":"shortest_superstring","word_params":["s1","s2"]},
-      "tags": ["real","middle-containment"]
+      "validator": {
+        "kind": "shortest_superstring",
+        "word_params": [
+          "s1",
+          "s2"
+        ]
+      },
+      "tags": [
+        "real",
+        "middle-containment"
+      ]
     },
     {
       "id": "real-identical",
       "name": "real: identical strings are returned once",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1":"leetcode","s2":"leetcode"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "leetcode",
+        "s2": "leetcode"
+      },
       "expected": "leetcode",
-      "validator": {"kind":"shortest_superstring","word_params":["s1","s2"]},
-      "tags": ["real","identical","containment"]
+      "validator": {
+        "kind": "shortest_superstring",
+        "word_params": [
+          "s1",
+          "s2"
+        ]
+      },
+      "tags": [
+        "real",
+        "identical",
+        "containment"
+      ]
     },
     {
       "id": "real-single-characters",
       "name": "real: distinct single characters need both positions",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1":"a","s2":"b"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "a",
+        "s2": "b"
+      },
       "expected": "ab",
-      "validator": {"kind":"shortest_superstring","word_params":["s1","s2"]},
-      "tags": ["real","minimum-length","multiple-valid-answers"]
+      "validator": {
+        "kind": "shortest_superstring",
+        "word_params": [
+          "s1",
+          "s2"
+        ]
+      },
+      "tags": [
+        "real",
+        "minimum-length",
+        "multiple-valid-answers"
+      ]
     }
   ]
 }

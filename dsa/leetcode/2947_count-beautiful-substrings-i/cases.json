@@ -102,9 +102,9 @@
     },
     {
       "id": "real-square-divisor",
-      "name": "hidden: four letters satisfy a square divisor",
-      "kind": "real",
-      "visible": false,
+      "name": "four letters satisfy a square divisor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abab",
         "k": 4
@@ -117,9 +117,9 @@
     },
     {
       "id": "real-all-vowels",
-      "name": "hidden: all vowels never balance",
-      "kind": "real",
-      "visible": false,
+      "name": "all vowels never balance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aeiou",
         "k": 1
@@ -132,9 +132,9 @@
     },
     {
       "id": "real-mixed-periods",
-      "name": "hidden: several balanced lengths meet different periods",
-      "kind": "real",
-      "visible": false,
+      "name": "several balanced lengths meet different periods",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "leetcodeisgreat",
         "k": 3

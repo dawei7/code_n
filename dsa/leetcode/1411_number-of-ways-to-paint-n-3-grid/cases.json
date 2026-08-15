@@ -73,9 +73,9 @@
     },
     {
       "id": "real-modulo",
-      "name": "hidden: modulo is required",
-      "kind": "real",
-      "visible": false,
+      "name": "modulo is required",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 125
       },
@@ -87,9 +87,9 @@
     },
     {
       "id": "real-maximum",
-      "name": "hidden: maximum row count",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum row count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5000
       },

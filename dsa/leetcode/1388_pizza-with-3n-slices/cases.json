@@ -106,9 +106,9 @@
     },
     {
       "id": "hidden-end-conflict",
-      "name": "hidden: first and last cannot both be selected",
-      "kind": "real",
-      "visible": false,
+      "name": "first and last cannot both be selected",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "slices": [
           9,
@@ -127,9 +127,9 @@
     },
     {
       "id": "hidden-equal",
-      "name": "hidden: all slices equal",
-      "kind": "real",
-      "visible": false,
+      "name": "all slices equal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "slices": [
           5,

@@ -7,63 +7,137 @@
       "name": "sample: one run followed by a reset",
       "kind": "sample",
       "visible": true,
-      "input": {"prices": [3, 2, 1, 4]},
+      "input": {
+        "prices": [
+          3,
+          2,
+          1,
+          4
+        ]
+      },
       "expected": 7,
-      "tags": ["sample", "descent-run", "reset"]
+      "tags": [
+        "sample",
+        "descent-run",
+        "reset"
+      ]
     },
     {
       "id": "sample-no-extensions",
       "name": "sample: no adjacent pair descends by exactly one",
       "kind": "sample",
       "visible": true,
-      "input": {"prices": [8, 6, 7, 7]},
+      "input": {
+        "prices": [
+          8,
+          6,
+          7,
+          7
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "single-day-only"]
+      "tags": [
+        "sample",
+        "single-day-only"
+      ]
     },
     {
       "id": "sample-single-day",
       "name": "sample: one day",
       "kind": "sample",
       "visible": true,
-      "input": {"prices": [1]},
+      "input": {
+        "prices": [
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "minimum-length"]
+      "tags": [
+        "sample",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-two-separate-runs",
       "name": "two descent runs separated by an increase",
       "kind": "trial",
       "visible": true,
-      "input": {"prices": [5, 4, 3, 10, 9]},
+      "input": {
+        "prices": [
+          5,
+          4,
+          3,
+          10,
+          9
+        ]
+      },
       "expected": 9,
-      "tags": ["multiple-runs", "reset"]
+      "tags": [
+        "multiple-runs",
+        "reset"
+      ]
     },
     {
       "id": "trial-equal-breaks-run",
       "name": "equal prices break a descent period",
       "kind": "trial",
       "visible": true,
-      "input": {"prices": [4, 3, 3, 2]},
+      "input": {
+        "prices": [
+          4,
+          3,
+          3,
+          2
+        ]
+      },
       "expected": 6,
-      "tags": ["equal-prices", "reset"]
+      "tags": [
+        "equal-prices",
+        "reset"
+      ]
     },
     {
       "id": "real-larger-drop",
-      "name": "hidden: a larger decrease is not smooth",
-      "kind": "real",
-      "visible": false,
-      "input": {"prices": [10, 9, 7, 6, 5]},
+      "name": "a larger decrease is not smooth",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          10,
+          9,
+          7,
+          6,
+          5
+        ]
+      },
       "expected": 9,
-      "tags": ["hidden", "larger-drop", "multiple-runs"]
+      "tags": [
+        "hidden",
+        "larger-drop",
+        "multiple-runs"
+      ]
     },
     {
       "id": "real-full-run",
-      "name": "hidden: every subarray is smooth",
-      "kind": "real",
-      "visible": false,
-      "input": {"prices": [6, 5, 4, 3, 2, 1]},
+      "name": "every subarray is smooth",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 21,
-      "tags": ["hidden", "full-descent", "integer-width"]
+      "tags": [
+        "hidden",
+        "full-descent",
+        "integer-width"
+      ]
     }
   ]
 }

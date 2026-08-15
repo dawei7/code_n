@@ -1,14 +1,212 @@
-{"schema_version":1,"challenge_id":"lc_3790","cases":[
-{"id":"sample-1","name":"sample: three-digit multiple of three","kind":"sample","visible":true,"input":{"k":3},"expected":3,"validator":{"kind":"exact"},"tags":["sample","exists"]},
-{"id":"sample-2","name":"sample: six-digit multiple of seven","kind":"sample","visible":true,"input":{"k":7},"expected":6,"validator":{"kind":"exact"},"tags":["sample","exists"]},
-{"id":"sample-3","name":"sample: even divisor is impossible","kind":"sample","visible":true,"input":{"k":2},"expected":-1,"validator":{"kind":"exact"},"tags":["sample","impossible"]},
-{"id":"trial-factor-five","name":"trial: divisor containing factor five","kind":"trial","visible":true,"input":{"k":5},"expected":-1,"validator":{"kind":"exact"},"tags":["trial","impossible"]},
-{"id":"trial-eleven","name":"trial: two-digit repunit","kind":"trial","visible":true,"input":{"k":11},"expected":2,"validator":{"kind":"exact"},"tags":["trial","short"]},
-{"id":"trial-thirty-seven","name":"trial: 111 is divisible by 37","kind":"trial","visible":true,"input":{"k":37},"expected":3,"validator":{"kind":"exact"},"tags":["trial","short"]},
-{"id":"real-nine","name":"hidden: repeated factor of three","kind":"real","visible":false,"input":{"k":9},"expected":9,"validator":{"kind":"exact"},"tags":["hidden","composite"]},
-{"id":"real-thirteen","name":"hidden: six-digit repunit for thirteen","kind":"real","visible":false,"input":{"k":13},"expected":6,"validator":{"kind":"exact"},"tags":["hidden","prime"]},
-{"id":"real-seventeen","name":"hidden: nearly divisor-length cycle","kind":"real","visible":false,"input":{"k":17},"expected":16,"validator":{"kind":"exact"},"tags":["hidden","prime","long-cycle"]},
-{"id":"real-twenty-seven","name":"hidden: prime-power divisor","kind":"real","visible":false,"input":{"k":27},"expected":27,"validator":{"kind":"exact"},"tags":["hidden","prime-power"]},
-{"id":"real-nine-nine-nine","name":"hidden: composite divisor with shorter cycle","kind":"real","visible":false,"input":{"k":999},"expected":27,"validator":{"kind":"exact"},"tags":["hidden","composite"]},
-{"id":"real-maximum","name":"hidden: maximum even divisor is impossible","kind":"real","visible":false,"input":{"k":100000},"expected":-1,"validator":{"kind":"exact"},"tags":["hidden","maximum","impossible"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3790",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three-digit multiple of three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 3
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "exists"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: six-digit multiple of seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 7
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "exists"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: even divisor is impossible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 2
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-factor-five",
+      "name": "trial: divisor containing factor five",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 5
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-eleven",
+      "name": "trial: two-digit repunit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 11
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "short"
+      ]
+    },
+    {
+      "id": "trial-thirty-seven",
+      "name": "trial: 111 is divisible by 37",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 37
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "short"
+      ]
+    },
+    {
+      "id": "real-nine",
+      "name": "repeated factor of three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 9
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "composite"
+      ]
+    },
+    {
+      "id": "real-thirteen",
+      "name": "six-digit repunit for thirteen",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 13
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "prime"
+      ]
+    },
+    {
+      "id": "real-seventeen",
+      "name": "nearly divisor-length cycle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 17
+      },
+      "expected": 16,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "prime",
+        "long-cycle"
+      ]
+    },
+    {
+      "id": "real-twenty-seven",
+      "name": "prime-power divisor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 27
+      },
+      "expected": 27,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "prime-power"
+      ]
+    },
+    {
+      "id": "real-nine-nine-nine",
+      "name": "composite divisor with shorter cycle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 999
+      },
+      "expected": 27,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "composite"
+      ]
+    },
+    {
+      "id": "real-maximum",
+      "name": "maximum even divisor is impossible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 100000
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum",
+        "impossible"
+      ]
+    }
+  ]
+}

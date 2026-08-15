@@ -7,72 +7,150 @@
       "name": "sample: overlapping subsequences achieve three",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "linear-dependence", "overlap"]
+      "tags": [
+        "sample",
+        "linear-dependence",
+        "overlap"
+      ]
     },
     {
       "id": "sample-two-values",
       "name": "sample: two independent values combine to seven",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [5, 2]},
+      "input": {
+        "nums": [
+          5,
+          2
+        ]
+      },
       "expected": 7,
-      "tags": ["sample", "combination"]
+      "tags": [
+        "sample",
+        "combination"
+      ]
     },
     {
       "id": "trial-all-zero",
       "name": "trial: zero vectors cannot produce a positive XOR",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 0, 0]},
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "zero", "dependent"]
+      "tags": [
+        "trial",
+        "zero",
+        "dependent"
+      ]
     },
     {
       "id": "trial-duplicate-vector",
       "name": "trial: a duplicate does not expand the XOR span",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, 5]},
+      "input": {
+        "nums": [
+          5,
+          5
+        ]
+      },
       "expected": 5,
-      "tags": ["trial", "duplicates"]
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
     },
     {
       "id": "real-several-pivots",
-      "name": "hidden: several independent bits combine into the optimum",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, 4, 2, 1]},
+      "name": "several independent bits combine into the optimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          4,
+          2,
+          1
+        ]
+      },
       "expected": 15,
-      "tags": ["hidden", "independent-bits"]
+      "tags": [
+        "hidden",
+        "independent-bits"
+      ]
     },
     {
       "id": "real-high-legal-value",
-      "name": "hidden: preserve the highest legal value with zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000, 0]},
+      "name": "preserve the highest legal value with zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          0
+        ]
+      },
       "expected": 1000000000,
-      "tags": ["hidden", "maximum-value", "zero"]
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "zero"
+      ]
     },
     {
       "id": "real-lower-bits-improve-high-pivot",
-      "name": "hidden: reduced basis vectors greedily improve lower bits",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10, 12, 5, 3]},
+      "name": "reduced basis vectors greedily improve lower bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          12,
+          5,
+          3
+        ]
+      },
       "expected": 15,
-      "tags": ["hidden", "basis-reduction"]
+      "tags": [
+        "hidden",
+        "basis-reduction"
+      ]
     },
     {
       "id": "real-dependent-mixture",
-      "name": "hidden: dependent and duplicate values retain the same span",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 1, 2, 3]},
+      "name": "dependent and duplicate values retain the same span",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "duplicates", "linear-dependence"]
+      "tags": [
+        "hidden",
+        "duplicates",
+        "linear-dependence"
+      ]
     }
   ]
 }

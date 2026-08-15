@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-negative-two",
-      "name": "hidden: negative value with low e digit",
-      "kind": "real",
-      "visible": false,
+      "name": "negative value with low e digit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": -2
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-int-min",
-      "name": "hidden: minimum signed integer",
-      "kind": "real",
-      "visible": false,
+      "name": "minimum signed integer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": -2147483648
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "hidden-int-max",
-      "name": "hidden: maximum signed integer",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum signed integer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 2147483647
       },

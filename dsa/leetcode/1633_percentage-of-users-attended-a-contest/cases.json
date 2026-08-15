@@ -344,9 +344,9 @@
     },
     {
       "id": "real-tie-contest-order",
-      "name": "hidden: equal percentages sort by contest id ascending",
-      "kind": "real",
-      "visible": false,
+      "name": "equal percentages sort by contest id ascending",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [
@@ -410,9 +410,9 @@
     },
     {
       "id": "real-six-user-rounding",
-      "name": "hidden: sixths round upward at two decimals",
-      "kind": "real",
-      "visible": false,
+      "name": "sixths round upward at two decimals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [
@@ -492,9 +492,9 @@
     },
     {
       "id": "real-shared-users",
-      "name": "hidden: one user contributes independently to several contests",
-      "kind": "real",
-      "visible": false,
+      "name": "one user contributes independently to several contests",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [

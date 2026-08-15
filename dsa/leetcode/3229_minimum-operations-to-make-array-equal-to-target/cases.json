@@ -141,8 +141,8 @@
     {
       "id": "real-rising-positive-run",
       "name": "real: rising positive magnitudes",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           50,
@@ -166,8 +166,8 @@
     {
       "id": "real-falling-positive-run",
       "name": "real: falling positive magnitudes",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           50,
@@ -189,8 +189,8 @@
     {
       "id": "real-consecutive-sign-changes",
       "name": "real: every boundary changes direction",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           50,
@@ -211,8 +211,8 @@
     {
       "id": "real-zero-separates-runs",
       "name": "real: zero difference separates increments",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           50,
@@ -234,8 +234,8 @@
     {
       "id": "real-mixed-plateaus",
       "name": "real: mixed directions and plateaus",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           50,
@@ -265,8 +265,8 @@
     {
       "id": "real-opposite-extremes",
       "name": "real: adjacent maximum opposite differences",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

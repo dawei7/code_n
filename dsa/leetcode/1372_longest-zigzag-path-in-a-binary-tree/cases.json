@@ -101,9 +101,9 @@
     },
     {
       "id": "hidden-straight-right",
-      "name": "hidden: straight right chain",
-      "kind": "real",
-      "visible": false,
+      "name": "straight right chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -123,9 +123,9 @@
     },
     {
       "id": "hidden-alternating-six",
-      "name": "hidden: six-node alternating chain",
-      "kind": "real",
-      "visible": false,
+      "name": "six-node alternating chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,

@@ -134,8 +134,8 @@
     {
       "id": "real-destination-wait-ignored",
       "name": "real: a huge destination wait does not affect the answer",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "m": 2,
         "n": 2,
@@ -160,8 +160,8 @@
     {
       "id": "real-start-wait-ignored",
       "name": "real: a huge starting wait does not affect the answer",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "m": 2,
         "n": 3,
@@ -187,8 +187,8 @@
     {
       "id": "real-zero-waits",
       "name": "real: entrance products alone determine the best route",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "m": 3,
         "n": 3,
@@ -220,8 +220,8 @@
     {
       "id": "real-non-greedy-waits",
       "name": "real: a cheap immediate wait can lead to an expensive continuation",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "m": 3,
         "n": 4,
@@ -256,8 +256,8 @@
     {
       "id": "real-large-values",
       "name": "real: totals exceed individual cost bounds",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "m": 3,
         "n": 3,

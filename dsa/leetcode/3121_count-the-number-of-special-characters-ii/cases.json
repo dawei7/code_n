@@ -2,17 +2,173 @@
   "schema_version": 1,
   "challenge_id": "lc_3121",
   "cases": [
-    { "id": "sample-1", "name": "sample: three ordered pairs", "kind": "sample", "visible": true, "input": { "word": "aaAbcBC" }, "expected": 3, "tags": ["sample", "ordered-pairs"] },
-    { "id": "sample-2", "name": "sample: lowercase only", "kind": "sample", "visible": true, "input": { "word": "abc" }, "expected": 0, "tags": ["sample", "missing-uppercase"] },
-    { "id": "sample-3", "name": "sample: ordering violations", "kind": "sample", "visible": true, "input": { "word": "AbBCab" }, "expected": 0, "tags": ["sample", "invalid-order"] },
-    { "id": "trial-single-character", "name": "trial: one lowercase occurrence", "kind": "trial", "visible": true, "input": { "word": "a" }, "expected": 0, "tags": ["boundary", "minimum-length"] },
-    { "id": "trial-valid-pair", "name": "trial: lowercase immediately before uppercase", "kind": "trial", "visible": true, "input": { "word": "zZ" }, "expected": 1, "tags": ["boundary", "valid-order"] },
-    { "id": "trial-reversed-pair", "name": "trial: uppercase before lowercase", "kind": "trial", "visible": true, "input": { "word": "Zz" }, "expected": 0, "tags": ["invalid-order", "uppercase-first"] },
-    { "id": "trial-lowercase-after-transition", "name": "trial: later lowercase invalidates a former match", "kind": "trial", "visible": true, "input": { "word": "aaAaa" }, "expected": 0, "tags": ["invalid-order", "late-lowercase"] },
-    { "id": "real-valid-uppercase-repetitions", "name": "hidden: uppercase repetitions remain valid", "kind": "real", "visible": false, "input": { "word": "aaaaAAAAAA" }, "expected": 1, "tags": ["real", "uppercase-repetitions"] },
-    { "id": "real-mixed-validity", "name": "hidden: independent letters have different states", "kind": "real", "visible": false, "input": { "word": "aAAAbbbBBcCCdDdd" }, "expected": 3, "tags": ["real", "mixed-validity"] },
-    { "id": "real-all-alphabet-valid", "name": "hidden: every English letter is special", "kind": "real", "visible": false, "input": { "word": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" }, "expected": 26, "tags": ["real", "full-alphabet"] },
-    { "id": "real-all-alphabet-invalid", "name": "hidden: uppercase alphabet comes first", "kind": "real", "visible": false, "input": { "word": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" }, "expected": 0, "tags": ["real", "uppercase-first"] },
-    { "id": "real-interleaved-transitions", "name": "hidden: each letter transitions once", "kind": "real", "visible": false, "input": { "word": "aAbBcCdDeEfFgGhHiIjJkKlLmM" }, "expected": 13, "tags": ["real", "interleaved"] }
+    {
+      "id": "sample-1",
+      "name": "sample: three ordered pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "aaAbcBC"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "ordered-pairs"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: lowercase only",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "abc"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "missing-uppercase"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: ordering violations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "AbBCab"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "invalid-order"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: one lowercase occurrence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "a"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-valid-pair",
+      "name": "trial: lowercase immediately before uppercase",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "zZ"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "valid-order"
+      ]
+    },
+    {
+      "id": "trial-reversed-pair",
+      "name": "trial: uppercase before lowercase",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "Zz"
+      },
+      "expected": 0,
+      "tags": [
+        "invalid-order",
+        "uppercase-first"
+      ]
+    },
+    {
+      "id": "trial-lowercase-after-transition",
+      "name": "trial: later lowercase invalidates a former match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaAaa"
+      },
+      "expected": 0,
+      "tags": [
+        "invalid-order",
+        "late-lowercase"
+      ]
+    },
+    {
+      "id": "real-valid-uppercase-repetitions",
+      "name": "uppercase repetitions remain valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaaaAAAAAA"
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "uppercase-repetitions"
+      ]
+    },
+    {
+      "id": "real-mixed-validity",
+      "name": "independent letters have different states",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aAAAbbbBBcCCdDdd"
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "mixed-validity"
+      ]
+    },
+    {
+      "id": "real-all-alphabet-valid",
+      "name": "every English letter is special",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      },
+      "expected": 26,
+      "tags": [
+        "real",
+        "full-alphabet"
+      ]
+    },
+    {
+      "id": "real-all-alphabet-invalid",
+      "name": "uppercase alphabet comes first",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "uppercase-first"
+      ]
+    },
+    {
+      "id": "real-interleaved-transitions",
+      "name": "each letter transitions once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aAbBcCdDeEfFgGhHiIjJkKlLmM"
+      },
+      "expected": 13,
+      "tags": [
+        "real",
+        "interleaved"
+      ]
+    }
   ]
 }

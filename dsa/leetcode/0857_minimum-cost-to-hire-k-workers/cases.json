@@ -23,7 +23,7 @@
       "expected": 105,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "sample",
@@ -55,7 +55,7 @@
       "expected": 30.666666666666664,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "sample",
@@ -83,7 +83,7 @@
       "expected": 8,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "sample",
@@ -111,7 +111,7 @@
       "expected": 18,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "trial",
@@ -139,7 +139,7 @@
       "expected": 9,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "trial",
@@ -167,7 +167,7 @@
       "expected": 20,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "trial",
@@ -176,9 +176,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: one worker among equal wages",
-      "kind": "real",
-      "visible": false,
+      "name": "one worker among equal wages",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "quality": [
           9,
@@ -197,7 +197,7 @@
       "expected": 12,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "hidden",
@@ -206,9 +206,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: all workers with fractional ratio",
-      "kind": "real",
-      "visible": false,
+      "name": "all workers with fractional ratio",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "quality": [
           4,
@@ -225,7 +225,7 @@
       "expected": 19.5,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "hidden",
@@ -234,9 +234,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: duplicate qualities",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate qualities",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "quality": [
           5,
@@ -255,7 +255,7 @@
       "expected": 14,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "hidden",
@@ -264,9 +264,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: largest quality is evicted",
-      "kind": "real",
-      "visible": false,
+      "name": "largest quality is evicted",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "quality": [
           100,
@@ -285,7 +285,7 @@
       "expected": 12,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "hidden",
@@ -294,9 +294,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: mixed ratios and group sizes",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed ratios and group sizes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "quality": [
           8,
@@ -317,7 +317,7 @@
       "expected": 60,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "hidden",
@@ -326,9 +326,9 @@
     },
     {
       "id": "hidden-6",
-      "name": "hidden: equal minimum wages",
-      "kind": "real",
-      "visible": false,
+      "name": "equal minimum wages",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "quality": [
           1,
@@ -347,7 +347,7 @@
       "expected": 48,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.00001
+        "tolerance": 1e-05
       },
       "tags": [
         "hidden",

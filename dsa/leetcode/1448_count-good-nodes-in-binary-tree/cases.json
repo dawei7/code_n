@@ -107,9 +107,9 @@
     },
     {
       "id": "real-all-equal",
-      "name": "hidden: every node ties the path maximum",
-      "kind": "real",
-      "visible": false,
+      "name": "every node ties the path maximum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           2,
@@ -129,9 +129,9 @@
     },
     {
       "id": "real-independent-branches",
-      "name": "hidden: path maxima remain branch-local",
-      "kind": "real",
-      "visible": false,
+      "name": "path maxima remain branch-local",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           5,
@@ -151,9 +151,9 @@
     },
     {
       "id": "real-increasing-chain",
-      "name": "hidden: every node in an increasing chain is good",
-      "kind": "real",
-      "visible": false,
+      "name": "every node in an increasing chain is good",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -174,9 +174,9 @@
     },
     {
       "id": "real-decreasing-chain",
-      "name": "hidden: only root in a decreasing chain is good",
-      "kind": "real",
-      "visible": false,
+      "name": "only root in a decreasing chain is good",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           4,

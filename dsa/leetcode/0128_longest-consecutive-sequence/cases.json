@@ -62,9 +62,9 @@
     },
     {
       "id": "real-negative-run",
-      "name": "hidden: negative run",
-      "kind": "real",
-      "visible": false,
+      "name": "negative run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -3,

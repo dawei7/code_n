@@ -406,9 +406,9 @@
     },
     {
       "id": "hidden-complex-hyphen-mix",
-      "name": "hidden: mixed valid and invalid hyphens form exact maximal words",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed valid and invalid hyphens form exact maximal words",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "chunks": [
           "x-y z--q r-s-t -u v-"
@@ -440,9 +440,9 @@
     },
     {
       "id": "hidden-triple-hyphen",
-      "name": "hidden: three consecutive hyphens separate both letters",
-      "kind": "real",
-      "visible": false,
+      "name": "three consecutive hyphens separate both letters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "chunks": [
           "a---b"
@@ -466,9 +466,9 @@
     },
     {
       "id": "hidden-boundaries-around-space",
-      "name": "hidden: single-character chunks preserve a space separator",
-      "kind": "real",
-      "visible": false,
+      "name": "single-character chunks preserve a space separator",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "chunks": [
           "a",
@@ -496,9 +496,9 @@
     },
     {
       "id": "hidden-repeated-mixed-words",
-      "name": "hidden: plain and hyphenated words keep separate frequencies",
-      "kind": "real",
-      "visible": false,
+      "name": "plain and hyphenated words keep separate frequencies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "chunks": [
           "a a-b a b a-b"
@@ -524,9 +524,9 @@
     },
     {
       "id": "hidden-twenty-letter-chunks",
-      "name": "hidden: twenty letter chunks become one long word",
-      "kind": "real",
-      "visible": false,
+      "name": "twenty letter chunks become one long word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "chunks": [
           "a",
@@ -569,9 +569,9 @@
     },
     {
       "id": "hidden-long-hyphen-chain",
-      "name": "hidden: a longer valid hyphen chain remains one word",
-      "kind": "real",
-      "visible": false,
+      "name": "a longer valid hyphen chain remains one word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "chunks": [
           "a-b-c-d-e-f"

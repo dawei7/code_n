@@ -129,9 +129,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: right-to-left erase chain",
-      "kind": "real",
-      "visible": false,
+      "name": "right-to-left erase chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stamp": "ab",
         "target": "aaaaab"
@@ -153,9 +153,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: first stamp is overwritten",
-      "kind": "real",
-      "visible": false,
+      "name": "first stamp is overwritten",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stamp": "xyz",
         "target": "xxyz"
@@ -174,9 +174,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: repeated identical letters",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated identical letters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stamp": "aaa",
         "target": "aaaaa"
@@ -196,9 +196,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: no stamp can cover one character",
-      "kind": "real",
-      "visible": false,
+      "name": "no stamp can cover one character",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stamp": "abc",
         "target": "abxabc"

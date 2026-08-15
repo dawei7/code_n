@@ -1,1 +1,448 @@
-{"schema_version":1,"challenge_id":"lc_1030","cases":[{"id":"sample-1","name":"sample: one row","kind":"sample","visible":true,"input":{"rows":1,"cols":2,"rCenter":0,"cCenter":0},"expected":[[0,0],[0,1]],"validator":{"kind":"distance_order_cells"},"tags":["sample"]},{"id":"sample-2","name":"sample: two by two","kind":"sample","visible":true,"input":{"rows":2,"cols":2,"rCenter":0,"cCenter":1},"expected":[[0,1],[0,0],[1,1],[1,0]],"validator":{"kind":"distance_order_cells"},"tags":["sample"]},{"id":"sample-3","name":"sample: corner center","kind":"sample","visible":true,"input":{"rows":2,"cols":3,"rCenter":1,"cCenter":2},"expected":[[1,2],[0,2],[1,1],[0,1],[1,0],[0,0]],"validator":{"kind":"distance_order_cells"},"tags":["sample"]},{"id":"trial-1","name":"trial: single cell","kind":"trial","visible":true,"input":{"rows":1,"cols":1,"rCenter":0,"cCenter":0},"expected":[[0,0]],"validator":{"kind":"distance_order_cells"},"tags":["trial","minimum"]},{"id":"trial-2","name":"trial: one row centered","kind":"trial","visible":true,"input":{"rows":1,"cols":5,"rCenter":0,"cCenter":2},"expected":[[0,2],[0,1],[0,3],[0,0],[0,4]],"validator":{"kind":"distance_order_cells"},"tags":["trial","one-dimensional"]},{"id":"trial-3","name":"trial: one column off center","kind":"trial","visible":true,"input":{"rows":5,"cols":1,"rCenter":1,"cCenter":0},"expected":[[1,0],[0,0],[2,0],[3,0],[4,0]],"validator":{"kind":"distance_order_cells"},"tags":["trial","one-dimensional"]},{"id":"hidden-1","name":"hidden: centered square","kind":"real","visible":false,"input":{"rows":3,"cols":3,"rCenter":1,"cCenter":1},"expected":[[1,1],[0,1],[1,0],[1,2],[2,1],[0,0],[0,2],[2,0],[2,2]],"validator":{"kind":"distance_order_cells"},"tags":["hidden","ties"]},{"id":"hidden-2","name":"hidden: rectangular corner","kind":"real","visible":false,"input":{"rows":3,"cols":4,"rCenter":0,"cCenter":0},"expected":[[0,0],[0,1],[1,0],[0,2],[1,1],[2,0],[0,3],[1,2],[2,1],[1,3],[2,2],[2,3]],"validator":{"kind":"distance_order_cells"},"tags":["hidden","corner"]},{"id":"hidden-3","name":"hidden: asymmetric interior center","kind":"real","visible":false,"input":{"rows":4,"cols":5,"rCenter":2,"cCenter":1},"expected":[[2,1],[1,1],[2,0],[2,2],[3,1],[0,1],[1,0],[1,2],[2,3],[3,0],[3,2],[0,0],[0,2],[1,3],[2,4],[3,3],[0,3],[1,4],[3,4],[0,4]],"validator":{"kind":"distance_order_cells"},"tags":["hidden","rectangle"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1030",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "rows": 1,
+        "cols": 2,
+        "rCenter": 0,
+        "cCenter": 0
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "validator": {
+        "kind": "distance_order_cells"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two by two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "rows": 2,
+        "cols": 2,
+        "rCenter": 0,
+        "cCenter": 1
+      },
+      "expected": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "distance_order_cells"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: corner center",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "rows": 2,
+        "cols": 3,
+        "rCenter": 1,
+        "cCenter": 2
+      },
+      "expected": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "distance_order_cells"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: single cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rows": 1,
+        "cols": 1,
+        "rCenter": 0,
+        "cCenter": 0
+      },
+      "expected": [
+        [
+          0,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "distance_order_cells"
+      },
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one row centered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rows": 1,
+        "cols": 5,
+        "rCenter": 0,
+        "cCenter": 2
+      },
+      "expected": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "validator": {
+        "kind": "distance_order_cells"
+      },
+      "tags": [
+        "trial",
+        "one-dimensional"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: one column off center",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rows": 5,
+        "cols": 1,
+        "rCenter": 1,
+        "cCenter": 0
+      },
+      "expected": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "distance_order_cells"
+      },
+      "tags": [
+        "trial",
+        "one-dimensional"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "centered square",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rows": 3,
+        "cols": 3,
+        "rCenter": 1,
+        "cCenter": 1
+      },
+      "expected": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "validator": {
+        "kind": "distance_order_cells"
+      },
+      "tags": [
+        "hidden",
+        "ties"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "rectangular corner",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rows": 3,
+        "cols": 4,
+        "rCenter": 0,
+        "cCenter": 0
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "validator": {
+        "kind": "distance_order_cells"
+      },
+      "tags": [
+        "hidden",
+        "corner"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "asymmetric interior center",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rows": 4,
+        "cols": 5,
+        "rCenter": 2,
+        "cCenter": 1
+      },
+      "expected": [
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "validator": {
+        "kind": "distance_order_cells"
+      },
+      "tags": [
+        "hidden",
+        "rectangle"
+      ]
+    }
+  ]
+}

@@ -117,8 +117,8 @@
     {
       "id": "real-forward-wrap",
       "name": "real: forward edge wraps from the last house to zero",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "forward": [
           10,
@@ -146,8 +146,8 @@
     {
       "id": "real-backward-wrap",
       "name": "real: backward edge wraps from zero to the last house",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "forward": [
           100,
@@ -175,8 +175,8 @@
     {
       "id": "real-alternating",
       "name": "real: alternating targets repeatedly cross the circle",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "forward": [
           2,
@@ -211,8 +211,8 @@
     {
       "id": "real-large-weights",
       "name": "real: large road weights require a wide total",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "forward": [
           100000,

@@ -128,9 +128,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: longest sequence starts later",
-      "kind": "real",
-      "visible": false,
+      "name": "longest sequence starts later",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -150,9 +150,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: values near the upper bound",
-      "kind": "real",
-      "visible": false,
+      "name": "values near the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -169,9 +169,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: dense candidates",
-      "kind": "real",
-      "visible": false,
+      "name": "dense candidates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -194,9 +194,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: all values are even without a valid sum",
-      "kind": "real",
-      "visible": false,
+      "name": "all values are even without a valid sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           2,
@@ -214,9 +214,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: competing chains share pairs",
-      "kind": "real",
-      "visible": false,
+      "name": "competing chains share pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,

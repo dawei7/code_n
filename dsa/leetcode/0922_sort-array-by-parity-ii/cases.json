@@ -168,9 +168,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: grouped odd then even",
-      "kind": "real",
-      "visible": false,
+      "name": "grouped odd then even",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -204,9 +204,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: value boundaries",
-      "kind": "real",
-      "visible": false,
+      "name": "value boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           999,
@@ -232,9 +232,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: repeated parity blocks",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated parity blocks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -268,9 +268,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: alternate valid serialization",
-      "kind": "real",
-      "visible": false,
+      "name": "alternate valid serialization",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -296,4 +296,3 @@
     }
   ]
 }
-

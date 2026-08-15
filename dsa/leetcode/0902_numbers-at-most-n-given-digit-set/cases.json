@@ -120,9 +120,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: matching prefix then smaller suffix",
-      "kind": "real",
-      "visible": false,
+      "name": "matching prefix then smaller suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "digits": [
           "1",
@@ -138,9 +138,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: stop at unavailable second digit",
-      "kind": "real",
-      "visible": false,
+      "name": "stop at unavailable second digit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "digits": [
           "3",
@@ -157,9 +157,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: no three-digit construction below boundary",
-      "kind": "real",
-      "visible": false,
+      "name": "no three-digit construction below boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "digits": [
           "1",
@@ -175,9 +175,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: all digits below one hundred",
-      "kind": "real",
-      "visible": false,
+      "name": "all digits below one hundred",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "digits": [
           "1",

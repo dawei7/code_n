@@ -95,9 +95,9 @@
     },
     {
       "id": "hidden-large-base",
-      "name": "hidden: reduce a large base before powering",
-      "kind": "real",
-      "visible": false,
+      "name": "reduce a large base before powering",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": 2147483647,
         "b": [
@@ -114,9 +114,9 @@
     },
     {
       "id": "hidden-internal-zero",
-      "name": "hidden: zero inside decimal exponent",
-      "kind": "real",
-      "visible": false,
+      "name": "zero inside decimal exponent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": 7,
         "b": [
@@ -133,9 +133,9 @@
     },
     {
       "id": "hidden-negative-base",
-      "name": "hidden: negative base normalization",
-      "kind": "real",
-      "visible": false,
+      "name": "negative base normalization",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": -2,
         "b": [
@@ -151,4 +151,3 @@
     }
   ]
 }
-

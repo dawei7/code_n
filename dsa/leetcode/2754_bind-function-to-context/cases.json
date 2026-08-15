@@ -85,9 +85,9 @@
     },
     {
       "id": "real-argument-order",
-      "name": "hidden: forwarded argument order is preserved",
-      "kind": "real",
-      "visible": false,
+      "name": "forwarded argument order is preserved",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "behavior": "join",
         "obj": {
@@ -109,9 +109,9 @@
     },
     {
       "id": "real-nested-lookup",
-      "name": "hidden: nested context remains reachable",
-      "kind": "real",
-      "visible": false,
+      "name": "nested context remains reachable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "behavior": "lookup",
         "obj": {
@@ -132,9 +132,9 @@
     },
     {
       "id": "real-maximum-arguments",
-      "name": "hidden: all 100 legal arguments are forwarded",
-      "kind": "real",
-      "visible": false,
+      "name": "all 100 legal arguments are forwarded",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "behavior": "sum",
         "obj": {

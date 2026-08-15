@@ -2,17 +2,195 @@
   "schema_version": 1,
   "challenge_id": "lc_3129",
   "cases": [
-    { "id": "sample-1", "name": "sample: one of each value", "kind": "sample", "visible": true, "input": { "zero": 1, "one": 1, "limit": 2 }, "expected": 2, "tags": ["sample"] },
-    { "id": "sample-2", "name": "sample: forced alternation", "kind": "sample", "visible": true, "input": { "zero": 1, "one": 2, "limit": 1 }, "expected": 1, "tags": ["sample", "alternating"] },
-    { "id": "sample-3", "name": "sample: balanced counts with runs of at most two", "kind": "sample", "visible": true, "input": { "zero": 3, "one": 3, "limit": 2 }, "expected": 14, "tags": ["sample"] },
-    { "id": "trial-minimum", "name": "trial: minimum counts and limit", "kind": "trial", "visible": true, "input": { "zero": 1, "one": 1, "limit": 1 }, "expected": 2, "tags": ["trial", "minimum"] },
-    { "id": "trial-alternating-two-each", "name": "trial: two fully alternating arrays", "kind": "trial", "visible": true, "input": { "zero": 2, "one": 2, "limit": 1 }, "expected": 2, "tags": ["trial", "alternating"] },
-    { "id": "trial-limit-allows-every-arrangement", "name": "trial: every arrangement respects the limit", "kind": "trial", "visible": true, "input": { "zero": 2, "one": 3, "limit": 3 }, "expected": 10, "tags": ["trial", "binomial"] },
-    { "id": "trial-exact-skew-capacity", "name": "trial: the lone one must split two full zero runs", "kind": "trial", "visible": true, "input": { "zero": 4, "one": 1, "limit": 2 }, "expected": 1, "tags": ["trial", "boundary"] },
-    { "id": "real-impossible-skew", "name": "hidden: one separator cannot hold all zeroes", "kind": "real", "visible": false, "input": { "zero": 5, "one": 1, "limit": 2 }, "expected": 0, "tags": ["real", "impossible"] },
-    { "id": "real-symmetric-skew", "name": "hidden: symmetric lone-zero boundary", "kind": "real", "visible": false, "input": { "zero": 1, "one": 4, "limit": 2 }, "expected": 1, "tags": ["real", "symmetry"] },
-    { "id": "real-balanced-four", "name": "hidden: several runs can reach the limit", "kind": "real", "visible": false, "input": { "zero": 4, "one": 4, "limit": 2 }, "expected": 34, "tags": ["real", "balanced"] },
-    { "id": "real-unbalanced-medium", "name": "hidden: unequal counts with length-three runs", "kind": "real", "visible": false, "input": { "zero": 6, "one": 4, "limit": 3 }, "expected": 134, "tags": ["real", "unbalanced"] },
-    { "id": "real-modulo", "name": "hidden: large count requires modular arithmetic", "kind": "real", "visible": false, "input": { "zero": 20, "one": 20, "limit": 5 }, "expected": 89895606, "tags": ["real", "modulo"] }
+    {
+      "id": "sample-1",
+      "name": "sample: one of each value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "zero": 1,
+        "one": 1,
+        "limit": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: forced alternation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "zero": 1,
+        "one": 2,
+        "limit": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "alternating"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: balanced counts with runs of at most two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "zero": 3,
+        "one": 3,
+        "limit": 2
+      },
+      "expected": 14,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-minimum",
+      "name": "trial: minimum counts and limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "zero": 1,
+        "one": 1,
+        "limit": 1
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-alternating-two-each",
+      "name": "trial: two fully alternating arrays",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "zero": 2,
+        "one": 2,
+        "limit": 1
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-limit-allows-every-arrangement",
+      "name": "trial: every arrangement respects the limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "zero": 2,
+        "one": 3,
+        "limit": 3
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "binomial"
+      ]
+    },
+    {
+      "id": "trial-exact-skew-capacity",
+      "name": "trial: the lone one must split two full zero runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "zero": 4,
+        "one": 1,
+        "limit": 2
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-impossible-skew",
+      "name": "one separator cannot hold all zeroes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "zero": 5,
+        "one": 1,
+        "limit": 2
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-symmetric-skew",
+      "name": "symmetric lone-zero boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "zero": 1,
+        "one": 4,
+        "limit": 2
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "symmetry"
+      ]
+    },
+    {
+      "id": "real-balanced-four",
+      "name": "several runs can reach the limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "zero": 4,
+        "one": 4,
+        "limit": 2
+      },
+      "expected": 34,
+      "tags": [
+        "real",
+        "balanced"
+      ]
+    },
+    {
+      "id": "real-unbalanced-medium",
+      "name": "unequal counts with length-three runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "zero": 6,
+        "one": 4,
+        "limit": 3
+      },
+      "expected": 134,
+      "tags": [
+        "real",
+        "unbalanced"
+      ]
+    },
+    {
+      "id": "real-modulo",
+      "name": "large count requires modular arithmetic",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "zero": 20,
+        "one": 20,
+        "limit": 5
+      },
+      "expected": 89895606,
+      "tags": [
+        "real",
+        "modulo"
+      ]
+    }
   ]
 }

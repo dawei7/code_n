@@ -118,9 +118,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: strictly decreasing",
-      "kind": "real",
-      "visible": false,
+      "name": "strictly decreasing",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           5,
@@ -138,9 +138,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: whole array is a mountain",
-      "kind": "real",
-      "visible": false,
+      "name": "whole array is a mountain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -159,9 +159,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: two equal longest mountains",
-      "kind": "real",
-      "visible": false,
+      "name": "two equal longest mountains",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           2,
@@ -186,9 +186,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: later mountain is longer",
-      "kind": "real",
-      "visible": false,
+      "name": "later mountain is longer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -209,9 +209,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: adjacent minimal mountains",
-      "kind": "real",
-      "visible": false,
+      "name": "adjacent minimal mountains",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,
@@ -229,9 +229,9 @@
     },
     {
       "id": "hidden-6",
-      "name": "hidden: flats split every candidate",
-      "kind": "real",
-      "visible": false,
+      "name": "flats split every candidate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -250,4 +250,3 @@
     }
   ]
 }
-

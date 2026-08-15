@@ -243,9 +243,9 @@
     },
     {
       "id": "real-two-equal-best-chains",
-      "name": "hidden: two disjoint compatible chains tie",
-      "kind": "real",
-      "visible": false,
+      "name": "two disjoint compatible chains tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -267,9 +267,9 @@
     },
     {
       "id": "real-value-boundaries",
-      "name": "hidden: extreme values connect through the midpoint",
-      "kind": "real",
-      "visible": false,
+      "name": "extreme values connect through the midpoint",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -290,9 +290,9 @@
     },
     {
       "id": "real-zero-limit-all-rows",
-      "name": "hidden: identical columns satisfy zero limit in every row",
-      "kind": "real",
-      "visible": false,
+      "name": "identical columns satisfy zero limit in every row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -318,9 +318,9 @@
     },
     {
       "id": "real-only-final-pair",
-      "name": "hidden: widely separated prefix leaves one final compatible edge",
-      "kind": "real",
-      "visible": false,
+      "name": "widely separated prefix leaves one final compatible edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -340,9 +340,9 @@
     },
     {
       "id": "real-interleaved-chains",
-      "name": "hidden: interleaved value bands preserve two index-ordered chains",
-      "kind": "real",
-      "visible": false,
+      "name": "interleaved value bands preserve two index-ordered chains",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -365,9 +365,9 @@
     },
     {
       "id": "real-decreasing-values",
-      "name": "hidden: decreasing values remain valid in index order",
-      "kind": "real",
-      "visible": false,
+      "name": "decreasing values remain valid in index order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -387,9 +387,9 @@
     },
     {
       "id": "real-extreme-return",
-      "name": "hidden: skip an incompatible extreme jump at maximum limit",
-      "kind": "real",
-      "visible": false,
+      "name": "skip an incompatible extreme jump at maximum limit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -410,9 +410,9 @@
     },
     {
       "id": "real-maximum-columns",
-      "name": "hidden: a wide grid has only incompatible columns",
-      "kind": "real",
-      "visible": false,
+      "name": "a wide grid has only incompatible columns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -558,9 +558,9 @@
     },
     {
       "id": "real-maximum-rows",
-      "name": "hidden: one pair must satisfy all 250 rows",
-      "kind": "real",
-      "visible": false,
+      "name": "one pair must satisfy all 250 rows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -1576,9 +1576,9 @@
     },
     {
       "id": "real-multirow-outlier-column",
-      "name": "hidden: a five-column chain skips one outlier in every row",
-      "kind": "real",
-      "visible": false,
+      "name": "a five-column chain skips one outlier in every row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

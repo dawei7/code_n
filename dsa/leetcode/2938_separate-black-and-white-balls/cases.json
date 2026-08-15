@@ -84,9 +84,9 @@
     },
     {
       "id": "real-all-black",
-      "name": "hidden: all black balls",
-      "kind": "real",
-      "visible": false,
+      "name": "all black balls",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "111111"
       },
@@ -98,9 +98,9 @@
     },
     {
       "id": "real-all-white",
-      "name": "hidden: all white balls",
-      "kind": "real",
-      "visible": false,
+      "name": "all white balls",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "000000"
       },
@@ -112,9 +112,9 @@
     },
     {
       "id": "real-reverse-grouped",
-      "name": "hidden: every black precedes every white",
-      "kind": "real",
-      "visible": false,
+      "name": "every black precedes every white",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "111000"
       },
@@ -126,9 +126,9 @@
     },
     {
       "id": "real-mixed",
-      "name": "hidden: several separated black groups",
-      "kind": "real",
-      "visible": false,
+      "name": "several separated black groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "1101001"
       },
@@ -140,4 +140,3 @@
     }
   ]
 }
-

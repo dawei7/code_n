@@ -2,39 +2,205 @@
   "challenge_id": "lc_3323",
   "cases": [
     {
-      "id":"sample-one-bridge","name":"sample: bridge the first two groups","kind":"sample","visible":true,
-      "input":{"intervals":[[1,3],[5,6],[8,10]],"k":3},"expected":2,
-      "tags":["sample","bridge"]
+      "id": "sample-one-bridge",
+      "name": "sample: bridge the first two groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "intervals": [
+          [
+            1,
+            3
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            8,
+            10
+          ]
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "bridge"
+      ]
     },
     {
-      "id":"sample-no-gap-fits","name":"sample: no gap fits the length limit","kind":"sample","visible":true,
-      "input":{"intervals":[[5,10],[1,1],[3,3]],"k":1},"expected":3,
-      "tags":["sample","no-bridge","unsorted"]
+      "id": "sample-no-gap-fits",
+      "name": "sample: no gap fits the length limit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "intervals": [
+          [
+            5,
+            10
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "no-bridge",
+        "unsorted"
+      ]
     },
     {
-      "id":"trial-already-connected","name":"trial: overlapping and touching intervals already form one group","kind":"trial","visible":true,
-      "input":{"intervals":[[5,8],[1,5],[2,3]],"k":1},"expected":1,
-      "tags":["merge","touching"]
+      "id": "trial-already-connected",
+      "name": "trial: overlapping and touching intervals already form one group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [
+          [
+            5,
+            8
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "merge",
+        "touching"
+      ]
     },
     {
-      "id":"trial-bridge-four-groups","name":"trial: one exact-length interval joins four groups","kind":"trial","visible":true,
-      "input":{"intervals":[[10,11],[1,2],[7,8],[4,5]],"k":8},"expected":1,
-      "tags":["exact-length","multiple-groups"]
+      "id": "trial-bridge-four-groups",
+      "name": "trial: one exact-length interval joins four groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [
+          [
+            10,
+            11
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "k": 8
+      },
+      "expected": 1,
+      "tags": [
+        "exact-length",
+        "multiple-groups"
+      ]
     },
     {
-      "id":"trial-best-pair-only","name":"trial: several pairs fit but no triple does","kind":"trial","visible":true,
-      "input":{"intervals":[[1,2],[4,5],[9,10],[12,13]],"k":4},"expected":3,
-      "tags":["window","partial-bridge"]
+      "id": "trial-best-pair-only",
+      "name": "trial: several pairs fit but no triple does",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            12,
+            13
+          ]
+        ],
+        "k": 4
+      },
+      "expected": 3,
+      "tags": [
+        "window",
+        "partial-bridge"
+      ]
     },
     {
-      "id":"real-touch-then-bridge","name":"real: merge endpoint contact before measuring the gap","kind":"real","visible":false,
-      "input":{"intervals":[[10,10],[2,4],[1,2]],"k":6},"expected":1,
-      "tags":["merge-first","boundary"]
+      "id": "real-touch-then-bridge",
+      "name": "real: merge endpoint contact before measuring the gap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [
+          [
+            10,
+            10
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "k": 6
+      },
+      "expected": 1,
+      "tags": [
+        "merge-first",
+        "boundary"
+      ]
     },
     {
-      "id":"real-coordinate-boundary","name":"real: maximum coordinates and exact maximum span","kind":"real","visible":false,
-      "input":{"intervals":[[1000000000,1000000000],[1,1]],"k":999999999},"expected":1,
-      "tags":["coordinate-boundary","exact-length"]
+      "id": "real-coordinate-boundary",
+      "name": "real: maximum coordinates and exact maximum span",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [
+          [
+            1000000000,
+            1000000000
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "k": 999999999
+      },
+      "expected": 1,
+      "tags": [
+        "coordinate-boundary",
+        "exact-length"
+      ]
     }
   ]
 }

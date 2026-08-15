@@ -159,9 +159,9 @@
     },
     {
       "id": "real-unsorted-window",
-      "name": "hidden: the optimal value interval is unordered in input",
-      "kind": "real",
-      "visible": false,
+      "name": "the optimal value interval is unordered in input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           20,
@@ -182,9 +182,9 @@
     },
     {
       "id": "real-all-equal",
-      "name": "hidden: equal values need no removals",
-      "kind": "real",
-      "visible": false,
+      "name": "equal values need no removals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -203,9 +203,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: multiplication near value limits",
-      "kind": "real",
-      "visible": false,
+      "name": "multiplication near value limits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -223,9 +223,9 @@
     },
     {
       "id": "real-multiple-optimal-windows",
-      "name": "hidden: several longest balanced windows tie",
-      "kind": "real",
-      "visible": false,
+      "name": "several longest balanced windows tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -243,9 +243,9 @@
     },
     {
       "id": "real-large-k",
-      "name": "hidden: a large multiplier keeps every value",
-      "kind": "real",
-      "visible": false,
+      "name": "a large multiplier keeps every value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,

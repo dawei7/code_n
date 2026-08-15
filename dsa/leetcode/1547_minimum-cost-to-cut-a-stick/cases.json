@@ -123,9 +123,9 @@
     },
     {
       "id": "real-cluster-left",
-      "name": "hidden: cuts clustered near the left end",
-      "kind": "real",
-      "visible": false,
+      "name": "cuts clustered near the left end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 50,
         "cuts": [
@@ -144,9 +144,9 @@
     },
     {
       "id": "real-cluster-right",
-      "name": "hidden: cuts clustered near the right end",
-      "kind": "real",
-      "visible": false,
+      "name": "cuts clustered near the right end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 50,
         "cuts": [
@@ -165,9 +165,9 @@
     },
     {
       "id": "real-unsorted-asymmetric",
-      "name": "hidden: arbitrary input order and uneven gaps",
-      "kind": "real",
-      "visible": false,
+      "name": "arbitrary input order and uneven gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 30,
         "cuts": [
@@ -188,9 +188,9 @@
     },
     {
       "id": "real-many-consecutive",
-      "name": "hidden: consecutive interior marks",
-      "kind": "real",
-      "visible": false,
+      "name": "consecutive interior marks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 15,
         "cuts": [
@@ -211,9 +211,9 @@
     },
     {
       "id": "real-large-coordinate",
-      "name": "hidden: large stick coordinates",
-      "kind": "real",
-      "visible": false,
+      "name": "large stick coordinates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000000,
         "cuts": [
@@ -232,9 +232,9 @@
     },
     {
       "id": "real-balanced-seven",
-      "name": "hidden: balanced collection of seven cuts",
-      "kind": "real",
-      "visible": false,
+      "name": "balanced collection of seven cuts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 80,
         "cuts": [

@@ -254,8 +254,8 @@
     {
       "id": "real-interleaved-groups",
       "name": "real: interleaved input rows are regrouped",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "cities": [
@@ -304,8 +304,8 @@
     {
       "id": "real-city-prefixes",
       "name": "real: city names with common prefixes sort completely",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "cities": [
@@ -346,8 +346,8 @@
     {
       "id": "real-spaces-preserved",
       "name": "real: spaces inside city names are preserved",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "cities": [
@@ -388,8 +388,8 @@
     {
       "id": "real-state-prefixes",
       "name": "real: state names with common prefixes determine row order",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "cities": [
@@ -438,8 +438,8 @@
     {
       "id": "real-uneven-groups",
       "name": "real: states may contain different city counts",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "cities": [
@@ -500,8 +500,8 @@
     {
       "id": "real-reverse-input",
       "name": "real: reverse-sorted input is fully reordered",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "cities": [
@@ -554,8 +554,8 @@
     {
       "id": "real-separator-exact",
       "name": "real: multiple names use exactly comma and space",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "cities": [
@@ -595,4 +595,3 @@
     }
   ]
 }
-

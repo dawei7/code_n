@@ -1,13 +1,239 @@
 {
   "challenge_id": "lc_3300",
   "cases": [
-    {"id":"sample-leading-ten","name":"sample: first replacement is the minimum","kind":"sample","visible":true,"input":{"nums":[10,12,13,14]},"expected":1,"tags":["sample"]},
-    {"id":"sample-single-digits","name":"sample: single-digit values remain unchanged","kind":"sample","visible":true,"input":{"nums":[1,2,3,4]},"expected":1,"tags":["sample","single-digit"]},
-    {"id":"sample-two-digit-minimum","name":"sample: minimum digit sum is ten","kind":"sample","visible":true,"input":{"nums":[999,19,199]},"expected":10,"tags":["sample"]},
-    {"id":"trial-single-element","name":"trial: one element supplies the answer","kind":"trial","visible":true,"input":{"nums":[5555]},"expected":20,"tags":["single-element"]},
-    {"id":"trial-equal-sums","name":"trial: different values have equal digit sums","kind":"trial","visible":true,"input":{"nums":[98,89]},"expected":17,"tags":["tie"]},
-    {"id":"trial-internal-zeroes","name":"trial: internal zeroes contribute nothing","kind":"trial","visible":true,"input":{"nums":[307,808,1001]},"expected":2,"tags":["zero-digit"]},
-    {"id":"real-maximum-value","name":"real: maximum legal value has digit sum one","kind":"real","visible":false,"input":{"nums":[9999,10000]},"expected":1,"tags":["boundary","maximum-value"]},
-    {"id":"real-maximum-length","name":"real: maximum list length is fully scanned","kind":"real","visible":false,"input":{"nums":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100]},"expected":1,"tags":["boundary","maximum-length"]}
+    {
+      "id": "sample-leading-ten",
+      "name": "sample: first replacement is the minimum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          12,
+          13,
+          14
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-single-digits",
+      "name": "sample: single-digit values remain unchanged",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-digit"
+      ]
+    },
+    {
+      "id": "sample-two-digit-minimum",
+      "name": "sample: minimum digit sum is ten",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          999,
+          19,
+          199
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: one element supplies the answer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5555
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-equal-sums",
+      "name": "trial: different values have equal digit sums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          98,
+          89
+        ]
+      },
+      "expected": 17,
+      "tags": [
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-internal-zeroes",
+      "name": "trial: internal zeroes contribute nothing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          307,
+          808,
+          1001
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "zero-digit"
+      ]
+    },
+    {
+      "id": "real-maximum-value",
+      "name": "real: maximum legal value has digit sum one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9999,
+          10000
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "real-maximum-length",
+      "name": "real: maximum list length is fully scanned",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "maximum-length"
+      ]
+    }
   ]
 }

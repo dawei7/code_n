@@ -1,10 +1,567 @@
 {
-  "schema_version":1,"challenge_id":"lc_3055","cases":[
-    {"id":"sample-official","name":"sample: one top policy from each small state","kind":"sample","visible":true,"input":{"tables":{"Fraud":[{"policy_id":1,"state":"California","fraud_score":0.92},{"policy_id":2,"state":"California","fraud_score":0.68},{"policy_id":3,"state":"California","fraud_score":0.17},{"policy_id":4,"state":"New York","fraud_score":0.94},{"policy_id":5,"state":"New York","fraud_score":0.81},{"policy_id":6,"state":"New York","fraud_score":0.77},{"policy_id":7,"state":"Texas","fraud_score":0.98},{"policy_id":8,"state":"Texas","fraud_score":0.97},{"policy_id":9,"state":"Texas","fraud_score":0.96},{"policy_id":10,"state":"Florida","fraud_score":0.97},{"policy_id":11,"state":"Florida","fraud_score":0.98},{"policy_id":12,"state":"Florida","fraud_score":0.78},{"policy_id":13,"state":"Florida","fraud_score":0.88},{"policy_id":14,"state":"Florida","fraud_score":0.66}]}},"expected":{"columns":["policy_id","state","fraud_score"],"rows":[[1,"California",0.92],[11,"Florida",0.98],[4,"New York",0.94],[7,"Texas",0.98]]},"validator":{"kind":"ordered_table"},"tags":["sample","per-state"]},
-    {"id":"sample-single-policy","name":"sample: a singleton state contributes its policy","kind":"sample","visible":true,"input":{"tables":{"Fraud":[{"policy_id":9,"state":"Alaska","fraud_score":55}]}},"expected":{"columns":["policy_id","state","fraud_score"],"rows":[[9,"Alaska",55]]},"validator":{"kind":"ordered_table"},"tags":["sample","singleton"]},
-    {"id":"sample-twenty-cutoff","name":"sample: twenty policies select one position","kind":"sample","visible":true,"input":{"tables":{"Fraud":[{"policy_id":1,"state":"A","fraud_score":100},{"policy_id":2,"state":"A","fraud_score":99},{"policy_id":3,"state":"A","fraud_score":98},{"policy_id":4,"state":"A","fraud_score":97},{"policy_id":5,"state":"A","fraud_score":96},{"policy_id":6,"state":"A","fraud_score":95},{"policy_id":7,"state":"A","fraud_score":94},{"policy_id":8,"state":"A","fraud_score":93},{"policy_id":9,"state":"A","fraud_score":92},{"policy_id":10,"state":"A","fraud_score":91},{"policy_id":11,"state":"A","fraud_score":90},{"policy_id":12,"state":"A","fraud_score":89},{"policy_id":13,"state":"A","fraud_score":88},{"policy_id":14,"state":"A","fraud_score":87},{"policy_id":15,"state":"A","fraud_score":86},{"policy_id":16,"state":"A","fraud_score":85},{"policy_id":17,"state":"A","fraud_score":84},{"policy_id":18,"state":"A","fraud_score":83},{"policy_id":19,"state":"A","fraud_score":82},{"policy_id":20,"state":"A","fraud_score":81}]}},"expected":{"columns":["policy_id","state","fraud_score"],"rows":[[1,"A",100]]},"validator":{"kind":"ordered_table"},"tags":["sample","five-percent-boundary"]},
-    {"id":"trial-tied-maximum","name":"trial: every maximum-score tie is included","kind":"trial","visible":true,"input":{"tables":{"Fraud":[{"policy_id":3,"state":"B","fraud_score":10},{"policy_id":1,"state":"B","fraud_score":10},{"policy_id":2,"state":"B","fraud_score":9}]}},"expected":{"columns":["policy_id","state","fraud_score"],"rows":[[1,"B",10],[3,"B",10]]},"validator":{"kind":"ordered_table"},"tags":["trial","ties","policy-order"]},
-    {"id":"real-twenty-one-boundary-tie","name":"hidden: ceiling selects two positions and includes a boundary tie","kind":"real","visible":false,"input":{"tables":{"Fraud":[{"policy_id":1,"state":"C","fraud_score":100},{"policy_id":3,"state":"C","fraud_score":90},{"policy_id":2,"state":"C","fraud_score":90},{"policy_id":4,"state":"C","fraud_score":80},{"policy_id":5,"state":"C","fraud_score":79},{"policy_id":6,"state":"C","fraud_score":78},{"policy_id":7,"state":"C","fraud_score":77},{"policy_id":8,"state":"C","fraud_score":76},{"policy_id":9,"state":"C","fraud_score":75},{"policy_id":10,"state":"C","fraud_score":74},{"policy_id":11,"state":"C","fraud_score":73},{"policy_id":12,"state":"C","fraud_score":72},{"policy_id":13,"state":"C","fraud_score":71},{"policy_id":14,"state":"C","fraud_score":70},{"policy_id":15,"state":"C","fraud_score":69},{"policy_id":16,"state":"C","fraud_score":68},{"policy_id":17,"state":"C","fraud_score":67},{"policy_id":18,"state":"C","fraud_score":66},{"policy_id":19,"state":"C","fraud_score":65},{"policy_id":20,"state":"C","fraud_score":64},{"policy_id":21,"state":"C","fraud_score":63}]}},"expected":{"columns":["policy_id","state","fraud_score"],"rows":[[1,"C",100],[2,"C",90],[3,"C",90]]},"validator":{"kind":"ordered_table"},"tags":["hidden","ceil","boundary-tie"]},
-    {"id":"real-state-isolation","name":"hidden: each state receives an independent cutoff","kind":"real","visible":false,"input":{"tables":{"Fraud":[{"policy_id":5,"state":"Z","fraud_score":8},{"policy_id":4,"state":"Z","fraud_score":9},{"policy_id":2,"state":"A","fraud_score":7},{"policy_id":1,"state":"A","fraud_score":7},{"policy_id":3,"state":"A","fraud_score":6}]}},"expected":{"columns":["policy_id","state","fraud_score"],"rows":[[1,"A",7],[2,"A",7],[4,"Z",9]]},"validator":{"kind":"ordered_table"},"tags":["hidden","partition","ordering"]}
+  "schema_version": 1,
+  "challenge_id": "lc_3055",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: one top policy from each small state",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Fraud": [
+            {
+              "policy_id": 1,
+              "state": "California",
+              "fraud_score": 0.92
+            },
+            {
+              "policy_id": 2,
+              "state": "California",
+              "fraud_score": 0.68
+            },
+            {
+              "policy_id": 3,
+              "state": "California",
+              "fraud_score": 0.17
+            },
+            {
+              "policy_id": 4,
+              "state": "New York",
+              "fraud_score": 0.94
+            },
+            {
+              "policy_id": 5,
+              "state": "New York",
+              "fraud_score": 0.81
+            },
+            {
+              "policy_id": 6,
+              "state": "New York",
+              "fraud_score": 0.77
+            },
+            {
+              "policy_id": 7,
+              "state": "Texas",
+              "fraud_score": 0.98
+            },
+            {
+              "policy_id": 8,
+              "state": "Texas",
+              "fraud_score": 0.97
+            },
+            {
+              "policy_id": 9,
+              "state": "Texas",
+              "fraud_score": 0.96
+            },
+            {
+              "policy_id": 10,
+              "state": "Florida",
+              "fraud_score": 0.97
+            },
+            {
+              "policy_id": 11,
+              "state": "Florida",
+              "fraud_score": 0.98
+            },
+            {
+              "policy_id": 12,
+              "state": "Florida",
+              "fraud_score": 0.78
+            },
+            {
+              "policy_id": 13,
+              "state": "Florida",
+              "fraud_score": 0.88
+            },
+            {
+              "policy_id": 14,
+              "state": "Florida",
+              "fraud_score": 0.66
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "policy_id",
+          "state",
+          "fraud_score"
+        ],
+        "rows": [
+          [
+            1,
+            "California",
+            0.92
+          ],
+          [
+            11,
+            "Florida",
+            0.98
+          ],
+          [
+            4,
+            "New York",
+            0.94
+          ],
+          [
+            7,
+            "Texas",
+            0.98
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "per-state"
+      ]
+    },
+    {
+      "id": "sample-single-policy",
+      "name": "sample: a singleton state contributes its policy",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Fraud": [
+            {
+              "policy_id": 9,
+              "state": "Alaska",
+              "fraud_score": 55
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "policy_id",
+          "state",
+          "fraud_score"
+        ],
+        "rows": [
+          [
+            9,
+            "Alaska",
+            55
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "singleton"
+      ]
+    },
+    {
+      "id": "sample-twenty-cutoff",
+      "name": "sample: twenty policies select one position",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Fraud": [
+            {
+              "policy_id": 1,
+              "state": "A",
+              "fraud_score": 100
+            },
+            {
+              "policy_id": 2,
+              "state": "A",
+              "fraud_score": 99
+            },
+            {
+              "policy_id": 3,
+              "state": "A",
+              "fraud_score": 98
+            },
+            {
+              "policy_id": 4,
+              "state": "A",
+              "fraud_score": 97
+            },
+            {
+              "policy_id": 5,
+              "state": "A",
+              "fraud_score": 96
+            },
+            {
+              "policy_id": 6,
+              "state": "A",
+              "fraud_score": 95
+            },
+            {
+              "policy_id": 7,
+              "state": "A",
+              "fraud_score": 94
+            },
+            {
+              "policy_id": 8,
+              "state": "A",
+              "fraud_score": 93
+            },
+            {
+              "policy_id": 9,
+              "state": "A",
+              "fraud_score": 92
+            },
+            {
+              "policy_id": 10,
+              "state": "A",
+              "fraud_score": 91
+            },
+            {
+              "policy_id": 11,
+              "state": "A",
+              "fraud_score": 90
+            },
+            {
+              "policy_id": 12,
+              "state": "A",
+              "fraud_score": 89
+            },
+            {
+              "policy_id": 13,
+              "state": "A",
+              "fraud_score": 88
+            },
+            {
+              "policy_id": 14,
+              "state": "A",
+              "fraud_score": 87
+            },
+            {
+              "policy_id": 15,
+              "state": "A",
+              "fraud_score": 86
+            },
+            {
+              "policy_id": 16,
+              "state": "A",
+              "fraud_score": 85
+            },
+            {
+              "policy_id": 17,
+              "state": "A",
+              "fraud_score": 84
+            },
+            {
+              "policy_id": 18,
+              "state": "A",
+              "fraud_score": 83
+            },
+            {
+              "policy_id": 19,
+              "state": "A",
+              "fraud_score": 82
+            },
+            {
+              "policy_id": 20,
+              "state": "A",
+              "fraud_score": 81
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "policy_id",
+          "state",
+          "fraud_score"
+        ],
+        "rows": [
+          [
+            1,
+            "A",
+            100
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "five-percent-boundary"
+      ]
+    },
+    {
+      "id": "trial-tied-maximum",
+      "name": "trial: every maximum-score tie is included",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Fraud": [
+            {
+              "policy_id": 3,
+              "state": "B",
+              "fraud_score": 10
+            },
+            {
+              "policy_id": 1,
+              "state": "B",
+              "fraud_score": 10
+            },
+            {
+              "policy_id": 2,
+              "state": "B",
+              "fraud_score": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "policy_id",
+          "state",
+          "fraud_score"
+        ],
+        "rows": [
+          [
+            1,
+            "B",
+            10
+          ],
+          [
+            3,
+            "B",
+            10
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "ties",
+        "policy-order"
+      ]
+    },
+    {
+      "id": "real-twenty-one-boundary-tie",
+      "name": "ceiling selects two positions and includes a boundary tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Fraud": [
+            {
+              "policy_id": 1,
+              "state": "C",
+              "fraud_score": 100
+            },
+            {
+              "policy_id": 3,
+              "state": "C",
+              "fraud_score": 90
+            },
+            {
+              "policy_id": 2,
+              "state": "C",
+              "fraud_score": 90
+            },
+            {
+              "policy_id": 4,
+              "state": "C",
+              "fraud_score": 80
+            },
+            {
+              "policy_id": 5,
+              "state": "C",
+              "fraud_score": 79
+            },
+            {
+              "policy_id": 6,
+              "state": "C",
+              "fraud_score": 78
+            },
+            {
+              "policy_id": 7,
+              "state": "C",
+              "fraud_score": 77
+            },
+            {
+              "policy_id": 8,
+              "state": "C",
+              "fraud_score": 76
+            },
+            {
+              "policy_id": 9,
+              "state": "C",
+              "fraud_score": 75
+            },
+            {
+              "policy_id": 10,
+              "state": "C",
+              "fraud_score": 74
+            },
+            {
+              "policy_id": 11,
+              "state": "C",
+              "fraud_score": 73
+            },
+            {
+              "policy_id": 12,
+              "state": "C",
+              "fraud_score": 72
+            },
+            {
+              "policy_id": 13,
+              "state": "C",
+              "fraud_score": 71
+            },
+            {
+              "policy_id": 14,
+              "state": "C",
+              "fraud_score": 70
+            },
+            {
+              "policy_id": 15,
+              "state": "C",
+              "fraud_score": 69
+            },
+            {
+              "policy_id": 16,
+              "state": "C",
+              "fraud_score": 68
+            },
+            {
+              "policy_id": 17,
+              "state": "C",
+              "fraud_score": 67
+            },
+            {
+              "policy_id": 18,
+              "state": "C",
+              "fraud_score": 66
+            },
+            {
+              "policy_id": 19,
+              "state": "C",
+              "fraud_score": 65
+            },
+            {
+              "policy_id": 20,
+              "state": "C",
+              "fraud_score": 64
+            },
+            {
+              "policy_id": 21,
+              "state": "C",
+              "fraud_score": 63
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "policy_id",
+          "state",
+          "fraud_score"
+        ],
+        "rows": [
+          [
+            1,
+            "C",
+            100
+          ],
+          [
+            2,
+            "C",
+            90
+          ],
+          [
+            3,
+            "C",
+            90
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "ceil",
+        "boundary-tie"
+      ]
+    },
+    {
+      "id": "real-state-isolation",
+      "name": "each state receives an independent cutoff",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Fraud": [
+            {
+              "policy_id": 5,
+              "state": "Z",
+              "fraud_score": 8
+            },
+            {
+              "policy_id": 4,
+              "state": "Z",
+              "fraud_score": 9
+            },
+            {
+              "policy_id": 2,
+              "state": "A",
+              "fraud_score": 7
+            },
+            {
+              "policy_id": 1,
+              "state": "A",
+              "fraud_score": 7
+            },
+            {
+              "policy_id": 3,
+              "state": "A",
+              "fraud_score": 6
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "policy_id",
+          "state",
+          "fraud_score"
+        ],
+        "rows": [
+          [
+            1,
+            "A",
+            7
+          ],
+          [
+            2,
+            "A",
+            7
+          ],
+          [
+            4,
+            "Z",
+            9
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "partition",
+        "ordering"
+      ]
+    }
   ]
 }

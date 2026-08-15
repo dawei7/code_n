@@ -135,9 +135,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: alternating from a decrease",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating from a decrease",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "DIDID"
       },
@@ -159,9 +159,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: long decreasing run",
-      "kind": "real",
-      "visible": false,
+      "name": "long decreasing run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "DDDDDDDD"
       },
@@ -186,9 +186,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: several direction changes",
-      "kind": "real",
-      "visible": false,
+      "name": "several direction changes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "IIDDIDDIID"
       },
@@ -215,9 +215,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: long increasing run",
-      "kind": "real",
-      "visible": false,
+      "name": "long increasing run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "IIIIIIIIIIII"
       },

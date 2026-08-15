@@ -9,29 +9,108 @@
       "input": {
         "tables": {
           "Users": [
-            {"user_id": 17, "name": "Addison"},
-            {"user_id": 14, "name": "Ethan"},
-            {"user_id": 4, "name": "Michael"},
-            {"user_id": 2, "name": "Avery"},
-            {"user_id": 10, "name": "Eleanor"}
+            {
+              "user_id": 17,
+              "name": "Addison"
+            },
+            {
+              "user_id": 14,
+              "name": "Ethan"
+            },
+            {
+              "user_id": 4,
+              "name": "Michael"
+            },
+            {
+              "user_id": 2,
+              "name": "Avery"
+            },
+            {
+              "user_id": 10,
+              "name": "Eleanor"
+            }
           ],
           "Rides": [
-            {"ride_id": 72, "user_id": 17, "distance": 160},
-            {"ride_id": 42, "user_id": 14, "distance": 161},
-            {"ride_id": 45, "user_id": 4, "distance": 59},
-            {"ride_id": 32, "user_id": 2, "distance": 197},
-            {"ride_id": 15, "user_id": 4, "distance": 357},
-            {"ride_id": 56, "user_id": 2, "distance": 196},
-            {"ride_id": 10, "user_id": 14, "distance": 25}
+            {
+              "ride_id": 72,
+              "user_id": 17,
+              "distance": 160
+            },
+            {
+              "ride_id": 42,
+              "user_id": 14,
+              "distance": 161
+            },
+            {
+              "ride_id": 45,
+              "user_id": 4,
+              "distance": 59
+            },
+            {
+              "ride_id": 32,
+              "user_id": 2,
+              "distance": 197
+            },
+            {
+              "ride_id": 15,
+              "user_id": 4,
+              "distance": 357
+            },
+            {
+              "ride_id": 56,
+              "user_id": 2,
+              "distance": 196
+            },
+            {
+              "ride_id": 10,
+              "user_id": 14,
+              "distance": 25
+            }
           ]
         }
       },
       "expected": {
-        "columns": ["user_id", "name", "traveled distance"],
-        "rows": [[2, "Avery", 393], [4, "Michael", 416], [10, "Eleanor", 0], [14, "Ethan", 186], [17, "Addison", 160]]
+        "columns": [
+          "user_id",
+          "name",
+          "traveled distance"
+        ],
+        "rows": [
+          [
+            2,
+            "Avery",
+            393
+          ],
+          [
+            4,
+            "Michael",
+            416
+          ],
+          [
+            10,
+            "Eleanor",
+            0
+          ],
+          [
+            14,
+            "Ethan",
+            186
+          ],
+          [
+            17,
+            "Addison",
+            160
+          ]
+        ]
       },
-      "validator": {"kind": "ordered_table"},
-      "tags": ["sample", "aggregation", "no-rides"]
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "aggregation",
+        "no-rides"
+      ]
     },
     {
       "id": "trial-one-no-ride",
@@ -40,13 +119,52 @@
       "visible": true,
       "input": {
         "tables": {
-          "Users": [{"user_id": 2, "name": "Bea"}, {"user_id": 1, "name": "Ada"}],
-          "Rides": [{"ride_id": 1, "user_id": 2, "distance": 7}]
+          "Users": [
+            {
+              "user_id": 2,
+              "name": "Bea"
+            },
+            {
+              "user_id": 1,
+              "name": "Ada"
+            }
+          ],
+          "Rides": [
+            {
+              "ride_id": 1,
+              "user_id": 2,
+              "distance": 7
+            }
+          ]
         }
       },
-      "expected": {"columns": ["user_id", "name", "traveled distance"], "rows": [[1, "Ada", 0], [2, "Bea", 7]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "left-join", "ordering"]
+      "expected": {
+        "columns": [
+          "user_id",
+          "name",
+          "traveled distance"
+        ],
+        "rows": [
+          [
+            1,
+            "Ada",
+            0
+          ],
+          [
+            2,
+            "Bea",
+            7
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "left-join",
+        "ordering"
+      ]
     },
     {
       "id": "trial-many-rides",
@@ -55,18 +173,66 @@
       "visible": true,
       "input": {
         "tables": {
-          "Users": [{"user_id": 9, "name": "Nia"}, {"user_id": 3, "name": "Cy"}],
+          "Users": [
+            {
+              "user_id": 9,
+              "name": "Nia"
+            },
+            {
+              "user_id": 3,
+              "name": "Cy"
+            }
+          ],
           "Rides": [
-            {"ride_id": 3, "user_id": 9, "distance": 11},
-            {"ride_id": 1, "user_id": 3, "distance": 5},
-            {"ride_id": 2, "user_id": 9, "distance": 13},
-            {"ride_id": 4, "user_id": 9, "distance": 17}
+            {
+              "ride_id": 3,
+              "user_id": 9,
+              "distance": 11
+            },
+            {
+              "ride_id": 1,
+              "user_id": 3,
+              "distance": 5
+            },
+            {
+              "ride_id": 2,
+              "user_id": 9,
+              "distance": 13
+            },
+            {
+              "ride_id": 4,
+              "user_id": 9,
+              "distance": 17
+            }
           ]
         }
       },
-      "expected": {"columns": ["user_id", "name", "traveled distance"], "rows": [[3, "Cy", 5], [9, "Nia", 41]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "multiple-rides"]
+      "expected": {
+        "columns": [
+          "user_id",
+          "name",
+          "traveled distance"
+        ],
+        "rows": [
+          [
+            3,
+            "Cy",
+            5
+          ],
+          [
+            9,
+            "Nia",
+            41
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "multiple-rides"
+      ]
     },
     {
       "id": "trial-duplicate-names",
@@ -75,48 +241,183 @@
       "visible": true,
       "input": {
         "tables": {
-          "Users": [{"user_id": 1, "name": "Alex"}, {"user_id": 2, "name": "Alex"}],
-          "Rides": [{"ride_id": 1, "user_id": 1, "distance": 8}, {"ride_id": 2, "user_id": 2, "distance": 12}]
-        }
-      },
-      "expected": {"columns": ["user_id", "name", "traveled distance"], "rows": [[1, "Alex", 8], [2, "Alex", 12]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "duplicate-names"]
-    },
-    {
-      "id": "real-single-user-multiple-rides",
-      "name": "hidden: one user owns every ride",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "tables": {
-          "Users": [{"user_id": 5, "name": "Solo"}],
-          "Rides": [{"ride_id": 1, "user_id": 5, "distance": 20}, {"ride_id": 2, "user_id": 5, "distance": 30}]
-        }
-      },
-      "expected": {"columns": ["user_id", "name", "traveled distance"], "rows": [[5, "Solo", 50]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["hidden", "single-user"]
-    },
-    {
-      "id": "real-interleaved-rides",
-      "name": "hidden: ride order does not affect grouped totals",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "tables": {
-          "Users": [{"user_id": 30, "name": "C"}, {"user_id": 10, "name": "A"}, {"user_id": 20, "name": "B"}],
+          "Users": [
+            {
+              "user_id": 1,
+              "name": "Alex"
+            },
+            {
+              "user_id": 2,
+              "name": "Alex"
+            }
+          ],
           "Rides": [
-            {"ride_id": 9, "user_id": 20, "distance": 4},
-            {"ride_id": 2, "user_id": 10, "distance": 6},
-            {"ride_id": 7, "user_id": 20, "distance": 9},
-            {"ride_id": 3, "user_id": 10, "distance": 5}
+            {
+              "ride_id": 1,
+              "user_id": 1,
+              "distance": 8
+            },
+            {
+              "ride_id": 2,
+              "user_id": 2,
+              "distance": 12
+            }
           ]
         }
       },
-      "expected": {"columns": ["user_id", "name", "traveled distance"], "rows": [[10, "A", 11], [20, "B", 13], [30, "C", 0]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["hidden", "ordering", "no-rides"]
+      "expected": {
+        "columns": [
+          "user_id",
+          "name",
+          "traveled distance"
+        ],
+        "rows": [
+          [
+            1,
+            "Alex",
+            8
+          ],
+          [
+            2,
+            "Alex",
+            12
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "duplicate-names"
+      ]
+    },
+    {
+      "id": "real-single-user-multiple-rides",
+      "name": "one user owns every ride",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 5,
+              "name": "Solo"
+            }
+          ],
+          "Rides": [
+            {
+              "ride_id": 1,
+              "user_id": 5,
+              "distance": 20
+            },
+            {
+              "ride_id": 2,
+              "user_id": 5,
+              "distance": 30
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "name",
+          "traveled distance"
+        ],
+        "rows": [
+          [
+            5,
+            "Solo",
+            50
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "single-user"
+      ]
+    },
+    {
+      "id": "real-interleaved-rides",
+      "name": "ride order does not affect grouped totals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 30,
+              "name": "C"
+            },
+            {
+              "user_id": 10,
+              "name": "A"
+            },
+            {
+              "user_id": 20,
+              "name": "B"
+            }
+          ],
+          "Rides": [
+            {
+              "ride_id": 9,
+              "user_id": 20,
+              "distance": 4
+            },
+            {
+              "ride_id": 2,
+              "user_id": 10,
+              "distance": 6
+            },
+            {
+              "ride_id": 7,
+              "user_id": 20,
+              "distance": 9
+            },
+            {
+              "ride_id": 3,
+              "user_id": 10,
+              "distance": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "name",
+          "traveled distance"
+        ],
+        "rows": [
+          [
+            10,
+            "A",
+            11
+          ],
+          [
+            20,
+            "B",
+            13
+          ],
+          [
+            30,
+            "C",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "ordering",
+        "no-rides"
+      ]
     }
   ]
 }

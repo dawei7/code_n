@@ -6,72 +6,112 @@
       "name": "sample: longest middle pair of runs",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "01000111"},
+      "input": {
+        "s": "01000111"
+      },
       "expected": 6,
-      "tags": ["sample", "whole-runs"]
+      "tags": [
+        "sample",
+        "whole-runs"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: extra trailing ones",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "00111"},
+      "input": {
+        "s": "00111"
+      },
       "expected": 4,
-      "tags": ["sample", "unequal-runs"]
+      "tags": [
+        "sample",
+        "unequal-runs"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: no zero before a one",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "111"},
+      "input": {
+        "s": "111"
+      },
       "expected": 0,
-      "tags": ["sample", "no-solution"]
+      "tags": [
+        "sample",
+        "no-solution"
+      ]
     },
     {
       "id": "trial-minimum-balanced",
       "name": "trial: one zero followed by one one",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "01"},
+      "input": {
+        "s": "01"
+      },
       "expected": 2,
-      "tags": ["trial", "minimum-balanced"]
+      "tags": [
+        "trial",
+        "minimum-balanced"
+      ]
     },
     {
       "id": "trial-many-transitions",
       "name": "trial: choose the best adjacent run pair",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "00110001110001"},
+      "input": {
+        "s": "00110001110001"
+      },
       "expected": 6,
-      "tags": ["trial", "multiple-candidates"]
+      "tags": [
+        "trial",
+        "multiple-candidates"
+      ]
     },
     {
       "id": "real-all-zeroes",
-      "name": "hidden: all zeroes",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "000000"},
+      "name": "all zeroes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000000"
+      },
       "expected": 0,
-      "tags": ["hidden", "no-ones"]
+      "tags": [
+        "hidden",
+        "no-ones"
+      ]
     },
     {
       "id": "real-single-character",
-      "name": "hidden: shortest input",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "0"},
+      "name": "shortest input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0"
+      },
       "expected": 0,
-      "tags": ["hidden", "minimum-length"]
+      "tags": [
+        "hidden",
+        "minimum-length"
+      ]
     },
     {
       "id": "real-truncate-both-runs",
-      "name": "hidden: balanced substring can use suffix and prefix of runs",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "000011"},
+      "name": "balanced substring can use suffix and prefix of runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000011"
+      },
       "expected": 4,
-      "tags": ["hidden", "unequal-runs"]
+      "tags": [
+        "hidden",
+        "unequal-runs"
+      ]
     }
   ]
 }

@@ -1,14 +1,298 @@
 {
   "challenge_id": "lc_3501",
   "cases": [
-    {"id":"sample-no-trade","name":"sample: no valid trade","kind":"sample","visible":true,"input":{"s":"01","queries":[[0,1]]},"expected":[1],"tags":["sample","no-trade"]},
-    {"id":"sample-four-queries","name":"sample: boundary-sensitive query trades","kind":"sample","visible":true,"input":{"s":"0100","queries":[[0,3],[0,2],[1,3],[2,3]]},"expected":[4,3,1,1],"tags":["sample","boundary-runs"]},
-    {"id":"sample-whole-string-count","name":"sample: positions outside the query still count","kind":"sample","visible":true,"input":{"s":"1000100","queries":[[1,5],[0,6],[0,4]]},"expected":[6,7,2],"tags":["sample","whole-string-count"]},
-    {"id":"sample-alternating","name":"sample: alternating run boundaries","kind":"sample","visible":true,"input":{"s":"01010","queries":[[0,3],[1,4],[1,3]]},"expected":[4,4,2],"tags":["sample","alternating"]},
-    {"id":"trial-all-active","name":"trial: every position already active","kind":"trial","visible":true,"input":{"s":"1111","queries":[[0,3],[1,2],[2,2]]},"expected":[4,4,4],"tags":["trial","no-trade"]},
-    {"id":"trial-all-inactive","name":"trial: no active block for the first conversion","kind":"trial","visible":true,"input":{"s":"0000","queries":[[0,3],[1,2],[0,0]]},"expected":[0,0,0],"tags":["trial","no-trade"]},
-    {"id":"trial-two-candidates","name":"trial: choose between adjacent run triples","kind":"trial","visible":true,"input":{"s":"00101100","queries":[[0,7],[1,6],[2,4]]},"expected":[6,5,3],"tags":["trial","multiple-candidates"]},
-    {"id":"real-mixed-runs","name":"real: internal and truncated zero runs","kind":"real","visible":false,"input":{"s":"110001011100010","queries":[[0,14],[2,10],[5,13],[3,6]]},"expected":[11,11,11,10],"tags":["real","boundary-runs"]},
-    {"id":"real-single-position-queries","name":"real: one-character substrings cannot trade","kind":"real","visible":false,"input":{"s":"0010100","queries":[[0,0],[2,2],[3,3],[6,6]]},"expected":[2,2,2,2],"tags":["real","minimum-range"]}
+    {
+      "id": "sample-no-trade",
+      "name": "sample: no valid trade",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "01",
+        "queries": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "sample",
+        "no-trade"
+      ]
+    },
+    {
+      "id": "sample-four-queries",
+      "name": "sample: boundary-sensitive query trades",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "0100",
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        3,
+        1,
+        1
+      ],
+      "tags": [
+        "sample",
+        "boundary-runs"
+      ]
+    },
+    {
+      "id": "sample-whole-string-count",
+      "name": "sample: positions outside the query still count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1000100",
+        "queries": [
+          [
+            1,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        6,
+        7,
+        2
+      ],
+      "tags": [
+        "sample",
+        "whole-string-count"
+      ]
+    },
+    {
+      "id": "sample-alternating",
+      "name": "sample: alternating run boundaries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "01010",
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        4,
+        2
+      ],
+      "tags": [
+        "sample",
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-all-active",
+      "name": "trial: every position already active",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1111",
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        4,
+        4
+      ],
+      "tags": [
+        "trial",
+        "no-trade"
+      ]
+    },
+    {
+      "id": "trial-all-inactive",
+      "name": "trial: no active block for the first conversion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0000",
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "no-trade"
+      ]
+    },
+    {
+      "id": "trial-two-candidates",
+      "name": "trial: choose between adjacent run triples",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "00101100",
+        "queries": [
+          [
+            0,
+            7
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        6,
+        5,
+        3
+      ],
+      "tags": [
+        "trial",
+        "multiple-candidates"
+      ]
+    },
+    {
+      "id": "real-mixed-runs",
+      "name": "real: internal and truncated zero runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "110001011100010",
+        "queries": [
+          [
+            0,
+            14
+          ],
+          [
+            2,
+            10
+          ],
+          [
+            5,
+            13
+          ],
+          [
+            3,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        11,
+        11,
+        11,
+        10
+      ],
+      "tags": [
+        "real",
+        "boundary-runs"
+      ]
+    },
+    {
+      "id": "real-single-position-queries",
+      "name": "real: one-character substrings cannot trade",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0010100",
+        "queries": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            6,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "tags": [
+        "real",
+        "minimum-range"
+      ]
+    }
   ]
 }

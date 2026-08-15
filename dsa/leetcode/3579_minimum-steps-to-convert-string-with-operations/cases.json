@@ -7,108 +7,195 @@
       "name": "sample: partitioned reversal and replacements cost four",
       "kind": "sample",
       "visible": true,
-      "input": {"word1": "abcdf", "word2": "dacbe"},
+      "input": {
+        "word1": "abcdf",
+        "word2": "dacbe"
+      },
       "expected": 4,
-      "tags": ["sample", "partition", "reverse", "replace"]
+      "tags": [
+        "sample",
+        "partition",
+        "reverse",
+        "replace"
+      ]
     },
     {
       "id": "sample-swaps-and-replacements",
       "name": "sample: two segment swaps and two replacements",
       "kind": "sample",
       "visible": true,
-      "input": {"word1": "abceded", "word2": "baecfef"},
+      "input": {
+        "word1": "abceded",
+        "word2": "baecfef"
+      },
       "expected": 4,
-      "tags": ["sample", "partition", "swap", "replace"]
+      "tags": [
+        "sample",
+        "partition",
+        "swap",
+        "replace"
+      ]
     },
     {
       "id": "sample-reverse-then-swap",
       "name": "sample: one reversal and one swap transform the full string",
       "kind": "sample",
       "visible": true,
-      "input": {"word1": "abcdef", "word2": "fedabc"},
+      "input": {
+        "word1": "abcdef",
+        "word2": "fedabc"
+      },
       "expected": 2,
-      "tags": ["sample", "whole-string", "reverse", "swap"]
+      "tags": [
+        "sample",
+        "whole-string",
+        "reverse",
+        "swap"
+      ]
     },
     {
       "id": "trial-identical-singleton",
       "name": "trial: an identical singleton needs no operation",
       "kind": "trial",
       "visible": true,
-      "input": {"word1": "a", "word2": "a"},
+      "input": {
+        "word1": "a",
+        "word2": "a"
+      },
       "expected": 0,
-      "tags": ["trial", "minimum-length", "already-equal"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "already-equal"
+      ]
     },
     {
       "id": "trial-replaced-singleton",
       "name": "trial: a differing singleton needs one replacement",
       "kind": "trial",
       "visible": true,
-      "input": {"word1": "a", "word2": "z"},
+      "input": {
+        "word1": "a",
+        "word2": "z"
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length", "replace"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "replace"
+      ]
     },
     {
       "id": "trial-one-swap",
       "name": "trial: reciprocal mismatches form one swap",
       "kind": "trial",
       "visible": true,
-      "input": {"word1": "ab", "word2": "ba"},
+      "input": {
+        "word1": "ab",
+        "word2": "ba"
+      },
       "expected": 1,
-      "tags": ["trial", "reciprocal-pair", "swap"]
+      "tags": [
+        "trial",
+        "reciprocal-pair",
+        "swap"
+      ]
     },
     {
       "id": "trial-one-reversal",
       "name": "trial: reversing the whole segment is optimal",
       "kind": "trial",
       "visible": true,
-      "input": {"word1": "abcd", "word2": "dcba"},
+      "input": {
+        "word1": "abcd",
+        "word2": "dcba"
+      },
       "expected": 1,
-      "tags": ["trial", "reverse", "whole-string"]
+      "tags": [
+        "trial",
+        "reverse",
+        "whole-string"
+      ]
     },
     {
       "id": "real-swap-and-replace",
       "name": "real: one reciprocal pair and one leftover mismatch",
-      "kind": "real",
-      "visible": false,
-      "input": {"word1": "abc", "word2": "bad"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "abc",
+        "word2": "bad"
+      },
       "expected": 2,
-      "tags": ["real", "swap", "replace"]
+      "tags": [
+        "real",
+        "swap",
+        "replace"
+      ]
     },
     {
       "id": "real-two-disjoint-swaps",
       "name": "real: two reciprocal pair classes require two swaps",
-      "kind": "real",
-      "visible": false,
-      "input": {"word1": "abcd", "word2": "badc"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "abcd",
+        "word2": "badc"
+      },
       "expected": 2,
-      "tags": ["real", "disjoint-swaps", "reciprocal-pairs"]
+      "tags": [
+        "real",
+        "disjoint-swaps",
+        "reciprocal-pairs"
+      ]
     },
     {
       "id": "real-duplicate-reciprocal-pairs",
       "name": "real: partitioning exposes a single profitable reversal",
-      "kind": "real",
-      "visible": false,
-      "input": {"word1": "aabbcc", "word2": "bbaacc"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "aabbcc",
+        "word2": "bbaacc"
+      },
       "expected": 1,
-      "tags": ["real", "partition", "reverse"]
+      "tags": [
+        "real",
+        "partition",
+        "reverse"
+      ]
     },
     {
       "id": "real-identical-string",
       "name": "real: no segment needs an operation",
-      "kind": "real",
-      "visible": false,
-      "input": {"word1": "algorithm", "word2": "algorithm"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "algorithm",
+        "word2": "algorithm"
+      },
       "expected": 0,
-      "tags": ["real", "already-equal", "zero-operations"]
+      "tags": [
+        "real",
+        "already-equal",
+        "zero-operations"
+      ]
     },
     {
       "id": "real-all-replacements",
       "name": "real: uniform source and target require one replacement per index",
-      "kind": "real",
-      "visible": false,
-      "input": {"word1": "aaaaaaaaaa", "word2": "bbbbbbbbbb"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "aaaaaaaaaa",
+        "word2": "bbbbbbbbbb"
+      },
       "expected": 10,
-      "tags": ["real", "replace", "no-reciprocal-pairs"]
+      "tags": [
+        "real",
+        "replace",
+        "no-reciprocal-pairs"
+      ]
     }
   ]
 }

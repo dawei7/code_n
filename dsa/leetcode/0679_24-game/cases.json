@@ -99,9 +99,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: nested fractional expression",
-      "kind": "real",
-      "visible": false,
+      "name": "nested fractional expression",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cards": [
           1,
@@ -118,9 +118,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: exhaustive false instance",
-      "kind": "real",
-      "visible": false,
+      "name": "exhaustive false instance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cards": [
           1,
@@ -137,9 +137,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: subtraction order matters",
-      "kind": "real",
-      "visible": false,
+      "name": "subtraction order matters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cards": [
           1,
@@ -156,9 +156,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: high-state false instance",
-      "kind": "real",
-      "visible": false,
+      "name": "high-state false instance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cards": [
           3,
@@ -175,4 +175,3 @@
     }
   ]
 }
-

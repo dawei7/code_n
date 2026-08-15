@@ -92,9 +92,9 @@
     },
     {
       "id": "real-smallest-common",
-      "name": "hidden: choose the smallest of several shared digits",
-      "kind": "real",
-      "visible": false,
+      "name": "choose the smallest of several shared digits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           9,
@@ -117,9 +117,9 @@
     },
     {
       "id": "real-disjoint-full-sides",
-      "name": "hidden: disjoint digit groups use their minima",
-      "kind": "real",
-      "visible": false,
+      "name": "disjoint digit groups use their minima",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           9,

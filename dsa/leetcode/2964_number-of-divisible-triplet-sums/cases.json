@@ -123,8 +123,8 @@
     {
       "id": "real-equal-values",
       "name": "real: all equal values produce every index choice",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -144,8 +144,8 @@
     {
       "id": "real-large-values",
       "name": "real: maximum-scale values use their remainders",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -164,8 +164,8 @@
     {
       "id": "real-index-multiplicity",
       "name": "real: duplicate remainders count distinct indices",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

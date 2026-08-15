@@ -116,9 +116,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: maximum shift value",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum shift value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "s",
         "shifts": [
@@ -133,9 +133,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: mixed large and small shifts",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed large and small shifts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "code",
         "shifts": [
@@ -153,9 +153,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: descending suffix totals",
-      "kind": "real",
-      "visible": false,
+      "name": "descending suffix totals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zzzz",
         "shifts": [
@@ -173,9 +173,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: only final operation is nonzero",
-      "kind": "real",
-      "visible": false,
+      "name": "only final operation is nonzero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaa",
         "shifts": [
@@ -194,9 +194,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: only first operation is nonzero",
-      "kind": "real",
-      "visible": false,
+      "name": "only first operation is nonzero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaa",
         "shifts": [
@@ -215,9 +215,9 @@
     },
     {
       "id": "hidden-6",
-      "name": "hidden: exact alphabet cycles",
-      "kind": "real",
-      "visible": false,
+      "name": "exact alphabet cycles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "leetcode",
         "shifts": [

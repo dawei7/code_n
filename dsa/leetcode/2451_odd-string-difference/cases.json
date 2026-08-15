@@ -6,63 +6,128 @@
       "name": "sample: abc has the odd vector",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["adc", "wzy", "abc"]},
+      "input": {
+        "words": [
+          "adc",
+          "wzy",
+          "abc"
+        ]
+      },
       "expected": "abc",
-      "tags": ["sample", "outlier-last"]
+      "tags": [
+        "sample",
+        "outlier-last"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: bob is the outlier",
       "kind": "sample",
       "visible": true,
-      "input": {"words": ["aaa", "bob", "ccc", "ddd"]},
+      "input": {
+        "words": [
+          "aaa",
+          "bob",
+          "ccc",
+          "ddd"
+        ]
+      },
       "expected": "bob",
-      "tags": ["sample", "outlier-middle"]
+      "tags": [
+        "sample",
+        "outlier-middle"
+      ]
     },
     {
       "id": "trial-outlier-first",
       "name": "trial: outlier appears first",
       "kind": "trial",
       "visible": true,
-      "input": {"words": ["ace", "abc", "bcd"]},
+      "input": {
+        "words": [
+          "ace",
+          "abc",
+          "bcd"
+        ]
+      },
       "expected": "ace",
-      "tags": ["trial", "outlier-first"]
+      "tags": [
+        "trial",
+        "outlier-first"
+      ]
     },
     {
       "id": "trial-shifted-common",
       "name": "trial: shifted words share differences",
       "kind": "trial",
       "visible": true,
-      "input": {"words": ["abm", "bcn", "alm"]},
+      "input": {
+        "words": [
+          "abm",
+          "bcn",
+          "alm"
+        ]
+      },
       "expected": "alm",
-      "tags": ["trial", "shifted"]
+      "tags": [
+        "trial",
+        "shifted"
+      ]
     },
     {
       "id": "real-two-letter",
-      "name": "hidden: two-letter signatures",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["ab", "bc", "ac"]},
+      "name": "two-letter signatures",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "bc",
+          "ac"
+        ]
+      },
       "expected": "ac",
-      "tags": ["hidden", "minimum-length"]
+      "tags": [
+        "hidden",
+        "minimum-length"
+      ]
     },
     {
       "id": "real-negative-differences",
-      "name": "hidden: descending common pattern",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["cba", "abc", "dcb", "edc"]},
+      "name": "descending common pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "cba",
+          "abc",
+          "dcb",
+          "edc"
+        ]
+      },
       "expected": "abc",
-      "tags": ["hidden", "negative-differences"]
+      "tags": [
+        "hidden",
+        "negative-differences"
+      ]
     },
     {
       "id": "real-long-words",
-      "name": "hidden: maximum word length",
-      "kind": "real",
-      "visible": false,
-      "input": {"words": ["abcdefghijklmnopqrst", "bcdefghijklmnopqrstu", "abcdefghijklmnopqrtt"]},
+      "name": "maximum word length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcdefghijklmnopqrst",
+          "bcdefghijklmnopqrstu",
+          "abcdefghijklmnopqrtt"
+        ]
+      },
       "expected": "abcdefghijklmnopqrtt",
-      "tags": ["hidden", "maximum-length"]
+      "tags": [
+        "hidden",
+        "maximum-length"
+      ]
     }
   ]
 }

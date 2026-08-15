@@ -2,13 +2,117 @@
   "schema_version": 1,
   "challenge_id": "lc_2129",
   "cases": [
-    {"id": "sample-all-long", "name": "sample: every word is capitalized", "kind": "sample", "visible": true, "input": {"title": "capiTalIze tHe titLe"}, "expected": "Capitalize The Title", "tags": ["sample", "long-words"]},
-    {"id": "sample-two-letter-word", "name": "sample: a two-letter word stays lowercase", "kind": "sample", "visible": true, "input": {"title": "First leTTeR of EACH Word"}, "expected": "First Letter of Each Word", "tags": ["sample", "two-letter"]},
-    {"id": "sample-one-letter-word", "name": "sample: a one-letter word stays lowercase", "kind": "sample", "visible": true, "input": {"title": "i lOve leetcode"}, "expected": "i Love Leetcode", "tags": ["sample", "one-letter"]},
-    {"id": "trial-single-uppercase", "name": "one uppercase letter becomes lowercase", "kind": "trial", "visible": true, "input": {"title": "A"}, "expected": "a", "tags": ["minimum-length", "lowercase"]},
-    {"id": "trial-length-boundary", "name": "two and three letters use different rules", "kind": "trial", "visible": true, "input": {"title": "aN ABC"}, "expected": "an Abc", "tags": ["length-boundary", "mixed-case"]},
-    {"id": "real-mixed-lengths", "name": "hidden: all word-length rules occur together", "kind": "real", "visible": false, "input": {"title": "A b CD eFg"}, "expected": "a b cd Efg", "tags": ["hidden", "mixed-lengths"]},
-    {"id": "real-already-normalized", "name": "hidden: normalized title is unchanged", "kind": "real", "visible": false, "input": {"title": "Keep it Simple"}, "expected": "Keep it Simple", "tags": ["hidden", "idempotent"]},
-    {"id": "real-all-uppercase", "name": "hidden: uppercase words normalize completely", "kind": "real", "visible": false, "input": {"title": "TO BE OR NOT TO BE"}, "expected": "to be or Not to be", "tags": ["hidden", "uppercase"]}
+    {
+      "id": "sample-all-long",
+      "name": "sample: every word is capitalized",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "title": "capiTalIze tHe titLe"
+      },
+      "expected": "Capitalize The Title",
+      "tags": [
+        "sample",
+        "long-words"
+      ]
+    },
+    {
+      "id": "sample-two-letter-word",
+      "name": "sample: a two-letter word stays lowercase",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "title": "First leTTeR of EACH Word"
+      },
+      "expected": "First Letter of Each Word",
+      "tags": [
+        "sample",
+        "two-letter"
+      ]
+    },
+    {
+      "id": "sample-one-letter-word",
+      "name": "sample: a one-letter word stays lowercase",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "title": "i lOve leetcode"
+      },
+      "expected": "i Love Leetcode",
+      "tags": [
+        "sample",
+        "one-letter"
+      ]
+    },
+    {
+      "id": "trial-single-uppercase",
+      "name": "one uppercase letter becomes lowercase",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "title": "A"
+      },
+      "expected": "a",
+      "tags": [
+        "minimum-length",
+        "lowercase"
+      ]
+    },
+    {
+      "id": "trial-length-boundary",
+      "name": "two and three letters use different rules",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "title": "aN ABC"
+      },
+      "expected": "an Abc",
+      "tags": [
+        "length-boundary",
+        "mixed-case"
+      ]
+    },
+    {
+      "id": "real-mixed-lengths",
+      "name": "all word-length rules occur together",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "title": "A b CD eFg"
+      },
+      "expected": "a b cd Efg",
+      "tags": [
+        "hidden",
+        "mixed-lengths"
+      ]
+    },
+    {
+      "id": "real-already-normalized",
+      "name": "normalized title is unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "title": "Keep it Simple"
+      },
+      "expected": "Keep it Simple",
+      "tags": [
+        "hidden",
+        "idempotent"
+      ]
+    },
+    {
+      "id": "real-all-uppercase",
+      "name": "uppercase words normalize completely",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "title": "TO BE OR NOT TO BE"
+      },
+      "expected": "to be or Not to be",
+      "tags": [
+        "hidden",
+        "uppercase"
+      ]
+    }
   ]
 }

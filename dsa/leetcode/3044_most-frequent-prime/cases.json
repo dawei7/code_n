@@ -7,72 +7,185 @@
       "name": "sample: repeated prime across several paths",
       "kind": "sample",
       "visible": true,
-      "input": {"mat": [[1, 1], [9, 9], [1, 1]]},
+      "input": {
+        "mat": [
+          [
+            1,
+            1
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 19,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-single-cell",
       "name": "sample: one-digit prime is below the threshold",
       "kind": "sample",
       "visible": true,
-      "input": {"mat": [[7]]},
+      "input": {
+        "mat": [
+          [
+            7
+          ]
+        ]
+      },
       "expected": -1,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-nine-cell-grid",
       "name": "sample: larger grid with frequent prime",
       "kind": "sample",
       "visible": true,
-      "input": {"mat": [[9, 7, 8], [4, 6, 5], [2, 8, 6]]},
+      "input": {
+        "mat": [
+          [
+            9,
+            7,
+            8
+          ],
+          [
+            4,
+            6,
+            5
+          ],
+          [
+            2,
+            8,
+            6
+          ]
+        ]
+      },
       "expected": 97,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "trial-no-prime",
       "name": "trial: generated multidigit values are composite",
       "kind": "trial",
       "visible": true,
-      "input": {"mat": [[8, 8], [8, 8]]},
+      "input": {
+        "mat": [
+          [
+            8,
+            8
+          ],
+          [
+            8,
+            8
+          ]
+        ]
+      },
       "expected": -1,
-      "tags": ["trial", "no-prime"]
+      "tags": [
+        "trial",
+        "no-prime"
+      ]
     },
     {
       "id": "trial-tie-largest-prime",
       "name": "trial: larger prime wins a frequency tie",
       "kind": "trial",
       "visible": true,
-      "input": {"mat": [[1, 3]]},
+      "input": {
+        "mat": [
+          [
+            1,
+            3
+          ]
+        ]
+      },
       "expected": 31,
-      "tags": ["trial", "tie-break"]
+      "tags": [
+        "trial",
+        "tie-break"
+      ]
     },
     {
       "id": "real-fixed-directions",
       "name": "real: paths remain straight in all eight directions",
-      "kind": "real",
-      "visible": false,
-      "input": {"mat": [[1, 2], [4, 3]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            3
+          ]
+        ]
+      },
       "expected": 43,
-      "tags": ["real", "fixed-direction"]
+      "tags": [
+        "real",
+        "fixed-direction"
+      ]
     },
     {
       "id": "real-repeated-eleven",
       "name": "real: the same prime is counted from every valid path",
-      "kind": "real",
-      "visible": false,
-      "input": {"mat": [[1, 1], [1, 1]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 11,
-      "tags": ["real", "frequency"]
+      "tags": [
+        "real",
+        "frequency"
+      ]
     },
     {
       "id": "real-rectangular-grid",
       "name": "real: rectangular grid uses horizontal and vertical rays",
-      "kind": "real",
-      "visible": false,
-      "input": {"mat": [[1, 7, 3], [4, 1, 9]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            7,
+            3
+          ],
+          [
+            4,
+            1,
+            9
+          ]
+        ]
+      },
       "expected": 71,
-      "tags": ["real", "rectangular"]
+      "tags": [
+        "real",
+        "rectangular"
+      ]
     }
   ]
 }

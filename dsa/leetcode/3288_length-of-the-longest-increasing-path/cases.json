@@ -6,81 +6,314 @@
       "name": "sample: target joins lower and upper chains",
       "kind": "sample",
       "visible": true,
-      "input": {"coordinates": [[3,1],[2,2],[4,1],[0,0],[5,3]], "k": 1},
+      "input": {
+        "coordinates": [
+          [
+            3,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            5,
+            3
+          ]
+        ],
+        "k": 1
+      },
       "expected": 3,
-      "tags": ["sample", "both-sides"]
+      "tags": [
+        "sample",
+        "both-sides"
+      ]
     },
     {
       "id": "sample-target-at-end",
       "name": "sample: target ends the best path",
       "kind": "sample",
       "visible": true,
-      "input": {"coordinates": [[2,1],[7,0],[5,6]], "k": 2},
+      "input": {
+        "coordinates": [
+          [
+            2,
+            1
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "k": 2
+      },
       "expected": 2,
-      "tags": ["sample", "lower-only"]
+      "tags": [
+        "sample",
+        "lower-only"
+      ]
     },
     {
       "id": "trial-single-point",
       "name": "trial: required point is the only point",
       "kind": "trial",
       "visible": true,
-      "input": {"coordinates": [[1000000000,0]], "k": 0},
+      "input": {
+        "coordinates": [
+          [
+            1000000000,
+            0
+          ]
+        ],
+        "k": 0
+      },
       "expected": 1,
-      "tags": ["boundary", "single"]
+      "tags": [
+        "boundary",
+        "single"
+      ]
     },
     {
       "id": "trial-equal-x",
       "name": "trial: equal x coordinates cannot share a chain",
       "kind": "trial",
       "visible": true,
-      "input": {"coordinates": [[1,1],[1,2],[2,3],[3,4]], "k": 2},
+      "input": {
+        "coordinates": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "k": 2
+      },
       "expected": 3,
-      "tags": ["strict", "equal-x"]
+      "tags": [
+        "strict",
+        "equal-x"
+      ]
     },
     {
       "id": "trial-equal-y",
       "name": "trial: equal y coordinates cannot share a chain",
       "kind": "trial",
       "visible": true,
-      "input": {"coordinates": [[0,0],[1,1],[2,1],[3,3],[4,4]], "k": 1},
+      "input": {
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ]
+        ],
+        "k": 1
+      },
       "expected": 4,
-      "tags": ["strict", "equal-y"]
+      "tags": [
+        "strict",
+        "equal-y"
+      ]
     },
     {
       "id": "real-complete-chain-shuffled",
       "name": "real: original array order does not constrain the path",
-      "kind": "real",
-      "visible": false,
-      "input": {"coordinates": [[4,4],[0,0],[3,3],[1,1],[5,5],[2,2]], "k": 5},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            4,
+            4
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        "k": 5
+      },
       "expected": 6,
-      "tags": ["sorting", "both-sides"]
+      "tags": [
+        "sorting",
+        "both-sides"
+      ]
     },
     {
       "id": "real-incomparable-points",
       "name": "real: all other points are incomparable with target",
-      "kind": "real",
-      "visible": false,
-      "input": {"coordinates": [[3,3],[0,6],[1,5],[2,4],[4,2],[5,1],[6,0]], "k": 0},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            3,
+            3
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            0
+          ]
+        ],
+        "k": 0
+      },
       "expected": 1,
-      "tags": ["incomparable"]
+      "tags": [
+        "incomparable"
+      ]
     },
     {
       "id": "real-upper-only",
       "name": "real: only the upper-right side contributes",
-      "kind": "real",
-      "visible": false,
-      "input": {"coordinates": [[0,0],[1,1],[3,2],[2,3],[5,5],[6,7],[7,6],[8,8]], "k": 0},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            6
+          ],
+          [
+            8,
+            8
+          ]
+        ],
+        "k": 0
+      },
       "expected": 6,
-      "tags": ["upper-only"]
+      "tags": [
+        "upper-only"
+      ]
     },
     {
       "id": "real-coordinate-boundaries",
       "name": "real: zero and billion coordinate boundaries",
-      "kind": "real",
-      "visible": false,
-      "input": {"coordinates": [[1000000000,1000000000],[0,0],[500000000,500000000],[500000000,400000000]], "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinates": [
+          [
+            1000000000,
+            1000000000
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            500000000,
+            500000000
+          ],
+          [
+            500000000,
+            400000000
+          ]
+        ],
+        "k": 2
+      },
       "expected": 3,
-      "tags": ["boundary", "both-sides"]
+      "tags": [
+        "boundary",
+        "both-sides"
+      ]
     }
   ]
 }

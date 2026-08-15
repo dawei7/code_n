@@ -2,13 +2,115 @@
   "schema_version": 1,
   "challenge_id": "lc_2405",
   "cases": [
-    {"id":"sample-1","name":"sample: repeated letters force four parts","kind":"sample","visible":true,"input":{"s":"abacaba"},"expected":4,"tags":["sample","greedy"]},
-    {"id":"sample-2","name":"sample: every equal letter needs its own part","kind":"sample","visible":true,"input":{"s":"ssssss"},"expected":6,"tags":["sample","all-equal"]},
-    {"id":"trial-single","name":"trial: one character forms one part","kind":"trial","visible":true,"input":{"s":"z"},"expected":1,"tags":["single"]},
-    {"id":"trial-all-unique","name":"trial: complete alphabet is one part","kind":"trial","visible":true,"input":{"s":"abcdefghijklmnopqrstuvwxyz"},"expected":1,"tags":["all-unique"]},
-    {"id":"trial-alphabet-twice","name":"trial: repeated alphabet needs exactly two parts","kind":"trial","visible":true,"input":{"s":"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"},"expected":2,"tags":["alphabet","boundary"]},
-    {"id":"real-several-forced-cuts","name":"hidden: spaced repetitions force three parts","kind":"real","visible":false,"input":{"s":"abcaefghia"},"expected":3,"tags":["hidden","forced-cuts"]},
-    {"id":"real-unique-word","name":"hidden: unique word stays intact","kind":"real","visible":false,"input":{"s":"world"},"expected":1,"tags":["hidden","unique"]},
-    {"id":"real-mixed-repetitions","name":"hidden: mixed repeats require four parts","kind":"real","visible":false,"input":{"s":"hdklqkcssgxlvehva"},"expected":4,"tags":["hidden","mixed"]}
+    {
+      "id": "sample-1",
+      "name": "sample: repeated letters force four parts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abacaba"
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: every equal letter needs its own part",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "ssssss"
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "all-equal"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one character forms one part",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z"
+      },
+      "expected": 1,
+      "tags": [
+        "single"
+      ]
+    },
+    {
+      "id": "trial-all-unique",
+      "name": "trial: complete alphabet is one part",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": 1,
+      "tags": [
+        "all-unique"
+      ]
+    },
+    {
+      "id": "trial-alphabet-twice",
+      "name": "trial: repeated alphabet needs exactly two parts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": 2,
+      "tags": [
+        "alphabet",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-several-forced-cuts",
+      "name": "spaced repetitions force three parts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcaefghia"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "forced-cuts"
+      ]
+    },
+    {
+      "id": "real-unique-word",
+      "name": "unique word stays intact",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "world"
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "unique"
+      ]
+    },
+    {
+      "id": "real-mixed-repetitions",
+      "name": "mixed repeats require four parts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "hdklqkcssgxlvehva"
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    }
   ]
 }

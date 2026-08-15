@@ -2,13 +2,119 @@
   "schema_version": 1,
   "challenge_id": "lc_2165",
   "cases": [
-    {"id": "sample-positive-zero", "name": "sample: move the smallest nonzero digit ahead of zero", "kind": "sample", "visible": true, "input": {"num": 310}, "expected": 103, "tags": ["sample", "positive", "leading-zero"]},
-    {"id": "sample-negative", "name": "sample: maximize magnitude under a negative sign", "kind": "sample", "visible": true, "input": {"num": -7605}, "expected": -7650, "tags": ["sample", "negative"]},
-    {"id": "trial-zero", "name": "zero remains zero", "kind": "trial", "visible": true, "input": {"num": 0}, "expected": 0, "tags": ["zero"]},
-    {"id": "trial-positive-many-zeros", "name": "smallest nonzero digit precedes all zeros", "kind": "trial", "visible": true, "input": {"num": 1002003}, "expected": 1000023, "tags": ["positive", "multiple-zeros"]},
-    {"id": "trial-negative-many-zeros", "name": "zeros trail a descending negative magnitude", "kind": "trial", "visible": true, "input": {"num": -1002003}, "expected": -3210000, "tags": ["negative", "multiple-zeros"]},
-    {"id": "trial-positive-distinct", "name": "distinct digits with one zero", "kind": "trial", "visible": true, "input": {"num": 9876543210}, "expected": 1023456789, "tags": ["positive", "distinct-digits"]},
-    {"id": "real-negative-already-optimal", "name": "hidden: negative digits already descend", "kind": "real", "visible": false, "input": {"num": -9876543210}, "expected": -9876543210, "tags": ["hidden", "negative", "already-ordered"]},
-    {"id": "real-upper-bound", "name": "hidden: upper bound has fifteen zeros", "kind": "real", "visible": false, "input": {"num": 1000000000000000}, "expected": 1000000000000000, "tags": ["hidden", "upper-bound", "multiple-zeros"]}
+    {
+      "id": "sample-positive-zero",
+      "name": "sample: move the smallest nonzero digit ahead of zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 310
+      },
+      "expected": 103,
+      "tags": [
+        "sample",
+        "positive",
+        "leading-zero"
+      ]
+    },
+    {
+      "id": "sample-negative",
+      "name": "sample: maximize magnitude under a negative sign",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": -7605
+      },
+      "expected": -7650,
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-zero",
+      "name": "zero remains zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 0
+      },
+      "expected": 0,
+      "tags": [
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-positive-many-zeros",
+      "name": "smallest nonzero digit precedes all zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1002003
+      },
+      "expected": 1000023,
+      "tags": [
+        "positive",
+        "multiple-zeros"
+      ]
+    },
+    {
+      "id": "trial-negative-many-zeros",
+      "name": "zeros trail a descending negative magnitude",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": -1002003
+      },
+      "expected": -3210000,
+      "tags": [
+        "negative",
+        "multiple-zeros"
+      ]
+    },
+    {
+      "id": "trial-positive-distinct",
+      "name": "distinct digits with one zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 9876543210
+      },
+      "expected": 1023456789,
+      "tags": [
+        "positive",
+        "distinct-digits"
+      ]
+    },
+    {
+      "id": "real-negative-already-optimal",
+      "name": "negative digits already descend",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": -9876543210
+      },
+      "expected": -9876543210,
+      "tags": [
+        "hidden",
+        "negative",
+        "already-ordered"
+      ]
+    },
+    {
+      "id": "real-upper-bound",
+      "name": "upper bound has fifteen zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1000000000000000
+      },
+      "expected": 1000000000000000,
+      "tags": [
+        "hidden",
+        "upper-bound",
+        "multiple-zeros"
+      ]
+    }
   ]
 }

@@ -1,14 +1,177 @@
 {
   "challenge_id": "lc_2971",
   "cases": [
-    {"id":"sample-equilateral","name":"sample: all three sides form a polygon","kind":"sample","visible":true,"input":{"nums":[5,5,5]},"expected":15,"tags":["sample"]},
-    {"id":"sample-ignore-largest","name":"sample: omit unsupported large sides","kind":"sample","visible":true,"input":{"nums":[1,12,1,2,5,50,3]},"expected":12,"tags":["sample"]},
-    {"id":"sample-impossible","name":"sample: no polygon is possible","kind":"sample","visible":true,"input":{"nums":[5,5,50]},"expected":-1,"tags":["sample"]},
-    {"id":"trial-strict-boundary","name":"trial: equality is a degenerate polygon","kind":"trial","visible":true,"input":{"nums":[2,3,5]},"expected":-1,"tags":["strict-inequality"]},
-    {"id":"trial-later-prefix-recovers","name":"trial: an invalid side supports a later valid prefix","kind":"trial","visible":true,"input":{"nums":[2,3,4,20,21]},"expected":50,"tags":["greedy","prefix"]},
-    {"id":"trial-duplicate-ones","name":"trial: four unit sides form a polygon","kind":"trial","visible":true,"input":{"nums":[1,1,1,1]},"expected":4,"tags":["duplicates"]},
-    {"id":"real-many-small-sides","name":"real: many small sides beat one huge side","kind":"real","visible":false,"input":{"nums":[1,1,1,3,3,4,20]},"expected":13,"tags":["hidden","omit-largest"]},
-    {"id":"real-large-total","name":"real: perimeter exceeds 32-bit signed range","kind":"real","visible":false,"input":{"nums":[1000000000,1000000000,1000000000,1000000000]},"expected":4000000000,"tags":["hidden","integer-boundary"]},
-    {"id":"real-unsorted-all-valid","name":"real: every unsorted side belongs to the optimum","kind":"real","visible":false,"input":{"nums":[9,2,7,4,6,5]},"expected":33,"tags":["hidden","sorting"]}
+    {
+      "id": "sample-equilateral",
+      "name": "sample: all three sides form a polygon",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-ignore-largest",
+      "name": "sample: omit unsupported large sides",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          12,
+          1,
+          2,
+          5,
+          50,
+          3
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: no polygon is possible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          50
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-strict-boundary",
+      "name": "trial: equality is a degenerate polygon",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "strict-inequality"
+      ]
+    },
+    {
+      "id": "trial-later-prefix-recovers",
+      "name": "trial: an invalid side supports a later valid prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          4,
+          20,
+          21
+        ]
+      },
+      "expected": 50,
+      "tags": [
+        "greedy",
+        "prefix"
+      ]
+    },
+    {
+      "id": "trial-duplicate-ones",
+      "name": "trial: four unit sides form a polygon",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-many-small-sides",
+      "name": "real: many small sides beat one huge side",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          3,
+          3,
+          4,
+          20
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "hidden",
+        "omit-largest"
+      ]
+    },
+    {
+      "id": "real-large-total",
+      "name": "real: perimeter exceeds 32-bit signed range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000
+        ]
+      },
+      "expected": 4000000000,
+      "tags": [
+        "hidden",
+        "integer-boundary"
+      ]
+    },
+    {
+      "id": "real-unsorted-all-valid",
+      "name": "real: every unsorted side belongs to the optimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          2,
+          7,
+          4,
+          6,
+          5
+        ]
+      },
+      "expected": 33,
+      "tags": [
+        "hidden",
+        "sorting"
+      ]
+    }
   ]
 }

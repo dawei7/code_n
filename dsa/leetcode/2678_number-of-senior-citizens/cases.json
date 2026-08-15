@@ -1,11 +1,111 @@
 {
   "challenge_id": "lc_2678",
   "cases": [
-    {"id":"sample-two-seniors","name":"sample: two passengers are over sixty","kind":"sample","visible":true,"input":{"details":["7868190130M7522","5303914400F9211","9273338290F4010"]},"expected":2,"tags":["sample","mixed"]},
-    {"id":"sample-none","name":"sample: no passenger is a senior","kind":"sample","visible":true,"input":{"details":["1313579440F2036","2921522980M5644"]},"expected":0,"tags":["sample","none"]},
-    {"id":"trial-threshold","name":"trial: sixty is excluded and sixty-one is included","kind":"trial","visible":true,"input":{"details":["0000000000M6000","1111111111F6101"]},"expected":1,"tags":["boundary","strict"]},
-    {"id":"trial-genders","name":"trial: gender does not affect the count","kind":"trial","visible":true,"input":{"details":["2222222222M9902","3333333333F7503","4444444444O6204"]},"expected":3,"tags":["gender","all"]},
-    {"id":"real-two-digit-boundaries","name":"hidden: ages around both decimal boundaries","kind":"real","visible":false,"input":{"details":["5555555555F0905","6666666666M5906","7777777777O6007","8888888888M6108","9999999999F9909"]},"expected":2,"tags":["hidden","boundary"]},
-    {"id":"real-single","name":"hidden: one qualifying passenger","kind":"real","visible":false,"input":{"details":["1234567890O7010"]},"expected":1,"tags":["hidden","minimum-length"]}
+    {
+      "id": "sample-two-seniors",
+      "name": "sample: two passengers are over sixty",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "details": [
+          "7868190130M7522",
+          "5303914400F9211",
+          "9273338290F4010"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-none",
+      "name": "sample: no passenger is a senior",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "details": [
+          "1313579440F2036",
+          "2921522980M5644"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "none"
+      ]
+    },
+    {
+      "id": "trial-threshold",
+      "name": "trial: sixty is excluded and sixty-one is included",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "details": [
+          "0000000000M6000",
+          "1111111111F6101"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "strict"
+      ]
+    },
+    {
+      "id": "trial-genders",
+      "name": "trial: gender does not affect the count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "details": [
+          "2222222222M9902",
+          "3333333333F7503",
+          "4444444444O6204"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "gender",
+        "all"
+      ]
+    },
+    {
+      "id": "real-two-digit-boundaries",
+      "name": "ages around both decimal boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "details": [
+          "5555555555F0905",
+          "6666666666M5906",
+          "7777777777O6007",
+          "8888888888M6108",
+          "9999999999F9909"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-single",
+      "name": "one qualifying passenger",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "details": [
+          "1234567890O7010"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "minimum-length"
+      ]
+    }
   ]
 }

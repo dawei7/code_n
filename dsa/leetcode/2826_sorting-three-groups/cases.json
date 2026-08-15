@@ -6,90 +6,201 @@
       "name": "sample: retain one non-decreasing group",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 1, 3, 2, 1]},
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "deletions"]
+      "tags": [
+        "sample",
+        "deletions"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: remove two out-of-order middle values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 3, 2, 1, 3, 3]},
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          1,
+          3,
+          3
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "three-groups"]
+      "tags": [
+        "sample",
+        "three-groups"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: already non-decreasing",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 2, 2, 2, 3, 3]},
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "sorted"]
+      "tags": [
+        "sample",
+        "sorted"
+      ]
     },
     {
       "id": "trial-singleton",
       "name": "trial: one element is already sorted",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3]},
+      "input": {
+        "nums": [
+          3
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-reversed-groups",
       "name": "trial: reversed value groups",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3, 3, 2, 2, 1, 1]},
+      "input": {
+        "nums": [
+          3,
+          3,
+          2,
+          2,
+          1,
+          1
+        ]
+      },
       "expected": 4,
-      "tags": ["trial", "reversed"]
+      "tags": [
+        "trial",
+        "reversed"
+      ]
     },
     {
       "id": "trial-all-equal",
       "name": "trial: equal values are non-decreasing",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 1, 1, 1]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "duplicates"]
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
     },
     {
       "id": "real-alternating-one-two",
-      "name": "hidden: alternating lower groups followed by three",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 1, 2, 1, 2, 3]},
+      "name": "alternating lower groups followed by three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "alternating"]
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
     },
     {
       "id": "real-leading-three",
-      "name": "hidden: remove a leading high group value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3, 1, 2, 3]},
+      "name": "remove a leading high group value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 1,
-      "tags": ["hidden", "leading-deletion"]
+      "tags": [
+        "hidden",
+        "leading-deletion"
+      ]
     },
     {
       "id": "real-empty-middle-group",
-      "name": "hidden: optimal result can omit the middle group",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 3, 1, 3, 3]},
+      "name": "optimal result can omit the middle group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          1,
+          3,
+          3
+        ]
+      },
       "expected": 1,
-      "tags": ["hidden", "empty-group"]
+      "tags": [
+        "hidden",
+        "empty-group"
+      ]
     },
     {
       "id": "real-late-twos",
-      "name": "hidden: preserve ones followed by late twos",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 3, 1, 3, 2, 2]},
+      "name": "preserve ones followed by late twos",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          1,
+          3,
+          2,
+          2
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "mixed"]
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
     }
   ]
 }

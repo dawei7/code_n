@@ -113,8 +113,8 @@
     {
       "id": "real-separated-short-blocks",
       "name": "real: separated length-two blocks cannot pair",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -134,8 +134,8 @@
     {
       "id": "real-equal-shared-boundary",
       "name": "real: equality at shared boundary is allowed",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -153,8 +153,8 @@
     {
       "id": "real-negative-exact-runs",
       "name": "real: negative and positive consecutive runs",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -4,
@@ -176,8 +176,8 @@
     {
       "id": "real-strictly-descending",
       "name": "real: descending input yields singleton blocks",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -197,8 +197,8 @@
     {
       "id": "real-asymmetric-runs",
       "name": "real: smaller neighboring run limits answer",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -218,8 +218,8 @@
     {
       "id": "real-large-values",
       "name": "real: comparisons at value limits",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -1000000000,

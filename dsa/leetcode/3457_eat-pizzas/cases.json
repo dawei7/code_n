@@ -97,8 +97,8 @@
     {
       "id": "real-mixed-twelve",
       "name": "real: three days with increasing weights",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pizzas": [
           1,
@@ -124,8 +124,8 @@
     {
       "id": "real-four-days",
       "name": "real: even number of days",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pizzas": [
           1,
@@ -155,8 +155,8 @@
     {
       "id": "real-separated-heavy-tier",
       "name": "real: upper weights compete for two roles",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pizzas": [
           1,
@@ -178,8 +178,8 @@
     {
       "id": "real-large-result",
       "name": "real: large weights require wide integer result",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "pizzas": [
           100000,

@@ -75,9 +75,9 @@
     },
     {
       "id": "real-twenty-five",
-      "name": "hidden: binary twenty-five is one piece",
-      "kind": "real",
-      "visible": false,
+      "name": "binary twenty-five is one piece",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "11001"
       },
@@ -89,9 +89,9 @@
     },
     {
       "id": "real-repeated-five",
-      "name": "hidden: two binary fives",
-      "kind": "real",
-      "visible": false,
+      "name": "two binary fives",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "101101"
       },
@@ -103,9 +103,9 @@
     },
     {
       "id": "real-leading-zero",
-      "name": "hidden: the full string begins with zero",
-      "kind": "real",
-      "visible": false,
+      "name": "the full string begins with zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "0101"
       },
@@ -118,9 +118,9 @@
     },
     {
       "id": "real-unusable-suffix",
-      "name": "hidden: a valid prefix leaves only zeros",
-      "kind": "real",
-      "visible": false,
+      "name": "a valid prefix leaves only zeros",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "100"
       },
@@ -132,9 +132,9 @@
     },
     {
       "id": "real-large-power-plus-one",
-      "name": "hidden: a large power followed by one",
-      "kind": "real",
-      "visible": false,
+      "name": "a large power followed by one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "111101000010011"
       },

@@ -7,72 +7,185 @@
       "name": "sample: horizontal cut balances the grid",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1, 4], [2, 3]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["sample", "horizontal"]
+      "tags": [
+        "sample",
+        "horizontal"
+      ]
     },
     {
       "id": "sample-no-partition",
       "name": "sample: neither orientation balances",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[1, 3], [2, 4]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
       "expected": false,
-      "tags": ["sample", "impossible"]
+      "tags": [
+        "sample",
+        "impossible"
+      ]
     },
     {
       "id": "trial-vertical-partition",
       "name": "trial: vertical cut balances unequal columns",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[1, 2, 4], [2, 1, 2]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            4
+          ],
+          [
+            2,
+            1,
+            2
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "vertical"]
+      "tags": [
+        "trial",
+        "vertical"
+      ]
     },
     {
       "id": "trial-single-row",
       "name": "trial: single row permits only a vertical cut",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[1, 2, 3]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "single-row"]
+      "tags": [
+        "trial",
+        "single-row"
+      ]
     },
     {
       "id": "real-single-column",
       "name": "real: single column permits only a horizontal cut",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[1], [2], [3]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["real", "single-column"]
+      "tags": [
+        "real",
+        "single-column"
+      ]
     },
     {
       "id": "real-odd-total",
       "name": "real: odd total cannot split equally",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[1, 2], [3, 5]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
       "expected": false,
-      "tags": ["real", "odd-total"]
+      "tags": [
+        "real",
+        "odd-total"
+      ]
     },
     {
       "id": "real-late-horizontal-boundary",
       "name": "real: balancing horizontal cut follows multiple rows",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[2, 1], [1, 2], [3, 3]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["real", "horizontal", "late-boundary"]
+      "tags": [
+        "real",
+        "horizontal",
+        "late-boundary"
+      ]
     },
     {
       "id": "real-no-outer-edge-cut",
       "name": "real: a section may not be empty",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[7, 1]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            7,
+            1
+          ]
+        ]
+      },
       "expected": false,
-      "tags": ["real", "nonempty-sections"]
+      "tags": [
+        "real",
+        "nonempty-sections"
+      ]
     }
   ]
 }

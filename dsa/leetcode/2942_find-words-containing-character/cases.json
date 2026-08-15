@@ -137,9 +137,9 @@
     },
     {
       "id": "real-target-at-varied-positions",
-      "name": "hidden: target occurs at the beginning and end",
-      "kind": "real",
-      "visible": false,
+      "name": "target occurs at the beginning and end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "cat",
@@ -162,9 +162,9 @@
     },
     {
       "id": "real-all-match",
-      "name": "hidden: every word contains the target",
-      "kind": "real",
-      "visible": false,
+      "name": "every word contains the target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "x",
@@ -188,9 +188,9 @@
     },
     {
       "id": "real-long-word-late-match",
-      "name": "hidden: target appears at the last legal position",
-      "kind": "real",
-      "visible": false,
+      "name": "target appears at the last legal position",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaz",
@@ -211,9 +211,9 @@
     },
     {
       "id": "real-sparse-match",
-      "name": "hidden: only the final word matches",
-      "kind": "real",
-      "visible": false,
+      "name": "only the final word matches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "alpha",

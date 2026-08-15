@@ -112,8 +112,8 @@
     {
       "id": "real-maximum-values-complement",
       "name": "real: large legal values are reduced modulo twenty-four",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hours": [
           1000000000,
@@ -129,8 +129,8 @@
     {
       "id": "real-repeated-complement-classes",
       "name": "real: repeated six and eighteen remainders form cross pairs",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hours": [
           6,
@@ -148,8 +148,8 @@
     {
       "id": "real-no-complete-day",
       "name": "real: no two small durations complete a day",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hours": [
           1,
@@ -166,8 +166,8 @@
     {
       "id": "real-mixed-remainder-classes",
       "name": "real: zero and nonzero complement classes are independent",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hours": [
           24,
@@ -185,8 +185,8 @@
     {
       "id": "real-arrival-order",
       "name": "real: both arrival orders count each index pair once",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hours": [
           23,
@@ -204,8 +204,8 @@
     {
       "id": "real-dense-whole-days",
       "name": "real: one hundred whole-day durations form every pair",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "hours": [
           24,

@@ -89,8 +89,8 @@
     {
       "id": "real-maximum-k",
       "name": "real: the maximum offset reduces correctly",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "rotation",
         "k": 10000
@@ -103,8 +103,8 @@
     {
       "id": "real-two-characters",
       "name": "real: odd movement swaps two positions",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "az",
         "k": 9999
@@ -117,8 +117,8 @@
     {
       "id": "real-repeated-pattern",
       "name": "real: repeated patterns remain position based",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ababab",
         "k": 4
@@ -131,8 +131,8 @@
     {
       "id": "real-alphabet",
       "name": "real: a long string wraps its trailing suffix",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcdefghijklmnopqrstuvwxyz",
         "k": 25
@@ -145,8 +145,8 @@
     {
       "id": "real-offset-one-less",
       "name": "real: length minus one rotates the final character first",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "circular",
         "k": 7
@@ -159,8 +159,8 @@
     {
       "id": "real-offset-multiple-plus-two",
       "name": "real: multiple cycles plus two positions",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "simultaneous",
         "k": 38

@@ -93,9 +93,9 @@
     },
     {
       "id": "real-four-equal",
-      "name": "hidden: repeated equal values create nested intervals",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated equal values create nested intervals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           7,
@@ -112,9 +112,9 @@
     },
     {
       "id": "real-mixed-prefixes",
-      "name": "hidden: several nonadjacent matching prefixes",
-      "kind": "real",
-      "visible": false,
+      "name": "several nonadjacent matching prefixes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -132,9 +132,9 @@
     },
     {
       "id": "real-upper-values",
-      "name": "hidden: values near the upper bound",
-      "kind": "real",
-      "visible": false,
+      "name": "values near the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           100000000,
@@ -153,9 +153,9 @@
     },
     {
       "id": "real-six-ones",
-      "name": "hidden: many valid splits share outer endpoints",
-      "kind": "real",
-      "visible": false,
+      "name": "many valid splits share outer endpoints",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,

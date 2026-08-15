@@ -2,13 +2,116 @@
   "schema_version": 1,
   "challenge_id": "lc_2413",
   "cases": [
-    {"id":"sample-odd","name":"sample: odd input needs its second multiple","kind":"sample","visible":true,"input":{"n":5},"expected":10,"tags":["sample","odd"]},
-    {"id":"sample-even","name":"sample: even input is already a common multiple","kind":"sample","visible":true,"input":{"n":6},"expected":6,"tags":["sample","even"]},
-    {"id":"trial-one","name":"smallest legal input","kind":"trial","visible":true,"input":{"n":1},"expected":2,"tags":["boundary","odd"]},
-    {"id":"trial-two","name":"two is its own smallest even multiple","kind":"trial","visible":true,"input":{"n":2},"expected":2,"tags":["even"]},
-    {"id":"trial-large-odd","name":"largest legal odd input doubles","kind":"trial","visible":true,"input":{"n":149},"expected":298,"tags":["boundary","odd"]},
-    {"id":"real-large-even","name":"hidden: largest legal input is even","kind":"real","visible":false,"input":{"n":150},"expected":150,"tags":["hidden","boundary"]},
-    {"id":"real-small-odd","name":"hidden: three doubles to six","kind":"real","visible":false,"input":{"n":3},"expected":6,"tags":["hidden","odd"]},
-    {"id":"real-power-two","name":"hidden: a power of two remains unchanged","kind":"real","visible":false,"input":{"n":128},"expected":128,"tags":["hidden","even"]}
+    {
+      "id": "sample-odd",
+      "name": "sample: odd input needs its second multiple",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "odd"
+      ]
+    },
+    {
+      "id": "sample-even",
+      "name": "sample: even input is already a common multiple",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 6
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "even"
+      ]
+    },
+    {
+      "id": "trial-one",
+      "name": "smallest legal input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "odd"
+      ]
+    },
+    {
+      "id": "trial-two",
+      "name": "two is its own smallest even multiple",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "expected": 2,
+      "tags": [
+        "even"
+      ]
+    },
+    {
+      "id": "trial-large-odd",
+      "name": "largest legal odd input doubles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 149
+      },
+      "expected": 298,
+      "tags": [
+        "boundary",
+        "odd"
+      ]
+    },
+    {
+      "id": "real-large-even",
+      "name": "largest legal input is even",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 150
+      },
+      "expected": 150,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-small-odd",
+      "name": "three doubles to six",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "odd"
+      ]
+    },
+    {
+      "id": "real-power-two",
+      "name": "a power of two remains unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 128
+      },
+      "expected": 128,
+      "tags": [
+        "hidden",
+        "even"
+      ]
+    }
   ]
 }

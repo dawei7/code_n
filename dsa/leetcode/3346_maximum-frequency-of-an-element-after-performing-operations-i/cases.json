@@ -6,72 +6,172 @@
       "name": "official example: one adjusted element forms a pair",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 4, 5], "k": 1, "numOperations": 2},
+      "input": {
+        "nums": [
+          1,
+          4,
+          5
+        ],
+        "k": 1,
+        "numOperations": 2
+      },
       "expected": 2,
-      "tags": ["sample", "existing-target", "zero-adjustment"]
+      "tags": [
+        "sample",
+        "existing-target",
+        "zero-adjustment"
+      ]
     },
     {
       "id": "official-example-two",
       "name": "official example: existing duplicates remain optimal",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [5, 11, 20, 20], "k": 5, "numOperations": 1},
+      "input": {
+        "nums": [
+          5,
+          11,
+          20,
+          20
+        ],
+        "k": 5,
+        "numOperations": 1
+      },
       "expected": 2,
-      "tags": ["sample", "duplicates", "limited-operations"]
+      "tags": [
+        "sample",
+        "duplicates",
+        "limited-operations"
+      ]
     },
     {
       "id": "trial-absent-target",
       "name": "trial: the best target is absent from the input",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 5], "k": 2, "numOperations": 2},
+      "input": {
+        "nums": [
+          1,
+          5
+        ],
+        "k": 2,
+        "numOperations": 2
+      },
       "expected": 2,
-      "tags": ["trial", "absent-target", "interval-boundary"]
+      "tags": [
+        "trial",
+        "absent-target",
+        "interval-boundary"
+      ]
     },
     {
       "id": "trial-zero-adjustment-range",
       "name": "trial: k zero preserves the original maximum frequency",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 2, 3], "k": 0, "numOperations": 2},
+      "input": {
+        "nums": [
+          2,
+          2,
+          3
+        ],
+        "k": 0,
+        "numOperations": 2
+      },
       "expected": 2,
-      "tags": ["trial", "zero-k", "exact-operations"]
+      "tags": [
+        "trial",
+        "zero-k",
+        "exact-operations"
+      ]
     },
     {
       "id": "trial-all-elements-coalesce",
       "name": "trial: every element can reach one common target",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4], "k": 10, "numOperations": 4},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 10,
+        "numOperations": 4
+      },
       "expected": 4,
-      "tags": ["trial", "full-overlap", "all-operations"]
+      "tags": [
+        "trial",
+        "full-overlap",
+        "all-operations"
+      ]
     },
     {
       "id": "real-original-target-bonus",
       "name": "real: existing copies require no operation budget",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 3, 3, 7], "k": 2, "numOperations": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          3,
+          7
+        ],
+        "k": 2,
+        "numOperations": 2
+      },
       "expected": 3,
-      "tags": ["real", "duplicates", "original-target"]
+      "tags": [
+        "real",
+        "duplicates",
+        "original-target"
+      ]
     },
     {
       "id": "real-overlap-limited-by-operations",
       "name": "real: interval overlap exceeds the operation budget",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 4, 6, 7], "k": 3, "numOperations": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          6,
+          7
+        ],
+        "k": 3,
+        "numOperations": 2
+      },
       "expected": 3,
-      "tags": ["real", "overlapping-intervals", "operation-cap"]
+      "tags": [
+        "real",
+        "overlapping-intervals",
+        "operation-cap"
+      ]
     },
     {
       "id": "real-value-boundaries",
       "name": "real: minimum and maximum values meet at an existing target",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 100000, 100000], "k": 100000, "numOperations": 1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          100000,
+          100000
+        ],
+        "k": 100000,
+        "numOperations": 1
+      },
       "expected": 3,
-      "tags": ["real", "maximum-k", "value-boundaries"]
+      "tags": [
+        "real",
+        "maximum-k",
+        "value-boundaries"
+      ]
     }
   ]
 }

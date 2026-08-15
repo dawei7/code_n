@@ -7,120 +7,228 @@
       "name": "sample: three bits with one unavoidable zero",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "101", "t": "011"},
+      "input": {
+        "s": "101",
+        "t": "011"
+      },
       "expected": "110",
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "rearrangement", "mixed-bits"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "rearrangement",
+        "mixed-bits"
+      ]
     },
     {
       "id": "sample-second",
       "name": "sample: maximum four-bit result is 1101",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "0110", "t": "1110"},
+      "input": {
+        "s": "0110",
+        "t": "1110"
+      },
       "expected": "1101",
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "lexicographic-greedy", "mixed-bits"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "lexicographic-greedy",
+        "mixed-bits"
+      ]
     },
     {
       "id": "sample-all-ones",
       "name": "sample: t can be rearranged to complement s",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "0101", "t": "1001"},
+      "input": {
+        "s": "0101",
+        "t": "1001"
+      },
       "expected": "1111",
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "complete-complement", "maximum-value"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "complete-complement",
+        "maximum-value"
+      ]
     },
     {
       "id": "trial-single-equal-zero",
       "name": "trial: equal zero bits produce zero",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "0", "t": "0"},
+      "input": {
+        "s": "0",
+        "t": "0"
+      },
       "expected": "0",
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-length", "equal-bits"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "equal-bits"
+      ]
     },
     {
       "id": "trial-single-opposite",
       "name": "trial: opposite single bits produce one",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "0", "t": "1"},
+      "input": {
+        "s": "0",
+        "t": "1"
+      },
       "expected": "1",
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-length", "opposite-bits"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "opposite-bits"
+      ]
     },
     {
       "id": "trial-single-equal-one",
       "name": "trial: equal one bits produce zero",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "1", "t": "1"},
+      "input": {
+        "s": "1",
+        "t": "1"
+      },
       "expected": "0",
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-length", "equal-bits"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "equal-bits"
+      ]
     },
     {
       "id": "real-all-zeroes",
-      "name": "hidden: no opposite bit exists for an all-zero s",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "0000", "t": "0000"},
+      "name": "no opposite bit exists for an all-zero s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0000",
+        "t": "0000"
+      },
       "expected": "0000",
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "all-zero", "forced-zeroes"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "all-zero",
+        "forced-zeroes"
+      ]
     },
     {
       "id": "real-all-ones",
-      "name": "hidden: no opposite bit exists for an all-one s",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "1111", "t": "1111"},
+      "name": "no opposite bit exists for an all-one s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1111",
+        "t": "1111"
+      },
       "expected": "0000",
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "all-one", "forced-zeroes"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "all-one",
+        "forced-zeroes"
+      ]
     },
     {
       "id": "real-ones-exhausted",
-      "name": "hidden: scarce one bits are spent at the earliest zeroes",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "00011", "t": "00001"},
+      "name": "scarce one bits are spent at the earliest zeroes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "00011",
+        "t": "00001"
+      },
       "expected": "10011",
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "ones-exhausted", "earliest-position"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "ones-exhausted",
+        "earliest-position"
+      ]
     },
     {
       "id": "real-zeroes-exhausted",
-      "name": "hidden: scarce zero bits are spent at the earliest ones",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "11100", "t": "11110"},
+      "name": "scarce zero bits are spent at the earliest ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "11100",
+        "t": "11110"
+      },
       "expected": "10011",
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "zeroes-exhausted", "earliest-position"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "zeroes-exhausted",
+        "earliest-position"
+      ]
     },
     {
       "id": "real-balanced-complement",
-      "name": "hidden: balanced counts permit a complete complement",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "11110000", "t": "00001111"},
+      "name": "balanced counts permit a complete complement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "11110000",
+        "t": "00001111"
+      },
       "expected": "11111111",
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "balanced-counts", "complete-complement"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "balanced-counts",
+        "complete-complement"
+      ]
     },
     {
       "id": "real-leading-zero-preserved",
-      "name": "hidden: a forced leading zero remains part of the result",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "001011", "t": "000000"},
+      "name": "a forced leading zero remains part of the result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "001011",
+        "t": "000000"
+      },
       "expected": "001011",
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "leading-zero", "fixed-length"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "leading-zero",
+        "fixed-length"
+      ]
     }
   ]
 }

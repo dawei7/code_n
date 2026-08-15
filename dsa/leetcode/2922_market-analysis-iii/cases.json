@@ -355,9 +355,9 @@
     },
     {
       "id": "real-seller-without-orders",
-      "name": "hidden: seller with no orders cannot become a top seller",
-      "kind": "real",
-      "visible": false,
+      "name": "seller with no orders cannot become a top seller",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [
@@ -453,9 +453,9 @@
     },
     {
       "id": "real-all-orders-repeat-one-item",
-      "name": "hidden: many orders remain one unique item",
-      "kind": "real",
-      "visible": false,
+      "name": "many orders remain one unique item",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Users": [

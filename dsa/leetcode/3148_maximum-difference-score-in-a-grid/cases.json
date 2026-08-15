@@ -6,108 +6,325 @@
       "name": "sample: two moves telescope to the maximum score",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[9, 5, 7, 3], [8, 9, 6, 1], [6, 7, 14, 3], [2, 5, 3, 1]]},
+      "input": {
+        "grid": [
+          [
+            9,
+            5,
+            7,
+            3
+          ],
+          [
+            8,
+            9,
+            6,
+            1
+          ],
+          [
+            6,
+            7,
+            14,
+            3
+          ],
+          [
+            2,
+            5,
+            3,
+            1
+          ]
+        ]
+      },
       "expected": 9,
-      "tags": ["sample", "mixed"]
+      "tags": [
+        "sample",
+        "mixed"
+      ]
     },
     {
       "id": "sample-negative-score",
       "name": "sample: every valid move loses value",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[4, 3, 2], [3, 2, 1]]},
+      "input": {
+        "grid": [
+          [
+            4,
+            3,
+            2
+          ],
+          [
+            3,
+            2,
+            1
+          ]
+        ]
+      },
       "expected": -1,
-      "tags": ["sample", "negative"]
+      "tags": [
+        "sample",
+        "negative"
+      ]
     },
     {
       "id": "trial-same-row-best",
       "name": "trial: best pair lies in one row",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[1, 100, 2], [50, 40, 30]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            100,
+            2
+          ],
+          [
+            50,
+            40,
+            30
+          ]
+        ]
+      },
       "expected": 99,
-      "tags": ["same-row"]
+      "tags": [
+        "same-row"
+      ]
     },
     {
       "id": "trial-same-column-best",
       "name": "trial: best pair lies in one column",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[1, 5], [100, 4], [2, 3]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            5
+          ],
+          [
+            100,
+            4
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
       "expected": 99,
-      "tags": ["same-column"]
+      "tags": [
+        "same-column"
+      ]
     },
     {
       "id": "trial-minimum-grid-increasing",
       "name": "trial: increasing two-by-two grid",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[1, 2], [3, 4]]},
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["minimum-shape", "positive"]
+      "tags": [
+        "minimum-shape",
+        "positive"
+      ]
     },
     {
       "id": "real-equal-values",
       "name": "real: equal reachable values yield zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[7, 7], [7, 7]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            7,
+            7
+          ],
+          [
+            7,
+            7
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["real", "equal"]
+      "tags": [
+        "real",
+        "equal"
+      ]
     },
     {
       "id": "real-multi-move-route",
       "name": "real: best endpoints need both movement directions",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[1, 2, 3], [4, 5, 6], [7, 8, 50]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            7,
+            8,
+            50
+          ]
+        ]
+      },
       "expected": 49,
-      "tags": ["real", "multi-move"]
+      "tags": [
+        "real",
+        "multi-move"
+      ]
     },
     {
       "id": "real-value-boundaries",
       "name": "real: minimum value reaches maximum value",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[100000, 1], [1, 100000]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            100000,
+            1
+          ],
+          [
+            1,
+            100000
+          ]
+        ]
+      },
       "expected": 99999,
-      "tags": ["real", "value-boundary"]
+      "tags": [
+        "real",
+        "value-boundary"
+      ]
     },
     {
       "id": "real-late-prefix-minimum",
       "name": "real: best start appears in destination row",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[8, 6, 7], [5, 4, 100]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            8,
+            6,
+            7
+          ],
+          [
+            5,
+            4,
+            100
+          ]
+        ]
+      },
       "expected": 96,
-      "tags": ["real", "prefix-minimum"]
+      "tags": [
+        "real",
+        "prefix-minimum"
+      ]
     },
     {
       "id": "real-current-cell-excluded",
       "name": "real: high current value cannot be its own start",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[100, 1], [2, 3]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            100,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["real", "nonempty-route"]
+      "tags": [
+        "real",
+        "nonempty-route"
+      ]
     },
     {
       "id": "real-wide-grid",
       "name": "real: two-row wide grid",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[10, 1, 20, 3, 30], [9, 8, 7, 6, 5]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            10,
+            1,
+            20,
+            3,
+            30
+          ],
+          [
+            9,
+            8,
+            7,
+            6,
+            5
+          ]
+        ]
+      },
       "expected": 29,
-      "tags": ["real", "wide"]
+      "tags": [
+        "real",
+        "wide"
+      ]
     },
     {
       "id": "real-tall-grid",
       "name": "real: two-column tall grid",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[10, 9], [1, 8], [20, 7], [3, 6], [30, 5]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            10,
+            9
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            20,
+            7
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            30,
+            5
+          ]
+        ]
+      },
       "expected": 29,
-      "tags": ["real", "tall"]
+      "tags": [
+        "real",
+        "tall"
+      ]
     }
   ]
 }

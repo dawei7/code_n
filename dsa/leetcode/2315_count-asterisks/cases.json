@@ -2,12 +2,101 @@
   "schema_version": 1,
   "challenge_id": "lc_2315",
   "cases": [
-    {"id":"sample-two-outside","name":"sample: two asterisks outside paired regions","kind":"sample","visible":true,"input":{"s":"l|*e*et|c**o|*de|"},"expected":2,"tags":["sample","multiple-pairs"]},
-    {"id":"sample-no-asterisks","name":"sample: no asterisks","kind":"sample","visible":true,"input":{"s":"iamprogrammer"},"expected":0,"tags":["sample","no-bars"]},
-    {"id":"sample-five-outside","name":"sample: five asterisks across outside regions","kind":"sample","visible":true,"input":{"s":"yo|uar|e**|b|e***au|tifu|l"},"expected":5,"tags":["sample","multiple-pairs"]},
-    {"id":"trial-all-inside","name":"all asterisks lie inside one pair","kind":"trial","visible":true,"input":{"s":"|***|"},"expected":0,"tags":["single-pair"]},
-    {"id":"trial-before-between-after","name":"outside asterisks surround a paired region","kind":"trial","visible":true,"input":{"s":"*|*|*"},"expected":2,"tags":["boundaries"]},
-    {"id":"real-empty-pair","name":"hidden: an empty pair does not hide later asterisks","kind":"real","visible":false,"input":{"s":"||***"},"expected":3,"tags":["hidden","empty-region"]},
-    {"id":"real-only-asterisks","name":"hidden: no bars means every asterisk counts","kind":"real","visible":false,"input":{"s":"*******"},"expected":7,"tags":["hidden","no-bars"]}
+    {
+      "id": "sample-two-outside",
+      "name": "sample: two asterisks outside paired regions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "l|*e*et|c**o|*de|"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "multiple-pairs"
+      ]
+    },
+    {
+      "id": "sample-no-asterisks",
+      "name": "sample: no asterisks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "iamprogrammer"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "no-bars"
+      ]
+    },
+    {
+      "id": "sample-five-outside",
+      "name": "sample: five asterisks across outside regions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "yo|uar|e**|b|e***au|tifu|l"
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "multiple-pairs"
+      ]
+    },
+    {
+      "id": "trial-all-inside",
+      "name": "all asterisks lie inside one pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "|***|"
+      },
+      "expected": 0,
+      "tags": [
+        "single-pair"
+      ]
+    },
+    {
+      "id": "trial-before-between-after",
+      "name": "outside asterisks surround a paired region",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "*|*|*"
+      },
+      "expected": 2,
+      "tags": [
+        "boundaries"
+      ]
+    },
+    {
+      "id": "real-empty-pair",
+      "name": "an empty pair does not hide later asterisks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "||***"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "empty-region"
+      ]
+    },
+    {
+      "id": "real-only-asterisks",
+      "name": "no bars means every asterisk counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "*******"
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "no-bars"
+      ]
+    }
   ]
 }

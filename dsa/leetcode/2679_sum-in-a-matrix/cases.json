@@ -1,11 +1,166 @@
 {
   "challenge_id": "lc_2679",
   "cases": [
-    {"id":"sample-multiple","name":"sample: several rows and rounds","kind":"sample","visible":true,"input":{"nums":[[7,2,1],[6,4,2],[6,5,3],[3,2,1]]},"expected":15,"tags":["sample","matrix"]},
-    {"id":"sample-single","name":"sample: one cell","kind":"sample","visible":true,"input":{"nums":[[1]]},"expected":1,"tags":["sample","minimum"]},
-    {"id":"trial-unsorted","name":"trial: row order does not determine rounds","kind":"trial","visible":true,"input":{"nums":[[1,10,3,7],[8,2,6,4]]},"expected":23,"tags":["sorting","rectangular"]},
-    {"id":"trial-ties-zero","name":"trial: ties and zero values","kind":"trial","visible":true,"input":{"nums":[[0,5,5],[5,0,5],[1,1,1]]},"expected":11,"tags":["ties","zero"]},
-    {"id":"real-one-row","name":"hidden: one row contributes every removed value","kind":"real","visible":false,"input":{"nums":[[9,0,4,4]]},"expected":17,"tags":["hidden","one-row"]},
-    {"id":"real-columns","name":"hidden: maxima come from different rows","kind":"real","visible":false,"input":{"nums":[[1000,2,2],[9,8,7],[500,400,0]]},"expected":1407,"tags":["hidden","order-statistics"]}
+    {
+      "id": "sample-multiple",
+      "name": "sample: several rows and rounds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          [
+            7,
+            2,
+            1
+          ],
+          [
+            6,
+            4,
+            2
+          ],
+          [
+            6,
+            5,
+            3
+          ],
+          [
+            3,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "matrix"
+      ]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: one cell",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-unsorted",
+      "name": "trial: row order does not determine rounds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          [
+            1,
+            10,
+            3,
+            7
+          ],
+          [
+            8,
+            2,
+            6,
+            4
+          ]
+        ]
+      },
+      "expected": 23,
+      "tags": [
+        "sorting",
+        "rectangular"
+      ]
+    },
+    {
+      "id": "trial-ties-zero",
+      "name": "trial: ties and zero values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          [
+            0,
+            5,
+            5
+          ],
+          [
+            5,
+            0,
+            5
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "ties",
+        "zero"
+      ]
+    },
+    {
+      "id": "real-one-row",
+      "name": "one row contributes every removed value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          [
+            9,
+            0,
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": 17,
+      "tags": [
+        "hidden",
+        "one-row"
+      ]
+    },
+    {
+      "id": "real-columns",
+      "name": "maxima come from different rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          [
+            1000,
+            2,
+            2
+          ],
+          [
+            9,
+            8,
+            7
+          ],
+          [
+            500,
+            400,
+            0
+          ]
+        ]
+      },
+      "expected": 1407,
+      "tags": [
+        "hidden",
+        "order-statistics"
+      ]
+    }
   ]
 }

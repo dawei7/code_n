@@ -110,9 +110,9 @@
     },
     {
       "id": "real-negative-values",
-      "name": "hidden: negative and positive values",
-      "kind": "real",
-      "visible": false,
+      "name": "negative and positive values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -1,
@@ -132,9 +132,9 @@
     },
     {
       "id": "real-middle-frequency",
-      "name": "hidden: repeated middle value across positions",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated middle value across positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -154,9 +154,9 @@
     },
     {
       "id": "real-several-competitors",
-      "name": "hidden: several values form competing pairs",
-      "kind": "real",
-      "visible": false,
+      "name": "several values form competing pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

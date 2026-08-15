@@ -6,108 +6,305 @@
       "name": "sample: two changes permit length four",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 1, 1, 3], "k": 2},
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          1,
+          3
+        ],
+        "k": 2
+      },
       "expected": 4,
-      "tags": ["sample", "two-changes"]
+      "tags": [
+        "sample",
+        "two-changes"
+      ]
     },
     {
       "id": "sample-zero-changes",
       "name": "sample: equal endpoints form a subsequence",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4, 5, 1], "k": 0},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          1
+        ],
+        "k": 0
+      },
       "expected": 2,
-      "tags": ["sample", "zero-budget", "subsequence"]
+      "tags": [
+        "sample",
+        "zero-budget",
+        "subsequence"
+      ]
     },
     {
       "id": "trial-single-zero-budget",
       "name": "trial: single element with zero budget",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [42], "k": 0},
+      "input": {
+        "nums": [
+          42
+        ],
+        "k": 0
+      },
       "expected": 1,
-      "tags": ["minimum-length", "zero-budget"]
+      "tags": [
+        "minimum-length",
+        "zero-budget"
+      ]
     },
     {
       "id": "trial-single-positive-budget",
       "name": "trial: single element leaves budget unused",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [42], "k": 1},
+      "input": {
+        "nums": [
+          42
+        ],
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["minimum-length", "at-most-budget"]
+      "tags": [
+        "minimum-length",
+        "at-most-budget"
+      ]
     },
     {
       "id": "trial-all-equal",
       "name": "trial: equal values never consume budget",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [8, 8, 8, 8, 8], "k": 5},
+      "input": {
+        "nums": [
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "k": 5
+      },
       "expected": 5,
-      "tags": ["all-equal", "unused-budget"]
+      "tags": [
+        "all-equal",
+        "unused-budget"
+      ]
     },
     {
       "id": "trial-all-distinct",
       "name": "trial: distinct values consume every adjacency",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4], "k": 2},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 2
+      },
       "expected": 3,
-      "tags": ["all-distinct", "exact-budget"]
+      "tags": [
+        "all-distinct",
+        "exact-budget"
+      ]
     },
     {
       "id": "real-alternating-one-change",
       "name": "real: alternating values can be regrouped",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 1, 2, 1, 2, 1, 2], "k": 1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2
+        ],
+        "k": 1
+      },
       "expected": 5,
-      "tags": ["alternating", "subsequence"]
+      "tags": [
+        "alternating",
+        "subsequence"
+      ]
     },
     {
       "id": "real-entire-array-good",
       "name": "real: two value boundaries keep the entire array",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 2, 2, 3, 3], "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ],
+        "k": 2
+      },
       "expected": 6,
-      "tags": ["entire-array", "exact-budget"]
+      "tags": [
+        "entire-array",
+        "exact-budget"
+      ]
     },
     {
       "id": "real-two-long-blocks",
       "name": "real: skipped values form two long blocks",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 1, 5, 2, 5, 2, 2], "k": 1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          5,
+          2,
+          5,
+          2,
+          2
+        ],
+        "k": 1
+      },
       "expected": 5,
-      "tags": ["skipped-elements", "one-change"]
+      "tags": [
+        "skipped-elements",
+        "one-change"
+      ]
     },
     {
       "id": "real-maximum-value-zero-budget",
       "name": "real: maximum values repeat non-contiguously",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000, 1, 1000000000, 2, 1000000000], "k": 0},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1,
+          1000000000,
+          2,
+          1000000000
+        ],
+        "k": 0
+      },
       "expected": 3,
-      "tags": ["maximum-value", "zero-budget"]
+      "tags": [
+        "maximum-value",
+        "zero-budget"
+      ]
     },
     {
       "id": "real-budget-larger-than-needed",
       "name": "real: at-most budget remains partly unused",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, 8, 9, 9], "k": 4},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          8,
+          9,
+          9
+        ],
+        "k": 4
+      },
       "expected": 4,
-      "tags": ["at-most-budget", "entire-array"]
+      "tags": [
+        "at-most-budget",
+        "entire-array"
+      ]
     },
     {
       "id": "real-maximum-budget-distinct-values",
       "name": "real: maximum budget selects fifty-one distinct values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60], "k": 50},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60
+        ],
+        "k": 50
+      },
       "expected": 51,
-      "tags": ["maximum-budget", "all-distinct"]
+      "tags": [
+        "maximum-budget",
+        "all-distinct"
+      ]
     }
   ]
 }

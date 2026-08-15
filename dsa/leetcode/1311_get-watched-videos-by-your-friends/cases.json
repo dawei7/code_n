@@ -229,9 +229,9 @@
     },
     {
       "id": "hidden-shortest-path",
-      "name": "hidden: a shorter path prevents later recounting",
-      "kind": "real",
-      "visible": false,
+      "name": "a shorter path prevents later recounting",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "watchedVideos": [
           [
@@ -279,9 +279,9 @@
     },
     {
       "id": "hidden-duplicate-occurrences",
-      "name": "hidden: repeated entries contribute repeatedly",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated entries contribute repeatedly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "watchedVideos": [
           [

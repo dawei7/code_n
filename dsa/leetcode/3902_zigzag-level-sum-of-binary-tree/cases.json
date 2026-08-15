@@ -7,126 +7,415 @@
       "name": "sample: the second level stops after its rightmost node",
       "kind": "sample",
       "visible": true,
-      "input": {"root": [5, 2, 8, 1, null, 9, 6]},
-      "expected": [5, 8, 0],
-      "tags": ["sample", "zigzag", "early-stop"]
+      "input": {
+        "root": [
+          5,
+          2,
+          8,
+          1,
+          null,
+          9,
+          6
+        ]
+      },
+      "expected": [
+        5,
+        8,
+        0
+      ],
+      "tags": [
+        "sample",
+        "zigzag",
+        "early-stop"
+      ]
     },
     {
       "id": "sample-complete-even-level",
       "name": "sample: both nodes on the even level qualify",
       "kind": "sample",
       "visible": true,
-      "input": {"root": [1, 2, 3, 4, 5, null, 7]},
-      "expected": [1, 5, 0],
-      "tags": ["sample", "right-to-left", "sparse-tree"]
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          null,
+          7
+        ]
+      },
+      "expected": [
+        1,
+        5,
+        0
+      ],
+      "tags": [
+        "sample",
+        "right-to-left",
+        "sparse-tree"
+      ]
     },
     {
       "id": "trial-single-node",
       "name": "trial: a singleton root lacks the required left child",
       "kind": "trial",
       "visible": true,
-      "input": {"root": [42]},
-      "expected": [0],
-      "tags": ["trial", "single-node", "zero-sum"]
+      "input": {
+        "root": [
+          42
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "trial",
+        "single-node",
+        "zero-sum"
+      ]
     },
     {
       "id": "trial-perfect-three-levels",
       "name": "trial: a perfect tree includes the complete internal levels",
       "kind": "trial",
       "visible": true,
-      "input": {"root": [1, 2, 3, 4, 5, 6, 7]},
-      "expected": [1, 5, 0],
-      "tags": ["trial", "perfect-tree", "leaf-level"]
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": [
+        1,
+        5,
+        0
+      ],
+      "tags": [
+        "trial",
+        "perfect-tree",
+        "leaf-level"
+      ]
     },
     {
       "id": "trial-left-chain",
       "name": "trial: a left chain alternates contributing and stopped levels",
       "kind": "trial",
       "visible": true,
-      "input": {"root": [10, 20, null, 30, null, 40, null]},
-      "expected": [10, 0, 30, 0],
-      "tags": ["trial", "left-skewed", "alternating-parity"]
+      "input": {
+        "root": [
+          10,
+          20,
+          null,
+          30,
+          null,
+          40,
+          null
+        ]
+      },
+      "expected": [
+        10,
+        0,
+        30,
+        0
+      ],
+      "tags": [
+        "trial",
+        "left-skewed",
+        "alternating-parity"
+      ]
     },
     {
       "id": "trial-right-chain",
       "name": "trial: a right chain satisfies only its even internal level",
       "kind": "trial",
       "visible": true,
-      "input": {"root": [10, null, 20, null, 30, null, 40]},
-      "expected": [0, 20, 0, 0],
-      "tags": ["trial", "right-skewed", "alternating-parity"]
+      "input": {
+        "root": [
+          10,
+          null,
+          20,
+          null,
+          30,
+          null,
+          40
+        ]
+      },
+      "expected": [
+        0,
+        20,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "right-skewed",
+        "alternating-parity"
+      ]
     },
     {
       "id": "trial-negative-values",
       "name": "trial: qualifying nodes can produce negative sums",
       "kind": "trial",
       "visible": true,
-      "input": {"root": [-5, -2, -8, -1, -3, -9, -6]},
-      "expected": [-5, -10, 0],
-      "tags": ["trial", "negative-values", "perfect-tree"]
+      "input": {
+        "root": [
+          -5,
+          -2,
+          -8,
+          -1,
+          -3,
+          -9,
+          -6
+        ]
+      },
+      "expected": [
+        -5,
+        -10,
+        0
+      ],
+      "tags": [
+        "trial",
+        "negative-values",
+        "perfect-tree"
+      ]
     },
     {
       "id": "trial-middle-stop-on-odd-level",
       "name": "trial: an odd level stops after two contributing nodes",
       "kind": "trial",
       "visible": true,
-      "input": {"root": [1, 2, 3, 4, 5, 6, 7, 8, null, 9, null, null, null, 10, null]},
-      "expected": [1, 5, 9, 0],
-      "tags": ["trial", "left-to-right", "middle-stop"]
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          null,
+          9,
+          null,
+          null,
+          null,
+          10,
+          null
+        ]
+      },
+      "expected": [
+        1,
+        5,
+        9,
+        0
+      ],
+      "tags": [
+        "trial",
+        "left-to-right",
+        "middle-stop"
+      ]
     },
     {
       "id": "trial-middle-stop-on-even-level",
       "name": "trial: an even level includes the right node before stopping",
       "kind": "trial",
       "visible": true,
-      "input": {"root": [100, 10, 20, 1, null, 2, 3]},
-      "expected": [100, 20, 0],
-      "tags": ["trial", "right-to-left", "middle-stop"]
+      "input": {
+        "root": [
+          100,
+          10,
+          20,
+          1,
+          null,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        100,
+        20,
+        0
+      ],
+      "tags": [
+        "trial",
+        "right-to-left",
+        "middle-stop"
+      ]
     },
     {
       "id": "hidden-deeper-levels-survive-stop",
-      "name": "hidden: a stopped level does not prune later structural traversal",
-      "kind": "real",
-      "visible": false,
-      "input": {"root": [1, 2, 3, 4, 5, 6, null, 7]},
-      "expected": [1, 0, 4, 0],
-      "tags": ["hidden", "full-tree-discovery", "semantic-trap"]
+      "name": "a stopped level does not prune later structural traversal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          null,
+          7
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        4,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "full-tree-discovery",
+        "semantic-trap"
+      ]
     },
     {
       "id": "hidden-perfect-four-levels",
-      "name": "hidden: every internal node of a perfect tree contributes",
-      "kind": "real",
-      "visible": false,
-      "input": {"root": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]},
-      "expected": [1, 5, 22, 0],
-      "tags": ["hidden", "perfect-tree", "complete-prefix"]
+      "name": "every internal node of a perfect tree contributes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      "expected": [
+        1,
+        5,
+        22,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "perfect-tree",
+        "complete-prefix"
+      ]
     },
     {
       "id": "hidden-maximum-values",
-      "name": "hidden: a level sum exceeds a 32-bit signed integer at scale",
-      "kind": "real",
-      "visible": false,
-      "input": {"root": [100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000]},
-      "expected": [100000, 200000, 400000, 0],
-      "tags": ["hidden", "maximum-value", "wide-sum"]
+      "name": "a level sum exceeds a 32-bit signed integer at scale",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          100000,
+          100000,
+          100000,
+          100000,
+          100000,
+          100000,
+          100000,
+          100000,
+          100000,
+          100000,
+          100000,
+          100000,
+          100000,
+          100000,
+          100000
+        ]
+      },
+      "expected": [
+        100000,
+        200000,
+        400000,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "wide-sum"
+      ]
     },
     {
       "id": "hidden-minimum-values",
-      "name": "hidden: the minimum node value produces negative level totals",
-      "kind": "real",
-      "visible": false,
-      "input": {"root": [-100000, -100000, -100000, -100000, -100000, -100000, -100000, -100000, -100000, -100000, -100000, -100000, -100000, -100000, -100000]},
-      "expected": [-100000, -200000, -400000, 0],
-      "tags": ["hidden", "minimum-value", "negative-sum"]
+      "name": "the minimum node value produces negative level totals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          -100000,
+          -100000,
+          -100000,
+          -100000,
+          -100000,
+          -100000,
+          -100000,
+          -100000,
+          -100000,
+          -100000,
+          -100000,
+          -100000,
+          -100000,
+          -100000,
+          -100000
+        ]
+      },
+      "expected": [
+        -100000,
+        -200000,
+        -400000,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "minimum-value",
+        "negative-sum"
+      ]
     },
     {
       "id": "hidden-negative-prefix-before-stop",
-      "name": "hidden: a qualifying negative prefix remains negative before the stop",
-      "kind": "real",
-      "visible": false,
-      "input": {"root": [1, 2, 3, -5, -7, 100, 9, 2, null, 3, null]},
-      "expected": [1, 5, -12, 0],
-      "tags": ["hidden", "negative-prefix", "odd-level-stop"]
+      "name": "a qualifying negative prefix remains negative before the stop",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          -5,
+          -7,
+          100,
+          9,
+          2,
+          null,
+          3,
+          null
+        ]
+      },
+      "expected": [
+        1,
+        5,
+        -12,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "negative-prefix",
+        "odd-level-stop"
+      ]
     }
   ]
 }

@@ -179,9 +179,9 @@
     },
     {
       "id": "real-cheap-root",
-      "name": "hidden: retaining a cheap root permits all descendants to be selected",
-      "kind": "real",
-      "visible": false,
+      "name": "retaining a cheap root permits all descendants to be selected",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -207,9 +207,9 @@
     },
     {
       "id": "real-branch-specific-loss",
-      "name": "hidden: each child subtree chooses its own retained cut",
-      "kind": "real",
-      "visible": false,
+      "name": "each child subtree chooses its own retained cut",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -256,9 +256,9 @@
     },
     {
       "id": "real-maximum-values",
-      "name": "hidden: score and retained loss require wide integer totals",
-      "kind": "real",
-      "visible": false,
+      "name": "score and retained loss require wide integer totals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [

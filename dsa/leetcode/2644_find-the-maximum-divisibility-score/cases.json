@@ -120,9 +120,9 @@
     },
     {
       "id": "real-duplicate-divisors",
-      "name": "hidden: repeated candidate values",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated candidate values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -144,9 +144,9 @@
     },
     {
       "id": "real-equal-full-scores",
-      "name": "hidden: multiple divisors divide all values",
-      "kind": "real",
-      "visible": false,
+      "name": "multiple divisors divide all values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           60,
@@ -168,9 +168,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: upper-bound values",
-      "kind": "real",
-      "visible": false,
+      "name": "upper-bound values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,

@@ -88,9 +88,9 @@
     },
     {
       "id": "real-balanced-with-flexible",
-      "name": "hidden: flexible moves decide direction after balanced fixed moves",
-      "kind": "real",
-      "visible": false,
+      "name": "flexible moves decide direction after balanced fixed moves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "moves": "LLRR__"
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "real-left-imbalance",
-      "name": "hidden: all flexible moves reinforce a left imbalance",
-      "kind": "real",
-      "visible": false,
+      "name": "all flexible moves reinforce a left imbalance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "moves": "R_L_L"
       },
@@ -116,9 +116,9 @@
     },
     {
       "id": "real-balanced-many-flexible",
-      "name": "hidden: equal forced counts leave only flexible distance",
-      "kind": "real",
-      "visible": false,
+      "name": "equal forced counts leave only flexible distance",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "moves": "RRL___LL"
       },
@@ -130,9 +130,9 @@
     },
     {
       "id": "real-no-flexible-right",
-      "name": "hidden: forced right moves need no choices",
-      "kind": "real",
-      "visible": false,
+      "name": "forced right moves need no choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "moves": "RRRRR"
       },
@@ -144,9 +144,9 @@
     },
     {
       "id": "real-maximum-length",
-      "name": "hidden: every maximum-length move is flexible",
-      "kind": "real",
-      "visible": false,
+      "name": "every maximum-length move is flexible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "moves": "__________________________________________________"
       },

@@ -158,9 +158,9 @@
     },
     {
       "id": "real-full-length-six",
-      "name": "hidden: one rotation of the full array is the only valid partition",
-      "kind": "real",
-      "visible": false,
+      "name": "one rotation of the full array is the only valid partition",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -180,9 +180,9 @@
     },
     {
       "id": "real-block-ranges-reversed",
-      "name": "hidden: sortable individual pairs still fail global boundary order",
-      "kind": "real",
-      "visible": false,
+      "name": "sortable individual pairs still fail global boundary order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -200,9 +200,9 @@
     },
     {
       "id": "real-two-descents-per-block",
-      "name": "hidden: good value ranges do not repair circular order with two descents",
-      "kind": "real",
-      "visible": false,
+      "name": "good value ranges do not repair circular order with two descents",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -222,9 +222,9 @@
     },
     {
       "id": "real-equality-enables-two-lengths",
-      "name": "hidden: equality across boundaries allows two nontrivial divisors",
-      "kind": "real",
-      "visible": false,
+      "name": "equality across boundaries allows two nontrivial divisors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -242,9 +242,9 @@
     },
     {
       "id": "real-all-equal-six",
-      "name": "hidden: every divisor contributes when all values are equal",
-      "kind": "real",
-      "visible": false,
+      "name": "every divisor contributes when all values are equal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -264,9 +264,9 @@
     },
     {
       "id": "real-maximum-value-rotation",
-      "name": "hidden: maximum values and duplicates preserve circular sorting",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum values and duplicates preserve circular sorting",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -283,9 +283,9 @@
     },
     {
       "id": "real-rotated-length-four-blocks",
-      "name": "hidden: two length-four blocks rotate independently into global order",
-      "kind": "real",
-      "visible": false,
+      "name": "two length-four blocks rotate independently into global order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,

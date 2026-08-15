@@ -7,99 +7,238 @@
       "name": "sample: a length-one subsequence squares its only value",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [-1, -9, 2, 3, -2, -3, 1], "m": 1},
+      "input": {
+        "nums": [
+          -1,
+          -9,
+          2,
+          3,
+          -2,
+          -3,
+          1
+        ],
+        "m": 1
+      },
       "expected": 81,
-      "tags": ["sample", "m-one", "square"]
+      "tags": [
+        "sample",
+        "m-one",
+        "square"
+      ]
     },
     {
       "id": "sample-negative-endpoints",
       "name": "sample: two negative endpoints produce the maximum positive product",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 3, -5, 5, 6, -4], "m": 3},
+      "input": {
+        "nums": [
+          1,
+          3,
+          -5,
+          5,
+          6,
+          -4
+        ],
+        "m": 3
+      },
       "expected": 20,
-      "tags": ["sample", "negative-endpoints", "subsequence-gap"]
+      "tags": [
+        "sample",
+        "negative-endpoints",
+        "subsequence-gap"
+      ]
     },
     {
       "id": "sample-positive-endpoints",
       "name": "sample: positive endpoints maximize a length-two subsequence",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, -1, 2, -6, 5, 2, -5, 7], "m": 2},
+      "input": {
+        "nums": [
+          2,
+          -1,
+          2,
+          -6,
+          5,
+          2,
+          -5,
+          7
+        ],
+        "m": 2
+      },
       "expected": 35,
-      "tags": ["sample", "positive-endpoints", "two-elements"]
+      "tags": [
+        "sample",
+        "positive-endpoints",
+        "two-elements"
+      ]
     },
     {
       "id": "trial-single-array-element",
       "name": "trial: the only array element is selected twice as an endpoint",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [100000], "m": 1},
+      "input": {
+        "nums": [
+          100000
+        ],
+        "m": 1
+      },
       "expected": 10000000000,
-      "tags": ["trial", "minimum-length", "maximum-value"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "maximum-value"
+      ]
     },
     {
       "id": "trial-full-length-subsequence",
       "name": "trial: choosing every element fixes both endpoints",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-100000, -100000], "m": 2},
+      "input": {
+        "nums": [
+          -100000,
+          -100000
+        ],
+        "m": 2
+      },
       "expected": 10000000000,
-      "tags": ["trial", "full-length", "minimum-value"]
+      "tags": [
+        "trial",
+        "full-length",
+        "minimum-value"
+      ]
     },
     {
       "id": "trial-best-product-negative",
       "name": "trial: the maximum legal endpoint product is still negative",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-5, -2, 3, 4], "m": 3},
+      "input": {
+        "nums": [
+          -5,
+          -2,
+          3,
+          4
+        ],
+        "m": 3
+      },
       "expected": -8,
-      "tags": ["trial", "negative-answer", "initialization"]
+      "tags": [
+        "trial",
+        "negative-answer",
+        "initialization"
+      ]
     },
     {
       "id": "real-singleton-cannot-use-two-indices",
       "name": "real: m one cannot multiply values from different positions",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10, -100, 10], "m": 1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          -100,
+          10
+        ],
+        "m": 1
+      },
       "expected": 10000,
-      "tags": ["real", "m-one", "semantic-trap"]
+      "tags": [
+        "real",
+        "m-one",
+        "semantic-trap"
+      ]
     },
     {
       "id": "real-zero-is-best",
       "name": "real: a zero endpoint beats every negative product",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-5, 0, 4], "m": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          0,
+          4
+        ],
+        "m": 2
+      },
       "expected": 0,
-      "tags": ["real", "zero", "negative-products"]
+      "tags": [
+        "real",
+        "zero",
+        "negative-products"
+      ]
     },
     {
       "id": "real-negative-pair",
       "name": "real: distant negative endpoints create the optimum",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, -10, -2, -7], "m": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          -10,
+          -2,
+          -7
+        ],
+        "m": 2
+      },
       "expected": 70,
-      "tags": ["real", "negative-endpoints", "distance"]
+      "tags": [
+        "real",
+        "negative-endpoints",
+        "distance"
+      ]
     },
     {
       "id": "real-prefix-extreme-changes",
       "name": "real: a newly eligible negative prefix extreme changes the optimum",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3, -1, -4, 2, -6], "m": 3},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          -1,
+          -4,
+          2,
+          -6
+        ],
+        "m": 3
+      },
       "expected": 24,
-      "tags": ["real", "rolling-prefix", "negative-values"]
+      "tags": [
+        "real",
+        "rolling-prefix",
+        "negative-values"
+      ]
     },
     {
       "id": "real-positive-prefix-extreme",
       "name": "real: a positive prefix extreme wins with a later positive endpoint",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-4, 6, 7, 9, -6, -7, 4, 4], "m": 4},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -4,
+          6,
+          7,
+          9,
+          -6,
+          -7,
+          4,
+          4
+        ],
+        "m": 4
+      },
       "expected": 36,
-      "tags": ["real", "positive-endpoints", "rolling-prefix"]
+      "tags": [
+        "real",
+        "positive-endpoints",
+        "rolling-prefix"
+      ]
     }
   ]
 }

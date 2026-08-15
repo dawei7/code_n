@@ -74,16 +74,20 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "tokens": ["-42"]
+        "tokens": [
+          "-42"
+        ]
       },
       "expected": -42,
-      "tags": ["boundary"]
+      "tags": [
+        "boundary"
+      ]
     },
     {
       "id": "real-negative-division",
-      "name": "hidden: negative division toward zero",
-      "kind": "real",
-      "visible": false,
+      "name": "negative division toward zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tokens": [
           "7",

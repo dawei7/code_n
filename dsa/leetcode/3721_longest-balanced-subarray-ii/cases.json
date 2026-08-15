@@ -159,9 +159,9 @@
     },
     {
       "id": "real-interior-pair",
-      "name": "hidden: a two-element suffix is better than the unbalanced full array",
-      "kind": "real",
-      "visible": false,
+      "name": "a two-element suffix is better than the unbalanced full array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -180,9 +180,9 @@
     },
     {
       "id": "real-maximum-values",
-      "name": "hidden: both value-boundary parities are tracked by last occurrence",
-      "kind": "real",
-      "visible": false,
+      "name": "both value-boundary parities are tracked by last occurrence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -203,9 +203,9 @@
     },
     {
       "id": "real-long-duplicate-runs",
-      "name": "hidden: duplicate runs can make a long balanced subarray",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate runs can make a long balanced subarray",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -242,9 +242,9 @@
     },
     {
       "id": "real-distinct-balanced",
-      "name": "hidden: four distinct values of each parity balance the whole array",
-      "kind": "real",
-      "visible": false,
+      "name": "four distinct values of each parity balance the whole array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -269,9 +269,9 @@
     },
     {
       "id": "real-last-occurrence-shifts",
-      "name": "hidden: repeated values change only a suffix of left-endpoint balances",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated values change only a suffix of left-endpoint balances",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -295,4 +295,3 @@
     }
   ]
 }
-

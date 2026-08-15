@@ -96,9 +96,9 @@
     },
     {
       "id": "real-odd-even",
-      "name": "hidden: odd lower and even upper endpoint",
-      "kind": "real",
-      "visible": false,
+      "name": "odd lower and even upper endpoint",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "low": 11,
         "high": 20
@@ -111,9 +111,9 @@
     },
     {
       "id": "real-zero-only",
-      "name": "hidden: zero alone is not odd",
-      "kind": "real",
-      "visible": false,
+      "name": "zero alone is not odd",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "low": 0,
         "high": 0
@@ -127,9 +127,9 @@
     },
     {
       "id": "real-maximum-single",
-      "name": "hidden: maximum endpoint alone",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum endpoint alone",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "low": 1000000000,
         "high": 1000000000
@@ -143,9 +143,9 @@
     },
     {
       "id": "real-near-maximum",
-      "name": "hidden: wide interval ending at maximum",
-      "kind": "real",
-      "visible": false,
+      "name": "wide interval ending at maximum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "low": 999999991,
         "high": 1000000000

@@ -7,72 +7,136 @@
       "name": "sample: distribute the first four integers",
       "kind": "sample",
       "visible": true,
-      "input": {"divisor1": 2, "divisor2": 7, "uniqueCnt1": 1, "uniqueCnt2": 3},
+      "input": {
+        "divisor1": 2,
+        "divisor2": 7,
+        "uniqueCnt1": 1,
+        "uniqueCnt2": 3
+      },
       "expected": 4,
-      "tags": ["sample", "coprime-divisors"]
+      "tags": [
+        "sample",
+        "coprime-divisors"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: three values fill both arrays",
       "kind": "sample",
       "visible": true,
-      "input": {"divisor1": 3, "divisor2": 5, "uniqueCnt1": 2, "uniqueCnt2": 1},
+      "input": {
+        "divisor1": 3,
+        "divisor2": 5,
+        "uniqueCnt1": 2,
+        "uniqueCnt2": 1
+      },
       "expected": 3,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: shared factors constrain the first array",
       "kind": "sample",
       "visible": true,
-      "input": {"divisor1": 2, "divisor2": 4, "uniqueCnt1": 8, "uniqueCnt2": 2},
+      "input": {
+        "divisor1": 2,
+        "divisor2": 4,
+        "uniqueCnt1": 8,
+        "uniqueCnt2": 2
+      },
       "expected": 15,
-      "tags": ["sample", "shared-factor"]
+      "tags": [
+        "sample",
+        "shared-factor"
+      ]
     },
     {
       "id": "trial-equal-divisors",
       "name": "trial: equal divisors require two different eligible values",
       "kind": "trial",
       "visible": true,
-      "input": {"divisor1": 2, "divisor2": 2, "uniqueCnt1": 1, "uniqueCnt2": 1},
+      "input": {
+        "divisor1": 2,
+        "divisor2": 2,
+        "uniqueCnt1": 1,
+        "uniqueCnt2": 1
+      },
       "expected": 3,
-      "tags": ["trial", "equal-divisors", "disjointness"]
+      "tags": [
+        "trial",
+        "equal-divisors",
+        "disjointness"
+      ]
     },
     {
       "id": "trial-balanced-counts",
       "name": "trial: values exclusive to either array support balanced counts",
       "kind": "trial",
       "visible": true,
-      "input": {"divisor1": 2, "divisor2": 3, "uniqueCnt1": 2, "uniqueCnt2": 2},
+      "input": {
+        "divisor1": 2,
+        "divisor2": 3,
+        "uniqueCnt1": 2,
+        "uniqueCnt2": 2
+      },
       "expected": 4,
-      "tags": ["trial", "combined-capacity"]
+      "tags": [
+        "trial",
+        "combined-capacity"
+      ]
     },
     {
       "id": "real-one-divisor-multiple",
-      "name": "hidden: one divisor is a multiple of the other",
-      "kind": "real",
-      "visible": false,
-      "input": {"divisor1": 3, "divisor2": 6, "uniqueCnt1": 4, "uniqueCnt2": 2},
+      "name": "one divisor is a multiple of the other",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "divisor1": 3,
+        "divisor2": 6,
+        "uniqueCnt1": 4,
+        "uniqueCnt2": 2
+      },
       "expected": 7,
-      "tags": ["hidden", "nested-multiples"]
+      "tags": [
+        "hidden",
+        "nested-multiples"
+      ]
     },
     {
       "id": "real-asymmetric-counts",
-      "name": "hidden: the first individual capacity is the bottleneck",
-      "kind": "real",
-      "visible": false,
-      "input": {"divisor1": 2, "divisor2": 99991, "uniqueCnt1": 20, "uniqueCnt2": 1},
+      "name": "the first individual capacity is the bottleneck",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "divisor1": 2,
+        "divisor2": 99991,
+        "uniqueCnt1": 20,
+        "uniqueCnt2": 1
+      },
       "expected": 39,
-      "tags": ["hidden", "individual-capacity"]
+      "tags": [
+        "hidden",
+        "individual-capacity"
+      ]
     },
     {
       "id": "real-large-counts",
-      "name": "hidden: larger requests exercise the search range",
-      "kind": "real",
-      "visible": false,
-      "input": {"divisor1": 2, "divisor2": 3, "uniqueCnt1": 2000, "uniqueCnt2": 2000},
+      "name": "larger requests exercise the search range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "divisor1": 2,
+        "divisor2": 3,
+        "uniqueCnt1": 2000,
+        "uniqueCnt2": 2000
+      },
       "expected": 4799,
-      "tags": ["hidden", "large-counts"]
+      "tags": [
+        "hidden",
+        "large-counts"
+      ]
     }
   ]
 }

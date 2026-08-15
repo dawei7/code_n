@@ -290,9 +290,9 @@
     },
     {
       "id": "real-unsold",
-      "name": "hidden: unsold category remains",
-      "kind": "real",
-      "visible": false,
+      "name": "unsold category remains",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Orders": [
@@ -359,9 +359,9 @@
     },
     {
       "id": "real-ordering",
-      "name": "hidden: categories sort ascending",
-      "kind": "real",
-      "visible": false,
+      "name": "categories sort ascending",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Orders": [

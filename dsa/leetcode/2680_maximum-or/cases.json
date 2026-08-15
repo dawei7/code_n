@@ -1,13 +1,153 @@
 {
   "challenge_id": "lc_2680",
   "cases": [
-    {"id":"sample-two-values","name":"sample: shifting the second value is optimal","kind":"sample","visible":true,"input":{"nums":[12,9],"k":1},"expected":30,"tags":["sample","candidate"]},
-    {"id":"sample-two-shifts","name":"sample: both shifts go to one value","kind":"sample","visible":true,"input":{"nums":[8,1,2],"k":2},"expected":35,"tags":["sample","concentration"]},
-    {"id":"trial-single","name":"trial: a single value receives every operation","kind":"trial","visible":true,"input":{"nums":[5],"k":3},"expected":40,"tags":["single","boundary"]},
-    {"id":"trial-overlap","name":"trial: overlapping low bits remain available","kind":"trial","visible":true,"input":{"nums":[3,5,6],"k":2},"expected":31,"tags":["bits","overlap"]},
-    {"id":"trial-not-largest","name":"trial: numerical maximum need not be the best candidate","kind":"trial","visible":true,"input":{"nums":[12,9],"k":1},"expected":30,"tags":["greedy-trap"]},
-    {"id":"real-duplicates","name":"hidden: duplicate values preserve unchanged bits","kind":"real","visible":false,"input":{"nums":[7,7,7],"k":4},"expected":119,"tags":["hidden","duplicates"]},
-    {"id":"real-large-shift","name":"hidden: maximum operation count","kind":"real","visible":false,"input":{"nums":[1,2,4,8],"k":15},"expected":262151,"tags":["hidden","large-shift"]},
-    {"id":"real-high-values","name":"hidden: values near the upper bound","kind":"real","visible":false,"input":{"nums":[1000000000,999999937,536870912],"k":5},"expected":32142785056,"tags":["hidden","large-values"]}
+    {
+      "id": "sample-two-values",
+      "name": "sample: shifting the second value is optimal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          9
+        ],
+        "k": 1
+      },
+      "expected": 30,
+      "tags": [
+        "sample",
+        "candidate"
+      ]
+    },
+    {
+      "id": "sample-two-shifts",
+      "name": "sample: both shifts go to one value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          1,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 35,
+      "tags": [
+        "sample",
+        "concentration"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: a single value receives every operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 3
+      },
+      "expected": 40,
+      "tags": [
+        "single",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-overlap",
+      "name": "trial: overlapping low bits remain available",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          5,
+          6
+        ],
+        "k": 2
+      },
+      "expected": 31,
+      "tags": [
+        "bits",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-not-largest",
+      "name": "trial: numerical maximum need not be the best candidate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          9
+        ],
+        "k": 1
+      },
+      "expected": 30,
+      "tags": [
+        "greedy-trap"
+      ]
+    },
+    {
+      "id": "real-duplicates",
+      "name": "duplicate values preserve unchanged bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7
+        ],
+        "k": 4
+      },
+      "expected": 119,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-large-shift",
+      "name": "maximum operation count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "k": 15
+      },
+      "expected": 262151,
+      "tags": [
+        "hidden",
+        "large-shift"
+      ]
+    },
+    {
+      "id": "real-high-values",
+      "name": "values near the upper bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          999999937,
+          536870912
+        ],
+        "k": 5
+      },
+      "expected": 32142785056,
+      "tags": [
+        "hidden",
+        "large-values"
+      ]
+    }
   ]
 }

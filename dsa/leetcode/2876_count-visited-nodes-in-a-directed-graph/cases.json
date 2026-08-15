@@ -109,9 +109,9 @@
     },
     {
       "id": "real-branching-tails",
-      "name": "hidden: multiple tails merge before a shared cycle",
-      "kind": "real",
-      "visible": false,
+      "name": "multiple tails merge before a shared cycle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           1,
@@ -137,9 +137,9 @@
     },
     {
       "id": "real-two-cycles-with-depths",
-      "name": "hidden: unequal cycles and tail depths coexist",
-      "kind": "real",
-      "visible": false,
+      "name": "unequal cycles and tail depths coexist",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           1,

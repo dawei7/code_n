@@ -6,90 +6,164 @@
       "name": "official example: both adjacencies require even values",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "m": 4, "k": 2},
+      "input": {
+        "n": 3,
+        "m": 4,
+        "k": 2
+      },
       "expected": 8,
-      "tags": ["sample", "all-even"]
+      "tags": [
+        "sample",
+        "all-even"
+      ]
     },
     {
       "id": "official-example-two",
       "name": "official example: the only value is odd",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 5, "m": 1, "k": 0},
+      "input": {
+        "n": 5,
+        "m": 1,
+        "k": 0
+      },
       "expected": 1,
-      "tags": ["sample", "all-odd", "zero-pairs"]
+      "tags": [
+        "sample",
+        "all-odd",
+        "zero-pairs"
+      ]
     },
     {
       "id": "official-example-three",
       "name": "official example: five qualifying adjacencies",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 7, "m": 7, "k": 5},
+      "input": {
+        "n": 7,
+        "m": 7,
+        "k": 5
+      },
       "expected": 5832,
-      "tags": ["sample", "odd-domain-size"]
+      "tags": [
+        "sample",
+        "odd-domain-size"
+      ]
     },
     {
       "id": "trial-length-one",
       "name": "trial: every single-element array has zero adjacencies",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "m": 1000, "k": 0},
+      "input": {
+        "n": 1,
+        "m": 1000,
+        "k": 0
+      },
       "expected": 1000,
-      "tags": ["minimum-n", "no-adjacency"]
+      "tags": [
+        "minimum-n",
+        "no-adjacency"
+      ]
     },
     {
       "id": "trial-two-values-zero-pairs",
       "name": "trial: three of four arrays avoid an even-even pair",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "m": 2, "k": 0},
+      "input": {
+        "n": 2,
+        "m": 2,
+        "k": 0
+      },
       "expected": 3,
-      "tags": ["two-elements", "zero-pairs"]
+      "tags": [
+        "two-elements",
+        "zero-pairs"
+      ]
     },
     {
       "id": "trial-two-values-one-pair",
       "name": "trial: only the all-even length-two array qualifies",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "m": 2, "k": 1},
+      "input": {
+        "n": 2,
+        "m": 2,
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["two-elements", "one-pair"]
+      "tags": [
+        "two-elements",
+        "one-pair"
+      ]
     },
     {
       "id": "real-one-qualifying-pair",
       "name": "real: exactly one even-even adjacency among four positions",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 4, "m": 3, "k": 1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "m": 3,
+        "k": 1
+      },
       "expected": 16,
-      "tags": ["real", "mixed-parity"]
+      "tags": [
+        "real",
+        "mixed-parity"
+      ]
     },
     {
       "id": "real-maximum-k",
       "name": "real: every adjacent pair qualifies only for all-even arrays",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 4, "m": 5, "k": 3},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "m": 5,
+        "k": 3
+      },
       "expected": 16,
-      "tags": ["real", "maximum-k", "all-even"]
+      "tags": [
+        "real",
+        "maximum-k",
+        "all-even"
+      ]
     },
     {
       "id": "real-nontrivial-odd-domain",
       "name": "real: odd domain size gives unequal parity choice counts",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 8, "m": 9, "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8,
+        "m": 9,
+        "k": 2
+      },
       "expected": 9072000,
-      "tags": ["real", "odd-domain-size", "modulo"]
+      "tags": [
+        "real",
+        "odd-domain-size",
+        "modulo"
+      ]
     },
     {
       "id": "real-maximum-constraints",
       "name": "real: maximum length and value domain",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 750, "m": 1000, "k": 375},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 750,
+        "m": 1000,
+        "k": 375
+      },
       "expected": 494679372,
-      "tags": ["real", "maximum-constraints", "modulo"]
+      "tags": [
+        "real",
+        "maximum-constraints",
+        "modulo"
+      ]
     }
   ]
 }

@@ -55,9 +55,9 @@
     },
     {
       "id": "real-negative-single",
-      "name": "hidden: negative single",
-      "kind": "real",
-      "visible": false,
+      "name": "negative single",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -1,

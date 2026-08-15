@@ -119,9 +119,9 @@
     },
     {
       "id": "real-plateau-first",
-      "name": "hidden: equality invalidates the first phase",
-      "kind": "real",
-      "visible": false,
+      "name": "equality invalidates the first phase",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -139,9 +139,9 @@
     },
     {
       "id": "real-plateau-middle",
-      "name": "hidden: equality invalidates the decreasing phase",
-      "kind": "real",
-      "visible": false,
+      "name": "equality invalidates the decreasing phase",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -159,9 +159,9 @@
     },
     {
       "id": "real-plateau-last",
-      "name": "hidden: equality invalidates the final phase",
-      "kind": "real",
-      "visible": false,
+      "name": "equality invalidates the final phase",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -179,9 +179,9 @@
     },
     {
       "id": "real-extra-turn",
-      "name": "hidden: a fourth direction change is not allowed",
-      "kind": "real",
-      "visible": false,
+      "name": "a fourth direction change is not allowed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -200,9 +200,9 @@
     },
     {
       "id": "real-negative-values",
-      "name": "hidden: comparisons work across negative values",
-      "kind": "real",
-      "visible": false,
+      "name": "comparisons work across negative values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -5,
@@ -221,9 +221,9 @@
     },
     {
       "id": "real-long-phases",
-      "name": "hidden: each phase may contain several edges",
-      "kind": "real",
-      "visible": false,
+      "name": "each phase may contain several edges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -246,9 +246,9 @@
     },
     {
       "id": "real-late-breakpoints",
-      "name": "hidden: both breakpoints can be near the end",
-      "kind": "real",
-      "visible": false,
+      "name": "both breakpoints can be near the end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,

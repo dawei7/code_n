@@ -168,9 +168,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: leading zeros in every part",
-      "kind": "real",
-      "visible": false,
+      "name": "leading zeros in every part",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,
@@ -199,9 +199,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: one count is not divisible by three",
-      "kind": "real",
-      "visible": false,
+      "name": "one count is not divisible by three",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -225,9 +225,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: six consecutive ones",
-      "kind": "real",
-      "visible": false,
+      "name": "six consecutive ones",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -253,9 +253,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: equal one counts but different bit patterns",
-      "kind": "real",
-      "visible": false,
+      "name": "equal one counts but different bit patterns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -284,4 +284,3 @@
     }
   ]
 }
-

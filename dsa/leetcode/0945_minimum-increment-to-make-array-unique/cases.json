@@ -97,9 +97,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: duplicate chain reaches occupied values",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate chain reaches occupied values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -116,9 +116,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: duplicates at upper input bound",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicates at upper input bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -134,9 +134,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: two duplicate groups interact",
-      "kind": "real",
-      "visible": false,
+      "name": "two duplicate groups interact",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -154,9 +154,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: unsorted values with sparse duplicates",
-      "kind": "real",
-      "visible": false,
+      "name": "unsorted values with sparse duplicates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,

@@ -83,9 +83,9 @@
     },
     {
       "id": "real-competing-chains",
-      "name": "hidden: choose the longer of two square chains",
-      "kind": "real",
-      "visible": false,
+      "name": "choose the longer of two square chains",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -104,9 +104,9 @@
     },
     {
       "id": "real-interior-chain",
-      "name": "hidden: a valid chain can begin at a perfect square",
-      "kind": "real",
-      "visible": false,
+      "name": "a valid chain can begin at a perfect square",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           16,
@@ -123,9 +123,9 @@
     },
     {
       "id": "real-large-unrelated",
-      "name": "hidden: large values without a square relation",
-      "kind": "real",
-      "visible": false,
+      "name": "large values without a square relation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           18532,

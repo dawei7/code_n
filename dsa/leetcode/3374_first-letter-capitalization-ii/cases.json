@@ -166,9 +166,9 @@
     },
     {
       "id": "real-other-punctuation",
-      "name": "hidden: non-boundary punctuation stays in place",
-      "kind": "real",
-      "visible": false,
+      "name": "non-boundary punctuation stays in place",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_content": [
@@ -200,9 +200,9 @@
     },
     {
       "id": "real-empty-text",
-      "name": "hidden: empty text produces an empty conversion",
-      "kind": "real",
-      "visible": false,
+      "name": "empty text produces an empty conversion",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_content": [
@@ -234,9 +234,9 @@
     },
     {
       "id": "real-unsorted-identifiers",
-      "name": "hidden: result order follows identifiers",
-      "kind": "real",
-      "visible": false,
+      "name": "result order follows identifiers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_content": [
@@ -286,9 +286,9 @@
     },
     {
       "id": "real-single-letters-and-hyphen",
-      "name": "hidden: single-letter valid parts are capitalized",
-      "kind": "real",
-      "visible": false,
+      "name": "single-letter valid parts are capitalized",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_content": [

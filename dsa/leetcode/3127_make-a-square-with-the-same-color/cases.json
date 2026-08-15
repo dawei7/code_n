@@ -2,17 +2,367 @@
   "schema_version": 1,
   "challenge_id": "lc_3127",
   "cases": [
-    { "id": "sample-1", "name": "sample: upper-right square after one change", "kind": "sample", "visible": true, "input": { "grid": [["B","W","B"],["B","W","W"],["B","W","B"]] }, "expected": true, "tags": ["sample", "one-change"] },
-    { "id": "sample-2", "name": "sample: checkerboard cannot work", "kind": "sample", "visible": true, "input": { "grid": [["B","W","B"],["W","B","W"],["B","W","B"]] }, "expected": false, "tags": ["sample", "balanced"] },
-    { "id": "sample-3", "name": "sample: existing lower-right white square", "kind": "sample", "visible": true, "input": { "grid": [["B","W","B"],["B","W","W"],["B","W","W"]] }, "expected": true, "tags": ["sample", "already-monochrome"] },
-    { "id": "trial-all-black", "name": "trial: the entire grid is black", "kind": "trial", "visible": true, "input": { "grid": [["B","B","B"],["B","B","B"],["B","B","B"]] }, "expected": true, "tags": ["trial", "all-black"] },
-    { "id": "trial-all-white", "name": "trial: the entire grid is white", "kind": "trial", "visible": true, "input": { "grid": [["W","W","W"],["W","W","W"],["W","W","W"]] }, "expected": true, "tags": ["trial", "all-white"] },
-    { "id": "trial-inverse-checkerboard", "name": "trial: inverse checkerboard cannot work", "kind": "trial", "visible": true, "input": { "grid": [["W","B","W"],["B","W","B"],["W","B","W"]] }, "expected": false, "tags": ["trial", "balanced"] },
-    { "id": "trial-top-left-only", "name": "trial: upper-left block supplies three black cells", "kind": "trial", "visible": true, "input": { "grid": [["B","B","W"],["B","W","B"],["W","B","W"]] }, "expected": true, "tags": ["trial", "top-left"] },
-    { "id": "trial-top-right-only", "name": "trial: upper-right block supplies three white cells", "kind": "trial", "visible": true, "input": { "grid": [["B","W","W"],["W","B","W"],["B","W","B"]] }, "expected": true, "tags": ["trial", "top-right"] },
-    { "id": "real-bottom-left-only", "name": "hidden: lower-left block supplies three white cells", "kind": "real", "visible": false, "input": { "grid": [["B","W","B"],["W","B","W"],["W","W","B"]] }, "expected": true, "tags": ["real", "bottom-left"] },
-    { "id": "real-bottom-right-only", "name": "hidden: lower-right block supplies three black cells", "kind": "real", "visible": false, "input": { "grid": [["W","B","W"],["B","W","B"],["W","B","B"]] }, "expected": true, "tags": ["real", "bottom-right"] },
-    { "id": "real-balanced-stripes", "name": "hidden: striped layout keeps every block balanced", "kind": "real", "visible": false, "input": { "grid": [["B","B","B"],["W","W","W"],["B","B","B"]] }, "expected": false, "tags": ["real", "balanced", "stripes"] },
-    { "id": "real-balanced-columns", "name": "hidden: column pattern keeps every block balanced", "kind": "real", "visible": false, "input": { "grid": [["B","W","B"],["B","W","B"],["W","B","W"]] }, "expected": false, "tags": ["real", "balanced", "columns"] }
+    {
+      "id": "sample-1",
+      "name": "sample: upper-right square after one change",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "B",
+            "W",
+            "B"
+          ],
+          [
+            "B",
+            "W",
+            "W"
+          ],
+          [
+            "B",
+            "W",
+            "B"
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "one-change"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: checkerboard cannot work",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "B",
+            "W",
+            "B"
+          ],
+          [
+            "W",
+            "B",
+            "W"
+          ],
+          [
+            "B",
+            "W",
+            "B"
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "balanced"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: existing lower-right white square",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "B",
+            "W",
+            "B"
+          ],
+          [
+            "B",
+            "W",
+            "W"
+          ],
+          [
+            "B",
+            "W",
+            "W"
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "already-monochrome"
+      ]
+    },
+    {
+      "id": "trial-all-black",
+      "name": "trial: the entire grid is black",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "B",
+            "B",
+            "B"
+          ],
+          [
+            "B",
+            "B",
+            "B"
+          ],
+          [
+            "B",
+            "B",
+            "B"
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "all-black"
+      ]
+    },
+    {
+      "id": "trial-all-white",
+      "name": "trial: the entire grid is white",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "W",
+            "W",
+            "W"
+          ],
+          [
+            "W",
+            "W",
+            "W"
+          ],
+          [
+            "W",
+            "W",
+            "W"
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "all-white"
+      ]
+    },
+    {
+      "id": "trial-inverse-checkerboard",
+      "name": "trial: inverse checkerboard cannot work",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "W",
+            "B",
+            "W"
+          ],
+          [
+            "B",
+            "W",
+            "B"
+          ],
+          [
+            "W",
+            "B",
+            "W"
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "balanced"
+      ]
+    },
+    {
+      "id": "trial-top-left-only",
+      "name": "trial: upper-left block supplies three black cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "B",
+            "B",
+            "W"
+          ],
+          [
+            "B",
+            "W",
+            "B"
+          ],
+          [
+            "W",
+            "B",
+            "W"
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "top-left"
+      ]
+    },
+    {
+      "id": "trial-top-right-only",
+      "name": "trial: upper-right block supplies three white cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "B",
+            "W",
+            "W"
+          ],
+          [
+            "W",
+            "B",
+            "W"
+          ],
+          [
+            "B",
+            "W",
+            "B"
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "top-right"
+      ]
+    },
+    {
+      "id": "real-bottom-left-only",
+      "name": "lower-left block supplies three white cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "B",
+            "W",
+            "B"
+          ],
+          [
+            "W",
+            "B",
+            "W"
+          ],
+          [
+            "W",
+            "W",
+            "B"
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "bottom-left"
+      ]
+    },
+    {
+      "id": "real-bottom-right-only",
+      "name": "lower-right block supplies three black cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "W",
+            "B",
+            "W"
+          ],
+          [
+            "B",
+            "W",
+            "B"
+          ],
+          [
+            "W",
+            "B",
+            "B"
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "bottom-right"
+      ]
+    },
+    {
+      "id": "real-balanced-stripes",
+      "name": "striped layout keeps every block balanced",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "B",
+            "B",
+            "B"
+          ],
+          [
+            "W",
+            "W",
+            "W"
+          ],
+          [
+            "B",
+            "B",
+            "B"
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "balanced",
+        "stripes"
+      ]
+    },
+    {
+      "id": "real-balanced-columns",
+      "name": "column pattern keeps every block balanced",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "B",
+            "W",
+            "B"
+          ],
+          [
+            "B",
+            "W",
+            "B"
+          ],
+          [
+            "W",
+            "B",
+            "W"
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "balanced",
+        "columns"
+      ]
+    }
   ]
 }

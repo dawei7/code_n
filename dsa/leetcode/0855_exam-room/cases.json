@@ -226,9 +226,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: repeated one-seat cycles",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated one-seat cycles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1,
         "operations": [
@@ -265,9 +265,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: leave right boundary",
-      "kind": "real",
-      "visible": false,
+      "name": "leave right boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "operations": [
@@ -303,9 +303,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: merge adjacent empty gaps",
-      "kind": "real",
-      "visible": false,
+      "name": "merge adjacent empty gaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 12,
         "operations": [
@@ -358,9 +358,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: fill and partially empty",
-      "kind": "real",
-      "visible": false,
+      "name": "fill and partially empty",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "operations": [
@@ -413,9 +413,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: large coordinate room",
-      "kind": "real",
-      "visible": false,
+      "name": "large coordinate room",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000000000,
         "operations": [
@@ -455,9 +455,9 @@
     },
     {
       "id": "hidden-6",
-      "name": "hidden: alternating departures and arrivals",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating departures and arrivals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 15,
         "operations": [

@@ -265,9 +265,9 @@
     },
     {
       "id": "real-competing",
-      "name": "hidden: one long word competes with two short words",
-      "kind": "real",
-      "visible": false,
+      "name": "one long word competes with two short words",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abc",
@@ -315,9 +315,9 @@
     },
     {
       "id": "real-zero-score",
-      "name": "hidden: zero-score letters still constrain",
-      "kind": "real",
-      "visible": false,
+      "name": "zero-score letters still constrain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "az",

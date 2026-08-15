@@ -150,9 +150,9 @@
     },
     {
       "id": "real-decreasing-suffix",
-      "name": "hidden: a fixed divisor raises both smaller suffix values",
-      "kind": "real",
-      "visible": false,
+      "name": "a fixed divisor raises both smaller suffix values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -171,9 +171,9 @@
     },
     {
       "id": "real-shared-final-value",
-      "name": "hidden: several suffix positions optimally share one multiple",
-      "kind": "real",
-      "visible": false,
+      "name": "several suffix positions optimally share one multiple",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -193,9 +193,9 @@
     },
     {
       "id": "real-multiple-levels",
-      "name": "hidden: the best chain passes through different multiple levels",
-      "kind": "real",
-      "visible": false,
+      "name": "the best chain passes through different multiple levels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -214,9 +214,9 @@
     },
     {
       "id": "real-one-as-first",
-      "name": "hidden: a first value of one leaves flexible later choices",
-      "kind": "real",
-      "visible": false,
+      "name": "a first value of one leaves flexible later choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -237,9 +237,9 @@
     },
     {
       "id": "real-maximum-first",
-      "name": "hidden: a maximum first value forces every smaller suffix value upward",
-      "kind": "real",
-      "visible": false,
+      "name": "a maximum first value forces every smaller suffix value upward",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           50,
@@ -260,9 +260,9 @@
     },
     {
       "id": "real-maximum-length",
-      "name": "hidden: a maximum-length beautiful array stays unchanged",
-      "kind": "real",
-      "visible": false,
+      "name": "a maximum-length beautiful array stays unchanged",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           50,
@@ -380,4 +380,3 @@
     }
   ]
 }
-

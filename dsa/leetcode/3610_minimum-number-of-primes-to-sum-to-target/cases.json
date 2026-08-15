@@ -141,9 +141,9 @@
     },
     {
       "id": "real-prime-not-yet-available",
-      "name": "hidden: prime target outside the available prefix",
-      "kind": "real",
-      "visible": false,
+      "name": "prime target outside the available prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 17,
         "m": 6
@@ -156,9 +156,9 @@
     },
     {
       "id": "real-prime-becomes-available",
-      "name": "hidden: expanding the prefix makes the target direct",
-      "kind": "real",
-      "visible": false,
+      "name": "expanding the prefix makes the target direct",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 17,
         "m": 7
@@ -171,9 +171,9 @@
     },
     {
       "id": "real-repeated-largest-prime",
-      "name": "hidden: repeated seven is optimal",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated seven is optimal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 49,
         "m": 4
@@ -186,9 +186,9 @@
     },
     {
       "id": "real-large-m-prime-target",
-      "name": "hidden: a large prefix includes a large prime target",
-      "kind": "real",
-      "visible": false,
+      "name": "a large prefix includes a large prime target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 997,
         "m": 1000
@@ -202,9 +202,9 @@
     },
     {
       "id": "real-large-only-two-even",
-      "name": "hidden: maximum even target using only twos",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum even target using only twos",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000,
         "m": 1
@@ -218,9 +218,9 @@
     },
     {
       "id": "real-large-only-two-odd",
-      "name": "hidden: maximum odd target cannot use only twos",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum odd target cannot use only twos",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 999,
         "m": 1
@@ -234,9 +234,9 @@
     },
     {
       "id": "real-large-two-denominations",
-      "name": "hidden: combine twos and threes at the upper target",
-      "kind": "real",
-      "visible": false,
+      "name": "combine twos and threes at the upper target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000,
         "m": 2
@@ -250,9 +250,9 @@
     },
     {
       "id": "real-large-full-prefix",
-      "name": "hidden: three plus 997 forms the upper target",
-      "kind": "real",
-      "visible": false,
+      "name": "three plus 997 forms the upper target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000,
         "m": 1000

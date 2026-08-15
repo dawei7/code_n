@@ -94,9 +94,9 @@
     },
     {
       "id": "real-singleton",
-      "name": "hidden: singleton at maximum value",
-      "kind": "real",
-      "visible": false,
+      "name": "singleton at maximum value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000
@@ -110,9 +110,9 @@
     },
     {
       "id": "real-maximum-value-repeat",
-      "name": "hidden: maximum value reappears around another value",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum value reappears around another value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -129,9 +129,9 @@
     },
     {
       "id": "real-multiple-reappearances",
-      "name": "hidden: several values reappear at different distances",
-      "kind": "real",
-      "visible": false,
+      "name": "several values reappear at different distances",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -151,9 +151,9 @@
     },
     {
       "id": "real-all-equal",
-      "name": "hidden: every subarray has one distinct value",
-      "kind": "real",
-      "visible": false,
+      "name": "every subarray has one distinct value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,

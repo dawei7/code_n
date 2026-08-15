@@ -174,9 +174,9 @@
     },
     {
       "id": "real-best-of-several-intervals",
-      "name": "hidden: choose the closest among several transformation intervals",
-      "kind": "real",
-      "visible": false,
+      "name": "choose the closest among several transformation intervals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           2,
@@ -201,9 +201,9 @@
     },
     {
       "id": "real-point-interval",
-      "name": "hidden: an unchanged original contributes a one-point copy interval",
-      "kind": "real",
-      "visible": false,
+      "name": "an unchanged original contributes a one-point copy interval",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           4,
@@ -226,9 +226,9 @@
     },
     {
       "id": "real-copy-before-moving-down",
-      "name": "hidden: copying before a downward transformation can be optimal",
-      "kind": "real",
-      "visible": false,
+      "name": "copying before a downward transformation can be optimal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           10
@@ -249,9 +249,9 @@
     },
     {
       "id": "real-value-boundaries",
-      "name": "hidden: source-boundary values use a 64-bit-safe total",
-      "kind": "real",
-      "visible": false,
+      "name": "source-boundary values use a 64-bit-safe total",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -275,9 +275,9 @@
     },
     {
       "id": "real-mixed-directions",
-      "name": "hidden: upward and downward original paths share one base sum",
-      "kind": "real",
-      "visible": false,
+      "name": "upward and downward original paths share one base sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           10,
@@ -304,4 +304,3 @@
     }
   ]
 }
-

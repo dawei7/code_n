@@ -252,9 +252,9 @@
     },
     {
       "id": "real-two-winning-islands-same-customer",
-      "name": "hidden: separate maximum streaks preserve repeated customer rows",
-      "kind": "real",
-      "visible": false,
+      "name": "separate maximum streaks preserve repeated customer rows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Transactions": [
@@ -315,9 +315,9 @@
     },
     {
       "id": "real-ordering-and-tie",
-      "name": "hidden: tied winning streak rows sort by customer",
-      "kind": "real",
-      "visible": false,
+      "name": "tied winning streak rows sort by customer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Transactions": [
@@ -378,4 +378,3 @@
     }
   ]
 }
-

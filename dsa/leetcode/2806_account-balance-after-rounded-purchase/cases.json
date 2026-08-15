@@ -1,15 +1,145 @@
 {
   "challenge_id": "lc_2806",
   "cases": [
-    {"id": "sample-round-nine", "name": "sample: nine rounds to ten", "kind": "sample", "visible": true, "input": {"purchaseAmount": 9}, "expected": 90, "tags": ["sample", "round-up"]},
-    {"id": "sample-half-up", "name": "sample: half-way price rounds upward", "kind": "sample", "visible": true, "input": {"purchaseAmount": 15}, "expected": 80, "tags": ["sample", "tie"]},
-    {"id": "sample-already-multiple", "name": "sample: multiple of ten remains unchanged", "kind": "sample", "visible": true, "input": {"purchaseAmount": 10}, "expected": 90, "tags": ["sample", "exact-multiple"]},
-    {"id": "trial-zero", "name": "trial: zero-dollar purchase", "kind": "trial", "visible": true, "input": {"purchaseAmount": 0}, "expected": 100, "tags": ["trial", "minimum"]},
-    {"id": "trial-below-first-tie", "name": "trial: four rounds down to zero", "kind": "trial", "visible": true, "input": {"purchaseAmount": 4}, "expected": 100, "tags": ["trial", "round-down"]},
-    {"id": "trial-first-tie", "name": "trial: five rounds upward", "kind": "trial", "visible": true, "input": {"purchaseAmount": 5}, "expected": 90, "tags": ["trial", "tie"]},
-    {"id": "real-upper-round-down", "name": "hidden: ninety-four rounds down", "kind": "real", "visible": false, "input": {"purchaseAmount": 94}, "expected": 10, "tags": ["hidden", "round-down"]},
-    {"id": "real-upper-tie", "name": "hidden: ninety-five rounds upward", "kind": "real", "visible": false, "input": {"purchaseAmount": 95}, "expected": 0, "tags": ["hidden", "tie"]},
-    {"id": "real-near-maximum", "name": "hidden: ninety-nine rounds to one hundred", "kind": "real", "visible": false, "input": {"purchaseAmount": 99}, "expected": 0, "tags": ["hidden", "round-up"]},
-    {"id": "real-maximum", "name": "hidden: complete balance is spent", "kind": "real", "visible": false, "input": {"purchaseAmount": 100}, "expected": 0, "tags": ["hidden", "maximum"]}
+    {
+      "id": "sample-round-nine",
+      "name": "sample: nine rounds to ten",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "purchaseAmount": 9
+      },
+      "expected": 90,
+      "tags": [
+        "sample",
+        "round-up"
+      ]
+    },
+    {
+      "id": "sample-half-up",
+      "name": "sample: half-way price rounds upward",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "purchaseAmount": 15
+      },
+      "expected": 80,
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "sample-already-multiple",
+      "name": "sample: multiple of ten remains unchanged",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "purchaseAmount": 10
+      },
+      "expected": 90,
+      "tags": [
+        "sample",
+        "exact-multiple"
+      ]
+    },
+    {
+      "id": "trial-zero",
+      "name": "trial: zero-dollar purchase",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "purchaseAmount": 0
+      },
+      "expected": 100,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-below-first-tie",
+      "name": "trial: four rounds down to zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "purchaseAmount": 4
+      },
+      "expected": 100,
+      "tags": [
+        "trial",
+        "round-down"
+      ]
+    },
+    {
+      "id": "trial-first-tie",
+      "name": "trial: five rounds upward",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "purchaseAmount": 5
+      },
+      "expected": 90,
+      "tags": [
+        "trial",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-upper-round-down",
+      "name": "ninety-four rounds down",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "purchaseAmount": 94
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "round-down"
+      ]
+    },
+    {
+      "id": "real-upper-tie",
+      "name": "ninety-five rounds upward",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "purchaseAmount": 95
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-near-maximum",
+      "name": "ninety-nine rounds to one hundred",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "purchaseAmount": 99
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "round-up"
+      ]
+    },
+    {
+      "id": "real-maximum",
+      "name": "complete balance is spent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "purchaseAmount": 100
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "maximum"
+      ]
+    }
   ]
 }

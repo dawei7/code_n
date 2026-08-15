@@ -168,9 +168,9 @@
     },
     {
       "id": "real-inclusive-boundaries",
-      "name": "hidden: both queried boundary words qualify",
-      "kind": "real",
-      "visible": false,
+      "name": "both queried boundary words qualify",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "a",
@@ -204,9 +204,9 @@
     },
     {
       "id": "real-repeated-overlapping",
-      "name": "hidden: repeated and overlapping queries preserve order",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated and overlapping queries preserve order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "aa",
@@ -247,9 +247,9 @@
     },
     {
       "id": "real-long-endpoint-only",
-      "name": "hidden: interior letters do not affect qualification",
-      "kind": "real",
-      "visible": false,
+      "name": "interior letters do not affect qualification",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbu",

@@ -103,9 +103,9 @@
     },
     {
       "id": "real-one-odd-many-evens",
-      "name": "hidden: one odd with even extensions",
-      "kind": "real",
-      "visible": false,
+      "name": "one odd with even extensions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -123,9 +123,9 @@
     },
     {
       "id": "real-k-too-large",
-      "name": "hidden: fewer than k odd values",
-      "kind": "real",
-      "visible": false,
+      "name": "fewer than k odd values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

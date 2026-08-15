@@ -127,9 +127,9 @@
     },
     {
       "id": "real-insufficient-budget",
-      "name": "hidden: distant equal values cannot all be joined",
-      "kind": "real",
-      "visible": false,
+      "name": "distant equal values cannot all be joined",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -150,9 +150,9 @@
     },
     {
       "id": "real-best-value-not-first",
-      "name": "hidden: choose the value with the best feasible window",
-      "kind": "real",
-      "visible": false,
+      "name": "choose the value with the best feasible window",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -174,9 +174,9 @@
     },
     {
       "id": "real-outside-elements-free",
-      "name": "hidden: values outside the chosen span need not be deleted",
-      "kind": "real",
-      "visible": false,
+      "name": "values outside the chosen span need not be deleted",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -197,9 +197,9 @@
     },
     {
       "id": "real-budget-exceeds-need",
-      "name": "hidden: unused deletion budget is permitted",
-      "kind": "real",
-      "visible": false,
+      "name": "unused deletion budget is permitted",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -219,9 +219,9 @@
     },
     {
       "id": "real-maximum-value",
-      "name": "hidden: values may equal the array length",
-      "kind": "real",
-      "visible": false,
+      "name": "values may equal the array length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -241,9 +241,9 @@
     },
     {
       "id": "real-separated-pairs",
-      "name": "hidden: zero budget cannot join separated occurrences",
-      "kind": "real",
-      "visible": false,
+      "name": "zero budget cannot join separated occurrences",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: symbols at both ends",
-      "kind": "real",
-      "visible": false,
+      "name": "symbols at both ends",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "!a-bC?"
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: case travels with letters",
-      "kind": "real",
-      "visible": false,
+      "name": "case travels with letters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "A1b2C3d"
       },
@@ -116,9 +116,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: adjacent punctuation",
-      "kind": "real",
-      "visible": false,
+      "name": "adjacent punctuation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ab!!CD--e"
       },
@@ -130,9 +130,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: ASCII boundary punctuation",
-      "kind": "real",
-      "visible": false,
+      "name": "ASCII boundary punctuation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "!aZz~"
       },
@@ -144,4 +144,3 @@
     }
   ]
 }
-

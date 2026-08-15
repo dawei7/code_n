@@ -2,10 +2,292 @@
   "schema_version": 1,
   "challenge_id": "lc_2339",
   "cases": [
-    {"id":"sample-three-teams","name":"sample: three teams produce six directed matches","kind":"sample","visible":true,"input":{"tables":{"Teams":[{"team_name":"Leetcode FC"},{"team_name":"Ahly SC"},{"team_name":"Real Madrid"}]}},"expected":{"columns":["home_team","away_team"],"rows":[["Real Madrid","Leetcode FC"],["Real Madrid","Ahly SC"],["Leetcode FC","Real Madrid"],["Leetcode FC","Ahly SC"],["Ahly SC","Real Madrid"],["Ahly SC","Leetcode FC"]]},"validator":{"kind":"unordered_table"},"tags":["sample","three-teams"]},
-    {"id":"trial-two-teams","name":"two teams play once in each orientation","kind":"trial","visible":true,"input":{"tables":{"Teams":[{"team_name":"A"},{"team_name":"B"}]}},"expected":{"columns":["home_team","away_team"],"rows":[["A","B"],["B","A"]]},"validator":{"kind":"unordered_table"},"tags":["two-teams"]},
-    {"id":"trial-four-teams","name":"four teams produce twelve ordered pairs","kind":"trial","visible":true,"input":{"tables":{"Teams":[{"team_name":"A"},{"team_name":"B"},{"team_name":"C"},{"team_name":"D"}]}},"expected":{"columns":["home_team","away_team"],"rows":[["A","B"],["A","C"],["A","D"],["B","A"],["B","C"],["B","D"],["C","A"],["C","B"],["C","D"],["D","A"],["D","B"],["D","C"]]},"validator":{"kind":"unordered_table"},"tags":["four-teams"]},
-    {"id":"real-name-order","name":"hidden: lexical order does not remove either orientation","kind":"real","visible":false,"input":{"tables":{"Teams":[{"team_name":"Zulu"},{"team_name":"Alpha"}]}},"expected":{"columns":["home_team","away_team"],"rows":[["Zulu","Alpha"],["Alpha","Zulu"]]},"validator":{"kind":"unordered_table"},"tags":["hidden","both-directions"]},
-    {"id":"real-spaced-names","name":"hidden: names with spaces remain distinct values","kind":"real","visible":false,"input":{"tables":{"Teams":[{"team_name":"North City"},{"team_name":"South United"},{"team_name":"East FC"}]}},"expected":{"columns":["home_team","away_team"],"rows":[["North City","South United"],["North City","East FC"],["South United","North City"],["South United","East FC"],["East FC","North City"],["East FC","South United"]]},"validator":{"kind":"unordered_table"},"tags":["hidden","names"]}
+    {
+      "id": "sample-three-teams",
+      "name": "sample: three teams produce six directed matches",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Teams": [
+            {
+              "team_name": "Leetcode FC"
+            },
+            {
+              "team_name": "Ahly SC"
+            },
+            {
+              "team_name": "Real Madrid"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "home_team",
+          "away_team"
+        ],
+        "rows": [
+          [
+            "Real Madrid",
+            "Leetcode FC"
+          ],
+          [
+            "Real Madrid",
+            "Ahly SC"
+          ],
+          [
+            "Leetcode FC",
+            "Real Madrid"
+          ],
+          [
+            "Leetcode FC",
+            "Ahly SC"
+          ],
+          [
+            "Ahly SC",
+            "Real Madrid"
+          ],
+          [
+            "Ahly SC",
+            "Leetcode FC"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "sample",
+        "three-teams"
+      ]
+    },
+    {
+      "id": "trial-two-teams",
+      "name": "two teams play once in each orientation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Teams": [
+            {
+              "team_name": "A"
+            },
+            {
+              "team_name": "B"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "home_team",
+          "away_team"
+        ],
+        "rows": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "B",
+            "A"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "two-teams"
+      ]
+    },
+    {
+      "id": "trial-four-teams",
+      "name": "four teams produce twelve ordered pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Teams": [
+            {
+              "team_name": "A"
+            },
+            {
+              "team_name": "B"
+            },
+            {
+              "team_name": "C"
+            },
+            {
+              "team_name": "D"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "home_team",
+          "away_team"
+        ],
+        "rows": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "A",
+            "C"
+          ],
+          [
+            "A",
+            "D"
+          ],
+          [
+            "B",
+            "A"
+          ],
+          [
+            "B",
+            "C"
+          ],
+          [
+            "B",
+            "D"
+          ],
+          [
+            "C",
+            "A"
+          ],
+          [
+            "C",
+            "B"
+          ],
+          [
+            "C",
+            "D"
+          ],
+          [
+            "D",
+            "A"
+          ],
+          [
+            "D",
+            "B"
+          ],
+          [
+            "D",
+            "C"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "four-teams"
+      ]
+    },
+    {
+      "id": "real-name-order",
+      "name": "lexical order does not remove either orientation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Teams": [
+            {
+              "team_name": "Zulu"
+            },
+            {
+              "team_name": "Alpha"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "home_team",
+          "away_team"
+        ],
+        "rows": [
+          [
+            "Zulu",
+            "Alpha"
+          ],
+          [
+            "Alpha",
+            "Zulu"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "hidden",
+        "both-directions"
+      ]
+    },
+    {
+      "id": "real-spaced-names",
+      "name": "names with spaces remain distinct values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Teams": [
+            {
+              "team_name": "North City"
+            },
+            {
+              "team_name": "South United"
+            },
+            {
+              "team_name": "East FC"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "home_team",
+          "away_team"
+        ],
+        "rows": [
+          [
+            "North City",
+            "South United"
+          ],
+          [
+            "North City",
+            "East FC"
+          ],
+          [
+            "South United",
+            "North City"
+          ],
+          [
+            "South United",
+            "East FC"
+          ],
+          [
+            "East FC",
+            "North City"
+          ],
+          [
+            "East FC",
+            "South United"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "hidden",
+        "names"
+      ]
+    }
   ]
 }

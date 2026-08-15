@@ -6,76 +6,134 @@
       "name": "sample: overlapping words with lexicographic tie-breaking",
       "kind": "sample",
       "visible": true,
-      "input": {"a": "abc", "b": "bca", "c": "aaa"},
+      "input": {
+        "a": "abc",
+        "b": "bca",
+        "c": "aaa"
+      },
       "expected": "aaabca",
-      "tags": ["sample", "overlap", "lexicographic"]
+      "tags": [
+        "sample",
+        "overlap",
+        "lexicographic"
+      ]
     },
     {
       "id": "sample-containing-word",
       "name": "sample: one word already contains the other two",
       "kind": "sample",
       "visible": true,
-      "input": {"a": "ab", "b": "ba", "c": "aba"},
+      "input": {
+        "a": "ab",
+        "b": "ba",
+        "c": "aba"
+      },
       "expected": "aba",
-      "tags": ["sample", "containment"]
+      "tags": [
+        "sample",
+        "containment"
+      ]
     },
     {
       "id": "trial-no-overlap",
       "name": "trial: disjoint letters choose lexicographic order",
       "kind": "trial",
       "visible": true,
-      "input": {"a": "a", "b": "b", "c": "c"},
+      "input": {
+        "a": "a",
+        "b": "b",
+        "c": "c"
+      },
       "expected": "abc",
-      "tags": ["trial", "no-overlap", "tie"]
+      "tags": [
+        "trial",
+        "no-overlap",
+        "tie"
+      ]
     },
     {
       "id": "trial-cycle-overlap",
       "name": "trial: cyclic pairwise overlaps require order enumeration",
       "kind": "trial",
       "visible": true,
-      "input": {"a": "ab", "b": "bc", "c": "ca"},
+      "input": {
+        "a": "ab",
+        "b": "bc",
+        "c": "ca"
+      },
       "expected": "abca",
-      "tags": ["trial", "cycle", "permutations"]
+      "tags": [
+        "trial",
+        "cycle",
+        "permutations"
+      ]
     },
     {
       "id": "real-nested-containment",
-      "name": "hidden: longest word contains both shorter words",
-      "kind": "real",
-      "visible": false,
-      "input": {"a": "abcd", "b": "bc", "c": "cd"},
+      "name": "longest word contains both shorter words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": "abcd",
+        "b": "bc",
+        "c": "cd"
+      },
       "expected": "abcd",
-      "tags": ["hidden", "nested-containment"]
+      "tags": [
+        "hidden",
+        "nested-containment"
+      ]
     },
     {
       "id": "real-duplicate-inputs",
-      "name": "hidden: duplicate and contained inputs add no characters",
-      "kind": "real",
-      "visible": false,
-      "input": {"a": "aa", "b": "aa", "c": "a"},
+      "name": "duplicate and contained inputs add no characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": "aa",
+        "b": "aa",
+        "c": "a"
+      },
       "expected": "aa",
-      "tags": ["hidden", "duplicates", "containment"]
+      "tags": [
+        "hidden",
+        "duplicates",
+        "containment"
+      ]
     },
     {
       "id": "real-overlap-lexicographic-tie",
-      "name": "hidden: equal-length overlap candidates use lexical order",
-      "kind": "real",
-      "visible": false,
-      "input": {"a": "ab", "b": "ba", "c": "aa"},
+      "name": "equal-length overlap candidates use lexical order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": "ab",
+        "b": "ba",
+        "c": "aa"
+      },
       "expected": "aaba",
-      "tags": ["hidden", "tie-breaking", "overlap"]
+      "tags": [
+        "hidden",
+        "tie-breaking",
+        "overlap"
+      ]
     },
     {
       "id": "real-maximum-length-containment",
-      "name": "hidden: maximum-length word contains both others",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum-length word contains both others",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "b": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "c": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
       },
       "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-      "tags": ["hidden", "maximum-length", "containment"]
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "containment"
+      ]
     }
   ]
 }

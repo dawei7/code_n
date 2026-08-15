@@ -224,9 +224,9 @@
     },
     {
       "id": "real-all-months",
-      "name": "hidden: every month is populated",
-      "kind": "real",
-      "visible": false,
+      "name": "every month is populated",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Department": [
@@ -334,9 +334,9 @@
     },
     {
       "id": "real-unsorted-input",
-      "name": "hidden: input row order does not affect pivot",
-      "kind": "real",
-      "visible": false,
+      "name": "input row order does not affect pivot",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Department": [

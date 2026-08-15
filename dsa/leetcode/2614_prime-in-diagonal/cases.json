@@ -6,63 +6,177 @@
       "name": "sample: largest prime is on the primary diagonal",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [[1, 2, 3], [5, 6, 7], [9, 10, 11]]},
+      "input": {
+        "nums": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            5,
+            6,
+            7
+          ],
+          [
+            9,
+            10,
+            11
+          ]
+        ]
+      },
       "expected": 11,
-      "tags": ["sample", "primary-diagonal"]
+      "tags": [
+        "sample",
+        "primary-diagonal"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: center prime belongs to both diagonals",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [[1, 2, 3], [5, 17, 7], [9, 11, 10]]},
+      "input": {
+        "nums": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            5,
+            17,
+            7
+          ],
+          [
+            9,
+            11,
+            10
+          ]
+        ]
+      },
       "expected": 17,
-      "tags": ["sample", "shared-center"]
+      "tags": [
+        "sample",
+        "shared-center"
+      ]
     },
     {
       "id": "trial-no-diagonal-prime",
       "name": "trial: no prime on either diagonal",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [[4, 4], [4, 4]]},
+      "input": {
+        "nums": [
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            4
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "no-prime"]
+      "tags": [
+        "trial",
+        "no-prime"
+      ]
     },
     {
       "id": "trial-single-prime-cell",
       "name": "trial: one-cell matrix contains a prime",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [[2]]},
+      "input": {
+        "nums": [
+          [
+            2
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "single-cell"]
+      "tags": [
+        "trial",
+        "single-cell"
+      ]
     },
     {
       "id": "real-off-diagonal-primes-ignored",
-      "name": "hidden: larger off-diagonal primes do not count",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [[4, 97, 8], [89, 9, 83], [6, 79, 13]]},
+      "name": "larger off-diagonal primes do not count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          [
+            4,
+            97,
+            8
+          ],
+          [
+            89,
+            9,
+            83
+          ],
+          [
+            6,
+            79,
+            13
+          ]
+        ]
+      },
       "expected": 13,
-      "tags": ["hidden", "off-diagonal"]
+      "tags": [
+        "hidden",
+        "off-diagonal"
+      ]
     },
     {
       "id": "real-one-is-not-prime",
-      "name": "hidden: one is not prime",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [[1, 4], [6, 1]]},
+      "name": "one is not prime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          [
+            1,
+            4
+          ],
+          [
+            6,
+            1
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden", "prime-definition"]
+      "tags": [
+        "hidden",
+        "prime-definition"
+      ]
     },
     {
       "id": "real-maximum-value-prime",
-      "name": "hidden: large prime near the value limit",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [[3999971, 4], [6, 9]]},
+      "name": "large prime near the value limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          [
+            3999971,
+            4
+          ],
+          [
+            6,
+            9
+          ]
+        ]
+      },
       "expected": 3999971,
-      "tags": ["hidden", "value-boundary"]
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
     }
   ]
 }

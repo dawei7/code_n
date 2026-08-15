@@ -6,135 +6,240 @@
       "name": "sample: one adjacent pair operation clears both characters",
       "kind": "sample",
       "visible": true,
-      "input": {"s1": "11", "s2": "00"},
+      "input": {
+        "s1": "11",
+        "s2": "00"
+      },
       "expected": 1,
-      "tags": ["sample", "adjacent-pair", "one-operation"]
+      "tags": [
+        "sample",
+        "adjacent-pair",
+        "one-operation"
+      ]
     },
     {
       "id": "sample-restore-left-character",
       "name": "sample: clearing the pair requires restoring the left character",
       "kind": "sample",
       "visible": true,
-      "input": {"s1": "01", "s2": "10"},
+      "input": {
+        "s1": "01",
+        "s2": "10"
+      },
       "expected": 3,
-      "tags": ["sample", "pair-operation", "restore-left"]
+      "tags": [
+        "sample",
+        "pair-operation",
+        "restore-left"
+      ]
     },
     {
       "id": "sample-single-one-impossible",
       "name": "sample: an isolated one cannot be cleared",
       "kind": "sample",
       "visible": true,
-      "input": {"s1": "1", "s2": "0"},
+      "input": {
+        "s1": "1",
+        "s2": "0"
+      },
       "expected": -1,
-      "tags": ["sample", "singleton", "impossible"]
+      "tags": [
+        "sample",
+        "singleton",
+        "impossible"
+      ]
     },
     {
       "id": "trial-single-zero-unchanged",
       "name": "trial: a matching singleton zero needs no operation",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "0", "s2": "0"},
+      "input": {
+        "s1": "0",
+        "s2": "0"
+      },
       "expected": 0,
-      "tags": ["trial", "singleton", "already-equal"]
+      "tags": [
+        "trial",
+        "singleton",
+        "already-equal"
+      ]
     },
     {
       "id": "trial-single-zero-promoted",
       "name": "trial: a singleton zero can be changed to one",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "0", "s2": "1"},
+      "input": {
+        "s1": "0",
+        "s2": "1"
+      },
       "expected": 1,
-      "tags": ["trial", "singleton", "zero-to-one"]
+      "tags": [
+        "trial",
+        "singleton",
+        "zero-to-one"
+      ]
     },
     {
       "id": "trial-single-one-unchanged",
       "name": "trial: a matching singleton one needs no operation",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "1", "s2": "1"},
+      "input": {
+        "s1": "1",
+        "s2": "1"
+      },
       "expected": 0,
-      "tags": ["trial", "singleton", "already-equal"]
+      "tags": [
+        "trial",
+        "singleton",
+        "already-equal"
+      ]
     },
     {
       "id": "trial-promote-two-zeros",
       "name": "trial: each zero is promoted independently",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "00", "s2": "11"},
+      "input": {
+        "s1": "00",
+        "s2": "11"
+      },
       "expected": 2,
-      "tags": ["trial", "zero-to-one", "independent-operations"]
+      "tags": [
+        "trial",
+        "zero-to-one",
+        "independent-operations"
+      ]
     },
     {
       "id": "trial-disjoint-pair-clears",
       "name": "trial: two disjoint adjacent pairs clear four ones",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "1111", "s2": "0000"},
+      "input": {
+        "s1": "1111",
+        "s2": "0000"
+      },
       "expected": 2,
-      "tags": ["trial", "disjoint-pairs", "all-zero-target"]
+      "tags": [
+        "trial",
+        "disjoint-pairs",
+        "all-zero-target"
+      ]
     },
     {
       "id": "real-odd-run-needs-overlap",
-      "name": "hidden: three ones require overlapping pair work",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "111", "s2": "000"},
+      "name": "three ones require overlapping pair work",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "111",
+        "s2": "000"
+      },
       "expected": 3,
-      "tags": ["hidden", "odd-run", "overlapping-pairs"]
+      "tags": [
+        "hidden",
+        "odd-run",
+        "overlapping-pairs"
+      ]
     },
     {
       "id": "real-isolated-middle-one",
-      "name": "hidden: clear an isolated middle one through a promoted neighbor",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "010", "s2": "000"},
+      "name": "clear an isolated middle one through a promoted neighbor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "010",
+        "s2": "000"
+      },
       "expected": 2,
-      "tags": ["hidden", "isolated-one", "promote-neighbor"]
+      "tags": [
+        "hidden",
+        "isolated-one",
+        "promote-neighbor"
+      ]
     },
     {
       "id": "real-separated-endpoint-ones",
-      "name": "hidden: two separated endpoint ones require chained work",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "101", "s2": "000"},
+      "name": "two separated endpoint ones require chained work",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "101",
+        "s2": "000"
+      },
       "expected": 4,
-      "tags": ["hidden", "separated-ones", "chained-pairs"]
+      "tags": [
+        "hidden",
+        "separated-ones",
+        "chained-pairs"
+      ]
     },
     {
       "id": "real-alternating-inversion-even",
-      "name": "hidden: invert an even alternating string",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "0101", "s2": "1010"},
+      "name": "invert an even alternating string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "0101",
+        "s2": "1010"
+      },
       "expected": 6,
-      "tags": ["hidden", "alternating", "restore-left"]
+      "tags": [
+        "hidden",
+        "alternating",
+        "restore-left"
+      ]
     },
     {
       "id": "real-trailing-one",
-      "name": "hidden: clear a trailing one using its left neighbor",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "001", "s2": "000"},
+      "name": "clear a trailing one using its left neighbor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "001",
+        "s2": "000"
+      },
       "expected": 2,
-      "tags": ["hidden", "trailing-one", "left-neighbor"]
+      "tags": [
+        "hidden",
+        "trailing-one",
+        "left-neighbor"
+      ]
     },
     {
       "id": "real-mixed-target",
-      "name": "hidden: mixed source and target require both operation types",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "1101", "s2": "0010"},
+      "name": "mixed source and target require both operation types",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "1101",
+        "s2": "0010"
+      },
       "expected": 4,
-      "tags": ["hidden", "mixed-target", "both-operations"]
+      "tags": [
+        "hidden",
+        "mixed-target",
+        "both-operations"
+      ]
     },
     {
       "id": "real-alternating-inversion-odd",
-      "name": "hidden: invert an odd alternating string",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "10101", "s2": "01010"},
+      "name": "invert an odd alternating string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "10101",
+        "s2": "01010"
+      },
       "expected": 8,
-      "tags": ["hidden", "alternating", "odd-length"]
+      "tags": [
+        "hidden",
+        "alternating",
+        "odd-length"
+      ]
     }
   ]
 }

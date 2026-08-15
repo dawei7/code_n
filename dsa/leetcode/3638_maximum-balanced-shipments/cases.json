@@ -117,9 +117,9 @@
     },
     {
       "id": "real-reset-required",
-      "name": "hidden: a closing parcel cannot start the next shipment",
-      "kind": "real",
-      "visible": false,
+      "name": "a closing parcel cannot start the next shipment",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weight": [
           5,
@@ -135,9 +135,9 @@
     },
     {
       "id": "real-equal-then-drop",
-      "name": "hidden: equality does not close but a later drop does",
-      "kind": "real",
-      "visible": false,
+      "name": "equality does not close but a later drop does",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weight": [
           4,
@@ -153,9 +153,9 @@
     },
     {
       "id": "real-multiple-peaks",
-      "name": "hidden: rising runs each end with a lower parcel",
-      "kind": "real",
-      "visible": false,
+      "name": "rising runs each end with a lower parcel",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weight": [
           1,
@@ -175,9 +175,9 @@
     },
     {
       "id": "real-unused-prefix",
-      "name": "hidden: parcels before the useful maximum may be included",
-      "kind": "real",
-      "visible": false,
+      "name": "parcels before the useful maximum may be included",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weight": [
           1,
@@ -194,9 +194,9 @@
     },
     {
       "id": "real-no-final-drop",
-      "name": "hidden: an unfinished rising suffix creates no extra shipment",
-      "kind": "real",
-      "visible": false,
+      "name": "an unfinished rising suffix creates no extra shipment",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weight": [
           3,
@@ -214,9 +214,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: compare values near the upper bound",
-      "kind": "real",
-      "visible": false,
+      "name": "compare values near the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weight": [
           1000000000,
@@ -233,9 +233,9 @@
     },
     {
       "id": "real-alternating-equals",
-      "name": "hidden: equal plateaus separated by strict drops",
-      "kind": "real",
-      "visible": false,
+      "name": "equal plateaus separated by strict drops",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weight": [
           8,

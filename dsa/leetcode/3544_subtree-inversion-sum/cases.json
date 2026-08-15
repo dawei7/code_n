@@ -7,81 +7,321 @@
       "name": "sample: ancestor inversion combines with distant descendants",
       "kind": "sample",
       "visible": true,
-      "input": {"edges": [[0, 1], [0, 2], [1, 3], [1, 4], [2, 5], [2, 6]], "nums": [4, -8, -6, 3, 7, -2, 5], "k": 2},
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ]
+        ],
+        "nums": [
+          4,
+          -8,
+          -6,
+          3,
+          7,
+          -2,
+          5
+        ],
+        "k": 2
+      },
       "expected": 27,
-      "tags": ["sample", "branching", "nested-inversions"]
+      "tags": [
+        "sample",
+        "branching",
+        "nested-inversions"
+      ]
     },
     {
       "id": "sample-chain-leaf",
       "name": "sample: invert a negative leaf on a chain",
       "kind": "sample",
       "visible": true,
-      "input": {"edges": [[0, 1], [1, 2], [2, 3], [3, 4]], "nums": [-1, 3, -2, 4, -5], "k": 2},
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "nums": [
+          -1,
+          3,
+          -2,
+          4,
+          -5
+        ],
+        "k": 2
+      },
       "expected": 9,
-      "tags": ["sample", "chain"]
+      "tags": [
+        "sample",
+        "chain"
+      ]
     },
     {
       "id": "sample-independent-siblings",
       "name": "sample: sibling inversions have no spacing constraint",
       "kind": "sample",
       "visible": true,
-      "input": {"edges": [[0, 1], [0, 2]], "nums": [0, -1, -2], "k": 3},
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "nums": [
+          0,
+          -1,
+          -2
+        ],
+        "k": 3
+      },
       "expected": 3,
-      "tags": ["sample", "independent-branches"]
+      "tags": [
+        "sample",
+        "independent-branches"
+      ]
     },
     {
       "id": "trial-all-positive",
       "name": "trial: no inversion is optimal",
       "kind": "trial",
       "visible": true,
-      "input": {"edges": [[0, 1]], "nums": [5, 4], "k": 2},
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ],
+        "nums": [
+          5,
+          4
+        ],
+        "k": 2
+      },
       "expected": 9,
-      "tags": ["trial", "no-operation"]
+      "tags": [
+        "trial",
+        "no-operation"
+      ]
     },
     {
       "id": "trial-adjacent-inversions-allowed",
       "name": "trial: k one permits adjacent chosen nodes",
       "kind": "trial",
       "visible": true,
-      "input": {"edges": [[0, 1]], "nums": [-5, -4], "k": 1},
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ],
+        "nums": [
+          -5,
+          -4
+        ],
+        "k": 1
+      },
       "expected": 9,
-      "tags": ["trial", "k-one"]
+      "tags": [
+        "trial",
+        "k-one"
+      ]
     },
     {
       "id": "real-root-inversion",
       "name": "real: one root inversion improves an all-negative tree",
-      "kind": "real",
-      "visible": false,
-      "input": {"edges": [[0, 1], [0, 2], [2, 3]], "nums": [-4, -3, -2, -1], "k": 5},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "nums": [
+          -4,
+          -3,
+          -2,
+          -1
+        ],
+        "k": 5
+      },
       "expected": 10,
-      "tags": ["real", "root-inversion", "large-k"]
+      "tags": [
+        "real",
+        "root-inversion",
+        "large-k"
+      ]
     },
     {
       "id": "real-zero-control-node",
       "name": "real: a zero-valued inversion controls descendant signs",
-      "kind": "real",
-      "visible": false,
-      "input": {"edges": [[0, 1], [1, 2], [1, 3]], "nums": [2, 0, -7, -6], "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "nums": [
+          2,
+          0,
+          -7,
+          -6
+        ],
+        "k": 2
+      },
       "expected": 15,
-      "tags": ["real", "zero-value", "subtree-effect"]
+      "tags": [
+        "real",
+        "zero-value",
+        "subtree-effect"
+      ]
     },
     {
       "id": "real-nontopological-edges",
       "name": "real: edge order and labels do not define parentage",
-      "kind": "real",
-      "visible": false,
-      "input": {"edges": [[3, 4], [1, 3], [0, 2], [0, 1]], "nums": [3, -5, -4, 6, -2], "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            3,
+            4
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "nums": [
+          3,
+          -5,
+          -4,
+          6,
+          -2
+        ],
+        "k": 2
+      },
       "expected": 10,
-      "tags": ["real", "rooting", "edge-order"]
+      "tags": [
+        "real",
+        "rooting",
+        "edge-order"
+      ]
     },
     {
       "id": "real-overlap-cancellation",
       "name": "real: nested inversions can cancel on deeper nodes",
-      "kind": "real",
-      "visible": false,
-      "input": {"edges": [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5]], "nums": [-8, -5, 4, -7, 6, -3], "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "nums": [
+          -8,
+          -5,
+          4,
+          -7,
+          6,
+          -3
+        ],
+        "k": 2
+      },
       "expected": 19,
-      "tags": ["real", "overlap", "distance"]
+      "tags": [
+        "real",
+        "overlap",
+        "distance"
+      ]
     }
   ]
 }

@@ -122,9 +122,9 @@
     },
     {
       "id": "real-after-all",
-      "name": "hidden: query follows every interval",
-      "kind": "real",
-      "visible": false,
+      "name": "query follows every interval",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "startTime": [
           1,
@@ -146,9 +146,9 @@
     },
     {
       "id": "real-mixed-points",
-      "name": "hidden: point intervals and wider intervals mix",
-      "kind": "real",
-      "visible": false,
+      "name": "point intervals and wider intervals mix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "startTime": [
           6,
@@ -175,9 +175,9 @@
     },
     {
       "id": "real-boundary-one-thousand",
-      "name": "hidden: maximum time remains inclusive",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum time remains inclusive",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "startTime": [
           999,

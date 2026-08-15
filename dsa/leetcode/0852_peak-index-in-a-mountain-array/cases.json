@@ -120,9 +120,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: long ascent and one-step descent",
-      "kind": "real",
-      "visible": false,
+      "name": "long ascent and one-step descent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,
@@ -142,9 +142,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: one-step ascent and long descent",
-      "kind": "real",
-      "visible": false,
+      "name": "one-step ascent and long descent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -166,9 +166,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: asymmetric mountain",
-      "kind": "real",
-      "visible": false,
+      "name": "asymmetric mountain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           3,
@@ -188,9 +188,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: even length",
-      "kind": "real",
-      "visible": false,
+      "name": "even length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,
@@ -209,9 +209,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: peak just left of center",
-      "kind": "real",
-      "visible": false,
+      "name": "peak just left of center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           2,
@@ -230,9 +230,9 @@
     },
     {
       "id": "hidden-6",
-      "name": "hidden: values reused across sides",
-      "kind": "real",
-      "visible": false,
+      "name": "values reused across sides",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,

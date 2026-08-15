@@ -133,9 +133,9 @@
     },
     {
       "id": "real-duplicate-prime",
-      "name": "hidden: repeated prime values share the same destinations",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated prime values share the same destinations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -152,9 +152,9 @@
     },
     {
       "id": "real-backward-step",
-      "name": "hidden: a backward step after teleporting is optimal",
-      "kind": "real",
-      "visible": false,
+      "name": "a backward step after teleporting is optimal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -177,9 +177,9 @@
     },
     {
       "id": "real-nondivisible-end",
-      "name": "hidden: teleportation requires exact divisibility",
-      "kind": "real",
-      "visible": false,
+      "name": "teleportation requires exact divisibility",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -196,9 +196,9 @@
     },
     {
       "id": "real-distant-prime",
-      "name": "hidden: walk to a distant prime then teleport",
-      "kind": "real",
-      "visible": false,
+      "name": "walk to a distant prime then teleport",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -218,9 +218,9 @@
     },
     {
       "id": "real-many-destinations",
-      "name": "hidden: a prime may reach several multiples",
-      "kind": "real",
-      "visible": false,
+      "name": "a prime may reach several multiples",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -239,9 +239,9 @@
     },
     {
       "id": "real-all-ones",
-      "name": "hidden: one values permit only adjacent steps",
-      "kind": "real",
-      "visible": false,
+      "name": "one values permit only adjacent steps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -257,9 +257,9 @@
     },
     {
       "id": "real-large-prime",
-      "name": "hidden: handle the largest prime below one million",
-      "kind": "real",
-      "visible": false,
+      "name": "handle the largest prime below one million",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           999983,
@@ -276,9 +276,9 @@
     },
     {
       "id": "real-prime-links-no-shortcut",
-      "name": "hidden: available teleports need not improve the path",
-      "kind": "real",
-      "visible": false,
+      "name": "available teleports need not improve the path",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,

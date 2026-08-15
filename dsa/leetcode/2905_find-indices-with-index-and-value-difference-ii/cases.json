@@ -6,70 +6,188 @@
       "name": "sample: one pair meets both differences",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [5, 1, 4, 1], "indexDifference": 2, "valueDifference": 4},
-      "expected": [0, 3],
-      "validator": {"kind": "index_value_pair"},
-      "tags": ["sample", "qualifying-pair"]
+      "input": {
+        "nums": [
+          5,
+          1,
+          4,
+          1
+        ],
+        "indexDifference": 2,
+        "valueDifference": 4
+      },
+      "expected": [
+        0,
+        3
+      ],
+      "validator": {
+        "kind": "index_value_pair"
+      },
+      "tags": [
+        "sample",
+        "qualifying-pair"
+      ]
     },
     {
       "id": "sample-zero-differences",
       "name": "sample: zero requirements allow the same index",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 1], "indexDifference": 0, "valueDifference": 0},
-      "expected": [0, 0],
-      "validator": {"kind": "index_value_pair"},
-      "tags": ["sample", "same-index"]
+      "input": {
+        "nums": [
+          2,
+          1
+        ],
+        "indexDifference": 0,
+        "valueDifference": 0
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "validator": {
+        "kind": "index_value_pair"
+      },
+      "tags": [
+        "sample",
+        "same-index"
+      ]
     },
     {
       "id": "sample-no-solution",
       "name": "sample: no sufficiently distant values differ enough",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3], "indexDifference": 2, "valueDifference": 4},
-      "expected": [-1, -1],
-      "validator": {"kind": "index_value_pair"},
-      "tags": ["sample", "not-found"]
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "indexDifference": 2,
+        "valueDifference": 4
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "validator": {
+        "kind": "index_value_pair"
+      },
+      "tags": [
+        "sample",
+        "not-found"
+      ]
     },
     {
       "id": "trial-late-valid-pair",
       "name": "a qualifying pair appears only at the final endpoint",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 3, 5, 7, 20], "indexDifference": 3, "valueDifference": 15},
-      "expected": [0, 4],
-      "validator": {"kind": "index_value_pair"},
-      "tags": ["late-pair", "prefix-minimum"]
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          7,
+          20
+        ],
+        "indexDifference": 3,
+        "valueDifference": 15
+      },
+      "expected": [
+        0,
+        4
+      ],
+      "validator": {
+        "kind": "index_value_pair"
+      },
+      "tags": [
+        "late-pair",
+        "prefix-minimum"
+      ]
     },
     {
       "id": "trial-infeasible-index-gap",
       "name": "the required index gap exceeds every possible pair",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 1000000000, 0], "indexDifference": 100000, "valueDifference": 1},
-      "expected": [-1, -1],
-      "validator": {"kind": "index_value_pair"},
-      "tags": ["boundary", "index-gap"]
+      "input": {
+        "nums": [
+          0,
+          1000000000,
+          0
+        ],
+        "indexDifference": 100000,
+        "valueDifference": 1
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "validator": {
+        "kind": "index_value_pair"
+      },
+      "tags": [
+        "boundary",
+        "index-gap"
+      ]
     },
     {
       "id": "real-earlier-maximum",
-      "name": "hidden: the earlier maximum detects the qualifying direction",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000, 500000000, 500000000, 0], "indexDifference": 3, "valueDifference": 1000000000},
-      "expected": [0, 3],
-      "validator": {"kind": "index_value_pair"},
-      "tags": ["hidden", "prefix-maximum", "value-boundary"]
+      "name": "the earlier maximum detects the qualifying direction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          500000000,
+          500000000,
+          0
+        ],
+        "indexDifference": 3,
+        "valueDifference": 1000000000
+      },
+      "expected": [
+        0,
+        3
+      ],
+      "validator": {
+        "kind": "index_value_pair"
+      },
+      "tags": [
+        "hidden",
+        "prefix-maximum",
+        "value-boundary"
+      ]
     },
     {
       "id": "real-earlier-minimum",
-      "name": "hidden: the earlier minimum detects the qualifying direction",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 500000000, 500000000, 1000000000], "indexDifference": 3, "valueDifference": 1000000000},
-      "expected": [0, 3],
-      "validator": {"kind": "index_value_pair"},
-      "tags": ["hidden", "prefix-minimum", "value-boundary"]
+      "name": "the earlier minimum detects the qualifying direction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          500000000,
+          500000000,
+          1000000000
+        ],
+        "indexDifference": 3,
+        "valueDifference": 1000000000
+      },
+      "expected": [
+        0,
+        3
+      ],
+      "validator": {
+        "kind": "index_value_pair"
+      },
+      "tags": [
+        "hidden",
+        "prefix-minimum",
+        "value-boundary"
+      ]
     }
   ]
 }

@@ -165,9 +165,9 @@
     },
     {
       "id": "real-multiple-rejections",
-      "name": "hidden: every rejection keeps its own input position",
-      "kind": "real",
-      "visible": false,
+      "name": "every rejection keeps its own input position",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tasks": [
           {
@@ -215,9 +215,9 @@
     },
     {
       "id": "real-tied-settlements",
-      "name": "hidden: tied settlements retain input order",
-      "kind": "real",
-      "visible": false,
+      "name": "tied settlements retain input order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tasks": [
           {
@@ -265,9 +265,9 @@
     },
     {
       "id": "real-maximum-functions",
-      "name": "hidden: ten functions all begin together",
-      "kind": "real",
-      "visible": false,
+      "name": "ten functions all begin together",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tasks": [
           {
@@ -378,9 +378,9 @@
     },
     {
       "id": "real-structured-payloads",
-      "name": "hidden: structured values and reasons are preserved",
-      "kind": "real",
-      "visible": false,
+      "name": "structured values and reasons are preserved",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tasks": [
           {

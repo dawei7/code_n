@@ -105,9 +105,9 @@
     },
     {
       "id": "real-odd-level-equality",
-      "name": "hidden: equal even values are not strictly decreasing",
-      "kind": "real",
-      "visible": false,
+      "name": "equal even values are not strictly decreasing",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -123,9 +123,9 @@
     },
     {
       "id": "real-odd-level-increases",
-      "name": "hidden: even values increase on an odd level",
-      "kind": "real",
-      "visible": false,
+      "name": "even values increase on an odd level",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -140,9 +140,9 @@
     },
     {
       "id": "real-even-level-decreases",
-      "name": "hidden: odd values decrease on an even level",
-      "kind": "real",
-      "visible": false,
+      "name": "odd values decrease on an even level",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -162,9 +162,9 @@
     },
     {
       "id": "real-sparse-valid",
-      "name": "hidden: sparse children preserve left-to-right order",
-      "kind": "real",
-      "visible": false,
+      "name": "sparse children preserve left-to-right order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -184,9 +184,9 @@
     },
     {
       "id": "real-valid-chain",
-      "name": "hidden: one-node levels alternate parity",
-      "kind": "real",
-      "visible": false,
+      "name": "one-node levels alternate parity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -205,9 +205,9 @@
     },
     {
       "id": "real-deep-parity-violation",
-      "name": "hidden: only a deep node has the wrong parity",
-      "kind": "real",
-      "visible": false,
+      "name": "only a deep node has the wrong parity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -233,9 +233,9 @@
     },
     {
       "id": "real-order-valid-parity-invalid",
-      "name": "hidden: proper direction still fails wrong parity",
-      "kind": "real",
-      "visible": false,
+      "name": "proper direction still fails wrong parity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1,
@@ -251,4 +251,3 @@
     }
   ]
 }
-

@@ -124,8 +124,8 @@
     {
       "id": "real-exact-drop-budget",
       "name": "real: one drop exactly consumes the budget",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -142,8 +142,8 @@
     {
       "id": "real-plateau-drop",
       "name": "real: equal-height blocks merge across a drop",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -162,8 +162,8 @@
     {
       "id": "real-wide-window",
       "name": "real: mixed rises and drops",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -187,8 +187,8 @@
     {
       "id": "real-large-budget",
       "name": "real: all subarrays fit a large budget",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -206,8 +206,8 @@
     {
       "id": "real-multiple-contractions",
       "name": "real: alternating values force repeated contraction",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -226,8 +226,8 @@
     {
       "id": "real-large-values",
       "name": "real: billion-scale values require wide arithmetic",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,

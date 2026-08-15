@@ -6,72 +6,119 @@
       "name": "sample: three matching endpoints create six substrings",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abada", "c": "a"},
+      "input": {
+        "s": "abada",
+        "c": "a"
+      },
       "expected": 6,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-all-matching",
       "name": "sample: every substring qualifies",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "zzz", "c": "z"},
+      "input": {
+        "s": "zzz",
+        "c": "z"
+      },
       "expected": 6,
-      "tags": ["sample", "all-matching"]
+      "tags": [
+        "sample",
+        "all-matching"
+      ]
     },
     {
       "id": "trial-single-match",
       "name": "trial: one character forms one substring",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "a", "c": "a"},
+      "input": {
+        "s": "a",
+        "c": "a"
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-character-absent",
       "name": "trial: no valid endpoint exists",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abc", "c": "z"},
+      "input": {
+        "s": "abc",
+        "c": "z"
+      },
       "expected": 0,
-      "tags": ["trial", "absent"]
+      "tags": [
+        "trial",
+        "absent"
+      ]
     },
     {
       "id": "trial-one-occurrence-inside",
       "name": "trial: one interior occurrence contributes only itself",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abc", "c": "b"},
+      "input": {
+        "s": "abc",
+        "c": "b"
+      },
       "expected": 1,
-      "tags": ["trial", "single-occurrence"]
+      "tags": [
+        "trial",
+        "single-occurrence"
+      ]
     },
     {
       "id": "real-four-occurrences",
       "name": "real: four endpoint choices produce ten intervals",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "cabccac", "c": "c"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "cabccac",
+        "c": "c"
+      },
       "expected": 10,
-      "tags": ["real", "mixed"]
+      "tags": [
+        "real",
+        "mixed"
+      ]
     },
     {
       "id": "real-endpoints-only",
       "name": "real: two distant occurrences delimit three substrings",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "qabcdefghijklmnopq", "c": "q"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "qabcdefghijklmnopq",
+        "c": "q"
+      },
       "expected": 3,
-      "tags": ["real", "boundary"]
+      "tags": [
+        "real",
+        "boundary"
+      ]
     },
     {
       "id": "real-many-occurrences",
       "name": "real: combinatorial count exceeds the string length",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "mmmmmmmmmmmmmmmmmmmm", "c": "m"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "mmmmmmmmmmmmmmmmmmmm",
+        "c": "m"
+      },
       "expected": 210,
-      "tags": ["real", "counting"]
+      "tags": [
+        "real",
+        "counting"
+      ]
     }
   ]
 }

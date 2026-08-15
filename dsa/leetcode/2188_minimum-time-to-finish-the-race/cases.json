@@ -2,13 +2,202 @@
   "schema_version": 1,
   "challenge_id": "lc_2188",
   "cases": [
-    {"id":"sample-two-stints","name":"sample: two two-lap stints use the first tire","kind":"sample","visible":true,"input":{"tires":[[2,3],[3,4]],"changeTime":5,"numLaps":4},"expected":21,"tags":["sample","tire-change"]},
-    {"id":"sample-mixed-types","name":"sample: final fresh lap uses a different tire","kind":"sample","visible":true,"input":{"tires":[[1,10],[2,2],[3,4]],"changeTime":6,"numLaps":5},"expected":25,"tags":["sample","mixed-types"]},
-    {"id":"trial-single-lap","name":"one lap chooses the fastest fresh tire","kind":"trial","visible":true,"input":{"tires":[[5,100],[2,3]],"changeTime":7,"numLaps":1},"expected":2,"tags":["single-lap","no-initial-change"]},
-    {"id":"trial-change-every-lap","name":"rapid degradation forces a fresh tire each lap","kind":"trial","visible":true,"input":{"tires":[[5,100]],"changeTime":1,"numLaps":3},"expected":17,"tags":["change-every-lap","same-type"]},
-    {"id":"trial-no-change","name":"large change delay favors one four-lap stint","kind":"trial","visible":true,"input":{"tires":[[2,2]],"changeTime":100,"numLaps":4},"expected":30,"tags":["single-stint","large-change-time"]},
-    {"id":"real-tied-boundary","name":"hidden: keeping and changing can tie at the pruning boundary","kind":"real","visible":false,"input":{"tires":[[1,2],[2,2]],"changeTime":3,"numLaps":10},"expected":27,"tags":["hidden","boundary-tie"]},
-    {"id":"real-competing-stints","name":"hidden: several tire types compete across stint lengths","kind":"real","visible":false,"input":{"tires":[[3,2],[2,5],[7,2]],"changeTime":4,"numLaps":8},"expected":44,"tags":["hidden","stint-composition"]},
-    {"id":"real-large-values","name":"hidden: large lap and change times force immediate replacement","kind":"real","visible":false,"input":{"tires":[[100000,100000]],"changeTime":100000,"numLaps":200},"expected":39900000,"tags":["hidden","many-laps","large-values"]}
+    {
+      "id": "sample-two-stints",
+      "name": "sample: two two-lap stints use the first tire",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tires": [
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "changeTime": 5,
+        "numLaps": 4
+      },
+      "expected": 21,
+      "tags": [
+        "sample",
+        "tire-change"
+      ]
+    },
+    {
+      "id": "sample-mixed-types",
+      "name": "sample: final fresh lap uses a different tire",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tires": [
+          [
+            1,
+            10
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "changeTime": 6,
+        "numLaps": 5
+      },
+      "expected": 25,
+      "tags": [
+        "sample",
+        "mixed-types"
+      ]
+    },
+    {
+      "id": "trial-single-lap",
+      "name": "one lap chooses the fastest fresh tire",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tires": [
+          [
+            5,
+            100
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "changeTime": 7,
+        "numLaps": 1
+      },
+      "expected": 2,
+      "tags": [
+        "single-lap",
+        "no-initial-change"
+      ]
+    },
+    {
+      "id": "trial-change-every-lap",
+      "name": "rapid degradation forces a fresh tire each lap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tires": [
+          [
+            5,
+            100
+          ]
+        ],
+        "changeTime": 1,
+        "numLaps": 3
+      },
+      "expected": 17,
+      "tags": [
+        "change-every-lap",
+        "same-type"
+      ]
+    },
+    {
+      "id": "trial-no-change",
+      "name": "large change delay favors one four-lap stint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tires": [
+          [
+            2,
+            2
+          ]
+        ],
+        "changeTime": 100,
+        "numLaps": 4
+      },
+      "expected": 30,
+      "tags": [
+        "single-stint",
+        "large-change-time"
+      ]
+    },
+    {
+      "id": "real-tied-boundary",
+      "name": "keeping and changing can tie at the pruning boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tires": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        "changeTime": 3,
+        "numLaps": 10
+      },
+      "expected": 27,
+      "tags": [
+        "hidden",
+        "boundary-tie"
+      ]
+    },
+    {
+      "id": "real-competing-stints",
+      "name": "several tire types compete across stint lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tires": [
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            7,
+            2
+          ]
+        ],
+        "changeTime": 4,
+        "numLaps": 8
+      },
+      "expected": 44,
+      "tags": [
+        "hidden",
+        "stint-composition"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "large lap and change times force immediate replacement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tires": [
+          [
+            100000,
+            100000
+          ]
+        ],
+        "changeTime": 100000,
+        "numLaps": 200
+      },
+      "expected": 39900000,
+      "tags": [
+        "hidden",
+        "many-laps",
+        "large-values"
+      ]
+    }
   ]
 }

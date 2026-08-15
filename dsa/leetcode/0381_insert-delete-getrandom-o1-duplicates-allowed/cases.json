@@ -195,9 +195,9 @@
     },
     {
       "id": "hidden-same-value-swap",
-      "name": "hidden: moved occurrence equals removed value",
-      "kind": "real",
-      "visible": false,
+      "name": "moved occurrence equals removed value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -244,9 +244,9 @@
     },
     {
       "id": "hidden-middle-swap",
-      "name": "hidden: moved different value updates index set",
-      "kind": "real",
-      "visible": false,
+      "name": "moved different value updates index set",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -293,9 +293,9 @@
     },
     {
       "id": "hidden-random-members",
-      "name": "hidden: random result follows remaining counts",
-      "kind": "real",
-      "visible": false,
+      "name": "random result follows remaining counts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -341,4 +341,3 @@
     }
   ]
 }
-

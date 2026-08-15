@@ -1,1 +1,206 @@
-{"challenge_id":"lc_3319","cases":[{"id":"sample-two-size-three","name":"sample: duplicate size-three subtrees","kind":"sample","visible":true,"input":{"root":[5,3,6,5,2,5,7,1,8,null,null,6,8],"k":2},"expected":3,"tags":["sample","duplicates"]},{"id":"sample-whole-perfect-tree","name":"sample: entire tree is largest","kind":"sample","visible":true,"input":{"root":[1,2,3,4,5,6,7],"k":1},"expected":7,"tags":["sample","perfect"]},{"id":"sample-insufficient-subtrees","name":"sample: requested rank is absent","kind":"sample","visible":true,"input":{"root":[1,2,3,null,4],"k":3},"expected":-1,"tags":["sample","absent"]},{"id":"trial-single-node","name":"trial: one leaf","kind":"trial","visible":true,"input":{"root":[1],"k":1},"expected":1,"tags":["minimum","leaf"]},{"id":"trial-single-node-missing-rank","name":"trial: rank beyond one leaf","kind":"trial","visible":true,"input":{"root":[1],"k":2},"expected":-1,"tags":["absent"]},{"id":"trial-one-sided-root","name":"trial: parent with one child is not perfect","kind":"trial","visible":true,"input":{"root":[1,2],"k":1},"expected":1,"tags":["one-child"]},{"id":"trial-perfect-tree-fourth","name":"trial: duplicate leaf sizes are ranked","kind":"trial","visible":true,"input":{"root":[1,2,3,4,5,6,7],"k":4},"expected":1,"tags":["duplicates","leaf"]},{"id":"real-two-perfect-branches","name":"real: imperfect root above perfect branches","kind":"real","visible":false,"input":{"root":[1,2,3,4,5,6,null,8,9,10,11,12,13],"k":2},"expected":3,"tags":["branches"]},{"id":"real-mixed-shapes","name":"real: several nested perfect candidates","kind":"real","visible":false,"input":{"root":[1,2,3,4,5,null,6,7,8,9,10],"k":3},"expected":3,"tags":["mixed","nested"]}]}
+{
+  "challenge_id": "lc_3319",
+  "cases": [
+    {
+      "id": "sample-two-size-three",
+      "name": "sample: duplicate size-three subtrees",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          5,
+          3,
+          6,
+          5,
+          2,
+          5,
+          7,
+          1,
+          8,
+          null,
+          null,
+          6,
+          8
+        ],
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-whole-perfect-tree",
+      "name": "sample: entire tree is largest",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "k": 1
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "perfect"
+      ]
+    },
+    {
+      "id": "sample-insufficient-subtrees",
+      "name": "sample: requested rank is absent",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          null,
+          4
+        ],
+        "k": 3
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "absent"
+      ]
+    },
+    {
+      "id": "trial-single-node",
+      "name": "trial: one leaf",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "minimum",
+        "leaf"
+      ]
+    },
+    {
+      "id": "trial-single-node-missing-rank",
+      "name": "trial: rank beyond one leaf",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1
+        ],
+        "k": 2
+      },
+      "expected": -1,
+      "tags": [
+        "absent"
+      ]
+    },
+    {
+      "id": "trial-one-sided-root",
+      "name": "trial: parent with one child is not perfect",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "one-child"
+      ]
+    },
+    {
+      "id": "trial-perfect-tree-fourth",
+      "name": "trial: duplicate leaf sizes are ranked",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "k": 4
+      },
+      "expected": 1,
+      "tags": [
+        "duplicates",
+        "leaf"
+      ]
+    },
+    {
+      "id": "real-two-perfect-branches",
+      "name": "real: imperfect root above perfect branches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          null,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "branches"
+      ]
+    },
+    {
+      "id": "real-mixed-shapes",
+      "name": "real: several nested perfect candidates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          null,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "mixed",
+        "nested"
+      ]
+    }
+  ]
+}

@@ -2,12 +2,129 @@
   "schema_version": 1,
   "challenge_id": "lc_2317",
   "cases": [
-    {"id":"sample-clear-one-bit","name":"sample: clear one occurrence to expose all low bits","kind":"sample","visible":true,"input":{"nums":[3,2,4,6]},"expected":7,"tags":["sample","bitwise-or"]},
-    {"id":"sample-zero-operations","name":"sample: the original XOR is already maximal","kind":"sample","visible":true,"input":{"nums":[1,2,3,9,2]},"expected":11,"tags":["sample","zero-operations"]},
-    {"id":"trial-single-zero","name":"a lone zero has no reachable set bit","kind":"trial","visible":true,"input":{"nums":[0]},"expected":0,"tags":["boundary"]},
-    {"id":"trial-duplicate-bit","name":"one duplicate occurrence can be cleared","kind":"trial","visible":true,"input":{"nums":[8,8]},"expected":8,"tags":["duplicate-bits"]},
-    {"id":"trial-disjoint-bits","name":"disjoint bits all remain in the maximum","kind":"trial","visible":true,"input":{"nums":[1,2,4]},"expected":7,"tags":["disjoint-bits"]},
-    {"id":"real-overlapping-values","name":"hidden: overlapping bit sets combine by OR","kind":"real","visible":false,"input":{"nums":[5,10,12]},"expected":15,"tags":["hidden","overlapping-bits"]},
-    {"id":"real-all-identical","name":"hidden: repeated all-set values still contribute once","kind":"real","visible":false,"input":{"nums":[7,7,7,7]},"expected":7,"tags":["hidden","duplicates"]}
+    {
+      "id": "sample-clear-one-bit",
+      "name": "sample: clear one occurrence to expose all low bits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          4,
+          6
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "bitwise-or"
+      ]
+    },
+    {
+      "id": "sample-zero-operations",
+      "name": "sample: the original XOR is already maximal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          9,
+          2
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "sample",
+        "zero-operations"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "a lone zero has no reachable set bit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-duplicate-bit",
+      "name": "one duplicate occurrence can be cleared",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          8
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "duplicate-bits"
+      ]
+    },
+    {
+      "id": "trial-disjoint-bits",
+      "name": "disjoint bits all remain in the maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "disjoint-bits"
+      ]
+    },
+    {
+      "id": "real-overlapping-values",
+      "name": "overlapping bit sets combine by OR",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          10,
+          12
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "hidden",
+        "overlapping-bits"
+      ]
+    },
+    {
+      "id": "real-all-identical",
+      "name": "repeated all-set values still contribute once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    }
   ]
 }

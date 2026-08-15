@@ -114,9 +114,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: one-unit remaining gap",
-      "kind": "real",
-      "visible": false,
+      "name": "one-unit remaining gap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -132,9 +132,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: maximum value range",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum value range",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -150,9 +150,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: interior values do not change spread",
-      "kind": "real",
-      "visible": false,
+      "name": "interior values do not change spread",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -170,9 +170,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: duplicate extrema",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate extrema",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -190,9 +190,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: large k on one value",
-      "kind": "real",
-      "visible": false,
+      "name": "large k on one value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10000

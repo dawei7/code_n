@@ -128,9 +128,9 @@
     },
     {
       "id": "real-all-equal",
-      "name": "hidden: every substring of the range is same-end",
-      "kind": "real",
-      "visible": false,
+      "name": "every substring of the range is same-end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaa",
         "queries": [
@@ -155,9 +155,9 @@
     },
     {
       "id": "real-overlapping",
-      "name": "hidden: overlapping ranges reuse prefix counts",
-      "kind": "real",
-      "visible": false,
+      "name": "overlapping ranges reuse prefix counts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abacaba",
         "queries": [
@@ -187,9 +187,9 @@
     },
     {
       "id": "real-suffix",
-      "name": "hidden: inclusive right endpoint contains repeated letters",
-      "kind": "real",
-      "visible": false,
+      "name": "inclusive right endpoint contains repeated letters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "xyzxyz",
         "queries": [
@@ -214,9 +214,9 @@
     },
     {
       "id": "real-many-letters",
-      "name": "hidden: several frequencies contribute independently",
-      "kind": "real",
-      "visible": false,
+      "name": "several frequencies contribute independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "mississippi",
         "queries": [
@@ -241,9 +241,9 @@
     },
     {
       "id": "real-repeated-query",
-      "name": "hidden: identical queries produce identical answers",
-      "kind": "real",
-      "visible": false,
+      "name": "identical queries produce identical answers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "banana",
         "queries": [
@@ -273,4 +273,3 @@
     }
   ]
 }
-

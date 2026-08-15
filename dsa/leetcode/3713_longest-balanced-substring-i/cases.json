@@ -7,108 +7,170 @@
       "name": "sample: a and b each occur twice in the longest substring",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abbac"},
+      "input": {
+        "s": "abbac"
+      },
       "expected": 4,
-      "tags": ["sample", "equal-frequency-two"]
+      "tags": [
+        "sample",
+        "equal-frequency-two"
+      ]
     },
     {
       "id": "sample-four-singletons",
       "name": "sample: four distinct characters each occur once",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "zzabccy"},
+      "input": {
+        "s": "zzabccy"
+      },
       "expected": 4,
-      "tags": ["sample", "all-distinct-substring"]
+      "tags": [
+        "sample",
+        "all-distinct-substring"
+      ]
     },
     {
       "id": "sample-tied-locations",
       "name": "sample: two balanced substrings tie for maximum length",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "aba"},
+      "input": {
+        "s": "aba"
+      },
       "expected": 2,
-      "tags": ["sample", "tied-answers"]
+      "tags": [
+        "sample",
+        "tied-answers"
+      ]
     },
     {
       "id": "trial-single-character",
       "name": "trial: one character is balanced",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "x"},
+      "input": {
+        "s": "x"
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-one-repeated-character",
       "name": "trial: a one-character alphabet stays balanced at any frequency",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aaaaaa"},
+      "input": {
+        "s": "aaaaaa"
+      },
       "expected": 6,
-      "tags": ["trial", "single-distinct-character"]
+      "tags": [
+        "trial",
+        "single-distinct-character"
+      ]
     },
     {
       "id": "trial-all-distinct",
       "name": "trial: the complete distinct-character string is balanced",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abcde"},
+      "input": {
+        "s": "abcde"
+      },
       "expected": 5,
-      "tags": ["trial", "all-distinct"]
+      "tags": [
+        "trial",
+        "all-distinct"
+      ]
     },
     {
       "id": "real-frequency-staircase",
-      "name": "hidden: unequal complete counts leave a shorter balanced run",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaabcc"},
+      "name": "unequal complete counts leave a shorter balanced run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaabcc"
+      },
       "expected": 3,
-      "tags": ["hidden", "unequal-frequencies"]
+      "tags": [
+        "hidden",
+        "unequal-frequencies"
+      ]
     },
     {
       "id": "real-balanced-suffix-counts",
-      "name": "hidden: a six-character interval uses three letters twice each",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaaabbbcc"},
+      "name": "a six-character interval uses three letters twice each",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaabbbcc"
+      },
       "expected": 6,
-      "tags": ["hidden", "three-distinct-characters"]
+      "tags": [
+        "hidden",
+        "three-distinct-characters"
+      ]
     },
     {
       "id": "real-complete-periods",
-      "name": "hidden: the entire repeated pattern has equal frequencies",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcabcabc"},
+      "name": "the entire repeated pattern has equal frequencies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcabcabc"
+      },
       "expected": 9,
-      "tags": ["hidden", "whole-string"]
+      "tags": [
+        "hidden",
+        "whole-string"
+      ]
     },
     {
       "id": "real-mixed-near-whole",
-      "name": "hidden: the longest balanced interval omits one endpoint",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abacccbbad"},
+      "name": "the longest balanced interval omits one endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abacccbbad"
+      },
       "expected": 9,
-      "tags": ["hidden", "interior-balance"]
+      "tags": [
+        "hidden",
+        "interior-balance"
+      ]
     },
     {
       "id": "real-four-equal-counts",
-      "name": "hidden: four letters each occur three times across the whole string",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aabbcdddccba"},
+      "name": "four letters each occur three times across the whole string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabbcdddccba"
+      },
       "expected": 12,
-      "tags": ["hidden", "whole-string", "equal-frequency-three"]
+      "tags": [
+        "hidden",
+        "whole-string",
+        "equal-frequency-three"
+      ]
     },
     {
       "id": "real-alphabet-plus-extra",
-      "name": "hidden: one extra a breaks the 27-character interval but not the alphabet prefix",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdefghijklmnopqrstuvwxyza"},
+      "name": "one extra a breaks the 27-character interval but not the alphabet prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyza"
+      },
       "expected": 26,
-      "tags": ["hidden", "alphabet-boundary", "absent-characters"]
+      "tags": [
+        "hidden",
+        "alphabet-boundary",
+        "absent-characters"
+      ]
     }
   ]
 }

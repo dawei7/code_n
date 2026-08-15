@@ -6,108 +6,181 @@
       "name": "sample: four values after five prefix updates",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 4, "k": 5},
+      "input": {
+        "n": 4,
+        "k": 5
+      },
       "expected": 56,
-      "tags": ["sample", "prefix-sums"]
+      "tags": [
+        "sample",
+        "prefix-sums"
+      ]
     },
     {
       "id": "sample-five-values-three-seconds",
       "name": "sample: five values after three prefix updates",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 5, "k": 3},
+      "input": {
+        "n": 5,
+        "k": 3
+      },
       "expected": 35,
-      "tags": ["sample", "prefix-sums"]
+      "tags": [
+        "sample",
+        "prefix-sums"
+      ]
     },
     {
       "id": "trial-single-value-one-second",
       "name": "trial: one value remains one after one second",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "k": 1},
+      "input": {
+        "n": 1,
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["minimum-array", "minimum-seconds"]
+      "tags": [
+        "minimum-array",
+        "minimum-seconds"
+      ]
     },
     {
       "id": "trial-single-value-maximum-seconds",
       "name": "trial: one value remains one after maximum seconds",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "k": 1000},
+      "input": {
+        "n": 1,
+        "k": 1000
+      },
       "expected": 1,
-      "tags": ["minimum-array", "maximum-seconds"]
+      "tags": [
+        "minimum-array",
+        "maximum-seconds"
+      ]
     },
     {
       "id": "trial-maximum-array-one-second",
       "name": "trial: one update makes the last value equal the length",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1000, "k": 1},
+      "input": {
+        "n": 1000,
+        "k": 1
+      },
       "expected": 1000,
-      "tags": ["maximum-array", "minimum-seconds"]
+      "tags": [
+        "maximum-array",
+        "minimum-seconds"
+      ]
     },
     {
       "id": "trial-two-values-maximum-seconds",
       "name": "trial: two values grow linearly",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "k": 1000},
+      "input": {
+        "n": 2,
+        "k": 1000
+      },
       "expected": 1001,
-      "tags": ["two-values", "maximum-seconds"]
+      "tags": [
+        "two-values",
+        "maximum-seconds"
+      ]
     },
     {
       "id": "real-two-values-two-seconds",
       "name": "real: smallest nontrivial two-second state",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 2, "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "k": 2
+      },
       "expected": 3,
-      "tags": ["small", "binomial"]
+      "tags": [
+        "small",
+        "binomial"
+      ]
     },
     {
       "id": "real-three-values-two-seconds",
       "name": "real: triangular-number state",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 3, "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "k": 2
+      },
       "expected": 6,
-      "tags": ["small", "binomial"]
+      "tags": [
+        "small",
+        "binomial"
+      ]
     },
     {
       "id": "real-balanced-ten",
       "name": "real: balanced moderate parameters",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 10, "k": 10},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "k": 10
+      },
       "expected": 92378,
-      "tags": ["balanced", "binomial"]
+      "tags": [
+        "balanced",
+        "binomial"
+      ]
     },
     {
       "id": "real-unbalanced-modulo",
       "name": "real: unbalanced parameters require modulo arithmetic",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 50, "k": 75},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 50,
+        "k": 75
+      },
       "expected": 436619086,
-      "tags": ["unbalanced", "modulo"]
+      "tags": [
+        "unbalanced",
+        "modulo"
+      ]
     },
     {
       "id": "real-near-maximum",
       "name": "real: near-maximum balanced parameters",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 999, "k": 1000},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 999,
+        "k": 1000
+      },
       "expected": 70636134,
-      "tags": ["near-maximum", "modulo"]
+      "tags": [
+        "near-maximum",
+        "modulo"
+      ]
     },
     {
       "id": "real-maximum-both",
       "name": "real: both parameters at their maximum",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000, "k": 1000},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000,
+        "k": 1000
+      },
       "expected": 36237869,
-      "tags": ["maximum-array", "maximum-seconds", "modulo"]
+      "tags": [
+        "maximum-array",
+        "maximum-seconds",
+        "modulo"
+      ]
     }
   ]
 }

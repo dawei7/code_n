@@ -118,8 +118,8 @@
     {
       "id": "real-tie-heavy-ii",
       "name": "real: hidden tie-heavy windows II",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,

@@ -79,9 +79,9 @@
     },
     {
       "id": "real-middle-only",
-      "name": "hidden: middle occurrence does not qualify",
-      "kind": "real",
-      "visible": false,
+      "name": "middle occurrence does not qualify",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sentence": "hamburger fries",
         "searchWord": "burger"
@@ -94,9 +94,9 @@
     },
     {
       "id": "real-longer-search",
-      "name": "hidden: search word cannot cross a separator",
-      "kind": "real",
-      "visible": false,
+      "name": "search word cannot cross a separator",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sentence": "a ab abc",
         "searchWord": "abcd"
@@ -109,9 +109,9 @@
     },
     {
       "id": "real-single",
-      "name": "hidden: single-word sentence matches",
-      "kind": "real",
-      "visible": false,
+      "name": "single-word sentence matches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sentence": "prefix",
         "searchWord": "pre"
@@ -124,9 +124,9 @@
     },
     {
       "id": "real-late-and-early",
-      "name": "hidden: earliest matching prefix wins",
-      "kind": "real",
-      "visible": false,
+      "name": "earliest matching prefix wins",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "sentence": "zero preview other prefix",
         "searchWord": "pre"

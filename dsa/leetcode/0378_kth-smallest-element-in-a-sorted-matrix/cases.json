@@ -126,9 +126,9 @@
     },
     {
       "id": "hidden-all-equal",
-      "name": "hidden: every rank has same value",
-      "kind": "real",
-      "visible": false,
+      "name": "every rank has same value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -150,9 +150,9 @@
     },
     {
       "id": "hidden-negative-mixed",
-      "name": "hidden: sorted negative and positive values",
-      "kind": "real",
-      "visible": false,
+      "name": "sorted negative and positive values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -181,9 +181,9 @@
     },
     {
       "id": "hidden-middle",
-      "name": "hidden: middle rank in four-by-four matrix",
-      "kind": "real",
-      "visible": false,
+      "name": "middle rank in four-by-four matrix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -221,4 +221,3 @@
     }
   ]
 }
-

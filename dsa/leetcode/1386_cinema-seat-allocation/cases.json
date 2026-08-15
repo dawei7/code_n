@@ -143,9 +143,9 @@
     },
     {
       "id": "hidden-irrelevant",
-      "name": "hidden: only seats one and ten reserved",
-      "kind": "real",
-      "visible": false,
+      "name": "only seats one and ten reserved",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1,
         "reservedSeats": [
@@ -167,9 +167,9 @@
     },
     {
       "id": "hidden-blocked",
-      "name": "hidden: every family block obstructed",
-      "kind": "real",
-      "visible": false,
+      "name": "every family block obstructed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1,
         "reservedSeats": [

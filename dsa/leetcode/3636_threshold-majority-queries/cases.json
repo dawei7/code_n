@@ -211,9 +211,9 @@
     },
     {
       "id": "real-subrange-mode",
-      "name": "hidden: global mode differs from subrange mode",
-      "kind": "real",
-      "visible": false,
+      "name": "global mode differs from subrange mode",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -250,9 +250,9 @@
     },
     {
       "id": "real-tied-modes",
-      "name": "hidden: smallest value wins a maximum-frequency tie",
-      "kind": "real",
-      "visible": false,
+      "name": "smallest value wins a maximum-frequency tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -285,9 +285,9 @@
     },
     {
       "id": "real-duplicate-queries",
-      "name": "hidden: identical ranges with different thresholds",
-      "kind": "real",
-      "visible": false,
+      "name": "identical ranges with different thresholds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -326,9 +326,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: ordering ties among large values",
-      "kind": "real",
-      "visible": false,
+      "name": "ordering ties among large values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -361,9 +361,9 @@
     },
     {
       "id": "real-boundary-candidate",
-      "name": "hidden: boundary additions overturn the middle mode",
-      "kind": "real",
-      "visible": false,
+      "name": "boundary additions overturn the middle mode",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -399,9 +399,9 @@
     },
     {
       "id": "real-many-queries",
-      "name": "hidden: mixed short and long query intervals",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed short and long query intervals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,

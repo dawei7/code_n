@@ -187,9 +187,9 @@
     },
     {
       "id": "hidden-zero-threshold-at-end",
-      "name": "hidden: only the maximum-valued final singleton closes the gap",
-      "kind": "real",
-      "visible": false,
+      "name": "only the maximum-valued final singleton closes the gap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -207,9 +207,9 @@
     },
     {
       "id": "hidden-inclusive-ranges",
-      "name": "hidden: both extrema ranges include the candidate value",
-      "kind": "real",
-      "visible": false,
+      "name": "both extrema ranges include the candidate value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -227,9 +227,9 @@
     },
     {
       "id": "hidden-nonmonotone-scores",
-      "name": "hidden: instability can rise sharply after an initially stable index",
-      "kind": "real",
-      "visible": false,
+      "name": "instability can rise sharply after an initially stable index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -247,9 +247,9 @@
     },
     {
       "id": "hidden-large-threshold",
-      "name": "hidden: the maximum threshold immediately accepts index zero",
-      "kind": "real",
-      "visible": false,
+      "name": "the maximum threshold immediately accepts index zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -267,9 +267,9 @@
     },
     {
       "id": "hidden-length-above-small-version",
-      "name": "hidden: a decreasing array beyond the version-I length bound has no stable index",
-      "kind": "real",
-      "visible": false,
+      "name": "a decreasing array beyond the version-I length bound has no stable index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           101,

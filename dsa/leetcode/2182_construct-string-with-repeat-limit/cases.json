@@ -2,13 +2,125 @@
   "schema_version": 1,
   "challenge_id": "lc_2182",
   "cases": [
-    {"id":"sample-mixed","name":"sample: separators permit every character","kind":"sample","visible":true,"input":{"s":"cczazcc","repeatLimit":3},"expected":"zzcccac","tags":["sample","mixed-counts"]},
-    {"id":"sample-unused","name":"sample: one low character remains unusable","kind":"sample","visible":true,"input":{"s":"aababab","repeatLimit":2},"expected":"bbabaa","tags":["sample","unused-character"]},
-    {"id":"trial-single","name":"one available character is returned","kind":"trial","visible":true,"input":{"s":"a","repeatLimit":1},"expected":"a","tags":["minimum"]},
-    {"id":"trial-only-one-letter","name":"excess copies of the only letter are discarded","kind":"trial","visible":true,"input":{"s":"aaaaa","repeatLimit":2},"expected":"aa","tags":["single-letter","discarded"]},
-    {"id":"trial-repeated-separators","name":"lower letters repeatedly separate the largest","kind":"trial","visible":true,"input":{"s":"zzzzzaa","repeatLimit":2},"expected":"zzazzaz","tags":["separators","largest-letter"]},
-    {"id":"real-limit-one","name":"hidden: repeat limit one forces alternation","kind":"real","visible":false,"input":{"s":"abcabc","repeatLimit":1},"expected":"cbcba","tags":["hidden","limit-one","unused-character"]},
-    {"id":"real-multiple-levels","name":"hidden: construction descends through several letters","kind":"real","visible":false,"input":{"s":"ccbbbbaaa","repeatLimit":2},"expected":"ccbbabbaa","tags":["hidden","multiple-letters"]},
-    {"id":"real-top-three","name":"hidden: separators can themselves become blocked later","kind":"real","visible":false,"input":{"s":"xxyyyzzz","repeatLimit":2},"expected":"zzyzyyxx","tags":["hidden","separator-reuse"]}
+    {
+      "id": "sample-mixed",
+      "name": "sample: separators permit every character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "cczazcc",
+        "repeatLimit": 3
+      },
+      "expected": "zzcccac",
+      "tags": [
+        "sample",
+        "mixed-counts"
+      ]
+    },
+    {
+      "id": "sample-unused",
+      "name": "sample: one low character remains unusable",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aababab",
+        "repeatLimit": 2
+      },
+      "expected": "bbabaa",
+      "tags": [
+        "sample",
+        "unused-character"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "one available character is returned",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "repeatLimit": 1
+      },
+      "expected": "a",
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-only-one-letter",
+      "name": "excess copies of the only letter are discarded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaa",
+        "repeatLimit": 2
+      },
+      "expected": "aa",
+      "tags": [
+        "single-letter",
+        "discarded"
+      ]
+    },
+    {
+      "id": "trial-repeated-separators",
+      "name": "lower letters repeatedly separate the largest",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zzzzzaa",
+        "repeatLimit": 2
+      },
+      "expected": "zzazzaz",
+      "tags": [
+        "separators",
+        "largest-letter"
+      ]
+    },
+    {
+      "id": "real-limit-one",
+      "name": "repeat limit one forces alternation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcabc",
+        "repeatLimit": 1
+      },
+      "expected": "cbcba",
+      "tags": [
+        "hidden",
+        "limit-one",
+        "unused-character"
+      ]
+    },
+    {
+      "id": "real-multiple-levels",
+      "name": "construction descends through several letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ccbbbbaaa",
+        "repeatLimit": 2
+      },
+      "expected": "ccbbabbaa",
+      "tags": [
+        "hidden",
+        "multiple-letters"
+      ]
+    },
+    {
+      "id": "real-top-three",
+      "name": "separators can themselves become blocked later",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "xxyyyzzz",
+        "repeatLimit": 2
+      },
+      "expected": "zzyzyyxx",
+      "tags": [
+        "hidden",
+        "separator-reuse"
+      ]
+    }
   ]
 }

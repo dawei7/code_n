@@ -91,8 +91,8 @@
     {
       "id": "real-gap-and-neighbor",
       "name": "real: one gap value and one adjacent pair",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -109,8 +109,8 @@
     {
       "id": "real-decreasing-chain",
       "name": "real: decreasing consecutive chain",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -127,8 +127,8 @@
     {
       "id": "real-repeated-two",
       "name": "real: two index-distinct extensions to repeated value",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -145,8 +145,8 @@
     {
       "id": "real-value-maximum",
       "name": "real: maximum value singleton",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000
@@ -161,8 +161,8 @@
     {
       "id": "real-distant-values",
       "name": "real: distant values cannot connect",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -178,8 +178,8 @@
     {
       "id": "real-noncontiguous-choice",
       "name": "real: subsequence skips a distant middle value",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

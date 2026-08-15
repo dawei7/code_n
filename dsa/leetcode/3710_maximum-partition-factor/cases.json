@@ -7,99 +7,340 @@
       "name": "sample: opposite square corners form both groups",
       "kind": "sample",
       "visible": true,
-      "input": {"points": [[0, 0], [0, 2], [2, 0], [2, 2]]},
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "square", "balanced-groups"]
+      "tags": [
+        "sample",
+        "square",
+        "balanced-groups"
+      ]
     },
     {
       "id": "sample-singleton-group",
       "name": "sample: the farthest pair shares one group",
       "kind": "sample",
       "visible": true,
-      "input": {"points": [[0, 0], [0, 1], [10, 0]]},
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            10,
+            0
+          ]
+        ]
+      },
       "expected": 11,
-      "tags": ["sample", "singleton-group"]
+      "tags": [
+        "sample",
+        "singleton-group"
+      ]
     },
     {
       "id": "trial-two-points",
       "name": "trial: two singleton groups use the defined zero factor",
       "kind": "trial",
       "visible": true,
-      "input": {"points": [[0, 0], [5, 5]]},
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            5,
+            5
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "minimum-length", "defined-zero"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "defined-zero"
+      ]
     },
     {
       "id": "trial-three-point-triangle",
       "name": "trial: a singleton leaves the farthest triangle edge together",
       "kind": "trial",
       "visible": true,
-      "input": {"points": [[0, 0], [0, 1], [1, 0]]},
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "odd-cycle", "singleton-group"]
+      "tags": [
+        "trial",
+        "odd-cycle",
+        "singleton-group"
+      ]
     },
     {
       "id": "trial-duplicate-plus-far",
       "name": "trial: duplicate points can be separated between the groups",
       "kind": "trial",
       "visible": true,
-      "input": {"points": [[0, 0], [0, 0], [10, 0]]},
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            10,
+            0
+          ]
+        ]
+      },
       "expected": 10,
-      "tags": ["trial", "duplicate-points"]
+      "tags": [
+        "trial",
+        "duplicate-points"
+      ]
     },
     {
       "id": "real-all-duplicates",
-      "name": "hidden: every possible intra-group pair has distance zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"points": [[4, -3], [4, -3], [4, -3], [4, -3]]},
+      "name": "every possible intra-group pair has distance zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            4,
+            -3
+          ],
+          [
+            4,
+            -3
+          ],
+          [
+            4,
+            -3
+          ],
+          [
+            4,
+            -3
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden", "duplicate-points", "zero-factor"]
+      "tags": [
+        "hidden",
+        "duplicate-points",
+        "zero-factor"
+      ]
     },
     {
       "id": "real-collinear-four",
-      "name": "hidden: uneven collinear gaps create the first odd cycle at three",
-      "kind": "real",
-      "visible": false,
-      "input": {"points": [[0, 0], [1, 0], [3, 0], [7, 0]]},
+      "name": "uneven collinear gaps create the first odd cycle at three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            7,
+            0
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "collinear", "distance-order"]
+      "tags": [
+        "hidden",
+        "collinear",
+        "distance-order"
+      ]
     },
     {
       "id": "real-coordinate-boundaries",
-      "name": "hidden: opposite coordinate limits produce distance four hundred million",
-      "kind": "real",
-      "visible": false,
-      "input": {"points": [[-100000000, -100000000], [100000000, 100000000], [100000000, -100000000]]},
+      "name": "opposite coordinate limits produce distance four hundred million",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            -100000000,
+            -100000000
+          ],
+          [
+            100000000,
+            100000000
+          ],
+          [
+            100000000,
+            -100000000
+          ]
+        ]
+      },
       "expected": 400000000,
-      "tags": ["hidden", "coordinate-boundary", "singleton-group"]
+      "tags": [
+        "hidden",
+        "coordinate-boundary",
+        "singleton-group"
+      ]
     },
     {
       "id": "real-mixed-five",
-      "name": "hidden: several equal-distance restrictions join before contradiction",
-      "kind": "real",
-      "visible": false,
-      "input": {"points": [[0, 0], [2, 1], [-1, 4], [6, 0], [3, 5]]},
+      "name": "several equal-distance restrictions join before contradiction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            -1,
+            4
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
       "expected": 6,
-      "tags": ["hidden", "equal-distance-batch"]
+      "tags": [
+        "hidden",
+        "equal-distance-batch"
+      ]
     },
     {
       "id": "real-grid-six",
-      "name": "hidden: a rectangular grid has many competing cycles",
-      "kind": "real",
-      "visible": false,
-      "input": {"points": [[0, 0], [0, 2], [0, 5], [3, 0], [3, 2], [3, 5]]},
+      "name": "a rectangular grid has many competing cycles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
       "expected": 5,
-      "tags": ["hidden", "grid", "multiple-cycles"]
+      "tags": [
+        "hidden",
+        "grid",
+        "multiple-cycles"
+      ]
     },
     {
       "id": "real-negative-coordinates",
-      "name": "hidden: Manhattan distance handles mixed coordinate signs",
-      "kind": "real",
-      "visible": false,
-      "input": {"points": [[-5, -2], [-2, -5], [4, 1], [1, 4], [-1, 0]]},
+      "name": "Manhattan distance handles mixed coordinate signs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            -5,
+            -2
+          ],
+          [
+            -2,
+            -5
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            -1,
+            0
+          ]
+        ]
+      },
       "expected": 6,
-      "tags": ["hidden", "negative-coordinates"]
+      "tags": [
+        "hidden",
+        "negative-coordinates"
+      ]
     }
   ]
 }

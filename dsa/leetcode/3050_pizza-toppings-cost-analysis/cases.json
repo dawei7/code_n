@@ -7,120 +7,385 @@
       "name": "sample: all four official three-topping combinations",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"Toppings": [
-        {"topping_name": "Pepperoni", "cost": 0.50},
-        {"topping_name": "Sausage", "cost": 0.70},
-        {"topping_name": "Chicken", "cost": 0.55},
-        {"topping_name": "Extra Cheese", "cost": 0.40}
-      ]}},
-      "expected": {"columns": ["pizza", "total_cost"], "rows": [
-        ["Chicken,Pepperoni,Sausage", 1.75],
-        ["Chicken,Extra Cheese,Sausage", 1.65],
-        ["Extra Cheese,Pepperoni,Sausage", 1.60],
-        ["Chicken,Extra Cheese,Pepperoni", 1.45]
-      ]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["sample", "all-combinations"]
+      "input": {
+        "tables": {
+          "Toppings": [
+            {
+              "topping_name": "Pepperoni",
+              "cost": 0.5
+            },
+            {
+              "topping_name": "Sausage",
+              "cost": 0.7
+            },
+            {
+              "topping_name": "Chicken",
+              "cost": 0.55
+            },
+            {
+              "topping_name": "Extra Cheese",
+              "cost": 0.4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "pizza",
+          "total_cost"
+        ],
+        "rows": [
+          [
+            "Chicken,Pepperoni,Sausage",
+            1.75
+          ],
+          [
+            "Chicken,Extra Cheese,Sausage",
+            1.65
+          ],
+          [
+            "Extra Cheese,Pepperoni,Sausage",
+            1.6
+          ],
+          [
+            "Chicken,Extra Cheese,Pepperoni",
+            1.45
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "all-combinations"
+      ]
     },
     {
       "id": "sample-exactly-three",
       "name": "sample: exactly three rows produce one alphabetized pizza",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"Toppings": [
-        {"topping_name": "Tomato", "cost": 0.80},
-        {"topping_name": "Basil", "cost": 0.35},
-        {"topping_name": "Olive", "cost": 0.45}
-      ]}},
-      "expected": {"columns": ["pizza", "total_cost"], "rows": [
-        ["Basil,Olive,Tomato", 1.60]
-      ]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["sample", "minimum-combination"]
+      "input": {
+        "tables": {
+          "Toppings": [
+            {
+              "topping_name": "Tomato",
+              "cost": 0.8
+            },
+            {
+              "topping_name": "Basil",
+              "cost": 0.35
+            },
+            {
+              "topping_name": "Olive",
+              "cost": 0.45
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "pizza",
+          "total_cost"
+        ],
+        "rows": [
+          [
+            "Basil,Olive,Tomato",
+            1.6
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "minimum-combination"
+      ]
     },
     {
       "id": "sample-tied-costs",
       "name": "sample: equal totals use ascending pizza order",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"Toppings": [
-        {"topping_name": "D", "cost": 1.00},
-        {"topping_name": "B", "cost": 1.00},
-        {"topping_name": "A", "cost": 1.00},
-        {"topping_name": "C", "cost": 1.00}
-      ]}},
-      "expected": {"columns": ["pizza", "total_cost"], "rows": [
-        ["A,B,C", 3.00], ["A,B,D", 3.00], ["A,C,D", 3.00], ["B,C,D", 3.00]
-      ]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["sample", "tie-order"]
+      "input": {
+        "tables": {
+          "Toppings": [
+            {
+              "topping_name": "D",
+              "cost": 1.0
+            },
+            {
+              "topping_name": "B",
+              "cost": 1.0
+            },
+            {
+              "topping_name": "A",
+              "cost": 1.0
+            },
+            {
+              "topping_name": "C",
+              "cost": 1.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "pizza",
+          "total_cost"
+        ],
+        "rows": [
+          [
+            "A,B,C",
+            3.0
+          ],
+          [
+            "A,B,D",
+            3.0
+          ],
+          [
+            "A,C,D",
+            3.0
+          ],
+          [
+            "B,C,D",
+            3.0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "tie-order"
+      ]
     },
     {
       "id": "trial-fewer-than-three",
       "name": "trial: fewer than three toppings produce no pizza",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"Toppings": [
-        {"topping_name": "Cheese", "cost": 0.40},
-        {"topping_name": "Onion", "cost": 0.30}
-      ]}},
-      "expected": {"columns": ["pizza", "total_cost"], "rows": []},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "empty-output"]
+      "input": {
+        "tables": {
+          "Toppings": [
+            {
+              "topping_name": "Cheese",
+              "cost": 0.4
+            },
+            {
+              "topping_name": "Onion",
+              "cost": 0.3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "pizza",
+          "total_cost"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "empty-output"
+      ]
     },
     {
       "id": "trial-round-to-two-decimals",
       "name": "trial: a three-decimal sum is rounded to two places",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"Toppings": [
-        {"topping_name": "A", "cost": 0.335},
-        {"topping_name": "B", "cost": 0.335},
-        {"topping_name": "C", "cost": 0.335}
-      ]}},
-      "expected": {"columns": ["pizza", "total_cost"], "rows": [["A,B,C", 1.01]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "rounding"]
+      "input": {
+        "tables": {
+          "Toppings": [
+            {
+              "topping_name": "A",
+              "cost": 0.335
+            },
+            {
+              "topping_name": "B",
+              "cost": 0.335
+            },
+            {
+              "topping_name": "C",
+              "cost": 0.335
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "pizza",
+          "total_cost"
+        ],
+        "rows": [
+          [
+            "A,B,C",
+            1.01
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "rounding"
+      ]
     },
     {
       "id": "real-cost-order-before-name",
-      "name": "hidden: total cost has priority over lexical pizza order",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"Toppings": [
-        {"topping_name": "Anchovy", "cost": 0.10},
-        {"topping_name": "Bacon", "cost": 2.00},
-        {"topping_name": "Corn", "cost": 0.20},
-        {"topping_name": "Dates", "cost": 1.50}
-      ]}},
-      "expected": {"columns": ["pizza", "total_cost"], "rows": [
-        ["Bacon,Corn,Dates", 3.70],
-        ["Anchovy,Bacon,Dates", 3.60],
-        ["Anchovy,Bacon,Corn", 2.30],
-        ["Anchovy,Corn,Dates", 1.80]
-      ]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["hidden", "primary-order"]
+      "name": "total cost has priority over lexical pizza order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Toppings": [
+            {
+              "topping_name": "Anchovy",
+              "cost": 0.1
+            },
+            {
+              "topping_name": "Bacon",
+              "cost": 2.0
+            },
+            {
+              "topping_name": "Corn",
+              "cost": 0.2
+            },
+            {
+              "topping_name": "Dates",
+              "cost": 1.5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "pizza",
+          "total_cost"
+        ],
+        "rows": [
+          [
+            "Bacon,Corn,Dates",
+            3.7
+          ],
+          [
+            "Anchovy,Bacon,Dates",
+            3.6
+          ],
+          [
+            "Anchovy,Bacon,Corn",
+            2.3
+          ],
+          [
+            "Anchovy,Corn,Dates",
+            1.8
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "primary-order"
+      ]
     },
     {
       "id": "real-six-combinations",
-      "name": "hidden: five toppings emit every one of ten combinations",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"Toppings": [
-        {"topping_name": "A", "cost": 0.10},
-        {"topping_name": "B", "cost": 0.20},
-        {"topping_name": "C", "cost": 0.30},
-        {"topping_name": "D", "cost": 0.40},
-        {"topping_name": "E", "cost": 0.50}
-      ]}},
-      "expected": {"columns": ["pizza", "total_cost"], "rows": [
-        ["C,D,E", 1.20], ["B,D,E", 1.10], ["A,D,E", 1.00], ["B,C,E", 1.00],
-        ["A,C,E", 0.90], ["B,C,D", 0.90], ["A,B,E", 0.80], ["A,C,D", 0.80],
-        ["A,B,D", 0.70], ["A,B,C", 0.60]
-      ]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["hidden", "output-cardinality", "ordering"]
+      "name": "five toppings emit every one of ten combinations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Toppings": [
+            {
+              "topping_name": "A",
+              "cost": 0.1
+            },
+            {
+              "topping_name": "B",
+              "cost": 0.2
+            },
+            {
+              "topping_name": "C",
+              "cost": 0.3
+            },
+            {
+              "topping_name": "D",
+              "cost": 0.4
+            },
+            {
+              "topping_name": "E",
+              "cost": 0.5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "pizza",
+          "total_cost"
+        ],
+        "rows": [
+          [
+            "C,D,E",
+            1.2
+          ],
+          [
+            "B,D,E",
+            1.1
+          ],
+          [
+            "A,D,E",
+            1.0
+          ],
+          [
+            "B,C,E",
+            1.0
+          ],
+          [
+            "A,C,E",
+            0.9
+          ],
+          [
+            "B,C,D",
+            0.9
+          ],
+          [
+            "A,B,E",
+            0.8
+          ],
+          [
+            "A,C,D",
+            0.8
+          ],
+          [
+            "A,B,D",
+            0.7
+          ],
+          [
+            "A,B,C",
+            0.6
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "output-cardinality",
+        "ordering"
+      ]
     }
   ]
 }

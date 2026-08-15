@@ -2,17 +2,267 @@
   "schema_version": 1,
   "challenge_id": "lc_3800",
   "cases": [
-    {"id":"sample-1","name":"sample: combine all three operation types","kind":"sample","visible":true,"input":{"s":"01000","t":"10111","flipCost":10,"swapCost":2,"crossCost":2},"expected":16,"validator":{"kind":"exact"},"tags":["sample","mixed-mismatches","all-operations"]},
-    {"id":"sample-2","name":"sample: flipping every mismatch is cheapest","kind":"sample","visible":true,"input":{"s":"001","t":"110","flipCost":2,"swapCost":100,"crossCost":100},"expected":6,"validator":{"kind":"exact"},"tags":["sample","flips"]},
-    {"id":"sample-3","name":"sample: strings already equal","kind":"sample","visible":true,"input":{"s":"1010","t":"1010","flipCost":5,"swapCost":5,"crossCost":5},"expected":0,"validator":{"kind":"exact"},"tags":["sample","already-equal"]},
-    {"id":"trial-single-mismatch","name":"trial: lone mismatch requires one flip","kind":"trial","visible":true,"input":{"s":"0","t":"1","flipCost":7,"swapCost":1,"crossCost":1},"expected":7,"validator":{"kind":"exact"},"tags":["trial","single-index","odd-remainder"]},
-    {"id":"trial-opposite-pair-swap","name":"trial: ordinary swap fixes opposite orientations","kind":"trial","visible":true,"input":{"s":"01","t":"10","flipCost":10,"swapCost":3,"crossCost":9},"expected":3,"validator":{"kind":"exact"},"tags":["trial","opposite-pair","swap"]},
-    {"id":"trial-opposite-pair-flips","name":"trial: two flips beat an ordinary swap","kind":"trial","visible":true,"input":{"s":"01","t":"10","flipCost":2,"swapCost":9,"crossCost":9},"expected":4,"validator":{"kind":"exact"},"tags":["trial","opposite-pair","flips"]},
-    {"id":"real-same-pair-cross-then-swap","name":"hidden: cross plus ordinary swap fixes equal orientations","kind":"real","visible":false,"input":{"s":"00","t":"11","flipCost":10,"swapCost":3,"crossCost":4},"expected":7,"validator":{"kind":"exact"},"tags":["hidden","same-orientation","cross-and-swap"]},
-    {"id":"real-same-pair-flips","name":"hidden: two flips beat cross plus swap","kind":"real","visible":false,"input":{"s":"00","t":"11","flipCost":3,"swapCost":10,"crossCost":10},"expected":6,"validator":{"kind":"exact"},"tags":["hidden","same-orientation","flips"]},
-    {"id":"real-mixed-counts","name":"hidden: pair opposite orientations before remainder","kind":"real","visible":false,"input":{"s":"0001","t":"1110","flipCost":10,"swapCost":4,"crossCost":3},"expected":11,"validator":{"kind":"exact"},"tags":["hidden","mixed-mismatches","pairing-order"]},
-    {"id":"real-four-same-orientation","name":"hidden: two same-orientation pairs","kind":"real","visible":false,"input":{"s":"0000","t":"1111","flipCost":100,"swapCost":10,"crossCost":1},"expected":22,"validator":{"kind":"exact"},"tags":["hidden","even-remainder","cross-and-swap"]},
-    {"id":"real-three-same-orientation","name":"hidden: pair plus one unavoidable flip","kind":"real","visible":false,"input":{"s":"000","t":"111","flipCost":100,"swapCost":10,"crossCost":1},"expected":111,"validator":{"kind":"exact"},"tags":["hidden","odd-remainder","large-cost"]},
-    {"id":"real-matches-around-mismatches","name":"hidden: matching positions are ignored","kind":"real","visible":false,"input":{"s":"1001001","t":"1100011","flipCost":8,"swapCost":5,"crossCost":2},"expected":13,"validator":{"kind":"exact"},"tags":["hidden","matching-positions","mixed-mismatches"]}
+    {
+      "id": "sample-1",
+      "name": "sample: combine all three operation types",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "01000",
+        "t": "10111",
+        "flipCost": 10,
+        "swapCost": 2,
+        "crossCost": 2
+      },
+      "expected": 16,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "mixed-mismatches",
+        "all-operations"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: flipping every mismatch is cheapest",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "001",
+        "t": "110",
+        "flipCost": 2,
+        "swapCost": 100,
+        "crossCost": 100
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "flips"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: strings already equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1010",
+        "t": "1010",
+        "flipCost": 5,
+        "swapCost": 5,
+        "crossCost": 5
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "already-equal"
+      ]
+    },
+    {
+      "id": "trial-single-mismatch",
+      "name": "trial: lone mismatch requires one flip",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0",
+        "t": "1",
+        "flipCost": 7,
+        "swapCost": 1,
+        "crossCost": 1
+      },
+      "expected": 7,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-index",
+        "odd-remainder"
+      ]
+    },
+    {
+      "id": "trial-opposite-pair-swap",
+      "name": "trial: ordinary swap fixes opposite orientations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "01",
+        "t": "10",
+        "flipCost": 10,
+        "swapCost": 3,
+        "crossCost": 9
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "opposite-pair",
+        "swap"
+      ]
+    },
+    {
+      "id": "trial-opposite-pair-flips",
+      "name": "trial: two flips beat an ordinary swap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "01",
+        "t": "10",
+        "flipCost": 2,
+        "swapCost": 9,
+        "crossCost": 9
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "opposite-pair",
+        "flips"
+      ]
+    },
+    {
+      "id": "real-same-pair-cross-then-swap",
+      "name": "cross plus ordinary swap fixes equal orientations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "00",
+        "t": "11",
+        "flipCost": 10,
+        "swapCost": 3,
+        "crossCost": 4
+      },
+      "expected": 7,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "same-orientation",
+        "cross-and-swap"
+      ]
+    },
+    {
+      "id": "real-same-pair-flips",
+      "name": "two flips beat cross plus swap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "00",
+        "t": "11",
+        "flipCost": 3,
+        "swapCost": 10,
+        "crossCost": 10
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "same-orientation",
+        "flips"
+      ]
+    },
+    {
+      "id": "real-mixed-counts",
+      "name": "pair opposite orientations before remainder",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0001",
+        "t": "1110",
+        "flipCost": 10,
+        "swapCost": 4,
+        "crossCost": 3
+      },
+      "expected": 11,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "mixed-mismatches",
+        "pairing-order"
+      ]
+    },
+    {
+      "id": "real-four-same-orientation",
+      "name": "two same-orientation pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0000",
+        "t": "1111",
+        "flipCost": 100,
+        "swapCost": 10,
+        "crossCost": 1
+      },
+      "expected": 22,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "even-remainder",
+        "cross-and-swap"
+      ]
+    },
+    {
+      "id": "real-three-same-orientation",
+      "name": "pair plus one unavoidable flip",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000",
+        "t": "111",
+        "flipCost": 100,
+        "swapCost": 10,
+        "crossCost": 1
+      },
+      "expected": 111,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "odd-remainder",
+        "large-cost"
+      ]
+    },
+    {
+      "id": "real-matches-around-mismatches",
+      "name": "matching positions are ignored",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1001001",
+        "t": "1100011",
+        "flipCost": 8,
+        "swapCost": 5,
+        "crossCost": 2
+      },
+      "expected": 13,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "matching-positions",
+        "mixed-mismatches"
+      ]
+    }
   ]
 }

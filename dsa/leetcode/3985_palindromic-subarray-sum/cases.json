@@ -6,180 +6,417 @@
       "name": "sample: an equal pair forms the whole palindrome",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [10, 10]},
+      "input": {
+        "nums": [
+          10,
+          10
+        ]
+      },
       "expected": 20,
-      "tags": ["sample", "even-palindrome", "whole-array"]
+      "tags": [
+        "sample",
+        "even-palindrome",
+        "whole-array"
+      ]
     },
     {
       "id": "sample-odd-palindromic-prefix",
       "name": "sample: a five-value palindromic prefix wins",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 2, 1, 5, 6]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          2,
+          1,
+          5,
+          6
+        ]
+      },
       "expected": 9,
-      "tags": ["sample", "odd-palindrome", "prefix"]
+      "tags": [
+        "sample",
+        "odd-palindrome",
+        "prefix"
+      ]
     },
     {
       "id": "sample-longest-prefix-before-suffix",
       "name": "sample: the leading palindrome beats later ranges",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [7, 1, 2, 1, 7, 3, 4, 3, 4]},
+      "input": {
+        "nums": [
+          7,
+          1,
+          2,
+          1,
+          7,
+          3,
+          4,
+          3,
+          4
+        ]
+      },
       "expected": 18,
-      "tags": ["sample", "odd-palindrome", "maximum-sum"]
+      "tags": [
+        "sample",
+        "odd-palindrome",
+        "maximum-sum"
+      ]
     },
     {
       "id": "sample-only-singletons",
       "name": "sample: a strictly increasing array has only singletons",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4, 5]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
       "expected": 5,
-      "tags": ["sample", "singleton", "no-longer-palindrome"]
+      "tags": [
+        "sample",
+        "singleton",
+        "no-longer-palindrome"
+      ]
     },
     {
       "id": "sample-one-value",
       "name": "sample: the only value is palindromic",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1000]},
+      "input": {
+        "nums": [
+          1000
+        ]
+      },
       "expected": 1000,
-      "tags": ["sample", "singleton", "minimum-length"]
+      "tags": [
+        "sample",
+        "singleton",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-minimum-value",
       "name": "trial: the minimum input value returns itself",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1]},
+      "input": {
+        "nums": [
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "singleton", "minimum-value"]
+      "tags": [
+        "trial",
+        "singleton",
+        "minimum-value"
+      ]
     },
     {
       "id": "trial-equal-minimum-pair",
       "name": "trial: two equal minimum values form an even palindrome",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1]},
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "even-palindrome", "minimum-values"]
+      "tags": [
+        "trial",
+        "even-palindrome",
+        "minimum-values"
+      ]
     },
     {
       "id": "trial-three-value-odd",
       "name": "trial: a three-value odd palindrome",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 1]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          1
+        ]
+      },
       "expected": 4,
-      "tags": ["trial", "odd-palindrome", "whole-array"]
+      "tags": [
+        "trial",
+        "odd-palindrome",
+        "whole-array"
+      ]
     },
     {
       "id": "trial-four-value-even",
       "name": "trial: a four-value even palindrome",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 2, 1]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          1
+        ]
+      },
       "expected": 6,
-      "tags": ["trial", "even-palindrome", "whole-array"]
+      "tags": [
+        "trial",
+        "even-palindrome",
+        "whole-array"
+      ]
     },
     {
       "id": "trial-overlapping-odd-palindromes",
       "name": "trial: overlapping odd palindromes choose the larger sum",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 1, 2]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2
+        ]
+      },
       "expected": 5,
-      "tags": ["trial", "overlap", "center-comparison"]
+      "tags": [
+        "trial",
+        "overlap",
+        "center-comparison"
+      ]
     },
     {
       "id": "real-whole-repeated-pattern",
-      "name": "hidden: a repeated pattern is palindromic end to end",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9, 1, 9, 1, 9]},
+      "name": "a repeated pattern is palindromic end to end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          1,
+          9,
+          1,
+          9
+        ]
+      },
       "expected": 29,
-      "tags": ["hidden", "whole-array", "repeated-pattern"]
+      "tags": [
+        "hidden",
+        "whole-array",
+        "repeated-pattern"
+      ]
     },
     {
       "id": "real-large-singleton-beats-longer",
-      "name": "hidden: a large singleton beats a longer palindrome",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 2, 1, 100]},
+      "name": "a large singleton beats a longer palindrome",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          2,
+          1,
+          100
+        ]
+      },
       "expected": 100,
-      "tags": ["hidden", "singleton", "sum-not-length"]
+      "tags": [
+        "hidden",
+        "singleton",
+        "sum-not-length"
+      ]
     },
     {
       "id": "real-large-even-suffix",
-      "name": "hidden: a high-valued even suffix beats a longer prefix",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 1, 1, 5, 100, 100]},
+      "name": "a high-valued even suffix beats a longer prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          1,
+          5,
+          100,
+          100
+        ]
+      },
       "expected": 200,
-      "tags": ["hidden", "even-palindrome", "suffix"]
+      "tags": [
+        "hidden",
+        "even-palindrome",
+        "suffix"
+      ]
     },
     {
       "id": "real-even-whole-array",
-      "name": "hidden: an even whole-array palindrome with distinct layers",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 3, 2, 1]},
+      "name": "an even whole-array palindrome with distinct layers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 12,
-      "tags": ["hidden", "even-palindrome", "nested-radii"]
+      "tags": [
+        "hidden",
+        "even-palindrome",
+        "nested-radii"
+      ]
     },
     {
       "id": "real-odd-whole-array",
-      "name": "hidden: an odd whole-array palindrome with distinct layers",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 4, 3, 2, 1]},
+      "name": "an odd whole-array palindrome with distinct layers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 16,
-      "tags": ["hidden", "odd-palindrome", "nested-radii"]
+      "tags": [
+        "hidden",
+        "odd-palindrome",
+        "nested-radii"
+      ]
     },
     {
       "id": "real-equal-ends-not-palindrome",
-      "name": "hidden: equal endpoints do not make the full range palindromic",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 1]},
+      "name": "equal endpoints do not make the full range palindromic",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "mismatch", "singleton"]
+      "tags": [
+        "hidden",
+        "mismatch",
+        "singleton"
+      ]
     },
     {
       "id": "real-even-layers-around-one",
-      "name": "hidden: equal pairs surround an odd center",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 4, 1, 4, 4]},
+      "name": "equal pairs surround an odd center",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          1,
+          4,
+          4
+        ]
+      },
       "expected": 17,
-      "tags": ["hidden", "odd-palindrome", "repeated-values"]
+      "tags": [
+        "hidden",
+        "odd-palindrome",
+        "repeated-values"
+      ]
     },
     {
       "id": "real-seven-value-whole-array",
-      "name": "hidden: a seven-value layered palindrome",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 7, 2, 9, 2, 7, 2]},
+      "name": "a seven-value layered palindrome",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          7,
+          2,
+          9,
+          2,
+          7,
+          2
+        ]
+      },
       "expected": 31,
-      "tags": ["hidden", "odd-palindrome", "whole-array"]
+      "tags": [
+        "hidden",
+        "odd-palindrome",
+        "whole-array"
+      ]
     },
     {
       "id": "real-large-result-three-values",
-      "name": "hidden: a three-value palindrome exceeds 32-bit arithmetic",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000, 1, 1000000000]},
+      "name": "a three-value palindrome exceeds 32-bit arithmetic",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1,
+          1000000000
+        ]
+      },
       "expected": 2000000001,
-      "tags": ["hidden", "large-values", "wide-integer"]
+      "tags": [
+        "hidden",
+        "large-values",
+        "wide-integer"
+      ]
     },
     {
       "id": "real-large-result-even-run",
-      "name": "hidden: ten maximum values require a wide sum",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000]},
+      "name": "ten maximum values require a wide sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000
+        ]
+      },
       "expected": 10000000000,
-      "tags": ["hidden", "large-values", "even-palindrome"]
+      "tags": [
+        "hidden",
+        "large-values",
+        "even-palindrome"
+      ]
     }
   ]
 }

@@ -135,9 +135,9 @@
     },
     {
       "id": "real-overlap-choice",
-      "name": "hidden: earliest finish beats overlapping longer choice",
-      "kind": "real",
-      "visible": false,
+      "name": "earliest finish beats overlapping longer choice",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -159,9 +159,9 @@
     },
     {
       "id": "real-negative-target",
-      "name": "hidden: negative target and mixed signs",
-      "kind": "real",
-      "visible": false,
+      "name": "negative target and mixed signs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -2,
@@ -182,9 +182,9 @@
     },
     {
       "id": "real-prefix-repeat",
-      "name": "hidden: repeated prefix sums across cancellations",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated prefix sums across cancellations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -205,9 +205,9 @@
     },
     {
       "id": "real-all-positive-singletons",
-      "name": "hidden: every element is an interval",
-      "kind": "real",
-      "visible": false,
+      "name": "every element is an interval",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -227,9 +227,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: large magnitudes cancel exactly",
-      "kind": "real",
-      "visible": false,
+      "name": "large magnitudes cancel exactly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10000,
@@ -249,9 +249,9 @@
     },
     {
       "id": "real-disjoint-with-gaps",
-      "name": "hidden: unused gaps between selected intervals",
-      "kind": "real",
-      "visible": false,
+      "name": "unused gaps between selected intervals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,

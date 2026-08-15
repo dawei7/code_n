@@ -108,9 +108,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: cyclic optimal ties",
-      "kind": "real",
-      "visible": false,
+      "name": "cyclic optimal ties",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abc",
@@ -129,9 +129,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: repeated-character rotations",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated-character rotations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "aaab",
@@ -151,9 +151,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: no overlaps among short words",
-      "kind": "real",
-      "visible": false,
+      "name": "no overlaps among short words",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "dog",

@@ -7,72 +7,168 @@
       "name": "sample: six students form three groups",
       "kind": "sample",
       "visible": true,
-      "input": {"grades": [10,6,12,7,3,5]},
+      "input": {
+        "grades": [
+          10,
+          6,
+          12,
+          7,
+          3,
+          5
+        ]
+      },
       "expected": 3,
-      "tags": ["sample","triangular"]
+      "tags": [
+        "sample",
+        "triangular"
+      ]
     },
     {
       "id": "sample-two-students",
       "name": "sample: two students cannot form two increasing sizes",
       "kind": "sample",
       "visible": true,
-      "input": {"grades": [8,8]},
+      "input": {
+        "grades": [
+          8,
+          8
+        ]
+      },
       "expected": 1,
-      "tags": ["sample","boundary"]
+      "tags": [
+        "sample",
+        "boundary"
+      ]
     },
     {
       "id": "trial-single-student",
       "name": "one student",
       "kind": "trial",
       "visible": true,
-      "input": {"grades": [42]},
+      "input": {
+        "grades": [
+          42
+        ]
+      },
       "expected": 1,
-      "tags": ["single"]
+      "tags": [
+        "single"
+      ]
     },
     {
       "id": "trial-first-triangular-threshold",
       "name": "three students form groups of sizes one and two",
       "kind": "trial",
       "visible": true,
-      "input": {"grades": [100,1,1]},
+      "input": {
+        "grades": [
+          100,
+          1,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["triangular","values-irrelevant"]
+      "tags": [
+        "triangular",
+        "values-irrelevant"
+      ]
     },
     {
       "id": "trial-below-next-threshold",
       "name": "five students remain below the third threshold",
       "kind": "trial",
       "visible": true,
-      "input": {"grades": [5,4,3,2,1]},
+      "input": {
+        "grades": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["boundary"]
+      "tags": [
+        "boundary"
+      ]
     },
     {
       "id": "real-four-groups",
-      "name": "hidden: ten students meet the fourth triangular number",
-      "kind": "real",
-      "visible": false,
-      "input": {"grades": [1,1,1,1,1,1,1,1,1,1]},
+      "name": "ten students meet the fourth triangular number",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grades": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden","equal-values","triangular"]
+      "tags": [
+        "hidden",
+        "equal-values",
+        "triangular"
+      ]
     },
     {
       "id": "real-five-groups",
-      "name": "hidden: fifteen students meet the fifth triangular number",
-      "kind": "real",
-      "visible": false,
-      "input": {"grades": [15,14,13,12,11,10,9,8,7,6,5,4,3,2,1]},
+      "name": "fifteen students meet the fifth triangular number",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grades": [
+          15,
+          14,
+          13,
+          12,
+          11,
+          10,
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 5,
-      "tags": ["hidden","triangular"]
+      "tags": [
+        "hidden",
+        "triangular"
+      ]
     },
     {
       "id": "real-one-above-threshold",
-      "name": "hidden: one unused-size surplus does not add a group",
-      "kind": "real",
-      "visible": false,
-      "input": {"grades": [1,2,3,4,5,6,7]},
+      "name": "one unused-size surplus does not add a group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grades": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden","boundary"]
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
     }
   ]
 }

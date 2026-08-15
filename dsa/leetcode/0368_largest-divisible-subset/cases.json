@@ -135,9 +135,9 @@
     },
     {
       "id": "hidden-unsorted",
-      "name": "hidden: reconstruction after sorting",
-      "kind": "real",
-      "visible": false,
+      "name": "reconstruction after sorting",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           72,
@@ -163,9 +163,9 @@
     },
     {
       "id": "hidden-no-pairs",
-      "name": "hidden: every value is incompatible",
-      "kind": "real",
-      "visible": false,
+      "name": "every value is incompatible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -188,9 +188,9 @@
     },
     {
       "id": "hidden-one-bridge",
-      "name": "hidden: transitive chain through bridge",
-      "kind": "real",
-      "visible": false,
+      "name": "transitive chain through bridge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -217,4 +217,3 @@
     }
   ]
 }
-

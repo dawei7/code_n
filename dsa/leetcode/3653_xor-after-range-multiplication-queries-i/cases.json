@@ -144,8 +144,8 @@
     {
       "id": "real-same-index-repeated",
       "name": "real: repeated multiplications use current value",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -182,8 +182,8 @@
     {
       "id": "real-modular-reduction",
       "name": "real: products wrap modulo the required prime",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -213,8 +213,8 @@
     {
       "id": "real-disjoint-progressions",
       "name": "real: residue progressions update disjoint indices",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -248,8 +248,8 @@
     {
       "id": "real-query-order",
       "name": "real: several overlapping modular multiplications",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           123456789,
@@ -286,8 +286,8 @@
     {
       "id": "real-single-index-xor-cancellation",
       "name": "real: equal updated values cancel in XOR pairs",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -313,8 +313,8 @@
     {
       "id": "real-maximum-multiplier",
       "name": "real: maximum multiplier on sparse indices",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,

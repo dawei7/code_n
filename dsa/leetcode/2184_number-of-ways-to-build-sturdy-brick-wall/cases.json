@@ -2,13 +2,157 @@
   "schema_version": 1,
   "challenge_id": "lc_2184",
   "cases": [
-    {"id":"sample-two","name":"sample: two sturdy walls of height two","kind":"sample","visible":true,"input":{"height":2,"width":3,"bricks":[1,2]},"expected":2,"tags":["sample","shared-seams"]},
-    {"id":"sample-none","name":"sample: no brick can fill the width","kind":"sample","visible":true,"input":{"height":1,"width":1,"bricks":[5]},"expected":0,"tags":["sample","no-layout"]},
-    {"id":"trial-one-row","name":"one row accepts every exact layout","kind":"trial","visible":true,"input":{"height":1,"width":3,"bricks":[1,2]},"expected":3,"tags":["height-one"]},
-    {"id":"trial-zero-seam","name":"full-width brick repeats at every height","kind":"trial","visible":true,"input":{"height":10,"width":5,"bricks":[5]},"expected":1,"tags":["zero-mask","single-layout"]},
-    {"id":"trial-two-width","name":"zero-seam and split rows interact","kind":"trial","visible":true,"input":{"height":2,"width":2,"bricks":[1,2]},"expected":3,"tags":["compatibility"]},
-    {"id":"real-two-compositions","name":"hidden: two complementary row layouts alternate","kind":"real","visible":false,"input":{"height":3,"width":5,"bricks":[2,3]},"expected":2,"tags":["hidden","alternating-layouts"]},
-    {"id":"real-modulus","name":"hidden: tall wall count is reduced modulo the modulus","kind":"real","visible":false,"input":{"height":100,"width":2,"bricks":[1,2]},"expected":470199269,"tags":["hidden","maximum-height","modulus"]},
-    {"id":"real-all-widths","name":"hidden: every seam mask is realizable","kind":"real","visible":false,"input":{"height":3,"width":5,"bricks":[1,2,3,4,5]},"expected":625,"tags":["hidden","all-masks"]}
+    {
+      "id": "sample-two",
+      "name": "sample: two sturdy walls of height two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "height": 2,
+        "width": 3,
+        "bricks": [
+          1,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "shared-seams"
+      ]
+    },
+    {
+      "id": "sample-none",
+      "name": "sample: no brick can fill the width",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "height": 1,
+        "width": 1,
+        "bricks": [
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "no-layout"
+      ]
+    },
+    {
+      "id": "trial-one-row",
+      "name": "one row accepts every exact layout",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "height": 1,
+        "width": 3,
+        "bricks": [
+          1,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "height-one"
+      ]
+    },
+    {
+      "id": "trial-zero-seam",
+      "name": "full-width brick repeats at every height",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "height": 10,
+        "width": 5,
+        "bricks": [
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "zero-mask",
+        "single-layout"
+      ]
+    },
+    {
+      "id": "trial-two-width",
+      "name": "zero-seam and split rows interact",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "height": 2,
+        "width": 2,
+        "bricks": [
+          1,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "compatibility"
+      ]
+    },
+    {
+      "id": "real-two-compositions",
+      "name": "two complementary row layouts alternate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "height": 3,
+        "width": 5,
+        "bricks": [
+          2,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "alternating-layouts"
+      ]
+    },
+    {
+      "id": "real-modulus",
+      "name": "tall wall count is reduced modulo the modulus",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "height": 100,
+        "width": 2,
+        "bricks": [
+          1,
+          2
+        ]
+      },
+      "expected": 470199269,
+      "tags": [
+        "hidden",
+        "maximum-height",
+        "modulus"
+      ]
+    },
+    {
+      "id": "real-all-widths",
+      "name": "every seam mask is realizable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "height": 3,
+        "width": 5,
+        "bricks": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 625,
+      "tags": [
+        "hidden",
+        "all-masks"
+      ]
+    }
   ]
 }

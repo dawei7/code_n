@@ -6,81 +6,131 @@
       "name": "official example: different alternating sums",
       "kind": "sample",
       "visible": true,
-      "input": {"num": "1234"},
+      "input": {
+        "num": "1234"
+      },
       "expected": false,
-      "tags": ["sample", "unbalanced"]
+      "tags": [
+        "sample",
+        "unbalanced"
+      ]
     },
     {
       "id": "official-example-balanced",
       "name": "official example: equal sums with odd length",
       "kind": "sample",
       "visible": true,
-      "input": {"num": "24123"},
+      "input": {
+        "num": "24123"
+      },
       "expected": true,
-      "tags": ["sample", "balanced", "odd-length"]
+      "tags": [
+        "sample",
+        "balanced",
+        "odd-length"
+      ]
     },
     {
       "id": "trial-two-zeroes",
       "name": "trial: minimum length with leading zeroes",
       "kind": "trial",
       "visible": true,
-      "input": {"num": "00"},
+      "input": {
+        "num": "00"
+      },
       "expected": true,
-      "tags": ["minimum-length", "zeroes"]
+      "tags": [
+        "minimum-length",
+        "zeroes"
+      ]
     },
     {
       "id": "trial-equal-digits",
       "name": "trial: equal two digits balance",
       "kind": "trial",
       "visible": true,
-      "input": {"num": "11"},
+      "input": {
+        "num": "11"
+      },
       "expected": true,
-      "tags": ["minimum-length", "balanced"]
+      "tags": [
+        "minimum-length",
+        "balanced"
+      ]
     },
     {
       "id": "trial-single-side-contribution",
       "name": "trial: only the even-index side contributes",
       "kind": "trial",
       "visible": true,
-      "input": {"num": "10"},
+      "input": {
+        "num": "10"
+      },
       "expected": false,
-      "tags": ["minimum-length", "unbalanced"]
+      "tags": [
+        "minimum-length",
+        "unbalanced"
+      ]
     },
     {
       "id": "real-balanced-symmetric",
       "name": "real: symmetric digits have equal alternating sums",
-      "kind": "real",
-      "visible": false,
-      "input": {"num": "123321"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "123321"
+      },
       "expected": true,
-      "tags": ["real", "even-length", "balanced"]
+      "tags": [
+        "real",
+        "even-length",
+        "balanced"
+      ]
     },
     {
       "id": "real-odd-length-unbalanced",
       "name": "real: extra even-index digit changes the sum",
-      "kind": "real",
-      "visible": false,
-      "input": {"num": "909"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "909"
+      },
       "expected": false,
-      "tags": ["real", "odd-length", "unbalanced"]
+      "tags": [
+        "real",
+        "odd-length",
+        "unbalanced"
+      ]
     },
     {
       "id": "real-maximum-balanced",
       "name": "real: maximum length with equal maximum digits",
-      "kind": "real",
-      "visible": false,
-      "input": {"num": "9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"
+      },
       "expected": true,
-      "tags": ["real", "maximum-length", "balanced"]
+      "tags": [
+        "real",
+        "maximum-length",
+        "balanced"
+      ]
     },
     {
       "id": "real-maximum-unbalanced",
       "name": "real: maximum length with contributions on one side only",
-      "kind": "real",
-      "visible": false,
-      "input": {"num": "9090909090909090909090909090909090909090909090909090909090909090909090909090909090909090909090909090"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "9090909090909090909090909090909090909090909090909090909090909090909090909090909090909090909090909090"
+      },
       "expected": false,
-      "tags": ["real", "maximum-length", "unbalanced"]
+      "tags": [
+        "real",
+        "maximum-length",
+        "unbalanced"
+      ]
     }
   ]
 }

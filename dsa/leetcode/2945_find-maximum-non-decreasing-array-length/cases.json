@@ -107,9 +107,9 @@
     },
     {
       "id": "real-large-leading-value",
-      "name": "hidden: a dominant first value forces one block",
-      "kind": "real",
-      "visible": false,
+      "name": "a dominant first value forces one block",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -127,9 +127,9 @@
     },
     {
       "id": "real-alternating",
-      "name": "hidden: alternating low and high values",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating low and high values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -148,9 +148,9 @@
     },
     {
       "id": "real-several-valid-partitions",
-      "name": "hidden: choose boundaries globally",
-      "kind": "real",
-      "visible": false,
+      "name": "choose boundaries globally",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -169,9 +169,9 @@
     },
     {
       "id": "real-long-decreasing-tail",
-      "name": "hidden: increasing prefix followed by a decreasing tail",
-      "kind": "real",
-      "visible": false,
+      "name": "increasing prefix followed by a decreasing tail",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

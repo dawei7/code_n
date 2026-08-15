@@ -262,9 +262,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: one row starting at the east end",
-      "kind": "real",
-      "visible": false,
+      "name": "one row starting at the east end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rows": 1,
         "cols": 4,
@@ -296,9 +296,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: two-by-three grid starting on the north edge",
-      "kind": "real",
-      "visible": false,
+      "name": "two-by-three grid starting on the north edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rows": 2,
         "cols": 3,
@@ -338,9 +338,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: centered odd square",
-      "kind": "real",
-      "visible": false,
+      "name": "centered odd square",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rows": 3,
         "cols": 3,
@@ -392,9 +392,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: tall rectangle starting northwest",
-      "kind": "real",
-      "visible": false,
+      "name": "tall rectangle starting northwest",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rows": 4,
         "cols": 2,
@@ -443,9 +443,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: wide rectangle starting on the south edge",
-      "kind": "real",
-      "visible": false,
+      "name": "wide rectangle starting on the south edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rows": 2,
         "cols": 4,

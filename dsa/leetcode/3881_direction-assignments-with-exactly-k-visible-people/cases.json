@@ -184,9 +184,9 @@
     },
     {
       "id": "real-four-one-visible",
-      "name": "hidden: choose one of three visible people",
-      "kind": "real",
-      "visible": false,
+      "name": "choose one of three visible people",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "pos": 1,
@@ -204,9 +204,9 @@
     },
     {
       "id": "real-four-two-visible",
-      "name": "hidden: complementary choice has equal count",
-      "kind": "real",
-      "visible": false,
+      "name": "complementary choice has equal count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "pos": 2,
@@ -224,9 +224,9 @@
     },
     {
       "id": "real-ten-four-visible",
-      "name": "hidden: interior binomial coefficient",
-      "kind": "real",
-      "visible": false,
+      "name": "interior binomial coefficient",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10,
         "pos": 4,
@@ -244,9 +244,9 @@
     },
     {
       "id": "real-ten-eight-visible",
-      "name": "hidden: complement symmetry reduces the product",
-      "kind": "real",
-      "visible": false,
+      "name": "complement symmetry reduces the product",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10,
         "pos": 7,
@@ -264,9 +264,9 @@
     },
     {
       "id": "real-twenty-middle",
-      "name": "hidden: larger central coefficient remains exact",
-      "kind": "real",
-      "visible": false,
+      "name": "larger central coefficient remains exact",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 20,
         "pos": 10,
@@ -284,9 +284,9 @@
     },
     {
       "id": "real-modular-result",
-      "name": "hidden: large coefficient requires modular reduction",
-      "kind": "real",
-      "visible": false,
+      "name": "large coefficient requires modular reduction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100,
         "pos": 37,

@@ -60,8 +60,8 @@
     {
       "id": "real-single-character",
       "name": "real: minimum-length string",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "z"
       },
@@ -74,8 +74,8 @@
     {
       "id": "real-unique-maximum",
       "name": "real: one letter has the unique maximum",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abacbade"
       },
@@ -88,8 +88,8 @@
     {
       "id": "real-three-way-tie",
       "name": "real: three maximum-frequency letters have interleaved endings",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "cabacb"
       },
@@ -102,8 +102,8 @@
     {
       "id": "real-skewed-counts",
       "name": "real: the dominant letter survives alone",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zzxyxzyyxxzz"
       },

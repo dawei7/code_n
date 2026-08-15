@@ -95,9 +95,9 @@
     },
     {
       "id": "hidden-extremes",
-      "name": "hidden: full signed range values",
-      "kind": "real",
-      "visible": false,
+      "name": "full signed range values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -2147483648,
@@ -114,9 +114,9 @@
     },
     {
       "id": "hidden-duplicate-third",
-      "name": "hidden: duplicates around every rank",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicates around every rank",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -136,9 +136,9 @@
     },
     {
       "id": "hidden-two-negative",
-      "name": "hidden: two distinct negative values",
-      "kind": "real",
-      "visible": false,
+      "name": "two distinct negative values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -5,

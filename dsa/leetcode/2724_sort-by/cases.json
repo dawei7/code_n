@@ -1,1 +1,248 @@
-{"challenge_id":"lc_2724","cases":[{"id":"sample-identity","name":"sample: numbers sorted by identity","kind":"sample","visible":true,"input":{"arr":[5,4,1,2,3],"selector":"identity"},"expected":[1,2,3,4,5],"tags":["sample","identity"]},{"id":"sample-object-key","name":"sample: objects sorted by x","kind":"sample","visible":true,"input":{"arr":[{"x":1},{"x":0},{"x":-1}],"selector":"x"},"expected":[{"x":-1},{"x":0},{"x":1}],"tags":["sample","objects"]},{"id":"sample-array-key","name":"sample: arrays sorted by second entry","kind":"sample","visible":true,"input":{"arr":[[3,4],[5,2],[10,1]],"selector":"index1"},"expected":[[10,1],[5,2],[3,4]],"tags":["sample","arrays"]},{"id":"trial-single","name":"trial: one element","kind":"trial","visible":true,"input":{"arr":[42],"selector":"identity"},"expected":[42],"tags":["trial","minimum"]},{"id":"real-already-sorted","name":"hidden: already ascending keys","kind":"real","visible":false,"input":{"arr":[-5,-1,0,7,20],"selector":"identity"},"expected":[-5,-1,0,7,20],"tags":["hidden","sorted"]},{"id":"real-reverse","name":"hidden: reverse-ordered values","kind":"real","visible":false,"input":{"arr":[9,4,1,-2,-8],"selector":"identity"},"expected":[-8,-2,1,4,9],"tags":["hidden","reverse"]},{"id":"real-descending-key","name":"hidden: negative selector reverses numeric order","kind":"real","visible":false,"input":{"arr":[1,4,-3,2],"selector":"negate"},"expected":[4,2,1,-3],"tags":["hidden","negative-key"]},{"id":"real-object-negatives","name":"hidden: negative object properties","kind":"real","visible":false,"input":{"arr":[{"x":-10,"label":"a"},{"x":3,"label":"b"},{"x":-2,"label":"c"}],"selector":"x"},"expected":[{"x":-10,"label":"a"},{"x":-2,"label":"c"},{"x":3,"label":"b"}],"tags":["hidden","objects","negative"]}]}
+{
+  "challenge_id": "lc_2724",
+  "cases": [
+    {
+      "id": "sample-identity",
+      "name": "sample: numbers sorted by identity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          5,
+          4,
+          1,
+          2,
+          3
+        ],
+        "selector": "identity"
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "tags": [
+        "sample",
+        "identity"
+      ]
+    },
+    {
+      "id": "sample-object-key",
+      "name": "sample: objects sorted by x",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          {
+            "x": 1
+          },
+          {
+            "x": 0
+          },
+          {
+            "x": -1
+          }
+        ],
+        "selector": "x"
+      },
+      "expected": [
+        {
+          "x": -1
+        },
+        {
+          "x": 0
+        },
+        {
+          "x": 1
+        }
+      ],
+      "tags": [
+        "sample",
+        "objects"
+      ]
+    },
+    {
+      "id": "sample-array-key",
+      "name": "sample: arrays sorted by second entry",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            10,
+            1
+          ]
+        ],
+        "selector": "index1"
+      },
+      "expected": [
+        [
+          10,
+          1
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "tags": [
+        "sample",
+        "arrays"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          42
+        ],
+        "selector": "identity"
+      },
+      "expected": [
+        42
+      ],
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "real-already-sorted",
+      "name": "already ascending keys",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          -5,
+          -1,
+          0,
+          7,
+          20
+        ],
+        "selector": "identity"
+      },
+      "expected": [
+        -5,
+        -1,
+        0,
+        7,
+        20
+      ],
+      "tags": [
+        "hidden",
+        "sorted"
+      ]
+    },
+    {
+      "id": "real-reverse",
+      "name": "reverse-ordered values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          9,
+          4,
+          1,
+          -2,
+          -8
+        ],
+        "selector": "identity"
+      },
+      "expected": [
+        -8,
+        -2,
+        1,
+        4,
+        9
+      ],
+      "tags": [
+        "hidden",
+        "reverse"
+      ]
+    },
+    {
+      "id": "real-descending-key",
+      "name": "negative selector reverses numeric order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          4,
+          -3,
+          2
+        ],
+        "selector": "negate"
+      },
+      "expected": [
+        4,
+        2,
+        1,
+        -3
+      ],
+      "tags": [
+        "hidden",
+        "negative-key"
+      ]
+    },
+    {
+      "id": "real-object-negatives",
+      "name": "negative object properties",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          {
+            "x": -10,
+            "label": "a"
+          },
+          {
+            "x": 3,
+            "label": "b"
+          },
+          {
+            "x": -2,
+            "label": "c"
+          }
+        ],
+        "selector": "x"
+      },
+      "expected": [
+        {
+          "x": -10,
+          "label": "a"
+        },
+        {
+          "x": -2,
+          "label": "c"
+        },
+        {
+          "x": 3,
+          "label": "b"
+        }
+      ],
+      "tags": [
+        "hidden",
+        "objects",
+        "negative"
+      ]
+    }
+  ]
+}

@@ -6,72 +6,112 @@
       "name": "sample: delete one extra occurrence",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "acab"},
+      "input": {
+        "s": "acab"
+      },
       "expected": 1,
-      "tags": ["sample", "deletion"]
+      "tags": [
+        "sample",
+        "deletion"
+      ]
     },
     {
       "id": "sample-already-good",
       "name": "sample: two equal character frequencies",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "wddw"},
+      "input": {
+        "s": "wddw"
+      },
       "expected": 0,
-      "tags": ["sample", "already-good"]
+      "tags": [
+        "sample",
+        "already-good"
+      ]
     },
     {
       "id": "sample-change-and-insert",
       "name": "sample: adjacent change and insertion cooperate",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "aaabc"},
+      "input": {
+        "s": "aaabc"
+      },
       "expected": 2,
-      "tags": ["sample", "change"]
+      "tags": [
+        "sample",
+        "change"
+      ]
     },
     {
       "id": "trial-all-distinct",
       "name": "trial: every lowercase letter appears once",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abcdefghijklmnopqrstuvwxyz"},
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz"
+      },
       "expected": 0,
-      "tags": ["already-good", "full-alphabet"]
+      "tags": [
+        "already-good",
+        "full-alphabet"
+      ]
     },
     {
       "id": "trial-remove-rare-letter",
       "name": "trial: deleting the rare leading letter is optimal",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "ruuu"},
+      "input": {
+        "s": "ruuu"
+      },
       "expected": 1,
-      "tags": ["deletion", "rare-letter"]
+      "tags": [
+        "deletion",
+        "rare-letter"
+      ]
     },
     {
       "id": "real-uneven-blocks",
       "name": "real: several uneven neighboring frequencies",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaaabbbbccdde"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaabbbbccdde"
+      },
       "expected": 3,
-      "tags": ["multiple-targets", "dynamic-programming"]
+      "tags": [
+        "multiple-targets",
+        "dynamic-programming"
+      ]
     },
     {
       "id": "real-alternating-gaps",
       "name": "real: nonconsecutive present letters and repeated runs",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "gigigjjggjjgg"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "gigigjjggjjgg"
+      },
       "expected": 3,
-      "tags": ["alphabet-gaps", "change"]
+      "tags": [
+        "alphabet-gaps",
+        "change"
+      ]
     },
     {
       "id": "real-z-boundary",
       "name": "real: the final alphabet letter cannot wrap",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "zzzzza"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zzzzza"
+      },
       "expected": 1,
-      "tags": ["z-boundary", "deletion"]
+      "tags": [
+        "z-boundary",
+        "deletion"
+      ]
     }
   ]
 }

@@ -133,9 +133,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: four-node mixed values",
-      "kind": "real",
-      "visible": false,
+      "name": "four-node mixed values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           100,
@@ -156,9 +156,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: seven-node list",
-      "kind": "real",
-      "visible": false,
+      "name": "seven-node list",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           2,
@@ -183,9 +183,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: eight-node list",
-      "kind": "real",
-      "visible": false,
+      "name": "eight-node list",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           11,
@@ -211,9 +211,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: maximum-length list",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum-length list",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           1,
@@ -377,9 +377,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: equal boundary values",
-      "kind": "real",
-      "visible": false,
+      "name": "equal boundary values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "head": [
           1,

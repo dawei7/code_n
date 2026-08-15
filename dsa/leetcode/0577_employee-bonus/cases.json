@@ -294,9 +294,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: only high bonuses",
-      "kind": "real",
-      "visible": false,
+      "name": "only high bonuses",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Employee": [
@@ -339,9 +339,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: mixed unsorted bonus rows",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed unsorted bonus rows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Employee": [

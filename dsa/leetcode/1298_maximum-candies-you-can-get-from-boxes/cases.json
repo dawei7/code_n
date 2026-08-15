@@ -222,9 +222,9 @@
     },
     {
       "id": "hidden-locked-child",
-      "name": "hidden: contained box remains locked",
-      "kind": "real",
-      "visible": false,
+      "name": "contained box remains locked",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "status": [
           0,
@@ -256,9 +256,9 @@
     },
     {
       "id": "hidden-open-but-unowned",
-      "name": "hidden: open box is never obtained",
-      "kind": "real",
-      "visible": false,
+      "name": "open box is never obtained",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "status": [
           1,

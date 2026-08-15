@@ -2,13 +2,197 @@
   "schema_version": 1,
   "challenge_id": "lc_2809",
   "cases": [
-    {"id":"sample-three-seconds","name":"sample: all three resets are required","kind":"sample","visible":true,"input":{"nums1":[1,2,3],"nums2":[1,2,3],"x":4},"expected":3,"tags":["sample","feasible"]},
-    {"id":"sample-impossible","name":"sample: uniform growth makes target impossible","kind":"sample","visible":true,"input":{"nums1":[1,2,3],"nums2":[3,3,3],"x":4},"expected":-1,"tags":["sample","impossible"]},
-    {"id":"trial-zero-seconds","name":"trial: initial sum already satisfies target","kind":"trial","visible":true,"input":{"nums1":[5,1],"nums2":[0,0],"x":6},"expected":0,"tags":["trial","zero-seconds"]},
-    {"id":"trial-one-reset","name":"trial: one reset reaches the limit","kind":"trial","visible":true,"input":{"nums1":[8,1],"nums2":[0,0],"x":1},"expected":1,"tags":["trial","one-second"]},
-    {"id":"trial-reset-order","name":"trial: larger growth must be reset later","kind":"trial","visible":true,"input":{"nums1":[1,1,1],"nums2":[0,0,1],"x":1},"expected":2,"tags":["trial","ordering"]},
-    {"id":"real-zero-growth-all-reset","name":"hidden: zero growth requires resetting every value","kind":"real","visible":false,"input":{"nums1":[1,1,1,1],"nums2":[0,0,0,0],"x":0},"expected":4,"tags":["hidden","all-resets"]},
-    {"id":"real-large-limit","name":"hidden: maximum-style limit needs no reset","kind":"real","visible":false,"input":{"nums1":[1000,1000,1000],"nums2":[1000,1000,1000],"x":1000000},"expected":0,"tags":["hidden","large-limit"]},
-    {"id":"real-mixed-growth","name":"hidden: dynamic program chooses a subset and order","kind":"real","visible":false,"input":{"nums1":[7,3,9,2],"nums2":[0,4,1,6],"x":19},"expected":2,"tags":["hidden","subset-selection"]}
+    {
+      "id": "sample-three-seconds",
+      "name": "sample: all three resets are required",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3
+        ],
+        "nums2": [
+          1,
+          2,
+          3
+        ],
+        "x": 4
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "feasible"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: uniform growth makes target impossible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3
+        ],
+        "nums2": [
+          3,
+          3,
+          3
+        ],
+        "x": 4
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-zero-seconds",
+      "name": "trial: initial sum already satisfies target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          5,
+          1
+        ],
+        "nums2": [
+          0,
+          0
+        ],
+        "x": 6
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "zero-seconds"
+      ]
+    },
+    {
+      "id": "trial-one-reset",
+      "name": "trial: one reset reaches the limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          8,
+          1
+        ],
+        "nums2": [
+          0,
+          0
+        ],
+        "x": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "one-second"
+      ]
+    },
+    {
+      "id": "trial-reset-order",
+      "name": "trial: larger growth must be reset later",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          1
+        ],
+        "nums2": [
+          0,
+          0,
+          1
+        ],
+        "x": 1
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-zero-growth-all-reset",
+      "name": "zero growth requires resetting every value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "nums2": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "x": 0
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "all-resets"
+      ]
+    },
+    {
+      "id": "real-large-limit",
+      "name": "maximum-style limit needs no reset",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1000,
+          1000,
+          1000
+        ],
+        "nums2": [
+          1000,
+          1000,
+          1000
+        ],
+        "x": 1000000
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "large-limit"
+      ]
+    },
+    {
+      "id": "real-mixed-growth",
+      "name": "dynamic program chooses a subset and order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          7,
+          3,
+          9,
+          2
+        ],
+        "nums2": [
+          0,
+          4,
+          1,
+          6
+        ],
+        "x": 19
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "subset-selection"
+      ]
+    }
   ]
 }

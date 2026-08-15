@@ -119,9 +119,9 @@
     },
     {
       "id": "real-crosses-final",
-      "name": "hidden: rank starts before and ends after the array",
-      "kind": "real",
-      "visible": false,
+      "name": "rank starts before and ends after the array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           2,
@@ -139,9 +139,9 @@
     },
     {
       "id": "real-several-gaps",
-      "name": "hidden: varied gap widths surround the target",
-      "kind": "real",
-      "visible": false,
+      "name": "varied gap widths surround the target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -160,9 +160,9 @@
     },
     {
       "id": "real-maximum-k",
-      "name": "hidden: maximum k extends far beyond one stored value",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum k extends far beyond one stored value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1000
@@ -178,9 +178,9 @@
     },
     {
       "id": "real-dense-late-gap",
-      "name": "hidden: long dense prefix followed by one gap",
-      "kind": "real",
-      "visible": false,
+      "name": "long dense prefix followed by one gap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,

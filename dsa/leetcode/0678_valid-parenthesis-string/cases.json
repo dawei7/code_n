@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: all wildcards disappear",
-      "kind": "real",
-      "visible": false,
+      "name": "all wildcards disappear",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "***"
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: too many openings remain",
-      "kind": "real",
-      "visible": false,
+      "name": "too many openings remain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "(((*)"
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: nested wildcard choices",
-      "kind": "real",
-      "visible": false,
+      "name": "nested wildcard choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "(*()**)"
       },
@@ -116,9 +116,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: irrecoverable closing suffix",
-      "kind": "real",
-      "visible": false,
+      "name": "irrecoverable closing suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "(()*)))"
       },
@@ -130,4 +130,3 @@
     }
   ]
 }
-

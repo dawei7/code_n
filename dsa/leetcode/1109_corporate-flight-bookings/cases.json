@@ -126,9 +126,9 @@
     },
     {
       "id": "real-full-range-overlap",
-      "name": "hidden: several full-range and nested bookings",
-      "kind": "real",
-      "visible": false,
+      "name": "several full-range and nested bookings",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bookings": [
           [
@@ -169,9 +169,9 @@
     },
     {
       "id": "real-adjacent-boundaries",
-      "name": "hidden: adjacent inclusive ranges",
-      "kind": "real",
-      "visible": false,
+      "name": "adjacent inclusive ranges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bookings": [
           [
@@ -207,9 +207,9 @@
     },
     {
       "id": "real-same-single-flight",
-      "name": "hidden: repeated bookings for one label",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated bookings for one label",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bookings": [
           [

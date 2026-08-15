@@ -134,9 +134,9 @@
     },
     {
       "id": "real-best-left-and-right-depend-on-middle",
-      "name": "hidden: each middle requires its own compatible side maxima",
-      "kind": "real",
-      "visible": false,
+      "name": "each middle requires its own compatible side maxima",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           3,
@@ -161,9 +161,9 @@
     },
     {
       "id": "real-three-items-with-duplicate-price",
-      "name": "hidden: a length-three array fails when one strict inequality is false",
-      "kind": "real",
-      "visible": false,
+      "name": "a length-three array fails when one strict inequality is false",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           1,
@@ -185,9 +185,9 @@
     },
     {
       "id": "real-profit-upper-bound",
-      "name": "hidden: the maximum legal profits sum without overflow concerns",
-      "kind": "real",
-      "visible": false,
+      "name": "the maximum legal profits sum without overflow concerns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           1,
@@ -208,4 +208,3 @@
     }
   ]
 }
-

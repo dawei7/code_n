@@ -279,9 +279,9 @@
     },
     {
       "id": "real-unequal-three-heights",
-      "name": "hidden: multiply side counts across three unequal levels",
-      "kind": "real",
-      "visible": false,
+      "name": "multiply side counts across three unequal levels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -331,9 +331,9 @@
     },
     {
       "id": "real-ignore-singletons",
-      "name": "hidden: singleton heights do not change the count",
-      "kind": "real",
-      "visible": false,
+      "name": "singleton heights do not change the count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -378,9 +378,9 @@
     },
     {
       "id": "real-rectangle",
-      "name": "hidden: axis-aligned rectangle is included",
-      "kind": "real",
-      "visible": false,
+      "name": "axis-aligned rectangle is included",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -409,9 +409,9 @@
     },
     {
       "id": "real-coordinate-bounds",
-      "name": "hidden: extreme coordinates retain two horizontal sides",
-      "kind": "real",
-      "visible": false,
+      "name": "extreme coordinates retain two horizontal sides",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -440,9 +440,9 @@
     },
     {
       "id": "real-shuffled-heights",
-      "name": "hidden: input order does not group equal heights",
-      "kind": "real",
-      "visible": false,
+      "name": "input order does not group equal heights",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -484,9 +484,9 @@
     },
     {
       "id": "real-modulo",
-      "name": "hidden: large pair counts require modulo reduction",
-      "kind": "real",
-      "visible": false,
+      "name": "large pair counts require modulo reduction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [

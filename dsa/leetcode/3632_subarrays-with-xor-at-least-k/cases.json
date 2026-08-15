@@ -116,9 +116,9 @@
     },
     {
       "id": "real-prefix-cancellation",
-      "name": "hidden: prefix XOR cancellation creates zero",
-      "kind": "real",
-      "visible": false,
+      "name": "prefix XOR cancellation creates zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -136,9 +136,9 @@
     },
     {
       "id": "real-equal-pair",
-      "name": "hidden: equal values cancel as a pair",
-      "kind": "real",
-      "visible": false,
+      "name": "equal values cancel as a pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -154,9 +154,9 @@
     },
     {
       "id": "real-repeated-sevens",
-      "name": "hidden: odd repeated length restores the value",
-      "kind": "real",
-      "visible": false,
+      "name": "odd repeated length restores the value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -174,9 +174,9 @@
     },
     {
       "id": "real-only-full-range",
-      "name": "hidden: only the full array reaches the threshold",
-      "kind": "real",
-      "visible": false,
+      "name": "only the full array reaches the threshold",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -193,9 +193,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: values near the upper bound",
-      "kind": "real",
-      "visible": false,
+      "name": "values near the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -212,9 +212,9 @@
     },
     {
       "id": "real-alternating-bits",
-      "name": "hidden: repeated prefix values count many pairs",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated prefix values count many pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -233,9 +233,9 @@
     },
     {
       "id": "real-high-bit-threshold",
-      "name": "hidden: only subarrays containing the high bit qualify",
-      "kind": "real",
-      "visible": false,
+      "name": "only subarrays containing the high bit qualify",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,

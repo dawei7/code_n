@@ -7,130 +7,234 @@
       "name": "sample: split three into three ones",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3},
+      "input": {
+        "n": 3
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "two-operations", "odd-input"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "two-operations",
+        "odd-input"
+      ]
     },
     {
       "id": "sample-four",
       "name": "sample: balanced first split still totals six",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 4},
+      "input": {
+        "n": 4
+      },
       "expected": 6,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "balanced-split", "even-input"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "balanced-split",
+        "even-input"
+      ]
     },
     {
       "id": "trial-one",
       "name": "trial: one is already fully split",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1},
+      "input": {
+        "n": 1
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-input", "zero-cost"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-input",
+        "zero-cost"
+      ]
     },
     {
       "id": "trial-two",
       "name": "trial: the only split costs one",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2},
+      "input": {
+        "n": 2
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-operation", "minimum-split"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-operation",
+        "minimum-split"
+      ]
     },
     {
       "id": "trial-five",
       "name": "trial: the fifth triangular cost",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 5},
+      "input": {
+        "n": 5
+      },
       "expected": 10,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "triangular-number", "odd-input"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "triangular-number",
+        "odd-input"
+      ]
     },
     {
       "id": "trial-seven",
       "name": "trial: several split shapes share cost twenty-one",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 7},
+      "input": {
+        "n": 7
+      },
       "expected": 21,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "split-invariance", "odd-input"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "split-invariance",
+        "odd-input"
+      ]
     },
     {
       "id": "real-six",
-      "name": "hidden: even input triangular cost",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 6},
+      "name": "even input triangular cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6
+      },
       "expected": 15,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "triangular-number", "even-input"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "triangular-number",
+        "even-input"
+      ]
     },
     {
       "id": "real-ten",
-      "name": "hidden: ten ones cost forty-five",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 10},
+      "name": "ten ones cost forty-five",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10
+      },
       "expected": 45,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "two-digit-input", "triangular-number"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "two-digit-input",
+        "triangular-number"
+      ]
     },
     {
       "id": "real-fifty",
-      "name": "hidden: medium even input",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 50},
+      "name": "medium even input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 50
+      },
       "expected": 1225,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "medium-input", "even-input"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "medium-input",
+        "even-input"
+      ]
     },
     {
       "id": "real-one-hundred",
-      "name": "hidden: one hundred parts",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 100},
+      "name": "one hundred parts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100
+      },
       "expected": 4950,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "large-input", "even-input"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "large-input",
+        "even-input"
+      ]
     },
     {
       "id": "real-one-twenty-three",
-      "name": "hidden: non-round odd input",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 123},
+      "name": "non-round odd input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 123
+      },
       "expected": 7503,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "non-round-input", "odd-input"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "non-round-input",
+        "odd-input"
+      ]
     },
     {
       "id": "real-two-fifty-seven",
-      "name": "hidden: value just above a power of two",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 257},
+      "name": "value just above a power of two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 257
+      },
       "expected": 32896,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "large-input", "odd-input"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "large-input",
+        "odd-input"
+      ]
     },
     {
       "id": "real-maximum",
-      "name": "hidden: maximum legal input",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 500},
+      "name": "maximum legal input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 500
+      },
       "expected": 124750,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-input", "boundary"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-input",
+        "boundary"
+      ]
     }
   ]
 }

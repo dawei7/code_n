@@ -127,8 +127,8 @@
     {
       "id": "real-duplicates",
       "name": "real: duplicate weights remain distinct items",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weights": [
           4,
@@ -149,8 +149,8 @@
     {
       "id": "real-skip-disruptive-item",
       "name": "real: skipping an item improves combined fill",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weights": [
           9,
@@ -170,8 +170,8 @@
     {
       "id": "real-unused-capacity",
       "name": "real: optimum leaves unavoidable capacity unused",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weights": [
           6,
@@ -190,8 +190,8 @@
     {
       "id": "real-many-small-items",
       "name": "real: many small items distribute across both bags",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "weights": [
           1,

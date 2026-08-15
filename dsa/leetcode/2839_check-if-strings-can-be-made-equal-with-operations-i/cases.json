@@ -6,81 +6,138 @@
       "name": "sample: both parity pairs are swapped",
       "kind": "sample",
       "visible": true,
-      "input": {"s1": "abcd", "s2": "cdab"},
+      "input": {
+        "s1": "abcd",
+        "s2": "cdab"
+      },
       "expected": true,
-      "tags": ["sample", "both-swaps"]
+      "tags": [
+        "sample",
+        "both-swaps"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: target requires cross-parity movement",
       "kind": "sample",
       "visible": true,
-      "input": {"s1": "abcd", "s2": "dacb"},
+      "input": {
+        "s1": "abcd",
+        "s2": "dacb"
+      },
       "expected": false,
-      "tags": ["sample", "cross-parity"]
+      "tags": [
+        "sample",
+        "cross-parity"
+      ]
     },
     {
       "id": "trial-identical",
       "name": "trial: no operation is needed",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "wxyz", "s2": "wxyz"},
+      "input": {
+        "s1": "wxyz",
+        "s2": "wxyz"
+      },
       "expected": true,
-      "tags": ["trial", "zero-operations"]
+      "tags": [
+        "trial",
+        "zero-operations"
+      ]
     },
     {
       "id": "trial-even-swap",
       "name": "trial: only positions zero and two are swapped",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "abcd", "s2": "cbad"},
+      "input": {
+        "s1": "abcd",
+        "s2": "cbad"
+      },
       "expected": true,
-      "tags": ["trial", "even-swap"]
+      "tags": [
+        "trial",
+        "even-swap"
+      ]
     },
     {
       "id": "trial-odd-swap",
       "name": "trial: only positions one and three are swapped",
       "kind": "trial",
       "visible": true,
-      "input": {"s1": "abcd", "s2": "adcb"},
+      "input": {
+        "s1": "abcd",
+        "s2": "adcb"
+      },
       "expected": true,
-      "tags": ["trial", "odd-swap"]
+      "tags": [
+        "trial",
+        "odd-swap"
+      ]
     },
     {
       "id": "real-overall-anagram-only",
-      "name": "hidden: a global anagram violates parity groups",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "abcd", "s2": "bacd"},
+      "name": "a global anagram violates parity groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "abcd",
+        "s2": "bacd"
+      },
       "expected": false,
-      "tags": ["hidden", "cross-parity", "anagram-trap"]
+      "tags": [
+        "hidden",
+        "cross-parity",
+        "anagram-trap"
+      ]
     },
     {
       "id": "real-duplicate-reachable",
-      "name": "hidden: duplicate characters remain reachable",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "aabb", "s2": "bbaa"},
+      "name": "duplicate characters remain reachable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "aabb",
+        "s2": "bbaa"
+      },
       "expected": true,
-      "tags": ["hidden", "duplicates", "both-swaps"]
+      "tags": [
+        "hidden",
+        "duplicates",
+        "both-swaps"
+      ]
     },
     {
       "id": "real-all-equal",
-      "name": "hidden: all positions contain the same character",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "aaaa", "s2": "aaaa"},
+      "name": "all positions contain the same character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "aaaa",
+        "s2": "aaaa"
+      },
       "expected": true,
-      "tags": ["hidden", "duplicates", "zero-operations"]
+      "tags": [
+        "hidden",
+        "duplicates",
+        "zero-operations"
+      ]
     },
     {
       "id": "real-one-group-differs",
-      "name": "hidden: only one parity multiset differs",
-      "kind": "real",
-      "visible": false,
-      "input": {"s1": "abcd", "s2": "abdc"},
+      "name": "only one parity multiset differs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "abcd",
+        "s2": "abdc"
+      },
       "expected": false,
-      "tags": ["hidden", "parity-mismatch"]
+      "tags": [
+        "hidden",
+        "parity-mismatch"
+      ]
     }
   ]
 }

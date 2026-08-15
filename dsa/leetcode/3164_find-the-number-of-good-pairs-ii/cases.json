@@ -6,108 +6,272 @@
       "name": "sample: several divisibility relations with k one",
       "kind": "sample",
       "visible": true,
-      "input": {"nums1": [1, 3, 4], "nums2": [1, 3, 4], "k": 1},
+      "input": {
+        "nums1": [
+          1,
+          3,
+          4
+        ],
+        "nums2": [
+          1,
+          3,
+          4
+        ],
+        "k": 1
+      },
       "expected": 5,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: only the largest dividend participates",
       "kind": "sample",
       "visible": true,
-      "input": {"nums1": [1, 2, 4, 12], "nums2": [2, 4], "k": 3},
+      "input": {
+        "nums1": [
+          1,
+          2,
+          4,
+          12
+        ],
+        "nums2": [
+          2,
+          4
+        ],
+        "k": 3
+      },
       "expected": 2,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "trial-single-match",
       "name": "trial: one scaled divisor matches exactly",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [6], "nums2": [2], "k": 3},
+      "input": {
+        "nums1": [
+          6
+        ],
+        "nums2": [
+          2
+        ],
+        "k": 3
+      },
       "expected": 1,
-      "tags": ["singleton", "exact-multiple"]
+      "tags": [
+        "singleton",
+        "exact-multiple"
+      ]
     },
     {
       "id": "trial-single-miss",
       "name": "trial: one value is not divisible by k",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [5], "nums2": [1], "k": 3},
+      "input": {
+        "nums1": [
+          5
+        ],
+        "nums2": [
+          1
+        ],
+        "k": 3
+      },
       "expected": 0,
-      "tags": ["singleton", "no-match"]
+      "tags": [
+        "singleton",
+        "no-match"
+      ]
     },
     {
       "id": "trial-duplicates",
       "name": "trial: duplicate values multiply index counts",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [12, 12, 24, 36], "nums2": [1, 2, 2, 3], "k": 2},
+      "input": {
+        "nums1": [
+          12,
+          12,
+          24,
+          36
+        ],
+        "nums2": [
+          1,
+          2,
+          2,
+          3
+        ],
+        "k": 2
+      },
       "expected": 16,
-      "tags": ["duplicates"]
+      "tags": [
+        "duplicates"
+      ]
     },
     {
       "id": "trial-no-value-reaches-k",
       "name": "trial: every first-array value is below k",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [1, 2, 3], "nums2": [1], "k": 4},
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3
+        ],
+        "nums2": [
+          1
+        ],
+        "k": 4
+      },
       "expected": 0,
-      "tags": ["normalization", "no-match"]
+      "tags": [
+        "normalization",
+        "no-match"
+      ]
     },
     {
       "id": "trial-maximum-values",
       "name": "trial: maximum legal values produce one exact pair",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [1000000], "nums2": [1000], "k": 1000},
+      "input": {
+        "nums1": [
+          1000000
+        ],
+        "nums2": [
+          1000
+        ],
+        "k": 1000
+      },
       "expected": 1,
-      "tags": ["boundary", "exact-multiple"]
+      "tags": [
+        "boundary",
+        "exact-multiple"
+      ]
     },
     {
       "id": "real-mixed-normalization",
       "name": "real: eligible and ineligible first-array values mix",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [5, 10, 20, 21], "nums2": [1, 2, 5], "k": 5},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          5,
+          10,
+          20,
+          21
+        ],
+        "nums2": [
+          1,
+          2,
+          5
+        ],
+        "k": 5
+      },
       "expected": 5,
-      "tags": ["real", "normalization"]
+      "tags": [
+        "real",
+        "normalization"
+      ]
     },
     {
       "id": "real-repeated-divisors",
       "name": "real: repeated second-array divisors stay distinct",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [6, 12], "nums2": [1, 1, 2, 3], "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          6,
+          12
+        ],
+        "nums2": [
+          1,
+          1,
+          2,
+          3
+        ],
+        "k": 2
+      },
       "expected": 7,
-      "tags": ["real", "duplicates"]
+      "tags": [
+        "real",
+        "duplicates"
+      ]
     },
     {
       "id": "real-all-ones",
       "name": "real: every ordered index pair is good",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [1, 1, 1], "nums2": [1, 1], "k": 1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          1
+        ],
+        "nums2": [
+          1,
+          1
+        ],
+        "k": 1
+      },
       "expected": 6,
-      "tags": ["real", "all-match"]
+      "tags": [
+        "real",
+        "all-match"
+      ]
     },
     {
       "id": "real-divisor-too-large",
       "name": "real: every candidate divisor exceeds the dividends",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [100, 200], "nums2": [1000000], "k": 1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          100,
+          200
+        ],
+        "nums2": [
+          1000000
+        ],
+        "k": 1
+      },
       "expected": 0,
-      "tags": ["real", "no-match"]
+      "tags": [
+        "real",
+        "no-match"
+      ]
     },
     {
       "id": "real-sparse-multiples",
       "name": "real: sparse matches across several scaled divisors",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [30, 60, 90, 100, 150], "nums2": [3, 5, 10], "k": 3},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          30,
+          60,
+          90,
+          100,
+          150
+        ],
+        "nums2": [
+          3,
+          5,
+          10
+        ],
+        "k": 3
+      },
       "expected": 9,
-      "tags": ["real", "sparse"]
+      "tags": [
+        "real",
+        "sparse"
+      ]
     }
   ]
 }

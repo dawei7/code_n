@@ -2,13 +2,144 @@
   "schema_version": 1,
   "challenge_id": "lc_2403",
   "cases": [
-    {"id":"sample-1","name":"sample: order one four three finishes in four days","kind":"sample","visible":true,"input":{"power":[3,1,4]},"expected":4,"tags":["sample","ordering"]},
-    {"id":"sample-2","name":"sample: duplicate easy monsters raise gain","kind":"sample","visible":true,"input":{"power":[1,1,4]},"expected":4,"tags":["sample","duplicates"]},
-    {"id":"sample-3","name":"sample: four monsters require six days","kind":"sample","visible":true,"input":{"power":[1,2,4,9]},"expected":6,"tags":["sample","ordering"]},
-    {"id":"trial-single","name":"trial: one monster uses gain one","kind":"trial","visible":true,"input":{"power":[7]},"expected":7,"tags":["single"]},
-    {"id":"trial-equal-powers","name":"trial: second equal monster benefits from gain two","kind":"trial","visible":true,"input":{"power":[5,5]},"expected":8,"tags":["duplicates","ceiling"]},
-    {"id":"real-order-sensitive","name":"hidden: easy monster first halves the hard wait","kind":"real","visible":false,"input":{"power":[100,1]},"expected":51,"tags":["hidden","order-sensitive"]},
-    {"id":"real-mixed-ceilings","name":"hidden: several ceiling divisions interact","kind":"real","visible":false,"input":{"power":[2,3,100,101]},"expected":63,"tags":["hidden","ceiling"]},
-    {"id":"real-maximum-power","name":"hidden: maximum power with one monster","kind":"real","visible":false,"input":{"power":[1000000000]},"expected":1000000000,"tags":["hidden","maximum"]}
+    {
+      "id": "sample-1",
+      "name": "sample: order one four three finishes in four days",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "power": [
+          3,
+          1,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "ordering"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: duplicate easy monsters raise gain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "power": [
+          1,
+          1,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: four monsters require six days",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "power": [
+          1,
+          2,
+          4,
+          9
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one monster uses gain one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "power": [
+          7
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "single"
+      ]
+    },
+    {
+      "id": "trial-equal-powers",
+      "name": "trial: second equal monster benefits from gain two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "power": [
+          5,
+          5
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "duplicates",
+        "ceiling"
+      ]
+    },
+    {
+      "id": "real-order-sensitive",
+      "name": "easy monster first halves the hard wait",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "power": [
+          100,
+          1
+        ]
+      },
+      "expected": 51,
+      "tags": [
+        "hidden",
+        "order-sensitive"
+      ]
+    },
+    {
+      "id": "real-mixed-ceilings",
+      "name": "several ceiling divisions interact",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "power": [
+          2,
+          3,
+          100,
+          101
+        ]
+      },
+      "expected": 63,
+      "tags": [
+        "hidden",
+        "ceiling"
+      ]
+    },
+    {
+      "id": "real-maximum-power",
+      "name": "maximum power with one monster",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "power": [
+          1000000000
+        ]
+      },
+      "expected": 1000000000,
+      "tags": [
+        "hidden",
+        "maximum"
+      ]
+    }
   ]
 }

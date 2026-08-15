@@ -2,12 +2,216 @@
   "schema_version": 1,
   "challenge_id": "lc_2140",
   "cases": [
-    {"id": "sample-four-questions", "name": "sample: solve the first and last questions", "kind": "sample", "visible": true, "input": {"questions": [[3,2],[4,3],[4,4],[2,5]]}, "expected": 5, "tags": ["sample", "forced-skips"]},
-    {"id": "sample-five-questions", "name": "sample: skip the first question", "kind": "sample", "visible": true, "input": {"questions": [[1,1],[2,2],[3,3],[4,4],[5,5]]}, "expected": 7, "tags": ["sample", "choice"]},
-    {"id": "trial-single-question", "name": "one question is always worth solving", "kind": "trial", "visible": true, "input": {"questions": [[10,5]]}, "expected": 10, "tags": ["single-question"]},
-    {"id": "trial-alternating-high-values", "name": "nonadjacent high-value questions are combined", "kind": "trial", "visible": true, "input": {"questions": [[2,1],[10,1],[2,1],[10,1]]}, "expected": 20, "tags": ["alternating"]},
-    {"id": "real-first-skips-past-end", "name": "hidden: the first reward beats every later plan", "kind": "real", "visible": false, "input": {"questions": [[20,10],[7,1],[8,1]]}, "expected": 20, "tags": ["hidden", "skip-past-end"]},
-    {"id": "real-all-combinable", "name": "hidden: large brainpower does not matter at the final question", "kind": "real", "visible": false, "input": {"questions": [[5,1],[1,4],[6,1],[1,2],[7,100]]}, "expected": 18, "tags": ["hidden", "suffix"]},
-    {"id": "real-skip-larger-immediate-reward", "name": "hidden: skipping enables a better suffix", "kind": "real", "visible": false, "input": {"questions": [[9,4],[8,1],[8,1],[8,1],[20,1]]}, "expected": 28, "tags": ["hidden", "skip-choice"]}
+    {
+      "id": "sample-four-questions",
+      "name": "sample: solve the first and last questions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "questions": [
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "forced-skips"
+      ]
+    },
+    {
+      "id": "sample-five-questions",
+      "name": "sample: skip the first question",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "questions": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            5,
+            5
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "choice"
+      ]
+    },
+    {
+      "id": "trial-single-question",
+      "name": "one question is always worth solving",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "questions": [
+          [
+            10,
+            5
+          ]
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "single-question"
+      ]
+    },
+    {
+      "id": "trial-alternating-high-values",
+      "name": "nonadjacent high-value questions are combined",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "questions": [
+          [
+            2,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            10,
+            1
+          ]
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-first-skips-past-end",
+      "name": "the first reward beats every later plan",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "questions": [
+          [
+            20,
+            10
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            8,
+            1
+          ]
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "hidden",
+        "skip-past-end"
+      ]
+    },
+    {
+      "id": "real-all-combinable",
+      "name": "large brainpower does not matter at the final question",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "questions": [
+          [
+            5,
+            1
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            7,
+            100
+          ]
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "hidden",
+        "suffix"
+      ]
+    },
+    {
+      "id": "real-skip-larger-immediate-reward",
+      "name": "skipping enables a better suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "questions": [
+          [
+            9,
+            4
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            20,
+            1
+          ]
+        ]
+      },
+      "expected": 28,
+      "tags": [
+        "hidden",
+        "skip-choice"
+      ]
+    }
   ]
 }

@@ -1,13 +1,160 @@
 {
   "challenge_id": "lc_2529",
   "cases": [
-    {"id": "sample-1", "name": "sample: equal positive and negative counts", "kind": "sample", "visible": true, "input": {"nums": [-2, -1, -1, 1, 2, 3]}, "expected": 3, "tags": ["sample", "tie"]},
-    {"id": "sample-2", "name": "sample: negatives with central zeros", "kind": "sample", "visible": true, "input": {"nums": [-3, -2, -1, 0, 0, 1, 2]}, "expected": 3, "tags": ["sample", "zeros"]},
-    {"id": "sample-3", "name": "sample: all positive", "kind": "sample", "visible": true, "input": {"nums": [5, 20, 66, 1314]}, "expected": 4, "tags": ["sample", "all-positive"]},
-    {"id": "trial-all-zero", "name": "trial: zeros count toward neither side", "kind": "trial", "visible": true, "input": {"nums": [0, 0, 0]}, "expected": 0, "tags": ["trial", "all-zero"]},
-    {"id": "trial-single-negative", "name": "trial: one negative value", "kind": "trial", "visible": true, "input": {"nums": [-1]}, "expected": 1, "tags": ["trial", "minimum-length"]},
-    {"id": "real-all-negative", "name": "hidden: all values are negative", "kind": "real", "visible": false, "input": {"nums": [-2000, -10, -1]}, "expected": 3, "tags": ["hidden", "all-negative"]},
-    {"id": "real-one-of-each", "name": "hidden: zero separates one value on each side", "kind": "real", "visible": false, "input": {"nums": [-2000, 0, 2000]}, "expected": 1, "tags": ["hidden", "value-boundaries"]},
-    {"id": "real-many-zeros", "name": "hidden: large zero block between unequal sides", "kind": "real", "visible": false, "input": {"nums": [-5, -4, -3, -2, 0, 0, 0, 1]}, "expected": 4, "tags": ["hidden", "boundary-search"]}
+    {
+      "id": "sample-1",
+      "name": "sample: equal positive and negative counts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          -1,
+          -1,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: negatives with central zeros",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -3,
+          -2,
+          -1,
+          0,
+          0,
+          1,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "zeros"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: all positive",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          20,
+          66,
+          1314
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "all-positive"
+      ]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "trial: zeros count toward neither side",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "all-zero"
+      ]
+    },
+    {
+      "id": "trial-single-negative",
+      "name": "trial: one negative value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "real-all-negative",
+      "name": "all values are negative",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2000,
+          -10,
+          -1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "all-negative"
+      ]
+    },
+    {
+      "id": "real-one-of-each",
+      "name": "zero separates one value on each side",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2000,
+          0,
+          2000
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "value-boundaries"
+      ]
+    },
+    {
+      "id": "real-many-zeros",
+      "name": "large zero block between unequal sides",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          -4,
+          -3,
+          -2,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "boundary-search"
+      ]
+    }
   ]
 }

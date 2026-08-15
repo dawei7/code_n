@@ -1,17 +1,243 @@
 {
   "challenge_id": "lc_2592",
   "cases": [
-    {"id":"sample-1","name":"sample: four positions can be beaten","kind":"sample","visible":true,"input":{"nums":[1,3,5,2,1,3,1]},"expected":4,"tags":["sample","duplicates"]},
-    {"id":"sample-2","name":"sample: all but the maximum can be beaten","kind":"sample","visible":true,"input":{"nums":[1,2,3,4]},"expected":3,"tags":["sample","distinct"]},
-    {"id":"trial-all-equal","name":"trial: equal assignments never win","kind":"trial","visible":true,"input":{"nums":[10,10,10]},"expected":0,"tags":["trial","all-equal"]},
-    {"id":"trial-single","name":"trial: one element cannot beat itself","kind":"trial","visible":true,"input":{"nums":[0]},"expected":0,"tags":["trial","minimum"]},
-    {"id":"real-one-larger","name":"hidden: one larger value beats one repeated minimum","kind":"real","visible":false,"input":{"nums":[1,1,1,2]},"expected":1,"tags":["hidden","dominant-frequency"]},
-    {"id":"real-balanced-pairs","name":"hidden: two equal groups permit two wins","kind":"real","visible":false,"input":{"nums":[1,1,2,2]},"expected":2,"tags":["hidden","balanced-duplicates"]},
-    {"id":"real-three-pairs","name":"hidden: three equal-frequency groups","kind":"real","visible":false,"input":{"nums":[1,1,2,2,3,3]},"expected":4,"tags":["hidden","multiple-groups"]},
-    {"id":"real-zeros-and-distinct","name":"hidden: repeated zeros determine the loss count","kind":"real","visible":false,"input":{"nums":[0,0,1,2,3]},"expected":3,"tags":["hidden","zeros"]},
-    {"id":"real-boundary-values","name":"hidden: minimum and maximum legal values","kind":"real","visible":false,"input":{"nums":[1000000000,0]},"expected":1,"tags":["hidden","value-boundaries"]},
-    {"id":"real-dominant-middle","name":"hidden: the most frequent value need not be smallest","kind":"real","visible":false,"input":{"nums":[1,2,2,2,3,3,4]},"expected":4,"tags":["hidden","dominant-frequency"]},
-    {"id":"real-two-max-groups","name":"hidden: either largest frequency gives the same bound","kind":"real","visible":false,"input":{"nums":[0,0,0,1,1,1,2]},"expected":4,"tags":["hidden","frequency-tie"]},
-    {"id":"real-unsorted","name":"hidden: input order does not affect greatness","kind":"real","visible":false,"input":{"nums":[5,1,5,2,5,3,4]},"expected":4,"tags":["hidden","unsorted","duplicates"]}
+    {
+      "id": "sample-1",
+      "name": "sample: four positions can be beaten",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          2,
+          1,
+          3,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all but the maximum can be beaten",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "distinct"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: equal assignments never win",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          10,
+          10
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "all-equal"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one element cannot beat itself",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "real-one-larger",
+      "name": "one larger value beats one repeated minimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "dominant-frequency"
+      ]
+    },
+    {
+      "id": "real-balanced-pairs",
+      "name": "two equal groups permit two wins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "balanced-duplicates"
+      ]
+    },
+    {
+      "id": "real-three-pairs",
+      "name": "three equal-frequency groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "multiple-groups"
+      ]
+    },
+    {
+      "id": "real-zeros-and-distinct",
+      "name": "repeated zeros determine the loss count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "zeros"
+      ]
+    },
+    {
+      "id": "real-boundary-values",
+      "name": "minimum and maximum legal values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "value-boundaries"
+      ]
+    },
+    {
+      "id": "real-dominant-middle",
+      "name": "the most frequent value need not be smallest",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "dominant-frequency"
+      ]
+    },
+    {
+      "id": "real-two-max-groups",
+      "name": "either largest frequency gives the same bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "frequency-tie"
+      ]
+    },
+    {
+      "id": "real-unsorted",
+      "name": "input order does not affect greatness",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          5,
+          2,
+          5,
+          3,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "unsorted",
+        "duplicates"
+      ]
+    }
   ]
 }

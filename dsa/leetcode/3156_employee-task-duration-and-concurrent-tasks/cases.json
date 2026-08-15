@@ -321,8 +321,8 @@
     {
       "id": "real-disjoint-fractions",
       "name": "real: disjoint fractional spans are summed before flooring",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tasks": [
@@ -366,8 +366,8 @@
     {
       "id": "real-overlap-chain",
       "name": "real: overlap chain never has three active tasks",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tasks": [
@@ -417,8 +417,8 @@
     {
       "id": "real-multiple-employees",
       "name": "real: employees are independent and output is ordered",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tasks": [
@@ -474,8 +474,8 @@
     {
       "id": "real-sub-hour",
       "name": "real: a duration below one hour floors to zero",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tasks": [
@@ -513,8 +513,8 @@
     {
       "id": "real-cross-midnight",
       "name": "real: overlapping tasks cross midnight",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tasks": [
@@ -558,8 +558,8 @@
     {
       "id": "real-triple-peak",
       "name": "real: staggered intervals reach concurrency three",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tasks": [
@@ -614,4 +614,3 @@
     }
   ]
 }
-

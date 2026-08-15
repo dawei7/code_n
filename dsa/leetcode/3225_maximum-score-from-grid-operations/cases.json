@@ -193,8 +193,8 @@
     {
       "id": "real-center-value",
       "name": "real: expose a valuable center-column cell",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -222,8 +222,8 @@
     {
       "id": "real-boundary-values",
       "name": "real: expose values in both boundary columns",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -251,8 +251,8 @@
     {
       "id": "real-diagonal",
       "name": "real: diagonal values need different heights",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -289,8 +289,8 @@
     {
       "id": "real-all-ones-four",
       "name": "real: uniform four-by-four grid",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -327,8 +327,8 @@
     {
       "id": "real-large-values",
       "name": "real: large cell values require wide totals",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -349,8 +349,8 @@
     {
       "id": "real-mixed-four",
       "name": "real: mixed four-by-four values",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

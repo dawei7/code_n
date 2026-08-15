@@ -7,120 +7,216 @@
       "name": "sample: 145 equals its digit-factorial sum",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 145},
+      "input": {
+        "n": 145
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "original-order", "digitorial"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "original-order",
+        "digitorial"
+      ]
     },
     {
       "id": "sample-leading-zero-invalid",
       "name": "sample: 10 fails and 01 is not a valid permutation",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 10},
+      "input": {
+        "n": 10
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "zero-digit", "leading-zero"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "zero-digit",
+        "leading-zero"
+      ]
     },
     {
       "id": "trial-single-one",
       "name": "trial: one is a one-digit digitorial",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1},
+      "input": {
+        "n": 1
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-value", "single-digit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-value",
+        "single-digit"
+      ]
     },
     {
       "id": "trial-single-two",
       "name": "trial: two is a one-digit digitorial",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2},
+      "input": {
+        "n": 2
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-digit", "digitorial"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-digit",
+        "digitorial"
+      ]
     },
     {
       "id": "trial-reordered-145",
       "name": "trial: 154 can be rearranged into 145",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 154},
+      "input": {
+        "n": 154
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "permutation", "reordered-digits"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "permutation",
+        "reordered-digits"
+      ]
     },
     {
       "id": "trial-reversed-145",
       "name": "trial: 541 has the same digits as 145",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 541},
+      "input": {
+        "n": 541
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "permutation", "reversed-order"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "permutation",
+        "reversed-order"
+      ]
     },
     {
       "id": "real-five-digit-digitorial",
-      "name": "hidden: 40585 is digitorial in its original order",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 40585},
+      "name": "40585 is digitorial in its original order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 40585
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "zero-digit", "five-digits"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "zero-digit",
+        "five-digits"
+      ]
     },
     {
       "id": "real-five-digit-permutation",
-      "name": "hidden: 58045 can be rearranged into 40585",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 58045},
+      "name": "58045 can be rearranged into 40585",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 58045
+      },
       "expected": true,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "permutation", "zero-digit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "permutation",
+        "zero-digit"
+      ]
     },
     {
       "id": "real-single-three",
-      "name": "hidden: three factorial does not equal three",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 3},
+      "name": "three factorial does not equal three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "single-digit", "false-case"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "single-digit",
+        "false-case"
+      ]
     },
     {
       "id": "real-two-digit-mismatch",
-      "name": "hidden: 85 has no digitorial ordering",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 85},
+      "name": "85 has no digitorial ordering",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 85
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "two-digits", "factorial-sum"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "two-digits",
+        "factorial-sum"
+      ]
     },
     {
       "id": "real-repeated-zeroes",
-      "name": "hidden: both zero digits contribute one factorial",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 100},
+      "name": "both zero digits contribute one factorial",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "repeated-zero", "leading-zero"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "repeated-zero",
+        "leading-zero"
+      ]
     },
     {
       "id": "real-upper-bound",
-      "name": "hidden: one billion exercises the ten-digit boundary",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000000000},
+      "name": "one billion exercises the ten-digit boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000000
+      },
       "expected": false,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "upper-bound", "ten-digits"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "upper-bound",
+        "ten-digits"
+      ]
     }
   ]
 }

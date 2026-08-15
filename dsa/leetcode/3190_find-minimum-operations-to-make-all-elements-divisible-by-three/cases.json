@@ -89,9 +89,9 @@
     },
     {
       "id": "real-upper-bound-value",
-      "name": "hidden: maximum legal value has remainder two",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum legal value has remainder two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           50
@@ -105,9 +105,9 @@
     },
     {
       "id": "real-all-multiples",
-      "name": "hidden: every legal multiple of three",
-      "kind": "real",
-      "visible": false,
+      "name": "every legal multiple of three",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -136,9 +136,9 @@
     },
     {
       "id": "real-all-remainder-one",
-      "name": "hidden: every legal remainder-one value",
-      "kind": "real",
-      "visible": false,
+      "name": "every legal remainder-one value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -168,9 +168,9 @@
     },
     {
       "id": "real-all-remainder-two",
-      "name": "hidden: every legal remainder-two value",
-      "kind": "real",
-      "visible": false,
+      "name": "every legal remainder-two value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -200,9 +200,9 @@
     },
     {
       "id": "real-duplicate-remainders",
-      "name": "hidden: duplicate values contribute independently",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate values contribute independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -223,9 +223,9 @@
     },
     {
       "id": "real-complete-value-range",
-      "name": "hidden: every value from one through fifty",
-      "kind": "real",
-      "visible": false,
+      "name": "every value from one through fifty",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -289,9 +289,9 @@
     },
     {
       "id": "real-maximum-all-change",
-      "name": "hidden: fifty maximum values all need one operation",
-      "kind": "real",
-      "visible": false,
+      "name": "fifty maximum values all need one operation",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           50,

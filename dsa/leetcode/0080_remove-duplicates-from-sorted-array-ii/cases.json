@@ -1,10 +1,163 @@
 {
   "challenge_id": "lc_80",
   "cases": [
-    {"id": "sample-basic", "name": "sample: remove a third copy", "kind": "sample", "visible": true, "input": {"nums": [1,1,1,2,2,3]}, "expected": {"return_value": 5, "prefix": [1,1,2,2,3]}, "validator": {"kind": "in_place_prefix", "values_param": "nums"}, "tags": ["sample"]},
-    {"id": "sample-long", "name": "sample: several duplicate runs", "kind": "sample", "visible": true, "input": {"nums": [0,0,1,1,1,1,2,3,3]}, "expected": {"return_value": 7, "prefix": [0,0,1,1,2,3,3]}, "validator": {"kind": "in_place_prefix", "values_param": "nums"}, "tags": ["sample"]},
-    {"id": "trial-single", "name": "single value", "kind": "trial", "visible": true, "input": {"nums": [5]}, "expected": {"return_value": 1, "prefix": [5]}, "validator": {"kind": "in_place_prefix", "values_param": "nums"}, "tags": ["boundary"]},
-    {"id": "trial-no-removal", "name": "all runs already legal", "kind": "trial", "visible": true, "input": {"nums": [-2,-2,0,1,1]}, "expected": {"return_value": 5, "prefix": [-2,-2,0,1,1]}, "validator": {"kind": "in_place_prefix", "values_param": "nums"}, "tags": ["identity"]},
-    {"id": "real-all-same", "name": "hidden: one long duplicate run", "kind": "real", "visible": false, "input": {"nums": [7,7,7,7,7,7]}, "expected": {"return_value": 2, "prefix": [7,7]}, "validator": {"kind": "in_place_prefix", "values_param": "nums"}, "tags": ["hidden", "duplicates"]}
+    {
+      "id": "sample-basic",
+      "name": "sample: remove a third copy",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3
+        ]
+      },
+      "expected": {
+        "return_value": 5,
+        "prefix": [
+          1,
+          1,
+          2,
+          2,
+          3
+        ]
+      },
+      "validator": {
+        "kind": "in_place_prefix",
+        "values_param": "nums"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-long",
+      "name": "sample: several duplicate runs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": {
+        "return_value": 7,
+        "prefix": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          3,
+          3
+        ]
+      },
+      "validator": {
+        "kind": "in_place_prefix",
+        "values_param": "nums"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "single value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": {
+        "return_value": 1,
+        "prefix": [
+          5
+        ]
+      },
+      "validator": {
+        "kind": "in_place_prefix",
+        "values_param": "nums"
+      },
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-no-removal",
+      "name": "all runs already legal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          -2,
+          0,
+          1,
+          1
+        ]
+      },
+      "expected": {
+        "return_value": 5,
+        "prefix": [
+          -2,
+          -2,
+          0,
+          1,
+          1
+        ]
+      },
+      "validator": {
+        "kind": "in_place_prefix",
+        "values_param": "nums"
+      },
+      "tags": [
+        "identity"
+      ]
+    },
+    {
+      "id": "real-all-same",
+      "name": "one long duplicate run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": {
+        "return_value": 2,
+        "prefix": [
+          7,
+          7
+        ]
+      },
+      "validator": {
+        "kind": "in_place_prefix",
+        "values_param": "nums"
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    }
   ]
 }

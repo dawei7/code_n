@@ -1,1 +1,194 @@
-{"schema_version":1,"challenge_id":"lc_2742","cases":[{"id":"sample-mixed-times","name":"sample: mixed paid durations","kind":"sample","visible":true,"input":{"cost":[1,2,3,2],"time":[1,2,3,2]},"expected":3,"tags":["sample","knapsack"]},{"id":"sample-equal-times","name":"sample: equal paid durations","kind":"sample","visible":true,"input":{"cost":[2,3,4,2],"time":[1,1,1,1]},"expected":4,"tags":["sample","equal-time"]},{"id":"trial-one-covers-all","name":"trial: one cheap long job covers all walls","kind":"trial","visible":true,"input":{"cost":[10,1,8,7],"time":[1,3,1,1]},"expected":1,"tags":["trial","full-coverage"]},{"id":"real-single-wall","name":"hidden: one wall input","kind":"real","visible":false,"input":{"cost":[5],"time":[500]},"expected":5,"tags":["hidden","length-boundary"]},{"id":"real-coverage-tradeoff","name":"hidden: longer job beats two cheaper-looking choices","kind":"real","visible":false,"input":{"cost":[2,2,3],"time":[1,1,5]},"expected":3,"tags":["hidden","tradeoff"]},{"id":"real-two-cheap-jobs","name":"hidden: two cheap jobs beat long expensive job","kind":"real","visible":false,"input":{"cost":[5,1,1],"time":[3,1,1]},"expected":2,"tags":["hidden","combination"]},{"id":"real-all-unit-times","name":"hidden: choose the cheapest required count","kind":"real","visible":false,"input":{"cost":[8,1,7,2,6],"time":[1,1,1,1,1]},"expected":9,"tags":["hidden","unit-times"]},{"id":"real-cost-boundary","name":"hidden: large costs","kind":"real","visible":false,"input":{"cost":[1000000,999999],"time":[1,1]},"expected":999999,"tags":["hidden","cost-boundary"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2742",
+  "cases": [
+    {
+      "id": "sample-mixed-times",
+      "name": "sample: mixed paid durations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "cost": [
+          1,
+          2,
+          3,
+          2
+        ],
+        "time": [
+          1,
+          2,
+          3,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "knapsack"
+      ]
+    },
+    {
+      "id": "sample-equal-times",
+      "name": "sample: equal paid durations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "cost": [
+          2,
+          3,
+          4,
+          2
+        ],
+        "time": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "equal-time"
+      ]
+    },
+    {
+      "id": "trial-one-covers-all",
+      "name": "trial: one cheap long job covers all walls",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          10,
+          1,
+          8,
+          7
+        ],
+        "time": [
+          1,
+          3,
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "full-coverage"
+      ]
+    },
+    {
+      "id": "real-single-wall",
+      "name": "one wall input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          5
+        ],
+        "time": [
+          500
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "length-boundary"
+      ]
+    },
+    {
+      "id": "real-coverage-tradeoff",
+      "name": "longer job beats two cheaper-looking choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          2,
+          2,
+          3
+        ],
+        "time": [
+          1,
+          1,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "tradeoff"
+      ]
+    },
+    {
+      "id": "real-two-cheap-jobs",
+      "name": "two cheap jobs beat long expensive job",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          5,
+          1,
+          1
+        ],
+        "time": [
+          3,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "combination"
+      ]
+    },
+    {
+      "id": "real-all-unit-times",
+      "name": "choose the cheapest required count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          8,
+          1,
+          7,
+          2,
+          6
+        ],
+        "time": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "unit-times"
+      ]
+    },
+    {
+      "id": "real-cost-boundary",
+      "name": "large costs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          1000000,
+          999999
+        ],
+        "time": [
+          1,
+          1
+        ]
+      },
+      "expected": 999999,
+      "tags": [
+        "hidden",
+        "cost-boundary"
+      ]
+    }
+  ]
+}

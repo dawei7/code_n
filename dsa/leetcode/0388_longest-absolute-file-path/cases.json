@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-shallower-reset",
-      "name": "hidden: return to shallower branch",
-      "kind": "real",
-      "visible": false,
+      "name": "return to shallower branch",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "input": "root\n\tlongdir\n\t\tdeep.txt\n\tx\n\t\twider-name.bin"
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-no-files",
-      "name": "hidden: several directories only",
-      "kind": "real",
-      "visible": false,
+      "name": "several directories only",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "input": "root\n\ta\n\t\tb\n\tc"
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "hidden-multiple-roots",
-      "name": "hidden: root-level file after directory",
-      "kind": "real",
-      "visible": false,
+      "name": "root-level file after directory",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "input": "folder\n\tchild.dat\n\ttiny.txt\noutside.extension"
       },

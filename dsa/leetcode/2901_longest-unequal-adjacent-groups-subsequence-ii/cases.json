@@ -148,9 +148,9 @@
     },
     {
       "id": "real-long-hamming-chain",
-      "name": "hidden: parent links reconstruct the complete compatible chain",
-      "kind": "real",
-      "visible": false,
+      "name": "parent links reconstruct the complete compatible chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "aaa",

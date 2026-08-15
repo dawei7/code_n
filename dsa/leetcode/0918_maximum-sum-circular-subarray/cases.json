@@ -111,9 +111,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: exclude one deep negative",
-      "kind": "real",
-      "visible": false,
+      "name": "exclude one deep negative",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -130,9 +130,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: non-wrapping beats wrap",
-      "kind": "real",
-      "visible": false,
+      "name": "non-wrapping beats wrap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -2,
@@ -150,9 +150,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: repeated alternating values",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated alternating values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -170,9 +170,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: value bounds",
-      "kind": "real",
-      "visible": false,
+      "name": "value bounds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           30000,

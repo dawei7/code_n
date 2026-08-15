@@ -99,9 +99,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: latest possible time",
-      "kind": "real",
-      "visible": false,
+      "name": "latest possible time",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           2,
@@ -118,9 +118,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: repeated nines",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated nines",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -137,9 +137,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: one nonzero digit",
-      "kind": "real",
-      "visible": false,
+      "name": "one nonzero digit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,
@@ -156,9 +156,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: no valid minute",
-      "kind": "real",
-      "visible": false,
+      "name": "no valid minute",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           9,

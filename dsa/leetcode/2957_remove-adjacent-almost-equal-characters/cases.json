@@ -101,8 +101,8 @@
     {
       "id": "real-two-conflict-runs",
       "name": "real: separate conflict runs",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "abcxxyz"
       },
@@ -115,8 +115,8 @@
     {
       "id": "real-overlap-choice",
       "name": "real: one change resolves two overlapping edges",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "abc"
       },
@@ -129,8 +129,8 @@
     {
       "id": "real-alphabet-ends",
       "name": "real: conflicts near both alphabet ends",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "word": "abmmyz"
       },

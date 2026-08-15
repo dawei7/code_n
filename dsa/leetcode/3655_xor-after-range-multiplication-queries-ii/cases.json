@@ -170,8 +170,8 @@
     {
       "id": "real-repeated-multiplier",
       "name": "real: inverse cache sees repeated factors",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -211,8 +211,8 @@
     {
       "id": "real-modular-reduction",
       "name": "real: large products wrap modulo prime",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -243,8 +243,8 @@
     {
       "id": "real-many-residue-classes",
       "name": "real: equal step updates separate residues",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -288,8 +288,8 @@
     {
       "id": "real-short-large-step",
       "name": "real: large step touches only left endpoint",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -316,8 +316,8 @@
     {
       "id": "real-query-reordering-safe",
       "name": "real: grouped processing preserves final products",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -363,8 +363,8 @@
     {
       "id": "real-identity-multipliers",
       "name": "real: identity updates do not affect XOR",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,

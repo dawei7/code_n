@@ -6,108 +6,166 @@
       "name": "sample: fixed leading one limits the second hour digit",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "1?:?4"},
+      "input": {
+        "s": "1?:?4"
+      },
       "expected": "11:54",
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-leading-zero",
       "name": "sample: fixed leading zero permits hour nine",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "0?:5?"},
+      "input": {
+        "s": "0?:5?"
+      },
       "expected": "09:59",
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "trial-all-hidden",
       "name": "trial: every digit is replaceable",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "??:??"},
+      "input": {
+        "s": "??:??"
+      },
       "expected": "11:59",
-      "tags": ["trial", "all-hidden"]
+      "tags": [
+        "trial",
+        "all-hidden"
+      ]
     },
     {
       "id": "trial-second-hour-one",
       "name": "trial: second hour digit one permits a leading one",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "?1:?6"},
+      "input": {
+        "s": "?1:?6"
+      },
       "expected": "11:56",
-      "tags": ["trial", "hour"]
+      "tags": [
+        "trial",
+        "hour"
+      ]
     },
     {
       "id": "trial-second-hour-nine",
       "name": "trial: second hour digit nine forces a leading zero",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "?9:5?"},
+      "input": {
+        "s": "?9:5?"
+      },
       "expected": "09:59",
-      "tags": ["trial", "hour"]
+      "tags": [
+        "trial",
+        "hour"
+      ]
     },
     {
       "id": "trial-second-hour-zero",
       "name": "trial: second hour digit zero permits hour ten",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "?0:40"},
+      "input": {
+        "s": "?0:40"
+      },
       "expected": "10:40",
-      "tags": ["trial", "hour"]
+      "tags": [
+        "trial",
+        "hour"
+      ]
     },
     {
       "id": "real-minute-tens",
       "name": "real: hidden minute tens becomes five",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "10:?8"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "10:?8"
+      },
       "expected": "10:58",
-      "tags": ["real", "minute"]
+      "tags": [
+        "real",
+        "minute"
+      ]
     },
     {
       "id": "real-minute-ones",
       "name": "real: hidden minute ones becomes nine",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "11:1?"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "11:1?"
+      },
       "expected": "11:19",
-      "tags": ["real", "minute"]
+      "tags": [
+        "real",
+        "minute"
+      ]
     },
     {
       "id": "real-no-hidden-latest",
       "name": "real: already-complete latest time remains unchanged",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "11:59"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "11:59"
+      },
       "expected": "11:59",
-      "tags": ["real", "fixed"]
+      "tags": [
+        "real",
+        "fixed"
+      ]
     },
     {
       "id": "real-no-hidden-earliest",
       "name": "real: already-complete earliest time remains unchanged",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "00:00"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "00:00"
+      },
       "expected": "00:00",
-      "tags": ["real", "fixed"]
+      "tags": [
+        "real",
+        "fixed"
+      ]
     },
     {
       "id": "real-fixed-latest-minute",
       "name": "real: fixed latest minute leaves only the hour to maximize",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "??:59"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "??:59"
+      },
       "expected": "11:59",
-      "tags": ["real", "hour"]
+      "tags": [
+        "real",
+        "hour"
+      ]
     },
     {
       "id": "real-fixed-leading-one",
       "name": "real: leading one chooses one for a hidden second digit",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "1?:34"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1?:34"
+      },
       "expected": "11:34",
-      "tags": ["real", "hour"]
+      "tags": [
+        "real",
+        "hour"
+      ]
     }
   ]
 }

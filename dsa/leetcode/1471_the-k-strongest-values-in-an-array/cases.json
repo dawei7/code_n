@@ -136,9 +136,9 @@
     },
     {
       "id": "real-official-median-walkthrough",
-      "name": "hidden: negative extreme outranks positive extreme",
-      "kind": "real",
-      "visible": false,
+      "name": "negative extreme outranks positive extreme",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           6,
@@ -165,9 +165,9 @@
     },
     {
       "id": "real-duplicates-across-median",
-      "name": "hidden: multiplicities survive endpoint selection",
-      "kind": "real",
-      "visible": false,
+      "name": "multiplicities survive endpoint selection",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,
@@ -198,9 +198,9 @@
     },
     {
       "id": "real-all-values",
-      "name": "hidden: requesting the complete multiset",
-      "kind": "real",
-      "visible": false,
+      "name": "requesting the complete multiset",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           4,
@@ -230,9 +230,9 @@
     },
     {
       "id": "real-value-bounds",
-      "name": "hidden: inclusive value bounds and tie-break",
-      "kind": "real",
-      "visible": false,
+      "name": "inclusive value bounds and tie-break",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           -100000,

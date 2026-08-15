@@ -328,9 +328,9 @@
     },
     {
       "id": "real-refund-extends-activity",
-      "name": "hidden: a refund can establish the latest activity date",
-      "kind": "real",
-      "visible": false,
+      "name": "a refund can establish the latest activity date",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "customer_transactions": [
@@ -400,9 +400,9 @@
     },
     {
       "id": "real-one-day-short",
-      "name": "hidden: twenty-nine active days is excluded",
-      "kind": "real",
-      "visible": false,
+      "name": "twenty-nine active days is excluded",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "customer_transactions": [
@@ -447,9 +447,9 @@
     },
     {
       "id": "real-mixed-customer-order",
-      "name": "hidden: filters are independent and result is sorted",
-      "kind": "real",
-      "visible": false,
+      "name": "filters are independent and result is sorted",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "customer_transactions": [

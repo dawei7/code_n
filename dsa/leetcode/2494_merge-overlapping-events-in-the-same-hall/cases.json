@@ -165,9 +165,9 @@
     },
     {
       "id": "real-touching-endpoints",
-      "name": "hidden: equality at an endpoint is overlap",
-      "kind": "real",
-      "visible": false,
+      "name": "equality at an endpoint is overlap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "HallEvents": [
@@ -205,9 +205,9 @@
     },
     {
       "id": "real-consecutive-days",
-      "name": "hidden: consecutive non-touching dates remain separate",
-      "kind": "real",
-      "visible": false,
+      "name": "consecutive non-touching dates remain separate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "HallEvents": [
@@ -250,9 +250,9 @@
     },
     {
       "id": "real-nested-mask",
-      "name": "hidden: a nested short event must not hide the running maximum",
-      "kind": "real",
-      "visible": false,
+      "name": "a nested short event must not hide the running maximum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "HallEvents": [
@@ -306,9 +306,9 @@
     },
     {
       "id": "real-same-start",
-      "name": "hidden: equal starts with different ends stay in one island",
-      "kind": "real",
-      "visible": false,
+      "name": "equal starts with different ends stay in one island",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "HallEvents": [
@@ -351,9 +351,9 @@
     },
     {
       "id": "real-independent-halls",
-      "name": "hidden: identical dates in different halls are independent",
-      "kind": "real",
-      "visible": false,
+      "name": "identical dates in different halls are independent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "HallEvents": [
@@ -412,4 +412,3 @@
     }
   ]
 }
-

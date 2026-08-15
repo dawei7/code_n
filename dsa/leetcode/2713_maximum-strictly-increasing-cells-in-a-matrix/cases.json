@@ -1,1 +1,244 @@
-{"challenge_id":"lc_2713","cases":[{"id":"sample-1","name":"sample: increasing through row or column","kind":"sample","visible":true,"input":{"mat":[[3,1],[3,4]]},"expected":2,"tags":["sample","matrix"]},{"id":"sample-2","name":"sample: equal values cannot chain","kind":"sample","visible":true,"input":{"mat":[[1,1],[1,1]]},"expected":1,"tags":["sample","equal"]},{"id":"sample-3","name":"sample: negative start and alternating moves","kind":"sample","visible":true,"input":{"mat":[[3,1,6],[-9,5,7]]},"expected":4,"tags":["sample","negative"]},{"id":"trial-single-cell","name":"trial: one cell","kind":"trial","visible":true,"input":{"mat":[[42]]},"expected":1,"tags":["trial","minimum"]},{"id":"trial-one-row","name":"trial: one row with distinct values","kind":"trial","visible":true,"input":{"mat":[[4,2,5,1]]},"expected":4,"tags":["trial","row"]},{"id":"real-one-column","name":"hidden: one column with distinct values","kind":"real","visible":false,"input":{"mat":[[4],[2],[5],[1]]},"expected":4,"tags":["hidden","column"]},{"id":"real-equal-value-batch","name":"hidden: equal values must not update each other","kind":"real","visible":false,"input":{"mat":[[1,2],[2,3]]},"expected":3,"tags":["hidden","duplicates"]},{"id":"real-negative-grid","name":"hidden: ordered negative values","kind":"real","visible":false,"input":{"mat":[[-5,-4],[-3,-2]]},"expected":3,"tags":["hidden","negative"]},{"id":"real-full-snake","name":"hidden: all nine values form a sequence","kind":"real","visible":false,"input":{"mat":[[1,2,3],[6,5,4],[7,8,9]]},"expected":9,"tags":["hidden","long-path"]},{"id":"real-rectangular-duplicates","name":"hidden: rectangular matrix with duplicates","kind":"real","visible":false,"input":{"mat":[[5,1,5],[2,4,3]]},"expected":3,"tags":["hidden","rectangular","duplicates"]}]}
+{
+  "challenge_id": "lc_2713",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: increasing through row or column",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "matrix"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: equal values cannot chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "equal"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: negative start and alternating moves",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            3,
+            1,
+            6
+          ],
+          [
+            -9,
+            5,
+            7
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "trial: one cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            42
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-one-row",
+      "name": "trial: one row with distinct values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            4,
+            2,
+            5,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "row"
+      ]
+    },
+    {
+      "id": "real-one-column",
+      "name": "one column with distinct values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            4
+          ],
+          [
+            2
+          ],
+          [
+            5
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "column"
+      ]
+    },
+    {
+      "id": "real-equal-value-batch",
+      "name": "equal values must not update each other",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-negative-grid",
+      "name": "ordered negative values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            -5,
+            -4
+          ],
+          [
+            -3,
+            -2
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    },
+    {
+      "id": "real-full-snake",
+      "name": "all nine values form a sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            6,
+            5,
+            4
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "long-path"
+      ]
+    },
+    {
+      "id": "real-rectangular-duplicates",
+      "name": "rectangular matrix with duplicates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            5,
+            1,
+            5
+          ],
+          [
+            2,
+            4,
+            3
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "rectangular",
+        "duplicates"
+      ]
+    }
+  ]
+}

@@ -7,81 +7,213 @@
       "name": "sample: target first appears at cap three",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 3, 2, 4], "k": 5},
-      "expected": [false, false, true, true],
-      "tags": ["sample", "mixed-values"]
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          4
+        ],
+        "k": 5
+      },
+      "expected": [
+        false,
+        false,
+        true,
+        true
+      ],
+      "tags": [
+        "sample",
+        "mixed-values"
+      ]
     },
     {
       "id": "sample-target-three",
       "name": "sample: every cap can form three",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4, 5], "k": 3},
-      "expected": [true, true, true, true, true],
-      "tags": ["sample", "all-true"]
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "k": 3
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "sample",
+        "all-true"
+      ]
     },
     {
       "id": "trial-singleton",
       "name": "trial: singleton reaches its only target",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1], "k": 1},
-      "expected": [true],
-      "tags": ["trial", "singleton"]
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 1
+      },
+      "expected": [
+        true
+      ],
+      "tags": [
+        "trial",
+        "singleton"
+      ]
     },
     {
       "id": "trial-target-one-transition",
       "name": "trial: target one disappears after the first cap",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 2], "k": 1},
-      "expected": [true, false],
-      "tags": ["trial", "duplicates", "transition"]
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "k": 1
+      },
+      "expected": [
+        true,
+        false
+      ],
+      "tags": [
+        "trial",
+        "duplicates",
+        "transition"
+      ]
     },
     {
       "id": "trial-no-cap-works",
       "name": "trial: duplicate twos never form three",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 2], "k": 3},
-      "expected": [false, false],
-      "tags": ["trial", "all-false"]
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "k": 3
+      },
+      "expected": [
+        false,
+        false
+      ],
+      "tags": [
+        "trial",
+        "all-false"
+      ]
     },
     {
       "id": "real-capped-copy-completes-target",
-      "name": "hidden: capped copies first complete six at cap two",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 4, 4, 2], "k": 6},
-      "expected": [false, true, true, true],
-      "tags": ["hidden", "capped-copies"]
+      "name": "capped copies first complete six at cap two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          4,
+          2
+        ],
+        "k": 6
+      },
+      "expected": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "hidden",
+        "capped-copies"
+      ]
     },
     {
       "id": "real-answer-can-disappear",
-      "name": "hidden: feasibility is not monotonic as the cap grows",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 1, 4, 1], "k": 3},
-      "expected": [true, true, true, false],
-      "tags": ["hidden", "non-monotonic"]
+      "name": "feasibility is not monotonic as the cap grows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          4,
+          1
+        ],
+        "k": 3
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "hidden",
+        "non-monotonic"
+      ]
     },
     {
       "id": "real-only-original-values-work",
-      "name": "hidden: target appears only at the final cap",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 3, 3], "k": 5},
-      "expected": [false, false, true],
-      "tags": ["hidden", "final-cap"]
+      "name": "target appears only at the final cap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          3
+        ],
+        "k": 5
+      },
+      "expected": [
+        false,
+        false,
+        true
+      ],
+      "tags": [
+        "hidden",
+        "final-cap"
+      ]
     },
     {
       "id": "real-all-ones-full-target",
-      "name": "hidden: all positions are required to form four",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 1, 1], "k": 4},
-      "expected": [true, true, true, true],
-      "tags": ["hidden", "duplicates", "all-elements"]
+      "name": "all positions are required to form four",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 4
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "hidden",
+        "duplicates",
+        "all-elements"
+      ]
     }
   ]
 }

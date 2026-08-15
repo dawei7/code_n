@@ -160,9 +160,9 @@
     },
     {
       "id": "real-second-water-choice",
-      "name": "hidden: choose a short later-opening water ride",
-      "kind": "real",
-      "visible": false,
+      "name": "choose a short later-opening water ride",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "landStartTime": [
           2
@@ -187,9 +187,9 @@
     },
     {
       "id": "real-second-land-choice",
-      "name": "hidden: choose a short later-opening land ride",
-      "kind": "real",
-      "visible": false,
+      "name": "choose a short later-opening land ride",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "landStartTime": [
           1,
@@ -214,9 +214,9 @@
     },
     {
       "id": "real-water-first",
-      "name": "hidden: the water-first order is optimal",
-      "kind": "real",
-      "visible": false,
+      "name": "the water-first order is optimal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "landStartTime": [
           5,
@@ -243,9 +243,9 @@
     },
     {
       "id": "real-land-first",
-      "name": "hidden: the land-first order is optimal",
-      "kind": "real",
-      "visible": false,
+      "name": "the land-first order is optimal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "landStartTime": [
           1,
@@ -272,9 +272,9 @@
     },
     {
       "id": "real-many-options",
-      "name": "hidden: compare several openings and durations",
-      "kind": "real",
-      "visible": false,
+      "name": "compare several openings and durations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "landStartTime": [
           4,
@@ -305,9 +305,9 @@
     },
     {
       "id": "real-upper-values",
-      "name": "hidden: values at the enlarged upper bound",
-      "kind": "real",
-      "visible": false,
+      "name": "values at the enlarged upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "landStartTime": [
           100000,

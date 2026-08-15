@@ -128,9 +128,9 @@
     },
     {
       "id": "real-one-full-distinct-group",
-      "name": "hidden: k equals n and all values differ",
-      "kind": "real",
-      "visible": false,
+      "name": "k equals n and all values differ",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -149,9 +149,9 @@
     },
     {
       "id": "real-one-full-duplicate-group",
-      "name": "hidden: k equals n with a duplicate",
-      "kind": "real",
-      "visible": false,
+      "name": "k equals n with a duplicate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -171,9 +171,9 @@
     },
     {
       "id": "real-several-frequencies-fit",
-      "name": "hidden: several values fill all groups",
-      "kind": "real",
-      "visible": false,
+      "name": "several values fill all groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

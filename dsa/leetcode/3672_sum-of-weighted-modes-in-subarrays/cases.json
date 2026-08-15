@@ -124,9 +124,9 @@
     },
     {
       "id": "real-outgoing-mode",
-      "name": "hidden: removing the mode changes the winner",
-      "kind": "real",
-      "visible": false,
+      "name": "removing the mode changes the winner",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -146,9 +146,9 @@
     },
     {
       "id": "real-value-boundary",
-      "name": "hidden: tied maximum-domain values choose the smaller",
-      "kind": "real",
-      "visible": false,
+      "name": "tied maximum-domain values choose the smaller",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -165,9 +165,9 @@
     },
     {
       "id": "real-many-ties",
-      "name": "hidden: increasing distinct windows use their first value",
-      "kind": "real",
-      "visible": false,
+      "name": "increasing distinct windows use their first value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

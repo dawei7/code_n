@@ -1,14 +1,265 @@
-{"schema_version":1,"challenge_id":"lc_3732","cases":[
-{"id":"sample-mixed-signs","name":"sample: a negative replacement completes a positive product","kind":"sample","visible":true,"input":{"nums":[-5,7,0]},"expected":3500000,"validator":{"kind":"exact"},"tags":["sample","negative-replacement"]},
-{"id":"sample-all-negative","name":"sample: two negative magnitudes pair with a positive replacement","kind":"sample","visible":true,"input":{"nums":[-4,-2,-1,-3]},"expected":1200000,"validator":{"kind":"exact"},"tags":["sample","negative-values"]},
-{"id":"sample-two-zeros","name":"sample: one zero necessarily remains in a three-element product","kind":"sample","visible":true,"input":{"nums":[0,10,0]},"expected":0,"validator":{"kind":"exact"},"tags":["sample","zeros"]},
-{"id":"trial-three-positive","name":"trial: the two largest positive magnitudes remain","kind":"trial","visible":true,"input":{"nums":[1,2,3]},"expected":600000,"validator":{"kind":"exact"},"tags":["trial","positive-values"]},
-{"id":"trial-one-zero","name":"trial: replace the zero and retain both nonzero factors","kind":"trial","visible":true,"input":{"nums":[0,2,3]},"expected":600000,"validator":{"kind":"exact"},"tags":["trial","zero"]},
-{"id":"trial-repeated-magnitude","name":"trial: equal magnitudes at distinct indices both contribute","kind":"trial","visible":true,"input":{"nums":[-5,5,1]},"expected":2500000,"validator":{"kind":"exact"},"tags":["trial","repeated-magnitude"]},
-{"id":"real-all-zeros","name":"hidden: replacing one of several zeros still leaves zero factors","kind":"real","visible":false,"input":{"nums":[0,0,0,0]},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","zeros"]},
-{"id":"real-one-nonzero-many-zeros","name":"hidden: no pair of nonzero original factors exists","kind":"real","visible":false,"input":{"nums":[0,0,-9,0]},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","zeros"]},
-{"id":"real-sign-choice","name":"hidden: opposite signs use a negative replacement","kind":"real","visible":false,"input":{"nums":[-8,7,2,1]},"expected":5600000,"validator":{"kind":"exact"},"tags":["hidden","mixed-signs"]},
-{"id":"real-maximum-boundaries","name":"hidden: three maximum magnitudes reach the product bound","kind":"real","visible":false,"input":{"nums":[-100000,100000,100000]},"expected":1000000000000000,"validator":{"kind":"exact"},"tags":["hidden","value-boundary"]},
-{"id":"real-replacement-may-overwrite-unused","name":"hidden: the best original pair survives in a longer array","kind":"real","visible":false,"input":{"nums":[9,-10,1,2]},"expected":9000000,"validator":{"kind":"exact"},"tags":["hidden","distinct-indices"]},
-{"id":"real-small-negative-values","name":"hidden: absolute magnitude determines the retained pair","kind":"real","visible":false,"input":{"nums":[-1,-2,-3,-4,-5]},"expected":2000000,"validator":{"kind":"exact"},"tags":["hidden","negative-values"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3732",
+  "cases": [
+    {
+      "id": "sample-mixed-signs",
+      "name": "sample: a negative replacement completes a positive product",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          7,
+          0
+        ]
+      },
+      "expected": 3500000,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "negative-replacement"
+      ]
+    },
+    {
+      "id": "sample-all-negative",
+      "name": "sample: two negative magnitudes pair with a positive replacement",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -4,
+          -2,
+          -1,
+          -3
+        ]
+      },
+      "expected": 1200000,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "negative-values"
+      ]
+    },
+    {
+      "id": "sample-two-zeros",
+      "name": "sample: one zero necessarily remains in a three-element product",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          10,
+          0
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "zeros"
+      ]
+    },
+    {
+      "id": "trial-three-positive",
+      "name": "trial: the two largest positive magnitudes remain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 600000,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "positive-values"
+      ]
+    },
+    {
+      "id": "trial-one-zero",
+      "name": "trial: replace the zero and retain both nonzero factors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          2,
+          3
+        ]
+      },
+      "expected": 600000,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-repeated-magnitude",
+      "name": "trial: equal magnitudes at distinct indices both contribute",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          5,
+          1
+        ]
+      },
+      "expected": 2500000,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "repeated-magnitude"
+      ]
+    },
+    {
+      "id": "real-all-zeros",
+      "name": "replacing one of several zeros still leaves zero factors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "zeros"
+      ]
+    },
+    {
+      "id": "real-one-nonzero-many-zeros",
+      "name": "no pair of nonzero original factors exists",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          -9,
+          0
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "zeros"
+      ]
+    },
+    {
+      "id": "real-sign-choice",
+      "name": "opposite signs use a negative replacement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -8,
+          7,
+          2,
+          1
+        ]
+      },
+      "expected": 5600000,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "mixed-signs"
+      ]
+    },
+    {
+      "id": "real-maximum-boundaries",
+      "name": "three maximum magnitudes reach the product bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -100000,
+          100000,
+          100000
+        ]
+      },
+      "expected": 1000000000000000,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-replacement-may-overwrite-unused",
+      "name": "the best original pair survives in a longer array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          -10,
+          1,
+          2
+        ]
+      },
+      "expected": 9000000,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "distinct-indices"
+      ]
+    },
+    {
+      "id": "real-small-negative-values",
+      "name": "absolute magnitude determines the retained pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          -3,
+          -4,
+          -5
+        ]
+      },
+      "expected": 2000000,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "negative-values"
+      ]
+    }
+  ]
+}

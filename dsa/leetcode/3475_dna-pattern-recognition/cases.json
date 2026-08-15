@@ -273,9 +273,9 @@
     },
     {
       "id": "real-start-anchor",
-      "name": "hidden: ATG must begin at the first character",
-      "kind": "real",
-      "visible": false,
+      "name": "ATG must begin at the first character",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Samples": [
@@ -330,9 +330,9 @@
     },
     {
       "id": "real-overlapping-atat",
-      "name": "hidden: overlapping ATAT occurrences still produce one presence flag",
-      "kind": "real",
-      "visible": false,
+      "name": "overlapping ATAT occurrences still produce one presence flag",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Samples": [
@@ -388,9 +388,9 @@
     },
     {
       "id": "real-consecutive-g",
-      "name": "hidden: only at least three consecutive G characters qualify",
-      "kind": "real",
-      "visible": false,
+      "name": "only at least three consecutive G characters qualify",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Samples": [
@@ -473,9 +473,9 @@
     },
     {
       "id": "real-independent-boundaries",
-      "name": "hidden: internal codons do not imply start or stop flags",
-      "kind": "real",
-      "visible": false,
+      "name": "internal codons do not imply start or stop flags",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Samples": [

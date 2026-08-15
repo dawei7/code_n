@@ -92,9 +92,9 @@
     },
     {
       "id": "real-ten-distinct",
-      "name": "hidden: all ten digits remain incompatible beyond one",
-      "kind": "real",
-      "visible": false,
+      "name": "all ten digits remain incompatible beyond one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "0123456789"
       },
@@ -107,9 +107,9 @@
     },
     {
       "id": "real-all-even",
-      "name": "hidden: five digit pairs make the whole string valid",
-      "kind": "real",
-      "visible": false,
+      "name": "five digit pairs make the whole string valid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "1122334455"
       },
@@ -122,9 +122,9 @@
     },
     {
       "id": "real-short-interior",
-      "name": "hidden: a repeated digit produces a short internal optimum",
-      "kind": "real",
-      "visible": false,
+      "name": "a repeated digit produces a short internal optimum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "0123400"
       },
@@ -137,9 +137,9 @@
     },
     {
       "id": "real-symmetric-counts",
-      "name": "hidden: mixed symmetric counts use the entire string",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed symmetric counts use the entire string",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "00123443210"
       },

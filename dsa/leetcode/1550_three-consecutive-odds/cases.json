@@ -124,9 +124,9 @@
     },
     {
       "id": "real-run-at-start",
-      "name": "hidden: qualifying block begins at zero",
-      "kind": "real",
-      "visible": false,
+      "name": "qualifying block begins at zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           9,
@@ -145,9 +145,9 @@
     },
     {
       "id": "real-run-at-end",
-      "name": "hidden: qualifying block ends at final position",
-      "kind": "real",
-      "visible": false,
+      "name": "qualifying block ends at final position",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           2,
@@ -167,9 +167,9 @@
     },
     {
       "id": "real-four-odds",
-      "name": "hidden: longer odd run qualifies",
-      "kind": "real",
-      "visible": false,
+      "name": "longer odd run qualifies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           2,
@@ -189,9 +189,9 @@
     },
     {
       "id": "real-alternating",
-      "name": "hidden: alternating parity never reaches three",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating parity never reaches three",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -212,9 +212,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: parity of upper-range values",
-      "kind": "real",
-      "visible": false,
+      "name": "parity of upper-range values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           999,
@@ -232,9 +232,9 @@
     },
     {
       "id": "real-many-pairs",
-      "name": "hidden: repeated runs of exactly two",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated runs of exactly two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,

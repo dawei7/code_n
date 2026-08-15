@@ -139,8 +139,8 @@
     {
       "id": "real-coordinate-bounds",
       "name": "real: two intervals span both numeric bounds",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "start": [
           0,
@@ -157,8 +157,8 @@
     {
       "id": "real-many-duplicates",
       "name": "real: five identical intervals share integer points",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "start": [
           7,
@@ -178,8 +178,8 @@
     {
       "id": "real-tight-middle-interval",
       "name": "real: a tight middle position limits both sides",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "start": [
           0,
@@ -197,8 +197,8 @@
     {
       "id": "real-separated-overlaps",
       "name": "real: mixed separated and overlapping ranges",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "start": [
           20,
@@ -218,8 +218,8 @@
     {
       "id": "real-large-offset",
       "name": "real: translation does not change attainable gaps",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "start": [
           999999900,

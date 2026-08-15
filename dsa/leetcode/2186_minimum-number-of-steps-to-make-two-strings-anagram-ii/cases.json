@@ -2,13 +2,124 @@
   "schema_version": 1,
   "challenge_id": "lc_2186",
   "cases": [
-    {"id":"sample-seven","name":"sample: both strings need appended letters","kind":"sample","visible":true,"input":{"s":"leetcode","t":"coats"},"expected":7,"tags":["sample","both-directions"]},
-    {"id":"sample-anagrams","name":"sample: reordered strings already match","kind":"sample","visible":true,"input":{"s":"night","t":"thing"},"expected":0,"tags":["sample","already-anagrams"]},
-    {"id":"trial-single-disjoint","name":"different single letters require two appends","kind":"trial","visible":true,"input":{"s":"a","t":"b"},"expected":2,"tags":["minimum","disjoint"]},
-    {"id":"trial-same-letter","name":"only the shorter repeated-letter string changes","kind":"trial","visible":true,"input":{"s":"a","t":"aaa"},"expected":2,"tags":["length-difference"]},
-    {"id":"trial-overlap","name":"shared letters cancel before excesses are counted","kind":"trial","visible":true,"input":{"s":"abc","t":"cde"},"expected":4,"tags":["partial-overlap"]},
-    {"id":"real-identical","name":"hidden: identical strings need no operation","kind":"real","visible":false,"input":{"s":"algorithm","t":"algorithm"},"expected":0,"tags":["hidden","identical"]},
-    {"id":"real-duplicates","name":"hidden: multiplicities rather than membership determine cost","kind":"real","visible":false,"input":{"s":"aabbbbcc","t":"aaabccccc"},"expected":7,"tags":["hidden","multiplicity"]},
-    {"id":"real-disjoint","name":"hidden: disjoint strings require their combined length","kind":"real","visible":false,"input":{"s":"aaaa","t":"bbbbbb"},"expected":10,"tags":["hidden","disjoint","unequal-lengths"]}
+    {
+      "id": "sample-seven",
+      "name": "sample: both strings need appended letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "leetcode",
+        "t": "coats"
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "both-directions"
+      ]
+    },
+    {
+      "id": "sample-anagrams",
+      "name": "sample: reordered strings already match",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "night",
+        "t": "thing"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "already-anagrams"
+      ]
+    },
+    {
+      "id": "trial-single-disjoint",
+      "name": "different single letters require two appends",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "t": "b"
+      },
+      "expected": 2,
+      "tags": [
+        "minimum",
+        "disjoint"
+      ]
+    },
+    {
+      "id": "trial-same-letter",
+      "name": "only the shorter repeated-letter string changes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "t": "aaa"
+      },
+      "expected": 2,
+      "tags": [
+        "length-difference"
+      ]
+    },
+    {
+      "id": "trial-overlap",
+      "name": "shared letters cancel before excesses are counted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "t": "cde"
+      },
+      "expected": 4,
+      "tags": [
+        "partial-overlap"
+      ]
+    },
+    {
+      "id": "real-identical",
+      "name": "identical strings need no operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "algorithm",
+        "t": "algorithm"
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "identical"
+      ]
+    },
+    {
+      "id": "real-duplicates",
+      "name": "multiplicities rather than membership determine cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabbbbcc",
+        "t": "aaabccccc"
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "multiplicity"
+      ]
+    },
+    {
+      "id": "real-disjoint",
+      "name": "disjoint strings require their combined length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa",
+        "t": "bbbbbb"
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "disjoint",
+        "unequal-lengths"
+      ]
+    }
   ]
 }

@@ -1,13 +1,153 @@
 {
   "challenge_id": "lc_2683",
   "cases": [
-    {"id":"sample-three","name":"sample: three values close consistently","kind":"sample","visible":true,"input":{"derived":[1,1,0]},"expected":true,"tags":["sample","valid"]},
-    {"id":"sample-pair-valid","name":"sample: pair has even XOR parity","kind":"sample","visible":true,"input":{"derived":[1,1]},"expected":true,"tags":["sample","pair"]},
-    {"id":"sample-pair-invalid","name":"sample: pair has odd XOR parity","kind":"sample","visible":true,"input":{"derived":[1,0]},"expected":false,"tags":["sample","invalid"]},
-    {"id":"trial-single-zero","name":"trial: one circular edge must be zero","kind":"trial","visible":true,"input":{"derived":[0]},"expected":true,"tags":["single","boundary"]},
-    {"id":"trial-single-one","name":"trial: one cannot XOR with itself to one","kind":"trial","visible":true,"input":{"derived":[1]},"expected":false,"tags":["single","invalid"]},
-    {"id":"trial-all-zero","name":"trial: all equal original bits produce zeros","kind":"trial","visible":true,"input":{"derived":[0,0,0,0,0]},"expected":true,"tags":["zeros"]},
-    {"id":"real-even-ones","name":"hidden: an even number of set bits is valid","kind":"real","visible":false,"input":{"derived":[1,0,1,1,0,1,0]},"expected":true,"tags":["hidden","parity"]},
-    {"id":"real-odd-ones","name":"hidden: an odd number of set bits is invalid","kind":"real","visible":false,"input":{"derived":[1,1,0,1,0,0,0,0]},"expected":false,"tags":["hidden","parity"]}
+    {
+      "id": "sample-three",
+      "name": "sample: three values close consistently",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "derived": [
+          1,
+          1,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "valid"
+      ]
+    },
+    {
+      "id": "sample-pair-valid",
+      "name": "sample: pair has even XOR parity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "derived": [
+          1,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "pair"
+      ]
+    },
+    {
+      "id": "sample-pair-invalid",
+      "name": "sample: pair has odd XOR parity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "derived": [
+          1,
+          0
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "invalid"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: one circular edge must be zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "derived": [
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "single",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "trial: one cannot XOR with itself to one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "derived": [
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "single",
+        "invalid"
+      ]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "trial: all equal original bits produce zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "derived": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "zeros"
+      ]
+    },
+    {
+      "id": "real-even-ones",
+      "name": "an even number of set bits is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "derived": [
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "parity"
+      ]
+    },
+    {
+      "id": "real-odd-ones",
+      "name": "an odd number of set bits is invalid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "derived": [
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "parity"
+      ]
+    }
   ]
 }

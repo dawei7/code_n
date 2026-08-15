@@ -7,72 +7,166 @@
       "name": "sample: choose the longer of two valid moves",
       "kind": "sample",
       "visible": true,
-      "input": { "forts": [1,0,0,-1,0,0,0,0,1] },
+      "input": {
+        "forts": [
+          1,
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "multiple-segments"]
+      "tags": [
+        "sample",
+        "multiple-segments"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: adjacent endpoints capture no enemies",
       "kind": "sample",
       "visible": true,
-      "input": { "forts": [0,0,1,-1] },
+      "input": {
+        "forts": [
+          0,
+          0,
+          1,
+          -1
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "adjacent-endpoints"]
+      "tags": [
+        "sample",
+        "adjacent-endpoints"
+      ]
     },
     {
       "id": "trial-reverse-direction",
       "name": "trial: move leftward from an owned fort",
       "kind": "trial",
       "visible": true,
-      "input": { "forts": [-1,0,0,1] },
+      "input": {
+        "forts": [
+          -1,
+          0,
+          0,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "reverse-direction"]
+      "tags": [
+        "trial",
+        "reverse-direction"
+      ]
     },
     {
       "id": "trial-same-boundaries",
       "name": "trial: two owned forts do not form a valid move",
       "kind": "trial",
       "visible": true,
-      "input": { "forts": [1,0,0,0,1] },
+      "input": {
+        "forts": [
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "same-boundary-type"]
+      "tags": [
+        "trial",
+        "same-boundary-type"
+      ]
     },
     {
       "id": "trial-several-gaps",
       "name": "trial: select the widest opposite-boundary gap",
       "kind": "trial",
       "visible": true,
-      "input": { "forts": [-1,0,1,0,0,0,-1,0,1] },
+      "input": {
+        "forts": [
+          -1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          -1,
+          0,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "maximum-gap"]
+      "tags": [
+        "trial",
+        "maximum-gap"
+      ]
     },
     {
       "id": "real-single-owned-fort",
-      "name": "hidden: owned fort without an empty destination",
-      "kind": "real",
-      "visible": false,
-      "input": { "forts": [1] },
+      "name": "owned fort without an empty destination",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "forts": [
+          1
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden", "minimum-length"]
+      "tags": [
+        "hidden",
+        "minimum-length"
+      ]
     },
     {
       "id": "real-only-enemies",
-      "name": "hidden: no owned fort or empty destination",
-      "kind": "real",
-      "visible": false,
-      "input": { "forts": [0,0,0,0] },
+      "name": "no owned fort or empty destination",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "forts": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden", "no-boundaries"]
+      "tags": [
+        "hidden",
+        "no-boundaries"
+      ]
     },
     {
       "id": "real-empty-boundary-interruption",
-      "name": "hidden: an empty position ends the current enemy run",
-      "kind": "real",
-      "visible": false,
-      "input": { "forts": [1,0,-1,0,0,-1,0,0,0,1] },
+      "name": "an empty position ends the current enemy run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "forts": [
+          1,
+          0,
+          -1,
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["hidden", "boundary-reset"]
+      "tags": [
+        "hidden",
+        "boundary-reset"
+      ]
     }
   ]
 }

@@ -123,9 +123,9 @@
     },
     {
       "id": "real-unsorted-ids",
-      "name": "hidden: dates and ids use different orders",
-      "kind": "real",
-      "visible": false,
+      "name": "dates and ids use different orders",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Weather": [

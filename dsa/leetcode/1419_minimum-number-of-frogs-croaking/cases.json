@@ -73,9 +73,9 @@
     },
     {
       "id": "real-incomplete",
-      "name": "hidden: ordered but incomplete ending",
-      "kind": "real",
-      "visible": false,
+      "name": "ordered but incomplete ending",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "croakOfFrogs": "croakcroa"
       },
@@ -87,9 +87,9 @@
     },
     {
       "id": "real-premature",
-      "name": "hidden: later stage has no predecessor",
-      "kind": "real",
-      "visible": false,
+      "name": "later stage has no predecessor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "croakOfFrogs": "croakrcaok"
       },

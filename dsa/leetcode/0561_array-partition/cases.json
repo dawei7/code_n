@@ -99,9 +99,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: mixed signs and duplicates",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed signs and duplicates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -10,
@@ -120,9 +120,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: alternating high and low values",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating high and low values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -141,9 +141,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: consecutive values around zero",
-      "kind": "real",
-      "visible": false,
+      "name": "consecutive values around zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -1,
@@ -160,4 +160,3 @@
     }
   ]
 }
-

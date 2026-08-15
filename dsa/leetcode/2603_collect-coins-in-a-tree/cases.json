@@ -154,9 +154,9 @@
     },
     {
       "id": "real-long-coin-path",
-      "name": "hidden: central path must be traversed twice",
-      "kind": "real",
-      "visible": false,
+      "name": "central path must be traversed twice",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "coins": [
           1,
@@ -207,9 +207,9 @@
     },
     {
       "id": "real-redundant-branches",
-      "name": "hidden: coinless branches disappear before distance trimming",
-      "kind": "real",
-      "visible": false,
+      "name": "coinless branches disappear before distance trimming",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "coins": [
           0,

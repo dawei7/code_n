@@ -1,15 +1,193 @@
 {
   "challenge_id": "lc_3432",
   "cases": [
-    {"id":"sample-all-even-diffs","name":"sample: four even-difference partitions","kind":"sample","visible":true,"input":{"nums":[10,10,3,7,6]},"expected":4,"tags":["sample"]},
-    {"id":"sample-none","name":"sample: no even-difference partition","kind":"sample","visible":true,"input":{"nums":[1,2,2]},"expected":0,"tags":["sample"]},
-    {"id":"sample-all","name":"sample: all partitions valid","kind":"sample","visible":true,"input":{"nums":[2,4,6,8]},"expected":3,"tags":["sample"]},
-    {"id":"trial-two-odds","name":"trial: one valid partition","kind":"trial","visible":true,"input":{"nums":[1,1]},"expected":1,"tags":["trial","minimum-n"]},
-    {"id":"trial-even-odd","name":"trial: one invalid partition","kind":"trial","visible":true,"input":{"nums":[2,1]},"expected":0,"tags":["trial","odd-total"]},
-    {"id":"real-single-odd","name":"real: one odd value among evens","kind":"real","visible":false,"input":{"nums":[2,4,5,8]},"expected":0,"tags":["real","odd-total"]},
-    {"id":"real-two-odds","name":"real: two odd values","kind":"real","visible":false,"input":{"nums":[1,2,3,4,6]},"expected":4,"tags":["real","even-total"]},
-    {"id":"real-all-maximum","name":"real: maximum values","kind":"real","visible":false,"input":{"nums":[100,100,100,100,100]},"expected":4,"tags":["real","maximum-value"]},
-    {"id":"real-mixed-parity","name":"real: mixed parity values","kind":"real","visible":false,"input":{"nums":[5,8,13,21,34,55]},"expected":5,"tags":["real","mixed"]},
-    {"id":"real-odd-count-odd","name":"real: three odd values","kind":"real","visible":false,"input":{"nums":[1,2,3,4,5]},"expected":0,"tags":["real","parity-trap"]}
+    {
+      "id": "sample-all-even-diffs",
+      "name": "sample: four even-difference partitions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          10,
+          3,
+          7,
+          6
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-none",
+      "name": "sample: no even-difference partition",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all",
+      "name": "sample: all partitions valid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6,
+          8
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-two-odds",
+      "name": "trial: one valid partition",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "trial-even-odd",
+      "name": "trial: one invalid partition",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "odd-total"
+      ]
+    },
+    {
+      "id": "real-single-odd",
+      "name": "real: one odd value among evens",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          5,
+          8
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "odd-total"
+      ]
+    },
+    {
+      "id": "real-two-odds",
+      "name": "real: two odd values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "even-total"
+      ]
+    },
+    {
+      "id": "real-all-maximum",
+      "name": "real: maximum values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "real-mixed-parity",
+      "name": "real: mixed parity values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          8,
+          13,
+          21,
+          34,
+          55
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-odd-count-odd",
+      "name": "real: three odd values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "parity-trap"
+      ]
+    }
   ]
 }

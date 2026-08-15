@@ -6,99 +6,190 @@
       "name": "sample: constructed date inherits Date methods",
       "kind": "sample",
       "visible": true,
-      "input": {"fixture": {"value": "date-instance", "target": "Date"}},
+      "input": {
+        "fixture": {
+          "value": "date-instance",
+          "target": "Date"
+        }
+      },
       "expected": true,
-      "tags": ["sample", "direct-instance"]
+      "tags": [
+        "sample",
+        "direct-instance"
+      ]
     },
     {
       "id": "sample-inherited-class",
       "name": "sample: subclass instance reaches superclass methods",
       "kind": "sample",
       "visible": true,
-      "input": {"fixture": {"value": "dog-instance", "target": "Animal"}},
+      "input": {
+        "fixture": {
+          "value": "dog-instance",
+          "target": "Animal"
+        }
+      },
       "expected": true,
-      "tags": ["sample", "inheritance"]
+      "tags": [
+        "sample",
+        "inheritance"
+      ]
     },
     {
       "id": "sample-constructor-itself",
       "name": "sample: constructor is not its own instance",
       "kind": "sample",
       "visible": true,
-      "input": {"fixture": {"value": "Date-constructor", "target": "Date"}},
+      "input": {
+        "fixture": {
+          "value": "Date-constructor",
+          "target": "Date"
+        }
+      },
       "expected": false,
-      "tags": ["sample", "constructor"]
+      "tags": [
+        "sample",
+        "constructor"
+      ]
     },
     {
       "id": "sample-primitive-number",
       "name": "sample: primitive number uses Number methods",
       "kind": "sample",
       "visible": true,
-      "input": {"fixture": {"value": "number-primitive", "target": "Number"}},
+      "input": {
+        "fixture": {
+          "value": "number-primitive",
+          "target": "Number"
+        }
+      },
       "expected": true,
-      "tags": ["sample", "primitive-boxing"]
+      "tags": [
+        "sample",
+        "primitive-boxing"
+      ]
     },
     {
       "id": "trial-array-object",
       "name": "trial: array inherits from Object",
       "kind": "trial",
       "visible": true,
-      "input": {"fixture": {"value": "array", "target": "Object"}},
+      "input": {
+        "fixture": {
+          "value": "array",
+          "target": "Object"
+        }
+      },
       "expected": true,
-      "tags": ["trial", "ancestor"]
+      "tags": [
+        "trial",
+        "ancestor"
+      ]
     },
     {
       "id": "trial-null-value",
       "name": "trial: null has no prototype chain",
       "kind": "trial",
       "visible": true,
-      "input": {"fixture": {"value": "null", "target": "Object"}},
+      "input": {
+        "fixture": {
+          "value": "null",
+          "target": "Object"
+        }
+      },
       "expected": false,
-      "tags": ["trial", "null"]
+      "tags": [
+        "trial",
+        "null"
+      ]
     },
     {
       "id": "trial-invalid-target",
       "name": "trial: undefined is not a class function",
       "kind": "trial",
       "visible": true,
-      "input": {"fixture": {"value": "plain-object", "target": "undefined"}},
+      "input": {
+        "fixture": {
+          "value": "plain-object",
+          "target": "undefined"
+        }
+      },
       "expected": false,
-      "tags": ["trial", "invalid-class"]
+      "tags": [
+        "trial",
+        "invalid-class"
+      ]
     },
     {
       "id": "real-null-prototype-object",
-      "name": "hidden: null-prototype object does not inherit Object",
-      "kind": "real",
-      "visible": false,
-      "input": {"fixture": {"value": "null-prototype-object", "target": "Object"}},
+      "name": "null-prototype object does not inherit Object",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fixture": {
+          "value": "null-prototype-object",
+          "target": "Object"
+        }
+      },
       "expected": false,
-      "tags": ["hidden", "null-prototype"]
+      "tags": [
+        "hidden",
+        "null-prototype"
+      ]
     },
     {
       "id": "real-symbol-primitive",
-      "name": "hidden: symbol primitive uses Symbol methods",
-      "kind": "real",
-      "visible": false,
-      "input": {"fixture": {"value": "symbol-primitive", "target": "Symbol"}},
+      "name": "symbol primitive uses Symbol methods",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fixture": {
+          "value": "symbol-primitive",
+          "target": "Symbol"
+        }
+      },
       "expected": true,
-      "tags": ["hidden", "primitive-boxing"]
+      "tags": [
+        "hidden",
+        "primitive-boxing"
+      ]
     },
     {
       "id": "real-deep-ancestor",
-      "name": "hidden: requested prototype is deep in the chain",
-      "kind": "real",
-      "visible": false,
-      "input": {"fixture": {"value": "deep-instance", "target": "Root", "depth": 64}},
+      "name": "requested prototype is deep in the chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fixture": {
+          "value": "deep-instance",
+          "target": "Root",
+          "depth": 64
+        }
+      },
       "expected": true,
-      "tags": ["hidden", "deep-chain"]
+      "tags": [
+        "hidden",
+        "deep-chain"
+      ]
     },
     {
       "id": "real-deep-miss",
-      "name": "hidden: unrelated target is absent from a deep chain",
-      "kind": "real",
-      "visible": false,
-      "input": {"fixture": {"value": "deep-instance", "target": "Array", "depth": 64}},
+      "name": "unrelated target is absent from a deep chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fixture": {
+          "value": "deep-instance",
+          "target": "Array",
+          "depth": 64
+        }
+      },
       "expected": false,
-      "tags": ["hidden", "deep-chain", "absent"]
+      "tags": [
+        "hidden",
+        "deep-chain",
+        "absent"
+      ]
     }
   ]
 }

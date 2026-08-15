@@ -96,9 +96,9 @@
     },
     {
       "id": "real-single-parent-at-root",
-      "name": "hidden: one parent operation at root",
-      "kind": "real",
-      "visible": false,
+      "name": "one parent operation at root",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "logs": [
           "../"
@@ -111,9 +111,9 @@
     },
     {
       "id": "real-only-children",
-      "name": "hidden: every operation enters a child",
-      "kind": "real",
-      "visible": false,
+      "name": "every operation enters a child",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "logs": [
           "a/",
@@ -129,9 +129,9 @@
     },
     {
       "id": "real-only-stays",
-      "name": "hidden: every operation stays put",
-      "kind": "real",
-      "visible": false,
+      "name": "every operation stays put",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "logs": [
           "./",
@@ -146,9 +146,9 @@
     },
     {
       "id": "real-return-exactly-root",
-      "name": "hidden: parent moves exactly cancel children",
-      "kind": "real",
-      "visible": false,
+      "name": "parent moves exactly cancel children",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "logs": [
           "a/",
@@ -164,9 +164,9 @@
     },
     {
       "id": "real-root-clamp-then-descend",
-      "name": "hidden: ignored parents precede child moves",
-      "kind": "real",
-      "visible": false,
+      "name": "ignored parents precede child moves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "logs": [
           "../",
@@ -183,9 +183,9 @@
     },
     {
       "id": "real-reenter-after-root",
-      "name": "hidden: return to root and enter another branch",
-      "kind": "real",
-      "visible": false,
+      "name": "return to root and enter another branch",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "logs": [
           "a/",
@@ -202,9 +202,9 @@
     },
     {
       "id": "real-folder-name-characters",
-      "name": "hidden: alphanumeric folder names",
-      "kind": "real",
-      "visible": false,
+      "name": "alphanumeric folder names",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "logs": [
           "a1/",
@@ -221,4 +221,3 @@
     }
   ]
 }
-

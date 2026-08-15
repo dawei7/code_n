@@ -125,9 +125,9 @@
     },
     {
       "id": "real-two-subtrees",
-      "name": "hidden: two complete sibling subtrees",
-      "kind": "real",
-      "visible": false,
+      "name": "two complete sibling subtrees",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nodes": [
           [
@@ -164,9 +164,9 @@
     },
     {
       "id": "real-return-too-late",
-      "name": "hidden: return to an already closed subtree",
-      "kind": "real",
-      "visible": false,
+      "name": "return to an already closed subtree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nodes": [
           [
@@ -199,9 +199,9 @@
     },
     {
       "id": "real-deep-unwind",
-      "name": "hidden: unwind from a deep path to an uncle",
-      "kind": "real",
-      "visible": false,
+      "name": "unwind from a deep path to an uncle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nodes": [
           [
@@ -238,9 +238,9 @@
     },
     {
       "id": "real-parent-after-child",
-      "name": "hidden: a node appears before its parent",
-      "kind": "real",
-      "visible": false,
+      "name": "a node appears before its parent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nodes": [
           [
@@ -273,9 +273,9 @@
     },
     {
       "id": "real-root-not-first",
-      "name": "hidden: the root is not first",
-      "kind": "real",
-      "visible": false,
+      "name": "the root is not first",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nodes": [
           [
@@ -296,9 +296,9 @@
     },
     {
       "id": "real-id-boundary",
-      "name": "hidden: identifiers at the allowed boundary",
-      "kind": "real",
-      "visible": false,
+      "name": "identifiers at the allowed boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nodes": [
           [

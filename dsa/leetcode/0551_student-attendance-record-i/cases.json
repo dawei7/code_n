@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-three-late",
-      "name": "hidden: minimum prohibited late streak",
-      "kind": "real",
-      "visible": false,
+      "name": "minimum prohibited late streak",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "LLL"
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-separated-late",
-      "name": "hidden: separated late streaks reset",
-      "kind": "real",
-      "visible": false,
+      "name": "separated late streaks reset",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "LLPLLALL"
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "hidden-separated-absences",
-      "name": "hidden: separated absences still accumulate",
-      "kind": "real",
-      "visible": false,
+      "name": "separated absences still accumulate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "PALPAL"
       },
@@ -116,4 +116,3 @@
     }
   ]
 }
-

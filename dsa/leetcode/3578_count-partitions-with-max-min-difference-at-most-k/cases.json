@@ -7,90 +7,247 @@
       "name": "sample: six boundary choices satisfy the range limit",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [9, 4, 1, 3, 7], "k": 4},
+      "input": {
+        "nums": [
+          9,
+          4,
+          1,
+          3,
+          7
+        ],
+        "k": 4
+      },
       "expected": 6,
-      "tags": ["sample", "nonmonotonic", "multiple-partitions"]
+      "tags": [
+        "sample",
+        "nonmonotonic",
+        "multiple-partitions"
+      ]
     },
     {
       "id": "sample-zero-limit",
       "name": "sample: only equal values may share a segment",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 3, 4], "k": 0},
+      "input": {
+        "nums": [
+          3,
+          3,
+          4
+        ],
+        "k": 0
+      },
       "expected": 2,
-      "tags": ["sample", "zero-k", "equal-run"]
+      "tags": [
+        "sample",
+        "zero-k",
+        "equal-run"
+      ]
     },
     {
       "id": "trial-two-values-together",
       "name": "trial: two close values may be joined or separated",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 5], "k": 3},
+      "input": {
+        "nums": [
+          2,
+          5
+        ],
+        "k": 3
+      },
       "expected": 2,
-      "tags": ["trial", "minimum-length", "valid-pair"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "valid-pair"
+      ]
     },
     {
       "id": "trial-two-values-separated",
       "name": "trial: a wide pair must be split",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 6], "k": 3},
+      "input": {
+        "nums": [
+          2,
+          6
+        ],
+        "k": 3
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length", "forced-cut"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "forced-cut"
+      ]
     },
     {
       "id": "trial-all-equal",
       "name": "trial: every cut pattern works for equal values",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, 5, 5], "k": 0},
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ],
+        "k": 0
+      },
       "expected": 4,
-      "tags": ["trial", "all-equal", "all-boundaries-optional"]
+      "tags": [
+        "trial",
+        "all-equal",
+        "all-boundaries-optional"
+      ]
     },
     {
       "id": "real-alternating-zero-limit",
       "name": "real: a zero limit forces every alternating value apart",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 1, 2, 1], "k": 0},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1
+        ],
+        "k": 0
+      },
       "expected": 1,
-      "tags": ["real", "zero-k", "forced-singletons"]
+      "tags": [
+        "real",
+        "zero-k",
+        "forced-singletons"
+      ]
     },
     {
       "id": "real-moving-left-boundary",
       "name": "real: both extrema repeatedly expire from the window",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 4, 2, 5, 3], "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          5,
+          3
+        ],
+        "k": 2
+      },
       "expected": 4,
-      "tags": ["real", "sliding-window", "deque-expiration"]
+      "tags": [
+        "real",
+        "sliding-window",
+        "deque-expiration"
+      ]
     },
     {
       "id": "real-duplicate-extrema",
       "name": "real: duplicate extrema preserve alternative segment starts",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 7, 4, 6, 3, 8], "k": 3},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          7,
+          4,
+          6,
+          3,
+          8
+        ],
+        "k": 3
+      },
       "expected": 7,
-      "tags": ["real", "nonmonotonic", "window-boundary"]
+      "tags": [
+        "real",
+        "nonmonotonic",
+        "window-boundary"
+      ]
     },
     {
       "id": "real-large-k",
       "name": "real: a large limit admits several long suffixes",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 10, 2, 9, 3, 8], "k": 7},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10,
+          2,
+          9,
+          3,
+          8
+        ],
+        "k": 7
+      },
       "expected": 8,
-      "tags": ["real", "large-k", "multiple-partitions"]
+      "tags": [
+        "real",
+        "large-k",
+        "multiple-partitions"
+      ]
     },
     {
       "id": "real-modular-power",
       "name": "real: all 39 internal boundaries are optional modulo the modulus",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5], "k": 0},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "k": 0
+      },
       "expected": 755810045,
-      "tags": ["real", "modulo", "all-boundaries-optional"]
+      "tags": [
+        "real",
+        "modulo",
+        "all-boundaries-optional"
+      ]
     }
   ]
 }

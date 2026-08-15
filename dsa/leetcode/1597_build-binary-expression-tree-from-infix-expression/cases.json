@@ -119,9 +119,9 @@
     },
     {
       "id": "real-subtraction-associativity",
-      "name": "hidden: subtraction associates left",
-      "kind": "real",
-      "visible": false,
+      "name": "subtraction associates left",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "8-4-2"
       },
@@ -139,9 +139,9 @@
     },
     {
       "id": "real-division-associativity",
-      "name": "hidden: division associates left",
-      "kind": "real",
-      "visible": false,
+      "name": "division associates left",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "8/4/2"
       },
@@ -159,9 +159,9 @@
     },
     {
       "id": "real-right-parenthesized",
-      "name": "hidden: parentheses force right grouping",
-      "kind": "real",
-      "visible": false,
+      "name": "parentheses force right grouping",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "8/(4/2)"
       },
@@ -181,9 +181,9 @@
     },
     {
       "id": "real-mixed-precedence",
-      "name": "hidden: multiplication and division share precedence",
-      "kind": "real",
-      "visible": false,
+      "name": "multiplication and division share precedence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "1+2*3/4-5"
       },
@@ -209,9 +209,9 @@
     },
     {
       "id": "real-deep-parentheses",
-      "name": "hidden: several nested parenthesis levels",
-      "kind": "real",
-      "visible": false,
+      "name": "several nested parenthesis levels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "(((1+2)*3)-4)"
       },
@@ -232,9 +232,9 @@
     },
     {
       "id": "real-two-parenthesized-sides",
-      "name": "hidden: independent parenthesized operands",
-      "kind": "real",
-      "visible": false,
+      "name": "independent parenthesized operands",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "(1+2)*(3-4/5)"
       },
@@ -262,9 +262,9 @@
     },
     {
       "id": "real-parentheses-preserve-left-chain",
-      "name": "hidden: parenthesized left chain inside division",
-      "kind": "real",
-      "visible": false,
+      "name": "parenthesized left chain inside division",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "(9-8+7)/(6*5)"
       },
@@ -286,4 +286,3 @@
     }
   ]
 }
-

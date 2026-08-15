@@ -7,80 +7,136 @@
       "name": "sample: two letters share the majority frequency three",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "aaabbbccdddde"},
+      "input": {
+        "s": "aaabbbccdddde"
+      },
       "expected": "ab",
-      "validator": {"kind": "unordered_string"},
-      "tags": ["sample", "multiple-groups"]
+      "validator": {
+        "kind": "unordered_string"
+      },
+      "tags": [
+        "sample",
+        "multiple-groups"
+      ]
     },
     {
       "id": "sample-all-once",
       "name": "sample: all distinct letters share frequency one",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abcd"},
+      "input": {
+        "s": "abcd"
+      },
       "expected": "abcd",
-      "validator": {"kind": "unordered_string"},
-      "tags": ["sample", "all-distinct"]
+      "validator": {
+        "kind": "unordered_string"
+      },
+      "tags": [
+        "sample",
+        "all-distinct"
+      ]
     },
     {
       "id": "sample-higher-frequency-tie-break",
       "name": "sample: equal group sizes favor frequency two",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "pfpfgi"},
+      "input": {
+        "s": "pfpfgi"
+      },
       "expected": "fp",
-      "validator": {"kind": "unordered_string"},
-      "tags": ["sample", "tie-break"]
+      "validator": {
+        "kind": "unordered_string"
+      },
+      "tags": [
+        "sample",
+        "tie-break"
+      ]
     },
     {
       "id": "trial-single-character",
       "name": "trial: one character forms the only group",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "z"},
+      "input": {
+        "s": "z"
+      },
       "expected": "z",
-      "validator": {"kind": "unordered_string"},
-      "tags": ["trial", "singleton"]
+      "validator": {
+        "kind": "unordered_string"
+      },
+      "tags": [
+        "trial",
+        "singleton"
+      ]
     },
     {
       "id": "trial-four-at-frequency-two",
       "name": "trial: four letters outnumber one lower-frequency letter",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aabbccdde"},
+      "input": {
+        "s": "aabbccdde"
+      },
       "expected": "abcd",
-      "validator": {"kind": "unordered_string"},
-      "tags": ["trial", "majority-size"]
+      "validator": {
+        "kind": "unordered_string"
+      },
+      "tags": [
+        "trial",
+        "majority-size"
+      ]
     },
     {
       "id": "real-all-group-sizes-one",
-      "name": "hidden: largest frequency wins when every group has one letter",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaaabbc"},
+      "name": "largest frequency wins when every group has one letter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaabbc"
+      },
       "expected": "a",
-      "validator": {"kind": "unordered_string"},
-      "tags": ["hidden", "tie-break"]
+      "validator": {
+        "kind": "unordered_string"
+      },
+      "tags": [
+        "hidden",
+        "tie-break"
+      ]
     },
     {
       "id": "real-frequency-two-largest",
-      "name": "hidden: four frequency-two letters beat three singletons",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aabbccddeeefgh"},
+      "name": "four frequency-two letters beat three singletons",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabbccddeeefgh"
+      },
       "expected": "abcd",
-      "validator": {"kind": "unordered_string"},
-      "tags": ["hidden", "multiple-groups"]
+      "validator": {
+        "kind": "unordered_string"
+      },
+      "tags": [
+        "hidden",
+        "multiple-groups"
+      ]
     },
     {
       "id": "real-maximum-repetition",
-      "name": "hidden: maximum-length repetition selects its only letter",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "name": "maximum-length repetition selects its only letter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
       "expected": "a",
-      "validator": {"kind": "unordered_string"},
-      "tags": ["hidden", "maximum-length"]
+      "validator": {
+        "kind": "unordered_string"
+      },
+      "tags": [
+        "hidden",
+        "maximum-length"
+      ]
     }
   ]
 }

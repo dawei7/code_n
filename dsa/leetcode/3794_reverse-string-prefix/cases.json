@@ -1,12 +1,188 @@
-{"schema_version":1,"challenge_id":"lc_3794","cases":[
-{"id":"sample-1","name":"sample: reverse a two-character prefix","kind":"sample","visible":true,"input":{"s":"abcd","k":2},"expected":"bacd","validator":{"kind":"exact"},"tags":["sample","partial-prefix"]},
-{"id":"sample-2","name":"sample: reverse the complete string","kind":"sample","visible":true,"input":{"s":"xyz","k":3},"expected":"zyx","validator":{"kind":"exact"},"tags":["sample","whole-string"]},
-{"id":"sample-3","name":"sample: one-character prefix is unchanged","kind":"sample","visible":true,"input":{"s":"hey","k":1},"expected":"hey","validator":{"kind":"exact"},"tags":["sample","single-character-prefix"]},
-{"id":"trial-single-character-string","name":"trial: minimum string and prefix lengths","kind":"trial","visible":true,"input":{"s":"a","k":1},"expected":"a","validator":{"kind":"exact"},"tags":["trial","minimum"]},
-{"id":"trial-three-character-prefix","name":"trial: preserve a nonempty suffix","kind":"trial","visible":true,"input":{"s":"abcdef","k":3},"expected":"cbadef","validator":{"kind":"exact"},"tags":["trial","partial-prefix"]},
-{"id":"trial-repeated-letters","name":"trial: repeated letters retain their multiplicity","kind":"trial","visible":true,"input":{"s":"aabca","k":4},"expected":"cbaaa","validator":{"kind":"exact"},"tags":["trial","duplicates"]},
-{"id":"real-thirteen-character-prefix","name":"hidden: reverse half of the alphabet","kind":"real","visible":false,"input":{"s":"abcdefghijklmnopqrstuvwxyz","k":13},"expected":"mlkjihgfedcbanopqrstuvwxyz","validator":{"kind":"exact"},"tags":["hidden","long-prefix"]},
-{"id":"real-one-short-of-complete","name":"hidden: leave only the final character fixed","kind":"real","visible":false,"input":{"s":"leetcode","k":7},"expected":"docteele","validator":{"kind":"exact"},"tags":["hidden","one-character-suffix"]},
-{"id":"real-duplicate-boundary","name":"hidden: equal characters straddle the prefix boundary","kind":"real","visible":false,"input":{"s":"zzxyzz","k":4},"expected":"yxzzzz","validator":{"kind":"exact"},"tags":["hidden","duplicates","boundary"]},
-{"id":"real-maximum-length","name":"hidden: maximum legal string length","kind":"real","visible":false,"input":{"s":"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv","k":100},"expected":"vutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcba","validator":{"kind":"exact"},"tags":["hidden","maximum","whole-string"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3794",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: reverse a two-character prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcd",
+        "k": 2
+      },
+      "expected": "bacd",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "partial-prefix"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: reverse the complete string",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "xyz",
+        "k": 3
+      },
+      "expected": "zyx",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "whole-string"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one-character prefix is unchanged",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "hey",
+        "k": 1
+      },
+      "expected": "hey",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "single-character-prefix"
+      ]
+    },
+    {
+      "id": "trial-single-character-string",
+      "name": "trial: minimum string and prefix lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 1
+      },
+      "expected": "a",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-three-character-prefix",
+      "name": "trial: preserve a nonempty suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdef",
+        "k": 3
+      },
+      "expected": "cbadef",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "partial-prefix"
+      ]
+    },
+    {
+      "id": "trial-repeated-letters",
+      "name": "trial: repeated letters retain their multiplicity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabca",
+        "k": 4
+      },
+      "expected": "cbaaa",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-thirteen-character-prefix",
+      "name": "reverse half of the alphabet",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz",
+        "k": 13
+      },
+      "expected": "mlkjihgfedcbanopqrstuvwxyz",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "long-prefix"
+      ]
+    },
+    {
+      "id": "real-one-short-of-complete",
+      "name": "leave only the final character fixed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "leetcode",
+        "k": 7
+      },
+      "expected": "docteele",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "one-character-suffix"
+      ]
+    },
+    {
+      "id": "real-duplicate-boundary",
+      "name": "equal characters straddle the prefix boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zzxyzz",
+        "k": 4
+      },
+      "expected": "yxzzzz",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "duplicates",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-maximum-length",
+      "name": "maximum legal string length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv",
+        "k": 100
+      },
+      "expected": "vutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcba",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum",
+        "whole-string"
+      ]
+    }
+  ]
+}

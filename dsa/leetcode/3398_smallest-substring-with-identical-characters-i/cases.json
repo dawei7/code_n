@@ -109,8 +109,8 @@
     {
       "id": "real-several-runs",
       "name": "real: limited operations split several long runs",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "0011110001111000",
         "numOps": 3
@@ -124,8 +124,8 @@
     {
       "id": "real-balanced-neighboring-runs",
       "name": "real: a flip must respect both neighboring runs",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "001100",
         "numOps": 1

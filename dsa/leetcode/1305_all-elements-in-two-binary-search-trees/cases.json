@@ -131,9 +131,9 @@
     },
     {
       "id": "hidden-interleaved-chains",
-      "name": "hidden: values alternate between skewed trees",
-      "kind": "real",
-      "visible": false,
+      "name": "values alternate between skewed trees",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           2,
@@ -172,9 +172,9 @@
     },
     {
       "id": "hidden-value-bounds",
-      "name": "hidden: values at both allowed bounds",
-      "kind": "real",
-      "visible": false,
+      "name": "values at both allowed bounds",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root1": [
           -100000

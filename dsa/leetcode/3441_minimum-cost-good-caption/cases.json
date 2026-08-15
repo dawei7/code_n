@@ -1,15 +1,144 @@
 {
   "challenge_id": "lc_3441",
   "cases": [
-    {"id":"sample-lexicographic-tie","name":"sample: choose c over d on equal cost","kind":"sample","visible":true,"input":{"caption":"cdcd"},"expected":"cccc","tags":["sample","tie"]},
-    {"id":"sample-three-median","name":"sample: transform a three-letter run","kind":"sample","visible":true,"input":{"caption":"aca"},"expected":"aaa","tags":["sample"]},
-    {"id":"sample-impossible","name":"sample: length below a valid run","kind":"sample","visible":true,"input":{"caption":"bc"},"expected":"","tags":["sample","impossible"]},
-    {"id":"trial-already-good","name":"trial: preserve two valid runs","kind":"trial","visible":true,"input":{"caption":"aaabbb"},"expected":"aaabbb","tags":["trial","zero-cost"]},
-    {"id":"trial-two-new-runs","name":"trial: optimal split into two runs","kind":"trial","visible":true,"input":{"caption":"ababab"},"expected":"aaabbb","tags":["trial","partition"]},
-    {"id":"trial-single-long-run","name":"trial: five positions share one median","kind":"trial","visible":true,"input":{"caption":"abcde"},"expected":"ccccc","tags":["trial","median"]},
-    {"id":"real-minimum-length","name":"real: one character is impossible","kind":"real","visible":false,"input":{"caption":"z"},"expected":"","tags":["real","minimum-n"]},
-    {"id":"real-four-character-run","name":"real: extend a run beyond three","kind":"real","visible":false,"input":{"caption":"azzz"},"expected":"zzzz","tags":["real","run-four"]},
-    {"id":"real-three-runs","name":"real: several dynamic boundaries","kind":"real","visible":false,"input":{"caption":"abcdefghi"},"expected":"bbbeeehhh","tags":["real","partition"]},
-    {"id":"real-merge-tail","name":"real: lexicographic choice changes final run","kind":"real","visible":false,"input":{"caption":"bbbbbaaaac"},"expected":"bbbbbaaaaa","tags":["real","lexicographic"]}
+    {
+      "id": "sample-lexicographic-tie",
+      "name": "sample: choose c over d on equal cost",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "caption": "cdcd"
+      },
+      "expected": "cccc",
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "sample-three-median",
+      "name": "sample: transform a three-letter run",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "caption": "aca"
+      },
+      "expected": "aaa",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: length below a valid run",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "caption": "bc"
+      },
+      "expected": "",
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-already-good",
+      "name": "trial: preserve two valid runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "caption": "aaabbb"
+      },
+      "expected": "aaabbb",
+      "tags": [
+        "trial",
+        "zero-cost"
+      ]
+    },
+    {
+      "id": "trial-two-new-runs",
+      "name": "trial: optimal split into two runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "caption": "ababab"
+      },
+      "expected": "aaabbb",
+      "tags": [
+        "trial",
+        "partition"
+      ]
+    },
+    {
+      "id": "trial-single-long-run",
+      "name": "trial: five positions share one median",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "caption": "abcde"
+      },
+      "expected": "ccccc",
+      "tags": [
+        "trial",
+        "median"
+      ]
+    },
+    {
+      "id": "real-minimum-length",
+      "name": "real: one character is impossible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "caption": "z"
+      },
+      "expected": "",
+      "tags": [
+        "real",
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "real-four-character-run",
+      "name": "real: extend a run beyond three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "caption": "azzz"
+      },
+      "expected": "zzzz",
+      "tags": [
+        "real",
+        "run-four"
+      ]
+    },
+    {
+      "id": "real-three-runs",
+      "name": "real: several dynamic boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "caption": "abcdefghi"
+      },
+      "expected": "bbbeeehhh",
+      "tags": [
+        "real",
+        "partition"
+      ]
+    },
+    {
+      "id": "real-merge-tail",
+      "name": "real: lexicographic choice changes final run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "caption": "bbbbbaaaac"
+      },
+      "expected": "bbbbbaaaaa",
+      "tags": [
+        "real",
+        "lexicographic"
+      ]
+    }
   ]
 }

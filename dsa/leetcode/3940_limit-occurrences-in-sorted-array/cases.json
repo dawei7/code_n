@@ -7,150 +7,677 @@
       "name": "sample: cap repeated runs at two copies",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 1, 1, 2, 2, 3], "k": 2},
-      "expected": [1, 1, 2, 2, 3],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "repeated-runs"]
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3
+        ],
+        "k": 2
+      },
+      "expected": [
+        1,
+        1,
+        2,
+        2,
+        3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "repeated-runs"
+      ]
     },
     {
       "id": "sample-distinct-limit-one",
       "name": "sample: distinct values remain unchanged with limit one",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3], "k": 1},
-      "expected": [1, 2, 3],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "distinct"]
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 1
+      },
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "distinct"
+      ]
     },
     {
       "id": "trial-single-element",
       "name": "trial: a single element is always retained",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [42], "k": 1},
-      "expected": [42],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-element"]
+      "input": {
+        "nums": [
+          42
+        ],
+        "k": 1
+      },
+      "expected": [
+        42
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-element"
+      ]
     },
     {
       "id": "trial-all-equal",
       "name": "trial: an all-equal run is truncated to k copies",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, 5, 5, 5, 5], "k": 3},
-      "expected": [5, 5, 5],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "all-equal"]
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "k": 3
+      },
+      "expected": [
+        5,
+        5,
+        5
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-equal"
+      ]
     },
     {
       "id": "trial-limit-equals-length",
       "name": "trial: a limit equal to the input length removes nothing",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 2, 2], "k": 4},
-      "expected": [1, 1, 2, 2],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "maximum-limit"]
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2
+        ],
+        "k": 4
+      },
+      "expected": [
+        1,
+        1,
+        2,
+        2
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "maximum-limit"
+      ]
     },
     {
       "id": "trial-limit-one-repeated-runs",
       "name": "trial: limit one keeps one value from every run",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 2, 2, 2, 3, 3], "k": 1},
-      "expected": [1, 2, 3],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "limit-one"]
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          3
+        ],
+        "k": 1
+      },
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "limit-one"
+      ]
     },
     {
       "id": "trial-short-runs",
       "name": "trial: runs shorter than the limit stay intact",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 2, 3, 3], "k": 3},
-      "expected": [1, 1, 2, 3, 3],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "short-runs"]
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          3,
+          3
+        ],
+        "k": 3
+      },
+      "expected": [
+        1,
+        1,
+        2,
+        3,
+        3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "short-runs"
+      ]
     },
     {
       "id": "trial-runs-exactly-at-limit",
       "name": "trial: runs exactly at the limit stay intact",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 2, 2, 3, 3], "k": 2},
-      "expected": [1, 1, 2, 2, 3, 3],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "exact-limit"]
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ],
+        "k": 2
+      },
+      "expected": [
+        1,
+        1,
+        2,
+        2,
+        3,
+        3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "exact-limit"
+      ]
     },
     {
       "id": "real-mixed-run-lengths",
-      "name": "hidden: mixed run lengths are capped independently",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 1, 1, 2, 2, 3, 3, 3, 4, 5, 5, 5], "k": 2},
-      "expected": [1, 1, 2, 2, 3, 3, 4, 5, 5],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "mixed-runs"]
+      "name": "mixed run lengths are capped independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          4,
+          5,
+          5,
+          5
+        ],
+        "k": 2
+      },
+      "expected": [
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        4,
+        5,
+        5
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "mixed-runs"
+      ]
     },
     {
       "id": "real-maximum-values",
-      "name": "hidden: values at the upper boundary are filtered normally",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [99, 99, 99, 100, 100, 100, 100], "k": 2},
-      "expected": [99, 99, 100, 100],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-value"]
+      "name": "values at the upper boundary are filtered normally",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          99,
+          99,
+          99,
+          100,
+          100,
+          100,
+          100
+        ],
+        "k": 2
+      },
+      "expected": [
+        99,
+        99,
+        100,
+        100
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-value"
+      ]
     },
     {
       "id": "real-heavy-boundary-runs",
-      "name": "hidden: oversized first and last runs do not affect the middle",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 1, 1, 1, 2, 3, 3, 3, 3], "k": 2},
-      "expected": [1, 1, 2, 3, 3],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "boundary-runs"]
+      "name": "oversized first and last runs do not affect the middle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          3,
+          3,
+          3,
+          3
+        ],
+        "k": 2
+      },
+      "expected": [
+        1,
+        1,
+        2,
+        3,
+        3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "boundary-runs"
+      ]
     },
     {
       "id": "real-large-limit-below-length",
-      "name": "hidden: a limit just below the length may still remove nothing",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 2, 2], "k": 3},
-      "expected": [1, 1, 2, 2],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "large-limit"]
+      "name": "a limit just below the length may still remove nothing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2
+        ],
+        "k": 3
+      },
+      "expected": [
+        1,
+        1,
+        2,
+        2
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "large-limit"
+      ]
     },
     {
       "id": "real-many-groups",
-      "name": "hidden: repeated compaction across many groups preserves order",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 1, 2, 2, 3, 3, 3, 3, 4, 5, 5, 6, 6, 6], "k": 2},
-      "expected": [1, 1, 2, 2, 3, 3, 4, 5, 5, 6, 6],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "many-groups"]
+      "name": "repeated compaction across many groups preserves order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          4,
+          5,
+          5,
+          6,
+          6,
+          6
+        ],
+        "k": 2
+      },
+      "expected": [
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        4,
+        5,
+        5,
+        6,
+        6
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "many-groups"
+      ]
     },
     {
       "id": "real-maximum-length-distinct",
-      "name": "hidden: maximum-length distinct input remains unchanged",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100], "k": 1},
-      "expected": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-length", "distinct"]
+      "name": "maximum-length distinct input remains unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100
+        ],
+        "k": 1
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "distinct"
+      ]
     },
     {
       "id": "real-long-single-run",
-      "name": "hidden: a longer single run retains exactly k copies",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9], "k": 7},
-      "expected": [9, 9, 9, 9, 9, 9, 9],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "single-run"]
+      "name": "a longer single run retains exactly k copies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "k": 7
+      },
+      "expected": [
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "single-run"
+      ]
     }
   ]
 }

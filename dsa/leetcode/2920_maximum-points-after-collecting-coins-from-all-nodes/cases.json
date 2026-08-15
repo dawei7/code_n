@@ -182,9 +182,9 @@
     },
     {
       "id": "real-all-zero-coins",
-      "name": "hidden: halving avoids every negative penalty",
-      "kind": "real",
-      "visible": false,
+      "name": "halving avoids every negative penalty",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -211,9 +211,9 @@
     },
     {
       "id": "real-deep-compounded-halving",
-      "name": "hidden: high endpoints surround low path nodes",
-      "kind": "real",
-      "visible": false,
+      "name": "high endpoints surround low path nodes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [
@@ -251,9 +251,9 @@
     },
     {
       "id": "real-zero-penalty-path",
-      "name": "hidden: full collection dominates throughout a path",
-      "kind": "real",
-      "visible": false,
+      "name": "full collection dominates throughout a path",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges": [
           [

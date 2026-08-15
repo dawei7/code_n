@@ -6,54 +6,87 @@
       "name": "sample: three winning opposite-parity pairs",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "m": 2},
+      "input": {
+        "n": 3,
+        "m": 2
+      },
       "expected": 3,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-one-by-one",
       "name": "sample: the only pair has even total",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 1, "m": 1},
+      "input": {
+        "n": 1,
+        "m": 1
+      },
       "expected": 0,
-      "tags": ["sample", "boundary"]
+      "tags": [
+        "sample",
+        "boundary"
+      ]
     },
     {
       "id": "two-by-two",
       "name": "trial: two opposite-parity pairs",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "m": 2},
+      "input": {
+        "n": 2,
+        "m": 2
+      },
       "expected": 2,
-      "tags": ["parity"]
+      "tags": [
+        "parity"
+      ]
     },
     {
       "id": "one-by-seven",
       "name": "trial: one lane has a fixed odd size",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "m": 7},
+      "input": {
+        "n": 1,
+        "m": 7
+      },
       "expected": 3,
-      "tags": ["boundary", "parity"]
+      "tags": [
+        "boundary",
+        "parity"
+      ]
     },
     {
       "id": "odd-rectangle",
       "name": "real: both bounds are odd",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 5, "m": 9},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "m": 9
+      },
       "expected": 22,
-      "tags": ["parity"]
+      "tags": [
+        "parity"
+      ]
     },
     {
       "id": "maximum-bounds",
       "name": "real: maximum bounds require a wide result",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 100000, "m": 100000},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100000,
+        "m": 100000
+      },
       "expected": 5000000000,
-      "tags": ["boundary", "wide-integer"]
+      "tags": [
+        "boundary",
+        "wide-integer"
+      ]
     }
   ]
 }

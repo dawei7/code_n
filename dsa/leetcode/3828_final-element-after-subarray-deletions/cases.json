@@ -7,120 +7,266 @@
       "name": "sample: optimal play leaves the smaller endpoint",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 5, 2]},
+      "input": {
+        "nums": [
+          1,
+          5,
+          2
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "game-trace", "right-endpoint"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "game-trace",
+        "right-endpoint"
+      ]
     },
     {
       "id": "sample-two-elements",
       "name": "sample: Alice immediately keeps the larger endpoint",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 7]},
+      "input": {
+        "nums": [
+          3,
+          7
+        ]
+      },
       "expected": 7,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "two-elements", "right-endpoint"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "two-elements",
+        "right-endpoint"
+      ]
     },
     {
       "id": "trial-singleton",
       "name": "trial: a singleton is already final",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [9]},
+      "input": {
+        "nums": [
+          9
+        ]
+      },
       "expected": 9,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-length", "no-move"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "no-move"
+      ]
     },
     {
       "id": "trial-left-endpoint-larger",
       "name": "trial: the left endpoint is Alice's best survivor",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [8, 3]},
+      "input": {
+        "nums": [
+          8,
+          3
+        ]
+      },
       "expected": 8,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "two-elements", "left-endpoint"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "two-elements",
+        "left-endpoint"
+      ]
     },
     {
       "id": "trial-middle-maximum",
       "name": "trial: an interior maximum cannot be protected",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 100, 3]},
+      "input": {
+        "nums": [
+          2,
+          100,
+          3
+        ]
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "interior-maximum", "semantic-trap"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "interior-maximum",
+        "semantic-trap"
+      ]
     },
     {
       "id": "trial-equal-endpoints",
       "name": "trial: equal endpoints give the same value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7, 2, 9, 7]},
+      "input": {
+        "nums": [
+          7,
+          2,
+          9,
+          7
+        ]
+      },
       "expected": 7,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "equal-endpoints", "interior-maximum"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "equal-endpoints",
+        "interior-maximum"
+      ]
     },
     {
       "id": "trial-all-equal",
       "name": "trial: every possible survivor has one value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [4, 4, 4]},
+      "input": {
+        "nums": [
+          4,
+          4,
+          4
+        ]
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "duplicates", "equal-endpoints"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicates",
+        "equal-endpoints"
+      ]
     },
     {
       "id": "real-left-endpoint-longer",
-      "name": "hidden: the left endpoint beats the right endpoint",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10, 1, 2, 3, 4]},
+      "name": "the left endpoint beats the right endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
       "expected": 10,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "left-endpoint", "longer-array"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "left-endpoint",
+        "longer-array"
+      ]
     },
     {
       "id": "real-right-endpoint-longer",
-      "name": "hidden: the right endpoint beats every other endpoint choice",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 9, 8, 7, 20]},
+      "name": "the right endpoint beats every other endpoint choice",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          9,
+          8,
+          7,
+          20
+        ]
+      },
       "expected": 20,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "right-endpoint", "longer-array"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "right-endpoint",
+        "longer-array"
+      ]
     },
     {
       "id": "real-largest-value-interior",
-      "name": "hidden: the maximum allowed value in the middle is irrelevant",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 100000, 6]},
+      "name": "the maximum allowed value in the middle is irrelevant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          100000,
+          6
+        ]
+      },
       "expected": 6,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-value", "interior-maximum"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "interior-maximum"
+      ]
     },
     {
       "id": "real-largest-value-left",
-      "name": "hidden: the maximum allowed value is the left endpoint",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000, 1]},
+      "name": "the maximum allowed value is the left endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          1
+        ]
+      },
       "expected": 100000,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-value", "left-endpoint"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "left-endpoint"
+      ]
     },
     {
       "id": "real-many-interior-peaks",
-      "name": "hidden: many larger interior entries do not matter",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [60000, 100000, 99999, 100000, 70000]},
+      "name": "many larger interior entries do not matter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          60000,
+          100000,
+          99999,
+          100000,
+          70000
+        ]
+      },
       "expected": 70000,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "interior-peaks", "right-endpoint"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "interior-peaks",
+        "right-endpoint"
+      ]
     }
   ]
 }

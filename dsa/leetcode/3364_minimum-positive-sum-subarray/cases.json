@@ -130,8 +130,8 @@
     {
       "id": "real-all-negative",
       "name": "real: every possible sum is negative",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -5,
@@ -150,8 +150,8 @@
     {
       "id": "real-mixed-lengths",
       "name": "real: mixed signs across several allowed lengths",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -175,8 +175,8 @@
     {
       "id": "real-positive-near-end",
       "name": "real: the best window occurs near the final index",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -1000,
@@ -201,8 +201,8 @@
     {
       "id": "real-maximum-values",
       "name": "real: large positive values and long minimum length",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000,

@@ -160,8 +160,8 @@
     {
       "id": "real-length-seven",
       "name": "real: deeper prefixes prune consecutive-zero branches",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 7
       },
@@ -211,8 +211,8 @@
     {
       "id": "real-length-eight",
       "name": "real: unordered output contains every unique result",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 8
       },
@@ -283,8 +283,8 @@
     {
       "id": "real-length-nine",
       "name": "real: all strings preserve the local pair condition",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 9
       },
@@ -389,8 +389,8 @@
     {
       "id": "real-length-ten",
       "name": "real: output-sensitive generation at ten bits",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10
       },
@@ -550,8 +550,8 @@
     {
       "id": "real-length-eleven",
       "name": "real: recursive depth eleven",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 11
       },
@@ -800,8 +800,8 @@
     {
       "id": "real-length-twelve",
       "name": "real: larger valid-string family",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 12
       },

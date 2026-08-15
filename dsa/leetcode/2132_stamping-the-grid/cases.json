@@ -2,13 +2,244 @@
   "schema_version": 1,
   "challenge_id": "lc_2132",
   "cases": [
-    {"id": "sample-overlapping-strip", "name": "sample: overlapping stamps cover an empty strip", "kind": "sample", "visible": true, "input": {"grid": [[1,0,0,0],[1,0,0,0],[1,0,0,0],[1,0,0,0],[1,0,0,0]], "stampHeight": 4, "stampWidth": 3}, "expected": true, "tags": ["sample", "overlap"]},
-    {"id": "sample-diagonal-blockers", "name": "sample: diagonal occupied cells prevent coverage", "kind": "sample", "visible": true, "input": {"grid": [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]], "stampHeight": 2, "stampWidth": 2}, "expected": false, "tags": ["sample", "blocked"]},
-    {"id": "trial-exact-fit", "name": "one stamp exactly fills an empty grid", "kind": "trial", "visible": true, "input": {"grid": [[0,0],[0,0]], "stampHeight": 2, "stampWidth": 2}, "expected": true, "tags": ["exact-fit"]},
-    {"id": "trial-unit-stamp", "name": "unit stamps cover every empty cell independently", "kind": "trial", "visible": true, "input": {"grid": [[0,1,0],[1,0,1]], "stampHeight": 1, "stampWidth": 1}, "expected": true, "tags": ["unit-stamp"]},
-    {"id": "real-oversized-empty", "name": "hidden: an oversized stamp cannot cover an empty cell", "kind": "real", "visible": false, "input": {"grid": [[0]], "stampHeight": 2, "stampWidth": 1}, "expected": false, "tags": ["hidden", "oversized"]},
-    {"id": "real-oversized-all-occupied", "name": "hidden: no stamp is needed when no cell is empty", "kind": "real", "visible": false, "input": {"grid": [[1,1],[1,1]], "stampHeight": 3, "stampWidth": 3}, "expected": true, "tags": ["hidden", "vacuous"]},
-    {"id": "real-single-blocker", "name": "hidden: one occupied cell invalidates the only placement", "kind": "real", "visible": false, "input": {"grid": [[0,0,0],[0,1,0],[0,0,0]], "stampHeight": 3, "stampWidth": 3}, "expected": false, "tags": ["hidden", "single-blocker"]},
-    {"id": "real-horizontal-overlap", "name": "hidden: overlapping horizontal stamps cover a row", "kind": "real", "visible": false, "input": {"grid": [[0,0,0,0,0]], "stampHeight": 1, "stampWidth": 3}, "expected": true, "tags": ["hidden", "horizontal"]}
+    {
+      "id": "sample-overlapping-strip",
+      "name": "sample: overlapping stamps cover an empty strip",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ],
+        "stampHeight": 4,
+        "stampWidth": 3
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "sample-diagonal-blockers",
+      "name": "sample: diagonal occupied cells prevent coverage",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "stampHeight": 2,
+        "stampWidth": 2
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "blocked"
+      ]
+    },
+    {
+      "id": "trial-exact-fit",
+      "name": "one stamp exactly fills an empty grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "stampHeight": 2,
+        "stampWidth": 2
+      },
+      "expected": true,
+      "tags": [
+        "exact-fit"
+      ]
+    },
+    {
+      "id": "trial-unit-stamp",
+      "name": "unit stamps cover every empty cell independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ],
+        "stampHeight": 1,
+        "stampWidth": 1
+      },
+      "expected": true,
+      "tags": [
+        "unit-stamp"
+      ]
+    },
+    {
+      "id": "real-oversized-empty",
+      "name": "an oversized stamp cannot cover an empty cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0
+          ]
+        ],
+        "stampHeight": 2,
+        "stampWidth": 1
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "oversized"
+      ]
+    },
+    {
+      "id": "real-oversized-all-occupied",
+      "name": "no stamp is needed when no cell is empty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "stampHeight": 3,
+        "stampWidth": 3
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "vacuous"
+      ]
+    },
+    {
+      "id": "real-single-blocker",
+      "name": "one occupied cell invalidates the only placement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "stampHeight": 3,
+        "stampWidth": 3
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "single-blocker"
+      ]
+    },
+    {
+      "id": "real-horizontal-overlap",
+      "name": "overlapping horizontal stamps cover a row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "stampHeight": 1,
+        "stampWidth": 3
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "horizontal"
+      ]
+    }
   ]
 }

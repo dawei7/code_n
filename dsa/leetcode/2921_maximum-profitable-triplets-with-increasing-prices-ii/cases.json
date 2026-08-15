@@ -132,9 +132,9 @@
     },
     {
       "id": "real-profitable-index-trap",
-      "name": "hidden: an early high-profit price cannot serve as a valid left item",
-      "kind": "real",
-      "visible": false,
+      "name": "an early high-profit price cannot serve as a valid left item",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           3,
@@ -157,9 +157,9 @@
     },
     {
       "id": "real-minimum-length",
-      "name": "hidden: exactly three increasing items",
-      "kind": "real",
-      "visible": false,
+      "name": "exactly three increasing items",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           1,
@@ -180,9 +180,9 @@
     },
     {
       "id": "real-maximum-boundaries",
-      "name": "hidden: maximum prices and profits preserve the full sum",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum prices and profits preserve the full sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           4998,

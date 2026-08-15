@@ -2,25 +2,435 @@
   "schema_version": 1,
   "challenge_id": "lc_3997",
   "cases": [
-    {"id":"sample-mixed-seven","name":"sample: five dominant nodes across both branches","kind":"sample","visible":true,"input":{"root":[5,3,8,2,4,7,1]},"expected":5,"tags":["sample","branching"]},
-    {"id":"sample-internal-tie","name":"sample: an internal value ties its descendant maximum","kind":"sample","visible":true,"input":{"root":[1,2,3,1,2]},"expected":4,"tags":["sample","equality"]},
-    {"id":"trial-single-node","name":"trial: the root is the only node","kind":"trial","visible":true,"input":{"root":[1]},"expected":1,"tags":["trial","minimum-size","leaf"]},
-    {"id":"trial-two-decreasing","name":"trial: root and only child are dominant","kind":"trial","visible":true,"input":{"root":[2,1]},"expected":2,"tags":["trial","two-nodes"]},
-    {"id":"trial-two-increasing","name":"trial: larger child disqualifies the root","kind":"trial","visible":true,"input":{"root":[1,2]},"expected":1,"tags":["trial","two-nodes","larger-descendant"]},
-    {"id":"trial-three-equal","name":"trial: equality makes every node dominant","kind":"trial","visible":true,"input":{"root":[5,5,5]},"expected":3,"tags":["trial","equality"]},
-    {"id":"trial-root-largest","name":"trial: root exceeds both leaves","kind":"trial","visible":true,"input":{"root":[10,1,2]},"expected":3,"tags":["trial","root-maximum"]},
-    {"id":"trial-root-smallest","name":"trial: only the two leaves are dominant","kind":"trial","visible":true,"input":{"root":[1,2,3]},"expected":2,"tags":["trial","larger-descendants"]},
-    {"id":"trial-partial-last-level","name":"trial: last level starts beneath the left child","kind":"trial","visible":true,"input":{"root":[4,6,3,5]},"expected":3,"tags":["trial","complete-tree","partial-level"]},
-    {"id":"trial-deep-left-maximum","name":"trial: a last-level value disqualifies both ancestors","kind":"trial","visible":true,"input":{"root":[5,2,4,10]},"expected":2,"tags":["trial","complete-tree","deep-maximum"]},
-    {"id":"real-decreasing-level-order","name":"hidden: every parent exceeds its descendants","kind":"real","visible":false,"input":{"root":[15,14,13,12,11,10,9]},"expected":7,"tags":["hidden","all-dominant"]},
-    {"id":"real-increasing-level-order","name":"hidden: only leaves survive increasing level order","kind":"real","visible":false,"input":{"root":[1,2,3,4,5,6,7]},"expected":4,"tags":["hidden","leaves-only"]},
-    {"id":"real-one-dominant-internal","name":"hidden: one internal branch maximum","kind":"real","visible":false,"input":{"root":[8,3,10,9,2,7,6]},"expected":5,"tags":["hidden","branching"]},
-    {"id":"real-duplicate-subtree-maxima","name":"hidden: duplicate maxima count at every ancestor","kind":"real","visible":false,"input":{"root":[5,5,4,5,1,4,4]},"expected":7,"tags":["hidden","duplicates","equality"]},
-    {"id":"real-root-descendant-ties","name":"hidden: maximum ties propagate through partial tree","kind":"real","visible":false,"input":{"root":[5,3,5,2,3,5]},"expected":6,"tags":["hidden","partial-level","equality"]},
-    {"id":"real-maximum-values","name":"hidden: values at the upper bound","kind":"real","visible":false,"input":{"root":[1000000000,999999999,1000000000,1,999999999]},"expected":5,"tags":["hidden","maximum-value","equality"]},
-    {"id":"real-all-minimum-values","name":"hidden: fifteen minimum-valued nodes","kind":"real","visible":false,"input":{"root":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"expected":15,"tags":["hidden","minimum-value","equality"]},
-    {"id":"real-mixed-four-levels","name":"hidden: mixed maxima across four levels","kind":"real","visible":false,"input":{"root":[8,12,7,12,4,9,7,11,12,3,4,9,1,6,7]},"expected":13,"tags":["hidden","four-levels","mixed"]},
-    {"id":"real-six-node-partial","name":"hidden: right subtree has one last-level child","kind":"real","visible":false,"input":{"root":[7,4,9,4,6,8]},"expected":4,"tags":["hidden","partial-level","branching"]},
-    {"id":"real-ten-node-partial","name":"hidden: partially filled fourth level","kind":"real","visible":false,"input":{"root":[20,5,18,7,4,18,3,6,7,1]},"expected":9,"tags":["hidden","partial-level","four-levels"]}
+    {
+      "id": "sample-mixed-seven",
+      "name": "sample: five dominant nodes across both branches",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          5,
+          3,
+          8,
+          2,
+          4,
+          7,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "branching"
+      ]
+    },
+    {
+      "id": "sample-internal-tie",
+      "name": "sample: an internal value ties its descendant maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          1,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "equality"
+      ]
+    },
+    {
+      "id": "trial-single-node",
+      "name": "trial: the root is the only node",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-size",
+        "leaf"
+      ]
+    },
+    {
+      "id": "trial-two-decreasing",
+      "name": "trial: root and only child are dominant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          2,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "two-nodes"
+      ]
+    },
+    {
+      "id": "trial-two-increasing",
+      "name": "trial: larger child disqualifies the root",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "two-nodes",
+        "larger-descendant"
+      ]
+    },
+    {
+      "id": "trial-three-equal",
+      "name": "trial: equality makes every node dominant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "equality"
+      ]
+    },
+    {
+      "id": "trial-root-largest",
+      "name": "trial: root exceeds both leaves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          10,
+          1,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "root-maximum"
+      ]
+    },
+    {
+      "id": "trial-root-smallest",
+      "name": "trial: only the two leaves are dominant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "larger-descendants"
+      ]
+    },
+    {
+      "id": "trial-partial-last-level",
+      "name": "trial: last level starts beneath the left child",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          4,
+          6,
+          3,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "complete-tree",
+        "partial-level"
+      ]
+    },
+    {
+      "id": "trial-deep-left-maximum",
+      "name": "trial: a last-level value disqualifies both ancestors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          5,
+          2,
+          4,
+          10
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "complete-tree",
+        "deep-maximum"
+      ]
+    },
+    {
+      "id": "real-decreasing-level-order",
+      "name": "every parent exceeds its descendants",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          15,
+          14,
+          13,
+          12,
+          11,
+          10,
+          9
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "all-dominant"
+      ]
+    },
+    {
+      "id": "real-increasing-level-order",
+      "name": "only leaves survive increasing level order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "leaves-only"
+      ]
+    },
+    {
+      "id": "real-one-dominant-internal",
+      "name": "one internal branch maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          8,
+          3,
+          10,
+          9,
+          2,
+          7,
+          6
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "branching"
+      ]
+    },
+    {
+      "id": "real-duplicate-subtree-maxima",
+      "name": "duplicate maxima count at every ancestor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          5,
+          5,
+          4,
+          5,
+          1,
+          4,
+          4
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "duplicates",
+        "equality"
+      ]
+    },
+    {
+      "id": "real-root-descendant-ties",
+      "name": "maximum ties propagate through partial tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          5,
+          3,
+          5,
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "partial-level",
+        "equality"
+      ]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "values at the upper bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1000000000,
+          999999999,
+          1000000000,
+          1,
+          999999999
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "equality"
+      ]
+    },
+    {
+      "id": "real-all-minimum-values",
+      "name": "fifteen minimum-valued nodes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "hidden",
+        "minimum-value",
+        "equality"
+      ]
+    },
+    {
+      "id": "real-mixed-four-levels",
+      "name": "mixed maxima across four levels",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          8,
+          12,
+          7,
+          12,
+          4,
+          9,
+          7,
+          11,
+          12,
+          3,
+          4,
+          9,
+          1,
+          6,
+          7
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "hidden",
+        "four-levels",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-six-node-partial",
+      "name": "right subtree has one last-level child",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          7,
+          4,
+          9,
+          4,
+          6,
+          8
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "partial-level",
+        "branching"
+      ]
+    },
+    {
+      "id": "real-ten-node-partial",
+      "name": "partially filled fourth level",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          20,
+          5,
+          18,
+          7,
+          4,
+          18,
+          3,
+          6,
+          7,
+          1
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "partial-level",
+        "four-levels"
+      ]
+    }
   ]
 }

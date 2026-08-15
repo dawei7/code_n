@@ -6,135 +6,249 @@
       "name": "sample: three neighboring values satisfy limit one",
       "kind": "sample",
       "visible": true,
-      "input": {"l": 10, "r": 15, "k": 1},
+      "input": {
+        "l": 10,
+        "r": 15,
+        "k": 1
+      },
       "expected": 3,
-      "tags": ["sample", "two-digits"]
+      "tags": [
+        "sample",
+        "two-digits"
+      ]
     },
     {
       "id": "sample-two-hundred-one-through-four",
       "name": "sample: internal zero and limit two",
       "kind": "sample",
       "visible": true,
-      "input": {"l": 201, "r": 204, "k": 2},
+      "input": {
+        "l": 201,
+        "r": 204,
+        "k": 2
+      },
       "expected": 2,
-      "tags": ["sample", "internal-zero"]
+      "tags": [
+        "sample",
+        "internal-zero"
+      ]
     },
     {
       "id": "trial-singleton-good",
       "name": "trial: inclusive singleton is good",
       "kind": "trial",
       "visible": true,
-      "input": {"l": 10, "r": 10, "k": 1},
+      "input": {
+        "l": 10,
+        "r": 10,
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["trial", "singleton", "inclusive"]
+      "tags": [
+        "trial",
+        "singleton",
+        "inclusive"
+      ]
     },
     {
       "id": "trial-singleton-not-good",
       "name": "trial: inclusive singleton violates the limit",
       "kind": "trial",
       "visible": true,
-      "input": {"l": 19, "r": 19, "k": 1},
+      "input": {
+        "l": 19,
+        "r": 19,
+        "k": 1
+      },
       "expected": 0,
-      "tags": ["trial", "singleton", "invalid"]
+      "tags": [
+        "trial",
+        "singleton",
+        "invalid"
+      ]
     },
     {
       "id": "trial-zero-limit",
       "name": "trial: zero limit permits only repeated adjacent digits",
       "kind": "trial",
       "visible": true,
-      "input": {"l": 10, "r": 100, "k": 0},
+      "input": {
+        "l": 10,
+        "r": 100,
+        "k": 0
+      },
       "expected": 9,
-      "tags": ["trial", "zero-limit"]
+      "tags": [
+        "trial",
+        "zero-limit"
+      ]
     },
     {
       "id": "trial-power-of-ten-boundary",
       "name": "trial: range crosses from two to three digits",
       "kind": "trial",
       "visible": true,
-      "input": {"l": 98, "r": 102, "k": 1},
+      "input": {
+        "l": 98,
+        "r": 102,
+        "k": 1
+      },
       "expected": 4,
-      "tags": ["trial", "digit-boundary"]
+      "tags": [
+        "trial",
+        "digit-boundary"
+      ]
     },
     {
       "id": "trial-three-digit-prefix",
       "name": "trial: broad three-digit prefix",
       "kind": "trial",
       "visible": true,
-      "input": {"l": 10, "r": 999, "k": 2},
+      "input": {
+        "l": 10,
+        "r": 999,
+        "k": 2
+      },
       "expected": 229,
-      "tags": ["trial", "prefix-count"]
+      "tags": [
+        "trial",
+        "prefix-count"
+      ]
     },
     {
       "id": "trial-cross-one-thousand",
       "name": "trial: internal leading place changes near one thousand",
       "kind": "trial",
       "visible": true,
-      "input": {"l": 990, "r": 1010, "k": 1},
+      "input": {
+        "l": 990,
+        "r": 1010,
+        "k": 1
+      },
       "expected": 5,
-      "tags": ["trial", "digit-boundary", "internal-zero"]
+      "tags": [
+        "trial",
+        "digit-boundary",
+        "internal-zero"
+      ]
     },
     {
       "id": "real-alternating-good",
-      "name": "hidden: long alternating singleton meets limit one",
-      "kind": "real",
-      "visible": false,
-      "input": {"l": 101010101010101, "r": 101010101010101, "k": 1},
+      "name": "long alternating singleton meets limit one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 101010101010101,
+        "r": 101010101010101,
+        "k": 1
+      },
       "expected": 1,
-      "tags": ["hidden", "maximum-width", "singleton"]
+      "tags": [
+        "hidden",
+        "maximum-width",
+        "singleton"
+      ]
     },
     {
       "id": "real-alternating-zero-limit",
-      "name": "hidden: same alternating singleton fails limit zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"l": 101010101010101, "r": 101010101010101, "k": 0},
+      "name": "same alternating singleton fails limit zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 101010101010101,
+        "r": 101010101010101,
+        "k": 0
+      },
       "expected": 0,
-      "tags": ["hidden", "maximum-width", "zero-limit"]
+      "tags": [
+        "hidden",
+        "maximum-width",
+        "zero-limit"
+      ]
     },
     {
       "id": "real-one-repeated-digit-value",
-      "name": "hidden: narrow large range contains one zero-limit value",
-      "kind": "real",
-      "visible": false,
-      "input": {"l": 888888888888880, "r": 888888888888899, "k": 0},
+      "name": "narrow large range contains one zero-limit value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 888888888888880,
+        "r": 888888888888899,
+        "k": 0
+      },
       "expected": 1,
-      "tags": ["hidden", "large-values", "zero-limit"]
+      "tags": [
+        "hidden",
+        "large-values",
+        "zero-limit"
+      ]
     },
     {
       "id": "real-middle-interval",
-      "name": "hidden: lower endpoint subtraction inside one digit width",
-      "kind": "real",
-      "visible": false,
-      "input": {"l": 12340, "r": 12890, "k": 3},
+      "name": "lower endpoint subtraction inside one digit width",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 12340,
+        "r": 12890,
+        "k": 3
+      },
       "expected": 111,
-      "tags": ["hidden", "range-subtraction"]
+      "tags": [
+        "hidden",
+        "range-subtraction"
+      ]
     },
     {
       "id": "real-near-maximum",
-      "name": "hidden: interval reaches the maximum endpoint",
-      "kind": "real",
-      "visible": false,
-      "input": {"l": 999999999999900, "r": 1000000000000000, "k": 1},
+      "name": "interval reaches the maximum endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 999999999999900,
+        "r": 1000000000000000,
+        "k": 1
+      },
       "expected": 6,
-      "tags": ["hidden", "maximum-endpoint", "digit-boundary"]
+      "tags": [
+        "hidden",
+        "maximum-endpoint",
+        "digit-boundary"
+      ]
     },
     {
       "id": "real-every-number-good",
-      "name": "hidden: limit nine accepts the complete legal range",
-      "kind": "real",
-      "visible": false,
-      "input": {"l": 10, "r": 1000000000000000, "k": 9},
+      "name": "limit nine accepts the complete legal range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 10,
+        "r": 1000000000000000,
+        "k": 9
+      },
       "expected": 999999999999991,
-      "tags": ["hidden", "maximum-endpoint", "maximum-limit"]
+      "tags": [
+        "hidden",
+        "maximum-endpoint",
+        "maximum-limit"
+      ]
     },
     {
       "id": "real-zero-limit-full-range",
-      "name": "hidden: repeated-digit values across the complete range",
-      "kind": "real",
-      "visible": false,
-      "input": {"l": 10, "r": 1000000000000000, "k": 0},
+      "name": "repeated-digit values across the complete range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 10,
+        "r": 1000000000000000,
+        "k": 0
+      },
       "expected": 126,
-      "tags": ["hidden", "maximum-endpoint", "zero-limit"]
+      "tags": [
+        "hidden",
+        "maximum-endpoint",
+        "zero-limit"
+      ]
     }
   ]
 }

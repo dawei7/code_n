@@ -1,13 +1,234 @@
 {
   "challenge_id": "lc_2655",
   "cases": [
-    {"id":"sample-separated","name":"sample: separated covered ranges","kind":"sample","visible":true,"input":{"n":10,"ranges":[[3,5],[7,8]]},"expected":[[0,2],[6,6],[9,9]],"tags":["sample","multiple-gaps"]},
-    {"id":"sample-full","name":"sample: fully covered domain","kind":"sample","visible":true,"input":{"n":3,"ranges":[[0,2]]},"expected":[],"tags":["sample","fully-covered"]},
-    {"id":"sample-overlap","name":"sample: overlapping ranges","kind":"sample","visible":true,"input":{"n":7,"ranges":[[2,4],[0,3]]},"expected":[[5,6]],"tags":["sample","overlap"]},
-    {"id":"trial-empty","name":"trial: no covered ranges","kind":"trial","visible":true,"input":{"n":5,"ranges":[]},"expected":[[0,4]],"tags":["empty-input","whole-domain"]},
-    {"id":"trial-unsorted","name":"trial: unsorted and nested ranges","kind":"trial","visible":true,"input":{"n":12,"ranges":[[8,9],[2,6],[3,4],[0,0]]},"expected":[[1,1],[7,7],[10,11]],"tags":["unsorted","nested"]},
-    {"id":"real-adjacent","name":"hidden: adjacent coverage merges","kind":"real","visible":false,"input":{"n":7,"ranges":[[2,3],[0,1],[5,5]]},"expected":[[4,4],[6,6]],"tags":["hidden","adjacent"]},
-    {"id":"real-single-uncovered","name":"hidden: one-index domain uncovered","kind":"real","visible":false,"input":{"n":1,"ranges":[]},"expected":[[0,0]],"tags":["hidden","minimum-n"]},
-    {"id":"real-single-covered","name":"hidden: one-index domain covered","kind":"real","visible":false,"input":{"n":1,"ranges":[[0,0]]},"expected":[],"tags":["hidden","minimum-n","fully-covered"]}
+    {
+      "id": "sample-separated",
+      "name": "sample: separated covered ranges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "ranges": [
+          [
+            3,
+            5
+          ],
+          [
+            7,
+            8
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          2
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          9,
+          9
+        ]
+      ],
+      "tags": [
+        "sample",
+        "multiple-gaps"
+      ]
+    },
+    {
+      "id": "sample-full",
+      "name": "sample: fully covered domain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "ranges": [
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "sample",
+        "fully-covered"
+      ]
+    },
+    {
+      "id": "sample-overlap",
+      "name": "sample: overlapping ranges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "ranges": [
+          [
+            2,
+            4
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        [
+          5,
+          6
+        ]
+      ],
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-empty",
+      "name": "trial: no covered ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "ranges": []
+      },
+      "expected": [
+        [
+          0,
+          4
+        ]
+      ],
+      "tags": [
+        "empty-input",
+        "whole-domain"
+      ]
+    },
+    {
+      "id": "trial-unsorted",
+      "name": "trial: unsorted and nested ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 12,
+        "ranges": [
+          [
+            8,
+            9
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          1
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          10,
+          11
+        ]
+      ],
+      "tags": [
+        "unsorted",
+        "nested"
+      ]
+    },
+    {
+      "id": "real-adjacent",
+      "name": "adjacent coverage merges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "ranges": [
+          [
+            2,
+            3
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            5,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        [
+          4,
+          4
+        ],
+        [
+          6,
+          6
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "adjacent"
+      ]
+    },
+    {
+      "id": "real-single-uncovered",
+      "name": "one-index domain uncovered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "ranges": []
+      },
+      "expected": [
+        [
+          0,
+          0
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "real-single-covered",
+      "name": "one-index domain covered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "ranges": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "hidden",
+        "minimum-n",
+        "fully-covered"
+      ]
+    }
   ]
 }

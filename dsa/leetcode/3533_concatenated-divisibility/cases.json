@@ -2,15 +2,218 @@
   "schema_version": 1,
   "challenge_id": "lc_3533",
   "cases": [
-    {"id":"sample-several-valid","name":"sample: choose the lexicographically smallest valid permutation","kind":"sample","visible":true,"input":{"nums":[3,12,45],"k":5},"expected":[3,12,45],"tags":["sample","lexicographic"]},
-    {"id":"sample-reorder-for-zero","name":"sample: smaller first value creates divisibility","kind":"sample","visible":true,"input":{"nums":[10,5],"k":10},"expected":[5,10],"tags":["sample","reordering"]},
-    {"id":"sample-impossible","name":"sample: no full permutation works","kind":"sample","visible":true,"input":{"nums":[1,2,3],"k":5},"expected":[],"tags":["sample","impossible"]},
-    {"id":"trial-single-valid","name":"trial: one divisible value","kind":"trial","visible":true,"input":{"nums":[7],"k":7},"expected":[7],"tags":["trial","single-element"]},
-    {"id":"trial-single-invalid","name":"trial: one nondivisible value","kind":"trial","visible":true,"input":{"nums":[7],"k":5},"expected":[],"tags":["trial","single-element","impossible"]},
-    {"id":"real-all-orders-valid","name":"real: both orders valid, choose ascending values","kind":"real","visible":false,"input":{"nums":[1,2],"k":3},"expected":[1,2],"tags":["real","lexicographic-tie"]},
-    {"id":"real-duplicate-indices","name":"real: repeated values remain separate elements","kind":"real","visible":false,"input":{"nums":[2,2,1],"k":4},"expected":[2,1,2],"tags":["real","duplicates"]},
-    {"id":"real-numeric-not-string-order","name":"real: numeric lexicographic reconstruction with different digit lengths","kind":"real","visible":false,"input":{"nums":[8,80,808],"k":11},"expected":[8,808,80],"tags":["real","digit-length"]},
-    {"id":"real-modulus-one","name":"real: modulus one returns numeric sort","kind":"real","visible":false,"input":{"nums":[100,2,10],"k":1},"expected":[2,10,100],"tags":["real","modulus-one"]},
-    {"id":"real-multiple-digits","name":"real: multi-digit remainder transitions","kind":"real","visible":false,"input":{"nums":[99,9,999],"k":37},"expected":[9,99,999],"tags":["real","decimal-shift"]}
+    {
+      "id": "sample-several-valid",
+      "name": "sample: choose the lexicographically smallest valid permutation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          12,
+          45
+        ],
+        "k": 5
+      },
+      "expected": [
+        3,
+        12,
+        45
+      ],
+      "tags": [
+        "sample",
+        "lexicographic"
+      ]
+    },
+    {
+      "id": "sample-reorder-for-zero",
+      "name": "sample: smaller first value creates divisibility",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          5
+        ],
+        "k": 10
+      },
+      "expected": [
+        5,
+        10
+      ],
+      "tags": [
+        "sample",
+        "reordering"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: no full permutation works",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 5
+      },
+      "expected": [],
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-single-valid",
+      "name": "trial: one divisible value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 7
+      },
+      "expected": [
+        7
+      ],
+      "tags": [
+        "trial",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-single-invalid",
+      "name": "trial: one nondivisible value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 5
+      },
+      "expected": [],
+      "tags": [
+        "trial",
+        "single-element",
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-all-orders-valid",
+      "name": "real: both orders valid, choose ascending values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ],
+        "k": 3
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "tags": [
+        "real",
+        "lexicographic-tie"
+      ]
+    },
+    {
+      "id": "real-duplicate-indices",
+      "name": "real: repeated values remain separate elements",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          1
+        ],
+        "k": 4
+      },
+      "expected": [
+        2,
+        1,
+        2
+      ],
+      "tags": [
+        "real",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-numeric-not-string-order",
+      "name": "real: numeric lexicographic reconstruction with different digit lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          80,
+          808
+        ],
+        "k": 11
+      },
+      "expected": [
+        8,
+        808,
+        80
+      ],
+      "tags": [
+        "real",
+        "digit-length"
+      ]
+    },
+    {
+      "id": "real-modulus-one",
+      "name": "real: modulus one returns numeric sort",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          2,
+          10
+        ],
+        "k": 1
+      },
+      "expected": [
+        2,
+        10,
+        100
+      ],
+      "tags": [
+        "real",
+        "modulus-one"
+      ]
+    },
+    {
+      "id": "real-multiple-digits",
+      "name": "real: multi-digit remainder transitions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          99,
+          9,
+          999
+        ],
+        "k": 37
+      },
+      "expected": [
+        9,
+        99,
+        999
+      ],
+      "tags": [
+        "real",
+        "decimal-shift"
+      ]
+    }
   ]
 }

@@ -6,72 +6,160 @@
       "name": "sample: two houses require capability five",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 3, 5, 9], "k": 2},
+      "input": {
+        "nums": [
+          2,
+          3,
+          5,
+          9
+        ],
+        "k": 2
+      },
       "expected": 5,
-      "tags": ["sample", "binary-search"]
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: cheap endpoints minimize capability",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 7, 9, 3, 1], "k": 2},
+      "input": {
+        "nums": [
+          2,
+          7,
+          9,
+          3,
+          1
+        ],
+        "k": 2
+      },
       "expected": 2,
-      "tags": ["sample", "endpoints"]
+      "tags": [
+        "sample",
+        "endpoints"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: maximum independent set forces high value",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 7, 9, 3, 1], "k": 3},
+      "input": {
+        "nums": [
+          2,
+          7,
+          9,
+          3,
+          1
+        ],
+        "k": 3
+      },
       "expected": 9,
-      "tags": ["sample", "maximum-k"]
+      "tags": [
+        "sample",
+        "maximum-k"
+      ]
     },
     {
       "id": "trial-single-house",
       "name": "trial: only one house exists",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5], "k": 1},
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 1
+      },
       "expected": 5,
-      "tags": ["trial", "single-house"]
+      "tags": [
+        "trial",
+        "single-house"
+      ]
     },
     {
       "id": "trial-one-required",
       "name": "trial: one required house chooses global minimum",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [8, 2, 6], "k": 1},
+      "input": {
+        "nums": [
+          8,
+          2,
+          6
+        ],
+        "k": 1
+      },
       "expected": 2,
-      "tags": ["trial", "k-one"]
+      "tags": [
+        "trial",
+        "k-one"
+      ]
     },
     {
       "id": "real-equal-values",
-      "name": "hidden: equal values collapse the search range",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 4, 4, 4, 4], "k": 3},
+      "name": "equal values collapse the search range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "k": 3
+      },
       "expected": 4,
-      "tags": ["hidden", "equal-values"]
+      "tags": [
+        "hidden",
+        "equal-values"
+      ]
     },
     {
       "id": "real-adjacent-cheap-pair",
-      "name": "hidden: adjacent cheap houses cannot both be used",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3, 1, 1, 3], "k": 2},
+      "name": "adjacent cheap houses cannot both be used",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          1,
+          3
+        ],
+        "k": 2
+      },
       "expected": 3,
-      "tags": ["hidden", "adjacency"]
+      "tags": [
+        "hidden",
+        "adjacency"
+      ]
     },
     {
       "id": "real-cheap-nonadjacent-pair",
-      "name": "hidden: separated cheap houses share the threshold",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [10, 1, 10, 1, 10], "k": 2},
+      "name": "separated cheap houses share the threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1,
+          10,
+          1,
+          10
+        ],
+        "k": 2
+      },
       "expected": 1,
-      "tags": ["hidden", "non-adjacent"]
+      "tags": [
+        "hidden",
+        "non-adjacent"
+      ]
     }
   ]
 }

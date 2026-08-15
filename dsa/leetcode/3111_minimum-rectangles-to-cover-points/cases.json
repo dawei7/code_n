@@ -157,8 +157,8 @@
     {
       "id": "real-right-boundary",
       "name": "real: point on the right boundary is covered",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -181,8 +181,8 @@
     {
       "id": "real-just-outside",
       "name": "real: point beyond the right boundary needs another rectangle",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -205,8 +205,8 @@
     {
       "id": "real-unsorted-repeated-x",
       "name": "real: unsorted points with repeated x coordinates",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -250,8 +250,8 @@
     {
       "id": "real-greedy-clusters",
       "name": "real: every new rectangle starts at the leftmost uncovered point",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -286,8 +286,8 @@
     {
       "id": "real-y-irrelevant",
       "name": "real: vertical separation does not affect coverage",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -318,8 +318,8 @@
     {
       "id": "real-full-coordinate-span",
       "name": "real: maximum width covers the complete coordinate span",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -346,8 +346,8 @@
     {
       "id": "real-many-duplicates-and-gaps",
       "name": "real: shared x coordinates do not require extra rectangles",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [

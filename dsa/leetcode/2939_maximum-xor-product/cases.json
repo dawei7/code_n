@@ -93,9 +93,9 @@
     },
     {
       "id": "real-all-low-bits-differ",
-      "name": "hidden: distribute every controllable bit",
-      "kind": "real",
-      "visible": false,
+      "name": "distribute every controllable bit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": 0,
         "b": 15,
@@ -109,9 +109,9 @@
     },
     {
       "id": "real-fixed-high-prefix",
-      "name": "hidden: fixed high bits make one factor larger",
-      "kind": "real",
-      "visible": false,
+      "name": "fixed high bits make one factor larger",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": 32,
         "b": 0,
@@ -125,9 +125,9 @@
     },
     {
       "id": "real-fifty-equal-bits",
-      "name": "hidden: fifty controllable equal bits",
-      "kind": "real",
-      "visible": false,
+      "name": "fifty controllable equal bits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": 0,
         "b": 0,
@@ -141,9 +141,9 @@
     },
     {
       "id": "real-fifty-differing-bits",
-      "name": "hidden: fifty controllable differing bits",
-      "kind": "real",
-      "visible": false,
+      "name": "fifty controllable differing bits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": 0,
         "b": 1125899906842623,

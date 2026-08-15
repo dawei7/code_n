@@ -1,14 +1,177 @@
 {
   "challenge_id": "lc_2470",
   "cases": [
-    {"id":"sample-1","name":"sample: four subarrays reach six","kind":"sample","visible":true,"input":{"nums":[3,6,2,7,1],"k":6},"expected":4,"tags":["sample","lcm"]},
-    {"id":"sample-2","name":"sample: only element misses the target","kind":"sample","visible":true,"input":{"nums":[3],"k":2},"expected":0,"tags":["sample","no-match"]},
-    {"id":"trial-all-ones","name":"trial: every subarray has LCM one","kind":"trial","visible":true,"input":{"nums":[1,1,1],"k":1},"expected":6,"tags":["trial","all-subarrays"]},
-    {"id":"trial-composed-target","name":"trial: adjacent factors combine to the target","kind":"trial","visible":true,"input":{"nums":[2,3,2],"k":6},"expected":3,"tags":["trial","combined-factors"]},
-    {"id":"real-single-target","name":"hidden: one element equals the target","kind":"real","visible":false,"input":{"nums":[6],"k":6},"expected":1,"tags":["hidden","single-element"]},
-    {"id":"real-invalid-divider-resets","name":"hidden: a non-divisor separates valid regions","kind":"real","visible":false,"input":{"nums":[2,5,3,6],"k":6},"expected":2,"tags":["hidden","reset"]},
-    {"id":"real-repeated-target","name":"hidden: every repeated target interval qualifies","kind":"real","visible":false,"input":{"nums":[6,6,6],"k":6},"expected":6,"tags":["hidden","duplicates"]},
-    {"id":"real-over-target","name":"hidden: an over-target value cannot join a valid subarray","kind":"real","visible":false,"input":{"nums":[12,6],"k":6},"expected":1,"tags":["hidden","non-divisor"]},
-    {"id":"real-multiple-lcm-states","name":"hidden: several divisor states merge at later endpoints","kind":"real","visible":false,"input":{"nums":[1,2,4,3,2,6],"k":12},"expected":9,"tags":["hidden","state-compression"]}
+    {
+      "id": "sample-1",
+      "name": "sample: four subarrays reach six",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          6,
+          2,
+          7,
+          1
+        ],
+        "k": 6
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "lcm"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: only element misses the target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "no-match"
+      ]
+    },
+    {
+      "id": "trial-all-ones",
+      "name": "trial: every subarray has LCM one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "all-subarrays"
+      ]
+    },
+    {
+      "id": "trial-composed-target",
+      "name": "trial: adjacent factors combine to the target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          2
+        ],
+        "k": 6
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "combined-factors"
+      ]
+    },
+    {
+      "id": "real-single-target",
+      "name": "one element equals the target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6
+        ],
+        "k": 6
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "single-element"
+      ]
+    },
+    {
+      "id": "real-invalid-divider-resets",
+      "name": "a non-divisor separates valid regions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          5,
+          3,
+          6
+        ],
+        "k": 6
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "reset"
+      ]
+    },
+    {
+      "id": "real-repeated-target",
+      "name": "every repeated target interval qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          6,
+          6
+        ],
+        "k": 6
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-over-target",
+      "name": "an over-target value cannot join a valid subarray",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          6
+        ],
+        "k": 6
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "non-divisor"
+      ]
+    },
+    {
+      "id": "real-multiple-lcm-states",
+      "name": "several divisor states merge at later endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          3,
+          2,
+          6
+        ],
+        "k": 12
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "state-compression"
+      ]
+    }
   ]
 }

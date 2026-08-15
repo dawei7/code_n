@@ -109,9 +109,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: zero between disjoint bits",
-      "kind": "real",
-      "visible": false,
+      "name": "zero between disjoint bits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -127,9 +127,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: descending powers of two",
-      "kind": "real",
-      "visible": false,
+      "name": "descending powers of two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           8,
@@ -146,9 +146,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: overlapping bit patterns",
-      "kind": "real",
-      "visible": false,
+      "name": "overlapping bit patterns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           5,
@@ -165,9 +165,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: zeros around maximum",
-      "kind": "real",
-      "visible": false,
+      "name": "zeros around maximum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,

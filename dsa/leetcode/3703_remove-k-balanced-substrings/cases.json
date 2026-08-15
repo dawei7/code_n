@@ -7,108 +7,188 @@
       "name": "sample: two cascading removals empty a nested string",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "(())", "k": 1},
+      "input": {
+        "s": "(())",
+        "k": 1
+      },
       "expected": "",
-      "tags": ["sample", "cascade", "empty-result"]
+      "tags": [
+        "sample",
+        "cascade",
+        "empty-result"
+      ]
     },
     {
       "id": "sample-partial-removal",
       "name": "sample: one pair is removed and two openings remain",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "(()(", "k": 1},
+      "input": {
+        "s": "(()(",
+        "k": 1
+      },
       "expected": "((",
-      "tags": ["sample", "partial-removal"]
+      "tags": [
+        "sample",
+        "partial-removal"
+      ]
     },
     {
       "id": "sample-leading-k-three",
       "name": "sample: remove the leading k-balanced block only",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "((()))()()()", "k": 3},
+      "input": {
+        "s": "((()))()()()",
+        "k": 3
+      },
       "expected": "()()()",
-      "tags": ["sample", "larger-k"]
+      "tags": [
+        "sample",
+        "larger-k"
+      ]
     },
     {
       "id": "trial-single-pattern",
       "name": "trial: the minimum string is completely removed",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "()", "k": 1},
+      "input": {
+        "s": "()",
+        "k": 1
+      },
       "expected": "",
-      "tags": ["trial", "minimum-length", "empty-result"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "empty-result"
+      ]
     },
     {
       "id": "trial-no-closing",
       "name": "trial: opening parentheses alone contain no pattern",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "(((", "k": 1},
+      "input": {
+        "s": "(((",
+        "k": 1
+      },
       "expected": "(((",
-      "tags": ["trial", "no-occurrence"]
+      "tags": [
+        "trial",
+        "no-occurrence"
+      ]
     },
     {
       "id": "trial-no-opening-before-close",
       "name": "trial: reversed parenthesis order is not removable",
       "kind": "trial",
       "visible": true,
-      "input": {"s": ")))(", "k": 1},
+      "input": {
+        "s": ")))(",
+        "k": 1
+      },
       "expected": ")))(",
-      "tags": ["trial", "no-occurrence"]
+      "tags": [
+        "trial",
+        "no-occurrence"
+      ]
     },
     {
       "id": "trial-nested-k-two-cascade",
       "name": "trial: two k-two rounds empty a deeper nesting",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "(((())))", "k": 2},
+      "input": {
+        "s": "(((())))",
+        "k": 2
+      },
       "expected": "",
-      "tags": ["trial", "cascade", "larger-k"]
+      "tags": [
+        "trial",
+        "cascade",
+        "larger-k"
+      ]
     },
     {
       "id": "real-adjacent-k-two-blocks",
-      "name": "hidden: two non-overlapping blocks are both removed",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "(())(())", "k": 2},
+      "name": "two non-overlapping blocks are both removed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "(())(())",
+        "k": 2
+      },
       "expected": "",
-      "tags": ["hidden", "non-overlapping", "empty-result"]
+      "tags": [
+        "hidden",
+        "non-overlapping",
+        "empty-result"
+      ]
     },
     {
       "id": "real-two-round-k-one",
-      "name": "hidden: separated inner pairs create a later pair",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "(()())", "k": 1},
+      "name": "separated inner pairs create a later pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "(()())",
+        "k": 1
+      },
       "expected": "",
-      "tags": ["hidden", "cascade", "empty-result"]
+      "tags": [
+        "hidden",
+        "cascade",
+        "empty-result"
+      ]
     },
     {
       "id": "real-extra-parentheses-around-k-two",
-      "name": "hidden: removing a k-two block leaves one ordinary pair",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "((()))", "k": 2},
+      "name": "removing a k-two block leaves one ordinary pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "((()))",
+        "k": 2
+      },
       "expected": "()",
-      "tags": ["hidden", "partial-removal", "larger-k"]
+      "tags": [
+        "hidden",
+        "partial-removal",
+        "larger-k"
+      ]
     },
     {
       "id": "real-smaller-pattern-not-removable",
-      "name": "hidden: k two does not remove ordinary pairs",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "()()", "k": 2},
+      "name": "k two does not remove ordinary pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "()()",
+        "k": 2
+      },
       "expected": "()()",
-      "tags": ["hidden", "no-occurrence", "pattern-size"]
+      "tags": [
+        "hidden",
+        "no-occurrence",
+        "pattern-size"
+      ]
     },
     {
       "id": "real-k-three-partial-nesting",
-      "name": "hidden: one k-three removal leaves a shorter nesting",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "((((()))))", "k": 3},
+      "name": "one k-three removal leaves a shorter nesting",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "((((()))))",
+        "k": 3
+      },
       "expected": "(())",
-      "tags": ["hidden", "partial-removal", "larger-k"]
+      "tags": [
+        "hidden",
+        "partial-removal",
+        "larger-k"
+      ]
     }
   ]
 }

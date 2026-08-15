@@ -8,12 +8,31 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "items": [["phone","blue","pixel"],["computer","silver","lenovo"],["phone","gold","iphone"]],
+        "items": [
+          [
+            "phone",
+            "blue",
+            "pixel"
+          ],
+          [
+            "computer",
+            "silver",
+            "lenovo"
+          ],
+          [
+            "phone",
+            "gold",
+            "iphone"
+          ]
+        ],
         "ruleKey": "color",
         "ruleValue": "silver"
       },
       "expected": 1,
-      "tags": ["sample", "color"]
+      "tags": [
+        "sample",
+        "color"
+      ]
     },
     {
       "id": "sample-type-rule",
@@ -21,57 +40,177 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "items": [["phone","blue","pixel"],["computer","silver","phone"],["phone","gold","iphone"]],
+        "items": [
+          [
+            "phone",
+            "blue",
+            "pixel"
+          ],
+          [
+            "computer",
+            "silver",
+            "phone"
+          ],
+          [
+            "phone",
+            "gold",
+            "iphone"
+          ]
+        ],
         "ruleKey": "type",
         "ruleValue": "phone"
       },
       "expected": 2,
-      "tags": ["sample", "type", "wrong-field"]
+      "tags": [
+        "sample",
+        "type",
+        "wrong-field"
+      ]
     },
     {
       "id": "trial-name-rule",
       "name": "trial: one name matches in a single item",
       "kind": "trial",
       "visible": true,
-      "input": {"items": [["a","b","c"]], "ruleKey": "name", "ruleValue": "c"},
+      "input": {
+        "items": [
+          [
+            "a",
+            "b",
+            "c"
+          ]
+        ],
+        "ruleKey": "name",
+        "ruleValue": "c"
+      },
       "expected": 1,
-      "tags": ["single-item", "name"]
+      "tags": [
+        "single-item",
+        "name"
+      ]
     },
     {
       "id": "trial-no-match",
       "name": "trial: no selected value matches",
       "kind": "trial",
       "visible": true,
-      "input": {"items": [["book","red","novel"],["pen","blue","marker"]], "ruleKey": "color", "ruleValue": "green"},
+      "input": {
+        "items": [
+          [
+            "book",
+            "red",
+            "novel"
+          ],
+          [
+            "pen",
+            "blue",
+            "marker"
+          ]
+        ],
+        "ruleKey": "color",
+        "ruleValue": "green"
+      },
       "expected": 0,
-      "tags": ["no-match", "color"]
+      "tags": [
+        "no-match",
+        "color"
+      ]
     },
     {
       "id": "real-all-match",
-      "name": "hidden: every item has the requested type",
-      "kind": "real",
-      "visible": false,
-      "input": {"items": [["tool","red","a"],["tool","blue","b"],["tool","green","c"]], "ruleKey": "type", "ruleValue": "tool"},
+      "name": "every item has the requested type",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "items": [
+          [
+            "tool",
+            "red",
+            "a"
+          ],
+          [
+            "tool",
+            "blue",
+            "b"
+          ],
+          [
+            "tool",
+            "green",
+            "c"
+          ]
+        ],
+        "ruleKey": "type",
+        "ruleValue": "tool"
+      },
       "expected": 3,
-      "tags": ["all-match", "type"]
+      "tags": [
+        "all-match",
+        "type"
+      ]
     },
     {
       "id": "real-repeated-rows",
-      "name": "hidden: identical item rows count independently",
-      "kind": "real",
-      "visible": false,
-      "input": {"items": [["x","y","z"],["x","y","z"],["x","q","z"]], "ruleKey": "color", "ruleValue": "y"},
+      "name": "identical item rows count independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "items": [
+          [
+            "x",
+            "y",
+            "z"
+          ],
+          [
+            "x",
+            "y",
+            "z"
+          ],
+          [
+            "x",
+            "q",
+            "z"
+          ]
+        ],
+        "ruleKey": "color",
+        "ruleValue": "y"
+      },
       "expected": 2,
-      "tags": ["duplicates", "color"]
+      "tags": [
+        "duplicates",
+        "color"
+      ]
     },
     {
       "id": "real-value-in-other-columns",
-      "name": "hidden: requested text appears only in unselected columns",
-      "kind": "real",
-      "visible": false,
-      "input": {"items": [["target","blue","other"],["book","target","other"],["book","blue","target"]], "ruleKey": "type", "ruleValue": "target"},
+      "name": "requested text appears only in unselected columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "items": [
+          [
+            "target",
+            "blue",
+            "other"
+          ],
+          [
+            "book",
+            "target",
+            "other"
+          ],
+          [
+            "book",
+            "blue",
+            "target"
+          ]
+        ],
+        "ruleKey": "type",
+        "ruleValue": "target"
+      },
       "expected": 1,
-      "tags": ["wrong-field", "exact-schema"]
+      "tags": [
+        "wrong-field",
+        "exact-schema"
+      ]
     }
   ]
 }

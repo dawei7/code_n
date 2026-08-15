@@ -7,120 +7,216 @@
       "name": "sample: delete c from abca",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abca"},
+      "input": {
+        "s": "abca"
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "internal-deletion", "whole-string"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "internal-deletion",
+        "whole-string"
+      ]
     },
     {
       "id": "sample-palindrome-still-qualifies",
       "name": "sample: the even palindrome remains palindromic after one middle deletion",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abba"},
+      "input": {
+        "s": "abba"
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "already-palindrome", "exactly-one"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "already-palindrome",
+        "exactly-one"
+      ]
     },
     {
       "id": "sample-leading-deletion-in-substring",
       "name": "sample: choose zabba and delete its leading z",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "zzabba"},
+      "input": {
+        "s": "zzabba"
+      },
       "expected": 5,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "proper-substring", "endpoint-deletion"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "proper-substring",
+        "endpoint-deletion"
+      ]
     },
     {
       "id": "trial-two-equal-characters",
       "name": "trial: a minimum-length palindrome qualifies",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aa"},
+      "input": {
+        "s": "aa"
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-length", "equal-characters"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "equal-characters"
+      ]
     },
     {
       "id": "trial-no-length-three-answer",
       "name": "trial: only a length-two substring qualifies in abc",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abc"},
+      "input": {
+        "s": "abc"
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-answer", "distinct-characters"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-answer",
+        "distinct-characters"
+      ]
     },
     {
       "id": "trial-odd-palindrome",
       "name": "trial: deleting the center of racecar keeps a palindrome",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "racecar"},
+      "input": {
+        "s": "racecar"
+      },
       "expected": 7,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "odd-palindrome", "center-deletion"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "odd-palindrome",
+        "center-deletion"
+      ]
     },
     {
       "id": "real-delete-last-character",
-      "name": "hidden: aab becomes aa after deleting the end",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aab"},
+      "name": "aab becomes aa after deleting the end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aab"
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "right-endpoint-deletion", "boundary-core"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "right-endpoint-deletion",
+        "boundary-core"
+      ]
     },
     {
       "id": "real-long-right-endpoint-deletion",
-      "name": "hidden: deleting the last character exposes abcba",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcbaq"},
+      "name": "deleting the last character exposes abcba",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcbaq"
+      },
       "expected": 6,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "right-endpoint-deletion", "whole-string"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "right-endpoint-deletion",
+        "whole-string"
+      ]
     },
     {
       "id": "real-long-left-endpoint-deletion",
-      "name": "hidden: deleting the first character exposes abcba",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "qabcba"},
+      "name": "deleting the first character exposes abcba",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "qabcba"
+      },
       "expected": 6,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "left-endpoint-deletion", "whole-string"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "left-endpoint-deletion",
+        "whole-string"
+      ]
     },
     {
       "id": "real-internal-left-branch",
-      "name": "hidden: deleting an internal b makes abcba",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abbcba"},
+      "name": "deleting an internal b makes abcba",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abbcba"
+      },
       "expected": 6,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "internal-deletion", "skip-left"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "internal-deletion",
+        "skip-left"
+      ]
     },
     {
       "id": "real-only-length-two",
-      "name": "hidden: all distinct ordered characters permit no longer answer",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdef"},
+      "name": "all distinct ordered characters permit no longer answer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdef"
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "distinct-characters", "minimum-answer"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "distinct-characters",
+        "minimum-answer"
+      ]
     },
     {
       "id": "real-best-substring-excludes-suffix",
-      "name": "hidden: delete x from xracecar while excluding the trailing zy",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "xracecarzy"},
+      "name": "delete x from xracecar while excluding the trailing zy",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "xracecarzy"
+      },
       "expected": 8,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "proper-substring", "left-endpoint-deletion"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "proper-substring",
+        "left-endpoint-deletion"
+      ]
     }
   ]
 }

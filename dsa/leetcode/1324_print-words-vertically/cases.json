@@ -2,12 +2,136 @@
   "schema_version": 1,
   "challenge_id": "lc_1324",
   "cases": [
-    {"id":"sample-1","name":"sample: three equal-length words","kind":"sample","visible":true,"input":{"s":"HOW ARE YOU"},"expected":["HAY","ORO","WEU"],"tags":["sample","equal-length"]},
-    {"id":"sample-2","name":"sample: preserve leading spaces","kind":"sample","visible":true,"input":{"s":"TO BE OR NOT TO BE"},"expected":["TBONTB","OEROOE","   T"],"tags":["sample","padding"]},
-    {"id":"sample-3","name":"sample: varied word lengths","kind":"sample","visible":true,"input":{"s":"CONTEST IS COMING"},"expected":["CIC","OSO","N M","T I","E N","S G","T"],"tags":["sample","varied-lengths"]},
-    {"id":"trial-single-word","name":"trial: one word becomes one column","kind":"trial","visible":true,"input":{"s":"ABC"},"expected":["A","B","C"],"tags":["trial","single-word"]},
-    {"id":"trial-short-middle","name":"trial: internal alignment space","kind":"trial","visible":true,"input":{"s":"AB C DE"},"expected":["ACD","B E"],"tags":["trial","internal-space"]},
-    {"id":"hidden-long-first","name":"hidden: trailing columns disappear on lower rows","kind":"real","visible":false,"input":{"s":"ABCDE F G"},"expected":["AFG","B","C","D","E"],"tags":["hidden","trailing-spaces"]},
-    {"id":"hidden-long-last","name":"hidden: leading spaces remain on lower rows","kind":"real","visible":false,"input":{"s":"A B CDE"},"expected":["ABC","  D","  E"],"tags":["hidden","leading-spaces"]}
+    {
+      "id": "sample-1",
+      "name": "sample: three equal-length words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "HOW ARE YOU"
+      },
+      "expected": [
+        "HAY",
+        "ORO",
+        "WEU"
+      ],
+      "tags": [
+        "sample",
+        "equal-length"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: preserve leading spaces",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "TO BE OR NOT TO BE"
+      },
+      "expected": [
+        "TBONTB",
+        "OEROOE",
+        "   T"
+      ],
+      "tags": [
+        "sample",
+        "padding"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: varied word lengths",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "CONTEST IS COMING"
+      },
+      "expected": [
+        "CIC",
+        "OSO",
+        "N M",
+        "T I",
+        "E N",
+        "S G",
+        "T"
+      ],
+      "tags": [
+        "sample",
+        "varied-lengths"
+      ]
+    },
+    {
+      "id": "trial-single-word",
+      "name": "trial: one word becomes one column",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ABC"
+      },
+      "expected": [
+        "A",
+        "B",
+        "C"
+      ],
+      "tags": [
+        "trial",
+        "single-word"
+      ]
+    },
+    {
+      "id": "trial-short-middle",
+      "name": "trial: internal alignment space",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "AB C DE"
+      },
+      "expected": [
+        "ACD",
+        "B E"
+      ],
+      "tags": [
+        "trial",
+        "internal-space"
+      ]
+    },
+    {
+      "id": "hidden-long-first",
+      "name": "trailing columns disappear on lower rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ABCDE F G"
+      },
+      "expected": [
+        "AFG",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "tags": [
+        "hidden",
+        "trailing-spaces"
+      ]
+    },
+    {
+      "id": "hidden-long-last",
+      "name": "leading spaces remain on lower rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "A B CDE"
+      },
+      "expected": [
+        "ABC",
+        "  D",
+        "  E"
+      ],
+      "tags": [
+        "hidden",
+        "leading-spaces"
+      ]
+    }
   ]
 }

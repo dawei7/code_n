@@ -6,90 +6,191 @@
       "name": "sample: maximum conflicts with input length",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 1, 3]},
+      "input": {
+        "nums": [
+          2,
+          1,
+          3
+        ]
+      },
       "expected": false,
-      "tags": ["sample", "length"]
+      "tags": [
+        "sample",
+        "length"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: shuffled base three",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 3, 3, 2]},
+      "input": {
+        "nums": [
+          1,
+          3,
+          3,
+          2
+        ]
+      },
       "expected": true,
-      "tags": ["sample", "permutation"]
+      "tags": [
+        "sample",
+        "permutation"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: smallest good array",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 1]},
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
       "expected": true,
-      "tags": ["sample", "boundary"]
+      "tags": [
+        "sample",
+        "boundary"
+      ]
     },
     {
       "id": "sample-4",
       "name": "sample: extra lower duplicate",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, 4, 4, 1, 2, 1]},
+      "input": {
+        "nums": [
+          3,
+          4,
+          4,
+          1,
+          2,
+          1
+        ]
+      },
       "expected": false,
-      "tags": ["sample", "multiplicity"]
+      "tags": [
+        "sample",
+        "multiplicity"
+      ]
     },
     {
       "id": "trial-single-element",
       "name": "trial: no positive candidate n",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1]},
+      "input": {
+        "nums": [
+          1
+        ]
+      },
       "expected": false,
-      "tags": ["trial", "boundary"]
+      "tags": [
+        "trial",
+        "boundary"
+      ]
     },
     {
       "id": "trial-base-two",
       "name": "trial: base two in reverse order",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 2, 1]},
+      "input": {
+        "nums": [
+          2,
+          2,
+          1
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "permutation"]
+      "tags": [
+        "trial",
+        "permutation"
+      ]
     },
     {
       "id": "trial-maximum-once",
       "name": "trial: candidate maximum appears once",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": false,
-      "tags": ["trial", "multiplicity"]
+      "tags": [
+        "trial",
+        "multiplicity"
+      ]
     },
     {
       "id": "real-out-of-range-candidate",
-      "name": "hidden: value exceeds length-derived candidate",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 4, 4]},
+      "name": "value exceeds length-derived candidate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          4
+        ]
+      },
       "expected": false,
-      "tags": ["hidden", "range"]
+      "tags": [
+        "hidden",
+        "range"
+      ]
     },
     {
       "id": "real-missing-middle-value",
-      "name": "hidden: repeated lower value replaces a required value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 1, 5, 2, 4, 2]},
+      "name": "repeated lower value replaces a required value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          5,
+          2,
+          4,
+          2
+        ]
+      },
       "expected": false,
-      "tags": ["hidden", "missing", "multiplicity"]
+      "tags": [
+        "hidden",
+        "missing",
+        "multiplicity"
+      ]
     },
     {
       "id": "real-larger-good-array",
-      "name": "hidden: shuffled base seven",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [7, 3, 1, 6, 7, 2, 5, 4]},
+      "name": "shuffled base seven",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          3,
+          1,
+          6,
+          7,
+          2,
+          5,
+          4
+        ]
+      },
       "expected": true,
-      "tags": ["hidden", "permutation"]
+      "tags": [
+        "hidden",
+        "permutation"
+      ]
     }
   ]
 }

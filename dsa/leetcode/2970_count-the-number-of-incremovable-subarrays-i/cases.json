@@ -1,14 +1,171 @@
 {
   "challenge_id": "lc_2970",
   "cases": [
-    {"id":"sample-already-increasing","name":"sample: already strictly increasing","kind":"sample","visible":true,"input":{"nums":[1,2,3,4]},"expected":10,"tags":["sample"]},
-    {"id":"sample-one-drop","name":"sample: one early descent","kind":"sample","visible":true,"input":{"nums":[6,5,7,8]},"expected":7,"tags":["sample"]},
-    {"id":"sample-duplicates","name":"sample: duplicate tail","kind":"sample","visible":true,"input":{"nums":[8,7,6,6]},"expected":3,"tags":["sample"]},
-    {"id":"trial-single-element","name":"trial: removing the only element","kind":"trial","visible":true,"input":{"nums":[50]},"expected":1,"tags":["singleton","boundary"]},
-    {"id":"trial-equal-pair","name":"trial: either singleton remainder is increasing","kind":"trial","visible":true,"input":{"nums":[1,1]},"expected":3,"tags":["duplicates"]},
-    {"id":"trial-middle-plateau","name":"trial: deletion must break a plateau","kind":"trial","visible":true,"input":{"nums":[1,2,2,3]},"expected":8,"tags":["duplicates","bridge"]},
-    {"id":"real-strictly-decreasing","name":"real: only remainders of length at most one work","kind":"real","visible":false,"input":{"nums":[5,4,3,2,1]},"expected":3,"tags":["hidden","decreasing"]},
-    {"id":"real-compatible-bridge","name":"real: several deletions join compatible sides","kind":"real","visible":false,"input":{"nums":[1,4,2,3,5]},"expected":10,"tags":["hidden","bridge"]},
-    {"id":"real-two-descents","name":"real: both descents constrain the removed interval","kind":"real","visible":false,"input":{"nums":[1,3,2,4,3,5]},"expected":8,"tags":["hidden","multiple-descents"]}
+    {
+      "id": "sample-already-increasing",
+      "name": "sample: already strictly increasing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-one-drop",
+      "name": "sample: one early descent",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          5,
+          7,
+          8
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-duplicates",
+      "name": "sample: duplicate tail",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          7,
+          6,
+          6
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: removing the only element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          50
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "singleton",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-equal-pair",
+      "name": "trial: either singleton remainder is increasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-middle-plateau",
+      "name": "trial: deletion must break a plateau",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          3
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "duplicates",
+        "bridge"
+      ]
+    },
+    {
+      "id": "real-strictly-decreasing",
+      "name": "real: only remainders of length at most one work",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "real-compatible-bridge",
+      "name": "real: several deletions join compatible sides",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "bridge"
+      ]
+    },
+    {
+      "id": "real-two-descents",
+      "name": "real: both descents constrain the removed interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          4,
+          3,
+          5
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "multiple-descents"
+      ]
+    }
   ]
 }

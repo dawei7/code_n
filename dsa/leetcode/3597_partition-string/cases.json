@@ -100,8 +100,8 @@
     {
       "id": "real-two-equal",
       "name": "real: the last singleton is already seen",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aa"
       },
@@ -116,8 +116,8 @@
     {
       "id": "real-repeat-after-distinct",
       "name": "real: an ending segment can be omitted",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aba"
       },
@@ -133,8 +133,8 @@
     {
       "id": "real-complete-triangular-run",
       "name": "real: repeated run exactly fills growing segments",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaaaaaaaaaaaa"
       },
@@ -154,8 +154,8 @@
     {
       "id": "real-mixed-prefix-tree",
       "name": "real: several branches share trie prefixes",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abacabadabacaba"
       },
@@ -177,8 +177,8 @@
     {
       "id": "real-alphabet-boundary",
       "name": "real: all lowercase letters remain distinct",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcdefghijklmnopqrstuvwxyz"
       },

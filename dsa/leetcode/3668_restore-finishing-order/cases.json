@@ -135,9 +135,9 @@
     },
     {
       "id": "real-boundary-ids",
-      "name": "hidden: minimum and maximum IDs finish consecutively",
-      "kind": "real",
-      "visible": false,
+      "name": "minimum and maximum IDs finish consecutively",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "order": [
           4,
@@ -163,9 +163,9 @@
     },
     {
       "id": "real-interleaved-nonfriends",
-      "name": "hidden: many non-friends separate retained IDs",
-      "kind": "real",
-      "visible": false,
+      "name": "many non-friends separate retained IDs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "order": [
           8,
@@ -197,9 +197,9 @@
     },
     {
       "id": "real-maximum-length",
-      "name": "hidden: reverse order at maximum length",
-      "kind": "real",
-      "visible": false,
+      "name": "reverse order at maximum length",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "order": [
           100,

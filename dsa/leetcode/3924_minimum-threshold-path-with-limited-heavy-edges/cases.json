@@ -487,9 +487,9 @@
     },
     {
       "id": "hidden-first-positive-candidate",
-      "name": "hidden: the first edge weight is the minimum threshold",
-      "kind": "real",
-      "visible": false,
+      "name": "the first edge weight is the minimum threshold",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "edges": [
@@ -517,9 +517,9 @@
     },
     {
       "id": "hidden-repeated-weight-jump",
-      "name": "hidden: repeated weights make feasibility jump at seven",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated weights make feasibility jump at seven",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "edges": [
@@ -557,9 +557,9 @@
     },
     {
       "id": "hidden-budget-equals-path-length",
-      "name": "hidden: four heavy edges are all allowed",
-      "kind": "real",
-      "visible": false,
+      "name": "four heavy edges are all allowed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "edges": [
@@ -597,9 +597,9 @@
     },
     {
       "id": "hidden-one-edge-must-turn-light",
-      "name": "hidden: reducing four heavy edges to three needs threshold ten",
-      "kind": "real",
-      "visible": false,
+      "name": "reducing four heavy edges to three needs threshold ten",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 5,
         "edges": [
@@ -637,9 +637,9 @@
     },
     {
       "id": "hidden-maximum-edge-weight",
-      "name": "hidden: the maximum legal weight must become light",
-      "kind": "real",
-      "visible": false,
+      "name": "the maximum legal weight must become light",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 2,
         "edges": [
@@ -662,9 +662,9 @@
     },
     {
       "id": "hidden-large-budget-cannot-connect-components",
-      "name": "hidden: a large heavy budget cannot cross a missing edge",
-      "kind": "real",
-      "visible": false,
+      "name": "a large heavy budget cannot cross a missing edge",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 7,
         "edges": [
@@ -707,9 +707,9 @@
     },
     {
       "id": "hidden-multiple-routes-first-feasible-weight",
-      "name": "hidden: a mixed route becomes feasible at weight one",
-      "kind": "real",
-      "visible": false,
+      "name": "a mixed route becomes feasible at weight one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "edges": [

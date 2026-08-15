@@ -70,9 +70,9 @@
     },
     {
       "id": "real-tied-runs",
-      "name": "hidden: separate xyz and abc runs tie",
-      "kind": "real",
-      "visible": false,
+      "name": "separate xyz and abc runs tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abxyzabc"
       },
@@ -84,9 +84,9 @@
     },
     {
       "id": "real-repeated",
-      "name": "hidden: repeated letters reset every run",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated letters reset every run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaa"
       },
@@ -98,9 +98,9 @@
     },
     {
       "id": "real-embedded-long-run",
-      "name": "hidden: longest run appears in the middle",
-      "kind": "real",
-      "visible": false,
+      "name": "longest run appears in the middle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "qbcdefm"
       },

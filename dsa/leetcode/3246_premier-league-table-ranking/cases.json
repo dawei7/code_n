@@ -492,8 +492,8 @@
     {
       "id": "real-alphabetical-tie",
       "name": "real: identifiers do not order tied names",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "TeamStats": [
@@ -560,8 +560,8 @@
     {
       "id": "real-several-levels",
       "name": "real: several point levels and ties",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "TeamStats": [
@@ -670,8 +670,8 @@
     {
       "id": "real-draw-heavy",
       "name": "real: draw-heavy records",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "TeamStats": [
@@ -752,8 +752,8 @@
     {
       "id": "real-zero-and-positive",
       "name": "real: zero-point tail follows positive ties",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "TeamStats": [
@@ -848,8 +848,8 @@
     {
       "id": "real-wide-table",
       "name": "real: larger league with repeated totals",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "TeamStats": [

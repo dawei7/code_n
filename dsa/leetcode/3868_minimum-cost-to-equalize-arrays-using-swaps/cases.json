@@ -199,9 +199,9 @@
     },
     {
       "id": "real-one-value",
-      "name": "hidden: one repeated value is already balanced",
-      "kind": "real",
-      "visible": false,
+      "name": "one repeated value is already balanced",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           7,
@@ -228,9 +228,9 @@
     },
     {
       "id": "real-maximum-value",
-      "name": "hidden: the maximum legal value crosses once",
-      "kind": "real",
-      "visible": false,
+      "name": "the maximum legal value crosses once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           80000,
@@ -253,9 +253,9 @@
     },
     {
       "id": "real-mixed-imbalances",
-      "name": "hidden: unequal surplus sizes still pair into two swaps",
-      "kind": "real",
-      "visible": false,
+      "name": "unequal surplus sizes still pair into two swaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -290,9 +290,9 @@
     },
     {
       "id": "real-two-odd-totals",
-      "name": "hidden: two odd combined counts are still impossible",
-      "kind": "real",
-      "visible": false,
+      "name": "two odd combined counts are still impossible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -319,9 +319,9 @@
     },
     {
       "id": "real-balanced-and-disjoint-groups",
-      "name": "hidden: balanced shared groups coexist with two paid swaps",
-      "kind": "real",
-      "visible": false,
+      "name": "balanced shared groups coexist with two paid swaps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -356,9 +356,9 @@
     },
     {
       "id": "real-all-values-shared",
-      "name": "hidden: all values are shared but their counts differ",
-      "kind": "real",
-      "visible": false,
+      "name": "all values are shared but their counts differ",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           2,
@@ -393,9 +393,9 @@
     },
     {
       "id": "real-late-odd-frequency",
-      "name": "hidden: a late singleton invalidates otherwise even totals",
-      "kind": "real",
-      "visible": false,
+      "name": "a late singleton invalidates otherwise even totals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           5,

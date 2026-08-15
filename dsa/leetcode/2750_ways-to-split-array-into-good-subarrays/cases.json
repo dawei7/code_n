@@ -1,1 +1,165 @@
-{"schema_version":1,"challenge_id":"lc_2750","cases":[{"id":"sample-three-splits","name":"sample: three boundary choices","kind":"sample","visible":true,"input":{"nums":[0,1,0,0,1]},"expected":3,"tags":["sample","gap"]},{"id":"sample-single-one","name":"sample: one good subarray","kind":"sample","visible":true,"input":{"nums":[0,1,0]},"expected":1,"tags":["sample","single-one"]},{"id":"trial-no-ones","name":"trial: all zeros have no valid split","kind":"trial","visible":true,"input":{"nums":[0,0,0]},"expected":0,"tags":["trial","none"]},{"id":"real-minimum-one","name":"hidden: minimum array containing one","kind":"real","visible":false,"input":{"nums":[1]},"expected":1,"tags":["hidden","minimum"]},{"id":"real-adjacent-ones","name":"hidden: adjacent ones force a boundary","kind":"real","visible":false,"input":{"nums":[1,1,0,1]},"expected":2,"tags":["hidden","adjacent"]},{"id":"real-outer-zeros","name":"hidden: outer zeros create no choices","kind":"real","visible":false,"input":{"nums":[0,0,1,0,0]},"expected":1,"tags":["hidden","outer-zeros"]},{"id":"real-several-gaps","name":"hidden: product across several gaps","kind":"real","visible":false,"input":{"nums":[1,0,0,1,0,1,0,0,0,1]},"expected":24,"tags":["hidden","product"]},{"id":"real-unequal-gaps","name":"hidden: unequal independent gaps","kind":"real","visible":false,"input":{"nums":[1,0,0,1,0,0,0,1]},"expected":12,"tags":["hidden","gaps"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2750",
+  "cases": [
+    {
+      "id": "sample-three-splits",
+      "name": "sample: three boundary choices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "gap"
+      ]
+    },
+    {
+      "id": "sample-single-one",
+      "name": "sample: one good subarray",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-one"
+      ]
+    },
+    {
+      "id": "trial-no-ones",
+      "name": "trial: all zeros have no valid split",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "none"
+      ]
+    },
+    {
+      "id": "real-minimum-one",
+      "name": "minimum array containing one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "minimum"
+      ]
+    },
+    {
+      "id": "real-adjacent-ones",
+      "name": "adjacent ones force a boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "adjacent"
+      ]
+    },
+    {
+      "id": "real-outer-zeros",
+      "name": "outer zeros create no choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "outer-zeros"
+      ]
+    },
+    {
+      "id": "real-several-gaps",
+      "name": "product across several gaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": 24,
+      "tags": [
+        "hidden",
+        "product"
+      ]
+    },
+    {
+      "id": "real-unequal-gaps",
+      "name": "unequal independent gaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "hidden",
+        "gaps"
+      ]
+    }
+  ]
+}

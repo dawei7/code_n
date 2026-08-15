@@ -113,8 +113,8 @@
     {
       "id": "real-dense-without-one",
       "name": "real: dense rewards need not begin at one",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rewardValues": [
           2,
@@ -134,8 +134,8 @@
     {
       "id": "real-large-gaps",
       "name": "real: several gaps permit a long valid sequence",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rewardValues": [
           1,
@@ -155,8 +155,8 @@
     {
       "id": "real-unsorted-large-values",
       "name": "real: unsorted large rewards retain their original indices",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rewardValues": [
           50000,
@@ -173,8 +173,8 @@
     {
       "id": "real-duplicate-doubling-levels",
       "name": "real: duplicates across doubling levels",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rewardValues": [
           1,
@@ -196,8 +196,8 @@
     {
       "id": "real-maximum-after-half",
       "name": "real: maximum reward follows an exact half-sized total",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rewardValues": [
           25000,
@@ -213,8 +213,8 @@
     {
       "id": "real-global-total-bound",
       "name": "real: two largest rewards attain the global upper bound",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rewardValues": [
           49999,

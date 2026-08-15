@@ -2,17 +2,221 @@
   "schema_version": 1,
   "challenge_id": "lc_3698",
   "cases": [
-    {"id":"sample-two-valid-splits","name":"sample: two valid splits have differences four and two","kind":"sample","visible":true,"input":{"nums":[1,3,2]},"expected":2,"tags":["sample","multiple-valid"]},
-    {"id":"sample-two-equal-minima","name":"sample: two valid splits share the minimum","kind":"sample","visible":true,"input":{"nums":[1,2,4,3]},"expected":4,"tags":["sample","multiple-valid"]},
-    {"id":"sample-no-valid-split","name":"sample: neither boundary satisfies both conditions","kind":"sample","visible":true,"input":{"nums":[3,1,2]},"expected":-1,"tags":["sample","invalid"]},
-    {"id":"trial-two-increasing","name":"trial: two singleton parts split an increasing pair","kind":"trial","visible":true,"input":{"nums":[1,2]},"expected":1,"tags":["trial","minimum-length"]},
-    {"id":"trial-two-decreasing","name":"trial: two singleton parts split a decreasing pair","kind":"trial","visible":true,"input":{"nums":[2,1]},"expected":1,"tags":["trial","minimum-length"]},
-    {"id":"trial-fully-increasing","name":"trial: the last boundary balances a fully increasing array","kind":"trial","visible":true,"input":{"nums":[1,2,3]},"expected":0,"tags":["trial","singleton-right"]},
-    {"id":"trial-fully-decreasing","name":"trial: the first boundary balances a fully decreasing array","kind":"trial","visible":true,"input":{"nums":[3,2,1]},"expected":0,"tags":["trial","singleton-left"]},
-    {"id":"real-mountain","name":"hidden: both boundaries around a peak are valid","kind":"real","visible":false,"input":{"nums":[1,3,5,4,2]},"expected":3,"tags":["hidden","mountain"]},
-    {"id":"real-equality-across-boundary","name":"hidden: equality is allowed when it crosses the split","kind":"real","visible":false,"input":{"nums":[1,1]},"expected":0,"tags":["hidden","strictness"]},
-    {"id":"real-equality-left-candidate","name":"hidden: equality invalidates the longer left part","kind":"real","visible":false,"input":{"nums":[2,2,1]},"expected":1,"tags":["hidden","strictness"]},
-    {"id":"real-equality-right-candidate","name":"hidden: equality invalidates the longer right part","kind":"real","visible":false,"input":{"nums":[1,2,2]},"expected":1,"tags":["hidden","strictness"]},
-    {"id":"real-valley-no-split","name":"hidden: a valley orientation admits no valid boundary","kind":"real","visible":false,"input":{"nums":[5,1,4]},"expected":-1,"tags":["hidden","invalid"]}
+    {
+      "id": "sample-two-valid-splits",
+      "name": "sample: two valid splits have differences four and two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "multiple-valid"
+      ]
+    },
+    {
+      "id": "sample-two-equal-minima",
+      "name": "sample: two valid splits share the minimum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "multiple-valid"
+      ]
+    },
+    {
+      "id": "sample-no-valid-split",
+      "name": "sample: neither boundary satisfies both conditions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          2
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "invalid"
+      ]
+    },
+    {
+      "id": "trial-two-increasing",
+      "name": "trial: two singleton parts split an increasing pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-two-decreasing",
+      "name": "trial: two singleton parts split a decreasing pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-fully-increasing",
+      "name": "trial: the last boundary balances a fully increasing array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "singleton-right"
+      ]
+    },
+    {
+      "id": "trial-fully-decreasing",
+      "name": "trial: the first boundary balances a fully decreasing array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "singleton-left"
+      ]
+    },
+    {
+      "id": "real-mountain",
+      "name": "both boundaries around a peak are valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          4,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "mountain"
+      ]
+    },
+    {
+      "id": "real-equality-across-boundary",
+      "name": "equality is allowed when it crosses the split",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "strictness"
+      ]
+    },
+    {
+      "id": "real-equality-left-candidate",
+      "name": "equality invalidates the longer left part",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "strictness"
+      ]
+    },
+    {
+      "id": "real-equality-right-candidate",
+      "name": "equality invalidates the longer right part",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "strictness"
+      ]
+    },
+    {
+      "id": "real-valley-no-split",
+      "name": "a valley orientation admits no valid boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          4
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "invalid"
+      ]
+    }
   ]
 }

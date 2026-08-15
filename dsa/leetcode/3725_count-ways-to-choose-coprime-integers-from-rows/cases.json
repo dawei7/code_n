@@ -153,9 +153,9 @@
     },
     {
       "id": "real-one-forces-coprime",
-      "name": "hidden: any selection using a one has GCD one",
-      "kind": "real",
-      "visible": false,
+      "name": "any selection using a one has GCD one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -183,9 +183,9 @@
     },
     {
       "id": "real-mixed-gcds",
-      "name": "hidden: several exact GCD classes are separated by inversion",
-      "kind": "real",
-      "visible": false,
+      "name": "several exact GCD classes are separated by inversion",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -216,9 +216,9 @@
     },
     {
       "id": "real-all-share-three",
-      "name": "hidden: a common factor across every cell produces zero",
-      "kind": "real",
-      "visible": false,
+      "name": "a common factor across every cell produces zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -250,9 +250,9 @@
     },
     {
       "id": "real-prime-overlaps",
-      "name": "hidden: pairwise prime overlaps still allow overall GCD one",
-      "kind": "real",
-      "visible": false,
+      "name": "pairwise prime overlaps still allow overall GCD one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -280,9 +280,9 @@
     },
     {
       "id": "real-modulo-many-duplicates",
-      "name": "hidden: many duplicate unit choices are reduced modulo the required prime",
-      "kind": "real",
-      "visible": false,
+      "name": "many duplicate unit choices are reduced modulo the required prime",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -499,9 +499,9 @@
     },
     {
       "id": "real-value-boundary",
-      "name": "hidden: values at the upper bound participate in divisor counts",
-      "kind": "real",
-      "visible": false,
+      "name": "values at the upper bound participate in divisor counts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -532,4 +532,3 @@
     }
   ]
 }
-

@@ -6,81 +6,184 @@
       "name": "sample: preserve object key order",
       "kind": "sample",
       "visible": true,
-      "input": {"value": {"y": 1, "x": 2}, "valuePlan": null},
+      "input": {
+        "value": {
+          "y": 1,
+          "x": 2
+        },
+        "valuePlan": null
+      },
       "expected": "{\"y\":1,\"x\":2}",
-      "tags": ["sample", "object", "key-order"]
+      "tags": [
+        "sample",
+        "object",
+        "key-order"
+      ]
     },
     {
       "id": "sample-primitives-object",
       "name": "sample: all primitive member types",
       "kind": "sample",
       "visible": true,
-      "input": {"value": {"a": "str", "b": -12, "c": true, "d": null}, "valuePlan": null},
+      "input": {
+        "value": {
+          "a": "str",
+          "b": -12,
+          "c": true,
+          "d": null
+        },
+        "valuePlan": null
+      },
       "expected": "{\"a\":\"str\",\"b\":-12,\"c\":true,\"d\":null}",
-      "tags": ["sample", "primitives", "object"]
+      "tags": [
+        "sample",
+        "primitives",
+        "object"
+      ]
     },
     {
       "id": "sample-nested",
       "name": "sample: nested arrays and objects",
       "kind": "sample",
       "visible": true,
-      "input": {"value": {"key": {"a": 1, "b": [{}, null, "Hello"]}}, "valuePlan": null},
+      "input": {
+        "value": {
+          "key": {
+            "a": 1,
+            "b": [
+              {},
+              null,
+              "Hello"
+            ]
+          }
+        },
+        "valuePlan": null
+      },
       "expected": "{\"key\":{\"a\":1,\"b\":[{},null,\"Hello\"]}}",
-      "tags": ["sample", "nested", "mixed-containers"]
+      "tags": [
+        "sample",
+        "nested",
+        "mixed-containers"
+      ]
     },
     {
       "id": "sample-boolean",
       "name": "sample: top-level boolean",
       "kind": "sample",
       "visible": true,
-      "input": {"value": true, "valuePlan": null},
+      "input": {
+        "value": true,
+        "valuePlan": null
+      },
       "expected": "true",
-      "tags": ["sample", "boolean", "top-level-primitive"]
+      "tags": [
+        "sample",
+        "boolean",
+        "top-level-primitive"
+      ]
     },
     {
       "id": "trial-empty-containers",
       "name": "trial: empty arrays and objects",
       "kind": "trial",
       "visible": true,
-      "input": {"value": {"array": [], "object": {}}, "valuePlan": null},
+      "input": {
+        "value": {
+          "array": [],
+          "object": {}
+        },
+        "valuePlan": null
+      },
       "expected": "{\"array\":[],\"object\":{}}",
-      "tags": ["trial", "empty-containers"]
+      "tags": [
+        "trial",
+        "empty-containers"
+      ]
     },
     {
       "id": "trial-top-level-string",
       "name": "trial: top-level string gains quotes",
       "kind": "trial",
       "visible": true,
-      "input": {"value": "Codex7", "valuePlan": null},
+      "input": {
+        "value": "Codex7",
+        "valuePlan": null
+      },
       "expected": "\"Codex7\"",
-      "tags": ["trial", "string", "quotes"]
+      "tags": [
+        "trial",
+        "string",
+        "quotes"
+      ]
     },
     {
       "id": "real-numeric-key-order",
       "name": "real: Object.keys orders integer names first",
-      "kind": "real",
-      "visible": false,
-      "input": {"value": {"2": "b", "1": "a", "z": 0}, "valuePlan": null},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "value": {
+          "2": "b",
+          "1": "a",
+          "z": 0
+        },
+        "valuePlan": null
+      },
       "expected": "{\"1\":\"a\",\"2\":\"b\",\"z\":0}",
-      "tags": ["real", "object-keys", "integer-keys"]
+      "tags": [
+        "real",
+        "object-keys",
+        "integer-keys"
+      ]
     },
     {
       "id": "real-array-primitives",
       "name": "real: primitive array retains order",
-      "kind": "real",
-      "visible": false,
-      "input": {"value": [null, false, 0, -3.5, "A1"], "valuePlan": null},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "value": [
+          null,
+          false,
+          0,
+          -3.5,
+          "A1"
+        ],
+        "valuePlan": null
+      },
       "expected": "[null,false,0,-3.5,\"A1\"]",
-      "tags": ["real", "array", "primitive-order"]
+      "tags": [
+        "real",
+        "array",
+        "primitive-order"
+      ]
     },
     {
       "id": "real-deep-alternation",
       "name": "real: alternating nested containers",
-      "kind": "real",
-      "visible": false,
-      "input": {"value": [{"a": [{"b": [1]}]}], "valuePlan": null},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "value": [
+          {
+            "a": [
+              {
+                "b": [
+                  1
+                ]
+              }
+            ]
+          }
+        ],
+        "valuePlan": null
+      },
       "expected": "[{\"a\":[{\"b\":[1]}]}]",
-      "tags": ["real", "nesting", "arrays", "objects"]
+      "tags": [
+        "real",
+        "nesting",
+        "arrays",
+        "objects"
+      ]
     }
   ]
 }

@@ -350,9 +350,9 @@
     },
     {
       "id": "hidden-scattered-w",
-      "name": "hidden: scattered W events remain below the cutoff",
-      "kind": "real",
-      "visible": false,
+      "name": "scattered W events remain below the cutoff",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "events": [
           "W",
@@ -377,9 +377,9 @@
     },
     {
       "id": "hidden-cutoff-after-symbols",
-      "name": "hidden: the tenth W follows both symbolic scoring events",
-      "kind": "real",
-      "visible": false,
+      "name": "the tenth W follows both symbolic scoring events",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "events": [
           "WD",
@@ -409,9 +409,9 @@
     },
     {
       "id": "hidden-long-no-w",
-      "name": "hidden: a long all-six stream is fully processed",
-      "kind": "real",
-      "visible": false,
+      "name": "a long all-six stream is fully processed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "events": [
           "6",
@@ -492,9 +492,9 @@
     },
     {
       "id": "hidden-maximum-early-cutoff",
-      "name": "hidden: the maximum-length stream stops after ten leading W events",
-      "kind": "real",
-      "visible": false,
+      "name": "the maximum-length stream stops after ten leading W events",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "events": [
           "W",

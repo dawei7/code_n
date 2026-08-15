@@ -2,13 +2,117 @@
   "schema_version": 1,
   "challenge_id": "lc_2810",
   "cases": [
-    {"id":"sample-single-trigger","name":"sample: one reversal followed by ordinary letters","kind":"sample","visible":true,"input":{"s":"string"},"expected":"rtsng","tags":["sample","single-trigger"]},
-    {"id":"sample-double-trigger","name":"sample: consecutive reversals cancel","kind":"sample","visible":true,"input":{"s":"poiinter"},"expected":"ponter","tags":["sample","consecutive-triggers"]},
-    {"id":"trial-no-trigger","name":"trial: ordinary typing preserves the string","kind":"trial","visible":true,"input":{"s":"abc"},"expected":"abc","tags":["trial","no-trigger"]},
-    {"id":"trial-one-letter","name":"trial: minimum-length input","kind":"trial","visible":true,"input":{"s":"z"},"expected":"z","tags":["trial","minimum"]},
-    {"id":"trial-final-trigger","name":"trial: a final trigger reverses all displayed text","kind":"trial","visible":true,"input":{"s":"abcdi"},"expected":"dcba","tags":["trial","final-trigger"]},
-    {"id":"real-interleaved-triggers","name":"hidden: paired and separated triggers change insertion sides","kind":"real","visible":false,"input":{"s":"abiicidi"},"expected":"dabc","tags":["hidden","even-parity"]},
-    {"id":"real-alternating-triggers","name":"hidden: letters arrive under alternating orientations","kind":"real","visible":false,"input":{"s":"aibicid"},"expected":"cabd","tags":["hidden","alternating"]},
-    {"id":"real-many-triggers","name":"hidden: repeated trigger pairs have no net effect","kind":"real","visible":false,"input":{"s":"aiiiiiib"},"expected":"ab","tags":["hidden","many-triggers"]}
+    {
+      "id": "sample-single-trigger",
+      "name": "sample: one reversal followed by ordinary letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "string"
+      },
+      "expected": "rtsng",
+      "tags": [
+        "sample",
+        "single-trigger"
+      ]
+    },
+    {
+      "id": "sample-double-trigger",
+      "name": "sample: consecutive reversals cancel",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "poiinter"
+      },
+      "expected": "ponter",
+      "tags": [
+        "sample",
+        "consecutive-triggers"
+      ]
+    },
+    {
+      "id": "trial-no-trigger",
+      "name": "trial: ordinary typing preserves the string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc"
+      },
+      "expected": "abc",
+      "tags": [
+        "trial",
+        "no-trigger"
+      ]
+    },
+    {
+      "id": "trial-one-letter",
+      "name": "trial: minimum-length input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z"
+      },
+      "expected": "z",
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-final-trigger",
+      "name": "trial: a final trigger reverses all displayed text",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdi"
+      },
+      "expected": "dcba",
+      "tags": [
+        "trial",
+        "final-trigger"
+      ]
+    },
+    {
+      "id": "real-interleaved-triggers",
+      "name": "paired and separated triggers change insertion sides",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abiicidi"
+      },
+      "expected": "dabc",
+      "tags": [
+        "hidden",
+        "even-parity"
+      ]
+    },
+    {
+      "id": "real-alternating-triggers",
+      "name": "letters arrive under alternating orientations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aibicid"
+      },
+      "expected": "cabd",
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-many-triggers",
+      "name": "repeated trigger pairs have no net effect",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aiiiiiib"
+      },
+      "expected": "ab",
+      "tags": [
+        "hidden",
+        "many-triggers"
+      ]
+    }
   ]
 }

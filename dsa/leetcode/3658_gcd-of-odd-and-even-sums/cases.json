@@ -74,9 +74,9 @@
     },
     {
       "id": "real-prime",
-      "name": "hidden: prime input",
-      "kind": "real",
-      "visible": false,
+      "name": "prime input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 997
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "real-maximum",
-      "name": "hidden: maximum input",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000
       },

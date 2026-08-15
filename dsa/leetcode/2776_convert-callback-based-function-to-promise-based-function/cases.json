@@ -7,99 +7,342 @@
       "name": "sample: product callback resolves",
       "kind": "sample",
       "visible": true,
-      "input": {"behavior": "product", "args": [1, 2, 3], "errorMessage": null},
-      "expected": {"resolved": 6},
-      "tags": ["sample", "resolution", "argument-forwarding"]
+      "input": {
+        "behavior": "product",
+        "args": [
+          1,
+          2,
+          3
+        ],
+        "errorMessage": null
+      },
+      "expected": {
+        "resolved": 6
+      },
+      "tags": [
+        "sample",
+        "resolution",
+        "argument-forwarding"
+      ]
     },
     {
       "id": "sample-product-rejects",
       "name": "sample: callback error rejects",
       "kind": "sample",
       "visible": true,
-      "input": {"behavior": "productError", "args": [4, 5, 6], "errorMessage": "Promise Rejected"},
-      "expected": {"rejected": "Promise Rejected"},
-      "tags": ["sample", "rejection", "error-precedence"]
+      "input": {
+        "behavior": "productError",
+        "args": [
+          4,
+          5,
+          6
+        ],
+        "errorMessage": "Promise Rejected"
+      },
+      "expected": {
+        "rejected": "Promise Rejected"
+      },
+      "tags": [
+        "sample",
+        "rejection",
+        "error-precedence"
+      ]
     },
     {
       "id": "trial-minimum-arguments",
       "name": "trial: one argument is forwarded",
       "kind": "trial",
       "visible": true,
-      "input": {"behavior": "echo", "args": [42], "errorMessage": null},
-      "expected": {"resolved": 42},
-      "tags": ["trial", "minimum-arguments"]
+      "input": {
+        "behavior": "echo",
+        "args": [
+          42
+        ],
+        "errorMessage": null
+      },
+      "expected": {
+        "resolved": 42
+      },
+      "tags": [
+        "trial",
+        "minimum-arguments"
+      ]
     },
     {
       "id": "trial-sum",
       "name": "trial: several arguments preserve order and value",
       "kind": "trial",
       "visible": true,
-      "input": {"behavior": "sum", "args": [10, 20, 30], "errorMessage": null},
-      "expected": {"resolved": 60},
-      "tags": ["trial", "multiple-arguments"]
+      "input": {
+        "behavior": "sum",
+        "args": [
+          10,
+          20,
+          30
+        ],
+        "errorMessage": null
+      },
+      "expected": {
+        "resolved": 60
+      },
+      "tags": [
+        "trial",
+        "multiple-arguments"
+      ]
     },
     {
       "id": "trial-delayed-callback",
       "name": "trial: asynchronous callback still settles promise",
       "kind": "trial",
       "visible": true,
-      "input": {"behavior": "delayedSum", "args": [2, 4, 6, 8], "errorMessage": null},
-      "expected": {"resolved": 20},
-      "tags": ["trial", "asynchronous-callback"]
+      "input": {
+        "behavior": "delayedSum",
+        "args": [
+          2,
+          4,
+          6,
+          8
+        ],
+        "errorMessage": null
+      },
+      "expected": {
+        "resolved": 20
+      },
+      "tags": [
+        "trial",
+        "asynchronous-callback"
+      ]
     },
     {
       "id": "real-synchronous-throw",
       "name": "real: synchronous source throw rejects promise",
-      "kind": "real",
-      "visible": false,
-      "input": {"behavior": "throw", "args": [7], "errorMessage": "boom"},
-      "expected": {"rejected": "boom"},
-      "tags": ["real", "synchronous-throw"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "behavior": "throw",
+        "args": [
+          7
+        ],
+        "errorMessage": "boom"
+      },
+      "expected": {
+        "rejected": "boom"
+      },
+      "tags": [
+        "real",
+        "synchronous-throw"
+      ]
     },
     {
       "id": "real-error-over-result",
       "name": "real: callback error overrides result",
-      "kind": "real",
-      "visible": false,
-      "input": {"behavior": "resultAndError", "args": [42], "errorMessage": "bad result"},
-      "expected": {"rejected": "bad result"},
-      "tags": ["real", "error-precedence"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "behavior": "resultAndError",
+        "args": [
+          42
+        ],
+        "errorMessage": "bad result"
+      },
+      "expected": {
+        "rejected": "bad result"
+      },
+      "tags": [
+        "real",
+        "error-precedence"
+      ]
     },
     {
       "id": "real-first-success-wins",
       "name": "real: first successful settlement wins",
-      "kind": "real",
-      "visible": false,
-      "input": {"behavior": "successThenError", "args": [9], "errorMessage": "late error"},
-      "expected": {"resolved": 9},
-      "tags": ["real", "multiple-callbacks", "first-settlement"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "behavior": "successThenError",
+        "args": [
+          9
+        ],
+        "errorMessage": "late error"
+      },
+      "expected": {
+        "resolved": 9
+      },
+      "tags": [
+        "real",
+        "multiple-callbacks",
+        "first-settlement"
+      ]
     },
     {
       "id": "real-first-error-wins",
       "name": "real: first rejected settlement wins",
-      "kind": "real",
-      "visible": false,
-      "input": {"behavior": "errorThenSuccess", "args": [9], "errorMessage": "first error"},
-      "expected": {"rejected": "first error"},
-      "tags": ["real", "multiple-callbacks", "first-settlement"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "behavior": "errorThenSuccess",
+        "args": [
+          9
+        ],
+        "errorMessage": "first error"
+      },
+      "expected": {
+        "rejected": "first error"
+      },
+      "tags": [
+        "real",
+        "multiple-callbacks",
+        "first-settlement"
+      ]
     },
     {
       "id": "real-object-result",
       "name": "real: object callback result is preserved",
-      "kind": "real",
-      "visible": false,
-      "input": {"behavior": "objectResult", "args": [3, 1, 4], "errorMessage": null},
-      "expected": {"resolved": {"values": [3, 1, 4], "count": 3}},
-      "tags": ["real", "object-result"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "behavior": "objectResult",
+        "args": [
+          3,
+          1,
+          4
+        ],
+        "errorMessage": null
+      },
+      "expected": {
+        "resolved": {
+          "values": [
+            3,
+            1,
+            4
+          ],
+          "count": 3
+        }
+      },
+      "tags": [
+        "real",
+        "object-result"
+      ]
     },
     {
       "id": "real-maximum-arguments",
       "name": "real: all 100 legal arguments are forwarded",
-      "kind": "real",
-      "visible": false,
-      "input": {"behavior": "sum", "args": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100], "errorMessage": null},
-      "expected": {"resolved": 5050},
-      "tags": ["real", "maximum-arguments", "boundary"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "behavior": "sum",
+        "args": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100
+        ],
+        "errorMessage": null
+      },
+      "expected": {
+        "resolved": 5050
+      },
+      "tags": [
+        "real",
+        "maximum-arguments",
+        "boundary"
+      ]
     }
   ]
 }

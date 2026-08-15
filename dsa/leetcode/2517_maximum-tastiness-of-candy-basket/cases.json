@@ -7,81 +7,177 @@
       "name": "sample: select three candies with minimum gap eight",
       "kind": "sample",
       "visible": true,
-      "input": {"price": [13, 5, 1, 8, 21, 2], "k": 3},
+      "input": {
+        "price": [
+          13,
+          5,
+          1,
+          8,
+          21,
+          2
+        ],
+        "k": 3
+      },
       "expected": 8,
-      "tags": ["sample", "binary-search"]
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: duplicate low price does not improve the pair",
       "kind": "sample",
       "visible": true,
-      "input": {"price": [1, 3, 1], "k": 2},
+      "input": {
+        "price": [
+          1,
+          3,
+          1
+        ],
+        "k": 2
+      },
       "expected": 2,
-      "tags": ["sample", "duplicates"]
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: all prices are equal",
       "kind": "sample",
       "visible": true,
-      "input": {"price": [7, 7, 7, 7], "k": 2},
+      "input": {
+        "price": [
+          7,
+          7,
+          7,
+          7
+        ],
+        "k": 2
+      },
       "expected": 0,
-      "tags": ["sample", "zero-tastiness"]
+      "tags": [
+        "sample",
+        "zero-tastiness"
+      ]
     },
     {
       "id": "trial-two-candies",
       "name": "trial: choosing both candies uses the full range",
       "kind": "trial",
       "visible": true,
-      "input": {"price": [1, 10], "k": 2},
+      "input": {
+        "price": [
+          1,
+          10
+        ],
+        "k": 2
+      },
       "expected": 9,
-      "tags": ["trial", "two-candies"]
+      "tags": [
+        "trial",
+        "two-candies"
+      ]
     },
     {
       "id": "trial-skip-close-prices",
       "name": "trial: greedy choices skip nearby prices",
       "kind": "trial",
       "visible": true,
-      "input": {"price": [1, 2, 4, 8, 9], "k": 3},
+      "input": {
+        "price": [
+          1,
+          2,
+          4,
+          8,
+          9
+        ],
+        "k": 3
+      },
       "expected": 3,
-      "tags": ["trial", "nonadjacent-selection"]
+      "tags": [
+        "trial",
+        "nonadjacent-selection"
+      ]
     },
     {
       "id": "real-two-equal-candies",
-      "name": "hidden: duplicate selected prices give zero tastiness",
-      "kind": "real",
-      "visible": false,
-      "input": {"price": [5, 5], "k": 2},
+      "name": "duplicate selected prices give zero tastiness",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "price": [
+          5,
+          5
+        ],
+        "k": 2
+      },
       "expected": 0,
-      "tags": ["hidden", "duplicates"]
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
     },
     {
       "id": "real-k-is-n",
-      "name": "hidden: selecting every candy uses the smallest adjacent gap",
-      "kind": "real",
-      "visible": false,
-      "input": {"price": [9, 1, 5, 12], "k": 4},
+      "name": "selecting every candy uses the smallest adjacent gap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "price": [
+          9,
+          1,
+          5,
+          12
+        ],
+        "k": 4
+      },
       "expected": 3,
-      "tags": ["hidden", "all-candies"]
+      "tags": [
+        "hidden",
+        "all-candies"
+      ]
     },
     {
       "id": "real-large-range",
-      "name": "hidden: prices span the full allowed range",
-      "kind": "real",
-      "visible": false,
-      "input": {"price": [1000000000, 1], "k": 2},
+      "name": "prices span the full allowed range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "price": [
+          1000000000,
+          1
+        ],
+        "k": 2
+      },
       "expected": 999999999,
-      "tags": ["hidden", "large-values"]
+      "tags": [
+        "hidden",
+        "large-values"
+      ]
     },
     {
       "id": "real-duplicate-groups",
-      "name": "hidden: distinct candies may share prices",
-      "kind": "real",
-      "visible": false,
-      "input": {"price": [1, 1, 2, 2, 100], "k": 3},
+      "name": "distinct candies may share prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "price": [
+          1,
+          1,
+          2,
+          2,
+          100
+        ],
+        "k": 3
+      },
       "expected": 1,
-      "tags": ["hidden", "duplicates"]
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
     }
   ]
 }

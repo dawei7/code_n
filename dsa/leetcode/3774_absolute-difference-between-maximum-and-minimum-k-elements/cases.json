@@ -2,14 +2,211 @@
   "schema_version": 1,
   "challenge_id": "lc_3774",
   "cases": [
-    {"id":"sample-1","name":"sample: duplicate twos form the smallest pair","kind":"sample","visible":true,"input":{"nums":[5,2,2,4],"k":2},"expected":5,"validator":{"kind":"exact"},"tags":["sample","duplicates"]},
-    {"id":"sample-2","name":"sample: a singleton belongs to both groups","kind":"sample","visible":true,"input":{"nums":[100],"k":1},"expected":0,"validator":{"kind":"exact"},"tags":["sample","singleton"]},
-    {"id":"trial-one-extreme","name":"trial: k one compares the maximum and minimum","kind":"trial","visible":true,"input":{"nums":[3,9,1,7],"k":1},"expected":8,"validator":{"kind":"exact"},"tags":["trial","k-one"]},
-    {"id":"trial-whole-array","name":"trial: k equal to n makes both sums identical","kind":"trial","visible":true,"input":{"nums":[1,5,9],"k":3},"expected":0,"validator":{"kind":"exact"},"tags":["trial","full-selection"]},
-    {"id":"trial-overlapping-groups","name":"trial: independently selected groups may overlap","kind":"trial","visible":true,"input":{"nums":[1,2,10],"k":2},"expected":9,"validator":{"kind":"exact"},"tags":["trial","overlap"]},
-    {"id":"trial-all-equal","name":"trial: equal values make every group sum equal","kind":"trial","visible":true,"input":{"nums":[7,7,7,7],"k":2},"expected":0,"validator":{"kind":"exact"},"tags":["trial","all-equal"]},
-    {"id":"real-many-duplicates","name":"hidden: frequency counts consume repeated extremes","kind":"real","visible":false,"input":{"nums":[1,1,1,50,100,100],"k":3},"expected":247,"validator":{"kind":"exact"},"tags":["hidden","duplicates","value-boundaries"]},
-    {"id":"real-middle-overlap","name":"hidden: the middle occurrence contributes to both groups","kind":"real","visible":false,"input":{"nums":[2,4,6,8,10],"k":3},"expected":12,"validator":{"kind":"exact"},"tags":["hidden","overlap"]},
-    {"id":"real-value-boundaries","name":"hidden: minimum and maximum legal values","kind":"real","visible":false,"input":{"nums":[100,1,100,1],"k":2},"expected":198,"validator":{"kind":"exact"},"tags":["hidden","value-boundaries"]}
+    {
+      "id": "sample-1",
+      "name": "sample: duplicate twos form the smallest pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          2,
+          2,
+          4
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: a singleton belongs to both groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          100
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-one-extreme",
+      "name": "trial: k one compares the maximum and minimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          9,
+          1,
+          7
+        ],
+        "k": 1
+      },
+      "expected": 8,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "k-one"
+      ]
+    },
+    {
+      "id": "trial-whole-array",
+      "name": "trial: k equal to n makes both sums identical",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          9
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "full-selection"
+      ]
+    },
+    {
+      "id": "trial-overlapping-groups",
+      "name": "trial: independently selected groups may overlap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          10
+        ],
+        "k": 2
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: equal values make every group sum equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-equal"
+      ]
+    },
+    {
+      "id": "real-many-duplicates",
+      "name": "frequency counts consume repeated extremes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          50,
+          100,
+          100
+        ],
+        "k": 3
+      },
+      "expected": 247,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "duplicates",
+        "value-boundaries"
+      ]
+    },
+    {
+      "id": "real-middle-overlap",
+      "name": "the middle occurrence contributes to both groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6,
+          8,
+          10
+        ],
+        "k": 3
+      },
+      "expected": 12,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-value-boundaries",
+      "name": "minimum and maximum legal values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          1,
+          100,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 198,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "value-boundaries"
+      ]
+    }
   ]
 }

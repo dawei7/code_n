@@ -7,130 +7,471 @@
       "name": "sample: propagation reaches one connected component",
       "kind": "sample",
       "visible": true,
-      "input": {"points": [[1, 1], [1, 2], [2, 2]]},
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "explained", "one-component"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "one-component"
+      ]
     },
     {
       "id": "sample-two-singletons",
       "name": "sample: the new point joins two isolated points",
       "kind": "sample",
       "visible": true,
-      "input": {"points": [[2, 2], [1, 1], [3, 3]]},
+      "input": {
+        "points": [
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "explained", "isolated-components"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "isolated-components"
+      ]
     },
     {
       "id": "sample-largest-plus-singleton",
       "name": "sample: a size-two component joins one singleton",
       "kind": "sample",
       "visible": true,
-      "input": {"points": [[2, 3], [2, 2], [1, 1], [4, 5]]},
+      "input": {
+        "points": [
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "explained", "unequal-components"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "unequal-components"
+      ]
     },
     {
       "id": "trial-single-point",
       "name": "trial: one existing point can activate with the addition",
       "kind": "trial",
       "visible": true,
-      "input": {"points": [[0, 0]]},
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-point", "minimum-length"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-point",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-common-x",
       "name": "trial: all existing points share one x-coordinate",
       "kind": "trial",
       "visible": true,
-      "input": {"points": [[5, 1], [5, 2], [5, 3]]},
+      "input": {
+        "points": [
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            3
+          ]
+        ]
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "common-x", "one-component"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "common-x",
+        "one-component"
+      ]
     },
     {
       "id": "trial-all-isolated",
       "name": "trial: four singleton components allow only two to be joined",
       "kind": "trial",
       "visible": true,
-      "input": {"points": [[0, 0], [1, 1], [2, 2], [3, 3]]},
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "all-isolated", "two-component-limit"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-isolated",
+        "two-component-limit"
+      ]
     },
     {
       "id": "trial-two-large-components",
       "name": "trial: the addition joins components of sizes four and three",
       "kind": "trial",
       "visible": true,
-      "input": {"points": [[0, 0], [0, 1], [2, 1], [2, 3], [10, 10], [11, 10], [11, 12]]},
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            10
+          ],
+          [
+            11,
+            12
+          ]
+        ]
+      },
       "expected": 8,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "two-components", "largest-two"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "two-components",
+        "largest-two"
+      ]
     },
     {
       "id": "trial-three-unequal-components",
       "name": "trial: only the two largest of three components matter",
       "kind": "trial",
       "visible": true,
-      "input": {"points": [[0, 0], [0, 1], [2, 1], [10, 10], [11, 10], [20, 20]]},
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            10
+          ],
+          [
+            20,
+            20
+          ]
+        ]
+      },
       "expected": 6,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "three-components", "ignore-smallest"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "three-components",
+        "ignore-smallest"
+      ]
     },
     {
       "id": "real-transitive-chain",
-      "name": "hidden: alternating shared coordinates connect transitively",
-      "kind": "real",
-      "visible": false,
-      "input": {"points": [[0, 0], [0, 1], [2, 1], [2, 3], [4, 3], [4, 5]]},
+      "name": "alternating shared coordinates connect transitively",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
       "expected": 7,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "transitive-chain", "one-component"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "transitive-chain",
+        "one-component"
+      ]
     },
     {
       "id": "real-common-y",
-      "name": "hidden: a repeated y-coordinate forms one component",
-      "kind": "real",
-      "visible": false,
-      "input": {"points": [[-3, 7], [0, 7], [4, 7], [9, 7]]},
+      "name": "a repeated y-coordinate forms one component",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            -3,
+            7
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            9,
+            7
+          ]
+        ]
+      },
       "expected": 5,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "common-y", "negative-coordinate"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "common-y",
+        "negative-coordinate"
+      ]
     },
     {
       "id": "real-coordinate-boundaries",
-      "name": "hidden: opposite coordinate bounds remain separate",
-      "kind": "real",
-      "visible": false,
-      "input": {"points": [[-1000000000, -1000000000], [1000000000, 1000000000]]},
+      "name": "opposite coordinate bounds remain separate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            -1000000000,
+            -1000000000
+          ],
+          [
+            1000000000,
+            1000000000
+          ]
+        ]
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "coordinate-bounds", "two-components"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "coordinate-bounds",
+        "two-components"
+      ]
     },
     {
       "id": "real-cycle-and-pair",
-      "name": "hidden: a four-point cycle joins a separate pair",
-      "kind": "real",
-      "visible": false,
-      "input": {"points": [[0, 0], [0, 2], [3, 2], [3, 0], [10, 10], [10, 11]]},
+      "name": "a four-point cycle joins a separate pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            10,
+            11
+          ]
+        ]
+      },
       "expected": 7,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "cycle", "separate-pair"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "cycle",
+        "separate-pair"
+      ]
     },
     {
       "id": "real-duplicate-axis-values",
-      "name": "hidden: repeated x and y values merge several groups",
-      "kind": "real",
-      "visible": false,
-      "input": {"points": [[1, 1], [1, 2], [3, 2], [4, 5], [6, 5], [6, 7], [20, 20]]},
+      "name": "repeated x and y values merge several groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            20,
+            20
+          ]
+        ]
+      },
       "expected": 7,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "repeated-axes", "three-components"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "repeated-axes",
+        "three-components"
+      ]
     }
   ]
 }

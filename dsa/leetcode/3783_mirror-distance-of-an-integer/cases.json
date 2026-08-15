@@ -2,17 +2,213 @@
   "schema_version": 1,
   "challenge_id": "lc_3783",
   "cases": [
-    {"id":"sample-1","name":"sample: reversal is greater than the input","kind":"sample","visible":true,"input":{"n":25},"expected":27,"validator":{"kind":"exact"},"tags":["sample","two-digits"]},
-    {"id":"sample-2","name":"sample: trailing zero becomes a discarded leading zero","kind":"sample","visible":true,"input":{"n":10},"expected":9,"validator":{"kind":"exact"},"tags":["sample","trailing-zero"]},
-    {"id":"sample-3","name":"sample: one digit has zero mirror distance","kind":"sample","visible":true,"input":{"n":7},"expected":0,"validator":{"kind":"exact"},"tags":["sample","one-digit","palindrome"]},
-    {"id":"trial-reversal-smaller","name":"trial: reversal is smaller than the input","kind":"trial","visible":true,"input":{"n":52},"expected":27,"validator":{"kind":"exact"},"tags":["trial","absolute-value"]},
-    {"id":"trial-palindrome","name":"trial: multi-digit palindrome","kind":"trial","visible":true,"input":{"n":1221},"expected":0,"validator":{"kind":"exact"},"tags":["trial","palindrome"]},
-    {"id":"trial-internal-zero","name":"trial: internal zero moves to another internal position","kind":"trial","visible":true,"input":{"n":102},"expected":99,"validator":{"kind":"exact"},"tags":["trial","zero"]},
-    {"id":"real-minimum","name":"hidden: minimum legal input","kind":"real","visible":false,"input":{"n":1},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","minimum"]},
-    {"id":"real-two-trailing-zeros","name":"hidden: multiple leading zeros vanish after reversal","kind":"real","visible":false,"input":{"n":1200},"expected":1179,"validator":{"kind":"exact"},"tags":["hidden","trailing-zeros"]},
-    {"id":"real-middle-zero-palindrome","name":"hidden: zero inside a palindrome","kind":"real","visible":false,"input":{"n":1001},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","palindrome","zero"]},
-    {"id":"real-nine-digits","name":"hidden: large asymmetric nine-digit integer","kind":"real","visible":false,"input":{"n":123456789},"expected":864197532,"validator":{"kind":"exact"},"tags":["hidden","large"]},
-    {"id":"real-large-palindrome","name":"hidden: large upper-range palindrome","kind":"real","visible":false,"input":{"n":999999999},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","large","palindrome"]},
-    {"id":"real-maximum","name":"hidden: maximum legal input reverses to one","kind":"real","visible":false,"input":{"n":1000000000},"expected":999999999,"validator":{"kind":"exact"},"tags":["hidden","maximum","trailing-zeros"]}
+    {
+      "id": "sample-1",
+      "name": "sample: reversal is greater than the input",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 25
+      },
+      "expected": 27,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "two-digits"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: trailing zero becomes a discarded leading zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 10
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "trailing-zero"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one digit has zero mirror distance",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 7
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "one-digit",
+        "palindrome"
+      ]
+    },
+    {
+      "id": "trial-reversal-smaller",
+      "name": "trial: reversal is smaller than the input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 52
+      },
+      "expected": 27,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "absolute-value"
+      ]
+    },
+    {
+      "id": "trial-palindrome",
+      "name": "trial: multi-digit palindrome",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1221
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "palindrome"
+      ]
+    },
+    {
+      "id": "trial-internal-zero",
+      "name": "trial: internal zero moves to another internal position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 102
+      },
+      "expected": 99,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
+      "id": "real-minimum",
+      "name": "minimum legal input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "minimum"
+      ]
+    },
+    {
+      "id": "real-two-trailing-zeros",
+      "name": "multiple leading zeros vanish after reversal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1200
+      },
+      "expected": 1179,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "trailing-zeros"
+      ]
+    },
+    {
+      "id": "real-middle-zero-palindrome",
+      "name": "zero inside a palindrome",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1001
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "palindrome",
+        "zero"
+      ]
+    },
+    {
+      "id": "real-nine-digits",
+      "name": "large asymmetric nine-digit integer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 123456789
+      },
+      "expected": 864197532,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "large"
+      ]
+    },
+    {
+      "id": "real-large-palindrome",
+      "name": "large upper-range palindrome",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 999999999
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "large",
+        "palindrome"
+      ]
+    },
+    {
+      "id": "real-maximum",
+      "name": "maximum legal input reverses to one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000000000
+      },
+      "expected": 999999999,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum",
+        "trailing-zeros"
+      ]
+    }
   ]
 }

@@ -6,90 +6,160 @@
       "name": "sample: second of two palindromes",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "abba", "k": 2},
+      "input": {
+        "s": "abba",
+        "k": 2
+      },
       "expected": "baab",
-      "tags": ["sample", "valid-rank", "even-length"]
+      "tags": [
+        "sample",
+        "valid-rank",
+        "even-length"
+      ]
     },
     {
       "id": "sample-rank-missing",
       "name": "sample: requested rank is absent",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "aa", "k": 2},
+      "input": {
+        "s": "aa",
+        "k": 2
+      },
       "expected": "",
-      "tags": ["sample", "invalid-rank", "one-distinct-palindrome"]
+      "tags": [
+        "sample",
+        "invalid-rank",
+        "one-distinct-palindrome"
+      ]
     },
     {
       "id": "sample-first-with-center",
       "name": "sample: first odd-length palindrome",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "bacab", "k": 1},
+      "input": {
+        "s": "bacab",
+        "k": 1
+      },
       "expected": "abcba",
-      "tags": ["sample", "valid-rank", "odd-length"]
+      "tags": [
+        "sample",
+        "valid-rank",
+        "odd-length"
+      ]
     },
     {
       "id": "trial-single-character-first",
       "name": "trial: first rank for a single character",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "z", "k": 1},
+      "input": {
+        "s": "z",
+        "k": 1
+      },
       "expected": "z",
-      "tags": ["trial", "single-character", "valid-rank"]
+      "tags": [
+        "trial",
+        "single-character",
+        "valid-rank"
+      ]
     },
     {
       "id": "trial-single-character-missing",
       "name": "trial: missing rank for a single character",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "z", "k": 2},
+      "input": {
+        "s": "z",
+        "k": 2
+      },
       "expected": "",
-      "tags": ["trial", "single-character", "invalid-rank"]
+      "tags": [
+        "trial",
+        "single-character",
+        "invalid-rank"
+      ]
     },
     {
       "id": "trial-last-of-three",
       "name": "trial: last rank of a repeated multiset",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aabbaa", "k": 3},
+      "input": {
+        "s": "aabbaa",
+        "k": 3
+      },
       "expected": "baaaab",
-      "tags": ["trial", "last-rank", "duplicate-letters"]
+      "tags": [
+        "trial",
+        "last-rank",
+        "duplicate-letters"
+      ]
     },
     {
       "id": "real-just-beyond-total",
       "name": "real: rank immediately beyond the total",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aabbaa", "k": 4},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabbaa",
+        "k": 4
+      },
       "expected": "",
-      "tags": ["real", "invalid-rank", "boundary-rank"]
+      "tags": [
+        "real",
+        "invalid-rank",
+        "boundary-rank"
+      ]
     },
     {
       "id": "real-second-with-center",
       "name": "real: second rank with a fixed center",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "bacab", "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bacab",
+        "k": 2
+      },
       "expected": "bacab",
-      "tags": ["real", "odd-length", "valid-rank"]
+      "tags": [
+        "real",
+        "odd-length",
+        "valid-rank"
+      ]
     },
     {
       "id": "real-middle-rank-with-duplicates",
       "name": "real: interior rank with duplicate half letters",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "cbaaaabc", "k": 5},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "cbaaaabc",
+        "k": 5
+      },
       "expected": "acabbaca",
-      "tags": ["real", "interior-rank", "duplicate-letters"]
+      "tags": [
+        "real",
+        "interior-rank",
+        "duplicate-letters"
+      ]
     },
     {
       "id": "real-millionth-rank",
       "name": "real: maximum requested rank",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdefghijklmnnmlkjihgfedcba", "k": 1000000},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnnmlkjihgfedcba",
+        "k": 1000000
+      },
       "expected": "abcdglmhnfjikeekijfnhmlgdcba",
-      "tags": ["real", "maximum-k", "distinct-half"]
+      "tags": [
+        "real",
+        "maximum-k",
+        "distinct-half"
+      ]
     }
   ]
 }

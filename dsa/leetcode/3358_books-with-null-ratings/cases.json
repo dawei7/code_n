@@ -9,83 +9,347 @@
       "input": {
         "tables": {
           "books": [
-            {"book_id": 1, "title": "The Great Gatsby", "author": "F. Scott", "published_year": 1925, "rating": 4.5},
-            {"book_id": 2, "title": "To Kill a Mockingbird", "author": "Harper Lee", "published_year": 1960, "rating": null},
-            {"book_id": 3, "title": "Pride and Prejudice", "author": "Jane Austen", "published_year": 1813, "rating": 4.8},
-            {"book_id": 4, "title": "The Catcher in the Rye", "author": "J.D. Salinger", "published_year": 1951, "rating": null},
-            {"book_id": 5, "title": "Animal Farm", "author": "George Orwell", "published_year": 1945, "rating": 4.2},
-            {"book_id": 6, "title": "Lord of the Flies", "author": "William Golding", "published_year": 1954, "rating": null}
+            {
+              "book_id": 1,
+              "title": "The Great Gatsby",
+              "author": "F. Scott",
+              "published_year": 1925,
+              "rating": 4.5
+            },
+            {
+              "book_id": 2,
+              "title": "To Kill a Mockingbird",
+              "author": "Harper Lee",
+              "published_year": 1960,
+              "rating": null
+            },
+            {
+              "book_id": 3,
+              "title": "Pride and Prejudice",
+              "author": "Jane Austen",
+              "published_year": 1813,
+              "rating": 4.8
+            },
+            {
+              "book_id": 4,
+              "title": "The Catcher in the Rye",
+              "author": "J.D. Salinger",
+              "published_year": 1951,
+              "rating": null
+            },
+            {
+              "book_id": 5,
+              "title": "Animal Farm",
+              "author": "George Orwell",
+              "published_year": 1945,
+              "rating": 4.2
+            },
+            {
+              "book_id": 6,
+              "title": "Lord of the Flies",
+              "author": "William Golding",
+              "published_year": 1954,
+              "rating": null
+            }
           ]
         }
       },
       "expected": {
-        "columns": ["book_id", "title", "author", "published_year"],
-        "rows": [[2, "To Kill a Mockingbird", "Harper Lee", 1960], [4, "The Catcher in the Rye", "J.D. Salinger", 1951], [6, "Lord of the Flies", "William Golding", 1954]]
+        "columns": [
+          "book_id",
+          "title",
+          "author",
+          "published_year"
+        ],
+        "rows": [
+          [
+            2,
+            "To Kill a Mockingbird",
+            "Harper Lee",
+            1960
+          ],
+          [
+            4,
+            "The Catcher in the Rye",
+            "J.D. Salinger",
+            1951
+          ],
+          [
+            6,
+            "Lord of the Flies",
+            "William Golding",
+            1954
+          ]
+        ]
       },
-      "tags": ["sample", "null-filter", "ordering"]
+      "tags": [
+        "sample",
+        "null-filter",
+        "ordering"
+      ]
     },
     {
       "id": "trial-no-unrated-books",
       "name": "trial: every book has a recorded rating",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"books": [
-        {"book_id": 2, "title": "Rated Two", "author": "B", "published_year": 2002, "rating": 3.0},
-        {"book_id": 1, "title": "Rated Zero", "author": "A", "published_year": 2001, "rating": 0.0}
-      ]}},
-      "expected": {"columns": ["book_id", "title", "author", "published_year"], "rows": []},
-      "tags": ["empty-result", "zero-is-not-null"]
+      "input": {
+        "tables": {
+          "books": [
+            {
+              "book_id": 2,
+              "title": "Rated Two",
+              "author": "B",
+              "published_year": 2002,
+              "rating": 3.0
+            },
+            {
+              "book_id": 1,
+              "title": "Rated Zero",
+              "author": "A",
+              "published_year": 2001,
+              "rating": 0.0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "book_id",
+          "title",
+          "author",
+          "published_year"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "empty-result",
+        "zero-is-not-null"
+      ]
     },
     {
       "id": "trial-all-unrated-unsorted-input",
       "name": "trial: every book is unrated and input order differs",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"books": [
-        {"book_id": 9, "title": "Nine", "author": "N", "published_year": 1999, "rating": null},
-        {"book_id": 1, "title": "One", "author": "O", "published_year": 1901, "rating": null},
-        {"book_id": 5, "title": "Five", "author": "F", "published_year": 1955, "rating": null}
-      ]}},
-      "expected": {"columns": ["book_id", "title", "author", "published_year"], "rows": [[1, "One", "O", 1901], [5, "Five", "F", 1955], [9, "Nine", "N", 1999]]},
-      "tags": ["all-null", "ordering"]
+      "input": {
+        "tables": {
+          "books": [
+            {
+              "book_id": 9,
+              "title": "Nine",
+              "author": "N",
+              "published_year": 1999,
+              "rating": null
+            },
+            {
+              "book_id": 1,
+              "title": "One",
+              "author": "O",
+              "published_year": 1901,
+              "rating": null
+            },
+            {
+              "book_id": 5,
+              "title": "Five",
+              "author": "F",
+              "published_year": 1955,
+              "rating": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "book_id",
+          "title",
+          "author",
+          "published_year"
+        ],
+        "rows": [
+          [
+            1,
+            "One",
+            "O",
+            1901
+          ],
+          [
+            5,
+            "Five",
+            "F",
+            1955
+          ],
+          [
+            9,
+            "Nine",
+            "N",
+            1999
+          ]
+        ]
+      },
+      "tags": [
+        "all-null",
+        "ordering"
+      ]
     },
     {
       "id": "trial-rating-zero",
       "name": "trial: zero rating remains a non-null value",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"books": [
-        {"book_id": 4, "title": "Zero", "author": "Z", "published_year": 2020, "rating": 0},
-        {"book_id": 3, "title": "Missing", "author": "M", "published_year": 2019, "rating": null}
-      ]}},
-      "expected": {"columns": ["book_id", "title", "author", "published_year"], "rows": [[3, "Missing", "M", 2019]]},
-      "tags": ["null-semantics", "zero-is-not-null"]
+      "input": {
+        "tables": {
+          "books": [
+            {
+              "book_id": 4,
+              "title": "Zero",
+              "author": "Z",
+              "published_year": 2020,
+              "rating": 0
+            },
+            {
+              "book_id": 3,
+              "title": "Missing",
+              "author": "M",
+              "published_year": 2019,
+              "rating": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "book_id",
+          "title",
+          "author",
+          "published_year"
+        ],
+        "rows": [
+          [
+            3,
+            "Missing",
+            "M",
+            2019
+          ]
+        ]
+      },
+      "tags": [
+        "null-semantics",
+        "zero-is-not-null"
+      ]
     },
     {
       "id": "real-projection-and-order",
       "name": "real: preserve text fields while excluding rating",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"books": [
-        {"book_id": 42, "title": "Same", "author": "Writer", "published_year": 2024, "rating": null},
-        {"book_id": 7, "title": "Same", "author": "Writer", "published_year": 2024, "rating": null},
-        {"book_id": 13, "title": "Rated", "author": "Writer", "published_year": 2024, "rating": 4.75}
-      ]}},
-      "expected": {"columns": ["book_id", "title", "author", "published_year"], "rows": [[7, "Same", "Writer", 2024], [42, "Same", "Writer", 2024]]},
-      "tags": ["real", "projection", "ordering"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "books": [
+            {
+              "book_id": 42,
+              "title": "Same",
+              "author": "Writer",
+              "published_year": 2024,
+              "rating": null
+            },
+            {
+              "book_id": 7,
+              "title": "Same",
+              "author": "Writer",
+              "published_year": 2024,
+              "rating": null
+            },
+            {
+              "book_id": 13,
+              "title": "Rated",
+              "author": "Writer",
+              "published_year": 2024,
+              "rating": 4.75
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "book_id",
+          "title",
+          "author",
+          "published_year"
+        ],
+        "rows": [
+          [
+            7,
+            "Same",
+            "Writer",
+            2024
+          ],
+          [
+            42,
+            "Same",
+            "Writer",
+            2024
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "projection",
+        "ordering"
+      ]
     },
     {
       "id": "real-single-unrated-row",
       "name": "real: one unrated book among rated neighbors",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"books": [
-        {"book_id": 100, "title": "High", "author": "H", "published_year": 2100, "rating": 5.0},
-        {"book_id": 2, "title": "Low", "author": "L", "published_year": 1800, "rating": 1.0},
-        {"book_id": 55, "title": "Unknown", "author": "U", "published_year": 2000, "rating": null}
-      ]}},
-      "expected": {"columns": ["book_id", "title", "author", "published_year"], "rows": [[55, "Unknown", "U", 2000]]},
-      "tags": ["real", "single-result"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "books": [
+            {
+              "book_id": 100,
+              "title": "High",
+              "author": "H",
+              "published_year": 2100,
+              "rating": 5.0
+            },
+            {
+              "book_id": 2,
+              "title": "Low",
+              "author": "L",
+              "published_year": 1800,
+              "rating": 1.0
+            },
+            {
+              "book_id": 55,
+              "title": "Unknown",
+              "author": "U",
+              "published_year": 2000,
+              "rating": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "book_id",
+          "title",
+          "author",
+          "published_year"
+        ],
+        "rows": [
+          [
+            55,
+            "Unknown",
+            "U",
+            2000
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "single-result"
+      ]
     }
   ]
 }

@@ -128,9 +128,9 @@
     },
     {
       "id": "real-max-all-distinct",
-      "name": "hidden: maximum size with all distinct categories",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum size with all distinct categories",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100,
         "categoryHandler": [
@@ -245,9 +245,9 @@
     },
     {
       "id": "real-max-all-same",
-      "name": "hidden: maximum size with one category",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum size with one category",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100,
         "categoryHandler": [

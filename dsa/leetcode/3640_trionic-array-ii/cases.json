@@ -104,9 +104,9 @@
     },
     {
       "id": "real-later-pattern",
-      "name": "hidden: a later trionic pattern beats an earlier one",
-      "kind": "real",
-      "visible": false,
+      "name": "a later trionic pattern beats an earlier one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -125,9 +125,9 @@
     },
     {
       "id": "real-long-phases",
-      "name": "hidden: all three phases contain multiple comparisons",
-      "kind": "real",
-      "visible": false,
+      "name": "all three phases contain multiple comparisons",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -149,9 +149,9 @@
     },
     {
       "id": "real-plateau-separator",
-      "name": "hidden: equality resets every partial phase",
-      "kind": "real",
-      "visible": false,
+      "name": "equality resets every partial phase",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -173,9 +173,9 @@
     },
     {
       "id": "real-large-values",
-      "name": "hidden: sums require wider than 32-bit arithmetic",
-      "kind": "real",
-      "visible": false,
+      "name": "sums require wider than 32-bit arithmetic",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -193,9 +193,9 @@
     },
     {
       "id": "real-negative-prefix-extension",
-      "name": "hidden: extending an increasing state can still be optimal",
-      "kind": "real",
-      "visible": false,
+      "name": "extending an increasing state can still be optimal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -8,
@@ -214,9 +214,9 @@
     },
     {
       "id": "real-overlapping-candidates",
-      "name": "hidden: overlapping trionic ranges share turns",
-      "kind": "real",
-      "visible": false,
+      "name": "overlapping trionic ranges share turns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -236,9 +236,9 @@
     },
     {
       "id": "real-final-extension",
-      "name": "hidden: the final increasing phase accumulates several values",
-      "kind": "real",
-      "visible": false,
+      "name": "the final increasing phase accumulates several values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,

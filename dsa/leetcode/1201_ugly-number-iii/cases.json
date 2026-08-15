@@ -89,9 +89,9 @@
     },
     {
       "id": "real-nested-divisors",
-      "name": "hidden: all larger divisors are redundant",
-      "kind": "real",
-      "visible": false,
+      "name": "all larger divisors are redundant",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10,
         "a": 2,
@@ -106,9 +106,9 @@
     },
     {
       "id": "real-coprime-divisors",
-      "name": "hidden: three pairwise coprime streams",
-      "kind": "real",
-      "visible": false,
+      "name": "three pairwise coprime streams",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 20,
         "a": 7,
@@ -123,9 +123,9 @@
     },
     {
       "id": "real-large-divisors",
-      "name": "hidden: large least common multiples",
-      "kind": "real",
-      "visible": false,
+      "name": "large least common multiples",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000,
         "a": 99991,

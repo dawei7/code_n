@@ -79,9 +79,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: match ends in fourth copy",
-      "kind": "real",
-      "visible": false,
+      "name": "match ends in fourth copy",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": "abc",
         "b": "cabcabca"
@@ -94,9 +94,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: same alphabet but impossible order",
-      "kind": "real",
-      "visible": false,
+      "name": "same alphabet but impossible order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": "abc",
         "b": "ac"
@@ -109,9 +109,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: repeated source pattern",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated source pattern",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "a": "abab",
         "b": "baba"
@@ -124,4 +124,3 @@
     }
   ]
 }
-

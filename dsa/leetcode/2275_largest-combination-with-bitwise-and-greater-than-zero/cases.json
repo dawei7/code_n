@@ -2,13 +2,151 @@
   "schema_version": 1,
   "challenge_id": "lc_2275",
   "cases": [
-    {"id":"sample-two-optimal-bits","name":"sample: two different shared bits attain the optimum","kind":"sample","visible":true,"input":{"candidates":[16,17,71,62,12,24,14]},"expected":4,"tags":["sample","multiple-optima"]},
-    {"id":"sample-duplicates","name":"sample: duplicate values are separate selectable elements","kind":"sample","visible":true,"input":{"candidates":[8,8]},"expected":2,"tags":["sample","duplicates"]},
-    {"id":"trial-single","name":"one positive candidate is always valid","kind":"trial","visible":true,"input":{"candidates":[7]},"expected":1,"tags":["minimum-length"]},
-    {"id":"trial-disjoint-bits","name":"distinct powers of two cannot be combined","kind":"trial","visible":true,"input":{"candidates":[1,2,4,8]},"expected":1,"tags":["disjoint-bits"]},
-    {"id":"trial-shared-low-bit","name":"three values share the least significant bit","kind":"trial","visible":true,"input":{"candidates":[3,5,6,7]},"expected":3,"tags":["shared-bit"]},
-    {"id":"real-noncontiguous","name":"hidden: selection may skip arbitrary array positions","kind":"real","visible":false,"input":{"candidates":[10,8,6,4]},"expected":2,"tags":["hidden","combination"]},
-    {"id":"real-all-identical","name":"hidden: every identical occurrence can be selected","kind":"real","visible":false,"input":{"candidates":[7,7,7,7]},"expected":4,"tags":["hidden","duplicates"]},
-    {"id":"real-pairwise-trap","name":"hidden: pairwise overlaps do not imply one shared bit","kind":"real","visible":false,"input":{"candidates":[3,5,6]},"expected":2,"tags":["hidden","pairwise-overlap"]}
+    {
+      "id": "sample-two-optimal-bits",
+      "name": "sample: two different shared bits attain the optimum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "candidates": [
+          16,
+          17,
+          71,
+          62,
+          12,
+          24,
+          14
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "multiple-optima"
+      ]
+    },
+    {
+      "id": "sample-duplicates",
+      "name": "sample: duplicate values are separate selectable elements",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "candidates": [
+          8,
+          8
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "one positive candidate is always valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candidates": [
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-disjoint-bits",
+      "name": "distinct powers of two cannot be combined",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candidates": [
+          1,
+          2,
+          4,
+          8
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "disjoint-bits"
+      ]
+    },
+    {
+      "id": "trial-shared-low-bit",
+      "name": "three values share the least significant bit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candidates": [
+          3,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "shared-bit"
+      ]
+    },
+    {
+      "id": "real-noncontiguous",
+      "name": "selection may skip arbitrary array positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candidates": [
+          10,
+          8,
+          6,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "combination"
+      ]
+    },
+    {
+      "id": "real-all-identical",
+      "name": "every identical occurrence can be selected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candidates": [
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-pairwise-trap",
+      "name": "pairwise overlaps do not imply one shared bit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candidates": [
+          3,
+          5,
+          6
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "pairwise-overlap"
+      ]
+    }
   ]
 }

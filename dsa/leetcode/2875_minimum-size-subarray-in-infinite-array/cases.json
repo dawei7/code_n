@@ -100,9 +100,9 @@
     },
     {
       "id": "real-full-cycle-plus-wrap",
-      "name": "hidden: complete cycle plus a circular remainder",
-      "kind": "real",
-      "visible": false,
+      "name": "complete cycle plus a circular remainder",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -122,9 +122,9 @@
     },
     {
       "id": "real-large-target",
-      "name": "hidden: very large target over a tiny repeating pattern",
-      "kind": "real",
-      "visible": false,
+      "name": "very large target over a tiny repeating pattern",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -141,9 +141,9 @@
     },
     {
       "id": "real-unreachable-after-cycle",
-      "name": "hidden: remainder stays impossible after removing a cycle",
-      "kind": "real",
-      "visible": false,
+      "name": "remainder stays impossible after removing a cycle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,

@@ -7,150 +7,334 @@
       "name": "sample: remove one element to reach target XOR",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3], "target": 2},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "target": 2
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "explained", "one-removal"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "one-removal"
+      ]
     },
     {
       "id": "sample-impossible",
       "name": "sample: target XOR is unreachable",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 4], "target": 1},
+      "input": {
+        "nums": [
+          2,
+          4
+        ],
+        "target": 1
+      },
       "expected": -1,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "explained", "unreachable"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "unreachable"
+      ]
     },
     {
       "id": "sample-zero-removals",
       "name": "sample: the complete array already matches",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [7], "target": 7},
+      "input": {
+        "nums": [
+          7
+        ],
+        "target": 7
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "explained", "zero-removals"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "zero-removals"
+      ]
     },
     {
       "id": "trial-empty-xor",
       "name": "trial: removing the sole value realizes empty XOR",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7], "target": 0},
+      "input": {
+        "nums": [
+          7
+        ],
+        "target": 0
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "empty-subset", "target-zero"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "empty-subset",
+        "target-zero"
+      ]
     },
     {
       "id": "trial-keep-zero",
       "name": "trial: a zero value can be retained",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0], "target": 0},
+      "input": {
+        "nums": [
+          0
+        ],
+        "target": 0
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "zero-value", "zero-removals"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero-value",
+        "zero-removals"
+      ]
     },
     {
       "id": "trial-zero-cannot-make-one",
       "name": "trial: zero cannot produce a nonzero target",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0], "target": 1},
+      "input": {
+        "nums": [
+          0
+        ],
+        "target": 1
+      },
       "expected": -1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "zero-value", "unreachable"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero-value",
+        "unreachable"
+      ]
     },
     {
       "id": "trial-keep-two-powers",
       "name": "trial: retain two powers and remove two",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 4, 8], "target": 3},
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "target": 3
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "powers-of-two", "two-removals"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "powers-of-two",
+        "two-removals"
+      ]
     },
     {
       "id": "trial-nonempty-zero-xor",
       "name": "trial: the complete array has XOR zero",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3], "target": 0},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "target": 0
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "target-zero", "zero-removals"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "target-zero",
+        "zero-removals"
+      ]
     },
     {
       "id": "real-duplicate-cancellation",
-      "name": "hidden: duplicate values cancel without removals",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 5], "target": 0},
+      "name": "duplicate values cancel without removals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5
+        ],
+        "target": 0
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "duplicates", "xor-cancellation"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "duplicates",
+        "xor-cancellation"
+      ]
     },
     {
       "id": "real-keep-extra-zeros",
-      "name": "hidden: zero values increase the retained count",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 0, 1], "target": 1},
+      "name": "zero values increase the retained count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1
+        ],
+        "target": 1
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "zero-values", "maximize-kept"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "zero-values",
+        "maximize-kept"
+      ]
     },
     {
       "id": "real-remove-nonzero-keep-zero",
-      "name": "hidden: keep zero while removing a nonzero value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 1], "target": 0},
+      "name": "keep zero while removing a nonzero value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1
+        ],
+        "target": 0
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "zero-value", "one-removal"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "zero-value",
+        "one-removal"
+      ]
     },
     {
       "id": "real-best-of-two-representations",
-      "name": "hidden: prefer the larger subset for the same XOR",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [6, 10, 12], "target": 12},
+      "name": "prefer the larger subset for the same XOR",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          10,
+          12
+        ],
+        "target": 12
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "multiple-representations", "maximize-kept"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "multiple-representations",
+        "maximize-kept"
+      ]
     },
     {
       "id": "real-maximum-target",
-      "name": "hidden: two values combine to the maximum target",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8192, 1808], "target": 10000},
+      "name": "two values combine to the maximum target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8192,
+          1808
+        ],
+        "target": 10000
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "value-boundaries", "maximum-target"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "value-boundaries",
+        "maximum-target"
+      ]
     },
     {
       "id": "real-maximum-target-unreachable",
-      "name": "hidden: maximum target is absent from reachable states",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9999], "target": 10000},
+      "name": "maximum target is absent from reachable states",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9999
+        ],
+        "target": 10000
+      },
       "expected": -1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "value-boundaries", "unreachable"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "value-boundaries",
+        "unreachable"
+      ]
     },
     {
       "id": "real-keep-one-of-five-powers",
-      "name": "hidden: only one independent power matches the target",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 4, 8, 16], "target": 1},
+      "name": "only one independent power matches the target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8,
+          16
+        ],
+        "target": 1
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "powers-of-two", "four-removals"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "powers-of-two",
+        "four-removals"
+      ]
     }
   ]
 }

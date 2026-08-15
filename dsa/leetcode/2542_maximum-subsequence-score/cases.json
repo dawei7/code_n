@@ -105,9 +105,9 @@
     },
     {
       "id": "real-zero-summands",
-      "name": "hidden: zero summands can preserve a high multiplier",
-      "kind": "real",
-      "visible": false,
+      "name": "zero summands can preserve a high multiplier",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           0,
@@ -129,9 +129,9 @@
     },
     {
       "id": "real-equal-multipliers",
-      "name": "hidden: equal multipliers choose largest summands",
-      "kind": "real",
-      "visible": false,
+      "name": "equal multipliers choose largest summands",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           5,
@@ -153,9 +153,9 @@
     },
     {
       "id": "real-singleton",
-      "name": "hidden: one available index",
-      "kind": "real",
-      "visible": false,
+      "name": "one available index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           100000

@@ -1,12 +1,182 @@
 {
   "challenge_id": "lc_3289",
   "cases": [
-    {"id":"sample-small","name":"sample: both values repeat","kind":"sample","visible":true,"input":{"nums":[0,1,1,0]},"expected":[1,0],"tags":["sample"]},
-    {"id":"sample-middle","name":"sample: middle values repeat","kind":"sample","visible":true,"input":{"nums":[0,3,2,1,3,2]},"expected":[3,2],"tags":["sample"]},
-    {"id":"sample-larger","name":"sample: larger shuffled range","kind":"sample","visible":true,"input":{"nums":[7,1,5,4,3,4,6,0,9,5,8,2]},"expected":[4,5],"tags":["sample","shuffled"]},
-    {"id":"trial-adjacent","name":"trial: adjacent repeated copies","kind":"trial","visible":true,"input":{"nums":[0,1,2,2,3,4,5,5]},"expected":[2,5],"tags":["adjacent"]},
-    {"id":"trial-second-copy-order","name":"trial: output follows second-copy order","kind":"trial","visible":true,"input":{"nums":[2,0,1,3,2,4,4]},"expected":[2,4],"tags":["order"]},
-    {"id":"real-range-ends","name":"real: smallest and largest values repeat","kind":"real","visible":false,"input":{"nums":[0,1,2,3,4,5,5,0]},"expected":[5,0],"tags":["boundaries"]},
-    {"id":"real-separated","name":"real: repeated copies are widely separated","kind":"real","visible":false,"input":{"nums":[8,0,4,1,2,3,5,6,7,8,9,4]},"expected":[8,4],"tags":["separated"]}
+    {
+      "id": "sample-small",
+      "name": "sample: both values repeat",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      "expected": [
+        1,
+        0
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-middle",
+      "name": "sample: middle values repeat",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          3,
+          2,
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": [
+        3,
+        2
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-larger",
+      "name": "sample: larger shuffled range",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          1,
+          5,
+          4,
+          3,
+          4,
+          6,
+          0,
+          9,
+          5,
+          8,
+          2
+        ]
+      },
+      "expected": [
+        4,
+        5
+      ],
+      "tags": [
+        "sample",
+        "shuffled"
+      ]
+    },
+    {
+      "id": "trial-adjacent",
+      "name": "trial: adjacent repeated copies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2,
+          2,
+          3,
+          4,
+          5,
+          5
+        ]
+      },
+      "expected": [
+        2,
+        5
+      ],
+      "tags": [
+        "adjacent"
+      ]
+    },
+    {
+      "id": "trial-second-copy-order",
+      "name": "trial: output follows second-copy order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          0,
+          1,
+          3,
+          2,
+          4,
+          4
+        ]
+      },
+      "expected": [
+        2,
+        4
+      ],
+      "tags": [
+        "order"
+      ]
+    },
+    {
+      "id": "real-range-ends",
+      "name": "real: smallest and largest values repeat",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          5,
+          0
+        ]
+      },
+      "expected": [
+        5,
+        0
+      ],
+      "tags": [
+        "boundaries"
+      ]
+    },
+    {
+      "id": "real-separated",
+      "name": "real: repeated copies are widely separated",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          0,
+          4,
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          4
+        ]
+      },
+      "expected": [
+        8,
+        4
+      ],
+      "tags": [
+        "separated"
+      ]
+    }
   ]
 }

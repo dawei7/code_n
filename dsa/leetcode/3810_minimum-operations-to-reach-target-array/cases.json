@@ -7,120 +7,329 @@
       "name": "sample: two mismatched original values require two operations",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3], "target": [2, 1, 3]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "target": [
+          2,
+          1,
+          3
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "two-values", "already-equal-position"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "two-values",
+        "already-equal-position"
+      ]
     },
     {
       "id": "sample-separated-occurrences",
       "name": "sample: separated occurrences of one value change together",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 1, 4], "target": [5, 1, 4]},
+      "input": {
+        "nums": [
+          4,
+          1,
+          4
+        ],
+        "target": [
+          5,
+          1,
+          4
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "separated-segments", "unchanged-occurrence"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "separated-segments",
+        "unchanged-occurrence"
+      ]
     },
     {
       "id": "sample-two-separated-values",
       "name": "sample: one global operation is used for each mismatched value",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [7, 3, 7], "target": [5, 5, 9]},
+      "input": {
+        "nums": [
+          7,
+          3,
+          7
+        ],
+        "target": [
+          5,
+          5,
+          9
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "separated-segments", "two-values"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "separated-segments",
+        "two-values"
+      ]
     },
     {
       "id": "trial-already-equal",
       "name": "trial: identical arrays need no operations",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4], "target": [1, 2, 3, 4]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "target": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "zero-operations", "already-equal"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero-operations",
+        "already-equal"
+      ]
     },
     {
       "id": "trial-many-separated-occurrences",
       "name": "trial: many separated mismatches sharing one value need one operation",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [4, 1, 4, 2, 4], "target": [5, 1, 6, 2, 7]},
+      "input": {
+        "nums": [
+          4,
+          1,
+          4,
+          2,
+          4
+        ],
+        "target": [
+          5,
+          1,
+          6,
+          2,
+          7
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "one-value", "three-segments"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "one-value",
+        "three-segments"
+      ]
     },
     {
       "id": "trial-created-collision",
       "name": "trial: a target value created by the operation stays correct",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2], "target": [2, 2]},
+      "input": {
+        "nums": [
+          1,
+          2
+        ],
+        "target": [
+          2,
+          2
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "created-value", "collision"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "created-value",
+        "collision"
+      ]
     },
     {
       "id": "trial-two-cycle",
       "name": "trial: a two-value cycle needs both values selected",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2], "target": [2, 1]},
+      "input": {
+        "nums": [
+          1,
+          2
+        ],
+        "target": [
+          2,
+          1
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "cycle", "two-values"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "cycle",
+        "two-values"
+      ]
     },
     {
       "id": "trial-three-cycle",
       "name": "trial: a three-value cycle needs three operations",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3], "target": [2, 3, 1]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "target": [
+          2,
+          3,
+          1
+        ]
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "cycle", "three-values"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "cycle",
+        "three-values"
+      ]
     },
     {
       "id": "real-repeated-mixed-values",
-      "name": "hidden: correct positions do not add their values to the count",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 5, 6, 5, 6], "target": [7, 5, 8, 9, 6]},
+      "name": "correct positions do not add their values to the count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          6,
+          5,
+          6
+        ],
+        "target": [
+          7,
+          5,
+          8,
+          9,
+          6
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "mixed-matches", "repeated-values"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "mixed-matches",
+        "repeated-values"
+      ]
     },
     {
       "id": "real-alternating-cycle",
-      "name": "hidden: alternating occurrences still contribute by distinct value",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 1, 2], "target": [2, 1, 2, 1]},
+      "name": "alternating occurrences still contribute by distinct value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2
+        ],
+        "target": [
+          2,
+          1,
+          2,
+          1
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "alternating", "cycle", "separated-segments"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "alternating",
+        "cycle",
+        "separated-segments"
+      ]
     },
     {
       "id": "real-single-element",
-      "name": "hidden: one mismatched element needs one operation",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8], "target": [9]},
+      "name": "one mismatched element needs one operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8
+        ],
+        "target": [
+          9
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "single-element", "one-operation"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "single-element",
+        "one-operation"
+      ]
     },
     {
       "id": "real-maximum-values",
-      "name": "hidden: maximum legal values and a matching middle position",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000, 99999, 100000], "target": [99999, 99999, 1]},
+      "name": "maximum legal values and a matching middle position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          99999,
+          100000
+        ],
+        "target": [
+          99999,
+          99999,
+          1
+        ]
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-values", "one-distinct-mismatch"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-values",
+        "one-distinct-mismatch"
+      ]
     }
   ]
 }

@@ -380,8 +380,8 @@
     {
       "id": "real-unchanged",
       "name": "real: equal totals produce zero growth",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_transactions": [
@@ -435,8 +435,8 @@
     {
       "id": "real-zero-previous",
       "name": "real: zero previous total leaves rate null",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_transactions": [
@@ -490,8 +490,8 @@
     {
       "id": "real-interleaved-input",
       "name": "real: input order does not affect product-year ordering",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_transactions": [
@@ -571,8 +571,8 @@
     {
       "id": "real-decimal-rounding",
       "name": "real: percentage is rounded after decimal aggregation",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_transactions": [
@@ -626,8 +626,8 @@
     {
       "id": "real-three-years",
       "name": "real: lag advances across three rows",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_transactions": [
@@ -694,8 +694,8 @@
     {
       "id": "real-multirow-multiproduct",
       "name": "real: annual sums and partitions interact",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "user_transactions": [

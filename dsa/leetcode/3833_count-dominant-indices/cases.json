@@ -159,9 +159,9 @@
     },
     {
       "id": "real-average-not-maximum",
-      "name": "hidden: dominance does not require exceeding every suffix value",
-      "kind": "real",
-      "visible": false,
+      "name": "dominance does not require exceeding every suffix value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -181,9 +181,9 @@
     },
     {
       "id": "real-only-late-index",
-      "name": "hidden: only an index near the end qualifies",
-      "kind": "real",
-      "visible": false,
+      "name": "only an index near the end qualifies",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -204,9 +204,9 @@
     },
     {
       "id": "real-only-first-index",
-      "name": "hidden: only the first value beats its complete suffix average",
-      "kind": "real",
-      "visible": false,
+      "name": "only the first value beats its complete suffix average",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -227,9 +227,9 @@
     },
     {
       "id": "real-value-boundaries",
-      "name": "hidden: minimum and maximum values alternate",
-      "kind": "real",
-      "visible": false,
+      "name": "minimum and maximum values alternate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -251,9 +251,9 @@
     },
     {
       "id": "real-maximum-length",
-      "name": "hidden: one low endpoint makes every earlier maximum dominant",
-      "kind": "real",
-      "visible": false,
+      "name": "one low endpoint makes every earlier maximum dominant",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -370,4 +370,3 @@
     }
   ]
 }
-

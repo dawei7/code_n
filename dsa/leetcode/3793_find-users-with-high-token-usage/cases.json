@@ -7,141 +7,610 @@
       "name": "sample: users three and one qualify",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"prompts": [
-        {"user_id": 1, "prompt": "Write a blog outline", "tokens": 120},
-        {"user_id": 1, "prompt": "Generate SQL query", "tokens": 80},
-        {"user_id": 1, "prompt": "Summarize an article", "tokens": 200},
-        {"user_id": 2, "prompt": "Create resume bullet", "tokens": 60},
-        {"user_id": 2, "prompt": "Improve LinkedIn bio", "tokens": 70},
-        {"user_id": 3, "prompt": "Explain neural networks", "tokens": 300},
-        {"user_id": 3, "prompt": "Generate interview Q&A", "tokens": 250},
-        {"user_id": 3, "prompt": "Write cover letter", "tokens": 180},
-        {"user_id": 3, "prompt": "Optimize Python code", "tokens": 220}
-      ]}},
-      "expected": {"columns": ["user_id", "prompt_count", "avg_tokens"], "rows": [[3, 4, 237.5], [1, 3, 133.33]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["sample", "eligibility", "ordering"]
+      "input": {
+        "tables": {
+          "prompts": [
+            {
+              "user_id": 1,
+              "prompt": "Write a blog outline",
+              "tokens": 120
+            },
+            {
+              "user_id": 1,
+              "prompt": "Generate SQL query",
+              "tokens": 80
+            },
+            {
+              "user_id": 1,
+              "prompt": "Summarize an article",
+              "tokens": 200
+            },
+            {
+              "user_id": 2,
+              "prompt": "Create resume bullet",
+              "tokens": 60
+            },
+            {
+              "user_id": 2,
+              "prompt": "Improve LinkedIn bio",
+              "tokens": 70
+            },
+            {
+              "user_id": 3,
+              "prompt": "Explain neural networks",
+              "tokens": 300
+            },
+            {
+              "user_id": 3,
+              "prompt": "Generate interview Q&A",
+              "tokens": 250
+            },
+            {
+              "user_id": 3,
+              "prompt": "Write cover letter",
+              "tokens": 180
+            },
+            {
+              "user_id": 3,
+              "prompt": "Optimize Python code",
+              "tokens": 220
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "prompt_count",
+          "avg_tokens"
+        ],
+        "rows": [
+          [
+            3,
+            4,
+            237.5
+          ],
+          [
+            1,
+            3,
+            133.33
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "eligibility",
+        "ordering"
+      ]
     },
     {
       "id": "trial-equal-usage",
       "name": "trial: no prompt is above an equal-valued average",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"prompts": [
-        {"user_id": 10, "prompt": "a", "tokens": 100},
-        {"user_id": 10, "prompt": "b", "tokens": 100},
-        {"user_id": 10, "prompt": "c", "tokens": 100}
-      ]}},
-      "expected": {"columns": ["user_id", "prompt_count", "avg_tokens"], "rows": []},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "strict-comparison", "empty-result"]
+      "input": {
+        "tables": {
+          "prompts": [
+            {
+              "user_id": 10,
+              "prompt": "a",
+              "tokens": 100
+            },
+            {
+              "user_id": 10,
+              "prompt": "b",
+              "tokens": 100
+            },
+            {
+              "user_id": 10,
+              "prompt": "c",
+              "tokens": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "prompt_count",
+          "avg_tokens"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "strict-comparison",
+        "empty-result"
+      ]
     },
     {
       "id": "trial-minimum-qualifying-count",
       "name": "trial: three nonuniform prompts qualify",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"prompts": [
-        {"user_id": 11, "prompt": "a", "tokens": 10},
-        {"user_id": 11, "prompt": "b", "tokens": 10},
-        {"user_id": 11, "prompt": "c", "tokens": 20}
-      ]}},
-      "expected": {"columns": ["user_id", "prompt_count", "avg_tokens"], "rows": [[11, 3, 13.33]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "minimum-count", "rounding"]
+      "input": {
+        "tables": {
+          "prompts": [
+            {
+              "user_id": 11,
+              "prompt": "a",
+              "tokens": 10
+            },
+            {
+              "user_id": 11,
+              "prompt": "b",
+              "tokens": 10
+            },
+            {
+              "user_id": 11,
+              "prompt": "c",
+              "tokens": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "prompt_count",
+          "avg_tokens"
+        ],
+        "rows": [
+          [
+            11,
+            3,
+            13.33
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "minimum-count",
+        "rounding"
+      ]
     },
     {
       "id": "trial-too-few-prompts",
       "name": "trial: a two-prompt user is excluded",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"prompts": [
-        {"user_id": 12, "prompt": "a", "tokens": 10},
-        {"user_id": 12, "prompt": "b", "tokens": 20}
-      ]}},
-      "expected": {"columns": ["user_id", "prompt_count", "avg_tokens"], "rows": []},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "minimum-count", "empty-result"]
+      "input": {
+        "tables": {
+          "prompts": [
+            {
+              "user_id": 12,
+              "prompt": "a",
+              "tokens": 10
+            },
+            {
+              "user_id": 12,
+              "prompt": "b",
+              "tokens": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "prompt_count",
+          "avg_tokens"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "minimum-count",
+        "empty-result"
+      ]
     },
     {
       "id": "trial-four-prompt-average",
       "name": "trial: four-prompt average is rounded to two places",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"prompts": [
-        {"user_id": 13, "prompt": "a", "tokens": 1},
-        {"user_id": 13, "prompt": "b", "tokens": 1},
-        {"user_id": 13, "prompt": "c", "tokens": 1},
-        {"user_id": 13, "prompt": "d", "tokens": 2}
-      ]}},
-      "expected": {"columns": ["user_id", "prompt_count", "avg_tokens"], "rows": [[13, 4, 1.25]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "four-prompts", "rounding"]
+      "input": {
+        "tables": {
+          "prompts": [
+            {
+              "user_id": 13,
+              "prompt": "a",
+              "tokens": 1
+            },
+            {
+              "user_id": 13,
+              "prompt": "b",
+              "tokens": 1
+            },
+            {
+              "user_id": 13,
+              "prompt": "c",
+              "tokens": 1
+            },
+            {
+              "user_id": 13,
+              "prompt": "d",
+              "tokens": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "prompt_count",
+          "avg_tokens"
+        ],
+        "rows": [
+          [
+            13,
+            4,
+            1.25
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "four-prompts",
+        "rounding"
+      ]
     },
     {
       "id": "trial-user-id-tie-break",
       "name": "trial: equal averages use ascending user ids",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"prompts": [
-        {"user_id": 20, "prompt": "a", "tokens": 10}, {"user_id": 20, "prompt": "b", "tokens": 20}, {"user_id": 20, "prompt": "c", "tokens": 30},
-        {"user_id": 10, "prompt": "a", "tokens": 10}, {"user_id": 10, "prompt": "b", "tokens": 20}, {"user_id": 10, "prompt": "c", "tokens": 30}
-      ]}},
-      "expected": {"columns": ["user_id", "prompt_count", "avg_tokens"], "rows": [[10, 3, 20], [20, 3, 20]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["trial", "ordering-tie"]
+      "input": {
+        "tables": {
+          "prompts": [
+            {
+              "user_id": 20,
+              "prompt": "a",
+              "tokens": 10
+            },
+            {
+              "user_id": 20,
+              "prompt": "b",
+              "tokens": 20
+            },
+            {
+              "user_id": 20,
+              "prompt": "c",
+              "tokens": 30
+            },
+            {
+              "user_id": 10,
+              "prompt": "a",
+              "tokens": 10
+            },
+            {
+              "user_id": 10,
+              "prompt": "b",
+              "tokens": 20
+            },
+            {
+              "user_id": 10,
+              "prompt": "c",
+              "tokens": 30
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "prompt_count",
+          "avg_tokens"
+        ],
+        "rows": [
+          [
+            10,
+            3,
+            20
+          ],
+          [
+            20,
+            3,
+            20
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "ordering-tie"
+      ]
     },
     {
       "id": "real-mixed-eligibility",
-      "name": "hidden: count and strict-average filters act independently",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"prompts": [
-        {"user_id": 1, "prompt": "a", "tokens": 5}, {"user_id": 1, "prompt": "b", "tokens": 5}, {"user_id": 1, "prompt": "c", "tokens": 7},
-        {"user_id": 2, "prompt": "a", "tokens": 10}, {"user_id": 2, "prompt": "b", "tokens": 10}, {"user_id": 2, "prompt": "c", "tokens": 10}, {"user_id": 2, "prompt": "d", "tokens": 10},
-        {"user_id": 3, "prompt": "a", "tokens": 1}, {"user_id": 3, "prompt": "b", "tokens": 100}
-      ]}},
-      "expected": {"columns": ["user_id", "prompt_count", "avg_tokens"], "rows": [[1, 3, 5.67]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["hidden", "eligibility", "strict-comparison"]
+      "name": "count and strict-average filters act independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "prompts": [
+            {
+              "user_id": 1,
+              "prompt": "a",
+              "tokens": 5
+            },
+            {
+              "user_id": 1,
+              "prompt": "b",
+              "tokens": 5
+            },
+            {
+              "user_id": 1,
+              "prompt": "c",
+              "tokens": 7
+            },
+            {
+              "user_id": 2,
+              "prompt": "a",
+              "tokens": 10
+            },
+            {
+              "user_id": 2,
+              "prompt": "b",
+              "tokens": 10
+            },
+            {
+              "user_id": 2,
+              "prompt": "c",
+              "tokens": 10
+            },
+            {
+              "user_id": 2,
+              "prompt": "d",
+              "tokens": 10
+            },
+            {
+              "user_id": 3,
+              "prompt": "a",
+              "tokens": 1
+            },
+            {
+              "user_id": 3,
+              "prompt": "b",
+              "tokens": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "prompt_count",
+          "avg_tokens"
+        ],
+        "rows": [
+          [
+            1,
+            3,
+            5.67
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "eligibility",
+        "strict-comparison"
+      ]
     },
     {
       "id": "real-descending-average",
-      "name": "hidden: averages sort descending",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"prompts": [
-        {"user_id": 5, "prompt": "a", "tokens": 50}, {"user_id": 5, "prompt": "b", "tokens": 100}, {"user_id": 5, "prompt": "c", "tokens": 150},
-        {"user_id": 2, "prompt": "a", "tokens": 100}, {"user_id": 2, "prompt": "b", "tokens": 200}, {"user_id": 2, "prompt": "c", "tokens": 300}
-      ]}},
-      "expected": {"columns": ["user_id", "prompt_count", "avg_tokens"], "rows": [[2, 3, 200], [5, 3, 100]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["hidden", "descending-order"]
+      "name": "averages sort descending",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "prompts": [
+            {
+              "user_id": 5,
+              "prompt": "a",
+              "tokens": 50
+            },
+            {
+              "user_id": 5,
+              "prompt": "b",
+              "tokens": 100
+            },
+            {
+              "user_id": 5,
+              "prompt": "c",
+              "tokens": 150
+            },
+            {
+              "user_id": 2,
+              "prompt": "a",
+              "tokens": 100
+            },
+            {
+              "user_id": 2,
+              "prompt": "b",
+              "tokens": 200
+            },
+            {
+              "user_id": 2,
+              "prompt": "c",
+              "tokens": 300
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "prompt_count",
+          "avg_tokens"
+        ],
+        "rows": [
+          [
+            2,
+            3,
+            200
+          ],
+          [
+            5,
+            3,
+            100
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "descending-order"
+      ]
     },
     {
       "id": "real-rounded-average-tie",
-      "name": "hidden: equal rounded averages use the secondary key",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"prompts": [
-        {"user_id": 2, "prompt": "a", "tokens": 1}, {"user_id": 2, "prompt": "b", "tokens": 1}, {"user_id": 2, "prompt": "c", "tokens": 2},
-        {"user_id": 1, "prompt": "a", "tokens": 1}, {"user_id": 1, "prompt": "b", "tokens": 1}, {"user_id": 1, "prompt": "c", "tokens": 2}
-      ]}},
-      "expected": {"columns": ["user_id", "prompt_count", "avg_tokens"], "rows": [[1, 3, 1.33], [2, 3, 1.33]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["hidden", "rounding", "ordering-tie"]
+      "name": "equal rounded averages use the secondary key",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "prompts": [
+            {
+              "user_id": 2,
+              "prompt": "a",
+              "tokens": 1
+            },
+            {
+              "user_id": 2,
+              "prompt": "b",
+              "tokens": 1
+            },
+            {
+              "user_id": 2,
+              "prompt": "c",
+              "tokens": 2
+            },
+            {
+              "user_id": 1,
+              "prompt": "a",
+              "tokens": 1
+            },
+            {
+              "user_id": 1,
+              "prompt": "b",
+              "tokens": 1
+            },
+            {
+              "user_id": 1,
+              "prompt": "c",
+              "tokens": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "prompt_count",
+          "avg_tokens"
+        ],
+        "rows": [
+          [
+            1,
+            3,
+            1.33
+          ],
+          [
+            2,
+            3,
+            1.33
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "rounding",
+        "ordering-tie"
+      ]
     },
     {
       "id": "real-five-prompts",
-      "name": "hidden: all prompts contribute to the group average",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"prompts": [
-        {"user_id": 9, "prompt": "a", "tokens": 10}, {"user_id": 9, "prompt": "b", "tokens": 20}, {"user_id": 9, "prompt": "c", "tokens": 30}, {"user_id": 9, "prompt": "d", "tokens": 40}, {"user_id": 9, "prompt": "e", "tokens": 50}
-      ]}},
-      "expected": {"columns": ["user_id", "prompt_count", "avg_tokens"], "rows": [[9, 5, 30]]},
-      "validator": {"kind": "ordered_table"},
-      "tags": ["hidden", "five-prompts"]
+      "name": "all prompts contribute to the group average",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "prompts": [
+            {
+              "user_id": 9,
+              "prompt": "a",
+              "tokens": 10
+            },
+            {
+              "user_id": 9,
+              "prompt": "b",
+              "tokens": 20
+            },
+            {
+              "user_id": 9,
+              "prompt": "c",
+              "tokens": 30
+            },
+            {
+              "user_id": 9,
+              "prompt": "d",
+              "tokens": 40
+            },
+            {
+              "user_id": 9,
+              "prompt": "e",
+              "tokens": 50
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "prompt_count",
+          "avg_tokens"
+        ],
+        "rows": [
+          [
+            9,
+            5,
+            30
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "five-prompts"
+      ]
     }
   ]
 }

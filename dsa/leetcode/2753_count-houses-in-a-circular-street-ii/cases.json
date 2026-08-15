@@ -82,9 +82,9 @@
     },
     {
       "id": "real-one-open-loose",
-      "name": "hidden: one marker with a loose bound",
-      "kind": "real",
-      "visible": false,
+      "name": "one marker with a loose bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "street": [
           0,
@@ -105,9 +105,9 @@
     },
     {
       "id": "real-alternating",
-      "name": "hidden: alternating door states",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating door states",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "street": [
           1,
@@ -130,9 +130,9 @@
     },
     {
       "id": "real-open-at-end",
-      "name": "hidden: only the final indexed door is open",
-      "kind": "real",
-      "visible": false,
+      "name": "only the final indexed door is open",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "street": [
           0,
@@ -155,9 +155,9 @@
     },
     {
       "id": "real-irregular-loose",
-      "name": "hidden: irregular states with several reset laps available",
-      "kind": "real",
-      "visible": false,
+      "name": "irregular states with several reset laps available",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "street": [
           0,
@@ -184,4 +184,3 @@
     }
   ]
 }
-

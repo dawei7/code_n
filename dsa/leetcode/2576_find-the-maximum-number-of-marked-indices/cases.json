@@ -97,9 +97,9 @@
     },
     {
       "id": "real-single-index",
-      "name": "hidden: one index cannot form a pair",
-      "kind": "real",
-      "visible": false,
+      "name": "one index cannot form a pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1
@@ -113,9 +113,9 @@
     },
     {
       "id": "real-exact-two",
-      "name": "hidden: one exact doubling pair",
-      "kind": "real",
-      "visible": false,
+      "name": "one exact doubling pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -130,9 +130,9 @@
     },
     {
       "id": "real-two-too-close",
-      "name": "hidden: two values fail the condition",
-      "kind": "real",
-      "visible": false,
+      "name": "two values fail the condition",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -147,9 +147,9 @@
     },
     {
       "id": "real-maximum-values",
-      "name": "hidden: maximum values pair with half-size values",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum values pair with half-size values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -166,9 +166,9 @@
     },
     {
       "id": "real-greedy-stress",
-      "name": "hidden: dense unsorted pairing choices",
-      "kind": "real",
-      "visible": false,
+      "name": "dense unsorted pairing choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           42,

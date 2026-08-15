@@ -98,9 +98,9 @@
     },
     {
       "id": "real-single-flower",
-      "name": "hidden: one flower makes one bouquet",
-      "kind": "real",
-      "visible": false,
+      "name": "one flower makes one bouquet",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bloomDay": [
           999999999
@@ -117,9 +117,9 @@
     },
     {
       "id": "real-all-same-day",
-      "name": "hidden: equal bloom days and exact capacity",
-      "kind": "real",
-      "visible": false,
+      "name": "equal bloom days and exact capacity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bloomDay": [
           6,
@@ -139,9 +139,9 @@
     },
     {
       "id": "real-impossible-large-m",
-      "name": "hidden: bouquet count exceeds garden capacity",
-      "kind": "real",
-      "visible": false,
+      "name": "bouquet count exceeds garden capacity",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bloomDay": [
           1,
@@ -162,9 +162,9 @@
     },
     {
       "id": "real-adjacency-barriers",
-      "name": "hidden: early flowers are isolated",
-      "kind": "real",
-      "visible": false,
+      "name": "early flowers are isolated",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bloomDay": [
           1,
@@ -186,9 +186,9 @@
     },
     {
       "id": "real-k-one-order-statistic",
-      "name": "hidden: one-flower bouquets reach threshold",
-      "kind": "real",
-      "visible": false,
+      "name": "one-flower bouquets reach threshold",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bloomDay": [
           5,
@@ -209,9 +209,9 @@
     },
     {
       "id": "real-max-day-gap",
-      "name": "hidden: answer at maximum legal day",
-      "kind": "real",
-      "visible": false,
+      "name": "answer at maximum legal day",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bloomDay": [
           1,
@@ -229,9 +229,9 @@
     },
     {
       "id": "real-nonoverlapping-groups",
-      "name": "hidden: long run yields floor length over k groups",
-      "kind": "real",
-      "visible": false,
+      "name": "long run yields floor length over k groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bloomDay": [
           3,

@@ -116,8 +116,8 @@
     {
       "id": "real-distant-maximum-survives",
       "name": "real: a far duplicate pair survives most removals",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "aaa",
@@ -143,8 +143,8 @@
     {
       "id": "real-tied-maxima",
       "name": "real: one of two equal maxima survives",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "prefixa",
@@ -169,8 +169,8 @@
     {
       "id": "real-prefix-is-shorter-word",
       "name": "real: an entire shorter word is the prefix",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "ab",
@@ -194,8 +194,8 @@
     {
       "id": "real-multiple-bridge-depths",
       "name": "real: bridge improvements vary by removal",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "f",
@@ -233,8 +233,8 @@
     {
       "id": "real-long-common-prefix",
       "name": "real: long strings exercise the character bound",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",

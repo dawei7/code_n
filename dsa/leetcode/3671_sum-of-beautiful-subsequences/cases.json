@@ -92,9 +92,9 @@
     },
     {
       "id": "real-common-factor",
-      "name": "hidden: every value shares factor two",
-      "kind": "real",
-      "visible": false,
+      "name": "every value shares factor two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -110,9 +110,9 @@
     },
     {
       "id": "real-mixed-order",
-      "name": "hidden: only a suffix pair increases",
-      "kind": "real",
-      "visible": false,
+      "name": "only a suffix pair increases",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -128,9 +128,9 @@
     },
     {
       "id": "real-value-boundary",
-      "name": "hidden: high values and one valid increase",
-      "kind": "real",
-      "visible": false,
+      "name": "high values and one valid increase",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           70000,
@@ -147,9 +147,9 @@
     },
     {
       "id": "real-modulo",
-      "name": "hidden: increasing length thirty requires modulo",
-      "kind": "real",
-      "visible": false,
+      "name": "increasing length thirty requires modulo",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

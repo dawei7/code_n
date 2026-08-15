@@ -2,13 +2,383 @@
   "schema_version": 1,
   "challenge_id": "lc_2286",
   "cases": [
-    {"id":"sample-mixed","name":"sample: gather failure and scatter capacity exhaustion","kind":"sample","visible":true,"input":{"operations":["BookMyShow","gather","gather","scatter","scatter"],"arguments":[[2,5],[4,0],[2,0],[5,1],[5,1]]},"expected":[null,[0,0],[],true,false],"tags":["sample","mixed"]},
-    {"id":"sample-scatter-then-gather","name":"scatter crosses rows before a later gather","kind":"sample","visible":true,"input":{"operations":["BookMyShow","scatter","gather"],"arguments":[[2,3],[4,1],[2,1]]},"expected":[null,true,[1,1]],"tags":["sample","scatter","partial-row"]},
-    {"id":"trial-large-row","name":"maximum seat count remains exact","kind":"trial","visible":true,"input":{"operations":["BookMyShow","gather","scatter"],"arguments":[[1,1000000000],[999999999,0],[1,0]]},"expected":[null,[0,0],true],"tags":["large-seats","single-row"]},
-    {"id":"trial-failed-scatter-atomic","name":"failed scatter leaves all seats available","kind":"trial","visible":true,"input":{"operations":["BookMyShow","scatter","gather","scatter","scatter"],"arguments":[[2,3],[7,1],[3,1],[3,1],[1,1]]},"expected":[null,false,[0,0],true,false],"tags":["atomic-failure","capacity"]},
-    {"id":"trial-max-row","name":"row limit excludes available later rows","kind":"trial","visible":true,"input":{"operations":["BookMyShow","gather","gather","gather"],"arguments":[[3,2],[2,0],[1,0],[2,2]]},"expected":[null,[0,0],[],[1,0]],"tags":["max-row","gather"]},
-    {"id":"real-cross-row","name":"hidden: oversized gather fails while scatter succeeds","kind":"real","visible":false,"input":{"operations":["BookMyShow","gather","scatter","gather"],"arguments":[[3,4],[5,2],[5,2],[3,2]]},"expected":[null,[],true,[1,1]],"tags":["hidden","gather-vs-scatter"]},
-    {"id":"real-earliest-seats","name":"hidden: allocation resumes in the earliest partial row","kind":"real","visible":false,"input":{"operations":["BookMyShow","gather","gather","scatter","gather"],"arguments":[[3,4],[3,2],[2,2],[4,2],[2,2]]},"expected":[null,[0,0],[1,0],true,[2,1]],"tags":["hidden","earliest-row","partial-row"]},
-    {"id":"real-capacity-boundary","name":"hidden: exact prefix capacity succeeds once","kind":"real","visible":false,"input":{"operations":["BookMyShow","scatter","scatter","gather"],"arguments":[[4,2],[6,2],[1,2],[2,3]]},"expected":[null,true,false,[3,0]],"tags":["hidden","exact-capacity","max-row"]}
+    {
+      "id": "sample-mixed",
+      "name": "sample: gather failure and scatter capacity exhaustion",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "BookMyShow",
+          "gather",
+          "gather",
+          "scatter",
+          "scatter"
+        ],
+        "arguments": [
+          [
+            2,
+            5
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        [
+          0,
+          0
+        ],
+        [],
+        true,
+        false
+      ],
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-scatter-then-gather",
+      "name": "scatter crosses rows before a later gather",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "BookMyShow",
+          "scatter",
+          "gather"
+        ],
+        "arguments": [
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        true,
+        [
+          1,
+          1
+        ]
+      ],
+      "tags": [
+        "sample",
+        "scatter",
+        "partial-row"
+      ]
+    },
+    {
+      "id": "trial-large-row",
+      "name": "maximum seat count remains exact",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "BookMyShow",
+          "gather",
+          "scatter"
+        ],
+        "arguments": [
+          [
+            1,
+            1000000000
+          ],
+          [
+            999999999,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        [
+          0,
+          0
+        ],
+        true
+      ],
+      "tags": [
+        "large-seats",
+        "single-row"
+      ]
+    },
+    {
+      "id": "trial-failed-scatter-atomic",
+      "name": "failed scatter leaves all seats available",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "BookMyShow",
+          "scatter",
+          "gather",
+          "scatter",
+          "scatter"
+        ],
+        "arguments": [
+          [
+            2,
+            3
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        false,
+        [
+          0,
+          0
+        ],
+        true,
+        false
+      ],
+      "tags": [
+        "atomic-failure",
+        "capacity"
+      ]
+    },
+    {
+      "id": "trial-max-row",
+      "name": "row limit excludes available later rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "BookMyShow",
+          "gather",
+          "gather",
+          "gather"
+        ],
+        "arguments": [
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        [
+          0,
+          0
+        ],
+        [],
+        [
+          1,
+          0
+        ]
+      ],
+      "tags": [
+        "max-row",
+        "gather"
+      ]
+    },
+    {
+      "id": "real-cross-row",
+      "name": "oversized gather fails while scatter succeeds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "BookMyShow",
+          "gather",
+          "scatter",
+          "gather"
+        ],
+        "arguments": [
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            3,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        [],
+        true,
+        [
+          1,
+          1
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "gather-vs-scatter"
+      ]
+    },
+    {
+      "id": "real-earliest-seats",
+      "name": "allocation resumes in the earliest partial row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "BookMyShow",
+          "gather",
+          "gather",
+          "scatter",
+          "gather"
+        ],
+        "arguments": [
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        true,
+        [
+          2,
+          1
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "earliest-row",
+        "partial-row"
+      ]
+    },
+    {
+      "id": "real-capacity-boundary",
+      "name": "exact prefix capacity succeeds once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "BookMyShow",
+          "scatter",
+          "scatter",
+          "gather"
+        ],
+        "arguments": [
+          [
+            4,
+            2
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        true,
+        false,
+        [
+          3,
+          0
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "exact-capacity",
+        "max-row"
+      ]
+    }
   ]
 }

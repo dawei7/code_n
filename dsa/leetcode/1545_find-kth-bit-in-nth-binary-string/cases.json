@@ -100,9 +100,9 @@
     },
     {
       "id": "real-first-large",
-      "name": "hidden: first bit at largest level",
-      "kind": "real",
-      "visible": false,
+      "name": "first bit at largest level",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 20,
         "k": 1
@@ -116,9 +116,9 @@
     },
     {
       "id": "real-middle-large",
-      "name": "hidden: middle at largest level",
-      "kind": "real",
-      "visible": false,
+      "name": "middle at largest level",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 20,
         "k": 524288
@@ -132,9 +132,9 @@
     },
     {
       "id": "real-right-neighbor",
-      "name": "hidden: first position right of middle",
-      "kind": "real",
-      "visible": false,
+      "name": "first position right of middle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10,
         "k": 513
@@ -148,9 +148,9 @@
     },
     {
       "id": "real-deep-reflections",
-      "name": "hidden: repeated right-half reflections",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated right-half reflections",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 20,
         "k": 999999
@@ -164,9 +164,9 @@
     },
     {
       "id": "real-last-large",
-      "name": "hidden: last position at largest level",
-      "kind": "real",
-      "visible": false,
+      "name": "last position at largest level",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 20,
         "k": 1048575
@@ -180,9 +180,9 @@
     },
     {
       "id": "real-even-position",
-      "name": "hidden: nontrivial interior coordinate",
-      "kind": "real",
-      "visible": false,
+      "name": "nontrivial interior coordinate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 17,
         "k": 87342
@@ -196,4 +196,3 @@
     }
   ]
 }
-

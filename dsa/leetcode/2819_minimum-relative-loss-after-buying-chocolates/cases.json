@@ -189,9 +189,9 @@
     },
     {
       "id": "real-low-threshold",
-      "name": "hidden: expensive chocolates create negative losses",
-      "kind": "real",
-      "visible": false,
+      "name": "expensive chocolates create negative losses",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           1,
@@ -215,9 +215,9 @@
     },
     {
       "id": "real-high-threshold",
-      "name": "hidden: all prices are fully paid",
-      "kind": "real",
-      "visible": false,
+      "name": "all prices are fully paid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           2,
@@ -241,9 +241,9 @@
     },
     {
       "id": "real-value-boundary",
-      "name": "hidden: maximum price creates the minimum loss",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum price creates the minimum loss",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           1,
@@ -271,9 +271,9 @@
     },
     {
       "id": "real-convex-splits",
-      "name": "hidden: optima use interior prefix-suffix splits",
-      "kind": "real",
-      "visible": false,
+      "name": "optima use interior prefix-suffix splits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           2,

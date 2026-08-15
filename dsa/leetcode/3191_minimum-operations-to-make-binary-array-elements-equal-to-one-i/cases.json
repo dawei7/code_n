@@ -98,9 +98,9 @@
     },
     {
       "id": "real-middle-zero",
-      "name": "hidden: a middle zero in length three is impossible",
-      "kind": "real",
-      "visible": false,
+      "name": "a middle zero in length three is impossible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -117,9 +117,9 @@
     },
     {
       "id": "real-first-zero-only",
-      "name": "hidden: flipping the first zero creates an impossible suffix",
-      "kind": "real",
-      "visible": false,
+      "name": "flipping the first zero creates an impossible suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -136,9 +136,9 @@
     },
     {
       "id": "real-all-zeros-six",
-      "name": "hidden: disjoint triples solve six zeros",
-      "kind": "real",
-      "visible": false,
+      "name": "disjoint triples solve six zeros",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -157,9 +157,9 @@
     },
     {
       "id": "real-alternating",
-      "name": "hidden: alternating bits require overlapping decisions",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating bits require overlapping decisions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -180,9 +180,9 @@
     },
     {
       "id": "real-generated-overlap",
-      "name": "hidden: a target-derived state has three forced flips",
-      "kind": "real",
-      "visible": false,
+      "name": "a target-derived state has three forced flips",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -203,9 +203,9 @@
     },
     {
       "id": "real-dense-generated",
-      "name": "hidden: many target-derived flips remain uniquely recoverable",
-      "kind": "real",
-      "visible": false,
+      "name": "many target-derived flips remain uniquely recoverable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -234,9 +234,9 @@
     },
     {
       "id": "real-long-impossible",
-      "name": "hidden: a long mixed array leaves a bad suffix",
-      "kind": "real",
-      "visible": false,
+      "name": "a long mixed array leaves a bad suffix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

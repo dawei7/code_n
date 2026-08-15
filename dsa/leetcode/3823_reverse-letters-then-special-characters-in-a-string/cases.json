@@ -7,110 +7,198 @@
       "name": "sample: reverse letters and special characters independently",
       "kind": "sample",
       "visible": true,
-      "input": {"s": ")ebc#da@f("},
+      "input": {
+        "s": ")ebc#da@f("
+      },
       "expected": "(fad@cb#e)",
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "mixed", "two-stage"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "mixed",
+        "two-stage"
+      ]
     },
     {
       "id": "sample-single-letter",
       "name": "sample: one letter remains unchanged",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "z"},
+      "input": {
+        "s": "z"
+      },
       "expected": "z",
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "single-character", "letters-only"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "single-character",
+        "letters-only"
+      ]
     },
     {
       "id": "sample-all-special-characters",
       "name": "sample: an all-special string reverses completely",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "!@#$%^&*()"},
+      "input": {
+        "s": "!@#$%^&*()"
+      },
       "expected": ")(*&^%$#@!",
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "special-only", "whole-reversal"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "special-only",
+        "whole-reversal"
+      ]
     },
     {
       "id": "trial-all-letters",
       "name": "trial: an all-letter string reverses completely",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "abcdef"},
+      "input": {
+        "s": "abcdef"
+      },
       "expected": "fedcba",
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "letters-only", "whole-reversal"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "letters-only",
+        "whole-reversal"
+      ]
     },
     {
       "id": "trial-alternating-categories",
       "name": "trial: alternating category slots remain fixed",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "a!b@c#"},
+      "input": {
+        "s": "a!b@c#"
+      },
       "expected": "c#b@a!",
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "alternating", "slot-pattern"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "alternating",
+        "slot-pattern"
+      ]
     },
     {
       "id": "trial-repeated-special-characters",
       "name": "trial: repeated values retain their multiplicity",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "ab!!c@"},
+      "input": {
+        "s": "ab!!c@"
+      },
       "expected": "cb@!a!",
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "duplicates", "mixed-runs"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicates",
+        "mixed-runs"
+      ]
     },
     {
       "id": "real-special-characters-at-both-ends",
-      "name": "hidden: boundary special characters exchange positions",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "(ab!c)"},
+      "name": "boundary special characters exchange positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "(ab!c)"
+      },
       "expected": ")cb!a(",
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "boundary-specials", "mixed"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "boundary-specials",
+        "mixed"
+      ]
     },
     {
       "id": "real-one-letter-among-specials",
-      "name": "hidden: a lone letter stays in its original slot",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "!@a#$"},
+      "name": "a lone letter stays in its original slot",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "!@a#$"
+      },
       "expected": "$#a@!",
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "single-letter", "special-reversal"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "single-letter",
+        "special-reversal"
+      ]
     },
     {
       "id": "real-one-special-among-letters",
-      "name": "hidden: a lone special character stays in its original slot",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abc!de"},
+      "name": "a lone special character stays in its original slot",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc!de"
+      },
       "expected": "edc!ba",
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "single-special", "letter-reversal"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "single-special",
+        "letter-reversal"
+      ]
     },
     {
       "id": "real-permitted-alphabet-boundaries",
-      "name": "hidden: parentheses and punctuation use the same special category",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "a(!b)"},
+      "name": "parentheses and punctuation use the same special category",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a(!b)"
+      },
       "expected": "b)!a(",
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "special-alphabet", "parentheses"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "special-alphabet",
+        "parentheses"
+      ]
     },
     {
       "id": "real-repeated-letters-and-specials",
-      "name": "hidden: duplicate values do not collapse category sequences",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aa!!bb@@c"},
+      "name": "duplicate values do not collapse category sequences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aa!!bb@@c"
+      },
       "expected": "cb@@ba!!a",
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "duplicates", "multiplicity"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "duplicates",
+        "multiplicity"
+      ]
     }
   ]
 }

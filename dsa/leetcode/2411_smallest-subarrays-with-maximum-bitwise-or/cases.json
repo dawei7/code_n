@@ -110,9 +110,9 @@
     },
     {
       "id": "real-final-bit",
-      "name": "hidden: final value supplies a required bit",
-      "kind": "real",
-      "visible": false,
+      "name": "final value supplies a required bit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -134,9 +134,9 @@
     },
     {
       "id": "real-multiple-bits",
-      "name": "hidden: one final value supplies several suffix bits",
-      "kind": "real",
-      "visible": false,
+      "name": "one final value supplies several suffix bits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -158,9 +158,9 @@
     },
     {
       "id": "real-maximum-value",
-      "name": "hidden: maximum legal value as a singleton",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum legal value as a singleton",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000

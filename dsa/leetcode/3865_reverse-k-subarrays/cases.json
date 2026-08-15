@@ -228,9 +228,9 @@
     },
     {
       "id": "real-maximum-values",
-      "name": "hidden: maximum and mixed values reverse within length-three blocks",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum and mixed values reverse within length-three blocks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000,
@@ -261,9 +261,9 @@
     },
     {
       "id": "real-k-is-block-count",
-      "name": "hidden: k counts blocks rather than elements per block",
-      "kind": "real",
-      "visible": false,
+      "name": "k counts blocks rather than elements per block",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -306,9 +306,9 @@
     },
     {
       "id": "real-palindromic-blocks",
-      "name": "hidden: palindromic blocks remain identical",
-      "kind": "real",
-      "visible": false,
+      "name": "palindromic blocks remain identical",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -339,9 +339,9 @@
     },
     {
       "id": "real-alternating-pairs",
-      "name": "hidden: four alternating pairs reverse independently",
-      "kind": "real",
-      "visible": false,
+      "name": "four alternating pairs reverse independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -376,9 +376,9 @@
     },
     {
       "id": "real-distinct-pairs",
-      "name": "hidden: three distinct pairs preserve block order",
-      "kind": "real",
-      "visible": false,
+      "name": "three distinct pairs preserve block order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10,
@@ -409,9 +409,9 @@
     },
     {
       "id": "real-odd-whole-array",
-      "name": "hidden: one odd-length block reverses around its center",
-      "kind": "real",
-      "visible": false,
+      "name": "one odd-length block reverses around its center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

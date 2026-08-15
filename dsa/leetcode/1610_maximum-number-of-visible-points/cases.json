@@ -168,9 +168,9 @@
     },
     {
       "id": "real-wrap-west",
-      "name": "hidden: best sector crosses the angular cut",
-      "kind": "real",
-      "visible": false,
+      "name": "best sector crosses the angular cut",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -200,9 +200,9 @@
     },
     {
       "id": "real-opposite-rays",
-      "name": "hidden: sub-straight angle cannot cover opposite rays",
-      "kind": "real",
-      "visible": false,
+      "name": "sub-straight angle cannot cover opposite rays",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -236,9 +236,9 @@
     },
     {
       "id": "real-boundary-inclusive",
-      "name": "hidden: both ninety-degree boundaries count",
-      "kind": "real",
-      "visible": false,
+      "name": "both ninety-degree boundaries count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -267,9 +267,9 @@
     },
     {
       "id": "real-coincident-plus-best",
-      "name": "hidden: coincident copies augment only the best sector",
-      "kind": "real",
-      "visible": false,
+      "name": "coincident copies augment only the best sector",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -311,9 +311,9 @@
     },
     {
       "id": "real-nearly-full",
-      "name": "hidden: 359 degrees covers four cardinal directions",
-      "kind": "real",
-      "visible": false,
+      "name": "359 degrees covers four cardinal directions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -347,9 +347,9 @@
     },
     {
       "id": "real-same-coordinate-many",
-      "name": "hidden: repeated coordinates all count separately",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated coordinates all count separately",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [
@@ -383,9 +383,9 @@
     },
     {
       "id": "real-single-direction",
-      "name": "hidden: one directional point is visible for any width",
-      "kind": "real",
-      "visible": false,
+      "name": "one directional point is visible for any width",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "points": [
           [

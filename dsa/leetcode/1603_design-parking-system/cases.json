@@ -121,9 +121,9 @@
     },
     {
       "id": "real-independent-types",
-      "name": "hidden: exhausting big does not consume medium",
-      "kind": "real",
-      "visible": false,
+      "name": "exhausting big does not consume medium",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "big": 1,
         "medium": 2,
@@ -149,9 +149,9 @@
     },
     {
       "id": "real-failures-preserve-state",
-      "name": "hidden: failed small arrivals leave big available",
-      "kind": "real",
-      "visible": false,
+      "name": "failed small arrivals leave big available",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "big": 1,
         "medium": 0,
@@ -173,9 +173,9 @@
     },
     {
       "id": "real-interleaved",
-      "name": "hidden: interleaved types use their own counters",
-      "kind": "real",
-      "visible": false,
+      "name": "interleaved types use their own counters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "big": 2,
         "medium": 1,
@@ -203,9 +203,9 @@
     },
     {
       "id": "real-medium-only",
-      "name": "hidden: only medium capacity exists",
-      "kind": "real",
-      "visible": false,
+      "name": "only medium capacity exists",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "big": 0,
         "medium": 3,
@@ -234,9 +234,9 @@
     },
     {
       "id": "real-large-capacity-prefix",
-      "name": "hidden: several successful big arrivals",
-      "kind": "real",
-      "visible": false,
+      "name": "several successful big arrivals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "big": 5,
         "medium": 0,
@@ -264,9 +264,9 @@
     },
     {
       "id": "real-zero-big-positive-others",
-      "name": "hidden: big fails while other types succeed",
-      "kind": "real",
-      "visible": false,
+      "name": "big fails while other types succeed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "big": 0,
         "medium": 1,
@@ -291,9 +291,9 @@
     },
     {
       "id": "real-repeated-after-exhaustion",
-      "name": "hidden: repeated failures remain failures",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated failures remain failures",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "big": 1,
         "medium": 0,
@@ -318,4 +318,3 @@
     }
   ]
 }
-

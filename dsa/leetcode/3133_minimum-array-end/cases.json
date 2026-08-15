@@ -6,108 +6,182 @@
       "name": "sample: three values with one fixed bit",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "x": 4},
+      "input": {
+        "n": 3,
+        "x": 4
+      },
       "expected": 6,
-      "tags": ["sample", "bit-merge"]
+      "tags": [
+        "sample",
+        "bit-merge"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: next supermask after three low set bits",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 2, "x": 7},
+      "input": {
+        "n": 2,
+        "x": 7
+      },
       "expected": 15,
-      "tags": ["sample", "consecutive-set-bits"]
+      "tags": [
+        "sample",
+        "consecutive-set-bits"
+      ]
     },
     {
       "id": "trial-single-element-minimum",
       "name": "trial: one-element array returns x",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "x": 1},
+      "input": {
+        "n": 1,
+        "x": 1
+      },
       "expected": 1,
-      "tags": ["singleton", "boundary"]
+      "tags": [
+        "singleton",
+        "boundary"
+      ]
     },
     {
       "id": "trial-single-element-maximum-x",
       "name": "trial: one-element array at maximum x",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "x": 100000000},
+      "input": {
+        "n": 1,
+        "x": 100000000
+      },
       "expected": 100000000,
-      "tags": ["singleton", "boundary"]
+      "tags": [
+        "singleton",
+        "boundary"
+      ]
     },
     {
       "id": "trial-two-values-one",
       "name": "trial: second supermask of one",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 2, "x": 1},
+      "input": {
+        "n": 2,
+        "x": 1
+      },
       "expected": 3,
-      "tags": ["small", "bit-merge"]
+      "tags": [
+        "small",
+        "bit-merge"
+      ]
     },
     {
       "id": "trial-four-values-one",
       "name": "trial: four supermasks of one",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 4, "x": 1},
+      "input": {
+        "n": 4,
+        "x": 1
+      },
       "expected": 7,
-      "tags": ["small", "bit-merge"]
+      "tags": [
+        "small",
+        "bit-merge"
+      ]
     },
     {
       "id": "real-zero-bit-gaps",
       "name": "real: source bits fill separated zero positions",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 5, "x": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "x": 2
+      },
       "expected": 10,
-      "tags": ["real", "zero-bit-gaps"]
+      "tags": [
+        "real",
+        "zero-bit-gaps"
+      ]
     },
     {
       "id": "real-alternating-fixed-bits",
       "name": "real: alternating fixed and available bits",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 3, "x": 10},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "x": 10
+      },
       "expected": 14,
-      "tags": ["real", "alternating-bits"]
+      "tags": [
+        "real",
+        "alternating-bits"
+      ]
     },
     {
       "id": "real-multi-bit-index",
       "name": "real: several index bits merge around fixed bits",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 10, "x": 5},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "x": 5
+      },
       "expected": 39,
-      "tags": ["real", "bit-merge"]
+      "tags": [
+        "real",
+        "bit-merge"
+      ]
     },
     {
       "id": "real-power-of-two-x",
       "name": "real: first free bit lies below x",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 2, "x": 8},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "x": 8
+      },
       "expected": 9,
-      "tags": ["real", "power-of-two"]
+      "tags": [
+        "real",
+        "power-of-two"
+      ]
     },
     {
       "id": "real-maximum-n-minimum-x",
       "name": "real: maximum n with minimum x",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 100000000, "x": 1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100000000,
+        "x": 1
+      },
       "expected": 199999999,
-      "tags": ["real", "boundary", "large-n"]
+      "tags": [
+        "real",
+        "boundary",
+        "large-n"
+      ]
     },
     {
       "id": "real-both-inputs-maximum",
       "name": "real: both inputs at the maximum",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 100000000, "x": 100000000},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100000000,
+        "x": 100000000
+      },
       "expected": 409632367103,
-      "tags": ["real", "boundary", "large-result"]
+      "tags": [
+        "real",
+        "boundary",
+        "large-result"
+      ]
     }
   ]
 }

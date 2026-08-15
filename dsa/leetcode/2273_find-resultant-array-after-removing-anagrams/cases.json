@@ -2,13 +2,180 @@
   "schema_version": 1,
   "challenge_id": "lc_2273",
   "cases": [
-    {"id":"sample-multiple-runs","name":"sample: collapse two adjacent anagram runs","kind":"sample","visible":true,"input":{"words":["abba","baba","bbaa","cd","cd"]},"expected":["abba","cd"],"tags":["sample","multiple-runs"]},
-    {"id":"sample-no-removals","name":"sample: no adjacent words are anagrams","kind":"sample","visible":true,"input":{"words":["a","b","c","d","e"]},"expected":["a","b","c","d","e"],"tags":["sample","all-retained"]},
-    {"id":"trial-single-word","name":"one word is always retained","kind":"trial","visible":true,"input":{"words":["algorithm"]},"expected":["algorithm"],"tags":["minimum-count"]},
-    {"id":"trial-whole-run","name":"one complete anagram run keeps its first spelling","kind":"trial","visible":true,"input":{"words":["abc","cba","bac"]},"expected":["abc"],"tags":["single-run","order"]},
-    {"id":"trial-identical","name":"identical adjacent words are anagrams","kind":"trial","visible":true,"input":{"words":["aa","aa","ab"]},"expected":["aa","ab"],"tags":["identical"]},
-    {"id":"real-multiplicity","name":"hidden: equal letter sets with different counts remain distinct","kind":"real","visible":false,"input":{"words":["aab","abb","bba"]},"expected":["aab","abb"],"tags":["hidden","multiplicity"]},
-    {"id":"real-separated-signatures","name":"hidden: separated anagrams belong to different runs","kind":"real","visible":false,"input":{"words":["ab","cd","ba"]},"expected":["ab","cd","ba"],"tags":["hidden","nonadjacent"]},
-    {"id":"real-boundaries","name":"hidden: collapse runs at both array boundaries","kind":"real","visible":false,"input":{"words":["listen","silent","enlist","x","below","elbow"]},"expected":["listen","x","below"],"tags":["hidden","boundaries","multiple-runs"]}
+    {
+      "id": "sample-multiple-runs",
+      "name": "sample: collapse two adjacent anagram runs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abba",
+          "baba",
+          "bbaa",
+          "cd",
+          "cd"
+        ]
+      },
+      "expected": [
+        "abba",
+        "cd"
+      ],
+      "tags": [
+        "sample",
+        "multiple-runs"
+      ]
+    },
+    {
+      "id": "sample-no-removals",
+      "name": "sample: no adjacent words are anagrams",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ]
+      },
+      "expected": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e"
+      ],
+      "tags": [
+        "sample",
+        "all-retained"
+      ]
+    },
+    {
+      "id": "trial-single-word",
+      "name": "one word is always retained",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "algorithm"
+        ]
+      },
+      "expected": [
+        "algorithm"
+      ],
+      "tags": [
+        "minimum-count"
+      ]
+    },
+    {
+      "id": "trial-whole-run",
+      "name": "one complete anagram run keeps its first spelling",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "cba",
+          "bac"
+        ]
+      },
+      "expected": [
+        "abc"
+      ],
+      "tags": [
+        "single-run",
+        "order"
+      ]
+    },
+    {
+      "id": "trial-identical",
+      "name": "identical adjacent words are anagrams",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aa",
+          "aa",
+          "ab"
+        ]
+      },
+      "expected": [
+        "aa",
+        "ab"
+      ],
+      "tags": [
+        "identical"
+      ]
+    },
+    {
+      "id": "real-multiplicity",
+      "name": "equal letter sets with different counts remain distinct",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aab",
+          "abb",
+          "bba"
+        ]
+      },
+      "expected": [
+        "aab",
+        "abb"
+      ],
+      "tags": [
+        "hidden",
+        "multiplicity"
+      ]
+    },
+    {
+      "id": "real-separated-signatures",
+      "name": "separated anagrams belong to different runs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "ab",
+          "cd",
+          "ba"
+        ]
+      },
+      "expected": [
+        "ab",
+        "cd",
+        "ba"
+      ],
+      "tags": [
+        "hidden",
+        "nonadjacent"
+      ]
+    },
+    {
+      "id": "real-boundaries",
+      "name": "collapse runs at both array boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "listen",
+          "silent",
+          "enlist",
+          "x",
+          "below",
+          "elbow"
+        ]
+      },
+      "expected": [
+        "listen",
+        "x",
+        "below"
+      ],
+      "tags": [
+        "hidden",
+        "boundaries",
+        "multiple-runs"
+      ]
+    }
   ]
 }

@@ -7,130 +7,289 @@
       "name": "sample: the smallest of three squares is subtracted",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 12,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "odd-length"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "odd-length"
+      ]
     },
     {
       "id": "sample-paired-signs",
       "name": "sample: original signs disappear after squaring",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, -1, 2, -2, 3, -3]},
+      "input": {
+        "nums": [
+          1,
+          -1,
+          2,
+          -2,
+          3,
+          -3
+        ]
+      },
       "expected": 16,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "negative-values", "equal-magnitudes"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "negative-values",
+        "equal-magnitudes"
+      ]
     },
     {
       "id": "trial-single-zero",
       "name": "trial: one zero has score zero",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0]},
+      "input": {
+        "nums": [
+          0
+        ]
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-element", "zero"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-element",
+        "zero"
+      ]
     },
     {
       "id": "trial-single-negative-boundary",
       "name": "trial: one negative boundary value contributes its square",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-40000]},
+      "input": {
+        "nums": [
+          -40000
+        ]
+      },
       "expected": 1600000000,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "single-element", "value-boundary"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-element",
+        "value-boundary"
+      ]
     },
     {
       "id": "trial-two-distinct-magnitudes",
       "name": "trial: the larger of two squares receives the positive sign",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2]},
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "two-elements"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "two-elements"
+      ]
     },
     {
       "id": "trial-two-equal-magnitudes",
       "name": "trial: equal squares cancel across opposite coefficients",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-5, 5]},
+      "input": {
+        "nums": [
+          -5,
+          5
+        ]
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "equal-magnitudes"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "equal-magnitudes"
+      ]
     },
     {
       "id": "real-all-zeros",
-      "name": "hidden: every arrangement of zeros scores zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 0, 0, 0, 0]},
+      "name": "every arrangement of zeros scores zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "zeros", "duplicates"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "zeros",
+        "duplicates"
+      ]
     },
     {
       "id": "real-odd-duplicate-values",
-      "name": "hidden: one extra positive slot remains for odd length",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 2, 2, 2, 2]},
+      "name": "one extra positive slot remains for odd length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "odd-length", "duplicates"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "odd-length",
+        "duplicates"
+      ]
     },
     {
       "id": "real-zero-and-mixed-signs",
-      "name": "hidden: zero and the smallest nonzero square are subtracted",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-4, 0, 3, 1]},
+      "name": "zero and the smallest nonzero square are subtracted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -4,
+          0,
+          3,
+          1
+        ]
+      },
       "expected": 24,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "zero", "negative-values"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "zero",
+        "negative-values"
+      ]
     },
     {
       "id": "real-even-distinct-squares",
-      "name": "hidden: an even array divides equally between signs",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3, -4, 2, -1]},
+      "name": "an even array divides equally between signs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          -4,
+          2,
+          -1
+        ]
+      },
       "expected": 20,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "even-length", "negative-values"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "even-length",
+        "negative-values"
+      ]
     },
     {
       "id": "real-two-boundary-magnitudes-and-zero",
-      "name": "hidden: two maximum squares occupy the positive positions",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-40000, 40000, 0]},
+      "name": "two maximum squares occupy the positive positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -40000,
+          40000,
+          0
+        ]
+      },
       "expected": 3200000000,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "value-boundary", "odd-length"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "value-boundary",
+        "odd-length"
+      ]
     },
     {
       "id": "real-boundary-values-cancel",
-      "name": "hidden: four equal maximum squares cancel in pairs",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [40000, -40000, 40000, -40000]},
+      "name": "four equal maximum squares cancel in pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          40000,
+          -40000,
+          40000,
+          -40000
+        ]
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "value-boundary", "equal-magnitudes"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "value-boundary",
+        "equal-magnitudes"
+      ]
     },
     {
       "id": "real-ties-across-split",
-      "name": "hidden: tied squares may straddle the sign boundary",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-7, 2, 7, 2, 0]},
+      "name": "tied squares may straddle the sign boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -7,
+          2,
+          7,
+          2,
+          0
+        ]
+      },
       "expected": 98,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "ties", "odd-length"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "ties",
+        "odd-length"
+      ]
     }
   ]
 }

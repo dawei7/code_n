@@ -112,9 +112,9 @@
     },
     {
       "id": "hidden-left-subtree",
-      "name": "hidden: left subtree beats invalid right side",
-      "kind": "real",
-      "visible": false,
+      "name": "left subtree beats invalid right side",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           5,
@@ -134,9 +134,9 @@
     },
     {
       "id": "hidden-positive-leaf",
-      "name": "hidden: one positive leaf among negatives",
-      "kind": "real",
-      "visible": false,
+      "name": "one positive leaf among negatives",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           -10,

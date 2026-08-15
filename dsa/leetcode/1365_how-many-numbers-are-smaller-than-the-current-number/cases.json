@@ -126,9 +126,9 @@
     },
     {
       "id": "hidden-domain-boundaries",
-      "name": "hidden: zero and one hundred duplicates",
-      "kind": "real",
-      "visible": false,
+      "name": "zero and one hundred duplicates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -152,9 +152,9 @@
     },
     {
       "id": "hidden-two-values",
-      "name": "hidden: two repeated value groups",
-      "kind": "real",
-      "visible": false,
+      "name": "two repeated value groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

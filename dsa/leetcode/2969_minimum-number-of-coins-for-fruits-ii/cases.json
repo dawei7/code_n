@@ -88,8 +88,8 @@
     {
       "id": "real-expensive-covered-choice",
       "name": "real: later coverage still requires a costly purchase",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           5,
@@ -106,8 +106,8 @@
     {
       "id": "real-uniform-prices",
       "name": "real: uniform prices reward exponentially growing coverage",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           4,
@@ -129,8 +129,8 @@
     {
       "id": "real-alternating-prices",
       "name": "real: cheap purchases extend across expensive fruits",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           1,
@@ -151,8 +151,8 @@
     {
       "id": "real-maximum-prices",
       "name": "real: maximum prices preserve integer totals",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           100000,

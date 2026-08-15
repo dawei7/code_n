@@ -147,9 +147,9 @@
     },
     {
       "id": "real-zero-values",
-      "name": "hidden: zeros occupy low-coverage positions",
-      "kind": "real",
-      "visible": false,
+      "name": "zeros occupy low-coverage positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -176,9 +176,9 @@
     },
     {
       "id": "real-prefix-weights",
-      "name": "hidden: descending prefix coverage",
-      "kind": "real",
-      "visible": false,
+      "name": "descending prefix coverage",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -213,9 +213,9 @@
     },
     {
       "id": "real-disjoint-equal-coverage",
-      "name": "hidden: disjoint requests cover every index once",
-      "kind": "real",
-      "visible": false,
+      "name": "disjoint requests cover every index once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -242,9 +242,9 @@
     },
     {
       "id": "real-duplicate-values",
-      "name": "hidden: equal values under unequal coverage",
-      "kind": "real",
-      "visible": false,
+      "name": "equal values under unequal coverage",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -278,9 +278,9 @@
     },
     {
       "id": "real-whole-array-repeated",
-      "name": "hidden: repeated whole-array request",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated whole-array request",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,
@@ -311,9 +311,9 @@
     },
     {
       "id": "real-modulo",
-      "name": "hidden: total requires modular reduction",
-      "kind": "real",
-      "visible": false,
+      "name": "total requires modular reduction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,

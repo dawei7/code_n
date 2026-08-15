@@ -2,14 +2,148 @@
   "schema_version": 1,
   "challenge_id": "lc_2209",
   "cases": [
-    {"id":"sample-separated-whites","name":"sample: two carpets leave two white tiles","kind":"sample","visible":true,"input":{"floor":"10110101","numCarpets":2,"carpetLen":2},"expected":2,"tags":["sample","interval-choice"]},
-    {"id":"sample-overlap-full-cover","name":"sample: overlapping carpets cover the floor","kind":"sample","visible":true,"input":{"floor":"11111","numCarpets":2,"carpetLen":3},"expected":0,"tags":["sample","overlap"]},
-    {"id":"trial-all-black","name":"an all-black floor has no visible white tiles","kind":"trial","visible":true,"input":{"floor":"0000","numCarpets":1,"carpetLen":2},"expected":0,"tags":["all-black"]},
-    {"id":"trial-single-carpet","name":"one carpet chooses the densest useful interval globally","kind":"trial","visible":true,"input":{"floor":"1101011","numCarpets":1,"carpetLen":3},"expected":3,"tags":["single-carpet"]},
-    {"id":"real-unit-carpets","name":"hidden: unit carpets cover individual white tiles","kind":"real","visible":false,"input":{"floor":"101011","numCarpets":3,"carpetLen":1},"expected":1,"tags":["hidden","unit-length"]},
-    {"id":"real-more-carpets-than-needed","name":"hidden: extra carpets may overlap harmlessly","kind":"real","visible":false,"input":{"floor":"10001","numCarpets":10,"carpetLen":2},"expected":0,"tags":["hidden","extra-carpets","overlap"]},
-    {"id":"real-carpet-whole-floor","name":"hidden: one full-length carpet covers every white tile","kind":"real","visible":false,"input":{"floor":"1010101","numCarpets":1,"carpetLen":7},"expected":0,"tags":["hidden","full-length"]},
-    {"id":"real-overlap-not-required","name":"hidden: disjoint placements cover separate clusters","kind":"real","visible":false,"input":{"floor":"111000111","numCarpets":2,"carpetLen":3},"expected":0,"tags":["hidden","disjoint-intervals"]},
-    {"id":"real-isolated-whites","name":"hidden: limited carpets choose among isolated tiles","kind":"real","visible":false,"input":{"floor":"101010101","numCarpets":2,"carpetLen":2},"expected":3,"tags":["hidden","isolated"]}
+    {
+      "id": "sample-separated-whites",
+      "name": "sample: two carpets leave two white tiles",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "floor": "10110101",
+        "numCarpets": 2,
+        "carpetLen": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "interval-choice"
+      ]
+    },
+    {
+      "id": "sample-overlap-full-cover",
+      "name": "sample: overlapping carpets cover the floor",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "floor": "11111",
+        "numCarpets": 2,
+        "carpetLen": 3
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-all-black",
+      "name": "an all-black floor has no visible white tiles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "floor": "0000",
+        "numCarpets": 1,
+        "carpetLen": 2
+      },
+      "expected": 0,
+      "tags": [
+        "all-black"
+      ]
+    },
+    {
+      "id": "trial-single-carpet",
+      "name": "one carpet chooses the densest useful interval globally",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "floor": "1101011",
+        "numCarpets": 1,
+        "carpetLen": 3
+      },
+      "expected": 3,
+      "tags": [
+        "single-carpet"
+      ]
+    },
+    {
+      "id": "real-unit-carpets",
+      "name": "unit carpets cover individual white tiles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "floor": "101011",
+        "numCarpets": 3,
+        "carpetLen": 1
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "unit-length"
+      ]
+    },
+    {
+      "id": "real-more-carpets-than-needed",
+      "name": "extra carpets may overlap harmlessly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "floor": "10001",
+        "numCarpets": 10,
+        "carpetLen": 2
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "extra-carpets",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-carpet-whole-floor",
+      "name": "one full-length carpet covers every white tile",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "floor": "1010101",
+        "numCarpets": 1,
+        "carpetLen": 7
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "full-length"
+      ]
+    },
+    {
+      "id": "real-overlap-not-required",
+      "name": "disjoint placements cover separate clusters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "floor": "111000111",
+        "numCarpets": 2,
+        "carpetLen": 3
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "disjoint-intervals"
+      ]
+    },
+    {
+      "id": "real-isolated-whites",
+      "name": "limited carpets choose among isolated tiles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "floor": "101010101",
+        "numCarpets": 2,
+        "carpetLen": 2
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "isolated"
+      ]
+    }
   ]
 }

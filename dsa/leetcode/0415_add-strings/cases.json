@@ -79,9 +79,9 @@
     },
     {
       "id": "hidden-many-carries",
-      "name": "hidden: carry propagates through both inputs",
-      "kind": "real",
-      "visible": false,
+      "name": "carry propagates through both inputs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num1": "999999999",
         "num2": "999999999"
@@ -94,9 +94,9 @@
     },
     {
       "id": "hidden-no-carry",
-      "name": "hidden: aligned digits add independently",
-      "kind": "real",
-      "visible": false,
+      "name": "aligned digits add independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num1": "123456789",
         "num2": "111111111"
@@ -109,9 +109,9 @@
     },
     {
       "id": "hidden-large",
-      "name": "hidden: values exceed machine integer precision",
-      "kind": "real",
-      "visible": false,
+      "name": "values exceed machine integer precision",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num1": "98765432101234567890",
         "num2": "12345678909876543210"

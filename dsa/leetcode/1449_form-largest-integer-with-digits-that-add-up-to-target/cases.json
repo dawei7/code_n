@@ -154,9 +154,9 @@
     },
     {
       "id": "real-greedy-remainder",
-      "name": "hidden: cheapest digit alone leaves an unusable remainder",
-      "kind": "real",
-      "visible": false,
+      "name": "cheapest digit alone leaves an unusable remainder",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cost": [
           5,
@@ -179,9 +179,9 @@
     },
     {
       "id": "real-single-digit",
-      "name": "hidden: exact target paints one highest digit",
-      "kind": "real",
-      "visible": false,
+      "name": "exact target paints one highest digit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cost": [
           5,
@@ -204,9 +204,9 @@
     },
     {
       "id": "real-repeated-mixed",
-      "name": "hidden: reconstruction reuses multiple digit costs",
-      "kind": "real",
-      "visible": false,
+      "name": "reconstruction reuses multiple digit costs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cost": [
           6,

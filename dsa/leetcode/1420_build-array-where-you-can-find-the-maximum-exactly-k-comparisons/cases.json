@@ -83,9 +83,9 @@
     },
     {
       "id": "real-length-one",
-      "name": "hidden: every value works at length one",
-      "kind": "real",
-      "visible": false,
+      "name": "every value works at length one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1,
         "m": 50,
@@ -99,9 +99,9 @@
     },
     {
       "id": "real-large-cost-one",
-      "name": "hidden: maximum dimensions with cost one",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum dimensions with cost one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 50,
         "m": 50,

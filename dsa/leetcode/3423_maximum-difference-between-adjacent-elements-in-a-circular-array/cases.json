@@ -95,9 +95,9 @@
     },
     {
       "id": "real-wraparound-only",
-      "name": "hidden: wrap-around exceeds all internal changes",
-      "kind": "real",
-      "visible": false,
+      "name": "wrap-around exceeds all internal changes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -100,
@@ -114,9 +114,9 @@
     },
     {
       "id": "real-monotone",
-      "name": "hidden: increasing values make endpoint edge largest",
-      "kind": "real",
-      "visible": false,
+      "name": "increasing values make endpoint edge largest",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -4,
@@ -134,9 +134,9 @@
     },
     {
       "id": "real-alternating",
-      "name": "hidden: repeated extreme differences",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated extreme differences",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -100,
@@ -153,9 +153,9 @@
     },
     {
       "id": "real-mixed-signs",
-      "name": "hidden: mixed signs and duplicates",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed signs and duplicates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           12,
@@ -174,9 +174,9 @@
     },
     {
       "id": "real-value-boundary",
-      "name": "hidden: legal value extremes are adjacent",
-      "kind": "real",
-      "visible": false,
+      "name": "legal value extremes are adjacent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,

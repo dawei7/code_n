@@ -98,9 +98,9 @@
     },
     {
       "id": "hidden-repeated-addend",
-      "name": "hidden: repeated addend letter keeps one digit",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated addend letter keeps one digit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "A",
@@ -116,9 +116,9 @@
     },
     {
       "id": "hidden-ten-letter-solution",
-      "name": "hidden: all ten digits participate",
-      "kind": "real",
-      "visible": false,
+      "name": "all ten digits participate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "DONALD",
@@ -135,9 +135,9 @@
     },
     {
       "id": "hidden-result-too-short",
-      "name": "hidden: result cannot hold the addend magnitude",
-      "kind": "real",
-      "visible": false,
+      "name": "result cannot hold the addend magnitude",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "AB"

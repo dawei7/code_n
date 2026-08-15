@@ -99,9 +99,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: nested endpoint merges",
-      "kind": "real",
-      "visible": false,
+      "name": "nested endpoint merges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "boxes": [
           1,
@@ -119,9 +119,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: all colors distinct",
-      "kind": "real",
-      "visible": false,
+      "name": "all colors distinct",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "boxes": [
           1,
@@ -138,9 +138,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: merge two existing runs",
-      "kind": "real",
-      "visible": false,
+      "name": "merge two existing runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "boxes": [
           1,
@@ -159,9 +159,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: repeated separated color",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated separated color",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "boxes": [
           1,
@@ -179,4 +179,3 @@
     }
   ]
 }
-

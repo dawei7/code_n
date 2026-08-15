@@ -115,9 +115,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: repeated pairable light weights",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated pairable light weights",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "people": [
           1,
@@ -136,9 +136,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: heaviest people force solo boats",
-      "kind": "real",
-      "visible": false,
+      "name": "heaviest people force solo boats",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "people": [
           1,
@@ -156,9 +156,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: one equal pair and two heavy solos",
-      "kind": "real",
-      "visible": false,
+      "name": "one equal pair and two heavy solos",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "people": [
           3,
@@ -176,9 +176,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: multiple complementary pairs",
-      "kind": "real",
-      "visible": false,
+      "name": "multiple complementary pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "people": [
           1,
@@ -197,9 +197,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: maximum-weight person cannot pair",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum-weight person cannot pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "people": [
           30000,

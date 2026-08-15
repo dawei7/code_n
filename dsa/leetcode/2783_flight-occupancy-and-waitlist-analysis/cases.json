@@ -238,9 +238,9 @@
     },
     {
       "id": "real-order-and-counts",
-      "name": "hidden: unsorted flights with every occupancy state",
-      "kind": "real",
-      "visible": false,
+      "name": "unsorted flights with every occupancy state",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Flights": [
@@ -315,9 +315,9 @@
     },
     {
       "id": "real-only-orphans",
-      "name": "hidden: passenger table contains only unmatched flights",
-      "kind": "real",
-      "visible": false,
+      "name": "passenger table contains only unmatched flights",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Flights": [

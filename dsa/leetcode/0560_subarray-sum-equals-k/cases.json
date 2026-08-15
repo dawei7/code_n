@@ -99,9 +99,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: overlapping mixed-sign subarrays",
-      "kind": "real",
-      "visible": false,
+      "name": "overlapping mixed-sign subarrays",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -123,9 +123,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: negative target",
-      "kind": "real",
-      "visible": false,
+      "name": "negative target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -143,9 +143,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: whole-array singleton",
-      "kind": "real",
-      "visible": false,
+      "name": "whole-array singleton",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5
@@ -160,4 +160,3 @@
     }
   ]
 }
-

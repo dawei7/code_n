@@ -132,9 +132,9 @@
     },
     {
       "id": "real-single-characters",
-      "name": "hidden: preserve order of single-character words",
-      "kind": "real",
-      "visible": false,
+      "name": "preserve order of single-character words",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "z",
@@ -155,9 +155,9 @@
     },
     {
       "id": "real-all-empty",
-      "name": "hidden: several delimiter-only words flatten to empty",
-      "kind": "real",
-      "visible": false,
+      "name": "several delimiter-only words flatten to empty",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "###",
@@ -174,9 +174,9 @@
     },
     {
       "id": "real-maximum-word-length",
-      "name": "hidden: maximum-length word has no separator",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum-length word has no separator",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abcdefghijklmnopqrst"
@@ -193,9 +193,9 @@
     },
     {
       "id": "real-mixed-density",
-      "name": "hidden: combine unsplit and densely separated words",
-      "kind": "real",
-      "visible": false,
+      "name": "combine unsplit and densely separated words",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "a@b",

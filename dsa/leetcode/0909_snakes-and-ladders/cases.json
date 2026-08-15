@@ -180,9 +180,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: every first roll returns to start",
-      "kind": "real",
-      "visible": false,
+      "name": "every first roll returns to start",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           [
@@ -211,9 +211,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: do not chain two ladders",
-      "kind": "real",
-      "visible": false,
+      "name": "do not chain two ladders",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           [
@@ -250,9 +250,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: avoid a snake near the end",
-      "kind": "real",
-      "visible": false,
+      "name": "avoid a snake near the end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           [
@@ -280,9 +280,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: empty four by four board",
-      "kind": "real",
-      "visible": false,
+      "name": "empty four by four board",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           [
@@ -319,9 +319,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: maximum board dimension",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum board dimension",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           [

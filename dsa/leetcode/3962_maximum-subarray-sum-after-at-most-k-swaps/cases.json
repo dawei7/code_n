@@ -7,150 +7,352 @@
       "name": "sample: import the final value",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, -1, 0, 2], "k": 1},
+      "input": {
+        "nums": [
+          1,
+          -1,
+          0,
+          2
+        ],
+        "k": 1
+      },
       "expected": 3,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "one-swap"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "one-swap"
+      ]
     },
     {
       "id": "sample-all-positive",
       "name": "sample: whole positive array",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 3, 2, 4], "k": 2},
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          4
+        ],
+        "k": 2
+      },
       "expected": 13,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "zero-swaps"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "zero-swaps"
+      ]
     },
     {
       "id": "sample-no-swaps-negative",
       "name": "sample: no swaps and all negative",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [-1, -2], "k": 0},
+      "input": {
+        "nums": [
+          -1,
+          -2
+        ],
+        "k": 0
+      },
       "expected": -1,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "negative"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "negative"
+      ]
     },
     {
       "id": "trial-single-element",
       "name": "trial: one element",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7], "k": 1},
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 1
+      },
       "expected": 7,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "boundary"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "boundary"
+      ]
     },
     {
       "id": "trial-kadane-only",
       "name": "trial: ordinary maximum subarray",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-2, 1, -3, 4, -1, 2, 1, -5, 4], "k": 0},
+      "input": {
+        "nums": [
+          -2,
+          1,
+          -3,
+          4,
+          -1,
+          2,
+          1,
+          -5,
+          4
+        ],
+        "k": 0
+      },
       "expected": 6,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "zero-swaps"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero-swaps"
+      ]
     },
     {
       "id": "trial-isolate-best-negative",
       "name": "trial: swaps cannot beat largest negative",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-8, -2, -5, -1], "k": 2},
+      "input": {
+        "nums": [
+          -8,
+          -2,
+          -5,
+          -1
+        ],
+        "k": 2
+      },
       "expected": -1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "all-negative"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-negative"
+      ]
     },
     {
       "id": "trial-equal-values",
       "name": "trial: equal values have no profitable pair",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, 5, 5, 5], "k": 3},
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "k": 3
+      },
       "expected": 20,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "duplicates"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-join-separated-positives",
       "name": "trial: one swap joins separated positives",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [10, -100, -100, 9], "k": 1},
+      "input": {
+        "nums": [
+          10,
+          -100,
+          -100,
+          9
+        ],
+        "k": 1
+      },
       "expected": 19,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "profitable-swap"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "profitable-swap"
+      ]
     },
     {
       "id": "real-two-profitable-swaps",
       "name": "real: two profitable extreme pairs",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-5, 100, -4, 90, -3], "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          100,
+          -4,
+          90,
+          -3
+        ],
+        "k": 2
+      },
       "expected": 190,
-      "validator": {"kind": "exact"},
-      "tags": ["real", "multiple-swaps"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "multiple-swaps"
+      ]
     },
     {
       "id": "real-duplicate-pivot",
       "name": "real: duplicate values straddle the pivot",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [3, -2, 3, -2, 3], "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          -2,
+          3,
+          -2,
+          3
+        ],
+        "k": 2
+      },
       "expected": 9,
-      "validator": {"kind": "exact"},
-      "tags": ["real", "duplicate-pivot"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "duplicate-pivot"
+      ]
     },
     {
       "id": "real-k-exceeds-useful-pairs",
       "name": "real: large k is only an upper bound",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, -10, 4, -9, 3], "k": 5},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          -10,
+          4,
+          -9,
+          3
+        ],
+        "k": 5
+      },
       "expected": 12,
-      "validator": {"kind": "exact"},
-      "tags": ["real", "large-k"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "large-k"
+      ]
     },
     {
       "id": "real-value-boundaries",
       "name": "real: positive and negative value boundaries",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100000, -100000, 100000], "k": 1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000,
+          -100000,
+          100000
+        ],
+        "k": 1
+      },
       "expected": 200000,
-      "validator": {"kind": "exact"},
-      "tags": ["real", "value-boundary"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "value-boundary"
+      ]
     },
     {
       "id": "real-no-improving-swap",
       "name": "real: positive prefix is already optimal",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, -100], "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          -100
+        ],
+        "k": 2
+      },
       "expected": 6,
-      "validator": {"kind": "exact"},
-      "tags": ["real", "zero-swaps"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "zero-swaps"
+      ]
     },
     {
       "id": "real-import-three-positives",
       "name": "real: several alternating gaps",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [8, -20, 7, -30, 6, -40, 5], "k": 3},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          -20,
+          7,
+          -30,
+          6,
+          -40,
+          5
+        ],
+        "k": 3
+      },
       "expected": 26,
-      "validator": {"kind": "exact"},
-      "tags": ["real", "multiple-swaps"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "multiple-swaps"
+      ]
     },
     {
       "id": "real-retain-large-middle-values",
       "name": "real: retain large inside values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-1, 100, -1, -1, 99, -1], "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          100,
+          -1,
+          -1,
+          99,
+          -1
+        ],
+        "k": 2
+      },
       "expected": 199,
-      "validator": {"kind": "exact"},
-      "tags": ["real", "order-statistics"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "real",
+        "order-statistics"
+      ]
     }
   ]
 }

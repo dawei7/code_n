@@ -97,9 +97,9 @@
     },
     {
       "id": "real-product-choice",
-      "name": "hidden: large multi-bit and power values compete",
-      "kind": "real",
-      "visible": false,
+      "name": "large multi-bit and power values compete",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -116,9 +116,9 @@
     },
     {
       "id": "real-duplicates-with-partner",
-      "name": "hidden: duplicates do not change best compatible value",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicates do not change best compatible value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           12,
@@ -135,9 +135,9 @@
     },
     {
       "id": "real-high-domain-complements",
-      "name": "hidden: complementary values near the upper bound",
-      "kind": "real",
-      "visible": false,
+      "name": "complementary values near the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           524288,
@@ -155,9 +155,9 @@
     },
     {
       "id": "real-only-one-compatible-small",
-      "name": "hidden: only a small disjoint pair exists",
-      "kind": "real",
-      "visible": false,
+      "name": "only a small disjoint pair exists",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           15,

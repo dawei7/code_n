@@ -78,9 +78,9 @@
     },
     {
       "id": "real-mixed-swap",
-      "name": "hidden: exact middle matches and swapped remainder",
-      "kind": "real",
-      "visible": false,
+      "name": "exact middle matches and swapped remainder",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "secret": "9305",
         "guess": "0395"

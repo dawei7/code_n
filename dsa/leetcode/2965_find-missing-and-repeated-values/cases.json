@@ -145,8 +145,8 @@
     {
       "id": "real-four-by-four",
       "name": "real: interior values differ",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -187,8 +187,8 @@
     {
       "id": "real-shuffled-grid",
       "name": "real: positions do not follow numeric order",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -220,8 +220,8 @@
     {
       "id": "real-distant-values",
       "name": "real: repeated and missing values are far apart",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

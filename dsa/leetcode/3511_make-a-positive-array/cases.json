@@ -6,99 +6,231 @@
       "name": "sample: one non-positive triple",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [-10, 15, -12]},
+      "input": {
+        "nums": [
+          -10,
+          15,
+          -12
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "minimum-length"]
+      "tags": [
+        "sample",
+        "minimum-length"
+      ]
     },
     {
       "id": "sample-overlapping-intervals",
       "name": "sample: one replacement covers overlapping intervals",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [-1, -2, 3, -1, 2, 6]},
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          3,
+          -1,
+          2,
+          6
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "overlap", "mixed-signs"]
+      "tags": [
+        "sample",
+        "overlap",
+        "mixed-signs"
+      ]
     },
     {
       "id": "sample-already-positive",
       "name": "sample: already positive",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 0,
-      "tags": ["sample", "no-operations"]
+      "tags": [
+        "sample",
+        "no-operations"
+      ]
     },
     {
       "id": "trial-zero-sum",
       "name": "trial: zero is not positive",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, -3, 1]},
+      "input": {
+        "nums": [
+          2,
+          -3,
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "strict-positivity", "zero-sum"]
+      "tags": [
+        "trial",
+        "strict-positivity",
+        "zero-sum"
+      ]
     },
     {
       "id": "trial-length-four-only",
       "name": "trial: bad length four despite positive triples",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-2, 3, 3, -4]},
+      "input": {
+        "nums": [
+          -2,
+          3,
+          3,
+          -4
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "length-four", "semantic-trap"]
+      "tags": [
+        "trial",
+        "length-four",
+        "semantic-trap"
+      ]
     },
     {
       "id": "trial-length-five-only",
       "name": "trial: bad length five despite positive shorter windows",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-3, 2, 2, 2, -3]},
+      "input": {
+        "nums": [
+          -3,
+          2,
+          2,
+          2,
+          -3
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "length-five", "semantic-trap"]
+      "tags": [
+        "trial",
+        "length-five",
+        "semantic-trap"
+      ]
     },
     {
       "id": "real-disjoint-bad-regions",
       "name": "real: disjoint bad regions require separate replacements",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-1, -1, -1, -1, -1, -1]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
       "expected": 2,
-      "tags": ["real", "disjoint-intervals", "greedy"]
+      "tags": [
+        "real",
+        "disjoint-intervals",
+        "greedy"
+      ]
     },
     {
       "id": "real-earlier-choice-covers-later-window",
       "name": "real: selected endpoint covers a later long window",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-5, 1, 5, -5, 1]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          1,
+          5,
+          -5,
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["real", "overlap", "last-selected"]
+      "tags": [
+        "real",
+        "overlap",
+        "last-selected"
+      ]
     },
     {
       "id": "real-positive-boundary-values",
       "name": "real: maximum values need no replacement",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000000000, 1000000000, 1000000000, 1000000000, 1000000000]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000,
+          1000000000
+        ]
+      },
       "expected": 0,
-      "tags": ["real", "value-boundary", "no-operations"]
+      "tags": [
+        "real",
+        "value-boundary",
+        "no-operations"
+      ]
     },
     {
       "id": "real-negative-boundary-values",
       "name": "real: minimum values form two greedy groups",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-1000000000, -1000000000, -1000000000, -1000000000, -1000000000, -1000000000, -1000000000]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1000000000,
+          -1000000000,
+          -1000000000,
+          -1000000000,
+          -1000000000,
+          -1000000000,
+          -1000000000
+        ]
+      },
       "expected": 2,
-      "tags": ["real", "value-boundary", "multiple-operations"]
+      "tags": [
+        "real",
+        "value-boundary",
+        "multiple-operations"
+      ]
     },
     {
       "id": "real-all-zero-ten",
       "name": "real: all-zero windows require three replacements",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 3,
-      "tags": ["real", "zero-sum", "repeated-greedy-choice"]
+      "tags": [
+        "real",
+        "zero-sum",
+        "repeated-greedy-choice"
+      ]
     }
   ]
 }

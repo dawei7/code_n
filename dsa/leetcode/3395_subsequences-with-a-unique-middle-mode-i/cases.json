@@ -110,8 +110,8 @@
     {
       "id": "real-alternating-repeats",
       "name": "real: middle values compete across both sides",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -132,8 +132,8 @@
     {
       "id": "real-mixed-counts",
       "name": "real: repeated values surround several middles",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -156,8 +156,8 @@
     {
       "id": "real-coordinate-extremes",
       "name": "real: values at both coordinate limits",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,

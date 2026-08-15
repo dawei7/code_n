@@ -258,9 +258,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: separated true quadrants",
-      "kind": "real",
-      "visible": false,
+      "name": "separated true quadrants",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "quadTree1": {
           "leaf": false,
@@ -336,9 +336,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: false preserves asymmetric tree",
-      "kind": "real",
-      "visible": false,
+      "name": "false preserves asymmetric tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "quadTree1": {
           "leaf": false,
@@ -397,4 +397,3 @@
     }
   ]
 }
-

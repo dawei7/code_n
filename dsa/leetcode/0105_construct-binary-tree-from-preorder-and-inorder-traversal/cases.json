@@ -82,9 +82,9 @@
     },
     {
       "id": "real-mixed-subtrees",
-      "name": "hidden: mixed left and right subtrees",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed left and right subtrees",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "preorder": [
           1,

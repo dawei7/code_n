@@ -285,9 +285,9 @@
     },
     {
       "id": "real-horizontal-restart",
-      "name": "hidden: the row scan restarts after a damaging prefix",
-      "kind": "real",
-      "visible": false,
+      "name": "the row scan restarts after a damaging prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -320,9 +320,9 @@
     },
     {
       "id": "real-negative-interior-singleton",
-      "name": "hidden: the least negative interior cell is optimal",
-      "kind": "real",
-      "visible": false,
+      "name": "the least negative interior cell is optimal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -363,9 +363,9 @@
     },
     {
       "id": "real-two-rows",
-      "name": "hidden: two rows leave no strictly interior row",
-      "kind": "real",
-      "visible": false,
+      "name": "two rows leave no strictly interior row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -396,9 +396,9 @@
     },
     {
       "id": "real-two-columns",
-      "name": "hidden: two columns leave no strictly interior column",
-      "kind": "real",
-      "visible": false,
+      "name": "two columns leave no strictly interior column",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -435,9 +435,9 @@
     },
     {
       "id": "real-row-column-tie",
-      "name": "hidden: equal best scores from different orientations are harmless",
-      "kind": "real",
-      "visible": false,
+      "name": "equal best scores from different orientations are harmless",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -469,9 +469,9 @@
     },
     {
       "id": "real-all-maximum",
-      "name": "hidden: an all-maximum rectangle favors its longer dimension",
-      "kind": "real",
-      "visible": false,
+      "name": "an all-maximum rectangle favors its longer dimension",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -516,9 +516,9 @@
     },
     {
       "id": "real-all-minimum-two-rows",
-      "name": "hidden: all minimum values still require two shared cells",
-      "kind": "real",
-      "visible": false,
+      "name": "all minimum values still require two shared cells",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -551,9 +551,9 @@
     },
     {
       "id": "real-singleton-versus-segments",
-      "name": "hidden: an interior singleton defeats all adjacent pairs",
-      "kind": "real",
-      "visible": false,
+      "name": "an interior singleton defeats all adjacent pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -594,4 +594,3 @@
     }
   ]
 }
-

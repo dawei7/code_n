@@ -6,63 +6,143 @@
       "name": "sample: two combinations reach threshold",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 11, 10, 1, 3], "k": 10},
+      "input": {
+        "nums": [
+          2,
+          11,
+          10,
+          1,
+          3
+        ],
+        "k": 10
+      },
       "expected": 2,
-      "tags": ["sample", "mixed"]
+      "tags": [
+        "sample",
+        "mixed"
+      ]
     },
     {
       "id": "sample-combine-to-one",
       "name": "sample: four combinations leave one value",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 1, 2, 4, 9], "k": 20},
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          4,
+          9
+        ],
+        "k": 20
+      },
       "expected": 4,
-      "tags": ["sample", "one-remains"]
+      "tags": [
+        "sample",
+        "one-remains"
+      ]
     },
     {
       "id": "trial-already-qualified",
       "name": "every value already meets threshold",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [10, 11, 12], "k": 10},
+      "input": {
+        "nums": [
+          10,
+          11,
+          12
+        ],
+        "k": 10
+      },
       "expected": 0,
-      "tags": ["zero-operations", "equality"]
+      "tags": [
+        "zero-operations",
+        "equality"
+      ]
     },
     {
       "id": "trial-two-values",
       "name": "two values require one operation",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1], "k": 3},
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 3
+      },
       "expected": 1,
-      "tags": ["minimum-length", "one-operation"]
+      "tags": [
+        "minimum-length",
+        "one-operation"
+      ]
     },
     {
       "id": "trial-small-chain",
       "name": "several new values remain below threshold",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 9], "k": 15},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          9
+        ],
+        "k": 15
+      },
       "expected": 3,
-      "tags": ["chain", "one-remains"]
+      "tags": [
+        "chain",
+        "one-remains"
+      ]
     },
     {
       "id": "real-mixed-heap",
-      "name": "hidden: interleaved powers and small values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 1, 8, 2, 16, 3, 32], "k": 25},
+      "name": "interleaved powers and small values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          8,
+          2,
+          16,
+          3,
+          32
+        ],
+        "k": 25
+      },
       "expected": 5,
-      "tags": ["hidden", "heap", "mixed"]
+      "tags": [
+        "hidden",
+        "heap",
+        "mixed"
+      ]
     },
     {
       "id": "real-maximum-values",
-      "name": "hidden: values immediately below maximum threshold",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [999999999, 999999999, 999999999], "k": 1000000000},
+      "name": "values immediately below maximum threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          999999999,
+          999999999,
+          999999999
+        ],
+        "k": 1000000000
+      },
       "expected": 2,
-      "tags": ["hidden", "maximum-values", "equality-boundary"]
+      "tags": [
+        "hidden",
+        "maximum-values",
+        "equality-boundary"
+      ]
     }
   ]
 }

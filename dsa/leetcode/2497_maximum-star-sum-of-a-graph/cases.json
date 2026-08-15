@@ -148,9 +148,9 @@
     },
     {
       "id": "real-zero-k",
-      "name": "hidden: edges are irrelevant when k is zero",
-      "kind": "real",
-      "visible": false,
+      "name": "edges are irrelevant when k is zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "vals": [
           -3,
@@ -177,9 +177,9 @@
     },
     {
       "id": "real-all-negative",
-      "name": "hidden: every neighbor is harmful",
-      "kind": "real",
-      "visible": false,
+      "name": "every neighbor is harmful",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "vals": [
           -1,
@@ -206,9 +206,9 @@
     },
     {
       "id": "real-negative-center-wins",
-      "name": "hidden: positive neighbors can outweigh a negative center",
-      "kind": "real",
-      "visible": false,
+      "name": "positive neighbors can outweigh a negative center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "vals": [
           -5,
@@ -235,9 +235,9 @@
     },
     {
       "id": "real-disconnected",
-      "name": "hidden: disconnected components and an isolated optimum",
-      "kind": "real",
-      "visible": false,
+      "name": "disconnected components and an isolated optimum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "vals": [
           1,
@@ -267,9 +267,9 @@
     },
     {
       "id": "real-zero-neighbors",
-      "name": "hidden: zero-valued neighbors do not improve a star",
-      "kind": "real",
-      "visible": false,
+      "name": "zero-valued neighbors do not improve a star",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "vals": [
           4,

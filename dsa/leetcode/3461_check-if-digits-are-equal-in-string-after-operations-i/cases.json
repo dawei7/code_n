@@ -7,72 +7,112 @@
       "name": "sample: two rounds produce equal digits",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "3902"},
+      "input": {
+        "s": "3902"
+      },
       "expected": true,
-      "tags": ["sample", "equal"]
+      "tags": [
+        "sample",
+        "equal"
+      ]
     },
     {
       "id": "sample-different-final-digits",
       "name": "sample: three rounds produce different digits",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "34789"},
+      "input": {
+        "s": "34789"
+      },
       "expected": false,
-      "tags": ["sample", "different"]
+      "tags": [
+        "sample",
+        "different"
+      ]
     },
     {
       "id": "trial-minimum-equal",
       "name": "trial: minimum length produces equal digits",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "111"},
+      "input": {
+        "s": "111"
+      },
       "expected": true,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-minimum-different",
       "name": "trial: minimum length produces different digits",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "123"},
+      "input": {
+        "s": "123"
+      },
       "expected": false,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "real-leading-zero",
       "name": "real: zero participates as an ordinary digit",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "909"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "909"
+      },
       "expected": true,
-      "tags": ["real", "zero"]
+      "tags": [
+        "real",
+        "zero"
+      ]
     },
     {
       "id": "real-all-zeroes",
       "name": "real: every intermediate digit remains zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "000000"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000000"
+      },
       "expected": true,
-      "tags": ["real", "all-zeroes"]
+      "tags": [
+        "real",
+        "all-zeroes"
+      ]
     },
     {
       "id": "real-descending-digits",
       "name": "real: ten-digit descending input",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "9876543210"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "9876543210"
+      },
       "expected": false,
-      "tags": ["real", "longer"]
+      "tags": [
+        "real",
+        "longer"
+      ]
     },
     {
       "id": "real-alternating-binary-digits",
       "name": "real: alternating digits converge equally",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "10101"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "10101"
+      },
       "expected": true,
-      "tags": ["real", "alternating"]
+      "tags": [
+        "real",
+        "alternating"
+      ]
     }
   ]
 }

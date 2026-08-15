@@ -6,99 +6,397 @@
       "name": "sample: one black corner cell",
       "kind": "sample",
       "visible": true,
-      "input": {"m": 3, "n": 3, "coordinates": [[0, 0]]},
-      "tags": ["sample", "corner"],
-      "expected": [3, 1, 0, 0, 0]
+      "input": {
+        "m": 3,
+        "n": 3,
+        "coordinates": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "corner"
+      ],
+      "expected": [
+        3,
+        1,
+        0,
+        0,
+        0
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: overlapping affected blocks",
       "kind": "sample",
       "visible": true,
-      "input": {"m": 3, "n": 3, "coordinates": [[0, 0], [1, 1], [0, 2]]},
-      "tags": ["sample", "overlap"],
-      "expected": [0, 2, 2, 0, 0]
+      "input": {
+        "m": 3,
+        "n": 3,
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "overlap"
+      ],
+      "expected": [
+        0,
+        2,
+        2,
+        0,
+        0
+      ]
     },
     {
       "id": "trial-empty",
       "name": "trial: enormous grid with no black cells",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 100000, "n": 100000, "coordinates": []},
-      "tags": ["trial", "empty", "large-dimensions"],
-      "expected": [9999800001, 0, 0, 0, 0]
+      "input": {
+        "m": 100000,
+        "n": 100000,
+        "coordinates": []
+      },
+      "tags": [
+        "trial",
+        "empty",
+        "large-dimensions"
+      ],
+      "expected": [
+        9999800001,
+        0,
+        0,
+        0,
+        0
+      ]
     },
     {
       "id": "trial-center-cell",
       "name": "trial: one interior cell affects four blocks",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 4, "n": 5, "coordinates": [[1, 2]]},
-      "tags": ["trial", "interior"],
-      "expected": [8, 4, 0, 0, 0]
+      "input": {
+        "m": 4,
+        "n": 5,
+        "coordinates": [
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "interior"
+      ],
+      "expected": [
+        8,
+        4,
+        0,
+        0,
+        0
+      ]
     },
     {
       "id": "trial-full-two-by-two",
       "name": "trial: the only block is fully black",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 2, "n": 2, "coordinates": [[0, 0], [0, 1], [1, 0], [1, 1]]},
-      "tags": ["trial", "full-block"],
-      "expected": [0, 0, 0, 0, 1]
+      "input": {
+        "m": 2,
+        "n": 2,
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "full-block"
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
     },
     {
       "id": "trial-opposite-corners",
       "name": "trial: the only block has two diagonal black cells",
       "kind": "trial",
       "visible": true,
-      "input": {"m": 2, "n": 2, "coordinates": [[0, 0], [1, 1]]},
-      "tags": ["trial", "diagonal"],
-      "expected": [0, 0, 1, 0, 0]
+      "input": {
+        "m": 2,
+        "n": 2,
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "diagonal"
+      ],
+      "expected": [
+        0,
+        0,
+        1,
+        0,
+        0
+      ]
     },
     {
       "id": "real-three-of-four",
-      "name": "hidden: the only block has exactly three black cells",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 2, "n": 2, "coordinates": [[0, 0], [0, 1], [1, 0]]},
-      "tags": ["hidden", "three-black"],
-      "expected": [0, 0, 0, 1, 0]
+      "name": "the only block has exactly three black cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 2,
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "three-black"
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ]
     },
     {
       "id": "real-vertical-boundary-pair",
-      "name": "hidden: adjacent black cells on a boundary",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 3, "n": 4, "coordinates": [[0, 0], [1, 0]]},
-      "tags": ["hidden", "boundary", "overlap"],
-      "expected": [4, 1, 1, 0, 0]
+      "name": "adjacent black cells on a boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 4,
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "boundary",
+        "overlap"
+      ],
+      "expected": [
+        4,
+        1,
+        1,
+        0,
+        0
+      ]
     },
     {
       "id": "real-all-black-three-by-three",
-      "name": "hidden: every block is fully black",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 3, "n": 3, "coordinates": [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]]},
-      "tags": ["hidden", "dense", "full-blocks"],
-      "expected": [0, 0, 0, 0, 4]
+      "name": "every block is fully black",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 3,
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "dense",
+        "full-blocks"
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        4
+      ]
     },
     {
       "id": "real-separated-corners",
-      "name": "hidden: four distant grid corners",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 4, "n": 4, "coordinates": [[0, 0], [0, 3], [3, 0], [3, 3]]},
-      "tags": ["hidden", "corners", "separated"],
-      "expected": [5, 4, 0, 0, 0]
+      "name": "four distant grid corners",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 4,
+        "n": 4,
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "corners",
+        "separated"
+      ],
+      "expected": [
+        5,
+        4,
+        0,
+        0,
+        0
+      ]
     },
     {
       "id": "real-mixed-block-counts",
-      "name": "hidden: mixed adjacent and separated black cells",
-      "kind": "real",
-      "visible": false,
-      "input": {"m": 5, "n": 6, "coordinates": [[0, 1], [1, 1], [1, 2], [3, 4], [4, 4], [2, 0]]},
-      "tags": ["hidden", "mixed", "overlap"],
-      "expected": [9, 5, 5, 1, 0]
+      "name": "mixed adjacent and separated black cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 5,
+        "n": 6,
+        "coordinates": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "mixed",
+        "overlap"
+      ],
+      "expected": [
+        9,
+        5,
+        5,
+        1,
+        0
+      ]
     }
   ]
 }

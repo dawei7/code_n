@@ -120,9 +120,9 @@
     },
     {
       "id": "real-endpoints",
-      "name": "hidden: endpoint removals then interior removals",
-      "kind": "real",
-      "visible": false,
+      "name": "endpoint removals then interior removals",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -150,9 +150,9 @@
     },
     {
       "id": "real-large-sums",
-      "name": "hidden: segment sums require more than 32 bits",
-      "kind": "real",
-      "visible": false,
+      "name": "segment sums require more than 32 bits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -177,9 +177,9 @@
     },
     {
       "id": "real-changing-largest-side",
-      "name": "hidden: maximum moves among separated segments",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum moves among separated segments",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,

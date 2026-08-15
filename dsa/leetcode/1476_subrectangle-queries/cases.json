@@ -301,9 +301,9 @@
     },
     {
       "id": "real-disjoint-updates",
-      "name": "hidden: disjoint cells retain independent values",
-      "kind": "real",
-      "visible": false,
+      "name": "disjoint cells retain independent values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangle": [
           [
@@ -375,9 +375,9 @@
     },
     {
       "id": "real-nested-overwrites",
-      "name": "hidden: latest nested assignment wins",
-      "kind": "real",
-      "visible": false,
+      "name": "latest nested assignment wins",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangle": [
           [
@@ -474,9 +474,9 @@
     },
     {
       "id": "real-value-bound",
-      "name": "hidden: maximum assigned value",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum assigned value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangle": [
           [

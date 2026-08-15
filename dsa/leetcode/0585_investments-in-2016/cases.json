@@ -246,9 +246,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: several qualifying value groups",
-      "kind": "real",
-      "visible": false,
+      "name": "several qualifying value groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Insurance": [
@@ -300,9 +300,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: mixed qualifying and duplicated locations",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed qualifying and duplicated locations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Insurance": [

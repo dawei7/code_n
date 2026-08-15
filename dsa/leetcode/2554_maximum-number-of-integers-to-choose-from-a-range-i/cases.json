@@ -103,9 +103,9 @@
     },
     {
       "id": "real-smallest-banned",
-      "name": "hidden: skip the smallest candidate before budget stop",
-      "kind": "real",
-      "visible": false,
+      "name": "skip the smallest candidate before budget stop",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "banned": [
           1
@@ -121,9 +121,9 @@
     },
     {
       "id": "real-all-banned",
-      "name": "hidden: all in-range values are forbidden",
-      "kind": "real",
-      "visible": false,
+      "name": "all in-range values are forbidden",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "banned": [
           1,
@@ -141,9 +141,9 @@
     },
     {
       "id": "real-budget-stop",
-      "name": "hidden: later values cannot fit after first failure",
-      "kind": "real",
-      "visible": false,
+      "name": "later values cannot fit after first failure",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "banned": [
           10

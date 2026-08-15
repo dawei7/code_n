@@ -1,14 +1,130 @@
 {
   "challenge_id": "lc_3448",
   "cases": [
-    {"id":"sample-mixed","name":"sample: mixed divisible endings","kind":"sample","visible":true,"input":{"s":"12936"},"expected":11,"tags":["sample"]},
-    {"id":"sample-leading-zero","name":"sample: leading-zero substrings","kind":"sample","visible":true,"input":{"s":"5701283"},"expected":18,"tags":["sample","leading-zero"]},
-    {"id":"sample-zero-endings","name":"sample: only one endings qualify","kind":"sample","visible":true,"input":{"s":"1010101010"},"expected":25,"tags":["sample","zero"]},
-    {"id":"trial-single-zero","name":"trial: single zero contributes nothing","kind":"trial","visible":true,"input":{"s":"0"},"expected":0,"tags":["trial","minimum-n"]},
-    {"id":"trial-middle-zero","name":"trial: zero inside the decimal value","kind":"trial","visible":true,"input":{"s":"105"},"expected":4,"tags":["trial","internal-zero"]},
-    {"id":"real-alternating-nine-zero","name":"real: alternating nine and zero","kind":"real","visible":false,"input":{"s":"9090909"},"expected":16,"tags":["real","alternating"]},
-    {"id":"real-all-ones","name":"real: every substring is divisible by one","kind":"real","visible":false,"input":{"s":"11111"},"expected":15,"tags":["real","all-valid"]},
-    {"id":"real-leading-zeroes","name":"real: several starts share a numeric value","kind":"real","visible":false,"input":{"s":"0012"},"expected":7,"tags":["real","leading-zero"]},
-    {"id":"real-long-zero-run","name":"real: endpoints around a zero run","kind":"real","visible":false,"input":{"s":"1000000001"},"expected":11,"tags":["real","zero-run"]}
+    {
+      "id": "sample-mixed",
+      "name": "sample: mixed divisible endings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "12936"
+      },
+      "expected": 11,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-leading-zero",
+      "name": "sample: leading-zero substrings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "5701283"
+      },
+      "expected": 18,
+      "tags": [
+        "sample",
+        "leading-zero"
+      ]
+    },
+    {
+      "id": "sample-zero-endings",
+      "name": "sample: only one endings qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1010101010"
+      },
+      "expected": 25,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: single zero contributes nothing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "trial-middle-zero",
+      "name": "trial: zero inside the decimal value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "105"
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "internal-zero"
+      ]
+    },
+    {
+      "id": "real-alternating-nine-zero",
+      "name": "real: alternating nine and zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "9090909"
+      },
+      "expected": 16,
+      "tags": [
+        "real",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-all-ones",
+      "name": "real: every substring is divisible by one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "11111"
+      },
+      "expected": 15,
+      "tags": [
+        "real",
+        "all-valid"
+      ]
+    },
+    {
+      "id": "real-leading-zeroes",
+      "name": "real: several starts share a numeric value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0012"
+      },
+      "expected": 7,
+      "tags": [
+        "real",
+        "leading-zero"
+      ]
+    },
+    {
+      "id": "real-long-zero-run",
+      "name": "real: endpoints around a zero run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1000000001"
+      },
+      "expected": 11,
+      "tags": [
+        "real",
+        "zero-run"
+      ]
+    }
   ]
 }

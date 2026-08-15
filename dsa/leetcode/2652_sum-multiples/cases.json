@@ -1,13 +1,118 @@
 {
   "challenge_id": "lc_2652",
   "cases": [
-    {"id":"sample-seven","name":"sample: all three divisors contribute","kind":"sample","visible":true,"input":{"n":7},"expected":21,"tags":["sample","inclusive-bound"]},
-    {"id":"sample-ten","name":"sample: upper bound is a multiple of five","kind":"sample","visible":true,"input":{"n":10},"expected":40,"tags":["sample","multiple-five"]},
-    {"id":"sample-nine","name":"sample: upper bound is a multiple of three","kind":"sample","visible":true,"input":{"n":9},"expected":30,"tags":["sample","multiple-three"]},
-    {"id":"trial-none","name":"trial: no value is divisible","kind":"trial","visible":true,"input":{"n":2},"expected":0,"tags":["small","empty-selection"]},
-    {"id":"trial-first","name":"trial: first qualifying value","kind":"trial","visible":true,"input":{"n":3},"expected":3,"tags":["boundary","multiple-three"]},
-    {"id":"real-overlap-fifteen","name":"hidden: common multiple is counted once","kind":"real","visible":false,"input":{"n":15},"expected":81,"tags":["hidden","overlap","inclusion-exclusion"]},
-    {"id":"real-triple-overlap","name":"hidden: least common multiple of all divisors","kind":"real","visible":false,"input":{"n":105},"expected":3045,"tags":["hidden","triple-overlap"]},
-    {"id":"real-maximum","name":"hidden: maximum upper bound","kind":"real","visible":false,"input":{"n":1000},"expected":272066,"tags":["hidden","maximum"]}
+    {
+      "id": "sample-seven",
+      "name": "sample: all three divisors contribute",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 7
+      },
+      "expected": 21,
+      "tags": [
+        "sample",
+        "inclusive-bound"
+      ]
+    },
+    {
+      "id": "sample-ten",
+      "name": "sample: upper bound is a multiple of five",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 10
+      },
+      "expected": 40,
+      "tags": [
+        "sample",
+        "multiple-five"
+      ]
+    },
+    {
+      "id": "sample-nine",
+      "name": "sample: upper bound is a multiple of three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 9
+      },
+      "expected": 30,
+      "tags": [
+        "sample",
+        "multiple-three"
+      ]
+    },
+    {
+      "id": "trial-none",
+      "name": "trial: no value is divisible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "expected": 0,
+      "tags": [
+        "small",
+        "empty-selection"
+      ]
+    },
+    {
+      "id": "trial-first",
+      "name": "trial: first qualifying value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "multiple-three"
+      ]
+    },
+    {
+      "id": "real-overlap-fifteen",
+      "name": "common multiple is counted once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 15
+      },
+      "expected": 81,
+      "tags": [
+        "hidden",
+        "overlap",
+        "inclusion-exclusion"
+      ]
+    },
+    {
+      "id": "real-triple-overlap",
+      "name": "least common multiple of all divisors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 105
+      },
+      "expected": 3045,
+      "tags": [
+        "hidden",
+        "triple-overlap"
+      ]
+    },
+    {
+      "id": "real-maximum",
+      "name": "maximum upper bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000
+      },
+      "expected": 272066,
+      "tags": [
+        "hidden",
+        "maximum"
+      ]
+    }
   ]
 }

@@ -101,9 +101,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: cancel a derived score",
-      "kind": "real",
-      "visible": false,
+      "name": "cancel a derived score",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "10",
@@ -121,9 +121,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: negative derived values",
-      "kind": "real",
-      "visible": false,
+      "name": "negative derived values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "-5",
@@ -140,9 +140,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: multiple cancellations",
-      "kind": "real",
-      "visible": false,
+      "name": "multiple cancellations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "1",

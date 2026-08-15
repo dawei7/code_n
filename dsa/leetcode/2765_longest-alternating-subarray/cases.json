@@ -76,9 +76,9 @@
     },
     {
       "id": "real-falling-pair",
-      "name": "hidden: a falling pair cannot start a run",
-      "kind": "real",
-      "visible": false,
+      "name": "a falling pair cannot start a run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -93,9 +93,9 @@
     },
     {
       "id": "real-restart-on-rise",
-      "name": "hidden: a new rise restarts after a mismatch",
-      "kind": "real",
-      "visible": false,
+      "name": "a new rise restarts after a mismatch",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -114,9 +114,9 @@
     },
     {
       "id": "real-consecutive-rises",
-      "name": "hidden: consecutive rises only form pairs",
-      "kind": "real",
-      "visible": false,
+      "name": "consecutive rises only form pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -133,9 +133,9 @@
     },
     {
       "id": "real-duplicate-break",
-      "name": "hidden: a duplicate breaks the pattern",
-      "kind": "real",
-      "visible": false,
+      "name": "a duplicate breaks the pattern",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -155,9 +155,9 @@
     },
     {
       "id": "real-upper-values",
-      "name": "hidden: values near the upper bound",
-      "kind": "real",
-      "visible": false,
+      "name": "values near the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9999,
@@ -174,9 +174,9 @@
     },
     {
       "id": "real-full-pattern",
-      "name": "hidden: the entire array alternates",
-      "kind": "real",
-      "visible": false,
+      "name": "the entire array alternates",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,

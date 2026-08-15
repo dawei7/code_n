@@ -7,120 +7,352 @@
       "name": "sample: three rotations of two movable values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, -2, 3, -4], "k": 3},
-      "expected": [3, -2, 1, -4],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "oversized-k", "fixed-negatives"]
+      "input": {
+        "nums": [
+          1,
+          -2,
+          3,
+          -4
+        ],
+        "k": 3
+      },
+      "expected": [
+        3,
+        -2,
+        1,
+        -4
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "oversized-k",
+        "fixed-negatives"
+      ]
     },
     {
       "id": "sample-single-movable-value",
       "name": "sample: a one-element movable sequence is unchanged",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [-3, -2, 7], "k": 1},
-      "expected": [-3, -2, 7],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "single-non-negative", "fixed-point"]
+      "input": {
+        "nums": [
+          -3,
+          -2,
+          7
+        ],
+        "k": 1
+      },
+      "expected": [
+        -3,
+        -2,
+        7
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "single-non-negative",
+        "fixed-point"
+      ]
     },
     {
       "id": "sample-two-step-left-rotation",
       "name": "sample: rotate three movable values around a fixed negative",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [5, 4, -9, 6], "k": 2},
-      "expected": [6, 5, -9, 4],
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "left-rotation", "fixed-negative"]
+      "input": {
+        "nums": [
+          5,
+          4,
+          -9,
+          6
+        ],
+        "k": 2
+      },
+      "expected": [
+        6,
+        5,
+        -9,
+        4
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "left-rotation",
+        "fixed-negative"
+      ]
     },
     {
       "id": "trial-zero-rotation",
       "name": "trial: k zero preserves every value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, -2, 0, 3], "k": 0},
-      "expected": [1, -2, 0, 3],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "zero-k", "zero-is-non-negative"]
+      "input": {
+        "nums": [
+          1,
+          -2,
+          0,
+          3
+        ],
+        "k": 0
+      },
+      "expected": [
+        1,
+        -2,
+        0,
+        3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero-k",
+        "zero-is-non-negative"
+      ]
     },
     {
       "id": "trial-all-negative",
       "name": "trial: no movable value leaves the array unchanged",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-5, -1, -3], "k": 100000},
-      "expected": [-5, -1, -3],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "all-negative", "maximum-k"]
+      "input": {
+        "nums": [
+          -5,
+          -1,
+          -3
+        ],
+        "k": 100000
+      },
+      "expected": [
+        -5,
+        -1,
+        -3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-negative",
+        "maximum-k"
+      ]
     },
     {
       "id": "trial-zero-participates",
       "name": "trial: zero rotates with positive values",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [-1, 0, 2, -3, 4], "k": 1},
-      "expected": [-1, 2, 4, -3, 0],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "zero-is-non-negative", "alternating-signs"]
+      "input": {
+        "nums": [
+          -1,
+          0,
+          2,
+          -3,
+          4
+        ],
+        "k": 1
+      },
+      "expected": [
+        -1,
+        2,
+        4,
+        -3,
+        0
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero-is-non-negative",
+        "alternating-signs"
+      ]
     },
     {
       "id": "trial-full-cycles",
       "name": "trial: a multiple of the movable count changes nothing",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, -1, 2, -2, 3], "k": 6},
-      "expected": [1, -1, 2, -2, 3],
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "full-cycles", "modulo"]
+      "input": {
+        "nums": [
+          1,
+          -1,
+          2,
+          -2,
+          3
+        ],
+        "k": 6
+      },
+      "expected": [
+        1,
+        -1,
+        2,
+        -2,
+        3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "full-cycles",
+        "modulo"
+      ]
     },
     {
       "id": "real-all-non-negative",
-      "name": "hidden: rotating the movable sequence rotates the whole array",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 3, 4], "k": 1},
-      "expected": [2, 3, 4, 1],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "all-non-negative", "single-shift"]
+      "name": "rotating the movable sequence rotates the whole array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 1
+      },
+      "expected": [
+        2,
+        3,
+        4,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "all-non-negative",
+        "single-shift"
+      ]
     },
     {
       "id": "real-oversized-with-zero",
-      "name": "hidden: oversized k is reduced by the movable count",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, -1, 1, -2, 2], "k": 5},
-      "expected": [2, -1, 0, -2, 1],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "oversized-k", "modulo", "zero"]
+      "name": "oversized k is reduced by the movable count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          -1,
+          1,
+          -2,
+          2
+        ],
+        "k": 5
+      },
+      "expected": [
+        2,
+        -1,
+        0,
+        -2,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "oversized-k",
+        "modulo",
+        "zero"
+      ]
     },
     {
       "id": "real-one-zero-movable",
-      "name": "hidden: a sole zero stays fixed under maximum rotation",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-5, 0, -4], "k": 100000},
-      "expected": [-5, 0, -4],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "single-non-negative", "zero", "maximum-k"]
+      "name": "a sole zero stays fixed under maximum rotation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          0,
+          -4
+        ],
+        "k": 100000
+      },
+      "expected": [
+        -5,
+        0,
+        -4
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "single-non-negative",
+        "zero",
+        "maximum-k"
+      ]
     },
     {
       "id": "real-value-boundaries",
-      "name": "hidden: boundary values rotate around fixed negatives",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-100000, 100000, 0, -1], "k": 1},
-      "expected": [-100000, 0, 100000, -1],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "value-boundaries", "zero"]
+      "name": "boundary values rotate around fixed negatives",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -100000,
+          100000,
+          0,
+          -1
+        ],
+        "k": 1
+      },
+      "expected": [
+        -100000,
+        0,
+        100000,
+        -1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "value-boundaries",
+        "zero"
+      ]
     },
     {
       "id": "real-repeated-values",
-      "name": "hidden: repeated movable values retain their cyclic order",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, -1, 2, 0, -3], "k": 2},
-      "expected": [0, -1, 2, 2, -3],
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "repeated-values", "alternating-signs"]
+      "name": "repeated movable values retain their cyclic order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          -1,
+          2,
+          0,
+          -3
+        ],
+        "k": 2
+      },
+      "expected": [
+        0,
+        -1,
+        2,
+        2,
+        -3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "repeated-values",
+        "alternating-signs"
+      ]
     }
   ]
 }

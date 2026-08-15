@@ -149,8 +149,8 @@
     {
       "id": "real-powers-of-two",
       "name": "real: every adjacent pair sets two bits",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -177,8 +177,8 @@
     {
       "id": "real-overlapping-bits",
       "name": "real: overlapping bits saturate pair results",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -199,8 +199,8 @@
     {
       "id": "real-alternating-extremes",
       "name": "real: alternating zero and maximum",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -226,8 +226,8 @@
     {
       "id": "real-repeated-middle-value",
       "name": "real: repeated values preserve the same mask",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           42,
@@ -250,8 +250,8 @@
     {
       "id": "real-maximum-length",
       "name": "real: maximum legal array length",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,

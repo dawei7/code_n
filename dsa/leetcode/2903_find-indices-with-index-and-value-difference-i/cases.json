@@ -135,9 +135,9 @@
     },
     {
       "id": "real-earlier-maximum",
-      "name": "hidden: the earlier maximum detects the qualifying direction",
-      "kind": "real",
-      "visible": false,
+      "name": "the earlier maximum detects the qualifying direction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           50,
@@ -162,9 +162,9 @@
     },
     {
       "id": "real-maximum-length",
-      "name": "hidden: the only valid pair spans the maximum-length array",
-      "kind": "real",
-      "visible": false,
+      "name": "the only valid pair spans the maximum-length array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           25,

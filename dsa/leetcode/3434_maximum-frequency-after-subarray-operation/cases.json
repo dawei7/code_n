@@ -1,15 +1,218 @@
 {
   "challenge_id": "lc_3434",
   "cases": [
-    {"id":"sample-make-two-ones","name":"sample: one extra target value","kind":"sample","visible":true,"input":{"nums":[1,2,3,4,5,6],"k":1},"expected":2,"tags":["sample"]},
-    {"id":"sample-make-four-tens","name":"sample: repeated transform target","kind":"sample","visible":true,"input":{"nums":[10,2,3,4,5,5,4,3,2,2],"k":10},"expected":4,"tags":["sample"]},
-    {"id":"trial-single-target","name":"trial: one element already target","kind":"trial","visible":true,"input":{"nums":[7],"k":7},"expected":1,"tags":["trial","minimum-n"]},
-    {"id":"trial-single-convert","name":"trial: convert one element","kind":"trial","visible":true,"input":{"nums":[7],"k":3},"expected":1,"tags":["trial","minimum-n"]},
-    {"id":"real-all-target","name":"real: all elements already target","kind":"real","visible":false,"input":{"nums":[5,5,5,5],"k":5},"expected":4,"tags":["real","all-target"]},
-    {"id":"real-one-source","name":"real: convert an entire equal array","kind":"real","visible":false,"input":{"nums":[4,4,4,4,4],"k":9},"expected":5,"tags":["real","no-target"]},
-    {"id":"real-target-penalties","name":"real: existing targets split source gains","kind":"real","visible":false,"input":{"nums":[1,2,1,2,1],"k":2},"expected":3,"tags":["real","kadane"]},
-    {"id":"real-separated-values","name":"real: distinct sources cannot combine","kind":"real","visible":false,"input":{"nums":[1,2,3,1,2,3],"k":3},"expected":3,"tags":["real","multiple-sources"]},
-    {"id":"real-keep-central-targets","name":"real: best gain avoids excessive penalties","kind":"real","visible":false,"input":{"nums":[2,1,2,2,1,2],"k":2},"expected":5,"tags":["real","penalties"]},
-    {"id":"real-full-domain","name":"real: values across the domain","kind":"real","visible":false,"input":{"nums":[1,50,2,49,3,48,2,49,50,1,2],"k":50},"expected":4,"tags":["real","boundaries"]}
+    {
+      "id": "sample-make-two-ones",
+      "name": "sample: one extra target value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-make-four-tens",
+      "name": "sample: repeated transform target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          2,
+          3,
+          4,
+          5,
+          5,
+          4,
+          3,
+          2,
+          2
+        ],
+        "k": 10
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-target",
+      "name": "trial: one element already target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 7
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "trial-single-convert",
+      "name": "trial: convert one element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "real-all-target",
+      "name": "real: all elements already target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "k": 5
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "all-target"
+      ]
+    },
+    {
+      "id": "real-one-source",
+      "name": "real: convert an entire equal array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "k": 9
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "no-target"
+      ]
+    },
+    {
+      "id": "real-target-penalties",
+      "name": "real: existing targets split source gains",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "kadane"
+      ]
+    },
+    {
+      "id": "real-separated-values",
+      "name": "real: distinct sources cannot combine",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "multiple-sources"
+      ]
+    },
+    {
+      "id": "real-keep-central-targets",
+      "name": "real: best gain avoids excessive penalties",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          2,
+          2,
+          1,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "penalties"
+      ]
+    },
+    {
+      "id": "real-full-domain",
+      "name": "real: values across the domain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          50,
+          2,
+          49,
+          3,
+          48,
+          2,
+          49,
+          50,
+          1,
+          2
+        ],
+        "k": 50
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "boundaries"
+      ]
+    }
   ]
 }

@@ -242,9 +242,9 @@
     },
     {
       "id": "real-periodic",
-      "name": "hidden: periodic suffix relationships",
-      "kind": "real",
-      "visible": false,
+      "name": "periodic suffix relationships",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "lcp": [
           [
@@ -309,9 +309,9 @@
     },
     {
       "id": "real-asymmetric",
-      "name": "hidden: asymmetric equality claims are impossible",
-      "kind": "real",
-      "visible": false,
+      "name": "asymmetric equality claims are impossible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "lcp": [
           [
@@ -343,9 +343,9 @@
     },
     {
       "id": "real-broken-recurrence",
-      "name": "hidden: positive entries must extend consistently",
-      "kind": "real",
-      "visible": false,
+      "name": "positive entries must extend consistently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "lcp": [
           [
@@ -377,9 +377,9 @@
     },
     {
       "id": "real-too-many-groups",
-      "name": "hidden: 27 distinct groups exceed the alphabet",
-      "kind": "real",
-      "visible": false,
+      "name": "27 distinct groups exceed the alphabet",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "lcp": [
           [

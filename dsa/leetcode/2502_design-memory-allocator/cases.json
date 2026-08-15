@@ -175,9 +175,9 @@
     },
     {
       "id": "real-multiple-blocks-one-id",
-      "name": "hidden: one free releases several disjoint blocks",
-      "kind": "real",
-      "visible": false,
+      "name": "one free releases several disjoint blocks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "commands": [
           "Allocator",
@@ -221,9 +221,9 @@
     },
     {
       "id": "real-leftmost-reuse",
-      "name": "hidden: allocation chooses the earliest newly freed run",
-      "kind": "real",
-      "visible": false,
+      "name": "allocation chooses the earliest newly freed run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "commands": [
           "Allocator",
@@ -273,9 +273,9 @@
     },
     {
       "id": "real-free-missing",
-      "name": "hidden: freeing an absent id changes nothing",
-      "kind": "real",
-      "visible": false,
+      "name": "freeing an absent id changes nothing",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "commands": [
           "Allocator",

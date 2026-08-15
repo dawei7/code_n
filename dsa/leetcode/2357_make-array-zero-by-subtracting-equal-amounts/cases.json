@@ -7,72 +7,152 @@
       "name": "sample: duplicates and zero with three positive levels",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1,5,0,3,5]},
+      "input": {
+        "nums": [
+          1,
+          5,
+          0,
+          3,
+          5
+        ]
+      },
       "expected": 3,
-      "tags": ["sample","duplicates","zero"]
+      "tags": [
+        "sample",
+        "duplicates",
+        "zero"
+      ]
     },
     {
       "id": "sample-already-zero",
       "name": "sample: one zero",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [0]},
+      "input": {
+        "nums": [
+          0
+        ]
+      },
       "expected": 0,
-      "tags": ["sample","boundary","zero"]
+      "tags": [
+        "sample",
+        "boundary",
+        "zero"
+      ]
     },
     {
       "id": "trial-one-positive",
       "name": "one positive element",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7]},
+      "input": {
+        "nums": [
+          7
+        ]
+      },
       "expected": 1,
-      "tags": ["single"]
+      "tags": [
+        "single"
+      ]
     },
     {
       "id": "trial-all-equal-positive",
       "name": "equal positive values vanish together",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [4,4,4,4]},
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
       "expected": 1,
-      "tags": ["duplicates"]
+      "tags": [
+        "duplicates"
+      ]
     },
     {
       "id": "trial-consecutive-levels",
       "name": "every positive level is distinct",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1,2,3,4]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
       "expected": 4,
-      "tags": ["distinct"]
+      "tags": [
+        "distinct"
+      ]
     },
     {
       "id": "real-many-zeros",
-      "name": "hidden: zeros never require an operation",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0,0,5,0,5,0]},
+      "name": "zeros never require an operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          5,
+          0,
+          5,
+          0
+        ]
+      },
       "expected": 1,
-      "tags": ["hidden","zero","duplicates"]
+      "tags": [
+        "hidden",
+        "zero",
+        "duplicates"
+      ]
     },
     {
       "id": "real-unsorted-levels",
-      "name": "hidden: input order does not affect the answer",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [100,1,50,1,100,0,25]},
+      "name": "input order does not affect the answer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          1,
+          50,
+          1,
+          100,
+          0,
+          25
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden","order"]
+      "tags": [
+        "hidden",
+        "order"
+      ]
     },
     {
       "id": "real-all-zero",
-      "name": "hidden: several zeros",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0,0,0,0]},
+      "name": "several zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden","zero"]
+      "tags": [
+        "hidden",
+        "zero"
+      ]
     }
   ]
 }

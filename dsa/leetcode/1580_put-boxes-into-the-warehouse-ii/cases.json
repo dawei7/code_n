@@ -146,9 +146,9 @@
     },
     {
       "id": "real-reachable-from-right",
-      "name": "hidden: a box reaches the final room only from the right",
-      "kind": "real",
-      "visible": false,
+      "name": "a box reaches the final room only from the right",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "boxes": [
           4
@@ -168,9 +168,9 @@
     },
     {
       "id": "real-two-tall-ends",
-      "name": "hidden: tall boxes occupy rooms on both sides",
-      "kind": "real",
-      "visible": false,
+      "name": "tall boxes occupy rooms on both sides",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "boxes": [
           5,
@@ -191,9 +191,9 @@
     },
     {
       "id": "real-low-entrances",
-      "name": "hidden: a tall middle room is unreachable",
-      "kind": "real",
-      "visible": false,
+      "name": "a tall middle room is unreachable",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "boxes": [
           2,
@@ -216,9 +216,9 @@
     },
     {
       "id": "real-both-sides-fit",
-      "name": "hidden: two boxes fit around a low center",
-      "kind": "real",
-      "visible": false,
+      "name": "two boxes fit around a low center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "boxes": [
           2,
@@ -238,9 +238,9 @@
     },
     {
       "id": "real-decreasing-warehouse",
-      "name": "hidden: descending rooms accept all boxes",
-      "kind": "real",
-      "visible": false,
+      "name": "descending rooms accept all boxes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "boxes": [
           3,
@@ -262,9 +262,9 @@
     },
     {
       "id": "real-more-boxes",
-      "name": "hidden: room count limits duplicate boxes",
-      "kind": "real",
-      "visible": false,
+      "name": "room count limits duplicate boxes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "boxes": [
           1,
@@ -285,9 +285,9 @@
     },
     {
       "id": "real-upper-bound",
-      "name": "hidden: maximum-height box exactly fits",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum-height box exactly fits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "boxes": [
           1000000000

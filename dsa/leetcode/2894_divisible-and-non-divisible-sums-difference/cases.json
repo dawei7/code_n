@@ -6,54 +6,91 @@
       "name": "sample: both divisibility groups are nonempty",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 10, "m": 3},
+      "input": {
+        "n": 10,
+        "m": 3
+      },
       "expected": 19,
-      "tags": ["sample", "mixed-groups"]
+      "tags": [
+        "sample",
+        "mixed-groups"
+      ]
     },
     {
       "id": "sample-divisor-above-range",
       "name": "sample: no integer is divisible by m",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 5, "m": 6},
+      "input": {
+        "n": 5,
+        "m": 6
+      },
       "expected": 15,
-      "tags": ["sample", "divisor-above-range"]
+      "tags": [
+        "sample",
+        "divisor-above-range"
+      ]
     },
     {
       "id": "sample-divisor-one",
       "name": "sample: every integer is divisible by one",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 5, "m": 1},
+      "input": {
+        "n": 5,
+        "m": 1
+      },
       "expected": -15,
-      "tags": ["sample", "all-divisible"]
+      "tags": [
+        "sample",
+        "all-divisible"
+      ]
     },
     {
       "id": "trial-single-value-divisible",
       "name": "the one-value range contributes negatively",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "m": 1},
+      "input": {
+        "n": 1,
+        "m": 1
+      },
       "expected": -1,
-      "tags": ["boundary", "single-value"]
+      "tags": [
+        "boundary",
+        "single-value"
+      ]
     },
     {
       "id": "trial-divisor-equals-upper-bound",
       "name": "the inclusive upper bound is the sole divisible value",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 8, "m": 8},
+      "input": {
+        "n": 8,
+        "m": 8
+      },
       "expected": 20,
-      "tags": ["inclusive-boundary", "single-multiple"]
+      "tags": [
+        "inclusive-boundary",
+        "single-multiple"
+      ]
     },
     {
       "id": "real-maximum-range",
-      "name": "hidden: maximum n with several divisible terms",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 1000, "m": 7},
+      "name": "maximum n with several divisible terms",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000,
+        "m": 7
+      },
       "expected": 358358,
-      "tags": ["hidden", "maximum-n", "arithmetic-series"]
+      "tags": [
+        "hidden",
+        "maximum-n",
+        "arithmetic-series"
+      ]
     }
   ]
 }

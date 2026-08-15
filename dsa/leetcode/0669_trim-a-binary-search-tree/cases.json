@@ -138,9 +138,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: retain interval boundaries",
-      "kind": "real",
-      "visible": false,
+      "name": "retain interval boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           5,
@@ -169,9 +169,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: trim both outer branches",
-      "kind": "real",
-      "visible": false,
+      "name": "trim both outer branches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           10,
@@ -209,4 +209,3 @@
     }
   ]
 }
-

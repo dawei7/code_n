@@ -93,7 +93,7 @@
       "id": "trial-one-source",
       "name": "trial: take digits from one source",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "nums1": [
           9,
@@ -116,7 +116,7 @@
       "id": "trial-one-digit",
       "name": "trial: choose one global maximum",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -139,9 +139,9 @@
     },
     {
       "id": "hidden-equal-prefixes",
-      "name": "hidden: long equal merge prefixes",
-      "kind": "real",
-      "visible": false,
+      "name": "long equal merge prefixes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           9,
@@ -170,9 +170,9 @@
     },
     {
       "id": "hidden-repeated-fives",
-      "name": "hidden: repeated equal choices",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated equal choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           5,
@@ -200,9 +200,9 @@
     },
     {
       "id": "hidden-short",
-      "name": "hidden: discard from both sources",
-      "kind": "real",
-      "visible": false,
+      "name": "discard from both sources",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           8,

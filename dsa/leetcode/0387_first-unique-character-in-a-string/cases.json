@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-late-duplicate",
-      "name": "hidden: later occurrence invalidates prefix candidate",
-      "kind": "real",
-      "visible": false,
+      "name": "later occurrence invalidates prefix candidate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abacbd"
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-many-groups",
-      "name": "hidden: unique among repeated groups",
-      "kind": "real",
-      "visible": false,
+      "name": "unique among repeated groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "zzxxyyqmmnn"
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "hidden-all-same",
-      "name": "hidden: one repeated character kind",
-      "kind": "real",
-      "visible": false,
+      "name": "one repeated character kind",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaaaaaaa"
       },

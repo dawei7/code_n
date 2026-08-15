@@ -115,9 +115,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: even interior zero run",
-      "kind": "real",
-      "visible": false,
+      "name": "even interior zero run",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "seats": [
           1,
@@ -136,9 +136,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: trailing boundary beats other runs",
-      "kind": "real",
-      "visible": false,
+      "name": "trailing boundary beats other runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "seats": [
           0,
@@ -162,9 +162,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: interior run beats boundaries",
-      "kind": "real",
-      "visible": false,
+      "name": "interior run beats boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "seats": [
           0,
@@ -184,9 +184,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: alternating row",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "seats": [
           1,
@@ -205,9 +205,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: single person near center",
-      "kind": "real",
-      "visible": false,
+      "name": "single person near center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "seats": [
           0,
@@ -226,9 +226,9 @@
     },
     {
       "id": "hidden-6",
-      "name": "hidden: adjacent people and asymmetric ends",
-      "kind": "real",
-      "visible": false,
+      "name": "adjacent people and asymmetric ends",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "seats": [
           0,

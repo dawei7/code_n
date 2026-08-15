@@ -103,9 +103,9 @@
     },
     {
       "id": "hidden-zero",
-      "name": "hidden: all subtree sums are zero",
-      "kind": "real",
-      "visible": false,
+      "name": "all subtree sums are zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           0,
@@ -123,9 +123,9 @@
     },
     {
       "id": "hidden-asymmetric",
-      "name": "hidden: asymmetric subtree sizes",
-      "kind": "real",
-      "visible": false,
+      "name": "asymmetric subtree sizes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           10,

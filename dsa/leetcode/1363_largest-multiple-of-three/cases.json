@@ -97,9 +97,9 @@
     },
     {
       "id": "hidden-zero-after-repair",
-      "name": "hidden: repair leaves only zeroes",
-      "kind": "real",
-      "visible": false,
+      "name": "repair leaves only zeroes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "digits": [
           0,
@@ -115,9 +115,9 @@
     },
     {
       "id": "hidden-duplicates",
-      "name": "hidden: duplicate counts remain ordered",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate counts remain ordered",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "digits": [
           5,

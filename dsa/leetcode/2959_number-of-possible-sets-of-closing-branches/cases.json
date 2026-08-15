@@ -146,8 +146,8 @@
     {
       "id": "real-star-distance-two",
       "name": "real: center keeps every leaf pair within two",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "maxDistance": 2,
@@ -178,8 +178,8 @@
     {
       "id": "real-all-subsets-valid",
       "name": "real: complete unit graph makes every subset valid",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "maxDistance": 1,
@@ -225,8 +225,8 @@
     {
       "id": "real-indirect-route",
       "name": "real: retained intermediate enables a short route",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "maxDistance": 6,

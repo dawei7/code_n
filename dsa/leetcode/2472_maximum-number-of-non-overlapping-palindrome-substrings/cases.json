@@ -1,14 +1,140 @@
 {
   "challenge_id": "lc_2472",
   "cases": [
-    {"id":"sample-1","name":"sample: two separated palindromes","kind":"sample","visible":true,"input":{"s":"abaccdbbd","k":3},"expected":2,"tags":["sample","non-overlapping"]},
-    {"id":"sample-2","name":"sample: no qualifying palindrome","kind":"sample","visible":true,"input":{"s":"adbcda","k":2},"expected":0,"tags":["sample","no-match"]},
-    {"id":"trial-single-character","name":"trial: minimum string and threshold","kind":"trial","visible":true,"input":{"s":"a","k":1},"expected":1,"tags":["trial","minimum"]},
-    {"id":"trial-repeated-characters","name":"trial: repeated contents may occupy disjoint ranges","kind":"trial","visible":true,"input":{"s":"aaaaa","k":2},"expected":2,"tags":["trial","duplicates"]},
-    {"id":"real-length-k-plus-one","name":"hidden: only a k plus one palindrome qualifies","kind":"real","visible":false,"input":{"s":"ababa","k":4},"expected":1,"tags":["hidden","odd-length"]},
-    {"id":"real-separated-long-palindromes","name":"hidden: separated palindromes longer than the threshold","kind":"real","visible":false,"input":{"s":"abcbaefggfe","k":4},"expected":2,"tags":["hidden","long-palindromes"]},
-    {"id":"real-overlap-forbidden","name":"hidden: nested palindromes cannot both be selected","kind":"real","visible":false,"input":{"s":"aabbaa","k":3},"expected":1,"tags":["hidden","overlap"]},
-    {"id":"real-threshold-is-whole-string","name":"hidden: threshold equals string length","kind":"real","visible":false,"input":{"s":"racecar","k":7},"expected":1,"tags":["hidden","full-string"]},
-    {"id":"real-no-match-at-max-threshold","name":"hidden: whole string is not a palindrome","kind":"real","visible":false,"input":{"s":"abcdef","k":6},"expected":0,"tags":["hidden","full-string"]}
+    {
+      "id": "sample-1",
+      "name": "sample: two separated palindromes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abaccdbbd",
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "non-overlapping"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no qualifying palindrome",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "adbcda",
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "no-match"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: minimum string and threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-repeated-characters",
+      "name": "trial: repeated contents may occupy disjoint ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaa",
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-length-k-plus-one",
+      "name": "only a k plus one palindrome qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ababa",
+        "k": 4
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "odd-length"
+      ]
+    },
+    {
+      "id": "real-separated-long-palindromes",
+      "name": "separated palindromes longer than the threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcbaefggfe",
+        "k": 4
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "long-palindromes"
+      ]
+    },
+    {
+      "id": "real-overlap-forbidden",
+      "name": "nested palindromes cannot both be selected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabbaa",
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-threshold-is-whole-string",
+      "name": "threshold equals string length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "racecar",
+        "k": 7
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "full-string"
+      ]
+    },
+    {
+      "id": "real-no-match-at-max-threshold",
+      "name": "whole string is not a palindrome",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdef",
+        "k": 6
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "full-string"
+      ]
+    }
   ]
 }

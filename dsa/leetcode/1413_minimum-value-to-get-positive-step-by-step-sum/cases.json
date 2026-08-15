@@ -95,9 +95,9 @@
     },
     {
       "id": "real-negative-first",
-      "name": "hidden: lowest prefix occurs first",
-      "kind": "real",
-      "visible": false,
+      "name": "lowest prefix occurs first",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -5,
@@ -115,9 +115,9 @@
     },
     {
       "id": "real-maximum-deficit",
-      "name": "hidden: maximum-length negative array",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum-length negative array",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -100,

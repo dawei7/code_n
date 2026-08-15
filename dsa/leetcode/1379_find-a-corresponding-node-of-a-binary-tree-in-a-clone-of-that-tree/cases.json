@@ -171,9 +171,9 @@
     },
     {
       "id": "hidden-deep",
-      "name": "hidden: target deep in left chain",
-      "kind": "real",
-      "visible": false,
+      "name": "target deep in left chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "original": {
           "tree": [
@@ -205,9 +205,9 @@
     },
     {
       "id": "hidden-right-internal",
-      "name": "hidden: right internal node",
-      "kind": "real",
-      "visible": false,
+      "name": "right internal node",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "original": {
           "tree": [

@@ -7,99 +7,363 @@
       "name": "sample: recover three even denominations",
       "kind": "sample",
       "visible": true,
-      "input": {"numWays": [0, 1, 0, 2, 0, 3, 0, 4, 0, 5]},
-      "expected": [2, 4, 6],
-      "tags": ["sample", "even-denominations", "reconstruction"]
+      "input": {
+        "numWays": [
+          0,
+          1,
+          0,
+          2,
+          0,
+          3,
+          0,
+          4,
+          0,
+          5
+        ]
+      },
+      "expected": [
+        2,
+        4,
+        6
+      ],
+      "tags": [
+        "sample",
+        "even-denominations",
+        "reconstruction"
+      ]
     },
     {
       "id": "sample-one-two-five",
       "name": "sample: recover denominations one two and five",
       "kind": "sample",
       "visible": true,
-      "input": {"numWays": [1, 2, 2, 3, 4]},
-      "expected": [1, 2, 5],
-      "tags": ["sample", "coin-one", "late-denomination"]
+      "input": {
+        "numWays": [
+          1,
+          2,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        5
+      ],
+      "tags": [
+        "sample",
+        "coin-one",
+        "late-denomination"
+      ]
     },
     {
       "id": "sample-impossible-jump",
       "name": "sample: an impossible late count returns empty",
       "kind": "sample",
       "visible": true,
-      "input": {"numWays": [1, 2, 3, 4, 15]},
+      "input": {
+        "numWays": [
+          1,
+          2,
+          3,
+          4,
+          15
+        ]
+      },
       "expected": [],
-      "tags": ["sample", "impossible", "excess-count"]
+      "tags": [
+        "sample",
+        "impossible",
+        "excess-count"
+      ]
     },
     {
       "id": "trial-empty-denomination-set",
       "name": "trial: zero ways at the only amount needs no coin",
       "kind": "trial",
       "visible": true,
-      "input": {"numWays": [0]},
+      "input": {
+        "numWays": [
+          0
+        ]
+      },
       "expected": [],
-      "tags": ["trial", "minimum-length", "empty-set"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "empty-set"
+      ]
     },
     {
       "id": "trial-single-denomination-one",
       "name": "trial: one way to make one forces coin one",
       "kind": "trial",
       "visible": true,
-      "input": {"numWays": [1]},
-      "expected": [1],
-      "tags": ["trial", "minimum-length", "coin-one"]
+      "input": {
+        "numWays": [
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "trial",
+        "minimum-length",
+        "coin-one"
+      ]
     },
     {
       "id": "trial-impossible-first-count",
       "name": "trial: amount one can never have two hundred million ways",
       "kind": "trial",
       "visible": true,
-      "input": {"numWays": [200000000]},
+      "input": {
+        "numWays": [
+          200000000
+        ]
+      },
       "expected": [],
-      "tags": ["trial", "maximum-count", "impossible"]
+      "tags": [
+        "trial",
+        "maximum-count",
+        "impossible"
+      ]
     },
     {
       "id": "real-sparse-three-six",
       "name": "real: recover sparse multiples three and six",
-      "kind": "real",
-      "visible": false,
-      "input": {"numWays": [0, 0, 1, 0, 0, 2]},
-      "expected": [3, 6],
-      "tags": ["real", "sparse", "dependent-count"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numWays": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          2
+        ]
+      },
+      "expected": [
+        3,
+        6
+      ],
+      "tags": [
+        "real",
+        "sparse",
+        "dependent-count"
+      ]
     },
     {
       "id": "real-overlapping-two-three",
       "name": "real: overlapping denominations create mixed combinations",
-      "kind": "real",
-      "visible": false,
-      "input": {"numWays": [0, 1, 1, 1, 1, 2, 1, 2]},
-      "expected": [2, 3],
-      "tags": ["real", "overlapping-denominations", "mixed-combinations"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numWays": [
+          0,
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": [
+        2,
+        3
+      ],
+      "tags": [
+        "real",
+        "overlapping-denominations",
+        "mixed-combinations"
+      ]
     },
     {
       "id": "real-every-small-amount-is-a-coin",
       "name": "real: every amount through ten is recovered",
-      "kind": "real",
-      "visible": false,
-      "input": {"numWays": [1, 2, 3, 5, 7, 11, 15, 22, 30, 42]},
-      "expected": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      "tags": ["real", "dense-denominations", "partition-counts"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numWays": [
+          1,
+          2,
+          3,
+          5,
+          7,
+          11,
+          15,
+          22,
+          30,
+          42
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "tags": [
+        "real",
+        "dense-denominations",
+        "partition-counts"
+      ]
     },
     {
       "id": "real-late-deficit",
       "name": "real: a count below the smaller-coin total is impossible",
-      "kind": "real",
-      "visible": false,
-      "input": {"numWays": [0, 1, 0, 2, 0, 1]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numWays": [
+          0,
+          1,
+          0,
+          2,
+          0,
+          1
+        ]
+      },
       "expected": [],
-      "tags": ["real", "impossible", "deficit", "late-mismatch"]
+      "tags": [
+        "real",
+        "impossible",
+        "deficit",
+        "late-mismatch"
+      ]
     },
     {
       "id": "real-maximum-length",
       "name": "real: recover a denomination at the maximum amount",
-      "kind": "real",
-      "visible": false,
-      "input": {"numWays": [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 4, 4, 5, 5, 5, 5, 5, 6, 6, 7, 7, 7, 7, 7, 8, 8, 9, 9, 9, 9, 9, 10, 10, 11, 11, 12, 12, 12, 13, 13, 14, 14, 15, 15, 15, 16, 16, 17, 17, 18, 18, 18, 19, 19, 20, 20, 21, 21, 22, 23, 23, 24, 24, 25, 25, 26, 27, 27, 28, 28, 29, 29, 30, 31, 31, 32, 32, 33, 33, 34, 35, 36, 37, 37, 38, 38, 39, 40, 41, 43]},
-      "expected": [1, 7, 23, 100],
-      "tags": ["real", "maximum-length", "maximum-denomination", "boundary"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numWays": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          4,
+          4,
+          5,
+          5,
+          5,
+          5,
+          5,
+          6,
+          6,
+          7,
+          7,
+          7,
+          7,
+          7,
+          8,
+          8,
+          9,
+          9,
+          9,
+          9,
+          9,
+          10,
+          10,
+          11,
+          11,
+          12,
+          12,
+          12,
+          13,
+          13,
+          14,
+          14,
+          15,
+          15,
+          15,
+          16,
+          16,
+          17,
+          17,
+          18,
+          18,
+          18,
+          19,
+          19,
+          20,
+          20,
+          21,
+          21,
+          22,
+          23,
+          23,
+          24,
+          24,
+          25,
+          25,
+          26,
+          27,
+          27,
+          28,
+          28,
+          29,
+          29,
+          30,
+          31,
+          31,
+          32,
+          32,
+          33,
+          33,
+          34,
+          35,
+          36,
+          37,
+          37,
+          38,
+          38,
+          39,
+          40,
+          41,
+          43
+        ]
+      },
+      "expected": [
+        1,
+        7,
+        23,
+        100
+      ],
+      "tags": [
+        "real",
+        "maximum-length",
+        "maximum-denomination",
+        "boundary"
+      ]
     }
   ]
 }

@@ -124,9 +124,9 @@
     },
     {
       "id": "real-cashback-bottleneck",
-      "name": "hidden: large cashback can be the final bottleneck",
-      "kind": "real",
-      "visible": false,
+      "name": "large cashback can be the final bottleneck",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "transactions": [
           [
@@ -147,9 +147,9 @@
     },
     {
       "id": "real-one-loss-one-gain",
-      "name": "hidden: one loss and one gain",
-      "kind": "real",
-      "visible": false,
+      "name": "one loss and one gain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "transactions": [
           [
@@ -170,9 +170,9 @@
     },
     {
       "id": "real-large-total",
-      "name": "hidden: total requirement can exceed one billion",
-      "kind": "real",
-      "visible": false,
+      "name": "total requirement can exceed one billion",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "transactions": [
           [

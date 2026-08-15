@@ -108,9 +108,9 @@
     },
     {
       "id": "real-middle-minimum",
-      "name": "hidden: minimum retained window is internal",
-      "kind": "real",
-      "visible": false,
+      "name": "minimum retained window is internal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cardPoints": [
           5,
@@ -133,9 +133,9 @@
     },
     {
       "id": "real-maximum-length",
-      "name": "hidden: maximum length with one move",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum length with one move",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cardPoints": [
           1,

@@ -192,9 +192,9 @@
     },
     {
       "id": "hidden-negative-values",
-      "name": "hidden: shuffle signed values",
-      "kind": "real",
-      "visible": false,
+      "name": "shuffle signed values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -3,
@@ -240,9 +240,9 @@
     },
     {
       "id": "hidden-return-original",
-      "name": "hidden: original order is a valid shuffle",
-      "kind": "real",
-      "visible": false,
+      "name": "original order is a valid shuffle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,

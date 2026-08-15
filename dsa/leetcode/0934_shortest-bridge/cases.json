@@ -215,9 +215,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: irregular island boundaries",
-      "kind": "real",
-      "visible": false,
+      "name": "irregular island boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -265,9 +265,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: bridge departs away from first discovered cell",
-      "kind": "real",
-      "visible": false,
+      "name": "bridge departs away from first discovered cell",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -315,9 +315,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: islands near matrix boundary",
-      "kind": "real",
-      "visible": false,
+      "name": "islands near matrix boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

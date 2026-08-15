@@ -235,9 +235,9 @@
     },
     {
       "id": "real-order-and-mixed",
-      "name": "hidden: active and inactive accounts return in id order",
-      "kind": "real",
-      "visible": false,
+      "name": "active and inactive accounts return in id order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Accounts": [
@@ -346,9 +346,9 @@
     },
     {
       "id": "real-year-boundary",
-      "name": "hidden: streak crosses a year boundary",
-      "kind": "real",
-      "visible": false,
+      "name": "streak crosses a year boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Accounts": [
@@ -400,9 +400,9 @@
     },
     {
       "id": "real-two-streaks",
-      "name": "hidden: multiple qualifying streaks emit one account row",
-      "kind": "real",
-      "visible": false,
+      "name": "multiple qualifying streaks emit one account row",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Accounts": [

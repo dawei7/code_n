@@ -188,9 +188,9 @@
     },
     {
       "id": "real-two-rotation-classes",
-      "name": "hidden: four anagrams form two signature classes",
-      "kind": "real",
-      "visible": false,
+      "name": "four anagrams form two signature classes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abcd",
@@ -207,9 +207,9 @@
     },
     {
       "id": "real-swapped-parities",
-      "name": "hidden: swapping even and odd classes is not allowed",
-      "kind": "real",
-      "visible": false,
+      "name": "swapping even and odd classes is not allowed",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abab",
@@ -225,9 +225,9 @@
     },
     {
       "id": "real-all-rotation-combinations",
-      "name": "hidden: all independent rotations share one signature",
-      "kind": "real",
-      "visible": false,
+      "name": "all independent rotations share one signature",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abcdefgh",
@@ -257,9 +257,9 @@
     },
     {
       "id": "real-two-character-fixed",
-      "name": "hidden: parity sequences of length one cannot rotate",
-      "kind": "real",
-      "visible": false,
+      "name": "parity sequences of length one cannot rotate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "ab",
@@ -275,9 +275,9 @@
     },
     {
       "id": "real-three-character-even-rotation",
-      "name": "hidden: the two-character even sequence may rotate",
-      "kind": "real",
-      "visible": false,
+      "name": "the two-character even sequence may rotate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abc",
@@ -294,9 +294,9 @@
     },
     {
       "id": "real-three-odd-length-classes",
-      "name": "hidden: one equivalent pair and two distinct signatures",
-      "kind": "real",
-      "visible": false,
+      "name": "one equivalent pair and two distinct signatures",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abcde",
@@ -314,9 +314,9 @@
     },
     {
       "id": "real-repeated-characters-different-lengths",
-      "name": "hidden: repeated characters still retain component lengths",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated characters still retain component lengths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "aaaa",
@@ -333,9 +333,9 @@
     },
     {
       "id": "real-longer-equivalent-pair",
-      "name": "hidden: longer words and one distinct parity signature",
-      "kind": "real",
-      "visible": false,
+      "name": "longer words and one distinct parity signature",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "leetcode",
@@ -352,9 +352,9 @@
     },
     {
       "id": "real-three-distinct-signatures",
-      "name": "hidden: equal character multisets do not imply equivalence",
-      "kind": "real",
-      "visible": false,
+      "name": "equal character multisets do not imply equivalence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "azbycx",
@@ -371,9 +371,9 @@
     },
     {
       "id": "real-periodic-duplicates",
-      "name": "hidden: periodic duplicate words collapse to two groups",
-      "kind": "real",
-      "visible": false,
+      "name": "periodic duplicate words collapse to two groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "aaaaaaaaaa",

@@ -79,8 +79,8 @@
     {
       "id": "real-full-string-only",
       "name": "real: only the complete string qualifies",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ababa",
         "k": 3
@@ -94,8 +94,8 @@
     {
       "id": "real-two-qualifying-runs",
       "name": "real: two qualifying runs with one overlapping substring",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaabbb",
         "k": 3

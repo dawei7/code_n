@@ -74,9 +74,9 @@
     },
     {
       "id": "real-nonadjacent-tie",
-      "name": "hidden: earliest of separated minima",
-      "kind": "real",
-      "visible": false,
+      "name": "earliest of separated minima",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "customers": "NY"
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "real-alternating",
-      "name": "hidden: repeated local minima",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated local minima",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "customers": "YNYN"
       },
@@ -103,9 +103,9 @@
     },
     {
       "id": "real-interior",
-      "name": "hidden: unique interior minimum",
-      "kind": "real",
-      "visible": false,
+      "name": "unique interior minimum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "customers": "NYYN"
       },
@@ -117,4 +117,3 @@
     }
   ]
 }
-

@@ -2,13 +2,299 @@
   "schema_version": 1,
   "challenge_id": "lc_3528",
   "cases": [
-    {"id":"sample-chain","name":"sample: two conversions in a chain","kind":"sample","visible":true,"input":{"conversions":[[0,1,2],[1,2,3]]},"expected":[1,2,6],"tags":["sample","chain"]},
-    {"id":"sample-branching","name":"sample: branching conversion tree","kind":"sample","visible":true,"input":{"conversions":[[0,1,2],[0,2,3],[1,3,4],[1,4,5],[2,5,2],[4,6,3],[5,7,4]]},"expected":[1,2,3,8,10,6,30,24],"tags":["sample","branching"]},
-    {"id":"trial-unsorted-chain","name":"trial: child conversion appears before its parent","kind":"trial","visible":true,"input":{"conversions":[[1,2,3],[0,1,2]]},"expected":[1,2,6],"tags":["trial","unsorted-input"]},
-    {"id":"trial-reversed-identifiers","name":"trial: target identifiers do not follow traversal order","kind":"trial","visible":true,"input":{"conversions":[[2,1,2],[0,2,3]]},"expected":[1,6,3],"tags":["trial","unit-identifiers"]},
-    {"id":"trial-star","name":"trial: every non-base unit is a direct child","kind":"trial","visible":true,"input":{"conversions":[[0,1,2],[0,2,3],[0,3,4]]},"expected":[1,2,3,4],"tags":["trial","star"]},
-    {"id":"real-modulo-wrap","name":"real: path product wraps modulo 1e9+7","kind":"real","visible":false,"input":{"conversions":[[0,1,1000000000],[1,2,1000000000]]},"expected":[1,1000000000,49],"tags":["real","modulo"]},
-    {"id":"real-deep-chain","name":"real: factor accumulates along a longer chain","kind":"real","visible":false,"input":{"conversions":[[2,3,2],[0,1,2],[3,4,2],[1,2,2]]},"expected":[1,2,4,8,16],"tags":["real","chain","unsorted-input"]},
-    {"id":"real-mixed-branches","name":"real: separate branches use independent products","kind":"real","visible":false,"input":{"conversions":[[1,3,7],[0,2,5],[2,4,11],[0,1,3]]},"expected":[1,3,5,21,55],"tags":["real","branching","unsorted-input"]}
+    {
+      "id": "sample-chain",
+      "name": "sample: two conversions in a chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "conversions": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        6
+      ],
+      "tags": [
+        "sample",
+        "chain"
+      ]
+    },
+    {
+      "id": "sample-branching",
+      "name": "sample: branching conversion tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "conversions": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            1,
+            3,
+            4
+          ],
+          [
+            1,
+            4,
+            5
+          ],
+          [
+            2,
+            5,
+            2
+          ],
+          [
+            4,
+            6,
+            3
+          ],
+          [
+            5,
+            7,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        8,
+        10,
+        6,
+        30,
+        24
+      ],
+      "tags": [
+        "sample",
+        "branching"
+      ]
+    },
+    {
+      "id": "trial-unsorted-chain",
+      "name": "trial: child conversion appears before its parent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "conversions": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        6
+      ],
+      "tags": [
+        "trial",
+        "unsorted-input"
+      ]
+    },
+    {
+      "id": "trial-reversed-identifiers",
+      "name": "trial: target identifiers do not follow traversal order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "conversions": [
+          [
+            2,
+            1,
+            2
+          ],
+          [
+            0,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        6,
+        3
+      ],
+      "tags": [
+        "trial",
+        "unit-identifiers"
+      ]
+    },
+    {
+      "id": "trial-star",
+      "name": "trial: every non-base unit is a direct child",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "conversions": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            0,
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "trial",
+        "star"
+      ]
+    },
+    {
+      "id": "real-modulo-wrap",
+      "name": "real: path product wraps modulo 1e9+7",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "conversions": [
+          [
+            0,
+            1,
+            1000000000
+          ],
+          [
+            1,
+            2,
+            1000000000
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1000000000,
+        49
+      ],
+      "tags": [
+        "real",
+        "modulo"
+      ]
+    },
+    {
+      "id": "real-deep-chain",
+      "name": "real: factor accumulates along a longer chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "conversions": [
+          [
+            2,
+            3,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            3,
+            4,
+            2
+          ],
+          [
+            1,
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "tags": [
+        "real",
+        "chain",
+        "unsorted-input"
+      ]
+    },
+    {
+      "id": "real-mixed-branches",
+      "name": "real: separate branches use independent products",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "conversions": [
+          [
+            1,
+            3,
+            7
+          ],
+          [
+            0,
+            2,
+            5
+          ],
+          [
+            2,
+            4,
+            11
+          ],
+          [
+            0,
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        3,
+        5,
+        21,
+        55
+      ],
+      "tags": [
+        "real",
+        "branching",
+        "unsorted-input"
+      ]
+    }
   ]
 }

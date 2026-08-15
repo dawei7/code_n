@@ -2,13 +2,261 @@
   "schema_version": 1,
   "challenge_id": "lc_2482",
   "cases": [
-    {"id":"sample-1","name":"sample: mixed square grid","kind":"sample","visible":true,"input":{"grid":[[0,1,1],[1,0,1],[0,0,1]]},"expected":[[0,0,4],[0,0,4],[-2,-2,2]],"tags":["sample","mixed"]},
-    {"id":"sample-2","name":"sample: rectangular all-ones grid","kind":"sample","visible":true,"input":{"grid":[[1,1,1],[1,1,1]]},"expected":[[5,5,5],[5,5,5]],"tags":["sample","all-ones"]},
-    {"id":"trial-single-zero","name":"trial: one zero cell","kind":"trial","visible":true,"input":{"grid":[[0]]},"expected":[[-2]],"tags":["trial","single-cell"]},
-    {"id":"trial-single-one","name":"trial: one one cell","kind":"trial","visible":true,"input":{"grid":[[1]]},"expected":[[2]],"tags":["trial","single-cell"]},
-    {"id":"real-diagonal-ones","name":"hidden: balanced rows and columns","kind":"real","visible":false,"input":{"grid":[[1,0],[0,1]]},"expected":[[0,0],[0,0]],"tags":["hidden","balanced"]},
-    {"id":"real-single-row","name":"hidden: one row with unequal column contributions","kind":"real","visible":false,"input":{"grid":[[1,0,1,0]]},"expected":[[1,-1,1,-1]],"tags":["hidden","single-row"]},
-    {"id":"real-single-column","name":"hidden: one column with unequal row contributions","kind":"real","visible":false,"input":{"grid":[[1],[0],[1]]},"expected":[[2],[0],[2]],"tags":["hidden","single-column"]},
-    {"id":"real-all-zeros","name":"hidden: all contributions are negative","kind":"real","visible":false,"input":{"grid":[[0,0,0],[0,0,0]]},"expected":[[-5,-5,-5],[-5,-5,-5]],"tags":["hidden","all-zeros"]}
+    {
+      "id": "sample-1",
+      "name": "sample: mixed square grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          4
+        ],
+        [
+          -2,
+          -2,
+          2
+        ]
+      ],
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: rectangular all-ones grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "tags": [
+        "sample",
+        "all-ones"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: one zero cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": [
+        [
+          -2
+        ]
+      ],
+      "tags": [
+        "trial",
+        "single-cell"
+      ]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "trial: one one cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          2
+        ]
+      ],
+      "tags": [
+        "trial",
+        "single-cell"
+      ]
+    },
+    {
+      "id": "real-diagonal-ones",
+      "name": "balanced rows and columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "balanced"
+      ]
+    },
+    {
+      "id": "real-single-row",
+      "name": "one row with unequal column contributions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          -1,
+          1,
+          -1
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "single-row"
+      ]
+    },
+    {
+      "id": "real-single-column",
+      "name": "one column with unequal row contributions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          2
+        ],
+        [
+          0
+        ],
+        [
+          2
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "single-column"
+      ]
+    },
+    {
+      "id": "real-all-zeros",
+      "name": "all contributions are negative",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        [
+          -5,
+          -5,
+          -5
+        ],
+        [
+          -5,
+          -5,
+          -5
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "all-zeros"
+      ]
+    }
   ]
 }

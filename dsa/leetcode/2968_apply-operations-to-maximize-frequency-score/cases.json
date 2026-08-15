@@ -98,8 +98,8 @@
     {
       "id": "real-insufficient-for-pair",
       "name": "real: every pair exceeds the budget",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -117,8 +117,8 @@
     {
       "id": "real-large-budget",
       "name": "real: maximum-scale budget joins distant endpoints",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -135,8 +135,8 @@
     {
       "id": "real-even-window",
       "name": "real: even window may target either middle value",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -155,8 +155,8 @@
     {
       "id": "real-best-subset-in-middle",
       "name": "real: optimal values form a middle sorted block",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

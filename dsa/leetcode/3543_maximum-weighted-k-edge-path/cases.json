@@ -7,81 +7,273 @@
       "name": "sample: only exact-length path is below the bound",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "edges": [[0, 1, 1], [1, 2, 2]], "k": 2, "t": 4},
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            2
+          ]
+        ],
+        "k": 2,
+        "t": 4
+      },
       "expected": 3,
-      "tags": ["sample", "exact-length"]
+      "tags": [
+        "sample",
+        "exact-length"
+      ]
     },
     {
       "id": "sample-strict-bound",
       "name": "sample: total equal to t is excluded",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "edges": [[0, 1, 2], [0, 2, 3]], "k": 1, "t": 3},
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            2,
+            3
+          ]
+        ],
+        "k": 1,
+        "t": 3
+      },
       "expected": 2,
-      "tags": ["sample", "strict-threshold"]
+      "tags": [
+        "sample",
+        "strict-threshold"
+      ]
     },
     {
       "id": "sample-no-valid-edge",
       "name": "sample: every one-edge total reaches the bound",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 3, "edges": [[0, 1, 6], [1, 2, 8]], "k": 1, "t": 6},
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            6
+          ],
+          [
+            1,
+            2,
+            8
+          ]
+        ],
+        "k": 1,
+        "t": 6
+      },
       "expected": -1,
-      "tags": ["sample", "impossible"]
+      "tags": [
+        "sample",
+        "impossible"
+      ]
     },
     {
       "id": "trial-zero-edges",
       "name": "trial: zero-edge path has weight zero",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 1, "edges": [], "k": 0, "t": 1},
+      "input": {
+        "n": 1,
+        "edges": [],
+        "k": 0,
+        "t": 1
+      },
       "expected": 0,
-      "tags": ["trial", "k-zero"]
+      "tags": [
+        "trial",
+        "k-zero"
+      ]
     },
     {
       "id": "trial-path-may-start-anywhere",
       "name": "trial: optimal path starts at a nonzero node",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 4, "edges": [[2, 3, 5]], "k": 1, "t": 6},
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            2,
+            3,
+            5
+          ]
+        ],
+        "k": 1,
+        "t": 6
+      },
       "expected": 5,
-      "tags": ["trial", "arbitrary-start"]
+      "tags": [
+        "trial",
+        "arbitrary-start"
+      ]
     },
     {
       "id": "real-multiple-sums-one-endpoint",
       "name": "real: preserve several sums ending at one node",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 5, "edges": [[0, 2, 2], [1, 2, 5], [2, 4, 4], [2, 3, 1], [3, 4, 1]], "k": 2, "t": 8},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            1,
+            2,
+            5
+          ],
+          [
+            2,
+            4,
+            4
+          ],
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            3,
+            4,
+            1
+          ]
+        ],
+        "k": 2,
+        "t": 8
+      },
       "expected": 6,
-      "tags": ["real", "multiple-sums"]
+      "tags": [
+        "real",
+        "multiple-sums"
+      ]
     },
     {
       "id": "real-nontopological-labels",
       "name": "real: labels do not encode topological order",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 4, "edges": [[3, 1, 4], [1, 2, 3], [3, 0, 2], [0, 2, 2]], "k": 2, "t": 8},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            3,
+            1,
+            4
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            3,
+            0,
+            2
+          ],
+          [
+            0,
+            2,
+            2
+          ]
+        ],
+        "k": 2,
+        "t": 8
+      },
       "expected": 7,
-      "tags": ["real", "dag", "labels"]
+      "tags": [
+        "real",
+        "dag",
+        "labels"
+      ]
     },
     {
       "id": "real-insufficient-length",
       "name": "real: graph has no path with enough edges",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 5, "edges": [[0, 1, 1], [2, 3, 2]], "k": 2, "t": 20},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            2,
+            3,
+            2
+          ]
+        ],
+        "k": 2,
+        "t": 20
+      },
       "expected": -1,
-      "tags": ["real", "insufficient-length"]
+      "tags": [
+        "real",
+        "insufficient-length"
+      ]
     },
     {
       "id": "real-best-feasible-not-heaviest-prefix",
       "name": "real: smaller prefix enables the best feasible completion",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 5, "edges": [[0, 2, 7], [1, 2, 3], [2, 3, 4], [2, 4, 6]], "k": 2, "t": 10},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            2,
+            7
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ],
+          [
+            2,
+            4,
+            6
+          ]
+        ],
+        "k": 2,
+        "t": 10
+      },
       "expected": 9,
-      "tags": ["real", "threshold", "state-retention"]
+      "tags": [
+        "real",
+        "threshold",
+        "state-retention"
+      ]
     }
   ]
 }

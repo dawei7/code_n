@@ -125,9 +125,9 @@
     },
     {
       "id": "real-nested-right-ranges",
-      "name": "hidden: decreasing peaks create nested right ranges",
-      "kind": "real",
-      "visible": false,
+      "name": "decreasing peaks create nested right ranges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           6,
@@ -153,9 +153,9 @@
     },
     {
       "id": "real-alternating-peaks",
-      "name": "hidden: alternating peaks have blockers on both sides",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating peaks have blockers on both sides",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -179,9 +179,9 @@
     },
     {
       "id": "real-interior-global-maximum",
-      "name": "hidden: the central maximum spans both sides",
-      "kind": "real",
-      "visible": false,
+      "name": "the central maximum spans both sides",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -209,9 +209,9 @@
     },
     {
       "id": "real-maximum-value-boundary",
-      "name": "hidden: values may reach the maximum allowed value",
-      "kind": "real",
-      "visible": false,
+      "name": "values may reach the maximum allowed value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -233,9 +233,9 @@
     },
     {
       "id": "real-deep-stack-pops",
-      "name": "hidden: later peaks remove several smaller blockers",
-      "kind": "real",
-      "visible": false,
+      "name": "later peaks remove several smaller blockers",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,

@@ -1,17 +1,303 @@
 {
   "challenge_id": "lc_3253",
   "cases": [
-    {"id":"sample-three-appends","name":"sample: combine three words for cost seven","kind":"sample","visible":true,"input":{"target":"abcdef","words":["abdef","abc","d","def","ef"],"costs":[100,1,1,10,5]},"expected":7,"tags":["sample","minimum-cost"]},
-    {"id":"sample-impossible-first-character","name":"sample: no word starts with the target character","kind":"sample","visible":true,"input":{"target":"aaaa","words":["z","zz","zzz"],"costs":[1,10,100]},"expected":-1,"tags":["sample","impossible"]},
-    {"id":"sample-greedy-trap","name":"sample: cheaper first append leads to global optimum","kind":"sample","visible":true,"input":{"target":"abc","words":["ab","a","bc","c"],"costs":[10,1,1,1]},"expected":2,"tags":["sample","greedy"]},
-    {"id":"trial-single-exact-word","name":"trial: one word equals the target","kind":"trial","visible":true,"input":{"target":"cat","words":["cat"],"costs":[7]},"expected":7,"tags":["single-word","exact"]},
-    {"id":"trial-overlapping-lengths","name":"trial: repeated one- and two-letter words are cheapest","kind":"trial","visible":true,"input":{"target":"aaaaa","words":["a","aa","aaa"],"costs":[3,4,10]},"expected":11,"tags":["overlap","reuse"]},
-    {"id":"trial-whole-word-too-expensive","name":"trial: two pieces beat the whole target word","kind":"trial","visible":true,"input":{"target":"leetcode","words":["leet","code","leetcode"],"costs":[4,5,20]},"expected":9,"tags":["whole-word","cost"]},
-    {"id":"trial-reuse-word","name":"trial: reuse the same word three times","kind":"trial","visible":true,"input":{"target":"ababab","words":["ab","aba","b"],"costs":[2,10,3]},"expected":6,"tags":["reuse"]},
-    {"id":"real-dead-end-prefix","name":"real: cheapest matching prefix cannot finish","kind":"real","visible":false,"input":{"target":"xyz","words":["x","xy","yz"],"costs":[1,1,1]},"expected":2,"tags":["dead-end","prefix"]},
-    {"id":"real-duplicate-costs","name":"real: cheaper duplicate word is retained","kind":"real","visible":false,"input":{"target":"aaaa","words":["a","a","aa"],"costs":[9,2,5]},"expected":8,"tags":["duplicates","cost"]},
-    {"id":"real-maximum-cost","name":"real: one maximum-cost operation beats repeated letters","kind":"real","visible":false,"input":{"target":"zzzz","words":["z","zzzz"],"costs":[100000,100000]},"expected":100000,"tags":["maximum-cost"]},
-    {"id":"real-multiple-decompositions","name":"real: several prefix decompositions reach the same suffix","kind":"real","visible":false,"input":{"target":"pineapple","words":["pine","apple","pineapple","p","ine"],"costs":[5,6,20,1,1]},"expected":8,"tags":["multiple-paths","overlap"]},
-    {"id":"real-dense-overlap","name":"real: dense overlapping fragments","kind":"real","visible":false,"input":{"target":"mississippi","words":["mis","miss","is","issi","ss","ippi","ppi"],"costs":[5,3,2,4,1,6,3]},"expected":10,"tags":["overlap","longer"]}
+    {
+      "id": "sample-three-appends",
+      "name": "sample: combine three words for cost seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": "abcdef",
+        "words": [
+          "abdef",
+          "abc",
+          "d",
+          "def",
+          "ef"
+        ],
+        "costs": [
+          100,
+          1,
+          1,
+          10,
+          5
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "minimum-cost"
+      ]
+    },
+    {
+      "id": "sample-impossible-first-character",
+      "name": "sample: no word starts with the target character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": "aaaa",
+        "words": [
+          "z",
+          "zz",
+          "zzz"
+        ],
+        "costs": [
+          1,
+          10,
+          100
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "sample-greedy-trap",
+      "name": "sample: cheaper first append leads to global optimum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": "abc",
+        "words": [
+          "ab",
+          "a",
+          "bc",
+          "c"
+        ],
+        "costs": [
+          10,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "trial-single-exact-word",
+      "name": "trial: one word equals the target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "cat",
+        "words": [
+          "cat"
+        ],
+        "costs": [
+          7
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "single-word",
+        "exact"
+      ]
+    },
+    {
+      "id": "trial-overlapping-lengths",
+      "name": "trial: repeated one- and two-letter words are cheapest",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "aaaaa",
+        "words": [
+          "a",
+          "aa",
+          "aaa"
+        ],
+        "costs": [
+          3,
+          4,
+          10
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "overlap",
+        "reuse"
+      ]
+    },
+    {
+      "id": "trial-whole-word-too-expensive",
+      "name": "trial: two pieces beat the whole target word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "leetcode",
+        "words": [
+          "leet",
+          "code",
+          "leetcode"
+        ],
+        "costs": [
+          4,
+          5,
+          20
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "whole-word",
+        "cost"
+      ]
+    },
+    {
+      "id": "trial-reuse-word",
+      "name": "trial: reuse the same word three times",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "ababab",
+        "words": [
+          "ab",
+          "aba",
+          "b"
+        ],
+        "costs": [
+          2,
+          10,
+          3
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "reuse"
+      ]
+    },
+    {
+      "id": "real-dead-end-prefix",
+      "name": "real: cheapest matching prefix cannot finish",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "xyz",
+        "words": [
+          "x",
+          "xy",
+          "yz"
+        ],
+        "costs": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "dead-end",
+        "prefix"
+      ]
+    },
+    {
+      "id": "real-duplicate-costs",
+      "name": "real: cheaper duplicate word is retained",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "aaaa",
+        "words": [
+          "a",
+          "a",
+          "aa"
+        ],
+        "costs": [
+          9,
+          2,
+          5
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "duplicates",
+        "cost"
+      ]
+    },
+    {
+      "id": "real-maximum-cost",
+      "name": "real: one maximum-cost operation beats repeated letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "zzzz",
+        "words": [
+          "z",
+          "zzzz"
+        ],
+        "costs": [
+          100000,
+          100000
+        ]
+      },
+      "expected": 100000,
+      "tags": [
+        "maximum-cost"
+      ]
+    },
+    {
+      "id": "real-multiple-decompositions",
+      "name": "real: several prefix decompositions reach the same suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "pineapple",
+        "words": [
+          "pine",
+          "apple",
+          "pineapple",
+          "p",
+          "ine"
+        ],
+        "costs": [
+          5,
+          6,
+          20,
+          1,
+          1
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "multiple-paths",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-dense-overlap",
+      "name": "real: dense overlapping fragments",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "mississippi",
+        "words": [
+          "mis",
+          "miss",
+          "is",
+          "issi",
+          "ss",
+          "ippi",
+          "ppi"
+        ],
+        "costs": [
+          5,
+          3,
+          2,
+          4,
+          1,
+          6,
+          3
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "overlap",
+        "longer"
+      ]
+    }
   ]
 }

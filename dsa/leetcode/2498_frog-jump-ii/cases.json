@@ -80,9 +80,9 @@
     },
     {
       "id": "real-small-three-span",
-      "name": "hidden: asymmetric three-stone positions",
-      "kind": "real",
-      "visible": false,
+      "name": "asymmetric three-stone positions",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stones": [
           0,
@@ -98,9 +98,9 @@
     },
     {
       "id": "real-equal-two-spans",
-      "name": "hidden: uneven adjacent gaps produce equal skip spans",
-      "kind": "real",
-      "visible": false,
+      "name": "uneven adjacent gaps produce equal skip spans",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stones": [
           0,
@@ -118,9 +118,9 @@
     },
     {
       "id": "real-largest-span-near-end",
-      "name": "hidden: decisive skipped-stone jump is near the end",
-      "kind": "real",
-      "visible": false,
+      "name": "decisive skipped-stone jump is near the end",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stones": [
           0,
@@ -138,9 +138,9 @@
     },
     {
       "id": "real-irregular",
-      "name": "hidden: several competing two-index spans",
-      "kind": "real",
-      "visible": false,
+      "name": "several competing two-index spans",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stones": [
           0,
@@ -159,9 +159,9 @@
     },
     {
       "id": "real-maximum-coordinate",
-      "name": "hidden: endpoint reaches the coordinate limit",
-      "kind": "real",
-      "visible": false,
+      "name": "endpoint reaches the coordinate limit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "stones": [
           0,

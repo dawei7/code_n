@@ -121,9 +121,9 @@
     },
     {
       "id": "real-double-reversal",
-      "name": "hidden: two reversals restore the order",
-      "kind": "real",
-      "visible": false,
+      "name": "two reversals restore the order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abc%%"
       },
@@ -135,9 +135,9 @@
     },
     {
       "id": "real-delete-after-duplicates",
-      "name": "hidden: removals follow two duplications",
-      "kind": "real",
-      "visible": false,
+      "name": "removals follow two duplications",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ab##***"
       },
@@ -150,9 +150,9 @@
     },
     {
       "id": "real-interleaved-sequence",
-      "name": "hidden: interleave all special operations",
-      "kind": "real",
-      "visible": false,
+      "name": "interleave all special operations",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ab#%c*d#%"
       },
@@ -164,9 +164,9 @@
     },
     {
       "id": "real-maximum-letters",
-      "name": "hidden: maximum input length of ordinary letters",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum input length of ordinary letters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcdefghijklmnopqrst"
       },
@@ -179,9 +179,9 @@
     },
     {
       "id": "real-maximum-special-only",
-      "name": "hidden: maximum input length with no produced letters",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum input length with no produced letters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "*#%*#%*#%*#%*#%*#%**"
       },
@@ -194,9 +194,9 @@
     },
     {
       "id": "real-large-duplication",
-      "name": "hidden: twelve duplications create 4096 letters",
-      "kind": "real",
-      "visible": false,
+      "name": "twelve duplications create 4096 letters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "a############"
       },

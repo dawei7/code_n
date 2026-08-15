@@ -105,9 +105,9 @@
     },
     {
       "id": "real-reverse-wrap-too-small",
-      "name": "hidden: a to z needs twenty-five steps",
-      "kind": "real",
-      "visible": false,
+      "name": "a to z needs twenty-five steps",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "a",
         "t": "z",
@@ -122,9 +122,9 @@
     },
     {
       "id": "real-distinct-residues",
-      "name": "hidden: different residues may use adjacent moves",
-      "kind": "real",
-      "visible": false,
+      "name": "different residues may use adjacent moves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aa",
         "t": "bc",
@@ -139,9 +139,9 @@
     },
     {
       "id": "real-second-cycle-too-late",
-      "name": "hidden: second equal residue first fits at move twenty-seven",
-      "kind": "real",
-      "visible": false,
+      "name": "second equal residue first fits at move twenty-seven",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aa",
         "t": "bb",
@@ -156,9 +156,9 @@
     },
     {
       "id": "real-third-cycle-too-late",
-      "name": "hidden: third equal residue first fits at move fifty-three",
-      "kind": "real",
-      "visible": false,
+      "name": "third equal residue first fits at move fifty-three",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaa",
         "t": "bbb",

@@ -178,9 +178,9 @@
     },
     {
       "id": "real-negative-forced-target",
-      "name": "hidden: overlapping increments force a zero target from negative values",
-      "kind": "real",
-      "visible": false,
+      "name": "overlapping increments force a zero target from negative values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -205,9 +205,9 @@
     },
     {
       "id": "real-boundary-mismatch",
-      "name": "hidden: incompatible uncovered boundary cells make equality impossible",
-      "kind": "real",
-      "visible": false,
+      "name": "incompatible uncovered boundary cells make equality impossible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -232,9 +232,9 @@
     },
     {
       "id": "real-dense-overlap",
-      "name": "hidden: four differently repeated squares overlap in the center",
-      "kind": "real",
-      "visible": false,
+      "name": "four differently repeated squares overlap in the center",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -264,9 +264,9 @@
     },
     {
       "id": "real-perturbed-corner",
-      "name": "hidden: one perturbed finished corner invalidates an overlap construction",
-      "kind": "real",
-      "visible": false,
+      "name": "one perturbed finished corner invalidates an overlap construction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -296,9 +296,9 @@
     },
     {
       "id": "real-equal-rectangle",
-      "name": "hidden: an equal rectangular grid needs no square",
-      "kind": "real",
-      "visible": false,
+      "name": "an equal rectangular grid needs no square",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -331,9 +331,9 @@
     },
     {
       "id": "real-single-row-unit-squares",
-      "name": "hidden: a single row is legal when k is one",
-      "kind": "real",
-      "visible": false,
+      "name": "a single row is legal when k is one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -354,9 +354,9 @@
     },
     {
       "id": "real-value-boundaries",
-      "name": "hidden: unit squares span both stated value limits",
-      "kind": "real",
-      "visible": false,
+      "name": "unit squares span both stated value limits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -375,9 +375,9 @@
     },
     {
       "id": "real-three-by-three-overlap",
-      "name": "hidden: six operations overlap across a four-by-five grid",
-      "kind": "real",
-      "visible": false,
+      "name": "six operations overlap across a four-by-five grid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -420,4 +420,3 @@
     }
   ]
 }
-

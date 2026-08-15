@@ -2,14 +2,131 @@
   "schema_version": 1,
   "challenge_id": "lc_2167",
   "cases": [
-    {"id": "sample-mixed", "name": "sample: combine end and direct removals", "kind": "sample", "visible": true, "input": {"s": "1100101"}, "expected": 5, "tags": ["sample", "mixed-strategy"]},
-    {"id": "sample-single-middle", "name": "sample: remove one middle illegal car", "kind": "sample", "visible": true, "input": {"s": "0010"}, "expected": 2, "tags": ["sample", "direct-removal"]},
-    {"id": "trial-one-legal", "name": "one legal car needs no removal", "kind": "trial", "visible": true, "input": {"s": "0"}, "expected": 0, "tags": ["minimum-length", "all-zero"]},
-    {"id": "trial-one-illegal", "name": "one illegal end car costs one", "kind": "trial", "visible": true, "input": {"s": "1"}, "expected": 1, "tags": ["minimum-length", "all-one"]},
-    {"id": "trial-all-illegal", "name": "end removals clear an all-illegal train", "kind": "trial", "visible": true, "input": {"s": "1111"}, "expected": 4, "tags": ["all-one", "end-removal"]},
-    {"id": "trial-illegal-ends", "name": "remove separated illegal end cars", "kind": "trial", "visible": true, "input": {"s": "100001"}, "expected": 2, "tags": ["illegal-ends", "end-removal"]},
-    {"id": "real-isolated-middle", "name": "hidden: direct removal beats traversing legal cars", "kind": "real", "visible": false, "input": {"s": "0001000"}, "expected": 2, "tags": ["hidden", "isolated-one"]},
-    {"id": "real-alternating", "name": "hidden: alternating cars require a mixed optimum", "kind": "real", "visible": false, "input": {"s": "0101010"}, "expected": 6, "tags": ["hidden", "alternating"]},
-    {"id": "real-multiple-clusters", "name": "hidden: compare clustered end and interior goods", "kind": "real", "visible": false, "input": {"s": "101000011"}, "expected": 5, "tags": ["hidden", "clusters"]}
+    {
+      "id": "sample-mixed",
+      "name": "sample: combine end and direct removals",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1100101"
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "mixed-strategy"
+      ]
+    },
+    {
+      "id": "sample-single-middle",
+      "name": "sample: remove one middle illegal car",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "0010"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "direct-removal"
+      ]
+    },
+    {
+      "id": "trial-one-legal",
+      "name": "one legal car needs no removal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0"
+      },
+      "expected": 0,
+      "tags": [
+        "minimum-length",
+        "all-zero"
+      ]
+    },
+    {
+      "id": "trial-one-illegal",
+      "name": "one illegal end car costs one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1"
+      },
+      "expected": 1,
+      "tags": [
+        "minimum-length",
+        "all-one"
+      ]
+    },
+    {
+      "id": "trial-all-illegal",
+      "name": "end removals clear an all-illegal train",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1111"
+      },
+      "expected": 4,
+      "tags": [
+        "all-one",
+        "end-removal"
+      ]
+    },
+    {
+      "id": "trial-illegal-ends",
+      "name": "remove separated illegal end cars",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "100001"
+      },
+      "expected": 2,
+      "tags": [
+        "illegal-ends",
+        "end-removal"
+      ]
+    },
+    {
+      "id": "real-isolated-middle",
+      "name": "direct removal beats traversing legal cars",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0001000"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "isolated-one"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "alternating cars require a mixed optimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0101010"
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-multiple-clusters",
+      "name": "compare clustered end and interior goods",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "101000011"
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "clusters"
+      ]
+    }
   ]
 }

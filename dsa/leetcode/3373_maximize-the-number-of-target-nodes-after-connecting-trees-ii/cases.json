@@ -272,9 +272,9 @@
     },
     {
       "id": "real-balanced-first-tree",
-      "name": "hidden: balanced first bipartition gives one repeated answer",
-      "kind": "real",
-      "visible": false,
+      "name": "balanced first bipartition gives one repeated answer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges1": [
           [
@@ -332,9 +332,9 @@
     },
     {
       "id": "real-arbitrary-label-order",
-      "name": "hidden: edge order does not follow rooted traversal order",
-      "kind": "real",
-      "visible": false,
+      "name": "edge order does not follow rooted traversal order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges1": [
           [
@@ -400,9 +400,9 @@
     },
     {
       "id": "real-two-unbalanced-stars",
-      "name": "hidden: both trees have strongly unbalanced color classes",
-      "kind": "real",
-      "visible": false,
+      "name": "both trees have strongly unbalanced color classes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "edges1": [
           [

@@ -2,12 +2,100 @@
   "schema_version": 1,
   "challenge_id": "lc_2320",
   "cases": [
-    {"id":"sample-one-plot","name":"sample: one plot on each side","kind":"sample","visible":true,"input":{"n":1},"expected":4,"tags":["sample","boundary"]},
-    {"id":"sample-two-plots","name":"sample: three patterns per side","kind":"sample","visible":true,"input":{"n":2},"expected":9,"tags":["sample","independent-sides"]},
-    {"id":"trial-three-plots","name":"five one-side patterns combine into twenty-five","kind":"trial","visible":true,"input":{"n":3},"expected":25,"tags":["fibonacci"]},
-    {"id":"trial-four-plots","name":"eight one-side patterns combine into sixty-four","kind":"trial","visible":true,"input":{"n":4},"expected":64,"tags":["dynamic-programming"]},
-    {"id":"trial-five-plots","name":"thirteen one-side patterns combine independently","kind":"trial","visible":true,"input":{"n":5},"expected":169,"tags":["independent-sides"]},
-    {"id":"real-ten-plots","name":"hidden: longer recurrence","kind":"real","visible":false,"input":{"n":10},"expected":20736,"tags":["hidden","dynamic-programming"]},
-    {"id":"real-twelve-plots","name":"hidden: square the one-side count after twelve plots","kind":"real","visible":false,"input":{"n":12},"expected":142129,"tags":["hidden","larger-input"]}
+    {
+      "id": "sample-one-plot",
+      "name": "sample: one plot on each side",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-two-plots",
+      "name": "sample: three patterns per side",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "independent-sides"
+      ]
+    },
+    {
+      "id": "trial-three-plots",
+      "name": "five one-side patterns combine into twenty-five",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3
+      },
+      "expected": 25,
+      "tags": [
+        "fibonacci"
+      ]
+    },
+    {
+      "id": "trial-four-plots",
+      "name": "eight one-side patterns combine into sixty-four",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4
+      },
+      "expected": 64,
+      "tags": [
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "trial-five-plots",
+      "name": "thirteen one-side patterns combine independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5
+      },
+      "expected": 169,
+      "tags": [
+        "independent-sides"
+      ]
+    },
+    {
+      "id": "real-ten-plots",
+      "name": "longer recurrence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10
+      },
+      "expected": 20736,
+      "tags": [
+        "hidden",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "real-twelve-plots",
+      "name": "square the one-side count after twelve plots",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 12
+      },
+      "expected": 142129,
+      "tags": [
+        "hidden",
+        "larger-input"
+      ]
+    }
   ]
 }

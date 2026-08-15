@@ -126,8 +126,8 @@
     {
       "id": "real-repeated-digits",
       "name": "real: repeated digits deduplicate many paths",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1122,
@@ -146,8 +146,8 @@
     {
       "id": "real-mixed-permutations",
       "name": "real: one-, two-, and three-swap relations",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           123456,
@@ -166,8 +166,8 @@
     {
       "id": "real-zero-families",
       "name": "real: several cross-length zero forms",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -188,8 +188,8 @@
     {
       "id": "real-seven-digits",
       "name": "real: maximum legal digit width",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1234567,
@@ -208,8 +208,8 @@
     {
       "id": "real-large-mixed",
       "name": "real: unrelated families and duplicate values",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1020304,

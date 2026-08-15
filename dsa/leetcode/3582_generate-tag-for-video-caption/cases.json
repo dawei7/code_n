@@ -7,90 +7,150 @@
       "name": "sample: normalize four caption words to camelCase",
       "kind": "sample",
       "visible": true,
-      "input": {"caption": "Leetcode daily streak achieved"},
+      "input": {
+        "caption": "Leetcode daily streak achieved"
+      },
       "expected": "#leetcodeDailyStreakAchieved",
-      "tags": ["sample", "camel-case", "multiple-words"]
+      "tags": [
+        "sample",
+        "camel-case",
+        "multiple-words"
+      ]
     },
     {
       "id": "sample-single-letter-word",
       "name": "sample: preserve a capitalized one-letter middle word",
       "kind": "sample",
       "visible": true,
-      "input": {"caption": "can I Go There"},
+      "input": {
+        "caption": "can I Go There"
+      },
       "expected": "#canIGoThere",
-      "tags": ["sample", "single-letter-word", "case-normalization"]
+      "tags": [
+        "sample",
+        "single-letter-word",
+        "case-normalization"
+      ]
     },
     {
       "id": "sample-truncate-long-word",
       "name": "sample: truncate a 101-letter word after 99 tag letters",
       "kind": "sample",
       "visible": true,
-      "input": {"caption": "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"},
+      "input": {
+        "caption": "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+      },
       "expected": "#hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
-      "tags": ["sample", "truncation", "maximum-tag-length"]
+      "tags": [
+        "sample",
+        "truncation",
+        "maximum-tag-length"
+      ]
     },
     {
       "id": "trial-one-word-mixed-case",
       "name": "trial: lowercase every character of the first word",
       "kind": "trial",
       "visible": true,
-      "input": {"caption": "hELLo"},
+      "input": {
+        "caption": "hELLo"
+      },
       "expected": "#hello",
-      "tags": ["trial", "single-word", "case-normalization"]
+      "tags": [
+        "trial",
+        "single-word",
+        "case-normalization"
+      ]
     },
     {
       "id": "trial-repeated-spaces",
       "name": "trial: leading trailing and repeated spaces create no empty words",
       "kind": "trial",
       "visible": true,
-      "input": {"caption": "  HELLO   wORLD  "},
+      "input": {
+        "caption": "  HELLO   wORLD  "
+      },
       "expected": "#helloWorld",
-      "tags": ["trial", "repeated-spaces", "word-boundaries"]
+      "tags": [
+        "trial",
+        "repeated-spaces",
+        "word-boundaries"
+      ]
     },
     {
       "id": "trial-only-spaces",
       "name": "trial: a caption without a word leaves only the prefix",
       "kind": "trial",
       "visible": true,
-      "input": {"caption": "     "},
+      "input": {
+        "caption": "     "
+      },
       "expected": "#",
-      "tags": ["trial", "spaces-only", "empty-content"]
+      "tags": [
+        "trial",
+        "spaces-only",
+        "empty-content"
+      ]
     },
     {
       "id": "real-many-single-letter-words",
       "name": "real: every later one-letter word is uppercase",
-      "kind": "real",
-      "visible": false,
-      "input": {"caption": "a b c d e"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "caption": "a b c d e"
+      },
       "expected": "#aBCDE",
-      "tags": ["real", "single-letter-words", "camel-case"]
+      "tags": [
+        "real",
+        "single-letter-words",
+        "camel-case"
+      ]
     },
     {
       "id": "real-second-word-rest-lowercase",
       "name": "real: only the first letter of a later word remains uppercase",
-      "kind": "real",
-      "visible": false,
-      "input": {"caption": "FIRST sECOND"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "caption": "FIRST sECOND"
+      },
       "expected": "#firstSecond",
-      "tags": ["real", "case-normalization", "two-words"]
+      "tags": [
+        "real",
+        "case-normalization",
+        "two-words"
+      ]
     },
     {
       "id": "real-exact-cap",
       "name": "real: 99 letters plus the prefix exactly fill the cap",
-      "kind": "real",
-      "visible": false,
-      "input": {"caption": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "caption": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
       "expected": "#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-      "tags": ["real", "exact-boundary", "maximum-tag-length"]
+      "tags": [
+        "real",
+        "exact-boundary",
+        "maximum-tag-length"
+      ]
     },
     {
       "id": "real-truncate-across-word",
       "name": "real: truncation cuts inside a later camelCase word",
-      "kind": "real",
-      "visible": false,
-      "input": {"caption": "a bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "caption": "a bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
       "expected": "#aBbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-      "tags": ["real", "truncation", "later-word"]
+      "tags": [
+        "real",
+        "truncation",
+        "later-word"
+      ]
     }
   ]
 }

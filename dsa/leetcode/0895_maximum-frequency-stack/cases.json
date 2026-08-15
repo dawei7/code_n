@@ -266,9 +266,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: interleaved pushes and pops",
-      "kind": "real",
-      "visible": false,
+      "name": "interleaved pushes and pops",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -318,9 +318,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: empty then reuse",
-      "kind": "real",
-      "visible": false,
+      "name": "empty then reuse",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -361,9 +361,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: three-way recency tie",
-      "kind": "real",
-      "visible": false,
+      "name": "three-way recency tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [
@@ -419,9 +419,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: descending frequency cascade",
-      "kind": "real",
-      "visible": false,
+      "name": "descending frequency cascade",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           [

@@ -2,17 +2,161 @@
   "schema_version": 1,
   "challenge_id": "lc_3223",
   "cases": [
-    {"id":"sample-mixed-counts","name":"sample: reduce three independent character counts","kind":"sample","visible":true,"input":{"s":"abaacbcbb"},"expected":5,"tags":["sample"]},
-    {"id":"sample-two-equal","name":"sample: two copies cannot be reduced","kind":"sample","visible":true,"input":{"s":"aa"},"expected":2,"tags":["sample"]},
-    {"id":"trial-single","name":"trial: one character remains","kind":"trial","visible":true,"input":{"s":"z"},"expected":1,"tags":["minimum-length"]},
-    {"id":"trial-three-equal","name":"trial: three copies reduce to one","kind":"trial","visible":true,"input":{"s":"aaa"},"expected":1,"tags":["odd-count"]},
-    {"id":"trial-four-equal","name":"trial: four copies reduce to two","kind":"trial","visible":true,"input":{"s":"aaaa"},"expected":2,"tags":["even-count"]},
-    {"id":"trial-five-equal","name":"trial: five copies reduce to one","kind":"trial","visible":true,"input":{"s":"aaaaa"},"expected":1,"tags":["multiple-operations"]},
-    {"id":"real-all-distinct","name":"real: distinct characters all remain","kind":"real","visible":false,"input":{"s":"abcdef"},"expected":6,"tags":["distinct"]},
-    {"id":"real-two-odd-groups","name":"real: two odd frequencies each leave one","kind":"real","visible":false,"input":{"s":"aaabbb"},"expected":2,"tags":["odd-count"]},
-    {"id":"real-two-even-groups","name":"real: two even frequencies each leave two","kind":"real","visible":false,"input":{"s":"aaaabbbb"},"expected":4,"tags":["even-count"]},
-    {"id":"real-mixed-parities","name":"real: mixed positive parities sum independently","kind":"real","visible":false,"input":{"s":"aaabbbbccccc"},"expected":4,"tags":["mixed-parity"]},
-    {"id":"real-interleaved","name":"real: positions do not change count minima","kind":"real","visible":false,"input":{"s":"abcabcabcabc"},"expected":6,"tags":["interleaved"]},
-    {"id":"real-alphabet-pairs","name":"real: two copies of every letter remain","kind":"real","visible":false,"input":{"s":"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"},"expected":52,"tags":["alphabet"]}
+    {
+      "id": "sample-mixed-counts",
+      "name": "sample: reduce three independent character counts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abaacbcbb"
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-two-equal",
+      "name": "sample: two copies cannot be reduced",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aa"
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one character remains",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z"
+      },
+      "expected": 1,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-three-equal",
+      "name": "trial: three copies reduce to one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": 1,
+      "tags": [
+        "odd-count"
+      ]
+    },
+    {
+      "id": "trial-four-equal",
+      "name": "trial: four copies reduce to two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa"
+      },
+      "expected": 2,
+      "tags": [
+        "even-count"
+      ]
+    },
+    {
+      "id": "trial-five-equal",
+      "name": "trial: five copies reduce to one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaa"
+      },
+      "expected": 1,
+      "tags": [
+        "multiple-operations"
+      ]
+    },
+    {
+      "id": "real-all-distinct",
+      "name": "real: distinct characters all remain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdef"
+      },
+      "expected": 6,
+      "tags": [
+        "distinct"
+      ]
+    },
+    {
+      "id": "real-two-odd-groups",
+      "name": "real: two odd frequencies each leave one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaabbb"
+      },
+      "expected": 2,
+      "tags": [
+        "odd-count"
+      ]
+    },
+    {
+      "id": "real-two-even-groups",
+      "name": "real: two even frequencies each leave two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaabbbb"
+      },
+      "expected": 4,
+      "tags": [
+        "even-count"
+      ]
+    },
+    {
+      "id": "real-mixed-parities",
+      "name": "real: mixed positive parities sum independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaabbbbccccc"
+      },
+      "expected": 4,
+      "tags": [
+        "mixed-parity"
+      ]
+    },
+    {
+      "id": "real-interleaved",
+      "name": "real: positions do not change count minima",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcabcabcabc"
+      },
+      "expected": 6,
+      "tags": [
+        "interleaved"
+      ]
+    },
+    {
+      "id": "real-alphabet-pairs",
+      "name": "real: two copies of every letter remain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": 52,
+      "tags": [
+        "alphabet"
+      ]
+    }
   ]
 }

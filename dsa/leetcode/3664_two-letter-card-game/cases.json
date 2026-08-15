@@ -126,9 +126,9 @@
     },
     {
       "id": "real-two-independent-families",
-      "name": "hidden: both noncentral families score independently",
-      "kind": "real",
-      "visible": false,
+      "name": "both noncentral families score independently",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cards": [
           "ab",
@@ -146,9 +146,9 @@
     },
     {
       "id": "real-center-split",
-      "name": "hidden: centers must be allocated across family demands",
-      "kind": "real",
-      "visible": false,
+      "name": "centers must be allocated across family demands",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cards": [
           "ab",
@@ -169,9 +169,9 @@
     },
     {
       "id": "real-ignore-unusable",
-      "name": "hidden: cards without x do not participate",
-      "kind": "real",
-      "visible": false,
+      "name": "cards without x do not participate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cards": [
           "bc",
@@ -190,9 +190,9 @@
     },
     {
       "id": "real-upper-alphabet-letter",
-      "name": "hidden: x at the upper character bound",
-      "kind": "real",
-      "visible": false,
+      "name": "x at the upper character bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cards": [
           "ja",

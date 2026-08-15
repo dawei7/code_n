@@ -115,9 +115,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: one-unit remaining gap",
-      "kind": "real",
-      "visible": false,
+      "name": "one-unit remaining gap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -133,9 +133,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: maximum input and adjustment",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum input and adjustment",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -151,9 +151,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: unsorted interior values",
-      "kind": "real",
-      "visible": false,
+      "name": "unsorted interior values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -171,9 +171,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: duplicate extrema",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate extrema",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -191,9 +191,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: crossing changed groups",
-      "kind": "real",
-      "visible": false,
+      "name": "crossing changed groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,

@@ -6,63 +6,151 @@
       "name": "sample: two pairs with maximum difference one",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [10, 1, 2, 7, 1, 3], "p": 2},
+      "input": {
+        "nums": [
+          10,
+          1,
+          2,
+          7,
+          1,
+          3
+        ],
+        "p": 2
+      },
       "expected": 1,
-      "tags": ["sample", "binary-search"]
+      "tags": [
+        "sample",
+        "binary-search"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: duplicate values give zero",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4, 2, 1, 2], "p": 1},
+      "input": {
+        "nums": [
+          4,
+          2,
+          1,
+          2
+        ],
+        "p": 1
+      },
       "expected": 0,
-      "tags": ["sample", "duplicates"]
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-zero-pairs",
       "name": "trial: empty pair set has maximum zero",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [8, 1, 5], "p": 0},
+      "input": {
+        "nums": [
+          8,
+          1,
+          5
+        ],
+        "p": 0
+      },
       "expected": 0,
-      "tags": ["trial", "zero-pairs"]
+      "tags": [
+        "trial",
+        "zero-pairs"
+      ]
     },
     {
       "id": "trial-use-maximum-pairs",
       "name": "trial: every index must be paired",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3, 4, 2, 3, 2, 1], "p": 3},
+      "input": {
+        "nums": [
+          3,
+          4,
+          2,
+          3,
+          2,
+          1
+        ],
+        "p": 3
+      },
       "expected": 1,
-      "tags": ["trial", "maximum-pairs"]
+      "tags": [
+        "trial",
+        "maximum-pairs"
+      ]
     },
     {
       "id": "real-forced-cross-block-pair",
-      "name": "hidden: duplicate blocks still require one cross-value pair",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 1, 2, 2, 2], "p": 3},
+      "name": "duplicate blocks still require one cross-value pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2
+        ],
+        "p": 3
+      },
       "expected": 1,
-      "tags": ["hidden", "duplicates"]
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
     },
     {
       "id": "real-evenly-spaced-values",
-      "name": "hidden: all adjacent gaps are equal",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 5, 9, 13, 17, 21, 25, 29], "p": 4},
+      "name": "all adjacent gaps are equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          9,
+          13,
+          17,
+          21,
+          25,
+          29
+        ],
+        "p": 4
+      },
       "expected": 4,
-      "tags": ["hidden", "equal-gaps"]
+      "tags": [
+        "hidden",
+        "equal-gaps"
+      ]
     },
     {
       "id": "real-ignore-large-outliers",
-      "name": "hidden: unpaired outliers do not affect the optimum",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 1, 2, 1000000000, 999999999], "p": 2},
+      "name": "unpaired outliers do not affect the optimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2,
+          1000000000,
+          999999999
+        ],
+        "p": 2
+      },
       "expected": 1,
-      "tags": ["hidden", "value-boundary", "unpaired-values"]
+      "tags": [
+        "hidden",
+        "value-boundary",
+        "unpaired-values"
+      ]
     }
   ]
 }

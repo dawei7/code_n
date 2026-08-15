@@ -144,9 +144,9 @@
     },
     {
       "id": "real-all-zero",
-      "name": "hidden: both partition sums are zero",
-      "kind": "real",
-      "visible": false,
+      "name": "both partition sums are zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -165,9 +165,9 @@
     },
     {
       "id": "real-maximum-magnitudes",
-      "name": "hidden: large signed values require wide sums",
-      "kind": "real",
-      "visible": false,
+      "name": "large signed values require wide sums",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -188,9 +188,9 @@
     },
     {
       "id": "real-index-not-value",
-      "name": "hidden: prime values at non-prime indices still belong to B",
-      "kind": "real",
-      "visible": false,
+      "name": "prime values at non-prime indices still belong to B",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -211,9 +211,9 @@
     },
     {
       "id": "real-only-prime-index-values",
-      "name": "hidden: nonzero values appear only at prime indices",
-      "kind": "real",
-      "visible": false,
+      "name": "nonzero values appear only at prime indices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -235,9 +235,9 @@
     },
     {
       "id": "real-mixed-longer",
-      "name": "hidden: mixed signs across several prime indices",
-      "kind": "real",
-      "visible": false,
+      "name": "mixed signs across several prime indices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           12,
@@ -266,9 +266,9 @@
     },
     {
       "id": "real-maximum-length-zero",
-      "name": "hidden: maximum input length of zeros",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum input length of zeros",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,

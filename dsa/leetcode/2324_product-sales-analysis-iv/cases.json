@@ -2,11 +2,377 @@
   "schema_version": 1,
   "challenge_id": "lc_2324",
   "cases": [
-    {"id":"sample-spending","name":"sample: one unique maximum and one three-way tie","kind":"sample","visible":true,"input":{"tables":{"Sales":[{"sale_id":1,"product_id":1,"user_id":101,"quantity":10},{"sale_id":2,"product_id":3,"user_id":101,"quantity":7},{"sale_id":3,"product_id":1,"user_id":102,"quantity":9},{"sale_id":4,"product_id":2,"user_id":102,"quantity":6},{"sale_id":5,"product_id":3,"user_id":102,"quantity":10},{"sale_id":6,"product_id":1,"user_id":102,"quantity":6}],"Product":[{"product_id":1,"price":10},{"product_id":2,"price":25},{"product_id":3,"price":15}]}},"expected":{"columns":["user_id","product_id"],"rows":[[101,3],[102,1],[102,2],[102,3]]},"validator":{"kind":"unordered_table"},"tags":["sample","tie"]},
-    {"id":"trial-single-sale","name":"one user's only purchase is their maximum","kind":"trial","visible":true,"input":{"tables":{"Sales":[{"sale_id":1,"product_id":7,"user_id":4,"quantity":3}],"Product":[{"product_id":7,"price":9}]}},"expected":{"columns":["user_id","product_id"],"rows":[[4,7]]},"validator":{"kind":"unordered_table"},"tags":["single-row"]},
-    {"id":"trial-aggregate-first","name":"separate purchases combine to beat one larger sale","kind":"trial","visible":true,"input":{"tables":{"Sales":[{"sale_id":1,"product_id":1,"user_id":8,"quantity":3},{"sale_id":2,"product_id":1,"user_id":8,"quantity":4},{"sale_id":3,"product_id":2,"user_id":8,"quantity":6}],"Product":[{"product_id":1,"price":10},{"product_id":2,"price":10}]}},"expected":{"columns":["user_id","product_id"],"rows":[[8,1]]},"validator":{"kind":"unordered_table"},"tags":["aggregation"]},
-    {"id":"real-price-matters","name":"hidden: fewer units can cost more at a higher price","kind":"real","visible":false,"input":{"tables":{"Sales":[{"sale_id":1,"product_id":1,"user_id":5,"quantity":10},{"sale_id":2,"product_id":2,"user_id":5,"quantity":2}],"Product":[{"product_id":1,"price":3},{"product_id":2,"price":20}]}},"expected":{"columns":["user_id","product_id"],"rows":[[5,2]]},"validator":{"kind":"unordered_table"},"tags":["hidden","price"]},
-    {"id":"real-two-users","name":"hidden: maxima are partitioned independently by user","kind":"real","visible":false,"input":{"tables":{"Sales":[{"sale_id":1,"product_id":1,"user_id":10,"quantity":5},{"sale_id":2,"product_id":2,"user_id":10,"quantity":1},{"sale_id":3,"product_id":1,"user_id":20,"quantity":1},{"sale_id":4,"product_id":2,"user_id":20,"quantity":5}],"Product":[{"product_id":1,"price":10},{"product_id":2,"price":10}]}},"expected":{"columns":["user_id","product_id"],"rows":[[10,1],[20,2]]},"validator":{"kind":"unordered_table"},"tags":["hidden","partitioning"]},
-    {"id":"real-exact-tie","name":"hidden: different quantity-price pairs can tie exactly","kind":"real","visible":false,"input":{"tables":{"Sales":[{"sale_id":1,"product_id":1,"user_id":1,"quantity":4},{"sale_id":2,"product_id":2,"user_id":1,"quantity":2}],"Product":[{"product_id":1,"price":5},{"product_id":2,"price":10}]}},"expected":{"columns":["user_id","product_id"],"rows":[[1,1],[1,2]]},"validator":{"kind":"unordered_table"},"tags":["hidden","tie"]}
+    {
+      "id": "sample-spending",
+      "name": "sample: one unique maximum and one three-way tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_id": 1,
+              "product_id": 1,
+              "user_id": 101,
+              "quantity": 10
+            },
+            {
+              "sale_id": 2,
+              "product_id": 3,
+              "user_id": 101,
+              "quantity": 7
+            },
+            {
+              "sale_id": 3,
+              "product_id": 1,
+              "user_id": 102,
+              "quantity": 9
+            },
+            {
+              "sale_id": 4,
+              "product_id": 2,
+              "user_id": 102,
+              "quantity": 6
+            },
+            {
+              "sale_id": 5,
+              "product_id": 3,
+              "user_id": 102,
+              "quantity": 10
+            },
+            {
+              "sale_id": 6,
+              "product_id": 1,
+              "user_id": 102,
+              "quantity": 6
+            }
+          ],
+          "Product": [
+            {
+              "product_id": 1,
+              "price": 10
+            },
+            {
+              "product_id": 2,
+              "price": 25
+            },
+            {
+              "product_id": 3,
+              "price": 15
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "product_id"
+        ],
+        "rows": [
+          [
+            101,
+            3
+          ],
+          [
+            102,
+            1
+          ],
+          [
+            102,
+            2
+          ],
+          [
+            102,
+            3
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-single-sale",
+      "name": "one user's only purchase is their maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_id": 1,
+              "product_id": 7,
+              "user_id": 4,
+              "quantity": 3
+            }
+          ],
+          "Product": [
+            {
+              "product_id": 7,
+              "price": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "product_id"
+        ],
+        "rows": [
+          [
+            4,
+            7
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "single-row"
+      ]
+    },
+    {
+      "id": "trial-aggregate-first",
+      "name": "separate purchases combine to beat one larger sale",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_id": 1,
+              "product_id": 1,
+              "user_id": 8,
+              "quantity": 3
+            },
+            {
+              "sale_id": 2,
+              "product_id": 1,
+              "user_id": 8,
+              "quantity": 4
+            },
+            {
+              "sale_id": 3,
+              "product_id": 2,
+              "user_id": 8,
+              "quantity": 6
+            }
+          ],
+          "Product": [
+            {
+              "product_id": 1,
+              "price": 10
+            },
+            {
+              "product_id": 2,
+              "price": 10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "product_id"
+        ],
+        "rows": [
+          [
+            8,
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "aggregation"
+      ]
+    },
+    {
+      "id": "real-price-matters",
+      "name": "fewer units can cost more at a higher price",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_id": 1,
+              "product_id": 1,
+              "user_id": 5,
+              "quantity": 10
+            },
+            {
+              "sale_id": 2,
+              "product_id": 2,
+              "user_id": 5,
+              "quantity": 2
+            }
+          ],
+          "Product": [
+            {
+              "product_id": 1,
+              "price": 3
+            },
+            {
+              "product_id": 2,
+              "price": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "product_id"
+        ],
+        "rows": [
+          [
+            5,
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "hidden",
+        "price"
+      ]
+    },
+    {
+      "id": "real-two-users",
+      "name": "maxima are partitioned independently by user",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_id": 1,
+              "product_id": 1,
+              "user_id": 10,
+              "quantity": 5
+            },
+            {
+              "sale_id": 2,
+              "product_id": 2,
+              "user_id": 10,
+              "quantity": 1
+            },
+            {
+              "sale_id": 3,
+              "product_id": 1,
+              "user_id": 20,
+              "quantity": 1
+            },
+            {
+              "sale_id": 4,
+              "product_id": 2,
+              "user_id": 20,
+              "quantity": 5
+            }
+          ],
+          "Product": [
+            {
+              "product_id": 1,
+              "price": 10
+            },
+            {
+              "product_id": 2,
+              "price": 10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "product_id"
+        ],
+        "rows": [
+          [
+            10,
+            1
+          ],
+          [
+            20,
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "hidden",
+        "partitioning"
+      ]
+    },
+    {
+      "id": "real-exact-tie",
+      "name": "different quantity-price pairs can tie exactly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_id": 1,
+              "product_id": 1,
+              "user_id": 1,
+              "quantity": 4
+            },
+            {
+              "sale_id": 2,
+              "product_id": 2,
+              "user_id": 1,
+              "quantity": 2
+            }
+          ],
+          "Product": [
+            {
+              "product_id": 1,
+              "price": 5
+            },
+            {
+              "product_id": 2,
+              "price": 10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "product_id"
+        ],
+        "rows": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "hidden",
+        "tie"
+      ]
+    }
   ]
 }

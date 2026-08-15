@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: single character",
-      "kind": "real",
-      "visible": false,
+      "name": "single character",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "z"
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: delete an interior character",
-      "kind": "real",
-      "visible": false,
+      "name": "delete an interior character",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "raceacar"
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: repeated characters still fail",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated characters still fail",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "cbbcc"
       },
@@ -116,9 +116,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: separated mismatches",
-      "kind": "real",
-      "visible": false,
+      "name": "separated mismatches",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abecbea"
       },
@@ -130,4 +130,3 @@
     }
   ]
 }
-

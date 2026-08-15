@@ -1,1 +1,126 @@
-{"schema_version":1,"challenge_id":"lc_2749","cases":[{"id":"sample-negative-term","name":"sample: negative fixed term needs three operations","kind":"sample","visible":true,"input":{"num1":3,"num2":-2},"expected":3,"tags":["sample","negative"]},{"id":"sample-impossible","name":"sample: positive fixed term is impossible","kind":"sample","visible":true,"input":{"num1":5,"num2":7},"expected":-1,"tags":["sample","impossible"]},{"id":"trial-zero-term","name":"trial: zero fixed term reduces to powers of two","kind":"trial","visible":true,"input":{"num1":10,"num2":0},"expected":2,"tags":["trial","zero"]},{"id":"real-minimum-input","name":"hidden: minimum input takes one operation","kind":"real","visible":false,"input":{"num1":1,"num2":0},"expected":1,"tags":["hidden","minimum"]},{"id":"real-zero-remainder-invalid","name":"hidden: adjusted zero cannot form positive powers","kind":"real","visible":false,"input":{"num1":1,"num2":1},"expected":-1,"tags":["hidden","remainder"]},{"id":"real-negative-one-step","name":"hidden: negative term permits one operation","kind":"real","visible":false,"input":{"num1":1,"num2":-1},"expected":1,"tags":["hidden","negative"]},{"id":"real-opposite-extrema","name":"hidden: opposite signed value extrema","kind":"real","visible":false,"input":{"num1":1000000000,"num2":-1000000000},"expected":12,"tags":["hidden","value-boundary"]},{"id":"real-many-operations","name":"hidden: feasible positive term needs many operations","kind":"real","visible":false,"input":{"num1":99861952,"num2":12311},"expected":16,"tags":["hidden","enumeration"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2749",
+  "cases": [
+    {
+      "id": "sample-negative-term",
+      "name": "sample: negative fixed term needs three operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num1": 3,
+        "num2": -2
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: positive fixed term is impossible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num1": 5,
+        "num2": 7
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-zero-term",
+      "name": "trial: zero fixed term reduces to powers of two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 10,
+        "num2": 0
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
+      "id": "real-minimum-input",
+      "name": "minimum input takes one operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 1,
+        "num2": 0
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "minimum"
+      ]
+    },
+    {
+      "id": "real-zero-remainder-invalid",
+      "name": "adjusted zero cannot form positive powers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 1,
+        "num2": 1
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "remainder"
+      ]
+    },
+    {
+      "id": "real-negative-one-step",
+      "name": "negative term permits one operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 1,
+        "num2": -1
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "negative"
+      ]
+    },
+    {
+      "id": "real-opposite-extrema",
+      "name": "opposite signed value extrema",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 1000000000,
+        "num2": -1000000000
+      },
+      "expected": 12,
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-many-operations",
+      "name": "feasible positive term needs many operations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 99861952,
+        "num2": 12311
+      },
+      "expected": 16,
+      "tags": [
+        "hidden",
+        "enumeration"
+      ]
+    }
+  ]
+}

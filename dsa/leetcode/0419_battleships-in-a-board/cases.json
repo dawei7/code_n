@@ -121,9 +121,9 @@
     },
     {
       "id": "hidden-separated",
-      "name": "hidden: several separated single-cell ships",
-      "kind": "real",
-      "visible": false,
+      "name": "several separated single-cell ships",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           [
@@ -151,9 +151,9 @@
     },
     {
       "id": "hidden-multiple",
-      "name": "hidden: horizontal and vertical ships of varied lengths",
-      "kind": "real",
-      "visible": false,
+      "name": "horizontal and vertical ships of varied lengths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           [
@@ -194,9 +194,9 @@
     },
     {
       "id": "hidden-empty",
-      "name": "hidden: larger all-empty board",
-      "kind": "real",
-      "visible": false,
+      "name": "larger all-empty board",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "board": [
           [

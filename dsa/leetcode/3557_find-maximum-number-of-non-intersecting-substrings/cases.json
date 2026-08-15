@@ -7,90 +7,150 @@
       "name": "sample: two separated valid substrings",
       "kind": "sample",
       "visible": true,
-      "input": {"word": "abcdeafdef"},
+      "input": {
+        "word": "abcdeafdef"
+      },
       "expected": 2,
-      "tags": ["sample", "two-intervals", "separated"]
+      "tags": [
+        "sample",
+        "two-intervals",
+        "separated"
+      ]
     },
     {
       "id": "sample-nested-choice",
       "name": "sample: nested choices contribute only one",
       "kind": "sample",
       "visible": true,
-      "input": {"word": "bcdaaaab"},
+      "input": {
+        "word": "bcdaaaab"
+      },
       "expected": 1,
-      "tags": ["sample", "overlap", "nested"]
+      "tags": [
+        "sample",
+        "overlap",
+        "nested"
+      ]
     },
     {
       "id": "trial-too-short",
       "name": "trial: string shorter than four",
       "kind": "trial",
       "visible": true,
-      "input": {"word": "abc"},
+      "input": {
+        "word": "abc"
+      },
       "expected": 0,
-      "tags": ["trial", "minimum-length", "no-interval"]
+      "tags": [
+        "trial",
+        "minimum-length",
+        "no-interval"
+      ]
     },
     {
       "id": "trial-exact-length",
       "name": "trial: exact minimum valid length",
       "kind": "trial",
       "visible": true,
-      "input": {"word": "abca"},
+      "input": {
+        "word": "abca"
+      },
       "expected": 1,
-      "tags": ["trial", "length-four", "boundary"]
+      "tags": [
+        "trial",
+        "length-four",
+        "boundary"
+      ]
     },
     {
       "id": "trial-two-blocks",
       "name": "trial: repeated letter forms two minimum blocks",
       "kind": "trial",
       "visible": true,
-      "input": {"word": "aaaaaaaa"},
+      "input": {
+        "word": "aaaaaaaa"
+      },
       "expected": 2,
-      "tags": ["trial", "repeated-letter", "adjacent-intervals"]
+      "tags": [
+        "trial",
+        "repeated-letter",
+        "adjacent-intervals"
+      ]
     },
     {
       "id": "real-shared-endpoint",
       "name": "real: intervals sharing an endpoint intersect",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "abcaefga"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abcaefga"
+      },
       "expected": 1,
-      "tags": ["real", "shared-endpoint", "overlap"]
+      "tags": [
+        "real",
+        "shared-endpoint",
+        "overlap"
+      ]
     },
     {
       "id": "real-three-greedy-blocks",
       "name": "real: earliest endpoints expose three intervals",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "abcabcabcabc"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abcabcabcabc"
+      },
       "expected": 3,
-      "tags": ["real", "greedy", "overlap"]
+      "tags": [
+        "real",
+        "greedy",
+        "overlap"
+      ]
     },
     {
       "id": "real-seven-equal",
       "name": "real: seven equal letters fit only one length-four block",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "aaaaaaa"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaaaaaa"
+      },
       "expected": 1,
-      "tags": ["real", "repeated-letter", "leftover"]
+      "tags": [
+        "real",
+        "repeated-letter",
+        "leftover"
+      ]
     },
     {
       "id": "real-no-distant-repeat",
       "name": "real: repeats are all too close",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "aabbcc"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aabbcc"
+      },
       "expected": 0,
-      "tags": ["real", "distance", "no-interval"]
+      "tags": [
+        "real",
+        "distance",
+        "no-interval"
+      ]
     },
     {
       "id": "real-two-different-letters",
       "name": "real: two valid intervals use different endpoint letters",
-      "kind": "real",
-      "visible": false,
-      "input": {"word": "zzzzabcdexxxe"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "zzzzabcdexxxe"
+      },
       "expected": 2,
-      "tags": ["real", "different-letters", "separated"]
+      "tags": [
+        "real",
+        "different-letters",
+        "separated"
+      ]
     }
   ]
 }

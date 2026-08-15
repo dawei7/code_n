@@ -2,17 +2,337 @@
   "schema_version": 1,
   "challenge_id": "lc_3128",
   "cases": [
-    { "id": "sample-1", "name": "sample: vertical column with one side point", "kind": "sample", "visible": true, "input": { "grid": [[0,1,0],[0,1,1],[0,1,0]] }, "expected": 2, "tags": ["sample"] },
-    { "id": "sample-2", "name": "sample: no cell can be the right-angle vertex", "kind": "sample", "visible": true, "input": { "grid": [[1,0,0,0],[0,1,0,1],[1,0,0,0]] }, "expected": 0, "tags": ["sample", "zero"] },
-    { "id": "sample-3", "name": "sample: top row and left column", "kind": "sample", "visible": true, "input": { "grid": [[1,0,1],[1,0,0],[1,0,0]] }, "expected": 2, "tags": ["sample"] },
-    { "id": "trial-single-cell", "name": "trial: one cell cannot form a triangle", "kind": "trial", "visible": true, "input": { "grid": [[1]] }, "expected": 0, "tags": ["trial", "minimum"] },
-    { "id": "trial-one-l-shape", "name": "trial: exactly one L-shaped selection", "kind": "trial", "visible": true, "input": { "grid": [[1,1],[1,0]] }, "expected": 1, "tags": ["trial", "single-triangle"] },
-    { "id": "trial-full-two-by-two", "name": "trial: every cell of a full two by two grid is a pivot", "kind": "trial", "visible": true, "input": { "grid": [[1,1],[1,1]] }, "expected": 4, "tags": ["trial", "dense"] },
-    { "id": "trial-full-three-by-four", "name": "trial: dense rectangular grid", "kind": "trial", "visible": true, "input": { "grid": [[1,1,1,1],[1,1,1,1],[1,1,1,1]] }, "expected": 72, "tags": ["trial", "dense", "rectangular"] },
-    { "id": "real-all-zero", "name": "hidden: no selected cells", "kind": "real", "visible": false, "input": { "grid": [[0,0,0],[0,0,0]] }, "expected": 0, "tags": ["real", "zero"] },
-    { "id": "real-single-row", "name": "hidden: a single row has no vertical arm", "kind": "real", "visible": false, "input": { "grid": [[1,1,1,1,1]] }, "expected": 0, "tags": ["real", "single-row"] },
-    { "id": "real-single-column", "name": "hidden: a single column has no horizontal arm", "kind": "real", "visible": false, "input": { "grid": [[1],[1],[1],[1]] }, "expected": 0, "tags": ["real", "single-column"] },
-    { "id": "real-sparse-mixed", "name": "hidden: several pivots with different products", "kind": "real", "visible": false, "input": { "grid": [[1,0,1,0],[0,1,1,1],[1,1,0,0],[0,1,0,1]] }, "expected": 16, "tags": ["real", "sparse"] },
-    { "id": "real-one-nonadjacent-pivot", "name": "hidden: one triangle uses separated cells", "kind": "real", "visible": false, "input": { "grid": [[1,1,0],[0,0,1],[1,0,0]] }, "expected": 1, "tags": ["real", "nonadjacent"] }
+    {
+      "id": "sample-1",
+      "name": "sample: vertical column with one side point",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no cell can be the right-angle vertex",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: top row and left column",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "trial: one cell cannot form a triangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-one-l-shape",
+      "name": "trial: exactly one L-shaped selection",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single-triangle"
+      ]
+    },
+    {
+      "id": "trial-full-two-by-two",
+      "name": "trial: every cell of a full two by two grid is a pivot",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "dense"
+      ]
+    },
+    {
+      "id": "trial-full-three-by-four",
+      "name": "trial: dense rectangular grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 72,
+      "tags": [
+        "trial",
+        "dense",
+        "rectangular"
+      ]
+    },
+    {
+      "id": "real-all-zero",
+      "name": "no selected cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "zero"
+      ]
+    },
+    {
+      "id": "real-single-row",
+      "name": "a single row has no vertical arm",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "single-row"
+      ]
+    },
+    {
+      "id": "real-single-column",
+      "name": "a single column has no horizontal arm",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1
+          ],
+          [
+            1
+          ],
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "single-column"
+      ]
+    },
+    {
+      "id": "real-sparse-mixed",
+      "name": "several pivots with different products",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "real",
+        "sparse"
+      ]
+    },
+    {
+      "id": "real-one-nonadjacent-pivot",
+      "name": "one triangle uses separated cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "nonadjacent"
+      ]
+    }
   ]
 }

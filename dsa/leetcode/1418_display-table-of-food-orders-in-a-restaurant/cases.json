@@ -244,9 +244,9 @@
     },
     {
       "id": "real-numeric-order",
-      "name": "hidden: numeric table sorting",
-      "kind": "real",
-      "visible": false,
+      "name": "numeric table sorting",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "orders": [
           [
@@ -305,9 +305,9 @@
     },
     {
       "id": "real-missing-cells",
-      "name": "hidden: missing combinations become zero",
-      "kind": "real",
-      "visible": false,
+      "name": "missing combinations become zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "orders": [
           [

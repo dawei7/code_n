@@ -162,9 +162,9 @@
     },
     {
       "id": "real-one-row-fails",
-      "name": "hidden: one nonperiodic row makes the matrix different",
-      "kind": "real",
-      "visible": false,
+      "name": "one nonperiodic row makes the matrix different",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -196,9 +196,9 @@
     },
     {
       "id": "real-odd-row-direction",
-      "name": "hidden: odd row rotates right under explicit semantics",
-      "kind": "real",
-      "visible": false,
+      "name": "odd row rotates right under explicit semantics",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -222,9 +222,9 @@
     },
     {
       "id": "real-period-three",
-      "name": "hidden: repeated three-value blocks survive three shifts",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated three-value blocks survive three shifts",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -254,9 +254,9 @@
     },
     {
       "id": "real-rectangular-false",
-      "name": "hidden: rectangular matrix with no matching period",
-      "kind": "real",
-      "visible": false,
+      "name": "rectangular matrix with no matching period",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [

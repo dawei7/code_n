@@ -107,8 +107,8 @@
     {
       "id": "real-first-pair-fails",
       "name": "real: violation occurs immediately",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -126,8 +126,8 @@
     {
       "id": "real-last-pair-fails",
       "name": "real: violation occurs at final pair",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -146,8 +146,8 @@
     {
       "id": "real-long-alternating",
       "name": "real: long alternating sequence",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -261,8 +261,8 @@
     {
       "id": "real-all-odd",
       "name": "real: all values are odd",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -281,8 +281,8 @@
     {
       "id": "real-all-even",
       "name": "real: all values are even",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -301,8 +301,8 @@
     {
       "id": "real-repeated-one",
       "name": "real: equal adjacent values fail",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

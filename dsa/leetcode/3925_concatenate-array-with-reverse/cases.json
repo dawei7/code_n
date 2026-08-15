@@ -337,9 +337,9 @@
     },
     {
       "id": "hidden-minimum-maximum-pair",
-      "name": "hidden: the legal value extremes swap order in the second half",
-      "kind": "real",
-      "visible": false,
+      "name": "the legal value extremes swap order in the second half",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -360,9 +360,9 @@
     },
     {
       "id": "hidden-symmetric-mixed-array",
-      "name": "hidden: a symmetric mixed array still contributes two halves",
-      "kind": "real",
-      "visible": false,
+      "name": "a symmetric mixed array still contributes two halves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,
@@ -395,9 +395,9 @@
     },
     {
       "id": "hidden-seven-values",
-      "name": "hidden: a seven-value sequence uses every reverse index",
-      "kind": "real",
-      "visible": false,
+      "name": "a seven-value sequence uses every reverse index",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -433,9 +433,9 @@
     },
     {
       "id": "hidden-eight-values",
-      "name": "hidden: an eight-value sequence preserves its exact reversal",
-      "kind": "real",
-      "visible": false,
+      "name": "an eight-value sequence preserves its exact reversal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -474,9 +474,9 @@
     },
     {
       "id": "hidden-maximum-length-distinct",
-      "name": "hidden: the maximum-length increasing array reverses completely",
-      "kind": "real",
-      "visible": false,
+      "name": "the maximum-length increasing array reverses completely",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -791,9 +791,9 @@
     },
     {
       "id": "hidden-maximum-length-duplicates",
-      "name": "hidden: one hundred equal values produce two hundred occurrences",
-      "kind": "real",
-      "visible": false,
+      "name": "one hundred equal values produce two hundred occurrences",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100,

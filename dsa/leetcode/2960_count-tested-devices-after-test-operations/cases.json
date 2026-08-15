@@ -109,8 +109,8 @@
     {
       "id": "real-equality-does-not-test",
       "name": "real: batteries equal to offset are skipped",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "batteryPercentages": [
           1,
@@ -130,8 +130,8 @@
     {
       "id": "real-late-high-batteries",
       "name": "real: later high batteries remain testable",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "batteryPercentages": [
           0,
@@ -152,8 +152,8 @@
     {
       "id": "real-maximum-values",
       "name": "real: maximum batteries all test",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "batteryPercentages": [
           100,

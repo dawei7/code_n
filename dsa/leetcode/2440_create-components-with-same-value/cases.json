@@ -7,72 +7,264 @@
       "name": "sample: three components of value six",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [6, 2, 2, 2, 6], "edges": [[0, 1], [1, 2], [1, 3], [3, 4]]},
+      "input": {
+        "nums": [
+          6,
+          2,
+          2,
+          2,
+          6
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "branching-tree"]
+      "tags": [
+        "sample",
+        "branching-tree"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: single node has no edge",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2], "edges": []},
+      "input": {
+        "nums": [
+          2
+        ],
+        "edges": []
+      },
       "expected": 0,
-      "tags": ["sample", "single-node"]
+      "tags": [
+        "sample",
+        "single-node"
+      ]
     },
     {
       "id": "trial-equal-chain",
       "name": "trial: every node becomes a component",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 1, 1], "edges": [[0, 1], [1, 2], [2, 3]]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["trial", "maximum-cuts"]
+      "tags": [
+        "trial",
+        "maximum-cuts"
+      ]
     },
     {
       "id": "trial-three-components",
       "name": "trial: middle pair forms one component",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 1, 1, 2], "edges": [[0, 1], [1, 2], [2, 3]]},
+      "input": {
+        "nums": [
+          2,
+          1,
+          1,
+          2
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "path"]
+      "tags": [
+        "trial",
+        "path"
+      ]
     },
     {
       "id": "real-prime-total",
-      "name": "hidden: prime total prevents a split",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 1, 2, 1], "edges": [[0, 1], [1, 2], [2, 3], [3, 4]]},
+      "name": "prime total prevents a split",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden", "divisibility"]
+      "tags": [
+        "hidden",
+        "divisibility"
+      ]
     },
     {
       "id": "real-star-two-components",
-      "name": "hidden: one leaf separates from a star",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 1, 3], "edges": [[0, 1], [0, 2], [0, 3]]},
+      "name": "one leaf separates from a star",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          3
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["hidden", "star"]
+      "tags": [
+        "hidden",
+        "star"
+      ]
     },
     {
       "id": "real-topology-blocks-divisor",
-      "name": "hidden: arithmetic candidate fails topology",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 3, 3, 2], "edges": [[0, 1], [0, 2], [0, 3]]},
+      "name": "arithmetic candidate fails topology",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          3,
+          2
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["hidden", "topology"]
+      "tags": [
+        "hidden",
+        "topology"
+      ]
     },
     {
       "id": "real-equal-star",
-      "name": "hidden: every star edge is removable",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 5, 5, 5, 5], "edges": [[0, 1], [0, 2], [0, 3], [0, 4]]},
+      "name": "every star edge is removable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "maximum-cuts", "star"]
+      "tags": [
+        "hidden",
+        "maximum-cuts",
+        "star"
+      ]
     }
   ]
 }

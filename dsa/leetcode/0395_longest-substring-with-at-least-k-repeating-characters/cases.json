@@ -79,9 +79,9 @@
     },
     {
       "id": "hidden-rare-separator",
-      "name": "hidden: rare separator divides valid blocks",
-      "kind": "real",
-      "visible": false,
+      "name": "rare separator divides valid blocks",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aaabbbxaaabbbb",
         "k": 3
@@ -94,9 +94,9 @@
     },
     {
       "id": "hidden-no-valid",
-      "name": "hidden: no character reaches threshold",
-      "kind": "real",
-      "visible": false,
+      "name": "no character reaches threshold",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcabc",
         "k": 3
@@ -109,9 +109,9 @@
     },
     {
       "id": "hidden-inner-optimum",
-      "name": "hidden: optimum excludes both ends",
-      "kind": "real",
-      "visible": false,
+      "name": "optimum excludes both ends",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "qaaabbbcccr",
         "k": 3

@@ -82,7 +82,7 @@
       "id": "trial-plateau",
       "name": "trial: uniform plateau",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -105,7 +105,7 @@
       "id": "trial-row",
       "name": "trial: one increasing row",
       "kind": "trial",
-      "visible": false,
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -125,9 +125,9 @@
     },
     {
       "id": "hidden-snake",
-      "name": "hidden: path visits every cell",
-      "kind": "real",
-      "visible": false,
+      "name": "path visits every cell",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -155,9 +155,9 @@
     },
     {
       "id": "hidden-negative",
-      "name": "hidden: negative increasing path",
-      "kind": "real",
-      "visible": false,
+      "name": "negative increasing path",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -178,9 +178,9 @@
     },
     {
       "id": "hidden-separated",
-      "name": "hidden: duplicate values separate climbs",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate values separate climbs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [

@@ -106,9 +106,9 @@
     },
     {
       "id": "real-branching",
-      "name": "hidden: words branch after a shared prefix",
-      "kind": "real",
-      "visible": false,
+      "name": "words branch after a shared prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "apple",
@@ -128,9 +128,9 @@
     },
     {
       "id": "real-one-letter-duplicates",
-      "name": "hidden: duplicate one-letter words",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate one-letter words",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "a",
@@ -150,9 +150,9 @@
     },
     {
       "id": "real-late-branch",
-      "name": "hidden: words differ only at the final character",
-      "kind": "real",
-      "visible": false,
+      "name": "words differ only at the final character",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "aaaa",

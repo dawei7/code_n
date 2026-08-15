@@ -112,9 +112,9 @@
     },
     {
       "id": "real-minimum-first",
-      "name": "hidden: leading minimum permits one suffix sort",
-      "kind": "real",
-      "visible": false,
+      "name": "leading minimum permits one suffix sort",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "acb"
       },
@@ -130,9 +130,9 @@
     },
     {
       "id": "real-maximum-last",
-      "name": "hidden: trailing maximum permits one prefix sort",
-      "kind": "real",
-      "visible": false,
+      "name": "trailing maximum permits one prefix sort",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "bac"
       },
@@ -148,9 +148,9 @@
     },
     {
       "id": "real-other-descending-pair",
-      "name": "hidden: every descending pair is impossible",
-      "kind": "real",
-      "visible": false,
+      "name": "every descending pair is impossible",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "ba"
       },
@@ -166,9 +166,9 @@
     },
     {
       "id": "real-three-operations",
-      "name": "hidden: unique extremes occupy opposite endpoints",
-      "kind": "real",
-      "visible": false,
+      "name": "unique extremes occupy opposite endpoints",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "edc"
       },
@@ -184,9 +184,9 @@
     },
     {
       "id": "real-repeated-minimum",
-      "name": "hidden: repeated trailing minimum reduces answer to two",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated trailing minimum reduces answer to two",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "jgg"
       },
@@ -202,9 +202,9 @@
     },
     {
       "id": "real-minimum-in-prefix",
-      "name": "hidden: a minimum in a proper prefix enables two moves",
-      "kind": "real",
-      "visible": false,
+      "name": "a minimum in a proper prefix enables two moves",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "caba"
       },
@@ -220,9 +220,9 @@
     },
     {
       "id": "real-longer-three-operation",
-      "name": "hidden: longer reverse string retains unique endpoint extremes",
-      "kind": "real",
-      "visible": false,
+      "name": "longer reverse string retains unique endpoint extremes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "dcba"
       },

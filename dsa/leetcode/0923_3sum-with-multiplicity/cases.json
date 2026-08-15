@@ -132,9 +132,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: larger pair is repeated",
-      "kind": "real",
-      "visible": false,
+      "name": "larger pair is repeated",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -153,9 +153,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: several overlapping patterns",
-      "kind": "real",
-      "visible": false,
+      "name": "several overlapping patterns",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0,
@@ -177,9 +177,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: upper value boundary",
-      "kind": "real",
-      "visible": false,
+      "name": "upper value boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           100,
@@ -199,9 +199,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: large combination count",
-      "kind": "real",
-      "visible": false,
+      "name": "large combination count",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           7,
@@ -335,4 +335,3 @@
     }
   ]
 }
-

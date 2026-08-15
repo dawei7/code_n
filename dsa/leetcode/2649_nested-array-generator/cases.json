@@ -1,13 +1,235 @@
 {
   "challenge_id": "lc_2649",
   "cases": [
-    {"id":"sample-nested","name":"sample: nested values and an empty branch","kind":"sample","visible":true,"input":{"arr":[[[6]],[1,3],[]]},"expected":[6,1,3],"tags":["sample","nested","empty-array"]},
-    {"id":"sample-empty","name":"sample: empty outer array","kind":"sample","visible":true,"input":{"arr":[]},"expected":[],"tags":["sample","empty-input"]},
-    {"id":"trial-flat","name":"trial: already flat input","kind":"trial","visible":true,"input":{"arr":[1,2,3,4]},"expected":[1,2,3,4],"tags":["flat"]},
-    {"id":"trial-single-deep","name":"trial: one deeply wrapped value","kind":"trial","visible":true,"input":{"arr":[[[[[7]]]]]},"expected":[7],"tags":["deep","single-value"]},
-    {"id":"real-mixed","name":"hidden: values before between and after nested branches","kind":"real","visible":false,"input":{"arr":[0,[1,[2],3],4,[5,[]],6]},"expected":[0,1,2,3,4,5,6],"tags":["hidden","mixed-depth","order"]},
-    {"id":"real-empty-branches","name":"hidden: all branches are empty","kind":"real","visible":false,"input":{"arr":[[],[[],[[]]],[]]},"expected":[],"tags":["hidden","empty-branches"]},
-    {"id":"real-duplicates-zero","name":"hidden: duplicate values and zero survive traversal","kind":"real","visible":false,"input":{"arr":[[0,0],[[5],5],[0]]},"expected":[0,0,5,5,0],"tags":["hidden","duplicates","zero"]},
-    {"id":"real-asymmetric","name":"hidden: asymmetric nested order","kind":"real","visible":false,"input":{"arr":[[[1,2],3],[[4,[5,6]]],7]},"expected":[1,2,3,4,5,6,7],"tags":["hidden","asymmetric","order"]}
+    {
+      "id": "sample-nested",
+      "name": "sample: nested values and an empty branch",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          [
+            [
+              6
+            ]
+          ],
+          [
+            1,
+            3
+          ],
+          []
+        ]
+      },
+      "expected": [
+        6,
+        1,
+        3
+      ],
+      "tags": [
+        "sample",
+        "nested",
+        "empty-array"
+      ]
+    },
+    {
+      "id": "sample-empty",
+      "name": "sample: empty outer array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": []
+      },
+      "expected": [],
+      "tags": [
+        "sample",
+        "empty-input"
+      ]
+    },
+    {
+      "id": "trial-flat",
+      "name": "trial: already flat input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "flat"
+      ]
+    },
+    {
+      "id": "trial-single-deep",
+      "name": "trial: one deeply wrapped value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          [
+            [
+              [
+                [
+                  7
+                ]
+              ]
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        7
+      ],
+      "tags": [
+        "deep",
+        "single-value"
+      ]
+    },
+    {
+      "id": "real-mixed",
+      "name": "values before between and after nested branches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          [
+            1,
+            [
+              2
+            ],
+            3
+          ],
+          4,
+          [
+            5,
+            []
+          ],
+          6
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "tags": [
+        "hidden",
+        "mixed-depth",
+        "order"
+      ]
+    },
+    {
+      "id": "real-empty-branches",
+      "name": "all branches are empty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          [],
+          [
+            [],
+            [
+              []
+            ]
+          ],
+          []
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "hidden",
+        "empty-branches"
+      ]
+    },
+    {
+      "id": "real-duplicates-zero",
+      "name": "duplicate values and zero survive traversal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          [
+            0,
+            0
+          ],
+          [
+            [
+              5
+            ],
+            5
+          ],
+          [
+            0
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        5,
+        5,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "duplicates",
+        "zero"
+      ]
+    },
+    {
+      "id": "real-asymmetric",
+      "name": "asymmetric nested order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          [
+            [
+              1,
+              2
+            ],
+            3
+          ],
+          [
+            [
+              4,
+              [
+                5,
+                6
+              ]
+            ]
+          ],
+          7
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "tags": [
+        "hidden",
+        "asymmetric",
+        "order"
+      ]
+    }
   ]
 }

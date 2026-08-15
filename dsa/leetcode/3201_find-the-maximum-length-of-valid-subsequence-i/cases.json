@@ -137,8 +137,8 @@
     {
       "id": "real-parity-blocks",
       "name": "real: parity blocks require ordered greedy choices",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -160,8 +160,8 @@
     {
       "id": "real-dominant-odd",
       "name": "real: the all-odd candidate beats alternation",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -182,8 +182,8 @@
     {
       "id": "real-late-switches",
       "name": "real: late parity switches extend alternating endpoints",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -205,8 +205,8 @@
     {
       "id": "real-repeated-values",
       "name": "real: repeated positions count independently",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7,
@@ -227,8 +227,8 @@
     {
       "id": "real-value-boundaries",
       "name": "real: minimum and maximum values reduce to parity",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

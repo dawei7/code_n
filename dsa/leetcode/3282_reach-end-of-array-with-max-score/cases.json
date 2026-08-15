@@ -135,8 +135,8 @@
     {
       "id": "real-late-large-value",
       "name": "real: largest value appears only at destination",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -154,8 +154,8 @@
     {
       "id": "real-repeated-records",
       "name": "real: repeated prefix records",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -176,8 +176,8 @@
     {
       "id": "real-alternating-records",
       "name": "real: alternating lows and new highs",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -199,8 +199,8 @@
     {
       "id": "real-upper-bound-values",
       "name": "real: maximum values require wide total",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -219,8 +219,8 @@
     {
       "id": "real-long-plateau",
       "name": "real: early record persists across a plateau",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

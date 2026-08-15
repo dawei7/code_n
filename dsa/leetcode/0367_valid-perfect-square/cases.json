@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-near-square",
-      "name": "hidden: one below a square",
-      "kind": "real",
-      "visible": false,
+      "name": "one below a square",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 9999
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-largest-int-square",
-      "name": "hidden: largest 32-bit square root",
-      "kind": "real",
-      "visible": false,
+      "name": "largest 32-bit square root",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 2147395600
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "hidden-max-int",
-      "name": "hidden: maximum signed 32-bit integer",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum signed 32-bit integer",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 2147483647
       },
@@ -116,4 +116,3 @@
     }
   ]
 }
-

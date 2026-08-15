@@ -175,9 +175,9 @@
     },
     {
       "id": "real-boundaries",
-      "name": "hidden: repeated boundary-spanning queries",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated boundary-spanning queries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           4,

@@ -1,13 +1,319 @@
 {
   "challenge_id": "lc_2675",
   "cases": [
-    {"id":"sample-flat","name":"sample: flat objects share columns","kind":"sample","visible":true,"input":{"arr":[{"b":1,"a":2},{"b":3,"a":4}]},"expected":[["a","b"],[2,1],[4,3]],"tags":["sample","flat"]},
-    {"id":"sample-missing","name":"sample: missing values become empty strings","kind":"sample","visible":true,"input":{"arr":[{"a":1,"b":2},{"c":3,"d":4},{}]},"expected":[["a","b","c","d"],[1,2,"",""],["","",3,4],["","","",""]],"tags":["sample","missing"]},
-    {"id":"sample-nested","name":"sample: nested keys become dotted paths","kind":"sample","visible":true,"input":{"arr":[{"a":{"b":1,"c":2}},{"a":{"b":3,"d":4}}]},"expected":[["a.b","a.c","a.d"],[1,2,""],[3,"",4]],"tags":["sample","nested"]},
-    {"id":"sample-arrays","name":"sample: array indices participate in paths","kind":"sample","visible":true,"input":{"arr":[[{"a":null}],[{"b":true}],[{"c":"x"}]]},"expected":[["0.a","0.b","0.c"],[null,"",""],["",true,""],["","","x"]],"tags":["sample","arrays"]},
-    {"id":"sample-empty","name":"sample: no leaves produce empty rows","kind":"sample","visible":true,"input":{"arr":[{},{},{}]},"expected":[[],[],[],[]],"tags":["sample","empty"]},
-    {"id":"trial-array-lengths","name":"trial: array rows may have different lengths","kind":"trial","visible":true,"input":{"arr":[[1,2],[3]]},"expected":[["0","1"],[1,2],[3,""]],"tags":["arrays","missing"]},
-    {"id":"real-nested-empty","name":"hidden: empty branches create no leaf path","kind":"real","visible":false,"input":{"arr":[{"a":{}},{"a":{"b":2}}]},"expected":[["a.b"],[""],[2]],"tags":["hidden","empty"]},
-    {"id":"real-types","name":"hidden: preserve every JSON primitive type","kind":"real","visible":false,"input":{"arr":[{"z":false,"n":null,"s":"","x":0},{"z":true,"n":5}]},"expected":[["n","s","x","z"],[null,"",0,false],[5,"","",true]],"tags":["hidden","types"]}
+    {
+      "id": "sample-flat",
+      "name": "sample: flat objects share columns",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          {
+            "b": 1,
+            "a": 2
+          },
+          {
+            "b": 3,
+            "a": 4
+          }
+        ]
+      },
+      "expected": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "tags": [
+        "sample",
+        "flat"
+      ]
+    },
+    {
+      "id": "sample-missing",
+      "name": "sample: missing values become empty strings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          {
+            "a": 1,
+            "b": 2
+          },
+          {
+            "c": 3,
+            "d": 4
+          },
+          {}
+        ]
+      },
+      "expected": [
+        [
+          "a",
+          "b",
+          "c",
+          "d"
+        ],
+        [
+          1,
+          2,
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          3,
+          4
+        ],
+        [
+          "",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "tags": [
+        "sample",
+        "missing"
+      ]
+    },
+    {
+      "id": "sample-nested",
+      "name": "sample: nested keys become dotted paths",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          {
+            "a": {
+              "b": 1,
+              "c": 2
+            }
+          },
+          {
+            "a": {
+              "b": 3,
+              "d": 4
+            }
+          }
+        ]
+      },
+      "expected": [
+        [
+          "a.b",
+          "a.c",
+          "a.d"
+        ],
+        [
+          1,
+          2,
+          ""
+        ],
+        [
+          3,
+          "",
+          4
+        ]
+      ],
+      "tags": [
+        "sample",
+        "nested"
+      ]
+    },
+    {
+      "id": "sample-arrays",
+      "name": "sample: array indices participate in paths",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          [
+            {
+              "a": null
+            }
+          ],
+          [
+            {
+              "b": true
+            }
+          ],
+          [
+            {
+              "c": "x"
+            }
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "0.a",
+          "0.b",
+          "0.c"
+        ],
+        [
+          null,
+          "",
+          ""
+        ],
+        [
+          "",
+          true,
+          ""
+        ],
+        [
+          "",
+          "",
+          "x"
+        ]
+      ],
+      "tags": [
+        "sample",
+        "arrays"
+      ]
+    },
+    {
+      "id": "sample-empty",
+      "name": "sample: no leaves produce empty rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          {},
+          {},
+          {}
+        ]
+      },
+      "expected": [
+        [],
+        [],
+        [],
+        []
+      ],
+      "tags": [
+        "sample",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-array-lengths",
+      "name": "trial: array rows may have different lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          [
+            1,
+            2
+          ],
+          [
+            3
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "0",
+          "1"
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          ""
+        ]
+      ],
+      "tags": [
+        "arrays",
+        "missing"
+      ]
+    },
+    {
+      "id": "real-nested-empty",
+      "name": "empty branches create no leaf path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          {
+            "a": {}
+          },
+          {
+            "a": {
+              "b": 2
+            }
+          }
+        ]
+      },
+      "expected": [
+        [
+          "a.b"
+        ],
+        [
+          ""
+        ],
+        [
+          2
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "empty"
+      ]
+    },
+    {
+      "id": "real-types",
+      "name": "preserve every JSON primitive type",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          {
+            "z": false,
+            "n": null,
+            "s": "",
+            "x": 0
+          },
+          {
+            "z": true,
+            "n": 5
+          }
+        ]
+      },
+      "expected": [
+        [
+          "n",
+          "s",
+          "x",
+          "z"
+        ],
+        [
+          null,
+          "",
+          0,
+          false
+        ],
+        [
+          5,
+          "",
+          "",
+          true
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "types"
+      ]
+    }
   ]
 }

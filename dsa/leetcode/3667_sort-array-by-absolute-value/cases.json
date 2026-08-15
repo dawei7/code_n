@@ -133,9 +133,9 @@
     },
     {
       "id": "real-domain-boundaries",
-      "name": "hidden: zero and both signed boundaries",
-      "kind": "real",
-      "visible": false,
+      "name": "zero and both signed boundaries",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -100,
@@ -162,9 +162,9 @@
     },
     {
       "id": "real-duplicate-buckets",
-      "name": "hidden: repeated values across several magnitudes",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated values across several magnitudes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -196,9 +196,9 @@
     },
     {
       "id": "real-already-absolute-sorted",
-      "name": "hidden: input already satisfies the property",
-      "kind": "real",
-      "visible": false,
+      "name": "input already satisfies the property",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -227,9 +227,9 @@
     },
     {
       "id": "real-reverse-magnitudes",
-      "name": "hidden: descending magnitudes require full rearrangement",
-      "kind": "real",
-      "visible": false,
+      "name": "descending magnitudes require full rearrangement",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,

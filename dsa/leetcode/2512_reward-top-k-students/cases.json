@@ -8,14 +8,32 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "positive_feedback": ["smart", "brilliant", "studious"],
-        "negative_feedback": ["not"],
-        "report": ["this student is studious", "the student is smart"],
-        "student_id": [1, 2],
+        "positive_feedback": [
+          "smart",
+          "brilliant",
+          "studious"
+        ],
+        "negative_feedback": [
+          "not"
+        ],
+        "report": [
+          "this student is studious",
+          "the student is smart"
+        ],
+        "student_id": [
+          1,
+          2
+        ],
         "k": 2
       },
-      "expected": [1, 2],
-      "tags": ["sample", "tie-break"]
+      "expected": [
+        1,
+        2
+      ],
+      "tags": [
+        "sample",
+        "tie-break"
+      ]
     },
     {
       "id": "sample-2",
@@ -23,14 +41,32 @@
       "kind": "sample",
       "visible": true,
       "input": {
-        "positive_feedback": ["smart", "brilliant", "studious"],
-        "negative_feedback": ["not"],
-        "report": ["this student is not studious", "the student is smart"],
-        "student_id": [1, 2],
+        "positive_feedback": [
+          "smart",
+          "brilliant",
+          "studious"
+        ],
+        "negative_feedback": [
+          "not"
+        ],
+        "report": [
+          "this student is not studious",
+          "the student is smart"
+        ],
+        "student_id": [
+          1,
+          2
+        ],
         "k": 2
       },
-      "expected": [2, 1],
-      "tags": ["sample", "mixed-feedback"]
+      "expected": [
+        2,
+        1
+      ],
+      "tags": [
+        "sample",
+        "mixed-feedback"
+      ]
     },
     {
       "id": "trial-all-neutral-tie",
@@ -38,14 +74,33 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "positive_feedback": ["good"],
-        "negative_feedback": ["bad"],
-        "report": ["ordinary", "plain", "average"],
-        "student_id": [30, 10, 20],
+        "positive_feedback": [
+          "good"
+        ],
+        "negative_feedback": [
+          "bad"
+        ],
+        "report": [
+          "ordinary",
+          "plain",
+          "average"
+        ],
+        "student_id": [
+          30,
+          10,
+          20
+        ],
         "k": 2
       },
-      "expected": [10, 20],
-      "tags": ["trial", "neutral-words", "partial-result"]
+      "expected": [
+        10,
+        20
+      ],
+      "tags": [
+        "trial",
+        "neutral-words",
+        "partial-result"
+      ]
     },
     {
       "id": "trial-repeated-feedback",
@@ -53,59 +108,128 @@
       "kind": "trial",
       "visible": true,
       "input": {
-        "positive_feedback": ["great"],
-        "negative_feedback": ["poor"],
-        "report": ["great great", "great poor", "plain"],
-        "student_id": [8, 2, 5],
+        "positive_feedback": [
+          "great"
+        ],
+        "negative_feedback": [
+          "poor"
+        ],
+        "report": [
+          "great great",
+          "great poor",
+          "plain"
+        ],
+        "student_id": [
+          8,
+          2,
+          5
+        ],
         "k": 2
       },
-      "expected": [8, 2],
-      "tags": ["trial", "repeated-words"]
+      "expected": [
+        8,
+        2
+      ],
+      "tags": [
+        "trial",
+        "repeated-words"
+      ]
     },
     {
       "id": "real-single-student",
-      "name": "hidden: one student is always selected",
-      "kind": "real",
-      "visible": false,
+      "name": "one student is always selected",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "positive_feedback": ["helpful"],
-        "negative_feedback": ["rude"],
-        "report": ["rude rude helpful"],
-        "student_id": [999999999],
+        "positive_feedback": [
+          "helpful"
+        ],
+        "negative_feedback": [
+          "rude"
+        ],
+        "report": [
+          "rude rude helpful"
+        ],
+        "student_id": [
+          999999999
+        ],
         "k": 1
       },
-      "expected": [999999999],
-      "tags": ["hidden", "minimum-students"]
+      "expected": [
+        999999999
+      ],
+      "tags": [
+        "hidden",
+        "minimum-students"
+      ]
     },
     {
       "id": "real-negative-scores",
-      "name": "hidden: negative scores still rank in descending order",
-      "kind": "real",
-      "visible": false,
+      "name": "negative scores still rank in descending order",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "positive_feedback": ["excellent"],
-        "negative_feedback": ["late"],
-        "report": ["late late", "late", "excellent late late late late"],
-        "student_id": [4, 9, 2],
+        "positive_feedback": [
+          "excellent"
+        ],
+        "negative_feedback": [
+          "late"
+        ],
+        "report": [
+          "late late",
+          "late",
+          "excellent late late late late"
+        ],
+        "student_id": [
+          4,
+          9,
+          2
+        ],
         "k": 3
       },
-      "expected": [2, 9, 4],
-      "tags": ["hidden", "negative-scores"]
+      "expected": [
+        2,
+        9,
+        4
+      ],
+      "tags": [
+        "hidden",
+        "negative-scores"
+      ]
     },
     {
       "id": "real-score-before-id",
-      "name": "hidden: a higher score outranks a much smaller identifier",
-      "kind": "real",
-      "visible": false,
+      "name": "a higher score outranks a much smaller identifier",
+      "kind": "trial",
+      "visible": true,
       "input": {
-        "positive_feedback": ["clear", "kind"],
-        "negative_feedback": ["wrong"],
-        "report": ["wrong", "kind", "clear wrong"],
-        "student_id": [1, 900, 3],
+        "positive_feedback": [
+          "clear",
+          "kind"
+        ],
+        "negative_feedback": [
+          "wrong"
+        ],
+        "report": [
+          "wrong",
+          "kind",
+          "clear wrong"
+        ],
+        "student_id": [
+          1,
+          900,
+          3
+        ],
         "k": 2
       },
-      "expected": [900, 3],
-      "tags": ["hidden", "ranking-priority"]
+      "expected": [
+        900,
+        3
+      ],
+      "tags": [
+        "hidden",
+        "ranking-priority"
+      ]
     }
   ]
 }

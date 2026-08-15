@@ -126,9 +126,9 @@
     },
     {
       "id": "real-wide-gap",
-      "name": "hidden: extra candies cannot close every gap",
-      "kind": "real",
-      "visible": false,
+      "name": "extra candies cannot close every gap",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "candies": [
           100,
@@ -153,9 +153,9 @@
     },
     {
       "id": "real-maximum-extra",
-      "name": "hidden: maximum extra amount qualifies all",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum extra amount qualifies all",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "candies": [
           1,

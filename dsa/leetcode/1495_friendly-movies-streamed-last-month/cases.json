@@ -346,9 +346,9 @@
     },
     {
       "id": "real-no-match",
-      "name": "hidden: no row meets every predicate",
-      "kind": "real",
-      "visible": false,
+      "name": "no row meets every predicate",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "TVProgram": [
@@ -392,9 +392,9 @@
     },
     {
       "id": "real-unmatched-content",
-      "name": "hidden: content without a program is absent",
-      "kind": "real",
-      "visible": false,
+      "name": "content without a program is absent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "TVProgram": [
@@ -437,9 +437,9 @@
     },
     {
       "id": "real-channel-irrelevant",
-      "name": "hidden: multiple channels do not duplicate title",
-      "kind": "real",
-      "visible": false,
+      "name": "multiple channels do not duplicate title",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "TVProgram": [

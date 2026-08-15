@@ -1,13 +1,182 @@
 {
   "challenge_id": "lc_2934",
   "cases": [
-    {"id":"sample-swap-last","name":"sample: swapping the final pair is sufficient","kind":"sample","visible":true,"input":{"nums1":[1,2,7],"nums2":[4,5,3]},"expected":1,"tags":["sample"]},
-    {"id":"sample-two-swaps","name":"sample: swap the last pair and one earlier pair","kind":"sample","visible":true,"input":{"nums1":[2,3,4,5,9],"nums2":[8,8,4,4,4]},"expected":2,"tags":["sample"]},
-    {"id":"sample-impossible","name":"sample: neither final orientation can dominate","kind":"sample","visible":true,"input":{"nums1":[1,5,4],"nums2":[2,5,3]},"expected":-1,"tags":["sample","impossible"]},
-    {"id":"trial-single-index","name":"trial: one-element arrays already satisfy both maxima","kind":"trial","visible":true,"input":{"nums1":[5],"nums2":[7]},"expected":0,"tags":["minimum"]},
-    {"id":"trial-already-valid","name":"trial: both original last elements are maxima","kind":"trial","visible":true,"input":{"nums1":[1,2,3],"nums2":[2,1,4]},"expected":0,"tags":["no-operations"]},
-    {"id":"trial-forced-earlier-swap","name":"trial: fixed maxima force one earlier swap","kind":"trial","visible":true,"input":{"nums1":[6,5],"nums2":[3,7]},"expected":1,"tags":["forced-swap"]},
-    {"id":"real-equal-maxima","name":"hidden: repeated maxima need no swaps","kind":"real","visible":false,"input":{"nums1":[4,4,4,4],"nums2":[9,9,9,9]},"expected":0,"tags":["hidden","ties"]},
-    {"id":"real-large-values","name":"hidden: boundary values force an earlier swap","kind":"real","visible":false,"input":{"nums1":[1000000000,1],"nums2":[1,1000000000]},"expected":1,"tags":["hidden","boundary"]}
+    {
+      "id": "sample-swap-last",
+      "name": "sample: swapping the final pair is sufficient",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          7
+        ],
+        "nums2": [
+          4,
+          5,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-two-swaps",
+      "name": "sample: swap the last pair and one earlier pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          3,
+          4,
+          5,
+          9
+        ],
+        "nums2": [
+          8,
+          8,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: neither final orientation can dominate",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          5,
+          4
+        ],
+        "nums2": [
+          2,
+          5,
+          3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-single-index",
+      "name": "trial: one-element arrays already satisfy both maxima",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          5
+        ],
+        "nums2": [
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-already-valid",
+      "name": "trial: both original last elements are maxima",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3
+        ],
+        "nums2": [
+          2,
+          1,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "no-operations"
+      ]
+    },
+    {
+      "id": "trial-forced-earlier-swap",
+      "name": "trial: fixed maxima force one earlier swap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          6,
+          5
+        ],
+        "nums2": [
+          3,
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "forced-swap"
+      ]
+    },
+    {
+      "id": "real-equal-maxima",
+      "name": "repeated maxima need no swaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "nums2": [
+          9,
+          9,
+          9,
+          9
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "ties"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "boundary values force an earlier swap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1000000000,
+          1
+        ],
+        "nums2": [
+          1,
+          1000000000
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    }
   ]
 }

@@ -75,8 +75,8 @@
     {
       "id": "real-all-zeroes",
       "name": "real: every intermediate digit remains zero",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "000000"
       },
@@ -89,8 +89,8 @@
     {
       "id": "real-descending-digits",
       "name": "real: descending digits produce unequal endpoints",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "9876543210"
       },
@@ -103,8 +103,8 @@
     {
       "id": "real-pi-prefix",
       "name": "real: longer nonperiodic digit sequence",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "314159265358979323846264338327950288419716939937510"
       },
@@ -117,8 +117,8 @@
     {
       "id": "real-beyond-easy-bound",
       "name": "real: periodic input exceeds Operations I length bound",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"
       },
@@ -131,8 +131,8 @@
     {
       "id": "real-uniform-257",
       "name": "real: uniform digits remain equal across many rounds",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"
       },

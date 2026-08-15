@@ -173,8 +173,8 @@
     {
       "id": "real-endpoints-coexist",
       "name": "real: separated endpoints compete with the middle",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -201,8 +201,8 @@
     {
       "id": "real-repeated-index",
       "name": "real: several assignments revisit one index",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -239,8 +239,8 @@
     {
       "id": "real-large-accumulation",
       "name": "real: large positive answers accumulate across queries",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           100000,
@@ -281,8 +281,8 @@
     {
       "id": "real-zero-boundaries",
       "name": "real: positive choices move across a zero array",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -314,8 +314,8 @@
     {
       "id": "real-endpoint-removals",
       "name": "real: updates change both endpoints and the center",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -348,8 +348,8 @@
     {
       "id": "real-negative-to-positive",
       "name": "real: positive replacements revive separated positions",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -5,

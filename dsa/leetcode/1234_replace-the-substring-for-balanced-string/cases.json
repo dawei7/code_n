@@ -71,9 +71,9 @@
     },
     {
       "id": "real-long-balanced",
-      "name": "hidden: repeated balanced blocks need no replacement",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated balanced blocks need no replacement",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "QWERQWERQWER"
       },
@@ -85,9 +85,9 @@
     },
     {
       "id": "real-excess-two-kinds",
-      "name": "hidden: replacement absorbs excess from two characters",
-      "kind": "real",
-      "visible": false,
+      "name": "replacement absorbs excess from two characters",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "QQQQWWWW"
       },

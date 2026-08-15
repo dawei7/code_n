@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: nested valid string",
-      "kind": "real",
-      "visible": false,
+      "name": "nested valid string",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "(((())))"
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: alternating unmatched prefixes",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating unmatched prefixes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": ")())(("
       },
@@ -116,9 +116,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: all closings",
-      "kind": "real",
-      "visible": false,
+      "name": "all closings",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "))))))"
       },
@@ -130,9 +130,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: deep imbalance around valid core",
-      "kind": "real",
-      "visible": false,
+      "name": "deep imbalance around valid core",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "((()())))))"
       },
@@ -144,4 +144,3 @@
     }
   ]
 }
-

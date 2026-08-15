@@ -390,9 +390,9 @@
     },
     {
       "id": "real-two-high-countries",
-      "name": "hidden: both endpoints of a long international call qualify",
-      "kind": "real",
-      "visible": false,
+      "name": "both endpoints of a long international call qualify",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Person": [
@@ -470,9 +470,9 @@
     },
     {
       "id": "real-caller-callee-symmetry",
-      "name": "hidden: caller direction does not change country membership",
-      "kind": "real",
-      "visible": false,
+      "name": "caller direction does not change country membership",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Person": [
@@ -539,9 +539,9 @@
     },
     {
       "id": "real-leading-zero-code",
-      "name": "hidden: country codes remain fixed-width strings",
-      "kind": "real",
-      "visible": false,
+      "name": "country codes remain fixed-width strings",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Person": [

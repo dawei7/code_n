@@ -177,9 +177,9 @@
     },
     {
       "id": "hidden-leaf-extra-time",
-      "name": "hidden: leaf waits after first jump",
-      "kind": "real",
-      "visible": false,
+      "name": "leaf waits after first jump",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 3,
         "edges": [
@@ -203,9 +203,9 @@
     },
     {
       "id": "hidden-too-deep",
-      "name": "hidden: target cannot be reached in time",
-      "kind": "real",
-      "visible": false,
+      "name": "target cannot be reached in time",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "edges": [

@@ -6,108 +6,352 @@
       "name": "sample: two points before the first repeated tag",
       "kind": "sample",
       "visible": true,
-      "input": {"points": [[2, 2], [-1, -2], [-4, 4], [-3, 1], [3, -3]], "s": "abdca"},
+      "input": {
+        "points": [
+          [
+            2,
+            2
+          ],
+          [
+            -1,
+            -2
+          ],
+          [
+            -4,
+            4
+          ],
+          [
+            -3,
+            1
+          ],
+          [
+            3,
+            -3
+          ]
+        ],
+        "s": "abdca"
+      },
       "expected": 2,
-      "tags": ["sample", "threshold"]
+      "tags": [
+        "sample",
+        "threshold"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: farther equal-radius duplicate",
       "kind": "sample",
       "visible": true,
-      "input": {"points": [[1, 1], [-2, -2], [-2, 2]], "s": "abb"},
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            -2,
+            -2
+          ],
+          [
+            -2,
+            2
+          ]
+        ],
+        "s": "abb"
+      },
       "expected": 1,
-      "tags": ["sample", "duplicate"]
+      "tags": [
+        "sample",
+        "duplicate"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: nearest boundary already conflicts",
       "kind": "sample",
       "visible": true,
-      "input": {"points": [[1, 1], [-1, -1], [2, -2]], "s": "ccd"},
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            2,
+            -2
+          ]
+        ],
+        "s": "ccd"
+      },
       "expected": 0,
-      "tags": ["sample", "equal-radius"]
+      "tags": [
+        "sample",
+        "equal-radius"
+      ]
     },
     {
       "id": "trial-origin-singleton",
       "name": "trial: one point at the origin",
       "kind": "trial",
       "visible": true,
-      "input": {"points": [[0, 0]], "s": "a"},
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ]
+        ],
+        "s": "a"
+      },
       "expected": 1,
-      "tags": ["origin", "singleton"]
+      "tags": [
+        "origin",
+        "singleton"
+      ]
     },
     {
       "id": "trial-all-unique",
       "name": "trial: every tag is unique",
       "kind": "trial",
       "visible": true,
-      "input": {"points": [[1, 0], [0, 2], [-3, 0], [0, -4], [5, 5]], "s": "abcde"},
+      "input": {
+        "points": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            -3,
+            0
+          ],
+          [
+            0,
+            -4
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        "s": "abcde"
+      },
       "expected": 5,
-      "tags": ["all-valid", "unique-tags"]
+      "tags": [
+        "all-valid",
+        "unique-tags"
+      ]
     },
     {
       "id": "trial-farther-duplicate",
       "name": "trial: the nearest of one repeated tag fits",
       "kind": "trial",
       "visible": true,
-      "input": {"points": [[1, 0], [5, 0]], "s": "aa"},
+      "input": {
+        "points": [
+          [
+            1,
+            0
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "s": "aa"
+      },
       "expected": 1,
-      "tags": ["duplicate", "strict-threshold"]
+      "tags": [
+        "duplicate",
+        "strict-threshold"
+      ]
     },
     {
       "id": "trial-same-radius-distinct",
       "name": "trial: distinct tags share one boundary",
       "kind": "trial",
       "visible": true,
-      "input": {"points": [[1, 0], [0, 1], [-1, 0]], "s": "abc"},
+      "input": {
+        "points": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            -1,
+            0
+          ]
+        ],
+        "s": "abc"
+      },
       "expected": 3,
-      "tags": ["equal-radius", "all-valid"]
+      "tags": [
+        "equal-radius",
+        "all-valid"
+      ]
     },
     {
       "id": "real-same-radius-duplicate",
       "name": "real: duplicate tag on the nearest boundary",
-      "kind": "real",
-      "visible": false,
-      "input": {"points": [[1, 0], [0, 1], [2, 0]], "s": "aab"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "s": "aab"
+      },
       "expected": 0,
-      "tags": ["equal-radius", "duplicate"]
+      "tags": [
+        "equal-radius",
+        "duplicate"
+      ]
     },
     {
       "id": "real-unrelated-point-on-conflict-boundary",
       "name": "real: unrelated point enters on the conflicting boundary",
-      "kind": "real",
-      "visible": false,
-      "input": {"points": [[1, 0], [2, 0], [3, 0], [0, 3]], "s": "abac"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "s": "abac"
+      },
       "expected": 2,
-      "tags": ["boundary", "strict-threshold"]
+      "tags": [
+        "boundary",
+        "strict-threshold"
+      ]
     },
     {
       "id": "real-earliest-of-several-conflicts",
       "name": "real: the earliest duplicate tag controls",
-      "kind": "real",
-      "visible": false,
-      "input": {"points": [[1, 0], [10, 0], [0, 2], [0, 3], [4, 4]], "s": "aabbc"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            0
+          ],
+          [
+            10,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            4,
+            4
+          ]
+        ],
+        "s": "aabbc"
+      },
       "expected": 2,
-      "tags": ["multiple-duplicates", "threshold"]
+      "tags": [
+        "multiple-duplicates",
+        "threshold"
+      ]
     },
     {
       "id": "real-origin-tag-repeats-farther",
       "name": "real: origin tag repeats at a later radius",
-      "kind": "real",
-      "visible": false,
-      "input": {"points": [[0, 0], [1, 0], [2, 0]], "s": "aba"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "s": "aba"
+      },
       "expected": 2,
-      "tags": ["origin", "duplicate"]
+      "tags": [
+        "origin",
+        "duplicate"
+      ]
     },
     {
       "id": "real-nearest-arrives-later-in-input",
       "name": "real: a closer duplicate is processed later",
-      "kind": "real",
-      "visible": false,
-      "input": {"points": [[10, 0], [2, 0], [0, 1]], "s": "aab"},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            10,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "s": "aab"
+      },
       "expected": 2,
-      "tags": ["input-order", "replacement"]
+      "tags": [
+        "input-order",
+        "replacement"
+      ]
     }
   ]
 }

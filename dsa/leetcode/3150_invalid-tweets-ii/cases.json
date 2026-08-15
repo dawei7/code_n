@@ -160,8 +160,8 @@
     {
       "id": "real-both-marker-boundaries",
       "name": "real: three of each marker remains valid",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tweets": [
@@ -189,8 +189,8 @@
     {
       "id": "real-length-only",
       "name": "real: excessive length alone is invalid",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tweets": [
@@ -222,8 +222,8 @@
     {
       "id": "real-mentions-only",
       "name": "real: four mentions alone are invalid",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tweets": [
@@ -255,8 +255,8 @@
     {
       "id": "real-hashtags-only",
       "name": "real: four hashtags alone are invalid",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tweets": [
@@ -288,8 +288,8 @@
     {
       "id": "real-multiple-rules-once",
       "name": "real: one row violating every rule appears once",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tweets": [
@@ -321,8 +321,8 @@
     {
       "id": "real-unordered-input",
       "name": "real: invalid identifiers are sorted ascending",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tweets": [
@@ -368,8 +368,8 @@
     {
       "id": "real-no-invalid-tweets",
       "name": "real: all tweets stay within every limit",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Tweets": [
@@ -405,17 +405,17 @@
     {
       "id": "real-empty-table",
       "name": "real: empty Tweets table",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
-        "Tweets": {
-          "columns": [
-            "tweet_id",
-            "content"
-          ],
-          "rows": []
-        }
+          "Tweets": {
+            "columns": [
+              "tweet_id",
+              "content"
+            ],
+            "rows": []
+          }
         }
       },
       "expected": {

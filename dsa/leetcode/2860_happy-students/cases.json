@@ -6,72 +6,155 @@
       "name": "sample: empty or full group can be happy",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 1]},
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "boundary"]
+      "tags": [
+        "sample",
+        "boundary"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: three valid group sizes",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [6, 0, 3, 3, 6, 7, 2, 7]},
+      "input": {
+        "nums": [
+          6,
+          0,
+          3,
+          3,
+          6,
+          7,
+          2,
+          7
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "sorting"]
+      "tags": [
+        "sample",
+        "sorting"
+      ]
     },
     {
       "id": "trial-single-student",
       "name": "trial: one zero-threshold student",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0]},
+      "input": {
+        "nums": [
+          0
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "minimum-length"]
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
     },
     {
       "id": "trial-equality-blocks-intermediate-sizes",
       "name": "trial: equal thresholds block every intermediate size",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 1]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "strict-inequality"]
+      "tags": [
+        "trial",
+        "strict-inequality"
+      ]
     },
     {
       "id": "trial-only-full-group",
       "name": "trial: zero threshold blocks the empty group",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 1, 1, 1]},
+      "input": {
+        "nums": [
+          0,
+          1,
+          1,
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "full-group"]
+      "tags": [
+        "trial",
+        "full-group"
+      ]
     },
     {
       "id": "trial-one-internal-gap",
       "name": "trial: one internal gap creates another valid size",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3, 0, 3, 0]},
+      "input": {
+        "nums": [
+          3,
+          0,
+          3,
+          0
+        ]
+      },
       "expected": 2,
-      "tags": ["trial", "internal-boundary", "unsorted"]
+      "tags": [
+        "trial",
+        "internal-boundary",
+        "unsorted"
+      ]
     },
     {
       "id": "real-several-separated-gaps",
-      "name": "hidden: several sorted gaps create choices",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, 1, 5, 3, 1, 3]},
+      "name": "several sorted gaps create choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          5,
+          3,
+          1,
+          3
+        ]
+      },
       "expected": 4,
-      "tags": ["hidden", "multiple-boundaries", "unsorted"]
+      "tags": [
+        "hidden",
+        "multiple-boundaries",
+        "unsorted"
+      ]
     },
     {
       "id": "real-largest-legal-thresholds",
-      "name": "hidden: empty and full groups at the largest legal threshold",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4, 4, 4, 4, 4]},
+      "name": "empty and full groups at the largest legal threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
       "expected": 2,
-      "tags": ["hidden", "maximum-threshold"]
+      "tags": [
+        "hidden",
+        "maximum-threshold"
+      ]
     }
   ]
 }

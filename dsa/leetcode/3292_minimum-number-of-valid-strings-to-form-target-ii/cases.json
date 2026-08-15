@@ -1,14 +1,163 @@
 {
   "challenge_id": "lc_3292",
   "cases": [
-    {"id":"sample-three-pieces","name":"sample: combine several word prefixes","kind":"sample","visible":true,"input":{"words":["abc","aaaaa","bcdef"],"target":"aabcdabc"},"expected":3,"tags":["sample","matching"]},
-    {"id":"sample-reuse-prefix","name":"sample: reuse one long prefix","kind":"sample","visible":true,"input":{"words":["abababab","ab"],"target":"ababaababa"},"expected":2,"tags":["sample","reuse"]},
-    {"id":"sample-impossible","name":"sample: target starts outside every prefix","kind":"sample","visible":true,"input":{"words":["abcdef"],"target":"xyz"},"expected":-1,"tags":["sample","impossible"]},
-    {"id":"trial-proper-prefix","name":"trial: use proper prefixes rather than whole words","kind":"trial","visible":true,"input":{"words":["abcdef"],"target":"abcab"},"expected":2,"tags":["proper-prefix"]},
-    {"id":"trial-greedy-layers","name":"trial: overlapping reaches require layer expansion","kind":"trial","visible":true,"input":{"words":["abca","bcab","cab"],"target":"abcabcab"},"expected":2,"tags":["greedy","overlap"]},
-    {"id":"trial-single-character","name":"trial: only one-character steps are possible","kind":"trial","visible":true,"input":{"words":["a"],"target":"aaaaaa"},"expected":6,"tags":["single-character"]},
-    {"id":"real-dead-end","name":"real: reachable prefix ends before unmatched suffix","kind":"real","visible":false,"input":{"words":["abc","bca","cab"],"target":"abcabx"},"expected":-1,"tags":["gap"]},
-    {"id":"real-shared-prefixes","name":"real: several words share long prefixes","kind":"real","visible":false,"input":{"words":["transmit","transport","transform"],"target":"transftransp"},"expected":2,"tags":["shared-prefix"]},
-    {"id":"real-one-piece","name":"real: complete target is a valid prefix","kind":"real","visible":false,"input":{"words":["longprefixextension","other"],"target":"longprefix"},"expected":1,"tags":["one-piece"]}
+    {
+      "id": "sample-three-pieces",
+      "name": "sample: combine several word prefixes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "aaaaa",
+          "bcdef"
+        ],
+        "target": "aabcdabc"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "matching"
+      ]
+    },
+    {
+      "id": "sample-reuse-prefix",
+      "name": "sample: reuse one long prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abababab",
+          "ab"
+        ],
+        "target": "ababaababa"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "reuse"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: target starts outside every prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcdef"
+        ],
+        "target": "xyz"
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-proper-prefix",
+      "name": "trial: use proper prefixes rather than whole words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcdef"
+        ],
+        "target": "abcab"
+      },
+      "expected": 2,
+      "tags": [
+        "proper-prefix"
+      ]
+    },
+    {
+      "id": "trial-greedy-layers",
+      "name": "trial: overlapping reaches require layer expansion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abca",
+          "bcab",
+          "cab"
+        ],
+        "target": "abcabcab"
+      },
+      "expected": 2,
+      "tags": [
+        "greedy",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: only one-character steps are possible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a"
+        ],
+        "target": "aaaaaa"
+      },
+      "expected": 6,
+      "tags": [
+        "single-character"
+      ]
+    },
+    {
+      "id": "real-dead-end",
+      "name": "real: reachable prefix ends before unmatched suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "bca",
+          "cab"
+        ],
+        "target": "abcabx"
+      },
+      "expected": -1,
+      "tags": [
+        "gap"
+      ]
+    },
+    {
+      "id": "real-shared-prefixes",
+      "name": "real: several words share long prefixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "transmit",
+          "transport",
+          "transform"
+        ],
+        "target": "transftransp"
+      },
+      "expected": 2,
+      "tags": [
+        "shared-prefix"
+      ]
+    },
+    {
+      "id": "real-one-piece",
+      "name": "real: complete target is a valid prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "longprefixextension",
+          "other"
+        ],
+        "target": "longprefix"
+      },
+      "expected": 1,
+      "tags": [
+        "one-piece"
+      ]
+    }
   ]
 }

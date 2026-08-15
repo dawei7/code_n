@@ -97,9 +97,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: example transformation and one separate word",
-      "kind": "real",
-      "visible": false,
+      "name": "example transformation and one separate word",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "zzxy",
@@ -115,9 +115,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: same overall multiset but different parity multisets",
-      "kind": "real",
-      "visible": false,
+      "name": "same overall multiset but different parity multisets",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abcd",
@@ -132,9 +132,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: both parity classes can be reordered",
-      "kind": "real",
-      "visible": false,
+      "name": "both parity classes can be reordered",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "aabb",
@@ -149,9 +149,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: odd-length reversal preserves parity multisets",
-      "kind": "real",
-      "visible": false,
+      "name": "odd-length reversal preserves parity multisets",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abc",
@@ -166,9 +166,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: duplicates across two groups",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicates across two groups",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "words": [
           "abcd",

@@ -2,13 +2,197 @@
   "schema_version": 1,
   "challenge_id": "lc_2150",
   "cases": [
-    {"id": "sample-two-lonely", "name": "sample: two lonely values and one adjacent pair", "kind": "sample", "visible": true, "input": {"nums": [10, 6, 5, 8]}, "expected": [10, 8], "validator": {"kind": "unordered_list"}, "tags": ["sample", "adjacent-pair"]},
-    {"id": "sample-duplicate-middle", "name": "sample: duplicate value is not lonely", "kind": "sample", "visible": true, "input": {"nums": [1, 3, 5, 3]}, "expected": [1, 5], "validator": {"kind": "unordered_list"}, "tags": ["sample", "duplicate"]},
-    {"id": "trial-single-zero", "name": "one value is lonely", "kind": "trial", "visible": true, "input": {"nums": [0]}, "expected": [0], "validator": {"kind": "unordered_list"}, "tags": ["minimum-length", "zero"]},
-    {"id": "trial-all-duplicates", "name": "duplicates are excluded without neighbors", "kind": "trial", "visible": true, "input": {"nums": [4, 4, 9, 9]}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["duplicates"]},
-    {"id": "trial-consecutive-run", "name": "every value has an adjacent neighbor", "kind": "trial", "visible": true, "input": {"nums": [7, 8, 9, 10]}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["consecutive"]},
-    {"id": "real-one-sided-neighbors", "name": "hidden: either adjacent value is enough to exclude", "kind": "real", "visible": false, "input": {"nums": [2, 3, 8, 9, 14]}, "expected": [14], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "one-sided-neighbor"]},
-    {"id": "real-mixed-duplicates", "name": "hidden: unique separated values survive duplicates elsewhere", "kind": "real", "visible": false, "input": {"nums": [0, 2, 2, 5, 7, 10, 10]}, "expected": [0, 5, 7], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "duplicates", "gaps"]},
-    {"id": "real-upper-bound", "name": "hidden: upper-bound value can be lonely", "kind": "real", "visible": false, "input": {"nums": [999998, 999999, 1000000, 42]}, "expected": [42], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "upper-bound"]}
+    {
+      "id": "sample-two-lonely",
+      "name": "sample: two lonely values and one adjacent pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          6,
+          5,
+          8
+        ]
+      },
+      "expected": [
+        10,
+        8
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "adjacent-pair"
+      ]
+    },
+    {
+      "id": "sample-duplicate-middle",
+      "name": "sample: duplicate value is not lonely",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          3
+        ]
+      },
+      "expected": [
+        1,
+        5
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "one value is lonely",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "minimum-length",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-all-duplicates",
+      "name": "duplicates are excluded without neighbors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          9,
+          9
+        ]
+      },
+      "expected": [],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-consecutive-run",
+      "name": "every value has an adjacent neighbor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "expected": [],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "consecutive"
+      ]
+    },
+    {
+      "id": "real-one-sided-neighbors",
+      "name": "either adjacent value is enough to exclude",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          8,
+          9,
+          14
+        ]
+      },
+      "expected": [
+        14
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "one-sided-neighbor"
+      ]
+    },
+    {
+      "id": "real-mixed-duplicates",
+      "name": "unique separated values survive duplicates elsewhere",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          2,
+          2,
+          5,
+          7,
+          10,
+          10
+        ]
+      },
+      "expected": [
+        0,
+        5,
+        7
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "duplicates",
+        "gaps"
+      ]
+    },
+    {
+      "id": "real-upper-bound",
+      "name": "upper-bound value can be lonely",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          999998,
+          999999,
+          1000000,
+          42
+        ]
+      },
+      "expected": [
+        42
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "upper-bound"
+      ]
+    }
   ]
 }

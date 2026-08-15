@@ -2,17 +2,161 @@
   "schema_version": 1,
   "challenge_id": "lc_3227",
   "cases": [
-    {"id":"sample-vowels","name":"sample: vowels give Alice a winning strategy","kind":"sample","visible":true,"input":{"s":"leetcoder"},"expected":true,"tags":["sample"]},
-    {"id":"sample-no-vowels","name":"sample: consonants leave Alice no move","kind":"sample","visible":true,"input":{"s":"bbcd"},"expected":false,"tags":["sample"]},
-    {"id":"trial-single-vowel","name":"trial: one vowel is an immediate win","kind":"trial","visible":true,"input":{"s":"a"},"expected":true,"tags":["minimum-length"]},
-    {"id":"trial-single-consonant","name":"trial: one consonant is an immediate loss","kind":"trial","visible":true,"input":{"s":"z"},"expected":false,"tags":["minimum-length"]},
-    {"id":"trial-one-late-vowel","name":"trial: a final vowel is sufficient","kind":"trial","visible":true,"input":{"s":"bbbbu"},"expected":true,"tags":["late-vowel"]},
-    {"id":"trial-even-vowels","name":"trial: a positive even vowel count still wins","kind":"trial","visible":true,"input":{"s":"ae"},"expected":true,"tags":["even-vowels"]},
-    {"id":"real-all-vowels","name":"real: a string of vowels is winning","kind":"real","visible":false,"input":{"s":"aeiouaeiou"},"expected":true,"tags":["all-vowels"]},
-    {"id":"real-long-consonants","name":"real: many consonants remain losing","kind":"real","visible":false,"input":{"s":"bcdfghjklmnpqrstvwxyz"},"expected":false,"tags":["no-vowels"]},
-    {"id":"real-middle-vowel","name":"real: one interior vowel is sufficient","kind":"real","visible":false,"input":{"s":"bcdfaght"},"expected":true,"tags":["interior-vowel"]},
-    {"id":"real-repeated-consonant","name":"real: repeated consonants do not create a move","kind":"real","visible":false,"input":{"s":"mmmmmmmm"},"expected":false,"tags":["no-vowels"]},
-    {"id":"real-odd-vowels","name":"real: odd total can be removed immediately","kind":"real","visible":false,"input":{"s":"education"},"expected":true,"tags":["odd-vowels"]},
-    {"id":"real-y-only","name":"real: y is not an English vowel","kind":"real","visible":false,"input":{"s":"rhythms"},"expected":false,"tags":["vowel-definition"]}
+    {
+      "id": "sample-vowels",
+      "name": "sample: vowels give Alice a winning strategy",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "leetcoder"
+      },
+      "expected": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-vowels",
+      "name": "sample: consonants leave Alice no move",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "bbcd"
+      },
+      "expected": false,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-vowel",
+      "name": "trial: one vowel is an immediate win",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": true,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-single-consonant",
+      "name": "trial: one consonant is an immediate loss",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z"
+      },
+      "expected": false,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-one-late-vowel",
+      "name": "trial: a final vowel is sufficient",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bbbbu"
+      },
+      "expected": true,
+      "tags": [
+        "late-vowel"
+      ]
+    },
+    {
+      "id": "trial-even-vowels",
+      "name": "trial: a positive even vowel count still wins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ae"
+      },
+      "expected": true,
+      "tags": [
+        "even-vowels"
+      ]
+    },
+    {
+      "id": "real-all-vowels",
+      "name": "real: a string of vowels is winning",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aeiouaeiou"
+      },
+      "expected": true,
+      "tags": [
+        "all-vowels"
+      ]
+    },
+    {
+      "id": "real-long-consonants",
+      "name": "real: many consonants remain losing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bcdfghjklmnpqrstvwxyz"
+      },
+      "expected": false,
+      "tags": [
+        "no-vowels"
+      ]
+    },
+    {
+      "id": "real-middle-vowel",
+      "name": "real: one interior vowel is sufficient",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bcdfaght"
+      },
+      "expected": true,
+      "tags": [
+        "interior-vowel"
+      ]
+    },
+    {
+      "id": "real-repeated-consonant",
+      "name": "real: repeated consonants do not create a move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "mmmmmmmm"
+      },
+      "expected": false,
+      "tags": [
+        "no-vowels"
+      ]
+    },
+    {
+      "id": "real-odd-vowels",
+      "name": "real: odd total can be removed immediately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "education"
+      },
+      "expected": true,
+      "tags": [
+        "odd-vowels"
+      ]
+    },
+    {
+      "id": "real-y-only",
+      "name": "real: y is not an English vowel",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "rhythms"
+      },
+      "expected": false,
+      "tags": [
+        "vowel-definition"
+      ]
+    }
   ]
 }

@@ -2,12 +2,168 @@
   "schema_version": 1,
   "challenge_id": "lc_2321",
   "cases": [
-    {"id":"sample-single-index","name":"sample: one exchanged index improves the first sum","kind":"sample","visible":true,"input":{"nums1":[60,60,60],"nums2":[10,90,10]},"expected":210,"tags":["sample","kadane"]},
-    {"id":"sample-suffix-swap","name":"sample: suffix exchange improves the second sum","kind":"sample","visible":true,"input":{"nums1":[20,40,20,70,30],"nums2":[50,20,50,40,20]},"expected":220,"tags":["sample","suffix"]},
-    {"id":"sample-no-swap","name":"sample: keeping both arrays unchanged is optimal","kind":"sample","visible":true,"input":{"nums1":[7,11,13],"nums2":[1,1,1]},"expected":31,"tags":["sample","no-swap"]},
-    {"id":"trial-single-element","name":"one-element swap cannot exceed the larger original value","kind":"trial","visible":true,"input":{"nums1":[1],"nums2":[10]},"expected":10,"tags":["boundary"]},
-    {"id":"trial-identical","name":"identical arrays have zero possible gain","kind":"trial","visible":true,"input":{"nums1":[5,5,5],"nums2":[5,5,5]},"expected":15,"tags":["zero-gain"]},
-    {"id":"real-internal-gain","name":"hidden: best gain is a strict internal interval","kind":"real","visible":false,"input":{"nums1":[10,1,1,10],"nums2":[1,9,8,1]},"expected":37,"tags":["hidden","internal-subarray"]},
-    {"id":"real-whole-array","name":"hidden: swapping the whole array preserves the larger total","kind":"real","visible":false,"input":{"nums1":[1,1,1,1],"nums2":[4,4,4,4]},"expected":16,"tags":["hidden","whole-array"]}
+    {
+      "id": "sample-single-index",
+      "name": "sample: one exchanged index improves the first sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          60,
+          60,
+          60
+        ],
+        "nums2": [
+          10,
+          90,
+          10
+        ]
+      },
+      "expected": 210,
+      "tags": [
+        "sample",
+        "kadane"
+      ]
+    },
+    {
+      "id": "sample-suffix-swap",
+      "name": "sample: suffix exchange improves the second sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          20,
+          40,
+          20,
+          70,
+          30
+        ],
+        "nums2": [
+          50,
+          20,
+          50,
+          40,
+          20
+        ]
+      },
+      "expected": 220,
+      "tags": [
+        "sample",
+        "suffix"
+      ]
+    },
+    {
+      "id": "sample-no-swap",
+      "name": "sample: keeping both arrays unchanged is optimal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          7,
+          11,
+          13
+        ],
+        "nums2": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 31,
+      "tags": [
+        "sample",
+        "no-swap"
+      ]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "one-element swap cannot exceed the larger original value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          10
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-identical",
+      "name": "identical arrays have zero possible gain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          5,
+          5,
+          5
+        ],
+        "nums2": [
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "zero-gain"
+      ]
+    },
+    {
+      "id": "real-internal-gain",
+      "name": "best gain is a strict internal interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          10,
+          1,
+          1,
+          10
+        ],
+        "nums2": [
+          1,
+          9,
+          8,
+          1
+        ]
+      },
+      "expected": 37,
+      "tags": [
+        "hidden",
+        "internal-subarray"
+      ]
+    },
+    {
+      "id": "real-whole-array",
+      "name": "swapping the whole array preserves the larger total",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "nums2": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "hidden",
+        "whole-array"
+      ]
+    }
   ]
 }

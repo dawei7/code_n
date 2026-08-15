@@ -75,9 +75,9 @@
     },
     {
       "id": "real-all-unique",
-      "name": "hidden: every present digit occurs once",
-      "kind": "real",
-      "visible": false,
+      "name": "every present digit occurs once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 987654
       },
@@ -90,9 +90,9 @@
     },
     {
       "id": "real-smallest-digit-not-least",
-      "name": "hidden: high frequency prevents smallest present digit winning",
-      "kind": "real",
-      "visible": false,
+      "name": "high frequency prevents smallest present digit winning",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 111223
       },
@@ -104,9 +104,9 @@
     },
     {
       "id": "real-many-zeroes",
-      "name": "hidden: one is rarer than zero",
-      "kind": "real",
-      "visible": false,
+      "name": "one is rarer than zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000000000
       },
@@ -119,9 +119,9 @@
     },
     {
       "id": "real-maximum-input",
-      "name": "hidden: maximum signed 32-bit input",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum signed 32-bit input",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 2147483647
       },

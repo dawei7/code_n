@@ -91,9 +91,9 @@
     },
     {
       "id": "real-mixed-invalid",
-      "name": "hidden: ignore invalid words among useful choices",
-      "kind": "real",
-      "visible": false,
+      "name": "ignore invalid words among useful choices",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           "ab",
@@ -111,9 +111,9 @@
     },
     {
       "id": "real-order-independent-length",
-      "name": "hidden: overlaps force a nonadjacent subsequence",
-      "kind": "real",
-      "visible": false,
+      "name": "overlaps force a nonadjacent subsequence",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           "abc",

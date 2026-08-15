@@ -141,9 +141,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: every node included",
-      "kind": "real",
-      "visible": false,
+      "name": "every node included",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           8,
@@ -173,9 +173,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: narrow left-subtree interval",
-      "kind": "real",
-      "visible": false,
+      "name": "narrow left-subtree interval",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           20,
@@ -201,9 +201,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: range above every value",
-      "kind": "real",
-      "visible": false,
+      "name": "range above every value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           4,

@@ -93,9 +93,9 @@
     },
     {
       "id": "hidden-incomplete",
-      "name": "hidden: incomplete three-byte character",
-      "kind": "real",
-      "visible": false,
+      "name": "incomplete three-byte character",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "data": [
           226,
@@ -110,9 +110,9 @@
     },
     {
       "id": "hidden-five-byte-prefix",
-      "name": "hidden: unsupported five-byte prefix",
-      "kind": "real",
-      "visible": false,
+      "name": "unsupported five-byte prefix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "data": [
           248,
@@ -130,9 +130,9 @@
     },
     {
       "id": "hidden-several-characters",
-      "name": "hidden: adjacent widths",
-      "kind": "real",
-      "visible": false,
+      "name": "adjacent widths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "data": [
           36,

@@ -98,8 +98,8 @@
     {
       "id": "real-mixed-values",
       "name": "real: repeated and zero values",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -121,8 +121,8 @@
     {
       "id": "real-maximum-singleton",
       "name": "real: maximum value modulo reduction",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000
@@ -138,8 +138,8 @@
     {
       "id": "real-all-zeros",
       "name": "real: every eligible extreme is zero",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -158,8 +158,8 @@
     {
       "id": "real-decreasing",
       "name": "real: input begins in decreasing order",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5,
@@ -178,8 +178,8 @@
     {
       "id": "real-many-duplicates",
       "name": "real: duplicate ranks remain distinct",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9,
@@ -199,8 +199,8 @@
     {
       "id": "real-two-extremes",
       "name": "real: zero and maximum value",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
@@ -217,8 +217,8 @@
     {
       "id": "real-k-one-longer",
       "name": "real: k one on a longer array",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           3,
@@ -238,8 +238,8 @@
     {
       "id": "real-unsorted-mixed",
       "name": "real: unsorted values and intermediate k",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,

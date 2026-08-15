@@ -7,144 +7,672 @@
       "name": "sample: middle zero and full path are counted",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 0, 1], "edges": [[0, 1], [1, 2]]},
+      "input": {
+        "nums": [
+          1,
+          0,
+          1
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "path", "induced-connectivity", "even-sum"]
+      "tags": [
+        "sample",
+        "path",
+        "induced-connectivity",
+        "even-sum"
+      ]
     },
     {
       "id": "sample-single-one",
       "name": "sample: a single one has odd sum",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1], "edges": []},
+      "input": {
+        "nums": [
+          1
+        ],
+        "edges": []
+      },
       "expected": 0,
-      "tags": ["sample", "single-node", "odd-sum"]
+      "tags": [
+        "sample",
+        "single-node",
+        "odd-sum"
+      ]
     },
     {
       "id": "trial-single-zero",
       "name": "trial: a single zero is connected with even sum",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0], "edges": []},
+      "input": {
+        "nums": [
+          0
+        ],
+        "edges": []
+      },
       "expected": 1,
-      "tags": ["trial", "single-node", "zero-sum"]
+      "tags": [
+        "trial",
+        "single-node",
+        "zero-sum"
+      ]
     },
     {
       "id": "trial-disconnected-zeros",
       "name": "trial: disconnected zero nodes count only as singletons",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 0], "edges": []},
+      "input": {
+        "nums": [
+          0,
+          0
+        ],
+        "edges": []
+      },
       "expected": 2,
-      "tags": ["trial", "disconnected", "even-sum"]
+      "tags": [
+        "trial",
+        "disconnected",
+        "even-sum"
+      ]
     },
     {
       "id": "trial-adjacent-ones",
       "name": "trial: two adjacent ones contribute only together",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1], "edges": [[0, 1]]},
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "edge", "two-ones"]
+      "tags": [
+        "trial",
+        "edge",
+        "two-ones"
+      ]
     },
     {
       "id": "trial-mixed-edge",
       "name": "trial: zero singleton contributes but mixed pair does not",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 1], "edges": [[0, 1]]},
+      "input": {
+        "nums": [
+          0,
+          1
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
       "expected": 1,
-      "tags": ["trial", "edge", "mixed-parity"]
+      "tags": [
+        "trial",
+        "edge",
+        "mixed-parity"
+      ]
     },
     {
       "id": "trial-zero-path",
       "name": "trial: every connected interval of an all-zero path counts",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 0, 0, 0], "edges": [[0, 1], [1, 2], [2, 3]]},
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
       "expected": 10,
-      "tags": ["trial", "path", "all-zero", "connected-intervals"]
+      "tags": [
+        "trial",
+        "path",
+        "all-zero",
+        "connected-intervals"
+      ]
     },
     {
       "id": "trial-complete-all-ones",
       "name": "trial: even-cardinality subsets of a complete graph count",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 1, 1], "edges": [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
       "expected": 7,
-      "tags": ["trial", "complete-graph", "all-one", "even-cardinality"]
+      "tags": [
+        "trial",
+        "complete-graph",
+        "all-one",
+        "even-cardinality"
+      ]
     },
     {
       "id": "trial-cycle-opposite-ones",
       "name": "trial: a cycle rejects disconnected opposite pairs",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 0, 1, 0], "edges": [[0, 1], [1, 2], [2, 3], [0, 3]]},
+      "input": {
+        "nums": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      },
       "expected": 5,
-      "tags": ["trial", "cycle", "opposite-nodes", "induced-connectivity"]
+      "tags": [
+        "trial",
+        "cycle",
+        "opposite-nodes",
+        "induced-connectivity"
+      ]
     },
     {
       "id": "trial-star-mixed-values",
       "name": "trial: mixed-value star exercises center-dependent connectivity",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 0, 0, 0], "edges": [[0, 1], [0, 2], [0, 3], [0, 4]]},
+      "input": {
+        "nums": [
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ]
+      },
       "expected": 11,
-      "tags": ["trial", "star", "mixed-parity", "center"]
+      "tags": [
+        "trial",
+        "star",
+        "mixed-parity",
+        "center"
+      ]
     },
     {
       "id": "hidden-two-components",
-      "name": "hidden: valid subsets cannot cross disconnected components",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 1, 1, 0, 0], "edges": [[0, 1], [1, 2], [3, 4]]},
+      "name": "valid subsets cannot cross disconnected components",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          1,
+          0,
+          0
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
       "expected": 6,
-      "tags": ["hidden", "multiple-components", "even-sum"]
+      "tags": [
+        "hidden",
+        "multiple-components",
+        "even-sum"
+      ]
     },
     {
       "id": "hidden-dense-mixed-graph",
-      "name": "hidden: dense local cycles and a bridge",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 0, 1, 1, 0, 0], "edges": [[0, 1], [0, 2], [1, 2], [1, 3], [3, 4], [3, 5], [4, 5]]},
+      "name": "dense local cycles and a bridge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          1,
+          1,
+          0,
+          0
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
       "expected": 14,
-      "tags": ["hidden", "cycles", "bridge", "mixed-parity"]
+      "tags": [
+        "hidden",
+        "cycles",
+        "bridge",
+        "mixed-parity"
+      ]
     },
     {
       "id": "hidden-branching-tree",
-      "name": "hidden: branching tree has many disconnected selections",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 0, 1, 0, 1, 0], "edges": [[0, 1], [0, 2], [1, 3], [1, 4], [2, 5], [2, 6]]},
+      "name": "branching tree has many disconnected selections",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ]
+        ]
+      },
       "expected": 18,
-      "tags": ["hidden", "tree", "branches", "mixed-parity"]
+      "tags": [
+        "hidden",
+        "tree",
+        "branches",
+        "mixed-parity"
+      ]
     },
     {
       "id": "hidden-maximum-empty-graph",
-      "name": "hidden: maximum all-zero graph without edges",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "edges": []},
+      "name": "maximum all-zero graph without edges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "edges": []
+      },
       "expected": 13,
-      "tags": ["hidden", "maximum-n", "empty-graph", "singletons"]
+      "tags": [
+        "hidden",
+        "maximum-n",
+        "empty-graph",
+        "singletons"
+      ]
     },
     {
       "id": "hidden-long-alternating-path",
-      "name": "hidden: long path with alternating values",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0], "edges": [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9], [9, 10]]},
+      "name": "long path with alternating values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            9,
+            10
+          ]
+        ]
+      },
       "expected": 30,
-      "tags": ["hidden", "long-path", "path", "alternating-values"]
+      "tags": [
+        "hidden",
+        "long-path",
+        "path",
+        "alternating-values"
+      ]
     },
     {
       "id": "hidden-dense-all-zero",
-      "name": "hidden: every non-empty subset of an eight-node all-zero clique counts",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 0, 0, 0, 0, 0, 0, 0], "edges": [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [0, 7], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [2, 3], [2, 4], [2, 5], [2, 6], [2, 7], [3, 4], [3, 5], [3, 6], [3, 7], [4, 5], [4, 6], [4, 7], [5, 6], [5, 7], [6, 7]]},
+      "name": "every non-empty subset of an eight-node all-zero clique counts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            7
+          ]
+        ]
+      },
       "expected": 255,
-      "tags": ["hidden", "dense", "complete-graph", "all-zero"]
+      "tags": [
+        "hidden",
+        "dense",
+        "complete-graph",
+        "all-zero"
+      ]
     }
   ]
 }

@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: several repeated suffix digits",
-      "kind": "real",
-      "visible": false,
+      "name": "several repeated suffix digits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 12443322
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: single digit",
-      "kind": "real",
-      "visible": false,
+      "name": "single digit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 7
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: next permutation overflows",
-      "kind": "real",
-      "visible": false,
+      "name": "next permutation overflows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1999999999
       },
@@ -116,4 +116,3 @@
     }
   ]
 }
-

@@ -214,9 +214,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: incomparable quietest person",
-      "kind": "real",
-      "visible": false,
+      "name": "incomparable quietest person",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "richer": [
           [
@@ -242,9 +242,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: starting person beats richer people",
-      "kind": "real",
-      "visible": false,
+      "name": "starting person beats richer people",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "richer": [
           [
@@ -284,9 +284,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: two disconnected components",
-      "kind": "real",
-      "visible": false,
+      "name": "two disconnected components",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "richer": [
           [
@@ -324,9 +324,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: quietest person in middle of chain",
-      "kind": "real",
-      "visible": false,
+      "name": "quietest person in middle of chain",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "richer": [
           [
@@ -362,9 +362,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: shared richer ancestor",
-      "kind": "real",
-      "visible": false,
+      "name": "shared richer ancestor",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "richer": [
           [
@@ -400,9 +400,9 @@
     },
     {
       "id": "hidden-6",
-      "name": "hidden: direct relation dominates no assumption",
-      "kind": "real",
-      "visible": false,
+      "name": "direct relation dominates no assumption",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "richer": [
           [

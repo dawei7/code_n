@@ -169,8 +169,8 @@
     {
       "id": "real-two-enemies",
       "name": "real: exact pairwise exchange boundary",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "power": 4,
         "damage": [
@@ -191,8 +191,8 @@
     {
       "id": "real-many-ties",
       "name": "real: several equal attack counts",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "power": 6,
         "damage": [
@@ -219,8 +219,8 @@
     {
       "id": "real-divisible-health",
       "name": "real: every health divides by power",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "power": 10,
         "damage": [
@@ -245,8 +245,8 @@
     {
       "id": "real-large-values",
       "name": "real: large rates and health use wide totals",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "power": 1,
         "damage": [
@@ -269,8 +269,8 @@
     {
       "id": "real-eight-enemies",
       "name": "real: eight deterministic enemies",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "power": 7,
         "damage": [

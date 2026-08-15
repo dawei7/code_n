@@ -173,8 +173,8 @@
     {
       "id": "real-large-initials",
       "name": "real: initial values near the source maximum",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -197,8 +197,8 @@
     {
       "id": "real-remainder-order",
       "name": "real: equal balanced values receive indexed extras",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -225,8 +225,8 @@
     {
       "id": "real-varied-warmup",
       "name": "real: several warm-up depths",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -255,8 +255,8 @@
     {
       "id": "real-factor-one",
       "name": "real: identity factor preserves all positions",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000000,
@@ -281,8 +281,8 @@
     {
       "id": "real-many-values",
       "name": "real: twenty deterministic values",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,

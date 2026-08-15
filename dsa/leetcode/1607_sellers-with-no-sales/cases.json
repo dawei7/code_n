@@ -268,9 +268,9 @@
     },
     {
       "id": "real-outside-both-sides",
-      "name": "hidden: sales surrounding 2020 do not exclude",
-      "kind": "real",
-      "visible": false,
+      "name": "sales surrounding 2020 do not exclude",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customer": [
@@ -341,9 +341,9 @@
     },
     {
       "id": "real-many-active-orders",
-      "name": "hidden: repeated 2020 sales exclude once",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated 2020 sales exclude once",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customer": [
@@ -408,9 +408,9 @@
     },
     {
       "id": "real-all-active",
-      "name": "hidden: every seller has a 2020 sale",
-      "kind": "real",
-      "visible": false,
+      "name": "every seller has a 2020 sale",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customer": [
@@ -474,9 +474,9 @@
     },
     {
       "id": "real-all-inactive",
-      "name": "hidden: every order is outside 2020",
-      "kind": "real",
-      "visible": false,
+      "name": "every order is outside 2020",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customer": [
@@ -551,9 +551,9 @@
     },
     {
       "id": "real-id-order-differs",
-      "name": "hidden: sort by seller name rather than ID",
-      "kind": "real",
-      "visible": false,
+      "name": "sort by seller name rather than ID",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customer": [
@@ -611,9 +611,9 @@
     },
     {
       "id": "real-customers-costs-irrelevant",
-      "name": "hidden: customer and cost do not affect exclusion",
-      "kind": "real",
-      "visible": false,
+      "name": "customer and cost do not affect exclusion",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "Customer": [

@@ -142,9 +142,9 @@
     },
     {
       "id": "hidden-two-by-two",
-      "name": "hidden: two-by-two correction",
-      "kind": "real",
-      "visible": false,
+      "name": "two-by-two correction",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
@@ -165,9 +165,9 @@
     },
     {
       "id": "hidden-one-column",
-      "name": "hidden: one column follows down arrows",
-      "kind": "real",
-      "visible": false,
+      "name": "one column follows down arrows",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [

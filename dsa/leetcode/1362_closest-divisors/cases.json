@@ -89,9 +89,9 @@
     },
     {
       "id": "hidden-equal-factors",
-      "name": "hidden: later perfect square",
-      "kind": "real",
-      "visible": false,
+      "name": "later perfect square",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 7
       },
@@ -106,9 +106,9 @@
     },
     {
       "id": "hidden-first-square",
-      "name": "hidden: first candidate is forty-nine",
-      "kind": "real",
-      "visible": false,
+      "name": "first candidate is forty-nine",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": 48
       },

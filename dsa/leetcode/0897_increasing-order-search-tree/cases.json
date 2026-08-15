@@ -143,9 +143,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: complete three-level tree",
-      "kind": "real",
-      "visible": false,
+      "name": "complete three-level tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           4,
@@ -179,9 +179,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: sparse mixed-depth tree",
-      "kind": "real",
-      "visible": false,
+      "name": "sparse mixed-depth tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           8,
@@ -224,9 +224,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: zero-valued singleton",
-      "kind": "real",
-      "visible": false,
+      "name": "zero-valued singleton",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           0
@@ -242,9 +242,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: values near upper boundary",
-      "kind": "real",
-      "visible": false,
+      "name": "values near upper boundary",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           1000,
@@ -270,9 +270,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: uneven four-level tree",
-      "kind": "real",
-      "visible": false,
+      "name": "uneven four-level tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           10,

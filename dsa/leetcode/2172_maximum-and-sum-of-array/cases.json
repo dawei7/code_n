@@ -2,13 +2,155 @@
   "schema_version": 1,
   "challenge_id": "lc_2172",
   "cases": [
-    {"id": "sample-full-three-slots", "name": "sample: fill all three slots", "kind": "sample", "visible": true, "input": {"nums": [1, 2, 3, 4, 5, 6], "numSlots": 3}, "expected": 9, "tags": ["sample", "full-capacity"]},
-    {"id": "sample-many-empty-slots", "name": "sample: choose among nine mostly empty slots", "kind": "sample", "visible": true, "input": {"nums": [1, 3, 10, 4, 7, 1], "numSlots": 9}, "expected": 24, "tags": ["sample", "empty-slots"]},
-    {"id": "trial-single", "name": "one value in one slot", "kind": "trial", "visible": true, "input": {"nums": [1], "numSlots": 1}, "expected": 1, "tags": ["minimum"]},
-    {"id": "trial-one-slot-full", "name": "two values share the only slot", "kind": "trial", "visible": true, "input": {"nums": [15, 15], "numSlots": 1}, "expected": 2, "tags": ["one-slot", "full-capacity"]},
-    {"id": "trial-zero-contributions", "name": "the only slot shares no set bit", "kind": "trial", "visible": true, "input": {"nums": [8, 8], "numSlots": 1}, "expected": 0, "tags": ["zero-score"]},
-    {"id": "trial-two-slots", "name": "separate two values into matching slots", "kind": "trial", "visible": true, "input": {"nums": [1, 2], "numSlots": 2}, "expected": 3, "tags": ["partial-capacity"]},
-    {"id": "real-duplicate-values", "name": "hidden: place three equal values across two slots", "kind": "real", "visible": false, "input": {"nums": [7, 7, 7], "numSlots": 2}, "expected": 5, "tags": ["hidden", "duplicates"]},
-    {"id": "real-upper-domain", "name": "hidden: maximum values choose the highest-scoring slot", "kind": "real", "visible": false, "input": {"nums": [15, 15], "numSlots": 9}, "expected": 18, "tags": ["hidden", "upper-bound", "empty-slots"]}
+    {
+      "id": "sample-full-three-slots",
+      "name": "sample: fill all three slots",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "numSlots": 3
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "full-capacity"
+      ]
+    },
+    {
+      "id": "sample-many-empty-slots",
+      "name": "sample: choose among nine mostly empty slots",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          10,
+          4,
+          7,
+          1
+        ],
+        "numSlots": 9
+      },
+      "expected": 24,
+      "tags": [
+        "sample",
+        "empty-slots"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "one value in one slot",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "numSlots": 1
+      },
+      "expected": 1,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-one-slot-full",
+      "name": "two values share the only slot",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          15,
+          15
+        ],
+        "numSlots": 1
+      },
+      "expected": 2,
+      "tags": [
+        "one-slot",
+        "full-capacity"
+      ]
+    },
+    {
+      "id": "trial-zero-contributions",
+      "name": "the only slot shares no set bit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          8
+        ],
+        "numSlots": 1
+      },
+      "expected": 0,
+      "tags": [
+        "zero-score"
+      ]
+    },
+    {
+      "id": "trial-two-slots",
+      "name": "separate two values into matching slots",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ],
+        "numSlots": 2
+      },
+      "expected": 3,
+      "tags": [
+        "partial-capacity"
+      ]
+    },
+    {
+      "id": "real-duplicate-values",
+      "name": "place three equal values across two slots",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7
+        ],
+        "numSlots": 2
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-upper-domain",
+      "name": "maximum values choose the highest-scoring slot",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          15,
+          15
+        ],
+        "numSlots": 9
+      },
+      "expected": 18,
+      "tags": [
+        "hidden",
+        "upper-bound",
+        "empty-slots"
+      ]
+    }
   ]
 }

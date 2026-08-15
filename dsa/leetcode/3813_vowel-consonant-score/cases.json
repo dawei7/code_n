@@ -7,120 +7,214 @@
       "name": "sample: four vowels divided by two consonants",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "cooear"},
+      "input": {
+        "s": "cooear"
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "exact-division"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "exact-division"
+      ]
     },
     {
       "id": "sample-floor-quotient",
       "name": "sample: the vowel-to-consonant quotient rounds down",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "axeyizou"},
+      "input": {
+        "s": "axeyizou"
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "floor"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "floor"
+      ]
     },
     {
       "id": "sample-no-consonants",
       "name": "sample: spaces and digits do not create consonants",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "au 123"},
+      "input": {
+        "s": "au 123"
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "zero-consonants", "ignored-characters"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "zero-consonants",
+        "ignored-characters"
+      ]
     },
     {
       "id": "trial-single-consonant",
       "name": "trial: one consonant and no vowels",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "b"},
+      "input": {
+        "s": "b"
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-length", "zero-vowels"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "zero-vowels"
+      ]
     },
     {
       "id": "trial-only-vowels",
       "name": "trial: all five vowels still use the zero-consonant rule",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aeiou"},
+      "input": {
+        "s": "aeiou"
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "all-vowels", "zero-consonants"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-vowels",
+        "zero-consonants"
+      ]
     },
     {
       "id": "trial-ignored-between-letters",
       "name": "trial: a space and digit are ignored between two letters",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "a 1b"},
+      "input": {
+        "s": "a 1b"
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "ignored-characters", "equal-counts"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "ignored-characters",
+        "equal-counts"
+      ]
     },
     {
       "id": "trial-nonintegral-quotient",
       "name": "trial: three vowels over two consonants rounds down",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "aaabc"},
+      "input": {
+        "s": "aaabc"
+      },
       "expected": 1,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "floor", "mixed-letters"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "floor",
+        "mixed-letters"
+      ]
     },
     {
       "id": "trial-no-letters",
       "name": "trial: a nonempty string may contain no letters",
       "kind": "trial",
       "visible": true,
-      "input": {"s": " 0123456789"},
+      "input": {
+        "s": " 0123456789"
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "spaces", "digits", "zero-consonants"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "spaces",
+        "digits",
+        "zero-consonants"
+      ]
     },
     {
       "id": "real-large-score",
-      "name": "hidden: one consonant permits a score larger than one",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaaaab"},
+      "name": "one consonant permits a score larger than one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaab"
+      },
       "expected": 5,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "large-quotient"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "large-quotient"
+      ]
     },
     {
       "id": "real-all-consonants",
-      "name": "hidden: a consonant-only string has score zero",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "bcdfg"},
+      "name": "a consonant-only string has score zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bcdfg"
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "all-consonants", "zero-vowels"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "all-consonants",
+        "zero-vowels"
+      ]
     },
     {
       "id": "real-entire-alphabet",
-      "name": "hidden: y and every other non-vowel letter are consonants",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abcdefghijklmnopqrstuvwxyz"},
+      "name": "y and every other non-vowel letter are consonants",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz"
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "alphabet", "y-is-consonant"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "alphabet",
+        "y-is-consonant"
+      ]
     },
     {
       "id": "real-maximum-length-mixed",
-      "name": "hidden: maximum length mixes letters, spaces, and digits",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbb          123456789012345"},
+      "name": "maximum length mixes letters, spaces, and digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbb          123456789012345"
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "maximum-length", "ignored-characters"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "ignored-characters"
+      ]
     }
   ]
 }

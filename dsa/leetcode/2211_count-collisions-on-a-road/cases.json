@@ -2,13 +2,115 @@
   "schema_version": 1,
   "challenge_id": "lc_2211",
   "cases": [
-    {"id":"sample-collision-chain","name":"sample: opposing and stationary collisions total five","kind":"sample","visible":true,"input":{"directions":"RLRSLL"},"expected":5,"tags":["sample","chain"]},
-    {"id":"sample-all-escape","name":"sample: outward boundary cars never collide","kind":"sample","visible":true,"input":{"directions":"LLRR"},"expected":0,"tags":["sample","escape"]},
-    {"id":"trial-all-stationary","name":"stationary cars cause no collisions alone","kind":"trial","visible":true,"input":{"directions":"SSS"},"expected":0,"tags":["stationary"]},
-    {"id":"trial-opposing-pair","name":"two opposing cars contribute two","kind":"trial","visible":true,"input":{"directions":"RL"},"expected":2,"tags":["opposite-directions"]},
-    {"id":"real-moving-into-stationary","name":"hidden: moving cars strike a stationary center","kind":"real","visible":false,"input":{"directions":"RRRSLLL"},"expected":6,"tags":["hidden","stationary-center"]},
-    {"id":"real-boundary-runs-and-core","name":"hidden: trim both escape runs before counting","kind":"real","visible":false,"input":{"directions":"LLRSLRR"},"expected":2,"tags":["hidden","boundary-runs"]},
-    {"id":"real-single-car","name":"hidden: one car cannot collide","kind":"real","visible":false,"input":{"directions":"R"},"expected":0,"tags":["hidden","minimum-length"]},
-    {"id":"real-repeated-opposition","name":"hidden: all trapped moving cars eventually stop","kind":"real","visible":false,"input":{"directions":"RLRLRL"},"expected":6,"tags":["hidden","multiple-collisions"]}
+    {
+      "id": "sample-collision-chain",
+      "name": "sample: opposing and stationary collisions total five",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "directions": "RLRSLL"
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "chain"
+      ]
+    },
+    {
+      "id": "sample-all-escape",
+      "name": "sample: outward boundary cars never collide",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "directions": "LLRR"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "escape"
+      ]
+    },
+    {
+      "id": "trial-all-stationary",
+      "name": "stationary cars cause no collisions alone",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "directions": "SSS"
+      },
+      "expected": 0,
+      "tags": [
+        "stationary"
+      ]
+    },
+    {
+      "id": "trial-opposing-pair",
+      "name": "two opposing cars contribute two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "directions": "RL"
+      },
+      "expected": 2,
+      "tags": [
+        "opposite-directions"
+      ]
+    },
+    {
+      "id": "real-moving-into-stationary",
+      "name": "moving cars strike a stationary center",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "directions": "RRRSLLL"
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "stationary-center"
+      ]
+    },
+    {
+      "id": "real-boundary-runs-and-core",
+      "name": "trim both escape runs before counting",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "directions": "LLRSLRR"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "boundary-runs"
+      ]
+    },
+    {
+      "id": "real-single-car",
+      "name": "one car cannot collide",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "directions": "R"
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "real-repeated-opposition",
+      "name": "all trapped moving cars eventually stop",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "directions": "RLRLRL"
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "multiple-collisions"
+      ]
+    }
   ]
 }

@@ -149,9 +149,9 @@
     },
     {
       "id": "hidden-wide-bricks",
-      "name": "hidden: widths rather than indices determine edges",
-      "kind": "real",
-      "visible": false,
+      "name": "widths rather than indices determine edges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "wall": [
           [
@@ -184,9 +184,9 @@
     },
     {
       "id": "hidden-no-shared",
-      "name": "hidden: every internal edge is unique",
-      "kind": "real",
-      "visible": false,
+      "name": "every internal edge is unique",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "wall": [
           [
@@ -215,9 +215,9 @@
     },
     {
       "id": "hidden-outer-edge",
-      "name": "hidden: the common right boundary is illegal",
-      "kind": "real",
-      "visible": false,
+      "name": "the common right boundary is illegal",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "wall": [
           [
@@ -236,4 +236,3 @@
     }
   ]
 }
-

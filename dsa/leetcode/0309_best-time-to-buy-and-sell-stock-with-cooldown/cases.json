@@ -90,9 +90,9 @@
     },
     {
       "id": "real-multiple",
-      "name": "hidden: several competing transaction plans",
-      "kind": "real",
-      "visible": false,
+      "name": "several competing transaction plans",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "prices": [
           6,

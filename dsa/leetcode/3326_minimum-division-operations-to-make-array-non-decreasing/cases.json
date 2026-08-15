@@ -95,8 +95,8 @@
     {
       "id": "real-prime-above-one",
       "name": "real: prime cannot be lowered to one",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -112,8 +112,8 @@
     {
       "id": "real-large-square",
       "name": "real: maximum-scale prime square reduces once",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           982081,

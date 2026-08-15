@@ -6,108 +6,299 @@
       "name": "sample: negative shift after removing extremes",
       "kind": "sample",
       "visible": true,
-      "input": {"nums1": [4, 20, 16, 12, 8], "nums2": [14, 18, 10]},
+      "input": {
+        "nums1": [
+          4,
+          20,
+          16,
+          12,
+          8
+        ],
+        "nums2": [
+          14,
+          18,
+          10
+        ]
+      },
       "expected": -2,
-      "tags": ["sample", "negative", "permutation"]
+      "tags": [
+        "sample",
+        "negative",
+        "permutation"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: duplicate pair after positive shift",
       "kind": "sample",
       "visible": true,
-      "input": {"nums1": [3, 5, 5, 3], "nums2": [7, 7]},
+      "input": {
+        "nums1": [
+          3,
+          5,
+          5,
+          3
+        ],
+        "nums2": [
+          7,
+          7
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "positive", "duplicates"]
+      "tags": [
+        "sample",
+        "positive",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-minimum-of-three-singleton-shifts",
       "name": "trial: minimum shift among three singleton choices",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [4, 7, 5], "nums2": [5]},
+      "input": {
+        "nums1": [
+          4,
+          7,
+          5
+        ],
+        "nums2": [
+          5
+        ]
+      },
       "expected": -2,
-      "tags": ["minimum", "singleton", "negative"]
+      "tags": [
+        "minimum",
+        "singleton",
+        "negative"
+      ]
     },
     {
       "id": "trial-zero-with-duplicates",
       "name": "trial: zero shift with indistinguishable removals",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [1, 1, 1, 1], "nums2": [1, 1]},
+      "input": {
+        "nums1": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "nums2": [
+          1,
+          1
+        ]
+      },
       "expected": 0,
-      "tags": ["zero", "duplicates"]
+      "tags": [
+        "zero",
+        "duplicates"
+      ]
     },
     {
       "id": "trial-boundary-singleton",
       "name": "trial: target singleton chooses the largest source value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [0, 500, 1000], "nums2": [500]},
+      "input": {
+        "nums1": [
+          0,
+          500,
+          1000
+        ],
+        "nums2": [
+          500
+        ]
+      },
       "expected": -500,
-      "tags": ["minimum", "boundary", "singleton"]
+      "tags": [
+        "minimum",
+        "boundary",
+        "singleton"
+      ]
     },
     {
       "id": "trial-duplicate-candidates",
       "name": "trial: duplicate alignments yield different valid shifts",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [1, 1, 3, 3, 5], "nums2": [7, 7, 9]},
+      "input": {
+        "nums1": [
+          1,
+          1,
+          3,
+          3,
+          5
+        ],
+        "nums2": [
+          7,
+          7,
+          9
+        ]
+      },
       "expected": 4,
-      "tags": ["minimum", "duplicates", "positive"]
+      "tags": [
+        "minimum",
+        "duplicates",
+        "positive"
+      ]
     },
     {
       "id": "real-large-negative-shift",
       "name": "real: minimum valid shift approaches the negative boundary",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [1000, 900, 800, 700], "nums2": [0, 100]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1000,
+          900,
+          800,
+          700
+        ],
+        "nums2": [
+          0,
+          100
+        ]
+      },
       "expected": -900,
-      "tags": ["real", "negative", "boundary"]
+      "tags": [
+        "real",
+        "negative",
+        "boundary"
+      ]
     },
     {
       "id": "real-large-positive-shift",
       "name": "real: minimum valid shift approaches the positive boundary",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [0, 10, 20, 30], "nums2": [1000, 990]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          0,
+          10,
+          20,
+          30
+        ],
+        "nums2": [
+          1000,
+          990
+        ]
+      },
       "expected": 970,
-      "tags": ["real", "positive", "boundary"]
+      "tags": [
+        "real",
+        "positive",
+        "boundary"
+      ]
     },
     {
       "id": "real-permuted-interior-removals",
       "name": "real: interior removals and reordered target",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [8, 2, 11, 5, 14], "nums2": [15, 9, 12]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          8,
+          2,
+          11,
+          5,
+          14
+        ],
+        "nums2": [
+          15,
+          9,
+          12
+        ]
+      },
       "expected": 1,
-      "tags": ["real", "permutation", "interior-removal"]
+      "tags": [
+        "real",
+        "permutation",
+        "interior-removal"
+      ]
     },
     {
       "id": "real-many-duplicates",
       "name": "real: duplicate-heavy multiset matching",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [5, 5, 5, 8, 8, 11, 11], "nums2": [7, 7, 10, 10, 13]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          5,
+          5,
+          5,
+          8,
+          8,
+          11,
+          11
+        ],
+        "nums2": [
+          7,
+          7,
+          10,
+          10,
+          13
+        ]
+      },
       "expected": 2,
-      "tags": ["real", "duplicates"]
+      "tags": [
+        "real",
+        "duplicates"
+      ]
     },
     {
       "id": "real-consecutive-alternative-alignments",
       "name": "real: consecutive values admit multiple shifts",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [0, 1, 2, 3, 4], "nums2": [13, 14, 15]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "nums2": [
+          13,
+          14,
+          15
+        ]
+      },
       "expected": 11,
-      "tags": ["real", "minimum", "consecutive"]
+      "tags": [
+        "real",
+        "minimum",
+        "consecutive"
+      ]
     },
     {
       "id": "real-maximum-positive-shift",
       "name": "real: maximum positive shift with repeated zeros",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums1": [0, 0, 0, 0, 1000], "nums2": [1000, 1000, 1000]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          0,
+          0,
+          0,
+          0,
+          1000
+        ],
+        "nums2": [
+          1000,
+          1000,
+          1000
+        ]
+      },
       "expected": 1000,
-      "tags": ["real", "boundary", "duplicates", "positive"]
+      "tags": [
+        "real",
+        "boundary",
+        "duplicates",
+        "positive"
+      ]
     }
   ]
 }

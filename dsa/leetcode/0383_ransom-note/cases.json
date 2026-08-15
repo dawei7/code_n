@@ -79,9 +79,9 @@
     },
     {
       "id": "hidden-short-magazine",
-      "name": "hidden: magazine is too short",
-      "kind": "real",
-      "visible": false,
+      "name": "magazine is too short",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ransomNote": "leetcode",
         "magazine": "code"
@@ -94,9 +94,9 @@
     },
     {
       "id": "hidden-late-shortage",
-      "name": "hidden: one late multiplicity shortage",
-      "kind": "real",
-      "visible": false,
+      "name": "one late multiplicity shortage",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ransomNote": "zzzzzy",
         "magazine": "yzzzzx"
@@ -109,9 +109,9 @@
     },
     {
       "id": "hidden-extra-letters",
-      "name": "hidden: irrelevant supply remains",
-      "kind": "real",
-      "visible": false,
+      "name": "irrelevant supply remains",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "ransomNote": "algorithm",
         "magazine": "logarithmxyz"

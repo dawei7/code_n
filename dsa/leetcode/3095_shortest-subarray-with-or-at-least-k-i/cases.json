@@ -6,81 +6,180 @@
       "name": "sample: a singleton reaches the threshold",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3], "k": 2},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 2
+      },
       "expected": 1,
-      "tags": ["sample", "singleton"]
+      "tags": [
+        "sample",
+        "singleton"
+      ]
     },
     {
       "id": "sample-whole-array",
       "name": "sample: only the whole array is special",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 1, 8], "k": 10},
+      "input": {
+        "nums": [
+          2,
+          1,
+          8
+        ],
+        "k": 10
+      },
       "expected": 3,
-      "tags": ["sample", "whole-array"]
+      "tags": [
+        "sample",
+        "whole-array"
+      ]
     },
     {
       "id": "sample-zero-threshold",
       "name": "sample: zero threshold",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2], "k": 0},
+      "input": {
+        "nums": [
+          1,
+          2
+        ],
+        "k": 0
+      },
       "expected": 1,
-      "tags": ["sample", "zero-threshold"]
+      "tags": [
+        "sample",
+        "zero-threshold"
+      ]
     },
     {
       "id": "trial-exact-three-elements",
       "name": "three bits are needed to reach the exact threshold",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 4], "k": 7},
+      "input": {
+        "nums": [
+          1,
+          2,
+          4
+        ],
+        "k": 7
+      },
       "expected": 3,
-      "tags": ["exact-threshold", "whole-array"]
+      "tags": [
+        "exact-threshold",
+        "whole-array"
+      ]
     },
     {
       "id": "trial-middle-singleton",
       "name": "best singleton occurs in the middle",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 32, 2, 4], "k": 31},
+      "input": {
+        "nums": [
+          1,
+          32,
+          2,
+          4
+        ],
+        "k": 31
+      },
       "expected": 1,
-      "tags": ["singleton", "interior"]
+      "tags": [
+        "singleton",
+        "interior"
+      ]
     },
     {
       "id": "trial-all-zero-impossible",
       "name": "positive threshold cannot be reached by zeros",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 0, 0], "k": 1},
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ],
+        "k": 1
+      },
       "expected": -1,
-      "tags": ["impossible", "zeros"]
+      "tags": [
+        "impossible",
+        "zeros"
+      ]
     },
     {
       "id": "real-valid-prefix-not-whole-array",
-      "name": "hidden: shortest answer is a four-element prefix",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [32, 1, 25, 11, 2], "k": 59},
+      "name": "shortest answer is a four-element prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          32,
+          1,
+          25,
+          11,
+          2
+        ],
+        "k": 59
+      },
       "expected": 4,
-      "tags": ["hidden", "prefix", "or-not-sum"]
+      "tags": [
+        "hidden",
+        "prefix",
+        "or-not-sum"
+      ]
     },
     {
       "id": "real-unreachable-high-threshold",
-      "name": "hidden: combined bits remain below the threshold",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 4, 8, 16], "k": 63},
+      "name": "combined bits remain below the threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8,
+          16
+        ],
+        "k": 63
+      },
       "expected": -1,
-      "tags": ["hidden", "impossible", "maximum-threshold"]
+      "tags": [
+        "hidden",
+        "impossible",
+        "maximum-threshold"
+      ]
     },
     {
       "id": "real-late-length-two-answer",
-      "name": "hidden: shortest qualifying pair appears late",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 2, 4, 16, 32], "k": 48},
+      "name": "shortest qualifying pair appears late",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          16,
+          32
+        ],
+        "k": 48
+      },
       "expected": 2,
-      "tags": ["hidden", "late-answer", "pair"]
+      "tags": [
+        "hidden",
+        "late-answer",
+        "pair"
+      ]
     }
   ]
 }

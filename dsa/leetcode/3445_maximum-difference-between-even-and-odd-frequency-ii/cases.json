@@ -1,14 +1,138 @@
 {
   "challenge_id": "lc_3445",
   "cases": [
-    {"id":"sample-negative","name":"sample: valid maximum is negative","kind":"sample","visible":true,"input":{"s":"12233","k":4},"expected":-1,"tags":["sample"]},
-    {"id":"sample-positive","name":"sample: odd count exceeds even count","kind":"sample","visible":true,"input":{"s":"1122211","k":3},"expected":1,"tags":["sample"]},
-    {"id":"sample-whole-string","name":"sample: only the whole string qualifies","kind":"sample","visible":true,"input":{"s":"110","k":3},"expected":-1,"tags":["sample","exact-length"]},
-    {"id":"trial-minimum-k","name":"trial: minimum substring bound","kind":"trial","visible":true,"input":{"s":"00011","k":1},"expected":1,"tags":["trial","minimum-k"]},
-    {"id":"trial-role-order","name":"trial: ordered character roles matter","kind":"trial","visible":true,"input":{"s":"4444000","k":2},"expected":1,"tags":["trial","ordered-pair"]},
-    {"id":"real-all-digits","name":"real: all digits with paired frequencies","kind":"real","visible":false,"input":{"s":"0011223344","k":5},"expected":-1,"tags":["real","all-digits"]},
-    {"id":"real-positive-even-required","name":"real: zero even count cannot qualify","kind":"real","visible":false,"input":{"s":"0123401234","k":6},"expected":-1,"tags":["real","nonzero-even"]},
-    {"id":"real-late-odd-frequency","name":"real: best odd role appears at the end","kind":"real","visible":false,"input":{"s":"111122223","k":4},"expected":1,"tags":["real","late-character"]},
-    {"id":"real-alternating","name":"real: alternating pair and length bound","kind":"real","visible":false,"input":{"s":"0101010","k":3},"expected":1,"tags":["real","alternating"]}
+    {
+      "id": "sample-negative",
+      "name": "sample: valid maximum is negative",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "12233",
+        "k": 4
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-positive",
+      "name": "sample: odd count exceeds even count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1122211",
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-whole-string",
+      "name": "sample: only the whole string qualifies",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "110",
+        "k": 3
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "exact-length"
+      ]
+    },
+    {
+      "id": "trial-minimum-k",
+      "name": "trial: minimum substring bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "00011",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-k"
+      ]
+    },
+    {
+      "id": "trial-role-order",
+      "name": "trial: ordered character roles matter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "4444000",
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "ordered-pair"
+      ]
+    },
+    {
+      "id": "real-all-digits",
+      "name": "real: all digits with paired frequencies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0011223344",
+        "k": 5
+      },
+      "expected": -1,
+      "tags": [
+        "real",
+        "all-digits"
+      ]
+    },
+    {
+      "id": "real-positive-even-required",
+      "name": "real: zero even count cannot qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0123401234",
+        "k": 6
+      },
+      "expected": -1,
+      "tags": [
+        "real",
+        "nonzero-even"
+      ]
+    },
+    {
+      "id": "real-late-odd-frequency",
+      "name": "real: best odd role appears at the end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111122223",
+        "k": 4
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "late-character"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "real: alternating pair and length bound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0101010",
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "alternating"
+      ]
+    }
   ]
 }

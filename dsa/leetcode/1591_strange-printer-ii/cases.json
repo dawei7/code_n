@@ -155,9 +155,9 @@
     },
     {
       "id": "real-solid",
-      "name": "hidden: one solid color",
-      "kind": "real",
-      "visible": false,
+      "name": "one solid color",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "targetGrid": [
           [
@@ -181,9 +181,9 @@
     },
     {
       "id": "real-quadrants",
-      "name": "hidden: four disjoint rectangular colors",
-      "kind": "real",
-      "visible": false,
+      "name": "four disjoint rectangular colors",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "targetGrid": [
           [
@@ -220,9 +220,9 @@
     },
     {
       "id": "real-separated-printable",
-      "name": "hidden: one color surrounds a later rectangle",
-      "kind": "real",
-      "visible": false,
+      "name": "one color surrounds a later rectangle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "targetGrid": [
           [
@@ -247,9 +247,9 @@
     },
     {
       "id": "real-three-nested",
-      "name": "hidden: three nested rectangles",
-      "kind": "real",
-      "visible": false,
+      "name": "three nested rectangles",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "targetGrid": [
           [
@@ -286,9 +286,9 @@
     },
     {
       "id": "real-two-cycle",
-      "name": "hidden: two colors mutually depend",
-      "kind": "real",
-      "visible": false,
+      "name": "two colors mutually depend",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "targetGrid": [
           [
@@ -309,9 +309,9 @@
     },
     {
       "id": "real-separated-cycle",
-      "name": "hidden: separated occurrences force a cycle",
-      "kind": "real",
-      "visible": false,
+      "name": "separated occurrences force a cycle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "targetGrid": [
           [

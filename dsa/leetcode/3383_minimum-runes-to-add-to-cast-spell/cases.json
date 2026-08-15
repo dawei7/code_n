@@ -6,72 +6,250 @@
       "name": "sample: energized cycle and two isolated points",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 6, "crystals": [0], "flowFrom": [0, 1, 2, 3], "flowTo": [1, 2, 3, 0]},
+      "input": {
+        "n": 6,
+        "crystals": [
+          0
+        ],
+        "flowFrom": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "flowTo": [
+          1,
+          2,
+          3,
+          0
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "isolated"]
+      "tags": [
+        "sample",
+        "isolated"
+      ]
     },
     {
       "id": "sample-unreachable-cycle",
       "name": "sample: one rune energizes a separate cycle",
       "kind": "sample",
       "visible": true,
-      "input": {"n": 7, "crystals": [3, 5], "flowFrom": [0, 1, 2, 3, 5], "flowTo": [1, 2, 0, 4, 6]},
+      "input": {
+        "n": 7,
+        "crystals": [
+          3,
+          5
+        ],
+        "flowFrom": [
+          0,
+          1,
+          2,
+          3,
+          5
+        ],
+        "flowTo": [
+          1,
+          2,
+          0,
+          4,
+          6
+        ]
+      },
       "expected": 1,
-      "tags": ["sample", "scc"]
+      "tags": [
+        "sample",
+        "scc"
+      ]
     },
     {
       "id": "trial-fully-reachable-chain",
       "name": "trial: one crystal reaches every point",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 5, "crystals": [0], "flowFrom": [0, 1, 2, 3], "flowTo": [1, 2, 3, 4]},
+      "input": {
+        "n": 5,
+        "crystals": [
+          0
+        ],
+        "flowFrom": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "flowTo": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
       "expected": 0,
-      "tags": ["already-reachable", "chain"]
+      "tags": [
+        "already-reachable",
+        "chain"
+      ]
     },
     {
       "id": "trial-unreachable-chain",
       "name": "trial: one rune reaches an entire downstream chain",
       "kind": "trial",
       "visible": true,
-      "input": {"n": 6, "crystals": [0], "flowFrom": [0, 2, 3, 4], "flowTo": [1, 3, 4, 5]},
+      "input": {
+        "n": 6,
+        "crystals": [
+          0
+        ],
+        "flowFrom": [
+          0,
+          2,
+          3,
+          4
+        ],
+        "flowTo": [
+          1,
+          3,
+          4,
+          5
+        ]
+      },
       "expected": 1,
-      "tags": ["source-component", "chain"]
+      "tags": [
+        "source-component",
+        "chain"
+      ]
     },
     {
       "id": "real-two-source-cycles-converge",
       "name": "real: two unreachable source cycles share a tail",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 9, "crystals": [0], "flowFrom": [0, 1, 2, 3, 4, 5, 2, 5, 6, 7], "flowTo": [1, 0, 3, 2, 5, 4, 6, 6, 7, 8]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 9,
+        "crystals": [
+          0
+        ],
+        "flowFrom": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          2,
+          5,
+          6,
+          7
+        ],
+        "flowTo": [
+          1,
+          0,
+          3,
+          2,
+          5,
+          4,
+          6,
+          6,
+          7,
+          8
+        ]
+      },
       "expected": 2,
-      "tags": ["multiple-sources", "condensation"]
+      "tags": [
+        "multiple-sources",
+        "condensation"
+      ]
     },
     {
       "id": "real-isolated-noncrystals",
       "name": "real: isolated points each need a rune",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 5, "crystals": [0], "flowFrom": [0], "flowTo": [1]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "crystals": [
+          0
+        ],
+        "flowFrom": [
+          0
+        ],
+        "flowTo": [
+          1
+        ]
+      },
       "expected": 3,
-      "tags": ["isolated", "singleton-scc"]
+      "tags": [
+        "isolated",
+        "singleton-scc"
+      ]
     },
     {
       "id": "real-multiple-crystals-cover-all",
       "name": "real: separate crystals cover separate branches",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 8, "crystals": [0, 4], "flowFrom": [0, 1, 2, 4, 5, 6], "flowTo": [1, 2, 3, 5, 6, 7]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8,
+        "crystals": [
+          0,
+          4
+        ],
+        "flowFrom": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "flowTo": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          7
+        ]
+      },
       "expected": 0,
-      "tags": ["multiple-crystals", "already-reachable"]
+      "tags": [
+        "multiple-crystals",
+        "already-reachable"
+      ]
     },
     {
       "id": "real-cycle-with-incoming-chain",
       "name": "real: source chain reaches an unreachable cycle",
-      "kind": "real",
-      "visible": false,
-      "input": {"n": 7, "crystals": [0], "flowFrom": [0, 2, 3, 4, 5, 6], "flowTo": [1, 3, 4, 5, 6, 4]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "crystals": [
+          0
+        ],
+        "flowFrom": [
+          0,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "flowTo": [
+          1,
+          3,
+          4,
+          5,
+          6,
+          4
+        ]
+      },
       "expected": 1,
-      "tags": ["scc", "incoming-chain"]
+      "tags": [
+        "scc",
+        "incoming-chain"
+      ]
     }
   ]
 }

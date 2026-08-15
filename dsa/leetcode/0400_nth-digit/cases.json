@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-189",
-      "name": "hidden: end of two-digit block",
-      "kind": "real",
-      "visible": false,
+      "name": "end of two-digit block",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 189
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-middle",
-      "name": "hidden: middle digit of a larger number",
-      "kind": "real",
-      "visible": false,
+      "name": "middle digit of a larger number",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10000
       },
@@ -102,9 +102,9 @@
     },
     {
       "id": "hidden-int-max",
-      "name": "hidden: maximum input position",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum input position",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 2147483647
       },

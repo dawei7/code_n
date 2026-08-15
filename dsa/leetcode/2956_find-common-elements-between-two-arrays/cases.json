@@ -157,8 +157,8 @@
     {
       "id": "real-one-way-frequency",
       "name": "real: one shared value with unequal frequencies",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           7,
@@ -186,8 +186,8 @@
     {
       "id": "real-partial-distinct",
       "name": "real: several distinct values with partial overlap",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,

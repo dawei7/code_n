@@ -329,9 +329,9 @@
     },
     {
       "id": "real-repeated-revisions",
-      "name": "hidden: several obsolete leaders are skipped after the final revision",
-      "kind": "real",
-      "visible": false,
+      "name": "several obsolete leaders are skipped after the final revision",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "EventManager",
@@ -386,9 +386,9 @@
     },
     {
       "id": "real-repeated-empty-polls",
-      "name": "hidden: every poll after exhaustion returns minus one",
-      "kind": "real",
-      "visible": false,
+      "name": "every poll after exhaustion returns minus one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "EventManager",
@@ -424,9 +424,9 @@
     },
     {
       "id": "real-maximum-identifiers-and-priorities",
-      "name": "hidden: maximum values preserve the smaller-ID tie-break",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum values preserve the smaller-ID tie-break",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "EventManager",
@@ -470,9 +470,9 @@
     },
     {
       "id": "real-minimum-priority-tie",
-      "name": "hidden: an update to minimum priority creates a tie",
-      "kind": "real",
-      "visible": false,
+      "name": "an update to minimum priority creates a tie",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "EventManager",
@@ -515,9 +515,9 @@
     },
     {
       "id": "real-all-events-tied",
-      "name": "hidden: tied events are removed in ascending ID order",
-      "kind": "real",
-      "visible": false,
+      "name": "tied events are removed in ascending ID order",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "EventManager",
@@ -568,9 +568,9 @@
     },
     {
       "id": "real-stale-top-chain",
-      "name": "hidden: stale high-priority entries precede every valid leader",
-      "kind": "real",
-      "visible": false,
+      "name": "stale high-priority entries precede every valid leader",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "EventManager",
@@ -638,9 +638,9 @@
     },
     {
       "id": "real-poll-then-update-another",
-      "name": "hidden: removing one event does not affect later updates to another",
-      "kind": "real",
-      "visible": false,
+      "name": "removing one event does not affect later updates to another",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "EventManager",
@@ -690,9 +690,9 @@
     },
     {
       "id": "real-boundary-mixed-trace",
-      "name": "hidden: boundary values remain valid across a tie, update, and exhaustion",
-      "kind": "real",
-      "visible": false,
+      "name": "boundary values remain valid across a tie, update, and exhaustion",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "EventManager",

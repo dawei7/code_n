@@ -6,72 +6,280 @@
       "name": "sample: group objects by id",
       "kind": "sample",
       "visible": true,
-      "input": {"array": [{"id": "1"}, {"id": "1"}, {"id": "2"}], "fnName": "id", "fnArg": null, "arrayPlan": null},
-      "expected": {"1": [{"id": "1"}, {"id": "1"}], "2": [{"id": "2"}]},
-      "tags": ["sample", "objects", "id"]
+      "input": {
+        "array": [
+          {
+            "id": "1"
+          },
+          {
+            "id": "1"
+          },
+          {
+            "id": "2"
+          }
+        ],
+        "fnName": "id",
+        "fnArg": null,
+        "arrayPlan": null
+      },
+      "expected": {
+        "1": [
+          {
+            "id": "1"
+          },
+          {
+            "id": "1"
+          }
+        ],
+        "2": [
+          {
+            "id": "2"
+          }
+        ]
+      },
+      "tags": [
+        "sample",
+        "objects",
+        "id"
+      ]
     },
     {
       "id": "sample-first-element",
       "name": "sample: group nested arrays by first value",
       "kind": "sample",
       "visible": true,
-      "input": {"array": [[1, 2, 3], [1, 3, 5], [1, 5, 9]], "fnName": "firstString", "fnArg": null, "arrayPlan": null},
-      "expected": {"1": [[1, 2, 3], [1, 3, 5], [1, 5, 9]]},
-      "tags": ["sample", "arrays", "single-group"]
+      "input": {
+        "array": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            3,
+            5
+          ],
+          [
+            1,
+            5,
+            9
+          ]
+        ],
+        "fnName": "firstString",
+        "fnArg": null,
+        "arrayPlan": null
+      },
+      "expected": {
+        "1": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            3,
+            5
+          ],
+          [
+            1,
+            5,
+            9
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "arrays",
+        "single-group"
+      ]
     },
     {
       "id": "sample-threshold",
       "name": "sample: group numbers around threshold",
       "kind": "sample",
       "visible": true,
-      "input": {"array": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "fnName": "greaterThan", "fnArg": 5, "arrayPlan": null},
-      "expected": {"false": [1, 2, 3, 4, 5], "true": [6, 7, 8, 9, 10]},
-      "tags": ["sample", "boolean-key", "threshold"]
+      "input": {
+        "array": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "fnName": "greaterThan",
+        "fnArg": 5,
+        "arrayPlan": null
+      },
+      "expected": {
+        "false": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "true": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "tags": [
+        "sample",
+        "boolean-key",
+        "threshold"
+      ]
     },
     {
       "id": "trial-preserve-order",
       "name": "trial: each group preserves source order",
       "kind": "trial",
       "visible": true,
-      "input": {"array": [5, 2, 3, 8, 1, 4], "fnName": "parity", "fnArg": null, "arrayPlan": null},
-      "expected": {"odd": [5, 3, 1], "even": [2, 8, 4]},
-      "tags": ["trial", "stable-order", "multiple-groups"]
+      "input": {
+        "array": [
+          5,
+          2,
+          3,
+          8,
+          1,
+          4
+        ],
+        "fnName": "parity",
+        "fnArg": null,
+        "arrayPlan": null
+      },
+      "expected": {
+        "odd": [
+          5,
+          3,
+          1
+        ],
+        "even": [
+          2,
+          8,
+          4
+        ]
+      },
+      "tags": [
+        "trial",
+        "stable-order",
+        "multiple-groups"
+      ]
     },
     {
       "id": "trial-empty",
       "name": "trial: empty receiver",
       "kind": "trial",
       "visible": true,
-      "input": {"array": [], "fnName": "identityString", "fnArg": null, "arrayPlan": null},
+      "input": {
+        "array": [],
+        "fnName": "identityString",
+        "fnArg": null,
+        "arrayPlan": null
+      },
       "expected": {},
-      "tags": ["trial", "empty-array"]
+      "tags": [
+        "trial",
+        "empty-array"
+      ]
     },
     {
       "id": "real-all-one-group",
       "name": "real: constant selector",
-      "kind": "real",
-      "visible": false,
-      "input": {"array": ["a", "b", "c"], "fnName": "constant", "fnArg": "letters", "arrayPlan": null},
-      "expected": {"letters": ["a", "b", "c"]},
-      "tags": ["real", "constant-key"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "array": [
+          "a",
+          "b",
+          "c"
+        ],
+        "fnName": "constant",
+        "fnArg": "letters",
+        "arrayPlan": null
+      },
+      "expected": {
+        "letters": [
+          "a",
+          "b",
+          "c"
+        ]
+      },
+      "tags": [
+        "real",
+        "constant-key"
+      ]
     },
     {
       "id": "real-special-prototype-key",
       "name": "real: prototype setter name is an ordinary key",
-      "kind": "real",
-      "visible": false,
-      "input": {"array": [1, 2], "fnName": "constant", "fnArg": "__proto__", "arrayPlan": null},
-      "expected": {"__proto__": [1, 2]},
-      "tags": ["real", "special-key", "prototype-collision"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "array": [
+          1,
+          2
+        ],
+        "fnName": "constant",
+        "fnArg": "__proto__",
+        "arrayPlan": null
+      },
+      "expected": {
+        "__proto__": [
+          1,
+          2
+        ]
+      },
+      "tags": [
+        "real",
+        "special-key",
+        "prototype-collision"
+      ]
     },
     {
       "id": "real-string-coercion-distinct",
       "name": "real: selector controls string key equality",
-      "kind": "real",
-      "visible": false,
-      "input": {"array": [1, "1", 2, "2"], "fnName": "typed", "fnArg": null, "arrayPlan": null},
-      "expected": {"number:1": [1], "string:1": ["1"], "number:2": [2], "string:2": ["2"]},
-      "tags": ["real", "string-keys", "types"]
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "array": [
+          1,
+          "1",
+          2,
+          "2"
+        ],
+        "fnName": "typed",
+        "fnArg": null,
+        "arrayPlan": null
+      },
+      "expected": {
+        "number:1": [
+          1
+        ],
+        "string:1": [
+          "1"
+        ],
+        "number:2": [
+          2
+        ],
+        "string:2": [
+          "2"
+        ]
+      },
+      "tags": [
+        "real",
+        "string-keys",
+        "types"
+      ]
     }
   ]
 }

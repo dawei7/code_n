@@ -164,9 +164,9 @@
     },
     {
       "id": "hidden-maximum-leading-one",
-      "name": "hidden: maximum input starts with the requested one",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum input starts with the requested one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100000,
         "x": 1
@@ -180,9 +180,9 @@
     },
     {
       "id": "hidden-maximum-absent-two",
-      "name": "hidden: maximum input omits the requested digit",
-      "kind": "real",
-      "visible": false,
+      "name": "maximum input omits the requested digit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 100000,
         "x": 2
@@ -196,9 +196,9 @@
     },
     {
       "id": "hidden-five-nines-no-zero",
-      "name": "hidden: repeated nines do not contain zero",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated nines do not contain zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 99999,
         "x": 0
@@ -212,9 +212,9 @@
     },
     {
       "id": "hidden-final-five",
-      "name": "hidden: target in the least significant position is valid",
-      "kind": "real",
-      "visible": false,
+      "name": "target in the least significant position is valid",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 12345,
         "x": 5
@@ -228,9 +228,9 @@
     },
     {
       "id": "hidden-leading-one-with-distinct-tail",
-      "name": "hidden: distinct trailing digits do not repair a leading target",
-      "kind": "real",
-      "visible": false,
+      "name": "distinct trailing digits do not repair a leading target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 12345,
         "x": 1

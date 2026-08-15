@@ -140,9 +140,9 @@
     },
     {
       "id": "hidden-uneven",
-      "name": "hidden: deepest branch is not first",
-      "kind": "real",
-      "visible": false,
+      "name": "deepest branch is not first",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           0,
@@ -184,9 +184,9 @@
     },
     {
       "id": "hidden-negative",
-      "name": "hidden: values do not affect depth",
-      "kind": "real",
-      "visible": false,
+      "name": "values do not affect depth",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           -1,
@@ -215,4 +215,3 @@
     }
   ]
 }
-

@@ -72,9 +72,9 @@
     },
     {
       "id": "real-four-terms",
-      "name": "hidden: repeated multi-digit starting terms",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated multi-digit starting terms",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "num": "12122436"
       },

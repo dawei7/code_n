@@ -198,8 +198,8 @@
     {
       "id": "real-multiple-rectangles-per-section",
       "name": "real: three horizontal groups contain multiple rectangles",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 12,
         "rectangles": [
@@ -251,8 +251,8 @@
     {
       "id": "real-large-coordinates",
       "name": "real: sparse coordinates near the grid limit",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 1000000000,
         "rectangles": [

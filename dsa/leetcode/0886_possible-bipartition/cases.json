@@ -135,9 +135,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: even cycle alternates successfully",
-      "kind": "real",
-      "visible": false,
+      "name": "even cycle alternates successfully",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "dislikes": [
@@ -167,9 +167,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: odd cycle in one disconnected component",
-      "kind": "real",
-      "visible": false,
+      "name": "odd cycle in one disconnected component",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "dislikes": [
@@ -200,9 +200,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: star graph",
-      "kind": "real",
-      "visible": false,
+      "name": "star graph",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "dislikes": [
@@ -236,9 +236,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: complete bipartite graph",
-      "kind": "real",
-      "visible": false,
+      "name": "complete bipartite graph",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 6,
         "dislikes": [
@@ -288,9 +288,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: path with isolated people",
-      "kind": "real",
-      "visible": false,
+      "name": "path with isolated people",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 8,
         "dislikes": [

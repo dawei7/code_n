@@ -144,9 +144,9 @@
     },
     {
       "id": "hidden-none",
-      "name": "hidden: no lucky value",
-      "kind": "real",
-      "visible": false,
+      "name": "no lucky value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [
@@ -169,9 +169,9 @@
     },
     {
       "id": "hidden-middle",
-      "name": "hidden: lucky value in middle column",
-      "kind": "real",
-      "visible": false,
+      "name": "lucky value in middle column",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "matrix": [
           [

@@ -1,9 +1,103 @@
-{"schema_version":1,"challenge_id":"lc_2690","cases":[
-{"id":"sample-identifier","name":"sample: ordinary identifier-like method","kind":"sample","visible":true,"input":{"method":"abc123"},"expected":"abc123","tags":["sample","identifier"]},
-{"id":"sample-punctuation","name":"sample: punctuation-heavy method name","kind":"sample","visible":true,"input":{"method":".-qw73n|^2It"},"expected":".-qw73n|^2It","tags":["sample","punctuation"]},
-{"id":"trial-empty","name":"trial: empty property name","kind":"trial","visible":true,"input":{"method":""},"expected":"","tags":["empty","boundary"]},
-{"id":"trial-spaces","name":"trial: spaces remain part of the name","kind":"trial","visible":true,"input":{"method":"two words"},"expected":"two words","tags":["spaces"]},
-{"id":"real-inherited-name","name":"hidden: inherited-looking property is intercepted","kind":"real","visible":false,"input":{"method":"toString"},"expected":"toString","tags":["hidden","prototype-name"]},
-{"id":"real-prototype-key","name":"hidden: prototype key is returned literally","kind":"real","visible":false,"input":{"method":"__proto__"},"expected":"__proto__","tags":["hidden","prototype-name"]},
-{"id":"real-long-name","name":"hidden: long property name","kind":"real","visible":false,"input":{"method":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"},"expected":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","tags":["hidden","long-name"]}
-]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2690",
+  "cases": [
+    {
+      "id": "sample-identifier",
+      "name": "sample: ordinary identifier-like method",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "method": "abc123"
+      },
+      "expected": "abc123",
+      "tags": [
+        "sample",
+        "identifier"
+      ]
+    },
+    {
+      "id": "sample-punctuation",
+      "name": "sample: punctuation-heavy method name",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "method": ".-qw73n|^2It"
+      },
+      "expected": ".-qw73n|^2It",
+      "tags": [
+        "sample",
+        "punctuation"
+      ]
+    },
+    {
+      "id": "trial-empty",
+      "name": "trial: empty property name",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "method": ""
+      },
+      "expected": "",
+      "tags": [
+        "empty",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-spaces",
+      "name": "trial: spaces remain part of the name",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "method": "two words"
+      },
+      "expected": "two words",
+      "tags": [
+        "spaces"
+      ]
+    },
+    {
+      "id": "real-inherited-name",
+      "name": "inherited-looking property is intercepted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "method": "toString"
+      },
+      "expected": "toString",
+      "tags": [
+        "hidden",
+        "prototype-name"
+      ]
+    },
+    {
+      "id": "real-prototype-key",
+      "name": "prototype key is returned literally",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "method": "__proto__"
+      },
+      "expected": "__proto__",
+      "tags": [
+        "hidden",
+        "prototype-name"
+      ]
+    },
+    {
+      "id": "real-long-name",
+      "name": "long property name",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "method": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      "expected": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "tags": [
+        "hidden",
+        "long-name"
+      ]
+    }
+  ]
+}

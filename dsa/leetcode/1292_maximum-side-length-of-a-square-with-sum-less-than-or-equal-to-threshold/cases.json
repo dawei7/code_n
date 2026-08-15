@@ -147,9 +147,9 @@
     },
     {
       "id": "hidden-one-row",
-      "name": "hidden: one-row matrix",
-      "kind": "real",
-      "visible": false,
+      "name": "one-row matrix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [
@@ -169,9 +169,9 @@
     },
     {
       "id": "hidden-mixed",
-      "name": "hidden: larger mixed matrix",
-      "kind": "real",
-      "visible": false,
+      "name": "larger mixed matrix",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "mat": [
           [

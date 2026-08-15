@@ -188,9 +188,9 @@
     },
     {
       "id": "hidden-cutoff-tie",
-      "name": "hidden: several valid pairs share cutoff sum",
-      "kind": "real",
-      "visible": false,
+      "name": "several valid pairs share cutoff sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -229,9 +229,9 @@
     },
     {
       "id": "hidden-duplicate-grid",
-      "name": "hidden: multiplicity from both arrays",
-      "kind": "real",
-      "visible": false,
+      "name": "multiplicity from both arrays",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1,
@@ -270,9 +270,9 @@
     },
     {
       "id": "hidden-zero-k",
-      "name": "hidden: request no pairs",
-      "kind": "real",
-      "visible": false,
+      "name": "request no pairs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums1": [
           1
@@ -296,4 +296,3 @@
     }
   ]
 }
-

@@ -113,9 +113,9 @@
     },
     {
       "id": "hidden-mixed-levels",
-      "name": "hidden: qualifying nodes at several depths",
-      "kind": "real",
-      "visible": false,
+      "name": "qualifying nodes at several depths",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           2,
@@ -139,9 +139,9 @@
     },
     {
       "id": "hidden-right-chain",
-      "name": "hidden: ancestry along a skewed tree",
-      "kind": "real",
-      "visible": false,
+      "name": "ancestry along a skewed tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "root": [
           2,

@@ -129,9 +129,9 @@
     },
     {
       "id": "real-single-value",
-      "name": "hidden: one one-digit value",
-      "kind": "real",
-      "visible": false,
+      "name": "one one-digit value",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           5
@@ -147,9 +147,9 @@
     },
     {
       "id": "real-repeated",
-      "name": "hidden: repeated values preserve every digit",
-      "kind": "real",
-      "visible": false,
+      "name": "repeated values preserve every digit",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           11,
@@ -172,9 +172,9 @@
     },
     {
       "id": "real-internal-zero",
-      "name": "hidden: internal zero remains between nonzero digits",
-      "kind": "real",
-      "visible": false,
+      "name": "internal zero remains between nonzero digits",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10921,

@@ -169,9 +169,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: complete graph",
-      "kind": "real",
-      "visible": false,
+      "name": "complete graph",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "graph": [
           [
@@ -214,9 +214,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: four-leaf star",
-      "kind": "real",
-      "visible": false,
+      "name": "four-leaf star",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "graph": [
           [
@@ -247,9 +247,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: triangle with a tail",
-      "kind": "real",
-      "visible": false,
+      "name": "triangle with a tail",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "graph": [
           [
@@ -282,9 +282,9 @@
     },
     {
       "id": "hidden-4",
-      "name": "hidden: balanced branching tree",
-      "kind": "real",
-      "visible": false,
+      "name": "balanced branching tree",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "graph": [
           [
@@ -323,9 +323,9 @@
     },
     {
       "id": "hidden-5",
-      "name": "hidden: chorded cycle",
-      "kind": "real",
-      "visible": false,
+      "name": "chorded cycle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "graph": [
           [

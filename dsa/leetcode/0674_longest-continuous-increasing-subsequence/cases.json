@@ -103,9 +103,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: single element",
-      "kind": "real",
-      "visible": false,
+      "name": "single element",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           9
@@ -119,9 +119,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: negative runs",
-      "kind": "real",
-      "visible": false,
+      "name": "negative runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -2,
@@ -139,9 +139,9 @@
     },
     {
       "id": "hidden-3",
-      "name": "hidden: longest run in the middle",
-      "kind": "real",
-      "visible": false,
+      "name": "longest run in the middle",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -160,4 +160,3 @@
     }
   ]
 }
-

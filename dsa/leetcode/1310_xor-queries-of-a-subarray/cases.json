@@ -197,9 +197,9 @@
     },
     {
       "id": "hidden-large-values",
-      "name": "hidden: values near the upper bound",
-      "kind": "real",
-      "visible": false,
+      "name": "values near the upper bound",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1000000000,
@@ -233,9 +233,9 @@
     },
     {
       "id": "hidden-nested-ranges",
-      "name": "hidden: nested and repeated ranges",
-      "kind": "real",
-      "visible": false,
+      "name": "nested and repeated ranges",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,

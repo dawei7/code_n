@@ -1,1 +1,205 @@
-{"schema_version":1,"challenge_id":"lc_2760","cases":[{"id":"sample-middle-run","name":"sample: longest run starts in the middle","kind":"sample","visible":true,"input":{"nums":[3,2,5,4],"threshold":5},"expected":3,"tags":["sample","middle-start"]},{"id":"sample-single-even","name":"sample: one eligible even value","kind":"sample","visible":true,"input":{"nums":[1,2],"threshold":2},"expected":1,"tags":["sample","single-element"]},{"id":"sample-threshold-stop","name":"sample: threshold ends the alternating run","kind":"sample","visible":true,"input":{"nums":[2,3,4,5],"threshold":4},"expected":3,"tags":["sample","threshold"]},{"id":"trial-single-odd","name":"trial: lone odd value cannot start","kind":"trial","visible":true,"input":{"nums":[1],"threshold":1},"expected":0,"tags":["single-element","odd"]},{"id":"trial-even-restart","name":"trial: second even restarts a longer run","kind":"trial","visible":true,"input":{"nums":[2,4,3,2],"threshold":4},"expected":3,"tags":["same-parity","restart"]},{"id":"real-consecutive-odds","name":"hidden: consecutive odds cannot restart","kind":"real","visible":false,"input":{"nums":[2,3,5,4,3],"threshold":5},"expected":2,"tags":["hidden","same-parity","odd"]},{"id":"real-all-over-threshold","name":"hidden: every even value exceeds threshold","kind":"real","visible":false,"input":{"nums":[2,4,6],"threshold":1},"expected":0,"tags":["hidden","threshold","none"]},{"id":"real-threshold-separator","name":"hidden: invalid value separates candidates","kind":"real","visible":false,"input":{"nums":[2,1,4,3,2],"threshold":3},"expected":2,"tags":["hidden","threshold","separator"]},{"id":"real-even-pair-then-odd","name":"hidden: restart after adjacent evens","kind":"real","visible":false,"input":{"nums":[4,10,3],"threshold":10},"expected":2,"tags":["hidden","restart"]},{"id":"real-duplicate-odd","name":"hidden: duplicate odd values break alternation","kind":"real","visible":false,"input":{"nums":[2,3,3,10],"threshold":10},"expected":2,"tags":["hidden","duplicate","parity"]}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2760",
+  "cases": [
+    {
+      "id": "sample-middle-run",
+      "name": "sample: longest run starts in the middle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          5,
+          4
+        ],
+        "threshold": 5
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "middle-start"
+      ]
+    },
+    {
+      "id": "sample-single-even",
+      "name": "sample: one eligible even value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ],
+        "threshold": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-element"
+      ]
+    },
+    {
+      "id": "sample-threshold-stop",
+      "name": "sample: threshold ends the alternating run",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "threshold": 4
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "threshold"
+      ]
+    },
+    {
+      "id": "trial-single-odd",
+      "name": "trial: lone odd value cannot start",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "threshold": 1
+      },
+      "expected": 0,
+      "tags": [
+        "single-element",
+        "odd"
+      ]
+    },
+    {
+      "id": "trial-even-restart",
+      "name": "trial: second even restarts a longer run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          3,
+          2
+        ],
+        "threshold": 4
+      },
+      "expected": 3,
+      "tags": [
+        "same-parity",
+        "restart"
+      ]
+    },
+    {
+      "id": "real-consecutive-odds",
+      "name": "consecutive odds cannot restart",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5,
+          4,
+          3
+        ],
+        "threshold": 5
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "same-parity",
+        "odd"
+      ]
+    },
+    {
+      "id": "real-all-over-threshold",
+      "name": "every even value exceeds threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6
+        ],
+        "threshold": 1
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "threshold",
+        "none"
+      ]
+    },
+    {
+      "id": "real-threshold-separator",
+      "name": "invalid value separates candidates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          4,
+          3,
+          2
+        ],
+        "threshold": 3
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "threshold",
+        "separator"
+      ]
+    },
+    {
+      "id": "real-even-pair-then-odd",
+      "name": "restart after adjacent evens",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          10,
+          3
+        ],
+        "threshold": 10
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "restart"
+      ]
+    },
+    {
+      "id": "real-duplicate-odd",
+      "name": "duplicate odd values break alternation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          3,
+          10
+        ],
+        "threshold": 10
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "duplicate",
+        "parity"
+      ]
+    }
+  ]
+}

@@ -2,17 +2,373 @@
   "schema_version": 1,
   "challenge_id": "lc_3801",
   "cases": [
-    {"id":"sample-1","name":"sample: choose the better three-list merge order","kind":"sample","visible":true,"input":{"lists":[[1,3,5],[2,4],[6,7,8]]},"expected":18,"validator":{"kind":"exact"},"tags":["sample","three-lists","merge-order"]},
-    {"id":"sample-2","name":"sample: two lists with duplicate values","kind":"sample","visible":true,"input":{"lists":[[1,1,5],[1,4,7,8]]},"expected":10,"validator":{"kind":"exact"},"tags":["sample","two-lists","duplicates"]},
-    {"id":"sample-3","name":"sample: distinct singleton lists","kind":"sample","visible":true,"input":{"lists":[[1],[3]]},"expected":4,"validator":{"kind":"exact"},"tags":["sample","singletons"]},
-    {"id":"sample-4","name":"sample: equal singleton lists","kind":"sample","visible":true,"input":{"lists":[[1],[1]]},"expected":2,"validator":{"kind":"exact"},"tags":["sample","singletons","equal-medians"]},
-    {"id":"trial-even-left-medians","name":"trial: even lists use their left middle elements","kind":"trial","visible":true,"input":{"lists":[[1,100],[2,3]]},"expected":5,"validator":{"kind":"exact"},"tags":["trial","even-length","left-median"]},
-    {"id":"trial-four-equal-singletons","name":"trial: balanced merges minimize repeated lengths","kind":"trial","visible":true,"input":{"lists":[[0],[0],[0],[0]]},"expected":8,"validator":{"kind":"exact"},"tags":["trial","four-lists","equal-medians"]},
-    {"id":"real-closest-first","name":"hidden: nearby medians should merge before a distant value","kind":"real","visible":false,"input":{"lists":[[0],[100],[101]]},"expected":106,"validator":{"kind":"exact"},"tags":["hidden","merge-order","median-distance"]},
-    {"id":"real-negative-values","name":"hidden: negative and positive ranges","kind":"real","visible":false,"input":{"lists":[[-5,-1],[0],[3,4,9]]},"expected":19,"validator":{"kind":"exact"},"tags":["hidden","negative-values","unequal-lengths"]},
-    {"id":"real-outlier-inside-list","name":"hidden: subset median depends on all merged values","kind":"real","visible":false,"input":{"lists":[[1,2,100],[3,4,5],[6,7]]},"expected":18,"validator":{"kind":"exact"},"tags":["hidden","outlier","subset-median"]},
-    {"id":"real-all-duplicate-values","name":"hidden: duplicate values across unequal lists","kind":"real","visible":false,"input":{"lists":[[1,1],[1,1,1],[1]]},"expected":9,"validator":{"kind":"exact"},"tags":["hidden","duplicates","unequal-lengths"]},
-    {"id":"real-uneven-list-lengths","name":"hidden: length and median costs interact","kind":"real","visible":false,"input":{"lists":[[1],[2,3,4,5],[6,7]]},"expected":17,"validator":{"kind":"exact"},"tags":["hidden","unequal-lengths","merge-order"]},
-    {"id":"real-eight-lists","name":"hidden: many distinct singleton lists","kind":"real","visible":false,"input":{"lists":[[0],[1],[2],[3],[4],[5],[6],[7]]},"expected":36,"validator":{"kind":"exact"},"tags":["hidden","many-lists","singletons"]}
+    {
+      "id": "sample-1",
+      "name": "sample: choose the better three-list merge order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "lists": [
+          [
+            1,
+            3,
+            5
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            6,
+            7,
+            8
+          ]
+        ]
+      },
+      "expected": 18,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "three-lists",
+        "merge-order"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two lists with duplicate values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "lists": [
+          [
+            1,
+            1,
+            5
+          ],
+          [
+            1,
+            4,
+            7,
+            8
+          ]
+        ]
+      },
+      "expected": 10,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "two-lists",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: distinct singleton lists",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "lists": [
+          [
+            1
+          ],
+          [
+            3
+          ]
+        ]
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "singletons"
+      ]
+    },
+    {
+      "id": "sample-4",
+      "name": "sample: equal singleton lists",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "lists": [
+          [
+            1
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "singletons",
+        "equal-medians"
+      ]
+    },
+    {
+      "id": "trial-even-left-medians",
+      "name": "trial: even lists use their left middle elements",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lists": [
+          [
+            1,
+            100
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "even-length",
+        "left-median"
+      ]
+    },
+    {
+      "id": "trial-four-equal-singletons",
+      "name": "trial: balanced merges minimize repeated lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lists": [
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
+      },
+      "expected": 8,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "four-lists",
+        "equal-medians"
+      ]
+    },
+    {
+      "id": "real-closest-first",
+      "name": "nearby medians should merge before a distant value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lists": [
+          [
+            0
+          ],
+          [
+            100
+          ],
+          [
+            101
+          ]
+        ]
+      },
+      "expected": 106,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "merge-order",
+        "median-distance"
+      ]
+    },
+    {
+      "id": "real-negative-values",
+      "name": "negative and positive ranges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lists": [
+          [
+            -5,
+            -1
+          ],
+          [
+            0
+          ],
+          [
+            3,
+            4,
+            9
+          ]
+        ]
+      },
+      "expected": 19,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "negative-values",
+        "unequal-lengths"
+      ]
+    },
+    {
+      "id": "real-outlier-inside-list",
+      "name": "subset median depends on all merged values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lists": [
+          [
+            1,
+            2,
+            100
+          ],
+          [
+            3,
+            4,
+            5
+          ],
+          [
+            6,
+            7
+          ]
+        ]
+      },
+      "expected": 18,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "outlier",
+        "subset-median"
+      ]
+    },
+    {
+      "id": "real-all-duplicate-values",
+      "name": "duplicate values across unequal lists",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lists": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "duplicates",
+        "unequal-lengths"
+      ]
+    },
+    {
+      "id": "real-uneven-list-lengths",
+      "name": "length and median costs interact",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lists": [
+          [
+            1
+          ],
+          [
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            6,
+            7
+          ]
+        ]
+      },
+      "expected": 17,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "unequal-lengths",
+        "merge-order"
+      ]
+    },
+    {
+      "id": "real-eight-lists",
+      "name": "many distinct singleton lists",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lists": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ]
+        ]
+      },
+      "expected": 36,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "many-lists",
+        "singletons"
+      ]
+    }
   ]
 }

@@ -279,9 +279,9 @@
     },
     {
       "id": "hidden-1",
-      "name": "hidden: two points",
-      "kind": "real",
-      "visible": false,
+      "name": "two points",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "trees": [
           [
@@ -314,9 +314,9 @@
     },
     {
       "id": "hidden-2",
-      "name": "hidden: vertical edge includes middle points",
-      "kind": "real",
-      "visible": false,
+      "name": "vertical edge includes middle points",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "trees": [
           [

@@ -6,81 +6,222 @@
       "name": "sample: mixed movement directions",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [3, -2, 1, 1]},
-      "expected": [1, 1, 1, 3],
-      "tags": ["sample", "circular-indexing"]
+      "input": {
+        "nums": [
+          3,
+          -2,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        3
+      ],
+      "tags": [
+        "sample",
+        "circular-indexing"
+      ]
     },
     {
       "id": "sample-official-two",
       "name": "sample: negative and oversized jumps",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [-1, 4, -1]},
-      "expected": [-1, -1, 4],
-      "tags": ["sample", "negative-offset"]
+      "input": {
+        "nums": [
+          -1,
+          4,
+          -1
+        ]
+      },
+      "expected": [
+        -1,
+        -1,
+        4
+      ],
+      "tags": [
+        "sample",
+        "negative-offset"
+      ]
     },
     {
       "id": "trial-all-zero",
       "name": "trial: zero offsets read their own positions",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 0, 0]},
-      "expected": [0, 0, 0],
-      "tags": ["zero-offset", "identity"]
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "zero-offset",
+        "identity"
+      ]
     },
     {
       "id": "trial-zero-and-mixed",
       "name": "trial: independent reads preserve the original array",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0, 2, -3, 4]},
-      "expected": [0, 4, 4, 4],
-      "tags": ["independent-actions", "mixed-offsets"]
+      "input": {
+        "nums": [
+          0,
+          2,
+          -3,
+          4
+        ]
+      },
+      "expected": [
+        0,
+        4,
+        4,
+        4
+      ],
+      "tags": [
+        "independent-actions",
+        "mixed-offsets"
+      ]
     },
     {
       "id": "trial-large-steps",
       "name": "trial: steps larger than the length use modulo",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [7, -8, 2, -1, 0]},
-      "expected": [2, -1, 0, 2, 0],
-      "tags": ["large-offset", "modulo"]
+      "input": {
+        "nums": [
+          7,
+          -8,
+          2,
+          -1,
+          0
+        ]
+      },
+      "expected": [
+        2,
+        -1,
+        0,
+        2,
+        0
+      ],
+      "tags": [
+        "large-offset",
+        "modulo"
+      ]
     },
     {
       "id": "trial-single-positive",
       "name": "trial: a single element always maps to itself",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [100]},
-      "expected": [100],
-      "tags": ["single-element", "maximum-offset"]
+      "input": {
+        "nums": [
+          100
+        ]
+      },
+      "expected": [
+        100
+      ],
+      "tags": [
+        "single-element",
+        "maximum-offset"
+      ]
     },
     {
       "id": "real-exact-multiples",
-      "name": "hidden: offsets equal to multiples of the length",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, -5, 10, -10, 0]},
-      "expected": [5, -5, 10, -10, 0],
-      "tags": ["hidden", "exact-wrap"]
+      "name": "offsets equal to multiples of the length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          -5,
+          10,
+          -10,
+          0
+        ]
+      },
+      "expected": [
+        5,
+        -5,
+        10,
+        -10,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "exact-wrap"
+      ]
     },
     {
       "id": "real-boundary-offsets",
-      "name": "hidden: minimum and maximum signed offsets",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [-100, 100, -100, 100, 0, 1]},
-      "expected": [-100, 1, 0, 100, 0, -100],
-      "tags": ["hidden", "offset-boundaries"]
+      "name": "minimum and maximum signed offsets",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -100,
+          100,
+          -100,
+          100,
+          0,
+          1
+        ]
+      },
+      "expected": [
+        -100,
+        1,
+        0,
+        100,
+        0,
+        -100
+      ],
+      "tags": [
+        "hidden",
+        "offset-boundaries"
+      ]
     },
     {
       "id": "real-varied-circular",
-      "name": "hidden: varied circular destinations",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5, -1, 0, 3, -4, 2, -7, 6]},
-      "expected": [2, 5, 0, -7, 5, 6, 6, 2],
-      "tags": ["hidden", "circular-indexing"]
+      "name": "varied circular destinations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          -1,
+          0,
+          3,
+          -4,
+          2,
+          -7,
+          6
+        ]
+      },
+      "expected": [
+        2,
+        5,
+        0,
+        -7,
+        5,
+        6,
+        6,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "circular-indexing"
+      ]
     }
   ]
 }

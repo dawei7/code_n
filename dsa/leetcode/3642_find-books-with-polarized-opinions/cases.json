@@ -535,8 +535,8 @@
     {
       "id": "real-below-threshold",
       "name": "real: both sides but too few extremes",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "books": [
@@ -610,8 +610,8 @@
     {
       "id": "real-score-order-rounding",
       "name": "real: rounded scores retain descending order",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "books": [
@@ -768,8 +768,8 @@
     {
       "id": "real-title-descending-tie",
       "name": "real: equal scores use descending title",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "books": [
@@ -904,8 +904,8 @@
     {
       "id": "real-inclusive-rating-boundaries",
       "name": "real: ratings two and four are extreme",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "books": [
@@ -989,8 +989,8 @@
     {
       "id": "real-book-without-sessions",
       "name": "real: unsessioned book is ignored",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "books": [

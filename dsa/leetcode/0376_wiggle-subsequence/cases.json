@@ -108,9 +108,9 @@
     },
     {
       "id": "hidden-plateau",
-      "name": "hidden: equal values between sign changes",
-      "kind": "real",
-      "visible": false,
+      "name": "equal values between sign changes",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -130,9 +130,9 @@
     },
     {
       "id": "hidden-negative",
-      "name": "hidden: alternating negative values",
-      "kind": "real",
-      "visible": false,
+      "name": "alternating negative values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           -1,
@@ -150,9 +150,9 @@
     },
     {
       "id": "hidden-late-turn",
-      "name": "hidden: long rise followed by one fall",
-      "kind": "real",
-      "visible": false,
+      "name": "long rise followed by one fall",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -170,4 +170,3 @@
     }
   ]
 }
-

@@ -6,81 +6,178 @@
       "name": "sample: one element reaches the threshold",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3], "k": 2},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 2
+      },
       "expected": 1,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-whole-array",
       "name": "sample: the whole array is required",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 1, 8], "k": 10},
+      "input": {
+        "nums": [
+          2,
+          1,
+          8
+        ],
+        "k": 10
+      },
       "expected": 3,
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-zero-threshold",
       "name": "sample: a zero threshold needs one element",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2], "k": 0},
+      "input": {
+        "nums": [
+          1,
+          2
+        ],
+        "k": 0
+      },
       "expected": 1,
-      "tags": ["sample", "boundary"]
+      "tags": [
+        "sample",
+        "boundary"
+      ]
     },
     {
       "id": "trial-impossible",
       "name": "trial: the total OR remains below k",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1, 1], "k": 8},
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 8
+      },
       "expected": -1,
-      "tags": ["trial", "impossible"]
+      "tags": [
+        "trial",
+        "impossible"
+      ]
     },
     {
       "id": "trial-combined-bits",
       "name": "trial: three adjacent values combine to reach k",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 32, 21], "k": 55},
+      "input": {
+        "nums": [
+          1,
+          2,
+          32,
+          21
+        ],
+        "k": 55
+      },
       "expected": 3,
-      "tags": ["trial", "bitwise"]
+      "tags": [
+        "trial",
+        "bitwise"
+      ]
     },
     {
       "id": "trial-two-values",
       "name": "trial: a two-value window is shortest",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [5, 1, 32, 86, 2], "k": 117},
+      "input": {
+        "nums": [
+          5,
+          1,
+          32,
+          86,
+          2
+        ],
+        "k": 117
+      },
       "expected": 2,
-      "tags": ["trial", "shrink"]
+      "tags": [
+        "trial",
+        "shrink"
+      ]
     },
     {
       "id": "real-shrink-window",
       "name": "real: removing an indispensable bit lowers the OR",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 4, 2, 16, 8, 3], "k": 31},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          16,
+          8,
+          3
+        ],
+        "k": 31
+      },
       "expected": 5,
-      "tags": ["real", "bitwise", "shrink"]
+      "tags": [
+        "real",
+        "bitwise",
+        "shrink"
+      ]
     },
     {
       "id": "real-high-bit",
       "name": "real: the highest legal bit combines with a low bit",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [536870912, 0, 1], "k": 536870913},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          536870912,
+          0,
+          1
+        ],
+        "k": 536870913
+      },
       "expected": 3,
-      "tags": ["real", "boundary", "bitwise"]
+      "tags": [
+        "real",
+        "boundary",
+        "bitwise"
+      ]
     },
     {
       "id": "real-all-zero-impossible",
       "name": "real: zeros cannot reach a positive threshold",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0, 0, 0, 0], "k": 1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "k": 1
+      },
       "expected": -1,
-      "tags": ["real", "boundary", "impossible"]
+      "tags": [
+        "real",
+        "boundary",
+        "impossible"
+      ]
     }
   ]
 }

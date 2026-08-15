@@ -7,72 +7,114 @@
       "name": "sample: duplicate palindrome values from distinct indices",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "103301"},
+      "input": {
+        "s": "103301"
+      },
       "expected": 2,
-      "tags": ["sample", "duplicate-values"]
+      "tags": [
+        "sample",
+        "duplicate-values"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: seven identical digits",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "0000000"},
+      "input": {
+        "s": "0000000"
+      },
       "expected": 21,
-      "tags": ["sample", "combinations"]
+      "tags": [
+        "sample",
+        "combinations"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: two uniform palindromes",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "9999900000"},
+      "input": {
+        "s": "9999900000"
+      },
       "expected": 2,
-      "tags": ["sample", "separate-groups"]
+      "tags": [
+        "sample",
+        "separate-groups"
+      ]
     },
     {
       "id": "trial-too-short",
       "name": "trial: fewer than five positions",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "1234"},
+      "input": {
+        "s": "1234"
+      },
       "expected": 0,
-      "tags": ["trial", "short-input"]
+      "tags": [
+        "trial",
+        "short-input"
+      ]
     },
     {
       "id": "trial-exact-palindrome",
       "name": "trial: exact five-character palindrome",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "01210"},
+      "input": {
+        "s": "01210"
+      },
       "expected": 1,
-      "tags": ["trial", "exact-length"]
+      "tags": [
+        "trial",
+        "exact-length"
+      ]
     },
     {
       "id": "real-overlapping-uniform",
-      "name": "hidden: overlapping all-zero selections",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "000000"},
+      "name": "overlapping all-zero selections",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000000"
+      },
       "expected": 6,
-      "tags": ["hidden", "overlap", "combinations"]
+      "tags": [
+        "hidden",
+        "overlap",
+        "combinations"
+      ]
     },
     {
       "id": "real-nested-palindromes",
-      "name": "hidden: several pair choices around different centers",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "123454321"},
+      "name": "several pair choices around different centers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "123454321"
+      },
       "expected": 14,
-      "tags": ["hidden", "nested", "multiple-centers"]
+      "tags": [
+        "hidden",
+        "nested",
+        "multiple-centers"
+      ]
     },
     {
       "id": "real-repeated-pairs",
-      "name": "hidden: repeated outer and inner pairs",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "001100"},
+      "name": "repeated outer and inner pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "001100"
+      },
       "expected": 2,
-      "tags": ["hidden", "repeated-pairs"]
+      "tags": [
+        "hidden",
+        "repeated-pairs"
+      ]
     }
   ]
 }

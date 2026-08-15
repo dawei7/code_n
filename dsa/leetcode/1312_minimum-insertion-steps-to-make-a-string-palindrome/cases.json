@@ -74,9 +74,9 @@
     },
     {
       "id": "hidden-all-distinct",
-      "name": "hidden: every character differs",
-      "kind": "real",
-      "visible": false,
+      "name": "every character differs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "abcdef"
       },
@@ -88,9 +88,9 @@
     },
     {
       "id": "hidden-inner-palindrome",
-      "name": "hidden: preserve a long inner palindrome",
-      "kind": "real",
-      "visible": false,
+      "name": "preserve a long inner palindrome",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "s": "aebcbda"
       },

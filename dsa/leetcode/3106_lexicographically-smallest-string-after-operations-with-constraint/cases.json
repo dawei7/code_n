@@ -6,108 +6,178 @@
       "name": "sample: wrapping z and reducing b uses the full budget",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "zbbz", "k": 3},
+      "input": {
+        "s": "zbbz",
+        "k": 3
+      },
       "expected": "aaaz",
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-partial-second-change",
       "name": "sample: the remaining budget partially reduces a later letter",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "xaxcd", "k": 4},
+      "input": {
+        "s": "xaxcd",
+        "k": 4
+      },
       "expected": "aawcd",
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "sample-zero-budget",
       "name": "sample: zero budget leaves the string unchanged",
       "kind": "sample",
       "visible": true,
-      "input": {"s": "lol", "k": 0},
+      "input": {
+        "s": "lol",
+        "k": 0
+      },
       "expected": "lol",
-      "tags": ["sample"]
+      "tags": [
+        "sample"
+      ]
     },
     {
       "id": "trial-single-wrap",
       "name": "trial: z reaches a with one cyclic step",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "z", "k": 1},
+      "input": {
+        "s": "z",
+        "k": 1
+      },
       "expected": "a",
-      "tags": ["trial", "wraparound"]
+      "tags": [
+        "trial",
+        "wraparound"
+      ]
     },
     {
       "id": "trial-partial-backward",
       "name": "trial: insufficient budget moves a letter backward",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "m", "k": 5},
+      "input": {
+        "s": "m",
+        "k": 5
+      },
       "expected": "h",
-      "tags": ["trial", "partial"]
+      "tags": [
+        "trial",
+        "partial"
+      ]
     },
     {
       "id": "trial-one-short-of-a",
       "name": "trial: one less than the distance to a reaches b",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "n", "k": 12},
+      "input": {
+        "s": "n",
+        "k": 12
+      },
       "expected": "b",
-      "tags": ["trial", "boundary"]
+      "tags": [
+        "trial",
+        "boundary"
+      ]
     },
     {
       "id": "trial-exactly-to-a",
       "name": "trial: exact cyclic distance reaches a",
       "kind": "trial",
       "visible": true,
-      "input": {"s": "n", "k": 13},
+      "input": {
+        "s": "n",
+        "k": 13
+      },
       "expected": "a",
-      "tags": ["trial", "boundary"]
+      "tags": [
+        "trial",
+        "boundary"
+      ]
     },
     {
       "id": "real-surplus-budget",
       "name": "real: surplus budget leaves the all-a optimum",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "abc", "k": 2000},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "k": 2000
+      },
       "expected": "aaa",
-      "tags": ["real", "surplus-budget"]
+      "tags": [
+        "real",
+        "surplus-budget"
+      ]
     },
     {
       "id": "real-wrap-then-partial",
       "name": "real: an early wrap leaves one step for the next letter",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "zyx", "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zyx",
+        "k": 2
+      },
       "expected": "axx",
-      "tags": ["real", "wraparound", "partial"]
+      "tags": [
+        "real",
+        "wraparound",
+        "partial"
+      ]
     },
     {
       "id": "real-leading-a-zero-budget",
       "name": "real: an existing a costs nothing before budget exhaustion",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "az", "k": 0},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "az",
+        "k": 0
+      },
       "expected": "az",
-      "tags": ["real", "zero-budget"]
+      "tags": [
+        "real",
+        "zero-budget"
+      ]
     },
     {
       "id": "real-leading-a-wrap",
       "name": "real: a free leading a preserves budget for a wrapped z",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "az", "k": 1},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "az",
+        "k": 1
+      },
       "expected": "aa",
-      "tags": ["real", "wraparound"]
+      "tags": [
+        "real",
+        "wraparound"
+      ]
     },
     {
       "id": "real-budget-exhausted-midstring",
       "name": "real: budget is exhausted after minimizing a prefix",
-      "kind": "real",
-      "visible": false,
-      "input": {"s": "zzzz", "k": 2},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zzzz",
+        "k": 2
+      },
       "expected": "aazz",
-      "tags": ["real", "prefix"]
+      "tags": [
+        "real",
+        "prefix"
+      ]
     }
   ]
 }

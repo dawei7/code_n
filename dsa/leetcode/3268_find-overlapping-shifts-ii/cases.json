@@ -329,8 +329,8 @@
     {
       "id": "real-multiple-employees",
       "name": "real: employees remain independent and sorted",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "EmployeeShifts": [
@@ -394,8 +394,8 @@
     {
       "id": "real-four-concurrent",
       "name": "real: four-way concurrency counts six pairs",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "EmployeeShifts": [
@@ -444,8 +444,8 @@
     {
       "id": "real-two-clusters",
       "name": "real: separated overlap clusters add duration",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "EmployeeShifts": [
@@ -494,8 +494,8 @@
     {
       "id": "real-chain",
       "name": "real: overlap chain never exceeds two",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "EmployeeShifts": [
@@ -544,8 +544,8 @@
     {
       "id": "real-mixed-dates",
       "name": "real: peak and duration aggregate differently",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "EmployeeShifts": [

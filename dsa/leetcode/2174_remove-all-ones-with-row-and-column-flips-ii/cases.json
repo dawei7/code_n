@@ -2,13 +2,222 @@
   "schema_version": 1,
   "challenge_id": "lc_2174",
   "cases": [
-    {"id":"sample-overlapping-rows","name":"sample: two operations clear overlapping dense rows","kind":"sample","visible":true,"input":{"grid":[[1,1,1],[1,1,1],[0,1,0]]},"expected":2,"tags":["sample","overlap"]},
-    {"id":"sample-cross","name":"sample: a zero intersection cannot be selected","kind":"sample","visible":true,"input":{"grid":[[0,1,0],[1,0,1],[0,1,0]]},"expected":2,"tags":["sample","legal-choice"]},
-    {"id":"sample-all-zero","name":"sample: no operation is needed","kind":"sample","visible":true,"input":{"grid":[[0,0],[0,0]]},"expected":0,"tags":["sample","all-zero"]},
-    {"id":"trial-single-one","name":"one remaining cell needs one operation","kind":"trial","visible":true,"input":{"grid":[[1]]},"expected":1,"tags":["single-cell"]},
-    {"id":"trial-one-row","name":"one chosen cell clears an entire row","kind":"trial","visible":true,"input":{"grid":[[1,1,0,1,1]]},"expected":1,"tags":["single-row"]},
-    {"id":"real-diagonal","name":"hidden: isolated diagonal ones require separate choices","kind":"real","visible":false,"input":{"grid":[[1,0,0],[0,1,0],[0,0,1]]},"expected":3,"tags":["hidden","isolated-ones"]},
-    {"id":"real-full-square","name":"hidden: a full square needs one choice per diagonal","kind":"real","visible":false,"input":{"grid":[[1,1,1],[1,1,1],[1,1,1]]},"expected":3,"tags":["hidden","dense"]},
-    {"id":"real-asymmetric","name":"hidden: best choices exploit asymmetric overlap","kind":"real","visible":false,"input":{"grid":[[1,0,1],[1,1,0],[0,1,1],[1,0,0]]},"expected":2,"tags":["hidden","asymmetric","choice-order"]}
+    {
+      "id": "sample-overlapping-rows",
+      "name": "sample: two operations clear overlapping dense rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "sample-cross",
+      "name": "sample: a zero intersection cannot be selected",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "legal-choice"
+      ]
+    },
+    {
+      "id": "sample-all-zero",
+      "name": "sample: no operation is needed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "all-zero"
+      ]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "one remaining cell needs one operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "single-cell"
+      ]
+    },
+    {
+      "id": "trial-one-row",
+      "name": "one chosen cell clears an entire row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "single-row"
+      ]
+    },
+    {
+      "id": "real-diagonal",
+      "name": "isolated diagonal ones require separate choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "isolated-ones"
+      ]
+    },
+    {
+      "id": "real-full-square",
+      "name": "a full square needs one choice per diagonal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "dense"
+      ]
+    },
+    {
+      "id": "real-asymmetric",
+      "name": "best choices exploit asymmetric overlap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "asymmetric",
+        "choice-order"
+      ]
+    }
   ]
 }

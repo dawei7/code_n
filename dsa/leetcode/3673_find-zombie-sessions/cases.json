@@ -664,9 +664,9 @@
     },
     {
       "id": "real-required-ordering",
-      "name": "hidden: scroll count descends before session id ascends",
-      "kind": "real",
-      "visible": false,
+      "name": "scroll count descends before session id ascends",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "app_events": [
@@ -912,9 +912,9 @@
     },
     {
       "id": "real-all-event-timestamps",
-      "name": "hidden: duration uses the earliest and latest event regardless of type",
-      "kind": "real",
-      "visible": false,
+      "name": "duration uses the earliest and latest event regardless of type",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "app_events": [
@@ -1004,9 +1004,9 @@
     },
     {
       "id": "real-non-counted-events",
-      "name": "hidden: opens and closes do not count as clicks or scrolls",
-      "kind": "real",
-      "visible": false,
+      "name": "opens and closes do not count as clicks or scrolls",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "tables": {
           "app_events": [
@@ -1143,4 +1143,3 @@
     }
   ]
 }
-

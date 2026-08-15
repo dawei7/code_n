@@ -1,13 +1,141 @@
 {
   "challenge_id": "lc_2466",
   "cases": [
-    {"id":"sample-1","name":"sample: every binary string of length three","kind":"sample","visible":true,"input":{"low":3,"high":3,"zero":1,"one":1},"expected":8,"tags":["sample","dynamic-programming"]},
-    {"id":"sample-2","name":"sample: one-character zeros and two-character ones","kind":"sample","visible":true,"input":{"low":2,"high":3,"zero":1,"one":2},"expected":5,"tags":["sample","mixed-blocks"]},
-    {"id":"trial-one-character","name":"trial: two strings have the minimum length","kind":"trial","visible":true,"input":{"low":1,"high":1,"zero":1,"one":1},"expected":2,"tags":["trial","minimum-range"]},
-    {"id":"trial-unreachable-length","name":"trial: equal two-character blocks cannot reach odd length","kind":"trial","visible":true,"input":{"low":3,"high":3,"zero":2,"one":2},"expected":0,"tags":["trial","unreachable"]},
-    {"id":"real-two-target-lengths","name":"hidden: both block orders contribute across two lengths","kind":"real","visible":false,"input":{"low":4,"high":5,"zero":2,"one":3},"expected":3,"tags":["hidden","inclusive-range"]},
-    {"id":"real-equal-block-lengths","name":"hidden: equal block lengths still represent different characters","kind":"real","visible":false,"input":{"low":2,"high":4,"zero":2,"one":2},"expected":6,"tags":["hidden","equal-lengths"]},
-    {"id":"real-wider-range","name":"hidden: several reachable lengths contribute","kind":"real","visible":false,"input":{"low":5,"high":8,"zero":2,"one":3},"expected":11,"tags":["hidden","range-sum"]},
-    {"id":"real-power-of-two","name":"hidden: unit blocks count all binary strings at one length","kind":"real","visible":false,"input":{"low":20,"high":20,"zero":1,"one":1},"expected":1048576,"tags":["hidden","large-count"]}
+    {
+      "id": "sample-1",
+      "name": "sample: every binary string of length three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "low": 3,
+        "high": 3,
+        "zero": 1,
+        "one": 1
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one-character zeros and two-character ones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "low": 2,
+        "high": 3,
+        "zero": 1,
+        "one": 2
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "mixed-blocks"
+      ]
+    },
+    {
+      "id": "trial-one-character",
+      "name": "trial: two strings have the minimum length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 1,
+        "high": 1,
+        "zero": 1,
+        "one": 1
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "minimum-range"
+      ]
+    },
+    {
+      "id": "trial-unreachable-length",
+      "name": "trial: equal two-character blocks cannot reach odd length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 3,
+        "high": 3,
+        "zero": 2,
+        "one": 2
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "unreachable"
+      ]
+    },
+    {
+      "id": "real-two-target-lengths",
+      "name": "both block orders contribute across two lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 4,
+        "high": 5,
+        "zero": 2,
+        "one": 3
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "inclusive-range"
+      ]
+    },
+    {
+      "id": "real-equal-block-lengths",
+      "name": "equal block lengths still represent different characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 2,
+        "high": 4,
+        "zero": 2,
+        "one": 2
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "equal-lengths"
+      ]
+    },
+    {
+      "id": "real-wider-range",
+      "name": "several reachable lengths contribute",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 5,
+        "high": 8,
+        "zero": 2,
+        "one": 3
+      },
+      "expected": 11,
+      "tags": [
+        "hidden",
+        "range-sum"
+      ]
+    },
+    {
+      "id": "real-power-of-two",
+      "name": "unit blocks count all binary strings at one length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 20,
+        "high": 20,
+        "zero": 1,
+        "one": 1
+      },
+      "expected": 1048576,
+      "tags": [
+        "hidden",
+        "large-count"
+      ]
+    }
   ]
 }

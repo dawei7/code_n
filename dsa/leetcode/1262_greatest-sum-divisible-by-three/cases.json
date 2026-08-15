@@ -90,9 +90,9 @@
     },
     {
       "id": "real-duplicates",
-      "name": "hidden: duplicate residue values",
-      "kind": "real",
-      "visible": false,
+      "name": "duplicate residue values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           2,
@@ -109,9 +109,9 @@
     },
     {
       "id": "real-mixed-large",
-      "name": "hidden: larger mixed values",
-      "kind": "real",
-      "visible": false,
+      "name": "larger mixed values",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           10000,

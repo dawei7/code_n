@@ -83,8 +83,8 @@
     {
       "id": "real-single-value",
       "name": "real: minimum-length input",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           7
@@ -99,8 +99,8 @@
     {
       "id": "real-too-many-duplicates",
       "name": "real: three equal values contribute at most two positions",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -117,8 +117,8 @@
     {
       "id": "real-overlapping-choices",
       "name": "real: overlapping duplicate choices cannot all be used",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -136,8 +136,8 @@
     {
       "id": "real-unsorted-long-chain",
       "name": "real: a noncontiguous sorted selection forms the optimum",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           8,
@@ -166,8 +166,8 @@
     {
       "id": "real-upper-bound",
       "name": "real: a maximum input value may be incremented",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1000000,

@@ -2,17 +2,264 @@
   "schema_version": 1,
   "challenge_id": "lc_3776",
   "cases": [
-    {"id":"sample-1","name":"sample: four adjacent units repair the deficit","kind":"sample","visible":true,"input":{"balance":[5,1,-4]},"expected":4,"validator":{"kind":"exact"},"tags":["sample","wraparound-neighbor"]},
-    {"id":"sample-2","name":"sample: one unit must travel two edges","kind":"sample","visible":true,"input":{"balance":[1,2,-5,2]},"expected":6,"validator":{"kind":"exact"},"tags":["sample","mixed-distances"]},
-    {"id":"sample-3","name":"sample: negative total is impossible","kind":"sample","visible":true,"input":{"balance":[-3,2]},"expected":-1,"validator":{"kind":"exact"},"tags":["sample","impossible"]},
-    {"id":"trial-no-negative","name":"trial: an already non-negative array needs no moves","kind":"trial","visible":true,"input":{"balance":[0,4,0]},"expected":0,"validator":{"kind":"exact"},"tags":["trial","no-deficit"]},
-    {"id":"trial-nearest-before-largest","name":"trial: a small nearby donor precedes a large distant donor","kind":"trial","visible":true,"input":{"balance":[100,0,-3,1]},"expected":5,"validator":{"kind":"exact"},"tags":["trial","greedy-order"]},
-    {"id":"trial-wraparound-distance","name":"trial: circular wraparound is the shorter route","kind":"trial","visible":true,"input":{"balance":[4,0,0,-4,0]},"expected":8,"validator":{"kind":"exact"},"tags":["trial","circular-distance"]},
-    {"id":"real-single-zero","name":"hidden: one non-negative person is already balanced","kind":"real","visible":false,"input":{"balance":[0]},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","minimum-length"]},
-    {"id":"real-opposite-tie","name":"hidden: an opposite donor has equal routes","kind":"real","visible":false,"input":{"balance":[0,-2,0,2]},"expected":4,"validator":{"kind":"exact"},"tags":["hidden","even-circle","distance-tie"]},
-    {"id":"real-multiple-distances","name":"hidden: supply is consumed across two distance levels","kind":"real","visible":false,"input":{"balance":[2,-5,0,1,2]},"expected":8,"validator":{"kind":"exact"},"tags":["hidden","multiple-donors"]},
-    {"id":"real-large-units","name":"hidden: the move count exceeds ordinary small-case scale","kind":"real","visible":false,"input":{"balance":[1000000000,-1000000000]},"expected":1000000000,"validator":{"kind":"exact"},"tags":["hidden","large-balance"]},
-    {"id":"real-surplus-unused","name":"hidden: excess supply remains at its donor","kind":"real","visible":false,"input":{"balance":[10,-3,0]},"expected":3,"validator":{"kind":"exact"},"tags":["hidden","surplus"]},
-    {"id":"real-all-distance-two","name":"hidden: zeros separate the deficit from its donor","kind":"real","visible":false,"input":{"balance":[0,0,-2,0,2]},"expected":4,"validator":{"kind":"exact"},"tags":["hidden","zeros","distance-two"]}
+    {
+      "id": "sample-1",
+      "name": "sample: four adjacent units repair the deficit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "balance": [
+          5,
+          1,
+          -4
+        ]
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "wraparound-neighbor"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one unit must travel two edges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "balance": [
+          1,
+          2,
+          -5,
+          2
+        ]
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "mixed-distances"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: negative total is impossible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "balance": [
+          -3,
+          2
+        ]
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-no-negative",
+      "name": "trial: an already non-negative array needs no moves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          0,
+          4,
+          0
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "no-deficit"
+      ]
+    },
+    {
+      "id": "trial-nearest-before-largest",
+      "name": "trial: a small nearby donor precedes a large distant donor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          100,
+          0,
+          -3,
+          1
+        ]
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "greedy-order"
+      ]
+    },
+    {
+      "id": "trial-wraparound-distance",
+      "name": "trial: circular wraparound is the shorter route",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          4,
+          0,
+          0,
+          -4,
+          0
+        ]
+      },
+      "expected": 8,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "circular-distance"
+      ]
+    },
+    {
+      "id": "real-single-zero",
+      "name": "one non-negative person is already balanced",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          0
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "real-opposite-tie",
+      "name": "an opposite donor has equal routes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          0,
+          -2,
+          0,
+          2
+        ]
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "even-circle",
+        "distance-tie"
+      ]
+    },
+    {
+      "id": "real-multiple-distances",
+      "name": "supply is consumed across two distance levels",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          2,
+          -5,
+          0,
+          1,
+          2
+        ]
+      },
+      "expected": 8,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "multiple-donors"
+      ]
+    },
+    {
+      "id": "real-large-units",
+      "name": "the move count exceeds ordinary small-case scale",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          1000000000,
+          -1000000000
+        ]
+      },
+      "expected": 1000000000,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "large-balance"
+      ]
+    },
+    {
+      "id": "real-surplus-unused",
+      "name": "excess supply remains at its donor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          10,
+          -3,
+          0
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "surplus"
+      ]
+    },
+    {
+      "id": "real-all-distance-two",
+      "name": "zeros separate the deficit from its donor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          0,
+          0,
+          -2,
+          0,
+          2
+        ]
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "zeros",
+        "distance-two"
+      ]
+    }
   ]
 }

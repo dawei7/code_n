@@ -6,72 +6,192 @@
       "name": "sample: two divisible paths",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[5, 2, 4], [3, 0, 5], [0, 7, 2]], "k": 3},
+      "input": {
+        "grid": [
+          [
+            5,
+            2,
+            4
+          ],
+          [
+            3,
+            0,
+            5
+          ],
+          [
+            0,
+            7,
+            2
+          ]
+        ],
+        "k": 3
+      },
       "expected": 2,
-      "tags": ["sample", "mixed-remainders"]
+      "tags": [
+        "sample",
+        "mixed-remainders"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: zero-sum single row",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[0, 0]], "k": 5},
+      "input": {
+        "grid": [
+          [
+            0,
+            0
+          ]
+        ],
+        "k": 5
+      },
       "expected": 1,
-      "tags": ["sample", "zero"]
+      "tags": [
+        "sample",
+        "zero"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: every path qualifies for k one",
       "kind": "sample",
       "visible": true,
-      "input": {"grid": [[7, 3, 4, 9], [2, 3, 6, 2], [2, 3, 7, 0]], "k": 1},
+      "input": {
+        "grid": [
+          [
+            7,
+            3,
+            4,
+            9
+          ],
+          [
+            2,
+            3,
+            6,
+            2
+          ],
+          [
+            2,
+            3,
+            7,
+            0
+          ]
+        ],
+        "k": 1
+      },
       "expected": 10,
-      "tags": ["sample", "k-one"]
+      "tags": [
+        "sample",
+        "k-one"
+      ]
     },
     {
       "id": "trial-single-row",
       "name": "trial: one divisible row path",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[1, 2, 3]], "k": 3},
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "k": 3
+      },
       "expected": 1,
-      "tags": ["trial", "single-row"]
+      "tags": [
+        "trial",
+        "single-row"
+      ]
     },
     {
       "id": "trial-two-by-two",
       "name": "trial: one of two paths qualifies",
       "kind": "trial",
       "visible": true,
-      "input": {"grid": [[1, 2], [3, 4]], "k": 2},
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "k": 2
+      },
       "expected": 1,
-      "tags": ["trial", "two-paths"]
+      "tags": [
+        "trial",
+        "two-paths"
+      ]
     },
     {
       "id": "real-single-cell-divisible",
-      "name": "hidden: divisible single cell",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[6]], "k": 3},
+      "name": "divisible single cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            6
+          ]
+        ],
+        "k": 3
+      },
       "expected": 1,
-      "tags": ["hidden", "single-cell"]
+      "tags": [
+        "hidden",
+        "single-cell"
+      ]
     },
     {
       "id": "real-single-cell-not-divisible",
-      "name": "hidden: nondivisible single cell",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[5]], "k": 3},
+      "name": "nondivisible single cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            5
+          ]
+        ],
+        "k": 3
+      },
       "expected": 0,
-      "tags": ["hidden", "single-cell"]
+      "tags": [
+        "hidden",
+        "single-cell"
+      ]
     },
     {
       "id": "real-no-qualifying-path",
-      "name": "hidden: neither two-by-two path qualifies",
-      "kind": "real",
-      "visible": false,
-      "input": {"grid": [[1, 2], [3, 4]], "k": 3},
+      "name": "neither two-by-two path qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "k": 3
+      },
       "expected": 0,
-      "tags": ["hidden", "zero-count"]
+      "tags": [
+        "hidden",
+        "zero-count"
+      ]
     }
   ]
 }

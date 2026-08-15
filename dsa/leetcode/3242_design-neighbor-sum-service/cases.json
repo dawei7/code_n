@@ -370,8 +370,8 @@
     {
       "id": "real-reversed-four-by-four",
       "name": "real: opposite corners in reversed grid",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "NeighborSum",
@@ -428,8 +428,8 @@
     {
       "id": "real-irregular-center",
       "name": "real: irregular three by three center",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "NeighborSum",
@@ -477,8 +477,8 @@
     {
       "id": "real-four-by-four-interior",
       "name": "real: four by four interior query",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "NeighborSum",
@@ -535,8 +535,8 @@
     {
       "id": "real-mixed-corners-center",
       "name": "real: mixed center and corner queries",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "NeighborSum",
@@ -594,8 +594,8 @@
     {
       "id": "real-maximum-side",
       "name": "real: maximum side length",
-      "kind": "real",
-      "visible": false,
+      "kind": "trial",
+      "visible": true,
       "input": {
         "operations": [
           "NeighborSum",

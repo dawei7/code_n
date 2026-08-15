@@ -6,117 +6,452 @@
       "name": "sample: two queries supply each target exactly",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2,0,2], "queries": [[0,2,1],[0,2,1],[1,1,3]]},
+      "input": {
+        "nums": [
+          2,
+          0,
+          2
+        ],
+        "queries": [
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            1,
+            1,
+            3
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "exact-sum"]
+      "tags": [
+        "sample",
+        "exact-sum"
+      ]
     },
     {
       "id": "sample-impossible",
       "name": "sample: no complete-query combination works",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [4,3,2,1], "queries": [[1,3,2],[0,2,1]]},
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "queries": [
+          [
+            1,
+            3,
+            2
+          ],
+          [
+            0,
+            2,
+            1
+          ]
+        ]
+      },
       "expected": -1,
-      "tags": ["sample", "impossible"]
+      "tags": [
+        "sample",
+        "impossible"
+      ]
     },
     {
       "id": "sample-overlapping-subsets",
       "name": "sample: overlapping ranges use independent subsets",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1,2,3,2,1], "queries": [[0,1,1],[1,2,1],[2,3,2],[3,4,1],[4,4,1]]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          2,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            3,
+            2
+          ],
+          [
+            3,
+            4,
+            1
+          ],
+          [
+            4,
+            4,
+            1
+          ]
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "overlap"]
+      "tags": [
+        "sample",
+        "overlap"
+      ]
     },
     {
       "id": "sample-upper-value-combination",
       "name": "sample: later query completes the largest target",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1,2,3,2,6], "queries": [[0,1,1],[0,2,1],[1,4,2],[4,4,4],[3,4,1],[4,4,5]]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          2,
+          6
+        ],
+        "queries": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            1,
+            4,
+            2
+          ],
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            3,
+            4,
+            1
+          ],
+          [
+            4,
+            4,
+            5
+          ]
+        ]
+      },
       "expected": 4,
-      "tags": ["sample", "combination"]
+      "tags": [
+        "sample",
+        "combination"
+      ]
     },
     {
       "id": "trial-already-zero",
       "name": "trial: zero array needs no queries",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [0,0,0], "queries": [[0,2,5]]},
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ],
+        "queries": [
+          [
+            0,
+            2,
+            5
+          ]
+        ]
+      },
       "expected": 0,
-      "tags": ["trial", "zero"]
+      "tags": [
+        "trial",
+        "zero"
+      ]
     },
     {
       "id": "trial-overshoot-is-not-exact",
       "name": "trial: excess decrement capacity cannot be divided",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [3], "queries": [[0,0,2],[0,0,2]]},
+      "input": {
+        "nums": [
+          3
+        ],
+        "queries": [
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            2
+          ]
+        ]
+      },
       "expected": -1,
-      "tags": ["trial", "exactness", "overshoot"]
+      "tags": [
+        "trial",
+        "exactness",
+        "overshoot"
+      ]
     },
     {
       "id": "real-subset-sum-combination",
       "name": "real: several values combine to one target",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [9], "queries": [[0,0,2],[0,0,4],[0,0,3],[0,0,10]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9
+        ],
+        "queries": [
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            10
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["real", "subset-sum"]
+      "tags": [
+        "real",
+        "subset-sum"
+      ]
     },
     {
       "id": "real-skip-unhelpful-query",
       "name": "real: a query may choose an empty subset",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [5], "queries": [[0,0,7],[0,0,2],[0,0,3]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "queries": [
+          [
+            0,
+            0,
+            7
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            3
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["real", "skip-query"]
+      "tags": [
+        "real",
+        "skip-query"
+      ]
     },
     {
       "id": "real-independent-index-choices",
       "name": "real: one range query selects only some covered indices",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2,3,2], "queries": [[0,2,2],[0,2,1]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          2
+        ],
+        "queries": [
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            1
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["real", "independent-subsets"]
+      "tags": [
+        "real",
+        "independent-subsets"
+      ]
     },
     {
       "id": "real-range-exclusion",
       "name": "real: values only receive decrements from covering ranges",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1,1], "queries": [[0,0,1],[0,0,1],[1,1,1]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
       "expected": 3,
-      "tags": ["real", "ranges"]
+      "tags": [
+        "real",
+        "ranges"
+      ]
     },
     {
       "id": "real-minimum-prefix",
       "name": "real: return the first successful prefix",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [4,4], "queries": [[0,1,1],[0,1,3],[0,1,4]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4
+        ],
+        "queries": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            1,
+            4
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["real", "minimum-prefix"]
+      "tags": [
+        "real",
+        "minimum-prefix"
+      ]
     },
     {
       "id": "real-mixed-zero-targets",
       "name": "real: zero targets are satisfied from the start",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [0,6,0,10], "queries": [[0,3,4],[1,3,6]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          6,
+          0,
+          10
+        ],
+        "queries": [
+          [
+            0,
+            3,
+            4
+          ],
+          [
+            1,
+            3,
+            6
+          ]
+        ]
+      },
       "expected": 2,
-      "tags": ["real", "zero-targets"]
+      "tags": [
+        "real",
+        "zero-targets"
+      ]
     },
     {
       "id": "real-target-upper-bound",
       "name": "real: bitset is clipped at the target bound",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000], "queries": [[0,0,10],[0,0,10],[0,0,1]]},
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000
+        ],
+        "queries": [
+          [
+            0,
+            0,
+            10
+          ],
+          [
+            0,
+            0,
+            10
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
       "expected": -1,
-      "tags": ["real", "target-boundary"]
+      "tags": [
+        "real",
+        "target-boundary"
+      ]
     }
   ]
 }

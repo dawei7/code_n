@@ -7,120 +7,291 @@
       "name": "sample: odd swaps leave both players with three points",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1, 2, 3]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "odd-swaps", "balanced-score"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "odd-swaps",
+        "balanced-score"
+      ]
     },
     {
       "id": "sample-double-swap-sixth-game",
       "name": "sample: odd sixth game performs two role swaps",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [2, 4, 2, 1, 2, 1]},
+      "input": {
+        "nums": [
+          2,
+          4,
+          2,
+          1,
+          2,
+          1
+        ]
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "sixth-game", "double-swap"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "sixth-game",
+        "double-swap"
+      ]
     },
     {
       "id": "sample-single-odd-game",
       "name": "sample: one odd game produces a negative difference",
       "kind": "sample",
       "visible": true,
-      "input": {"nums": [1]},
+      "input": {
+        "nums": [
+          1
+        ]
+      },
       "expected": -1,
-      "validator": {"kind": "exact"},
-      "tags": ["sample", "minimum-length", "negative-result"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "minimum-length",
+        "negative-result"
+      ]
     },
     {
       "id": "trial-single-even-game",
       "name": "trial: one even game stays with the first player",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2]},
+      "input": {
+        "nums": [
+          2
+        ]
+      },
       "expected": 2,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "minimum-length", "initial-player"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "initial-player"
+      ]
     },
     {
       "id": "trial-two-odd-games",
       "name": "trial: two odd games toggle away and back",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 1]},
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "repeated-toggle", "balanced-score"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "repeated-toggle",
+        "balanced-score"
+      ]
     },
     {
       "id": "trial-six-even-games",
       "name": "trial: only the sixth-game rule changes the scorer",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [2, 2, 2, 2, 2, 2]},
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
       "expected": 8,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "sixth-game", "even-values"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "sixth-game",
+        "even-values"
+      ]
     },
     {
       "id": "trial-mixed-first-block",
       "name": "trial: mixed parity reaches the first sixth-game boundary",
       "kind": "trial",
       "visible": true,
-      "input": {"nums": [1, 2, 3, 4, 5, 6]},
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
       "expected": 5,
-      "validator": {"kind": "exact"},
-      "tags": ["trial", "mixed-parity", "sixth-game"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "mixed-parity",
+        "sixth-game"
+      ]
     },
     {
       "id": "real-sixth-game-large-even",
-      "name": "hidden: the sixth of six equal even games changes players",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [6, 6, 6, 6, 6, 6]},
+      "name": "the sixth of six equal even games changes players",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6
+        ]
+      },
       "expected": 24,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "sixth-game", "equal-values"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "sixth-game",
+        "equal-values"
+      ]
     },
     {
       "id": "real-six-odd-games",
-      "name": "hidden: parity and sixth-game toggles interact repeatedly",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1, 1, 1, 1, 1, 1]},
+      "name": "parity and sixth-game toggles interact repeatedly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
       "expected": -2,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "odd-values", "double-swap"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "odd-values",
+        "double-swap"
+      ]
     },
     {
       "id": "real-even-games-after-boundary",
-      "name": "hidden: the player changed at game five remains active afterward",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [2, 4, 6, 8, 10, 12, 14]},
+      "name": "the player changed at game five remains active afterward",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14
+        ]
+      },
       "expected": 4,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "persistent-state", "even-values"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "persistent-state",
+        "even-values"
+      ]
     },
     {
       "id": "real-two-sixth-game-boundaries",
-      "name": "hidden: twelve upper-bound even games swap at both boundaries",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000]},
+      "name": "twelve upper-bound even games swap at both boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000
+        ]
+      },
       "expected": 0,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "upper-value-bound", "multiple-sixth-games"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "upper-value-bound",
+        "multiple-sixth-games"
+      ]
     },
     {
       "id": "real-upper-parity-alternation",
-      "name": "hidden: upper odd and even values alternate across game six",
-      "kind": "real",
-      "visible": false,
-      "input": {"nums": [999, 1000, 999, 1000, 999, 1000, 999]},
+      "name": "upper odd and even values alternate across game six",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          999,
+          1000,
+          999,
+          1000,
+          999,
+          1000,
+          999
+        ]
+      },
       "expected": -998,
-      "validator": {"kind": "exact"},
-      "tags": ["hidden", "upper-value-bound", "mixed-parity"]
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "upper-value-bound",
+        "mixed-parity"
+      ]
     }
   ]
 }

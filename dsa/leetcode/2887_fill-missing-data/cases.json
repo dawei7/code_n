@@ -6,36 +6,211 @@
       "name": "sample: fill two missing quantities",
       "kind": "sample",
       "visible": true,
-      "input": {"tables": {"products": [{"name": "Wristwatch", "quantity": null, "price": 135}, {"name": "WirelessEarbuds", "quantity": null, "price": 821}, {"name": "GolfClubs", "quantity": 779, "price": 9319}, {"name": "Printer", "quantity": 849, "price": 3051}]}},
-      "expected": {"columns": ["name", "quantity", "price"], "rows": [["Wristwatch", 0, 135], ["WirelessEarbuds", 0, 821], ["GolfClubs", 779, 9319], ["Printer", 849, 3051]]},
-      "tags": ["sample", "mixed-missingness"]
+      "input": {
+        "tables": {
+          "products": [
+            {
+              "name": "Wristwatch",
+              "quantity": null,
+              "price": 135
+            },
+            {
+              "name": "WirelessEarbuds",
+              "quantity": null,
+              "price": 821
+            },
+            {
+              "name": "GolfClubs",
+              "quantity": 779,
+              "price": 9319
+            },
+            {
+              "name": "Printer",
+              "quantity": 849,
+              "price": 3051
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "quantity",
+          "price"
+        ],
+        "rows": [
+          [
+            "Wristwatch",
+            0,
+            135
+          ],
+          [
+            "WirelessEarbuds",
+            0,
+            821
+          ],
+          [
+            "GolfClubs",
+            779,
+            9319
+          ],
+          [
+            "Printer",
+            849,
+            3051
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "mixed-missingness"
+      ]
     },
     {
       "id": "trial-all-quantities-missing",
       "name": "all quantities are missing",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"products": [{"name": "Cable", "quantity": null, "price": 12}, {"name": "Adapter", "quantity": null, "price": 19}]}},
-      "expected": {"columns": ["name", "quantity", "price"], "rows": [["Cable", 0, 12], ["Adapter", 0, 19]]},
-      "tags": ["boundary", "all-missing"]
+      "input": {
+        "tables": {
+          "products": [
+            {
+              "name": "Cable",
+              "quantity": null,
+              "price": 12
+            },
+            {
+              "name": "Adapter",
+              "quantity": null,
+              "price": 19
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "quantity",
+          "price"
+        ],
+        "rows": [
+          [
+            "Cable",
+            0,
+            12
+          ],
+          [
+            "Adapter",
+            0,
+            19
+          ]
+        ]
+      },
+      "tags": [
+        "boundary",
+        "all-missing"
+      ]
     },
     {
       "id": "trial-no-quantities-missing",
       "name": "existing quantities remain unchanged",
       "kind": "trial",
       "visible": true,
-      "input": {"tables": {"products": [{"name": "Notebook", "quantity": 4, "price": 7}, {"name": "Pen", "quantity": 25, "price": 2}]}},
-      "expected": {"columns": ["name", "quantity", "price"], "rows": [["Notebook", 4, 7], ["Pen", 25, 2]]},
-      "tags": ["boundary", "no-missing-values"]
+      "input": {
+        "tables": {
+          "products": [
+            {
+              "name": "Notebook",
+              "quantity": 4,
+              "price": 7
+            },
+            {
+              "name": "Pen",
+              "quantity": 25,
+              "price": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "quantity",
+          "price"
+        ],
+        "rows": [
+          [
+            "Notebook",
+            4,
+            7
+          ],
+          [
+            "Pen",
+            25,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "boundary",
+        "no-missing-values"
+      ]
     },
     {
       "id": "real-zero-and-mixed-quantities",
-      "name": "hidden: preserve zero and existing quantities",
-      "kind": "real",
-      "visible": false,
-      "input": {"tables": {"products": [{"name": "MysteryBox", "quantity": null, "price": 11}, {"name": "Marker", "quantity": 0, "price": 3}, {"name": "Folders", "quantity": 18, "price": 9}]}},
-      "expected": {"columns": ["name", "quantity", "price"], "rows": [["MysteryBox", 0, 11], ["Marker", 0, 3], ["Folders", 18, 9]]},
-      "tags": ["hidden", "existing-zero", "data-preservation"]
+      "name": "preserve zero and existing quantities",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "products": [
+            {
+              "name": "MysteryBox",
+              "quantity": null,
+              "price": 11
+            },
+            {
+              "name": "Marker",
+              "quantity": 0,
+              "price": 3
+            },
+            {
+              "name": "Folders",
+              "quantity": 18,
+              "price": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "quantity",
+          "price"
+        ],
+        "rows": [
+          [
+            "MysteryBox",
+            0,
+            11
+          ],
+          [
+            "Marker",
+            0,
+            3
+          ],
+          [
+            "Folders",
+            18,
+            9
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "existing-zero",
+        "data-preservation"
+      ]
     }
   ]
 }
