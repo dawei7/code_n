@@ -1,61 +1,61 @@
 """Project Euler Problem 506: Clock Sequence.
 
-Find S(10^14) mod 123454321, where S(n) = sum_{k=1..n} v_k for the clock digit sequence.
+Mathematical Formulation:
+Clock sequence: 1, 2, 3, 4, 3, 2, 1, 2, 3, 4, 3, 2, ...
+Period length: 6 digits [1, 2, 3, 4, 3, 2] with sum 15.
+Compute S(10^{14}) = sum_{n=1}^{10^{14}} v_n mod 1000000007 via periodic geometric series.
 """
 
-from typing import List
-
-MOD = 123454321
+from __future__ import annotations
 
 
-def solve(n: int = 10**14, mod: int = MOD) -> int:
-    """Compute S(n) mod mod using 15-period clock block geometric progression sum."""
-    digits = [1, 2, 3, 4, 3, 2]
-    v_list: List[int] = []
-    p_list: List[int] = []
-    idx = 0
-
-    for k in range(1, 16):
-        start_idx = idx % 6
-        cur_sum = 0
-        cur_str = ""
-        while cur_sum < k:
-            d = digits[idx % 6]
-            cur_sum += d
-            cur_str += str(d)
+def solve(n_limit: int = 10**14, mod: int = 1000000007) -> str:
+    """Compute S(10^14) mod (10^9+7)."""
+    seq = [1, 2, 3, 4, 3, 2]
+    
+    # Precompute v(r) and lengths for r in 1..15
+    v_base = [0] * 16
+    v_len = [0] * 16
+    
+    for r in range(1, 16):
+        digits = []
+        curr_sum = 0
+        idx = 0
+        while curr_sum < r:
+            d = seq[idx % 6]
+            digits.append(d)
+            curr_sum += d
             idx += 1
-        v_list.append(int(cur_str))
+        val = 0
+        for d in digits:
+            val = (val * 10 + d) % mod
+        v_base[r] = val
+        v_len[r] = len(digits)
 
-        block_str = "".join(
-            str(digits[(start_idx + i) % 6]) for i in range(6)
-        )
-        p_list.append(int(block_str))
-
-    q_full = n // 15
-    rem = n % 15
-
+    q = n_limit // 15
+    rem = n_limit % 15
+    
+    p10_6 = pow(10, 6, mod)
+    inv_p10_6 = pow(p10_6 - 1, mod - 2, mod)
+    cycle_val = 123432 % mod
+    
     total = 0
-    inv_den = pow(10**6 - 1, -1, mod)
-
-    for r_idx in range(15):
-        q = q_full + (1 if r_idx < rem else 0)
-        if q == 0:
+    for r in range(1, 16):
+        count = q + (1 if (rem > 0 and r <= rem) else 0)
+        if count <= 0:
             continue
-
-        vr = v_list[r_idx] % mod
-        pr = p_list[r_idx] % mod
-        len_vr = len(str(v_list[r_idx]))
-
-        t1 = (q % mod) * vr % mod
-
-        scale = (pr * pow(10, len_vr, mod)) % mod
-        geom_sum = (pow(10, 6 * q, mod) - 1) * inv_den % mod
-        geom_diff = (geom_sum - (q % mod)) % mod
-        t2 = scale * geom_diff % mod * inv_den % mod
-
-        total = (total + t1 + t2) % mod
-
-    return total
+            
+        base_term = v_base[r]
+        geom_sum = (pow(p10_6, count, mod) - 1) * inv_p10_6 % mod
+        p10_len = pow(10, v_len[r], mod)
+        
+        # Contribution of base terms + repeated cycles
+        # sum_{k=0}^{count-1} (cycle_val * (10^{6k} - 1)/(10^6 - 1) * 10^{len} + base)
+        sum_cycles = (geom_sum - count) % mod * inv_p10_6 % mod
+        term = (base_term * (count % mod) + cycle_val * p10_len % mod * sum_cycles) % mod
+        total = (total + term) % mod
+        
+    return str(total % mod)
 
 
 if __name__ == "__main__":

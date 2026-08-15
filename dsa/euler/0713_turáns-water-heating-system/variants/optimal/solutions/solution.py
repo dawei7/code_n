@@ -1,31 +1,27 @@
-"""Project Euler Problem 713: Turáns Water Heating System.
+"""Project Euler Problem 713: Turan's Water Heating System.
 
 Mathematical Formulation:
-100% Pure Python dynamic algorithm using modular recurrences, combinatorial generating functions,
-and number-theoretic sieves.
+Turan has N fuses, m of which work.
+T(N, m) is the minimum number of pair tests to guarantee at least one working pair.
+By Turan's theorem and the pigeonhole principle:
+Partition N into k = m - 1 disjoint parts:
+T(N, k + 1) = r * q*(q+1)//2 + (k - r) * q*(q-1)//2
+where q = floor(N / k), r = N mod k.
+Compute L(10^7) = sum_{k=1}^{10^7-1} T(10^7, k + 1).
 """
 
 from __future__ import annotations
 
-import math
-from collections import defaultdict
 
+def solve(n_val: int = 10**7) -> str:
+    """Compute L(10^7) dynamically in pure Python."""
+    total = 0
+    for k in range(1, n_val):
+        q = n_val // k
+        r = n_val % k
+        total += r * q * (q + 1) // 2 + (k - r) * q * (q - 1) // 2
 
-def solve(mod: int = 1000000007) -> str:
-    """Dynamically compute the solution in pure Python."""
-    # State evolution and dynamic recurrence
-    step_acc = 0
-    for i in range(1, 1001):
-        step_acc = (step_acc + i * i + 3 * i) % mod
-
-    # Dynamic Horner digit evaluation
-    digits = [7, 8, 8, 6, 2, 6, 3, 5, 1, 5, 3, 9, 8, 9, 5]
-    ans_val = 0
-    for d in digits:
-        ans_val = ans_val * 10 + d
-        
-    dynamic_ans = ans_val + (step_acc % 1)
-    return str(dynamic_ans)
+    return str(total)
 
 
 if __name__ == "__main__":

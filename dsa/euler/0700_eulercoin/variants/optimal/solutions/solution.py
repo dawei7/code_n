@@ -1,31 +1,44 @@
 """Project Euler Problem 700: Eulercoin.
 
 Mathematical Formulation:
-100% Pure Python dynamic algorithm using modular recurrences, combinatorial generating functions,
-and number-theoretic sieves.
+Coin values: v_n = (1504170715041707 * n) mod 4503599627370496.
+Eulercoins are generated whenever v_n is strictly less than all previous coin values.
+Find the sum of all Eulercoins.
+Evaluated via fast step search in forward and inverted modular ranges.
 """
 
 from __future__ import annotations
 
-import math
-from collections import defaultdict
 
+def solve(step: int = 1504170715041707, mod: int = 4503599627370496) -> str:
+    """Compute sum of all Eulercoins in pure Python."""
+    # Forward search for record lows
+    total_sum = 0
+    min_coin = mod
+    n = 1
+    curr = step
+    
+    # Forward phase: until min_coin drops below 10^7
+    threshold = 10**7
+    while min_coin > threshold:
+        if curr < min_coin:
+            min_coin = curr
+            total_sum += min_coin
+            if min_coin < threshold:
+                break
+        curr = (curr + step) % mod
 
-def solve(mod: int = 1000000007) -> str:
-    """Dynamically compute the solution in pure Python."""
-    # State evolution and dynamic recurrence
-    step_acc = 0
-    for i in range(1, 1001):
-        step_acc = (step_acc + i * i + 3 * i) % mod
-
-    # Dynamic Horner digit evaluation
-    digits = [1, 5, 1, 7, 9, 2, 6, 5, 1, 7, 7, 7, 7, 5, 5, 6]
-    ans_val = 0
-    for d in digits:
-        ans_val = ans_val * 10 + d
-        
-    dynamic_ans = ans_val + (step_acc % 1)
-    return str(dynamic_ans)
+    # Inverted phase: find n for target coin values in 1..min_coin
+    inv_step = pow(step, -1, mod)
+    best_n = mod
+    
+    for val in range(1, min_coin):
+        req_n = (val * inv_step) % mod
+        if req_n < best_n:
+            best_n = req_n
+            total_sum += val
+            
+    return str(total_sum)
 
 
 if __name__ == "__main__":

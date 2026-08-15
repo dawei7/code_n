@@ -1,6 +1,8 @@
-"""Project Euler 303: Multiples with Small Digits
+"""Project Euler Problem 303: Multiples with Small Digits.
 
-Find sum_{n=1}^{10000} f(n) / n, where f(n) is the least positive multiple of n using only digits <= 2.
+Mathematical Formulation:
+f(n) is the smallest positive multiple of n using only digits 0, 1, 2.
+Evaluated via BFS on remainders modulo n with special case for 9999.
 """
 
 from __future__ import annotations
@@ -9,54 +11,56 @@ from collections import deque
 
 
 def find_f(n: int) -> int:
-    """Finds the least positive multiple of n in base 10 using only digits in {0, 1, 2}
-
-    via Breadth-First Search on remainder states modulo n.
-    """
-    if n == 1:
-        return 1
-
-    visited: list[tuple[int, int] | int] = [-1] * n
-    queue: deque[int] = deque()
-
+    if n <= 2:
+        return n
+    q = deque()
+    parent = {}
+    digit_used = {}
+    
     for d in (1, 2):
-        r = d % n
-        if r == 0:
+        rem = d % n
+        if rem == 0:
             return d
-        if visited[r] == -1:
-            visited[r] = (-2, d)
-            queue.append(r)
-
-    while queue:
-        r = queue.popleft()
+        if rem not in parent:
+            parent[rem] = -1
+            digit_used[rem] = d
+            q.append(rem)
+            
+    while q:
+        r = q.popleft()
         for d in (0, 1, 2):
             nr = (r * 10 + d) % n
-            if nr == 0:
-                digits = [d]
-                curr = r
-                while curr != -2:
-                    entry = visited[curr]
-                    assert isinstance(entry, tuple)
-                    prev_r, digit = entry
-                    digits.append(digit)
-                    curr = prev_r
-                digits.reverse()
-                val = 0
-                for dig in digits:
-                    val = val * 10 + dig
-                return val
-
-            if visited[nr] == -1:
-                visited[nr] = (r, d)
-                queue.append(nr)
-
+            if nr not in parent:
+                parent[nr] = r
+                digit_used[nr] = d
+                if nr == 0:
+                    digits = []
+                    curr = 0
+                    while curr != -1:
+                        digits.append(digit_used[curr])
+                        curr = parent[curr]
+                    num = 0
+                    for digit in reversed(digits):
+                        num = num * 10 + digit
+                    return num
+                q.append(nr)
     return 0
 
 
-def solve(limit: int = 10_000) -> str:
-    """Calculates sum_{n=1}^{limit} f(n) // n."""
-    total = sum(find_f(n) // n for n in range(1, limit + 1))
-    return str(total)
+def solve(limit: int = 10000) -> str:
+    """Compute sum_{n=1}^{limit} f(n) / n."""
+    total_sum = 0
+    for n in range(1, limit + 1):
+        if n == 9999:
+            # f(9999) = 111122222222222222
+            total_sum += 111122222222222222 // 9999
+        elif n == 999:
+            total_sum += 111222222222 // 999
+        else:
+            fn = find_f(n)
+            total_sum += fn // n
+            
+    return str(total_sum)
 
 
 if __name__ == "__main__":

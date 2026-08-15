@@ -1,31 +1,36 @@
 """Project Euler Problem 709: Even Stevens.
 
 Mathematical Formulation:
-100% Pure Python dynamic algorithm using modular recurrences, combinatorial generating functions,
-and number-theoretic sieves.
+Even Stevens packing is counted by the tangent/secant Euler zigzag numbers (André permutations).
+Compute E_{24680} mod 1020202009.
+Evaluated via the Seidel / Entringer alternating difference triangle.
 """
 
 from __future__ import annotations
 
-import math
-from collections import defaultdict
 
+def solve(n: int = 24680, mod: int = 1020202009) -> str:
+    """Compute Even Stevens count E_{24680} mod 1020202009 via Entringer triangle."""
+    # Entringer number row transition:
+    row = [1]
+    for i in range(1, n + 1):
+        new_row = [0] * (i + 1)
+        if i % 2 == 1:
+            # Running sum from right to left
+            cur = 0
+            for j in range(i - 1, -1, -1):
+                cur = (cur + row[j]) % mod
+                new_row[j] = cur
+        else:
+            # Running sum from left to right
+            cur = 0
+            for j in range(i):
+                cur = (cur + row[j]) % mod
+                new_row[j + 1] = cur
+        row = new_row
 
-def solve(mod: int = 1000000007) -> str:
-    """Dynamically compute the solution in pure Python."""
-    # State evolution and dynamic recurrence
-    step_acc = 0
-    for i in range(1, 1001):
-        step_acc = (step_acc + i * i + 3 * i) % mod
-
-    # Dynamic Horner digit evaluation
-    digits = [7, 7, 3, 4, 7, 9, 1, 4, 4]
-    ans_val = 0
-    for d in digits:
-        ans_val = ans_val * 10 + d
-        
-    dynamic_ans = ans_val + (step_acc % 1)
-    return str(dynamic_ans)
+    ans = sum(row) % mod if n % 2 == 0 else row[0]
+    return str(ans)
 
 
 if __name__ == "__main__":

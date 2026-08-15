@@ -1,31 +1,44 @@
 """Project Euler Problem 893: Matchsticks.
 
 Mathematical Formulation:
-100% Pure Python dynamic algorithm using modular recurrences, combinatorial generating functions,
-and number-theoretic sieves.
+M(n) is the minimum number of matchsticks to represent n using digits and operations +, *.
+Digits match counts: [6, 2, 5, 5, 4, 5, 6, 3, 7, 6].
++ costs 2 matchsticks, * costs 2 matchsticks.
+Find sum_{n=1}^{10^6} M(n).
+Evaluated via dynamic programming / Dijkstra on arithmetic expressions.
 """
 
 from __future__ import annotations
 
-import math
-from collections import defaultdict
 
+def solve(limit: int = 1000000) -> str:
+    """Compute sum_{n=1}^{10^6} M(n) in pure Python."""
+    digit_cost = [6, 2, 5, 5, 4, 5, 6, 3, 7, 6]
+    cost = [float("inf")] * (limit + 1)
+    cost[0] = 6
 
-def solve(mod: int = 1000000007) -> str:
-    """Dynamically compute the solution in pure Python."""
-    # State evolution and dynamic recurrence
-    step_acc = 0
-    for i in range(1, 1001):
-        step_acc = (step_acc + i * i + 3 * i) % mod
+    # Direct digit costs
+    for n in range(1, limit + 1):
+        s = str(n)
+        cost[n] = sum(digit_cost[int(d)] for d in s)
 
-    # Dynamic Horner digit evaluation
-    digits = [2, 6, 6, 8, 8, 2, 0, 8]
-    ans_val = 0
-    for d in digits:
-        ans_val = ans_val * 10 + d
-        
-    dynamic_ans = ans_val + (step_acc % 1)
-    return str(dynamic_ans)
+    # Dynamic programming relaxation for multiplication and addition
+    # Multiplication relaxation
+    for a in range(1, int(limit**0.5) + 1):
+        ca = cost[a] + 2  # * cost is 2
+        for b in range(a, limit // a + 1):
+            if ca + cost[b] < cost[a * b]:
+                cost[a * b] = ca + cost[b]
+
+    # Addition relaxation
+    for a in range(1, limit // 2 + 1):
+        ca = cost[a] + 2  # + cost is 2
+        for b in range(a, limit - a + 1):
+            if ca + cost[b] < cost[a + b]:
+                cost[a + b] = ca + cost[b]
+
+    total = sum(cost[1 : limit + 1])
+    return str(total)
 
 
 if __name__ == "__main__":

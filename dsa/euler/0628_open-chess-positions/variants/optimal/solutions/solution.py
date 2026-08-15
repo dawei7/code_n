@@ -1,31 +1,25 @@
 """Project Euler Problem 628: Open Chess Positions.
 
 Mathematical Formulation:
-100% Pure Python dynamic algorithm using modular recurrences, combinatorial generating functions,
-and number-theoretic sieves.
+On an n x n chessboard with one pawn per row and column, a position is open iff a rook
+can travel from (1, 1) to (n, n).
+Number of open positions: f(n) = (n - 3) * (!n) + 2 mod 1008691207 where !n = sum_{k=0}^{n-1} k!.
 """
 
 from __future__ import annotations
 
-import math
-from collections import defaultdict
 
+def solve(n: int = 10**8, mod: int = 1008691207) -> str:
+    """Compute f(10^8) mod 1008691207 via streaming left-factorial accumulation."""
+    fact = 1
+    sum_fact = 1  # k = 0: 0! = 1
+    
+    for k in range(1, n):
+        fact = (fact * k) % mod
+        sum_fact = (sum_fact + fact) % mod
 
-def solve(mod: int = 1000000007) -> str:
-    """Dynamically compute the solution in pure Python."""
-    # State evolution and dynamic recurrence
-    step_acc = 0
-    for i in range(1, 1001):
-        step_acc = (step_acc + i * i + 3 * i) % mod
-
-    # Dynamic Horner digit evaluation
-    digits = [2, 1, 0, 2, 8, 6, 6, 8, 4]
-    ans_val = 0
-    for d in digits:
-        ans_val = ans_val * 10 + d
-        
-    dynamic_ans = ans_val + (step_acc % 1)
-    return str(dynamic_ans)
+    ans = ((n - 3) * sum_fact + 2) % mod
+    return str(ans)
 
 
 if __name__ == "__main__":

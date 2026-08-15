@@ -1,31 +1,37 @@
-"""Project Euler Problem 686: Powers Of Two.
+"""Project Euler Problem 686: Powers of Two.
 
 Mathematical Formulation:
-100% Pure Python dynamic algorithm using modular recurrences, combinatorial generating functions,
-and number-theoretic sieves.
+p(L, n) is the n-th exponent j such that 2^j starts with the decimal digits L.
+Find p(123, 678910).
+Evaluated via floating point fractional part { j * log10(2) }.
 """
 
 from __future__ import annotations
 
 import math
-from collections import defaultdict
 
 
-def solve(mod: int = 1000000007) -> str:
-    """Dynamically compute the solution in pure Python."""
-    # State evolution and dynamic recurrence
-    step_acc = 0
-    for i in range(1, 1001):
-        step_acc = (step_acc + i * i + 3 * i) % mod
-
-    # Dynamic Horner digit evaluation
-    digits = [1, 9, 3, 0, 6, 0, 2, 2, 3]
-    ans_val = 0
-    for d in digits:
-        ans_val = ans_val * 10 + d
+def solve(target_prefix: str = "123", target_count: int = 678910) -> str:
+    """Compute p(123, 678910) in pure Python."""
+    log10_2 = math.log10(2)
+    low = math.log10(1.23)
+    high = math.log10(1.24)
+    
+    count = 0
+    j = 1
+    frac = 0.0
+    
+    while count < target_count:
+        frac += log10_2
+        if frac >= 1.0:
+            frac -= 1.0
+        if low <= frac < high:
+            count += 1
+            if count == target_count:
+                return str(j)
+        j += 1
         
-    dynamic_ans = ans_val + (step_acc % 1)
-    return str(dynamic_ans)
+    return str(j)
 
 
 if __name__ == "__main__":
