@@ -84,8 +84,8 @@
       ]
     },
     {
-      "id": "real-repeated-directed-cycle",
-      "name": "real: repeated directed pairs have no reverse",
+      "id": "trial-repeated-directed-cycle",
+      "name": "repeated directed pairs have no reverse",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -98,8 +98,8 @@
       ]
     },
     {
-      "id": "real-reverse-pair-at-boundaries",
-      "name": "real: a pair and its reverse occur at opposite ends",
+      "id": "trial-reverse-pair-at-boundaries",
+      "name": "a pair and its reverse occur at opposite ends",
       "kind": "trial",
       "visible": true,
       "input": {

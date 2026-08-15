@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-before-forty-one",
+      "id": "trial-before-forty-one",
       "name": "seventeen remains largest immediately before forty-one",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-forty-one-prefix",
+      "id": "trial-forty-one-prefix",
       "name": "forty-one is the next qualifying prime prefix",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-maximum-bound",
+      "id": "trial-maximum-bound",
       "name": "maximum legal input exercises the complete sieve",
       "kind": "trial",
       "visible": true,

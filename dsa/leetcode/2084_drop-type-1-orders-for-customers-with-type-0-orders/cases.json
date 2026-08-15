@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-one-order-per-customer",
+      "id": "trial-one-order-per-customer",
       "name": "singleton customer partitions always keep their row",
       "kind": "trial",
       "visible": true,
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "real-input-order-does-not-matter",
+      "id": "trial-input-order-does-not-matter",
       "name": "a later type zero suppresses an earlier type one",
       "kind": "trial",
       "visible": true,
@@ -309,7 +309,7 @@
       ]
     },
     {
-      "id": "real-several-mixed-partitions",
+      "id": "trial-several-mixed-partitions",
       "name": "each customer receives an independent minimum type",
       "kind": "trial",
       "visible": true,

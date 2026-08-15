@@ -60,7 +60,7 @@
       ]
     },
     {
-      "id": "real-latest-index",
+      "id": "trial-latest-index",
       "name": "latest occurrence enables match",
       "kind": "trial",
       "visible": true,

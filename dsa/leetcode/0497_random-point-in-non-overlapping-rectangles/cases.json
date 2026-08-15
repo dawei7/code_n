@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "hidden-negative",
+      "id": "trial-negative",
       "name": "negative single point",
       "kind": "trial",
       "visible": true,
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "hidden-last-ticket",
+      "id": "trial-last-ticket",
       "name": "highest value selects final lattice point",
       "kind": "trial",
       "visible": true,

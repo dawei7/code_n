@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "real-no-midnight-wrap",
+      "id": "trial-no-midnight-wrap",
       "name": "start and end of day are not adjacent",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-repeated-minute",
+      "id": "trial-repeated-minute",
       "name": "separate accesses at one minute all count",
       "kind": "trial",
       "visible": true,
@@ -258,7 +258,7 @@
       ]
     },
     {
-      "id": "real-mixed-employees",
+      "id": "trial-mixed-employees",
       "name": "only selected employee timelines qualify",
       "kind": "trial",
       "visible": true,

@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-rebalance-shelves",
+      "id": "trial-rebalance-shelves",
       "name": "best split moves short book backward",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-order-sensitive",
+      "id": "trial-order-sensitive",
       "name": "consecutive groups preserve order",
       "kind": "trial",
       "visible": true,
@@ -181,6 +181,50 @@
       "expected": 11,
       "tags": [
         "order"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "minimal value shelfWidth=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "books": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "shelfWidth": 1
+      },
+      "expected": 12,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

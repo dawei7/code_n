@@ -336,7 +336,7 @@
       ]
     },
     {
-      "id": "hidden-minimum-maximum-pair",
+      "id": "trial-minimum-maximum-pair",
       "name": "the legal value extremes swap order in the second half",
       "kind": "trial",
       "visible": true,
@@ -358,7 +358,7 @@
       ]
     },
     {
-      "id": "hidden-symmetric-mixed-array",
+      "id": "trial-symmetric-mixed-array",
       "name": "a symmetric mixed array still contributes two halves",
       "kind": "trial",
       "visible": true,
@@ -392,7 +392,7 @@
       ]
     },
     {
-      "id": "hidden-seven-values",
+      "id": "trial-seven-values",
       "name": "a seven-value sequence uses every reverse index",
       "kind": "trial",
       "visible": true,
@@ -429,7 +429,7 @@
       ]
     },
     {
-      "id": "hidden-eight-values",
+      "id": "trial-eight-values",
       "name": "an eight-value sequence preserves its exact reversal",
       "kind": "trial",
       "visible": true,
@@ -469,7 +469,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-length-distinct",
+      "id": "trial-maximum-length-distinct",
       "name": "the maximum-length increasing array reverses completely",
       "kind": "trial",
       "visible": true,
@@ -785,7 +785,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-length-duplicates",
+      "id": "trial-maximum-length-duplicates",
       "name": "one hundred equal values produce two hundred occurrences",
       "kind": "trial",
       "visible": true,
@@ -1097,6 +1097,28 @@
       ],
       "tags": [
         "maximum-length",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-19",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

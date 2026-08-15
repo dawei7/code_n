@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "hidden-duplicates",
+      "id": "trial-duplicates",
       "name": "repeated minimum and maximum",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "hidden-large-range",
+      "id": "trial-large-range",
       "name": "wide signed range",
       "kind": "trial",
       "visible": true,

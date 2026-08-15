@@ -274,7 +274,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-value",
+      "id": "trial-maximum-value",
       "name": "the maximum value is ineligible at the first index",
       "kind": "trial",
       "visible": true,
@@ -294,7 +294,7 @@
       ]
     },
     {
-      "id": "hidden-interleaved-blockers",
+      "id": "trial-interleaved-blockers",
       "name": "interleaved large values leave a shifted four-point chain",
       "kind": "trial",
       "visible": true,
@@ -315,7 +315,7 @@
       ]
     },
     {
-      "id": "hidden-deep-interleaving",
+      "id": "trial-deep-interleaving",
       "name": "several incompatible points surround the best chain",
       "kind": "trial",
       "visible": true,
@@ -337,7 +337,7 @@
       ]
     },
     {
-      "id": "hidden-duplicate-and-crossed",
+      "id": "trial-duplicate-and-crossed",
       "name": "duplicates and crossed coordinates restrict the chain",
       "kind": "trial",
       "visible": true,
@@ -355,6 +355,23 @@
       "tags": [
         "duplicates",
         "crossed-points"
+      ]
+    },
+    {
+      "id": "trial-boundary-19",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-exact-boundaries",
+      "id": "trial-exact-boundaries",
       "name": "values exactly at each range limit are included",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-wide-gaps",
+      "id": "trial-wide-gaps",
       "name": "every separated value starts a group",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-mixed-duplicates",
+      "id": "trial-mixed-duplicates",
       "name": "duplicate clusters span three greedy ranges",
       "kind": "trial",
       "visible": true,

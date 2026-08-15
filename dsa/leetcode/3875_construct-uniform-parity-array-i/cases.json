@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-extreme-values",
+      "id": "trial-extreme-values",
       "name": "minimum and maximum values have mixed parity",
       "kind": "trial",
       "visible": true,
@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "real-descending-mixed",
+      "id": "trial-descending-mixed",
       "name": "array order does not affect the construction",
       "kind": "trial",
       "visible": true,
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "real-alternating-parity",
+      "id": "trial-alternating-parity",
       "name": "alternating parities use one fixed odd anchor",
       "kind": "trial",
       "visible": true,
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "real-irregular-order",
+      "id": "trial-irregular-order",
       "name": "parity proof ignores numerical order",
       "kind": "trial",
       "visible": true,
@@ -272,7 +272,7 @@
       ]
     },
     {
-      "id": "real-all-odd-near-maximum",
+      "id": "trial-all-odd-near-maximum",
       "name": "large odd values need no subtraction",
       "kind": "trial",
       "visible": true,
@@ -295,7 +295,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "every legal value at maximum length",
       "kind": "trial",
       "visible": true,
@@ -410,6 +410,39 @@
       "tags": [
         "maximum-length",
         "complete-value-domain"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          2
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

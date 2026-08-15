@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-multiple-predecessors",
+      "id": "trial-multiple-predecessors",
       "name": "any one valid predecessor is sufficient",
       "kind": "trial",
       "visible": true,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-target-occurrences",
+      "id": "trial-target-occurrences",
       "name": "duplicate target occurrences count separately",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-single-letter-source",
+      "id": "trial-single-letter-source",
       "name": "one-letter source accepts a new letter",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-no-predecessor",
+      "id": "trial-no-predecessor",
       "name": "unrelated letter sets do not match",
       "kind": "trial",
       "visible": true,
@@ -160,6 +160,49 @@
       "expected": 0,
       "tags": [
         "zero-result"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in startWords",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startWords": [
+          "ant"
+        ],
+        "targetWords": [
+          "tack",
+          "act",
+          "acti"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in startWords",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startWords": [
+          "ant",
+          "ant"
+        ],
+        "targetWords": [
+          "tack",
+          "act",
+          "acti"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

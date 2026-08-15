@@ -318,8 +318,8 @@
       ]
     },
     {
-      "id": "real-zero-two-zero-breaks",
-      "name": "real: transition between zero and two breaks",
+      "id": "trial-zero-two-zero-breaks",
+      "name": "transition between zero and two breaks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -369,8 +369,8 @@
       ]
     },
     {
-      "id": "real-single-break-movement",
-      "name": "real: odd circle moves and multiplies breaks",
+      "id": "trial-single-break-movement",
+      "name": "odd circle moves and multiplies breaks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -419,8 +419,8 @@
       ]
     },
     {
-      "id": "real-boundary-merges",
-      "name": "real: updates at both ends merge circular runs",
+      "id": "trial-boundary-merges",
+      "name": "updates at both ends merge circular runs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -475,8 +475,8 @@
       ]
     },
     {
-      "id": "real-dense-mixed",
-      "name": "real: dense mixed updates and sizes",
+      "id": "trial-dense-mixed",
+      "name": "dense mixed updates and sizes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -561,8 +561,8 @@
       ]
     },
     {
-      "id": "real-large-size-recovery",
-      "name": "real: large groups recover after local updates",
+      "id": "trial-large-size-recovery",
+      "name": "large groups recover after local updates",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-mixed-swap",
+      "id": "trial-mixed-swap",
       "name": "exact middle matches and swapped remainder",
       "kind": "trial",
       "visible": true,

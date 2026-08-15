@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "first bottom value is the only candidate",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "choose cheaper bottom destination",
       "kind": "trial",
       "visible": true,
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "late domino invalidates candidate",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "two domino minimum",
       "kind": "trial",
       "visible": true,
@@ -218,6 +218,55 @@
       "expected": 1,
       "tags": [
         "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in tops",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tops": [
+          2
+        ],
+        "bottoms": [
+          5,
+          2,
+          6,
+          2,
+          3,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in tops",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tops": [
+          2,
+          2
+        ],
+        "bottoms": [
+          5,
+          2,
+          6,
+          2,
+          3,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

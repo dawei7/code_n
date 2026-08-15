@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-two-components-after-one-cut",
+      "id": "trial-two-components-after-one-cut",
       "name": "bridge joins two cyclic regions",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-several-tail-bridges",
+      "id": "trial-several-tail-bridges",
       "name": "several tail edges leave a cycle",
       "kind": "trial",
       "visible": true,
@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "real-dense-no-bridges",
+      "id": "trial-dense-no-bridges",
       "name": "dense alternate routes",
       "kind": "trial",
       "visible": true,

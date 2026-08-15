@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-reverse-four",
+      "id": "trial-reverse-four",
       "name": "reversing four unique values needs three moves",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-two-independent-swaps",
+      "id": "trial-two-independent-swaps",
       "name": "two separated swaps require two moves",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-maximum-distinct-reversal",
+      "id": "trial-maximum-distinct-reversal",
       "name": "maximum-length distinct reversal reaches distance four",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-negative-duplicates",
+      "id": "trial-negative-duplicates",
       "name": "values and duplicates do not change move semantics",
       "kind": "trial",
       "visible": true,

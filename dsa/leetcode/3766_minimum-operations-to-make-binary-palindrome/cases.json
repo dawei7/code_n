@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-upper-bound-and-order",
+      "id": "trial-upper-bound-and-order",
       "name": "mixed values preserve order and include the upper bound",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-power-boundaries",
+      "id": "trial-power-boundaries",
       "name": "values around powers of two use shorter and longer candidates",
       "kind": "trial",
       "visible": true,
@@ -234,7 +234,7 @@
       ]
     },
     {
-      "id": "real-full-legal-domain",
+      "id": "trial-full-legal-domain",
       "name": "every legal value matches its direct nearest-palindrome distance",
       "kind": "trial",
       "visible": true,

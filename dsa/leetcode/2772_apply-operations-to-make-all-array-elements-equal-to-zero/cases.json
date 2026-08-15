@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "no operation is needed",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-over-subtraction",
+      "id": "trial-over-subtraction",
       "name": "an earlier forced window over-decrements a value",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-uncovered-tail",
+      "id": "trial-uncovered-tail",
       "name": "a positive tail has no legal starting window",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-late-window",
+      "id": "trial-late-window",
       "name": "the only operation begins after a leading zero",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-leading-zero-conflict",
+      "id": "trial-leading-zero-conflict",
       "name": "a needed decrement would also change a cleared prefix",
       "kind": "trial",
       "visible": true,
@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum values with independent windows",
       "kind": "trial",
       "visible": true,
@@ -210,6 +210,41 @@
       "tags": [
         "maximum",
         "k-one"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ],
+        "k": 3
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "k": 3
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

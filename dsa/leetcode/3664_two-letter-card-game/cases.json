@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-two-independent-families",
+      "id": "trial-two-independent-families",
       "name": "both noncentral families score independently",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-center-split",
+      "id": "trial-center-split",
       "name": "centers must be allocated across family demands",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-ignore-unusable",
+      "id": "trial-ignore-unusable",
       "name": "cards without x do not participate",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-upper-alphabet-letter",
+      "id": "trial-upper-alphabet-letter",
       "name": "x at the upper character bound",
       "kind": "trial",
       "visible": true,
@@ -204,6 +204,41 @@
       "tags": [
         "alphabet-bound",
         "center"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in cards",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cards": [
+          "aa"
+        ],
+        "x": "a"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in cards",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cards": [
+          "aa",
+          "aa"
+        ],
+        "x": "a"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

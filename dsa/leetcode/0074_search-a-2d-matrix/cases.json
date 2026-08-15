@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-row-boundary",
+      "id": "trial-row-boundary",
       "name": "first value of a later row",
       "kind": "trial",
       "visible": true,

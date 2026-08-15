@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "hidden-dense",
+      "id": "trial-dense",
       "name": "dense stones allow many states",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "hidden-late-gap",
+      "id": "trial-late-gap",
       "name": "many reachable stones before failure",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "hidden-alternate-path",
+      "id": "trial-alternate-path",
       "name": "successful path needs non-obvious jump choices",
       "kind": "trial",
       "visible": true,

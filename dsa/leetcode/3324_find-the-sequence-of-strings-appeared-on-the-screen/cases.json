@@ -129,8 +129,8 @@
       ]
     },
     {
-      "id": "real-a-then-z",
-      "name": "real: zero increments followed by twenty-five",
+      "id": "trial-a-then-z",
+      "name": "zero increments followed by twenty-five",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -170,8 +170,8 @@
       ]
     },
     {
-      "id": "real-z-then-a",
-      "name": "real: long first cycle then append only",
+      "id": "trial-z-then-a",
+      "name": "long first cycle then append only",
       "kind": "trial",
       "visible": true,
       "input": {

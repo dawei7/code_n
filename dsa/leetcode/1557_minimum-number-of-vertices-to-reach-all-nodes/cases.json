@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-isolated-vertices",
+      "id": "trial-isolated-vertices",
       "name": "isolated vertices are mandatory sources",
       "kind": "trial",
       "visible": true,
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "real-diamond",
+      "id": "trial-diamond",
       "name": "diamond has one source",
       "kind": "trial",
       "visible": true,
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "real-two-components",
+      "id": "trial-two-components",
       "name": "two disconnected chains",
       "kind": "trial",
       "visible": true,
@@ -283,7 +283,7 @@
       ]
     },
     {
-      "id": "real-complete-forward",
+      "id": "trial-complete-forward",
       "name": "dense forward DAG",
       "kind": "trial",
       "visible": true,
@@ -342,7 +342,7 @@
       ]
     },
     {
-      "id": "real-converging-sources",
+      "id": "trial-converging-sources",
       "name": "four sources converge through two layers",
       "kind": "trial",
       "visible": true,
@@ -392,7 +392,7 @@
       ]
     },
     {
-      "id": "real-order-independent",
+      "id": "trial-order-independent",
       "name": "arbitrary edge order",
       "kind": "trial",
       "visible": true,

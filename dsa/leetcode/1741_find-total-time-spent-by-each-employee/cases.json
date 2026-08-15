@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-same-employee-different-days",
+      "id": "trial-same-employee-different-days",
       "name": "dates remain separate for one employee",
       "kind": "trial",
       "visible": true,
@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "real-same-day-different-employees",
+      "id": "trial-same-day-different-employees",
       "name": "employee identifiers remain separate on one date",
       "kind": "trial",
       "visible": true,
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "real-minute-boundaries",
+      "id": "trial-minute-boundaries",
       "name": "full legal minute range uses endpoint subtraction",
       "kind": "trial",
       "visible": true,
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "id": "real-unsorted-groups",
+      "id": "trial-unsorted-groups",
       "name": "input order does not control grouping",
       "kind": "trial",
       "visible": true,
@@ -366,7 +366,7 @@
       ]
     },
     {
-      "id": "real-short-visits",
+      "id": "trial-short-visits",
       "name": "one-minute visits each contribute one",
       "kind": "trial",
       "visible": true,

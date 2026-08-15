@@ -61,7 +61,7 @@
       ]
     },
     {
-      "id": "real-existing-a-and-later-groups",
+      "id": "trial-existing-a-and-later-groups",
       "name": "existing a remains while b absorbs later letters",
       "kind": "trial",
       "visible": true,
@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-middle-letter-smallest",
+      "id": "trial-middle-letter-smallest",
       "name": "the smallest occupied rank controls the route",
       "kind": "trial",
       "visible": true,
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-every-letter",
+      "id": "trial-every-letter",
       "name": "all alphabet letters merge during the sweep from b",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-many-target-characters",
+      "id": "trial-many-target-characters",
       "name": "repeated a characters still require zero operations",
       "kind": "trial",
       "visible": true,
@@ -112,6 +112,34 @@
       "tags": [
         "duplicates",
         "already-target"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "y"
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "yyy"
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

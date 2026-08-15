@@ -275,8 +275,8 @@
       ]
     },
     {
-      "id": "real-two-bad-internals",
-      "name": "real: root and one internal node are bad",
+      "id": "trial-two-bad-internals",
+      "name": "root and one internal node are bad",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -318,8 +318,8 @@
       ]
     },
     {
-      "id": "real-equal-large-children",
-      "name": "real: root children have equal nontrivial sizes",
+      "id": "trial-equal-large-children",
+      "name": "root children have equal nontrivial sizes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -357,8 +357,8 @@
       ]
     },
     {
-      "id": "real-unordered-labels",
-      "name": "real: shuffled edges and labels preserve the rooted structure",
+      "id": "trial-unordered-labels",
+      "name": "shuffled edges and labels preserve the rooted structure",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -396,8 +396,8 @@
       ]
     },
     {
-      "id": "real-balanced-four-levels",
-      "name": "real: complete four-level binary tree",
+      "id": "trial-balanced-four-levels",
+      "name": "complete four-level binary tree",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -467,8 +467,8 @@
       ]
     },
     {
-      "id": "real-mixed-branches",
-      "name": "real: several branching arities and subtree sizes",
+      "id": "trial-mixed-branches",
+      "name": "several branching arities and subtree sizes",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-largest-singleton",
+      "id": "trial-largest-singleton",
       "name": "early singleton exceeds later run",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-middle-and-final-runs",
+      "id": "trial-middle-and-final-runs",
       "name": "late run wins after several decreases",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-equal-middle-values",
+      "id": "trial-equal-middle-values",
       "name": "equality starts a more valuable run",
       "kind": "trial",
       "visible": true,

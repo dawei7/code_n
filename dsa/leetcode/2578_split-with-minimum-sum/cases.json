@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "real-paired-zeroes",
+      "id": "trial-paired-zeroes",
       "name": "zeroes lead both constructed numbers",
       "kind": "trial",
       "visible": true,
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-duplicate-middle-digits",
+      "id": "trial-duplicate-middle-digits",
       "name": "duplicate digits are distributed evenly",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-nine-repeated-digits",
+      "id": "trial-nine-repeated-digits",
       "name": "longest ordinary all-nine input",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-maximum-input",
+      "id": "trial-maximum-input",
       "name": "maximum input places nine zeroes first",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-all-distinct-nonzero",
+      "id": "trial-all-distinct-nonzero",
       "name": "ascending place-value assignment",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-many-zeroes",
+      "id": "trial-many-zeroes",
       "name": "zeroes consume most positions",
       "kind": "trial",
       "visible": true,

@@ -120,8 +120,8 @@
       ]
     },
     {
-      "id": "real-odd-majority-forces-start",
-      "name": "real: odd majority forces odd positions at both ends",
+      "id": "trial-odd-majority-forces-start",
+      "name": "odd majority forces odd positions at both ends",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -141,8 +141,8 @@
       ]
     },
     {
-      "id": "real-balanced-even-start-cheaper",
-      "name": "real: balanced counts can favor the even-start pattern",
+      "id": "trial-balanced-even-start-cheaper",
+      "name": "balanced counts can favor the even-start pattern",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -163,8 +163,8 @@
       ]
     },
     {
-      "id": "real-large-displacement",
-      "name": "real: grouped parities require the sum of all crossings",
+      "id": "trial-large-displacement",
+      "name": "grouped parities require the sum of all crossings",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -187,8 +187,8 @@
       ]
     },
     {
-      "id": "real-imbalance-by-two",
-      "name": "real: a count difference of two is already impossible",
+      "id": "trial-imbalance-by-two",
+      "name": "a count difference of two is already impossible",
       "kind": "trial",
       "visible": true,
       "input": {

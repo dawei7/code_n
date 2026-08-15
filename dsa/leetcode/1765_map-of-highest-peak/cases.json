@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-center-source",
+      "id": "trial-center-source",
       "name": "concentric distance layers around the center",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-one-row",
+      "id": "trial-one-row",
       "name": "two water sources on a one-row map",
       "kind": "trial",
       "visible": true,
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "real-corner-source",
+      "id": "trial-corner-source",
       "name": "distances from a rectangular corner",
       "kind": "trial",
       "visible": true,

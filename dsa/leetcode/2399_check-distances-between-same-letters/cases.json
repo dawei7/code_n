@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "real-first-letter-fails",
+      "id": "trial-first-letter-fails",
       "name": "earliest completed letter fails",
       "kind": "trial",
       "visible": true,
@@ -252,7 +252,7 @@
       ]
     },
     {
-      "id": "real-crossing-pairs",
+      "id": "trial-crossing-pairs",
       "name": "crossing pairs use their own endpoints",
       "kind": "trial",
       "visible": true,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "real-late-failure",
+      "id": "trial-late-failure",
       "name": "mismatch can occur at final character",
       "kind": "trial",
       "visible": true,

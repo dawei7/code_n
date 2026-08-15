@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-valid-turn",
+      "id": "trial-valid-turn",
       "name": "only a path with a turn maintains valid balance",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-unclosable",
+      "id": "trial-unclosable",
       "name": "every path retains too many openings",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-prefix-trap",
+      "id": "trial-prefix-trap",
       "name": "equal totals do not repair a negative prefix",
       "kind": "trial",
       "visible": true,

@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-even-six",
+      "id": "trial-even-six",
       "name": "another even length",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-maximum",
+      "id": "trial-maximum",
       "name": "maximum legal length",
       "kind": "trial",
       "visible": true,

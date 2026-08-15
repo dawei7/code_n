@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-order-and-cutoff",
+      "id": "trial-order-and-cutoff",
       "name": "repeated values preserve order and later rows are excluded",
       "kind": "trial",
       "visible": true,

@@ -270,7 +270,7 @@
       ]
     },
     {
-      "id": "real-threshold-tie",
+      "id": "trial-threshold-tie",
       "name": "a boosted copy priced at twice the minimum ties ordinary copies",
       "kind": "trial",
       "visible": true,
@@ -297,7 +297,7 @@
       ]
     },
     {
-      "id": "real-cheapest-boosted-prefix",
+      "id": "trial-cheapest-boosted-prefix",
       "name": "boosted batches must be consumed in price order",
       "kind": "trial",
       "visible": true,
@@ -332,7 +332,7 @@
       ]
     },
     {
-      "id": "real-self-only-subtraction",
+      "id": "trial-self-only-subtraction",
       "name": "duplicate-factor sources exclude only their own index",
       "kind": "trial",
       "visible": true,
@@ -363,7 +363,7 @@
       ]
     },
     {
-      "id": "real-factor-one-full-batch",
+      "id": "trial-factor-one-full-batch",
       "name": "factor one has every other type as a distinct target",
       "kind": "trial",
       "visible": true,
@@ -398,7 +398,7 @@
       ]
     },
     {
-      "id": "real-maximum-budget",
+      "id": "trial-maximum-budget",
       "name": "maximum budget is handled arithmetically",
       "kind": "trial",
       "visible": true,
@@ -421,7 +421,7 @@
       ]
     },
     {
-      "id": "real-maximum-factor",
+      "id": "trial-maximum-factor",
       "name": "a factor equal to the item count is a legal cheapest type",
       "kind": "trial",
       "visible": true,
@@ -460,7 +460,7 @@
       ]
     },
     {
-      "id": "real-mixed-catalog",
+      "id": "trial-mixed-catalog",
       "name": "mixed duplicate factors and prices combine several batch decisions",
       "kind": "trial",
       "visible": true,

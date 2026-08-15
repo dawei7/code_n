@@ -117,8 +117,8 @@
       ]
     },
     {
-      "id": "real-front-player-reaches-three",
-      "name": "real: front maximum reaches three wins",
+      "id": "trial-front-player-reaches-three",
+      "name": "front maximum reaches three wins",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -137,8 +137,8 @@
       ]
     },
     {
-      "id": "real-late-maximum",
-      "name": "real: late maximum takes over",
+      "id": "trial-late-maximum",
+      "name": "late maximum takes over",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -160,8 +160,8 @@
       ]
     },
     {
-      "id": "real-winner-before-global-maximum",
-      "name": "real: early champion wins before maximum competes",
+      "id": "trial-winner-before-global-maximum",
+      "name": "early champion wins before maximum competes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -181,8 +181,8 @@
       ]
     },
     {
-      "id": "real-multiple-champion-changes",
-      "name": "real: several champions reset the streak",
+      "id": "trial-multiple-champion-changes",
+      "name": "several champions reset the streak",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -203,8 +203,8 @@
       ]
     },
     {
-      "id": "real-middle-maximum-huge-k",
-      "name": "real: middle maximum owns an enormous streak",
+      "id": "trial-middle-maximum-huge-k",
+      "name": "middle maximum owns an enormous streak",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -224,8 +224,8 @@
       ]
     },
     {
-      "id": "real-skill-upper-bound",
-      "name": "real: maximum legal skill wins twice",
+      "id": "trial-skill-upper-bound",
+      "name": "maximum legal skill wins twice",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -243,6 +243,41 @@
       "tags": [
         "maximum-skill",
         "champion-change"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in skills",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "skills": [
+          4
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in skills",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "skills": [
+          4,
+          4
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

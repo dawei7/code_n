@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-stability",
+      "id": "trial-stability",
       "name": "preserve order inside both groups",
       "kind": "trial",
       "visible": true,

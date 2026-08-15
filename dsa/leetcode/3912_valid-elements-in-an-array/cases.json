@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "hidden-symmetric-hill",
+      "id": "trial-symmetric-hill",
       "name": "every value of a strict hill is valid",
       "kind": "trial",
       "visible": true,
@@ -276,7 +276,7 @@
       ]
     },
     {
-      "id": "hidden-symmetric-valley",
+      "id": "trial-symmetric-valley",
       "name": "high endpoints dominate every interior value",
       "kind": "trial",
       "visible": true,
@@ -299,7 +299,7 @@
       ]
     },
     {
-      "id": "hidden-repeated-maximum",
+      "id": "trial-repeated-maximum",
       "name": "repeated global maxima invalidate the middle copy",
       "kind": "trial",
       "visible": true,
@@ -322,7 +322,7 @@
       ]
     },
     {
-      "id": "hidden-long-alternating",
+      "id": "trial-long-alternating",
       "name": "long alternating sequence of minimum and maximum values",
       "kind": "trial",
       "visible": true,
@@ -440,7 +440,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-increasing",
+      "id": "trial-maximum-increasing",
       "name": "maximum-length increasing array keeps every value",
       "kind": "trial",
       "visible": true,
@@ -657,7 +657,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-equal",
+      "id": "trial-maximum-equal",
       "name": "maximum-length equal array keeps only endpoints",
       "kind": "trial",
       "visible": true,
@@ -772,6 +772,26 @@
         "maximum-n",
         "all-equal",
         "endpoints"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

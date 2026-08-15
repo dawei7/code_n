@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-empty-skills",
+      "id": "trial-empty-skills",
       "name": "people with no skills",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-three-way",
+      "id": "trial-three-way",
       "name": "three complementary pairs",
       "kind": "trial",
       "visible": true,
@@ -269,7 +269,7 @@
       ]
     },
     {
-      "id": "real-dominated",
+      "id": "trial-dominated",
       "name": "dominated single-skill people",
       "kind": "trial",
       "visible": true,
@@ -316,7 +316,7 @@
       ]
     },
     {
-      "id": "real-chain-overlap",
+      "id": "trial-chain-overlap",
       "name": "chained coverage choices",
       "kind": "trial",
       "visible": true,

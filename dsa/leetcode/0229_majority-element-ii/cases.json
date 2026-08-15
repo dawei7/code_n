@@ -68,7 +68,7 @@
       ]
     },
     {
-      "id": "real-cancellation",
+      "id": "trial-cancellation",
       "name": "candidates require verification",
       "kind": "trial",
       "visible": true,

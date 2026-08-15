@@ -130,7 +130,7 @@
     },
     {
       "id": "query-order",
-      "name": "real: two equal thresholds succeed before a larger one",
+      "name": "two equal thresholds succeed before a larger one",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,7 +152,7 @@
     },
     {
       "id": "queries-shorter",
-      "name": "real: processing stops after exhausting queries",
+      "name": "processing stops after exhausting queries",
       "kind": "trial",
       "visible": true,
       "input": {

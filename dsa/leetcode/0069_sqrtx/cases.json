@@ -54,7 +54,7 @@
       ]
     },
     {
-      "id": "real-large",
+      "id": "trial-large",
       "name": "near 32-bit maximum",
       "kind": "trial",
       "visible": true,

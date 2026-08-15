@@ -61,7 +61,7 @@
       ]
     },
     {
-      "id": "real-zero-to-one",
+      "id": "trial-zero-to-one",
       "name": "one low bit differs from zero",
       "kind": "trial",
       "visible": true,
@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-leading-bit",
+      "id": "trial-leading-bit",
       "name": "an implicit leading zero becomes one",
       "kind": "trial",
       "visible": true,
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-four-differences",
+      "id": "trial-four-differences",
       "name": "complementary low four bits",
       "kind": "trial",
       "visible": true,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "upper legal magnitude uses thirty positions",
       "kind": "trial",
       "visible": true,
@@ -114,6 +114,36 @@
       "expected": 13,
       "tags": [
         "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value start=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": 1,
+        "goal": 7
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value goal=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": 10,
+        "goal": 1
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

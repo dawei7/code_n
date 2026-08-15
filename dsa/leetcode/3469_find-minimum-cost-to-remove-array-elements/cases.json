@@ -92,8 +92,8 @@
       ]
     },
     {
-      "id": "real-seven-values",
-      "name": "real: several survivor identities remain possible",
+      "id": "trial-seven-values",
+      "name": "several survivor identities remain possible",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -114,8 +114,8 @@
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "real: every decision has the same operation cost",
+      "id": "trial-all-equal",
+      "name": "every decision has the same operation cost",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -136,8 +136,8 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "real: minimum and maximum values alternate",
+      "id": "trial-value-boundaries",
+      "name": "minimum and maximum values alternate",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -154,6 +154,39 @@
         "real",
         "value-boundaries",
         "odd-length"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          6
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

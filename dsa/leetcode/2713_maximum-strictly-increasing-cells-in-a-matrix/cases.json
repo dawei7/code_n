@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-one-column",
+      "id": "trial-one-column",
       "name": "one column with distinct values",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-equal-value-batch",
+      "id": "trial-equal-value-batch",
       "name": "equal values must not update each other",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-negative-grid",
+      "id": "trial-negative-grid",
       "name": "ordered negative values",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-full-snake",
+      "id": "trial-full-snake",
       "name": "all nine values form a sequence",
       "kind": "trial",
       "visible": true,
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "real-rectangular-duplicates",
+      "id": "trial-rectangular-duplicates",
       "name": "rectangular matrix with duplicates",
       "kind": "trial",
       "visible": true,

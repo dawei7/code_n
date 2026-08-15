@@ -81,8 +81,8 @@
       ]
     },
     {
-      "id": "real-all-distinct",
-      "name": "real: distinct characters all remain",
+      "id": "trial-all-distinct",
+      "name": "distinct characters all remain",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -94,8 +94,8 @@
       ]
     },
     {
-      "id": "real-two-odd-groups",
-      "name": "real: two odd frequencies each leave one",
+      "id": "trial-two-odd-groups",
+      "name": "two odd frequencies each leave one",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-two-even-groups",
-      "name": "real: two even frequencies each leave two",
+      "id": "trial-two-even-groups",
+      "name": "two even frequencies each leave two",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -120,8 +120,8 @@
       ]
     },
     {
-      "id": "real-mixed-parities",
-      "name": "real: mixed positive parities sum independently",
+      "id": "trial-mixed-parities",
+      "name": "mixed positive parities sum independently",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -133,8 +133,8 @@
       ]
     },
     {
-      "id": "real-interleaved",
-      "name": "real: positions do not change count minima",
+      "id": "trial-interleaved",
+      "name": "positions do not change count minima",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-alphabet-pairs",
-      "name": "real: two copies of every letter remain",
+      "id": "trial-alphabet-pairs",
+      "name": "two copies of every letter remain",
       "kind": "trial",
       "visible": true,
       "input": {

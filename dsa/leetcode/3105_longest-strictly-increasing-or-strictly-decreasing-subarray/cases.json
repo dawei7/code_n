@@ -132,8 +132,8 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "real: every comparison changes direction",
+      "id": "trial-alternating",
+      "name": "every comparison changes direction",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-equality-before-descent",
-      "name": "real: equality separates a long decreasing suffix",
+      "id": "trial-equality-before-descent",
+      "name": "equality separates a long decreasing suffix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -174,8 +174,8 @@
       ]
     },
     {
-      "id": "real-two-plateaus",
-      "name": "real: plateaus bound runs in both directions",
+      "id": "trial-two-plateaus",
+      "name": "plateaus bound runs in both directions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -196,8 +196,8 @@
       ]
     },
     {
-      "id": "real-tied-long-runs",
-      "name": "real: decreasing and increasing runs tie at the maximum",
+      "id": "trial-tied-long-runs",
+      "name": "decreasing and increasing runs tie at the maximum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -218,8 +218,8 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "real: repeated minimum and maximum values split strict runs",
+      "id": "trial-value-boundaries",
+      "name": "repeated minimum and maximum values split strict runs",
       "kind": "trial",
       "visible": true,
       "input": {

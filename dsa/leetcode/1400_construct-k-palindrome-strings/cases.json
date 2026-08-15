@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-one-palindrome",
+      "id": "trial-one-palindrome",
       "name": "exactly one center allowed",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-odd-boundary",
+      "id": "trial-odd-boundary",
       "name": "odd count just exceeds k",
       "kind": "trial",
       "visible": true,

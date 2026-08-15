@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-rejection-does-not-persist",
+      "id": "trial-rejection-does-not-persist",
       "name": "rejected edge never changes connectivity",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-already-indirectly-connected",
+      "id": "trial-already-indirectly-connected",
       "name": "a redundant edge inside one component succeeds",
       "kind": "trial",
       "visible": true,
@@ -237,7 +237,7 @@
       ]
     },
     {
-      "id": "real-direct-then-component-restriction",
+      "id": "trial-direct-then-component-restriction",
       "name": "direct rejection followed by safe requests",
       "kind": "trial",
       "visible": true,

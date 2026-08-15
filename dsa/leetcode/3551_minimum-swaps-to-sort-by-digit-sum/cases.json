@@ -93,8 +93,8 @@
       ]
     },
     {
-      "id": "real-three-cycle",
-      "name": "real: one permutation cycle of length three",
+      "id": "trial-three-cycle",
+      "name": "one permutation cycle of length three",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -111,8 +111,8 @@
       ]
     },
     {
-      "id": "real-upper-value-bound",
-      "name": "real: maximum value has a small digit sum",
+      "id": "trial-upper-value-bound",
+      "name": "maximum value has a small digit sum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -130,8 +130,8 @@
       ]
     },
     {
-      "id": "real-two-disjoint-swaps",
-      "name": "real: two independent two-cycles",
+      "id": "trial-two-disjoint-swaps",
+      "name": "two independent two-cycles",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -146,6 +146,39 @@
       "tags": [
         "real",
         "multiple-cycles"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          37
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          37,
+          37
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-unreachable-two-by-two",
+      "id": "trial-unreachable-two-by-two",
       "name": "zero at the start blocks every move",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-zigzag-only-path",
+      "id": "trial-zigzag-only-path",
       "name": "progress alternates between rows and columns",
       "kind": "trial",
       "visible": true,

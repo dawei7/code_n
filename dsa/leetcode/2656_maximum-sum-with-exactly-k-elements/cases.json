@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-maximum-middle",
+      "id": "trial-maximum-middle",
       "name": "maximum is not at an endpoint",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-equal-ones",
+      "id": "trial-equal-ones",
       "name": "all original values are one",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-maximum-bounds",
+      "id": "trial-maximum-bounds",
       "name": "maximum value and operation count",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-many-elements",
+      "id": "trial-many-elements",
       "name": "array length does not change the progression",
       "kind": "trial",
       "visible": true,
@@ -150,6 +150,41 @@
       "expected": 33,
       "tags": [
         "repeated-maximum"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 3
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

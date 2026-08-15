@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-one-pattern-fewer-operations",
+      "id": "trial-one-pattern-fewer-operations",
       "name": "operation count takes priority over range",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-negative-alternating",
+      "id": "trial-negative-alternating",
       "name": "negative values already alternate parity",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-two-equal-odds",
+      "id": "trial-two-equal-odds",
       "name": "either one-step direction can attain range one",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-opposite-domain-endpoints",
+      "id": "trial-opposite-domain-endpoints",
       "name": "original numeric endpoints require a wide result type",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-repeated-domain-endpoints",
+      "id": "trial-repeated-domain-endpoints",
       "name": "repeated endpoint values make both patterns tie",
       "kind": "trial",
       "visible": true,
@@ -275,7 +275,7 @@
       ]
     },
     {
-      "id": "real-odd-first-already-valid",
+      "id": "trial-odd-first-already-valid",
       "name": "the odd-first pattern may already be optimal",
       "kind": "trial",
       "visible": true,
@@ -301,7 +301,7 @@
       ]
     },
     {
-      "id": "real-even-first-fixed-range",
+      "id": "trial-even-first-fixed-range",
       "name": "fixed values determine the zero-operation range",
       "kind": "trial",
       "visible": true,
@@ -324,6 +324,45 @@
       "tags": [
         "even-first",
         "mixed-sign"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          -2
+        ]
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

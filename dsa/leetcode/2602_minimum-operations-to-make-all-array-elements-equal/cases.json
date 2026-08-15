@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-low-mid-high",
+      "id": "trial-low-mid-high",
       "name": "targets below, within, and above the values",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "operation totals require wide integers",
       "kind": "trial",
       "visible": true,

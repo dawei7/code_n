@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-full-domain",
+      "id": "trial-full-domain",
       "name": "complete legal domain",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-repeated-tail",
+      "id": "trial-repeated-tail",
       "name": "every value near one thousand repeats a digit",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-leading-zero-trap",
+      "id": "trial-leading-zero-trap",
       "name": "decimal representations do not contain leading zeros",
       "kind": "trial",
       "visible": true,

@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-unequal-boundary-runs",
+      "id": "trial-unequal-boundary-runs",
       "name": "boundary runs have different lengths",
       "kind": "trial",
       "visible": true,
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-one-middle-character",
+      "id": "trial-one-middle-character",
       "name": "nested layers leave one middle character",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-deep-nesting",
+      "id": "trial-deep-nesting",
       "name": "several single-character boundary layers",
       "kind": "trial",
       "visible": true,
@@ -113,6 +113,34 @@
       "tags": [
         "deep-nesting",
         "single-center"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "c"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ccc"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

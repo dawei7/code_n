@@ -176,8 +176,8 @@
       ]
     },
     {
-      "id": "real-wraparound-alignment",
-      "name": "real: the optimal shift wraps the suffix to the front",
+      "id": "trial-wraparound-alignment",
+      "name": "the optimal shift wraps the suffix to the front",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -207,8 +207,8 @@
       ]
     },
     {
-      "id": "real-mixed-repetitions",
-      "name": "real: repeated values create a nontrivial best shift",
+      "id": "trial-mixed-repetitions",
+      "name": "repeated values create a nontrivial best shift",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-repeated-characters",
+      "id": "trial-repeated-characters",
       "name": "repeated characters remain component-local",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-disconnected-singleton",
+      "id": "trial-disconnected-singleton",
       "name": "singleton stays between two components",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-full-chain",
+      "id": "trial-full-chain",
       "name": "reverse string becomes globally sorted",
       "kind": "trial",
       "visible": true,

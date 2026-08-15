@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-late-rejection",
+      "id": "trial-late-rejection",
       "name": "completed fulfillments do not mask a later rejection",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-first-rejection",
+      "id": "trial-first-rejection",
       "name": "earliest rejection reason wins",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-tied-rejections",
+      "id": "trial-tied-rejections",
       "name": "registration order resolves a tied rejection time",
       "kind": "trial",
       "visible": true,
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "real-maximum-functions",
+      "id": "trial-maximum-functions",
       "name": "ten functions all start together",
       "kind": "trial",
       "visible": true,

@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-target-last",
+      "id": "trial-target-last",
       "name": "target row appears last",
       "kind": "trial",
       "visible": true,

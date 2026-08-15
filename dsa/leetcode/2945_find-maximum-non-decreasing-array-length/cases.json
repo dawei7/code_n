@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-large-leading-value",
+      "id": "trial-large-leading-value",
       "name": "a dominant first value forces one block",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating low and high values",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-several-valid-partitions",
+      "id": "trial-several-valid-partitions",
       "name": "choose boundaries globally",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-long-decreasing-tail",
+      "id": "trial-long-decreasing-tail",
       "name": "increasing prefix followed by a decreasing tail",
       "kind": "trial",
       "visible": true,

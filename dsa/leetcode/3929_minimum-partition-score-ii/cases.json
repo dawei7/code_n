@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-all-singletons",
+      "id": "trial-all-singletons",
       "name": "maximum k on a mixed array",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-symmetric-peaks",
+      "id": "trial-symmetric-peaks",
       "name": "symmetric peaks make the central cut optimal",
       "kind": "trial",
       "visible": true,
@@ -236,7 +236,7 @@
       ]
     },
     {
-      "id": "real-maximum-element-one-group",
+      "id": "trial-maximum-element-one-group",
       "name": "maximum element participates in one large value",
       "kind": "trial",
       "visible": true,
@@ -257,7 +257,7 @@
       ]
     },
     {
-      "id": "real-maximum-element-separated",
+      "id": "trial-maximum-element-separated",
       "name": "separating the maximum value lowers the score",
       "kind": "trial",
       "visible": true,
@@ -278,7 +278,7 @@
       ]
     },
     {
-      "id": "real-multiple-interior-options",
+      "id": "trial-multiple-interior-options",
       "name": "several competing interior split points",
       "kind": "trial",
       "visible": true,
@@ -303,7 +303,7 @@
       ]
     },
     {
-      "id": "real-penalty-plateau",
+      "id": "trial-penalty-plateau",
       "name": "exact k lies on an equal marginal interval",
       "kind": "trial",
       "visible": true,
@@ -326,7 +326,7 @@
       ]
     },
     {
-      "id": "real-isolate-two-peaks",
+      "id": "trial-isolate-two-peaks",
       "name": "isolate equal peaks around a central block",
       "kind": "trial",
       "visible": true,
@@ -347,6 +347,41 @@
       "tags": [
         "boundary-groups",
         "convex-cost"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 2
+      },
+      "expected": 15,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5
+        ],
+        "k": 2
+      },
+      "expected": 30,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

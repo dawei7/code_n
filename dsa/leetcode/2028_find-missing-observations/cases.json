@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-all-sixes",
+      "id": "trial-all-sixes",
       "name": "maximum feasible sum produces only sixes",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-impossible-low",
+      "id": "trial-impossible-low",
       "name": "required sum is below one per missing die",
       "kind": "trial",
       "visible": true,
@@ -176,6 +176,49 @@
       },
       "tags": [
         "impossible"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in rolls",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rolls": [
+          3
+        ],
+        "mean": 4,
+        "n": 2
+      },
+      "expected": [
+        5,
+        4
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in rolls",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rolls": [
+          3,
+          3
+        ],
+        "mean": 4,
+        "n": 2
+      },
+      "expected": [
+        5,
+        5
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

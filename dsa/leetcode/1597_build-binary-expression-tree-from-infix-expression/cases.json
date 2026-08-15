@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-subtraction-associativity",
+      "id": "trial-subtraction-associativity",
       "name": "subtraction associates left",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-division-associativity",
+      "id": "trial-division-associativity",
       "name": "division associates left",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-right-parenthesized",
+      "id": "trial-right-parenthesized",
       "name": "parentheses force right grouping",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-mixed-precedence",
+      "id": "trial-mixed-precedence",
       "name": "multiplication and division share precedence",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-deep-parentheses",
+      "id": "trial-deep-parentheses",
       "name": "several nested parenthesis levels",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-two-parenthesized-sides",
+      "id": "trial-two-parenthesized-sides",
       "name": "independent parenthesized operands",
       "kind": "trial",
       "visible": true,
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "id": "real-parentheses-preserve-left-chain",
+      "id": "trial-parentheses-preserve-left-chain",
       "name": "parenthesized left chain inside division",
       "kind": "trial",
       "visible": true,

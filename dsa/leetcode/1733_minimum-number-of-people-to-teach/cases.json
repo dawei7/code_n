@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-unaffected-user",
+      "id": "trial-unaffected-user",
       "name": "unrelated language expert is ignored",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-nontransitive-chain",
+      "id": "trial-nontransitive-chain",
       "name": "shared neighbor does not make endpoints communicate",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-mixed-working-and-broken",
+      "id": "trial-mixed-working-and-broken",
       "name": "only endpoints of broken friendships matter",
       "kind": "trial",
       "visible": true,
@@ -268,7 +268,7 @@
       ]
     },
     {
-      "id": "real-tied-language-counts",
+      "id": "trial-tied-language-counts",
       "name": "tied candidate languages give the same minimum",
       "kind": "trial",
       "visible": true,
@@ -306,7 +306,7 @@
       ]
     },
     {
-      "id": "real-manager-language-overlap",
+      "id": "trial-manager-language-overlap",
       "name": "users may know several distinct languages",
       "kind": "trial",
       "visible": true,
@@ -348,7 +348,7 @@
       ]
     },
     {
-      "id": "real-one-user-many-pairs",
+      "id": "trial-one-user-many-pairs",
       "name": "one person in several broken pairs is taught once",
       "kind": "trial",
       "visible": true,

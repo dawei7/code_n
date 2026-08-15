@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-189",
+      "id": "trial-189",
       "name": "end of two-digit block",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-middle",
+      "id": "trial-middle",
       "name": "middle digit of a larger number",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "hidden-int-max",
+      "id": "trial-int-max",
       "name": "maximum input position",
       "kind": "trial",
       "visible": true,

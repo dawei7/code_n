@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "real-two-different-colors",
+      "id": "trial-two-different-colors",
       "name": "both houses survive a different-color boundary",
       "kind": "trial",
       "visible": true,
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "real-color-change-unlocks-tail",
+      "id": "trial-color-change-unlocks-tail",
       "name": "a color change permits the final adjacent pair",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-two-restricted-pairs",
+      "id": "trial-two-restricted-pairs",
       "name": "separate same-color boundaries make separate choices",
       "kind": "trial",
       "visible": true,
@@ -278,7 +278,7 @@
       ]
     },
     {
-      "id": "real-alternating-boundary-types",
+      "id": "trial-alternating-boundary-types",
       "name": "restrictive and permissive boundaries alternate",
       "kind": "trial",
       "visible": true,
@@ -308,7 +308,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum values require a wide accumulated total",
       "kind": "trial",
       "visible": true,
@@ -337,6 +337,51 @@
       "tags": [
         "maximum-values",
         "all-selected"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "colors": [
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "colors": [
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

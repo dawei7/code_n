@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-denial-matters",
+      "id": "trial-denial-matters",
       "name": "opponent value changes the first choice",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "identical valuations split by turn parity",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-odd-identical",
+      "id": "trial-odd-identical",
       "name": "Alice receives the extra identical stone",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-varied-priorities",
+      "id": "trial-varied-priorities",
       "name": "several combined priorities and score values",
       "kind": "trial",
       "visible": true,
@@ -209,6 +209,47 @@
       "tags": [
         "varied",
         "even-count"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in aliceValues",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "aliceValues": [
+          1
+        ],
+        "bobValues": [
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in aliceValues",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "aliceValues": [
+          1,
+          1
+        ],
+        "bobValues": [
+          2,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "hidden-many-values",
+      "id": "trial-many-values",
       "name": "interleaved occurrence lists",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "hidden-last-only",
+      "id": "trial-last-only",
       "name": "target occurs only at final index",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "hidden-all-equal",
+      "id": "trial-all-equal",
       "name": "every index is eligible",
       "kind": "trial",
       "visible": true,

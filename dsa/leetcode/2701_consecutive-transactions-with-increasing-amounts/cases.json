@@ -269,7 +269,7 @@
       ]
     },
     {
-      "id": "real-decrease-then-run",
+      "id": "trial-decrease-then-run",
       "name": "decrease starts a later qualifying run",
       "kind": "trial",
       "visible": true,
@@ -325,7 +325,7 @@
       ]
     },
     {
-      "id": "real-maximal-run",
+      "id": "trial-maximal-run",
       "name": "long run emits only its maximal interval",
       "kind": "trial",
       "visible": true,
@@ -387,7 +387,7 @@
       ]
     },
     {
-      "id": "real-customer-isolation-order",
+      "id": "trial-customer-isolation-order",
       "name": "customers remain isolated and output is ordered",
       "kind": "trial",
       "visible": true,
@@ -461,7 +461,7 @@
       ]
     },
     {
-      "id": "real-one-row",
+      "id": "trial-one-row",
       "name": "a single transaction cannot qualify",
       "kind": "trial",
       "visible": true,

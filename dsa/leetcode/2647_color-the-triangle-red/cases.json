@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-remainder-one",
+      "id": "trial-remainder-one",
       "name": "four-row block plus one-row remainder",
       "kind": "trial",
       "visible": true,
@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "real-remainder-two",
+      "id": "trial-remainder-two",
       "name": "four-row block plus two-row remainder",
       "kind": "trial",
       "visible": true,
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "real-two-blocks",
+      "id": "trial-two-blocks",
       "name": "two complete four-row blocks",
       "kind": "trial",
       "visible": true,
@@ -372,7 +372,7 @@
       ]
     },
     {
-      "id": "real-larger",
+      "id": "trial-larger",
       "name": "three complete four-row blocks",
       "kind": "trial",
       "visible": true,

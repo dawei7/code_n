@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-overlapping-adjacent-transitions",
+      "id": "trial-overlapping-adjacent-transitions",
       "name": "local adjacent choices interact across four mismatches",
       "kind": "trial",
       "visible": true,

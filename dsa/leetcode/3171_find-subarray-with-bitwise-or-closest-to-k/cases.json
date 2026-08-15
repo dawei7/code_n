@@ -130,8 +130,8 @@
       ]
     },
     {
-      "id": "real-duplicate-state-merges",
-      "name": "real: different starts repeatedly merge",
+      "id": "trial-duplicate-state-merges",
+      "name": "different starts repeatedly merge",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -150,8 +150,8 @@
       ]
     },
     {
-      "id": "real-overlapping-ors",
-      "name": "real: overlapping subarrays include an exact OR",
+      "id": "trial-overlapping-ors",
+      "name": "overlapping subarrays include an exact OR",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -173,8 +173,8 @@
       ]
     },
     {
-      "id": "real-maximum-value-gap",
-      "name": "real: maximum legal value and minimum target",
+      "id": "trial-maximum-value-gap",
+      "name": "maximum legal value and minimum target",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -190,8 +190,8 @@
       ]
     },
     {
-      "id": "real-whole-array-exact",
-      "name": "real: the full array accumulates every target bit",
+      "id": "trial-whole-array-exact",
+      "name": "the full array accumulates every target bit",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -210,8 +210,8 @@
       ]
     },
     {
-      "id": "real-singleton-is-best",
-      "name": "real: extending the best singleton is worse",
+      "id": "trial-singleton-is-best",
+      "name": "extending the best singleton is worse",
       "kind": "trial",
       "visible": true,
       "input": {

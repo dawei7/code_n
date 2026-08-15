@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-single-positive",
+      "id": "trial-single-positive",
       "name": "one positive value scores once",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-positive-buffer-zeros",
+      "id": "trial-positive-buffer-zeros",
       "name": "zero values retain a positive running sum",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-total-zero",
+      "id": "trial-total-zero",
       "name": "a final zero prefix does not count",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-negative-tail",
+      "id": "trial-negative-tail",
       "name": "positive buffer admits part of a negative tail",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-all-negative",
+      "id": "trial-all-negative",
       "name": "all-negative values yield zero",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-large-sum",
+      "id": "trial-large-sum",
       "name": "running sum exceeds 32-bit range",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-zero-cannot-start",
+      "id": "trial-zero-cannot-start",
       "name": "zeros and a negative never form a positive prefix",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-break-at-zero",
+      "id": "trial-break-at-zero",
       "name": "descending running sum stops exactly at zero",
       "kind": "trial",
       "visible": true,
@@ -219,6 +219,39 @@
       "tags": [
         "strict-positivity",
         "rearrangement"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

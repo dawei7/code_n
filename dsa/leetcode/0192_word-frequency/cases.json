@@ -51,7 +51,7 @@
       ]
     },
     {
-      "id": "real-tie",
+      "id": "trial-tie",
       "name": "deterministic equal-frequency order",
       "kind": "trial",
       "visible": true,

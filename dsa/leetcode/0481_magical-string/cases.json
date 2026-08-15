@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-ten",
+      "id": "trial-ten",
       "name": "prefix crosses several runs",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-twenty",
+      "id": "trial-twenty",
       "name": "longer generated prefix",
       "kind": "trial",
       "visible": true,

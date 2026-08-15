@@ -96,8 +96,8 @@
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "real: every cost is equal",
+      "id": "trial-all-equal",
+      "name": "every cost is equal",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -115,8 +115,8 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "real: values at both boundaries",
+      "id": "trial-value-boundaries",
+      "name": "values at both boundaries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -134,8 +134,8 @@
       ]
     },
     {
-      "id": "real-second-minimum-update",
-      "name": "real: later value shifts both tracked minima",
+      "id": "trial-second-minimum-update",
+      "name": "later value shifts both tracked minima",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -148,8 +148,8 @@
       ]
     },
     {
-      "id": "real-deep-mixed-nesting",
-      "name": "real: deep mixed nesting",
+      "id": "trial-deep-mixed-nesting",
+      "name": "deep mixed nesting",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -194,8 +194,8 @@
       ]
     },
     {
-      "id": "real-multiple-siblings",
-      "name": "real: multiple undefined siblings",
+      "id": "trial-multiple-siblings",
+      "name": "multiple undefined siblings",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -225,8 +225,8 @@
       ]
     },
     {
-      "id": "real-array-of-objects",
-      "name": "real: undefined fields inside array objects",
+      "id": "trial-array-of-objects",
+      "name": "undefined fields inside array objects",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -270,8 +270,8 @@
       ]
     },
     {
-      "id": "real-preserve-strings-and-numbers",
-      "name": "real: preserve ordinary scalar values",
+      "id": "trial-preserve-strings-and-numbers",
+      "name": "preserve ordinary scalar values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -300,8 +300,8 @@
       ]
     },
     {
-      "id": "real-separate-null-and-undefined",
-      "name": "real: existing null beside undefined",
+      "id": "trial-separate-null-and-undefined",
+      "name": "existing null beside undefined",
       "kind": "trial",
       "visible": true,
       "input": {

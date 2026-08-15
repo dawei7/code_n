@@ -159,8 +159,8 @@
       ]
     },
     {
-      "id": "real-large-coordinate-gap",
-      "name": "real: coordinates may be far apart",
+      "id": "trial-large-coordinate-gap",
+      "name": "coordinates may be far apart",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -185,8 +185,8 @@
       ]
     },
     {
-      "id": "real-unsorted-input",
-      "name": "real: input segments need not be ordered",
+      "id": "trial-unsorted-input",
+      "name": "input segments need not be ordered",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -216,8 +216,8 @@
       ]
     },
     {
-      "id": "real-partial-boundaries",
-      "name": "real: the optimum includes complete and partial segments",
+      "id": "trial-partial-boundaries",
+      "name": "the optimum includes complete and partial segments",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -247,8 +247,8 @@
       ]
     },
     {
-      "id": "real-many-segments",
-      "name": "real: multiple weighted ranges compete",
+      "id": "trial-many-segments",
+      "name": "multiple weighted ranges compete",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -285,6 +285,37 @@
       "tags": [
         "weighted",
         "multiple-segments"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          [
+            8,
+            10,
+            1
+          ],
+          [
+            1,
+            3,
+            2
+          ],
+          [
+            5,
+            6,
+            4
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

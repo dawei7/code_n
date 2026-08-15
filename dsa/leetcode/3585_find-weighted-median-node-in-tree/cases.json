@@ -289,8 +289,8 @@
       ]
     },
     {
-      "id": "real-nonroot-lca",
-      "name": "real: both query halves meet at a non-root ancestor",
+      "id": "trial-nonroot-lca",
+      "name": "both query halves meet at a non-root ancestor",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -344,8 +344,8 @@
       ]
     },
     {
-      "id": "real-billion-weight-edges",
-      "name": "real: root distances exceed 32-bit signed range",
+      "id": "trial-billion-weight-edges",
+      "name": "root distances exceed 32-bit signed range",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -399,8 +399,8 @@
       ]
     },
     {
-      "id": "real-ancestor-descendant",
-      "name": "real: queries remain on one rooted branch",
+      "id": "trial-ancestor-descendant",
+      "name": "queries remain on one rooted branch",
       "kind": "trial",
       "visible": true,
       "input": {

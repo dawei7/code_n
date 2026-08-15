@@ -108,7 +108,7 @@
       "expected": 6
     },
     {
-      "id": "real-zero-singleton",
+      "id": "trial-zero-singleton",
       "name": "zero has no set bits",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       "expected": 0
     },
     {
-      "id": "real-all-values-required",
+      "id": "trial-all-values-required",
       "name": "only the common intersection survives",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       "expected": 1
     },
     {
-      "id": "real-highest-permitted-bit",
+      "id": "trial-highest-permitted-bit",
       "name": "bit 30 and low bits qualify independently",
       "kind": "trial",
       "visible": true,

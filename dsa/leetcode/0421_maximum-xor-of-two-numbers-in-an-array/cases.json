@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "hidden-known",
+      "id": "trial-known",
       "name": "maximum uses every low bit",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "hidden-high-bit",
+      "id": "trial-high-bit",
       "name": "zero against the largest allowed value",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "hidden-not-largest",
+      "id": "trial-not-largest",
       "name": "optimal pair does not include the numeric maximum",
       "kind": "trial",
       "visible": true,

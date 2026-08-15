@@ -533,7 +533,7 @@
       ]
     },
     {
-      "id": "real-siblings",
+      "id": "trial-siblings",
       "name": "subtree moves between siblings",
       "kind": "trial",
       "visible": true,
@@ -608,7 +608,7 @@
       ]
     },
     {
-      "id": "real-direct-not-last",
+      "id": "trial-direct-not-last",
       "name": "direct child no-op takes priority over last position",
       "kind": "trial",
       "visible": true,
@@ -682,7 +682,7 @@
       ]
     },
     {
-      "id": "real-q-directly-below-p",
+      "id": "trial-q-directly-below-p",
       "name": "child q replaces p before receiving it",
       "kind": "trial",
       "visible": true,
@@ -777,7 +777,7 @@
       ]
     },
     {
-      "id": "real-root-deep-q",
+      "id": "trial-root-deep-q",
       "name": "root moves below a deeply nested q",
       "kind": "trial",
       "visible": true,

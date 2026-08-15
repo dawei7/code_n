@@ -77,8 +77,8 @@
       ]
     },
     {
-      "id": "real-single-character",
-      "name": "real: maximum budget on one character",
+      "id": "trial-single-character",
+      "name": "maximum budget on one character",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -93,8 +93,8 @@
       ]
     },
     {
-      "id": "real-budget-one",
-      "name": "real: one change improves a three-character string",
+      "id": "trial-budget-one",
+      "name": "one change improves a three-character string",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -108,8 +108,8 @@
       ]
     },
     {
-      "id": "real-select-subsequence",
-      "name": "real: optimal result omits incompatible positions",
+      "id": "trial-select-subsequence",
+      "name": "optimal result omits incompatible positions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -123,8 +123,8 @@
       ]
     },
     {
-      "id": "real-competing-pairs",
-      "name": "real: budget cannot pay for every endpoint pair",
+      "id": "trial-competing-pairs",
+      "name": "budget cannot pay for every endpoint pair",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-existing-palindrome",
-      "name": "real: an existing palindrome needs no changes",
+      "id": "trial-existing-palindrome",
+      "name": "an existing palindrome needs no changes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -153,8 +153,8 @@
       ]
     },
     {
-      "id": "real-large-budget",
-      "name": "real: large budget can transform the entire string",
+      "id": "trial-large-budget",
+      "name": "large budget can transform the entire string",
       "kind": "trial",
       "visible": true,
       "input": {

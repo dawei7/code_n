@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-mixed-heavy-animals",
+      "id": "trial-mixed-heavy-animals",
       "name": "qualifying rows are sorted independently of input order",
       "kind": "trial",
       "visible": true,

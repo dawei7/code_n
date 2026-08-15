@@ -164,8 +164,8 @@
       ]
     },
     {
-      "id": "real-inner-pair-is-minimum",
-      "name": "real: inner pair determines answer",
+      "id": "trial-inner-pair-is-minimum",
+      "name": "inner pair determines answer",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -183,8 +183,8 @@
       ]
     },
     {
-      "id": "real-duplicate-extremes",
-      "name": "real: duplicate extremes and middle values",
+      "id": "trial-duplicate-extremes",
+      "name": "duplicate extremes and middle values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -204,8 +204,8 @@
       ]
     },
     {
-      "id": "real-unsorted-input",
-      "name": "real: unsorted values with unequal pair sums",
+      "id": "trial-unsorted-input",
+      "name": "unsorted values with unequal pair sums",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -225,8 +225,8 @@
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "real: maximum-length descending input",
+      "id": "trial-maximum-length",
+      "name": "maximum-length descending input",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -288,6 +288,23 @@
         "real",
         "maximum-length",
         "descending"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7
+        ]
+      },
+      "expected": 7.0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

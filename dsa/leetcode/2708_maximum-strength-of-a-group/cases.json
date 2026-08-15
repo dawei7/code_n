@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-single-positive",
+      "id": "trial-single-positive",
       "name": "single positive value",
       "kind": "trial",
       "visible": true,
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "all groups have zero strength",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-even-negatives",
+      "id": "trial-even-negatives",
       "name": "all even-count negatives multiply together",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-positive-and-zero",
+      "id": "trial-positive-and-zero",
       "name": "positive value excludes zeros",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-one-values",
+      "id": "trial-one-values",
       "name": "multiplying ones does not reduce strength",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-extreme-values",
+      "id": "trial-extreme-values",
       "name": "alternating extremes use both product states",
       "kind": "trial",
       "visible": true,
@@ -174,6 +174,39 @@
       "expected": 6561,
       "tags": [
         "bounds"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

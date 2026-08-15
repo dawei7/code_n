@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "hidden-long-carry-chain",
+      "id": "trial-long-carry-chain",
       "name": "carry propagates through several nines",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "hidden-second-longer",
+      "id": "trial-second-longer",
       "name": "second operand has more digits",
       "kind": "trial",
       "visible": true,

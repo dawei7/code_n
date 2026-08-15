@@ -99,8 +99,8 @@
       ]
     },
     {
-      "id": "real-two-conflict-runs",
-      "name": "real: separate conflict runs",
+      "id": "trial-two-conflict-runs",
+      "name": "separate conflict runs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -112,8 +112,8 @@
       ]
     },
     {
-      "id": "real-overlap-choice",
-      "name": "real: one change resolves two overlapping edges",
+      "id": "trial-overlap-choice",
+      "name": "one change resolves two overlapping edges",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -125,8 +125,8 @@
       ]
     },
     {
-      "id": "real-alphabet-ends",
-      "name": "real: conflicts near both alphabet ends",
+      "id": "trial-alphabet-ends",
+      "name": "conflicts near both alphabet ends",
       "kind": "trial",
       "visible": true,
       "input": {

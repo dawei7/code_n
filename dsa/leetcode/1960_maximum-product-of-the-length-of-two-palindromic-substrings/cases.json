@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-adjacent-triples",
+      "id": "trial-adjacent-triples",
       "name": "adjacent aba and cdc maximize the product",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-long-and-short",
+      "id": "trial-long-and-short",
       "name": "length-seven and length-three palindromes",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-even-palindrome-ignored",
+      "id": "trial-even-palindrome-ignored",
       "name": "long even palindrome does not qualify",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-two-length-five",
+      "id": "trial-two-length-five",
       "name": "two adjacent length-five palindromes",
       "kind": "trial",
       "visible": true,
@@ -140,6 +140,20 @@
       "tags": [
         "touching",
         "large-product"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

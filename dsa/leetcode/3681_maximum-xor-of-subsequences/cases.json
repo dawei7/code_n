@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-several-pivots",
+      "id": "trial-several-pivots",
       "name": "several independent bits combine into the optimum",
       "kind": "trial",
       "visible": true,
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-high-legal-value",
+      "id": "trial-high-legal-value",
       "name": "preserve the highest legal value with zero",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-lower-bits-improve-high-pivot",
+      "id": "trial-lower-bits-improve-high-pivot",
       "name": "reduced basis vectors greedily improve lower bits",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-dependent-mixture",
+      "id": "trial-dependent-mixture",
       "name": "dependent and duplicate values retain the same span",
       "kind": "trial",
       "visible": true,
@@ -146,6 +146,39 @@
       "tags": [
         "duplicates",
         "linear-dependence"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

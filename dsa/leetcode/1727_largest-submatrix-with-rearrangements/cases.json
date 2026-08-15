@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-single-column-runs",
+      "id": "trial-single-column-runs",
       "name": "rearrangement cannot bridge a zero in one column",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "a larger all-zero matrix has area zero",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-staggered-heights",
+      "id": "trial-staggered-heights",
       "name": "staggered runs require ordering by current height",
       "kind": "trial",
       "visible": true,
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "real-best-before-last-row",
+      "id": "trial-best-before-last-row",
       "name": "the maximum rectangle ends before the final row",
       "kind": "trial",
       "visible": true,

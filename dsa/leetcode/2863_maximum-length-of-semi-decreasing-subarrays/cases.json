@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-negative-values",
+      "id": "trial-negative-values",
       "name": "negative endpoints determine the span",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-extreme-full-span",
+      "id": "trial-extreme-full-span",
       "name": "extreme endpoints span the full array",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "equality never satisfies the condition",
       "kind": "trial",
       "visible": true,

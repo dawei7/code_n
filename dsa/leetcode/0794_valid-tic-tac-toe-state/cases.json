@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "X wins on fifth move",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "O wins on sixth move",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "both players have winning rows",
       "kind": "trial",
       "visible": true,

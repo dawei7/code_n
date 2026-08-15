@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-two-weeks",
+      "id": "trial-two-weeks",
       "name": "two exact weeks use consecutive weekly totals",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-three-weeks",
+      "id": "trial-three-weeks",
       "name": "three complete weeks form an arithmetic progression",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-hundred-days",
+      "id": "trial-hundred-days",
       "name": "a longer partial schedule uses the same formula",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum legal day count",
       "kind": "trial",
       "visible": true,

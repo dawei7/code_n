@@ -98,8 +98,8 @@
       ]
     },
     {
-      "id": "real-one-global-maximum",
-      "name": "real: every subarray containing the sole maximum qualifies",
+      "id": "trial-one-global-maximum",
+      "name": "every subarray containing the sole maximum qualifies",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -118,8 +118,8 @@
       ]
     },
     {
-      "id": "real-maximum-at-ends",
-      "name": "real: qualifying ranges must cover both endpoints",
+      "id": "trial-maximum-at-ends",
+      "name": "qualifying ranges must cover both endpoints",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-k-exceeds-occurrences",
-      "name": "real: k exceeds total maximum frequency",
+      "id": "trial-k-exceeds-occurrences",
+      "name": "k exceeds total maximum frequency",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -157,8 +157,8 @@
       ]
     },
     {
-      "id": "real-three-of-four-maxima",
-      "name": "real: several windows contain three maxima",
+      "id": "trial-three-of-four-maxima",
+      "name": "several windows contain three maxima",
       "kind": "trial",
       "visible": true,
       "input": {

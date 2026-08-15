@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-late-prefix-peak",
+      "id": "trial-late-prefix-peak",
       "name": "full prefix determines answer",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-increasing",
+      "id": "trial-increasing",
       "name": "increasing values",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-maximum-first",
+      "id": "trial-maximum-first",
       "name": "maximum constraint at first index",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-maximum-tail",
+      "id": "trial-maximum-tail",
       "name": "maximum value shared across ten slots",
       "kind": "trial",
       "visible": true,
@@ -148,6 +148,39 @@
       "expected": 100000000,
       "tags": [
         "large-prefix-sum"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

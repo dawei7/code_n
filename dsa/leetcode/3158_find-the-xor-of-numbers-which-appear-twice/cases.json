@@ -111,8 +111,8 @@
       ]
     },
     {
-      "id": "real-interleaved-pairs",
-      "name": "real: separated pairs are detected on second encounters",
+      "id": "trial-interleaved-pairs",
+      "name": "separated pairs are detected on second encounters",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -132,8 +132,8 @@
       ]
     },
     {
-      "id": "real-boundary-pairs",
-      "name": "real: both value boundaries repeat",
+      "id": "trial-boundary-pairs",
+      "name": "both value boundaries repeat",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-all-unique",
-      "name": "real: maximum-length all-unique array",
+      "id": "trial-all-unique",
+      "name": "maximum-length all-unique array",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -217,8 +217,8 @@
       ]
     },
     {
-      "id": "real-maximum-pairs",
-      "name": "real: twenty-five distinct pairs fill the array",
+      "id": "trial-maximum-pairs",
+      "name": "twenty-five distinct pairs fill the array",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -282,8 +282,8 @@
       ]
     },
     {
-      "id": "real-order-independent",
-      "name": "real: duplicate order does not affect xor",
+      "id": "trial-order-independent",
+      "name": "duplicate order does not affect xor",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -305,8 +305,8 @@
       ]
     },
     {
-      "id": "real-one-pair-among-uniques",
-      "name": "real: one distant pair among unique values",
+      "id": "trial-one-pair-among-uniques",
+      "name": "one distant pair among unique values",
       "kind": "trial",
       "visible": true,
       "input": {

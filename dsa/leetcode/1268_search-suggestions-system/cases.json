@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-branching-prefixes",
+      "id": "trial-branching-prefixes",
       "name": "branches leave the active suggestion interval",
       "kind": "trial",
       "visible": true,
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-four-matching-products",
+      "id": "trial-four-matching-products",
       "name": "lexicographic cap changes at a deeper prefix",
       "kind": "trial",
       "visible": true,
@@ -258,7 +258,7 @@
       ]
     },
     {
-      "id": "real-first-character-miss",
+      "id": "trial-first-character-miss",
       "name": "no product shares the first character",
       "kind": "trial",
       "visible": true,
@@ -276,6 +276,63 @@
       ],
       "tags": [
         "no-match"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in products",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "products": [
+          "mobile"
+        ],
+        "searchWord": "mouse"
+      },
+      "expected": [
+        [
+          "mobile"
+        ],
+        [
+          "mobile"
+        ],
+        [],
+        [],
+        []
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in products",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "products": [
+          "mobile",
+          "mobile"
+        ],
+        "searchWord": "mouse"
+      },
+      "expected": [
+        [
+          "mobile",
+          "mobile"
+        ],
+        [
+          "mobile",
+          "mobile"
+        ],
+        [],
+        [],
+        []
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

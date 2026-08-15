@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "real-consecutive-stars",
+      "id": "trial-consecutive-stars",
       "name": "one run removes the entire prefix",
       "kind": "trial",
       "visible": true,
@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-retained-suffix",
+      "id": "trial-retained-suffix",
       "name": "suffix remains after consecutive removals",
       "kind": "trial",
       "visible": true,
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-multiple-runs",
+      "id": "trial-multiple-runs",
       "name": "separate star runs alter the surviving prefix",
       "kind": "trial",
       "visible": true,
@@ -93,6 +93,34 @@
       "expected": "ae",
       "tags": [
         "multiple-runs"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "l"
+      },
+      "expected": "l",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "lll"
+      },
+      "expected": "lll",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

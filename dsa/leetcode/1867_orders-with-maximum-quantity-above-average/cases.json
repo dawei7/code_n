@@ -256,7 +256,7 @@
       ]
     },
     {
-      "id": "real-fractional-threshold",
+      "id": "trial-fractional-threshold",
       "name": "fractional averages are not truncated",
       "kind": "trial",
       "visible": true,
@@ -305,7 +305,7 @@
       ]
     },
     {
-      "id": "real-high-average-blocks-others",
+      "id": "trial-high-average-blocks-others",
       "name": "one high uniform order raises the threshold for all orders",
       "kind": "trial",
       "visible": true,
@@ -360,7 +360,7 @@
       ]
     },
     {
-      "id": "real-single-order-skewed",
+      "id": "trial-single-order-skewed",
       "name": "a skewed single order can exceed its own average",
       "kind": "trial",
       "visible": true,
@@ -404,7 +404,7 @@
       ]
     },
     {
-      "id": "real-one-product-only",
+      "id": "trial-one-product-only",
       "name": "a one-row table cannot pass the strict comparison",
       "kind": "trial",
       "visible": true,
@@ -434,7 +434,7 @@
       ]
     },
     {
-      "id": "real-nonconsecutive-identifiers",
+      "id": "trial-nonconsecutive-identifiers",
       "name": "identifiers do not need to be consecutive",
       "kind": "trial",
       "visible": true,
@@ -493,7 +493,7 @@
       ]
     },
     {
-      "id": "real-global-not-own-average",
+      "id": "trial-global-not-own-average",
       "name": "beating an own average is insufficient",
       "kind": "trial",
       "visible": true,

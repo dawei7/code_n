@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-two-characters",
+      "id": "trial-two-characters",
       "name": "deleting from a two-character word",
       "kind": "trial",
       "visible": true,
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-three-equal-pairs",
+      "id": "trial-three-equal-pairs",
       "name": "mandatory deletion breaks equal pairs",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-one-excess-among-pairs",
+      "id": "trial-one-excess-among-pairs",
       "name": "decrement one count to match two others",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-balanced-three-and-three",
+      "id": "trial-balanced-three-and-three",
       "name": "equal larger counts cannot survive deletion",
       "kind": "trial",
       "visible": true,

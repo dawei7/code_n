@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "sparse maximum-scale labels share node objects",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-child-first",
+      "id": "trial-child-first",
       "name": "node is introduced as child before becoming parent",
       "kind": "trial",
       "visible": true,
@@ -268,7 +268,7 @@
       ]
     },
     {
-      "id": "real-full-small",
+      "id": "trial-full-small",
       "name": "complete three-level tree",
       "kind": "trial",
       "visible": true,

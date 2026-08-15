@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-beyond-boundary",
+      "id": "trial-beyond-boundary",
       "name": "one second beyond twelve hours is excluded",
       "kind": "trial",
       "visible": true,
@@ -236,7 +236,7 @@
       ]
     },
     {
-      "id": "real-input-order-and-deduplication",
+      "id": "trial-input-order-and-deduplication",
       "name": "order chronologically and return each user once",
       "kind": "trial",
       "visible": true,
@@ -301,7 +301,7 @@
       ]
     },
     {
-      "id": "real-single-session",
+      "id": "trial-single-session",
       "name": "one session cannot qualify",
       "kind": "trial",
       "visible": true,

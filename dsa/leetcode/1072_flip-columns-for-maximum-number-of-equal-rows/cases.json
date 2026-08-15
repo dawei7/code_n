@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate and complement rows",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-no-compatible-pair",
+      "id": "trial-no-compatible-pair",
       "name": "every normalized pattern unique",
       "kind": "trial",
       "visible": true,
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "real-complements-with-first-one",
+      "id": "trial-complements-with-first-one",
       "name": "canonical complement direction",
       "kind": "trial",
       "visible": true,

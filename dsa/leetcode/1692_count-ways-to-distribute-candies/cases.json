@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-five-three",
+      "id": "trial-five-three",
       "name": "mixed singleton and larger groups",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-eight-three",
+      "id": "trial-eight-three",
       "name": "larger three-bag partition count",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-ten-two",
+      "id": "trial-ten-two",
       "name": "two unlabeled bags avoid symmetric double counting",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-ten-five",
+      "id": "trial-ten-five",
       "name": "balanced candy and bag counts",
       "kind": "trial",
       "visible": true,

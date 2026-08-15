@@ -231,8 +231,8 @@
       ]
     },
     {
-      "id": "real-original-diameter-dominates",
-      "name": "real: a long path remains the merged diameter",
+      "id": "trial-original-diameter-dominates",
+      "name": "a long path remains the merged diameter",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -267,8 +267,8 @@
       ]
     },
     {
-      "id": "real-even-diameter-and-edge",
-      "name": "real: a five-node path joined to an edge",
+      "id": "trial-even-diameter-and-edge",
+      "name": "a five-node path joined to an edge",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -304,8 +304,8 @@
       ]
     },
     {
-      "id": "real-balanced-and-short",
-      "name": "real: a balanced binary tree joined to a short path",
+      "id": "trial-balanced-and-short",
+      "name": "a balanced binary tree joined to a short path",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -352,8 +352,8 @@
       ]
     },
     {
-      "id": "real-asymmetric-branches",
-      "name": "real: asymmetric branches expose the true diameter endpoints",
+      "id": "trial-asymmetric-branches",
+      "name": "asymmetric branches expose the true diameter endpoints",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -401,8 +401,8 @@
       ]
     },
     {
-      "id": "real-independent-label-spaces",
-      "name": "real: matching numeric labels remain in separate trees",
+      "id": "trial-independent-label-spaces",
+      "name": "matching numeric labels remain in separate trees",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -446,8 +446,8 @@
       ]
     },
     {
-      "id": "real-two-long-paths",
-      "name": "real: two seven-node paths are connected at their centers",
+      "id": "trial-two-long-paths",
+      "name": "two seven-node paths are connected at their centers",
       "kind": "trial",
       "visible": true,
       "input": {

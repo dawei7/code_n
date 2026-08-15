@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-mixed",
+      "id": "trial-mixed",
       "name": "values before between and after nested branches",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-empty-branches",
+      "id": "trial-empty-branches",
       "name": "all branches are empty",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-duplicates-zero",
+      "id": "trial-duplicates-zero",
       "name": "duplicate values and zero survive traversal",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-asymmetric",
+      "id": "trial-asymmetric",
       "name": "asymmetric nested order",
       "kind": "trial",
       "visible": true,

@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-deep-cascade",
+      "id": "trial-deep-cascade",
       "name": "mirrored cascade",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-cascade-with-tail",
+      "id": "trial-cascade-with-tail",
       "name": "cascade leaves tail",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-mixed-runs",
+      "id": "trial-mixed-runs",
       "name": "mixed odd and even runs",
       "kind": "trial",
       "visible": true,

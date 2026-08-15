@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-ratio-four-two",
+      "id": "trial-ratio-four-two",
       "name": "frequency levels four and two",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-equal-whole-invalid",
+      "id": "trial-equal-whole-invalid",
       "name": "a proper window wins when the full array has one level",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-three-values",
+      "id": "trial-three-values",
       "name": "three values change frequency buckets repeatedly",
       "kind": "trial",
       "visible": true,
@@ -256,7 +256,7 @@
       ]
     },
     {
-      "id": "real-blocked-groups",
+      "id": "trial-blocked-groups",
       "name": "grouped values still require a proper window",
       "kind": "trial",
       "visible": true,
@@ -280,7 +280,7 @@
       ]
     },
     {
-      "id": "real-higher-frequency",
+      "id": "trial-higher-frequency",
       "name": "counts four and two appear inside a longer sequence",
       "kind": "trial",
       "visible": true,
@@ -305,7 +305,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "maximum values participate by equality only",
       "kind": "trial",
       "visible": true,
@@ -326,7 +326,7 @@
       ]
     },
     {
-      "id": "real-thirty-two-balanced",
+      "id": "trial-thirty-two-balanced",
       "name": "a longer whole array has counts sixteen and eight",
       "kind": "trial",
       "visible": true,

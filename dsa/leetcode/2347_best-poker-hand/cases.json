@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-flush-over-triple",
+      "id": "trial-flush-over-triple",
       "name": "a flush outranks repeated ranks",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-two-pairs",
+      "id": "trial-two-pairs",
       "name": "two separate pairs still classify as pair",
       "kind": "trial",
       "visible": true,

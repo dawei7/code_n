@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-all-five-vowels",
+      "id": "trial-all-five-vowels",
       "name": "every character is a vowel",
       "kind": "trial",
       "visible": true,
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-separated-vowels",
+      "id": "trial-separated-vowels",
       "name": "consonants do not contribute",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-repeated-vowels",
+      "id": "trial-repeated-vowels",
       "name": "repeated vowel occurrences contribute independently",
       "kind": "trial",
       "visible": true,
@@ -94,6 +94,20 @@
       "expected": 58,
       "tags": [
         "repeated-vowels"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "repeated character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaa"
+      },
+      "expected": 10,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-varied-grades",
+      "id": "trial-varied-grades",
       "name": "varied grades and duplicate names",
       "kind": "trial",
       "visible": true,

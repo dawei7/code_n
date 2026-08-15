@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-all-specials",
+      "id": "trial-all-specials",
       "name": "all four special characters contribute separately",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-mixed-distinct",
+      "id": "trial-mixed-distinct",
       "name": "mixed distinct categories use their own weights",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-repeated-mixed",
+      "id": "trial-repeated-mixed",
       "name": "repeated mixed categories are all deduplicated",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-all-lowercase",
+      "id": "trial-all-lowercase",
       "name": "every lowercase letter contributes one point",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-all-uppercase",
+      "id": "trial-all-uppercase",
       "name": "every uppercase letter contributes two points",
       "kind": "trial",
       "visible": true,
@@ -220,7 +220,7 @@
       ]
     },
     {
-      "id": "real-all-digits",
+      "id": "trial-all-digits",
       "name": "every digit contributes three points",
       "kind": "trial",
       "visible": true,
@@ -236,7 +236,7 @@
       ]
     },
     {
-      "id": "real-complete-alphabet",
+      "id": "trial-complete-alphabet",
       "name": "every legal character reaches the maximum strength",
       "kind": "trial",
       "visible": true,
@@ -250,6 +250,34 @@
       "tags": [
         "complete-alphabet",
         "maximum-strength"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single character in password",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "password": "a"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "repeated character in password",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "password": "aaa"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

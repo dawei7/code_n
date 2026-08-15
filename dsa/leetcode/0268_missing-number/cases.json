@@ -60,7 +60,7 @@
       ]
     },
     {
-      "id": "real-zero",
+      "id": "trial-zero",
       "name": "missing zero",
       "kind": "trial",
       "visible": true,

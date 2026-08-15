@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-independent-pairs",
+      "id": "trial-independent-pairs",
       "name": "each mirrored pair is resolved independently",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-all-pairs-differ",
+      "id": "trial-all-pairs-differ",
       "name": "every mirrored pair differs",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-middle-preserved",
+      "id": "trial-middle-preserved",
       "name": "the odd middle character is preserved",
       "kind": "trial",
       "visible": true,
@@ -122,6 +122,34 @@
       "expected": "aybya",
       "tags": [
         "middle-character"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "e"
+      },
+      "expected": "e",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "eee"
+      },
+      "expected": "eee",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

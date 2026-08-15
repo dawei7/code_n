@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-shared-endpoint",
+      "id": "trial-shared-endpoint",
       "name": "intervals meet at one endpoint",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-adjacent",
+      "id": "trial-adjacent",
       "name": "adjacent stays do not overlap",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-whole-year",
+      "id": "trial-whole-year",
       "name": "full-year stay contains a year-end visit",
       "kind": "trial",
       "visible": true,

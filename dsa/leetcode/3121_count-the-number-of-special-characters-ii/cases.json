@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-valid-uppercase-repetitions",
+      "id": "trial-valid-uppercase-repetitions",
       "name": "uppercase repetitions remain valid",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-mixed-validity",
+      "id": "trial-mixed-validity",
       "name": "independent letters have different states",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-all-alphabet-valid",
+      "id": "trial-all-alphabet-valid",
       "name": "every English letter is special",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-all-alphabet-invalid",
+      "id": "trial-all-alphabet-invalid",
       "name": "uppercase alphabet comes first",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-interleaved-transitions",
+      "id": "trial-interleaved-transitions",
       "name": "each letter transitions once",
       "kind": "trial",
       "visible": true,

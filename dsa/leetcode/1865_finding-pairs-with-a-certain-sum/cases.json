@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-constructor-only",
+      "id": "trial-constructor-only",
       "name": "construction alone returns null",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-duplicate-multiplicity",
+      "id": "trial-duplicate-multiplicity",
       "name": "duplicates multiply both index choices",
       "kind": "trial",
       "visible": true,
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "id": "real-no-complement",
+      "id": "trial-no-complement",
       "name": "absent complement returns zero",
       "kind": "trial",
       "visible": true,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "real-repeated-index-update",
+      "id": "trial-repeated-index-update",
       "name": "repeated updates remove the latest value",
       "kind": "trial",
       "visible": true,
@@ -347,7 +347,7 @@
       ]
     },
     {
-      "id": "real-two-updated-indices",
+      "id": "trial-two-updated-indices",
       "name": "independent indices maintain separate frequencies",
       "kind": "trial",
       "visible": true,
@@ -398,7 +398,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "values near the total bound match exactly",
       "kind": "trial",
       "visible": true,
@@ -434,7 +434,7 @@
       ]
     },
     {
-      "id": "real-query-before-and-after",
+      "id": "trial-query-before-and-after",
       "name": "counts observe only preceding updates",
       "kind": "trial",
       "visible": true,

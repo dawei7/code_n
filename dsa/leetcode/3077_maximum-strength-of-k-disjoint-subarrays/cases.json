@@ -127,8 +127,8 @@
       ]
     },
     {
-      "id": "real-mixed-five-subarrays",
-      "name": "real: mixed signs with five selected subarrays",
+      "id": "trial-mixed-five-subarrays",
+      "name": "mixed signs with five selected subarrays",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -151,8 +151,8 @@
       ]
     },
     {
-      "id": "real-wide-negative-segment",
-      "name": "real: the negatively weighted segment spans several values",
+      "id": "trial-wide-negative-segment",
+      "name": "the negatively weighted segment spans several values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -172,8 +172,8 @@
       ]
     },
     {
-      "id": "real-large-result",
-      "name": "real: result exceeds 32-bit integer range",
+      "id": "trial-large-result",
+      "name": "result exceeds 32-bit integer range",
       "kind": "trial",
       "visible": true,
       "input": {

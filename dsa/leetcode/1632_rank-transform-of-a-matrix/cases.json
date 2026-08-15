@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-disconnected-equals",
+      "id": "trial-disconnected-equals",
       "name": "equal diagonal cells can receive different ranks when disconnected",
       "kind": "trial",
       "visible": true,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-chain-equals",
+      "id": "trial-chain-equals",
       "name": "row-column chains merge equal cells transitively",
       "kind": "trial",
       "visible": true,
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "id": "real-mixed-distinct",
+      "id": "trial-mixed-distinct",
       "name": "mixed distinct values induce row and column constraints",
       "kind": "trial",
       "visible": true,
@@ -337,7 +337,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "extreme values preserve minimal relative ranks",
       "kind": "trial",
       "visible": true,

@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-left-compatible-only",
+      "id": "trial-left-compatible-only",
       "name": "only the left arithmetic run matches the bridge difference",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-right-compatible-only",
+      "id": "trial-right-compatible-only",
       "name": "only the right arithmetic run matches the bridge difference",
       "kind": "trial",
       "visible": true,
@@ -220,7 +220,7 @@
       ]
     },
     {
-      "id": "real-even-gap-mismatched-runs",
+      "id": "trial-even-gap-mismatched-runs",
       "name": "even neighbors do not make incompatible outer runs merge",
       "kind": "trial",
       "visible": true,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-zero-difference",
+      "id": "trial-zero-difference",
       "name": "a constant array is arithmetic",
       "kind": "trial",
       "visible": true,
@@ -269,7 +269,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "minimum and maximum source values alternate",
       "kind": "trial",
       "visible": true,
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "id": "real-decreasing-full-bridge",
+      "id": "trial-decreasing-full-bridge",
       "name": "one replacement restores a descending complete array",
       "kind": "trial",
       "visible": true,
@@ -314,7 +314,7 @@
       ]
     },
     {
-      "id": "real-long-unchanged",
+      "id": "trial-long-unchanged",
       "name": "a longer arithmetic array remains intact",
       "kind": "trial",
       "visible": true,
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "id": "real-bridge-near-center",
+      "id": "trial-bridge-near-center",
       "name": "a central off-by-one value joins equal differences",
       "kind": "trial",
       "visible": true,
@@ -362,6 +362,39 @@
       "tags": [
         "central-replacement",
         "complete-array"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          9
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

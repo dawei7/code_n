@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-no-spare-store",
+      "id": "trial-no-spare-store",
       "name": "one store is required per type",
       "kind": "trial",
       "visible": true,
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-large-and-small",
+      "id": "trial-large-and-small",
       "name": "one small type reserves a store",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-ceiling-boundary",
+      "id": "trial-ceiling-boundary",
       "name": "ceiling division determines feasibility",
       "kind": "trial",
       "visible": true,

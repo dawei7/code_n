@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-competing-best-mentor",
+      "id": "trial-competing-best-mentor",
       "name": "students compete for the same locally best mentor",
       "kind": "trial",
       "visible": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "real-all-one-question",
+      "id": "trial-all-one-question",
       "name": "one-question answers require balanced pairing",
       "kind": "trial",
       "visible": true,
@@ -314,7 +314,7 @@
       ]
     },
     {
-      "id": "real-tied-optima",
+      "id": "trial-tied-optima",
       "name": "several assignments share the same optimum",
       "kind": "trial",
       "visible": true,
@@ -346,7 +346,7 @@
       ]
     },
     {
-      "id": "real-question-boundary",
+      "id": "trial-question-boundary",
       "name": "eight questions contribute independently",
       "kind": "trial",
       "visible": true,

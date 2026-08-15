@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-three-runs",
+      "id": "trial-three-runs",
       "name": "adjacent runs repeat a character later",
       "kind": "trial",
       "visible": true,
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-varied-runs",
+      "id": "trial-varied-runs",
       "name": "varied run lengths accumulate independently",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-longest-run-in-middle",
+      "id": "trial-longest-run-in-middle",
       "name": "longest run is surrounded by other characters",
       "kind": "trial",
       "visible": true,
@@ -113,6 +113,20 @@
       "tags": [
         "middle-run",
         "repeated-character"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

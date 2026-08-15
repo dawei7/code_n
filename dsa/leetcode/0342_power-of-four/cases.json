@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "hidden-odd-bit",
+      "id": "trial-odd-bit",
       "name": "power of two but not four",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "hidden-largest-power",
+      "id": "trial-largest-power",
       "name": "largest signed-32-bit power of four",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "hidden-large-odd-bit",
+      "id": "trial-large-odd-bit",
       "name": "large power of two at odd position",
       "kind": "trial",
       "visible": true,

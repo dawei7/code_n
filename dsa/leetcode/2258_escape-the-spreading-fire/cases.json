@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-safehouse-tie",
+      "id": "trial-safehouse-tie",
       "name": "equality is allowed only at the safehouse",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-forced-corridor",
+      "id": "trial-forced-corridor",
       "name": "a forced route loses to fire",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-intermediate-tie",
+      "id": "trial-intermediate-tie",
       "name": "tying fire before the safehouse is unsafe",
       "kind": "trial",
       "visible": true,

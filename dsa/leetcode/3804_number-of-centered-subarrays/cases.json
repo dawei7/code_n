@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-canceling-prefix",
+      "id": "trial-canceling-prefix",
       "name": "three values cancel before a distant value",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-alternating-opposites",
+      "id": "trial-alternating-opposites",
       "name": "repeated positive and negative values",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-zero-boundaries",
+      "id": "trial-zero-boundaries",
       "name": "zero appears at both ends",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-symmetric-range",
+      "id": "trial-symmetric-range",
       "name": "negative-to-positive symmetric range",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "values at both numeric bounds",
       "kind": "trial",
       "visible": true,
@@ -236,6 +236,39 @@
       "tags": [
         "value-boundaries",
         "zero"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

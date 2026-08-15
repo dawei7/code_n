@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "real-boundary-values",
+      "id": "trial-boundary-values",
       "name": "minimum and maximum values",
       "kind": "trial",
       "visible": true,
@@ -266,7 +266,7 @@
       ]
     },
     {
-      "id": "real-unsorted-inputs",
+      "id": "trial-unsorted-inputs",
       "name": "input order is irrelevant",
       "kind": "trial",
       "visible": true,

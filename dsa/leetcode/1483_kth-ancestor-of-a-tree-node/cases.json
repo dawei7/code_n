@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-star-tree",
+      "id": "trial-star-tree",
       "name": "star leaves have only one ancestor",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-balanced-tree",
+      "id": "trial-balanced-tree",
       "name": "composed jumps in balanced tree",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-single-node",
+      "id": "trial-single-node",
       "name": "single-node tree",
       "kind": "trial",
       "visible": true,
@@ -253,7 +253,7 @@
       ]
     },
     {
-      "id": "real-power-of-two-jumps",
+      "id": "trial-power-of-two-jumps",
       "name": "exact power-of-two ancestors",
       "kind": "trial",
       "visible": true,
@@ -313,7 +313,7 @@
       ]
     },
     {
-      "id": "real-repeated-independent-queries",
+      "id": "trial-repeated-independent-queries",
       "name": "queries do not mutate tree state",
       "kind": "trial",
       "visible": true,

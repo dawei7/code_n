@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "real-single-character",
+      "id": "trial-single-character",
       "name": "minimum input length",
       "kind": "trial",
       "visible": true,
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-late-minimum",
+      "id": "trial-late-minimum",
       "name": "positive minimum excludes absent letters",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-overlapping-patterns",
+      "id": "trial-overlapping-patterns",
       "name": "overlapping substrings reuse counts",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-balanced-and-unbalanced",
+      "id": "trial-balanced-and-unbalanced",
       "name": "balanced prefixes and unbalanced extensions",
       "kind": "trial",
       "visible": true,

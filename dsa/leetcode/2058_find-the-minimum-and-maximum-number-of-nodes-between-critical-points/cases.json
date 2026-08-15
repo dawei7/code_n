@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-plateau",
+      "id": "trial-plateau",
       "name": "equal neighbors prevent strict extrema",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "every internal node is critical",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-separated-extrema",
+      "id": "trial-separated-extrema",
       "name": "first and last critical points determine maximum",
       "kind": "trial",
       "visible": true,

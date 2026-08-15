@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-collinear",
+      "id": "trial-collinear",
       "name": "best board covers three collinear darts",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-mutually-far",
+      "id": "trial-mutually-far",
       "name": "no two darts share a board",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-square",
+      "id": "trial-square",
       "name": "square fits inside an offset circle",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "real-negative-cluster",
+      "id": "trial-negative-cluster",
       "name": "translated negative-coordinate cluster",
       "kind": "trial",
       "visible": true,

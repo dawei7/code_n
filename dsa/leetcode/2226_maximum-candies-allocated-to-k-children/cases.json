@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-even-splits",
+      "id": "trial-even-splits",
       "name": "both piles create two equal portions",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-no-positive",
+      "id": "trial-no-positive",
       "name": "a single candy cannot serve two children",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-mixed-quotients",
+      "id": "trial-mixed-quotients",
       "name": "feasibility combines quotient counts",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-large-k",
+      "id": "trial-large-k",
       "name": "large child count safely yields zero",
       "kind": "trial",
       "visible": true,
@@ -139,6 +139,41 @@
       "expected": 0,
       "tags": [
         "large-k"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in candies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candies": [
+          5
+        ],
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in candies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candies": [
+          5,
+          5
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

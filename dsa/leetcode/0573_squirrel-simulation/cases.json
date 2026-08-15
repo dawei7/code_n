@@ -20307,6 +20307,72 @@
         "maximum-nuts",
         "large-correctness"
       ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value height=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "height": 1,
+        "width": 7,
+        "tree": [
+          2,
+          2
+        ],
+        "squirrel": [
+          4,
+          4
+        ],
+        "nuts": [
+          [
+            3,
+            0
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value width=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "height": 5,
+        "width": 1,
+        "tree": [
+          2,
+          2
+        ],
+        "squirrel": [
+          4,
+          4
+        ],
+        "nuts": [
+          [
+            3,
+            0
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
     }
   ]
 }

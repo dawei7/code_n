@@ -389,7 +389,7 @@
       ]
     },
     {
-      "id": "real-two-high-countries",
+      "id": "trial-two-high-countries",
       "name": "both endpoints of a long international call qualify",
       "kind": "trial",
       "visible": true,
@@ -468,7 +468,7 @@
       ]
     },
     {
-      "id": "real-caller-callee-symmetry",
+      "id": "trial-caller-callee-symmetry",
       "name": "caller direction does not change country membership",
       "kind": "trial",
       "visible": true,
@@ -536,7 +536,7 @@
       ]
     },
     {
-      "id": "real-leading-zero-code",
+      "id": "trial-leading-zero-code",
       "name": "country codes remain fixed-width strings",
       "kind": "trial",
       "visible": true,

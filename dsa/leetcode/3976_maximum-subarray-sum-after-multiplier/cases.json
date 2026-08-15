@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-interior-positive-run",
+      "id": "trial-interior-positive-run",
       "name": "multiplication starts after a discarded prefix",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-separated-best-run",
+      "id": "trial-separated-best-run",
       "name": "large negative gaps isolate the best operation range",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-multiply-through-negative",
+      "id": "trial-multiply-through-negative",
       "name": "the optimal multiplied range contains a negative value",
       "kind": "trial",
       "visible": true,
@@ -224,7 +224,7 @@
       ]
     },
     {
-      "id": "real-positive-between-negatives",
+      "id": "trial-positive-between-negatives",
       "name": "multiplication selects the only positive singleton",
       "kind": "trial",
       "visible": true,
@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "real-wide-transformed-value",
+      "id": "trial-wide-transformed-value",
       "name": "maximum values require 64-bit arithmetic",
       "kind": "trial",
       "visible": true,
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "id": "real-phase-transitions",
+      "id": "trial-phase-transitions",
       "name": "several restarts compete across all operation phases",
       "kind": "trial",
       "visible": true,
@@ -285,7 +285,7 @@
       ]
     },
     {
-      "id": "real-negative-ceiling",
+      "id": "trial-negative-ceiling",
       "name": "negative division uses ceiling rather than floor",
       "kind": "trial",
       "visible": true,
@@ -300,6 +300,41 @@
       "tags": [
         "truncation",
         "all-negative"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

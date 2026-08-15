@@ -87,8 +87,8 @@
       ]
     },
     {
-      "id": "real-repeated-distances",
-      "name": "real: repeated spans collapse in distance sets",
+      "id": "trial-repeated-distances",
+      "name": "repeated spans collapse in distance sets",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -114,8 +114,8 @@
       ]
     },
     {
-      "id": "real-modulo",
-      "name": "real: maximum boundary square requires modulo",
+      "id": "trial-modulo",
+      "name": "maximum boundary square requires modulo",
       "kind": "trial",
       "visible": true,
       "input": {

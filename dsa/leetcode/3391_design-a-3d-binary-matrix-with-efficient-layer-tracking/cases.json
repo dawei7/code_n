@@ -219,8 +219,8 @@
       ]
     },
     {
-      "id": "real-coordinates-are-distinct",
-      "name": "real: equal trailing coordinates on different layers are distinct cells",
+      "id": "trial-coordinates-are-distinct",
+      "name": "equal trailing coordinates on different layers are distinct cells",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -276,8 +276,8 @@
       ]
     },
     {
-      "id": "real-discard-stale-leaders",
-      "name": "real: lazy heap discards several obsolete leader records",
+      "id": "trial-discard-stale-leaders",
+      "name": "lazy heap discards several obsolete leader records",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -361,8 +361,8 @@
       ]
     },
     {
-      "id": "real-single-layer",
-      "name": "real: one-layer cube always returns zero",
+      "id": "trial-single-layer",
+      "name": "one-layer cube always returns zero",
       "kind": "trial",
       "visible": true,
       "input": {

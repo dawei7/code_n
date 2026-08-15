@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "long cascading prefix",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "upper constraint boundary",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-3",
       "name": "first descent inside mixed prefix",
       "kind": "trial",
       "visible": true,
@@ -109,6 +109,20 @@
       "expected": 134999,
       "tags": [
         "internal-descent"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

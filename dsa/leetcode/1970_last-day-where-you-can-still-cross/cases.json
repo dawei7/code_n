@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-middle-barrier",
+      "id": "trial-middle-barrier",
       "name": "middle row becomes a water barrier",
       "kind": "trial",
       "visible": true,
@@ -309,7 +309,7 @@
       ]
     },
     {
-      "id": "real-wide-barrier",
+      "id": "trial-wide-barrier",
       "name": "wide middle-row barrier",
       "kind": "trial",
       "visible": true,
@@ -374,7 +374,7 @@
       ]
     },
     {
-      "id": "real-bottom-row-first",
+      "id": "trial-bottom-row-first",
       "name": "bottom row floods from left to right",
       "kind": "trial",
       "visible": true,
@@ -422,7 +422,7 @@
       ]
     },
     {
-      "id": "real-alternating-two-by-five",
+      "id": "trial-alternating-two-by-five",
       "name": "alternating cells across a wide grid",
       "kind": "trial",
       "visible": true,
@@ -476,6 +476,39 @@
       "tags": [
         "rectangular",
         "alternating"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value col=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "row": 2,
+        "col": 1,
+        "cells": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

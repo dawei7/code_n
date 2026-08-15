@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-choice-of-boundary",
+      "id": "trial-choice-of-boundary",
       "name": "either side can share the middle value",
       "kind": "trial",
       "visible": true,
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-long-second-group",
+      "id": "trial-long-second-group",
       "name": "second group retains a common divisor",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-late-forced-cut",
+      "id": "trial-late-forced-cut",
       "name": "GCD becomes one late in the group",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-large-coprime-values",
+      "id": "trial-large-coprime-values",
       "name": "large coprime values",
       "kind": "trial",
       "visible": true,

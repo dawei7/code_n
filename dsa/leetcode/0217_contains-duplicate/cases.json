@@ -55,7 +55,7 @@
       ]
     },
     {
-      "id": "real-negative",
+      "id": "trial-negative",
       "name": "repeated negative value",
       "kind": "trial",
       "visible": true,

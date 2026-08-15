@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-unsorted-input",
+      "id": "trial-unsorted-input",
       "name": "output is ordered independently of input rows",
       "kind": "trial",
       "visible": true,
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-m-inside-name",
+      "id": "trial-m-inside-name",
       "name": "M away from the first character does not disqualify",
       "kind": "trial",
       "visible": true,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-name-only-m",
+      "id": "trial-name-only-m",
       "name": "a name consisting of M is disqualified",
       "kind": "trial",
       "visible": true,
@@ -281,7 +281,7 @@
       ]
     },
     {
-      "id": "real-even-m-name",
+      "id": "trial-even-m-name",
       "name": "both failing conditions still emit one zero",
       "kind": "trial",
       "visible": true,
@@ -316,7 +316,7 @@
       ]
     },
     {
-      "id": "real-several-eligible",
+      "id": "trial-several-eligible",
       "name": "every qualifying odd employee keeps their own salary",
       "kind": "trial",
       "visible": true,
@@ -369,7 +369,7 @@
       ]
     },
     {
-      "id": "real-several-even",
+      "id": "trial-several-even",
       "name": "all even identifiers receive zero",
       "kind": "trial",
       "visible": true,
@@ -423,7 +423,7 @@
       ]
     },
     {
-      "id": "real-large-salary",
+      "id": "trial-large-salary",
       "name": "an eligible salary is not transformed",
       "kind": "trial",
       "visible": true,

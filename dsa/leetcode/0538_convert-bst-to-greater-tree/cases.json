@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "hidden-negative",
+      "id": "trial-negative",
       "name": "negative and zero values",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "hidden-right-skew",
+      "id": "trial-right-skew",
       "name": "increasing right-only chain",
       "kind": "trial",
       "visible": true,

@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-first-hundred",
+      "id": "trial-first-hundred",
       "name": "every value through one hundred is fancy",
       "kind": "trial",
       "visible": true,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-digit-length-transition",
+      "id": "trial-digit-length-transition",
       "name": "a range crosses from three to four digits",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-maximum-endpoint",
+      "id": "trial-maximum-endpoint",
       "name": "the maximum endpoint is fancy through digit sum one",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-fifteen-nines",
+      "id": "trial-fifteen-nines",
       "name": "fifteen repeated nines have good digit sum 135",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-short-mixed-block",
+      "id": "trial-short-mixed-block",
       "name": "two hundred through two hundred twenty contains two misses",
       "kind": "trial",
       "visible": true,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-long-decreasing",
+      "id": "trial-long-decreasing",
       "name": "a ten-digit strictly decreasing number is directly good",
       "kind": "trial",
       "visible": true,
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "real-large-narrow-range",
+      "id": "trial-large-narrow-range",
       "name": "a narrow range near a fifteen-digit power is counted exactly",
       "kind": "trial",
       "visible": true,

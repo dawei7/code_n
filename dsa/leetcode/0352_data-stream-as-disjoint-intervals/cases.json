@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "hidden-bridge",
+      "id": "trial-bridge",
       "name": "one value bridges two intervals",
       "kind": "trial",
       "visible": true,
@@ -259,7 +259,7 @@
       ]
     },
     {
-      "id": "hidden-separated",
+      "id": "trial-separated",
       "name": "retain sorted disjoint intervals",
       "kind": "trial",
       "visible": true,
@@ -322,7 +322,7 @@
       ]
     },
     {
-      "id": "hidden-duplicate-after-merge",
+      "id": "trial-duplicate-after-merge",
       "name": "duplicate after interval merge",
       "kind": "trial",
       "visible": true,

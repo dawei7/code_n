@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-root-middle",
+      "id": "trial-root-middle",
       "name": "root occurs in the middle of the array",
       "kind": "trial",
       "visible": true,
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "id": "real-mixed-branching",
+      "id": "trial-mixed-branching",
       "name": "leaves and internal nodes are interleaved",
       "kind": "trial",
       "visible": true,
@@ -308,7 +308,7 @@
       ]
     },
     {
-      "id": "real-large-root-value",
+      "id": "trial-large-root-value",
       "name": "maximum-style root value and small descendants",
       "kind": "trial",
       "visible": true,

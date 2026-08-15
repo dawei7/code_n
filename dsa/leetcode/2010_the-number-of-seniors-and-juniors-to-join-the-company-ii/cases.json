@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-senior-priority",
+      "id": "trial-senior-priority",
       "name": "senior priority leaves room for one junior",
       "kind": "trial",
       "visible": true,
@@ -283,7 +283,7 @@
       ]
     },
     {
-      "id": "real-cheapest-not-input-order",
+      "id": "trial-cheapest-not-input-order",
       "name": "salary order rather than row order controls hiring",
       "kind": "trial",
       "visible": true,
@@ -350,7 +350,7 @@
       ]
     },
     {
-      "id": "real-no-affordable-candidate",
+      "id": "trial-no-affordable-candidate",
       "name": "result is empty when both first salaries exceed budget",
       "kind": "trial",
       "visible": true,

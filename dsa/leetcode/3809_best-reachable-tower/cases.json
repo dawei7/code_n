@@ -309,7 +309,7 @@
       ]
     },
     {
-      "id": "real-zero-radius",
+      "id": "trial-zero-radius",
       "name": "radius zero accepts only the center coordinate",
       "kind": "trial",
       "visible": true,
@@ -350,7 +350,7 @@
       ]
     },
     {
-      "id": "real-zero-quality",
+      "id": "trial-zero-quality",
       "name": "a reachable zero-quality tower beats the sentinel",
       "kind": "trial",
       "visible": true,
@@ -386,7 +386,7 @@
       ]
     },
     {
-      "id": "real-all-filtered",
+      "id": "trial-all-filtered",
       "name": "every high-quality candidate is unreachable",
       "kind": "trial",
       "visible": true,
@@ -427,7 +427,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum legal values and a boundary tie",
       "kind": "trial",
       "visible": true,
@@ -466,6 +466,44 @@
         "maximum-values",
         "inclusive-radius",
         "lexicographic-y"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value radius=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "towers": [
+          [
+            1,
+            2,
+            5
+          ],
+          [
+            2,
+            1,
+            7
+          ],
+          [
+            3,
+            1,
+            9
+          ]
+        ],
+        "center": [
+          1,
+          1
+        ],
+        "radius": 1
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-start-not-first",
+      "id": "trial-start-not-first",
       "name": "required start is not first in input",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-repeated-vertices",
+      "id": "trial-repeated-vertices",
       "name": "repeated vertices across distinct directed edges",
       "kind": "trial",
       "visible": true,
@@ -258,7 +258,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "endpoint values at the allowed scale",
       "kind": "trial",
       "visible": true,

@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-shared-endpoint",
+      "id": "trial-shared-endpoint",
       "name": "different addresses meet at one timestamp",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-contained-session",
+      "id": "trial-contained-session",
       "name": "one different-address session is contained",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-several-accounts",
+      "id": "trial-several-accounts",
       "name": "only violating accounts are returned",
       "kind": "trial",
       "visible": true,
@@ -252,7 +252,7 @@
       ]
     },
     {
-      "id": "real-distinct-days",
+      "id": "trial-distinct-days",
       "name": "different days cannot overlap",
       "kind": "trial",
       "visible": true,
@@ -286,7 +286,7 @@
       ]
     },
     {
-      "id": "real-deduplicate-violations",
+      "id": "trial-deduplicate-violations",
       "name": "several conflicts yield one account row",
       "kind": "trial",
       "visible": true,

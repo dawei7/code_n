@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-extra-factor-pairs",
+      "id": "trial-extra-factor-pairs",
       "name": "reject values with more than four divisors",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-primes-and-one",
+      "id": "trial-primes-and-one",
       "name": "primes and one contribute zero",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-mixed-forms",
+      "id": "trial-mixed-forms",
       "name": "semiprimes and prime cubes",
       "kind": "trial",
       "visible": true,
@@ -126,6 +126,22 @@
       "expected": 94,
       "tags": [
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          21
+        ]
+      },
+      "expected": 32,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

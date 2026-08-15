@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-all-distinct",
+      "id": "trial-all-distinct",
       "name": "six distinct tiles",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-two-pairs",
+      "id": "trial-two-pairs",
       "name": "two repeated pairs",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-asymmetric-counts",
+      "id": "trial-asymmetric-counts",
       "name": "asymmetric multiplicities",
       "kind": "trial",
       "visible": true,

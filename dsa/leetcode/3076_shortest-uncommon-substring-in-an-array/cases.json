@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-overlapping-strings",
-      "name": "real: overlapping words require answers of different lengths",
+      "id": "trial-overlapping-strings",
+      "name": "overlapping words require answers of different lengths",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -171,8 +171,8 @@
       ]
     },
     {
-      "id": "real-repeated-patterns",
-      "name": "real: repeated patterns and lexical ties",
+      "id": "trial-repeated-patterns",
+      "name": "repeated patterns and lexical ties",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -194,8 +194,8 @@
       ]
     },
     {
-      "id": "real-maximum-word-length",
-      "name": "real: words at the maximum length",
+      "id": "trial-maximum-word-length",
+      "name": "words at the maximum length",
       "kind": "trial",
       "visible": true,
       "input": {

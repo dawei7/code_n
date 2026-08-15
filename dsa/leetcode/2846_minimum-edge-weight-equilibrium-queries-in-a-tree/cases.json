@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "real-single-node",
+      "id": "trial-single-node",
       "name": "one-node tree has no edges",
       "kind": "trial",
       "visible": true,
@@ -270,7 +270,7 @@
       ]
     },
     {
-      "id": "real-maximum-weight",
+      "id": "trial-maximum-weight",
       "name": "maximum edge weight is indexed correctly",
       "kind": "trial",
       "visible": true,
@@ -308,7 +308,7 @@
       ]
     },
     {
-      "id": "real-all-distinct-chain",
+      "id": "trial-all-distinct-chain",
       "name": "every edge on a chain has a distinct weight",
       "kind": "trial",
       "visible": true,
@@ -372,7 +372,7 @@
       ]
     },
     {
-      "id": "real-deeper-branching-tree",
+      "id": "trial-deeper-branching-tree",
       "name": "LCAs occur at several depths",
       "kind": "trial",
       "visible": true,
@@ -456,7 +456,7 @@
       ]
     },
     {
-      "id": "real-branch-frequency",
+      "id": "trial-branch-frequency",
       "name": "root-prefix counts combine across branches",
       "kind": "trial",
       "visible": true,
@@ -525,7 +525,7 @@
       ]
     },
     {
-      "id": "real-majority-and-reversal",
+      "id": "trial-majority-and-reversal",
       "name": "majority weight and reversed endpoints",
       "kind": "trial",
       "visible": true,

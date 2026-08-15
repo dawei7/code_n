@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "real-partial-cutoff-tie",
+      "id": "trial-partial-cutoff-tie",
       "name": "select two of three letters tied at the cutoff",
       "kind": "trial",
       "visible": true,
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-top-tie-complete",
+      "id": "trial-top-tie-complete",
       "name": "all letters in the highest-frequency tie are selected",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-multiple-forced-levels",
+      "id": "trial-multiple-forced-levels",
       "name": "forced frequencies above a complete cutoff tie",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-k-one-tied-maximum",
+      "id": "trial-k-one-tied-maximum",
       "name": "every index has maximum beauty when k is one",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-single-way",
+      "id": "trial-single-way",
       "name": "all unique letters are selected exactly once",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-modulo",
+      "id": "trial-modulo",
       "name": "large all-frequency tie requires modular reduction",
       "kind": "trial",
       "visible": true,

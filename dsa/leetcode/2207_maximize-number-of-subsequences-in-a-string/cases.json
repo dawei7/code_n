@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "real-only-first-letters",
+      "id": "trial-only-first-letters",
       "name": "append the second pattern character",
       "kind": "trial",
       "visible": true,
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-only-second-letters",
+      "id": "trial-only-second-letters",
       "name": "prepend the first pattern character",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-reverse-order",
+      "id": "trial-reverse-order",
       "name": "insertion creates the only attainable ordered pairs",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-asymmetric-choice",
+      "id": "trial-asymmetric-choice",
       "name": "choose the endpoint with the larger contribution",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-equal-pattern-with-no-match",
+      "id": "trial-equal-pattern-with-no-match",
       "name": "one matching insertion is insufficient for a doubled letter",
       "kind": "trial",
       "visible": true,
@@ -130,6 +130,36 @@
       "tags": [
         "equal-letters",
         "zero"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in text",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "a",
+        "pattern": "ac"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in text",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "aaa",
+        "pattern": "ac"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

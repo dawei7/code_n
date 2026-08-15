@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-outgoing-mode",
+      "id": "trial-outgoing-mode",
       "name": "removing the mode changes the winner",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "tied maximum-domain values choose the smaller",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-many-ties",
+      "id": "trial-many-ties",
       "name": "increasing distinct windows use their first value",
       "kind": "trial",
       "visible": true,

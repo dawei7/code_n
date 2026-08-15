@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "real-same-name",
+      "id": "trial-same-name",
       "name": "distinct IDs with same name do not merge",
       "kind": "trial",
       "visible": true,

@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-endpoints",
+      "id": "trial-endpoints",
       "name": "endpoint removals then interior removals",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-large-sums",
+      "id": "trial-large-sums",
       "name": "segment sums require more than 32 bits",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-changing-largest-side",
+      "id": "trial-changing-largest-side",
       "name": "maximum moves among separated segments",
       "kind": "trial",
       "visible": true,

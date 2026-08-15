@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "hidden-increasing",
+      "id": "trial-increasing",
       "name": "elevations increase toward Atlantic corner",
       "kind": "trial",
       "visible": true,
@@ -288,7 +288,7 @@
       ]
     },
     {
-      "id": "hidden-decreasing",
+      "id": "trial-decreasing",
       "name": "elevations decrease toward Atlantic corner",
       "kind": "trial",
       "visible": true,
@@ -341,7 +341,7 @@
       ]
     },
     {
-      "id": "hidden-ridges",
+      "id": "trial-ridges",
       "name": "separated high ridges",
       "kind": "trial",
       "visible": true,

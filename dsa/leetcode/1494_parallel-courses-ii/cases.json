@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-diamond",
+      "id": "trial-diamond",
       "name": "two roots feed a common chain",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-two-branches-merge",
+      "id": "trial-two-branches-merge",
       "name": "independent branches merge at final course",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-capacity-one",
+      "id": "trial-capacity-one",
       "name": "all courses consume separate semesters",
       "kind": "trial",
       "visible": true,
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "id": "real-choice-unlocks-chain",
+      "id": "trial-choice-unlocks-chain",
       "name": "subset choice affects future availability",
       "kind": "trial",
       "visible": true,

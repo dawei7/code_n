@@ -241,7 +241,7 @@
       ]
     },
     {
-      "id": "hidden-descending-main",
+      "id": "trial-descending-main",
       "name": "descending main diagonal",
       "kind": "trial",
       "visible": true,
@@ -286,7 +286,7 @@
       ]
     },
     {
-      "id": "hidden-duplicates",
+      "id": "trial-duplicates",
       "name": "equal values remain on each diagonal",
       "kind": "trial",
       "visible": true,

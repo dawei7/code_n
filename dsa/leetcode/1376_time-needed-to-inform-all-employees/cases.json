@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "hidden-uniform-star",
+      "id": "trial-uniform-star",
       "name": "many simultaneous reports",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "hidden-zero-delay",
+      "id": "trial-zero-delay",
       "name": "chain with zero delays",
       "kind": "trial",
       "visible": true,

@@ -121,8 +121,8 @@
       ]
     },
     {
-      "id": "real-equal-values",
-      "name": "real: all equal values produce every index choice",
+      "id": "trial-equal-values",
+      "name": "all equal values produce every index choice",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -141,8 +141,8 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: maximum-scale values use their remainders",
+      "id": "trial-large-values",
+      "name": "maximum-scale values use their remainders",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -160,8 +160,8 @@
       ]
     },
     {
-      "id": "real-index-multiplicity",
-      "name": "real: duplicate remainders count distinct indices",
+      "id": "trial-index-multiplicity",
+      "name": "duplicate remainders count distinct indices",
       "kind": "trial",
       "visible": true,
       "input": {

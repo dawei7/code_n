@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-dominant-uses-all",
+      "id": "trial-dominant-uses-all",
       "name": "real dominant uses all",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-unequal-balanced",
+      "id": "trial-unequal-balanced",
       "name": "real unequal balanced",
       "kind": "trial",
       "visible": true,

@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "real-two-long-parts",
+      "id": "trial-two-long-parts",
       "name": "two maximal three-digit parts",
       "kind": "trial",
       "visible": true,
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-final-short-part",
+      "id": "trial-final-short-part",
       "name": "final short part",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-large-k",
+      "id": "trial-large-k",
       "name": "entire string fits at maximum k",
       "kind": "trial",
       "visible": true,

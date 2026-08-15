@@ -67,8 +67,8 @@
       ]
     },
     {
-      "id": "real-one-swap",
-      "name": "real: one suffix swap",
+      "id": "trial-one-swap",
+      "name": "one suffix swap",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -84,8 +84,8 @@
       ]
     },
     {
-      "id": "real-first-block-after-one",
-      "name": "real: first permutation beginning with two",
+      "id": "trial-first-block-after-one",
+      "name": "first permutation beginning with two",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -102,8 +102,8 @@
       ]
     },
     {
-      "id": "real-four-values",
-      "name": "real: several Lehmer digits contribute",
+      "id": "trial-four-values",
+      "name": "several Lehmer digits contribute",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -121,8 +121,8 @@
       ]
     },
     {
-      "id": "real-five-values",
-      "name": "real: rank one hundred",
+      "id": "trial-five-values",
+      "name": "rank one hundred",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -141,8 +141,8 @@
       ]
     },
     {
-      "id": "real-ascending-ten",
-      "name": "real: ascending permutation remains first",
+      "id": "trial-ascending-ten",
+      "name": "ascending permutation remains first",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -166,8 +166,8 @@
       ]
     },
     {
-      "id": "real-descending-ten",
-      "name": "real: descending permutation is last",
+      "id": "trial-descending-ten",
+      "name": "descending permutation is last",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -191,8 +191,8 @@
       ]
     },
     {
-      "id": "real-mixed-ten",
-      "name": "real: mixed ten-value permutation",
+      "id": "trial-mixed-ten",
+      "name": "mixed ten-value permutation",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -216,8 +216,8 @@
       ]
     },
     {
-      "id": "real-modulo-twenty",
-      "name": "real: descending rank requires modulo",
+      "id": "trial-modulo-twenty",
+      "name": "descending rank requires modulo",
       "kind": "trial",
       "visible": true,
       "input": {

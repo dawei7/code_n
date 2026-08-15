@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-decreasing",
+      "id": "trial-decreasing",
       "name": "repeated drops and rises in subsequence parity accumulate value",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-two-peaks",
+      "id": "trial-two-peaks",
       "name": "two separated peaks contribute through one valley",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-many-turns",
+      "id": "trial-many-turns",
       "name": "every profitable rise after a drop contributes",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-leading-small",
+      "id": "trial-leading-small",
       "name": "an early small value may be skipped",
       "kind": "trial",
       "visible": true,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-trailing-drop",
+      "id": "trial-trailing-drop",
       "name": "a trailing drop need not be selected",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-domain-maximum",
+      "id": "trial-domain-maximum",
       "name": "maximum values and a minimum valley remain within integer range",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-zigzag",
+      "id": "trial-zigzag",
       "name": "alternating local extremes all matter",
       "kind": "trial",
       "visible": true,
@@ -227,6 +227,39 @@
       "tags": [
         "zigzag",
         "multiple-valleys"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

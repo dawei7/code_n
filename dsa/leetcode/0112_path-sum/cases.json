@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "real-negative",
+      "id": "trial-negative",
       "name": "negative values",
       "kind": "trial",
       "visible": true,

@@ -271,7 +271,7 @@
       ]
     },
     {
-      "id": "real-multiple-transactions",
+      "id": "trial-multiple-transactions",
       "name": "several transactions exclude one visit once",
       "kind": "trial",
       "visible": true,
@@ -320,7 +320,7 @@
       ]
     },
     {
-      "id": "real-two-customers",
+      "id": "trial-two-customers",
       "name": "independent customer aggregates",
       "kind": "trial",
       "visible": true,
@@ -375,7 +375,7 @@
       ]
     },
     {
-      "id": "real-zero-amount",
+      "id": "trial-zero-amount",
       "name": "zero amount is still a transaction",
       "kind": "trial",
       "visible": true,
@@ -419,7 +419,7 @@
       ]
     },
     {
-      "id": "real-all-transactional",
+      "id": "trial-all-transactional",
       "name": "multiple customers all transact",
       "kind": "trial",
       "visible": true,
@@ -462,7 +462,7 @@
       ]
     },
     {
-      "id": "real-nonconsecutive-ids",
+      "id": "trial-nonconsecutive-ids",
       "name": "visit identifiers need not be consecutive",
       "kind": "trial",
       "visible": true,

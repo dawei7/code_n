@@ -114,8 +114,8 @@
       ]
     },
     {
-      "id": "real-synchronous-throw",
-      "name": "real: synchronous source throw rejects promise",
+      "id": "trial-synchronous-throw",
+      "name": "synchronous source throw rejects promise",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -134,8 +134,8 @@
       ]
     },
     {
-      "id": "real-error-over-result",
-      "name": "real: callback error overrides result",
+      "id": "trial-error-over-result",
+      "name": "callback error overrides result",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -154,8 +154,8 @@
       ]
     },
     {
-      "id": "real-first-success-wins",
-      "name": "real: first successful settlement wins",
+      "id": "trial-first-success-wins",
+      "name": "first successful settlement wins",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -175,8 +175,8 @@
       ]
     },
     {
-      "id": "real-first-error-wins",
-      "name": "real: first rejected settlement wins",
+      "id": "trial-first-error-wins",
+      "name": "first rejected settlement wins",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -196,8 +196,8 @@
       ]
     },
     {
-      "id": "real-object-result",
-      "name": "real: object callback result is preserved",
+      "id": "trial-object-result",
+      "name": "object callback result is preserved",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -225,8 +225,8 @@
       ]
     },
     {
-      "id": "real-maximum-arguments",
-      "name": "real: all 100 legal arguments are forwarded",
+      "id": "trial-maximum-arguments",
+      "name": "all 100 legal arguments are forwarded",
       "kind": "trial",
       "visible": true,
       "input": {

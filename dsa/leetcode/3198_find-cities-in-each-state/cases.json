@@ -252,8 +252,8 @@
       ]
     },
     {
-      "id": "real-interleaved-groups",
-      "name": "real: interleaved input rows are regrouped",
+      "id": "trial-interleaved-groups",
+      "name": "interleaved input rows are regrouped",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -302,8 +302,8 @@
       ]
     },
     {
-      "id": "real-city-prefixes",
-      "name": "real: city names with common prefixes sort completely",
+      "id": "trial-city-prefixes",
+      "name": "city names with common prefixes sort completely",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -344,8 +344,8 @@
       ]
     },
     {
-      "id": "real-spaces-preserved",
-      "name": "real: spaces inside city names are preserved",
+      "id": "trial-spaces-preserved",
+      "name": "spaces inside city names are preserved",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -386,8 +386,8 @@
       ]
     },
     {
-      "id": "real-state-prefixes",
-      "name": "real: state names with common prefixes determine row order",
+      "id": "trial-state-prefixes",
+      "name": "state names with common prefixes determine row order",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -436,8 +436,8 @@
       ]
     },
     {
-      "id": "real-uneven-groups",
-      "name": "real: states may contain different city counts",
+      "id": "trial-uneven-groups",
+      "name": "states may contain different city counts",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -498,8 +498,8 @@
       ]
     },
     {
-      "id": "real-reverse-input",
-      "name": "real: reverse-sorted input is fully reordered",
+      "id": "trial-reverse-input",
+      "name": "reverse-sorted input is fully reordered",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -552,8 +552,8 @@
       ]
     },
     {
-      "id": "real-separator-exact",
-      "name": "real: multiple names use exactly comma and space",
+      "id": "trial-separator-exact",
+      "name": "multiple names use exactly comma and space",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -78,8 +78,8 @@
       ]
     },
     {
-      "id": "real-all-zero-windows",
-      "name": "real: every all-zero window is valid",
+      "id": "trial-all-zero-windows",
+      "name": "every all-zero window is valid",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -99,8 +99,8 @@
       ]
     },
     {
-      "id": "real-odd-middle-not-floor-half",
-      "name": "real: exact half does not use floor division",
+      "id": "trial-odd-middle-not-floor-half",
+      "name": "exact half does not use floor division",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -117,8 +117,8 @@
       ]
     },
     {
-      "id": "real-mixed-sign-and-zero",
-      "name": "real: count separated negative and zero matches",
+      "id": "trial-mixed-sign-and-zero",
+      "name": "count separated negative and zero matches",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -139,8 +139,8 @@
       ]
     },
     {
-      "id": "real-boundary-values",
-      "name": "real: endpoint values may use both constraint extremes",
+      "id": "trial-boundary-values",
+      "name": "endpoint values may use both constraint extremes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -156,6 +156,39 @@
       "tags": [
         "bounds",
         "mixed-sign"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

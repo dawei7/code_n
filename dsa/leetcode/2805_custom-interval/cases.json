@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-cancel-at-scheduled-time",
+      "id": "trial-cancel-at-scheduled-time",
       "name": "cancellation suppresses an equal-time invocation",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-maximum-invocations",
+      "id": "trial-maximum-invocations",
       "name": "minimum waits maximize invocation count",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-maximum-parameters",
+      "id": "trial-maximum-parameters",
       "name": "maximum delay and period",
       "kind": "trial",
       "visible": true,

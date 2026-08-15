@@ -176,8 +176,8 @@
       ]
     },
     {
-      "id": "real-third-occurrence",
-      "name": "real: a third occurrence forces the start forward",
+      "id": "trial-third-occurrence",
+      "name": "a third occurrence forces the start forward",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -222,8 +222,8 @@
       ]
     },
     {
-      "id": "real-two-duplicated-values",
-      "name": "real: two duplicate pairs cannot coexist",
+      "id": "trial-two-duplicated-values",
+      "name": "two duplicate pairs cannot coexist",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -262,8 +262,8 @@
       ]
     },
     {
-      "id": "real-all-same-chain",
-      "name": "real: all equal values limit paths to two nodes",
+      "id": "trial-all-same-chain",
+      "name": "all equal values limit paths to two nodes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -301,8 +301,8 @@
       ]
     },
     {
-      "id": "real-tie-prefers-fewer-nodes",
-      "name": "real: equal length prefers fewer nodes",
+      "id": "trial-tie-prefers-fewer-nodes",
+      "name": "equal length prefers fewer nodes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -340,8 +340,8 @@
       ]
     },
     {
-      "id": "real-no-cross-branch-path",
-      "name": "real: paths cannot connect separate child branches",
+      "id": "trial-no-cross-branch-path",
+      "name": "paths cannot connect separate child branches",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -380,8 +380,8 @@
       ]
     },
     {
-      "id": "real-duplicates-on-separate-branches",
-      "name": "real: repeated values on separate branches do not interact",
+      "id": "trial-duplicates-on-separate-branches",
+      "name": "repeated values on separate branches do not interact",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -426,8 +426,8 @@
       ]
     },
     {
-      "id": "real-nonroot-best-start",
-      "name": "real: the optimal path starts below the root",
+      "id": "trial-nonroot-best-start",
+      "name": "the optimal path starts below the root",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -471,8 +471,8 @@
       ]
     },
     {
-      "id": "real-weighted-choice",
-      "name": "real: edge weights determine the best legal suffix",
+      "id": "trial-weighted-choice",
+      "name": "edge weights determine the best legal suffix",
       "kind": "trial",
       "visible": true,
       "input": {

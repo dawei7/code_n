@@ -128,8 +128,8 @@
       ]
     },
     {
-      "id": "real-upper-primes",
-      "name": "real: primes near upper bound",
+      "id": "trial-upper-primes",
+      "name": "primes near upper bound",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -151,8 +151,8 @@
       ]
     },
     {
-      "id": "real-mixed-order",
-      "name": "real: order and repeats are preserved",
+      "id": "trial-mixed-order",
+      "name": "order and repeats are preserved",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -177,8 +177,8 @@
       ]
     },
     {
-      "id": "real-diverse-suffixes",
-      "name": "real: diverse trailing one runs",
+      "id": "trial-diverse-suffixes",
+      "name": "diverse trailing one runs",
       "kind": "trial",
       "visible": true,
       "input": {

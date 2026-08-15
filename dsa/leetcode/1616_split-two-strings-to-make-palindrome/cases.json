@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-short-false",
+      "id": "trial-short-false",
       "name": "distinct two-character strings cannot combine",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-central-fallback-a",
+      "id": "trial-central-fallback-a",
       "name": "cross exterior leaves a palindromic center in first source",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-near-palindromes-false",
+      "id": "trial-near-palindromes-false",
       "name": "both inputs fail only at their central pair",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-even-cross",
+      "id": "trial-even-cross",
       "name": "an even-length cross palindrome uses the middle split",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-identical-nonpalindrome",
+      "id": "trial-identical-nonpalindrome",
       "name": "identical nonpalindromes do not gain a new arrangement",
       "kind": "trial",
       "visible": true,

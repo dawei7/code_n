@@ -221,8 +221,8 @@
       ]
     },
     {
-      "id": "real-capacity-boundary",
-      "name": "real: real capacity boundary",
+      "id": "trial-capacity-boundary",
+      "name": "real capacity boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -247,8 +247,8 @@
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "real: real all equal",
+      "id": "trial-all-equal",
+      "name": "real all equal",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -280,8 +280,8 @@
       ]
     },
     {
-      "id": "real-three-by-three",
-      "name": "real: real three by three",
+      "id": "trial-three-by-three",
+      "name": "real three by three",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -313,8 +313,8 @@
       ]
     },
     {
-      "id": "real-large-singletons",
-      "name": "real: real large singletons",
+      "id": "trial-large-singletons",
+      "name": "real large singletons",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -340,8 +340,8 @@
       ]
     },
     {
-      "id": "real-two-wide-rows",
-      "name": "real: real two wide rows",
+      "id": "trial-two-wide-rows",
+      "name": "real two wide rows",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -370,8 +370,8 @@
       ]
     },
     {
-      "id": "real-one-row-pair",
-      "name": "real: real one row pair",
+      "id": "trial-one-row-pair",
+      "name": "real one row pair",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -392,8 +392,8 @@
       ]
     },
     {
-      "id": "real-four-devices",
-      "name": "real: real four devices",
+      "id": "trial-four-devices",
+      "name": "real four devices",
       "kind": "trial",
       "visible": true,
       "input": {

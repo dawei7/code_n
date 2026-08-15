@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-single-column",
+      "id": "trial-single-column",
       "name": "one column equals the row margins",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-rectangular-wide",
+      "id": "trial-rectangular-wide",
       "name": "more columns than rows",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-rectangular-tall",
+      "id": "trial-rectangular-tall",
       "name": "more rows than columns",
       "kind": "trial",
       "visible": true,
@@ -298,7 +298,7 @@
       ]
     },
     {
-      "id": "real-equal-advances-both",
+      "id": "trial-equal-advances-both",
       "name": "equal active margins finish together",
       "kind": "trial",
       "visible": true,
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "id": "real-zero-prefixes",
+      "id": "trial-zero-prefixes",
       "name": "leading and interior zero margins",
       "kind": "trial",
       "visible": true,
@@ -398,7 +398,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "large allowed margin values",
       "kind": "trial",
       "visible": true,
@@ -433,7 +433,7 @@
       ]
     },
     {
-      "id": "real-many-valid",
+      "id": "trial-many-valid",
       "name": "balanced margins admit many arrangements",
       "kind": "trial",
       "visible": true,
@@ -472,6 +472,61 @@
       "tags": [
         "multiple-answers",
         "semantic-validator"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in rowSum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rowSum": [
+          3
+        ],
+        "colSum": [
+          4,
+          7
+        ]
+      },
+      "expected": [
+        [
+          3,
+          0
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in rowSum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rowSum": [
+          3,
+          3
+        ],
+        "colSum": [
+          4,
+          7
+        ]
+      },
+      "expected": [
+        [
+          3,
+          0
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

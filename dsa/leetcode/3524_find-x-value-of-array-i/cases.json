@@ -125,8 +125,8 @@
       ]
     },
     {
-      "id": "real-modulus-one",
-      "name": "real: all subarrays have remainder zero",
+      "id": "trial-modulus-one",
+      "name": "all subarrays have remainder zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-all-divisible",
-      "name": "real: every product is divisible by k",
+      "id": "trial-all-divisible",
+      "name": "every product is divisible by k",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -171,8 +171,8 @@
       ]
     },
     {
-      "id": "real-repeated-two",
-      "name": "real: products alternate between two remainders",
+      "id": "trial-repeated-two",
+      "name": "products alternate between two remainders",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -194,8 +194,8 @@
       ]
     },
     {
-      "id": "real-mixed-products",
-      "name": "real: all subarray lengths contribute",
+      "id": "trial-mixed-products",
+      "name": "all subarray lengths contribute",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -216,6 +216,49 @@
       "tags": [
         "real",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 3
+      },
+      "expected": [
+        0,
+        1,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": [
+        0,
+        3,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "hidden-unsorted",
+      "id": "trial-unsorted",
       "name": "reconstruction after sorting",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "hidden-no-pairs",
+      "id": "trial-no-pairs",
       "name": "every value is incompatible",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "hidden-one-bridge",
+      "id": "trial-one-bridge",
       "name": "transitive chain through bridge",
       "kind": "trial",
       "visible": true,

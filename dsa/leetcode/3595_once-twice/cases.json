@@ -125,8 +125,8 @@
       ]
     },
     {
-      "id": "real-sign-bit-only-separation",
-      "name": "real: exceptional values differ only at the sign bit",
+      "id": "trial-sign-bit-only-separation",
+      "name": "exceptional values differ only at the sign bit",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -151,8 +151,8 @@
       ]
     },
     {
-      "id": "real-negative-once-positive-twice",
-      "name": "real: mixed signs survive several triplicate groups",
+      "id": "trial-negative-once-positive-twice",
+      "name": "mixed signs survive several triplicate groups",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -182,8 +182,8 @@
       ]
     },
     {
-      "id": "real-negative-triplicates",
-      "name": "real: triplicate values can also be negative",
+      "id": "trial-negative-triplicates",
+      "name": "triplicate values can also be negative",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -213,8 +213,8 @@
       ]
     },
     {
-      "id": "real-adjacent-exceptions",
-      "name": "real: adjacent exceptional values do not affect bit counting",
+      "id": "trial-adjacent-exceptions",
+      "name": "adjacent exceptional values do not affect bit counting",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -241,8 +241,8 @@
       ]
     },
     {
-      "id": "real-both-exceptions-negative",
-      "name": "real: both exceptional values may be negative",
+      "id": "trial-both-exceptions-negative",
+      "name": "both exceptional values may be negative",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -266,6 +266,45 @@
         "real",
         "both-negative",
         "mixed-order"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": [
+        2,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

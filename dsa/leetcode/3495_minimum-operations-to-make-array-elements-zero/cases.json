@@ -105,8 +105,8 @@
       ]
     },
     {
-      "id": "real-complete-band",
-      "name": "real: full two-step band",
+      "id": "trial-complete-band",
+      "name": "full two-step band",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -124,8 +124,8 @@
       ]
     },
     {
-      "id": "real-narrow-power-boundary",
-      "name": "real: narrow range at sixteen",
+      "id": "trial-narrow-power-boundary",
+      "name": "narrow range at sixteen",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -143,8 +143,8 @@
       ]
     },
     {
-      "id": "real-upper-bound",
-      "name": "real: values at the numeric ceiling",
+      "id": "trial-upper-bound",
+      "name": "values at the numeric ceiling",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -162,8 +162,8 @@
       ]
     },
     {
-      "id": "real-large-ranges",
-      "name": "real: varied large ranges",
+      "id": "trial-large-ranges",
+      "name": "varied large ranges",
       "kind": "trial",
       "visible": true,
       "input": {

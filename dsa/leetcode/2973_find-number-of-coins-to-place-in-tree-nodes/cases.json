@@ -217,8 +217,8 @@
       ]
     },
     {
-      "id": "real-all-negative-chain",
-      "name": "real: nontrivial subtrees clamp negative products",
+      "id": "trial-all-negative-chain",
+      "name": "nontrivial subtrees clamp negative products",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -254,8 +254,8 @@
       ]
     },
     {
-      "id": "real-large-product",
-      "name": "real: product requires 64-bit range",
+      "id": "trial-large-product",
+      "name": "product requires 64-bit range",
       "kind": "trial",
       "visible": true,
       "input": {

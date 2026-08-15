@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-star",
+      "id": "trial-star",
       "name": "best path crosses a high-price center",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-weighted-chain",
+      "id": "trial-weighted-chain",
       "name": "endpoint exclusion dominates a weighted chain",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-three-branches",
+      "id": "trial-three-branches",
       "name": "combine two of three child branches",
       "kind": "trial",
       "visible": true,

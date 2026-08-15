@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "hidden-bucket-removal",
+      "id": "trial-bucket-removal",
       "name": "empty middle buckets are removed",
       "kind": "trial",
       "visible": true,
@@ -260,7 +260,7 @@
       ]
     },
     {
-      "id": "hidden-reinsert",
+      "id": "trial-reinsert",
       "name": "removed key can be inserted again",
       "kind": "trial",
       "visible": true,

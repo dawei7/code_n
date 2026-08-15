@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-three",
+      "id": "trial-three",
       "name": "three-value LIFO sequence",
       "kind": "trial",
       "visible": true,

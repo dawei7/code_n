@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-one-beyond-tetrahedral",
+      "id": "trial-one-beyond-tetrahedral",
       "name": "one box beyond a complete stack",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-partial-staircase",
+      "id": "trial-partial-staircase",
       "name": "remainder needs three staircase boxes",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-complete-height-four",
+      "id": "trial-complete-height-four",
       "name": "complete height-four stack",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-just-below-height-ten",
+      "id": "trial-just-below-height-ten",
       "name": "final box before a complete height-ten stack",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum input",
       "kind": "trial",
       "visible": true,

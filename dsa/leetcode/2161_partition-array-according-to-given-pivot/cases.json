@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-value-bounds",
+      "id": "trial-value-bounds",
       "name": "signed value bounds and repeated pivot",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-no-greater-values",
+      "id": "trial-no-greater-values",
       "name": "the greater-than group may be empty",
       "kind": "trial",
       "visible": true,
@@ -208,6 +208,46 @@
       "tags": [
         "empty-greater-group",
         "negative"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9
+        ],
+        "pivot": 10
+      },
+      "expected": [
+        9
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          9
+        ],
+        "pivot": 10
+      },
+      "expected": [
+        9,
+        9
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

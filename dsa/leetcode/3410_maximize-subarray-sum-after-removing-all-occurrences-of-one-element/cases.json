@@ -132,8 +132,8 @@
       ]
     },
     {
-      "id": "real-identical-negative",
-      "name": "real: deleting the only distinct value would empty the array",
+      "id": "trial-identical-negative",
+      "name": "deleting the only distinct value would empty the array",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -149,8 +149,8 @@
       ]
     },
     {
-      "id": "real-zero-values",
-      "name": "real: deleting zero cannot improve the unchanged optimum",
+      "id": "trial-zero-values",
+      "name": "deleting zero cannot improve the unchanged optimum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -167,8 +167,8 @@
       ]
     },
     {
-      "id": "real-mixed-repeated",
-      "name": "real: repeated negative removal bridges a wider segment",
+      "id": "trial-mixed-repeated",
+      "name": "repeated negative removal bridges a wider segment",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -190,6 +190,39 @@
       "tags": [
         "repeated-removal",
         "segment-tree"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -3
+        ]
+      },
+      "expected": -3,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -3,
+          -3
+        ]
+      },
+      "expected": -3,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

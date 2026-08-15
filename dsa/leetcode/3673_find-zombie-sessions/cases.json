@@ -663,7 +663,7 @@
       ]
     },
     {
-      "id": "real-required-ordering",
+      "id": "trial-required-ordering",
       "name": "scroll count descends before session id ascends",
       "kind": "trial",
       "visible": true,
@@ -910,7 +910,7 @@
       ]
     },
     {
-      "id": "real-all-event-timestamps",
+      "id": "trial-all-event-timestamps",
       "name": "duration uses the earliest and latest event regardless of type",
       "kind": "trial",
       "visible": true,
@@ -1001,7 +1001,7 @@
       ]
     },
     {
-      "id": "real-non-counted-events",
+      "id": "trial-non-counted-events",
       "name": "opens and closes do not count as clicks or scrolls",
       "kind": "trial",
       "visible": true,

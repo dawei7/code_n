@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-negative-first",
+      "id": "trial-negative-first",
       "name": "lowest prefix occurs first",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-maximum-deficit",
+      "id": "trial-maximum-deficit",
       "name": "maximum-length negative array",
       "kind": "trial",
       "visible": true,
@@ -224,6 +224,39 @@
       "expected": 10001,
       "tags": [
         "maximum"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -3,
+          -3
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

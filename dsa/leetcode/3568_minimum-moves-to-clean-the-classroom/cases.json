@@ -94,8 +94,8 @@
       ]
     },
     {
-      "id": "real-final-litter-on-zero",
-      "name": "real: collecting the final litter may consume the last unit",
+      "id": "trial-final-litter-on-zero",
+      "name": "collecting the final litter may consume the last unit",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -112,8 +112,8 @@
       ]
     },
     {
-      "id": "real-energy-exhausted-too-soon",
-      "name": "real: one litter is reachable but all litter cannot be collected",
+      "id": "trial-energy-exhausted-too-soon",
+      "name": "one litter is reachable but all litter cannot be collected",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -130,8 +130,8 @@
       ]
     },
     {
-      "id": "real-obstacle-disconnection",
-      "name": "real: obstacles disconnect the litter despite ample energy",
+      "id": "trial-obstacle-disconnection",
+      "name": "obstacles disconnect the litter despite ample energy",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -149,8 +149,8 @@
       ]
     },
     {
-      "id": "real-reuse-resets",
-      "name": "real: reset cells support a long route collecting both endpoints",
+      "id": "trial-reuse-resets",
+      "name": "reset cells support a long route collecting both endpoints",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -164,6 +164,41 @@
         "real",
         "multiple-litter",
         "reusable-reset"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in classroom",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "classroom": [
+          "S."
+        ],
+        "energy": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in classroom",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "classroom": [
+          "S.",
+          "S."
+        ],
+        "energy": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

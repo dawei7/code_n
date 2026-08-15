@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum and mixed values reverse within length-three blocks",
       "kind": "trial",
       "visible": true,
@@ -259,7 +259,7 @@
       ]
     },
     {
-      "id": "real-k-is-block-count",
+      "id": "trial-k-is-block-count",
       "name": "k counts blocks rather than elements per block",
       "kind": "trial",
       "visible": true,
@@ -303,7 +303,7 @@
       ]
     },
     {
-      "id": "real-palindromic-blocks",
+      "id": "trial-palindromic-blocks",
       "name": "palindromic blocks remain identical",
       "kind": "trial",
       "visible": true,
@@ -335,7 +335,7 @@
       ]
     },
     {
-      "id": "real-alternating-pairs",
+      "id": "trial-alternating-pairs",
       "name": "four alternating pairs reverse independently",
       "kind": "trial",
       "visible": true,
@@ -371,7 +371,7 @@
       ]
     },
     {
-      "id": "real-distinct-pairs",
+      "id": "trial-distinct-pairs",
       "name": "three distinct pairs preserve block order",
       "kind": "trial",
       "visible": true,
@@ -403,7 +403,7 @@
       ]
     },
     {
-      "id": "real-odd-whole-array",
+      "id": "trial-odd-whole-array",
       "name": "one odd-length block reverses around its center",
       "kind": "trial",
       "visible": true,

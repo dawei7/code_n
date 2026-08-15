@@ -100,8 +100,8 @@
       ]
     },
     {
-      "id": "real-subtracted-prefix-range",
-      "name": "real: subtract prefixes below lower bound",
+      "id": "trial-subtracted-prefix-range",
+      "name": "subtract prefixes below lower bound",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -116,8 +116,8 @@
       ]
     },
     {
-      "id": "real-upper-boundary",
-      "name": "real: fifteen-digit suffix near upper bound",
+      "id": "trial-upper-boundary",
+      "name": "fifteen-digit suffix near upper bound",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -132,8 +132,8 @@
       ]
     },
     {
-      "id": "real-long-suffix",
-      "name": "real: long suffix under full digit ceiling",
+      "id": "trial-long-suffix",
+      "name": "long suffix under full digit ceiling",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-interior-answer",
+      "id": "trial-interior-answer",
       "name": "binary search returns an interior font value",
       "kind": "trial",
       "visible": true,
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "real-frequency-query-budget",
+      "id": "trial-frequency-query-budget",
       "name": "repeated characters require frequency compression",
       "kind": "trial",
       "visible": true,
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "id": "real-single-font-fits",
+      "id": "trial-single-font-fits",
       "name": "one available font fits exactly by height",
       "kind": "trial",
       "visible": true,
@@ -368,7 +368,7 @@
       ]
     },
     {
-      "id": "real-single-font-fails",
+      "id": "trial-single-font-fails",
       "name": "one available font exceeds width by one",
       "kind": "trial",
       "visible": true,

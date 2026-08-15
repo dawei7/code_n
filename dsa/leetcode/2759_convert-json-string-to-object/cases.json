@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-null-string-punctuation",
+      "id": "trial-null-string-punctuation",
       "name": "null and punctuation inside strings",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-deep-mixture",
+      "id": "trial-deep-mixture",
       "name": "recursively mixed values",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-prototype-key",
+      "id": "trial-prototype-key",
       "name": "prototype-like key is ordinary data",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-duplicate-key",
+      "id": "trial-duplicate-key",
       "name": "later duplicate key wins",
       "kind": "trial",
       "visible": true,

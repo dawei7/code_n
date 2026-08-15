@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-repeat",
+      "id": "trial-repeat",
       "name": "repeated peek does not advance",
       "kind": "trial",
       "visible": true,

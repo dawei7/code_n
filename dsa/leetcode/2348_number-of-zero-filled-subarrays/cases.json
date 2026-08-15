@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-separated",
+      "id": "trial-separated",
       "name": "nonzeros split singleton runs",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-boundaries",
+      "id": "trial-boundaries",
       "name": "runs at both boundaries",
       "kind": "trial",
       "visible": true,

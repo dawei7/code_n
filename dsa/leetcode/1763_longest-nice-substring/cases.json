@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-unpaired-suffix",
+      "id": "trial-unpaired-suffix",
       "name": "unpaired suffix is split away",
       "kind": "trial",
       "visible": true,
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-repeated-one-letter",
+      "id": "trial-repeated-one-letter",
       "name": "multiplicity does not change paired presence",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-unpaired-final-letter",
+      "id": "trial-unpaired-final-letter",
       "name": "longest nice prefix uses two letter pairs",
       "kind": "trial",
       "visible": true,
@@ -113,6 +113,34 @@
       "tags": [
         "nice-prefix",
         "unpaired-suffix"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "Y"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "YYY"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

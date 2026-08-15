@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-off-diagonal-primes-ignored",
+      "id": "trial-off-diagonal-primes-ignored",
       "name": "larger off-diagonal primes do not count",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-one-is-not-prime",
+      "id": "trial-one-is-not-prime",
       "name": "one is not prime",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-maximum-value-prime",
+      "id": "trial-maximum-value-prime",
       "name": "large prime near the value limit",
       "kind": "trial",
       "visible": true,

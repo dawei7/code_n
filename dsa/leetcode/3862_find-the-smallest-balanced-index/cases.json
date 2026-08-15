@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-overflowing-suffix",
+      "id": "trial-overflowing-suffix",
       "name": "repeated maximum values overflow fixed-width products",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-middle-balance",
+      "id": "trial-middle-balance",
       "name": "an interior prefix equals the final value",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-ones-before-product",
+      "id": "trial-ones-before-product",
       "name": "neutral suffix factors do not change the product",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-penultimate-balance",
+      "id": "trial-penultimate-balance",
       "name": "penultimate index balances against one value",
       "kind": "trial",
       "visible": true,
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-huge-product-no-match",
+      "id": "trial-huge-product-no-match",
       "name": "oversized suffix remains above every left sum",
       "kind": "trial",
       "visible": true,
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "real-largest-singleton",
+      "id": "trial-largest-singleton",
       "name": "maximum singleton still has empty sides",
       "kind": "trial",
       "visible": true,
@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "real-billion-balance",
+      "id": "trial-billion-balance",
       "name": "a large prefix sum equals a legal suffix value",
       "kind": "trial",
       "visible": true,
@@ -284,6 +284,22 @@
       "tags": [
         "boundary-value",
         "large-equality"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

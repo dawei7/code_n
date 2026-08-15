@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-zero-and-mixed-quantities",
+      "id": "trial-zero-and-mixed-quantities",
       "name": "preserve zero and existing quantities",
       "kind": "trial",
       "visible": true,

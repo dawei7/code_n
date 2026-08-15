@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-one-pass-cycle",
+      "id": "trial-one-pass-cycle",
       "name": "one pass includes both start and receiver",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-maximum-k-single",
+      "id": "trial-maximum-k-single",
       "name": "maximum passes on a zero-valued self-loop",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-maximum-k-two-cycle",
+      "id": "trial-maximum-k-two-cycle",
       "name": "maximum passes alternate around a two-cycle",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-chain-high-self-loop",
+      "id": "trial-chain-high-self-loop",
       "name": "a chain reaches the highest-index self-loop",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-competing-components",
+      "id": "trial-competing-components",
       "name": "choose between two functional-graph components",
       "kind": "trial",
       "visible": true,
@@ -197,6 +197,25 @@
       "tags": [
         "components",
         "binary-lifting"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "receiver": [
+          2,
+          0,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

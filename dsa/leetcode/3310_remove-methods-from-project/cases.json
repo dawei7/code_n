@@ -171,8 +171,8 @@
       ]
     },
     {
-      "id": "real-shared-target-blocks",
-      "name": "real: outside and suspicious methods share a target",
+      "id": "trial-shared-target-blocks",
+      "name": "outside and suspicious methods share a target",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -204,8 +204,8 @@
       ]
     },
     {
-      "id": "real-reachable-cycle",
-      "name": "real: reachable cycle can be removed",
+      "id": "trial-reachable-cycle",
+      "name": "reachable cycle can be removed",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -239,8 +239,8 @@
       ]
     },
     {
-      "id": "real-cycle-with-incoming",
-      "name": "real: incoming edge blocks reachable cycle",
+      "id": "trial-cycle-with-incoming",
+      "name": "incoming edge blocks reachable cycle",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -278,8 +278,8 @@
       ]
     },
     {
-      "id": "real-outgoing-expands-set",
-      "name": "real: every outgoing target becomes suspicious",
+      "id": "trial-outgoing-expands-set",
+      "name": "every outgoing target becomes suspicious",
       "kind": "trial",
       "visible": true,
       "input": {

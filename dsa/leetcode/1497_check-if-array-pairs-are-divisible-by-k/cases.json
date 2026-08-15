@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-divisor-one",
+      "id": "trial-divisor-one",
       "name": "every pair works modulo one",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-odd-zero-class",
+      "id": "trial-odd-zero-class",
       "name": "odd zero-remainder count cannot pair",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-odd-half-class",
+      "id": "trial-odd-half-class",
       "name": "odd half-k remainder count cannot pair",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-large-signed-values",
+      "id": "trial-large-signed-values",
       "name": "signed boundary values form complements",
       "kind": "trial",
       "visible": true,
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "real-complement-imbalance",
+      "id": "trial-complement-imbalance",
       "name": "one complementary class has excess members",
       "kind": "trial",
       "visible": true,

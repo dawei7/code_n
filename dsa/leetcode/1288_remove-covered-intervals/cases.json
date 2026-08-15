@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "hidden-same-start",
+      "id": "trial-same-start",
       "name": "widest shared-start interval comes first logically",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "hidden-same-end",
+      "id": "trial-same-end",
       "name": "earliest start covers equal-end intervals",
       "kind": "trial",
       "visible": true,

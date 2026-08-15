@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "right-to-left erase chain",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "first stamp is overwritten",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "repeated identical letters",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "no stamp can cover one character",
       "kind": "trial",
       "visible": true,

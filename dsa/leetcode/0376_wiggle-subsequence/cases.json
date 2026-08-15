@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "hidden-plateau",
+      "id": "trial-plateau",
       "name": "equal values between sign changes",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "hidden-negative",
+      "id": "trial-negative",
       "name": "alternating negative values",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "hidden-late-turn",
+      "id": "trial-late-turn",
       "name": "long rise followed by one fall",
       "kind": "trial",
       "visible": true,

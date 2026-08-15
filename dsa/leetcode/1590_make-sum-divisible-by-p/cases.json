@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-suffix",
+      "id": "trial-suffix",
       "name": "shortest valid removal is a suffix",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-interior",
+      "id": "trial-interior",
       "name": "shortest valid removal is interior",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-single-divisible",
+      "id": "trial-single-divisible",
       "name": "single element already divisible",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-single-impossible",
+      "id": "trial-single-impossible",
       "name": "single element cannot be removed",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-divisor-one",
+      "id": "trial-divisor-one",
       "name": "every sum is divisible by one",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "large values require a two-element suffix",
       "kind": "trial",
       "visible": true,

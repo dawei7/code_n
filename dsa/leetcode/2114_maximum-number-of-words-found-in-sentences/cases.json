@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-first-is-longest",
+      "id": "trial-first-is-longest",
       "name": "the first sentence establishes the maximum",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-last-overtakes",
+      "id": "trial-last-overtakes",
       "name": "later sentences repeatedly raise the maximum",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "a 99-character sentence contains fifty words",
       "kind": "trial",
       "visible": true,
@@ -124,6 +124,39 @@
       "tags": [
         "maximum-length",
         "many-words"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in sentences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentences": [
+          "alice and bob love leetcode"
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in sentences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentences": [
+          "alice and bob love leetcode",
+          "alice and bob love leetcode"
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

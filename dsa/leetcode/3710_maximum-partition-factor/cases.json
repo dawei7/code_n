@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-all-duplicates",
+      "id": "trial-all-duplicates",
       "name": "every possible intra-group pair has distance zero",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-collinear-four",
+      "id": "trial-collinear-four",
       "name": "uneven collinear gaps create the first odd cycle at three",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-coordinate-boundaries",
+      "id": "trial-coordinate-boundaries",
       "name": "opposite coordinate limits produce distance four hundred million",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-mixed-five",
+      "id": "trial-mixed-five",
       "name": "several equal-distance restrictions join before contradiction",
       "kind": "trial",
       "visible": true,
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "real-grid-six",
+      "id": "trial-grid-six",
       "name": "a rectangular grid has many competing cycles",
       "kind": "trial",
       "visible": true,
@@ -303,7 +303,7 @@
       ]
     },
     {
-      "id": "real-negative-coordinates",
+      "id": "trial-negative-coordinates",
       "name": "Manhattan distance handles mixed coordinate signs",
       "kind": "trial",
       "visible": true,

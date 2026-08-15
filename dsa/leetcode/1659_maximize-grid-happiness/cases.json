@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-two-introverts",
+      "id": "trial-two-introverts",
       "name": "adjacent introverts lose happiness twice",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-two-extroverts",
+      "id": "trial-two-extroverts",
       "name": "adjacent extroverts gain happiness twice",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-mixed-pair",
+      "id": "trial-mixed-pair",
       "name": "mixed adjacency has combined penalty ten",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-diagonal-separation",
+      "id": "trial-diagonal-separation",
       "name": "diagonal residents do not interact",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-balanced-square",
+      "id": "trial-balanced-square",
       "name": "all four cells with balanced types",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-rotated-line",
+      "id": "trial-rotated-line",
       "name": "asymmetric dimensions preserve the optimum",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-dense-square",
+      "id": "trial-dense-square",
       "name": "dense three-by-three grid with saturated counts",
       "kind": "trial",
       "visible": true,

@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-many-runs",
+      "id": "trial-many-runs",
       "name": "several runs contain skipped representatives",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-maximum-length-alternating",
+      "id": "trial-maximum-length-alternating",
       "name": "every word is selected at maximum legal length",
       "kind": "trial",
       "visible": true,

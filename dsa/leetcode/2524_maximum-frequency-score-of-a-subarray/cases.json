@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-changing-frequencies",
+      "id": "trial-changing-frequencies",
       "name": "outgoing and incoming counts both change",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-modular-comparison",
+      "id": "trial-modular-comparison",
       "name": "maximize the reduced score",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "large bases and repeated pairs",
       "kind": "trial",
       "visible": true,

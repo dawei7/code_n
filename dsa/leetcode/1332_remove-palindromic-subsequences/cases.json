@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-two-characters",
+      "id": "trial-two-characters",
       "name": "shortest non-palindrome",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-one-letter",
+      "id": "trial-one-letter",
       "name": "repeated single letter",
       "kind": "trial",
       "visible": true,

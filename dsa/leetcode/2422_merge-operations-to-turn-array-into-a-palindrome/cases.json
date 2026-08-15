@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "real-left-absorbs-repeatedly",
+      "id": "trial-left-absorbs-repeatedly",
       "name": "three small left values match one right value",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-right-absorbs-repeatedly",
+      "id": "trial-right-absorbs-repeatedly",
       "name": "three small right values match one left value",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-even-palindrome",
+      "id": "trial-even-palindrome",
       "name": "even palindrome preserves middle pair",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-unequal-groups-both-sides",
+      "id": "trial-unequal-groups-both-sides",
       "name": "accumulated groups close around a center",
       "kind": "trial",
       "visible": true,
@@ -149,6 +149,39 @@
       "expected": 2,
       "tags": [
         "group-sums"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

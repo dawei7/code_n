@@ -76,8 +76,8 @@
       ]
     },
     {
-      "id": "real-single-composite-digit",
-      "name": "real: one non-prime digit",
+      "id": "trial-single-composite-digit",
+      "name": "one non-prime digit",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -91,8 +91,8 @@
       ]
     },
     {
-      "id": "real-repeated-prime-value",
-      "name": "real: repeated substrings count one prime once",
+      "id": "trial-repeated-prime-value",
+      "name": "repeated substrings count one prime once",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -106,8 +106,8 @@
       ]
     },
     {
-      "id": "real-two-primes",
-      "name": "real: fewer than three values are all included",
+      "id": "trial-two-primes",
+      "name": "fewer than three values are all included",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -121,8 +121,8 @@
       ]
     },
     {
-      "id": "real-ten-digit-input",
-      "name": "real: ten-digit candidates require wide integer storage",
+      "id": "trial-ten-digit-input",
+      "name": "ten-digit candidates require wide integer storage",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -136,8 +136,8 @@
       ]
     },
     {
-      "id": "real-zero-prefixed-duplicates",
-      "name": "real: zero-prefixed copies remain duplicate values",
+      "id": "trial-zero-prefixed-duplicates",
+      "name": "zero-prefixed copies remain duplicate values",
       "kind": "trial",
       "visible": true,
       "input": {

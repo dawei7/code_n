@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "hidden-three-candidates",
+      "id": "trial-three-candidates",
       "name": "distractors occupy other quartiles",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "hidden-zero",
+      "id": "trial-zero",
       "name": "zero is the special value",
       "kind": "trial",
       "visible": true,

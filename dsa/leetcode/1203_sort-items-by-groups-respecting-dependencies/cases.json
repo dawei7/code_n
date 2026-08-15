@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-empty-groups",
+      "id": "trial-empty-groups",
       "name": "unused original groups do not affect the item order",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-cross-group-chain",
+      "id": "trial-cross-group-chain",
       "name": "chain crosses groups and singleton blocks",
       "kind": "trial",
       "visible": true,
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": "real-item-cycle",
+      "id": "trial-item-cycle",
       "name": "same-group item cycle has no ordering",
       "kind": "trial",
       "visible": true,
@@ -279,7 +279,7 @@
       ]
     },
     {
-      "id": "real-group-only-cycle",
+      "id": "trial-group-only-cycle",
       "name": "acyclic items still induce a group cycle",
       "kind": "trial",
       "visible": true,

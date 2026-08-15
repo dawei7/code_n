@@ -145,8 +145,8 @@
       ]
     },
     {
-      "id": "real-large-negative-shift",
-      "name": "real: minimum valid shift approaches the negative boundary",
+      "id": "trial-large-negative-shift",
+      "name": "minimum valid shift approaches the negative boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -169,8 +169,8 @@
       ]
     },
     {
-      "id": "real-large-positive-shift",
-      "name": "real: minimum valid shift approaches the positive boundary",
+      "id": "trial-large-positive-shift",
+      "name": "minimum valid shift approaches the positive boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -193,8 +193,8 @@
       ]
     },
     {
-      "id": "real-permuted-interior-removals",
-      "name": "real: interior removals and reordered target",
+      "id": "trial-permuted-interior-removals",
+      "name": "interior removals and reordered target",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -219,8 +219,8 @@
       ]
     },
     {
-      "id": "real-many-duplicates",
-      "name": "real: duplicate-heavy multiset matching",
+      "id": "trial-many-duplicates",
+      "name": "duplicate-heavy multiset matching",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -248,8 +248,8 @@
       ]
     },
     {
-      "id": "real-consecutive-alternative-alignments",
-      "name": "real: consecutive values admit multiple shifts",
+      "id": "trial-consecutive-alternative-alignments",
+      "name": "consecutive values admit multiple shifts",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -274,8 +274,8 @@
       ]
     },
     {
-      "id": "real-maximum-positive-shift",
-      "name": "real: maximum positive shift with repeated zeros",
+      "id": "trial-maximum-positive-shift",
+      "name": "maximum positive shift with repeated zeros",
       "kind": "trial",
       "visible": true,
       "input": {

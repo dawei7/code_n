@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-fractional-average",
+      "id": "trial-fractional-average",
       "name": "preserve a fractional team average",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-team-isolation-and-order",
+      "id": "trial-team-isolation-and-order",
       "name": "isolate teams and order identifiers",
       "kind": "trial",
       "visible": true,

@@ -92,8 +92,8 @@
       ]
     },
     {
-      "id": "real-palindrome-only-in-s",
-      "name": "real: select nothing from t",
+      "id": "trial-palindrome-only-in-s",
+      "name": "select nothing from t",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-discard-endpoints",
-      "name": "real: best choices are proper substrings",
+      "id": "trial-discard-endpoints",
+      "name": "best choices are proper substrings",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-uniform-whole-inputs",
-      "name": "real: the complete concatenation is palindromic",
+      "id": "trial-uniform-whole-inputs",
+      "name": "the complete concatenation is palindromic",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-overlapping-centers",
-      "name": "real: repeated characters create competing centers",
+      "id": "trial-overlapping-centers",
+      "name": "repeated characters create competing centers",
       "kind": "trial",
       "visible": true,
       "input": {

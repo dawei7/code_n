@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "equal cells need no operations",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-large-step",
+      "id": "trial-large-step",
       "name": "domain endpoints differ by one large step",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-rectangular-grid",
+      "id": "trial-rectangular-grid",
       "name": "flattening preserves all rectangular cells",
       "kind": "trial",
       "visible": true,
@@ -179,6 +179,30 @@
       "tags": [
         "rectangular",
         "even-count"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value x=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            2,
+            4
+          ],
+          [
+            6,
+            8
+          ]
+        ],
+        "x": 1
+      },
+      "expected": 8,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

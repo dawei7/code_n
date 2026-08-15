@@ -68,7 +68,7 @@
     },
     {
       "id": "two-full-levels",
-      "name": "real: sixteen letters fill two levels",
+      "name": "sixteen letters fill two levels",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -81,7 +81,7 @@
     },
     {
       "id": "first-third-level",
-      "name": "real: seventeenth letter costs three pushes",
+      "name": "seventeenth letter costs three pushes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -94,7 +94,7 @@
     },
     {
       "id": "all-letters",
-      "name": "real: all twenty-six lowercase letters",
+      "name": "all twenty-six lowercase letters",
       "kind": "trial",
       "visible": true,
       "input": {

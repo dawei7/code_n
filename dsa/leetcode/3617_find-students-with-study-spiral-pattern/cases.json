@@ -610,7 +610,7 @@
       ]
     },
     {
-      "id": "real-same-date-order",
+      "id": "trial-same-date-order",
       "name": "session id orders sessions sharing dates",
       "kind": "trial",
       "visible": true,
@@ -696,7 +696,7 @@
       ]
     },
     {
-      "id": "real-result-ordering",
+      "id": "trial-result-ordering",
       "name": "cycle length precedes total hours in ordering",
       "kind": "trial",
       "visible": true,
@@ -904,7 +904,7 @@
       ]
     },
     {
-      "id": "real-late-subject-and-missing",
+      "id": "trial-late-subject-and-missing",
       "name": "late distinct subject breaks the modulo pattern",
       "kind": "trial",
       "visible": true,

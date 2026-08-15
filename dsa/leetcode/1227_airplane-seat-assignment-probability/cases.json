@@ -56,7 +56,7 @@
       ]
     },
     {
-      "id": "real-prime-size",
+      "id": "trial-prime-size",
       "name": "passenger count arithmetic is irrelevant",
       "kind": "trial",
       "visible": true,
@@ -69,7 +69,7 @@
       ]
     },
     {
-      "id": "real-large",
+      "id": "trial-large",
       "name": "large input remains constant work",
       "kind": "trial",
       "visible": true,
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "real-power-of-two",
+      "id": "trial-power-of-two",
       "name": "a larger power of two has the same result",
       "kind": "trial",
       "visible": true,

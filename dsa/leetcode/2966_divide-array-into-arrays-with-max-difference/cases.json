@@ -204,8 +204,8 @@
       ]
     },
     {
-      "id": "real-unsorted-valid",
-      "name": "real: separated value clusters arrive unsorted",
+      "id": "trial-unsorted-valid",
+      "name": "separated value clusters arrive unsorted",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -244,8 +244,8 @@
       ]
     },
     {
-      "id": "real-first-group-fails",
-      "name": "real: smallest three already span too far",
+      "id": "trial-first-group-fails",
+      "name": "smallest three already span too far",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -265,8 +265,8 @@
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "real: values near the upper bound",
+      "id": "trial-maximum-values",
+      "name": "values near the upper bound",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-equalities-count",
+      "id": "trial-equalities-count",
       "name": "values equal to x are included",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-too-many-at-threshold",
+      "id": "trial-too-many-at-threshold",
       "name": "candidate fails when one extra value qualifies",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-unsorted-boundary",
+      "id": "trial-unsorted-boundary",
       "name": "qualifying suffix is hidden by input order",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-answer-length",
+      "id": "trial-answer-length",
       "name": "every value reaches the full length",
       "kind": "trial",
       "visible": true,
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-gap-answer",
+      "id": "trial-gap-answer",
       "name": "candidate lies in a value gap",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-duplicates-around-boundary",
+      "id": "trial-duplicates-around-boundary",
       "name": "duplicates straddle candidate boundaries",
       "kind": "trial",
       "visible": true,
@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "real-large-no-solution",
+      "id": "trial-large-no-solution",
       "name": "large and zero values still have no candidate",
       "kind": "trial",
       "visible": true,

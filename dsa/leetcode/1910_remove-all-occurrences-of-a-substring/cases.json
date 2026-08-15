@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "real-complete-single",
+      "id": "trial-complete-single",
       "name": "one exact occurrence deletes the complete source",
       "kind": "trial",
       "visible": true,
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-pattern-longer",
+      "id": "trial-pattern-longer",
       "name": "a longer pattern cannot occur",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-one-character-pattern",
+      "id": "trial-one-character-pattern",
       "name": "every copy of a one-character pattern is removed",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-boundary-cascade",
+      "id": "trial-boundary-cascade",
       "name": "deletion exposes a match across the joined boundary",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-overlapping-prefix",
+      "id": "trial-overlapping-prefix",
       "name": "a self-overlapping pattern is tracked through fallbacks",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-repeated-complete",
+      "id": "trial-repeated-complete",
       "name": "adjacent complete patterns all disappear",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-partial-prefix-suffix",
+      "id": "trial-partial-prefix-suffix",
       "name": "unmatched partial prefixes remain",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-created-after-middle",
+      "id": "trial-created-after-middle",
       "name": "survivors on both sides form a new occurrence",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-source-length-one",
+      "id": "trial-source-length-one",
       "name": "a one-character nonmatch survives",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-source-length-one-delete",
+      "id": "trial-source-length-one-delete",
       "name": "a one-character exact match becomes empty",
       "kind": "trial",
       "visible": true,
@@ -209,6 +209,36 @@
       "tags": [
         "minimum-source",
         "complete-deletion"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "d",
+        "part": "abc"
+      },
+      "expected": "d",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ddd",
+        "part": "abc"
+      },
+      "expected": "ddd",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

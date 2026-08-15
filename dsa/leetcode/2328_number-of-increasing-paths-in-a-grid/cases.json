@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-descending-surface",
+      "id": "trial-descending-surface",
       "name": "decreasing rows and columns become increasing in reverse",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-mixed-local-minima",
+      "id": "trial-mixed-local-minima",
       "name": "multiple local minima merge into larger cells",
       "kind": "trial",
       "visible": true,

@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-large-fixed-hour-unit",
+      "id": "trial-large-fixed-hour-unit",
       "name": "leading hour digit has two choices",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-unknown-unit-fields",
+      "id": "trial-unknown-unit-fields",
       "name": "ten choices in each unit field",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-all-hours",
+      "id": "trial-all-hours",
       "name": "all hours with fixed minutes",
       "kind": "trial",
       "visible": true,
@@ -108,6 +108,34 @@
       "expected": 24,
       "tags": [
         "hours"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in time",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "time": "?"
+      },
+      "expected": 1440,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in time",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "time": "???"
+      },
+      "expected": 1440,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

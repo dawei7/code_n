@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-inclusive-boundaries",
+      "id": "trial-inclusive-boundaries",
       "name": "both queried boundary words qualify",
       "kind": "trial",
       "visible": true,
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "real-repeated-overlapping",
+      "id": "trial-repeated-overlapping",
       "name": "repeated and overlapping queries preserve order",
       "kind": "trial",
       "visible": true,
@@ -244,7 +244,7 @@
       ]
     },
     {
-      "id": "real-long-endpoint-only",
+      "id": "trial-long-endpoint-only",
       "name": "interior letters do not affect qualification",
       "kind": "trial",
       "visible": true,

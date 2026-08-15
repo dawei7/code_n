@@ -266,8 +266,8 @@
       ]
     },
     {
-      "id": "real-interior-square",
-      "name": "real: interior square preserves border",
+      "id": "trial-interior-square",
+      "name": "interior square preserves border",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -355,8 +355,8 @@
       ]
     },
     {
-      "id": "real-bottom-right",
-      "name": "real: square touches bottom and right edges",
+      "id": "trial-bottom-right",
+      "name": "square touches bottom and right edges",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -410,8 +410,8 @@
       ]
     },
     {
-      "id": "real-single-row",
-      "name": "real: one-row grid permits only singleton square",
+      "id": "trial-single-row",
+      "name": "one-row grid permits only singleton square",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -441,8 +441,8 @@
       ]
     },
     {
-      "id": "real-rectangular",
-      "name": "real: square inside rectangular matrix",
+      "id": "trial-rectangular",
+      "name": "square inside rectangular matrix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -510,8 +510,8 @@
       ]
     },
     {
-      "id": "real-repeated-values",
-      "name": "real: repeated values retain positions outside square",
+      "id": "trial-repeated-values",
+      "name": "repeated values retain positions outside square",
       "kind": "trial",
       "visible": true,
       "input": {

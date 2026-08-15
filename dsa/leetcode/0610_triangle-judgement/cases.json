@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "duplicate rows remain independent",
       "kind": "trial",
       "visible": true,
@@ -290,7 +290,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "small and large valid triples",
       "kind": "trial",
       "visible": true,

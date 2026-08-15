@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-two-duplicate-indices",
+      "id": "trial-two-duplicate-indices",
       "name": "equal indices create three different subsets",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "one maximum-bound value",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-redundant-target-element",
+      "id": "trial-redundant-target-element",
       "name": "later elements may be chosen after target is reached",
       "kind": "trial",
       "visible": true,

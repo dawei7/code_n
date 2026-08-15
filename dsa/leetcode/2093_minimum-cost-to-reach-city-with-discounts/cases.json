@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-odd-toll-flooring",
+      "id": "trial-odd-toll-flooring",
       "name": "odd toll uses integer division",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-zero-toll-route",
+      "id": "trial-zero-toll-route",
       "name": "zero-cost highways preserve a zero optimum",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-no-discounts-shortest-path",
+      "id": "trial-no-discounts-shortest-path",
       "name": "zero discounts reduces to ordinary shortest path",
       "kind": "trial",
       "visible": true,

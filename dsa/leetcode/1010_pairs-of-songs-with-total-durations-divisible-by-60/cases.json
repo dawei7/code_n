@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "four remainder-zero songs",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "repeated complementary buckets",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "several remainder classes",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "maximum duration boundary",
       "kind": "trial",
       "visible": true,

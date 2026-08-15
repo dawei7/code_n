@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-subrange-mode",
+      "id": "trial-subrange-mode",
       "name": "global mode differs from subrange mode",
       "kind": "trial",
       "visible": true,
@@ -248,7 +248,7 @@
       ]
     },
     {
-      "id": "real-tied-modes",
+      "id": "trial-tied-modes",
       "name": "smallest value wins a maximum-frequency tie",
       "kind": "trial",
       "visible": true,
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "id": "real-duplicate-queries",
+      "id": "trial-duplicate-queries",
       "name": "identical ranges with different thresholds",
       "kind": "trial",
       "visible": true,
@@ -322,7 +322,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "ordering ties among large values",
       "kind": "trial",
       "visible": true,
@@ -356,7 +356,7 @@
       ]
     },
     {
-      "id": "real-boundary-candidate",
+      "id": "trial-boundary-candidate",
       "name": "boundary additions overturn the middle mode",
       "kind": "trial",
       "visible": true,
@@ -393,7 +393,7 @@
       ]
     },
     {
-      "id": "real-many-queries",
+      "id": "trial-many-queries",
       "name": "mixed short and long query intervals",
       "kind": "trial",
       "visible": true,

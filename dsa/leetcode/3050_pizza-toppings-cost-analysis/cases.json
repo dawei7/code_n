@@ -241,7 +241,7 @@
       ]
     },
     {
-      "id": "real-cost-order-before-name",
+      "id": "trial-cost-order-before-name",
       "name": "total cost has priority over lexical pizza order",
       "kind": "trial",
       "visible": true,
@@ -299,7 +299,7 @@
       ]
     },
     {
-      "id": "real-six-combinations",
+      "id": "trial-six-combinations",
       "name": "five toppings emit every one of ten combinations",
       "kind": "trial",
       "visible": true,

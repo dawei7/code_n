@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-layered-four",
+      "id": "trial-layered-four",
       "name": "four shortest routes through two layers",
       "kind": "trial",
       "visible": true,
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "real-large-times",
+      "id": "trial-large-times",
       "name": "large edge weights require wide distances",
       "kind": "trial",
       "visible": true,
@@ -304,7 +304,7 @@
       ]
     },
     {
-      "id": "real-longer-alternatives",
+      "id": "trial-longer-alternatives",
       "name": "several routes exist but only one is shortest",
       "kind": "trial",
       "visible": true,
@@ -355,7 +355,7 @@
       ]
     },
     {
-      "id": "real-three-routes",
+      "id": "trial-three-routes",
       "name": "three distinct shortest arrivals",
       "kind": "trial",
       "visible": true,

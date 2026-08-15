@@ -155,8 +155,8 @@
       ]
     },
     {
-      "id": "real-diagonal-trap",
-      "name": "real: diagonal neighbors do not cover the center",
+      "id": "trial-diagonal-trap",
+      "name": "diagonal neighbors do not cover the center",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -191,8 +191,8 @@
       ]
     },
     {
-      "id": "real-two-crosses",
-      "name": "real: two disjoint covered centers",
+      "id": "trial-two-crosses",
+      "name": "two disjoint covered centers",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -247,8 +247,8 @@
       ]
     },
     {
-      "id": "real-city-extremes",
-      "name": "real: city-boundary buildings cover a distant center",
+      "id": "trial-city-extremes",
+      "name": "city-boundary buildings cover a distant center",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -283,8 +283,8 @@
       ]
     },
     {
-      "id": "real-dense-grid",
-      "name": "real: four interior buildings in a complete four-by-four grid",
+      "id": "trial-dense-grid",
+      "name": "four interior buildings in a complete four-by-four grid",
       "kind": "trial",
       "visible": true,
       "input": {

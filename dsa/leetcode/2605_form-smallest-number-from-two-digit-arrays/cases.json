@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-smallest-common",
+      "id": "trial-smallest-common",
       "name": "choose the smallest of several shared digits",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-disjoint-full-sides",
+      "id": "trial-disjoint-full-sides",
       "name": "disjoint digit groups use their minima",
       "kind": "trial",
       "visible": true,
@@ -137,6 +137,47 @@
       "expected": 12,
       "tags": [
         "maximum-total-length"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          4
+        ],
+        "nums2": [
+          5,
+          7
+        ]
+      },
+      "expected": 45,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          4,
+          4
+        ],
+        "nums2": [
+          5,
+          7
+        ]
+      },
+      "expected": 45,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

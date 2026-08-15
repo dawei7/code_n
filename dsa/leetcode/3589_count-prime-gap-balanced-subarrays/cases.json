@@ -109,8 +109,8 @@
       ]
     },
     {
-      "id": "real-window-shrinks-past-extreme",
-      "name": "real: an outlying prime forces the left boundary forward",
+      "id": "trial-window-shrinks-past-extreme",
+      "name": "an outlying prime forces the left boundary forward",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -129,8 +129,8 @@
       ]
     },
     {
-      "id": "real-multiple-valid-left-primes",
-      "name": "real: each rightmost prime accepts several weighted left endpoints",
+      "id": "trial-multiple-valid-left-primes",
+      "name": "each rightmost prime accepts several weighted left endpoints",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-complex-mixed-array",
-      "name": "real: prime and composite runs create several boundary gaps",
+      "id": "trial-complex-mixed-array",
+      "name": "prime and composite runs create several boundary gaps",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -180,8 +180,8 @@
       ]
     },
     {
-      "id": "real-larger-prime-values",
-      "name": "real: sieve and gap logic handle larger prime values",
+      "id": "trial-larger-prime-values",
+      "name": "sieve and gap logic handle larger prime values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -200,8 +200,8 @@
       ]
     },
     {
-      "id": "real-no-primes",
-      "name": "real: an array without primes contributes nothing",
+      "id": "trial-no-primes",
+      "name": "an array without primes contributes nothing",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -220,6 +220,41 @@
         "real",
         "no-primes",
         "zero-count"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

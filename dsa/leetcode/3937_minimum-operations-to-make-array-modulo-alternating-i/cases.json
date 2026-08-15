@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-maximum-value-singleton",
+      "id": "trial-maximum-value-singleton",
       "name": "the maximum value in a one-element array costs zero",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-large-modulus-equal-pair",
+      "id": "trial-large-modulus-equal-pair",
       "name": "equal residues require one step despite many alternatives",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-circular-even-group",
+      "id": "trial-circular-even-group",
       "name": "adjacent residues across the modular boundary cost one",
       "kind": "trial",
       "visible": true,
@@ -252,7 +252,7 @@
       ]
     },
     {
-      "id": "real-modulus-two-alternating",
+      "id": "trial-modulus-two-alternating",
       "name": "alternating parities already occupy the two residues",
       "kind": "trial",
       "visible": true,
@@ -277,7 +277,7 @@
       ]
     },
     {
-      "id": "real-modulus-two-shared",
+      "id": "trial-modulus-two-shared",
       "name": "one complete parity group must change under modulus two",
       "kind": "trial",
       "visible": true,
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "id": "real-maximum-all-equal",
+      "id": "trial-maximum-all-equal",
       "name": "maximum length and modulus split an all-equal array",
       "kind": "trial",
       "visible": true,
@@ -421,7 +421,7 @@
       ]
     },
     {
-      "id": "real-maximum-diverse",
+      "id": "trial-maximum-diverse",
       "name": "every source remainder appears at maximum length and modulus",
       "kind": "trial",
       "visible": true,
@@ -537,6 +537,41 @@
       "tags": [
         "maximum-length",
         "all-remainders"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

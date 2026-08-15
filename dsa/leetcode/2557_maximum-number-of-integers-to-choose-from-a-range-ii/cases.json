@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-all-banned",
+      "id": "trial-all-banned",
       "name": "every candidate is forbidden",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-smallest-affordable-is-banned",
+      "id": "trial-smallest-affordable-is-banned",
       "name": "no allowed value fits the budget",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-large-range",
+      "id": "trial-large-range",
       "name": "arithmetic search over a billion-value range",
       "kind": "trial",
       "visible": true,

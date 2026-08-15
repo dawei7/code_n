@@ -430,7 +430,7 @@
       ]
     },
     {
-      "id": "real-complete-consistency",
+      "id": "trial-complete-consistency",
       "name": "one reaction type occupies every row",
       "kind": "trial",
       "visible": true,
@@ -488,7 +488,7 @@
       ]
     },
     {
-      "id": "real-descending-ratios",
+      "id": "trial-descending-ratios",
       "name": "larger rounded ratios sort first",
       "kind": "trial",
       "visible": true,
@@ -611,7 +611,7 @@
       ]
     },
     {
-      "id": "real-rounded-order-tie",
+      "id": "trial-rounded-order-tie",
       "name": "equal displayed ratios use user id even when raw shares differ",
       "kind": "trial",
       "visible": true,
@@ -819,7 +819,7 @@
       ]
     },
     {
-      "id": "real-shared-content-ids",
+      "id": "trial-shared-content-ids",
       "name": "content ids are distinct per user rather than globally",
       "kind": "trial",
       "visible": true,

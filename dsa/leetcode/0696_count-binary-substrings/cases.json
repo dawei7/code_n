@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "unequal adjacent runs",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "three run contributions",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-3",
       "name": "one-character input",
       "kind": "trial",
       "visible": true,
@@ -109,6 +109,34 @@
       "expected": 0,
       "tags": [
         "single-character"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

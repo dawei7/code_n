@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "real-no-orders",
+      "id": "trial-no-orders",
       "name": "no qualifying order preserves the user",
       "kind": "trial",
       "visible": true,
@@ -314,7 +314,7 @@
       ]
     },
     {
-      "id": "real-mixed-years",
+      "id": "trial-mixed-years",
       "name": "only buyer orders in 2019 count",
       "kind": "trial",
       "visible": true,

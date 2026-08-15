@@ -187,8 +187,8 @@
       ]
     },
     {
-      "id": "real-two-profitable-swaps",
-      "name": "real: two profitable extreme pairs",
+      "id": "trial-two-profitable-swaps",
+      "name": "two profitable extreme pairs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -211,8 +211,8 @@
       ]
     },
     {
-      "id": "real-duplicate-pivot",
-      "name": "real: duplicate values straddle the pivot",
+      "id": "trial-duplicate-pivot",
+      "name": "duplicate values straddle the pivot",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -235,8 +235,8 @@
       ]
     },
     {
-      "id": "real-k-exceeds-useful-pairs",
-      "name": "real: large k is only an upper bound",
+      "id": "trial-k-exceeds-useful-pairs",
+      "name": "large k is only an upper bound",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -259,8 +259,8 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "real: positive and negative value boundaries",
+      "id": "trial-value-boundaries",
+      "name": "positive and negative value boundaries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -281,8 +281,8 @@
       ]
     },
     {
-      "id": "real-no-improving-swap",
-      "name": "real: positive prefix is already optimal",
+      "id": "trial-no-improving-swap",
+      "name": "positive prefix is already optimal",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -304,8 +304,8 @@
       ]
     },
     {
-      "id": "real-import-three-positives",
-      "name": "real: several alternating gaps",
+      "id": "trial-import-three-positives",
+      "name": "several alternating gaps",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -330,8 +330,8 @@
       ]
     },
     {
-      "id": "real-retain-large-middle-values",
-      "name": "real: retain large inside values",
+      "id": "trial-retain-large-middle-values",
+      "name": "retain large inside values",
       "kind": "trial",
       "visible": true,
       "input": {

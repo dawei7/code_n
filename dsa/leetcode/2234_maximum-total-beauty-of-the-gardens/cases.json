@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-leave-one-incomplete",
+      "id": "trial-leave-one-incomplete",
       "name": "excess budget may remain unused",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-zero-completions",
+      "id": "trial-zero-completions",
       "name": "raising every incomplete minimum is best",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-existing-and-new-complete",
+      "id": "trial-existing-and-new-complete",
       "name": "existing complete gardens mix with a completed suffix",
       "kind": "trial",
       "visible": true,

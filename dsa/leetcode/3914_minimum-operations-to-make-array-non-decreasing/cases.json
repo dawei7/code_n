@@ -276,7 +276,7 @@
       ]
     },
     {
-      "id": "hidden-varying-drops",
+      "id": "trial-varying-drops",
       "name": "three separated drops have different magnitudes",
       "kind": "trial",
       "visible": true,
@@ -297,7 +297,7 @@
       ]
     },
     {
-      "id": "hidden-long-decreasing",
+      "id": "trial-long-decreasing",
       "name": "one hundred descending values exercise every boundary",
       "kind": "trial",
       "visible": true,
@@ -412,7 +412,7 @@
       ]
     },
     {
-      "id": "hidden-64-bit-alternating",
+      "id": "trial-64-bit-alternating",
       "name": "repeated maximum drops require a 64-bit total",
       "kind": "trial",
       "visible": true,

@@ -95,8 +95,8 @@
       ]
     },
     {
-      "id": "real-later-run-ignored",
-      "name": "real: later sequential run is not a prefix",
+      "id": "trial-later-run-ignored",
+      "name": "later sequential run is not a prefix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -114,8 +114,8 @@
       ]
     },
     {
-      "id": "real-long-membership-chain",
-      "name": "real: many consecutive candidates are present",
+      "id": "trial-long-membership-chain",
+      "name": "many consecutive candidates are present",
       "kind": "trial",
       "visible": true,
       "input": {

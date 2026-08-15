@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-equal-usage",
+      "id": "trial-equal-usage",
       "name": "all rooms tie after delayed assignments",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-two-independent-meetings",
+      "id": "trial-two-independent-meetings",
       "name": "smallest free room is reused later",
       "kind": "trial",
       "visible": true,
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "real-input-order",
+      "id": "trial-input-order",
       "name": "sorting by original start determines assignments",
       "kind": "trial",
       "visible": true,

@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-single-target",
+      "id": "trial-single-target",
       "name": "singleton",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-dominant-nonminimum-remainder",
+      "id": "trial-dominant-nonminimum-remainder",
       "name": "dominant class does not contain global minimum",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "large values and duplicate targets",
       "kind": "trial",
       "visible": true,

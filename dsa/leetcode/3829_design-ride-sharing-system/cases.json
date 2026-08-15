@@ -367,7 +367,7 @@
       ]
     },
     {
-      "id": "real-cancel-before-add",
+      "id": "trial-cancel-before-add",
       "name": "cancellation before addition has no future effect",
       "kind": "trial",
       "visible": true,
@@ -412,7 +412,7 @@
       ]
     },
     {
-      "id": "real-cancel-middle-rider",
+      "id": "trial-cancel-middle-rider",
       "name": "canceling a middle rider preserves FIFO order",
       "kind": "trial",
       "visible": true,
@@ -478,7 +478,7 @@
       ]
     },
     {
-      "id": "real-cancel-after-match",
+      "id": "trial-cancel-after-match",
       "name": "canceling an already matched rider is harmless",
       "kind": "trial",
       "visible": true,
@@ -529,7 +529,7 @@
       ]
     },
     {
-      "id": "real-equal-id-namespaces",
+      "id": "trial-equal-id-namespaces",
       "name": "rider and driver may share the same numeric ID",
       "kind": "trial",
       "visible": true,
@@ -569,7 +569,7 @@
       ]
     },
     {
-      "id": "real-long-canceled-prefix",
+      "id": "trial-long-canceled-prefix",
       "name": "matching skips an entire canceled prefix",
       "kind": "trial",
       "visible": true,

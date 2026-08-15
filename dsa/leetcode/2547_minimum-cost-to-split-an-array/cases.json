@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-single-element",
+      "id": "trial-single-element",
       "name": "one element costs one partition",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-second-copy-jump",
+      "id": "trial-second-copy-jump",
       "name": "a second occurrence contributes both copies",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-mixed-repetitions",
+      "id": "trial-mixed-repetitions",
       "name": "competing cut positions",
       "kind": "trial",
       "visible": true,

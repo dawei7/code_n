@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-wide-gap",
+      "id": "trial-wide-gap",
       "name": "extra candies cannot close every gap",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-maximum-extra",
+      "id": "trial-maximum-extra",
       "name": "maximum extra amount qualifies all",
       "kind": "trial",
       "visible": true,

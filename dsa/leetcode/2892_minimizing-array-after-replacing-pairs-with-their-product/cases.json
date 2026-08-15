@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-oversized-value-isolated",
+      "id": "trial-oversized-value-isolated",
       "name": "a value above k remains a singleton",
       "kind": "trial",
       "visible": true,

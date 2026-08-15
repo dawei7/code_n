@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-final-violation",
+      "id": "trial-final-violation",
       "name": "only the last comparison fails",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-upper-number-bound",
+      "id": "trial-upper-number-bound",
       "name": "values increase through the upper limit",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-nonadjacent-equality",
+      "id": "trial-nonadjacent-equality",
       "name": "words do not hide equal numbers",
       "kind": "trial",
       "visible": true,
@@ -110,6 +110,34 @@
       "tags": [
         "words",
         "equality"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

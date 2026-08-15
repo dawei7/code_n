@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-single-character",
+      "id": "trial-single-character",
       "name": "every one-character query qualifies",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-late-witness",
+      "id": "trial-late-witness",
       "name": "qualifying witness is last",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-duplicate-query",
+      "id": "trial-duplicate-query",
       "name": "qualifying duplicate occurrences are preserved",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-exactly-two",
+      "id": "trial-exactly-two",
       "name": "exactly two trailing edits",
       "kind": "trial",
       "visible": true,
@@ -186,6 +186,54 @@
       ],
       "tags": [
         "exactly-two"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in queries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          "word"
+        ],
+        "dictionary": [
+          "wood",
+          "joke",
+          "moat"
+        ]
+      },
+      "expected": [
+        "word"
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in queries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          "word",
+          "word"
+        ],
+        "dictionary": [
+          "wood",
+          "joke",
+          "moat"
+        ]
+      },
+      "expected": [
+        "word",
+        "word"
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

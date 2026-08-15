@@ -115,7 +115,7 @@
       }
     },
     {
-      "id": "real-several",
+      "id": "trial-several",
       "name": "several duplicated groups",
       "kind": "trial",
       "visible": true,

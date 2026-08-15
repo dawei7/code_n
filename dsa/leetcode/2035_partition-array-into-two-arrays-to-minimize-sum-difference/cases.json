@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-all-negative",
+      "id": "trial-all-negative",
       "name": "negative values can form equal sums",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "opposite value limits",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-duplicates-and-odd-total",
+      "id": "trial-duplicates-and-odd-total",
       "name": "duplicate values with an odd total",
       "kind": "trial",
       "visible": true,

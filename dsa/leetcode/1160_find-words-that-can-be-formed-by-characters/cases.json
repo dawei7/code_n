@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-duplicate-words",
+      "id": "trial-duplicate-words",
       "name": "duplicate good entries each contribute",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-single-letter",
+      "id": "trial-single-letter",
       "name": "minimum-sized pool and words",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-unrelated-extra",
+      "id": "trial-unrelated-extra",
       "name": "unused pool letters are harmless",
       "kind": "trial",
       "visible": true,

@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-first-task-longest",
+      "id": "trial-first-task-longest",
       "name": "first task has greatest duration",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-tied-nonadjacent-employees",
+      "id": "trial-tied-nonadjacent-employees",
       "name": "smallest identifier occurs in a later tied task",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-repeated-employee",
+      "id": "trial-repeated-employee",
       "name": "employee durations are not accumulated",
       "kind": "trial",
       "visible": true,
@@ -220,6 +220,38 @@
       "expected": 3,
       "tags": [
         "repeated-employee"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "logs": [
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            1,
+            15
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-mixed-popcounts",
+      "id": "trial-mixed-popcounts",
       "name": "one low and one higher popcount",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-distinct-low-popcounts",
+      "id": "trial-distinct-low-popcounts",
       "name": "several unique powers of two still fail",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-maximum-relevant-popcount",
+      "id": "trial-maximum-relevant-popcount",
       "name": "a legal high-popcount value qualifies with itself",
       "kind": "trial",
       "visible": true,

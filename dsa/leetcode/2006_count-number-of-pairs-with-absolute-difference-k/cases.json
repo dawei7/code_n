@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-maximum-difference",
+      "id": "trial-maximum-difference",
       "name": "values at both limits use k ninety-nine",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-multiple-partner-values",
+      "id": "trial-multiple-partner-values",
       "name": "a middle value can match on both sides",
       "kind": "trial",
       "visible": true,
@@ -135,6 +135,41 @@
       "expected": 5,
       "tags": [
         "both-directions"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

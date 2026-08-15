@@ -67,7 +67,7 @@
       ]
     },
     {
-      "id": "real-one-array",
+      "id": "trial-one-array",
       "name": "a nested array is one argument",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-one-object",
+      "id": "trial-one-object",
       "name": "a populated object is one argument",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-mixed-seven",
+      "id": "trial-mixed-seven",
       "name": "seven mixed arguments",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum one hundred arguments",
       "kind": "trial",
       "visible": true,

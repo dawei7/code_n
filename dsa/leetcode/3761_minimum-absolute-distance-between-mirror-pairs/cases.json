@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-latest-index",
+      "id": "trial-latest-index",
       "name": "latest matching source minimizes the distance",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-upper-bound-reversal",
+      "id": "trial-upper-bound-reversal",
       "name": "maximum value reverses after dropping zeros",
       "kind": "trial",
       "visible": true,
@@ -163,6 +163,39 @@
       },
       "tags": [
         "value-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          12
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

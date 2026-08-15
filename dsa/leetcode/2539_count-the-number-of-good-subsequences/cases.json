@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-three-frequencies",
+      "id": "trial-three-frequencies",
       "name": "three distinct positive frequencies",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-one-symbol",
+      "id": "trial-one-symbol",
       "name": "every nonempty subset is good",
       "kind": "trial",
       "visible": true,

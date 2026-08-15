@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "maximum shift value",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "mixed large and small shifts",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "descending suffix totals",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "only final operation is nonzero",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "only first operation is nonzero",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "hidden-6",
+      "id": "trial-6",
       "name": "exact alphabet cycles",
       "kind": "trial",
       "visible": true,

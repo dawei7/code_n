@@ -292,7 +292,7 @@
       ]
     },
     {
-      "id": "real-unsorted-input",
+      "id": "trial-unsorted-input",
       "name": "insertion order does not affect output",
       "kind": "trial",
       "visible": true,
@@ -348,7 +348,7 @@
       ]
     },
     {
-      "id": "real-many-variants",
+      "id": "trial-many-variants",
       "name": "many case and whitespace variants coalesce",
       "kind": "trial",
       "visible": true,
@@ -399,7 +399,7 @@
       ]
     },
     {
-      "id": "real-zero-padded-month",
+      "id": "trial-zero-padded-month",
       "name": "month formatting is zero padded",
       "kind": "trial",
       "visible": true,
@@ -445,7 +445,7 @@
       ]
     },
     {
-      "id": "real-multiple-products-months",
+      "id": "trial-multiple-products-months",
       "name": "grouping uses both normalized fields",
       "kind": "trial",
       "visible": true,

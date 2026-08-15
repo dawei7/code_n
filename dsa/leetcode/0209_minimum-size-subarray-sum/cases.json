@@ -60,7 +60,7 @@
       ]
     },
     {
-      "id": "real-whole",
+      "id": "trial-whole",
       "name": "entire array is shortest",
       "kind": "trial",
       "visible": true,

@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-empty-cycle",
+      "id": "trial-empty-cycle",
       "name": "empty space participates in a longer cycle",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-cycle-outside-empty",
+      "id": "trial-cycle-outside-empty",
       "name": "misplaced cycle excludes the empty space",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-middle-empty",
+      "id": "trial-middle-empty",
       "name": "minimum uses the empty-last target",
       "kind": "trial",
       "visible": true,

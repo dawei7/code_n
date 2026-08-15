@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-one-forces-coprime",
+      "id": "trial-one-forces-coprime",
       "name": "any selection using a one has GCD one",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-mixed-gcds",
+      "id": "trial-mixed-gcds",
       "name": "several exact GCD classes are separated by inversion",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-all-share-three",
+      "id": "trial-all-share-three",
       "name": "a common factor across every cell produces zero",
       "kind": "trial",
       "visible": true,
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "real-prime-overlaps",
+      "id": "trial-prime-overlaps",
       "name": "pairwise prime overlaps still allow overall GCD one",
       "kind": "trial",
       "visible": true,
@@ -275,7 +275,7 @@
       ]
     },
     {
-      "id": "real-modulo-many-duplicates",
+      "id": "trial-modulo-many-duplicates",
       "name": "many duplicate unit choices are reduced modulo the required prime",
       "kind": "trial",
       "visible": true,
@@ -493,7 +493,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "values at the upper bound participate in divisor counts",
       "kind": "trial",
       "visible": true,

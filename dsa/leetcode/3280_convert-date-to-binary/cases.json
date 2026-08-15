@@ -100,8 +100,8 @@
       ]
     },
     {
-      "id": "real-upper-bound",
-      "name": "real: upper date boundary",
+      "id": "trial-upper-bound",
+      "name": "upper date boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -114,8 +114,8 @@
       ]
     },
     {
-      "id": "real-century-start",
-      "name": "real: first day of leap century",
+      "id": "trial-century-start",
+      "name": "first day of leap century",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -128,8 +128,8 @@
       ]
     },
     {
-      "id": "real-month-thirty-days",
-      "name": "real: final day of a thirty-day month",
+      "id": "trial-month-thirty-days",
+      "name": "final day of a thirty-day month",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -142,8 +142,8 @@
       ]
     },
     {
-      "id": "real-month-thirty-one-days",
-      "name": "real: final day of a thirty-one-day month",
+      "id": "trial-month-thirty-one-days",
+      "name": "final day of a thirty-one-day month",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -156,8 +156,8 @@
       ]
     },
     {
-      "id": "real-interior-leap-day",
-      "name": "real: leap day near upper boundary",
+      "id": "trial-interior-leap-day",
+      "name": "leap day near upper boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -167,6 +167,34 @@
       "tags": [
         "leap-day",
         "upper-range"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in date",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "date": "2"
+      },
+      "expected": "10",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in date",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "date": "222"
+      },
+      "expected": "11011110",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

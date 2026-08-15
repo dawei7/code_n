@@ -221,8 +221,8 @@
       ]
     },
     {
-      "id": "real-off-center-branches",
-      "name": "real: unequal branch depths",
+      "id": "trial-off-center-branches",
+      "name": "unequal branch depths",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -276,8 +276,8 @@
       ]
     },
     {
-      "id": "real-relabeled-tree",
-      "name": "real: labels do not follow depth",
+      "id": "trial-relabeled-tree",
+      "name": "labels do not follow depth",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -326,8 +326,8 @@
       ]
     },
     {
-      "id": "real-odd-vertex-path",
-      "name": "real: center ties between endpoints",
+      "id": "trial-odd-vertex-path",
+      "name": "center ties between endpoints",
       "kind": "trial",
       "visible": true,
       "input": {

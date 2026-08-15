@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "hidden-descending",
+      "id": "trial-descending",
       "name": "descending distinct values",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "hidden-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "extreme legal values and duplicates",
       "kind": "trial",
       "visible": true,

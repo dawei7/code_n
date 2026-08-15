@@ -740,7 +740,7 @@
       ]
     },
     {
-      "id": "real-future-drivers",
+      "id": "trial-future-drivers",
       "name": "future drivers never become active during 2020",
       "kind": "trial",
       "visible": true,
@@ -852,7 +852,7 @@
       ]
     },
     {
-      "id": "real-outside-year-rides",
+      "id": "trial-outside-year-rides",
       "name": "accepted rides outside 2020 are excluded",
       "kind": "trial",
       "visible": true,
@@ -978,7 +978,7 @@
       ]
     },
     {
-      "id": "real-request-date-month",
+      "id": "trial-request-date-month",
       "name": "request date determines the reported accepted month",
       "kind": "trial",
       "visible": true,

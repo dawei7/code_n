@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-plateau",
+      "id": "trial-plateau",
       "name": "equal-height plateau",
       "kind": "trial",
       "visible": true,

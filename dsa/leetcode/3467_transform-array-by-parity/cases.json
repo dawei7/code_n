@@ -96,8 +96,8 @@
       ]
     },
     {
-      "id": "real-boundary-values",
-      "name": "real: value bounds in unsorted parity order",
+      "id": "trial-boundary-values",
+      "name": "value bounds in unsorted parity order",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -125,8 +125,8 @@
       ]
     },
     {
-      "id": "real-all-even",
-      "name": "real: every value becomes zero",
+      "id": "trial-all-even",
+      "name": "every value becomes zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -151,8 +151,8 @@
       ]
     },
     {
-      "id": "real-repeated-values",
-      "name": "real: duplicates retain only their parity counts",
+      "id": "trial-repeated-values",
+      "name": "duplicates retain only their parity counts",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -179,6 +179,44 @@
         "real",
         "duplicates",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

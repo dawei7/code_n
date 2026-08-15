@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-branching",
+      "id": "trial-branching",
       "name": "branching tree with mixed local orientations",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-two-cities",
+      "id": "trial-two-cities",
       "name": "smallest tree requires one reversal",
       "kind": "trial",
       "visible": true,

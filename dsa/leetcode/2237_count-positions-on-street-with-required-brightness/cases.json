@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-uncovered",
+      "id": "trial-uncovered",
       "name": "uncovered positions with positive requirements fail",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-wide-range",
+      "id": "trial-wide-range",
       "name": "one range covers the complete street",
       "kind": "trial",
       "visible": true,
@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "real-mixed-thresholds",
+      "id": "trial-mixed-thresholds",
       "name": "compare each position with its own threshold",
       "kind": "trial",
       "visible": true,

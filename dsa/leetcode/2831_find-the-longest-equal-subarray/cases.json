@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-insufficient-budget",
+      "id": "trial-insufficient-budget",
       "name": "distant equal values cannot all be joined",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-best-value-not-first",
+      "id": "trial-best-value-not-first",
       "name": "choose the value with the best feasible window",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-outside-elements-free",
+      "id": "trial-outside-elements-free",
       "name": "values outside the chosen span need not be deleted",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "real-budget-exceeds-need",
+      "id": "trial-budget-exceeds-need",
       "name": "unused deletion budget is permitted",
       "kind": "trial",
       "visible": true,
@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "real-maximum-value",
+      "id": "trial-maximum-value",
       "name": "values may equal the array length",
       "kind": "trial",
       "visible": true,
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "real-separated-pairs",
+      "id": "trial-separated-pairs",
       "name": "zero budget cannot join separated occurrences",
       "kind": "trial",
       "visible": true,

@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-single-one",
+      "id": "trial-single-one",
       "name": "the minimum-length string fits",
       "kind": "trial",
       "visible": true,
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-zeroes-before-one",
+      "id": "trial-zeroes-before-one",
       "name": "zeroes before a selected one remain free",
       "kind": "trial",
       "visible": true,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-skip-expensive-prefix",
+      "id": "trial-skip-expensive-prefix",
       "name": "an expensive prefix one is skipped without losing later bits",
       "kind": "trial",
       "visible": true,
@@ -114,6 +114,36 @@
       "expected": 4,
       "tags": [
         "skip-prefix"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1",
+        "k": 5
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111",
+        "k": 5
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

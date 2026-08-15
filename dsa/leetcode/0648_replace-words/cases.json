@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "word equals root",
       "kind": "trial",
       "visible": true,
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "duplicate roots",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-3",
       "name": "repeated word occurrences",
       "kind": "trial",
       "visible": true,
@@ -126,6 +126,41 @@
       "expected": "run run run",
       "tags": [
         "repeated"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in dictionary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "dictionary": [
+          "cat"
+        ],
+        "sentence": "the cattle was rattled by the battery"
+      },
+      "expected": "the cat was rattled by the battery",
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in dictionary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "dictionary": [
+          "cat",
+          "cat"
+        ],
+        "sentence": "the cattle was rattled by the battery"
+      },
+      "expected": "the cat was rattled by the battery",
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

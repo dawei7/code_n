@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-descending",
+      "id": "trial-descending",
       "name": "every new digit triggers a pop",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-equal",
+      "id": "trial-equal",
       "name": "all digits equal",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "hidden-mixed-zeroes",
+      "id": "trial-mixed-zeroes",
       "name": "internal zeroes dominate larger prefix",
       "kind": "trial",
       "visible": true,
@@ -117,6 +117,36 @@
       "expected": "50",
       "tags": [
         "zeroes"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "1",
+        "k": 3
+      },
+      "expected": "0",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "111",
+        "k": 3
+      },
+      "expected": "0",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

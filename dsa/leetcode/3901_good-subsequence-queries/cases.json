@@ -314,7 +314,7 @@
       ]
     },
     {
-      "id": "hidden-critical-cycle",
+      "id": "trial-critical-cycle",
       "name": "updates repeatedly create and clear a critical index",
       "kind": "trial",
       "visible": true,
@@ -352,7 +352,7 @@
       ]
     },
     {
-      "id": "hidden-prime-power-membership",
+      "id": "trial-prime-power-membership",
       "name": "prime powers count as one membership per prime",
       "kind": "trial",
       "visible": true,
@@ -390,7 +390,7 @@
       ]
     },
     {
-      "id": "hidden-multiple-primes-same-missing-index",
+      "id": "trial-multiple-primes-same-missing-index",
       "name": "several critical primes may share one missing index",
       "kind": "trial",
       "visible": true,
@@ -427,7 +427,7 @@
       ]
     },
     {
-      "id": "hidden-same-factor-set-new-gcd-value",
+      "id": "trial-same-factor-set-new-gcd-value",
       "name": "identical prime memberships still require a tree update",
       "kind": "trial",
       "visible": true,
@@ -465,7 +465,7 @@
       ]
     },
     {
-      "id": "hidden-irregular-cumulative-updates",
+      "id": "trial-irregular-cumulative-updates",
       "name": "mixed eligibility and factor changes across many updates",
       "kind": "trial",
       "visible": true,

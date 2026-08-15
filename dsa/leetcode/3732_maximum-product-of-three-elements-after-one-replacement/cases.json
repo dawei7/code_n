@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-all-zeros",
+      "id": "trial-all-zeros",
       "name": "replacing one of several zeros still leaves zero factors",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-one-nonzero-many-zeros",
+      "id": "trial-one-nonzero-many-zeros",
       "name": "no pair of nonzero original factors exists",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-sign-choice",
+      "id": "trial-sign-choice",
       "name": "opposite signs use a negative replacement",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "real-maximum-boundaries",
+      "id": "trial-maximum-boundaries",
       "name": "three maximum magnitudes reach the product bound",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-replacement-may-overwrite-unused",
+      "id": "trial-replacement-may-overwrite-unused",
       "name": "the best original pair survives in a longer array",
       "kind": "trial",
       "visible": true,
@@ -234,7 +234,7 @@
       ]
     },
     {
-      "id": "real-small-negative-values",
+      "id": "trial-small-negative-values",
       "name": "absolute magnitude determines the retained pair",
       "kind": "trial",
       "visible": true,
@@ -253,6 +253,23 @@
       },
       "tags": [
         "negative-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          -5
+        ]
+      },
+      "expected": 2500000,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

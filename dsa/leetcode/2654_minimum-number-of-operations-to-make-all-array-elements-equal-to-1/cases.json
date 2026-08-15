@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-full-segment",
+      "id": "trial-full-segment",
       "name": "only the full array has gcd one",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-duplicate-ones",
+      "id": "trial-duplicate-ones",
       "name": "several existing ones",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-shortest-three",
+      "id": "trial-shortest-three",
       "name": "shortest qualifying segment has length three",
       "kind": "trial",
       "visible": true,

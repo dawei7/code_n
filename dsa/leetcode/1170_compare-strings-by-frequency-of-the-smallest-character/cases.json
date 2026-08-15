@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-maximum-frequency",
+      "id": "trial-maximum-frequency",
       "name": "frequency ten has no greater word",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-all-greater",
+      "id": "trial-all-greater",
       "name": "every word exceeds frequency one",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-query-order",
+      "id": "trial-query-order",
       "name": "preserve query order",
       "kind": "trial",
       "visible": true,

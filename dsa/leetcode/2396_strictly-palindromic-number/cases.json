@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-power-of-two",
+      "id": "trial-power-of-two",
       "name": "power of two still fails a required base",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-large-prime",
+      "id": "trial-large-prime",
       "name": "primality does not affect the witness",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum legal input",
       "kind": "trial",
       "visible": true,
@@ -108,6 +108,20 @@
       "expected": false,
       "tags": [
         "maximum"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

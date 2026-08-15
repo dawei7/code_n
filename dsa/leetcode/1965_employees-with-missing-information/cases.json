@@ -288,7 +288,7 @@
       ]
     },
     {
-      "id": "real-unsorted-both-sides",
+      "id": "trial-unsorted-both-sides",
       "name": "output is independent of source row order",
       "kind": "trial",
       "visible": true,
@@ -346,7 +346,7 @@
       ]
     },
     {
-      "id": "real-nonconsecutive",
+      "id": "trial-nonconsecutive",
       "name": "gaps in employee IDs do not create rows",
       "kind": "trial",
       "visible": true,
@@ -396,7 +396,7 @@
       ]
     },
     {
-      "id": "real-several-missing-salaries",
+      "id": "trial-r-several-missing-salaries",
       "name": "several employee rows lack salaries",
       "kind": "trial",
       "visible": true,
@@ -454,7 +454,7 @@
       ]
     },
     {
-      "id": "real-several-missing-names",
+      "id": "trial-r-several-missing-names",
       "name": "several salary rows lack employee records",
       "kind": "trial",
       "visible": true,

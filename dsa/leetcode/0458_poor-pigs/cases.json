@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "hidden-three-pigs",
+      "id": "trial-three-pigs",
       "name": "four states per pig",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "hidden-ten-pigs",
+      "id": "trial-ten-pigs",
       "name": "binary outcomes near the constraint limit",
       "kind": "trial",
       "visible": true,

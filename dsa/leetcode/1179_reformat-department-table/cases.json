@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-all-months",
+      "id": "trial-all-months",
       "name": "every month is populated",
       "kind": "trial",
       "visible": true,
@@ -332,7 +332,7 @@
       ]
     },
     {
-      "id": "real-unsorted-input",
+      "id": "trial-unsorted-input",
       "name": "input row order does not affect pivot",
       "kind": "trial",
       "visible": true,

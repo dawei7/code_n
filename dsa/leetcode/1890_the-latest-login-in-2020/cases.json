@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-last-second",
+      "id": "trial-last-second",
       "name": "the final second of 2020 is included",
       "kind": "trial",
       "visible": true,
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-later-2021-ignored",
+      "id": "trial-later-2021-ignored",
       "name": "a later 2021 login cannot replace the 2020 maximum",
       "kind": "trial",
       "visible": true,
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-several-same-user",
+      "id": "trial-several-same-user",
       "name": "maximum among several 2020 timestamps",
       "kind": "trial",
       "visible": true,
@@ -259,7 +259,7 @@
       ]
     },
     {
-      "id": "real-only-2019",
+      "id": "trial-only-2019",
       "name": "a user with only 2019 logins is omitted",
       "kind": "trial",
       "visible": true,
@@ -289,7 +289,7 @@
       ]
     },
     {
-      "id": "real-multiple-users",
+      "id": "trial-multiple-users",
       "name": "each qualifying user receives an independent maximum",
       "kind": "trial",
       "visible": true,
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "id": "real-mixed-qualifying",
+      "id": "trial-mixed-qualifying",
       "name": "users outside the year are omitted beside qualifying users",
       "kind": "trial",
       "visible": true,

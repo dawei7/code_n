@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-equal-maxima",
+      "id": "trial-equal-maxima",
       "name": "repeated maxima need no swaps",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "boundary values force an earlier swap",
       "kind": "trial",
       "visible": true,

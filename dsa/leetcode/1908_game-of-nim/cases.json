@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-equal-large-pair",
+      "id": "trial-equal-large-pair",
       "name": "equal maximum piles cancel",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-two-unequal",
+      "id": "trial-two-unequal",
       "name": "unequal piles have nonzero nim-sum",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-four-canceling-pairs",
+      "id": "trial-four-canceling-pairs",
       "name": "two repeated pairs cancel independently",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-four-distinct-zero-xor",
+      "id": "trial-four-distinct-zero-xor",
       "name": "four distinct sizes can also form a losing position",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-six-paired",
+      "id": "trial-six-paired",
       "name": "three pairs cancel across a longer input",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-maximum-length-winning",
+      "id": "trial-maximum-length-winning",
       "name": "seven maximum piles leave one uncanceled value",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-maximum-length-zero-xor",
+      "id": "trial-maximum-length-zero-xor",
       "name": "a mixed maximum-length position has zero nim-sum",
       "kind": "trial",
       "visible": true,

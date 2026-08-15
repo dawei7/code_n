@@ -151,8 +151,8 @@
       ]
     },
     {
-      "id": "real-touch-then-bridge",
-      "name": "real: merge endpoint contact before measuring the gap",
+      "id": "trial-touch-then-bridge",
+      "name": "merge endpoint contact before measuring the gap",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -179,8 +179,8 @@
       ]
     },
     {
-      "id": "real-coordinate-boundary",
-      "name": "real: maximum coordinates and exact maximum span",
+      "id": "trial-coordinate-boundary",
+      "name": "maximum coordinates and exact maximum span",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-cross-parent-target",
+      "id": "trial-cross-parent-target",
       "name": "target lies under a different parent",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-far-right-target",
+      "id": "trial-far-right-target",
       "name": "target is several positions to the right",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-left-subtree-removed",
+      "id": "trial-left-subtree-removed",
       "name": "invalid node carries a deeper left chain",
       "kind": "trial",
       "visible": true,
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": "real-right-subtree-preserved",
+      "id": "trial-right-subtree-preserved",
       "name": "the erroneous target's descendants remain",
       "kind": "trial",
       "visible": true,
@@ -285,7 +285,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "endpoint values reach numeric boundaries",
       "kind": "trial",
       "visible": true,
@@ -312,7 +312,7 @@
       ]
     },
     {
-      "id": "real-internal-source",
+      "id": "trial-internal-source",
       "name": "internal invalid node loses multiple descendants",
       "kind": "trial",
       "visible": true,

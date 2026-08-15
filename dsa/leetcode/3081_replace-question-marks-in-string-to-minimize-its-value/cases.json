@@ -70,8 +70,8 @@
       ]
     },
     {
-      "id": "real-interleaved-positions",
-      "name": "real: selected letters are sorted across placeholder positions",
+      "id": "trial-interleaved-positions",
+      "name": "selected letters are sorted across placeholder positions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -84,8 +84,8 @@
       ]
     },
     {
-      "id": "real-twenty-seven-questions",
-      "name": "real: selection wraps after all twenty-six letters",
+      "id": "trial-twenty-seven-questions",
+      "name": "selection wraps after all twenty-six letters",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -99,8 +99,8 @@
       ]
     },
     {
-      "id": "real-lexicographic-global-tie",
-      "name": "real: selected letters must be reordered globally",
+      "id": "trial-lexicographic-global-tie",
+      "name": "selected letters must be reordered globally",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-six",
+      "id": "trial-six",
       "name": "composite denominator filters common factors",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-ten",
+      "id": "trial-ten",
       "name": "several prime and composite denominators",
       "kind": "trial",
       "visible": true,

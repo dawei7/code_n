@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-several-compatible-frequencies",
+      "id": "trial-several-compatible-frequencies",
       "name": "frequencies two, three, and three need one box each",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-singleton-with-larger-frequencies",
+      "id": "trial-singleton-with-larger-frequencies",
       "name": "a singleton forces every box to size one or two",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-nonconsecutive-labels",
+      "id": "trial-nonconsecutive-labels",
       "name": "labels do not affect frequency-only grouping",
       "kind": "trial",
       "visible": true,

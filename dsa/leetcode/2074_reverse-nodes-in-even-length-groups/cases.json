@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-final-singleton",
+      "id": "trial-final-singleton",
       "name": "a fourth intended group may contain one node",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-final-odd-triple",
+      "id": "trial-final-odd-triple",
       "name": "a truncated odd group keeps its order",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-repeated-values",
+      "id": "trial-repeated-values",
       "name": "reversal is structural even when values repeat",
       "kind": "trial",
       "visible": true,

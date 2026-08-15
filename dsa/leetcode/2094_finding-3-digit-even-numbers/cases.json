@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "leading-zero rule rejects every arrangement",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-one-duplicate-pair",
+      "id": "trial-one-duplicate-pair",
       "name": "two copies can occupy two places but not three",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-extra-copies-do-not-duplicate-output",
+      "id": "trial-extra-copies-do-not-duplicate-output",
       "name": "equal position choices still yield unique integers",
       "kind": "trial",
       "visible": true,

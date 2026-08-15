@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "hidden-negative-games",
+      "id": "trial-negative-games",
       "name": "unrelated values do not affect the date aggregate",
       "kind": "trial",
       "visible": true,

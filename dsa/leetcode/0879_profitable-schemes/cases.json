@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "overlapping qualifying combinations",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "all three crimes required for profit",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "one crime uses all members and profit",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "zero-profit crimes create distinct schemes",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "identical crimes remain distinct",
       "kind": "trial",
       "visible": true,

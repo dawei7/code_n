@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-single-cell-overwrite",
+      "id": "trial-single-cell-overwrite",
       "name": "column overwrites the only row cell",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-repeated-row",
+      "id": "trial-repeated-row",
       "name": "only the final assignment to a row matters",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-zero-overwrite",
+      "id": "trial-zero-overwrite",
       "name": "a zero assignment erases earlier values",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-columns-only",
+      "id": "trial-columns-only",
       "name": "all columns assigned independently",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-full-overwrite",
+      "id": "trial-full-overwrite",
       "name": "final row assignment overwrites all columns at intersections",
       "kind": "trial",
       "visible": true,
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "id": "real-unassigned-lines",
+      "id": "trial-unassigned-lines",
       "name": "untouched cells stay zero",
       "kind": "trial",
       "visible": true,
@@ -283,6 +283,42 @@
       "expected": 25,
       "tags": [
         "zeros"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "queries": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            1,
+            0,
+            4
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

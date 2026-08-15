@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-direct-parent",
+      "id": "trial-direct-parent",
       "name": "direct parent is the lowest common ancestor",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-second-is-ancestor",
+      "id": "trial-second-is-ancestor",
       "name": "second input is ancestor of first",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-unequal-depths",
+      "id": "trial-unequal-depths",
       "name": "unequal-depth cousins meet below root",
       "kind": "trial",
       "visible": true,
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "id": "real-deep-common-parent",
+      "id": "trial-deep-common-parent",
       "name": "deep leaves share an internal ancestor",
       "kind": "trial",
       "visible": true,
@@ -297,7 +297,7 @@
       ]
     },
     {
-      "id": "real-root-and-deep-node",
+      "id": "trial-root-and-deep-node",
       "name": "root is supplied after a deep node",
       "kind": "trial",
       "visible": true,

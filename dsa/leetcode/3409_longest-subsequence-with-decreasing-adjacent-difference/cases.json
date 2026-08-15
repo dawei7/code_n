@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-skip-increase",
-      "name": "real: one element must be skipped to avoid a larger later difference",
+      "id": "trial-skip-increase",
+      "name": "one element must be skipped to avoid a larger later difference",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -158,8 +158,8 @@
       ]
     },
     {
-      "id": "real-boundary-values",
-      "name": "real: boundary values exercise difference 299",
+      "id": "trial-boundary-values",
+      "name": "boundary values exercise difference 299",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -179,8 +179,8 @@
       ]
     },
     {
-      "id": "real-mixed-zigzag",
-      "name": "real: a mixed zigzag has a shorter optimal subsequence",
+      "id": "trial-mixed-zigzag",
+      "name": "a mixed zigzag has a shorter optimal subsequence",
       "kind": "trial",
       "visible": true,
       "input": {

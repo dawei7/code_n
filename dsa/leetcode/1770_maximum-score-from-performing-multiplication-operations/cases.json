@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-all-negative-score",
+      "id": "trial-all-negative-score",
       "name": "exactly m operations can force a negative result",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-negative-products-benefit",
+      "id": "trial-negative-products-benefit",
       "name": "negative multipliers favor negative endpoints",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-state-interactions",
+      "id": "trial-state-interactions",
       "name": "the best first pick depends on later multipliers",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-zero-multipliers",
+      "id": "trial-zero-multipliers",
       "name": "zero multipliers still consume endpoints",
       "kind": "trial",
       "visible": true,

@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "hidden-column",
+      "id": "trial-column",
       "name": "coordinates remain inside one column",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "hidden-reset-cycle",
+      "id": "trial-reset-cycle",
       "name": "uniqueness restarts after reset",
       "kind": "trial",
       "visible": true,

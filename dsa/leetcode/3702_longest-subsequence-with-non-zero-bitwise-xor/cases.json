@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-three-equal-values",
+      "id": "trial-three-equal-values",
       "name": "an odd number of equal non-zero values has non-zero XOR",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-zero-appended-to-sample",
+      "id": "trial-zero-appended-to-sample",
       "name": "an extra zero lengthens the best zero-total-XOR case",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "duplicate maximum values cancel",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-multiple-zeros-and-pair",
+      "id": "trial-multiple-zeros-and-pair",
       "name": "remove one member of a canceling pair and retain every zero",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-mixed-nonzero-xor",
+      "id": "trial-mixed-nonzero-xor",
       "name": "mixed duplicates still leave the complete XOR non-zero",
       "kind": "trial",
       "visible": true,
@@ -222,6 +222,39 @@
       "tags": [
         "duplicates",
         "whole-array"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

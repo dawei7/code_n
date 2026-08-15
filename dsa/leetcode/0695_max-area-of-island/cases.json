@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "choose largest of several islands",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "boundary snake",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-3",
       "name": "whole grid is one island",
       "kind": "trial",
       "visible": true,

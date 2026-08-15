@@ -214,8 +214,8 @@
       ]
     },
     {
-      "id": "real-missing-seat-ids",
-      "name": "real: missing IDs split available runs",
+      "id": "trial-missing-seat-ids",
+      "name": "missing IDs split available runs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -263,8 +263,8 @@
       ]
     },
     {
-      "id": "real-unordered-input",
-      "name": "real: physical row order is irrelevant",
+      "id": "trial-unordered-input",
+      "name": "physical row order is irrelevant",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -326,8 +326,8 @@
       ]
     },
     {
-      "id": "real-long-run-at-boundary",
-      "name": "real: longest run reaches the final seat",
+      "id": "trial-long-run-at-boundary",
+      "name": "longest run reaches the final seat",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -387,8 +387,8 @@
       ]
     },
     {
-      "id": "real-occupied-boundaries",
-      "name": "real: occupied seats bound the winning island",
+      "id": "trial-occupied-boundaries",
+      "name": "occupied seats bound the winning island",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -448,8 +448,8 @@
       ]
     },
     {
-      "id": "real-three-way-tie",
-      "name": "real: three equal runs remain ordered",
+      "id": "trial-three-way-tie",
+      "name": "three equal runs remain ordered",
       "kind": "trial",
       "visible": true,
       "input": {

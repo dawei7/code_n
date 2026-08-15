@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-independent-runs",
+      "id": "trial-independent-runs",
       "name": "run counts multiply across a digit change",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-forced-boundaries",
+      "id": "trial-forced-boundaries",
       "name": "every press uses a different key",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-six-nines",
+      "id": "trial-six-nines",
       "name": "a longer four-letter-key recurrence",
       "kind": "trial",
       "visible": true,

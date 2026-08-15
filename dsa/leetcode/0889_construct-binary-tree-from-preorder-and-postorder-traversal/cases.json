@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "mixed full and single-child subtrees",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "complete four-level tree",
       "kind": "trial",
       "visible": true,
@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "six-node ambiguous chain",
       "kind": "trial",
       "visible": true,
@@ -308,7 +308,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "unequal subtree sizes",
       "kind": "trial",
       "visible": true,
@@ -343,7 +343,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "nested first child and right leaf",
       "kind": "trial",
       "visible": true,
@@ -372,6 +372,33 @@
       },
       "tags": [
         "mixed-shape"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in preorder",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "preorder": [
+          1
+        ],
+        "postorder": [
+          4,
+          5,
+          2,
+          6,
+          7,
+          3,
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

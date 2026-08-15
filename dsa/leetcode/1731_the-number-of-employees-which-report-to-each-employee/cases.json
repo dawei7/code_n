@@ -253,7 +253,7 @@
       ]
     },
     {
-      "id": "real-no-managers",
+      "id": "trial-no-managers",
       "name": "employees without reports produce an empty result",
       "kind": "trial",
       "visible": true,
@@ -290,7 +290,7 @@
       ]
     },
     {
-      "id": "real-order-independent",
+      "id": "trial-order-independent",
       "name": "manager output is sorted independently of input order",
       "kind": "trial",
       "visible": true,
@@ -359,7 +359,7 @@
       ]
     },
     {
-      "id": "real-round-down",
+      "id": "trial-round-down",
       "name": "non-half average rounds to the nearest lower integer",
       "kind": "trial",
       "visible": true,
@@ -415,7 +415,7 @@
       ]
     },
     {
-      "id": "real-manager-reports-upward",
+      "id": "trial-manager-reports-upward",
       "name": "a manager may also report to another manager",
       "kind": "trial",
       "visible": true,

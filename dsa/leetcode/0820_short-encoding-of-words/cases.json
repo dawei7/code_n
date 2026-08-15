@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "longer word added after its suffixes",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "one word covers nested one-letter suffixes",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "duplicates across two leaf branches",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "independent words cover separate suffixes",
       "kind": "trial",
       "visible": true,

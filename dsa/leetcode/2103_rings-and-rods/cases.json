@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-order-independent",
+      "id": "trial-order-independent",
       "name": "colors arrive in mixed order",
       "kind": "trial",
       "visible": true,
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-missing-one-color",
+      "id": "trial-missing-one-color",
       "name": "many rings still lack blue",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-all-ten-rods",
+      "id": "trial-all-ten-rods",
       "name": "every rod has every color",
       "kind": "trial",
       "visible": true,

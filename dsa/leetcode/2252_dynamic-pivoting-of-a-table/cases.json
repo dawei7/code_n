@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-store-shared",
+      "id": "trial-store-shared",
       "name": "a store discovered on one product appears for all",
       "kind": "trial",
       "visible": true,
@@ -280,7 +280,7 @@
       ]
     },
     {
-      "id": "real-prices-zero",
+      "id": "trial-prices-zero",
       "name": "zero is a price rather than a missing value",
       "kind": "trial",
       "visible": true,
@@ -332,7 +332,7 @@
       ]
     },
     {
-      "id": "real-product-order-free",
+      "id": "trial-product-order-free",
       "name": "arbitrary product identifiers form independent rows",
       "kind": "trial",
       "visible": true,

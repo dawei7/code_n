@@ -139,8 +139,8 @@
       ]
     },
     {
-      "id": "real-zero-area-collinear",
-      "name": "real: an axis-parallel line alone has zero area",
+      "id": "trial-zero-area-collinear",
+      "name": "an axis-parallel line alone has zero area",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -171,8 +171,8 @@
       ]
     },
     {
-      "id": "real-orientation-competition",
-      "name": "real: compare the best vertical and horizontal bases",
+      "id": "trial-orientation-competition",
+      "name": "compare the best vertical and horizontal bases",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -207,8 +207,8 @@
       ]
     },
     {
-      "id": "real-interior-line",
-      "name": "real: an interior base line chooses the farther global side",
+      "id": "trial-interior-line",
+      "name": "an interior base line chooses the farther global side",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -239,8 +239,8 @@
       ]
     },
     {
-      "id": "real-coordinate-limit",
-      "name": "real: coordinate limits produce a large integer result",
+      "id": "trial-coordinate-limit",
+      "name": "coordinate limits produce a large integer result",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -267,8 +267,8 @@
       ]
     },
     {
-      "id": "real-shorter-base-farther-height",
-      "name": "real: base length and height must be maximized as a product",
+      "id": "trial-shorter-base-farther-height",
+      "name": "base length and height must be maximized as a product",
       "kind": "trial",
       "visible": true,
       "input": {

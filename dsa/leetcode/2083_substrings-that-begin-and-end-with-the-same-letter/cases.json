@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "every substring of a uniform string qualifies",
       "kind": "trial",
       "visible": true,
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-two-interleaved-frequencies",
+      "id": "trial-two-interleaved-frequencies",
       "name": "equal text at different positions counts separately",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-full-alphabet",
+      "id": "trial-full-alphabet",
       "name": "all twenty-six counters may be used once",
       "kind": "trial",
       "visible": true,

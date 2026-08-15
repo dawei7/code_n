@@ -127,8 +127,8 @@
       ]
     },
     {
-      "id": "real-even-median",
-      "name": "real: either median gathers two spaced originals",
+      "id": "trial-even-median",
+      "name": "either median gathers two spaced originals",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -150,8 +150,8 @@
       ]
     },
     {
-      "id": "real-three-spaced",
-      "name": "real: gather three spaced originals at the middle one",
+      "id": "trial-three-spaced",
+      "name": "gather three spaced originals at the middle one",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -174,8 +174,8 @@
       ]
     },
     {
-      "id": "real-cap-nearby-at-k",
-      "name": "real: only the requested nearby originals are collected",
+      "id": "trial-cap-nearby-at-k",
+      "name": "only the requested nearby originals are collected",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -193,6 +193,25 @@
       "tags": [
         "real",
         "exact-k"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 3,
+        "maxChanges": 1
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

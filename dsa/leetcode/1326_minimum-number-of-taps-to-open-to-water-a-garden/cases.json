@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "hidden-interior-gap",
+      "id": "trial-interior-gap",
       "name": "separated endpoint coverage leaves a gap",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "hidden-two-wide-taps",
+      "id": "trial-two-wide-taps",
       "name": "two wide intervals overlap",
       "kind": "trial",
       "visible": true,

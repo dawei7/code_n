@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-overlap-choice",
+      "id": "trial-overlap-choice",
       "name": "earliest finish beats overlapping longer choice",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-negative-target",
+      "id": "trial-negative-target",
       "name": "negative target and mixed signs",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-prefix-repeat",
+      "id": "trial-prefix-repeat",
       "name": "repeated prefix sums across cancellations",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-all-positive-singletons",
+      "id": "trial-all-positive-singletons",
       "name": "every element is an interval",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "large magnitudes cancel exactly",
       "kind": "trial",
       "visible": true,
@@ -248,7 +248,7 @@
       ]
     },
     {
-      "id": "real-disjoint-with-gaps",
+      "id": "trial-disjoint-with-gaps",
       "name": "unused gaps between selected intervals",
       "kind": "trial",
       "visible": true,
@@ -270,6 +270,41 @@
         "real",
         "non-overlap",
         "disjoint-with-gaps"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "target": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "target": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-all-uppercase",
+      "id": "trial-all-uppercase",
       "name": "lowercase an all-uppercase suffix",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-all-lowercase",
+      "id": "trial-all-lowercase",
       "name": "uppercase initials of lowercase names",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-varied-internal-case",
+      "id": "trial-varied-internal-case",
       "name": "every suffix character is lowercased",
       "kind": "trial",
       "visible": true,

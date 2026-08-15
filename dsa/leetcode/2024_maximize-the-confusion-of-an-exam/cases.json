@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-whole-key-budget",
+      "id": "trial-whole-key-budget",
       "name": "the budget can cover the full key",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-minority-at-ends",
+      "id": "trial-minority-at-ends",
       "name": "changing one endpoint joins four false answers",
       "kind": "trial",
       "visible": true,

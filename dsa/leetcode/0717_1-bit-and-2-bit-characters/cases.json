@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "even run of trailing ones",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "odd run of trailing ones",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-3",
       "name": "mixed valid boundaries",
       "kind": "trial",
       "visible": true,
@@ -147,6 +147,39 @@
       "expected": true,
       "tags": [
         "mixed-encoding"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "bits": [
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "bits": [
+          1,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

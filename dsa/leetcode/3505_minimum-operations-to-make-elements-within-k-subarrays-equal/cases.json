@@ -97,8 +97,8 @@
       ]
     },
     {
-      "id": "real-two-zero-cost-windows",
-      "name": "real: skip the middle to use two equal pairs",
+      "id": "trial-two-zero-cost-windows",
+      "name": "skip the middle to use two equal pairs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -121,8 +121,8 @@
       ]
     },
     {
-      "id": "real-negative-and-positive-groups",
-      "name": "real: medians on both sides of zero",
+      "id": "trial-negative-and-positive-groups",
+      "name": "medians on both sides of zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -145,8 +145,8 @@
       ]
     },
     {
-      "id": "real-value-extremes",
-      "name": "real: operation count exceeds one million",
+      "id": "trial-value-extremes",
+      "name": "operation count exceeds one million",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -165,8 +165,8 @@
       ]
     },
     {
-      "id": "real-three-existing-windows",
-      "name": "real: dynamic program finds three disjoint equal pairs",
+      "id": "trial-three-existing-windows",
+      "name": "dynamic program finds three disjoint equal pairs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -195,8 +195,8 @@
       ]
     },
     {
-      "id": "real-even-median-interval",
-      "name": "real: any middle target gives the same cost",
+      "id": "trial-even-median-interval",
+      "name": "any middle target gives the same cost",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -217,8 +217,8 @@
       ]
     },
     {
-      "id": "real-at-least-does-not-require-all",
-      "name": "real: select only the required two windows",
+      "id": "trial-at-least-does-not-require-all",
+      "name": "select only the required two windows",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -238,6 +238,43 @@
         "real",
         "at-least-k",
         "non-overlap"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "x": 3,
+        "k": 2
+      },
+      "expected": 1000000000000000000000000000000,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5
+        ],
+        "x": 3,
+        "k": 2
+      },
+      "expected": 1000000000000000000000000000000,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "hidden-fifth-back",
+      "id": "trial-fifth-back",
       "name": "sixth segment transition crossing",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "hidden-long-expansion",
+      "id": "trial-long-expansion",
       "name": "longer expanding spiral",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "hidden-late-cross",
+      "id": "trial-late-cross",
       "name": "crossing after several outward moves",
       "kind": "trial",
       "visible": true,

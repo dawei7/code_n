@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-full-range",
+      "id": "trial-full-range",
       "name": "one person spans the complete allowed range",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-same-birth",
+      "id": "trial-same-birth",
       "name": "several births in one year create the peak",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-birth-death-tie",
+      "id": "trial-birth-death-tie",
       "name": "simultaneous death and birth preserve a population tie",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-latest-peak",
+      "id": "trial-latest-peak",
       "name": "maximum can first occur in 2049",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-short-overlap",
+      "id": "trial-short-overlap",
       "name": "one-year lives overlap a longer lifetime",
       "kind": "trial",
       "visible": true,
@@ -237,7 +237,7 @@
       ]
     },
     {
-      "id": "real-separated-groups",
+      "id": "trial-separated-groups",
       "name": "later equal peak cannot replace earlier peak",
       "kind": "trial",
       "visible": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "real-staggered-deaths",
+      "id": "trial-staggered-deaths",
       "name": "staggered departures reduce the running population",
       "kind": "trial",
       "visible": true,

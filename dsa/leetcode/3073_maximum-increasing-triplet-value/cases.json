@@ -96,8 +96,8 @@
       ]
     },
     {
-      "id": "real-late-maximum",
-      "name": "real: late suffix maximum dominates",
+      "id": "trial-late-maximum",
+      "name": "late suffix maximum dominates",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -116,8 +116,8 @@
       ]
     },
     {
-      "id": "real-mixed-order",
-      "name": "real: mixed rises and falls",
+      "id": "trial-mixed-order",
+      "name": "mixed rises and falls",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-greatest-left-predecessor",
-      "name": "real: greatest smaller left value is optimal",
+      "id": "trial-greatest-left-predecessor",
+      "name": "greatest smaller left value is optimal",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -158,8 +158,8 @@
       ]
     },
     {
-      "id": "real-value-bounds",
-      "name": "real: values at the upper bound",
+      "id": "trial-value-bounds",
+      "name": "values at the upper bound",
       "kind": "trial",
       "visible": true,
       "input": {

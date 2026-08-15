@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-best-insert-t",
+      "id": "trial-best-insert-t",
       "name": "adding T uses all existing LC pairs",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-best-insert-l",
+      "id": "trial-best-insert-l",
       "name": "adding L uses all existing CT pairs",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-best-interior-c",
+      "id": "trial-best-interior-c",
       "name": "optimal C position lies inside the string",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-existing-many",
+      "id": "trial-existing-many",
       "name": "preserve existing subsequences and add the best gain",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-reversed-order",
+      "id": "trial-reversed-order",
       "name": "reversed relevant letters need more than one insertion",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-mixed-noise",
+      "id": "trial-mixed-noise",
       "name": "unrelated uppercase letters are ignored",
       "kind": "trial",
       "visible": true,
@@ -179,6 +179,20 @@
       "tags": [
         "irrelevant-letters",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "LLL"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

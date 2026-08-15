@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-buried-unreachable",
+      "id": "trial-buried-unreachable",
       "name": "one move cannot reach a buried large coin",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-take-all",
+      "id": "trial-take-all",
       "name": "taking all coins sums every pile",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-choice-tradeoff",
+      "id": "trial-choice-tradeoff",
       "name": "prefix cost changes the best allocation",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "real-single-pile",
+      "id": "trial-single-pile",
       "name": "one pile forces its exact prefix",
       "kind": "trial",
       "visible": true,

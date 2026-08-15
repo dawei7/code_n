@@ -76,8 +76,8 @@
       ]
     },
     {
-      "id": "real-four-occurrences",
-      "name": "real: four endpoint choices produce ten intervals",
+      "id": "trial-four-occurrences",
+      "name": "four endpoint choices produce ten intervals",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -91,8 +91,8 @@
       ]
     },
     {
-      "id": "real-endpoints-only",
-      "name": "real: two distant occurrences delimit three substrings",
+      "id": "trial-endpoints-only",
+      "name": "two distant occurrences delimit three substrings",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -106,8 +106,8 @@
       ]
     },
     {
-      "id": "real-many-occurrences",
-      "name": "real: combinatorial count exceeds the string length",
+      "id": "trial-many-occurrences",
+      "name": "combinatorial count exceeds the string length",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-three-products-boundary-values",
+      "id": "trial-three-products-boundary-values",
       "name": "three products preserve zero and signed values",
       "kind": "trial",
       "visible": true,

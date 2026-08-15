@@ -443,7 +443,7 @@
       ]
     },
     {
-      "id": "hidden-ordering",
+      "id": "trial-ordering",
       "name": "identifiers and subjects require sorting",
       "kind": "trial",
       "visible": true,
@@ -518,7 +518,7 @@
       ]
     },
     {
-      "id": "hidden-skew",
+      "id": "trial-skew",
       "name": "all attendance belongs to one pair",
       "kind": "trial",
       "visible": true,

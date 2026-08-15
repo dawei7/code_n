@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "alternating repeats",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "all alphabet letters",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-3",
       "name": "long one-letter string",
       "kind": "trial",
       "visible": true,
@@ -109,6 +109,20 @@
       "expected": 64,
       "tags": [
         "repeat"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
       ]
     }
   ]

@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-positive-order",
+      "id": "trial-positive-order",
       "name": "positives scattered among negatives stay ordered",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-negative-order",
+      "id": "trial-negative-order",
       "name": "negatives scattered among positives stay ordered",
       "kind": "trial",
       "visible": true,
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate values remain separate occurrences",
       "kind": "trial",
       "visible": true,
@@ -199,6 +199,24 @@
       ],
       "tags": [
         "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

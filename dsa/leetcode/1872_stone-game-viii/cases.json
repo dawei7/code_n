@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-two-mixed",
+      "id": "trial-two-mixed",
       "name": "forced two-stone total mixes signs",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-four-mixed",
+      "id": "trial-four-mixed",
       "name": "intermediate prefix choice beats naive scoring",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "every move keeps the difference zero",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-all-negative",
+      "id": "trial-all-negative",
       "name": "optimal play over three negative stones",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating totals require backward minimax",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-six-mixed",
+      "id": "trial-six-mixed",
       "name": "several candidate prefix endpoints",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-large-magnitudes",
+      "id": "trial-large-magnitudes",
       "name": "prefix totals can exceed individual bounds",
       "kind": "trial",
       "visible": true,

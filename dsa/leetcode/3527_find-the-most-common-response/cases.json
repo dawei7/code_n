@@ -135,8 +135,8 @@
       ]
     },
     {
-      "id": "real-three-way-tie",
-      "name": "real: daily deduplication produces a three-way tie",
+      "id": "trial-three-way-tie",
+      "name": "daily deduplication produces a three-way tie",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -163,8 +163,8 @@
       ]
     },
     {
-      "id": "real-many-duplicates",
-      "name": "real: duplicate volume cannot outweigh more distinct days",
+      "id": "trial-many-duplicates",
+      "name": "duplicate volume cannot outweigh more distinct days",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -191,8 +191,8 @@
       ]
     },
     {
-      "id": "real-later-winner",
-      "name": "real: response introduced later wins by day count",
+      "id": "trial-later-winner",
+      "name": "response introduced later wins by day count",
       "kind": "trial",
       "visible": true,
       "input": {

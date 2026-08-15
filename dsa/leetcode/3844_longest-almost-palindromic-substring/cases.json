@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-delete-last-character",
+      "id": "trial-delete-last-character",
       "name": "aab becomes aa after deleting the end",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-long-right-endpoint-deletion",
+      "id": "trial-long-right-endpoint-deletion",
       "name": "deleting the last character exposes abcba",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-long-left-endpoint-deletion",
+      "id": "trial-long-left-endpoint-deletion",
       "name": "deleting the first character exposes abcba",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-internal-left-branch",
+      "id": "trial-internal-left-branch",
       "name": "deleting an internal b makes abcba",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-only-length-two",
+      "id": "trial-only-length-two",
       "name": "all distinct ordered characters permit no longer answer",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-best-substring-excludes-suffix",
+      "id": "trial-best-substring-excludes-suffix",
       "name": "delete x from xracecar while excluding the trailing zy",
       "kind": "trial",
       "visible": true,
@@ -210,6 +210,34 @@
       "tags": [
         "proper-substring",
         "left-endpoint-deletion"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

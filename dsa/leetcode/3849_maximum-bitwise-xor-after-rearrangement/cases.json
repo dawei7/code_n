@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-all-zeroes",
+      "id": "trial-all-zeroes",
       "name": "no opposite bit exists for an all-zero s",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-all-ones",
+      "id": "trial-all-ones",
       "name": "no opposite bit exists for an all-one s",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-ones-exhausted",
+      "id": "trial-ones-exhausted",
       "name": "scarce one bits are spent at the earliest zeroes",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-zeroes-exhausted",
+      "id": "trial-zeroes-exhausted",
       "name": "scarce zero bits are spent at the earliest ones",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-balanced-complement",
+      "id": "trial-balanced-complement",
       "name": "balanced counts permit a complete complement",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-leading-zero-preserved",
+      "id": "trial-leading-zero-preserved",
       "name": "a forced leading zero remains part of the result",
       "kind": "trial",
       "visible": true,
@@ -222,6 +222,36 @@
       "tags": [
         "leading-zero",
         "fixed-length"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1",
+        "t": "011"
+      },
+      "expected": "1",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111",
+        "t": "011"
+      },
+      "expected": "100",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

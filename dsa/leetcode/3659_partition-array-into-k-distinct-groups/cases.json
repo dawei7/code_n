@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-one-full-distinct-group",
+      "id": "trial-one-full-distinct-group",
       "name": "k equals n and all values differ",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-one-full-duplicate-group",
+      "id": "trial-one-full-duplicate-group",
       "name": "k equals n with a duplicate",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-several-frequencies-fit",
+      "id": "trial-several-frequencies-fit",
       "name": "several values fill all groups",
       "kind": "trial",
       "visible": true,
@@ -189,6 +189,23 @@
       "expected": true,
       "tags": [
         "balanced-capacities"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 2
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

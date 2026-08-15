@@ -256,7 +256,7 @@
       ]
     },
     {
-      "id": "real-independent-subjects",
+      "id": "trial-independent-subjects",
       "name": "subjects for one student are independent",
       "kind": "trial",
       "visible": true,
@@ -329,7 +329,7 @@
       ]
     },
     {
-      "id": "real-unsorted-insertion",
+      "id": "trial-unsorted-insertion",
       "name": "insertion order differs from date and output order",
       "kind": "trial",
       "visible": true,
@@ -408,7 +408,7 @@
       ]
     },
     {
-      "id": "real-score-boundaries",
+      "id": "trial-score-boundaries",
       "name": "scores at zero and one hundred",
       "kind": "trial",
       "visible": true,
@@ -463,7 +463,7 @@
       ]
     },
     {
-      "id": "real-many-exams",
+      "id": "trial-many-exams",
       "name": "only first and latest of many exams matter",
       "kind": "trial",
       "visible": true,

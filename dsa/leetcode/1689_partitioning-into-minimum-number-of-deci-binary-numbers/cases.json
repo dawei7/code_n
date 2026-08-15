@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-all-ones",
+      "id": "trial-all-ones",
       "name": "every position needs one layer",
       "kind": "trial",
       "visible": true,
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-uniform-twos",
+      "id": "trial-uniform-twos",
       "name": "two identical layers suffice",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-nine-at-ends",
+      "id": "trial-nine-at-ends",
       "name": "zero between maximum digits does not matter",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-internal-maximum",
+      "id": "trial-internal-maximum",
       "name": "maximum occurs only inside the string",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-long-sparse-nine",
+      "id": "trial-long-sparse-nine",
       "name": "far-right maximum in a large decimal value",
       "kind": "trial",
       "visible": true,
@@ -139,6 +139,34 @@
       "tags": [
         "long",
         "far-right-maximum"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in n",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": "3"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in n",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": "333"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

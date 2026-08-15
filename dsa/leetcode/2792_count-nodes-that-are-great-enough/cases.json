@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-smaller-grandchild",
+      "id": "trial-smaller-grandchild",
       "name": "a smaller grandchild qualifies two ancestors",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-balanced-k-three",
+      "id": "trial-balanced-k-three",
       "name": "only the root has three smaller values",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-maximum-k",
+      "id": "trial-maximum-k",
       "name": "maximum k is met only by the large root",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-descending-complete",
+      "id": "trial-descending-complete",
       "name": "several complete-tree ancestors qualify",
       "kind": "trial",
       "visible": true,

@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-distinct-output",
+      "id": "trial-distinct-output",
       "name": "several qualifying pairs emit one user row",
       "kind": "trial",
       "visible": true,
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-partition-isolation",
+      "id": "trial-partition-isolation",
       "name": "nearby dates from different users do not form a pair",
       "kind": "trial",
       "visible": true,
@@ -260,7 +260,7 @@
       ]
     },
     {
-      "id": "real-month-boundary",
+      "id": "trial-month-boundary",
       "name": "calendar arithmetic crosses month boundaries",
       "kind": "trial",
       "visible": true,

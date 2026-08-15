@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "real-one-mismatch",
+      "id": "trial-one-mismatch",
       "name": "one mismatch cannot be fixed by a swap",
       "kind": "trial",
       "visible": true,
@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-wrong-cross-pair",
+      "id": "trial-wrong-cross-pair",
       "name": "two mismatches do not automatically form a swap",
       "kind": "trial",
       "visible": true,
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-adjacent-swap",
+      "id": "trial-adjacent-swap",
       "name": "adjacent reversed characters are repairable",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-three-mismatches",
+      "id": "trial-three-mismatches",
       "name": "exactly three mismatches are impossible",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-same-multiset-four-mismatches",
+      "id": "trial-same-multiset-four-mismatches",
       "name": "matching character counts are not sufficient",
       "kind": "trial",
       "visible": true,
@@ -135,6 +135,36 @@
       "tags": [
         "four-mismatches",
         "same-multiset"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in s1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "b",
+        "s2": "kanb"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in s1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "bbb",
+        "s2": "kanb"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

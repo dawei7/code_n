@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "hidden-interior-pattern",
+      "id": "trial-interior-pattern",
       "name": "short interior gain",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "hidden-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "extreme legal values",
       "kind": "trial",
       "visible": true,

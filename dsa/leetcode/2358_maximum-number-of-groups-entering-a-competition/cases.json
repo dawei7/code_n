@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-four-groups",
+      "id": "trial-four-groups",
       "name": "ten students meet the fourth triangular number",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-five-groups",
+      "id": "trial-five-groups",
       "name": "fifteen students meet the fifth triangular number",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-one-above-threshold",
+      "id": "trial-one-above-threshold",
       "name": "one unused-size surplus does not add a group",
       "kind": "trial",
       "visible": true,

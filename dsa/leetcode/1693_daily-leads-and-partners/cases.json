@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-many-leads-one-partner",
+      "id": "trial-many-leads-one-partner",
       "name": "several leads share one partner",
       "kind": "trial",
       "visible": true,
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "id": "real-two-grouping-dimensions",
+      "id": "trial-two-grouping-dimensions",
       "name": "dates and makes both partition the rows",
       "kind": "trial",
       "visible": true,

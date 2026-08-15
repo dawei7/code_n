@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-long-move",
+      "id": "trial-long-move",
       "name": "a large gain justifies moving two columns",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-stay",
+      "id": "trial-stay",
       "name": "staying in one column avoids all cost",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-one-step-switch",
+      "id": "trial-one-step-switch",
       "name": "adjacent high values pay one point",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-three-rows",
+      "id": "trial-three-rows",
       "name": "directional passes combine across three rows",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "zero matrix has zero maximum score",
       "kind": "trial",
       "visible": true,

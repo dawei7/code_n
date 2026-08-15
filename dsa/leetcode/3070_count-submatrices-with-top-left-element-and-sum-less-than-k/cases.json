@@ -121,8 +121,8 @@
       ]
     },
     {
-      "id": "real-one-row",
-      "name": "real: one-row prefix sums",
+      "id": "trial-one-row",
+      "name": "one-row prefix sums",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -143,8 +143,8 @@
       ]
     },
     {
-      "id": "real-rectangular",
-      "name": "real: inclusive rectangular prefixes",
+      "id": "trial-rectangular",
+      "name": "inclusive rectangular prefixes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -175,8 +175,8 @@
       ]
     },
     {
-      "id": "real-maximum-cell-values",
-      "name": "real: maximum values with equality",
+      "id": "trial-maximum-cell-values",
+      "name": "maximum values with equality",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -196,6 +196,32 @@
       "tags": [
         "real",
         "maximum-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            7,
+            6,
+            3
+          ],
+          [
+            6,
+            6,
+            1
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

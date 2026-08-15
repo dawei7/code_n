@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "two side-by-side magic squares",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "reflected magic square",
       "kind": "trial",
       "visible": true,
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "all zeros",
       "kind": "trial",
       "visible": true,
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "repeated fives have equal sums",
       "kind": "trial",
       "visible": true,
@@ -269,7 +269,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "narrow grid",
       "kind": "trial",
       "visible": true,

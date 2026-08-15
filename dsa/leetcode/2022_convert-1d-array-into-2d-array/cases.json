@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-single-cell",
+      "id": "trial-single-cell",
       "name": "one value fills one cell",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-duplicates-preserved",
+      "id": "trial-duplicates-preserved",
       "name": "duplicate values keep row-major order",
       "kind": "trial",
       "visible": true,
@@ -176,6 +176,43 @@
         ]
       ],
       "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in original",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "original": [
+          1
+        ],
+        "m": 2,
+        "n": 2
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in original",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "original": [
+          1,
+          1
+        ],
+        "m": 2,
+        "n": 2
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

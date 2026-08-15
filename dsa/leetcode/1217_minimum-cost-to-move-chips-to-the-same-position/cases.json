@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-all-odd",
+      "id": "trial-all-odd",
       "name": "distinct odd positions move for free",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-even-minority",
+      "id": "trial-even-minority",
       "name": "the smaller parity class moves",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-tied-parities",
+      "id": "trial-tied-parities",
       "name": "either destination parity is optimal",
       "kind": "trial",
       "visible": true,
@@ -129,6 +129,39 @@
       "expected": 3,
       "tags": [
         "tie"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "position": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "position": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

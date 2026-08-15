@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-column-order-impossible",
+      "id": "trial-column-order-impossible",
       "name": "available characters occur in the wrong column order",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-repeated-character",
+      "id": "trial-repeated-character",
       "name": "repeated columns and rows multiply combinations",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-shared-word-allowed",
+      "id": "trial-shared-word-allowed",
       "name": "the same word may supply multiple target positions",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-target-too-long",
+      "id": "trial-target-too-long",
       "name": "target longer than every word cannot be formed",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-skipped-columns",
+      "id": "trial-skipped-columns",
       "name": "valid constructions may skip different source columns",
       "kind": "trial",
       "visible": true,

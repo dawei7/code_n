@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-distinct-and-repeat",
+      "id": "trial-distinct-and-repeat",
       "name": "several tuples retain independent results",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-repeated-fibonacci",
+      "id": "trial-repeated-fibonacci",
       "name": "expensive source call is reused",
       "kind": "trial",
       "visible": true,

@@ -184,8 +184,8 @@
       ]
     },
     {
-      "id": "real-modulo-wrap",
-      "name": "real: path product wraps modulo 1e9+7",
+      "id": "trial-modulo-wrap",
+      "name": "path product wraps modulo 1e9+7",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -213,8 +213,8 @@
       ]
     },
     {
-      "id": "real-deep-chain",
-      "name": "real: factor accumulates along a longer chain",
+      "id": "trial-deep-chain",
+      "name": "factor accumulates along a longer chain",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -255,8 +255,8 @@
       ]
     },
     {
-      "id": "real-mixed-branches",
-      "name": "real: separate branches use independent products",
+      "id": "trial-mixed-branches",
+      "name": "separate branches use independent products",
       "kind": "trial",
       "visible": true,
       "input": {

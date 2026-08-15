@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-unsorted-single-gap",
+      "id": "trial-unsorted-single-gap",
       "name": "arbitrary input order does not affect the range scan",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-middle-gap",
+      "id": "trial-middle-gap",
       "name": "one gap appears between supplied interior values",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-upper-complete",
+      "id": "trial-upper-complete",
       "name": "a complete range may touch the value upper bound",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-upper-gaps",
+      "id": "trial-upper-gaps",
       "name": "missing values immediately below the upper bound",
       "kind": "trial",
       "visible": true,
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "id": "real-reversed-endpoints",
+      "id": "trial-reversed-endpoints",
       "name": "reversed endpoint order still produces ascending output",
       "kind": "trial",
       "visible": true,
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": "real-alternating-present",
+      "id": "trial-alternating-present",
       "name": "several separated gaps are recovered across the range",
       "kind": "trial",
       "visible": true,
@@ -276,6 +276,39 @@
       "tags": [
         "multiple-gaps",
         "unsorted"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

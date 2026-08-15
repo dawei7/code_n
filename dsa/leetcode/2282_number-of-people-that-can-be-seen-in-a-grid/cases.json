@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-equal-column",
+      "id": "trial-equal-column",
       "name": "equal-height blocking in one column",
       "kind": "trial",
       "visible": true,
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-mixed-grid",
+      "id": "trial-mixed-grid",
       "name": "both directions contain rises and blockers",
       "kind": "trial",
       "visible": true,
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-opposing-rows",
+      "id": "trial-opposing-rows",
       "name": "increasing and decreasing rows",
       "kind": "trial",
       "visible": true,

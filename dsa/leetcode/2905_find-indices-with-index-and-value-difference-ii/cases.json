@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-earlier-maximum",
+      "id": "trial-earlier-maximum",
       "name": "the earlier maximum detects the qualifying direction",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-earlier-minimum",
+      "id": "trial-earlier-minimum",
       "name": "the earlier minimum detects the qualifying direction",
       "kind": "trial",
       "visible": true,

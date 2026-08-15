@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-exact-sum",
+      "id": "trial-exact-sum",
       "name": "several representations share one digit sum",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-cross-length",
+      "id": "trial-cross-length",
       "name": "interval crosses a decimal length boundary",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-powers-of-ten",
+      "id": "trial-powers-of-ten",
       "name": "digit sum one through one hundred",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-maximum-endpoint",
+      "id": "trial-maximum-endpoint",
       "name": "powers of ten through the maximum endpoint",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-impossible-sum",
+      "id": "trial-impossible-sum",
       "name": "requested sum exceeds every candidate",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-both-endpoints",
+      "id": "trial-both-endpoints",
       "name": "both endpoints are included",
       "kind": "trial",
       "visible": true,

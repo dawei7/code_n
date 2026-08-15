@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "hidden-thirteen-tuples",
+      "id": "trial-thirteen-tuples",
       "name": "wider mixed arrays",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "hidden-empty",
+      "id": "trial-empty",
       "name": "empty arrays",
       "kind": "trial",
       "visible": true,

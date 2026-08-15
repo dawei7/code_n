@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-input-order-bad",
+      "id": "trial-input-order-bad",
       "name": "pairing by input index is suboptimal",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate workloads and capacities",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "values at the upper bound avoid floating arithmetic",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-bottleneck",
+      "id": "trial-bottleneck",
       "name": "the slowest sorted pair determines completion",
       "kind": "trial",
       "visible": true,
@@ -197,6 +197,49 @@
       "expected": 2,
       "tags": [
         "maximum-duration"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in jobs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "jobs": [
+          5
+        ],
+        "workers": [
+          1,
+          7,
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in jobs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "jobs": [
+          5,
+          5
+        ],
+        "workers": [
+          1,
+          7,
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

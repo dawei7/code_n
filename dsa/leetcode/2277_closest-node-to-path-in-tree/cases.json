@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "real-side-branch",
+      "id": "trial-side-branch",
       "name": "project a side branch onto the main path",
       "kind": "trial",
       "visible": true,
@@ -252,7 +252,7 @@
       ]
     },
     {
-      "id": "real-query-endpoint",
+      "id": "trial-query-endpoint",
       "name": "query node equals a path endpoint",
       "kind": "trial",
       "visible": true,
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "id": "real-root-independent",
+      "id": "trial-root-independent",
       "name": "median lies below the preprocessing root",
       "kind": "trial",
       "visible": true,

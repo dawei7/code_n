@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-three-workers",
+      "id": "trial-three-workers",
       "name": "one worker may remain below the optimum",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-exact-pairs",
+      "id": "trial-exact-pairs",
       "name": "complementary pairs give equal workloads",
       "kind": "trial",
       "visible": true,
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-four-workers",
+      "id": "trial-four-workers",
       "name": "four complementary pairs attain the average",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-maximum-count",
+      "id": "trial-maximum-count",
       "name": "maximum job count with repeated maximum durations",
       "kind": "trial",
       "visible": true,
@@ -214,6 +214,41 @@
         "maximum-n",
         "maximum-duration",
         "symmetry"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in jobs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "jobs": [
+          3
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in jobs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "jobs": [
+          3,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

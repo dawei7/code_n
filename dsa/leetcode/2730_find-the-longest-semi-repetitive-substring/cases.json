@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-separated-pairs",
+      "id": "trial-separated-pairs",
       "name": "distant equal pairs",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-two-clusters",
+      "id": "trial-two-clusters",
       "name": "equal pairs in separate clusters",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-maximum-no-pair",
+      "id": "trial-maximum-no-pair",
       "name": "maximum-length alternating digits",
       "kind": "trial",
       "visible": true,
@@ -110,6 +110,34 @@
       "tags": [
         "maximum",
         "no-pair"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "5"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "555"
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

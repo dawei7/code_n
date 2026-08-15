@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-single-nontiring",
+      "id": "trial-single-nontiring",
       "name": "one non-tiring day",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-middle",
+      "id": "trial-middle",
       "name": "longest interval begins after index zero",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-late-recovery",
+      "id": "trial-late-recovery",
       "name": "late tiring run overcomes prefix deficit",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-hour-bounds",
+      "id": "trial-hour-bounds",
       "name": "lower and upper hour bounds",
       "kind": "trial",
       "visible": true,
@@ -175,6 +175,23 @@
       "tags": [
         "real",
         "bounds"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in hours",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hours": [
+          9,
+          9
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-uneven-remainder",
+      "id": "trial-uneven-remainder",
       "name": "a remainder increment breaks an equal tie",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-modulo",
+      "id": "trial-modulo",
       "name": "the final product is reduced modulo the constant",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-large-k-single",
+      "id": "trial-large-k-single",
       "name": "a large operation budget on one factor",
       "kind": "trial",
       "visible": true,

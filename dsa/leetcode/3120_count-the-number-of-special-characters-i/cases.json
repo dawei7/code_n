@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-alternating-pairs",
+      "id": "trial-alternating-pairs",
       "name": "several interleaved pairs",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-partial-overlap",
+      "id": "trial-partial-overlap",
       "name": "only part of the alphabets overlap",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-mixed-boundaries",
+      "id": "trial-mixed-boundaries",
       "name": "alphabet endpoints and middle letters",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-uppercase-only",
+      "id": "trial-uppercase-only",
       "name": "uppercase repetitions only",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "maximum length with 25 special letters",
       "kind": "trial",
       "visible": true,

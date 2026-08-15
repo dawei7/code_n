@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-high-bit",
+      "id": "trial-high-bit",
       "name": "highest allowed power of two",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-large-mixed",
+      "id": "trial-large-mixed",
       "name": "large mixed bit pattern",
       "kind": "trial",
       "visible": true,

@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "hidden-extremes",
+      "id": "trial-extremes",
       "name": "full signed range values",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "hidden-duplicate-third",
+      "id": "trial-duplicate-third",
       "name": "duplicates around every rank",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "hidden-two-negative",
+      "id": "trial-two-negative",
       "name": "two distinct negative values",
       "kind": "trial",
       "visible": true,
@@ -147,6 +147,39 @@
       "expected": -5,
       "tags": [
         "negative-fallback"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

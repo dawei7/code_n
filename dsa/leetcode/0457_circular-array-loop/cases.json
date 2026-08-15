@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "hidden-backward-cycle",
+      "id": "trial-backward-cycle",
       "name": "valid negative-direction cycle",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "hidden-multiple-wraps",
+      "id": "trial-multiple-wraps",
       "name": "large jumps wrap several times",
       "kind": "trial",
       "visible": true,

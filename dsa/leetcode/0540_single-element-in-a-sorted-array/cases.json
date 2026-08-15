@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "hidden-negative",
+      "id": "trial-negative",
       "name": "negative singleton",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "hidden-longer",
+      "id": "trial-longer",
       "name": "several pairs on both sides",
       "kind": "trial",
       "visible": true,
@@ -146,6 +146,23 @@
       "expected": 3,
       "tags": [
         "balanced"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

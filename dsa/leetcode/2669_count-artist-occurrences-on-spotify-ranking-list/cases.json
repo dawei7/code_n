@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-distinct-counts",
+      "id": "trial-distinct-counts",
       "name": "descending counts dominate names",
       "kind": "trial",
       "visible": true,
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "real-repeated-track-name",
+      "id": "trial-repeated-track-name",
       "name": "rows count even when track names repeat",
       "kind": "trial",
       "visible": true,

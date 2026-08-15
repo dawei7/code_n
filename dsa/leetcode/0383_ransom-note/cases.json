@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-short-magazine",
+      "id": "trial-short-magazine",
       "name": "magazine is too short",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-late-shortage",
+      "id": "trial-late-shortage",
       "name": "one late multiplicity shortage",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "hidden-extra-letters",
+      "id": "trial-extra-letters",
       "name": "irrelevant supply remains",
       "kind": "trial",
       "visible": true,

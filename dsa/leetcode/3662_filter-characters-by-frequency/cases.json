@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "real-interleaved",
+      "id": "trial-interleaved",
       "name": "retained occurrences preserve interleaving",
       "kind": "trial",
       "visible": true,
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "maximum length separates counts around k",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-one-qualifying-letter",
+      "id": "trial-one-qualifying-letter",
       "name": "only one letter type remains",
       "kind": "trial",
       "visible": true,

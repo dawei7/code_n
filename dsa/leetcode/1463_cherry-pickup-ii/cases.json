@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-collision",
+      "id": "trial-collision",
       "name": "optimal robots meet and count center once",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "no cherries anywhere",
       "kind": "trial",
       "visible": true,
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "real-boundary-and-collision",
+      "id": "trial-boundary-and-collision",
       "name": "boundary moves compete with a valuable center",
       "kind": "trial",
       "visible": true,

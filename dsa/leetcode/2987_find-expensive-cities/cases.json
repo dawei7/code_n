@@ -200,8 +200,8 @@
       ]
     },
     {
-      "id": "real-listing-weighted",
-      "name": "real: national average is listing weighted",
+      "id": "trial-listing-weighted",
+      "name": "national average is listing weighted",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -253,8 +253,8 @@
       ]
     },
     {
-      "id": "real-city-order",
-      "name": "real: several qualifying cities sort ascending",
+      "id": "trial-city-order",
+      "name": "several qualifying cities sort ascending",
       "kind": "trial",
       "visible": true,
       "input": {

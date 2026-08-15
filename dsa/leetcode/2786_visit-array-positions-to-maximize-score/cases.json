@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-skip-intermediate-parity",
+      "id": "trial-skip-intermediate-parity",
       "name": "skip costly parity interruptions",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-start-odd",
+      "id": "trial-start-odd",
       "name": "odd initial state and later changes",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-regression-many-choices",
+      "id": "trial-regression-many-choices",
       "name": "preserve only the best score per ending parity",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "score exceeds 32-bit signed range",
       "kind": "trial",
       "visible": true,

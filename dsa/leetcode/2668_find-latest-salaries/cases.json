@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-input-order",
+      "id": "trial-input-order",
       "name": "output sorts employee identifiers",
       "kind": "trial",
       "visible": true,
@@ -234,7 +234,7 @@
       ]
     },
     {
-      "id": "real-many-records",
+      "id": "trial-many-records",
       "name": "maximum among several histories",
       "kind": "trial",
       "visible": true,

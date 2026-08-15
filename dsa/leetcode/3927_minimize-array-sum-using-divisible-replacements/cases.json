@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "hidden-partial-reduction",
+      "id": "trial-partial-reduction",
       "name": "only one connected divisibility family reduces",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-value",
+      "id": "trial-maximum-value",
       "name": "maximum values use the smallest present divisor",
       "kind": "trial",
       "visible": true,
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "hidden-all-equal",
+      "id": "trial-all-equal",
       "name": "equal values cannot reduce one another",
       "kind": "trial",
       "visible": true,
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "hidden-smallest-divisor-not-nearest",
+      "id": "trial-smallest-divisor-not-nearest",
       "name": "the smallest divisor beats a closer larger divisor",
       "kind": "trial",
       "visible": true,
@@ -287,7 +287,7 @@
       ]
     },
     {
-      "id": "hidden-disjoint-families",
+      "id": "trial-disjoint-families",
       "name": "independent divisor families minimize separately",
       "kind": "trial",
       "visible": true,
@@ -305,6 +305,39 @@
       "tags": [
         "disjoint-families",
         "duplicates-after-replacement"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

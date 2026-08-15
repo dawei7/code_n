@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-diagonal",
+      "id": "trial-diagonal",
       "name": "diagonal cells are separate islands",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "real-open-and-closed",
+      "id": "trial-open-and-closed",
       "name": "open component beside closed component",
       "kind": "trial",
       "visible": true,

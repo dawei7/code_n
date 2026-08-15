@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-good-chain",
+      "id": "trial-good-chain",
       "name": "a consistent good chain permits everyone",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-no-good-person",
+      "id": "trial-no-good-person",
       "name": "every possible good person triggers a contradiction",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-bad-statements-ignored",
+      "id": "trial-bad-statements-ignored",
       "name": "statements from excluded people impose no constraints",
       "kind": "trial",
       "visible": true,

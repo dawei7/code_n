@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-same-side",
+      "id": "trial-same-side",
       "name": "targets meet inside right subtree",
       "kind": "trial",
       "visible": true,

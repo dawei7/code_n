@@ -47,7 +47,7 @@
       ]
     },
     {
-      "id": "real-no-repeat",
+      "id": "trial-no-repeat",
       "name": "all ten-character windows differ",
       "kind": "trial",
       "visible": true,

@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-divisibility-gap",
+      "id": "trial-divisibility-gap",
       "name": "span not divisible by interval count fails early",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-unsorted-negative",
+      "id": "trial-unsorted-negative",
       "name": "shuffled descending negative progression succeeds",
       "kind": "trial",
       "visible": true,
@@ -253,7 +253,7 @@
       ]
     },
     {
-      "id": "real-overlapping",
+      "id": "trial-overlapping",
       "name": "overlapping queries are evaluated independently",
       "kind": "trial",
       "visible": true,
@@ -289,7 +289,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "endpoint values form a wide arithmetic progression",
       "kind": "trial",
       "visible": true,
@@ -317,6 +317,70 @@
       "tags": [
         "value-boundaries",
         "wide-step"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in l",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          6,
+          5,
+          9,
+          3,
+          7
+        ],
+        "l": [
+          0
+        ],
+        "r": [
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": [
+        true
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in l",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          6,
+          5,
+          9,
+          3,
+          7
+        ],
+        "l": [
+          0,
+          0
+        ],
+        "r": [
+          2,
+          3,
+          5
+        ]
+      },
+      "expected": [
+        true,
+        false
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

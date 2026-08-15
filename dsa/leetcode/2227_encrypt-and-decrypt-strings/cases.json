@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-unmapped-dictionary-word",
+      "id": "trial-unmapped-dictionary-word",
       "name": "dictionary words with unmapped characters are excluded",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-repeated-queries",
+      "id": "trial-repeated-queries",
       "name": "repeated decryptions preserve frequency counts",
       "kind": "trial",
       "visible": true,
@@ -281,7 +281,7 @@
       ]
     },
     {
-      "id": "real-order-sensitive",
+      "id": "trial-order-sensitive",
       "name": "concatenation preserves plaintext character order",
       "kind": "trial",
       "visible": true,
@@ -334,7 +334,7 @@
       ]
     },
     {
-      "id": "real-zero-match",
+      "id": "trial-zero-match",
       "name": "syntactically valid blocks can have no dictionary match",
       "kind": "trial",
       "visible": true,

@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-unsorted-mixed",
+      "id": "trial-unsorted-mixed",
       "name": "unsorted intervals have mixed overlap",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-release-several",
+      "id": "trial-release-several",
       "name": "several groups become reusable before a later start",
       "kind": "trial",
       "visible": true,
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-maximum-endpoint",
+      "id": "trial-maximum-endpoint",
       "name": "endpoint at maximum coordinate",
       "kind": "trial",
       "visible": true,

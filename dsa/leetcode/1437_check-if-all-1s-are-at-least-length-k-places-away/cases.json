@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-exact",
+      "id": "trial-exact",
       "name": "exactly k positions between ones",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-off-by-one",
+      "id": "trial-off-by-one",
       "name": "one fewer than k positions",
       "kind": "trial",
       "visible": true,

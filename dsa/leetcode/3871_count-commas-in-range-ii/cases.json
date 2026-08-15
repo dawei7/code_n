@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-second-threshold",
+      "id": "trial-second-threshold",
       "name": "the first two-comma value adds both contributions",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-after-second-threshold",
+      "id": "trial-after-second-threshold",
       "name": "two values contribute at the second threshold",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-before-third-threshold",
+      "id": "trial-before-third-threshold",
       "name": "immediately before the third threshold",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-third-threshold",
+      "id": "trial-third-threshold",
       "name": "the first three-comma value",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-fourth-threshold",
+      "id": "trial-fourth-threshold",
       "name": "the first four-comma value",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum endpoint reaches the fifth threshold",
       "kind": "trial",
       "visible": true,

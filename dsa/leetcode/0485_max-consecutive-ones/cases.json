@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "hidden-leading-run",
+      "id": "trial-leading-run",
       "name": "longest run at the start",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "hidden-long-trailing",
+      "id": "trial-long-trailing",
       "name": "zero before long trailing run",
       "kind": "trial",
       "visible": true,
@@ -136,6 +136,23 @@
       "expected": 4,
       "tags": [
         "trailing-run"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

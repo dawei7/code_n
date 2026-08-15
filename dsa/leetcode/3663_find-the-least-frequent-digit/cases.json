@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-all-unique",
+      "id": "trial-all-unique",
       "name": "every present digit occurs once",
       "kind": "trial",
       "visible": true,
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-smallest-digit-not-least",
+      "id": "trial-smallest-digit-not-least",
       "name": "high frequency prevents smallest present digit winning",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-many-zeroes",
+      "id": "trial-many-zeroes",
       "name": "one is rarer than zero",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-maximum-input",
+      "id": "trial-maximum-input",
       "name": "maximum signed 32-bit input",
       "kind": "trial",
       "visible": true,
@@ -126,6 +126,20 @@
       "tags": [
         "maximum-input",
         "ten-digits"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

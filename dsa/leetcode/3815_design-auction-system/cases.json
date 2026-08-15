@@ -326,7 +326,7 @@
       ]
     },
     {
-      "id": "real-independent-items",
+      "id": "trial-independent-items",
       "name": "item states remain independent",
       "kind": "trial",
       "visible": true,
@@ -379,7 +379,7 @@
       ]
     },
     {
-      "id": "real-update-creates-and-breaks-tie",
+      "id": "trial-update-creates-and-breaks-tie",
       "name": "an update creates then breaks an amount tie",
       "kind": "trial",
       "visible": true,
@@ -441,7 +441,7 @@
       ]
     },
     {
-      "id": "real-remove-and-readd",
+      "id": "trial-remove-and-readd",
       "name": "a removed bidder can later return with a new amount",
       "kind": "trial",
       "visible": true,
@@ -508,7 +508,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum user, item, and amount remain valid",
       "kind": "trial",
       "visible": true,
@@ -543,7 +543,7 @@
       ]
     },
     {
-      "id": "real-add-replaces-only-bid",
+      "id": "trial-add-replaces-only-bid",
       "name": "replacing the only bid keeps the same user active",
       "kind": "trial",
       "visible": true,
@@ -586,7 +586,7 @@
       ]
     },
     {
-      "id": "real-many-stale-versions",
+      "id": "trial-many-stale-versions",
       "name": "repeated replacements and removals clean stale leaders",
       "kind": "trial",
       "visible": true,

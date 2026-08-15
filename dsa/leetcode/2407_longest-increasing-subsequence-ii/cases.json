@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-gap-boundary",
+      "id": "trial-gap-boundary",
       "name": "jumps exactly equal to k are legal",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-large-gap-then-chain",
+      "id": "trial-large-gap-then-chain",
       "name": "later local chain excludes distant predecessor",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-ordinary-lis-when-k-large",
+      "id": "trial-ordinary-lis-when-k-large",
       "name": "large k recovers ordinary LIS behavior",
       "kind": "trial",
       "visible": true,

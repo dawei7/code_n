@@ -95,8 +95,8 @@
       ]
     },
     {
-      "id": "real-no-nearby-b",
-      "name": "real: occurrences exist but are too far apart",
+      "id": "trial-no-nearby-b",
+      "name": "occurrences exist but are too far apart",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -111,8 +111,8 @@
       ]
     },
     {
-      "id": "real-both-sides",
-      "name": "real: witnesses appear on both sides",
+      "id": "trial-both-sides",
+      "name": "witnesses appear on both sides",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -130,8 +130,8 @@
       ]
     },
     {
-      "id": "real-long-pattern-at-end",
-      "name": "real: occurrence ending at text boundary",
+      "id": "trial-long-pattern-at-end",
+      "name": "occurrence ending at text boundary",
       "kind": "trial",
       "visible": true,
       "input": {

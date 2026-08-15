@@ -126,8 +126,8 @@
       ]
     },
     {
-      "id": "real-negative-optimum",
-      "name": "real: maximum profit may stay negative",
+      "id": "trial-negative-optimum",
+      "name": "maximum profit may stay negative",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -148,8 +148,8 @@
       ]
     },
     {
-      "id": "real-middle-window",
-      "name": "real: best block begins inside array",
+      "id": "trial-middle-window",
+      "name": "best block begins inside array",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -176,8 +176,8 @@
       ]
     },
     {
-      "id": "real-longer-window",
-      "name": "real: four-day gain combines both halves",
+      "id": "trial-longer-window",
+      "name": "four-day gain combines both halves",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -206,8 +206,8 @@
       ]
     },
     {
-      "id": "real-all-sells",
-      "name": "real: existing sells make modification harmful",
+      "id": "trial-all-sells",
+      "name": "existing sells make modification harmful",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -236,8 +236,8 @@
       ]
     },
     {
-      "id": "real-all-buys",
-      "name": "real: forced hold and sell replace buys",
+      "id": "trial-all-buys",
+      "name": "forced hold and sell replace buys",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -266,8 +266,8 @@
       ]
     },
     {
-      "id": "real-large-prices",
-      "name": "real: large products use wide accumulator",
+      "id": "trial-large-prices",
+      "name": "large products use wide accumulator",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -289,6 +289,51 @@
       "tags": [
         "real",
         "maximum-price"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          4
+        ],
+        "strategy": [
+          -1,
+          0,
+          1
+        ],
+        "k": 2
+      },
+      "expected": -4,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          4,
+          4
+        ],
+        "strategy": [
+          -1,
+          0,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

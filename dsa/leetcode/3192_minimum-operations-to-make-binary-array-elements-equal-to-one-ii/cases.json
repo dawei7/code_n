@@ -151,8 +151,8 @@
       ]
     },
     {
-      "id": "real-long-runs",
-      "name": "real: several constant runs",
+      "id": "trial-long-runs",
+      "name": "several constant runs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -174,8 +174,8 @@
       ]
     },
     {
-      "id": "real-isolated-zero",
-      "name": "real: isolated zero requires two boundaries",
+      "id": "trial-isolated-zero",
+      "name": "isolated zero requires two boundaries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -194,8 +194,8 @@
       ]
     },
     {
-      "id": "real-isolated-one",
-      "name": "real: isolated one inside zeros",
+      "id": "trial-isolated-one",
+      "name": "isolated one inside zeros",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -214,8 +214,8 @@
       ]
     },
     {
-      "id": "real-mixed-boundaries",
-      "name": "real: mixed boundary pattern",
+      "id": "trial-mixed-boundaries",
+      "name": "mixed boundary pattern",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -238,6 +238,23 @@
       "tags": [
         "real",
         "transitions"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

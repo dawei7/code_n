@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-only-odd-indices",
+      "id": "trial-only-odd-indices",
       "name": "all set bits have odd indices",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-only-even-indices",
+      "id": "trial-only-even-indices",
       "name": "all set bits have even indices",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-maximum-input",
+      "id": "trial-maximum-input",
       "name": "maximum legal integer",
       "kind": "trial",
       "visible": true,

@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "hidden-small-primes",
+      "id": "trial-small-primes",
       "name": "small prime values",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "hidden-million-boundary",
+      "id": "trial-million-boundary",
       "name": "maximum element value",
       "kind": "trial",
       "visible": true,

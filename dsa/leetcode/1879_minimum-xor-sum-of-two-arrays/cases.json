@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-identical-multisets",
+      "id": "trial-identical-multisets",
       "name": "reordered identical multisets can achieve zero",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate occurrences are assigned separately",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-zero-first-array",
+      "id": "trial-zero-first-array",
       "name": "all zero values sum the unchanged second values",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-bit-patterns",
+      "id": "trial-bit-patterns",
       "name": "complementary bit patterns reward crossed assignments",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "large legal values preserve exact integer arithmetic",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-four-zero",
+      "id": "trial-four-zero",
       "name": "a complete multiset match gives four zero XOR pairs",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-mixed-six",
+      "id": "trial-mixed-six",
       "name": "six positions exercise overlapping assignment choices",
       "kind": "trial",
       "visible": true,
@@ -253,7 +253,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "equal second values make their occurrence identities interchangeable",
       "kind": "trial",
       "visible": true,
@@ -275,6 +275,27 @@
       "tags": [
         "duplicates",
         "permutation-neutral"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1
+        ],
+        "nums2": [
+          2,
+          3
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

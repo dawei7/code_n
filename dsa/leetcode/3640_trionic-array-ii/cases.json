@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-later-pattern",
+      "id": "trial-later-pattern",
       "name": "a later trionic pattern beats an earlier one",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-long-phases",
+      "id": "trial-long-phases",
       "name": "all three phases contain multiple comparisons",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-plateau-separator",
+      "id": "trial-plateau-separator",
       "name": "equality resets every partial phase",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "sums require wider than 32-bit arithmetic",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-negative-prefix-extension",
+      "id": "trial-negative-prefix-extension",
       "name": "extending an increasing state can still be optimal",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-overlapping-candidates",
+      "id": "trial-overlapping-candidates",
       "name": "overlapping trionic ranges share turns",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-final-extension",
+      "id": "trial-final-extension",
       "name": "the final increasing phase accumulates several values",
       "kind": "trial",
       "visible": true,

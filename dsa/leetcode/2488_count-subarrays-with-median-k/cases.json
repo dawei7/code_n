@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-pivot-last",
+      "id": "trial-pivot-last",
       "name": "k occurs at the last position",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-k-maximum",
+      "id": "trial-k-maximum",
       "name": "k is the maximum value",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating relations around k",
       "kind": "trial",
       "visible": true,

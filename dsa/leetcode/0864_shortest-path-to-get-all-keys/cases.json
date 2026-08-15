@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "keys along one corridor",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "descend through unlocked door",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "key reachable around its lock",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "one distant key in open grid",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "two opposite keys",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "hidden-6",
+      "id": "trial-6",
       "name": "detour around a wall",
       "kind": "trial",
       "visible": true,

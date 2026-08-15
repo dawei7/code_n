@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "real-short-phrase",
+      "id": "trial-short-phrase",
       "name": "diagonal word boundary",
       "kind": "trial",
       "visible": true,
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-more-rows-than-columns",
+      "id": "trial-more-rows-than-columns",
       "name": "row count may exceed column count",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-multiple-internal-spaces",
+      "id": "trial-multiple-internal-spaces",
       "name": "padding and meaningful spaces differ",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-four-rows",
+      "id": "trial-four-rows",
       "name": "partial final diagonal",
       "kind": "trial",
       "visible": true,
@@ -115,6 +115,36 @@
       "expected": "trailing padding",
       "tags": [
         "partial-diagonal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in encodedText",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "encodedText": "c",
+        "rows": 3
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in encodedText",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "encodedText": "ccc",
+        "rows": 3
+      },
+      "expected": "c",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-all-pairs-fit",
+      "id": "trial-all-pairs-fit",
       "name": "broad range contains every pair",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-duplicate-multiplicity",
+      "id": "trial-duplicate-multiplicity",
       "name": "duplicate values contribute separate pairs",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-single-value",
+      "id": "trial-single-value",
       "name": "single value has no index pair",
       "kind": "trial",
       "visible": true,
@@ -164,6 +164,43 @@
       "tags": [
         "singleton",
         "maximum-value"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "low": 2,
+        "high": 6
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "low": 2,
+        "high": 6
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-zero-target",
+      "id": "trial-zero-target",
       "name": "zero target includes every non-negative value",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-single-employee",
+      "id": "trial-single-employee",
       "name": "minimum array length below target",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-mixed-hours",
+      "id": "trial-mixed-hours",
       "name": "unordered values around the threshold",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "fifty employees with alternating qualification",
       "kind": "trial",
       "visible": true,
@@ -206,6 +206,41 @@
       "tags": [
         "maximum-length",
         "maximum-value"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in hours",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hours": [
+          0
+        ],
+        "target": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in hours",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hours": [
+          0,
+          0
+        ],
+        "target": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

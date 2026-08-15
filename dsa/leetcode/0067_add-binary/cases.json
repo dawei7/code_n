@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating carries",
       "kind": "trial",
       "visible": true,

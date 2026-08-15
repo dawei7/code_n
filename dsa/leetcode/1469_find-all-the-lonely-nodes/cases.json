@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-full-tree",
+      "id": "trial-full-tree",
       "name": "every internal node has two children",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-mixed-sides",
+      "id": "trial-mixed-sides",
       "name": "left-only and right-only children coexist",
       "kind": "trial",
       "visible": true,

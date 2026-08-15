@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-three-counts-before-extra",
+      "id": "trial-three-counts-before-extra",
       "name": "an extra c is excluded after equal counts of three",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-reset-two-character-state",
+      "id": "trial-reset-two-character-state",
       "name": "excluded letters split independent pair segments",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-complete-three-state",
+      "id": "trial-complete-three-state",
       "name": "equal prefix-difference states span the whole string",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-interior-pair-balance",
+      "id": "trial-interior-pair-balance",
       "name": "the best two-character interval lies inside mixed letters",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-extra-endpoint",
+      "id": "trial-extra-endpoint",
       "name": "twelve balanced characters precede one extra a",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-nested-types",
+      "id": "trial-nested-types",
       "name": "one-, two-, and three-character candidates compete",
       "kind": "trial",
       "visible": true,

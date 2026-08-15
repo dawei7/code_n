@@ -69,7 +69,7 @@
     },
     {
       "id": "long-same-key",
-      "name": "real: repeated case alternation stays on one key",
+      "name": "repeated case alternation stays on one key",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -82,7 +82,7 @@
     },
     {
       "id": "every-transition",
-      "name": "real: every adjacent normalized letter differs",
+      "name": "every adjacent normalized letter differs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -95,7 +95,7 @@
     },
     {
       "id": "repeated-groups",
-      "name": "real: group boundaries alone count",
+      "name": "group boundaries alone count",
       "kind": "trial",
       "visible": true,
       "input": {

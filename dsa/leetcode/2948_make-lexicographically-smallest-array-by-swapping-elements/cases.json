@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate values share one component",
       "kind": "trial",
       "visible": true,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-large-limit",
+      "id": "trial-large-limit",
       "name": "every value belongs to one component",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-already-smallest",
+      "id": "trial-already-smallest",
       "name": "reachable arrangement is already lexicographically minimal",
       "kind": "trial",
       "visible": true,
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-gap-boundary",
+      "id": "trial-gap-boundary",
       "name": "adjacent difference equal to limit connects values",
       "kind": "trial",
       "visible": true,
@@ -244,6 +244,46 @@
       ],
       "tags": [
         "inclusive-limit"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "limit": 2
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "limit": 2
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

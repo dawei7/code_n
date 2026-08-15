@@ -78,8 +78,8 @@
       ]
     },
     {
-      "id": "real-leading-one-and-zeros",
-      "name": "real: nine zero words cancel in pairs except one",
+      "id": "trial-leading-one-and-zeros",
+      "name": "nine zero words cancel in pairs except one",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -94,8 +94,8 @@
       ]
     },
     {
-      "id": "real-nine-repeated",
-      "name": "real: an odd number of identical digit words preserves its parity",
+      "id": "trial-nine-repeated",
+      "name": "an odd number of identical digit words preserves its parity",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -109,8 +109,8 @@
       ]
     },
     {
-      "id": "real-alternating-one-zero",
-      "name": "real: cross-word letter parity is accumulated globally",
+      "id": "trial-alternating-one-zero",
+      "name": "cross-word letter parity is accumulated globally",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -124,8 +124,8 @@
       ]
     },
     {
-      "id": "real-alternating-eight-zero",
-      "name": "real: internal and cross-word cancellations combine",
+      "id": "trial-alternating-eight-zero",
+      "name": "internal and cross-word cancellations combine",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -139,8 +139,8 @@
       ]
     },
     {
-      "id": "real-all-nonzero-digits",
-      "name": "real: many different digit names share letters",
+      "id": "trial-all-nonzero-digits",
+      "name": "many different digit names share letters",
       "kind": "trial",
       "visible": true,
       "input": {

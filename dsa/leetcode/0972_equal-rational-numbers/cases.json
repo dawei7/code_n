@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "bare integer and decimal point",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "repeating nine advances finite digit",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "finite zeros and repeating zero",
       "kind": "trial",
       "visible": true,
@@ -132,6 +132,36 @@
       "expected": true,
       "tags": [
         "zero"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0",
+        "t": "0.5(25)"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000",
+        "t": "0.5(25)"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

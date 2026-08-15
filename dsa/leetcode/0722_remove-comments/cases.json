@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "comment markers inside block are ignored",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "separated symbols are ordinary text",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-3",
       "name": "block closes before line comment",
       "kind": "trial",
       "visible": true,
@@ -158,6 +158,44 @@
       ],
       "tags": [
         "cross-line-buffer"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in source",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "source": [
+          "int main() {"
+        ]
+      },
+      "expected": [
+        "int main() {"
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in source",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "source": [
+          "int main() {",
+          "int main() {"
+        ]
+      },
+      "expected": [
+        "int main() {",
+        "int main() {"
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

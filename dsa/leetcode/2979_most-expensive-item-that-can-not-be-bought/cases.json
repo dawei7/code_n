@@ -58,8 +58,8 @@
       ]
     },
     {
-      "id": "real-moderate-primes",
-      "name": "real: moderate adjacent primes",
+      "id": "trial-moderate-primes",
+      "name": "moderate adjacent primes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -72,8 +72,8 @@
       ]
     },
     {
-      "id": "real-larger-primes",
-      "name": "real: larger coprime denominations",
+      "id": "trial-larger-primes",
+      "name": "larger coprime denominations",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -86,8 +86,8 @@
       ]
     },
     {
-      "id": "real-one-small-prime",
-      "name": "real: denomination two with a large prime",
+      "id": "trial-one-small-prime",
+      "name": "denomination two with a large prime",
       "kind": "trial",
       "visible": true,
       "input": {

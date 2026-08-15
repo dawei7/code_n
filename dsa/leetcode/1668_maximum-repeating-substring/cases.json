@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-word-longer",
+      "id": "trial-word-longer",
       "name": "word longer than sequence",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-overlapping-word",
+      "id": "trial-overlapping-word",
       "name": "overlapping occurrences are not adjacent copies",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-partial-tail",
+      "id": "trial-partial-tail",
       "name": "partial final copy is ignored",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-separated-runs",
+      "id": "trial-separated-runs",
       "name": "separated runs do not combine",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-single-character",
+      "id": "trial-single-character",
       "name": "one-character word follows longest run",
       "kind": "trial",
       "visible": true,
@@ -148,6 +148,36 @@
       "tags": [
         "single-character",
         "longest-run"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sequence": "a",
+        "word": "ab"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sequence": "aaa",
+        "word": "ab"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

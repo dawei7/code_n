@@ -106,8 +106,8 @@
       ]
     },
     {
-      "id": "real-mixed-bits",
-      "name": "real: only one selected operation shifts",
+      "id": "trial-mixed-bits",
+      "name": "only one selected operation shifts",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -124,8 +124,8 @@
       ]
     },
     {
-      "id": "real-alphabet-wrap",
-      "name": "real: twenty-six shifts wrap to a",
+      "id": "trial-alphabet-wrap",
+      "name": "twenty-six shifts wrap to a",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -165,8 +165,8 @@
       ]
     },
     {
-      "id": "real-high-operation",
-      "name": "real: only the highest relevant operation shifts",
+      "id": "trial-high-operation",
+      "name": "only the highest relevant operation shifts",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -226,8 +226,8 @@
       ]
     },
     {
-      "id": "real-maximum-k",
-      "name": "real: maximum position with every operation shifting",
+      "id": "trial-maximum-k",
+      "name": "maximum position with every operation shifting",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -286,6 +286,25 @@
       "tags": [
         "maximum",
         "wrap"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 1,
+        "operations": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": "a",
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

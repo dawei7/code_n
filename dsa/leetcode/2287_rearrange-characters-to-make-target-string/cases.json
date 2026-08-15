@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-uneven-supplies",
+      "id": "trial-uneven-supplies",
       "name": "the least frequent required letter limits copies",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-multiple-demands",
+      "id": "trial-multiple-demands",
       "name": "each copy needs two a letters",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-irrelevant-letters",
+      "id": "trial-irrelevant-letters",
       "name": "unrelated letters do not affect the quotient",
       "kind": "trial",
       "visible": true,

@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-modulo-large-squares",
+      "id": "trial-modulo-large-squares",
       "name": "large squares are reduced modulo the required modulus",
       "kind": "trial",
       "visible": true,

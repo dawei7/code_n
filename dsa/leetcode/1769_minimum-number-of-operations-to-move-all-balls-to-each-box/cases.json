@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-all-balls",
+      "id": "trial-all-balls",
       "name": "every box initially contains one ball",
       "kind": "trial",
       "visible": true,
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-endpoint-balls",
+      "id": "trial-endpoint-balls",
       "name": "endpoint balls give a constant total distance",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-centered-ball",
+      "id": "trial-centered-ball",
       "name": "one centered ball creates absolute distances",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-asymmetric-pair",
+      "id": "trial-asymmetric-pair",
       "name": "an asymmetric pair distinguishes both sweeps",
       "kind": "trial",
       "visible": true,
@@ -149,6 +149,24 @@
       "tags": [
         "two-balls",
         "asymmetric"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in boxes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "boxes": "111"
+      },
+      "expected": [
+        3,
+        2,
+        3
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

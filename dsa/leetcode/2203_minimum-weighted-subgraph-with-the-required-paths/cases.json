@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-parallel-edges",
+      "id": "trial-parallel-edges",
       "name": "the cheaper parallel edge controls the optimum",
       "kind": "trial",
       "visible": true,
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "id": "real-cycle",
+      "id": "trial-cycle",
       "name": "positive cycles cannot improve the shared route",
       "kind": "trial",
       "visible": true,
@@ -281,7 +281,7 @@
       ]
     },
     {
-      "id": "real-one-source-isolated",
+      "id": "trial-one-source-isolated",
       "name": "an isolated source makes the answer impossible",
       "kind": "trial",
       "visible": true,
@@ -314,7 +314,7 @@
       ]
     },
     {
-      "id": "real-large-weights",
+      "id": "trial-large-weights",
       "name": "result requires a wide integer sum",
       "kind": "trial",
       "visible": true,

@@ -298,8 +298,8 @@
       ]
     },
     {
-      "id": "real-shuffled-edges",
-      "name": "real: shuffled edge order",
+      "id": "trial-shuffled-edges",
+      "name": "shuffled edge order",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -340,8 +340,8 @@
       ]
     },
     {
-      "id": "real-multi-level",
-      "name": "real: several internal branches",
+      "id": "trial-multi-level",
+      "name": "several internal branches",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -397,8 +397,8 @@
       ]
     },
     {
-      "id": "real-base-boundaries",
-      "name": "real: large and small leaf durations",
+      "id": "trial-base-boundaries",
+      "name": "large and small leaf durations",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -429,8 +429,8 @@
       ]
     },
     {
-      "id": "real-large-chain-values",
-      "name": "real: large values on a chain",
+      "id": "trial-large-chain-values",
+      "name": "large values on a chain",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -471,8 +471,8 @@
       ]
     },
     {
-      "id": "real-wide-star",
-      "name": "real: wide star with powers",
+      "id": "trial-wide-star",
+      "name": "wide star with powers",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -518,8 +518,8 @@
       ]
     },
     {
-      "id": "real-two-tasks",
-      "name": "real: two-task boundary",
+      "id": "trial-two-tasks",
+      "name": "two-task boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -545,8 +545,8 @@
       ]
     },
     {
-      "id": "real-deep-right-branch",
-      "name": "real: deeper right branch",
+      "id": "trial-deep-right-branch",
+      "name": "deeper right branch",
       "kind": "trial",
       "visible": true,
       "input": {

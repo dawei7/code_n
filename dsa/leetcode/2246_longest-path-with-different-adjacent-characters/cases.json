@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-below-root",
+      "id": "trial-below-root",
       "name": "longest valid path lies below an incompatible root edge",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-nonadjacent-equal",
+      "id": "trial-nonadjacent-equal",
       "name": "equal nonadjacent characters remain legal",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-three-branches",
+      "id": "trial-three-branches",
       "name": "only the two longest child branches form one path",
       "kind": "trial",
       "visible": true,

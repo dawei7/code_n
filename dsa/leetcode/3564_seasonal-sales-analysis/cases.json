@@ -320,8 +320,8 @@
       ]
     },
     {
-      "id": "real-category-breaks-complete-tie",
-      "name": "real: category name breaks a complete aggregate tie",
+      "id": "trial-category-breaks-complete-tie",
+      "name": "category name breaks a complete aggregate tie",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -394,8 +394,8 @@
       ]
     },
     {
-      "id": "real-only-represented-seasons",
-      "name": "real: omit absent seasons and sort represented seasons",
+      "id": "trial-only-represented-seasons",
+      "name": "omit absent seasons and sort represented seasons",
       "kind": "trial",
       "visible": true,
       "input": {

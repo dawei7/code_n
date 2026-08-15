@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-three-runs",
+      "id": "trial-three-runs",
       "name": "three long runs are truncated independently",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-separated-letter",
+      "id": "trial-separated-letter",
       "name": "matching letters in separated runs do not merge",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-boundary-pairs",
+      "id": "trial-boundary-pairs",
       "name": "runs of two require no deletion",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-alternating-with-tail",
+      "id": "trial-alternating-with-tail",
       "name": "alternating prefix followed by a long run",
       "kind": "trial",
       "visible": true,
@@ -138,6 +138,34 @@
       "tags": [
         "mixed",
         "long-tail"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "l"
+      },
+      "expected": "l",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "lll"
+      },
+      "expected": "ll",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

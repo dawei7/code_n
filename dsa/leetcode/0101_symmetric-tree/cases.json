@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-sparse",
+      "id": "trial-sparse",
       "name": "sparse symmetric tree",
       "kind": "trial",
       "visible": true,

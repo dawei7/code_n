@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-large-battery-capped",
+      "id": "trial-large-battery-capped",
       "name": "one oversized battery cannot serve two computers at once",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-balanced-capacities",
+      "id": "trial-balanced-capacities",
       "name": "balanced capacity reaches the average bound",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-leftover-energy",
+      "id": "trial-leftover-energy",
       "name": "unusable leftover energy is discarded",
       "kind": "trial",
       "visible": true,
@@ -131,6 +131,42 @@
       "expected": 6,
       "tags": [
         "leftover"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "batteries": [
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in batteries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "batteries": [
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

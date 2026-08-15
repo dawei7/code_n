@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-five-digit-digitorial",
+      "id": "trial-five-digit-digitorial",
       "name": "40585 is digitorial in its original order",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-five-digit-permutation",
+      "id": "trial-five-digit-permutation",
       "name": "58045 can be rearranged into 40585",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-single-three",
+      "id": "trial-single-three",
       "name": "three factorial does not equal three",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-two-digit-mismatch",
+      "id": "trial-two-digit-mismatch",
       "name": "85 has no digitorial ordering",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-repeated-zeroes",
+      "id": "trial-repeated-zeroes",
       "name": "both zero digits contribute one factorial",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "one billion exercises the ten-digit boundary",
       "kind": "trial",
       "visible": true,

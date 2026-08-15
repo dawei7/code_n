@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-upper-right-corner",
+      "id": "trial-upper-right-corner",
       "name": "h8 has the reference color",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-upper-left-corner",
+      "id": "trial-upper-left-corner",
       "name": "a8 is white",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-lower-right-corner",
+      "id": "trial-lower-right-corner",
       "name": "h1 is white",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-central-black",
+      "id": "trial-central-black",
       "name": "central square d4 is black",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-central-white",
+      "id": "trial-central-white",
       "name": "central square e4 is white",
       "kind": "trial",
       "visible": true,
@@ -155,6 +155,20 @@
       "tags": [
         "center",
         "white"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in coordinates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coordinates": "aaa"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

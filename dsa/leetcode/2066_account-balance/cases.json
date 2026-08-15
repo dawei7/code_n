@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-input-order",
+      "id": "trial-input-order",
       "name": "calculation and output ignore input row order",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-zero-balance",
+      "id": "trial-zero-balance",
       "name": "withdrawing the full balance yields zero",
       "kind": "trial",
       "visible": true,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-repeated-changes",
+      "id": "trial-repeated-changes",
       "name": "every row reports its own cumulative result",
       "kind": "trial",
       "visible": true,

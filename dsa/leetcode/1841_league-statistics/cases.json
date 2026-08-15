@@ -288,7 +288,7 @@
       ]
     },
     {
-      "id": "real-points-then-difference",
+      "id": "trial-points-then-difference",
       "name": "equal points are ranked by goal difference",
       "kind": "trial",
       "visible": true,
@@ -381,7 +381,7 @@
       ]
     },
     {
-      "id": "real-final-name-tiebreak",
+      "id": "trial-final-name-tiebreak",
       "name": "equal points and difference use team name",
       "kind": "trial",
       "visible": true,
@@ -474,7 +474,7 @@
       ]
     },
     {
-      "id": "real-reversed-fixtures",
+      "id": "trial-reversed-fixtures",
       "name": "reversed home and away fixtures both count",
       "kind": "trial",
       "visible": true,
@@ -544,7 +544,7 @@
       ]
     },
     {
-      "id": "real-mixed-results",
+      "id": "trial-mixed-results",
       "name": "accumulate a win draw and loss",
       "kind": "trial",
       "visible": true,
@@ -649,7 +649,7 @@
       ]
     },
     {
-      "id": "real-high-scoring-draw",
+      "id": "trial-high-scoring-draw",
       "name": "a high-scoring draw preserves both goal totals",
       "kind": "trial",
       "visible": true,
@@ -713,7 +713,7 @@
       ]
     },
     {
-      "id": "real-points-outrank-difference",
+      "id": "trial-points-outrank-difference",
       "name": "more points outrank a much larger goal difference",
       "kind": "trial",
       "visible": true,

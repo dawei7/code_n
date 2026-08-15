@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-single-stone",
+      "id": "trial-single-stone",
       "name": "one stone remains at the only cell",
       "kind": "trial",
       "visible": true,
@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "real-single-obstacle",
+      "id": "trial-single-obstacle",
       "name": "one obstacle remains at the only cell",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-segmented-row",
+      "id": "trial-segmented-row",
       "name": "obstacle prevents a left stone crossing segments",
       "kind": "trial",
       "visible": true,
@@ -268,7 +268,7 @@
       ]
     },
     {
-      "id": "real-all-empty",
+      "id": "trial-all-empty",
       "name": "an all-empty rectangle only changes orientation",
       "kind": "trial",
       "visible": true,
@@ -309,7 +309,7 @@
       ]
     },
     {
-      "id": "real-single-column",
+      "id": "trial-single-column",
       "name": "a source column becomes one reversed row",
       "kind": "trial",
       "visible": true,
@@ -342,7 +342,7 @@
       ]
     },
     {
-      "id": "real-trailing-obstacle",
+      "id": "trial-trailing-obstacle",
       "name": "obstacle at the right edge blocks all stones before it",
       "kind": "trial",
       "visible": true,

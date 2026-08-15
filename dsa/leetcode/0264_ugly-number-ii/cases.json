@@ -43,7 +43,7 @@
       ]
     },
     {
-      "id": "real-hundredth",
+      "id": "trial-hundredth",
       "name": "larger sequence prefix",
       "kind": "trial",
       "visible": true,

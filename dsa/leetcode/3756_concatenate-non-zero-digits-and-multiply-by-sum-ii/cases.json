@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-all-zeros",
+      "id": "trial-all-zeros",
       "name": "every retained sequence is empty",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-repeated-nines",
+      "id": "trial-repeated-nines",
       "name": "repeated nonzero digits across zero gaps",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-boundary-mapping",
+      "id": "trial-boundary-mapping",
       "name": "inclusive endpoints map to compressed boundaries",
       "kind": "trial",
       "visible": true,

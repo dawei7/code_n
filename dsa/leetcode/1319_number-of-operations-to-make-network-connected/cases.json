@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "hidden-isolated-vertex",
+      "id": "trial-isolated-vertex",
       "name": "one vertex remains isolated without a spare",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "hidden-three-components",
+      "id": "trial-three-components",
       "name": "two cycles fund two joins",
       "kind": "trial",
       "visible": true,

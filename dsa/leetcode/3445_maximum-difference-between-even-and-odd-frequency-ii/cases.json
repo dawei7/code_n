@@ -75,8 +75,8 @@
       ]
     },
     {
-      "id": "real-all-digits",
-      "name": "real: all digits with paired frequencies",
+      "id": "trial-all-digits",
+      "name": "all digits with paired frequencies",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -90,8 +90,8 @@
       ]
     },
     {
-      "id": "real-positive-even-required",
-      "name": "real: zero even count cannot qualify",
+      "id": "trial-positive-even-required",
+      "name": "zero even count cannot qualify",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -105,8 +105,8 @@
       ]
     },
     {
-      "id": "real-late-odd-frequency",
-      "name": "real: best odd role appears at the end",
+      "id": "trial-late-odd-frequency",
+      "name": "best odd role appears at the end",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -120,8 +120,8 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "real: alternating pair and length bound",
+      "id": "trial-alternating",
+      "name": "alternating pair and length bound",
       "kind": "trial",
       "visible": true,
       "input": {

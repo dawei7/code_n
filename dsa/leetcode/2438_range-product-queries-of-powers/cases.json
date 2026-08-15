@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-two-set-bits",
+      "id": "trial-two-set-bits",
       "name": "full and singleton ranges",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-high-single-power",
+      "id": "trial-high-single-power",
       "name": "highest permitted single bit",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-modulo-wrap",
+      "id": "trial-modulo-wrap",
       "name": "long product wraps modulo",
       "kind": "trial",
       "visible": true,

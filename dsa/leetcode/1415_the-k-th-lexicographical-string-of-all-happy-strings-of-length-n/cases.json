@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-block-boundary",
+      "id": "trial-block-boundary",
       "name": "exact block boundary",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-large-rank",
+      "id": "trial-large-rank",
       "name": "largest permitted rank",
       "kind": "trial",
       "visible": true,

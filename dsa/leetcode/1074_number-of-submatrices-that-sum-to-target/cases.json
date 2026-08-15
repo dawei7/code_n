@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-rectangular",
+      "id": "trial-rectangular",
       "name": "wider than tall matrix",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-tall",
+      "id": "trial-tall",
       "name": "taller than wide matrix",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-negative-target",
+      "id": "trial-negative-target",
       "name": "negative target with mixed values",
       "kind": "trial",
       "visible": true,

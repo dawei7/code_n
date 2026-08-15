@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "hidden-all-zero",
+      "id": "trial-all-zero",
       "name": "larger zero grid collapses",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "hidden-checkerboard",
+      "id": "trial-checkerboard",
       "name": "every two-by-two region stays divided",
       "kind": "trial",
       "visible": true,

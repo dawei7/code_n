@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-round-third",
+      "id": "trial-round-third",
       "name": "one of three rounds to two decimals",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-date-order",
+      "id": "trial-date-order",
       "name": "dates sort independently of insertion order",
       "kind": "trial",
       "visible": true,

@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-equal-prices-in-all-stores",
+      "id": "trial-equal-prices-in-all-stores",
       "name": "equal prices remain three distinct store rows",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-zero-and-negative-prices",
+      "id": "trial-zero-and-negative-prices",
       "name": "non-null integer values are retained regardless of sign",
       "kind": "trial",
       "visible": true,
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "real-nonconsecutive-product-ids",
+      "id": "trial-nonconsecutive-product-ids",
       "name": "identifiers and sparse stores are independent",
       "kind": "trial",
       "visible": true,
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "id": "real-each-store-represented-separately",
+      "id": "trial-each-store-represented-separately",
       "name": "separate products cover the three branch labels",
       "kind": "trial",
       "visible": true,

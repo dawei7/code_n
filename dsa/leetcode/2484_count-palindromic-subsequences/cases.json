@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-overlapping-uniform",
+      "id": "trial-overlapping-uniform",
       "name": "overlapping all-zero selections",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-nested-palindromes",
+      "id": "trial-nested-palindromes",
       "name": "several pair choices around different centers",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-repeated-pairs",
+      "id": "trial-repeated-pairs",
       "name": "repeated outer and inner pairs",
       "kind": "trial",
       "visible": true,
@@ -111,6 +111,34 @@
       "expected": 2,
       "tags": [
         "repeated-pairs"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

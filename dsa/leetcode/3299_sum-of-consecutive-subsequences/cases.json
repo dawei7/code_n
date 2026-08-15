@@ -103,8 +103,8 @@
       ]
     },
     {
-      "id": "real-gap",
-      "name": "real: a value gap permits only singletons",
+      "id": "trial-gap",
+      "name": "a value gap permits only singletons",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -119,8 +119,8 @@
       ]
     },
     {
-      "id": "real-duplicate-middle",
-      "name": "real: duplicate middle values create distinct index choices",
+      "id": "trial-duplicate-middle",
+      "name": "duplicate middle values create distinct index choices",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-value-boundary",
-      "name": "real: maximum neighboring values form a decreasing pair",
+      "id": "trial-value-boundary",
+      "name": "maximum neighboring values form a decreasing pair",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -155,8 +155,8 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "real: alternating values create many short directional choices",
+      "id": "trial-alternating",
+      "name": "alternating values create many short directional choices",
       "kind": "trial",
       "visible": true,
       "input": {

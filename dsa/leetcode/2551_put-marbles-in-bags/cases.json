@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-increasing",
+      "id": "trial-increasing",
       "name": "choose extremes among increasing boundaries",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-mixed",
+      "id": "trial-mixed",
       "name": "nonmonotonic boundary costs",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "score difference uses wide integers",
       "kind": "trial",
       "visible": true,

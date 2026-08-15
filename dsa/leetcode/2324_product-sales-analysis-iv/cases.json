@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-price-matters",
+      "id": "trial-price-matters",
       "name": "fewer units can cost more at a higher price",
       "kind": "trial",
       "visible": true,
@@ -248,7 +248,7 @@
       ]
     },
     {
-      "id": "real-two-users",
+      "id": "trial-two-users",
       "name": "maxima are partitioned independently by user",
       "kind": "trial",
       "visible": true,
@@ -316,7 +316,7 @@
       ]
     },
     {
-      "id": "real-exact-tie",
+      "id": "trial-exact-tie",
       "name": "different quantity-price pairs can tie exactly",
       "kind": "trial",
       "visible": true,

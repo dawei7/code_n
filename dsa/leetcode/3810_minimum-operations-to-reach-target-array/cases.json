@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "real-repeated-mixed-values",
+      "id": "trial-repeated-mixed-values",
       "name": "correct positions do not add their values to the count",
       "kind": "trial",
       "visible": true,
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": "real-alternating-cycle",
+      "id": "trial-alternating-cycle",
       "name": "alternating occurrences still contribute by distinct value",
       "kind": "trial",
       "visible": true,
@@ -280,7 +280,7 @@
       ]
     },
     {
-      "id": "real-single-element",
+      "id": "trial-single-element",
       "name": "one mismatched element needs one operation",
       "kind": "trial",
       "visible": true,
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum legal values and a matching middle position",
       "kind": "trial",
       "visible": true,
@@ -325,6 +325,49 @@
       "tags": [
         "maximum-values",
         "one-distinct-mismatch"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "target": [
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "target": [
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

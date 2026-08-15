@@ -112,8 +112,8 @@
       ]
     },
     {
-      "id": "real-many-small-sides",
-      "name": "real: many small sides beat one huge side",
+      "id": "trial-many-small-sides",
+      "name": "many small sides beat one huge side",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -133,8 +133,8 @@
       ]
     },
     {
-      "id": "real-large-total",
-      "name": "real: perimeter exceeds 32-bit signed range",
+      "id": "trial-large-total",
+      "name": "perimeter exceeds 32-bit signed range",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -151,8 +151,8 @@
       ]
     },
     {
-      "id": "real-unsorted-all-valid",
-      "name": "real: every unsorted side belongs to the optimum",
+      "id": "trial-unsorted-all-valid",
+      "name": "every unsorted side belongs to the optimum",
       "kind": "trial",
       "visible": true,
       "input": {

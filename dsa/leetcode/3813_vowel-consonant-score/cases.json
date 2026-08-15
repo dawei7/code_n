@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-large-score",
+      "id": "trial-large-score",
       "name": "one consonant permits a score larger than one",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-all-consonants",
+      "id": "trial-all-consonants",
       "name": "a consonant-only string has score zero",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-entire-alphabet",
+      "id": "trial-entire-alphabet",
       "name": "y and every other non-vowel letter are consonants",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-maximum-length-mixed",
+      "id": "trial-maximum-length-mixed",
       "name": "maximum length mixes letters, spaces, and digits",
       "kind": "trial",
       "visible": true,
@@ -210,6 +210,34 @@
       "tags": [
         "maximum-length",
         "ignored-characters"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "c"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ccc"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

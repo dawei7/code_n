@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-repeated-true",
+      "id": "trial-repeated-true",
       "name": "repeated characters use separate positions",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-repeated-false",
+      "id": "trial-repeated-false",
       "name": "insufficient repeated positions",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "hidden-order",
+      "id": "trial-order",
       "name": "all characters exist in wrong order",
       "kind": "trial",
       "visible": true,
@@ -117,6 +117,36 @@
       "expected": false,
       "tags": [
         "order"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "t": "ahbgdc"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "t": "ahbgdc"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

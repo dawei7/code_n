@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-release-exact-parity",
+      "id": "trial-release-exact-parity",
       "name": "release time has reachable parity",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-release-extra-second",
+      "id": "trial-release-extra-second",
       "name": "release time needs one extra second",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-maximum-release",
+      "id": "trial-maximum-release",
       "name": "destination has the maximum release time",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-nonmonotone-times",
+      "id": "trial-nonmonotone-times",
       "name": "shortest route crosses nonmonotone release times",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-zero-first-neighbor",
+      "id": "trial-zero-first-neighbor",
       "name": "a zero-valued first neighbor opens the route",
       "kind": "trial",
       "visible": true,
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "real-detour-with-waits",
+      "id": "trial-detour-with-waits",
       "name": "detour remains reachable through oscillation",
       "kind": "trial",
       "visible": true,

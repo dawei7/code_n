@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-two-nodes",
+      "id": "trial-two-nodes",
       "name": "two-node tree",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-deep",
+      "id": "trial-deep",
       "name": "nonadjacent deep values",
       "kind": "trial",
       "visible": true,

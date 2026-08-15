@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-one-row-fails",
+      "id": "trial-one-row-fails",
       "name": "one nonperiodic row makes the matrix different",
       "kind": "trial",
       "visible": true,
@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "real-odd-row-direction",
+      "id": "trial-odd-row-direction",
       "name": "odd row rotates right under explicit semantics",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-period-three",
+      "id": "trial-period-three",
       "name": "repeated three-value blocks survive three shifts",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-rectangular-false",
+      "id": "trial-rectangular-false",
       "name": "rectangular matrix with no matching period",
       "kind": "trial",
       "visible": true,
@@ -276,6 +276,37 @@
       "expected": false,
       "tags": [
         "rectangular"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ],
+        "k": 1
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

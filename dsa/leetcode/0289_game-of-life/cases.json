@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-blinker",
+      "id": "trial-blinker",
       "name": "blinker rotates",
       "kind": "trial",
       "visible": true,

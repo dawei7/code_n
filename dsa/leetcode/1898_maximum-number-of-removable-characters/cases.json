@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-irrelevant-characters",
+      "id": "trial-irrelevant-characters",
       "name": "all removable separator characters are irrelevant",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-pattern-equals-source",
+      "id": "trial-pattern-equals-source",
       "name": "removing anything fails when pattern equals source",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-removal-order",
+      "id": "trial-removal-order",
       "name": "removal order produces a failure at the second prefix",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-late-essential-index",
+      "id": "trial-late-essential-index",
       "name": "five irrelevant removals precede an essential character",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-position-not-frequency",
+      "id": "trial-position-not-frequency",
       "name": "enough letters remain but their order stops forming the pattern",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-nonmonotone-indices",
+      "id": "trial-nonmonotone-indices",
       "name": "numeric index order differs from removal order",
       "kind": "trial",
       "visible": true,

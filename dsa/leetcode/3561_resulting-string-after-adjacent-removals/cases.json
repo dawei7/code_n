@@ -90,8 +90,8 @@
       ]
     },
     {
-      "id": "real-no-removals",
-      "name": "real: a stable string remains unchanged",
+      "id": "trial-no-removals",
+      "name": "a stable string remains unchanged",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -105,8 +105,8 @@
       ]
     },
     {
-      "id": "real-two-stage-wrap-cascade",
-      "name": "real: ordinary removal exposes a circular pair",
+      "id": "trial-two-stage-wrap-cascade",
+      "name": "ordinary removal exposes a circular pair",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -120,8 +120,8 @@
       ]
     },
     {
-      "id": "real-equal-letters-survive",
-      "name": "real: equal adjacent letters are not consecutive",
+      "id": "trial-equal-letters-survive",
+      "name": "equal adjacent letters are not consecutive",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -135,8 +135,8 @@
       ]
     },
     {
-      "id": "real-circular-pair-before-ordinary-pair",
-      "name": "real: leftmost circular pair is removed first",
+      "id": "trial-circular-pair-before-ordinary-pair",
+      "name": "leftmost circular pair is removed first",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -150,8 +150,8 @@
       ]
     },
     {
-      "id": "real-alphabet-chain",
-      "name": "real: the full alphabet cancels in adjacent pairs",
+      "id": "trial-alphabet-chain",
+      "name": "the full alphabet cancels in adjacent pairs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -165,8 +165,8 @@
       ]
     },
     {
-      "id": "real-repeated-letters",
-      "name": "real: repeated identical letters all remain",
+      "id": "trial-repeated-letters",
+      "name": "repeated identical letters all remain",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -177,6 +177,20 @@
         "real",
         "equal-letters",
         "stable"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": "aaa",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

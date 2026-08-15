@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-multiple",
+      "id": "trial-multiple",
       "name": "multiple independent zeroes",
       "kind": "trial",
       "visible": true,

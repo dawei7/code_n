@@ -48,7 +48,7 @@
       ]
     },
     {
-      "id": "real-reserve-limited",
+      "id": "trial-reserve-limited",
       "name": "reserve limits transfers",
       "kind": "trial",
       "visible": true,
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "real-main-below-trigger",
+      "id": "trial-main-below-trigger",
       "name": "abundant reserve cannot trigger transfer",
       "kind": "trial",
       "visible": true,
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-both-maximum",
+      "id": "trial-both-maximum",
       "name": "both inputs at maximum",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-one-before-next-trigger",
+      "id": "trial-one-before-next-trigger",
       "name": "one liter short of second trigger",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-exact-second-trigger",
+      "id": "trial-exact-second-trigger",
       "name": "exact second transfer threshold",
       "kind": "trial",
       "visible": true,
@@ -115,6 +115,36 @@
       "expected": 110,
       "tags": [
         "threshold"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value mainTank=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mainTank": 1,
+        "additionalTank": 10
+      },
+      "expected": 10,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value additionalTank=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mainTank": 5,
+        "additionalTank": 1
+      },
+      "expected": 60,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-large-times",
+      "id": "trial-large-times",
       "name": "differences near the time bound remain exact",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-tie-not-last",
+      "id": "trial-tie-not-last",
       "name": "largest tied key is not the final press",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-short-final",
+      "id": "trial-short-final",
       "name": "short final press does not replace the maximum",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-many-ties",
+      "id": "trial-many-ties",
       "name": "several equal maxima resolve by character only",
       "kind": "trial",
       "visible": true,
@@ -196,6 +196,46 @@
       "tags": [
         "multiple-ties",
         "lexicographic"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in keysPressed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "releaseTimes": [
+          9,
+          29,
+          49,
+          50
+        ],
+        "keysPressed": "c"
+      },
+      "expected": "c",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in keysPressed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "releaseTimes": [
+          9,
+          29,
+          49,
+          50
+        ],
+        "keysPressed": "ccc"
+      },
+      "expected": "c",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

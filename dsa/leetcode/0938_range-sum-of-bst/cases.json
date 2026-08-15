@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "every node included",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "narrow left-subtree interval",
       "kind": "trial",
       "visible": true,
@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "range above every value",
       "kind": "trial",
       "visible": true,

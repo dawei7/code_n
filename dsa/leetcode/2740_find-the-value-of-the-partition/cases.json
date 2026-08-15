@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "real-two-elements",
+      "id": "trial-two-elements",
       "name": "minimum array length",
       "kind": "trial",
       "visible": true,
@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-close-pair-late",
+      "id": "trial-close-pair-late",
       "name": "closest pair appears after sorting",
       "kind": "trial",
       "visible": true,
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-unsorted-duplicates",
+      "id": "trial-unsorted-duplicates",
       "name": "distant duplicate positions",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "billion-scale values",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-closest-middle",
+      "id": "trial-closest-middle",
       "name": "minimum gap lies in the middle",
       "kind": "trial",
       "visible": true,

@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-permutation",
+      "id": "trial-permutation",
       "name": "different order but same multiset",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate donors and recipients",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-large-transfer",
+      "id": "trial-large-transfer",
       "name": "maximum-scale transfer",
       "kind": "trial",
       "visible": true,
@@ -188,6 +188,49 @@
       "expected": 499999,
       "tags": [
         "large-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8
+        ],
+        "target": [
+          2,
+          14,
+          10
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          8
+        ],
+        "target": [
+          2,
+          14,
+          10
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

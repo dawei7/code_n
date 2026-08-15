@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-inclusive-boundaries",
+      "id": "trial-inclusive-boundaries",
       "name": "both interval endpoints are inclusive",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-duplicate-server",
+      "id": "trial-duplicate-server",
       "name": "repeated logs count one active server",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-single-server",
+      "id": "trial-single-server",
       "name": "one server active at lower endpoint",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-no-active-server",
+      "id": "trial-no-active-server",
       "name": "all logs precede both windows",
       "kind": "trial",
       "visible": true,
@@ -258,7 +258,7 @@
       ]
     },
     {
-      "id": "real-query-order",
+      "id": "trial-query-order",
       "name": "answers preserve query order",
       "kind": "trial",
       "visible": true,

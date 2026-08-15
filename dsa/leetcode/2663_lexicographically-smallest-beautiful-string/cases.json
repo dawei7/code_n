@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "real-skip-length-two-palindrome",
+      "id": "trial-skip-length-two-palindrome",
       "name": "next letters conflict with preceding positions",
       "kind": "trial",
       "visible": true,
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-carry-two-positions",
+      "id": "trial-carry-two-positions",
       "name": "exhausted suffix carries left",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-final-position-choice",
+      "id": "trial-final-position-choice",
       "name": "choose first locally valid larger letter",
       "kind": "trial",
       "visible": true,
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-prefix-change",
+      "id": "trial-prefix-change",
       "name": "rebuild suffix after changing middle character",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-larger-alphabet",
+      "id": "trial-larger-alphabet",
       "name": "fifth letter participates in carry",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-global-maximum",
+      "id": "trial-global-maximum",
       "name": "maximal repeating pattern has no successor",
       "kind": "trial",
       "visible": true,

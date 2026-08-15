@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-missing-duplicates",
+      "id": "trial-missing-duplicates",
       "name": "one l and one o are insufficient",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-three-exact-copies",
+      "id": "trial-three-exact-copies",
       "name": "three concatenated copies",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-limited-by-pairs",
+      "id": "trial-limited-by-pairs",
       "name": "doubled letters limit surplus singles",
       "kind": "trial",
       "visible": true,

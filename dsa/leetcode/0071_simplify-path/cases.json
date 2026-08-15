@@ -54,7 +54,7 @@
       ]
     },
     {
-      "id": "real-literal-dots",
+      "id": "trial-literal-dots",
       "name": "three dots are a directory name",
       "kind": "trial",
       "visible": true,

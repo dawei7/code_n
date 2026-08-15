@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-negative-and-positive-years",
+      "id": "trial-negative-and-positive-years",
       "name": "another year's positive value cannot offset 2021",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-2021-positive-among-history",
+      "id": "trial-2021-positive-among-history",
       "name": "qualifying year amid several historical rows",
       "kind": "trial",
       "visible": true,
@@ -249,7 +249,7 @@
       ]
     },
     {
-      "id": "real-multiple-qualifiers",
+      "id": "trial-multiple-qualifiers",
       "name": "several customers qualify independently",
       "kind": "trial",
       "visible": true,
@@ -299,7 +299,7 @@
       ]
     },
     {
-      "id": "real-no-qualifiers",
+      "id": "trial-no-qualifiers",
       "name": "preserve schema for an empty result",
       "kind": "trial",
       "visible": true,
@@ -339,7 +339,7 @@
       ]
     },
     {
-      "id": "real-large-identifier",
+      "id": "trial-large-identifier",
       "name": "identifier magnitude does not affect filtering",
       "kind": "trial",
       "visible": true,
@@ -373,7 +373,7 @@
       ]
     },
     {
-      "id": "real-sign-boundaries",
+      "id": "trial-sign-boundaries",
       "name": "distinguish negative zero and positive values",
       "kind": "trial",
       "visible": true,

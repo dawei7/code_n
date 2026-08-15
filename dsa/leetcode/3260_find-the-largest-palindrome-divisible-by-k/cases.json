@@ -105,8 +105,8 @@
       ]
     },
     {
-      "id": "real-three-eight",
-      "name": "real: all eights satisfy divisibility",
+      "id": "trial-three-eight",
+      "name": "all eights satisfy divisibility",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -120,8 +120,8 @@
       ]
     },
     {
-      "id": "real-four-six",
-      "name": "real: center pair adjusts divisibility by six",
+      "id": "trial-four-six",
+      "name": "center pair adjusts divisibility by six",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -135,8 +135,8 @@
       ]
     },
     {
-      "id": "real-six-four",
-      "name": "real: even-length multiple of four",
+      "id": "trial-six-four",
+      "name": "even-length multiple of four",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -150,8 +150,8 @@
       ]
     },
     {
-      "id": "real-ten-seven",
-      "name": "real: long middle adjustment for seven",
+      "id": "trial-ten-seven",
+      "name": "long middle adjustment for seven",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -165,8 +165,8 @@
       ]
     },
     {
-      "id": "real-twelve-eight",
-      "name": "real: twelve-digit multiple of eight",
+      "id": "trial-twelve-eight",
+      "name": "twelve-digit multiple of eight",
       "kind": "trial",
       "visible": true,
       "input": {

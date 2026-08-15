@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-exact-two",
+      "id": "trial-exact-two",
       "name": "sibling leaves meet distance two exactly",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-cross-subtree",
+      "id": "trial-cross-subtree",
       "name": "all four leaves qualify at distance four",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-unbalanced",
+      "id": "trial-unbalanced",
       "name": "mixed leaf depths separate qualifying pairs",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-two-distant",
+      "id": "trial-two-distant",
       "name": "two leaves exceed the limit",
       "kind": "trial",
       "visible": true,

@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-identical",
+      "id": "trial-identical",
       "name": "identical strings need no operation",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "multiplicities rather than membership determine cost",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-disjoint",
+      "id": "trial-disjoint",
       "name": "disjoint strings require their combined length",
       "kind": "trial",
       "visible": true,

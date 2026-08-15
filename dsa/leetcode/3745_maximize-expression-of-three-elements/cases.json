@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-duplicate-minimum",
+      "id": "trial-duplicate-minimum",
       "name": "two minimum occurrences fill different roles",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-duplicate-maximum",
+      "id": "trial-duplicate-maximum",
       "name": "two maximum occurrences are both added",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "both numeric boundaries maximize the expression",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-minimum-last",
+      "id": "trial-minimum-last",
       "name": "smallest value appears at the final index",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-maxima-separated",
+      "id": "trial-maxima-separated",
       "name": "largest values appear away from array ends",
       "kind": "trial",
       "visible": true,
@@ -211,6 +211,23 @@
       },
       "tags": [
         "unsorted"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-quantity-irrelevant",
+      "id": "trial-quantity-irrelevant",
       "name": "quantity does not alter price",
       "kind": "trial",
       "visible": true,
@@ -285,7 +285,7 @@
       ]
     },
     {
-      "id": "real-sale-order",
+      "id": "trial-sale-order",
       "name": "deterministic sale-key order",
       "kind": "trial",
       "visible": true,

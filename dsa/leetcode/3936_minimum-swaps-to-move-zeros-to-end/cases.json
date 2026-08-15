@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-one-zero-at-front",
+      "id": "trial-one-zero-at-front",
       "name": "one leading zero pairs with the final nonzero",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-one-nonzero-at-end",
+      "id": "trial-one-nonzero-at-end",
       "name": "one trailing nonzero is the only suffix mismatch",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-alternating-values",
+      "id": "trial-alternating-values",
       "name": "alternating zeroes and nonzeroes create two mismatches",
       "kind": "trial",
       "visible": true,
@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "real-partitioned-duplicates",
+      "id": "trial-partitioned-duplicates",
       "name": "a complete zero suffix needs no swaps",
       "kind": "trial",
       "visible": true,
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "real-nonzero-values-irrelevant",
+      "id": "trial-nonzero-values-irrelevant",
       "name": "nonzero magnitudes do not affect the mismatch count",
       "kind": "trial",
       "visible": true,
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "id": "real-maximum-complete-reversal",
+      "id": "trial-maximum-complete-reversal",
       "name": "maximum length places every zero in the wrong half",
       "kind": "trial",
       "visible": true,
@@ -409,7 +409,7 @@
       ]
     },
     {
-      "id": "real-maximum-alternating",
+      "id": "trial-maximum-alternating",
       "name": "maximum-length alternating values correct half the suffix",
       "kind": "trial",
       "visible": true,

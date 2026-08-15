@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "hidden-interleaved",
+      "id": "trial-interleaved",
       "name": "component indices are interleaved",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "hidden-star",
+      "id": "trial-star",
       "name": "one hub connects every city",
       "kind": "trial",
       "visible": true,
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "hidden-mixed",
+      "id": "trial-mixed",
       "name": "components have different sizes",
       "kind": "trial",
       "visible": true,

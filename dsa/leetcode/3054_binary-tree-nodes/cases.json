@@ -224,7 +224,7 @@
       ]
     },
     {
-      "id": "real-unbalanced",
+      "id": "trial-unbalanced",
       "name": "an unbalanced tree preserves all roles",
       "kind": "trial",
       "visible": true,
@@ -298,7 +298,7 @@
       ]
     },
     {
-      "id": "real-parent-null-filter",
+      "id": "trial-parent-null-filter",
       "name": "root null does not poison parent membership",
       "kind": "trial",
       "visible": true,

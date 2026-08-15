@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-minor-first",
+      "id": "trial-minor-first",
       "name": "the only minor precedes the major-heavy suffix",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating counts differ by at most one",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-third-characters",
+      "id": "trial-third-characters",
       "name": "ignored third characters preserve substring contiguity",
       "kind": "trial",
       "visible": true,

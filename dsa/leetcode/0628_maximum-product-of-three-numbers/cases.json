@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "mixed signs and interior values",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "repeated largest values",
       "kind": "trial",
       "visible": true,

@@ -96,8 +96,8 @@
       ]
     },
     {
-      "id": "real-exact-triple",
-      "name": "real: exactly three copies are impossible",
+      "id": "trial-exact-triple",
+      "name": "exactly three copies are impossible",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -115,8 +115,8 @@
       ]
     },
     {
-      "id": "real-late-triple",
-      "name": "real: a late third occurrence invalidates the split",
+      "id": "trial-late-triple",
+      "name": "a late third occurrence invalidates the split",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-balanced-singletons",
-      "name": "real: duplicate pairs plus even singletons balance automatically",
+      "id": "trial-balanced-singletons",
+      "name": "duplicate pairs plus even singletons balance automatically",
       "kind": "trial",
       "visible": true,
       "input": {

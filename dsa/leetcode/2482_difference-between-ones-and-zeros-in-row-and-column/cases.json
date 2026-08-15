@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-diagonal-ones",
+      "id": "trial-diagonal-ones",
       "name": "balanced rows and columns",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-single-row",
+      "id": "trial-single-row",
       "name": "one row with unequal column contributions",
       "kind": "trial",
       "visible": true,
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-single-column",
+      "id": "trial-single-column",
       "name": "one column with unequal row contributions",
       "kind": "trial",
       "visible": true,
@@ -220,7 +220,7 @@
       ]
     },
     {
-      "id": "real-all-zeros",
+      "id": "trial-all-zeros",
       "name": "all contributions are negative",
       "kind": "trial",
       "visible": true,

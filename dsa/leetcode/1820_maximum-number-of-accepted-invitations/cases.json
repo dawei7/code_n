@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-more-girls",
+      "id": "trial-more-girls",
       "name": "more girls than boys",
       "kind": "trial",
       "visible": true,
@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "real-shared-only-girl",
+      "id": "trial-shared-only-girl",
       "name": "all boys share one acceptable girl",
       "kind": "trial",
       "visible": true,
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "real-disconnected-components",
+      "id": "trial-disconnected-components",
       "name": "independent components contribute separately",
       "kind": "trial",
       "visible": true,
@@ -260,7 +260,7 @@
       ]
     },
     {
-      "id": "real-partial-matching",
+      "id": "trial-partial-matching",
       "name": "one boy remains unmatched",
       "kind": "trial",
       "visible": true,

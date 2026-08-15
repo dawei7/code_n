@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-maximum-impossible-skew",
+      "id": "trial-maximum-impossible-skew",
       "name": "maximum zero count cannot be separated",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-symmetric-skew",
+      "id": "trial-symmetric-skew",
       "name": "symmetric lone-zero boundary",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-balanced-four",
+      "id": "trial-balanced-four",
       "name": "multiple run decompositions",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-modulo",
+      "id": "trial-modulo",
       "name": "the count needs modular reduction",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-large-alternation",
+      "id": "trial-large-alternation",
       "name": "larger balanced counts under limit one",
       "kind": "trial",
       "visible": true,

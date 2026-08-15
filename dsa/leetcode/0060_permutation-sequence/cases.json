@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-middle",
+      "id": "trial-middle",
       "name": "internal factorial blocks",
       "kind": "trial",
       "visible": true,

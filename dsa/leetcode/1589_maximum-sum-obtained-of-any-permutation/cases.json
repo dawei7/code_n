@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-zero-values",
+      "id": "trial-zero-values",
       "name": "zeros occupy low-coverage positions",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-prefix-weights",
+      "id": "trial-prefix-weights",
       "name": "descending prefix coverage",
       "kind": "trial",
       "visible": true,
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-disjoint-equal-coverage",
+      "id": "trial-disjoint-equal-coverage",
       "name": "disjoint requests cover every index once",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "real-duplicate-values",
+      "id": "trial-duplicate-values",
       "name": "equal values under unequal coverage",
       "kind": "trial",
       "visible": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "real-whole-array-repeated",
+      "id": "trial-whole-array-repeated",
       "name": "repeated whole-array request",
       "kind": "trial",
       "visible": true,
@@ -305,7 +305,7 @@
       ]
     },
     {
-      "id": "real-modulo",
+      "id": "trial-modulo",
       "name": "total requires modular reduction",
       "kind": "trial",
       "visible": true,

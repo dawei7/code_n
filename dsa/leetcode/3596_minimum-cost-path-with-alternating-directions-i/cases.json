@@ -85,8 +85,8 @@
       ]
     },
     {
-      "id": "real-three-rows",
-      "name": "real: a one-column destination is two steps down",
+      "id": "trial-three-rows",
+      "name": "a one-column destination is two steps down",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -101,8 +101,8 @@
       ]
     },
     {
-      "id": "real-short-rectangle",
-      "name": "real: a nonsquare destination remains unreachable",
+      "id": "trial-short-rectangle",
+      "name": "a nonsquare destination remains unreachable",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -117,8 +117,8 @@
       ]
     },
     {
-      "id": "real-maximum-row-count",
-      "name": "real: maximum rows do not change the cycle",
+      "id": "trial-maximum-row-count",
+      "name": "maximum rows do not change the cycle",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -134,8 +134,8 @@
       ]
     },
     {
-      "id": "real-maximum-column-count",
-      "name": "real: maximum columns do not change the cycle",
+      "id": "trial-maximum-column-count",
+      "name": "maximum columns do not change the cycle",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -151,8 +151,8 @@
       ]
     },
     {
-      "id": "real-maximum-square",
-      "name": "real: the largest grid is also unreachable",
+      "id": "trial-maximum-square",
+      "name": "the largest grid is also unreachable",
       "kind": "trial",
       "visible": true,
       "input": {

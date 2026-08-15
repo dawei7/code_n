@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-expired-prefix-must-leave",
+      "id": "trial-expired-prefix-must-leave",
       "name": "stale prefixes would incorrectly produce three",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-window-crosses-value-blocks",
+      "id": "trial-window-crosses-value-blocks",
       "name": "the valid window moves from low values to high values",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-zero-prefix-duplicates",
+      "id": "trial-zero-prefix-duplicates",
       "name": "zeros create duplicate prefix values",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-upper-values-tight-range",
+      "id": "trial-upper-values-tight-range",
       "name": "distant boundary values cannot share a window",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-complete-xor-beats-elements",
+      "id": "trial-complete-xor-beats-elements",
       "name": "the full valid XOR exceeds every single value",
       "kind": "trial",
       "visible": true,
@@ -252,7 +252,7 @@
       ]
     },
     {
-      "id": "real-repeated-prefix-cancellation",
+      "id": "trial-repeated-prefix-cancellation",
       "name": "two equal values cancel before the final six",
       "kind": "trial",
       "visible": true,
@@ -271,6 +271,41 @@
       "tags": [
         "prefix-cancellation",
         "duplicate-prefix"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

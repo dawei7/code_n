@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "hidden-deep",
+      "id": "trial-deep",
       "name": "target deep in left chain",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "hidden-right-internal",
+      "id": "trial-right-internal",
       "name": "right internal node",
       "kind": "trial",
       "visible": true,

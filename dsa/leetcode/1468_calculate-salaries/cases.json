@@ -262,7 +262,7 @@
       ]
     },
     {
-      "id": "real-company-rate",
+      "id": "trial-company-rate",
       "name": "high earner sets the rate for a low earner",
       "kind": "trial",
       "visible": true,
@@ -311,7 +311,7 @@
       ]
     },
     {
-      "id": "real-independent-companies",
+      "id": "trial-independent-companies",
       "name": "employee identifiers repeat across companies",
       "kind": "trial",
       "visible": true,

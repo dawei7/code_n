@@ -133,8 +133,8 @@
       ]
     },
     {
-      "id": "real-singleton-cannot-use-two-indices",
-      "name": "real: m one cannot multiply values from different positions",
+      "id": "trial-singleton-cannot-use-two-indices",
+      "name": "m one cannot multiply values from different positions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -153,8 +153,8 @@
       ]
     },
     {
-      "id": "real-zero-is-best",
-      "name": "real: a zero endpoint beats every negative product",
+      "id": "trial-zero-is-best",
+      "name": "a zero endpoint beats every negative product",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -173,8 +173,8 @@
       ]
     },
     {
-      "id": "real-negative-pair",
-      "name": "real: distant negative endpoints create the optimum",
+      "id": "trial-negative-pair",
+      "name": "distant negative endpoints create the optimum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -194,8 +194,8 @@
       ]
     },
     {
-      "id": "real-prefix-extreme-changes",
-      "name": "real: a newly eligible negative prefix extreme changes the optimum",
+      "id": "trial-prefix-extreme-changes",
+      "name": "a newly eligible negative prefix extreme changes the optimum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -216,8 +216,8 @@
       ]
     },
     {
-      "id": "real-positive-prefix-extreme",
-      "name": "real: a positive prefix extreme wins with a later positive endpoint",
+      "id": "trial-positive-prefix-extreme",
+      "name": "a positive prefix extreme wins with a later positive endpoint",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -238,6 +238,41 @@
         "real",
         "positive-endpoints",
         "rolling-prefix"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1
+        ],
+        "m": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -1
+        ],
+        "m": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

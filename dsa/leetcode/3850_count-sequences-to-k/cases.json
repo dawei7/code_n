@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-weighted-cancellation",
+      "id": "trial-weighted-cancellation",
       "name": "factors with unequal exponents cancel in five ways",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-repeated-six",
+      "id": "trial-repeated-six",
       "name": "coupled two-and-three exponents reach six",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-all-primes",
+      "id": "trial-all-primes",
       "name": "all supported prime dimensions reach thirty",
       "kind": "trial",
       "visible": true,
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "real-unsupported-prime",
+      "id": "trial-unsupported-prime",
       "name": "target seven cannot be introduced",
       "kind": "trial",
       "visible": true,
@@ -224,7 +224,7 @@
       ]
     },
     {
-      "id": "real-exponent-out-of-range",
+      "id": "trial-exponent-out-of-range",
       "name": "target exponent exceeds every possible choice",
       "kind": "trial",
       "visible": true,
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "real-maximum-count",
+      "id": "trial-maximum-count",
       "name": "nineteen ones keep all three choices valid",
       "kind": "trial",
       "visible": true,
@@ -284,7 +284,7 @@
       ]
     },
     {
-      "id": "real-upper-target",
+      "id": "trial-upper-target",
       "name": "the upper target requires too many prime factors",
       "kind": "trial",
       "visible": true,

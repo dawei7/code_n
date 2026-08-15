@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-breaking-gap",
+      "id": "trial-breaking-gap",
       "name": "alphabet difference three splits segments",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-overlapping-one-letter",
+      "id": "trial-overlapping-one-letter",
       "name": "overlapping repeated-letter windows qualify",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-two-letters",
+      "id": "trial-two-letters",
       "name": "two letters each occur exactly twice",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-extra-frequency",
+      "id": "trial-extra-frequency",
       "name": "overrepresented letters disqualify longer windows",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-many-segments",
+      "id": "trial-many-segments",
       "name": "large alphabet jumps create independent segments",
       "kind": "trial",
       "visible": true,
@@ -139,6 +139,21 @@
       "expected": 15,
       "tags": [
         "segments"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "i",
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
       ]
     }
   ]

@@ -71,8 +71,8 @@
       ]
     },
     {
-      "id": "real-divisible-by-three",
-      "name": "real: a multi-digit Harshad number",
+      "id": "trial-divisible-by-three",
+      "name": "a multi-digit Harshad number",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -85,8 +85,8 @@
       ]
     },
     {
-      "id": "real-divisible-by-twelve",
-      "name": "real: a larger digit sum divides x",
+      "id": "trial-divisible-by-twelve",
+      "name": "a larger digit sum divides x",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -99,8 +99,8 @@
       ]
     },
     {
-      "id": "real-repeated-digits",
-      "name": "real: repeated digits need not form a Harshad number",
+      "id": "trial-repeated-digits",
+      "name": "repeated digits need not form a Harshad number",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -113,8 +113,8 @@
       ]
     },
     {
-      "id": "real-trailing-zero",
-      "name": "real: a trailing zero contributes nothing",
+      "id": "trial-trailing-zero",
+      "name": "a trailing zero contributes nothing",
       "kind": "trial",
       "visible": true,
       "input": {

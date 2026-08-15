@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-leading-duplicate",
+      "id": "trial-leading-duplicate",
       "name": "a leading duplicate decides immediately",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-three-occurrences",
+      "id": "trial-three-occurrences",
       "name": "later occurrences do not change the answer",
       "kind": "trial",
       "visible": true,

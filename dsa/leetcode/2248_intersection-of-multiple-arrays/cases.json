@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-late-removal",
+      "id": "trial-late-removal",
       "name": "a value absent only from the final row is removed",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "real-no-first-value-survives",
+      "id": "trial-no-first-value-survives",
       "name": "every first-row candidate is eliminated",
       "kind": "trial",
       "visible": true,
@@ -224,7 +224,7 @@
       ]
     },
     {
-      "id": "real-unsorted-rows",
+      "id": "trial-unsorted-rows",
       "name": "input order does not determine output order",
       "kind": "trial",
       "visible": true,

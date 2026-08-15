@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-parabola-six",
+      "id": "trial-parabola-six",
       "name": "symmetric chords on a parabola",
       "kind": "trial",
       "visible": true,
@@ -271,7 +271,7 @@
       ]
     },
     {
-      "id": "real-two-row-grid",
+      "id": "trial-two-row-grid",
       "name": "two rows contain many shared slopes",
       "kind": "trial",
       "visible": true,
@@ -310,7 +310,7 @@
       ]
     },
     {
-      "id": "real-vertical-groups",
+      "id": "trial-vertical-groups",
       "name": "unequal vertical line populations",
       "kind": "trial",
       "visible": true,
@@ -349,7 +349,7 @@
       ]
     },
     {
-      "id": "real-general-position",
+      "id": "trial-general-position",
       "name": "no four points form a trapezoid",
       "kind": "trial",
       "visible": true,
@@ -383,7 +383,7 @@
       ]
     },
     {
-      "id": "real-mixed-parallel-families",
+      "id": "trial-mixed-parallel-families",
       "name": "horizontal and diagonal families overlap",
       "kind": "trial",
       "visible": true,

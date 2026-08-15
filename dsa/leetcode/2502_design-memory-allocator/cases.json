@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-multiple-blocks-one-id",
+      "id": "trial-multiple-blocks-one-id",
       "name": "one free releases several disjoint blocks",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-leftmost-reuse",
+      "id": "trial-leftmost-reuse",
       "name": "allocation chooses the earliest newly freed run",
       "kind": "trial",
       "visible": true,
@@ -270,7 +270,7 @@
       ]
     },
     {
-      "id": "real-free-missing",
+      "id": "trial-free-missing",
       "name": "freeing an absent id changes nothing",
       "kind": "trial",
       "visible": true,

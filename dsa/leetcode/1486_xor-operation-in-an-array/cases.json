@@ -49,7 +49,7 @@
       ]
     },
     {
-      "id": "real-two-from-zero",
+      "id": "trial-two-from-zero",
       "name": "two terms beginning at zero",
       "kind": "trial",
       "visible": true,
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "id": "real-three-odd",
+      "id": "trial-three-odd",
       "name": "odd start and odd length",
       "kind": "trial",
       "visible": true,
@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "real-six-even",
+      "id": "trial-six-even",
       "name": "even progression across bit boundaries",
       "kind": "trial",
       "visible": true,
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "maximum length and start",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-long-odd-length",
+      "id": "trial-long-odd-length",
       "name": "long odd-length progression from zero",
       "kind": "trial",
       "visible": true,

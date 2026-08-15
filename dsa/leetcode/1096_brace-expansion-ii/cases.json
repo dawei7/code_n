@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-union-precedence",
+      "id": "trial-union-precedence",
       "name": "concatenation binds inside union",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-deep-duplicates",
+      "id": "trial-deep-duplicates",
       "name": "nested unions collapse duplicates",
       "kind": "trial",
       "visible": true,
@@ -111,6 +111,38 @@
       "tags": [
         "nested",
         "deduplication"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "single character in expression",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "expression": "{"
+      },
+      "expected": [
+        "{"
+      ],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "repeated character in expression",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "expression": "{{{"
+      },
+      "expected": [
+        "{{{"
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

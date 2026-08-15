@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-shared-middle-column",
+      "id": "trial-shared-middle-column",
       "name": "all rooks share an interior column",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-four-corners",
+      "id": "trial-four-corners",
       "name": "duplicated endpoint rows and columns",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-cyclic-peaceful",
+      "id": "trial-cyclic-peaceful",
       "name": "cyclic columns are already peaceful",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "real-compact-block",
+      "id": "trial-compact-block",
       "name": "a compact block must spread in both axes",
       "kind": "trial",
       "visible": true,
@@ -268,7 +268,7 @@
       ]
     },
     {
-      "id": "real-asymmetric-layout",
+      "id": "trial-asymmetric-layout",
       "name": "irregular gaps contribute independently",
       "kind": "trial",
       "visible": true,
@@ -306,7 +306,7 @@
       ]
     },
     {
-      "id": "real-shuffled-duplicate-columns",
+      "id": "trial-shuffled-duplicate-columns",
       "name": "input order does not affect rank matching",
       "kind": "trial",
       "visible": true,
@@ -349,7 +349,7 @@
       ]
     },
     {
-      "id": "real-maximum-board",
+      "id": "trial-maximum-board",
       "name": "maximum board with one shared column",
       "kind": "trial",
       "visible": true,

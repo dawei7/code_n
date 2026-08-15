@@ -74,7 +74,7 @@
       "expected": 1
     },
     {
-      "id": "real-all-zeros",
+      "id": "trial-all-zeros",
       "name": "every zero can form its own segment",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       "expected": 4
     },
     {
-      "id": "real-positive-global-and",
+      "id": "trial-positive-global-and",
       "name": "repeated positive segment scores cannot match the minimum sum",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       "expected": 1
     },
     {
-      "id": "real-one-late-reset",
+      "id": "trial-one-late-reset",
       "name": "the first zero AND appears only at the end",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       "expected": 1
     },
     {
-      "id": "real-leftover-after-last-reset",
+      "id": "trial-leftover-after-last-reset",
       "name": "a nonzero suffix joins the final zero segment",
       "kind": "trial",
       "visible": true,
@@ -150,6 +150,39 @@
         "leftover-suffix"
       ],
       "expected": 3
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-leading-trailing",
+      "id": "trial-leading-trailing",
       "name": "runs at both string boundaries",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-varied-runs",
+      "id": "trial-varied-runs",
       "name": "several distinct run lengths",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "every one is isolated",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-long-run",
+      "id": "trial-long-run",
       "name": "one hundred consecutive ones",
       "kind": "trial",
       "visible": true,
@@ -141,6 +141,20 @@
       "tags": [
         "real",
         "long-run"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

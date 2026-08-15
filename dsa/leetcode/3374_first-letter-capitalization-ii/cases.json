@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-other-punctuation",
+      "id": "trial-other-punctuation",
       "name": "non-boundary punctuation stays in place",
       "kind": "trial",
       "visible": true,
@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "real-empty-text",
+      "id": "trial-empty-text",
       "name": "empty text produces an empty conversion",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-unsorted-identifiers",
+      "id": "trial-unsorted-identifiers",
       "name": "result order follows identifiers",
       "kind": "trial",
       "visible": true,
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "id": "real-single-letters-and-hyphen",
+      "id": "trial-single-letters-and-hyphen",
       "name": "single-letter valid parts are capitalized",
       "kind": "trial",
       "visible": true,

@@ -60,7 +60,7 @@
       ]
     },
     {
-      "id": "real-long-revision",
+      "id": "trial-long-revision",
       "name": "long revisions compare without integer conversion",
       "kind": "trial",
       "visible": true,
@@ -71,6 +71,36 @@
       "expected": -1,
       "tags": [
         "large-component"
+      ]
+    },
+    {
+      "id": "trial-boundary-6",
+      "name": "single character in version1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "version1": "1",
+        "version2": "1.10"
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "repeated character in version1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "version1": "111",
+        "version2": "1.10"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

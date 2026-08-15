@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "hidden-large-values",
+      "id": "trial-large-values",
       "name": "values near the upper bound",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "hidden-nested-ranges",
+      "id": "trial-nested-ranges",
       "name": "nested and repeated ranges",
       "kind": "trial",
       "visible": true,

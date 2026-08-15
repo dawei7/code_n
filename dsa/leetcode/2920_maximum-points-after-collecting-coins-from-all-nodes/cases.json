@@ -181,7 +181,7 @@
       "expected": 151
     },
     {
-      "id": "real-all-zero-coins",
+      "id": "trial-all-zero-coins",
       "name": "halving avoids every negative penalty",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       "expected": 0
     },
     {
-      "id": "real-deep-compounded-halving",
+      "id": "trial-deep-compounded-halving",
       "name": "high endpoints surround low path nodes",
       "kind": "trial",
       "visible": true,
@@ -248,7 +248,7 @@
       "expected": 5312
     },
     {
-      "id": "real-zero-penalty-path",
+      "id": "trial-zero-penalty-path",
       "name": "full collection dominates throughout a path",
       "kind": "trial",
       "visible": true,

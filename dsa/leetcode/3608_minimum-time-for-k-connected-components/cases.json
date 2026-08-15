@@ -126,8 +126,8 @@
       ]
     },
     {
-      "id": "real-cycle-needs-two-removals",
-      "name": "real: removing one cycle edge does not disconnect the graph",
+      "id": "trial-cycle-needs-two-removals",
+      "name": "removing one cycle edge does not disconnect the graph",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -159,8 +159,8 @@
       ]
     },
     {
-      "id": "real-equal-time-group",
-      "name": "real: equal-time edges disappear together",
+      "id": "trial-equal-time-group",
+      "name": "equal-time edges disappear together",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -192,8 +192,8 @@
       ]
     },
     {
-      "id": "real-three-initial-components",
-      "name": "real: separate edge pairs and an isolate meet the target initially",
+      "id": "trial-three-initial-components",
+      "name": "separate edge pairs and an isolate meet the target initially",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -220,8 +220,8 @@
       ]
     },
     {
-      "id": "real-unsorted-times",
-      "name": "real: input order does not determine removal order",
+      "id": "trial-unsorted-times",
+      "name": "input order does not determine removal order",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -258,8 +258,8 @@
       ]
     },
     {
-      "id": "real-billion-time",
-      "name": "real: a removal time may equal one billion",
+      "id": "trial-billion-time",
+      "name": "a removal time may equal one billion",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -281,8 +281,8 @@
       ]
     },
     {
-      "id": "real-no-edges-many-nodes",
-      "name": "real: every node is initially isolated",
+      "id": "trial-no-edges-many-nodes",
+      "name": "every node is initially isolated",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -295,6 +295,28 @@
         "real",
         "no-edges",
         "all-isolated"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            1,
+            3
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-decreasing",
+      "id": "trial-decreasing",
       "name": "decreasing values exercise both operations",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "values may reach the upper bound",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-sixteen",
+      "id": "trial-sixteen",
       "name": "four complete reduction levels",
       "kind": "trial",
       "visible": true,
@@ -166,6 +166,39 @@
       "expected": 1,
       "tags": [
         "deep-reduction"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

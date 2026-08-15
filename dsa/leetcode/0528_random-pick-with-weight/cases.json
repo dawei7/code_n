@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "hidden-nonunit-total",
+      "id": "trial-nonunit-total",
       "name": "nontrivial cumulative boundaries",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "hidden-repeated",
+      "id": "trial-repeated",
       "name": "repeated draws remain independent selections",
       "kind": "trial",
       "visible": true,

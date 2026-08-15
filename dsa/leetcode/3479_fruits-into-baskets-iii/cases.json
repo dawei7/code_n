@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-all-unplaced",
+      "id": "trial-all-unplaced",
       "name": "root maximum rejects every fruit",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-no-reuse",
+      "id": "trial-no-reuse",
       "name": "a consumed leaf cannot be selected again",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-skip-left-subtree",
+      "id": "trial-skip-left-subtree",
       "name": "search skips an insufficient left range",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-fruit-order",
+      "id": "trial-fruit-order",
       "name": "updates preserve fruit processing order",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-duplicate-capacities",
+      "id": "trial-duplicate-capacities",
       "name": "duplicate capacities remain distinct leaves",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-single-fit",
+      "id": "trial-single-fit",
       "name": "one-leaf tree with an exact fit",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-single-unfit",
+      "id": "trial-single-unfit",
       "name": "one-leaf tree with no fit",
       "kind": "trial",
       "visible": true,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "legal maximum quantities and capacities",
       "kind": "trial",
       "visible": true,

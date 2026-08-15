@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "right token moves to end",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "right token would move left",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "all positions empty",
       "kind": "trial",
       "visible": true,
@@ -132,6 +132,36 @@
       "expected": true,
       "tags": [
         "all-empty"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in start",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": "R",
+        "end": "XRLXXRRLX"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in start",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": "RRR",
+        "end": "XRLXXRRLX"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

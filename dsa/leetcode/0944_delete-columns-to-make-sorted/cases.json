@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "alternating valid columns",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "first-row inversion",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "maximum column length pattern",
       "kind": "trial",
       "visible": true,
@@ -157,6 +157,39 @@
       "expected": 0,
       "tags": [
         "maximum-columns"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in strs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "strs": [
+          "cba"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in strs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "strs": [
+          "cba",
+          "cba"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "hidden-long-disjoint",
+      "id": "trial-long-disjoint",
       "name": "choose two longest compatible words",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "hidden-obvious-largest",
+      "id": "trial-obvious-largest",
       "name": "largest lengths are compatible",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "hidden-overlapping-distractors",
+      "id": "trial-overlapping-distractors",
       "name": "shorter distractors overlap both sides",
       "kind": "trial",
       "visible": true,
@@ -152,6 +152,39 @@
       "expected": 9,
       "tags": [
         "overlap"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcw"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcw",
+          "abcw"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

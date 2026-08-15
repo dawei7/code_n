@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-odd-index-dominance",
+      "id": "trial-odd-index-dominance",
       "name": "a large middle value makes the result negative",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-five-values",
+      "id": "trial-five-values",
       "name": "several alternating contributions with a final addition",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-paired-decrease",
+      "id": "trial-paired-decrease",
       "name": "each even-odd pair contributes negatively",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-max-length-equal",
+      "id": "trial-max-length-equal",
       "name": "one hundred equal values cancel in pairs",
       "kind": "trial",
       "visible": true,
@@ -301,7 +301,7 @@
       ]
     },
     {
-      "id": "real-max-values-odd-length",
+      "id": "trial-max-values-odd-length",
       "name": "maximum values cancel in pairs and leave one value",
       "kind": "trial",
       "visible": true,
@@ -320,6 +320,23 @@
       "tags": [
         "maximum-value",
         "odd-length"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

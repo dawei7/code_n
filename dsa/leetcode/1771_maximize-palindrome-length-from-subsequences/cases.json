@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-full-concatenation",
+      "id": "trial-full-concatenation",
       "name": "the complete concatenation is already palindromic",
       "kind": "trial",
       "visible": true,
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-center-from-first",
+      "id": "trial-center-from-first",
       "name": "an odd center can come from the first word",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-internal-palindrome-invalid",
+      "id": "trial-internal-palindrome-invalid",
       "name": "a palindrome inside one word alone does not qualify",
       "kind": "trial",
       "visible": true,
@@ -120,6 +120,36 @@
       "tags": [
         "cross-boundary-required",
         "unrestricted-lps-trap"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in word1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "c",
+        "word2": "cbba"
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in word1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "ccc",
+        "word2": "cbba"
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

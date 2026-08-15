@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-unsorted-chain",
+      "id": "trial-unsorted-chain",
       "name": "input order differs from chronological order",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-identical-intervals",
+      "id": "trial-identical-intervals",
       "name": "choose one of several identical intervals",
       "kind": "trial",
       "visible": true,
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "real-large-days",
+      "id": "trial-large-days",
       "name": "adjacent large day values are compatible",
       "kind": "trial",
       "visible": true,

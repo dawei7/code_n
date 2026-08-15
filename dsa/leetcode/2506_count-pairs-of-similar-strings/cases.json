@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-single-word",
+      "id": "trial-single-word",
       "name": "one word cannot form a pair",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-separate-groups",
+      "id": "trial-separate-groups",
       "name": "pair totals add across independent signatures",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-full-alphabet",
+      "id": "trial-full-alphabet",
       "name": "complete alphabet signatures ignore order and repeats",
       "kind": "trial",
       "visible": true,

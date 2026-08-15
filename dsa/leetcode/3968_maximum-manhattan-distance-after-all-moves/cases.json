@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-interleaved-balanced",
+      "id": "trial-interleaved-balanced",
       "name": "interleaved fixed moves cancel around wildcards",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-unbalanced-fixed",
+      "id": "trial-unbalanced-fixed",
       "name": "both fixed coordinates remain positive",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-negative-extension",
+      "id": "trial-negative-extension",
       "name": "wildcards extend two negative coordinates",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-balanced-axis-with-wildcards",
+      "id": "trial-balanced-axis-with-wildcards",
       "name": "vertical fixed moves cancel completely",
       "kind": "trial",
       "visible": true,
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "real-large-horizontal-gap",
+      "id": "trial-large-horizontal-gap",
       "name": "wildcards extend a large horizontal imbalance",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-order-independent",
+      "id": "trial-order-independent",
       "name": "separated opposite moves leave only wildcard distance",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-repeated-balanced-blocks",
+      "id": "trial-repeated-balanced-blocks",
       "name": "repeated balanced blocks contribute one wildcard each",
       "kind": "trial",
       "visible": true,
@@ -214,6 +214,34 @@
       "tags": [
         "repetition",
         "balanced-blocks"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single character in moves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moves": "L"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "repeated character in moves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moves": "LLL"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

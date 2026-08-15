@@ -249,7 +249,7 @@
       ]
     },
     {
-      "id": "hidden-deeper-levels-survive-stop",
+      "id": "trial-deeper-levels-survive-stop",
       "name": "a stopped level does not prune later structural traversal",
       "kind": "trial",
       "visible": true,
@@ -277,7 +277,7 @@
       ]
     },
     {
-      "id": "hidden-perfect-four-levels",
+      "id": "trial-perfect-four-levels",
       "name": "every internal node of a perfect tree contributes",
       "kind": "trial",
       "visible": true,
@@ -312,7 +312,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-values",
+      "id": "trial-maximum-values",
       "name": "a level sum exceeds a 32-bit signed integer at scale",
       "kind": "trial",
       "visible": true,
@@ -347,7 +347,7 @@
       ]
     },
     {
-      "id": "hidden-minimum-values",
+      "id": "trial-minimum-values",
       "name": "the minimum node value produces negative level totals",
       "kind": "trial",
       "visible": true,
@@ -382,7 +382,7 @@
       ]
     },
     {
-      "id": "hidden-negative-prefix-before-stop",
+      "id": "trial-negative-prefix-before-stop",
       "name": "a qualifying negative prefix remains negative before the stop",
       "kind": "trial",
       "visible": true,

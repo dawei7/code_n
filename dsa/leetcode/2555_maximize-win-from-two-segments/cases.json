@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-one-prize",
+      "id": "trial-one-prize",
       "name": "one prize is collected only once",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-overlap-no-double-count",
+      "id": "trial-overlap-no-double-count",
       "name": "overlapping coverage never double counts",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-separated-singletons",
+      "id": "trial-separated-singletons",
       "name": "two segments cover two isolated prizes",
       "kind": "trial",
       "visible": true,

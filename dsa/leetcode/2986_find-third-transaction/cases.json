@@ -214,8 +214,8 @@
       ]
     },
     {
-      "id": "real-user-order",
-      "name": "real: qualifying users sort ascending",
+      "id": "trial-user-order",
+      "name": "qualifying users sort ascending",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -281,8 +281,8 @@
       ]
     },
     {
-      "id": "real-short-history",
-      "name": "real: user with two rows is absent",
+      "id": "trial-short-history",
+      "name": "user with two rows is absent",
       "kind": "trial",
       "visible": true,
       "input": {

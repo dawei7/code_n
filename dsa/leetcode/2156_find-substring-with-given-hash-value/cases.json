@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-overlapping-equal-windows",
+      "id": "trial-overlapping-equal-windows",
       "name": "equal overlapping windows all collide",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-power-multiple-of-modulus",
+      "id": "trial-power-multiple-of-modulus",
       "name": "higher powers vanish modulo the modulus",
       "kind": "trial",
       "visible": true,
@@ -142,6 +142,42 @@
       "tags": [
         "large-values",
         "zero-base-residue"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "l",
+        "power": 7,
+        "modulo": 20,
+        "k": 2,
+        "hashValue": 0
+      },
+      "expected": "l",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "lll",
+        "power": 7,
+        "modulo": 20,
+        "k": 2,
+        "hashValue": 0
+      },
+      "expected": "ll",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

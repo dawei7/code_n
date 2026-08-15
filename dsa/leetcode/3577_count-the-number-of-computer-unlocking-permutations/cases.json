@@ -101,8 +101,8 @@
       ]
     },
     {
-      "id": "real-root-duplicate-at-end",
-      "name": "real: a duplicate of the root at the final label is fatal",
+      "id": "trial-root-duplicate-at-end",
+      "name": "a duplicate of the root at the final label is fatal",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-smaller-value-in-middle",
-      "name": "real: one value below the root makes completion impossible",
+      "id": "trial-smaller-value-in-middle",
+      "name": "one value below the root makes completion impossible",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -143,8 +143,8 @@
       ]
     },
     {
-      "id": "real-repeated-values-above-root",
-      "name": "real: repeated non-root complexities remain unlockable",
+      "id": "trial-repeated-values-above-root",
+      "name": "repeated non-root complexities remain unlockable",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -165,8 +165,8 @@
       ]
     },
     {
-      "id": "real-eight-computers",
-      "name": "real: every ordering after the root contributes",
+      "id": "trial-eight-computers",
+      "name": "every ordering after the root contributes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -189,8 +189,8 @@
       ]
     },
     {
-      "id": "real-modular-factorial",
-      "name": "real: factorial is reduced modulo the required modulus",
+      "id": "trial-modular-factorial",
+      "name": "factorial is reduced modulo the required modulus",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -222,6 +222,39 @@
         "real",
         "modulo",
         "factorial"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in complexity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "complexity": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in complexity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "complexity": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

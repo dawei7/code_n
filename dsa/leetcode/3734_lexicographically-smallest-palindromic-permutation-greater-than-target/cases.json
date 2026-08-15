@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-same-half-mirror-greater",
+      "id": "trial-same-half-mirror-greater",
       "name": "an equal first half wins through its mirrored suffix",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-increase-after-equality",
+      "id": "trial-increase-after-equality",
       "name": "equality with one palindrome advances to the next half",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-smallest-from-low-target",
+      "id": "trial-smallest-from-low-target",
       "name": "the minimal palindrome already exceeds a low target",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-odd-next-half",
+      "id": "trial-odd-next-half",
       "name": "an odd-length palindrome advances its first-half permutation",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-odd-minimal",
+      "id": "trial-odd-minimal",
       "name": "the unique center participates after an equal prefix",
       "kind": "trial",
       "visible": true,
@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "real-maximum-all-equal",
+      "id": "trial-maximum-all-equal",
       "name": "a maximum-length single palindrome equal to target is rejected",
       "kind": "trial",
       "visible": true,
@@ -213,6 +213,36 @@
       "tags": [
         "length-boundary",
         "strict-comparison"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "b",
+        "target": "abba"
+      },
+      "expected": "b",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bbb",
+        "target": "abba"
+      },
+      "expected": "bbb",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

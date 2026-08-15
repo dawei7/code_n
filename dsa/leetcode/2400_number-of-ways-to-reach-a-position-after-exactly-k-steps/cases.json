@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "real-reverse-direction",
+      "id": "trial-reverse-direction",
       "name": "negative displacement is symmetric",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-balanced-ten-steps",
+      "id": "trial-balanced-ten-steps",
       "name": "balanced walk uses central binomial coefficient",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-modulo-maximum-k",
+      "id": "trial-modulo-maximum-k",
       "name": "maximum step count requires modulo reduction",
       "kind": "trial",
       "visible": true,

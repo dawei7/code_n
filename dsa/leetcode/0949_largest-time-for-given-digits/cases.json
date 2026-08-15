@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "latest possible time",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "repeated nines",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "one nonzero digit",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "no valid minute",
       "kind": "trial",
       "visible": true,
@@ -167,6 +167,39 @@
       "expected": "",
       "tags": [
         "invalid"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1
+        ]
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1
+        ]
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

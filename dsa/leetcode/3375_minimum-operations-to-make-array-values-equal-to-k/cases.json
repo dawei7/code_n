@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-single-below",
+      "id": "trial-single-below",
       "name": "one value below target is unreachable",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-below-among-many-levels",
+      "id": "trial-below-among-many-levels",
       "name": "one low value invalidates many reducible levels",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-maximum-target",
+      "id": "trial-maximum-target",
       "name": "maximum target with all equal values",
       "kind": "trial",
       "visible": true,

@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-entire-array",
+      "id": "trial-entire-array",
       "name": "selecting all values preserves the whole array",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-all-negative",
+      "id": "trial-all-negative",
       "name": "choose the least negative values",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-order-not-value-rank",
+      "id": "trial-order-not-value-rank",
       "name": "output order differs from descending value order",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-duplicate-boundary",
+      "id": "trial-duplicate-boundary",
       "name": "duplicate boundary values allow several index choices",
       "kind": "trial",
       "visible": true,
@@ -209,6 +209,46 @@
       "tags": [
         "duplicates",
         "non-unique"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ],
+        "k": 2
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "k": 2
+      },
+      "expected": [
+        2,
+        2
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

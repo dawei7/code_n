@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-full-later-bus",
+      "id": "trial-full-later-bus",
       "name": "both buses fill and final passenger sets the bound",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-final-spare-seat",
+      "id": "trial-final-spare-seat",
       "name": "final bus has room at its departure",
       "kind": "trial",
       "visible": true,

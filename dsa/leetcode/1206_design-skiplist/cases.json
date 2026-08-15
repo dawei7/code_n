@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-boundaries",
+      "id": "trial-boundaries",
       "name": "minimum and maximum keys",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-unsorted-adds",
+      "id": "trial-unsorted-adds",
       "name": "insertion order does not affect membership",
       "kind": "trial",
       "visible": true,
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "real-missing-between",
+      "id": "trial-missing-between",
       "name": "absent key between stored neighbors",
       "kind": "trial",
       "visible": true,
@@ -309,7 +309,7 @@
       ]
     },
     {
-      "id": "real-readd",
+      "id": "trial-readd",
       "name": "erased value can be inserted again",
       "kind": "trial",
       "visible": true,

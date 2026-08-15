@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-incomplete-tail",
+      "id": "trial-incomplete-tail",
       "name": "an incomplete tail adds no complete block",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-many-duplicates",
+      "id": "trial-many-duplicates",
       "name": "duplicates within one block do not advance the count",
       "kind": "trial",
       "visible": true,

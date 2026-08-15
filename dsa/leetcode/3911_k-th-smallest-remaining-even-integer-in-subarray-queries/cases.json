@@ -362,7 +362,7 @@
       ]
     },
     {
-      "id": "hidden-index-boundaries",
+      "id": "trial-index-boundaries",
       "name": "adjacent ranges select different removed prefixes",
       "kind": "trial",
       "visible": true,
@@ -403,7 +403,7 @@
       ]
     },
     {
-      "id": "hidden-mixed-values",
+      "id": "trial-mixed-values",
       "name": "mixed values exercise several removed-rank slices",
       "kind": "trial",
       "visible": true,
@@ -452,7 +452,7 @@
       ]
     },
     {
-      "id": "hidden-removed-prefix",
+      "id": "trial-removed-prefix",
       "name": "long consecutive prefix of positive evens is removed",
       "kind": "trial",
       "visible": true,
@@ -498,7 +498,7 @@
       ]
     },
     {
-      "id": "hidden-billion-k",
+      "id": "trial-billion-k",
       "name": "maximum k and a removal at rank five hundred million",
       "kind": "trial",
       "visible": true,
@@ -537,7 +537,7 @@
       ]
     },
     {
-      "id": "hidden-two-large-evens",
+      "id": "trial-two-large-evens",
       "name": "two adjacent high even ranks shift a large query twice",
       "kind": "trial",
       "visible": true,

@@ -85,8 +85,8 @@
       ]
     },
     {
-      "id": "real-maximum-value",
-      "name": "real: equal maximum legal values",
+      "id": "trial-maximum-value",
+      "name": "equal maximum legal values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -105,8 +105,8 @@
       ]
     },
     {
-      "id": "real-same-array-prefixes-do-not-count",
-      "name": "real: matches confined to one array do not count",
+      "id": "trial-same-array-prefixes-do-not-count",
+      "name": "matches confined to one array do not count",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -126,8 +126,8 @@
       ]
     },
     {
-      "id": "real-many-prefixes",
-      "name": "real: choose the best of several cross-array prefixes",
+      "id": "trial-many-prefixes",
+      "name": "choose the best of several cross-array prefixes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -150,8 +150,8 @@
       ]
     },
     {
-      "id": "real-duplicates",
-      "name": "real: duplicates do not change the maximum",
+      "id": "trial-duplicates",
+      "name": "duplicates do not change the maximum",
       "kind": "trial",
       "visible": true,
       "input": {

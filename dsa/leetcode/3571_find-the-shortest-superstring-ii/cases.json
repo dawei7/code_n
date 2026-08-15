@@ -93,8 +93,8 @@
       ]
     },
     {
-      "id": "real-reverse-order-better",
-      "name": "real: the second string must come first for the best overlap",
+      "id": "trial-reverse-order-better",
+      "name": "the second string must come first for the best overlap",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -116,8 +116,8 @@
       ]
     },
     {
-      "id": "real-middle-containment",
-      "name": "real: detect containment away from either boundary",
+      "id": "trial-middle-containment",
+      "name": "detect containment away from either boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-identical",
-      "name": "real: identical strings are returned once",
+      "id": "trial-identical",
+      "name": "identical strings are returned once",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -161,8 +161,8 @@
       ]
     },
     {
-      "id": "real-single-characters",
-      "name": "real: distinct single characters need both positions",
+      "id": "trial-single-characters",
+      "name": "distinct single characters need both positions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -181,6 +181,36 @@
         "real",
         "minimum-length",
         "multiple-valid-answers"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "a",
+        "s2": "bab"
+      },
+      "expected": "bab",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "aaa",
+        "s2": "bab"
+      },
+      "expected": "aaabab",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

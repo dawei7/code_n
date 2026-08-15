@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-prefix-excluded",
+      "id": "trial-prefix-excluded",
       "name": "excluded positive prefix shifts the interval",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-unsorted-duplicates",
+      "id": "trial-unsorted-duplicates",
       "name": "sorting and deduplication expose several gaps",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-large-k",
+      "id": "trial-large-k",
       "name": "a distant maximum value leaves one thousand early choices",
       "kind": "trial",
       "visible": true,

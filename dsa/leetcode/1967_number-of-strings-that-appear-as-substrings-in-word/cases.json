@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-duplicate-and-reverse",
+      "id": "trial-duplicate-and-reverse",
       "name": "duplicate and reversed patterns all occur",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-no-match",
+      "id": "trial-no-match",
       "name": "no pattern occurs in the word",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-length-ladder",
+      "id": "trial-length-ladder",
       "name": "only patterns no longer than the run occur",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-internal-match",
+      "id": "trial-internal-match",
       "name": "pattern occurs strictly inside the word",
       "kind": "trial",
       "visible": true,
@@ -181,6 +181,41 @@
       "expected": 1,
       "tags": [
         "internal-substring"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in patterns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "patterns": [
+          "a"
+        ],
+        "word": "abc"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in patterns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "patterns": [
+          "a",
+          "a"
+        ],
+        "word": "abc"
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -335,7 +335,7 @@
       ]
     },
     {
-      "id": "real-score-order-not-input-order",
+      "id": "trial-score-order-not-input-order",
       "name": "physical exam-row order is irrelevant",
       "kind": "trial",
       "visible": true,
@@ -387,7 +387,7 @@
       ]
     },
     {
-      "id": "real-capacity-between-levels",
+      "id": "trial-capacity-between-levels",
       "name": "capacity between populations selects next cutoff",
       "kind": "trial",
       "visible": true,
@@ -439,7 +439,7 @@
       ]
     },
     {
-      "id": "real-duplicate-capacities",
+      "id": "trial-duplicate-capacities",
       "name": "schools with equal capacities each receive a row",
       "kind": "trial",
       "visible": true,
@@ -492,7 +492,7 @@
       ]
     },
     {
-      "id": "real-one-exam-row",
+      "id": "trial-one-exam-row",
       "name": "one exam row can qualify some schools only",
       "kind": "trial",
       "visible": true,

@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-long-prefix",
+      "id": "trial-long-prefix",
       "name": "many starts share one ending",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-reverse-and-repeat",
+      "id": "trial-reverse-and-repeat",
       "name": "changing latest occurrence",
       "kind": "trial",
       "visible": true,

@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "hidden-even",
+      "id": "trial-even",
       "name": "even list length",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "hidden-duplicates",
+      "id": "trial-duplicates",
       "name": "parity is independent of values",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "hidden-negative",
+      "id": "trial-negative",
       "name": "negative node values",
       "kind": "trial",
       "visible": true,

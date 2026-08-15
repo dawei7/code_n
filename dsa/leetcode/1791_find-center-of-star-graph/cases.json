@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-center-first-both",
+      "id": "trial-center-first-both",
       "name": "center is first in the decisive edges",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-center-first-then-second",
+      "id": "trial-center-first-then-second",
       "name": "center changes endpoint position",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-center-second-both-with-later-first",
+      "id": "trial-center-second-both-with-later-first",
       "name": "decisive edges place the center second",
       "kind": "trial",
       "visible": true,
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-minimum-center-first-then-second",
+      "id": "trial-minimum-center-first-then-second",
       "name": "two-edge star with opposite orientations",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-shuffled-leaf-labels",
+      "id": "trial-shuffled-leaf-labels",
       "name": "edge and label order do not matter",
       "kind": "trial",
       "visible": true,

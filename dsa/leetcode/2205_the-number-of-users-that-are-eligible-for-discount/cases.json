@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-inclusive-boundaries",
+      "id": "trial-inclusive-boundaries",
       "name": "start and end midnight boundaries are inclusive",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-inclusive-amount",
+      "id": "trial-inclusive-amount",
       "name": "amount equal to the threshold qualifies",
       "kind": "trial",
       "visible": true,
@@ -253,7 +253,7 @@
       ]
     },
     {
-      "id": "real-either-condition-can-fail",
+      "id": "trial-either-condition-can-fail",
       "name": "date and amount predicates must hold on the same purchase",
       "kind": "trial",
       "visible": true,
@@ -304,7 +304,7 @@
       ]
     },
     {
-      "id": "real-negative-amount-threshold",
+      "id": "trial-negative-amount-threshold",
       "name": "negative values preserve inclusive comparison",
       "kind": "trial",
       "visible": true,

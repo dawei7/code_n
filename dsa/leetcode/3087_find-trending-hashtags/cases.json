@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "real-date-boundaries",
+      "id": "trial-date-boundaries",
       "name": "include leap day and exclude adjacent months",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-descending-tie",
+      "id": "trial-descending-tie",
       "name": "equal counts use descending hashtag order",
       "kind": "trial",
       "visible": true,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "real-year-filter",
+      "id": "trial-year-filter",
       "name": "February from another year is excluded",
       "kind": "trial",
       "visible": true,

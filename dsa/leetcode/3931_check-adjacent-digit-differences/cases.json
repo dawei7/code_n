@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-alternating-exact-twos",
+      "id": "trial-alternating-exact-twos",
       "name": "every pair lies exactly on the allowed boundary",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-interior-violation",
+      "id": "trial-interior-violation",
       "name": "one interior jump invalidates otherwise close pairs",
       "kind": "trial",
       "visible": true,
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-all-equal-maximum-length",
+      "id": "trial-all-equal-maximum-length",
       "name": "maximum-length string with all equal digits",
       "kind": "trial",
       "visible": true,
@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "real-valid-maximum-length",
+      "id": "trial-valid-maximum-length",
       "name": "maximum-length string changes direction repeatedly",
       "kind": "trial",
       "visible": true,
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "real-late-maximum-length-violation",
+      "id": "trial-late-maximum-length-violation",
       "name": "only the final pair of a maximum-length string fails",
       "kind": "trial",
       "visible": true,
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "id": "real-zero-through-nine",
+      "id": "trial-zero-through-nine",
       "name": "a long monotone run uses unit differences",
       "kind": "trial",
       "visible": true,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-last-pairs-at-limit",
+      "id": "trial-last-pairs-at-limit",
       "name": "descending unit steps finish with two boundary jumps",
       "kind": "trial",
       "visible": true,

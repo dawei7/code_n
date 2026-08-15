@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-exact-token-match",
+      "id": "trial-exact-token-match",
       "name": "substrings do not count as feature words",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-popularity-reorders",
+      "id": "trial-popularity-reorders",
       "name": "several popularity levels reorder the full list",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-tied-positive-counts",
+      "id": "trial-tied-positive-counts",
       "name": "positive ties retain nonalphabetic feature order",
       "kind": "trial",
       "visible": true,

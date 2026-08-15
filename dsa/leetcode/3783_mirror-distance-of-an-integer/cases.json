@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-minimum",
+      "id": "trial-minimum",
       "name": "minimum legal input",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-two-trailing-zeros",
+      "id": "trial-two-trailing-zeros",
       "name": "multiple leading zeros vanish after reversal",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-middle-zero-palindrome",
+      "id": "trial-middle-zero-palindrome",
       "name": "zero inside a palindrome",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-nine-digits",
+      "id": "trial-nine-digits",
       "name": "large asymmetric nine-digit integer",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-large-palindrome",
+      "id": "trial-large-palindrome",
       "name": "large upper-range palindrome",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum legal input reverses to one",
       "kind": "trial",
       "visible": true,

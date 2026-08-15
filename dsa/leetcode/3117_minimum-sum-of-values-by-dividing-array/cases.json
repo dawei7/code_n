@@ -167,8 +167,8 @@
       ]
     },
     {
-      "id": "real-several-target-zeros",
-      "name": "real: two zero-AND partitions",
+      "id": "trial-several-target-zeros",
+      "name": "two zero-AND partitions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -192,8 +192,8 @@
       ]
     },
     {
-      "id": "real-discussion-regression",
-      "name": "real: alternating target masks",
+      "id": "trial-discussion-regression",
+      "name": "alternating target masks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -221,8 +221,8 @@
       ]
     },
     {
-      "id": "real-shared-running-ands",
-      "name": "real: repeated descending AND chains",
+      "id": "trial-shared-running-ands",
+      "name": "repeated descending AND chains",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -250,8 +250,8 @@
       ]
     },
     {
-      "id": "real-target-bit-cannot-return",
-      "name": "real: missing target bit makes division impossible",
+      "id": "trial-target-bit-cannot-return",
+      "name": "missing target bit makes division impossible",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -271,8 +271,8 @@
       ]
     },
     {
-      "id": "real-maximum-partition-count",
-      "name": "real: ten singleton partitions at maximum values",
+      "id": "trial-maximum-partition-count",
+      "name": "ten singleton partitions at maximum values",
       "kind": "trial",
       "visible": true,
       "input": {

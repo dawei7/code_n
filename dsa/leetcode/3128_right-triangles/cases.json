@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "no selected cells",
       "kind": "trial",
       "visible": true,
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-single-row",
+      "id": "trial-single-row",
       "name": "a single row has no vertical arm",
       "kind": "trial",
       "visible": true,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "real-single-column",
+      "id": "trial-single-column",
       "name": "a single column has no horizontal arm",
       "kind": "trial",
       "visible": true,
@@ -266,7 +266,7 @@
       ]
     },
     {
-      "id": "real-sparse-mixed",
+      "id": "trial-sparse-mixed",
       "name": "several pivots with different products",
       "kind": "trial",
       "visible": true,
@@ -305,7 +305,7 @@
       ]
     },
     {
-      "id": "real-one-nonadjacent-pivot",
+      "id": "trial-one-nonadjacent-pivot",
       "name": "one triangle uses separated cells",
       "kind": "trial",
       "visible": true,

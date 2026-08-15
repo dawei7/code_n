@@ -88,8 +88,8 @@
       ]
     },
     {
-      "id": "real-slightly-longer",
-      "name": "real: slightly longer diagonal beats larger area",
+      "id": "trial-slightly-longer",
+      "name": "slightly longer diagonal beats larger area",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -110,8 +110,8 @@
       ]
     },
     {
-      "id": "real-many-ties",
-      "name": "real: repeated equal diagonals",
+      "id": "trial-many-ties",
+      "name": "repeated equal diagonals",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -140,8 +140,8 @@
       ]
     },
     {
-      "id": "real-upper-square",
-      "name": "real: upper-bound square",
+      "id": "trial-upper-square",
+      "name": "upper-bound square",
       "kind": "trial",
       "visible": true,
       "input": {

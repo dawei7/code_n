@@ -428,7 +428,7 @@
       ]
     },
     {
-      "id": "real-ratio-rounding",
+      "id": "trial-ratio-rounding",
       "name": "ratio rounds to two decimal places",
       "kind": "trial",
       "visible": true,
@@ -494,7 +494,7 @@
       ]
     },
     {
-      "id": "real-ratio-then-name-order",
+      "id": "trial-ratio-then-name-order",
       "name": "equal ratios use store-name ordering",
       "kind": "trial",
       "visible": true,
@@ -629,7 +629,7 @@
       ]
     },
     {
-      "id": "real-store-without-inventory",
+      "id": "trial-store-without-inventory",
       "name": "stores without inventory do not appear",
       "kind": "trial",
       "visible": true,
@@ -700,7 +700,7 @@
       ]
     },
     {
-      "id": "real-middle-products-irrelevant",
+      "id": "trial-middle-products-irrelevant",
       "name": "middle-priced quantities do not affect extremes",
       "kind": "trial",
       "visible": true,

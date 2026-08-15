@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "nested fractional expression",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "exhaustive false instance",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-3",
       "name": "subtraction order matters",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "high-state false instance",
       "kind": "trial",
       "visible": true,
@@ -167,6 +167,39 @@
       "expected": false,
       "tags": [
         "exhaustive"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in cards",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cards": [
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in cards",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cards": [
+          4,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

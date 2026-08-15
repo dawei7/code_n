@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-near-square",
+      "id": "trial-near-square",
       "name": "one below a square",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-largest-int-square",
+      "id": "trial-largest-int-square",
       "name": "largest 32-bit square root",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "hidden-max-int",
+      "id": "trial-max-int",
       "name": "maximum signed 32-bit integer",
       "kind": "trial",
       "visible": true,

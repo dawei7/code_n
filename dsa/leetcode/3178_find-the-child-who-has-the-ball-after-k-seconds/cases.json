@@ -92,8 +92,8 @@
       ]
     },
     {
-      "id": "real-right-endpoint",
-      "name": "real: exact arrival at right endpoint",
+      "id": "trial-right-endpoint",
+      "name": "exact arrival at right endpoint",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-first-return-step",
-      "name": "real: first step after right endpoint",
+      "id": "trial-first-return-step",
+      "name": "first step after right endpoint",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-complete-round-trip",
-      "name": "real: complete round trip returns to zero",
+      "id": "trial-complete-round-trip",
+      "name": "complete round trip returns to zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -137,8 +137,8 @@
       ]
     },
     {
-      "id": "real-many-round-trips",
-      "name": "real: many round trips leave offset two",
+      "id": "trial-many-round-trips",
+      "name": "many round trips leave offset two",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-maximum-right-endpoint",
-      "name": "real: maximum line reaches right endpoint",
+      "id": "trial-maximum-right-endpoint",
+      "name": "maximum line reaches right endpoint",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -167,8 +167,8 @@
       ]
     },
     {
-      "id": "real-maximum-first-return",
-      "name": "real: maximum seconds begin return leg",
+      "id": "trial-maximum-first-return",
+      "name": "maximum seconds begin return leg",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -180,6 +180,21 @@
         "maximum-children",
         "maximum-seconds",
         "return-leg"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

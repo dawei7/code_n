@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-use-fewer-than-m",
+      "id": "trial-use-fewer-than-m",
       "name": "using fewer than m avoids negative selections",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-whole-array-only",
+      "id": "trial-whole-array-only",
       "name": "the length bounds force the whole array",
       "kind": "trial",
       "visible": true,
@@ -253,7 +253,7 @@
       ]
     },
     {
-      "id": "real-wide-integer-total",
+      "id": "trial-wide-integer-total",
       "name": "two large singletons reach the positive value bound twice",
       "kind": "trial",
       "visible": true,
@@ -277,7 +277,7 @@
       ]
     },
     {
-      "id": "real-zero-total",
+      "id": "trial-zero-total",
       "name": "a legal zero-sum selection",
       "kind": "trial",
       "visible": true,
@@ -301,7 +301,7 @@
       ]
     },
     {
-      "id": "real-mixed-fixed-window",
+      "id": "trial-mixed-fixed-window",
       "name": "the best legal coverage leaves one gap",
       "kind": "trial",
       "visible": true,
@@ -327,7 +327,7 @@
       ]
     },
     {
-      "id": "real-negative-boundary",
+      "id": "trial-negative-boundary",
       "name": "negative value bounds preserve the mandatory selection",
       "kind": "trial",
       "visible": true,
@@ -350,7 +350,7 @@
       ]
     },
     {
-      "id": "real-two-separated-peaks",
+      "id": "trial-two-separated-peaks",
       "name": "two of three separated peaks fit the count limit",
       "kind": "trial",
       "visible": true,

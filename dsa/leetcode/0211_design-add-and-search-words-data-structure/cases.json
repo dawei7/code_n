@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-branching",
+      "id": "trial-branching",
       "name": "wildcard branches converge on terminal",
       "kind": "trial",
       "visible": true,

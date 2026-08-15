@@ -66,7 +66,7 @@
       ]
     },
     {
-      "id": "real-exact-minimum-jumps",
+      "id": "trial-exact-minimum-jumps",
       "name": "route uses the minimum jump repeatedly",
       "kind": "trial",
       "visible": true,
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "id": "real-exact-maximum-jump",
+      "id": "trial-exact-maximum-jump",
       "name": "only the maximum jump reaches the target",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-gap-too-wide",
+      "id": "trial-gap-too-wide",
       "name": "next zero lies beyond maximum jump",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-zero-too-close",
+      "id": "trial-zero-too-close",
       "name": "an early zero inside the minimum gap is unusable",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-single-jump",
+      "id": "trial-single-jump",
       "name": "final index is reached directly",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-equal-bounds-chain",
+      "id": "trial-equal-bounds-chain",
       "name": "fixed-length jumps form a chain",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-equal-bounds-blocked",
+      "id": "trial-equal-bounds-blocked",
       "name": "one blocked fixed landing ends the route",
       "kind": "trial",
       "visible": true,
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "real-late-recovery",
+      "id": "trial-late-recovery",
       "name": "a later reachable zero keeps the window alive",
       "kind": "trial",
       "visible": true,
@@ -188,6 +188,38 @@
       "tags": [
         "sliding-window",
         "late-route"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0",
+        "minJump": 2,
+        "maxJump": 3
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000",
+        "minJump": 2,
+        "maxJump": 3
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

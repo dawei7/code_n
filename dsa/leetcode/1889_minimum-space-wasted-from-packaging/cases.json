@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-duplicate-packages",
+      "id": "trial-duplicate-packages",
       "name": "duplicate packages reuse unlimited box supply",
       "kind": "trial",
       "visible": true,
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-unused-box-sizes",
+      "id": "trial-unused-box-sizes",
       "name": "offered sizes below and above exact fits may remain unused",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-skip-infeasible",
+      "id": "trial-skip-infeasible",
       "name": "skip an infeasible supplier before choosing the next",
       "kind": "trial",
       "visible": true,
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "id": "real-unsorted-inputs",
+      "id": "trial-unsorted-inputs",
       "name": "unsorted packages and boxes still find exact fits",
       "kind": "trial",
       "visible": true,
@@ -257,7 +257,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "minimum and maximum legal sizes use one large box type",
       "kind": "trial",
       "visible": true,
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "id": "real-single-box-type",
+      "id": "trial-single-box-type",
       "name": "one exact box type serves repeated packages",
       "kind": "trial",
       "visible": true,

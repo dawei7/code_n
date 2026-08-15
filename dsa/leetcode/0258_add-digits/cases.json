@@ -43,7 +43,7 @@
       ]
     },
     {
-      "id": "real-large",
+      "id": "trial-large",
       "name": "large non-multiple of nine",
       "kind": "trial",
       "visible": true,

@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-mixed-orientations",
+      "id": "trial-mixed-orientations",
       "name": "recognize neighbors from either source column",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-path-and-order",
+      "id": "trial-path-and-order",
       "name": "adjacent path edges have no common neighbor",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-four-cycle",
+      "id": "trial-four-cycle",
       "name": "a four-cycle has no triangular mutual friend",
       "kind": "trial",
       "visible": true,

@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-already-sorted",
+      "id": "trial-already-sorted",
       "name": "already ascending keys",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-reverse",
+      "id": "trial-reverse",
       "name": "reverse-ordered values",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-descending-key",
+      "id": "trial-descending-key",
       "name": "negative selector reverses numeric order",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-object-negatives",
+      "id": "trial-object-negatives",
       "name": "negative object properties",
       "kind": "trial",
       "visible": true,

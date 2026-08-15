@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-sparse",
+      "id": "trial-sparse",
       "name": "sparse levels",
       "kind": "trial",
       "visible": true,

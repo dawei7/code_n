@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-four-overlapping-windows",
-      "name": "real: compute all four windows of a square matrix",
+      "id": "trial-four-overlapping-windows",
+      "name": "compute all four windows of a square matrix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -163,8 +163,8 @@
       ]
     },
     {
-      "id": "real-unit-window-rectangle",
-      "name": "real: unit windows preserve rectangular dimensions",
+      "id": "trial-unit-window-rectangle",
+      "name": "unit windows preserve rectangular dimensions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -197,8 +197,8 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "real: handle the full signed value range",
+      "id": "trial-value-boundaries",
+      "name": "handle the full signed value range",
       "kind": "trial",
       "visible": true,
       "input": {

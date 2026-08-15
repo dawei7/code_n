@@ -155,8 +155,8 @@
       ]
     },
     {
-      "id": "real-return-exactly-sixty",
-      "name": "real: automatic return at message timestamp",
+      "id": "trial-return-exactly-sixty",
+      "name": "automatic return at message timestamp",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -185,8 +185,8 @@
       ]
     },
     {
-      "id": "real-explicit-while-offline",
-      "name": "real: explicit ids include offline users",
+      "id": "trial-explicit-while-offline",
+      "name": "explicit ids include offline users",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -214,8 +214,8 @@
       ]
     },
     {
-      "id": "real-repeated-offline",
-      "name": "real: two offline intervals for one user",
+      "id": "trial-repeated-offline",
+      "name": "two offline intervals for one user",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -258,8 +258,8 @@
       ]
     },
     {
-      "id": "real-unsorted-events",
-      "name": "real: chronological and priority sorting",
+      "id": "trial-unsorted-events",
+      "name": "chronological and priority sorting",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -304,8 +304,8 @@
       ]
     },
     {
-      "id": "real-one-user",
-      "name": "real: broadcasts to one user",
+      "id": "trial-one-user",
+      "name": "broadcasts to one user",
       "kind": "trial",
       "visible": true,
       "input": {

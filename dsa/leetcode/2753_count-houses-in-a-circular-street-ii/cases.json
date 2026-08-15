@@ -81,7 +81,7 @@
       ]
     },
     {
-      "id": "real-one-open-loose",
+      "id": "trial-one-open-loose",
       "name": "one marker with a loose bound",
       "kind": "trial",
       "visible": true,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating door states",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-open-at-end",
+      "id": "trial-open-at-end",
       "name": "only the final indexed door is open",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-irregular-loose",
+      "id": "trial-irregular-loose",
       "name": "irregular states with several reset laps available",
       "kind": "trial",
       "visible": true,

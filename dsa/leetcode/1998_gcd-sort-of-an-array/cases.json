@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-transitive-coprime-endpoints",
+      "id": "trial-transitive-coprime-endpoints",
       "name": "coprime endpoints connect through intermediate factors",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-isolated-prime-misplaced",
+      "id": "trial-isolated-prime-misplaced",
       "name": "a misplaced isolated prime prevents sorting",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-duplicates-connected",
+      "id": "trial-duplicates-connected",
       "name": "duplicate composite values remain index-distinct",
       "kind": "trial",
       "visible": true,

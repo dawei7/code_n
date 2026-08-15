@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-large-even",
+      "id": "trial-large-even",
       "name": "largest legal input is even",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-small-odd",
+      "id": "trial-small-odd",
       "name": "three doubles to six",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-power-two",
+      "id": "trial-power-two",
       "name": "a power of two remains unchanged",
       "kind": "trial",
       "visible": true,

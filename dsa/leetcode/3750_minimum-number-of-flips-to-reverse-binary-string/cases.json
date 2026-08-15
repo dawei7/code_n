@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-one-pair",
+      "id": "trial-one-pair",
       "name": "one mirrored pair differs",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-three-pairs",
+      "id": "trial-three-pairs",
       "name": "all three mirrored pairs differ",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-mixed-pairs",
+      "id": "trial-mixed-pairs",
       "name": "mixed matches in an odd-length string",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-high-palindrome",
+      "id": "trial-high-palindrome",
       "name": "largest all-one value below thirty bits",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-thirty-bit-power",
+      "id": "trial-thirty-bit-power",
       "name": "thirty-bit power of two",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum legal input",
       "kind": "trial",
       "visible": true,

@@ -94,8 +94,8 @@
       ]
     },
     {
-      "id": "real-endpoint-level",
-      "name": "real: endpoint shares a height with interior crossing",
+      "id": "trial-endpoint-level",
+      "name": "endpoint shares a height with interior crossing",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -111,8 +111,8 @@
       ]
     },
     {
-      "id": "real-repeated-extrema",
-      "name": "real: repeated nonadjacent extrema",
+      "id": "trial-repeated-extrema",
+      "name": "repeated nonadjacent extrema",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -131,8 +131,8 @@
       ]
     },
     {
-      "id": "real-height-boundaries",
-      "name": "real: contract height boundaries",
+      "id": "trial-height-boundaries",
+      "name": "contract height boundaries",
       "kind": "trial",
       "visible": true,
       "input": {

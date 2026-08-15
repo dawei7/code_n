@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-mixed-question-positions",
+      "id": "trial-mixed-question-positions",
       "name": "wildcard positions alter prefix feasibility",
       "kind": "trial",
       "visible": true,
@@ -269,7 +269,7 @@
       ]
     },
     {
-      "id": "real-too-many-fixed-ones",
+      "id": "trial-too-many-fixed-ones",
       "name": "fixed-one count can exceed the source total",
       "kind": "trial",
       "visible": true,
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "id": "real-insufficient-wildcards",
+      "id": "trial-insufficient-wildcards",
       "name": "question marks cannot always supply the total",
       "kind": "trial",
       "visible": true,
@@ -313,7 +313,7 @@
       ]
     },
     {
-      "id": "real-rightmost-ones",
+      "id": "trial-rightmost-ones",
       "name": "rightmost wildcard one minimizes every prefix",
       "kind": "trial",
       "visible": true,
@@ -335,7 +335,7 @@
       ]
     },
     {
-      "id": "real-forced-early-one",
+      "id": "trial-forced-early-one",
       "name": "one fixed early position is impossible",
       "kind": "trial",
       "visible": true,
@@ -359,7 +359,7 @@
       ]
     },
     {
-      "id": "real-equal-count-prefixes",
+      "id": "trial-equal-count-prefixes",
       "name": "equal total ones do not guarantee reachability",
       "kind": "trial",
       "visible": true,
@@ -383,7 +383,7 @@
       ]
     },
     {
-      "id": "real-five-character-mix",
+      "id": "trial-five-character-mix",
       "name": "fixed and wildcard feasibility mix",
       "kind": "trial",
       "visible": true,
@@ -411,7 +411,7 @@
       ]
     },
     {
-      "id": "real-six-character-mix",
+      "id": "trial-six-character-mix",
       "name": "several valid minimum-prefix completions",
       "kind": "trial",
       "visible": true,
@@ -439,7 +439,7 @@
       ]
     },
     {
-      "id": "real-seven-character-mix",
+      "id": "trial-seven-character-mix",
       "name": "later ones remain reachable from sparse prefixes",
       "kind": "trial",
       "visible": true,
@@ -468,7 +468,7 @@
       ]
     },
     {
-      "id": "real-eight-character-mix",
+      "id": "trial-eight-character-mix",
       "name": "dense source prefix and wildcard suffixes",
       "kind": "trial",
       "visible": true,
@@ -494,6 +494,48 @@
       "tags": [
         "mixed",
         "longer"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111",
+        "strs": [
+          "1?1",
+          "0?1",
+          "0?0"
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        false
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    },
+    {
+      "id": "trial-boundary-22",
+      "name": "single element in strs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "101",
+        "strs": [
+          "1?1"
+        ]
+      },
+      "expected": [
+        true
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

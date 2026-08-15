@@ -171,8 +171,8 @@
       ]
     },
     {
-      "id": "real-large-initials",
-      "name": "real: initial values near the source maximum",
+      "id": "trial-large-initials",
+      "name": "initial values near the source maximum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -195,8 +195,8 @@
       ]
     },
     {
-      "id": "real-remainder-order",
-      "name": "real: equal balanced values receive indexed extras",
+      "id": "trial-remainder-order",
+      "name": "equal balanced values receive indexed extras",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -223,8 +223,8 @@
       ]
     },
     {
-      "id": "real-varied-warmup",
-      "name": "real: several warm-up depths",
+      "id": "trial-varied-warmup",
+      "name": "several warm-up depths",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -253,8 +253,8 @@
       ]
     },
     {
-      "id": "real-factor-one",
-      "name": "real: identity factor preserves all positions",
+      "id": "trial-factor-one",
+      "name": "identity factor preserves all positions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -279,8 +279,8 @@
       ]
     },
     {
-      "id": "real-many-values",
-      "name": "real: twenty deterministic values",
+      "id": "trial-many-values",
+      "name": "twenty deterministic values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -334,6 +334,34 @@
       "tags": [
         "mixed",
         "large-k"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value multiplier=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          5,
+          6
+        ],
+        "k": 5,
+        "multiplier": 1
+      },
+      "expected": [
+        2,
+        1,
+        3,
+        5,
+        6
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

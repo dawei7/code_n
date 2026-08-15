@@ -278,7 +278,7 @@
       ]
     },
     {
-      "id": "real-nonnumeric-topological-order",
+      "id": "trial-nonnumeric-topological-order",
       "name": "node numbers are not a topological order",
       "kind": "trial",
       "visible": true,
@@ -326,7 +326,7 @@
       ]
     },
     {
-      "id": "real-high-score-over-budget",
+      "id": "trial-high-score-over-budget",
       "name": "expensive high-bottleneck route loses to affordable route",
       "kind": "trial",
       "visible": true,
@@ -374,7 +374,7 @@
       ]
     },
     {
-      "id": "real-zero-among-positive",
+      "id": "trial-zero-among-positive",
       "name": "a zero edge determines the valid path score",
       "kind": "trial",
       "visible": true,
@@ -416,7 +416,7 @@
       ]
     },
     {
-      "id": "real-repeated-costs",
+      "id": "trial-repeated-costs",
       "name": "repeated edge costs form several thresholds",
       "kind": "trial",
       "visible": true,
@@ -464,7 +464,7 @@
       ]
     },
     {
-      "id": "real-large-costs",
+      "id": "trial-large-costs",
       "name": "large recovery costs require wide totals",
       "kind": "trial",
       "visible": true,
@@ -501,7 +501,7 @@
       ]
     },
     {
-      "id": "real-wrong-direction",
+      "id": "trial-wrong-direction",
       "name": "edges cannot be traversed backward",
       "kind": "trial",
       "visible": true,

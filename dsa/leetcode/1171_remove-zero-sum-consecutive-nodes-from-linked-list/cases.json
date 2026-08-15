@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-zero-nodes",
+      "id": "trial-zero-nodes",
       "name": "zero nodes around a survivor",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-no-removal",
+      "id": "trial-no-removal",
       "name": "no zero-sum sequence",
       "kind": "trial",
       "visible": true,

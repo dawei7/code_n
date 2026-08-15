@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "hidden-blank-row",
+      "id": "trial-blank-row",
       "name": "reveal an entire one-row board",
       "kind": "trial",
       "visible": true,
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "id": "hidden-multiple-mines",
+      "id": "trial-multiple-mines",
       "name": "count several neighboring mines",
       "kind": "trial",
       "visible": true,

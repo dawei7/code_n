@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-three-road-chain",
+      "id": "trial-three-road-chain",
       "name": "three roads form the cheapest chain",
       "kind": "trial",
       "visible": true,
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": "real-cheapest-duplicate-end",
+      "id": "trial-cheapest-duplicate-end",
       "name": "competing roads share a destination",
       "kind": "trial",
       "visible": true,
@@ -294,7 +294,7 @@
       ]
     },
     {
-      "id": "real-beneficial-road-cost-capped",
+      "id": "trial-beneficial-road-cost-capped",
       "name": "expensive road is no better than walking",
       "kind": "trial",
       "visible": true,
@@ -330,7 +330,7 @@
       ]
     },
     {
-      "id": "real-direction-cycle",
+      "id": "trial-direction-cycle",
       "name": "cheap reverse edges do not reverse direction",
       "kind": "trial",
       "visible": true,

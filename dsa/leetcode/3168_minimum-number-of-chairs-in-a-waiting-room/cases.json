@@ -86,8 +86,8 @@
       ]
     },
     {
-      "id": "real-later-peak",
-      "name": "real: the greatest occupancy occurs after reuse",
+      "id": "trial-later-peak",
+      "name": "the greatest occupancy occurs after reuse",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -100,8 +100,8 @@
       ]
     },
     {
-      "id": "real-nonempty-ending",
-      "name": "real: valid sequence ends with occupied chairs",
+      "id": "trial-nonempty-ending",
+      "name": "valid sequence ends with occupied chairs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -114,8 +114,8 @@
       ]
     },
     {
-      "id": "real-maximum-length-entries",
-      "name": "real: maximum length consists entirely of entries",
+      "id": "trial-maximum-length-entries",
+      "name": "maximum length consists entirely of entries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -129,8 +129,8 @@
       ]
     },
     {
-      "id": "real-maximum-length-alternating",
-      "name": "real: one chair serves fifty alternating events",
+      "id": "trial-maximum-length-alternating",
+      "name": "one chair serves fifty alternating events",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -144,8 +144,8 @@
       ]
     },
     {
-      "id": "real-maximum-nested",
-      "name": "real: twenty-five entries precede all departures",
+      "id": "trial-maximum-nested",
+      "name": "twenty-five entries precede all departures",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -159,8 +159,8 @@
       ]
     },
     {
-      "id": "real-peak-after-empty",
-      "name": "real: occupancy resets before the largest run",
+      "id": "trial-peak-after-empty",
+      "name": "occupancy resets before the largest run",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -171,6 +171,20 @@
         "real",
         "reset",
         "later-peak"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "EEE"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

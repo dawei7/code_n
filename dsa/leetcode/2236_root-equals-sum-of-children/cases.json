@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-mixed-sign",
+      "id": "trial-mixed-sign",
       "name": "mixed-sign children produce positive root",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-boundaries-false",
+      "id": "trial-boundaries-false",
       "name": "extreme children exceed root range",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-zero-values",
+      "id": "trial-zero-values",
       "name": "all zero values satisfy equality",
       "kind": "trial",
       "visible": true,

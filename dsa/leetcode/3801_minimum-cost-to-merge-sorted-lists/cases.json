@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-closest-first",
+      "id": "trial-closest-first",
       "name": "nearby medians should merge before a distant value",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-negative-values",
+      "id": "trial-negative-values",
       "name": "negative and positive ranges",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-outlier-inside-list",
+      "id": "trial-outlier-inside-list",
       "name": "subset median depends on all merged values",
       "kind": "trial",
       "visible": true,
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "id": "real-all-duplicate-values",
+      "id": "trial-all-duplicate-values",
       "name": "duplicate values across unequal lists",
       "kind": "trial",
       "visible": true,
@@ -292,7 +292,7 @@
       ]
     },
     {
-      "id": "real-uneven-list-lengths",
+      "id": "trial-uneven-list-lengths",
       "name": "length and median costs interact",
       "kind": "trial",
       "visible": true,
@@ -323,7 +323,7 @@
       ]
     },
     {
-      "id": "real-eight-lists",
+      "id": "trial-eight-lists",
       "name": "many distinct singleton lists",
       "kind": "trial",
       "visible": true,

@@ -188,8 +188,8 @@
       ]
     },
     {
-      "id": "real-modulus-one",
-      "name": "real: every remaining prefix has remainder zero",
+      "id": "trial-modulus-one",
+      "name": "every remaining prefix has remainder zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -223,8 +223,8 @@
       ]
     },
     {
-      "id": "real-ordered-products",
-      "name": "real: prefix multiplication order is preserved",
+      "id": "trial-ordered-products",
+      "name": "prefix multiplication order is preserved",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -252,8 +252,8 @@
       ]
     },
     {
-      "id": "real-persistent-and-start",
-      "name": "real: second query sees the first update",
+      "id": "trial-persistent-and-start",
+      "name": "second query sees the first update",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-consecutive-dashes",
+      "id": "trial-consecutive-dashes",
       "name": "repeated dashes disappear",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-long-first",
+      "id": "trial-long-first",
       "name": "first group has a nonzero remainder",
       "kind": "trial",
       "visible": true,
@@ -103,6 +103,36 @@
       "expected": "A-BCDE-FGHI",
       "tags": [
         "remainder"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "5",
+        "k": 4
+      },
+      "expected": "5",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "555",
+        "k": 4
+      },
+      "expected": "555",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-equal-plateau",
+      "id": "trial-equal-plateau",
       "name": "every tower belongs to the peak plateau",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-deep-valley",
+      "id": "trial-deep-valley",
       "name": "a deep valley separates tall regions",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "large limits require a wide integer sum",
       "kind": "trial",
       "visible": true,
@@ -173,6 +173,39 @@
       "expected": 3000000000,
       "tags": [
         "large-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in maxHeights",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "maxHeights": [
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in maxHeights",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "maxHeights": [
+          5,
+          5
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

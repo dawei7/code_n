@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-several-ordered",
+      "id": "trial-several-ordered",
       "name": "several qualifying IDs are sorted",
       "kind": "trial",
       "visible": true,
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "id": "real-mixed-managers",
+      "id": "trial-mixed-managers",
       "name": "existing and missing managers are distinguished",
       "kind": "trial",
       "visible": true,
@@ -307,7 +307,7 @@
       ]
     },
     {
-      "id": "real-manager-also-low",
+      "id": "trial-manager-also-low",
       "name": "manager salary does not affect report status",
       "kind": "trial",
       "visible": true,
@@ -345,7 +345,7 @@
       ]
     },
     {
-      "id": "real-negative-salary",
+      "id": "trial-negative-salary",
       "name": "negative salary remains below threshold",
       "kind": "trial",
       "visible": true,

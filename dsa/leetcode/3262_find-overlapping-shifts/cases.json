@@ -345,8 +345,8 @@
       ]
     },
     {
-      "id": "real-long-over-islands",
-      "name": "real: one long shift overlaps disjoint short shifts",
+      "id": "trial-long-over-islands",
+      "name": "one long shift overlaps disjoint short shifts",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -393,8 +393,8 @@
       ]
     },
     {
-      "id": "real-boundary-and-crossing",
-      "name": "real: touching pair plus a crossing shift",
+      "id": "trial-boundary-and-crossing",
+      "name": "touching pair plus a crossing shift",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -436,8 +436,8 @@
       ]
     },
     {
-      "id": "real-five-way-overlap",
-      "name": "real: five concurrent shifts form ten pairs",
+      "id": "trial-five-way-overlap",
+      "name": "five concurrent shifts form ten pairs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -489,8 +489,8 @@
       ]
     },
     {
-      "id": "real-two-clusters",
-      "name": "real: separated overlap clusters add independently",
+      "id": "trial-two-clusters",
+      "name": "separated overlap clusters add independently",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -537,8 +537,8 @@
       ]
     },
     {
-      "id": "real-interleaved-employees",
-      "name": "real: matching times stay partitioned by employee",
+      "id": "trial-interleaved-employees",
+      "name": "matching times stay partitioned by employee",
       "kind": "trial",
       "visible": true,
       "input": {

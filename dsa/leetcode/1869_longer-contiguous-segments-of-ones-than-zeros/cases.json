@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-all-ones",
+      "id": "trial-all-ones",
       "name": "an all-ones string succeeds",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-all-zeros",
+      "id": "trial-all-zeros",
       "name": "an all-zeros string fails",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating digits have equal maxima",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-final-run-wins",
+      "id": "trial-final-run-wins",
       "name": "the final ones run determines the result",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-earlier-run-wins",
+      "id": "trial-earlier-run-wins",
       "name": "an earlier zeros run remains the maximum",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-many-short-runs",
+      "id": "trial-many-short-runs",
       "name": "separated ones segments are not combined",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-one-point-advantage",
+      "id": "trial-one-point-advantage",
       "name": "a one-character advantage is sufficient",
       "kind": "trial",
       "visible": true,
@@ -164,6 +164,20 @@
       "expected": true,
       "tags": [
         "strict-advantage"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

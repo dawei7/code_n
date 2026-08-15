@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "real-deep-tie",
+      "id": "trial-deep-tie",
       "name": "last character resolves a long shared prefix",
       "kind": "trial",
       "visible": true,
@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-single-character-first-word",
+      "id": "trial-single-character-first-word",
       "name": "second word supplies the larger prefix",
       "kind": "trial",
       "visible": true,
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-disjoint-ordering",
+      "id": "trial-disjoint-ordering",
       "name": "every character of the second word comes first",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-long-equal-prefix",
+      "id": "trial-long-equal-prefix",
       "name": "competing suffixes differ only at the end",
       "kind": "trial",
       "visible": true,
@@ -120,6 +120,36 @@
       "tags": [
         "repeated-characters",
         "deep-tie"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in word1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "c",
+        "word2": "bcaaa"
+      },
+      "expected": "cbcaaa",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in word1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "ccc",
+        "word2": "bcaaa"
+      },
+      "expected": "cccbcaaa",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

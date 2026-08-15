@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "hidden-one-child",
+      "id": "trial-one-child",
       "name": "delete a node with one child",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "hidden-negative-values",
+      "id": "trial-negative-values",
       "name": "delete within negative values",
       "kind": "trial",
       "visible": true,

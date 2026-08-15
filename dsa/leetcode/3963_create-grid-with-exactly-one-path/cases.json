@@ -214,8 +214,8 @@
       ]
     },
     {
-      "id": "real-max-height",
-      "name": "real: maximum height single column",
+      "id": "trial-max-height",
+      "name": "maximum height single column",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -260,8 +260,8 @@
       ]
     },
     {
-      "id": "real-two-by-max-width",
-      "name": "real: two by maximum width",
+      "id": "trial-two-by-max-width",
+      "name": "two by maximum width",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -283,8 +283,8 @@
       ]
     },
     {
-      "id": "real-max-height-by-two",
-      "name": "real: maximum height by two",
+      "id": "trial-max-height-by-two",
+      "name": "maximum height by two",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -329,8 +329,8 @@
       ]
     },
     {
-      "id": "real-four-square",
-      "name": "real: four by four",
+      "id": "trial-four-square",
+      "name": "four by four",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -354,8 +354,8 @@
       ]
     },
     {
-      "id": "real-ten-by-seven",
-      "name": "real: ten by seven",
+      "id": "trial-ten-by-seven",
+      "name": "ten by seven",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -385,8 +385,8 @@
       ]
     },
     {
-      "id": "real-max-grid",
-      "name": "real: maximum grid",
+      "id": "trial-max-grid",
+      "name": "maximum grid",
       "kind": "trial",
       "visible": true,
       "input": {

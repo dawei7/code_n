@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-last-arrival-replaces",
+      "id": "trial-last-arrival-replaces",
       "name": "only the final arrival is better",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-best-rank-early",
+      "id": "trial-best-rank-early",
       "name": "rank one prevents all future replacements",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum legal values and one improvement",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-nonconsecutive-records",
+      "id": "trial-nonconsecutive-records",
       "name": "record lows occur after several worse arrivals",
       "kind": "trial",
       "visible": true,
@@ -220,7 +220,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "equal ranks never replace",
       "kind": "trial",
       "visible": true,
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": "real-maximum-length-equal",
+      "id": "trial-maximum-length-equal",
       "name": "maximum input length with no replacements",
       "kind": "trial",
       "visible": true,
@@ -100252,6 +100252,39 @@
       "tags": [
         "maximum-input",
         "all-equal"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in ranks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ranks": [
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in ranks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ranks": [
+          4,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

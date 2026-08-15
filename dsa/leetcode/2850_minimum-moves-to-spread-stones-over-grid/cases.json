@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-assignment-choice-matters",
+      "id": "trial-assignment-choice-matters",
       "name": "choose the globally best source-target matching",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-corner-pile",
+      "id": "trial-corner-pile",
       "name": "one corner supplies four empty cells",
       "kind": "trial",
       "visible": true,

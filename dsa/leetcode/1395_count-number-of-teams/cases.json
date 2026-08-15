@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-zigzag",
+      "id": "trial-zigzag",
       "name": "reject mixed-direction triples",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-extreme-values",
+      "id": "trial-extreme-values",
       "name": "rating magnitude does not affect counting",
       "kind": "trial",
       "visible": true,
@@ -131,6 +131,39 @@
       "expected": 1,
       "tags": [
         "bounds"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in rating",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rating": [
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in rating",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rating": [
+          2,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

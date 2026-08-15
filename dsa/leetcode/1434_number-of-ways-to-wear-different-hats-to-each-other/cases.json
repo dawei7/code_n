@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-cycle",
+      "id": "trial-cycle",
       "name": "cycle of pairwise overlaps",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-factorial",
+      "id": "trial-factorial",
       "name": "every person likes every available hat",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-unused-boundary",
+      "id": "trial-unused-boundary",
       "name": "boundary hat can remain unused",
       "kind": "trial",
       "visible": true,

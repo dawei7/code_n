@@ -272,8 +272,8 @@
       ]
     },
     {
-      "id": "real-threshold-one-suffices",
-      "name": "real: dense outgoing choices reduce to one per node",
+      "id": "trial-threshold-one-suffices",
+      "name": "dense outgoing choices reduce to one per node",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -334,8 +334,8 @@
       ]
     },
     {
-      "id": "real-bottleneck-from-last-node",
-      "name": "real: answer is the worst node's best route",
+      "id": "trial-bottleneck-from-last-node",
+      "name": "answer is the worst node's best route",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -371,8 +371,8 @@
       ]
     },
     {
-      "id": "real-closed-cycle",
-      "name": "real: closed component cannot reach zero",
+      "id": "trial-closed-cycle",
+      "name": "closed component cannot reach zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -409,8 +409,8 @@
       ]
     },
     {
-      "id": "real-cycle-with-exit",
-      "name": "real: cycle has a directed exit to zero",
+      "id": "trial-cycle-with-exit",
+      "name": "cycle has a directed exit to zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -451,8 +451,8 @@
       ]
     },
     {
-      "id": "real-high-weight-boundary",
-      "name": "real: maximum legal weight is required",
+      "id": "trial-high-weight-boundary",
+      "name": "maximum legal weight is required",
       "kind": "trial",
       "visible": true,
       "input": {

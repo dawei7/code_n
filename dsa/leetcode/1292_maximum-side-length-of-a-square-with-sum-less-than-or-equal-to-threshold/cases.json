@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "hidden-one-row",
+      "id": "trial-one-row",
       "name": "one-row matrix",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "hidden-mixed",
+      "id": "trial-mixed",
       "name": "larger mixed matrix",
       "kind": "trial",
       "visible": true,

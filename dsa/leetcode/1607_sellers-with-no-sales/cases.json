@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "real-outside-both-sides",
+      "id": "trial-outside-both-sides",
       "name": "sales surrounding 2020 do not exclude",
       "kind": "trial",
       "visible": true,
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "id": "real-many-active-orders",
+      "id": "trial-many-active-orders",
       "name": "repeated 2020 sales exclude once",
       "kind": "trial",
       "visible": true,
@@ -407,7 +407,7 @@
       ]
     },
     {
-      "id": "real-all-active",
+      "id": "trial-all-active",
       "name": "every seller has a 2020 sale",
       "kind": "trial",
       "visible": true,
@@ -473,7 +473,7 @@
       ]
     },
     {
-      "id": "real-all-inactive",
+      "id": "trial-all-inactive",
       "name": "every order is outside 2020",
       "kind": "trial",
       "visible": true,
@@ -550,7 +550,7 @@
       ]
     },
     {
-      "id": "real-id-order-differs",
+      "id": "trial-id-order-differs",
       "name": "sort by seller name rather than ID",
       "kind": "trial",
       "visible": true,
@@ -610,7 +610,7 @@
       ]
     },
     {
-      "id": "real-customers-costs-irrelevant",
+      "id": "trial-customers-costs-irrelevant",
       "name": "customer and cost do not affect exclusion",
       "kind": "trial",
       "visible": true,

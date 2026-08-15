@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-corridor",
+      "id": "trial-corridor",
       "name": "narrow winding corridor",
       "kind": "trial",
       "visible": true,

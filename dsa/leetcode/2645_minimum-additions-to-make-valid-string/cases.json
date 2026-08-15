@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-valid-multiple",
+      "id": "trial-valid-multiple",
       "name": "multiple complete groups",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-cross-boundary",
+      "id": "trial-cross-boundary",
       "name": "one complete group followed by a start",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-equal-middle-letters",
+      "id": "trial-equal-middle-letters",
       "name": "repeated middle letters split groups",
       "kind": "trial",
       "visible": true,

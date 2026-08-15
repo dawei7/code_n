@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-duplicate-target",
+      "id": "trial-duplicate-target",
       "name": "choose leftmost duplicate target",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-largest-smaller",
+      "id": "trial-largest-smaller",
       "name": "choose largest smaller suffix value",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-tail-drop",
+      "id": "trial-tail-drop",
       "name": "tail descent",
       "kind": "trial",
       "visible": true,

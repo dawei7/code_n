@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-prefix-cancellation",
+      "id": "trial-prefix-cancellation",
       "name": "prefix XOR cancellation creates zero",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-equal-pair",
+      "id": "trial-equal-pair",
       "name": "equal values cancel as a pair",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-repeated-sevens",
+      "id": "trial-repeated-sevens",
       "name": "odd repeated length restores the value",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-only-full-range",
+      "id": "trial-only-full-range",
       "name": "only the full array reaches the threshold",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "values near the upper bound",
       "kind": "trial",
       "visible": true,
@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "real-alternating-bits",
+      "id": "trial-alternating-bits",
       "name": "repeated prefix values count many pairs",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-high-bit-threshold",
+      "id": "trial-high-bit-threshold",
       "name": "only subarrays containing the high bit qualify",
       "kind": "trial",
       "visible": true,
@@ -242,6 +242,41 @@
       "expected": 4,
       "tags": [
         "bit-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

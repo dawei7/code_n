@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-neighbor-before",
+      "id": "trial-neighbor-before",
       "name": "value immediately before a pivot input",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-large-pivot",
+      "id": "trial-large-pivot",
       "name": "larger exact pivot",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "maximum input without a pivot",
       "kind": "trial",
       "visible": true,

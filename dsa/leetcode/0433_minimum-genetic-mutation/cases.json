@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "hidden-unreachable",
+      "id": "trial-unreachable",
       "name": "target exists but no valid first step does",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "hidden-branching",
+      "id": "trial-branching",
       "name": "distractor genes do not change the shortest path",
       "kind": "trial",
       "visible": true,

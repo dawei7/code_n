@@ -186,8 +186,8 @@
       ]
     },
     {
-      "id": "real-middle-prefix-pinned",
-      "name": "real: middle and final prefixes constrained",
+      "id": "trial-middle-prefix-pinned",
+      "name": "middle and final prefixes constrained",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -210,8 +210,8 @@
       ]
     },
     {
-      "id": "real-five-elements",
-      "name": "real: five-element constrained count",
+      "id": "trial-five-elements",
+      "name": "five-element constrained count",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -234,8 +234,8 @@
       ]
     },
     {
-      "id": "real-final-only",
-      "name": "real: unconstrained prefixes",
+      "id": "trial-final-only",
+      "name": "unconstrained prefixes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -254,8 +254,8 @@
       ]
     },
     {
-      "id": "real-three-prefixes",
-      "name": "real: three compatible prefix counts",
+      "id": "trial-three-prefixes",
+      "name": "three compatible prefix counts",
       "kind": "trial",
       "visible": true,
       "input": {

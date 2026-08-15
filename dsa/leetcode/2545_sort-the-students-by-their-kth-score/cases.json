@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-single-student",
+      "id": "trial-single-student",
       "name": "one student remains unchanged",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-reverse-order",
+      "id": "trial-reverse-order",
       "name": "every row must move",
       "kind": "trial",
       "visible": true,
@@ -256,7 +256,7 @@
       ]
     },
     {
-      "id": "real-preserve-whole-rows",
+      "id": "trial-preserve-whole-rows",
       "name": "ranking retains non-key scores",
       "kind": "trial",
       "visible": true,
@@ -299,6 +299,59 @@
       ],
       "tags": [
         "row-integrity"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "score": [
+          [
+            10,
+            6,
+            9,
+            1
+          ],
+          [
+            7,
+            5,
+            11,
+            2
+          ],
+          [
+            4,
+            8,
+            3,
+            15
+          ]
+        ],
+        "k": 1
+      },
+      "expected": [
+        [
+          4,
+          8,
+          3,
+          15
+        ],
+        [
+          10,
+          6,
+          9,
+          1
+        ],
+        [
+          7,
+          5,
+          11,
+          2
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

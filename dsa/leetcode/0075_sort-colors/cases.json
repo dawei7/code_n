@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-reversed",
+      "id": "trial-reversed",
       "name": "reverse color blocks",
       "kind": "trial",
       "visible": true,

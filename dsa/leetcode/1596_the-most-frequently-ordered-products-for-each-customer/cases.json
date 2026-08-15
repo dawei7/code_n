@@ -366,7 +366,7 @@
       }
     },
     {
-      "id": "real-customer-without-orders",
+      "id": "trial-customer-without-orders",
       "name": "customers without orders are excluded",
       "kind": "trial",
       "visible": true,
@@ -427,7 +427,7 @@
       }
     },
     {
-      "id": "real-dates-irrelevant",
+      "id": "trial-dates-irrelevant",
       "name": "dates do not partition frequencies",
       "kind": "trial",
       "visible": true,
@@ -496,7 +496,7 @@
       }
     },
     {
-      "id": "real-prices-irrelevant",
+      "id": "trial-prices-irrelevant",
       "name": "price does not affect order frequency",
       "kind": "trial",
       "visible": true,
@@ -565,7 +565,7 @@
       }
     },
     {
-      "id": "real-independent-customers",
+      "id": "trial-independent-customers",
       "name": "maxima are partitioned by customer",
       "kind": "trial",
       "visible": true,
@@ -661,7 +661,7 @@
       }
     },
     {
-      "id": "real-all-products-tied",
+      "id": "trial-all-products-tied",
       "name": "all observed products tie",
       "kind": "trial",
       "visible": true,
@@ -761,7 +761,7 @@
       }
     },
     {
-      "id": "real-product-name-lookup",
+      "id": "trial-product-name-lookup",
       "name": "output name comes from Products",
       "kind": "trial",
       "visible": true,

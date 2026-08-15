@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-common-divisor",
+      "id": "trial-common-divisor",
       "name": "nontrivial common divisor",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-swapped",
+      "id": "trial-swapped",
       "name": "swapping inputs preserves the count",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-upper-equal",
+      "id": "trial-upper-equal",
       "name": "equal values at the upper bound",
       "kind": "trial",
       "visible": true,
@@ -133,6 +133,36 @@
       "tags": [
         "upper-bound",
         "equal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value num1=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 1,
+        "num2": 3
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value num2=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 2,
+        "num2": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

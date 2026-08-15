@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "hidden-repeated-nines",
+      "id": "trial-repeated-nines",
       "name": "large positive difference",
       "kind": "trial",
       "visible": true,
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "hidden-upper-bound",
+      "id": "trial-upper-bound",
       "name": "six-digit upper boundary",
       "kind": "trial",
       "visible": true,

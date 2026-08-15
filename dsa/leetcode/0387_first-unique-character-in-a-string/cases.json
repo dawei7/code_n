@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-late-duplicate",
+      "id": "trial-late-duplicate",
       "name": "later occurrence invalidates prefix candidate",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-many-groups",
+      "id": "trial-many-groups",
       "name": "unique among repeated groups",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "hidden-all-same",
+      "id": "trial-all-same",
       "name": "one repeated character kind",
       "kind": "trial",
       "visible": true,

@@ -255,8 +255,8 @@
       ]
     },
     {
-      "id": "real-subset-masks",
-      "name": "real: narrower masks remove optional permissions",
+      "id": "trial-subset-masks",
+      "name": "narrower masks remove optional permissions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -301,8 +301,8 @@
       ]
     },
     {
-      "id": "real-alternating-patterns",
-      "name": "real: alternating bit patterns cover a full byte",
+      "id": "trial-alternating-patterns",
+      "name": "alternating bit patterns cover a full byte",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -347,8 +347,8 @@
       ]
     },
     {
-      "id": "real-repeated-and-outlier",
-      "name": "real: one outlier changes both aggregates",
+      "id": "trial-repeated-and-outlier",
+      "name": "one outlier changes both aggregates",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -394,8 +394,8 @@
       ]
     },
     {
-      "id": "real-large-permissions",
-      "name": "real: high non-sign bits are preserved",
+      "id": "trial-large-permissions",
+      "name": "high non-sign bits are preserved",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -436,8 +436,8 @@
       ]
     },
     {
-      "id": "real-one-common-flag",
-      "name": "real: exactly one flag belongs to every user",
+      "id": "trial-one-common-flag",
+      "name": "exactly one flag belongs to every user",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -482,8 +482,8 @@
       ]
     },
     {
-      "id": "real-sparse-and-dense",
-      "name": "real: sparse and dense masks combine correctly",
+      "id": "trial-sparse-and-dense",
+      "name": "sparse and dense masks combine correctly",
       "kind": "trial",
       "visible": true,
       "input": {

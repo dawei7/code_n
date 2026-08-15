@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "real-length-k-plus-one",
+      "id": "trial-length-k-plus-one",
       "name": "only a k plus one palindrome qualifies",
       "kind": "trial",
       "visible": true,
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-separated-long-palindromes",
+      "id": "trial-separated-long-palindromes",
       "name": "separated palindromes longer than the threshold",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-overlap-forbidden",
+      "id": "trial-overlap-forbidden",
       "name": "nested palindromes cannot both be selected",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-threshold-is-whole-string",
+      "id": "trial-threshold-is-whole-string",
       "name": "threshold equals string length",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-no-match-at-max-threshold",
+      "id": "trial-no-match-at-max-threshold",
       "name": "whole string is not a palindrome",
       "kind": "trial",
       "visible": true,

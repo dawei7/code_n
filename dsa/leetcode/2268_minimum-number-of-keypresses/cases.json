@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-all-letters",
+      "id": "trial-all-letters",
       "name": "all three slot-cost levels are required",
       "kind": "trial",
       "visible": true,
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-skewed-frequencies",
+      "id": "trial-skewed-frequencies",
       "name": "frequent letters receive the cheapest positions",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-one-letter-run",
+      "id": "trial-one-letter-run",
       "name": "one repeated letter always costs one press each",
       "kind": "trial",
       "visible": true,

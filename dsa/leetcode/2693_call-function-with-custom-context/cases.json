@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-order",
+      "id": "trial-order",
       "name": "argument order is preserved",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-nested",
+      "id": "trial-nested",
       "name": "nested context data remains reachable",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-many-arguments",
+      "id": "trial-many-arguments",
       "name": "many numeric arguments are forwarded",
       "kind": "trial",
       "visible": true,

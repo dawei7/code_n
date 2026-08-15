@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-several-separated-gaps",
+      "id": "trial-several-separated-gaps",
       "name": "several sorted gaps create choices",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-largest-legal-thresholds",
+      "id": "trial-largest-legal-thresholds",
       "name": "empty and full groups at the largest legal threshold",
       "kind": "trial",
       "visible": true,

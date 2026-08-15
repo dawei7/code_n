@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-three-digits",
+      "id": "trial-three-digits",
       "name": "all balanced three-digit values",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-cross-length",
+      "id": "trial-cross-length",
       "name": "interval crossing a digit-length boundary",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-leading-zero-trap",
+      "id": "trial-leading-zero-trap",
       "name": "positions begin at the actual first digit",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-first-thousand",
+      "id": "trial-first-thousand",
       "name": "prefix count through one thousand",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-maximum-singleton",
+      "id": "trial-maximum-singleton",
       "name": "maximum legal endpoint as a singleton",
       "kind": "trial",
       "visible": true,
@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "real-zero-heavy-balanced",
+      "id": "trial-zero-heavy-balanced",
       "name": "internal zeros preserve their positions",
       "kind": "trial",
       "visible": true,

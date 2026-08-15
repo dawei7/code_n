@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-descending",
+      "id": "trial-descending",
       "name": "descending input keeps final suffix",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-ascending",
+      "id": "trial-ascending",
       "name": "ascending input trims trailing values",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-equal-values",
+      "id": "trial-equal-values",
       "name": "equal values retain stable positions",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-late-small-value",
+      "id": "trial-late-small-value",
       "name": "save enough suffix values after late minimum",
       "kind": "trial",
       "visible": true,
@@ -202,6 +202,46 @@
       "tags": [
         "feasibility",
         "late-value"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ],
+        "k": 2
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ],
+        "k": 2
+      },
+      "expected": [
+        3,
+        3
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

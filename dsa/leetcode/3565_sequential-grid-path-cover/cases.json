@@ -163,8 +163,8 @@
       ]
     },
     {
-      "id": "real-zero-before-one",
-      "name": "real: a zero cell may precede checkpoint one",
+      "id": "trial-zero-before-one",
+      "name": "a zero cell may precede checkpoint one",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -208,8 +208,8 @@
       ]
     },
     {
-      "id": "real-three-by-three-snake",
-      "name": "real: checkpoints constrain a full three-by-three snake",
+      "id": "trial-three-by-three-snake",
+      "name": "checkpoints constrain a full three-by-three snake",
       "kind": "trial",
       "visible": true,
       "input": {

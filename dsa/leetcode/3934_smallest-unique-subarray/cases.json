@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-period-two",
+      "id": "trial-period-two",
       "name": "a period-two array first becomes unique at length four",
       "kind": "trial",
       "visible": true,
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "real-each-value-twice",
+      "id": "trial-each-value-twice",
       "name": "repeated singletons have unique ordered pairs",
       "kind": "trial",
       "visible": true,
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "real-three-cycle",
+      "id": "trial-three-cycle",
       "name": "a repeated three-cycle needs a unique triple",
       "kind": "trial",
       "visible": true,
@@ -260,7 +260,7 @@
       ]
     },
     {
-      "id": "real-mirrored-pattern",
+      "id": "trial-mirrored-pattern",
       "name": "mirrored repetitions distinguish length-three sequences",
       "kind": "trial",
       "visible": true,
@@ -287,7 +287,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum legal values form a unique reversed pair",
       "kind": "trial",
       "visible": true,
@@ -309,7 +309,7 @@
       ]
     },
     {
-      "id": "real-repeated-blocks",
+      "id": "trial-repeated-blocks",
       "name": "repeated blocks still contain a unique boundary pair",
       "kind": "trial",
       "visible": true,
@@ -335,7 +335,7 @@
       ]
     },
     {
-      "id": "real-long-constant",
+      "id": "trial-long-constant",
       "name": "a longer constant array needs its complete length",
       "kind": "trial",
       "visible": true,

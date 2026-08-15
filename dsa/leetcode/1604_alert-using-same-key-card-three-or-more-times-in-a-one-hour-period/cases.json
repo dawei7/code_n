@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-midnight-does-not-wrap",
+      "id": "trial-midnight-does-not-wrap",
       "name": "a single day does not wrap through midnight",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-input-order",
+      "id": "trial-input-order",
       "name": "chronological order differs from input order",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-multiple-sorted",
+      "id": "trial-multiple-sorted",
       "name": "several alerts must be alphabetically sorted",
       "kind": "trial",
       "visible": true,
@@ -224,7 +224,7 @@
       ]
     },
     {
-      "id": "real-four-reported-once",
+      "id": "trial-four-reported-once",
       "name": "four qualifying uses report one unique name",
       "kind": "trial",
       "visible": true,
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": "real-distinct-name-pairs",
+      "id": "trial-distinct-name-pairs",
       "name": "equal timestamps for different names remain independent",
       "kind": "trial",
       "visible": true,
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "id": "real-later-window",
+      "id": "trial-later-window",
       "name": "qualifying triple occurs after earlier distant uses",
       "kind": "trial",
       "visible": true,
@@ -311,7 +311,7 @@
       ]
     },
     {
-      "id": "real-no-alerts-many-groups",
+      "id": "trial-no-alerts-many-groups",
       "name": "several employees remain below the threshold",
       "kind": "trial",
       "visible": true,

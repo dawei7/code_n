@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "hidden-rest-one",
+      "id": "trial-rest-one",
       "name": "large value with remaining sum one",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "hidden-largest-not-dominant",
+      "id": "trial-largest-not-dominant",
       "name": "largest does not exceed remaining sum",
       "kind": "trial",
       "visible": true,

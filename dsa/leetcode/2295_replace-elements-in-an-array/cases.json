@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-cross-position-chain",
+      "id": "trial-cross-position-chain",
       "name": "chains transfer freed values across positions",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "replacements reach the numeric upper bound",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "real-reverse-order",
+      "id": "trial-reverse-order",
       "name": "operation order reverses the active values",
       "kind": "trial",
       "visible": true,
@@ -277,7 +277,7 @@
       ]
     },
     {
-      "id": "real-long-same-index",
+      "id": "trial-long-same-index",
       "name": "every operation targets the last position",
       "kind": "trial",
       "visible": true,

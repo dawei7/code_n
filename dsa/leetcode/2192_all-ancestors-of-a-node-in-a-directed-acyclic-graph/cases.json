@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "real-diamond",
+      "id": "trial-diamond",
       "name": "two paths do not duplicate a shared ancestor",
       "kind": "trial",
       "visible": true,
@@ -292,7 +292,7 @@
       ]
     },
     {
-      "id": "real-unordered-edges",
+      "id": "trial-unordered-edges",
       "name": "edge order does not affect sorted ancestors",
       "kind": "trial",
       "visible": true,
@@ -352,7 +352,7 @@
       ]
     },
     {
-      "id": "real-two-components",
+      "id": "trial-two-components",
       "name": "transitive ancestors stay inside each component",
       "kind": "trial",
       "visible": true,

@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-carry-and-zero",
+      "id": "trial-carry-and-zero",
       "name": "carry crosses mixed bits",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-small-odd",
+      "id": "trial-small-odd",
       "name": "binary three",
       "kind": "trial",
       "visible": true,

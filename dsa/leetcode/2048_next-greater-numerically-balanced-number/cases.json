@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-zero-containing-candidates",
+      "id": "trial-zero-containing-candidates",
       "name": "candidates containing zero remain invalid",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-adjacent-balanced-values",
+      "id": "trial-adjacent-balanced-values",
       "name": "choose the next ordering of the same digit multiset",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-large-gap",
+      "id": "trial-large-gap",
       "name": "scan a substantial gap between balanced values",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "the answer may exceed the input constraint",
       "kind": "trial",
       "visible": true,

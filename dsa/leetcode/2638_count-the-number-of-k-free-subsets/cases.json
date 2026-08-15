@@ -120,8 +120,8 @@
       ]
     },
     {
-      "id": "real-separated-components",
-      "name": "real: one remainder class contains two components",
+      "id": "trial-separated-components",
+      "name": "one remainder class contains two components",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -141,8 +141,8 @@
       ]
     },
     {
-      "id": "real-three-chain",
-      "name": "real: choosing the middle excludes both ends only pairwise",
+      "id": "trial-three-chain",
+      "name": "choosing the middle excludes both ends only pairwise",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -161,8 +161,8 @@
       ]
     },
     {
-      "id": "real-boundary-conflict",
-      "name": "real: values at opposite numeric boundaries conflict",
+      "id": "trial-boundary-conflict",
+      "name": "values at opposite numeric boundaries conflict",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -180,8 +180,8 @@
       ]
     },
     {
-      "id": "real-maximum-independent",
-      "name": "real: maximum length with no possible conflict",
+      "id": "trial-maximum-independent",
+      "name": "maximum length with no possible conflict",
       "kind": "trial",
       "visible": true,
       "input": {

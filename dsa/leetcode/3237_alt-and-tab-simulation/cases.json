@@ -159,8 +159,8 @@
       ]
     },
     {
-      "id": "real-two-from-reversed-order",
-      "name": "real: two queried windows from reversed order",
+      "id": "trial-two-from-reversed-order",
+      "name": "two queried windows from reversed order",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -186,8 +186,8 @@
       ]
     },
     {
-      "id": "real-last-occurrence-wins",
-      "name": "real: last occurrence controls priority",
+      "id": "trial-last-occurrence-wins",
+      "name": "last occurrence controls priority",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -215,8 +215,8 @@
       ]
     },
     {
-      "id": "real-duplicate-subset",
-      "name": "real: duplicate queries for a subset",
+      "id": "trial-duplicate-subset",
+      "name": "duplicate queries for a subset",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -247,8 +247,8 @@
       ]
     },
     {
-      "id": "real-same-query-only",
-      "name": "real: one identifier is queried many times",
+      "id": "trial-same-query-only",
+      "name": "one identifier is queried many times",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -273,8 +273,8 @@
       ]
     },
     {
-      "id": "real-all-windows-with-repeat",
-      "name": "real: all windows queried with a repeat",
+      "id": "trial-all-windows-with-repeat",
+      "name": "all windows queried with a repeat",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -304,8 +304,8 @@
       ]
     },
     {
-      "id": "real-unqueried-order-preserved",
-      "name": "real: unqueried windows keep original order",
+      "id": "trial-unqueried-order-preserved",
+      "name": "unqueried windows keep original order",
       "kind": "trial",
       "visible": true,
       "input": {

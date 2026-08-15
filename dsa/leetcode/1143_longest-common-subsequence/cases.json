@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-order",
+      "id": "trial-order",
       "name": "same characters in conflicting order",
       "kind": "trial",
       "visible": true,
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-crossing",
+      "id": "trial-crossing",
       "name": "optimal choices cross local matches",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-unequal",
+      "id": "trial-unequal",
       "name": "substantially unequal lengths",
       "kind": "trial",
       "visible": true,
@@ -120,6 +120,36 @@
       "tags": [
         "real",
         "unequal-length"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in text1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text1": "a",
+        "text2": "ace"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in text1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text1": "aaa",
+        "text2": "ace"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

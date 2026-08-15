@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-better-late-addition",
+      "id": "trial-better-late-addition",
       "name": "a late best location crosses the boundary",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-equal-score-boundary",
+      "id": "trial-equal-score-boundary",
       "name": "lexical insertion crosses an established boundary",
       "kind": "trial",
       "visible": true,
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "id": "real-score-before-name",
+      "id": "trial-score-before-name",
       "name": "score dominates lexicographic order",
       "kind": "trial",
       "visible": true,

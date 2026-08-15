@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-empty-children",
+      "id": "trial-empty-children",
       "name": "some children may receive only one small bag",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-uneven-three-way",
+      "id": "trial-uneven-three-way",
       "name": "the optimum requires combining nonadjacent bags",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-maximum-count",
+      "id": "trial-maximum-count",
       "name": "eight bags exercise the complete source-size boundary",
       "kind": "trial",
       "visible": true,
@@ -163,6 +163,41 @@
       "tags": [
         "maximum-n",
         "symmetry"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in cookies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cookies": [
+          8
+        ],
+        "k": 2
+      },
+      "expected": 8,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in cookies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cookies": [
+          8,
+          8
+        ],
+        "k": 2
+      },
+      "expected": 8,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

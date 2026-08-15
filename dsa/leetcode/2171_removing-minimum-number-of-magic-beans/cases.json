@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-two-extremes",
+      "id": "trial-two-extremes",
       "name": "one small and one upper-bound bag",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-duplicate-mode",
+      "id": "trial-duplicate-mode",
       "name": "preserve a repeated smaller level",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-all-upper",
+      "id": "trial-all-upper",
       "name": "all bags at the upper bound",
       "kind": "trial",
       "visible": true,
@@ -156,6 +156,39 @@
       "tags": [
         "upper-bound",
         "already-equal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in beans",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "beans": [
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in beans",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "beans": [
+          4,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

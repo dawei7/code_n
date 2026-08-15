@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-zero-summands",
+      "id": "trial-zero-summands",
       "name": "zero summands can preserve a high multiplier",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-equal-multipliers",
+      "id": "trial-equal-multipliers",
       "name": "equal multipliers choose largest summands",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-singleton",
+      "id": "trial-singleton",
       "name": "one available index",
       "kind": "trial",
       "visible": true,

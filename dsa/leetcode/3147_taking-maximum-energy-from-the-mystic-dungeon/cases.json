@@ -104,8 +104,8 @@
       ]
     },
     {
-      "id": "real-negative-tail-is-mandatory",
-      "name": "real: positive start cannot skip its negative tail",
+      "id": "trial-negative-tail-is-mandatory",
+      "name": "positive start cannot skip its negative tail",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -125,8 +125,8 @@
       ]
     },
     {
-      "id": "real-all-negative-unit-step",
-      "name": "real: all-negative unit-step chain",
+      "id": "trial-all-negative-unit-step",
+      "name": "all-negative unit-step chain",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -145,8 +145,8 @@
       ]
     },
     {
-      "id": "real-maximum-legal-step",
-      "name": "real: maximum legal jump distance",
+      "id": "trial-maximum-legal-step",
+      "name": "maximum legal jump distance",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -167,8 +167,8 @@
       ]
     },
     {
-      "id": "real-periodic-residues",
-      "name": "real: best start lies inside a residue chain",
+      "id": "trial-periodic-residues",
+      "name": "best start lies inside a residue chain",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -193,8 +193,8 @@
       ]
     },
     {
-      "id": "real-zero-is-best",
-      "name": "real: zero beats every negative path",
+      "id": "trial-zero-is-best",
+      "name": "zero beats every negative path",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -213,8 +213,8 @@
       ]
     },
     {
-      "id": "real-alternating-unit-step",
-      "name": "real: best suffix begins after alternating losses",
+      "id": "trial-alternating-unit-step",
+      "name": "best suffix begins after alternating losses",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -234,8 +234,8 @@
       ]
     },
     {
-      "id": "real-upper-value-bound",
-      "name": "real: repeated maximum energy values",
+      "id": "trial-upper-value-bound",
+      "name": "repeated maximum energy values",
       "kind": "trial",
       "visible": true,
       "input": {

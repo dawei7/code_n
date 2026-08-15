@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-century",
+      "id": "trial-century",
       "name": "2100 is not a leap year",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-four-century",
+      "id": "trial-four-century",
       "name": "2000 is a leap year",
       "kind": "trial",
       "visible": true,

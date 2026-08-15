@@ -167,8 +167,8 @@
       ]
     },
     {
-      "id": "real-several-query-shapes",
-      "name": "real: reuse one preprocessing table across queries",
+      "id": "trial-several-query-shapes",
+      "name": "reuse one preprocessing table across queries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -229,8 +229,8 @@
       ]
     },
     {
-      "id": "real-maximum-edge-weights",
-      "name": "real: two maximum-weight edges",
+      "id": "trial-maximum-edge-weights",
+      "name": "two maximum-weight edges",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -263,8 +263,8 @@
       ]
     },
     {
-      "id": "real-root-and-two-branches",
-      "name": "real: root is one of three terminals",
+      "id": "trial-root-and-two-branches",
+      "name": "root is one of three terminals",
       "kind": "trial",
       "visible": true,
       "input": {

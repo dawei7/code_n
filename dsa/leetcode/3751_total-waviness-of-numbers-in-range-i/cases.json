@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-monotonic",
+      "id": "trial-monotonic",
       "name": "monotonic digits have no turn",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-single-peak",
+      "id": "trial-single-peak",
       "name": "one strict peak",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-three-turns",
+      "id": "trial-three-turns",
       "name": "five digits alternate three times",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-eleven-values",
+      "id": "trial-eleven-values",
       "name": "consecutive valleys after a decimal boundary",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-maximum-value",
+      "id": "trial-maximum-value",
       "name": "maximum legal endpoint as a single-value range",
       "kind": "trial",
       "visible": true,
@@ -193,6 +193,36 @@
       },
       "tags": [
         "maximum-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value num1=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 1,
+        "num2": 130
+      },
+      "expected": 12,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value num2=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 120,
+        "num2": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

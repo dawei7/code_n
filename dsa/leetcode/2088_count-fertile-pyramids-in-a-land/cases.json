@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-upright-only",
+      "id": "trial-upright-only",
       "name": "one isolated upright pyramid",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-inverse-only",
+      "id": "trial-inverse-only",
       "name": "one isolated inverse pyramid",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-single-row",
+      "id": "trial-single-row",
       "name": "width alone cannot create height",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-barren-grid",
+      "id": "trial-barren-grid",
       "name": "barren cells form no plots",
       "kind": "trial",
       "visible": true,

@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-deadline-boundary",
+      "id": "trial-deadline-boundary",
       "name": "hour equal to mandatory departures is impossible",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-no-extra-wait",
+      "id": "trial-no-extra-wait",
       "name": "exact integer ride times depart immediately",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-last-not-rounded",
+      "id": "trial-last-not-rounded",
       "name": "the final fractional ride is not rounded",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-speed-one-single",
+      "id": "trial-speed-one-single",
       "name": "a long single deadline permits speed one",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-many-short-rides",
+      "id": "trial-many-short-rides",
       "name": "waiting dominates several short rides",
       "kind": "trial",
       "visible": true,
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-decimal-threshold",
+      "id": "trial-decimal-threshold",
       "name": "speed changes at a two-decimal deadline",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-large-distances",
+      "id": "trial-large-distances",
       "name": "large distances retain integer ceiling semantics",
       "kind": "trial",
       "visible": true,

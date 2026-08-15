@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-multichar-primitive",
+      "id": "trial-multichar-primitive",
       "name": "repeated multicharacter primitive",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-shared-prefix-only",
+      "id": "trial-shared-prefix-only",
       "name": "common prefix is not divisor",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-one-copy",
+      "id": "trial-one-copy",
       "name": "one input is one divisor copy",
       "kind": "trial",
       "visible": true,
@@ -131,6 +131,36 @@
       "expected": "HELLO",
       "tags": [
         "one-copy"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in str1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "str1": "A",
+        "str2": "ABC"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in str1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "str1": "AAA",
+        "str2": "ABC"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

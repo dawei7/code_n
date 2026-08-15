@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-predecessor",
+      "id": "trial-predecessor",
       "name": "optimum comes from the predecessor value",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-successor",
+      "id": "trial-successor",
       "name": "optimum comes from the successor value",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "minimum and maximum values",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-late-optimum",
+      "id": "trial-late-optimum",
       "name": "best pair appears at the final index",
       "kind": "trial",
       "visible": true,

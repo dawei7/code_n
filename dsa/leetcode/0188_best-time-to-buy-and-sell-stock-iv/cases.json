@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "real-unlimited",
+      "id": "trial-unlimited",
       "name": "transaction limit is nonbinding",
       "kind": "trial",
       "visible": true,

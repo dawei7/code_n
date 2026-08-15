@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "two disjoint crossed components",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "four-couple cycle",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "paired ends with crossed middle",
       "kind": "trial",
       "visible": true,
@@ -182,6 +182,23 @@
       "expected": 2,
       "tags": [
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "row": [
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

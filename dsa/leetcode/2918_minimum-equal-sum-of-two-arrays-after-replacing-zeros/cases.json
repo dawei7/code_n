@@ -113,7 +113,7 @@
       "expected": 12
     },
     {
-      "id": "real-flexible-minimum-above-fixed",
+      "id": "trial-flexible-minimum-above-fixed",
       "name": "first minimum exceeds fixed second sum",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       "expected": -1
     },
     {
-      "id": "real-opposite-impossible-direction",
+      "id": "trial-opposite-impossible-direction",
       "name": "fixed first sum is below second minimum",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       "expected": -1
     },
     {
-      "id": "real-maximum-value-replacement",
+      "id": "trial-maximum-value-replacement",
       "name": "one zero can absorb a large difference",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       "expected": 1000000
     },
     {
-      "id": "real-maximum-plus-zero-too-large",
+      "id": "trial-maximum-plus-zero-too-large",
       "name": "flexible minimum exceeds a fixed million",
       "kind": "trial",
       "visible": true,

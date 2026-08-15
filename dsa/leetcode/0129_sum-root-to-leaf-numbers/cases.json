@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-leading-zero",
+      "id": "trial-leading-zero",
       "name": "leading zero paths",
       "kind": "trial",
       "visible": true,

@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "all positions are empty",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "equal diagonal peaks",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "asymmetric row and column maxima",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "cross-shaped sparse towers",
       "kind": "trial",
       "visible": true,
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "dense maximum-height square",
       "kind": "trial",
       "visible": true,

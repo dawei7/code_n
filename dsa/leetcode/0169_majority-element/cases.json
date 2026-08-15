@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-late-majority",
+      "id": "trial-late-majority",
       "name": "majority concentrated late",
       "kind": "trial",
       "visible": true,

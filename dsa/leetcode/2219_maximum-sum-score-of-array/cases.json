@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-negative-triple",
+      "id": "trial-negative-triple",
       "name": "zero initialization would be incorrect",
       "kind": "trial",
       "visible": true,
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-deep-negative",
+      "id": "trial-deep-negative",
       "name": "a later suffix can recover after a large loss",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "every index has score zero",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-large-magnitudes",
+      "id": "trial-large-magnitudes",
       "name": "wide integer sums remain exact",
       "kind": "trial",
       "visible": true,
@@ -139,6 +139,39 @@
       "expected": 200000,
       "tags": [
         "large-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

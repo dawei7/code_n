@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-one-row-single",
+      "id": "trial-one-row-single",
       "name": "one special in a single row",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-one-row-many",
+      "id": "trial-one-row-many",
       "name": "multiple ones conflict in a single row",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-one-column",
+      "id": "trial-one-column",
       "name": "one special in a single column",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-column-conflict",
+      "id": "trial-column-conflict",
       "name": "two rows share their only one column",
       "kind": "trial",
       "visible": true,
@@ -258,7 +258,7 @@
       ]
     },
     {
-      "id": "real-mixed-conflicts",
+      "id": "trial-mixed-conflicts",
       "name": "isolated and conflicting ones coexist",
       "kind": "trial",
       "visible": true,
@@ -298,7 +298,7 @@
       ]
     },
     {
-      "id": "real-wide-identity",
+      "id": "trial-wide-identity",
       "name": "separated coordinates remain special",
       "kind": "trial",
       "visible": true,
@@ -335,7 +335,7 @@
       ]
     },
     {
-      "id": "real-dense",
+      "id": "trial-dense",
       "name": "dense matrix has no special position",
       "kind": "trial",
       "visible": true,

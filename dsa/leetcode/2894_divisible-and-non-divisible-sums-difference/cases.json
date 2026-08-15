@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-maximum-range",
+      "id": "trial-maximum-range",
       "name": "maximum n with several divisible terms",
       "kind": "trial",
       "visible": true,

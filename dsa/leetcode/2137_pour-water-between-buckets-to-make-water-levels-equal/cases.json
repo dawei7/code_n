@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-two-buckets",
+      "id": "trial-two-buckets",
       "name": "one donor fills one receiver",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-near-total-loss",
+      "id": "trial-near-total-loss",
       "name": "one percent of poured water survives",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-all-empty",
+      "id": "trial-all-empty",
       "name": "empty buckets equalize at zero",
       "kind": "trial",
       "visible": true,
@@ -176,6 +176,41 @@
       },
       "tags": [
         "zero"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in buckets",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "buckets": [
+          1
+        ],
+        "loss": 80
+      },
+      "expected": 0.9999923706054688,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in buckets",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "buckets": [
+          1,
+          1
+        ],
+        "loss": 80
+      },
+      "expected": 0.9999923706054688,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

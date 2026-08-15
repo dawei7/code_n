@@ -417,7 +417,7 @@
       ]
     },
     {
-      "id": "real-all-four-fridays",
+      "id": "trial-all-four-fridays",
       "name": "both memberships purchase every Friday",
       "kind": "trial",
       "visible": true,
@@ -536,7 +536,7 @@
       ]
     },
     {
-      "id": "real-no-qualifying-members",
+      "id": "trial-no-qualifying-members",
       "name": "no Premium or VIP users still returns eight rows",
       "kind": "trial",
       "visible": true,

@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-before-quarter",
+      "id": "trial-before-quarter",
       "name": "earlier sale disqualifies",
       "kind": "trial",
       "visible": true,
@@ -224,7 +224,7 @@
       ]
     },
     {
-      "id": "real-duplicate-sales",
+      "id": "trial-duplicate-sales",
       "name": "duplicate in-quarter rows remain eligible",
       "kind": "trial",
       "visible": true,
@@ -274,7 +274,7 @@
       ]
     },
     {
-      "id": "real-multiple-products",
+      "id": "trial-multiple-products",
       "name": "independently qualify each product",
       "kind": "trial",
       "visible": true,

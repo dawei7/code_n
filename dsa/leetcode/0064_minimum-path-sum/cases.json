@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-greedy-trap",
+      "id": "trial-greedy-trap",
       "name": "locally cheap move is globally costly",
       "kind": "trial",
       "visible": true,

@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-descending",
+      "id": "trial-descending",
       "name": "replace a descending prefix",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-one-bad-peak",
+      "id": "trial-one-bad-peak",
       "name": "replace one peak from several candidates",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate candidates do not add choices",
       "kind": "trial",
       "visible": true,

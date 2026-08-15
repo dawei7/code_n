@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-unsorted-window",
+      "id": "trial-unsorted-window",
       "name": "the optimal value interval is unordered in input",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "equal values need no removals",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "multiplication near value limits",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-multiple-optimal-windows",
+      "id": "trial-multiple-optimal-windows",
       "name": "several longest balanced windows tie",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "real-large-k",
+      "id": "trial-large-k",
       "name": "a large multiplier keeps every value",
       "kind": "trial",
       "visible": true,

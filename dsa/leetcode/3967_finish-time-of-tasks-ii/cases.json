@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-shuffled-chain",
+      "id": "trial-shuffled-chain",
       "name": "shuffled edges and labels do not define the root",
       "kind": "trial",
       "visible": true,
@@ -289,7 +289,7 @@
       ]
     },
     {
-      "id": "real-balanced-seven",
+      "id": "trial-balanced-seven",
       "name": "balanced tree has varied component values",
       "kind": "trial",
       "visible": true,
@@ -338,7 +338,7 @@
       ]
     },
     {
-      "id": "real-broom-tree",
+      "id": "trial-broom-tree",
       "name": "high-degree node joins a deeper branch",
       "kind": "trial",
       "visible": true,
@@ -392,7 +392,7 @@
       ]
     },
     {
-      "id": "real-maximum-base-star",
+      "id": "trial-maximum-base-star",
       "name": "maximum base values and duplicate extrema",
       "kind": "trial",
       "visible": true,
@@ -426,7 +426,7 @@
       ]
     },
     {
-      "id": "real-odd-uniform-chain",
+      "id": "trial-odd-uniform-chain",
       "name": "center of an odd uniform chain",
       "kind": "trial",
       "visible": true,
@@ -515,7 +515,7 @@
       ]
     },
     {
-      "id": "real-multi-branch-depth",
+      "id": "trial-multi-branch-depth",
       "name": "several branch depths share internal nodes",
       "kind": "trial",
       "visible": true,
@@ -579,7 +579,7 @@
       ]
     },
     {
-      "id": "real-long-varied-chain",
+      "id": "trial-long-varied-chain",
       "name": "long chain exercises both reroot passes",
       "kind": "trial",
       "visible": true,

@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-overlap-correction",
+      "id": "trial-overlap-correction",
       "name": "two-bound overlap corrections contribute",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-maximum-unrestricted",
+      "id": "trial-maximum-unrestricted",
       "name": "maximum total and inactive maximum cap",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-maximum-impossible",
+      "id": "trial-maximum-impossible",
       "name": "maximum total with minimal capacity",
       "kind": "trial",
       "visible": true,

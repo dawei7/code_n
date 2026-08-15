@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-unmatched-suffix",
+      "id": "trial-unmatched-suffix",
       "name": "matched prefix followed by absent suffix",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-repeated-letters",
+      "id": "trial-repeated-letters",
       "name": "repeated target prefix",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-order-mismatch",
+      "id": "trial-order-mismatch",
       "name": "only the first target character appears in order",
       "kind": "trial",
       "visible": true,
@@ -117,6 +117,36 @@
       "expected": 2,
       "tags": [
         "order"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "c",
+        "t": "coding"
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ccc",
+        "t": "coding"
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

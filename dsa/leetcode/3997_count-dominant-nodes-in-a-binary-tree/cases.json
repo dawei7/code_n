@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-decreasing-level-order",
+      "id": "trial-decreasing-level-order",
       "name": "every parent exceeds its descendants",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-increasing-level-order",
+      "id": "trial-increasing-level-order",
       "name": "only leaves survive increasing level order",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-one-dominant-internal",
+      "id": "trial-one-dominant-internal",
       "name": "one internal branch maximum",
       "kind": "trial",
       "visible": true,
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "real-duplicate-subtree-maxima",
+      "id": "trial-duplicate-subtree-maxima",
       "name": "duplicate maxima count at every ancestor",
       "kind": "trial",
       "visible": true,
@@ -276,7 +276,7 @@
       ]
     },
     {
-      "id": "real-root-descendant-ties",
+      "id": "trial-root-descendant-ties",
       "name": "maximum ties propagate through partial tree",
       "kind": "trial",
       "visible": true,
@@ -297,7 +297,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "values at the upper bound",
       "kind": "trial",
       "visible": true,
@@ -317,7 +317,7 @@
       ]
     },
     {
-      "id": "real-all-minimum-values",
+      "id": "trial-all-minimum-values",
       "name": "fifteen minimum-valued nodes",
       "kind": "trial",
       "visible": true,
@@ -347,7 +347,7 @@
       ]
     },
     {
-      "id": "real-mixed-four-levels",
+      "id": "trial-mixed-four-levels",
       "name": "mixed maxima across four levels",
       "kind": "trial",
       "visible": true,
@@ -377,7 +377,7 @@
       ]
     },
     {
-      "id": "real-six-node-partial",
+      "id": "trial-six-node-partial",
       "name": "right subtree has one last-level child",
       "kind": "trial",
       "visible": true,
@@ -398,7 +398,7 @@
       ]
     },
     {
-      "id": "real-ten-node-partial",
+      "id": "trial-ten-node-partial",
       "name": "partially filled fourth level",
       "kind": "trial",
       "visible": true,

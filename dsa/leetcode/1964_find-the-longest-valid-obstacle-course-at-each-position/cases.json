@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-repeated-peaks",
+      "id": "trial-repeated-peaks",
       "name": "repeated peaks and a later bridge",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-duplicate-middle",
+      "id": "trial-duplicate-middle",
       "name": "duplicate middle heights extend after a reset",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "maximum height can extend either earlier course",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-zigzag",
+      "id": "trial-zigzag",
       "name": "final peak extends the best compatible course",
       "kind": "trial",
       "visible": true,

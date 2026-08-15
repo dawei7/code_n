@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-ancestor-descendant",
+      "id": "trial-ancestor-descendant",
       "name": "nested flips cancel below descendant",
       "kind": "trial",
       "visible": true,
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-two-leaves",
+      "id": "trial-two-leaves",
       "name": "independent leaf flips",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-root-cancels",
+      "id": "trial-root-cancels",
       "name": "cancelled root leaves one subtree",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-incomplete-level",
+      "id": "trial-incomplete-level",
       "name": "subtree stops at n",
       "kind": "trial",
       "visible": true,

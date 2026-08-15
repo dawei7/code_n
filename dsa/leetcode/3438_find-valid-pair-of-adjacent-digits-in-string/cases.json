@@ -70,8 +70,8 @@
       ]
     },
     {
-      "id": "real-two-valid-boundaries",
-      "name": "real: first valid boundary wins",
+      "id": "trial-two-valid-boundaries",
+      "name": "first valid boundary wins",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -84,8 +84,8 @@
       ]
     },
     {
-      "id": "real-valid-seven-one",
-      "name": "real: larger digit frequency",
+      "id": "trial-valid-seven-one",
+      "name": "larger digit frequency",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -98,8 +98,8 @@
       ]
     },
     {
-      "id": "real-all-identical",
-      "name": "real: all adjacent digits equal",
+      "id": "trial-all-identical",
+      "name": "all adjacent digits equal",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -112,8 +112,8 @@
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "real: maximum length without a valid pair",
+      "id": "trial-maximum-length",
+      "name": "maximum length without a valid pair",
       "kind": "trial",
       "visible": true,
       "input": {

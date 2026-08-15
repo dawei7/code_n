@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-inherited-name",
+      "id": "trial-inherited-name",
       "name": "inherited-looking property is intercepted",
       "kind": "trial",
       "visible": true,
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-prototype-key",
+      "id": "trial-prototype-key",
       "name": "prototype key is returned literally",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-long-name",
+      "id": "trial-long-name",
       "name": "long property name",
       "kind": "trial",
       "visible": true,

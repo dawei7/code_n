@@ -60,7 +60,7 @@
       ]
     },
     {
-      "id": "real-duplicate",
+      "id": "trial-duplicate",
       "name": "duplicate pattern character",
       "kind": "trial",
       "visible": true,

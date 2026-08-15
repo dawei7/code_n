@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-single-flower",
+      "id": "trial-single-flower",
       "name": "one flower makes one bouquet",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-all-same-day",
+      "id": "trial-all-same-day",
       "name": "equal bloom days and exact capacity",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-impossible-large-m",
+      "id": "trial-impossible-large-m",
       "name": "bouquet count exceeds garden capacity",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-adjacency-barriers",
+      "id": "trial-adjacency-barriers",
       "name": "early flowers are isolated",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-k-one-order-statistic",
+      "id": "trial-k-one-order-statistic",
       "name": "one-flower bouquets reach threshold",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-max-day-gap",
+      "id": "trial-max-day-gap",
       "name": "answer at maximum legal day",
       "kind": "trial",
       "visible": true,
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "real-nonoverlapping-groups",
+      "id": "trial-nonoverlapping-groups",
       "name": "long run yields floor length over k groups",
       "kind": "trial",
       "visible": true,

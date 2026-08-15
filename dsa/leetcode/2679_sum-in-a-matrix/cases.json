@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-one-row",
+      "id": "trial-one-row",
       "name": "one row contributes every removed value",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-columns",
+      "id": "trial-columns",
       "name": "maxima come from different rows",
       "kind": "trial",
       "visible": true,

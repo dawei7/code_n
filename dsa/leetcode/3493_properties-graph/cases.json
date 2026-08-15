@@ -186,8 +186,8 @@
       ]
     },
     {
-      "id": "real-transitive-chain",
-      "name": "real: edges form a chain without all pairs intersecting",
+      "id": "trial-transitive-chain",
+      "name": "edges form a chain without all pairs intersecting",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -223,8 +223,8 @@
       ]
     },
     {
-      "id": "real-mixed-components",
-      "name": "real: two linked groups and one isolated row",
+      "id": "trial-mixed-components",
+      "name": "two linked groups and one isolated row",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -269,8 +269,8 @@
       ]
     },
     {
-      "id": "real-value-upper-bound",
-      "name": "real: property value one hundred participates normally",
+      "id": "trial-value-upper-bound",
+      "name": "property value one hundred participates normally",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -306,8 +306,8 @@
       ]
     },
     {
-      "id": "real-full-distinct-threshold",
-      "name": "real: identical full sets meet the maximum row threshold",
+      "id": "trial-full-distinct-threshold",
+      "name": "identical full sets meet the maximum row threshold",
       "kind": "trial",
       "visible": true,
       "input": {

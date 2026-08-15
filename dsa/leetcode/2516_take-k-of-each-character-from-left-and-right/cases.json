@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-only-one-character",
+      "id": "trial-only-one-character",
       "name": "a repeated single character remains impossible",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-middle-character-block",
+      "id": "trial-middle-character-block",
       "name": "reaching the middle block needs five removals",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-one-of-each",
+      "id": "trial-one-of-each",
       "name": "minimum-length feasible string",
       "kind": "trial",
       "visible": true,

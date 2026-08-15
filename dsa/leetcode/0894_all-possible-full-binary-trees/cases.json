@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "four nodes",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "nine nodes",
       "kind": "trial",
       "visible": true,
@@ -416,7 +416,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "eight nodes",
       "kind": "trial",
       "visible": true,
@@ -432,7 +432,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "maximum even node count",
       "kind": "trial",
       "visible": true,
@@ -449,7 +449,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "ten nodes",
       "kind": "trial",
       "visible": true,

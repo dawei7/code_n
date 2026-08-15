@@ -61,7 +61,7 @@
       ]
     },
     {
-      "id": "real-negative-run",
+      "id": "trial-negative-run",
       "name": "negative run",
       "kind": "trial",
       "visible": true,

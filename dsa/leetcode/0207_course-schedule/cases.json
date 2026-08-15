@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "real-partial-cycle",
+      "id": "trial-partial-cycle",
       "name": "one component contains cycle",
       "kind": "trial",
       "visible": true,

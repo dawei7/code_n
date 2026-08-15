@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-invalid-boundaries",
+      "id": "trial-invalid-boundaries",
       "name": "boundaries and punctuation are invalid",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-separate-files",
+      "id": "trial-separate-files",
       "name": "targets occur in separate files",
       "kind": "trial",
       "visible": true,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-one-zero",
+      "id": "trial-one-zero",
       "name": "one target has no matching file",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-multiple-occurrences",
+      "id": "trial-multiple-occurrences",
       "name": "several occurrences still count once",
       "kind": "trial",
       "visible": true,
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "id": "real-overlap",
+      "id": "trial-overlap",
       "name": "one file contributes to both labels",
       "kind": "trial",
       "visible": true,
@@ -307,7 +307,7 @@
       ]
     },
     {
-      "id": "real-literal-spaces",
+      "id": "trial-literal-spaces",
       "name": "tabs and newlines are not spaces",
       "kind": "trial",
       "visible": true,

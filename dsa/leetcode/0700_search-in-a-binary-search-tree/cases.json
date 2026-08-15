@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "right-skewed deepest match",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "return nontrivial right subtree",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-3",
       "name": "absent beyond maximum",
       "kind": "trial",
       "visible": true,

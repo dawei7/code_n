@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-horizontal-only",
+      "id": "trial-horizontal-only",
       "name": "unchanged row contributes no cost",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-vertical-only",
+      "id": "trial-vertical-only",
       "name": "unchanged column contributes no cost",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-start-cost-excluded",
+      "id": "trial-start-cost-excluded",
       "name": "expensive starting coordinates are never charged",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-all-zero-route",
+      "id": "trial-all-zero-route",
       "name": "a nonempty route may cost zero",
       "kind": "trial",
       "visible": true,
@@ -217,6 +217,70 @@
       "expected": 0,
       "tags": [
         "zero-costs"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in startPos",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startPos": [
+          1,
+          1
+        ],
+        "homePos": [
+          2,
+          3
+        ],
+        "rowCosts": [
+          5,
+          4,
+          3
+        ],
+        "colCosts": [
+          8,
+          2,
+          6,
+          7
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in homePos",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startPos": [
+          1,
+          0
+        ],
+        "homePos": [
+          2,
+          2
+        ],
+        "rowCosts": [
+          5,
+          4,
+          3
+        ],
+        "colCosts": [
+          8,
+          2,
+          6,
+          7
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

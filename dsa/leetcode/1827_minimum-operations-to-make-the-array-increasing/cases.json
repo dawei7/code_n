@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-trailing-plateau",
+      "id": "trial-trailing-plateau",
       "name": "plateau after an increasing prefix",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-high-boundary-flat",
+      "id": "trial-high-boundary-flat",
       "name": "maximum input values may be increased beyond the bound",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-low-after-high",
+      "id": "trial-low-after-high",
       "name": "a low suffix follows a high first value",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-alternating-drops",
+      "id": "trial-alternating-drops",
       "name": "several drops accumulate independently",
       "kind": "trial",
       "visible": true,
@@ -183,6 +183,39 @@
       "tags": [
         "alternating",
         "multiple-adjustments"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

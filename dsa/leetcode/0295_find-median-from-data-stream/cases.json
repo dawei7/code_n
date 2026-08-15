@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "values alternate between halves",
       "kind": "trial",
       "visible": true,

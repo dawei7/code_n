@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-six",
+      "id": "trial-six",
       "name": "even length followed by odd reduced length",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-seven",
+      "id": "trial-seven",
       "name": "consecutive odd reduced lengths",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-power-two",
+      "id": "trial-power-two",
       "name": "exact power of two",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-above-power-two",
+      "id": "trial-above-power-two",
       "name": "immediately above a power of two",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-below-power-two",
+      "id": "trial-below-power-two",
       "name": "immediately below a power of two",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-above-larger-power-two",
+      "id": "trial-above-larger-power-two",
       "name": "survivor resets at a larger power boundary",
       "kind": "trial",
       "visible": true,

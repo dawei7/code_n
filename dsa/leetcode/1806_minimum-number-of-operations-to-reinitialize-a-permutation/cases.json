@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-length-fourteen",
+      "id": "trial-length-fourteen",
       "name": "order reaches n minus two",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-length-one-hundred",
+      "id": "trial-length-one-hundred",
       "name": "larger composite length",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "maximum legal even length",
       "kind": "trial",
       "visible": true,

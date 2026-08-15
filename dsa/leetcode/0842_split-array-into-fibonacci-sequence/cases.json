@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "classic sequence",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "value above 32-bit limit",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "too short for three pieces",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "long valid sequence",
       "kind": "trial",
       "visible": true,
@@ -215,6 +215,34 @@
       },
       "tags": [
         "long"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "1"
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "111"
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

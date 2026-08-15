@@ -105,8 +105,8 @@
       ]
     },
     {
-      "id": "real-single-zero",
-      "name": "real: a single zero",
+      "id": "trial-single-zero",
+      "name": "a single zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -123,8 +123,8 @@
       ]
     },
     {
-      "id": "real-zero-separates-high-values",
-      "name": "real: enough merges absorb both sides into zero",
+      "id": "trial-zero-separates-high-values",
+      "name": "enough merges absorb both sides into zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -143,8 +143,8 @@
       ]
     },
     {
-      "id": "real-disjoint-high-bits",
-      "name": "real: one merge clears every bit",
+      "id": "trial-disjoint-high-bits",
+      "name": "one merge clears every bit",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -161,8 +161,8 @@
       ]
     },
     {
-      "id": "real-boundary-choice",
-      "name": "real: the best adjacent boundary is not determined locally",
+      "id": "trial-boundary-choice",
+      "name": "the best adjacent boundary is not determined locally",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -182,8 +182,8 @@
       ]
     },
     {
-      "id": "real-budget-cannot-clear-or",
-      "name": "real: all candidate merges retain the complete OR",
+      "id": "trial-budget-cannot-clear-or",
+      "name": "all candidate merges retain the complete OR",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -199,6 +199,41 @@
       "tags": [
         "real",
         "infeasible-mask"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

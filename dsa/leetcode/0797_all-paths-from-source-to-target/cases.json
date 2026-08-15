@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "dead branch beside one answer",
       "kind": "trial",
       "visible": true,
@@ -281,7 +281,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "layered graph has four paths",
       "kind": "trial",
       "visible": true,
@@ -342,7 +342,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "disconnected nodes do not matter",
       "kind": "trial",
       "visible": true,

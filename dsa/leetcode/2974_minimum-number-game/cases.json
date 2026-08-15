@@ -94,8 +94,8 @@
       ]
     },
     {
-      "id": "real-unsorted",
-      "name": "real: several unsorted rounds",
+      "id": "trial-unsorted",
+      "name": "several unsorted rounds",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -125,8 +125,8 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "real: minimum and maximum allowed values",
+      "id": "trial-value-boundaries",
+      "name": "minimum and maximum allowed values",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -90,8 +90,8 @@
       ]
     },
     {
-      "id": "real-last-even-length",
-      "name": "real: final rank when both starting parities are possible",
+      "id": "trial-last-even-length",
+      "name": "final rank when both starting parities are possible",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -111,8 +111,8 @@
       ]
     },
     {
-      "id": "real-last-odd-length",
-      "name": "real: final rank must still begin odd",
+      "id": "trial-last-odd-length",
+      "name": "final rank must still begin odd",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -133,8 +133,8 @@
       ]
     },
     {
-      "id": "real-huge-rank-missing",
-      "name": "real: legal k exceeds the complete permutation count",
+      "id": "trial-huge-rank-missing",
+      "name": "legal k exceeds the complete permutation count",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -149,8 +149,8 @@
       ]
     },
     {
-      "id": "real-largest-n-first",
-      "name": "real: first rank at the maximum length",
+      "id": "trial-largest-n-first",
+      "name": "first rank at the maximum length",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -263,6 +263,41 @@
         "real",
         "maximum-n",
         "first-rank"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 6
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "k": 1
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-remove-last",
+      "id": "trial-remove-last",
       "name": "removing the last value repairs the order",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-minimum-length-decrease",
+      "id": "trial-minimum-length-decrease",
       "name": "either value may be removed from a decreasing pair",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-minimum-length-equal",
+      "id": "trial-minimum-length-equal",
       "name": "removing either duplicate leaves one element",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-remove-low-middle",
+      "id": "trial-remove-low-middle",
       "name": "discard the current low value to keep the prefix",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-remove-high-middle",
+      "id": "trial-remove-high-middle",
       "name": "discard the previous high value to admit the current value",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-duplicate-near-start",
+      "id": "trial-duplicate-near-start",
       "name": "one duplicate can be removed",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-separated-equalities",
+      "id": "trial-separated-equalities",
       "name": "separated duplicate conflicts require two removals",
       "kind": "trial",
       "visible": true,
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "id": "real-two-late-decreases",
+      "id": "trial-two-late-decreases",
       "name": "two late decreases cannot be repaired together",
       "kind": "trial",
       "visible": true,
@@ -249,7 +249,7 @@
       ]
     },
     {
-      "id": "real-domain-extremes",
+      "id": "trial-domain-extremes",
       "name": "the maximum value may be removed from the middle",
       "kind": "trial",
       "visible": true,
@@ -265,6 +265,39 @@
       "tags": [
         "domain-boundary",
         "remove-previous"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

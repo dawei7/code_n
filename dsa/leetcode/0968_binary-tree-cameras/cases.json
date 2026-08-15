@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "three-node chain",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "four-node chain",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "root with two leaves",
       "kind": "trial",
       "visible": true,

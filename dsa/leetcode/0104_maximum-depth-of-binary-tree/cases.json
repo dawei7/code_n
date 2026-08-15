@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-sparse",
+      "id": "trial-sparse",
       "name": "sparse deepest branch",
       "kind": "trial",
       "visible": true,

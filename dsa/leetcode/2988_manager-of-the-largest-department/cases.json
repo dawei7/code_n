@@ -250,8 +250,8 @@
       ]
     },
     {
-      "id": "real-count-nonmanagers",
-      "name": "real: nonmanager rows determine department size",
+      "id": "trial-count-nonmanagers",
+      "name": "nonmanager rows determine department size",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -304,8 +304,8 @@
       ]
     },
     {
-      "id": "real-department-order",
-      "name": "real: department IDs control output order",
+      "id": "trial-department-order",
+      "name": "department IDs control output order",
       "kind": "trial",
       "visible": true,
       "input": {

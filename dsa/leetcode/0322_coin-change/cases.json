@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-mixed",
+      "id": "trial-mixed",
       "name": "combine several denominations",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "hidden-many-small",
+      "id": "trial-many-small",
       "name": "only repeated threes work",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "hidden-large-known",
+      "id": "trial-large-known",
       "name": "large irregular denominations",
       "kind": "trial",
       "visible": true,

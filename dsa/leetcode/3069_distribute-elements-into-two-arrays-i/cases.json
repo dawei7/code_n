@@ -97,7 +97,7 @@
     },
     {
       "id": "ascending-values",
-      "name": "real: ascending values repeatedly join the second array",
+      "name": "ascending values repeatedly join the second array",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -125,7 +125,7 @@
     },
     {
       "id": "mixed-destinations",
-      "name": "real: destination changes several times",
+      "name": "destination changes several times",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -155,7 +155,7 @@
     },
     {
       "id": "boundary-values",
-      "name": "real: includes both value bounds",
+      "name": "includes both value bounds",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -183,6 +183,26 @@
       "tags": [
         "real",
         "bounds"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": [
+        2,
+        2
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-mixed-budgets",
+      "id": "trial-mixed-budgets",
       "name": "budgets cover zero through every value",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "repeated values and repeated queries",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "prefix sums exceed individual value bounds",
       "kind": "trial",
       "visible": true,

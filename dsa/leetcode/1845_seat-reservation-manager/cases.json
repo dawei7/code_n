@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-release-current-high",
+      "id": "trial-release-current-high",
       "name": "a released latest seat is reused before a fresh seat",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-out-of-order-releases",
+      "id": "trial-out-of-order-releases",
       "name": "released seats return in numeric rather than release order",
       "kind": "trial",
       "visible": true,
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": "real-repeated-cycle",
+      "id": "trial-repeated-cycle",
       "name": "the same seat survives several release cycles",
       "kind": "trial",
       "visible": true,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "real-large-capacity-sparse",
+      "id": "trial-large-capacity-sparse",
       "name": "large capacity does not change the initial sequence",
       "kind": "trial",
       "visible": true,
@@ -325,7 +325,7 @@
       ]
     },
     {
-      "id": "real-release-boundaries",
+      "id": "trial-release-boundaries",
       "name": "smallest and largest reserved seats are ordered correctly",
       "kind": "trial",
       "visible": true,
@@ -379,7 +379,7 @@
       ]
     },
     {
-      "id": "real-released-before-next-fresh",
+      "id": "trial-released-before-next-fresh",
       "name": "reusing a released seat does not advance the frontier",
       "kind": "trial",
       "visible": true,

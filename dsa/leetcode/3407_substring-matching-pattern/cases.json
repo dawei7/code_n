@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-multiple-prefixes",
-      "name": "real: earliest prefix leaves room for a later suffix",
+      "id": "trial-multiple-prefixes",
+      "name": "earliest prefix leaves room for a later suffix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -137,8 +137,8 @@
       ]
     },
     {
-      "id": "real-maximum-pattern-length",
-      "name": "real: maximum-length pattern uses an empty wildcard",
+      "id": "trial-maximum-pattern-length",
+      "name": "maximum-length pattern uses an empty wildcard",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -92,8 +92,8 @@
       ]
     },
     {
-      "id": "real-competing-middle-pairs",
-      "name": "real: competing removals yield different suffixes",
+      "id": "trial-competing-middle-pairs",
+      "name": "competing removals yield different suffixes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-circular-versus-ordinary",
-      "name": "real: circular and ordinary pairs compete",
+      "id": "trial-circular-versus-ordinary",
+      "name": "circular and ordinary pairs compete",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-two-stage-circular-cascade",
-      "name": "real: separate removals eliminate the whole string",
+      "id": "trial-two-stage-circular-cascade",
+      "name": "separate removals eliminate the whole string",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -137,8 +137,8 @@
       ]
     },
     {
-      "id": "real-odd-alphabet-chain",
-      "name": "real: an odd consecutive chain retains its smallest letter",
+      "id": "trial-odd-alphabet-chain",
+      "name": "an odd consecutive chain retains its smallest letter",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-even-alphabet-chain",
-      "name": "real: an even consecutive chain can be removed completely",
+      "id": "trial-even-alphabet-chain",
+      "name": "an even consecutive chain can be removed completely",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -167,8 +167,8 @@
       ]
     },
     {
-      "id": "real-equal-letters-stable",
-      "name": "real: equal letters are not alphabetically consecutive",
+      "id": "trial-equal-letters-stable",
+      "name": "equal letters are not alphabetically consecutive",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -179,6 +179,34 @@
         "real",
         "equal-letters",
         "stable"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": "a",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": "aaa",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-upper-bound-value",
+      "id": "trial-upper-bound-value",
       "name": "maximum legal value has remainder two",
       "kind": "trial",
       "visible": true,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-all-multiples",
+      "id": "trial-all-multiples",
       "name": "every legal multiple of three",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-all-remainder-one",
+      "id": "trial-all-remainder-one",
       "name": "every legal remainder-one value",
       "kind": "trial",
       "visible": true,
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-all-remainder-two",
+      "id": "trial-all-remainder-two",
       "name": "every legal remainder-two value",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-duplicate-remainders",
+      "id": "trial-duplicate-remainders",
       "name": "duplicate values contribute independently",
       "kind": "trial",
       "visible": true,
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-complete-value-range",
+      "id": "trial-complete-value-range",
       "name": "every value from one through fifty",
       "kind": "trial",
       "visible": true,
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "id": "real-maximum-all-change",
+      "id": "trial-maximum-all-change",
       "name": "fifty maximum values all need one operation",
       "kind": "trial",
       "visible": true,
@@ -343,6 +343,23 @@
       "expected": 50,
       "tags": [
         "maximum-n",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

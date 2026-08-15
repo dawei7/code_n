@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "hidden-billion-symmetric",
+      "id": "trial-billion-symmetric",
       "name": "the maximum peak with equal endpoints ties",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "hidden-large-descending-tail",
+      "id": "trial-large-descending-tail",
       "name": "one near-billion tail value dominates a small prefix",
       "kind": "trial",
       "visible": true,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "hidden-large-ascending-prefix",
+      "id": "trial-large-ascending-prefix",
       "name": "several large prefix values dominate a short tail",
       "kind": "trial",
       "visible": true,
@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "hidden-mixed-descending",
+      "id": "trial-mixed-descending",
       "name": "descending tail wins after a three-value rise",
       "kind": "trial",
       "visible": true,
@@ -286,7 +286,7 @@
       ]
     },
     {
-      "id": "hidden-ascending-control",
+      "id": "trial-ascending-control",
       "name": "a larger prepeak total wins despite several tail values",
       "kind": "trial",
       "visible": true,

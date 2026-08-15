@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-crossing-closure",
+      "id": "trial-crossing-closure",
       "name": "interval expansion crosses several labels",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-separated-groups",
+      "id": "trial-separated-groups",
       "name": "several closed groups remain disjoint",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-repeated-singletons",
+      "id": "trial-repeated-singletons",
       "name": "singleton letters sit inside a repeated outer letter",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-alphabet-mix",
+      "id": "trial-alphabet-mix",
       "name": "dense repeated labels and terminal singleton",
       "kind": "trial",
       "visible": true,
@@ -184,6 +184,38 @@
         "real",
         "dense",
         "terminal-singleton"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": [
+        "a"
+      ],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": [
+        "aaa"
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

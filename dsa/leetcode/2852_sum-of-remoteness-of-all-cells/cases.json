@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-two-diagonal-components",
+      "id": "trial-two-diagonal-components",
       "name": "diagonal cells do not share an edge",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-three-unequal-components",
+      "id": "trial-three-unequal-components",
       "name": "component sizes weight their shared remoteness",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-maximum-values-isolated",
+      "id": "trial-maximum-values-isolated",
       "name": "large values require a wide integer result",
       "kind": "trial",
       "visible": true,

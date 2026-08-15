@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-short-middle-room",
+      "id": "trial-short-middle-room",
       "name": "middle bottleneck limits deeper rooms",
       "kind": "trial",
       "visible": true,
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "real-decreasing-rooms",
+      "id": "trial-decreasing-rooms",
       "name": "decreasing clearances match all boxes",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-tall-boxes",
+      "id": "trial-tall-boxes",
       "name": "deep tall rooms are blocked by entrance",
       "kind": "trial",
       "visible": true,
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "real-more-boxes",
+      "id": "trial-more-boxes",
       "name": "room count caps duplicate boxes",
       "kind": "trial",
       "visible": true,
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "real-skip-tight-rooms",
+      "id": "trial-skip-tight-rooms",
       "name": "smallest boxes occupy tight deep rooms",
       "kind": "trial",
       "visible": true,

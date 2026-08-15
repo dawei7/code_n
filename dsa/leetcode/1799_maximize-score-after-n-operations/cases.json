@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "all pairs have equal gcd",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-overlapping-divisors",
+      "id": "trial-overlapping-divisors",
       "name": "competing high-gcd pairings",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-coprime-values",
+      "id": "trial-coprime-values",
       "name": "all pair gcd values are one",
       "kind": "trial",
       "visible": true,
@@ -156,6 +156,22 @@
       "tags": [
         "coprime",
         "full-depth"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

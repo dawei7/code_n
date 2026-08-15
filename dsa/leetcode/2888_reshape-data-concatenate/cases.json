@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "real-input-order-boundary",
+      "id": "trial-input-order-boundary",
       "name": "first table remains entirely above second table",
       "kind": "trial",
       "visible": true,

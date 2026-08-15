@@ -196,8 +196,8 @@
       ]
     },
     {
-      "id": "real-multiple-rectangles-per-section",
-      "name": "real: three horizontal groups contain multiple rectangles",
+      "id": "trial-multiple-rectangles-per-section",
+      "name": "three horizontal groups contain multiple rectangles",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -249,8 +249,8 @@
       ]
     },
     {
-      "id": "real-large-coordinates",
-      "name": "real: sparse coordinates near the grid limit",
+      "id": "trial-large-coordinates",
+      "name": "sparse coordinates near the grid limit",
       "kind": "trial",
       "visible": true,
       "input": {

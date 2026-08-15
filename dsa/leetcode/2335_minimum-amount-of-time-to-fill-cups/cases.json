@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-upper-balanced",
+      "id": "trial-upper-balanced",
       "name": "all counts at the upper bound",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-upper-dominant",
+      "id": "trial-upper-dominant",
       "name": "dominant type exceeds the other counts combined",
       "kind": "trial",
       "visible": true,

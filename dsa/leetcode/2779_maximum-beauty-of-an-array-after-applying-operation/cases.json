@@ -104,8 +104,8 @@
       ]
     },
     {
-      "id": "real-clustered-values",
-      "name": "real: cluster beats isolated extremes",
+      "id": "trial-clustered-values",
+      "name": "cluster beats isolated extremes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -128,8 +128,8 @@
       ]
     },
     {
-      "id": "real-single-element",
-      "name": "real: one value always has beauty one",
+      "id": "trial-single-element",
+      "name": "one value always has beauty one",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-just-outside-width",
-      "name": "real: endpoints beyond twice k cannot meet",
+      "id": "trial-just-outside-width",
+      "name": "endpoints beyond twice k cannot meet",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -164,8 +164,8 @@
       ]
     },
     {
-      "id": "real-maximum-k",
-      "name": "real: maximum k makes every value compatible",
+      "id": "trial-maximum-k",
+      "name": "maximum k makes every value compatible",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -184,8 +184,8 @@
       ]
     },
     {
-      "id": "real-duplicate-neighbor-cluster",
-      "name": "real: duplicates combine with nearby values",
+      "id": "trial-duplicate-neighbor-cluster",
+      "name": "duplicates combine with nearby values",
       "kind": "trial",
       "visible": true,
       "input": {

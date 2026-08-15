@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-whole-string",
+      "id": "trial-whole-string",
       "name": "budget transforms the whole string",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-center-run",
+      "id": "trial-center-run",
       "name": "both ends can join the center run",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "hidden-competing-targets",
+      "id": "trial-competing-targets",
       "name": "best target changes between windows",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "hidden-single",
+      "id": "trial-single",
       "name": "one-character input",
       "kind": "trial",
       "visible": true,

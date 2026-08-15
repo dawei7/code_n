@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "hidden-all-ones-two",
+      "id": "trial-all-ones-two",
       "name": "all-one two by two",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "hidden-three-by-three",
+      "id": "trial-three-by-three",
       "name": "maximum dimensions",
       "kind": "trial",
       "visible": true,

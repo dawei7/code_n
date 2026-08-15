@@ -607,7 +607,7 @@
       ]
     },
     {
-      "id": "real-below-half-rated",
+      "id": "trial-below-half-rated",
       "name": "two ratings out of five are insufficient",
       "kind": "trial",
       "visible": true,
@@ -675,7 +675,7 @@
       ]
     },
     {
-      "id": "real-whole-percent-rounding",
+      "id": "trial-whole-percent-rounding",
       "name": "two peak orders out of three are displayed as 67 percent",
       "kind": "trial",
       "visible": true,
@@ -734,7 +734,7 @@
       ]
     },
     {
-      "id": "real-descending-id-tie",
+      "id": "trial-descending-id-tie",
       "name": "equal averages use descending customer identifier",
       "kind": "trial",
       "visible": true,
@@ -823,7 +823,7 @@
       ]
     },
     {
-      "id": "real-all-unrated",
+      "id": "trial-all-unrated",
       "name": "a customer with no ratings fails completion and average",
       "kind": "trial",
       "visible": true,

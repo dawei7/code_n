@@ -129,8 +129,8 @@
       ]
     },
     {
-      "id": "real-mixed-stack",
-      "name": "real: repeated maxima at several stack levels",
+      "id": "trial-mixed-stack",
+      "name": "repeated maxima at several stack levels",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -153,8 +153,8 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "real: equal maxima separated by smaller values",
+      "id": "trial-alternating",
+      "name": "equal maxima separated by smaller values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -173,8 +173,8 @@
       ]
     },
     {
-      "id": "real-ten-equal",
-      "name": "real: triangular count for a longer equal run",
+      "id": "trial-ten-equal",
+      "name": "triangular count for a longer equal run",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -198,8 +198,8 @@
       ]
     },
     {
-      "id": "real-value-limit",
-      "name": "real: maximum allowed values with a smaller interior",
+      "id": "trial-value-limit",
+      "name": "maximum allowed values with a smaller interior",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -216,8 +216,8 @@
       ]
     },
     {
-      "id": "real-repeated-blockers",
-      "name": "real: several equal groups separated by changing blockers",
+      "id": "trial-repeated-blockers",
+      "name": "several equal groups separated by changing blockers",
       "kind": "trial",
       "visible": true,
       "input": {

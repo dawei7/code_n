@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "real-operation-i-pattern",
+      "id": "trial-operation-i-pattern",
       "name": "both parity pairs swap in length four",
       "kind": "trial",
       "visible": true,
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-duplicate-counts",
+      "id": "trial-duplicate-counts",
       "name": "duplicate multiplicities agree by parity",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-overall-anagram-trap",
+      "id": "trial-overall-anagram-trap",
       "name": "a global anagram crosses parity",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-odd-length-reachable",
+      "id": "trial-odd-length-reachable",
       "name": "unequal parity group sizes remain independently sortable",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-one-duplicate-missing",
+      "id": "trial-one-duplicate-missing",
       "name": "one parity-specific multiplicity differs",
       "kind": "trial",
       "visible": true,

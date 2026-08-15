@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "real-exactly-three",
+      "id": "trial-exactly-three",
       "name": "the inclusive boundary applies to an absent letter",
       "kind": "trial",
       "visible": true,
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-second-string-excess",
+      "id": "trial-second-string-excess",
       "name": "excess frequency in the second string is symmetric",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-balanced-differences",
+      "id": "trial-balanced-differences",
       "name": "total length can balance while one letter exceeds the limit",
       "kind": "trial",
       "visible": true,

@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-full-range-overlap",
+      "id": "trial-full-range-overlap",
       "name": "several full-range and nested bookings",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-adjacent-boundaries",
+      "id": "trial-adjacent-boundaries",
       "name": "adjacent inclusive ranges",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-same-single-flight",
+      "id": "trial-same-single-flight",
       "name": "repeated bookings for one label",
       "kind": "trial",
       "visible": true,

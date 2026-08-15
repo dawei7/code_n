@@ -327,7 +327,7 @@
       ]
     },
     {
-      "id": "real-boundary-indices",
+      "id": "trial-boundary-indices",
       "name": "updates at both boundary indices survive a flip",
       "kind": "trial",
       "visible": true,
@@ -371,7 +371,7 @@
       ]
     },
     {
-      "id": "real-query-stability",
+      "id": "trial-query-stability",
       "name": "repeated queries do not mutate logical state",
       "kind": "trial",
       "visible": true,

@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-three-nodes",
+      "id": "trial-three-nodes",
       "name": "delete index one from a three-node list",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-five-equal-values",
+      "id": "trial-five-equal-values",
       "name": "repeated values still delete by position",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-six-nodes",
+      "id": "trial-six-nodes",
       "name": "even list removes zero-based index three",
       "kind": "trial",
       "visible": true,

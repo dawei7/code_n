@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-separated",
+      "id": "trial-separated",
       "name": "alternating unique and duplicate runs",
       "kind": "trial",
       "visible": true,

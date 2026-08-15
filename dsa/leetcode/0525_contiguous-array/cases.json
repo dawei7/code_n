@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "hidden-whole",
+      "id": "trial-whole",
       "name": "differently ordered complete array is balanced",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "hidden-single",
+      "id": "trial-single",
       "name": "one element cannot balance",
       "kind": "trial",
       "visible": true,
@@ -133,6 +133,39 @@
       "expected": 0,
       "tags": [
         "singleton"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

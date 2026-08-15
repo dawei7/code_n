@@ -100,8 +100,8 @@
       ]
     },
     {
-      "id": "real-repeated-pair",
-      "name": "real: identical two-character blocks",
+      "id": "trial-repeated-pair",
+      "name": "identical two-character blocks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -114,8 +114,8 @@
       ]
     },
     {
-      "id": "real-permuted-pairs",
-      "name": "real: alternating pair permutations",
+      "id": "trial-permuted-pairs",
+      "name": "alternating pair permutations",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -128,8 +128,8 @@
       ]
     },
     {
-      "id": "real-late-mismatch",
-      "name": "real: a late mismatch forces the full length",
+      "id": "trial-late-mismatch",
+      "name": "a late mismatch forces the full length",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -142,8 +142,8 @@
       ]
     },
     {
-      "id": "real-four-letter-blocks",
-      "name": "real: four differently ordered blocks",
+      "id": "trial-four-letter-blocks",
+      "name": "four differently ordered blocks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -156,8 +156,8 @@
       ]
     },
     {
-      "id": "real-divisor-skipped",
-      "name": "real: valid length must divide the total",
+      "id": "trial-divisor-skipped",
+      "name": "valid length must divide the total",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -170,8 +170,8 @@
       ]
     },
     {
-      "id": "real-two-halves-differ",
-      "name": "real: similar halves with different multiplicities",
+      "id": "trial-two-halves-differ",
+      "name": "similar halves with different multiplicities",
       "kind": "trial",
       "visible": true,
       "input": {

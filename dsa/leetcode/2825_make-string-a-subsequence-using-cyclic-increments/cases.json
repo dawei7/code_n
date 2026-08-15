@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-no-double-increment",
+      "id": "trial-no-double-increment",
       "name": "one character cannot advance twice",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-skip-before-matches",
+      "id": "trial-skip-before-matches",
       "name": "skip unusable characters before ordered matches",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-order-prevents-match",
+      "id": "trial-order-prevents-match",
       "name": "individually available letters occur in the wrong order",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-repeated-distinct-positions",
+      "id": "trial-repeated-distinct-positions",
       "name": "repeated target letters require distinct source positions",
       "kind": "trial",
       "visible": true,
@@ -150,6 +150,36 @@
       "tags": [
         "duplicates",
         "all-increment"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in str1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "str1": "a",
+        "str2": "ad"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in str1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "str1": "aaa",
+        "str2": "ad"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

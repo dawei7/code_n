@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-thirty-six",
+      "id": "trial-thirty-six",
       "name": "endpoint itself qualifies with three pieces",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-forty-five",
+      "id": "trial-forty-five",
       "name": "a partition containing zeroes",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-one-hundred",
+      "id": "trial-one-hundred",
       "name": "three-digit upper bound",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "complete legal domain",
       "kind": "trial",
       "visible": true,

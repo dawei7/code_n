@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "real-competing-chains",
+      "id": "trial-competing-chains",
       "name": "choose the longer of two square chains",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-interior-chain",
+      "id": "trial-interior-chain",
       "name": "a valid chain can begin at a perfect square",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-large-unrelated",
+      "id": "trial-large-unrelated",
       "name": "large values without a square relation",
       "kind": "trial",
       "visible": true,
@@ -135,6 +135,39 @@
       "expected": -1,
       "tags": [
         "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

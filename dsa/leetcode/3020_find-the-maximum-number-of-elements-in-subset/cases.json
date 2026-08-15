@@ -96,7 +96,7 @@
     },
     {
       "id": "missing-next-center",
-      "name": "real: innermost pair becomes the center",
+      "name": "innermost pair becomes the center",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -114,7 +114,7 @@
     },
     {
       "id": "second-base-chain",
-      "name": "real: a different base supplies the longest chain",
+      "name": "a different base supplies the longest chain",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,7 +138,7 @@
     },
     {
       "id": "large-duplicate",
-      "name": "real: a duplicate with no square still yields one",
+      "name": "a duplicate with no square still yields one",
       "kind": "trial",
       "visible": true,
       "input": {

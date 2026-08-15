@@ -81,7 +81,7 @@
       ]
     },
     {
-      "id": "real-first-too-heavy",
+      "id": "trial-first-too-heavy",
       "name": "no asteroid can start the process",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "repeated equal masses compound growth",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-large-accumulation",
+      "id": "trial-large-accumulation",
       "name": "accumulated mass exceeds fixed-width input values",
       "kind": "trial",
       "visible": true,
@@ -135,6 +135,44 @@
       "expected": true,
       "tags": [
         "large-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value mass=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mass": 1,
+        "asteroids": [
+          3,
+          9,
+          19,
+          5,
+          21
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in asteroids",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mass": 10,
+        "asteroids": [
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

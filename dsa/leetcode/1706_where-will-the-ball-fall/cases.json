@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-outward-pair",
+      "id": "trial-outward-pair",
       "name": "outward boards send both balls into walls",
       "kind": "trial",
       "visible": true,
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "real-late-trap",
+      "id": "trial-late-trap",
       "name": "successful first move leads into a later V",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-zigzag",
+      "id": "trial-zigzag",
       "name": "compatible slopes produce shifted exits",
       "kind": "trial",
       "visible": true,
@@ -288,7 +288,7 @@
       ]
     },
     {
-      "id": "real-single-right",
+      "id": "trial-single-right",
       "name": "one right board also hits its only wall",
       "kind": "trial",
       "visible": true,

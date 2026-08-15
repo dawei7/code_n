@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-large-prime",
+      "id": "trial-large-prime",
       "name": "large prime has one exponent",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-max-exponent",
+      "id": "trial-max-exponent",
       "name": "largest power of two within the product bound",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-three-primes",
+      "id": "trial-three-primes",
       "name": "three independent prime exponents",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-semiprime",
+      "id": "trial-semiprime",
       "name": "product of two large primes",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-modulo-boundary",
+      "id": "trial-modulo-boundary",
       "name": "maximum length and product require modular reduction",
       "kind": "trial",
       "visible": true,
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "real-repeated-query",
+      "id": "trial-repeated-query",
       "name": "repeated queries retain repeated answers",
       "kind": "trial",
       "visible": true,

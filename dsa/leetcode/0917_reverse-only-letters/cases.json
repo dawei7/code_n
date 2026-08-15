@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "symbols at both ends",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "case travels with letters",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "adjacent punctuation",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "ASCII boundary punctuation",
       "kind": "trial",
       "visible": true,
@@ -136,6 +136,34 @@
       "expected": "!zZa~",
       "tags": [
         "ascii-bounds"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": "a",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": "aaa",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

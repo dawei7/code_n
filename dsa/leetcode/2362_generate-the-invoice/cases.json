@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-id-tie",
+      "id": "trial-id-tie",
       "name": "nonconsecutive IDs tie",
       "kind": "trial",
       "visible": true,
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "id": "real-unit-prices",
+      "id": "trial-unit-prices",
       "name": "compare extended rather than unit prices",
       "kind": "trial",
       "visible": true,

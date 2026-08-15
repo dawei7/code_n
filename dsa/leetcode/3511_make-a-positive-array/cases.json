@@ -120,8 +120,8 @@
       ]
     },
     {
-      "id": "real-disjoint-bad-regions",
-      "name": "real: disjoint bad regions require separate replacements",
+      "id": "trial-disjoint-bad-regions",
+      "name": "disjoint bad regions require separate replacements",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -142,8 +142,8 @@
       ]
     },
     {
-      "id": "real-earlier-choice-covers-later-window",
-      "name": "real: selected endpoint covers a later long window",
+      "id": "trial-earlier-choice-covers-later-window",
+      "name": "selected endpoint covers a later long window",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -163,8 +163,8 @@
       ]
     },
     {
-      "id": "real-positive-boundary-values",
-      "name": "real: maximum values need no replacement",
+      "id": "trial-positive-boundary-values",
+      "name": "maximum values need no replacement",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -184,8 +184,8 @@
       ]
     },
     {
-      "id": "real-negative-boundary-values",
-      "name": "real: minimum values form two greedy groups",
+      "id": "trial-negative-boundary-values",
+      "name": "minimum values form two greedy groups",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -207,8 +207,8 @@
       ]
     },
     {
-      "id": "real-all-zero-ten",
-      "name": "real: all-zero windows require three replacements",
+      "id": "trial-all-zero-ten",
+      "name": "all-zero windows require three replacements",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -230,6 +230,39 @@
         "real",
         "zero-sum",
         "repeated-greedy-choice"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -10
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -10,
+          -10
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

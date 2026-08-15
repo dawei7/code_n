@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-single-odd",
+      "id": "trial-single-odd",
       "name": "minimum odd singleton returns identity",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-overlapping-high-bits",
+      "id": "trial-overlapping-high-bits",
       "name": "overlapping even bit patterns combine correctly",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-odd-values-excluded",
+      "id": "trial-odd-values-excluded",
       "name": "odd values cannot contribute their bits",
       "kind": "trial",
       "visible": true,

@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-stale-chain",
+      "id": "trial-stale-chain",
       "name": "several stale heap entries are discarded",
       "kind": "trial",
       "visible": true,
@@ -270,7 +270,7 @@
       ]
     },
     {
-      "id": "real-return-number",
+      "id": "trial-return-number",
       "name": "an index can return to an earlier number",
       "kind": "trial",
       "visible": true,

@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-boundary-contact",
+      "id": "trial-boundary-contact",
       "name": "a center on the circle boundary is reached",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-duplicate-centers",
+      "id": "trial-duplicate-centers",
       "name": "co-located bombs all trigger",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-large-coordinates",
+      "id": "trial-large-coordinates",
       "name": "squared distances use the full coordinate scale",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-directed-chain",
+      "id": "trial-directed-chain",
       "name": "the best start follows a one-way chain",
       "kind": "trial",
       "visible": true,

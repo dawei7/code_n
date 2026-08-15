@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-decreasing",
+      "id": "trial-decreasing",
       "name": "decreasing order creates a left-only chain",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-root-extremes",
+      "id": "trial-root-extremes",
       "name": "alternating extremes extend different subtrees",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-zigzag",
+      "id": "trial-zigzag",
       "name": "zigzag comparisons create a deep interior path",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-near-balanced",
+      "id": "trial-near-balanced",
       "name": "recursive median order keeps fifteen keys shallow",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-late-small-key",
+      "id": "trial-late-small-key",
       "name": "the final minimum extends the left boundary",
       "kind": "trial",
       "visible": true,
@@ -220,7 +220,7 @@
       ]
     },
     {
-      "id": "real-long-interior-chain",
+      "id": "trial-long-interior-chain",
       "name": "consecutive interior insertions form the deepest branch",
       "kind": "trial",
       "visible": true,

@@ -113,8 +113,8 @@
       ]
     },
     {
-      "id": "real-large-duplicate-group",
-      "name": "real: multiple large values with one x contribute only once",
+      "id": "trial-large-duplicate-group",
+      "name": "multiple large values with one x contribute only once",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -143,8 +143,8 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "real: sum representatives at the y-value boundary",
+      "id": "trial-value-boundaries",
+      "name": "sum representatives at the y-value boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -167,8 +167,8 @@
       ]
     },
     {
-      "id": "real-many-indices-two-groups",
-      "name": "real: many indices do not compensate for missing a third x-value",
+      "id": "trial-many-indices-two-groups",
+      "name": "many indices do not compensate for missing a third x-value",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -194,6 +194,53 @@
         "real",
         "impossible",
         "group-count"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in x",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": [
+          1
+        ],
+        "y": [
+          5,
+          3,
+          4,
+          6,
+          2
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in x",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": [
+          1,
+          1
+        ],
+        "y": [
+          5,
+          3,
+          4,
+          6,
+          2
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

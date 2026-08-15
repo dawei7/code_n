@@ -234,7 +234,7 @@
       ]
     },
     {
-      "id": "real-vertical-and-horizontal",
+      "id": "trial-vertical-and-horizontal",
       "name": "bent four-directional components",
       "kind": "trial",
       "visible": true,
@@ -274,7 +274,7 @@
       ]
     },
     {
-      "id": "real-mixed-component-residues",
+      "id": "trial-mixed-component-residues",
       "name": "components have distinct modulo residues",
       "kind": "trial",
       "visible": true,
@@ -318,7 +318,7 @@
       ]
     },
     {
-      "id": "real-maximum-cell-values",
+      "id": "trial-maximum-cell-values",
       "name": "large values are accumulated modulo k",
       "kind": "trial",
       "visible": true,
@@ -349,7 +349,7 @@
       ]
     },
     {
-      "id": "real-one-row",
+      "id": "trial-one-row",
       "name": "horizontal islands in a single row",
       "kind": "trial",
       "visible": true,
@@ -374,7 +374,7 @@
       ]
     },
     {
-      "id": "real-one-column",
+      "id": "trial-one-column",
       "name": "vertical islands in a single column",
       "kind": "trial",
       "visible": true,
@@ -411,7 +411,7 @@
       ]
     },
     {
-      "id": "real-maximum-cells-water",
+      "id": "trial-maximum-cells-water",
       "name": "maximum cell count with no land",
       "kind": "trial",
       "visible": true,

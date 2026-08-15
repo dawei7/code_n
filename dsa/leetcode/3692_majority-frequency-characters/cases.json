@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-all-group-sizes-one",
+      "id": "trial-all-group-sizes-one",
       "name": "largest frequency wins when every group has one letter",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-frequency-two-largest",
+      "id": "trial-frequency-two-largest",
       "name": "four frequency-two letters beat three singletons",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-maximum-repetition",
+      "id": "trial-maximum-repetition",
       "name": "maximum-length repetition selects its only letter",
       "kind": "trial",
       "visible": true,

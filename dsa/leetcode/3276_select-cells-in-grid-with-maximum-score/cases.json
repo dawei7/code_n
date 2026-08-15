@@ -176,8 +176,8 @@
       ]
     },
     {
-      "id": "real-descending-alternatives",
-      "name": "real: descending alternatives avoid collisions",
+      "id": "trial-descending-alternatives",
+      "name": "descending alternatives avoid collisions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -203,8 +203,8 @@
       ]
     },
     {
-      "id": "real-more-rows-than-values",
-      "name": "real: some rows must remain unused",
+      "id": "trial-more-rows-than-values",
+      "name": "some rows must remain unused",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -234,8 +234,8 @@
       ]
     },
     {
-      "id": "real-greedy-row-maximum-fails",
-      "name": "real: reserve the best value for a constrained row",
+      "id": "trial-greedy-row-maximum-fails",
+      "name": "reserve the best value for a constrained row",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -260,8 +260,8 @@
       ]
     },
     {
-      "id": "real-rectangular-grid",
-      "name": "real: rectangular grid with overlapping bands",
+      "id": "trial-rectangular-grid",
+      "name": "rectangular grid with overlapping bands",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -299,8 +299,8 @@
       ]
     },
     {
-      "id": "real-ten-rows-distinct-maxima",
-      "name": "real: maximum row count with distinct singleton values",
+      "id": "trial-ten-rows-distinct-maxima",
+      "name": "maximum row count with distinct singleton values",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-all-negative-even",
+      "id": "trial-all-negative-even",
       "name": "four negative entries",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-zero-positive",
+      "id": "trial-zero-positive",
       "name": "zero in a nonnegative matrix",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-odd-small-positive",
+      "id": "trial-odd-small-positive",
       "name": "sacrificed magnitude was initially positive",
       "kind": "trial",
       "visible": true,
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "large magnitudes require wide sum",
       "kind": "trial",
       "visible": true,

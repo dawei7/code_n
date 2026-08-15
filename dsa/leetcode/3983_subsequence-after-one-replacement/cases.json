@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-replace-first-source-character",
+      "id": "trial-replace-first-source-character",
       "name": "replace the first source character",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-skip-before-spending-change",
+      "id": "trial-skip-before-spending-change",
       "name": "skip an early mismatch and replace a later source character",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-ignore-leading-extra-character",
+      "id": "trial-ignore-leading-extra-character",
       "name": "exact subsequence ignores a leading text character",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-swapped-suffix-needs-two-changes",
+      "id": "trial-swapped-suffix-needs-two-changes",
       "name": "a swapped suffix has two aligned mismatches",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-leading-extra-before-repeats",
+      "id": "trial-leading-extra-before-repeats",
       "name": "repeated letters form an exact subsequence",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-replacement-fills-leading-position",
+      "id": "trial-replacement-fills-leading-position",
       "name": "replacement uses every equal-length text position",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-two-required-replacements",
+      "id": "trial-two-required-replacements",
       "name": "first and last positions would both need replacement",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-use-change-before-exact-suffix",
+      "id": "trial-use-change-before-exact-suffix",
       "name": "replace the first character then match the suffix",
       "kind": "trial",
       "visible": true,
@@ -234,7 +234,7 @@
       ]
     },
     {
-      "id": "real-exact-subsequence-after-prefix",
+      "id": "trial-exact-subsequence-after-prefix",
       "name": "an exact subsequence follows an unrelated prefix",
       "kind": "trial",
       "visible": true,
@@ -249,7 +249,7 @@
       ]
     },
     {
-      "id": "real-replacement-between-repeated-matches",
+      "id": "trial-replacement-between-repeated-matches",
       "name": "replacement joins two exact repeated-letter matches",
       "kind": "trial",
       "visible": true,
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "real-equal-length-two-end-mismatches",
+      "id": "trial-equal-length-two-end-mismatches",
       "name": "both ends differ in an equal-length alignment",
       "kind": "trial",
       "visible": true,
@@ -276,6 +276,36 @@
       "tags": [
         "two-mismatches",
         "boundary-positions"
+      ]
+    },
+    {
+      "id": "trial-boundary-19",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "c",
+        "t": "chat"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-20",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ccc",
+        "t": "chat"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

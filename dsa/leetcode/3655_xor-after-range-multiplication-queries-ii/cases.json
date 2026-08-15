@@ -168,8 +168,8 @@
       ]
     },
     {
-      "id": "real-repeated-multiplier",
-      "name": "real: inverse cache sees repeated factors",
+      "id": "trial-repeated-multiplier",
+      "name": "inverse cache sees repeated factors",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -209,8 +209,8 @@
       ]
     },
     {
-      "id": "real-modular-reduction",
-      "name": "real: large products wrap modulo prime",
+      "id": "trial-modular-reduction",
+      "name": "large products wrap modulo prime",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -241,8 +241,8 @@
       ]
     },
     {
-      "id": "real-many-residue-classes",
-      "name": "real: equal step updates separate residues",
+      "id": "trial-many-residue-classes",
+      "name": "equal step updates separate residues",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -286,8 +286,8 @@
       ]
     },
     {
-      "id": "real-short-large-step",
-      "name": "real: large step touches only left endpoint",
+      "id": "trial-short-large-step",
+      "name": "large step touches only left endpoint",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -314,8 +314,8 @@
       ]
     },
     {
-      "id": "real-query-reordering-safe",
-      "name": "real: grouped processing preserves final products",
+      "id": "trial-query-reordering-safe",
+      "name": "grouped processing preserves final products",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -361,8 +361,8 @@
       ]
     },
     {
-      "id": "real-identity-multipliers",
-      "name": "real: identity updates do not affect XOR",
+      "id": "trial-identity-multipliers",
+      "name": "identity updates do not affect XOR",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -393,6 +393,55 @@
       "tags": [
         "real",
         "identity"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "queries": [
+          [
+            0,
+            2,
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            2,
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-seven",
+      "id": "trial-seven",
       "name": "larger odd bound",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-nine",
+      "id": "trial-nine",
       "name": "larger state space",
       "kind": "trial",
       "visible": true,

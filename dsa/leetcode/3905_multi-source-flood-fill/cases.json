@@ -352,7 +352,7 @@
       ]
     },
     {
-      "id": "hidden-adjacent-sources-stay-fixed",
+      "id": "trial-adjacent-sources-stay-fixed",
       "name": "a larger adjacent source does not recolor its neighbor",
       "kind": "trial",
       "visible": true,
@@ -384,7 +384,7 @@
       ]
     },
     {
-      "id": "hidden-four-corner-voronoi",
+      "id": "trial-four-corner-voronoi",
       "name": "four corners compete across rows columns and center",
       "kind": "trial",
       "visible": true,
@@ -437,7 +437,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-color-bound",
+      "id": "trial-maximum-color-bound",
       "name": "the maximum legal color propagates normally",
       "kind": "trial",
       "visible": true,
@@ -475,7 +475,7 @@
       ]
     },
     {
-      "id": "hidden-three-sources-long-row",
+      "id": "trial-three-sources-long-row",
       "name": "three source regions meet along one long row",
       "kind": "trial",
       "visible": true,
@@ -519,7 +519,7 @@
       ]
     },
     {
-      "id": "hidden-asymmetric-rectangle",
+      "id": "trial-asymmetric-rectangle",
       "name": "asymmetric sources exercise every direction",
       "kind": "trial",
       "visible": true,

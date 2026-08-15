@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-single-road-impossible",
+      "id": "trial-single-road-impossible",
       "name": "a lone road can still miss the deadline",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-all-rests",
+      "id": "trial-all-rests",
       "name": "every possible rest must be skipped",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-fractional-with-slack",
+      "id": "trial-fractional-with-slack",
       "name": "fractional roads fit without skips when the deadline has slack",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-last-road-unrounded",
+      "id": "trial-last-road-unrounded",
       "name": "the final road does not round arrival to another hour",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-raw-distance-impossible",
+      "id": "trial-raw-distance-impossible",
       "name": "uninterrupted travel is already too long",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-large-ratio",
+      "id": "trial-large-ratio",
       "name": "exact integer scaling handles a large speed-to-distance ratio",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-two-skips-needed",
+      "id": "trial-two-skips-needed",
       "name": "one remaining rounded rest still misses the deadline",
       "kind": "trial",
       "visible": true,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "real-one-skip",
+      "id": "trial-one-skip",
       "name": "exactly one skipped rest is sufficient",
       "kind": "trial",
       "visible": true,

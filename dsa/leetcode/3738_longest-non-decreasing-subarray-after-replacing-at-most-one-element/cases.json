@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-full-bridge",
+      "id": "trial-full-bridge",
       "name": "one replacement joins both complete runs",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-left-endpoint",
+      "id": "trial-left-endpoint",
       "name": "replacing the first value joins the suffix",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-right-endpoint",
+      "id": "trial-right-endpoint",
       "name": "replacing the last value joins the prefix",
       "kind": "trial",
       "visible": true,
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "real-one-interior-inversion",
+      "id": "trial-one-interior-inversion",
       "name": "replace either side of one inversion",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-equal-runs",
+      "id": "trial-equal-runs",
       "name": "plateaus around a non-bridgeable drop",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "legal extreme values are already ordered",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "real-middle-valley",
+      "id": "trial-middle-valley",
       "name": "fill a one-position valley",
       "kind": "trial",
       "visible": true,
@@ -255,6 +255,39 @@
       },
       "tags": [
         "bridge"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

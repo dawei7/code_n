@@ -86,8 +86,8 @@
       ]
     },
     {
-      "id": "real-both-below-capacity",
-      "name": "real: unequal logs both remain below capacity",
+      "id": "trial-both-below-capacity",
+      "name": "unequal logs both remain below capacity",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -103,8 +103,8 @@
       ]
     },
     {
-      "id": "real-maximum-first-log",
-      "name": "real: first log is twice the truck limit",
+      "id": "trial-maximum-first-log",
+      "name": "first log is twice the truck limit",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -120,8 +120,8 @@
       ]
     },
     {
-      "id": "real-maximum-second-log-and-values",
-      "name": "real: second log and arithmetic reach maximum scale",
+      "id": "trial-maximum-second-log-and-values",
+      "name": "second log and arithmetic reach maximum scale",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-minimum-capacity",
-      "name": "real: minimum capacity with a maximum-length log",
+      "id": "trial-minimum-capacity",
+      "name": "minimum capacity with a maximum-length log",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -155,8 +155,8 @@
       ]
     },
     {
-      "id": "real-nontrivial-excess",
-      "name": "real: feasible split has unequal boundary pieces",
+      "id": "trial-nontrivial-excess",
+      "name": "feasible split has unequal boundary pieces",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -172,8 +172,8 @@
       ]
     },
     {
-      "id": "real-other-log-at-capacity",
-      "name": "real: uncut log exactly fills its truck",
+      "id": "trial-other-log-at-capacity",
+      "name": "uncut log exactly fills its truck",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -186,6 +186,38 @@
         "real",
         "other-at-capacity",
         "one-cut"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "m": 5,
+        "k": 5
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value m=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "m": 1,
+        "k": 5
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

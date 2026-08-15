@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-existing-letter-mismatch",
+      "id": "trial-existing-letter-mismatch",
       "name": "an incompatible solved letter blocks placement",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-blockers-create-exact-slot",
+      "id": "trial-blockers-create-exact-slot",
       "name": "blockers isolate one exact horizontal slot",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-vertical-backward",
+      "id": "trial-vertical-backward",
       "name": "solved letters permit an upward placement",
       "kind": "trial",
       "visible": true,

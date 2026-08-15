@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-long-identical-run",
-      "name": "real: a long run needs several regularly spaced flips",
+      "id": "trial-long-identical-run",
+      "name": "a long run needs several regularly spaced flips",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -137,8 +137,8 @@
       ]
     },
     {
-      "id": "real-mixed-runs",
-      "name": "real: the budget is shared across independent runs",
+      "id": "trial-mixed-runs",
+      "name": "the budget is shared across independent runs",
       "kind": "trial",
       "visible": true,
       "input": {

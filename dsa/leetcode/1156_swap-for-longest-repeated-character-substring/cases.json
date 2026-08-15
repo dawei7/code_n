@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-use-all-copies",
+      "id": "trial-use-all-copies",
       "name": "joining runs uses every copy",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-extend-edge",
+      "id": "trial-extend-edge",
       "name": "move an outside copy to an edge run",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-single",
+      "id": "trial-single",
       "name": "minimum length",
       "kind": "trial",
       "visible": true,

@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-two",
+      "id": "trial-two",
       "name": "binary ten takes three operations",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating bits exercise suffix XOR",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-all-ones",
+      "id": "trial-all-ones",
       "name": "consecutive set bits invert correctly",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-near-power",
+      "id": "trial-near-power",
       "name": "value immediately below a power of two",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-power-large",
+      "id": "trial-power-large",
       "name": "larger isolated bit uses full reflected prefix",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-mixed-large",
+      "id": "trial-mixed-large",
       "name": "mixed high and low bits",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum allowed input",
       "kind": "trial",
       "visible": true,

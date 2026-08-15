@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-single-imperfect-class",
+      "id": "trial-single-imperfect-class",
       "name": "every student goes to the only class",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-all-perfect",
+      "id": "trial-all-perfect",
       "name": "assigning students cannot lower perfect ratios",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-equal-initial-gains",
+      "id": "trial-equal-initial-gains",
       "name": "equal classes split two assignments symmetrically",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-one-clear-best-gain",
+      "id": "trial-one-clear-best-gain",
       "name": "one extra student follows the larger marginal gain",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-perfect-class-is-skipped",
+      "id": "trial-perfect-class-is-skipped",
       "name": "zero-gain perfect class receives no useful priority",
       "kind": "trial",
       "visible": true,

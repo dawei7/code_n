@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "duplicate lower endpoint",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "adjacent large values",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-3",
       "name": "duplicate before missing",
       "kind": "trial",
       "visible": true,
@@ -151,6 +151,25 @@
       ],
       "tags": [
         "difference-positive"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

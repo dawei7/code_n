@@ -105,8 +105,8 @@
       ]
     },
     {
-      "id": "real-original-target-bonus",
-      "name": "real: existing copies do not consume operation budget",
+      "id": "trial-original-target-bonus",
+      "name": "existing copies do not consume operation budget",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -127,8 +127,8 @@
       ]
     },
     {
-      "id": "real-maximum-k-reaches-duplicates",
-      "name": "real: maximum adjustment joins two maximum-value copies",
+      "id": "trial-maximum-k-reaches-duplicates",
+      "name": "maximum adjustment joins two maximum-value copies",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -148,8 +148,8 @@
       ]
     },
     {
-      "id": "real-zero-k-exact-operations",
-      "name": "real: zero adjustments satisfy exact operations without gains",
+      "id": "trial-zero-k-exact-operations",
+      "name": "zero adjustments satisfy exact operations without gains",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -75,8 +75,8 @@
       ]
     },
     {
-      "id": "real-single-bottle",
-      "name": "real: one bottle cannot meet a larger price",
+      "id": "trial-single-bottle",
+      "name": "one bottle cannot meet a larger price",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -90,8 +90,8 @@
       ]
     },
     {
-      "id": "real-interior-chain",
-      "name": "real: several exchanges leave a small remainder",
+      "id": "trial-interior-chain",
+      "name": "several exchanges leave a small remainder",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -105,8 +105,8 @@
       ]
     },
     {
-      "id": "real-maximum-iterations",
-      "name": "real: maximum bottles and minimum price",
+      "id": "trial-maximum-iterations",
+      "name": "maximum bottles and minimum price",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -121,8 +121,8 @@
       ]
     },
     {
-      "id": "real-maximum-price",
-      "name": "real: maximum bottles exactly meet the maximum price",
+      "id": "trial-maximum-price",
+      "name": "maximum bottles exactly meet the maximum price",
       "kind": "trial",
       "visible": true,
       "input": {

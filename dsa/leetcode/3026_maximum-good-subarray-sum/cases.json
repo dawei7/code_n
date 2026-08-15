@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-left-larger",
+      "id": "trial-left-larger",
       "name": "the left endpoint may be larger",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "large magnitudes require wide prefix sums",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-adjacent-negative",
+      "id": "trial-adjacent-negative",
       "name": "a negative adjacent pair remains a valid answer",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-multiple-candidates",
+      "id": "trial-multiple-candidates",
       "name": "later endpoints compete across both target values",
       "kind": "trial",
       "visible": true,
@@ -178,6 +178,41 @@
       "expected": 19,
       "tags": [
         "prefix-sum"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

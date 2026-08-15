@@ -41,7 +41,7 @@
       ]
     },
     {
-      "id": "real-minimum-valid",
+      "id": "trial-minimum-valid",
       "name": "minimum equal pair",
       "kind": "trial",
       "visible": true,
@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "real-minimum-invalid",
+      "id": "trial-minimum-invalid",
       "name": "unequal pair",
       "kind": "trial",
       "visible": true,
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-three-equal",
+      "id": "trial-three-equal",
       "name": "one equal triple",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-increasing-not-consecutive",
+      "id": "trial-increasing-not-consecutive",
       "name": "increasing gaps are not consecutive",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-mixed-valid-blocks",
+      "id": "trial-mixed-valid-blocks",
       "name": "equal triple and equal pair",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-late-failure",
+      "id": "trial-late-failure",
       "name": "valid prefix with invalid suffix",
       "kind": "trial",
       "visible": true,

@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-input-boundaries",
+      "id": "trial-input-boundaries",
       "name": "value boundaries in first triplet",
       "kind": "trial",
       "visible": true,
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-global-extremes-later",
+      "id": "trial-global-extremes-later",
       "name": "later values do not invalidate triplet median",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-unsorted-longer",
+      "id": "trial-unsorted-longer",
       "name": "arbitrary order with five values",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-near-upper-bound",
+      "id": "trial-near-upper-bound",
       "name": "median near upper boundary",
       "kind": "trial",
       "visible": true,
@@ -140,6 +140,39 @@
       "expected": 99,
       "tags": [
         "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

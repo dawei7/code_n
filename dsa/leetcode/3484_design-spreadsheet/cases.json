@@ -135,8 +135,8 @@
       ]
     },
     {
-      "id": "real-overwrite-cell",
-      "name": "real: later assignments replace earlier values",
+      "id": "trial-overwrite-cell",
+      "name": "later assignments replace earlier values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -192,8 +192,8 @@
       ]
     },
     {
-      "id": "real-reset-idempotent",
-      "name": "real: reset clears both assigned and already-zero cells",
+      "id": "trial-reset-idempotent",
+      "name": "reset clears both assigned and already-zero cells",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -242,8 +242,8 @@
       ]
     },
     {
-      "id": "real-same-cell-twice",
-      "name": "real: the same cell may be both operands",
+      "id": "trial-same-cell-twice",
+      "name": "the same cell may be both operands",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -287,8 +287,8 @@
       ]
     },
     {
-      "id": "real-literal-order",
-      "name": "real: literals work on either side",
+      "id": "trial-literal-order",
+      "name": "literals work on either side",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -326,8 +326,8 @@
       ]
     },
     {
-      "id": "real-distinct-multidigit-rows",
-      "name": "real: multi-digit rows remain distinct",
+      "id": "trial-distinct-multidigit-rows",
+      "name": "multi-digit rows remain distinct",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -378,8 +378,8 @@
       ]
     },
     {
-      "id": "real-column-independence",
-      "name": "real: columns and updates are independent",
+      "id": "trial-column-independence",
+      "name": "columns and updates are independent",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -440,8 +440,8 @@
       ]
     },
     {
-      "id": "real-repeated-queries-have-no-side-effects",
-      "name": "real: evaluating formulas does not store dependencies",
+      "id": "trial-repeated-queries-have-no-side-effects",
+      "name": "evaluating formulas does not store dependencies",
       "kind": "trial",
       "visible": true,
       "input": {

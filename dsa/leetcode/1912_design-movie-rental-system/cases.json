@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-search-five-cap",
+      "id": "trial-search-five-cap",
       "name": "search returns only the first five tied shops",
       "kind": "trial",
       "visible": true,
@@ -269,7 +269,7 @@
       ]
     },
     {
-      "id": "real-report-tie-order",
+      "id": "trial-report-tie-order",
       "name": "report ties break by shop and then movie",
       "kind": "trial",
       "visible": true,
@@ -359,7 +359,7 @@
       ]
     },
     {
-      "id": "real-cycle-no-duplicates",
+      "id": "trial-cycle-no-duplicates",
       "name": "repeated cycles never duplicate one available copy",
       "kind": "trial",
       "visible": true,
@@ -434,7 +434,7 @@
       ]
     },
     {
-      "id": "real-rented-excluded",
+      "id": "trial-rented-excluded",
       "name": "rented copies disappear from search",
       "kind": "trial",
       "visible": true,
@@ -501,7 +501,7 @@
       ]
     },
     {
-      "id": "real-drop-restores-order",
+      "id": "trial-drop-restores-order",
       "name": "a returned cheapest copy regains first position",
       "kind": "trial",
       "visible": true,
@@ -563,7 +563,7 @@
       ]
     },
     {
-      "id": "real-report-five-cap",
+      "id": "trial-report-five-cap",
       "name": "report returns only five globally cheapest rentals",
       "kind": "trial",
       "visible": true,
@@ -678,7 +678,7 @@
       ]
     },
     {
-      "id": "real-unknown-movie",
+      "id": "trial-unknown-movie",
       "name": "searching an absent movie returns empty",
       "kind": "trial",
       "visible": true,
@@ -713,7 +713,7 @@
       ]
     },
     {
-      "id": "real-all-rented",
+      "id": "trial-all-rented",
       "name": "a movie with every copy rented has no search result",
       "kind": "trial",
       "visible": true,

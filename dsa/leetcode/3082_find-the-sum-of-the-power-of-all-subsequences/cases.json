@@ -113,8 +113,8 @@
       ]
     },
     {
-      "id": "real-mixed-small",
-      "name": "real: several target-sum witnesses have different lengths",
+      "id": "trial-mixed-small",
+      "name": "several target-sum witnesses have different lengths",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -134,8 +134,8 @@
       ]
     },
     {
-      "id": "real-values-above-target",
-      "name": "real: oversized values only affect outer choices",
+      "id": "trial-values-above-target",
+      "name": "oversized values only affect outer choices",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-modulo-reduction",
-      "name": "real: many witnesses require modulo reduction",
+      "id": "trial-modulo-reduction",
+      "name": "many witnesses require modulo reduction",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -195,6 +195,41 @@
       "tags": [
         "real",
         "modulo"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-cubic",
+      "id": "trial-cubic",
       "name": "sum of cubes",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-asymmetric-eight",
+      "id": "trial-asymmetric-eight",
       "name": "asymmetric x squared times y",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-asymmetric-nine",
+      "id": "trial-asymmetric-nine",
       "name": "asymmetric x times y squared",
       "kind": "trial",
       "visible": true,

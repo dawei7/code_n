@@ -217,8 +217,8 @@
       ]
     },
     {
-      "id": "real-five-by-five",
-      "name": "real: mixed clusters in a five by five grid",
+      "id": "trial-five-by-five",
+      "name": "mixed clusters in a five by five grid",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -267,8 +267,8 @@
       ]
     },
     {
-      "id": "real-two-above-one-below",
-      "name": "real: two upper regions above one lower region",
+      "id": "trial-two-above-one-below",
+      "name": "two upper regions above one lower region",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -301,8 +301,8 @@
       ]
     },
     {
-      "id": "real-one-above-two-below",
-      "name": "real: one upper region above two lower regions",
+      "id": "trial-one-above-two-below",
+      "name": "one upper region above two lower regions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -335,8 +335,8 @@
       ]
     },
     {
-      "id": "real-two-left-one-right",
-      "name": "real: two left regions beside one right region",
+      "id": "trial-two-left-one-right",
+      "name": "two left regions beside one right region",
       "kind": "trial",
       "visible": true,
       "input": {

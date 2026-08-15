@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "real-common-february",
+      "id": "trial-common-february",
       "name": "common-year February boundary",
       "kind": "trial",
       "visible": true,
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-year-boundary",
+      "id": "trial-year-boundary",
       "name": "year boundary",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-century-common-year",
+      "id": "trial-century-common-year",
       "name": "century excluded from leap years",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-epoch-eve",
+      "id": "trial-epoch-eve",
       "name": "cross the Unix epoch",
       "kind": "trial",
       "visible": true,

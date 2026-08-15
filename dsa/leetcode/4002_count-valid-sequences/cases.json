@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-even-sum-pairs",
+      "id": "trial-even-sum-pairs",
       "name": "subtract three all-odd pairs",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-parity-precludes-all-odd",
+      "id": "trial-parity-precludes-all-odd",
       "name": "parity makes every composition valid",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-nine-of-fifteen",
+      "id": "trial-nine-of-fifteen",
       "name": "mixed complement with three positions",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-four-positions",
+      "id": "trial-four-positions",
       "name": "four-position stars-and-bars subtraction",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-every-composition-valid",
+      "id": "trial-every-composition-valid",
       "name": "odd n-k removes the complement",
       "kind": "trial",
       "visible": true,
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-medium-binomial",
+      "id": "trial-medium-binomial",
       "name": "subtract a nontrivial all-odd count",
       "kind": "trial",
       "visible": true,
@@ -237,7 +237,7 @@
       ]
     },
     {
-      "id": "real-large-even-singleton",
+      "id": "trial-large-even-singleton",
       "name": "a large even singleton is valid",
       "kind": "trial",
       "visible": true,
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": "real-large-all-ones",
+      "id": "trial-large-all-ones",
       "name": "a long forced all-ones sequence is invalid",
       "kind": "trial",
       "visible": true,
@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "real-modulo-reduction",
+      "id": "trial-modulo-reduction",
       "name": "a large count requires modular reduction",
       "kind": "trial",
       "visible": true,
@@ -279,7 +279,7 @@
       ]
     },
     {
-      "id": "real-near-all-ones",
+      "id": "trial-near-all-ones",
       "name": "one extra unit can occupy any position",
       "kind": "trial",
       "visible": true,
@@ -291,6 +291,36 @@
       "tags": [
         "near-all-ones",
         "order"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 3
+      },
+      "expected": 923277569,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-22",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

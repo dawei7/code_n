@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "real-one-request",
+      "id": "trial-one-request",
       "name": "one request with the maximum throttle",
       "kind": "trial",
       "visible": true,
@@ -237,7 +237,7 @@
       ]
     },
     {
-      "id": "real-two-batches",
+      "id": "trial-two-batches",
       "name": "queued requests split across consecutive windows",
       "kind": "trial",
       "visible": true,
@@ -294,7 +294,7 @@
       ]
     },
     {
-      "id": "real-maximum-calls",
+      "id": "trial-maximum-calls",
       "name": "ten unique requests retain key-value correspondence",
       "kind": "trial",
       "visible": true,

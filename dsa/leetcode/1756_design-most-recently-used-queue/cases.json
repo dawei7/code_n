@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-repeated-middle",
+      "id": "trial-repeated-middle",
       "name": "repeated middle rank cycles the suffix",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-alternating-boundaries",
+      "id": "trial-alternating-boundaries",
       "name": "moves cross both queue boundaries",
       "kind": "trial",
       "visible": true,
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-last-rank-idempotence",
+      "id": "trial-last-rank-idempotence",
       "name": "repeated back fetch leaves order unchanged",
       "kind": "trial",
       "visible": true,
@@ -253,7 +253,7 @@
       ]
     },
     {
-      "id": "real-block-boundaries",
+      "id": "trial-block-boundaries",
       "name": "rank changes cross square-root block boundaries",
       "kind": "trial",
       "visible": true,
@@ -301,7 +301,7 @@
       ]
     },
     {
-      "id": "real-constructor-only",
+      "id": "trial-constructor-only",
       "name": "construction produces only a null result",
       "kind": "trial",
       "visible": true,

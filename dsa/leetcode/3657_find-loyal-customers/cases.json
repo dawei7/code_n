@@ -327,7 +327,7 @@
       ]
     },
     {
-      "id": "real-refund-extends-activity",
+      "id": "trial-refund-extends-activity",
       "name": "a refund can establish the latest activity date",
       "kind": "trial",
       "visible": true,
@@ -398,7 +398,7 @@
       ]
     },
     {
-      "id": "real-one-day-short",
+      "id": "trial-one-day-short",
       "name": "twenty-nine active days is excluded",
       "kind": "trial",
       "visible": true,
@@ -444,7 +444,7 @@
       ]
     },
     {
-      "id": "real-mixed-customer-order",
+      "id": "trial-mixed-customer-order",
       "name": "filters are independent and result is sorted",
       "kind": "trial",
       "visible": true,

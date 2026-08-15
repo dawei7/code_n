@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-unsold-gap",
+      "id": "trial-unsold-gap",
       "name": "compatible offers can leave houses unsold",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-same-end-different-start",
+      "id": "trial-same-end-different-start",
       "name": "offers ending together use different prior states",
       "kind": "trial",
       "visible": true,
@@ -249,7 +249,7 @@
       ]
     },
     {
-      "id": "real-nested-offers",
+      "id": "trial-nested-offers",
       "name": "several smaller offers beat one containing interval",
       "kind": "trial",
       "visible": true,
@@ -289,7 +289,7 @@
       ]
     },
     {
-      "id": "real-maximum-house-index",
+      "id": "trial-maximum-house-index",
       "name": "sparse offers at the maximum house boundary",
       "kind": "trial",
       "visible": true,

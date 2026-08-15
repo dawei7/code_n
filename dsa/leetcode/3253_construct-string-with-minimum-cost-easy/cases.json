@@ -171,8 +171,8 @@
       ]
     },
     {
-      "id": "real-dead-end-prefix",
-      "name": "real: cheapest matching prefix cannot finish",
+      "id": "trial-dead-end-prefix",
+      "name": "cheapest matching prefix cannot finish",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -195,8 +195,8 @@
       ]
     },
     {
-      "id": "real-duplicate-costs",
-      "name": "real: cheaper duplicate word is retained",
+      "id": "trial-duplicate-costs",
+      "name": "cheaper duplicate word is retained",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -219,8 +219,8 @@
       ]
     },
     {
-      "id": "real-maximum-cost",
-      "name": "real: one maximum-cost operation beats repeated letters",
+      "id": "trial-maximum-cost",
+      "name": "one maximum-cost operation beats repeated letters",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -240,8 +240,8 @@
       ]
     },
     {
-      "id": "real-multiple-decompositions",
-      "name": "real: several prefix decompositions reach the same suffix",
+      "id": "trial-multiple-decompositions",
+      "name": "several prefix decompositions reach the same suffix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -268,8 +268,8 @@
       ]
     },
     {
-      "id": "real-dense-overlap",
-      "name": "real: dense overlapping fragments",
+      "id": "trial-dense-overlap",
+      "name": "dense overlapping fragments",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-prime-total",
+      "id": "trial-prime-total",
       "name": "prime total prevents a split",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-star-two-components",
+      "id": "trial-star-two-components",
       "name": "one leaf separates from a star",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "real-topology-blocks-divisor",
+      "id": "trial-topology-blocks-divisor",
       "name": "arithmetic candidate fails topology",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-equal-star",
+      "id": "trial-equal-star",
       "name": "every star edge is removable",
       "kind": "trial",
       "visible": true,

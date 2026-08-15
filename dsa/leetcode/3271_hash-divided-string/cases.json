@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-whole-alphabet",
-      "name": "real: alphabet split into thirteen pairs",
+      "id": "trial-whole-alphabet",
+      "name": "alphabet split into thirteen pairs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-whole-string",
-      "name": "real: one group spans the whole string",
+      "id": "trial-whole-string",
+      "name": "one group spans the whole string",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -137,8 +137,8 @@
       ]
     },
     {
-      "id": "real-repeated-z",
-      "name": "real: repeated maximum letters in groups",
+      "id": "trial-repeated-z",
+      "name": "repeated maximum letters in groups",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-four-groups",
-      "name": "real: varied four-character groups",
+      "id": "trial-four-groups",
+      "name": "varied four-character groups",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -167,8 +167,8 @@
       ]
     },
     {
-      "id": "real-long-pattern",
-      "name": "real: one hundred deterministic characters",
+      "id": "trial-long-pattern",
+      "name": "one hundred deterministic characters",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -179,6 +179,21 @@
       "tags": [
         "long",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcd",
+        "k": 1
+      },
+      "expected": "abcd",
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -275,7 +275,7 @@
       ]
     },
     {
-      "id": "real-successive-evictions",
+      "id": "trial-successive-evictions",
       "name": "each addition changes the active three-value window",
       "kind": "trial",
       "visible": true,
@@ -333,7 +333,7 @@
       ]
     },
     {
-      "id": "real-repeated-query",
+      "id": "trial-repeated-query",
       "name": "calculations do not mutate state",
       "kind": "trial",
       "visible": true,
@@ -381,7 +381,7 @@
       ]
     },
     {
-      "id": "real-domain-boundaries",
+      "id": "trial-domain-boundaries",
       "name": "minimum and maximum values are trimmed",
       "kind": "trial",
       "visible": true,
@@ -428,7 +428,7 @@
       ]
     },
     {
-      "id": "real-old-extreme-evicted",
+      "id": "trial-old-extreme-evicted",
       "name": "an old maximum stops influencing the average",
       "kind": "trial",
       "visible": true,
@@ -488,7 +488,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "equal values survive multiplicity-aware trimming",
       "kind": "trial",
       "visible": true,

@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "hidden-right-chain",
+      "id": "trial-right-chain",
       "name": "right-skewed tree",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "hidden-uneven-branches",
+      "id": "trial-uneven-branches",
       "name": "only one subtree reaches the final level",
       "kind": "trial",
       "visible": true,

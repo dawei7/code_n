@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-single",
+      "id": "trial-single",
       "name": "repeated one-node trips",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-overlap",
+      "id": "trial-overlap",
       "name": "overlapping chain trips",
       "kind": "trial",
       "visible": true,
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "real-unused",
+      "id": "trial-unused",
       "name": "unused expensive node",
       "kind": "trial",
       "visible": true,

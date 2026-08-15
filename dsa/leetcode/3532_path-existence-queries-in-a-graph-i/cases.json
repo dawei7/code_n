@@ -143,8 +143,8 @@
       ]
     },
     {
-      "id": "real-zero-difference-runs",
-      "name": "real: equal-value runs with zero threshold",
+      "id": "trial-zero-difference-runs",
+      "name": "equal-value runs with zero threshold",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -188,8 +188,8 @@
       ]
     },
     {
-      "id": "real-two-components",
-      "name": "real: one oversized middle gap",
+      "id": "trial-two-components",
+      "name": "one oversized middle gap",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -237,8 +237,8 @@
       ]
     },
     {
-      "id": "real-all-connected",
-      "name": "real: large threshold connects every node",
+      "id": "trial-all-connected",
+      "name": "large threshold connects every node",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -282,8 +282,8 @@
       ]
     },
     {
-      "id": "real-every-node-isolated",
-      "name": "real: every adjacent gap is too large",
+      "id": "trial-every-node-isolated",
+      "name": "every adjacent gap is too large",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -324,6 +324,38 @@
       "tags": [
         "real",
         "all-breaks"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "nums": [
+          1,
+          1
+        ],
+        "maxDiff": 1,
+        "queries": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

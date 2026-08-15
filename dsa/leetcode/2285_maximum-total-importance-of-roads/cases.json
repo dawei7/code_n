@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-isolated",
+      "id": "trial-isolated",
       "name": "isolated cities consume the smallest assignments",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-cycle",
+      "id": "trial-cycle",
       "name": "every degree is equal in a cycle",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-two-components",
+      "id": "trial-two-components",
       "name": "degree ordering spans disconnected components",
       "kind": "trial",
       "visible": true,

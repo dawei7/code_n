@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-complex-wall-loss",
+      "id": "trial-complex-wall-loss",
       "name": "Cat prevents a route through separated corridors",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-complex-wall-win",
+      "id": "trial-complex-wall-win",
       "name": "Mouse forces a route around paired walls",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-adjacent-counterplay",
+      "id": "trial-adjacent-counterplay",
       "name": "nearby Cat defeats a one-step Mouse",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-maximum-jumps",
+      "id": "trial-maximum-jumps",
       "name": "maximum jump limits remain a Cat win",
       "kind": "trial",
       "visible": true,

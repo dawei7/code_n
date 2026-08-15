@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "hidden-divisible-by-three",
+      "id": "trial-divisible-by-three",
       "name": "exact groups of three",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "hidden-remainder-two",
+      "id": "trial-remainder-two",
       "name": "larger remainder-two case",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "hidden-maximum",
+      "id": "trial-maximum",
       "name": "maximum input",
       "kind": "trial",
       "visible": true,

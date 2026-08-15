@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "hidden-large-gap",
+      "id": "trial-large-gap",
       "name": "several gaps between inputs",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "hidden-binary-coverage",
+      "id": "trial-binary-coverage",
       "name": "powers already cover target",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-empty",
+      "id": "trial-maximum-empty",
       "name": "maximum target without inputs",
       "kind": "trial",
       "visible": true,
@@ -138,6 +138,41 @@
       "expected": 31,
       "tags": [
         "large"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "n": 6
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "n": 6
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-complete-cycle",
+      "id": "trial-complete-cycle",
       "name": "one complete cycle returns facing south",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-corner-direction",
+      "id": "trial-corner-direction",
       "name": "direction changes only when the next step leaves a corner",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-large-multiple",
+      "id": "trial-large-multiple",
       "name": "a large multiple of the perimeter still records movement",
       "kind": "trial",
       "visible": true,
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "id": "real-persistent-steps",
+      "id": "trial-persistent-steps",
       "name": "consecutive instructions compose on persistent state",
       "kind": "trial",
       "visible": true,

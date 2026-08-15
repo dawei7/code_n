@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "best match ends at both boundaries",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "repeated candidates of different lengths",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-3",
       "name": "one-element arrays",
       "kind": "trial",
       "visible": true,
@@ -199,6 +199,53 @@
       "expected": 1,
       "tags": [
         "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          3,
+          2,
+          1,
+          4,
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1
+        ],
+        "nums2": [
+          3,
+          2,
+          1,
+          4,
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

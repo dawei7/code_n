@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-prefixes",
+      "id": "trial-prefixes",
       "name": "several word prefixes",
       "kind": "trial",
       "visible": true,

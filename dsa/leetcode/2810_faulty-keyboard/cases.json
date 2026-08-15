@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-interleaved-triggers",
+      "id": "trial-interleaved-triggers",
       "name": "paired and separated triggers change insertion sides",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-alternating-triggers",
+      "id": "trial-alternating-triggers",
       "name": "letters arrive under alternating orientations",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-many-triggers",
+      "id": "trial-many-triggers",
       "name": "repeated trigger pairs have no net effect",
       "kind": "trial",
       "visible": true,
@@ -109,6 +109,34 @@
       "expected": "ab",
       "tags": [
         "many-triggers"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "s"
+      },
+      "expected": "s",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "sss"
+      },
+      "expected": "sss",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

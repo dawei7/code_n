@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-three-values",
+      "id": "trial-three-values",
       "name": "three repeated values",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-many-singletons",
+      "id": "trial-many-singletons",
       "name": "repeated value with singletons",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-unsorted-input",
+      "id": "trial-unsorted-input",
       "name": "unsorted mixed frequencies",
       "kind": "trial",
       "visible": true,

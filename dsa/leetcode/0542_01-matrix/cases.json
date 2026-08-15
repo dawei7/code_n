@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "hidden-column",
+      "id": "trial-column",
       "name": "one-column distances",
       "kind": "trial",
       "visible": true,
@@ -236,7 +236,7 @@
       ]
     },
     {
-      "id": "hidden-rectangle",
+      "id": "trial-rectangle",
       "name": "rectangular grid with separated zeros",
       "kind": "trial",
       "visible": true,

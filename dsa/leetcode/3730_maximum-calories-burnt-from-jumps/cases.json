@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-single-maximum",
+      "id": "trial-single-maximum",
       "name": "one maximum-height block requires a 64-bit square",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "only the ground jump contributes when all heights match",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-duplicate-low",
+      "id": "trial-duplicate-low",
       "name": "a repeated low endpoint creates one zero jump",
       "kind": "trial",
       "visible": true,
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-two-duplicate-levels",
+      "id": "trial-two-duplicate-levels",
       "name": "equal low and high pairs still alternate optimally",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-two-value-boundaries",
+      "id": "trial-two-value-boundaries",
       "name": "minimum and maximum heights maximize both legal jumps",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-five-increasing",
+      "id": "trial-five-increasing",
       "name": "odd length leaves the middle height last",
       "kind": "trial",
       "visible": true,
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": "real-six-even-spaced",
+      "id": "trial-six-even-spaced",
       "name": "six evenly spaced heights exercise every extreme pair",
       "kind": "trial",
       "visible": true,
@@ -272,6 +272,23 @@
       "tags": [
         "even-length",
         "alternating-extremes"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in heights",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

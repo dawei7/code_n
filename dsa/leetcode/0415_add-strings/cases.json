@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-many-carries",
+      "id": "trial-many-carries",
       "name": "carry propagates through both inputs",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-no-carry",
+      "id": "trial-no-carry",
       "name": "aligned digits add independently",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "hidden-large",
+      "id": "trial-large",
       "name": "values exceed machine integer precision",
       "kind": "trial",
       "visible": true,
@@ -117,6 +117,36 @@
       "expected": "111111111011111111100",
       "tags": [
         "large"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in num1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": "1",
+        "num2": "123"
+      },
+      "expected": "124",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in num1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": "111",
+        "num2": "123"
+      },
+      "expected": "234",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-duplicate-intervals",
+      "id": "trial-duplicate-intervals",
       "name": "duplicate car ranges add no new points",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-contained-ranges",
+      "id": "trial-contained-ranges",
       "name": "nested intervals stay within the outer range",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-disjoint-singletons",
+      "id": "trial-disjoint-singletons",
       "name": "separated singleton cars",
       "kind": "trial",
       "visible": true,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-full-domain",
+      "id": "trial-full-domain",
       "name": "one car covers the entire coordinate domain",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-bridge-two-ranges",
+      "id": "trial-bridge-two-ranges",
       "name": "one interval bridges two separated ranges",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-unordered-disjoint",
+      "id": "trial-unordered-disjoint",
       "name": "input order does not affect disjoint totals",
       "kind": "trial",
       "visible": true,

@@ -238,8 +238,8 @@
       ]
     },
     {
-      "id": "real-rectangular-mixed",
-      "name": "real: mixed five by four board",
+      "id": "trial-rectangular-mixed",
+      "name": "mixed five by four board",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -283,8 +283,8 @@
       ]
     },
     {
-      "id": "real-minimum-values",
-      "name": "real: every cell is at the minimum bound",
+      "id": "trial-minimum-values",
+      "name": "every cell is at the minimum bound",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -313,8 +313,8 @@
       ]
     },
     {
-      "id": "real-maximum-diagonal",
-      "name": "real: three maximum-bound diagonal cells",
+      "id": "trial-maximum-diagonal",
+      "name": "three maximum-bound diagonal cells",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -343,8 +343,8 @@
       ]
     },
     {
-      "id": "real-mixed-four-square",
-      "name": "real: several competing high cells",
+      "id": "trial-mixed-four-square",
+      "name": "several competing high cells",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -382,8 +382,8 @@
       ]
     },
     {
-      "id": "real-value-plateaus",
-      "name": "real: repeated plateaus across row groups",
+      "id": "trial-value-plateaus",
+      "name": "repeated plateaus across row groups",
       "kind": "trial",
       "visible": true,
       "input": {

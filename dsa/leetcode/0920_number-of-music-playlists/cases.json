@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "extra positions with separation one",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "separation two",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "no restriction with four songs",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "modulo result",
       "kind": "trial",
       "visible": true,
@@ -156,6 +156,38 @@
       "expected": 252498779,
       "tags": [
         "modulo"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "goal": 3,
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value goal=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "goal": 1,
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

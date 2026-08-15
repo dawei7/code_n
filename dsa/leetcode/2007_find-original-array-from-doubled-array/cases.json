@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-insufficient-double",
+      "id": "trial-insufficient-double",
       "name": "one duplicate lacks a doubled partner",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-boundary-values",
+      "id": "trial-boundary-values",
       "name": "large legal values and shuffled doubles",
       "kind": "trial",
       "visible": true,

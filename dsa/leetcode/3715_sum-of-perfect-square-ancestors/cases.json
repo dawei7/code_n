@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-all-kernels-equal-chain",
+      "id": "trial-all-kernels-equal-chain",
       "name": "every earlier chain node qualifies",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-siblings-not-ancestors",
+      "id": "trial-siblings-not-ancestors",
       "name": "matching sibling kernels must not be counted",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-different-values-same-kernel",
+      "id": "trial-different-values-same-kernel",
       "name": "square-free kernels match for twelve and seventy-five",
       "kind": "trial",
       "visible": true,
@@ -249,7 +249,7 @@
       ]
     },
     {
-      "id": "real-star-square-children",
+      "id": "trial-star-square-children",
       "name": "only perfect-square children match root value one",
       "kind": "trial",
       "visible": true,
@@ -283,7 +283,7 @@
       ]
     },
     {
-      "id": "real-branch-exit-removes-count",
+      "id": "trial-branch-exit-removes-count",
       "name": "a completed branch cannot remain in the active ancestor map",
       "kind": "trial",
       "visible": true,
@@ -327,7 +327,7 @@
       ]
     },
     {
-      "id": "real-maximum-value-boundary",
+      "id": "trial-maximum-value-boundary",
       "name": "maximum assigned values are handled by the bounded sieve",
       "kind": "trial",
       "visible": true,

@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-modulo-one",
+      "id": "trial-modulo-one",
       "name": "every subarray is interesting modulo one",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-single-qualifier",
+      "id": "trial-single-qualifier",
       "name": "one element produces the target count remainder",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-single-misses-count-target",
+      "id": "trial-single-misses-count-target",
       "name": "element qualifies but its count has another remainder",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-all-zero-counts",
+      "id": "trial-all-zero-counts",
       "name": "no element qualifies and every subarray targets zero",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-repeated-prefix-cycles",
+      "id": "trial-repeated-prefix-cycles",
       "name": "all elements qualify and prefix remainders repeat",
       "kind": "trial",
       "visible": true,
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "maximum value participates in the element test",
       "kind": "trial",
       "visible": true,
@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "real-all-qualify-odd-count",
+      "id": "trial-all-qualify-odd-count",
       "name": "odd-length ranges over five qualifying elements",
       "kind": "trial",
       "visible": true,

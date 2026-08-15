@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-removable-prefix",
+      "id": "trial-removable-prefix",
       "name": "surplus leading occurrences create two starts",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-adjacent-groups",
+      "id": "trial-adjacent-groups",
       "name": "two neighboring pairs of value groups qualify",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-m-one-exact-k",
+      "id": "trial-m-one-exact-k",
       "name": "m one still requires exactly k distinct values",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-all-same-threshold",
+      "id": "trial-all-same-threshold",
       "name": "every sufficiently long same-value interval counts",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-separated-runs",
+      "id": "trial-separated-runs",
       "name": "qualifying one-value windows cannot cross runs",
       "kind": "trial",
       "visible": true,
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum-valued cells meet the repeated-pair threshold",
       "kind": "trial",
       "visible": true,
@@ -278,7 +278,7 @@
       ]
     },
     {
-      "id": "real-reset-after-new-distinct",
+      "id": "trial-reset-after-new-distinct",
       "name": "adding a third value resets older removable starts",
       "kind": "trial",
       "visible": true,
@@ -307,7 +307,7 @@
       ]
     },
     {
-      "id": "real-all-below-threshold",
+      "id": "trial-all-below-threshold",
       "name": "all values remain below the required frequency",
       "kind": "trial",
       "visible": true,

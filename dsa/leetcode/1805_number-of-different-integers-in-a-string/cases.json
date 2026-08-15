@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-one-long-run",
+      "id": "trial-one-long-run",
       "name": "one uninterrupted digit run is one integer",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-prefix-numbers-differ",
+      "id": "trial-prefix-numbers-differ",
       "name": "decimal prefixes remain different values",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-zero-and-powers",
+      "id": "trial-zero-and-powers",
       "name": "zero and leading-zero powers remain distinct",
       "kind": "trial",
       "visible": true,

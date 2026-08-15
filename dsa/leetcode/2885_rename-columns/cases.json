@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-varied-values",
+      "id": "trial-varied-values",
       "name": "varied values and order remain unchanged",
       "kind": "trial",
       "visible": true,

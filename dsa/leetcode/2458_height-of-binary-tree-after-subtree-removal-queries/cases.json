@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-skewed-tree",
+      "id": "trial-skewed-tree",
       "name": "removals in a left-skewed tree",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-deep-sibling-survives",
+      "id": "trial-deep-sibling-survives",
       "name": "deepest path moves to the sibling subtree",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-remove-shallow-branch",
+      "id": "trial-remove-shallow-branch",
       "name": "removing a shallow branch preserves the maximum",
       "kind": "trial",
       "visible": true,
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-complete-tree",
+      "id": "trial-complete-tree",
       "name": "complete tree removals preserve equal-depth alternatives",
       "kind": "trial",
       "visible": true,

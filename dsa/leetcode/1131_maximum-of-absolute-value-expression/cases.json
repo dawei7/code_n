@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-four-points",
+      "id": "trial-four-points",
       "name": "four mixed points",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-value-bounds",
+      "id": "trial-value-bounds",
       "name": "coordinate bounds",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-repeated-extrema",
+      "id": "trial-repeated-extrema",
       "name": "repeated transformed extrema",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-zigzag",
+      "id": "trial-zigzag",
       "name": "zigzag coordinates",
       "kind": "trial",
       "visible": true,

@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-seven",
+      "id": "trial-seven",
       "name": "exhaustive small-domain maximum",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-ten",
+      "id": "trial-ten",
       "name": "ten-value arrangement",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-fifteen",
+      "id": "trial-fifteen",
       "name": "larger search arrangement",
       "kind": "trial",
       "visible": true,
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum legal n",
       "kind": "trial",
       "visible": true,

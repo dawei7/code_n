@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-equal-largest-counts",
+      "id": "trial-equal-largest-counts",
       "name": "tied largest projects prevent dominance",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-many-small-projects",
+      "id": "trial-many-small-projects",
       "name": "many small projects collectively separate the largest",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-large-counts",
+      "id": "trial-large-counts",
       "name": "large totals require a wide integer result",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-extreme-imbalance",
+      "id": "trial-extreme-imbalance",
       "name": "one huge project is limited by two separators",
       "kind": "trial",
       "visible": true,

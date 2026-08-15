@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-character-fragments",
+      "id": "trial-character-fragments",
       "name": "every character is a separate fragment",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-last-character-mismatch",
+      "id": "trial-last-character-mismatch",
       "name": "only the final character differs",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-first-character-mismatch",
+      "id": "trial-first-character-mismatch",
       "name": "first character differs",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-fragment-count-irrelevant",
+      "id": "trial-fragment-count-irrelevant",
       "name": "unequal fragment counts preserve equality",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-repeated-letters",
+      "id": "trial-repeated-letters",
       "name": "repeated letters cross every boundary",
       "kind": "trial",
       "visible": true,
@@ -206,6 +206,47 @@
       "expected": true,
       "tags": [
         "repeated-letters"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in word1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": [
+          "ab"
+        ],
+        "word2": [
+          "a",
+          "bc"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in word1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": [
+          "ab",
+          "ab"
+        ],
+        "word2": [
+          "a",
+          "bc"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

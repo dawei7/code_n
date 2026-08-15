@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "hidden-all-qualify",
+      "id": "trial-all-qualify",
       "name": "two four and six digits",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "hidden-mixed",
+      "id": "trial-mixed",
       "name": "mixed digit counts",
       "kind": "trial",
       "visible": true,

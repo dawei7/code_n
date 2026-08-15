@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-even-length-valid",
+      "id": "trial-even-length-valid",
       "name": "all frequencies even on a skewed path",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-three-valid",
+      "id": "trial-three-valid",
       "name": "separate leaves with shared value patterns",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-deep-invalid",
+      "id": "trial-deep-invalid",
       "name": "deep path has three odd frequencies",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-parity-toggle",
+      "id": "trial-parity-toggle",
       "name": "repeated values toggle parity back to even",
       "kind": "trial",
       "visible": true,

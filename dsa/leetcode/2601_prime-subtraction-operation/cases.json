@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-equal-large-values",
+      "id": "trial-equal-large-values",
       "name": "equal values use different primes",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-prime-gap-boundary",
+      "id": "trial-prime-gap-boundary",
       "name": "strict predecessor boundary chooses lower prime",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-late-failure",
+      "id": "trial-late-failure",
       "name": "choices succeed until the final element",
       "kind": "trial",
       "visible": true,
@@ -141,6 +141,22 @@
       "expected": false,
       "tags": [
         "late-failure"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

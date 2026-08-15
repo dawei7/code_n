@@ -104,8 +104,8 @@
       ]
     },
     {
-      "id": "real-endpoint-swap",
-      "name": "real: swap only the endpoints",
+      "id": "trial-endpoint-swap",
+      "name": "swap only the endpoints",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -119,8 +119,8 @@
       ]
     },
     {
-      "id": "real-two-block-rotation",
-      "name": "real: exchange two equal blocks",
+      "id": "trial-two-block-rotation",
+      "name": "exchange two equal blocks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -133,8 +133,8 @@
       ]
     },
     {
-      "id": "real-reversed-six",
-      "name": "real: reverse six scattered letters",
+      "id": "trial-reversed-six",
+      "name": "reverse six scattered letters",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -148,8 +148,8 @@
       ]
     },
     {
-      "id": "real-reversed-ten",
-      "name": "real: reverse ten characters",
+      "id": "trial-reversed-ten",
+      "name": "reverse ten characters",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -163,8 +163,8 @@
       ]
     },
     {
-      "id": "real-maximum-length-reverse",
-      "name": "real: reverse the complete lowercase alphabet",
+      "id": "trial-maximum-length-reverse",
+      "name": "reverse the complete lowercase alphabet",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -175,6 +175,36 @@
       "tags": [
         "maximum-length",
         "reverse"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in t",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "t": "b"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in t",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "t": "bbb"
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-project-order",
+      "id": "trial-project-order",
       "name": "deterministic project ordering",
       "kind": "trial",
       "visible": true,
@@ -280,7 +280,7 @@
       ]
     },
     {
-      "id": "real-name-irrelevant",
+      "id": "trial-name-irrelevant",
       "name": "names do not affect grouping",
       "kind": "trial",
       "visible": true,

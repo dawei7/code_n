@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "same uppercase skeleton",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "lowercase pattern order matters",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "unmatched trailing uppercase",
       "kind": "trial",
       "visible": true,
@@ -211,6 +211,46 @@
       ],
       "tags": [
         "uppercase"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in queries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          "FooBar"
+        ],
+        "pattern": "FB"
+      },
+      "expected": [
+        true
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in queries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queries": [
+          "FooBar",
+          "FooBar"
+        ],
+        "pattern": "FB"
+      },
+      "expected": [
+        true,
+        true
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

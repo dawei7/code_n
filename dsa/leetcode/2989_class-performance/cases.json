@@ -205,8 +205,8 @@
       ]
     },
     {
-      "id": "real-tied-high",
-      "name": "real: repeated highest total",
+      "id": "trial-tied-high",
+      "name": "repeated highest total",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -254,8 +254,8 @@
       ]
     },
     {
-      "id": "real-zero-scores",
-      "name": "real: zero total is minimum",
+      "id": "trial-zero-scores",
+      "name": "zero total is minimum",
       "kind": "trial",
       "visible": true,
       "input": {

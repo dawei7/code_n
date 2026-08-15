@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-unsorted",
+      "id": "trial-unsorted",
       "name": "sorting establishes extrema ranks",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-modulus",
+      "id": "trial-modulus",
       "name": "large strengths require modular arithmetic",
       "kind": "trial",
       "visible": true,

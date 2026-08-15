@@ -111,8 +111,8 @@
       ]
     },
     {
-      "id": "real-units-only",
-      "name": "real: only the units digits vary",
+      "id": "trial-units-only",
+      "name": "only the units digits vary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -130,8 +130,8 @@
       ]
     },
     {
-      "id": "real-most-significant-only",
-      "name": "real: only the hundreds digits vary",
+      "id": "trial-most-significant-only",
+      "name": "only the hundreds digits vary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -148,8 +148,8 @@
       ]
     },
     {
-      "id": "real-nine-digit-extremes",
-      "name": "real: large values differ throughout",
+      "id": "trial-nine-digit-extremes",
+      "name": "large values differ throughout",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -166,8 +166,8 @@
       ]
     },
     {
-      "id": "real-mixed-six-digits",
-      "name": "real: mixed differences across six positions",
+      "id": "trial-mixed-six-digits",
+      "name": "mixed differences across six positions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -186,8 +186,8 @@
       ]
     },
     {
-      "id": "real-two-equal-values",
-      "name": "real: one identical pair",
+      "id": "trial-two-equal-values",
+      "name": "one identical pair",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -203,8 +203,8 @@
       ]
     },
     {
-      "id": "real-repeated-groups",
-      "name": "real: repeated value groups count by index",
+      "id": "trial-repeated-groups",
+      "name": "repeated value groups count by index",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-exact",
+      "id": "trial-exact",
       "name": "exact-width words",
       "kind": "trial",
       "visible": true,

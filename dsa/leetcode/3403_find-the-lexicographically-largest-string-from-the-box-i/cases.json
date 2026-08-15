@@ -92,8 +92,8 @@
       ]
     },
     {
-      "id": "real-winning-short-suffix",
-      "name": "real: a short suffix beats every longer candidate",
+      "id": "trial-winning-short-suffix",
+      "name": "a short suffix beats every longer candidate",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-prefix-tie-prefers-longer",
-      "name": "real: equal leading letters favor the longer suffix",
+      "id": "trial-prefix-tie-prefers-longer",
+      "name": "equal leading letters favor the longer suffix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-repeated-pattern",
-      "name": "real: repeated prefixes require deeper comparison",
+      "id": "trial-repeated-pattern",
+      "name": "repeated prefixes require deeper comparison",
       "kind": "trial",
       "visible": true,
       "input": {

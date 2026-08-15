@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-uneven-branches",
+      "id": "trial-uneven-branches",
       "name": "aggregate differently sized subtrees",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-capacity-exceeds-population",
+      "id": "trial-capacity-exceeds-population",
       "name": "one car can carry each entire branch",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-edge-order-arbitrary",
+      "id": "trial-edge-order-arbitrary",
       "name": "roads need not be listed from the capital outward",
       "kind": "trial",
       "visible": true,

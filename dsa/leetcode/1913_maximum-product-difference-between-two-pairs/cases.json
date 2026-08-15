@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "equal products have zero difference",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-unsorted-extrema",
+      "id": "trial-unsorted-extrema",
       "name": "extrema may appear in any order",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-two-smallest-late",
+      "id": "trial-two-smallest-late",
       "name": "both minima arrive after both maxima",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-two-largest-early",
+      "id": "trial-two-largest-early",
       "name": "both maxima may occur first",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-domain-extremes",
+      "id": "trial-domain-extremes",
       "name": "domain maximum pair minus domain minimum pair",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-repeated-minimum",
+      "id": "trial-repeated-minimum",
       "name": "the two minimum slots retain separate equal occurrences",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-repeated-maximum",
+      "id": "trial-repeated-maximum",
       "name": "the two maximum slots retain separate equal occurrences",
       "kind": "trial",
       "visible": true,
@@ -217,6 +217,23 @@
       "expected": 79,
       "tags": [
         "duplicate-maximum"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-strictly-decreasing",
+      "id": "trial-strictly-decreasing",
       "name": "decreasing intermediates force adjacent jumps",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-peak-blocks-skip",
+      "id": "trial-peak-blocks-skip",
       "name": "a high intermediate blocks an otherwise rising endpoint",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-direct-rising",
+      "id": "trial-direct-rising",
       "name": "smaller intermediates permit a direct rising jump",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-direct-falling",
+      "id": "trial-direct-falling",
       "name": "sufficiently high intermediates permit a direct falling jump",
       "kind": "trial",
       "visible": true,

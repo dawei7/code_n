@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-arbitrary-order",
+      "id": "trial-arbitrary-order",
       "name": "extremes occur inside the array",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "one hundred permuted salaries",
       "kind": "trial",
       "visible": true,
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "id": "real-narrow-range",
+      "id": "trial-narrow-range",
       "name": "consecutive unique salaries",
       "kind": "trial",
       "visible": true,
@@ -315,6 +315,22 @@
         "real",
         "narrow-range",
         "unsorted"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in salary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "salary": [
+          4000
+        ]
+      },
+      "expected": 4000.0,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

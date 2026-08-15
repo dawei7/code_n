@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-run-at-end",
+      "id": "trial-run-at-end",
       "name": "repeated run ends the rope",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-two-long-runs",
+      "id": "trial-two-long-runs",
       "name": "optimize two length-three runs",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-tied-times",
+      "id": "trial-tied-times",
       "name": "all removal times in a run are tied",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating colors need no work",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-middle-maximum",
+      "id": "trial-middle-maximum",
       "name": "retain a maximum inside a long run",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-many-groups",
+      "id": "trial-many-groups",
       "name": "singleton colors separate repeated groups",
       "kind": "trial",
       "visible": true,
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "real-large-times",
+      "id": "trial-large-times",
       "name": "large removal times accumulate",
       "kind": "trial",
       "visible": true,
@@ -273,6 +273,48 @@
         "real",
         "upper-bound-times",
         "multiple-runs"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single character in colors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": "a",
+        "neededTime": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "repeated character in colors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": "aaa",
+        "neededTime": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

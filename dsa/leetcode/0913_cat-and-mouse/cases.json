@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "Cat controls Mouse's only neighbor",
       "kind": "trial",
       "visible": true,
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "branching graph with a forced outcome",
       "kind": "trial",
       "visible": true,
@@ -253,7 +253,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "official draw with reordered adjacency",
       "kind": "trial",
       "visible": true,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "longer forced escape",
       "kind": "trial",
       "visible": true,

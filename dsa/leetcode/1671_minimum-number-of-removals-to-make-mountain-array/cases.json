@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-discard-endpoints",
+      "id": "trial-discard-endpoints",
       "name": "optimal mountain discards both endpoints",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-flat-regions",
+      "id": "trial-flat-regions",
       "name": "duplicates on both slopes cannot extend them",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-late-peak",
+      "id": "trial-late-peak",
       "name": "longest mountain uses a late peak",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-several-peaks",
+      "id": "trial-several-peaks",
       "name": "choose the peak with longest combined sides",
       "kind": "trial",
       "visible": true,

@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-consecutive-removals",
+      "id": "trial-consecutive-removals",
       "name": "several removable nodes occur consecutively",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-one-unique-amid-duplicates",
+      "id": "trial-one-unique-amid-duplicates",
       "name": "one middle value is the only survivor",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-all-same",
+      "id": "trial-all-same",
       "name": "every node has one repeated value",
       "kind": "trial",
       "visible": true,
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "real-maximum-value",
+      "id": "trial-maximum-value",
       "name": "the maximum legal value participates normally",
       "kind": "trial",
       "visible": true,

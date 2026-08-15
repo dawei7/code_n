@@ -93,8 +93,8 @@
       ]
     },
     {
-      "id": "real-portal-around-wall",
-      "name": "real: teleport past a wall barrier",
+      "id": "trial-portal-around-wall",
+      "name": "teleport past a wall barrier",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -112,8 +112,8 @@
       ]
     },
     {
-      "id": "real-many-identical-portals",
-      "name": "real: choose any copy of one portal letter",
+      "id": "trial-many-identical-portals",
+      "name": "choose any copy of one portal letter",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -129,8 +129,8 @@
       ]
     },
     {
-      "id": "real-unreachable-region",
-      "name": "real: walls isolate the destination",
+      "id": "trial-unreachable-region",
+      "name": "walls isolate the destination",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -148,8 +148,8 @@
       ]
     },
     {
-      "id": "real-portal-is-optional",
-      "name": "real: ordinary movement remains available on portals",
+      "id": "trial-portal-is-optional",
+      "name": "ordinary movement remains available on portals",
       "kind": "trial",
       "visible": true,
       "input": {

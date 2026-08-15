@@ -69,7 +69,7 @@
       ]
     },
     {
-      "id": "real-tied-runs",
+      "id": "trial-tied-runs",
       "name": "separate xyz and abc runs tie",
       "kind": "trial",
       "visible": true,
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "real-repeated",
+      "id": "trial-repeated",
       "name": "repeated letters reset every run",
       "kind": "trial",
       "visible": true,
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-embedded-long-run",
+      "id": "trial-embedded-long-run",
       "name": "longest run appears in the middle",
       "kind": "trial",
       "visible": true,

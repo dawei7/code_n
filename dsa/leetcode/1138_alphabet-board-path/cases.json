@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-enter-leave-z",
+      "id": "trial-enter-leave-z",
       "name": "enter and leave z repeatedly",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-alphabet",
+      "id": "trial-alphabet",
       "name": "increasing board traversal",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-zebra",
+      "id": "trial-zebra",
       "name": "varied long movements",
       "kind": "trial",
       "visible": true,
@@ -110,6 +110,34 @@
       "tags": [
         "real",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "l"
+      },
+      "expected": "RDD!",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "lll"
+      },
+      "expected": "RDD!!!",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

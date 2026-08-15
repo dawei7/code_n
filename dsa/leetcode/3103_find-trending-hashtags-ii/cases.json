@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "real-start-middle-end",
+      "id": "trial-start-middle-end",
       "name": "hashtags can occupy every word position",
       "kind": "trial",
       "visible": true,
@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "real-descending-tie",
+      "id": "trial-descending-tie",
       "name": "four equal groups use descending hashtag order",
       "kind": "trial",
       "visible": true,
@@ -329,7 +329,7 @@
       ]
     },
     {
-      "id": "real-no-tag-row",
+      "id": "trial-no-tag-row",
       "name": "tweets without hashtags are ignored",
       "kind": "trial",
       "visible": true,
@@ -382,7 +382,7 @@
       ]
     },
     {
-      "id": "real-many-per-row",
+      "id": "trial-many-per-row",
       "name": "several tags from each tweet feed shared groups",
       "kind": "trial",
       "visible": true,

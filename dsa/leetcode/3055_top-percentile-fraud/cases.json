@@ -346,7 +346,7 @@
       ]
     },
     {
-      "id": "real-twenty-one-boundary-tie",
+      "id": "trial-twenty-one-boundary-tie",
       "name": "ceiling selects two positions and includes a boundary tie",
       "kind": "trial",
       "visible": true,
@@ -494,7 +494,7 @@
       ]
     },
     {
-      "id": "real-state-isolation",
+      "id": "trial-state-isolation",
       "name": "each state receives an independent cutoff",
       "kind": "trial",
       "visible": true,

@@ -86,8 +86,8 @@
       ]
     },
     {
-      "id": "real-target-one-impossible",
-      "name": "real: distinct positive values cannot form two product-one subsets",
+      "id": "trial-target-one-impossible",
+      "name": "distinct positive values cannot form two product-one subsets",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -106,8 +106,8 @@
       ]
     },
     {
-      "id": "real-one-target-subset-not-enough",
-      "name": "real: one target-product subset does not overcome a wrong total",
+      "id": "trial-one-target-subset-not-enough",
+      "name": "one target-product subset does not overcome a wrong total",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -127,8 +127,8 @@
       ]
     },
     {
-      "id": "real-square-total-without-half-product",
-      "name": "real: a square total need not have a target-product subset",
+      "id": "trial-square-total-without-half-product",
+      "name": "a square total need not have a target-product subset",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -144,6 +144,41 @@
         "real",
         "square-total",
         "subset-search"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ],
+        "target": 24
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ],
+        "target": 24
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

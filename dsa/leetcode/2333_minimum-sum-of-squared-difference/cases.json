@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "upper-bound differences require a wide count table",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-already-equal",
+      "id": "trial-already-equal",
       "name": "equal arrays already have zero cost",
       "kind": "trial",
       "visible": true,

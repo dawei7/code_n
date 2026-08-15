@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-triangle",
+      "id": "trial-triangle",
       "name": "triangle graph",
       "kind": "trial",
       "visible": true,

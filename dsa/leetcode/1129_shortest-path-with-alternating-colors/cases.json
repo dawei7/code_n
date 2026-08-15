@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-self-edge",
+      "id": "trial-self-edge",
       "name": "self-edge and continuation",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-parallel",
+      "id": "trial-parallel",
       "name": "parallel edges do not duplicate states",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-cycle",
+      "id": "trial-cycle",
       "name": "alternating cycle and outgoing branch",
       "kind": "trial",
       "visible": true,
@@ -277,7 +277,7 @@
       ]
     },
     {
-      "id": "real-single-node",
+      "id": "trial-single-node",
       "name": "graph contains only node zero",
       "kind": "trial",
       "visible": true,

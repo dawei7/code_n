@@ -285,7 +285,7 @@
       ]
     },
     {
-      "id": "real-duplicate-middle-values",
+      "id": "trial-duplicate-middle-values",
       "name": "duplicate middle values remain equivalent",
       "kind": "trial",
       "visible": true,
@@ -306,7 +306,7 @@
       ]
     },
     {
-      "id": "real-mixed-groups",
+      "id": "trial-mixed-groups",
       "name": "several inversion types are interleaved",
       "kind": "trial",
       "visible": true,
@@ -329,7 +329,7 @@
       ]
     },
     {
-      "id": "real-both-boundaries",
+      "id": "trial-both-boundaries",
       "name": "both inclusive boundaries precede a low value",
       "kind": "trial",
       "visible": true,
@@ -349,7 +349,7 @@
       ]
     },
     {
-      "id": "real-one-value-per-edge",
+      "id": "trial-one-value-per-edge",
       "name": "one low, two boundary values, and one high are ordered",
       "kind": "trial",
       "visible": true,
@@ -370,7 +370,7 @@
       ]
     },
     {
-      "id": "real-maximum-value-range",
+      "id": "trial-maximum-value-range",
       "name": "maximum value and wide thresholds",
       "kind": "trial",
       "visible": true,
@@ -390,7 +390,7 @@
       ]
     },
     {
-      "id": "real-balanced-descending-groups",
+      "id": "trial-balanced-descending-groups",
       "name": "balanced descending groups maximize inversions",
       "kind": "trial",
       "visible": true,
@@ -416,6 +416,43 @@
       "tags": [
         "descending-groups",
         "all-inversion-types"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "a": 3,
+        "b": 4
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-22",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "a": 3,
+        "b": 4
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

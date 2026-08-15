@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-top-corners",
-      "name": "real: top corners differ",
+      "id": "trial-top-corners",
+      "name": "top corners differ",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-bottom-corners",
-      "name": "real: bottom corners differ",
+      "id": "trial-bottom-corners",
+      "name": "bottom corners differ",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -137,8 +137,8 @@
       ]
     },
     {
-      "id": "real-even-row-offset",
-      "name": "real: even row offset preserves color",
+      "id": "trial-even-row-offset",
+      "name": "even row offset preserves color",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-even-column-offset",
-      "name": "real: even column offset preserves color",
+      "id": "trial-even-column-offset",
+      "name": "even column offset preserves color",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -167,8 +167,8 @@
       ]
     },
     {
-      "id": "real-mixed-offsets",
-      "name": "real: mixed offsets change color",
+      "id": "trial-mixed-offsets",
+      "name": "mixed offsets change color",
       "kind": "trial",
       "visible": true,
       "input": {

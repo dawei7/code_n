@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "repeated one-seat cycles",
       "kind": "trial",
       "visible": true,
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "leave right boundary",
       "kind": "trial",
       "visible": true,
@@ -300,7 +300,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "merge adjacent empty gaps",
       "kind": "trial",
       "visible": true,
@@ -354,7 +354,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "fill and partially empty",
       "kind": "trial",
       "visible": true,
@@ -408,7 +408,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "large coordinate room",
       "kind": "trial",
       "visible": true,
@@ -449,7 +449,7 @@
       ]
     },
     {
-      "id": "hidden-6",
+      "id": "trial-6",
       "name": "alternating departures and arrivals",
       "kind": "trial",
       "visible": true,

@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-tied-boundary",
+      "id": "trial-tied-boundary",
       "name": "keeping and changing can tie at the pruning boundary",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-competing-stints",
+      "id": "trial-competing-stints",
       "name": "several tire types compete across stint lengths",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "large lap and change times force immediate replacement",
       "kind": "trial",
       "visible": true,
@@ -194,6 +194,56 @@
       "tags": [
         "many-laps",
         "large-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value changeTime=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tires": [
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "changeTime": 1,
+        "numLaps": 4
+      },
+      "expected": 11,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value numLaps=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tires": [
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "changeTime": 5,
+        "numLaps": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

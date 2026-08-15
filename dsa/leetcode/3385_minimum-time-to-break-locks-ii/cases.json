@@ -73,8 +73,8 @@
       ]
     },
     {
-      "id": "real-identical-strengths",
-      "name": "real: duplicate nontrivial strengths",
+      "id": "trial-identical-strengths",
+      "name": "duplicate nontrivial strengths",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -91,8 +91,8 @@
       ]
     },
     {
-      "id": "real-ascending-greedy-trap",
-      "name": "real: ascending strength order is suboptimal",
+      "id": "trial-ascending-greedy-trap",
+      "name": "ascending strength order is suboptimal",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -109,8 +109,8 @@
       ]
     },
     {
-      "id": "real-mixed-extreme-strengths",
-      "name": "real: minimum and maximum strengths mixed",
+      "id": "trial-mixed-extreme-strengths",
+      "name": "minimum and maximum strengths mixed",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -128,8 +128,8 @@
       ]
     },
     {
-      "id": "real-five-varied-locks",
-      "name": "real: five varied lock strengths",
+      "id": "trial-five-varied-locks",
+      "name": "five varied lock strengths",
       "kind": "trial",
       "visible": true,
       "input": {

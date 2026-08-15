@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-six-rolls",
+      "id": "trial-six-rolls",
       "name": "six-roll sequence count",
       "kind": "trial",
       "visible": true,
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-seven-rolls",
+      "id": "trial-seven-rolls",
       "name": "longer sequence exercises repeated transitions",
       "kind": "trial",
       "visible": true,

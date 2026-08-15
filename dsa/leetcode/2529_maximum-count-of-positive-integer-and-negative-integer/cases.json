@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-all-negative",
+      "id": "trial-all-negative",
       "name": "all values are negative",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-one-of-each",
+      "id": "trial-one-of-each",
       "name": "zero separates one value on each side",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-many-zeros",
+      "id": "trial-many-zeros",
       "name": "large zero block between unequal sides",
       "kind": "trial",
       "visible": true,
@@ -151,6 +151,39 @@
       "expected": 4,
       "tags": [
         "boundary-search"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          -2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -72,8 +72,8 @@
       ]
     },
     {
-      "id": "real-four-digit-boundary",
-      "name": "real: the only legal four-digit value",
+      "id": "trial-four-digit-boundary",
+      "name": "the only legal four-digit value",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -92,8 +92,8 @@
       ]
     },
     {
-      "id": "real-varied-digits",
-      "name": "real: varied legal digit patterns",
+      "id": "trial-varied-digits",
+      "name": "varied legal digit patterns",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -112,8 +112,8 @@
       ]
     },
     {
-      "id": "real-maximum-array-length",
-      "name": "real: fifty values at the four-digit boundary",
+      "id": "trial-maximum-array-length",
+      "name": "fifty values at the four-digit boundary",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -180,7 +180,7 @@
       }
     },
     {
-      "id": "real-unrelated-address",
+      "id": "trial-unrelated-address",
       "name": "unrelated address does not add a row",
       "kind": "trial",
       "visible": true,

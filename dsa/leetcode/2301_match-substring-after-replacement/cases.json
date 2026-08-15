@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-case-sensitive",
+      "id": "trial-case-sensitive",
       "name": "replacement endpoints preserve case",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-later-window",
+      "id": "trial-later-window",
       "name": "only a later alignment satisfies all positions",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-optional-replacement",
+      "id": "trial-optional-replacement",
       "name": "mappings need not be used where characters already agree",
       "kind": "trial",
       "visible": true,

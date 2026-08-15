@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-touching-endpoints",
+      "id": "trial-touching-endpoints",
       "name": "equality at an endpoint is overlap",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-consecutive-days",
+      "id": "trial-consecutive-days",
       "name": "consecutive non-touching dates remain separate",
       "kind": "trial",
       "visible": true,
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "real-nested-mask",
+      "id": "trial-nested-mask",
       "name": "a nested short event must not hide the running maximum",
       "kind": "trial",
       "visible": true,
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "id": "real-same-start",
+      "id": "trial-same-start",
       "name": "equal starts with different ends stay in one island",
       "kind": "trial",
       "visible": true,
@@ -346,7 +346,7 @@
       ]
     },
     {
-      "id": "real-independent-halls",
+      "id": "trial-independent-halls",
       "name": "identical dates in different halls are independent",
       "kind": "trial",
       "visible": true,

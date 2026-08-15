@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-numeric-boundary",
+      "id": "trial-numeric-boundary",
       "name": "the largest legal value pairs with one",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-late-largest",
+      "id": "trial-late-largest",
       "name": "later values replace earlier group maxima",
       "kind": "trial",
       "visible": true,

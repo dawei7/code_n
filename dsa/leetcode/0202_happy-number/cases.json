@@ -42,7 +42,7 @@
       ]
     },
     {
-      "id": "real-power-ten",
+      "id": "trial-power-ten",
       "name": "power of ten transitions to one",
       "kind": "trial",
       "visible": true,

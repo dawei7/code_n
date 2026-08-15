@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-large-grid-sparse",
+      "id": "trial-large-grid-sparse",
       "name": "large dimensions do not make sparse removals consecutive",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-run-at-upper-bound",
+      "id": "trial-run-at-upper-bound",
       "name": "consecutive run ends at the highest removable bar",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-extra-isolated-bars",
+      "id": "trial-extra-isolated-bars",
       "name": "isolated bars do not extend the best run",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-twenty-consecutive",
+      "id": "trial-twenty-consecutive",
       "name": "long consecutive runs in both directions",
       "kind": "trial",
       "visible": true,

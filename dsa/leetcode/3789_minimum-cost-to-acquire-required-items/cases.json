@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-combined-for-surplus",
+      "id": "trial-combined-for-surplus",
       "name": "combined item is cheapest even after one need is met",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-mixed-strategy",
+      "id": "trial-mixed-strategy",
       "name": "combined shared units plus first-only remainder",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-mixed-second",
+      "id": "trial-mixed-second",
       "name": "combined shared units plus second-only remainder",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-one-zero-cheap-both",
+      "id": "trial-one-zero-cheap-both",
       "name": "oversupplying zero need saves cost",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-large-costs",
+      "id": "trial-large-costs",
       "name": "large costs require a wide integer result",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-asymmetric-large",
+      "id": "trial-asymmetric-large",
       "name": "substantially asymmetric requirements",
       "kind": "trial",
       "visible": true,
@@ -247,6 +247,42 @@
       },
       "tags": [
         "asymmetric"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value cost1=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost1": 1,
+        "cost2": 2,
+        "costBoth": 1,
+        "need1": 3,
+        "need2": 2
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "minimal value cost2=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost1": 3,
+        "cost2": 1,
+        "costBoth": 1,
+        "need1": 3,
+        "need2": 2
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

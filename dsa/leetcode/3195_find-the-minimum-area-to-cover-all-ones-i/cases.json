@@ -193,8 +193,8 @@
       ]
     },
     {
-      "id": "real-all-ones",
-      "name": "real: every cell is occupied",
+      "id": "trial-all-ones",
+      "name": "every cell is occupied",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -223,8 +223,8 @@
       ]
     },
     {
-      "id": "real-bottom-right-only",
-      "name": "real: lone one at the bottom-right corner",
+      "id": "trial-bottom-right-only",
+      "name": "lone one at the bottom-right corner",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -254,8 +254,8 @@
       ]
     },
     {
-      "id": "real-disconnected-clusters",
-      "name": "real: disconnected clusters share one rectangle",
+      "id": "trial-disconnected-clusters",
+      "name": "disconnected clusters share one rectangle",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -298,8 +298,8 @@
       ]
     },
     {
-      "id": "real-tall-sparse-grid",
-      "name": "real: sparse values span a tall grid",
+      "id": "trial-tall-sparse-grid",
+      "name": "sparse values span a tall grid",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -344,8 +344,8 @@
       ]
     },
     {
-      "id": "real-middle-row-only",
-      "name": "real: all ones share an interior row",
+      "id": "trial-middle-row-only",
+      "name": "all ones share an interior row",
       "kind": "trial",
       "visible": true,
       "input": {

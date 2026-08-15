@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "real-reuse-after-multiple-branches",
+      "id": "trial-reuse-after-multiple-branches",
       "name": "stale physical cells never become reachable",
       "kind": "trial",
       "visible": true,
@@ -349,7 +349,7 @@
       ]
     },
     {
-      "id": "real-navigation-around-latest",
+      "id": "trial-navigation-around-latest",
       "name": "latest position clamps repeatedly",
       "kind": "trial",
       "visible": true,
@@ -421,7 +421,7 @@
       ]
     },
     {
-      "id": "real-maximum-step",
+      "id": "trial-maximum-step",
       "name": "maximum step requests in both directions",
       "kind": "trial",
       "visible": true,

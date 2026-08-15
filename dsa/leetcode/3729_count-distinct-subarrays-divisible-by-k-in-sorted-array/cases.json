@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-strictly-increasing",
+      "id": "trial-strictly-increasing",
       "name": "different positions yield different sequences without duplicates",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-cross-run-sequences",
+      "id": "trial-cross-run-sequences",
       "name": "two good sequences cross an equal-value run boundary",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-k-one-multiple-runs",
+      "id": "trial-k-one-multiple-runs",
       "name": "every distinct sequence qualifies when k is one",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-even-constant-lengths",
+      "id": "trial-even-constant-lengths",
       "name": "only two even lengths qualify in a run of five twos",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-mixed-runs",
+      "id": "trial-mixed-runs",
       "name": "constant and cross-run good sequences coexist",
       "kind": "trial",
       "visible": true,
@@ -252,7 +252,7 @@
       ]
     },
     {
-      "id": "real-value-and-k-boundary",
+      "id": "trial-value-and-k-boundary",
       "name": "one or two maximum values are distinct divisible sequences",
       "kind": "trial",
       "visible": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "real-k-exceeds-total",
+      "id": "trial-k-exceeds-total",
       "name": "no positive subarray sum reaches the large divisor",
       "kind": "trial",
       "visible": true,

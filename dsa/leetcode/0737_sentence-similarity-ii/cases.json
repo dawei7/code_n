@@ -7,117 +7,538 @@
       "name": "sample: one position uses a transitive chain",
       "kind": "sample",
       "visible": true,
-      "input": {"sentence1": ["great","acting","skills"], "sentence2": ["fine","drama","talent"], "similarPairs": [["great","good"],["fine","good"],["drama","acting"],["skills","talent"]]},
+      "input": {
+        "sentence1": [
+          "great",
+          "acting",
+          "skills"
+        ],
+        "sentence2": [
+          "fine",
+          "drama",
+          "talent"
+        ],
+        "similarPairs": [
+          [
+            "great",
+            "good"
+          ],
+          [
+            "fine",
+            "good"
+          ],
+          [
+            "drama",
+            "acting"
+          ],
+          [
+            "skills",
+            "talent"
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["sample", "transitive"]
+      "tags": [
+        "sample",
+        "transitive"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: long component chain",
       "kind": "sample",
       "visible": true,
-      "input": {"sentence1": ["I","love","leetcode"], "sentence2": ["I","love","onepiece"], "similarPairs": [["manga","onepiece"],["platform","anime"],["leetcode","platform"],["anime","manga"]]},
+      "input": {
+        "sentence1": [
+          "I",
+          "love",
+          "leetcode"
+        ],
+        "sentence2": [
+          "I",
+          "love",
+          "onepiece"
+        ],
+        "similarPairs": [
+          [
+            "manga",
+            "onepiece"
+          ],
+          [
+            "platform",
+            "anime"
+          ],
+          [
+            "leetcode",
+            "platform"
+          ],
+          [
+            "anime",
+            "manga"
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["sample", "chain"]
+      "tags": [
+        "sample",
+        "chain"
+      ]
     },
     {
       "id": "sample-3",
       "name": "sample: target word is outside the known component",
       "kind": "sample",
       "visible": true,
-      "input": {"sentence1": ["I","love","leetcode"], "sentence2": ["I","love","onepiece"], "similarPairs": [["manga","hunterXhunter"],["platform","anime"],["leetcode","platform"],["anime","manga"]]},
+      "input": {
+        "sentence1": [
+          "I",
+          "love",
+          "leetcode"
+        ],
+        "sentence2": [
+          "I",
+          "love",
+          "onepiece"
+        ],
+        "similarPairs": [
+          [
+            "manga",
+            "hunterXhunter"
+          ],
+          [
+            "platform",
+            "anime"
+          ],
+          [
+            "leetcode",
+            "platform"
+          ],
+          [
+            "anime",
+            "manga"
+          ]
+        ]
+      },
       "expected": false,
-      "tags": ["sample", "disconnected"]
+      "tags": [
+        "sample",
+        "disconnected"
+      ]
     },
     {
       "id": "trial-1",
       "name": "trial: different sentence lengths",
       "kind": "trial",
       "visible": true,
-      "input": {"sentence1": ["one","extra"], "sentence2": ["one"], "similarPairs": [["extra","spare"]]},
+      "input": {
+        "sentence1": [
+          "one",
+          "extra"
+        ],
+        "sentence2": [
+          "one"
+        ],
+        "similarPairs": [
+          [
+            "extra",
+            "spare"
+          ]
+        ]
+      },
       "expected": false,
-      "tags": ["trial", "length-mismatch"]
+      "tags": [
+        "trial",
+        "length-mismatch"
+      ]
     },
     {
       "id": "trial-2",
       "name": "trial: identical unpaired words with no declared pairs",
       "kind": "trial",
       "visible": true,
-      "input": {"sentence1": ["same","words"], "sentence2": ["same","words"], "similarPairs": []},
+      "input": {
+        "sentence1": [
+          "same",
+          "words"
+        ],
+        "sentence2": [
+          "same",
+          "words"
+        ],
+        "similarPairs": []
+      },
       "expected": true,
-      "tags": ["trial", "reflexive", "empty-pairs"]
+      "tags": [
+        "trial",
+        "reflexive",
+        "empty-pairs"
+      ]
     },
     {
       "id": "trial-3",
       "name": "trial: reversed pair orientation",
       "kind": "trial",
       "visible": true,
-      "input": {"sentence1": ["A"], "sentence2": ["b"], "similarPairs": [["b","A"]]},
+      "input": {
+        "sentence1": [
+          "A"
+        ],
+        "sentence2": [
+          "b"
+        ],
+        "similarPairs": [
+          [
+            "b",
+            "A"
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "symmetric", "one-character"]
+      "tags": [
+        "trial",
+        "symmetric",
+        "one-character"
+      ]
     },
     {
       "id": "trial-4",
       "name": "trial: repeated and reversed edges preserve one component",
       "kind": "trial",
       "visible": true,
-      "input": {"sentence1": ["a","x"], "sentence2": ["d","z"], "similarPairs": [["a","b"],["c","b"],["d","c"],["b","a"],["a","b"],["x","z"]]},
+      "input": {
+        "sentence1": [
+          "a",
+          "x"
+        ],
+        "sentence2": [
+          "d",
+          "z"
+        ],
+        "similarPairs": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "c",
+            "b"
+          ],
+          [
+            "d",
+            "c"
+          ],
+          [
+            "b",
+            "a"
+          ],
+          [
+            "a",
+            "b"
+          ],
+          [
+            "x",
+            "z"
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "duplicate-edge", "transitive"]
+      "tags": [
+        "trial",
+        "duplicate-edge",
+        "transitive"
+      ]
     },
     {
       "id": "trial-5",
       "name": "trial: one absent different word",
       "kind": "trial",
       "visible": true,
-      "input": {"sentence1": ["known","missing"], "sentence2": ["known","other"], "similarPairs": [["known","familiar"]]},
+      "input": {
+        "sentence1": [
+          "known",
+          "missing"
+        ],
+        "sentence2": [
+          "known",
+          "other"
+        ],
+        "similarPairs": [
+          [
+            "known",
+            "familiar"
+          ]
+        ]
+      },
       "expected": false,
-      "tags": ["trial", "unpaired"]
+      "tags": [
+        "trial",
+        "unpaired"
+      ]
     },
     {
       "id": "trial-6",
       "name": "trial: paired words belong to separate components",
       "kind": "trial",
       "visible": true,
-      "input": {"sentence1": ["red","small","fast"], "sentence2": ["crimson","tiny","slow"], "similarPairs": [["red","scarlet"],["scarlet","crimson"],["small","little"],["little","tiny"],["fast","quick"],["slow","steady"]]},
+      "input": {
+        "sentence1": [
+          "red",
+          "small",
+          "fast"
+        ],
+        "sentence2": [
+          "crimson",
+          "tiny",
+          "slow"
+        ],
+        "similarPairs": [
+          [
+            "red",
+            "scarlet"
+          ],
+          [
+            "scarlet",
+            "crimson"
+          ],
+          [
+            "small",
+            "little"
+          ],
+          [
+            "little",
+            "tiny"
+          ],
+          [
+            "fast",
+            "quick"
+          ],
+          [
+            "slow",
+            "steady"
+          ]
+        ]
+      },
       "expected": false,
-      "tags": ["trial", "mixed-components"]
+      "tags": [
+        "trial",
+        "mixed-components"
+      ]
     },
     {
       "id": "trial-7",
       "name": "trial: branches and a cycle join distant words",
       "kind": "trial",
       "visible": true,
-      "input": {"sentence1": ["root","left","leaf"], "sentence2": ["right","tip","root"], "similarPairs": [["root","stem"],["stem","left"],["stem","right"],["left","leaf"],["leaf","tip"],["tip","root"]]},
+      "input": {
+        "sentence1": [
+          "root",
+          "left",
+          "leaf"
+        ],
+        "sentence2": [
+          "right",
+          "tip",
+          "root"
+        ],
+        "similarPairs": [
+          [
+            "root",
+            "stem"
+          ],
+          [
+            "stem",
+            "left"
+          ],
+          [
+            "stem",
+            "right"
+          ],
+          [
+            "left",
+            "leaf"
+          ],
+          [
+            "leaf",
+            "tip"
+          ],
+          [
+            "tip",
+            "root"
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "branch", "cycle"]
+      "tags": [
+        "trial",
+        "branch",
+        "cycle"
+      ]
     },
     {
       "id": "trial-8",
       "name": "trial: letter case remains significant without a path",
       "kind": "trial",
       "visible": true,
-      "input": {"sentence1": ["Case"], "sentence2": ["case"], "similarPairs": []},
+      "input": {
+        "sentence1": [
+          "Case"
+        ],
+        "sentence2": [
+          "case"
+        ],
+        "similarPairs": []
+      },
       "expected": false,
-      "tags": ["trial", "case-sensitive", "empty-pairs"]
+      "tags": [
+        "trial",
+        "case-sensitive",
+        "empty-pairs"
+      ]
     },
     {
       "id": "trial-9",
       "name": "trial: twenty-character boundary words connect transitively",
       "kind": "trial",
       "visible": true,
-      "input": {"sentence1": ["abcdefghijklmnopqrst"], "sentence2": ["ABCDEFGHIJKLMNOPQRST"], "similarPairs": [["abcdefghijklmnopqrst","BridgeWord"],["BridgeWord","ABCDEFGHIJKLMNOPQRST"]]},
+      "input": {
+        "sentence1": [
+          "abcdefghijklmnopqrst"
+        ],
+        "sentence2": [
+          "ABCDEFGHIJKLMNOPQRST"
+        ],
+        "similarPairs": [
+          [
+            "abcdefghijklmnopqrst",
+            "BridgeWord"
+          ],
+          [
+            "BridgeWord",
+            "ABCDEFGHIJKLMNOPQRST"
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "word-length-boundary", "transitive"]
+      "tags": [
+        "trial",
+        "word-length-boundary",
+        "transitive"
+      ]
     },
     {
       "id": "trial-10",
       "name": "trial: an unused component does not affect aligned words",
       "kind": "trial",
       "visible": true,
-      "input": {"sentence1": ["same","near"], "sentence2": ["same","far"], "similarPairs": [["near","middle"],["middle","far"],["unused","component"]]},
+      "input": {
+        "sentence1": [
+          "same",
+          "near"
+        ],
+        "sentence2": [
+          "same",
+          "far"
+        ],
+        "similarPairs": [
+          [
+            "near",
+            "middle"
+          ],
+          [
+            "middle",
+            "far"
+          ],
+          [
+            "unused",
+            "component"
+          ]
+        ]
+      },
       "expected": true,
-      "tags": ["trial", "unused-pair", "transitive"]
+      "tags": [
+        "trial",
+        "unused-pair",
+        "transitive"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in sentence1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence1": [
+          "great"
+        ],
+        "sentence2": [
+          "fine",
+          "drama",
+          "talent"
+        ],
+        "similarPairs": [
+          [
+            "great",
+            "good"
+          ],
+          [
+            "fine",
+            "good"
+          ],
+          [
+            "drama",
+            "acting"
+          ],
+          [
+            "skills",
+            "talent"
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in sentence1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence1": [
+          "great",
+          "great"
+        ],
+        "sentence2": [
+          "fine",
+          "drama",
+          "talent"
+        ],
+        "similarPairs": [
+          [
+            "great",
+            "good"
+          ],
+          [
+            "fine",
+            "good"
+          ],
+          [
+            "drama",
+            "acting"
+          ],
+          [
+            "skills",
+            "talent"
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

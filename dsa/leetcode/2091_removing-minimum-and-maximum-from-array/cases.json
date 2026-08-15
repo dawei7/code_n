@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-both-from-back",
+      "id": "trial-both-from-back",
       "name": "both extremes lie near the back",
       "kind": "trial",
       "visible": true,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-front-beats-split",
+      "id": "trial-front-beats-split",
       "name": "adjacent interior extremes leave a short prefix",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-two-elements",
+      "id": "trial-two-elements",
       "name": "both distinct elements must be deleted",
       "kind": "trial",
       "visible": true,
@@ -137,6 +137,39 @@
       "expected": 2,
       "tags": [
         "two-elements"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

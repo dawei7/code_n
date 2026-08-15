@@ -134,8 +134,8 @@
       ]
     },
     {
-      "id": "real-leading-maximum",
-      "name": "real: leading maximum before an increasing suffix",
+      "id": "trial-leading-maximum",
+      "name": "leading maximum before an increasing suffix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -154,8 +154,8 @@
       ]
     },
     {
-      "id": "real-mountain",
-      "name": "real: mountain shape",
+      "id": "trial-mountain",
+      "name": "mountain shape",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -173,8 +173,8 @@
       ]
     },
     {
-      "id": "real-descending-plateaus",
-      "name": "real: non-increasing plateaus",
+      "id": "trial-descending-plateaus",
+      "name": "non-increasing plateaus",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -192,8 +192,8 @@
       ]
     },
     {
-      "id": "real-boundary-values",
-      "name": "real: alternating constraint boundaries",
+      "id": "trial-boundary-values",
+      "name": "alternating constraint boundaries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -211,8 +211,8 @@
       ]
     },
     {
-      "id": "real-multiple-drops",
-      "name": "real: several overlapping non-increasing choices",
+      "id": "trial-multiple-drops",
+      "name": "several overlapping non-increasing choices",
       "kind": "trial",
       "visible": true,
       "input": {

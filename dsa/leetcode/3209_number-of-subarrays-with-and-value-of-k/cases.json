@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-repeated-collapse",
-      "name": "real: repeated values accumulate frequencies",
+      "id": "trial-repeated-collapse",
+      "name": "repeated values accumulate frequencies",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -126,8 +126,8 @@
       ]
     },
     {
-      "id": "real-progressive-bit-clearing",
-      "name": "real: extensions successively clear target bits",
+      "id": "trial-progressive-bit-clearing",
+      "name": "extensions successively clear target bits",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-multiple-state-merges",
-      "name": "real: different prior AND values merge at one endpoint",
+      "id": "trial-multiple-state-merges",
+      "name": "different prior AND values merge at one endpoint",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -167,8 +167,8 @@
       ]
     },
     {
-      "id": "real-impossible-target-bit",
-      "name": "real: a target bit absent from all numbers cannot appear",
+      "id": "trial-impossible-target-bit",
+      "name": "a target bit absent from all numbers cannot appear",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -186,8 +186,8 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: high legal bits are handled without truncation",
+      "id": "trial-large-values",
+      "name": "high legal bits are handled without truncation",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -204,8 +204,8 @@
       ]
     },
     {
-      "id": "real-many-zero-ands",
-      "name": "real: zero AND frequencies persist across later endpoints",
+      "id": "trial-many-zero-ands",
+      "name": "zero AND frequencies persist across later endpoints",
       "kind": "trial",
       "visible": true,
       "input": {

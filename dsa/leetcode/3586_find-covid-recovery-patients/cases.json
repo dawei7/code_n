@@ -292,8 +292,8 @@
       ]
     },
     {
-      "id": "real-exclusion-rules",
-      "name": "real: incomplete and non-later test histories are excluded",
+      "id": "trial-exclusion-rules",
+      "name": "incomplete and non-later test histories are excluded",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -379,8 +379,8 @@
       ]
     },
     {
-      "id": "real-time-and-name-order",
-      "name": "real: recovery time sorts first and name breaks ties",
+      "id": "trial-time-and-name-order",
+      "name": "recovery time sorts first and name breaks ties",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -480,8 +480,8 @@
       ]
     },
     {
-      "id": "real-unsorted-test-rows",
-      "name": "real: minimum dates are independent of insertion order",
+      "id": "trial-unsorted-test-rows",
+      "name": "minimum dates are independent of insertion order",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -547,8 +547,8 @@
       ]
     },
     {
-      "id": "real-leap-day-span",
-      "name": "real: date difference crosses leap day",
+      "id": "trial-leap-day-span",
+      "name": "date difference crosses leap day",
       "kind": "trial",
       "visible": true,
       "input": {

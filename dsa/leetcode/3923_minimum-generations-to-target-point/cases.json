@@ -447,7 +447,7 @@
       ]
     },
     {
-      "id": "hidden-mixed-odd-sums",
+      "id": "trial-mixed-odd-sums",
       "name": "different odd coordinate sums floor independently",
       "kind": "trial",
       "visible": true,
@@ -477,7 +477,7 @@
       ]
     },
     {
-      "id": "hidden-cube-generation-two",
+      "id": "trial-cube-generation-two",
       "name": "a cube interior point needs a previous generation",
       "kind": "trial",
       "visible": true,
@@ -537,7 +537,7 @@
       ]
     },
     {
-      "id": "hidden-cube-face-generation-two",
+      "id": "trial-cube-face-generation-two",
       "name": "a cube face point appears in generation two",
       "kind": "trial",
       "visible": true,
@@ -597,7 +597,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-initial-count",
+      "id": "trial-maximum-initial-count",
       "name": "twenty points close inside a small cube and cannot reach six",
       "kind": "trial",
       "visible": true,
@@ -714,6 +714,63 @@
       "tags": [
         "maximum-input-count",
         "stable-closure"
+      ]
+    },
+    {
+      "id": "trial-boundary-19",
+      "name": "single element in target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            6,
+            6
+          ]
+        ],
+        "target": [
+          3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-20",
+      "name": "identical elements in target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            6,
+            6
+          ]
+        ],
+        "target": [
+          3,
+          3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

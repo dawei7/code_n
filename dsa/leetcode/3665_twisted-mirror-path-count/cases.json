@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-longer-chain",
+      "id": "trial-longer-chain",
       "name": "several adjacent mirrors redirect repeatedly",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-dense-pattern",
+      "id": "trial-dense-pattern",
       "name": "alternating dense mirror pattern",
       "kind": "trial",
       "visible": true,
@@ -237,7 +237,7 @@
       ]
     },
     {
-      "id": "real-empty-rectangle",
+      "id": "trial-empty-rectangle",
       "name": "empty rectangular grid",
       "kind": "trial",
       "visible": true,
@@ -292,7 +292,7 @@
       ]
     },
     {
-      "id": "real-modulo",
+      "id": "trial-modulo",
       "name": "empty grid requires modulo reduction",
       "kind": "trial",
       "visible": true,

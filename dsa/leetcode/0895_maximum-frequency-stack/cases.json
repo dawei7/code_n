@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "interleaved pushes and pops",
       "kind": "trial",
       "visible": true,
@@ -316,7 +316,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "empty then reuse",
       "kind": "trial",
       "visible": true,
@@ -358,7 +358,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "three-way recency tie",
       "kind": "trial",
       "visible": true,
@@ -415,7 +415,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "descending frequency cascade",
       "kind": "trial",
       "visible": true,

@@ -100,8 +100,8 @@
       ]
     },
     {
-      "id": "real-nonzero-sum-init",
-      "name": "real: sum begins from nonzero initial value",
+      "id": "trial-nonzero-sum-init",
+      "name": "sum begins from nonzero initial value",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -121,8 +121,8 @@
       ]
     },
     {
-      "id": "real-maximum",
-      "name": "real: reducer may retain the accumulator",
+      "id": "trial-maximum",
+      "name": "reducer may retain the accumulator",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -143,8 +143,8 @@
       ]
     },
     {
-      "id": "real-single-element",
-      "name": "real: reducer is called once",
+      "id": "trial-single-element",
+      "name": "reducer is called once",
       "kind": "trial",
       "visible": true,
       "input": {

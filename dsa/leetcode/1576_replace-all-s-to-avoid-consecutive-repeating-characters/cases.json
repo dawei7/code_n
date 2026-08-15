@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-same-boundaries",
+      "id": "trial-same-boundaries",
       "name": "equal fixed letters around two placeholders",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-both-endpoints",
+      "id": "trial-both-endpoints",
       "name": "placeholders at both endpoints",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-same-single-boundary",
+      "id": "trial-same-single-boundary",
       "name": "one placeholder between equal letters",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-no-placeholders",
+      "id": "trial-no-placeholders",
       "name": "input is already complete",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-all-placeholders",
+      "id": "trial-all-placeholders",
       "name": "odd run of placeholders",
       "kind": "trial",
       "visible": true,
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "real-mixed-endpoints",
+      "id": "trial-mixed-endpoints",
       "name": "mixed fixed runs and endpoint placeholders",
       "kind": "trial",
       "visible": true,
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "real-multiple-runs",
+      "id": "trial-multiple-runs",
       "name": "several consecutive placeholder runs",
       "kind": "trial",
       "visible": true,
@@ -237,6 +237,20 @@
         "real",
         "multiple-runs",
         "consecutive-placeholders"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "???"
+      },
+      "expected": "aba",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

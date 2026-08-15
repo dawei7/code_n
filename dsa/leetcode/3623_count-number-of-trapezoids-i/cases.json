@@ -278,7 +278,7 @@
       ]
     },
     {
-      "id": "real-unequal-three-heights",
+      "id": "trial-unequal-three-heights",
       "name": "multiply side counts across three unequal levels",
       "kind": "trial",
       "visible": true,
@@ -329,7 +329,7 @@
       ]
     },
     {
-      "id": "real-ignore-singletons",
+      "id": "trial-ignore-singletons",
       "name": "singleton heights do not change the count",
       "kind": "trial",
       "visible": true,
@@ -375,7 +375,7 @@
       ]
     },
     {
-      "id": "real-rectangle",
+      "id": "trial-rectangle",
       "name": "axis-aligned rectangle is included",
       "kind": "trial",
       "visible": true,
@@ -405,7 +405,7 @@
       ]
     },
     {
-      "id": "real-coordinate-bounds",
+      "id": "trial-coordinate-bounds",
       "name": "extreme coordinates retain two horizontal sides",
       "kind": "trial",
       "visible": true,
@@ -435,7 +435,7 @@
       ]
     },
     {
-      "id": "real-shuffled-heights",
+      "id": "trial-shuffled-heights",
       "name": "input order does not group equal heights",
       "kind": "trial",
       "visible": true,
@@ -478,7 +478,7 @@
       ]
     },
     {
-      "id": "real-modulo",
+      "id": "trial-modulo",
       "name": "large pair counts require modulo reduction",
       "kind": "trial",
       "visible": true,

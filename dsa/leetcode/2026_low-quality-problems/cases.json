@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-just-around-boundary",
+      "id": "trial-just-around-boundary",
       "name": "distinguish values immediately around sixty percent",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-all-high-quality",
+      "id": "trial-all-high-quality",
       "name": "no row qualifies",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-output-order",
+      "id": "trial-output-order",
       "name": "qualifying IDs are sorted independently of input",
       "kind": "trial",
       "visible": true,

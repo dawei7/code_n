@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-competing-two-edge-routes",
+      "id": "trial-competing-two-edge-routes",
       "name": "choose the route with the smaller bottleneck",
       "kind": "trial",
       "visible": true,
@@ -257,7 +257,7 @@
       ]
     },
     {
-      "id": "real-direct-beats-longer-chain",
+      "id": "trial-direct-beats-longer-chain",
       "name": "expensive direct edge satisfies the hop limit",
       "kind": "trial",
       "visible": true,
@@ -297,7 +297,7 @@
       ]
     },
     {
-      "id": "real-cycle-and-shortcut",
+      "id": "trial-cycle-and-shortcut",
       "name": "cycle edges do not replace a valid shortcut",
       "kind": "trial",
       "visible": true,
@@ -347,7 +347,7 @@
       ]
     },
     {
-      "id": "real-equal-cost-paths",
+      "id": "trial-equal-cost-paths",
       "name": "repeated edge costs share one threshold",
       "kind": "trial",
       "visible": true,
@@ -392,7 +392,7 @@
       ]
     },
     {
-      "id": "real-large-cost-boundary",
+      "id": "trial-large-cost-boundary",
       "name": "repair cost reaches the numeric upper bound",
       "kind": "trial",
       "visible": true,

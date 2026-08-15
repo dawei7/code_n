@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-save-capacity",
+      "id": "trial-save-capacity",
       "name": "smallest sufficient trainers preserve stronger ones",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-more-trainers",
+      "id": "trial-more-trainers",
       "name": "extra weak trainers are harmless",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "legal maximum values can match",
       "kind": "trial",
       "visible": true,

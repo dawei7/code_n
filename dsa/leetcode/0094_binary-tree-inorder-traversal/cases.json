@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-perfect-tree",
+      "id": "trial-perfect-tree",
       "name": "perfect binary tree",
       "kind": "trial",
       "visible": true,

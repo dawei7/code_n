@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "real-interior-zeros",
+      "id": "trial-interior-zeros",
       "name": "preserve all interior zeros",
       "kind": "trial",
       "visible": true,
@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-one-trailing-zero",
+      "id": "trial-one-trailing-zero",
       "name": "remove exactly one zero",
       "kind": "trial",
       "visible": true,
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-repeated-nines",
+      "id": "trial-repeated-nines",
       "name": "long string without zeros remains unchanged",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-mixed-end",
+      "id": "trial-mixed-end",
       "name": "stop at the final nonzero digit",
       "kind": "trial",
       "visible": true,

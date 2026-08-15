@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "real-small-three-span",
+      "id": "trial-small-three-span",
       "name": "asymmetric three-stone positions",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-equal-two-spans",
+      "id": "trial-equal-two-spans",
       "name": "uneven adjacent gaps produce equal skip spans",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-largest-span-near-end",
+      "id": "trial-largest-span-near-end",
       "name": "decisive skipped-stone jump is near the end",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-irregular",
+      "id": "trial-irregular",
       "name": "several competing two-index spans",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-maximum-coordinate",
+      "id": "trial-maximum-coordinate",
       "name": "endpoint reaches the coordinate limit",
       "kind": "trial",
       "visible": true,

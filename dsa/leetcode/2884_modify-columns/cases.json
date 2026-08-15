@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-varied-magnitudes",
+      "id": "trial-varied-magnitudes",
       "name": "varied salary magnitudes preserve order",
       "kind": "trial",
       "visible": true,

@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-seven-locks",
+      "id": "trial-seven-locks",
       "name": "seven-lock subset state space",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-large-strengths",
+      "id": "trial-large-strengths",
       "name": "maximum-scale strengths and rapid factor growth",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-unsorted-mixed",
+      "id": "trial-unsorted-mixed",
       "name": "mixed strengths defeat a fixed input-order assumption",
       "kind": "trial",
       "visible": true,

@@ -118,8 +118,8 @@
       ]
     },
     {
-      "id": "real-swap-and-replace",
-      "name": "real: one reciprocal pair and one leftover mismatch",
+      "id": "trial-swap-and-replace",
+      "name": "one reciprocal pair and one leftover mismatch",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -134,8 +134,8 @@
       ]
     },
     {
-      "id": "real-two-disjoint-swaps",
-      "name": "real: two reciprocal pair classes require two swaps",
+      "id": "trial-two-disjoint-swaps",
+      "name": "two reciprocal pair classes require two swaps",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -150,8 +150,8 @@
       ]
     },
     {
-      "id": "real-duplicate-reciprocal-pairs",
-      "name": "real: partitioning exposes a single profitable reversal",
+      "id": "trial-duplicate-reciprocal-pairs",
+      "name": "partitioning exposes a single profitable reversal",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -166,8 +166,8 @@
       ]
     },
     {
-      "id": "real-identical-string",
-      "name": "real: no segment needs an operation",
+      "id": "trial-identical-string",
+      "name": "no segment needs an operation",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -182,8 +182,8 @@
       ]
     },
     {
-      "id": "real-all-replacements",
-      "name": "real: uniform source and target require one replacement per index",
+      "id": "trial-all-replacements",
+      "name": "uniform source and target require one replacement per index",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -184,8 +184,8 @@
       ]
     },
     {
-      "id": "real-full-integer-range",
-      "name": "real: every legal constant value is feasible",
+      "id": "trial-full-integer-range",
+      "name": "every legal constant value is feasible",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -212,8 +212,8 @@
       ]
     },
     {
-      "id": "real-late-contradiction",
-      "name": "real: final bound eliminates every start",
+      "id": "trial-late-contradiction",
+      "name": "final bound eliminates every start",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -249,8 +249,8 @@
       ]
     },
     {
-      "id": "real-negative-shift",
-      "name": "real: valid copies lie below the original",
+      "id": "trial-negative-shift",
+      "name": "valid copies lie below the original",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -284,6 +284,75 @@
         "real",
         "negative-shift",
         "mixed-differences"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in original",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "original": [
+          1
+        ],
+        "bounds": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in original",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "original": [
+          1,
+          1
+        ],
+        "bounds": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

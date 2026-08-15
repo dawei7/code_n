@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "centered square",
       "kind": "trial",
       "visible": true,
@@ -274,7 +274,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "rectangular corner",
       "kind": "trial",
       "visible": true,
@@ -342,7 +342,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "asymmetric interior center",
       "kind": "trial",
       "visible": true,

@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-larger-interior-blocker",
+      "id": "trial-larger-interior-blocker",
       "name": "larger middle node blocks equal endpoints",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-lower-center-connects-three",
+      "id": "trial-lower-center-connects-three",
       "name": "lower center connects three equal leaves",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-independent-equal-components",
+      "id": "trial-independent-equal-components",
       "name": "same value occurs in separate threshold components",
       "kind": "trial",
       "visible": true,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "real-zero-values",
+      "id": "trial-zero-values",
       "name": "zero-valued endpoints and duplicate orientation",
       "kind": "trial",
       "visible": true,

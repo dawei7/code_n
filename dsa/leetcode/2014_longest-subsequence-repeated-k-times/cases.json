@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-seven-character-answer",
+      "id": "trial-seven-character-answer",
       "name": "answer reaches the strict length bound",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-large-source-one-character",
+      "id": "trial-large-source-one-character",
       "name": "large source still produces seven copies of one character",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-entire-pattern-repeats",
+      "id": "trial-entire-pattern-repeats",
       "name": "the complete base pattern repeats",
       "kind": "trial",
       "visible": true,

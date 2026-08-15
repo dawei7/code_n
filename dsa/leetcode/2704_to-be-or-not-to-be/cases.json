@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-null-equality",
+      "id": "trial-null-equality",
       "name": "null is strictly equal to null",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-boolean-mismatch",
+      "id": "trial-boolean-mismatch",
       "name": "distinct booleans fail toBe",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-zero-false",
+      "id": "trial-zero-false",
       "name": "zero and false are strictly unequal",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-empty-strings",
+      "id": "trial-empty-strings",
       "name": "equal empty strings fail notToBe",
       "kind": "trial",
       "visible": true,

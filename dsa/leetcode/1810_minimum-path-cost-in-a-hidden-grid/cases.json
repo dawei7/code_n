@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-target-cost-counted",
+      "id": "trial-target-cost-counted",
       "name": "target entry cost is included",
       "kind": "trial",
       "visible": true,
@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "real-winding-corridor",
+      "id": "trial-winding-corridor",
       "name": "blocked cells force one weighted route",
       "kind": "trial",
       "visible": true,
@@ -258,7 +258,7 @@
       ]
     },
     {
-      "id": "real-cycle-with-alternatives",
+      "id": "trial-cycle-with-alternatives",
       "name": "cyclic component contains several routes",
       "kind": "trial",
       "visible": true,
@@ -299,7 +299,7 @@
       ]
     },
     {
-      "id": "real-disconnected-target",
+      "id": "trial-disconnected-target",
       "name": "target is open but outside the reachable component",
       "kind": "trial",
       "visible": true,

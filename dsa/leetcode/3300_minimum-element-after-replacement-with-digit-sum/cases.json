@@ -104,8 +104,8 @@
       ]
     },
     {
-      "id": "real-maximum-value",
-      "name": "real: maximum legal value has digit sum one",
+      "id": "trial-maximum-value",
+      "name": "maximum legal value has digit sum one",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -121,8 +121,8 @@
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "real: maximum list length is fully scanned",
+      "id": "trial-maximum-length",
+      "name": "maximum list length is fully scanned",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "complete graph",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "four-leaf star",
       "kind": "trial",
       "visible": true,
@@ -244,7 +244,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "triangle with a tail",
       "kind": "trial",
       "visible": true,
@@ -278,7 +278,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "balanced branching tree",
       "kind": "trial",
       "visible": true,
@@ -318,7 +318,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "chorded cycle",
       "kind": "trial",
       "visible": true,

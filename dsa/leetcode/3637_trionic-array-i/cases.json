@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-plateau-first",
+      "id": "trial-plateau-first",
       "name": "equality invalidates the first phase",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-plateau-middle",
+      "id": "trial-plateau-middle",
       "name": "equality invalidates the decreasing phase",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-plateau-last",
+      "id": "trial-plateau-last",
       "name": "equality invalidates the final phase",
       "kind": "trial",
       "visible": true,
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "real-extra-turn",
+      "id": "trial-extra-turn",
       "name": "a fourth direction change is not allowed",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-negative-values",
+      "id": "trial-negative-values",
       "name": "comparisons work across negative values",
       "kind": "trial",
       "visible": true,
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "real-long-phases",
+      "id": "trial-long-phases",
       "name": "each phase may contain several edges",
       "kind": "trial",
       "visible": true,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "real-late-breakpoints",
+      "id": "trial-late-breakpoints",
       "name": "both breakpoints can be near the end",
       "kind": "trial",
       "visible": true,
@@ -257,6 +257,39 @@
       "expected": true,
       "tags": [
         "late-breakpoints"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

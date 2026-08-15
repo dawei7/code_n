@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-mixed-boundaries",
-      "name": "real: both endpoints and interior directions",
+      "id": "trial-mixed-boundaries",
+      "name": "both endpoints and interior directions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -160,8 +160,8 @@
       ]
     },
     {
-      "id": "real-height-one",
-      "name": "real: minimum height with many pistons",
+      "id": "trial-height-one",
+      "name": "minimum height with many pistons",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -181,8 +181,8 @@
       ]
     },
     {
-      "id": "real-staggered-upward",
-      "name": "real: staggered phases produce an interior peak",
+      "id": "trial-staggered-upward",
+      "name": "staggered phases produce an interior peak",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -203,8 +203,8 @@
       ]
     },
     {
-      "id": "real-mirrored-groups",
-      "name": "real: mirrored direction groups",
+      "id": "trial-mirrored-groups",
+      "name": "mirrored direction groups",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -226,8 +226,8 @@
       ]
     },
     {
-      "id": "real-large-height",
-      "name": "real: one piston at the maximum height bound",
+      "id": "trial-large-height",
+      "name": "one piston at the maximum height bound",
       "kind": "trial",
       "visible": true,
       "input": {

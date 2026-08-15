@@ -145,8 +145,8 @@
       ]
     },
     {
-      "id": "real-delayed-rejection",
-      "name": "real: source rejection before timeout is preserved",
+      "id": "trial-delayed-rejection",
+      "name": "source rejection before timeout is preserved",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -169,8 +169,8 @@
       ]
     },
     {
-      "id": "real-timeout-masks-late-rejection",
-      "name": "real: timeout settles before later source error",
+      "id": "trial-timeout-masks-late-rejection",
+      "name": "timeout settles before later source error",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -191,8 +191,8 @@
       ]
     },
     {
-      "id": "real-maximum-arguments",
-      "name": "real: ten arguments reach source intact",
+      "id": "trial-maximum-arguments",
+      "name": "ten arguments reach source intact",
       "kind": "trial",
       "visible": true,
       "input": {

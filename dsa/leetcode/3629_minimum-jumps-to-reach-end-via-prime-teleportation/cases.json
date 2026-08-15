@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-duplicate-prime",
+      "id": "trial-duplicate-prime",
       "name": "repeated prime values share the same destinations",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-backward-step",
+      "id": "trial-backward-step",
       "name": "a backward step after teleporting is optimal",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-nondivisible-end",
+      "id": "trial-nondivisible-end",
       "name": "teleportation requires exact divisibility",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-distant-prime",
+      "id": "trial-distant-prime",
       "name": "walk to a distant prime then teleport",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-many-destinations",
+      "id": "trial-many-destinations",
       "name": "a prime may reach several multiples",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-all-ones",
+      "id": "trial-all-ones",
       "name": "one values permit only adjacent steps",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-large-prime",
+      "id": "trial-large-prime",
       "name": "handle the largest prime below one million",
       "kind": "trial",
       "visible": true,
@@ -268,7 +268,7 @@
       ]
     },
     {
-      "id": "real-prime-links-no-shortcut",
+      "id": "trial-prime-links-no-shortcut",
       "name": "available teleports need not improve the path",
       "kind": "trial",
       "visible": true,

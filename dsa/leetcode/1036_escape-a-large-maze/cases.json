@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "interior source enclosed",
       "kind": "trial",
       "visible": true,
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "finite barrier can be bypassed",
       "kind": "trial",
       "visible": true,
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "irrelevant distant cluster",
       "kind": "trial",
       "visible": true,

@@ -337,7 +337,7 @@
       ]
     },
     {
-      "id": "real-acquired-chunks-leave-with-user",
+      "id": "trial-acquired-chunks-leave-with-user",
       "name": "acquired chunks are removed on leave",
       "kind": "trial",
       "visible": true,
@@ -430,7 +430,7 @@
       ]
     },
     {
-      "id": "real-empty-chunk-restored-by-reused-user",
+      "id": "trial-empty-chunk-restored-by-reused-user",
       "name": "reused identity has only new holdings",
       "kind": "trial",
       "visible": true,
@@ -518,7 +518,7 @@
       ]
     },
     {
-      "id": "real-sorted-owner-snapshot",
+      "id": "trial-sorted-owner-snapshot",
       "name": "owner output is sorted before transfer",
       "kind": "trial",
       "visible": true,

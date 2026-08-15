@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-late-boundary",
+      "id": "trial-late-boundary",
       "name": "best split is near the end",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum-length all-zero string",
       "kind": "trial",
       "visible": true,

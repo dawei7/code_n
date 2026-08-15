@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-suffix-two",
+      "id": "trial-suffix-two",
       "name": "reversing the final pair can beat every prefix reversal",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-repeated-characters",
+      "id": "trial-repeated-characters",
       "name": "duplicate-heavy candidates are compared normally",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-prefix-tie-depth",
+      "id": "trial-prefix-tie-depth",
       "name": "candidates sharing an initial letter differ later",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "every legal operation yields the same string",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-two-characters",
+      "id": "trial-two-characters",
       "name": "both full and endpoint reversals are considered",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "maximum-length repeated input remains unchanged",
       "kind": "trial",
       "visible": true,
@@ -202,6 +202,34 @@
       "tags": [
         "maximum-length",
         "all-equal"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "d"
+      },
+      "expected": "d",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ddd"
+      },
+      "expected": "ddd",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

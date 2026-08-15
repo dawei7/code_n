@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-minimum-between-larger-values",
+      "id": "trial-minimum-between-larger-values",
       "name": "minimum lies below several larger values",
       "kind": "trial",
       "visible": true,

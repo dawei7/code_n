@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-power-of-ten",
+      "id": "trial-power-of-ten",
       "name": "a power of ten reduces to one",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "the maximum legal power of ten reduces to one",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-largest-no-zero-value",
+      "id": "trial-largest-no-zero-value",
       "name": "a large all-nonzero value is preserved",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-alternating-full-width",
+      "id": "trial-alternating-full-width",
       "name": "alternating digits span the full fifteen-digit width",
       "kind": "trial",
       "visible": true,
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "real-long-internal-run",
+      "id": "trial-long-internal-run",
       "name": "a long internal zero run joins its boundary digits",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-separated-boundary-ones",
+      "id": "trial-separated-boundary-ones",
       "name": "retained digits at both ends survive a long zero run",
       "kind": "trial",
       "visible": true,

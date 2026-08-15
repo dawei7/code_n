@@ -349,7 +349,7 @@
       ]
     },
     {
-      "id": "hidden-scattered-w",
+      "id": "trial-scattered-w",
       "name": "scattered W events remain below the cutoff",
       "kind": "trial",
       "visible": true,
@@ -375,7 +375,7 @@
       ]
     },
     {
-      "id": "hidden-cutoff-after-symbols",
+      "id": "trial-cutoff-after-symbols",
       "name": "the tenth W follows both symbolic scoring events",
       "kind": "trial",
       "visible": true,
@@ -406,7 +406,7 @@
       ]
     },
     {
-      "id": "hidden-long-no-w",
+      "id": "trial-long-no-w",
       "name": "a long all-six stream is fully processed",
       "kind": "trial",
       "visible": true,
@@ -488,7 +488,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-early-cutoff",
+      "id": "trial-maximum-early-cutoff",
       "name": "the maximum-length stream stops after ten leading W events",
       "kind": "trial",
       "visible": true,
@@ -1503,6 +1503,45 @@
       "tags": [
         "maximum-length",
         "early-cutoff"
+      ]
+    },
+    {
+      "id": "trial-boundary-19",
+      "name": "single element in events",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "events": [
+          "1"
+        ]
+      },
+      "expected": [
+        1,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-20",
+      "name": "identical elements in events",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "events": [
+          "1",
+          "1"
+        ]
+      },
+      "expected": [
+        2,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

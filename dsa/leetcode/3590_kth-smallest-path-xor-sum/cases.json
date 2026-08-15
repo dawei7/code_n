@@ -228,8 +228,8 @@
       ]
     },
     {
-      "id": "real-branched-distinct-values",
-      "name": "real: several child bags merge into ordered subtree sets",
+      "id": "trial-branched-distinct-values",
+      "name": "several child bags merge into ordered subtree sets",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -291,8 +291,8 @@
       ]
     },
     {
-      "id": "real-parent-after-child-index",
-      "name": "real: traversal follows parent links rather than numeric order",
+      "id": "trial-parent-after-child-index",
+      "name": "traversal follows parent links rather than numeric order",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -343,8 +343,8 @@
       ]
     },
     {
-      "id": "real-high-value-xors",
-      "name": "real: XOR sums may differ substantially from individual values",
+      "id": "trial-high-value-xors",
+      "name": "XOR sums may differ substantially from individual values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -395,8 +395,8 @@
       ]
     },
     {
-      "id": "real-query-order-preserved",
-      "name": "real: grouped processing restores the original query order",
+      "id": "trial-query-order-preserved",
+      "name": "grouped processing restores the original query order",
       "kind": "trial",
       "visible": true,
       "input": {

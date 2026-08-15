@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-cycle",
+      "id": "trial-cycle",
       "name": "a cycle offers several simple path orders",
       "kind": "trial",
       "visible": true,
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "real-disconnected-dense-component",
+      "id": "trial-disconnected-dense-component",
       "name": "the best path remains inside a triangle",
       "kind": "trial",
       "visible": true,
@@ -271,7 +271,7 @@
       ]
     },
     {
-      "id": "real-complete-two-odd-counts",
+      "id": "trial-complete-two-odd-counts",
       "name": "complete graph discards one odd-count label",
       "kind": "trial",
       "visible": true,
@@ -348,7 +348,7 @@
       ]
     },
     {
-      "id": "real-complete-all-distinct",
+      "id": "trial-complete-all-distinct",
       "name": "all distinct labels permit only one node",
       "kind": "trial",
       "visible": true,
@@ -449,7 +449,7 @@
       ]
     },
     {
-      "id": "real-multiple-centers",
+      "id": "trial-multiple-centers",
       "name": "both odd and even centers compete",
       "kind": "trial",
       "visible": true,
@@ -494,7 +494,7 @@
       ]
     },
     {
-      "id": "real-maximum-complete",
+      "id": "trial-maximum-complete",
       "name": "maximum node count uses complete-graph multiplicities",
       "kind": "trial",
       "visible": true,
@@ -872,6 +872,31 @@
       "tags": [
         "maximum-n",
         "complete-graph"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "repeated character in label",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "label": "aaa"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

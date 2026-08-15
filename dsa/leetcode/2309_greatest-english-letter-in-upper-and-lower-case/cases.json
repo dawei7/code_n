@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "repeated lowercases still produce one answer",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-lower-greater-unpaired",
+      "id": "trial-lower-greater-unpaired",
       "name": "an unpaired greater lowercase is ignored",
       "kind": "trial",
       "visible": true,

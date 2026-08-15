@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-after-seven",
+      "id": "trial-after-seven",
       "name": "a power of two does not increase the count",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-fifteen",
+      "id": "trial-fifteen",
       "name": "four one bits add the fifth value including zero",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-after-fifteen",
+      "id": "trial-after-fifteen",
       "name": "the following power of two leaves the count unchanged",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-nine-one-bits",
+      "id": "trial-nine-one-bits",
       "name": "the largest nine-bit all-one value is included",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-maximum-input",
+      "id": "trial-maximum-input",
       "name": "no ten-bit all-one value fits under the maximum",
       "kind": "trial",
       "visible": true,

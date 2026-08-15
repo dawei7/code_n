@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-target-sandwich",
+      "id": "trial-target-sandwich",
       "name": "target values surround one other value",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-alternating-even",
+      "id": "trial-alternating-even",
       "name": "alternating values contain one majority triple",
       "kind": "trial",
       "visible": true,
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-leading-targets",
+      "id": "trial-leading-targets",
       "name": "two leading target values",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "equality only with maximum legal values",
       "kind": "trial",
       "visible": true,
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "real-hundred-targets",
+      "id": "trial-hundred-targets",
       "name": "triangular result for one hundred target values",
       "kind": "trial",
       "visible": true,
@@ -337,6 +337,44 @@
       "tags": [
         "all-target",
         "larger-count"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "target": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value target=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          3
+        ],
+        "target": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-nonadjacent-tie",
+      "id": "trial-nonadjacent-tie",
       "name": "earliest of separated minima",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "repeated local minima",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-interior",
+      "id": "trial-interior",
       "name": "unique interior minimum",
       "kind": "trial",
       "visible": true,
@@ -110,6 +110,20 @@
       "expected": 3,
       "tags": [
         "interior"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in customers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "customers": "YYY"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-overall-anagram-only",
+      "id": "trial-overall-anagram-only",
       "name": "a global anagram violates parity groups",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-duplicate-reachable",
+      "id": "trial-duplicate-reachable",
       "name": "duplicate characters remain reachable",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "all positions contain the same character",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-one-group-differs",
+      "id": "trial-one-group-differs",
       "name": "only one parity multiset differs",
       "kind": "trial",
       "visible": true,

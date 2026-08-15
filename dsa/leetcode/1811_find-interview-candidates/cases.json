@@ -261,7 +261,7 @@
       ]
     },
     {
-      "id": "real-gap-breaks-streak",
+      "id": "trial-gap-breaks-streak",
       "name": "a contest ID gap prevents qualification",
       "kind": "trial",
       "visible": true,
@@ -349,7 +349,7 @@
       ]
     },
     {
-      "id": "real-two-short-runs",
+      "id": "trial-two-short-runs",
       "name": "separate two-contest runs do not combine",
       "kind": "trial",
       "visible": true,
@@ -482,7 +482,7 @@
       ]
     },
     {
-      "id": "real-both-rules-deduplicate",
+      "id": "trial-both-rules-deduplicate",
       "name": "one user satisfying both rules appears once",
       "kind": "trial",
       "visible": true,

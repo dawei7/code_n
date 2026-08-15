@@ -87,8 +87,8 @@
       ]
     },
     {
-      "id": "real-both-maximum",
-      "name": "real: ten-value coins limit both maximum counts",
+      "id": "trial-both-maximum",
+      "name": "ten-value coins limit both maximum counts",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -101,8 +101,8 @@
       ]
     },
     {
-      "id": "real-even-near-maximum",
-      "name": "real: twenty-four turns have even parity",
+      "id": "trial-even-near-maximum",
+      "name": "twenty-four turns have even parity",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -115,8 +115,8 @@
       ]
     },
     {
-      "id": "real-x-limits",
-      "name": "real: one high-value coin limits the game",
+      "id": "trial-x-limits",
+      "name": "one high-value coin limits the game",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -129,8 +129,8 @@
       ]
     },
     {
-      "id": "real-y-limits",
-      "name": "real: four low-value coins limit the game",
+      "id": "trial-y-limits",
+      "name": "four low-value coins limit the game",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -143,8 +143,8 @@
       ]
     },
     {
-      "id": "real-two-x-limit",
-      "name": "real: two high-value coins make an even game",
+      "id": "trial-two-x-limit",
+      "name": "two high-value coins make an even game",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -157,8 +157,8 @@
       ]
     },
     {
-      "id": "real-twenty-five-turns",
-      "name": "real: twenty-five turns have odd parity",
+      "id": "trial-twenty-five-turns",
+      "name": "twenty-five turns have odd parity",
       "kind": "trial",
       "visible": true,
       "input": {

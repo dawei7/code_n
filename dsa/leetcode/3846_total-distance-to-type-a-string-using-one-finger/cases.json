@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-start-then-bottom",
+      "id": "trial-start-then-bottom",
       "name": "an initial a is followed by one downward move",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-return-to-start",
+      "id": "trial-return-to-start",
       "name": "z then a pays for both directions",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-ragged-row-boundaries",
+      "id": "trial-ragged-row-boundaries",
       "name": "p l m crosses the uneven row endings",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-repeated-bottom-key",
+      "id": "trial-repeated-bottom-key",
       "name": "only the first of four m keys requires movement",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-adjacent-top-row",
+      "id": "trial-adjacent-top-row",
       "name": "qwerty walks through adjacent top-row keys",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-full-alphabet",
+      "id": "trial-full-alphabet",
       "name": "the complete alphabet exercises every keyboard key",
       "kind": "trial",
       "visible": true,
@@ -210,6 +210,34 @@
       "tags": [
         "all-letters",
         "all-rows"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "h"
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "hhh"
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

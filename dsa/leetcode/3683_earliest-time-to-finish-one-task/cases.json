@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-earliest-last",
+      "id": "trial-earliest-last",
       "name": "the final input row finishes first",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-start-alone-misleads",
+      "id": "trial-start-alone-misleads",
       "name": "earliest start does not imply earliest finish",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-tied-minimum",
+      "id": "trial-tied-minimum",
       "name": "multiple tasks share the earliest finish",
       "kind": "trial",
       "visible": true,

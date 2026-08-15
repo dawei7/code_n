@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-one",
+      "id": "trial-one",
       "name": "one has no representation",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-three-digit-witness",
+      "id": "trial-three-digit-witness",
       "name": "witness differs from its reversal",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-three-digit-no-witness",
+      "id": "trial-three-digit-no-witness",
       "name": "three-digit value has no witness",
       "kind": "trial",
       "visible": true,

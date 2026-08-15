@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-middle-refill",
+      "id": "trial-middle-refill",
       "name": "earlier refill and meeting-plant refill",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-tie-selects-alice",
+      "id": "trial-tie-selects-alice",
       "name": "equal remaining amounts select Alice",
       "kind": "trial",
       "visible": true,
@@ -145,6 +145,43 @@
       "tags": [
         "meeting-plant",
         "tie"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in plants",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "plants": [
+          2
+        ],
+        "capacityA": 5,
+        "capacityB": 5
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in plants",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "plants": [
+          2,
+          2
+        ],
+        "capacityA": 5,
+        "capacityB": 5
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

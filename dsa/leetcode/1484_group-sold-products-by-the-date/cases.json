@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-one-date-one-product",
+      "id": "trial-one-date-one-product",
       "name": "one distinct pair repeated",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-same-product-different-dates",
+      "id": "trial-same-product-different-dates",
       "name": "product contributes independently by date",
       "kind": "trial",
       "visible": true,
@@ -234,7 +234,7 @@
       ]
     },
     {
-      "id": "real-lexicographic-numbers",
+      "id": "trial-lexicographic-numbers",
       "name": "lexicographic rather than numeric-looking order",
       "kind": "trial",
       "visible": true,

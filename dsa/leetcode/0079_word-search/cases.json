@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-diagonal",
+      "id": "trial-diagonal",
       "name": "diagonal adjacency is forbidden",
       "kind": "trial",
       "visible": true,

@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "hidden-domain-boundaries",
+      "id": "trial-domain-boundaries",
       "name": "zero and one hundred duplicates",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "hidden-two-values",
+      "id": "trial-two-values",
       "name": "two repeated value groups",
       "kind": "trial",
       "visible": true,

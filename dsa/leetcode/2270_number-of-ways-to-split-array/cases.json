@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-negative",
+      "id": "trial-negative",
       "name": "decreasing negative prefix sums still produce valid splits",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating signed values make every split valid",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-value-bounds",
+      "id": "trial-value-bounds",
       "name": "boundary magnitudes retain signed prefix semantics",
       "kind": "trial",
       "visible": true,
@@ -146,6 +146,39 @@
       "expected": 3,
       "tags": [
         "value-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          10
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

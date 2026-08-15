@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-sixth-game-large-even",
+      "id": "trial-sixth-game-large-even",
       "name": "the sixth of six equal even games changes players",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-six-odd-games",
+      "id": "trial-six-odd-games",
       "name": "parity and sixth-game toggles interact repeatedly",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-even-games-after-boundary",
+      "id": "trial-even-games-after-boundary",
       "name": "the player changed at game five remains active afterward",
       "kind": "trial",
       "visible": true,
@@ -234,7 +234,7 @@
       ]
     },
     {
-      "id": "real-two-sixth-game-boundaries",
+      "id": "trial-two-sixth-game-boundaries",
       "name": "twelve upper-bound even games swap at both boundaries",
       "kind": "trial",
       "visible": true,
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "real-upper-parity-alternation",
+      "id": "trial-upper-parity-alternation",
       "name": "upper odd and even values alternate across game six",
       "kind": "trial",
       "visible": true,

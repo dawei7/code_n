@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-unequal-singletons",
+      "id": "trial-unequal-singletons",
       "name": "unequal singleton arrays have no good pair",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-later-duplicates-cannot-improve",
+      "id": "trial-later-duplicates-cannot-improve",
       "name": "retain the first index across repeated values",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-common-only-at-end",
+      "id": "trial-common-only-at-end",
       "name": "the only good pair uses both final indices",
       "kind": "trial",
       "visible": true,
@@ -179,6 +179,49 @@
       "expected": 6,
       "tags": [
         "late-match"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          3
+        ],
+        "nums2": [
+          1,
+          3,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          3,
+          3
+        ],
+        "nums2": [
+          1,
+          3,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

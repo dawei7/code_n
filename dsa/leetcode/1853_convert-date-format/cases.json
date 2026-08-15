@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-year-start",
+      "id": "trial-year-start",
       "name": "format the first day of a year",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-year-end",
+      "id": "trial-year-end",
       "name": "format the final day of a year",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-century-date",
+      "id": "trial-century-date",
       "name": "retain a four-digit historical year",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-mixed-weekdays",
+      "id": "trial-mixed-weekdays",
       "name": "several weekdays and months format independently",
       "kind": "trial",
       "visible": true,
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "real-february-nonleap",
+      "id": "trial-february-nonleap",
       "name": "ordinary February endpoint",
       "kind": "trial",
       "visible": true,
@@ -278,7 +278,7 @@
       ]
     },
     {
-      "id": "real-double-digit-day",
+      "id": "trial-double-digit-day",
       "name": "double-digit day is preserved",
       "kind": "trial",
       "visible": true,
@@ -309,7 +309,7 @@
       ]
     },
     {
-      "id": "real-order-independent",
+      "id": "trial-order-independent",
       "name": "result validation does not depend on source order",
       "kind": "trial",
       "visible": true,

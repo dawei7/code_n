@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-four-zeros",
+      "id": "trial-four-zeros",
       "name": "every valid subarray of four zeros is stable",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-five-zeros",
+      "id": "trial-five-zeros",
       "name": "repeated keys count all six valid zero ranges",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-full-range-only",
+      "id": "trial-full-range-only",
       "name": "only the complete range has the required interior sum",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-repeated-positive-values",
+      "id": "trial-repeated-positive-values",
       "name": "only length-three ranges survive among repeated twos",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-positive-boundary",
+      "id": "trial-positive-boundary",
       "name": "maximum positive values form one minimum-length match",
       "kind": "trial",
       "visible": true,
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "real-negative-boundary",
+      "id": "trial-negative-boundary",
       "name": "minimum negative values form one minimum-length match",
       "kind": "trial",
       "visible": true,
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "real-cancelling-interior",
+      "id": "trial-cancelling-interior",
       "name": "opposite interior values sum to zero between zero boundaries",
       "kind": "trial",
       "visible": true,

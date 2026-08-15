@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-single-match",
+      "id": "trial-single-match",
       "name": "a one-word array matches",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-single-absent",
+      "id": "trial-single-absent",
       "name": "a one-word array does not match",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-opposite-position",
+      "id": "trial-opposite-position",
       "name": "either direction has the same distance",
       "kind": "trial",
       "visible": true,
@@ -162,6 +162,43 @@
       "expected": 3,
       "tags": [
         "equal-directions"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "hello"
+        ],
+        "target": "hello",
+        "startIndex": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "hello",
+          "hello"
+        ],
+        "target": "hello",
+        "startIndex": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

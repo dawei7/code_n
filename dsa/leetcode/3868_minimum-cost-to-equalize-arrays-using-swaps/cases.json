@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "real-one-value",
+      "id": "trial-one-value",
       "name": "one repeated value is already balanced",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-maximum-value",
+      "id": "trial-maximum-value",
       "name": "the maximum legal value crosses once",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-mixed-imbalances",
+      "id": "trial-mixed-imbalances",
       "name": "unequal surplus sizes still pair into two swaps",
       "kind": "trial",
       "visible": true,
@@ -286,7 +286,7 @@
       ]
     },
     {
-      "id": "real-two-odd-totals",
+      "id": "trial-two-odd-totals",
       "name": "two odd combined counts are still impossible",
       "kind": "trial",
       "visible": true,
@@ -314,7 +314,7 @@
       ]
     },
     {
-      "id": "real-balanced-and-disjoint-groups",
+      "id": "trial-balanced-and-disjoint-groups",
       "name": "balanced shared groups coexist with two paid swaps",
       "kind": "trial",
       "visible": true,
@@ -350,7 +350,7 @@
       ]
     },
     {
-      "id": "real-all-values-shared",
+      "id": "trial-all-values-shared",
       "name": "all values are shared but their counts differ",
       "kind": "trial",
       "visible": true,
@@ -386,7 +386,7 @@
       ]
     },
     {
-      "id": "real-late-odd-frequency",
+      "id": "trial-late-odd-frequency",
       "name": "a late singleton invalidates otherwise even totals",
       "kind": "trial",
       "visible": true,

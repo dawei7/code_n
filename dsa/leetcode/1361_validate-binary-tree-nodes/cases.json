@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "hidden-self-loop",
+      "id": "trial-self-loop",
       "name": "root plus disconnected self-loop",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "hidden-right-chain",
+      "id": "trial-right-chain",
       "name": "valid right-only chain",
       "kind": "trial",
       "visible": true,
@@ -168,6 +168,53 @@
       "expected": true,
       "tags": [
         "chain"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in leftChild",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "leftChild": [
+          1
+        ],
+        "rightChild": [
+          2,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in leftChild",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "leftChild": [
+          1,
+          1
+        ],
+        "rightChild": [
+          2,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-front-heavy",
+      "id": "trial-front-heavy",
       "name": "large opening pile",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating pile values",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-increasing",
+      "id": "trial-increasing",
       "name": "increasing sequence",
       "kind": "trial",
       "visible": true,

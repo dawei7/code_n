@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-real",
+      "id": "trial-real",
       "name": "purely real result",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-general",
+      "id": "trial-general",
       "name": "no component cancels",
       "kind": "trial",
       "visible": true,

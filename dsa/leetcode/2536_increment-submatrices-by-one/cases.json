@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-overlapping-boundaries",
+      "id": "trial-overlapping-boundaries",
       "name": "three rectangles meet different boundaries",
       "kind": "trial",
       "visible": true,
@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "real-cross",
+      "id": "trial-cross",
       "name": "border columns crossed by a middle row",
       "kind": "trial",
       "visible": true,

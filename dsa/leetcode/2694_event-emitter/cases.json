@@ -362,7 +362,7 @@
       ]
     },
     {
-      "id": "real-remove-middle",
+      "id": "trial-remove-middle",
       "name": "removing the middle listener preserves relative order",
       "kind": "trial",
       "visible": true,
@@ -438,7 +438,7 @@
       ]
     },
     {
-      "id": "real-event-survives-other-unsubscribe",
+      "id": "trial-event-survives-other-unsubscribe",
       "name": "unsubscribing one event does not affect another",
       "kind": "trial",
       "visible": true,

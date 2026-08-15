@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-no-metals",
+      "id": "trial-no-metals",
       "name": "no metal yields no pairs",
       "kind": "trial",
       "visible": true,
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-no-nonmetals",
+      "id": "trial-no-nonmetals",
       "name": "no nonmetal yields no pairs",
       "kind": "trial",
       "visible": true,
@@ -248,7 +248,7 @@
       ]
     },
     {
-      "id": "real-electrons-do-not-filter",
+      "id": "trial-electrons-do-not-filter",
       "name": "electron counts do not need to match",
       "kind": "trial",
       "visible": true,
@@ -294,7 +294,7 @@
       ]
     },
     {
-      "id": "real-full-product",
+      "id": "trial-full-product",
       "name": "every metal pairs with every nonmetal",
       "kind": "trial",
       "visible": true,

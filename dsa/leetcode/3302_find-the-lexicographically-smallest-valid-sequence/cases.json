@@ -127,8 +127,8 @@
       ]
     },
     {
-      "id": "real-no-completion",
-      "name": "real: no selection stays within one mismatch",
+      "id": "trial-no-completion",
+      "name": "no selection stays within one mismatch",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -141,8 +141,8 @@
       ]
     },
     {
-      "id": "real-index-order",
-      "name": "real: smallest indices differ from exact-character choice",
+      "id": "trial-index-order",
+      "name": "smallest indices differ from exact-character choice",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -160,8 +160,8 @@
       ]
     },
     {
-      "id": "real-delayed-final",
-      "name": "real: early mismatch requires a distant final match",
+      "id": "trial-delayed-final",
+      "name": "early mismatch requires a distant final match",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -176,6 +176,36 @@
       "tags": [
         "suffix",
         "mismatch"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in word1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "v",
+        "word2": "abc"
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in word1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "vvv",
+        "word2": "abc"
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

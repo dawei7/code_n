@@ -51,7 +51,7 @@
       ]
     },
     {
-      "id": "real-rectangular",
+      "id": "trial-rectangular",
       "name": "three-by-four table",
       "kind": "trial",
       "visible": true,

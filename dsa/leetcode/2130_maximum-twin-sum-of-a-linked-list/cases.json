@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-late-maximum",
+      "id": "trial-late-maximum",
       "name": "maximum occurs away from the outer pair",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-increasing",
+      "id": "trial-increasing",
       "name": "increasing values produce equal pair sums",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "values reach the upper bound",
       "kind": "trial",
       "visible": true,

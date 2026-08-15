@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-four-descending",
+      "id": "trial-four-descending",
       "name": "reverse-sorted distinct letters have maximum rank",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-mixed-word",
+      "id": "trial-mixed-word",
       "name": "mixed repeated letters across the alphabet",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-all-letters-descending",
+      "id": "trial-all-letters-descending",
       "name": "every lowercase letter in descending order",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-interleaved-duplicates",
+      "id": "trial-interleaved-duplicates",
       "name": "several interleaved duplicate groups",
       "kind": "trial",
       "visible": true,

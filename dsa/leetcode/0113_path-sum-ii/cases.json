@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-negative",
+      "id": "trial-negative",
       "name": "negative path values",
       "kind": "trial",
       "visible": true,

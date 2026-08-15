@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-two-elements",
+      "id": "trial-two-elements",
       "name": "each element is the other side's sum",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-symmetric",
+      "id": "trial-symmetric",
       "name": "symmetric outer values",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-increasing",
+      "id": "trial-increasing",
       "name": "increasing values",
       "kind": "trial",
       "visible": true,
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-decreasing",
+      "id": "trial-decreasing",
       "name": "decreasing values",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-alternating-magnitudes",
+      "id": "trial-alternating-magnitudes",
       "name": "alternating small and large values",
       "kind": "trial",
       "visible": true,

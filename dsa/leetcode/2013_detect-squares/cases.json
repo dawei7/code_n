@@ -277,7 +277,7 @@
       ]
     },
     {
-      "id": "real-zero-area-excluded",
+      "id": "trial-zero-area-excluded",
       "name": "points on one vertical line do not form squares",
       "kind": "trial",
       "visible": true,
@@ -329,7 +329,7 @@
       ]
     },
     {
-      "id": "real-coordinate-boundaries",
+      "id": "trial-coordinate-boundaries",
       "name": "a square spans both coordinate limits",
       "kind": "trial",
       "visible": true,

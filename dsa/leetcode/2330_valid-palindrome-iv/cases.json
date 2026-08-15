@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-long-palindrome",
+      "id": "trial-long-palindrome",
       "name": "an odd palindrome has no mismatched pairs",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-third-late",
+      "id": "trial-third-late",
       "name": "the third mismatch appears near the center",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-two-separated",
+      "id": "trial-two-separated",
       "name": "two separated mismatches remain independent",
       "kind": "trial",
       "visible": true,
@@ -120,6 +120,20 @@
       "expected": true,
       "tags": [
         "separated-mismatches"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

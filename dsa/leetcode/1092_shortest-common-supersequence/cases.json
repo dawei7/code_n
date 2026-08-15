@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-subsequence",
+      "id": "trial-subsequence",
       "name": "one input already occurs as subsequence",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-repeated-overlap",
+      "id": "trial-repeated-overlap",
       "name": "repeated characters create alternate LCS choices",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-one-character",
+      "id": "trial-one-character",
       "name": "one shared single-character input",
       "kind": "trial",
       "visible": true,

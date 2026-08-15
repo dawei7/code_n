@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-domain-ends",
+      "id": "trial-domain-ends",
       "name": "zero and one thousand",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-interleaved",
+      "id": "trial-interleaved",
       "name": "interleaved duplicate groups",
       "kind": "trial",
       "visible": true,
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "real-leftover-duplicates",
+      "id": "trial-leftover-duplicates",
       "name": "repeated leftover values",
       "kind": "trial",
       "visible": true,
@@ -267,6 +267,60 @@
       "tags": [
         "real",
         "relative-order"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in arr1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr1": [
+          2
+        ],
+        "arr2": [
+          2,
+          1,
+          4,
+          3,
+          9,
+          6
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in arr1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr1": [
+          2,
+          2
+        ],
+        "arr2": [
+          2,
+          1,
+          4,
+          3,
+          9,
+          6
+        ]
+      },
+      "expected": [
+        2,
+        2
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

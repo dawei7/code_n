@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "very large second coordinate",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "many additions of fixed first coordinate",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "large boundary difference not divisible",
       "kind": "trial",
       "visible": true,
@@ -152,6 +152,40 @@
       "tags": [
         "large-target",
         "unreachable"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value tx=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 1,
+        "sy": 1,
+        "tx": 1,
+        "ty": 5
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value ty=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 1,
+        "sy": 1,
+        "tx": 3,
+        "ty": 1
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-single-value",
+      "id": "trial-single-value",
       "name": "one value cannot form a pair",
       "kind": "trial",
       "visible": true,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-all-duplicates",
+      "id": "trial-all-duplicates",
       "name": "all duplicate-index combinations count",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-negative-and-positive",
+      "id": "trial-negative-and-positive",
       "name": "negative and positive endpoints mix",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-extreme-values",
+      "id": "trial-extreme-values",
       "name": "extreme values land on inclusive bounds",
       "kind": "trial",
       "visible": true,
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-zero-sum",
+      "id": "trial-zero-sum",
       "name": "only one mixed-sign pair sums to zero",
       "kind": "trial",
       "visible": true,

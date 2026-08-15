@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-all-zero-score",
+      "id": "trial-all-zero-score",
       "name": "exact pairing can produce an all-zero score",
       "kind": "trial",
       "visible": true,
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-unequal-lengths",
+      "id": "trial-unequal-lengths",
       "name": "the shorter first array still finds the best partner",
       "kind": "trial",
       "visible": true,
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "real-positive-64-bit",
+      "id": "trial-positive-64-bit",
       "name": "positive products exceed 32-bit range",
       "kind": "trial",
       "visible": true,
@@ -269,7 +269,7 @@
       ]
     },
     {
-      "id": "real-negative-64-bit",
+      "id": "trial-negative-64-bit",
       "name": "an exact negative total exceeds 32-bit magnitude",
       "kind": "trial",
       "visible": true,
@@ -297,7 +297,7 @@
       ]
     },
     {
-      "id": "real-boundary-crossing",
+      "id": "trial-boundary-crossing",
       "name": "forced aligned boundary products are both negative",
       "kind": "trial",
       "visible": true,

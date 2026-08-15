@@ -283,7 +283,7 @@
       ]
     },
     {
-      "id": "real-qualifies-on-later-day",
+      "id": "trial-qualifies-on-later-day",
       "name": "a later qualifying day is sufficient",
       "kind": "trial",
       "visible": true,
@@ -336,7 +336,7 @@
       ]
     },
     {
-      "id": "real-duplicate-qualification",
+      "id": "trial-duplicate-qualification",
       "name": "qualifying on several days still returns one row",
       "kind": "trial",
       "visible": true,
@@ -378,7 +378,7 @@
       ]
     },
     {
-      "id": "real-nonqualifying-central-users",
+      "id": "trial-nonqualifying-central-users",
       "name": "only single-call endpoint users qualify",
       "kind": "trial",
       "visible": true,
@@ -422,7 +422,7 @@
       ]
     },
     {
-      "id": "real-mixed-dates",
+      "id": "trial-mixed-dates",
       "name": "endpoint comparison is local to each user and day",
       "kind": "trial",
       "visible": true,

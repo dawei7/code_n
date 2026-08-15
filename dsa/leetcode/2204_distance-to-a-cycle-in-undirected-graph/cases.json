@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-square-with-leaves",
+      "id": "trial-square-with-leaves",
       "name": "leaves attach to opposite square nodes",
       "kind": "trial",
       "visible": true,
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "real-deep-and-shallow",
+      "id": "trial-deep-and-shallow",
       "name": "branch depths differ around the cycle",
       "kind": "trial",
       "visible": true,
@@ -298,7 +298,7 @@
       ]
     },
     {
-      "id": "real-cycle-labels-unordered",
+      "id": "trial-cycle-labels-unordered",
       "name": "cycle membership is unrelated to node ordering",
       "kind": "trial",
       "visible": true,
@@ -349,7 +349,7 @@
       ]
     },
     {
-      "id": "real-cycle-length-five",
+      "id": "trial-cycle-length-five",
       "name": "a larger cycle survives leaf trimming",
       "kind": "trial",
       "visible": true,

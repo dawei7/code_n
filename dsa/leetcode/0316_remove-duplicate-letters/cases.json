@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "hidden-greedy-trap",
+      "id": "trial-greedy-trap",
       "name": "smallest letter cannot lead",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "hidden-several-replacements",
+      "id": "trial-several-replacements",
       "name": "several safe replacements",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "hidden-unrecoverable-prefix",
+      "id": "trial-unrecoverable-prefix",
       "name": "early letter must be preserved",
       "kind": "trial",
       "visible": true,

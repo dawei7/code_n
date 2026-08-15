@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "only first pair must swap",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "three swaps among seven pairs",
       "kind": "trial",
       "visible": true,
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "identical increasing sequences",
       "kind": "trial",
       "visible": true,
@@ -224,6 +224,51 @@
       "tags": [
         "both-alignments",
         "zero-swaps"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          1,
+          2,
+          3,
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1
+        ],
+        "nums2": [
+          1,
+          2,
+          3,
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

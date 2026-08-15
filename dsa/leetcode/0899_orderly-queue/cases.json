@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "full selectable prefix",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "repeated minimum rotation",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "alternating letters with two choices",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "late smallest rotation",
       "kind": "trial",
       "visible": true,
@@ -147,6 +147,36 @@
       "expected": "abcdefg",
       "tags": [
         "late-minimum"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "c",
+        "k": 1
+      },
+      "expected": "c",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ccc",
+        "k": 1
+      },
+      "expected": "ccc",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

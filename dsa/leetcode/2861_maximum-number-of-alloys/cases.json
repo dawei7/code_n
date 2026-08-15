@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "real-stock-only-upper-bound",
+      "id": "trial-stock-only-upper-bound",
       "name": "stock alone supports one hundred alloys",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "real-large-values-zero-answer",
+      "id": "trial-large-values-zero-answer",
       "name": "abundant one metal cannot replace another",
       "kind": "trial",
       "visible": true,
@@ -265,6 +265,82 @@
       "tags": [
         "large-stock",
         "limiting-metal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 2,
+        "budget": 15,
+        "composition": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            10
+          ]
+        ],
+        "stock": [
+          0,
+          0,
+          0
+        ],
+        "cost": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "k": 1,
+        "budget": 15,
+        "composition": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            10
+          ]
+        ],
+        "stock": [
+          0,
+          0,
+          0
+        ],
+        "cost": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

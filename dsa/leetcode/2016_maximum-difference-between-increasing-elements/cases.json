@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-late-minimum",
+      "id": "trial-late-minimum",
       "name": "a new minimum supports the final maximum",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "the full legal value difference",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-order-trap",
+      "id": "trial-order-trap",
       "name": "a later minimum cannot pair backward",
       "kind": "trial",
       "visible": true,
@@ -141,6 +141,39 @@
       "expected": -1,
       "tags": [
         "index-order"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

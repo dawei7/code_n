@@ -92,8 +92,8 @@
       ]
     },
     {
-      "id": "real-two-values-two-seconds",
-      "name": "real: smallest nontrivial two-second state",
+      "id": "trial-two-values-two-seconds",
+      "name": "smallest nontrivial two-second state",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-three-values-two-seconds",
-      "name": "real: triangular-number state",
+      "id": "trial-three-values-two-seconds",
+      "name": "triangular-number state",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-balanced-ten",
-      "name": "real: balanced moderate parameters",
+      "id": "trial-balanced-ten",
+      "name": "balanced moderate parameters",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -137,8 +137,8 @@
       ]
     },
     {
-      "id": "real-unbalanced-modulo",
-      "name": "real: unbalanced parameters require modulo arithmetic",
+      "id": "trial-unbalanced-modulo",
+      "name": "unbalanced parameters require modulo arithmetic",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-near-maximum",
-      "name": "real: near-maximum balanced parameters",
+      "id": "trial-near-maximum",
+      "name": "near-maximum balanced parameters",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -167,8 +167,8 @@
       ]
     },
     {
-      "id": "real-maximum-both",
-      "name": "real: both parameters at their maximum",
+      "id": "trial-maximum-both",
+      "name": "both parameters at their maximum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -180,6 +180,36 @@
         "maximum-array",
         "maximum-seconds",
         "modulo"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 5
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

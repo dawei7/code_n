@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-two-sided-envelope",
+      "id": "trial-two-sided-envelope",
       "name": "two restrictions meet between their indices",
       "kind": "trial",
       "visible": true,
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-dense-restrictions",
+      "id": "trial-dense-restrictions",
       "name": "every nonzero index has a tight bound",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-long-unrestricted-suffix",
+      "id": "trial-long-unrestricted-suffix",
       "name": "one restriction permits a rising suffix",
       "kind": "trial",
       "visible": true,
@@ -257,7 +257,7 @@
       ]
     },
     {
-      "id": "real-unsorted-restrictions",
+      "id": "trial-unsorted-restrictions",
       "name": "restriction order does not affect propagation",
       "kind": "trial",
       "visible": true,
@@ -294,7 +294,7 @@
       ]
     },
     {
-      "id": "real-maximum-explicit-bound",
+      "id": "trial-maximum-explicit-bound",
       "name": "a maximum-valued restriction remains loose",
       "kind": "trial",
       "visible": true,

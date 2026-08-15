@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-best-pair-middle-costs",
+      "id": "trial-best-pair-middle-costs",
       "name": "the best pair is not chosen by cost alone",
       "kind": "trial",
       "visible": true,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-cheapest-high-capacity-partner",
+      "id": "trial-cheapest-high-capacity-partner",
       "name": "the cheapest machine can be the strongest partner",
       "kind": "trial",
       "visible": true,
@@ -272,7 +272,7 @@
       ]
     },
     {
-      "id": "real-large-value-boundary",
+      "id": "trial-large-value-boundary",
       "name": "large costs combine just below the maximum budget",
       "kind": "trial",
       "visible": true,
@@ -299,7 +299,7 @@
       ]
     },
     {
-      "id": "real-four-duplicate-costs",
+      "id": "trial-four-duplicate-costs",
       "name": "choose the two largest capacities among equal costs",
       "kind": "trial",
       "visible": true,
@@ -325,6 +325,32 @@
       "tags": [
         "duplicate-costs",
         "top-two-capacities"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value budget=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [
+          4,
+          8,
+          5,
+          3
+        ],
+        "capacity": [
+          1,
+          5,
+          2,
+          7
+        ],
+        "budget": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-single-identical",
+      "id": "trial-single-identical",
       "name": "identical single characters",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-prefix",
+      "id": "trial-prefix",
       "name": "one input is a prefix of the longer one",
       "kind": "trial",
       "visible": true,
@@ -103,6 +103,36 @@
       "expected": 6,
       "tags": [
         "different-length"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in a",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": "a",
+        "b": "cdc"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in a",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": "aaa",
+        "b": "cdc"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

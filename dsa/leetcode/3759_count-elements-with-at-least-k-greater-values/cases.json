@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-repeated-minimum",
+      "id": "trial-repeated-minimum",
       "name": "repeated minima fail the maximum-k requirement",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-mixed-duplicates",
+      "id": "trial-mixed-duplicates",
       "name": "values below a duplicated threshold qualify",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "upper-bound values preserve strict ordering",
       "kind": "trial",
       "visible": true,
@@ -177,6 +177,41 @@
       },
       "tags": [
         "value-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

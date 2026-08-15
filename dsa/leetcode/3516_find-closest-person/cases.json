@@ -102,8 +102,8 @@
       ]
     },
     {
-      "id": "real-same-start",
-      "name": "real: identical starts imply a tie",
+      "id": "trial-same-start",
+      "name": "identical starts imply a tie",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -119,8 +119,8 @@
       ]
     },
     {
-      "id": "real-same-side-person-one",
-      "name": "real: Person 1 is nearer on the same side",
+      "id": "trial-same-side-person-one",
+      "name": "Person 1 is nearer on the same side",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -136,8 +136,8 @@
       ]
     },
     {
-      "id": "real-same-side-person-two",
-      "name": "real: Person 2 is nearer on the same side",
+      "id": "trial-same-side-person-two",
+      "name": "Person 2 is nearer on the same side",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -153,8 +153,8 @@
       ]
     },
     {
-      "id": "real-coordinate-boundaries",
-      "name": "real: off-center target breaks boundary symmetry",
+      "id": "trial-coordinate-boundaries",
+      "name": "off-center target breaks boundary symmetry",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -167,6 +167,38 @@
         "real",
         "coordinate-boundary",
         "off-center"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value x=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 1,
+        "y": 7,
+        "z": 4
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value y=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 2,
+        "y": 1,
+        "z": 4
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

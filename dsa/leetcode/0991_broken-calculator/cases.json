@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "reverse drops below start",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "exact power of two",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "maximum start and minimum target",
       "kind": "trial",
       "visible": true,
@@ -129,6 +129,36 @@
       "expected": 999999999,
       "tags": [
         "bounds"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value startValue=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startValue": 1,
+        "target": 3
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value target=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startValue": 2,
+        "target": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

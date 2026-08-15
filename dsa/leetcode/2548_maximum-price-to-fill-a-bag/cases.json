@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-density-over-price",
+      "id": "trial-density-over-price",
       "name": "density outranks total price",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-single-exact",
+      "id": "trial-single-exact",
       "name": "one item exactly fills the bag",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-equal-density",
+      "id": "trial-equal-density",
       "name": "tied densities allow either order",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-small-shortfall",
+      "id": "trial-small-shortfall",
       "name": "shortfall by one unit is impossible",
       "kind": "trial",
       "visible": true,

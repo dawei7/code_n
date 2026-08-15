@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-single-slot-reuse",
+      "id": "trial-single-slot-reuse",
       "name": "one slot is reused whenever its retained day expires",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-types-independent",
+      "id": "trial-types-independent",
       "name": "each type maintains an independent window capacity",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-limit-equals-window",
+      "id": "trial-limit-equals-window",
       "name": "a full-window limit can never be exceeded",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-long-gap-expires-all",
+      "id": "trial-long-gap-expires-all",
       "name": "multiple stale indices expire before a sparse repeat",
       "kind": "trial",
       "visible": true,

@@ -151,8 +151,8 @@
       ]
     },
     {
-      "id": "real-moving-dominance",
-      "name": "real: dominant values change by window",
+      "id": "trial-moving-dominance",
+      "name": "dominant values change by window",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -181,8 +181,8 @@
       ]
     },
     {
-      "id": "real-duplicates-and-ties",
-      "name": "real: multiplicity beats large singleton",
+      "id": "trial-duplicates-and-ties",
+      "name": "multiplicity beats large singleton",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -209,8 +209,8 @@
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "real: values at upper boundary",
+      "id": "trial-maximum-values",
+      "name": "values at upper boundary",
       "kind": "trial",
       "visible": true,
       "input": {

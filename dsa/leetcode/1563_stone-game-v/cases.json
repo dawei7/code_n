@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-large-ends",
+      "id": "trial-large-ends",
       "name": "large endpoints surround small middle",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-increasing",
+      "id": "trial-increasing",
       "name": "strictly increasing values",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-decreasing",
+      "id": "trial-decreasing",
       "name": "strictly decreasing values",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-paired-blocks",
+      "id": "trial-paired-blocks",
       "name": "repeated paired values",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-upper-bound-values",
+      "id": "trial-upper-bound-values",
       "name": "maximum values around a small center",
       "kind": "trial",
       "visible": true,
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-irregular",
+      "id": "trial-irregular",
       "name": "irregular five-stone values",
       "kind": "trial",
       "visible": true,

@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "hidden-four-patterns",
+      "id": "trial-four-patterns",
       "name": "four small bit patterns",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "hidden-high-bit",
+      "id": "trial-high-bit",
       "name": "high bit differs in two pairs",
       "kind": "trial",
       "visible": true,

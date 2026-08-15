@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-late-coprime",
+      "id": "trial-late-coprime",
       "name": "gcd becomes one at the end",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-many-common",
+      "id": "trial-many-common",
       "name": "repeated common divisor",
       "kind": "trial",
       "visible": true,

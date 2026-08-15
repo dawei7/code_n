@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-equal-values",
+      "id": "trial-equal-values",
       "name": "equal values compete for selections",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-large-gap",
+      "id": "trial-large-gap",
       "name": "large selected advantage",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-near-equal-decrements",
+      "id": "trial-near-equal-decrements",
       "name": "x and y differ by one",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "arithmetic uses large integers",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-zero-lower-bound",
+      "id": "trial-zero-lower-bound",
       "name": "positive inputs always require an operation",
       "kind": "trial",
       "visible": true,

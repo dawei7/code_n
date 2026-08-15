@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-small-target",
+      "id": "trial-small-target",
       "name": "next power of ten is required",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-round-to-nine-hundred",
+      "id": "trial-round-to-nine-hundred",
       "name": "nearest valid boundary is not a power of ten",
       "kind": "trial",
       "visible": true,
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "maximum input is already beautiful",
       "kind": "trial",
       "visible": true,
@@ -116,6 +116,36 @@
       "expected": 0,
       "tags": [
         "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "target": 6
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value target=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 16,
+        "target": 1
+      },
+      "expected": 84,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

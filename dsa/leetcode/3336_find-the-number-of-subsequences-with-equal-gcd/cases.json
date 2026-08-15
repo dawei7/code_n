@@ -108,8 +108,8 @@
       ]
     },
     {
-      "id": "real-repeated-one-around-two",
-      "name": "real: distinct equal-valued indices remain separate choices",
+      "id": "trial-repeated-one-around-two",
+      "name": "distinct equal-valued indices remain separate choices",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -126,8 +126,8 @@
       ]
     },
     {
-      "id": "real-composite-gcd-states",
-      "name": "real: composite values create and merge several gcd states",
+      "id": "trial-composite-gcd-states",
+      "name": "composite values create and merge several gcd states",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-no-equal-composite-gcd",
-      "name": "real: apparent shared factors still yield no valid pair",
+      "id": "trial-no-equal-composite-gcd",
+      "name": "apparent shared factors still yield no valid pair",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -165,8 +165,8 @@
       ]
     },
     {
-      "id": "real-modulo-many-ones",
-      "name": "real: maximum length requires modulo reduction",
+      "id": "trial-modulo-many-ones",
+      "name": "maximum length requires modulo reduction",
       "kind": "trial",
       "visible": true,
       "input": {

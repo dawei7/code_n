@@ -128,8 +128,8 @@
       ]
     },
     {
-      "id": "real-increasing",
-      "name": "real: zero greater counts balance lengths",
+      "id": "trial-increasing",
+      "name": "zero greater counts balance lengths",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -157,8 +157,8 @@
       ]
     },
     {
-      "id": "real-mixed-duplicates",
-      "name": "real: mixed ranks with repeated values",
+      "id": "trial-mixed-duplicates",
+      "name": "mixed ranks with repeated values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -188,8 +188,8 @@
       ]
     },
     {
-      "id": "real-value-bounds",
-      "name": "real: extreme values and duplicate bounds",
+      "id": "trial-value-bounds",
+      "name": "extreme values and duplicate bounds",
       "kind": "trial",
       "visible": true,
       "input": {

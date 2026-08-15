@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-right-dominates",
+      "id": "trial-right-dominates",
       "name": "smallest right position gives the last fall",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-shared-last-time",
+      "id": "trial-shared-last-time",
       "name": "trajectories from both directions tie",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-collision-chain-irrelevant",
+      "id": "trial-collision-chain-irrelevant",
       "name": "dense opposing ants need no simulation",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-single-ant",
+      "id": "trial-single-ant",
       "name": "one trajectory has its direct endpoint distance",
       "kind": "trial",
       "visible": true,
@@ -203,6 +203,49 @@
       "tags": [
         "single-ant",
         "maximum-plank"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "left": [
+          4,
+          3
+        ],
+        "right": [
+          0,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in left",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "left": [
+          4
+        ],
+        "right": [
+          0,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

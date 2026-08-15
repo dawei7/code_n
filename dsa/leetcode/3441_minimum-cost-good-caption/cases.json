@@ -85,8 +85,8 @@
       ]
     },
     {
-      "id": "real-minimum-length",
-      "name": "real: one character is impossible",
+      "id": "trial-minimum-length",
+      "name": "one character is impossible",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -99,8 +99,8 @@
       ]
     },
     {
-      "id": "real-four-character-run",
-      "name": "real: extend a run beyond three",
+      "id": "trial-four-character-run",
+      "name": "extend a run beyond three",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -113,8 +113,8 @@
       ]
     },
     {
-      "id": "real-three-runs",
-      "name": "real: several dynamic boundaries",
+      "id": "trial-three-runs",
+      "name": "several dynamic boundaries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -127,8 +127,8 @@
       ]
     },
     {
-      "id": "real-merge-tail",
-      "name": "real: lexicographic choice changes final run",
+      "id": "trial-merge-tail",
+      "name": "lexicographic choice changes final run",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,6 +138,34 @@
       "tags": [
         "real",
         "lexicographic"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in caption",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "caption": "c"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in caption",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "caption": "ccc"
+      },
+      "expected": "ccc",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

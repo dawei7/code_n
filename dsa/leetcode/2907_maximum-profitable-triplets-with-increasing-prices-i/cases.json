@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-best-left-and-right-depend-on-middle",
+      "id": "trial-best-left-and-right-depend-on-middle",
       "name": "each middle requires its own compatible side maxima",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-three-items-with-duplicate-price",
+      "id": "trial-three-items-with-duplicate-price",
       "name": "a length-three array fails when one strict inequality is false",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-profit-upper-bound",
+      "id": "trial-profit-upper-bound",
       "name": "the maximum legal profits sum without overflow concerns",
       "kind": "trial",
       "visible": true,
@@ -201,6 +201,28 @@
       "expected": 3000000,
       "tags": [
         "profit-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in profits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          10,
+          2,
+          3,
+          4
+        ],
+        "profits": [
+          100
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

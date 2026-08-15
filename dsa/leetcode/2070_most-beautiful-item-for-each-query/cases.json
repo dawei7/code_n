@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-cheaper-remains-best",
+      "id": "trial-cheaper-remains-best",
       "name": "later affordable items need not improve beauty",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-unsorted-items",
+      "id": "trial-unsorted-items",
       "name": "item input order does not define affordability",
       "kind": "trial",
       "visible": true,
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "maximum legal price and beauty are supported",
       "kind": "trial",
       "visible": true,
@@ -249,6 +249,88 @@
       ],
       "tags": [
         "value-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in queries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "items": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            3,
+            5
+          ]
+        ],
+        "queries": [
+          1
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in queries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "items": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            3,
+            5
+          ]
+        ],
+        "queries": [
+          1,
+          1
+        ]
+      },
+      "expected": [
+        2,
+        2
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

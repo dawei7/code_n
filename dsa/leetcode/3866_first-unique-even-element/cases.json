@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-repeated-odds",
+      "id": "trial-repeated-odds",
       "name": "repeated odd values do not affect even uniqueness",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-maximum-repeated",
+      "id": "trial-maximum-repeated",
       "name": "repeated maximum even is skipped",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-all-evens-repeated",
+      "id": "trial-all-evens-repeated",
       "name": "every even frequency exceeds one",
       "kind": "trial",
       "visible": true,
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "id": "real-first-element",
+      "id": "trial-first-element",
       "name": "a qualifying first element returns immediately in the second pass",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-only-repeated-even",
+      "id": "trial-only-repeated-even",
       "name": "odds plus one repeated even still return the fallback",
       "kind": "trial",
       "visible": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "a unique maximum value follows ninety-nine nonqualifying entries",
       "kind": "trial",
       "visible": true,

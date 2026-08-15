@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-forbidden-at-ends",
+      "id": "trial-forbidden-at-ends",
       "name": "forbidden letters at either end reject",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-full-alphabet",
+      "id": "trial-full-alphabet",
       "name": "the full alphabet permits every word",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-one-invalid-among-many",
+      "id": "trial-one-invalid-among-many",
       "name": "one internal forbidden character invalidates a word",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-none-consistent",
+      "id": "trial-none-consistent",
       "name": "every word contains a forbidden letter",
       "kind": "trial",
       "visible": true,
@@ -192,6 +192,48 @@
       "expected": 0,
       "tags": [
         "none-consistent"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in allowed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "allowed": "a",
+        "words": [
+          "ad",
+          "bd",
+          "aaab",
+          "baa",
+          "badab"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in allowed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "allowed": "aaa",
+        "words": [
+          "ad",
+          "bd",
+          "aaab",
+          "baa",
+          "badab"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

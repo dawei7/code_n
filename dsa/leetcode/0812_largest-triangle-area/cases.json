@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "interior point does not enlarge hull triangle",
       "kind": "trial",
       "visible": true,
@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "clockwise coordinates",
       "kind": "trial",
       "visible": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "collinear points beside one triangle",
       "kind": "trial",
       "visible": true,

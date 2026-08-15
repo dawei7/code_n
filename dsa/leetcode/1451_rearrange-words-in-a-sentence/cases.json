@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-shortest-ties",
+      "id": "trial-shortest-ties",
       "name": "shortest tied words follow original order",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-repeated-words",
+      "id": "trial-repeated-words",
       "name": "repeated words remain separate entries",
       "kind": "trial",
       "visible": true,
@@ -111,6 +111,34 @@
       "tags": [
         "duplicates",
         "capitalization"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in text",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "L"
+      },
+      "expected": "L",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in text",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "LLL"
+      },
+      "expected": "Lll",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

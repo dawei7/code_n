@@ -89,8 +89,8 @@
       ]
     },
     {
-      "id": "real-extra-letters",
-      "name": "real: irrelevant letters can surround the requirement",
+      "id": "trial-extra-letters",
+      "name": "irrelevant letters can surround the requirement",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -103,8 +103,8 @@
       ]
     },
     {
-      "id": "real-all-identical",
-      "name": "real: every range of length at least two qualifies",
+      "id": "trial-all-identical",
+      "name": "every range of length at least two qualifies",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -118,8 +118,8 @@
       ]
     },
     {
-      "id": "real-shrink-trap",
-      "name": "real: alternating deficits exercise repeated shrinking",
+      "id": "trial-shrink-trap",
+      "name": "alternating deficits exercise repeated shrinking",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -132,8 +132,8 @@
       ]
     },
     {
-      "id": "real-multiple-deficits",
-      "name": "real: two required deficits change at different boundaries",
+      "id": "trial-multiple-deficits",
+      "name": "two required deficits change at different boundaries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -144,6 +144,21 @@
       "tags": [
         "sliding-window",
         "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in word1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word1": "b",
+        "word2": "abc"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
       ]
     }
   ]

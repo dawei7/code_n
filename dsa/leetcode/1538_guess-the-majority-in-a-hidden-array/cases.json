@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-reference-minority",
+      "id": "trial-reference-minority",
       "name": "reference index belongs to the minority",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-first-three-opposite",
+      "id": "trial-first-three-opposite",
       "name": "all first replacement classifications differ",
       "kind": "trial",
       "visible": true,
@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "real-late-majority",
+      "id": "trial-late-majority",
       "name": "late positions reverse the early balance",
       "kind": "trial",
       "visible": true,
@@ -279,7 +279,7 @@
       ]
     },
     {
-      "id": "real-long-tie",
+      "id": "trial-long-tie",
       "name": "balanced longer array still returns minus one",
       "kind": "trial",
       "visible": true,

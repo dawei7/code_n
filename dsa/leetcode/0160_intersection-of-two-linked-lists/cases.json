@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-equal-values-disjoint",
+      "id": "trial-equal-values-disjoint",
       "name": "equal values do not imply identity",
       "kind": "trial",
       "visible": true,

@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-sorted-conflict",
+      "id": "trial-sorted-conflict",
       "name": "sorted order has a conflicting middle mirror pair",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-forced-future-letter",
+      "id": "trial-forced-future-letter",
       "name": "preserve enough slots for the remaining repeated letter",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-half-frequency",
+      "id": "trial-half-frequency",
       "name": "maximum frequency equal to half remains feasible",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-four-groups",
+      "id": "trial-four-groups",
       "name": "four equal groups remain globally sorted",
       "kind": "trial",
       "visible": true,
@@ -138,6 +138,34 @@
       "tags": [
         "four-letters",
         "lexicographic"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": "-1",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": "-1",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -323,7 +323,7 @@
       ]
     },
     {
-      "id": "real-unsorted-months",
+      "id": "trial-unsorted-months",
       "name": "insertion order does not control grouping",
       "kind": "trial",
       "visible": true,
@@ -383,7 +383,7 @@
       ]
     },
     {
-      "id": "real-customer-repeats-across-months",
+      "id": "trial-customer-repeats-across-months",
       "name": "customer is distinct within each month",
       "kind": "trial",
       "visible": true,
@@ -443,7 +443,7 @@
       ]
     },
     {
-      "id": "real-only-qualified-months",
+      "id": "trial-only-qualified-months",
       "name": "nonqualifying-only month is absent",
       "kind": "trial",
       "visible": true,
@@ -492,7 +492,7 @@
       ]
     },
     {
-      "id": "real-many-orders-two-customers",
+      "id": "trial-many-orders-two-customers",
       "name": "order and customer counts diverge",
       "kind": "trial",
       "visible": true,

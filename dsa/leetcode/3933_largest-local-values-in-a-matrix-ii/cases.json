@@ -283,7 +283,7 @@
       ]
     },
     {
-      "id": "real-single-row",
+      "id": "trial-single-row",
       "name": "one-dimensional neighborhoods remain rectangular",
       "kind": "trial",
       "visible": true,
@@ -308,7 +308,7 @@
       ]
     },
     {
-      "id": "real-rectangular-mixed",
+      "id": "trial-rectangular-mixed",
       "name": "mixed radii in a rectangular matrix",
       "kind": "trial",
       "visible": true,
@@ -338,7 +338,7 @@
       ]
     },
     {
-      "id": "real-maximum-radius",
+      "id": "trial-maximum-radius",
       "name": "the maximum value spans the complete matrix",
       "kind": "trial",
       "visible": true,
@@ -367,7 +367,7 @@
       ]
     },
     {
-      "id": "real-zero-rectangle",
+      "id": "trial-zero-rectangle",
       "name": "an all-zero rectangle has no candidates",
       "kind": "trial",
       "visible": true,
@@ -406,7 +406,7 @@
       ]
     },
     {
-      "id": "real-ties-and-higher",
+      "id": "trial-ties-and-higher",
       "name": "ties survive but one greater value dominates",
       "kind": "trial",
       "visible": true,
@@ -439,7 +439,7 @@
       ]
     },
     {
-      "id": "real-corner-and-near-boundary",
+      "id": "trial-corner-and-near-boundary",
       "name": "a near-boundary larger value is still considered",
       "kind": "trial",
       "visible": true,
@@ -492,7 +492,7 @@
       ]
     },
     {
-      "id": "real-nested-thresholds",
+      "id": "trial-nested-thresholds",
       "name": "descending thresholds separate larger values from ties",
       "kind": "trial",
       "visible": true,

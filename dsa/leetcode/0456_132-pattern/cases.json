@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "hidden-late-pattern",
+      "id": "trial-late-pattern",
       "name": "pattern appears after an early peak",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "hidden-false-mixed",
+      "id": "trial-false-mixed",
       "name": "mixed values without a strict pattern",
       "kind": "trial",
       "visible": true,
@@ -131,6 +131,39 @@
       "expected": false,
       "tags": [
         "none"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

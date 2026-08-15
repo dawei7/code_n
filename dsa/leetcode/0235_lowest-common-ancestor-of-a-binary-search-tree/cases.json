@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-deep-left",
+      "id": "trial-deep-left",
       "name": "split below several ancestors",
       "kind": "trial",
       "visible": true,

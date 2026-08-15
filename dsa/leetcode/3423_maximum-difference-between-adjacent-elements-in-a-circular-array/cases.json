@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-wraparound-only",
+      "id": "trial-wraparound-only",
       "name": "wrap-around exceeds all internal changes",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-monotone",
+      "id": "trial-monotone",
       "name": "increasing values make endpoint edge largest",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "repeated extreme differences",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-mixed-signs",
+      "id": "trial-mixed-signs",
       "name": "mixed signs and duplicates",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "legal value extremes are adjacent",
       "kind": "trial",
       "visible": true,

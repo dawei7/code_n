@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "hidden-none",
+      "id": "trial-none",
       "name": "no lucky value",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "hidden-middle",
+      "id": "trial-middle",
       "name": "lucky value in middle column",
       "kind": "trial",
       "visible": true,

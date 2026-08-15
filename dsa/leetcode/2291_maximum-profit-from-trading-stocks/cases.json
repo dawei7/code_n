@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-each-stock-once",
+      "id": "trial-each-stock-once",
       "name": "a cheap stock cannot be reused",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-ignore-loss-with-space",
+      "id": "trial-ignore-loss-with-space",
       "name": "unused budget is better than a loss",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-all-profitable",
+      "id": "trial-all-profitable",
       "name": "every profitable stock fits",
       "kind": "trial",
       "visible": true,
@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "real-duplicate-prices",
+      "id": "trial-duplicate-prices",
       "name": "equal prices remain distinct choices",
       "kind": "trial",
       "visible": true,
@@ -215,6 +215,55 @@
       },
       "expected": 9,
       "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in present",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "present": [
+          5
+        ],
+        "future": [
+          8,
+          5,
+          4,
+          3,
+          5
+        ],
+        "budget": 10
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in present",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "present": [
+          5,
+          5
+        ],
+        "future": [
+          8,
+          5,
+          4,
+          3,
+          5
+        ],
+        "budget": 10
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

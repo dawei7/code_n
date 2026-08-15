@@ -121,8 +121,8 @@
       ]
     },
     {
-      "id": "real-alternating-one-change",
-      "name": "real: alternating values can be regrouped",
+      "id": "trial-alternating-one-change",
+      "name": "alternating values can be regrouped",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -145,8 +145,8 @@
       ]
     },
     {
-      "id": "real-entire-array-good",
-      "name": "real: two value boundaries keep the entire array",
+      "id": "trial-entire-array-good",
+      "name": "two value boundaries keep the entire array",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -167,8 +167,8 @@
       ]
     },
     {
-      "id": "real-two-long-blocks",
-      "name": "real: skipped values form two long blocks",
+      "id": "trial-two-long-blocks",
+      "name": "skipped values form two long blocks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -190,8 +190,8 @@
       ]
     },
     {
-      "id": "real-maximum-value-zero-budget",
-      "name": "real: maximum values repeat non-contiguously",
+      "id": "trial-maximum-value-zero-budget",
+      "name": "maximum values repeat non-contiguously",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -211,8 +211,8 @@
       ]
     },
     {
-      "id": "real-budget-larger-than-needed",
-      "name": "real: at-most budget remains partly unused",
+      "id": "trial-budget-larger-than-needed",
+      "name": "at-most budget remains partly unused",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -231,8 +231,8 @@
       ]
     },
     {
-      "id": "real-maximum-budget-distinct-values",
-      "name": "real: maximum budget selects fifty-one distinct values",
+      "id": "trial-maximum-budget-distinct-values",
+      "name": "maximum budget selects fifty-one distinct values",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-power-of-ten",
+      "id": "trial-power-of-ten",
       "name": "power of ten rejoins small sum",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-multiple-decades",
+      "id": "trial-multiple-decades",
       "name": "several complete decimal decades",
       "kind": "trial",
       "visible": true,

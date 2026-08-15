@@ -259,7 +259,7 @@
       ]
     },
     {
-      "id": "hidden-later-consecutive",
+      "id": "trial-later-consecutive",
       "name": "a later consecutive pair does not qualify",
       "kind": "trial",
       "visible": true,
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "id": "hidden-multiple-later",
+      "id": "trial-multiple-later",
       "name": "multiple later sessions count one player",
       "kind": "trial",
       "visible": true,

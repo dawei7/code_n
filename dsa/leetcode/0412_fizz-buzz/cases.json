@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "hidden-sixteen",
+      "id": "trial-sixteen",
       "name": "sequence continues after combined label",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "hidden-thirty",
+      "id": "trial-thirty",
       "name": "several combined values",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "hidden-prime-bound",
+      "id": "trial-prime-bound",
       "name": "prime final value",
       "kind": "trial",
       "visible": true,

@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-one-odd-many-evens",
+      "id": "trial-one-odd-many-evens",
       "name": "one odd with even extensions",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-k-too-large",
+      "id": "trial-k-too-large",
       "name": "fewer than k odd values",
       "kind": "trial",
       "visible": true,

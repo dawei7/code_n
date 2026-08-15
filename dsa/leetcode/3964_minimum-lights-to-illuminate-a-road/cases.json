@@ -173,8 +173,8 @@
       ]
     },
     {
-      "id": "real-overlapping-existing",
-      "name": "real: overlapping existing intervals",
+      "id": "trial-overlapping-existing",
+      "name": "overlapping existing intervals",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -199,8 +199,8 @@
       ]
     },
     {
-      "id": "real-three-separated-gaps",
-      "name": "real: several separated invisible gaps",
+      "id": "trial-three-separated-gaps",
+      "name": "several separated invisible gaps",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -226,8 +226,8 @@
       ]
     },
     {
-      "id": "real-large-middle-radius",
-      "name": "real: middle bulb leaves one suffix gap",
+      "id": "trial-large-middle-radius",
+      "name": "middle bulb leaves one suffix gap",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -254,8 +254,8 @@
       ]
     },
     {
-      "id": "real-seven-invisible",
-      "name": "real: seven invisible positions",
+      "id": "trial-seven-invisible",
+      "name": "seven invisible positions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -279,8 +279,8 @@
       ]
     },
     {
-      "id": "real-left-gap-after-radius",
-      "name": "real: existing radius leaves far-right gap",
+      "id": "trial-left-gap-after-radius",
+      "name": "existing radius leaves far-right gap",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -307,8 +307,8 @@
       ]
     },
     {
-      "id": "real-right-radius-covers-all",
-      "name": "real: right-edge bulb covers whole road",
+      "id": "trial-right-radius-covers-all",
+      "name": "right-edge bulb covers whole road",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -330,8 +330,8 @@
       ]
     },
     {
-      "id": "real-two-local-bulbs",
-      "name": "real: two local existing bulbs",
+      "id": "trial-two-local-bulbs",
+      "name": "two local existing bulbs",
       "kind": "trial",
       "visible": true,
       "input": {

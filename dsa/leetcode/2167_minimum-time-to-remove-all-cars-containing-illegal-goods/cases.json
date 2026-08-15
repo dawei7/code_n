@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-isolated-middle",
+      "id": "trial-isolated-middle",
       "name": "direct removal beats traversing legal cars",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating cars require a mixed optimum",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-multiple-clusters",
+      "id": "trial-multiple-clusters",
       "name": "compare clustered end and interior goods",
       "kind": "trial",
       "visible": true,
@@ -123,6 +123,20 @@
       "expected": 5,
       "tags": [
         "clusters"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

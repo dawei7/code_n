@@ -171,7 +171,7 @@
     },
     {
       "id": "partly-divisible-star",
-      "name": "real: only two star branches have divisible distances",
+      "name": "only two star branches have divisible distances",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -213,7 +213,7 @@
     },
     {
       "id": "all-divisible-path",
-      "name": "real: every path distance is divisible",
+      "name": "every path distance is divisible",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -255,7 +255,7 @@
     },
     {
       "id": "mixed-weighted-tree",
-      "name": "real: mixed weighted branches",
+      "name": "mixed weighted branches",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -309,7 +309,7 @@
     },
     {
       "id": "no-divisible-distance",
-      "name": "real: signal speed exceeds every path distance",
+      "name": "signal speed exceeds every path distance",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-even-zero-missing-class",
+      "id": "trial-even-zero-missing-class",
       "name": "even zero count cannot replace a missing residue class",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-even-zero-both-classes",
+      "id": "trial-even-zero-both-classes",
       "name": "two zero residues preserve Alice's winning parity",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-only-zero-residues",
+      "id": "trial-only-zero-residues",
       "name": "Alice loses immediately on a zero remainder",
       "kind": "trial",
       "visible": true,

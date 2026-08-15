@@ -252,7 +252,7 @@
       ]
     },
     {
-      "id": "real-year-boundary",
+      "id": "trial-year-boundary",
       "name": "December and January are consecutive",
       "kind": "trial",
       "visible": true,
@@ -301,7 +301,7 @@
       ]
     },
     {
-      "id": "real-debtors-ignored",
+      "id": "trial-debtors-ignored",
       "name": "large withdrawals are not income",
       "kind": "trial",
       "visible": true,
@@ -360,7 +360,7 @@
       ]
     },
     {
-      "id": "real-summed-deposits",
+      "id": "trial-summed-deposits",
       "name": "several deposits combine above the threshold",
       "kind": "trial",
       "visible": true,
@@ -423,7 +423,7 @@
       ]
     },
     {
-      "id": "real-several-accounts",
+      "id": "trial-several-accounts",
       "name": "return every and only suspicious account",
       "kind": "trial",
       "visible": true,
@@ -511,7 +511,7 @@
       ]
     },
     {
-      "id": "real-long-run-distinct",
+      "id": "trial-long-run-distinct",
       "name": "a three-month run returns one account row",
       "kind": "trial",
       "visible": true,
@@ -567,7 +567,7 @@
       ]
     },
     {
-      "id": "real-no-creditor-month",
+      "id": "trial-no-creditor-month",
       "name": "a month containing only withdrawals breaks the run",
       "kind": "trial",
       "visible": true,

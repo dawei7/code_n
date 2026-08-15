@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "real-single-column",
+      "id": "trial-single-column",
       "name": "single column",
       "kind": "trial",
       "visible": true,
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "id": "real-many-cycles",
+      "id": "trial-many-cycles",
       "name": "shift exceeds cell count",
       "kind": "trial",
       "visible": true,

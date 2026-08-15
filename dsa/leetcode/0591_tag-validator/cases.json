@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "CDATA cannot be top-level",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "append text and multiple CDATA sections",
       "kind": "trial",
       "visible": true,
@@ -96,6 +96,34 @@
       "expected": true,
       "tags": [
         "mixed-content"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in code",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "code": "<"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in code",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "code": "<<<"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

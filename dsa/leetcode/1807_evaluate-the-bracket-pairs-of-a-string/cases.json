@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-whole-string-unknown",
+      "id": "trial-whole-string-unknown",
       "name": "the entire string is one unknown pair",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-unused-knowledge",
+      "id": "trial-unused-knowledge",
       "name": "unused associations do not alter literals",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-maximum-key-and-value-length",
+      "id": "trial-maximum-key-and-value-length",
       "name": "ten-letter key and value",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-order-independent-knowledge",
+      "id": "trial-order-independent-knowledge",
       "name": "knowledge order differs from occurrence order",
       "kind": "trial",
       "visible": true,

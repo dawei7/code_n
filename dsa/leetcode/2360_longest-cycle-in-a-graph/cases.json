@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-tail-to-two-cycle",
+      "id": "trial-tail-to-two-cycle",
       "name": "tail nodes are not part of the cycle",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-four-cycle",
+      "id": "trial-four-cycle",
       "name": "one full-component cycle",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-cycle-and-chain",
+      "id": "trial-cycle-and-chain",
       "name": "ignore an acyclic component",
       "kind": "trial",
       "visible": true,

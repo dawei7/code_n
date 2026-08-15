@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-first-occurrence",
+      "id": "trial-first-occurrence",
       "name": "retain the first occurrence across several repeats",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-optimum-not-outer",
+      "id": "trial-optimum-not-outer",
       "name": "optimal pair is not at both string boundaries",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-adjacent-only",
+      "id": "trial-adjacent-only",
       "name": "the only repeated pair is adjacent",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-long-mixed",
+      "id": "trial-long-mixed",
       "name": "long mixed string exercises distant repeated letters",
       "kind": "trial",
       "visible": true,
@@ -140,6 +140,34 @@
       "tags": [
         "distant-repeat",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

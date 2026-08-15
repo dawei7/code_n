@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-dominant-group",
+      "id": "trial-dominant-group",
       "name": "one bad value must use good helper positions",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-mixed-bad-groups",
+      "id": "trial-mixed-bad-groups",
       "name": "five bad positions with a group of three",
       "kind": "trial",
       "visible": true,
@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "real-global-capacity-impossible",
+      "id": "trial-global-capacity-impossible",
       "name": "one value has too few legal destinations",
       "kind": "trial",
       "visible": true,
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "maximum-domain value participates in a repair",
       "kind": "trial",
       "visible": true,
@@ -315,6 +315,49 @@
       },
       "tags": [
         "large-value"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "forbidden": [
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "forbidden": [
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

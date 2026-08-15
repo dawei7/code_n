@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-renewal-changes-expiry-order",
+      "id": "trial-renewal-changes-expiry-order",
       "name": "renewed oldest token moves behind newer token",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-nonexistent-renewals",
+      "id": "trial-nonexistent-renewals",
       "name": "repeated renewals of absent IDs change nothing",
       "kind": "trial",
       "visible": true,
@@ -259,7 +259,7 @@
       ]
     },
     {
-      "id": "real-several-expire-together",
+      "id": "trial-several-expire-together",
       "name": "cleanup removes every prefix token already expired",
       "kind": "trial",
       "visible": true,
@@ -305,7 +305,7 @@
       ]
     },
     {
-      "id": "real-partial-prefix-expiration",
+      "id": "trial-partial-prefix-expiration",
       "name": "only later tokens survive a count",
       "kind": "trial",
       "visible": true,
@@ -356,7 +356,7 @@
       ]
     },
     {
-      "id": "real-large-time-to-live",
+      "id": "trial-large-time-to-live",
       "name": "large TTL keeps tokens active at distant times",
       "kind": "trial",
       "visible": true,

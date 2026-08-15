@@ -357,7 +357,7 @@
       ]
     },
     {
-      "id": "real-repeated-index-updates",
+      "id": "trial-repeated-index-updates",
       "name": "repeatedly reclassify the same index",
       "kind": "trial",
       "visible": true,
@@ -413,7 +413,7 @@
       ]
     },
     {
-      "id": "real-max-value",
+      "id": "trial-max-value",
       "name": "classify and replace the maximum legal value",
       "kind": "trial",
       "visible": true,
@@ -459,7 +459,7 @@
       ]
     },
     {
-      "id": "real-overlapping-ranges",
+      "id": "trial-overlapping-ranges",
       "name": "overlapping ranges count different classes",
       "kind": "trial",
       "visible": true,
@@ -511,7 +511,7 @@
       ]
     },
     {
-      "id": "real-updates-at-boundaries",
+      "id": "trial-updates-at-boundaries",
       "name": "update both ends of the array",
       "kind": "trial",
       "visible": true,
@@ -564,7 +564,7 @@
       ]
     },
     {
-      "id": "real-query-does-not-mutate",
+      "id": "trial-query-does-not-mutate",
       "name": "repeated queries observe unchanged state",
       "kind": "trial",
       "visible": true,
@@ -613,7 +613,7 @@
       ]
     },
     {
-      "id": "real-depth-five-after-updates",
+      "id": "trial-depth-five-after-updates",
       "name": "unattainable depth remains empty after changes",
       "kind": "trial",
       "visible": true,
@@ -655,6 +655,45 @@
       "tags": [
         "depth-five",
         "updates"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "queries": [
+          [
+            1,
+            0,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

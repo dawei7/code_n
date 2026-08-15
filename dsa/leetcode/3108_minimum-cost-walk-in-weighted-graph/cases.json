@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-multiple-components",
-      "name": "real: components retain separate masks",
+      "id": "trial-multiple-components",
+      "name": "components retain separate masks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -200,8 +200,8 @@
       ]
     },
     {
-      "id": "real-detour-whole-path",
-      "name": "real: short query can use every component edge",
+      "id": "trial-detour-whole-path",
+      "name": "short query can use every component edge",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -249,8 +249,8 @@
       ]
     },
     {
-      "id": "real-cycle-and-parallel",
-      "name": "real: cycle and parallel edge all affect the mask",
+      "id": "trial-cycle-and-parallel",
+      "name": "cycle and parallel edge all affect the mask",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -309,8 +309,8 @@
       ]
     },
     {
-      "id": "real-zero-anywhere",
-      "name": "real: a zero edge lowers every connected query",
+      "id": "trial-zero-anywhere",
+      "name": "a zero edge lowers every connected query",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -363,8 +363,8 @@
       ]
     },
     {
-      "id": "real-isolated-vertex",
-      "name": "real: isolated vertex remains unreachable",
+      "id": "trial-isolated-vertex",
+      "name": "isolated vertex remains unreachable",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -412,8 +412,8 @@
       ]
     },
     {
-      "id": "real-maximum-weight",
-      "name": "real: maximum legal equal weights survive AND",
+      "id": "trial-maximum-weight",
+      "name": "maximum legal equal weights survive AND",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -451,8 +451,8 @@
       ]
     },
     {
-      "id": "real-star-component",
-      "name": "real: all star edges contribute",
+      "id": "trial-star-component",
+      "name": "all star edges contribute",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -505,8 +505,8 @@
       ]
     },
     {
-      "id": "real-bridge-merges-masks",
-      "name": "real: bridge merges two former component masks",
+      "id": "trial-bridge-merges-masks",
+      "name": "bridge merges two former component masks",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": "real-boundary-minutes",
+      "id": "trial-boundary-minutes",
       "name": "minutes six and seven belong to different intervals",
       "kind": "trial",
       "visible": true,

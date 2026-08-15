@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "real-all-negative",
+      "id": "trial-all-negative",
       "name": "empty subsequence leads all negative choices",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-equal-positive-values",
+      "id": "trial-equal-positive-values",
       "name": "equal positive values retain multiplicity",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-last-rank",
+      "id": "trial-last-rank",
       "name": "request the smallest of all subsequence sums",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "sums cross 32-bit signed range",
       "kind": "trial",
       "visible": true,
@@ -148,6 +148,25 @@
       "expected": 0,
       "tags": [
         "large-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          -2
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

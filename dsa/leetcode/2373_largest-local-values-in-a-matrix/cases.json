@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "real-distinct-local-peaks",
+      "id": "trial-distinct-local-peaks",
       "name": "different peaks dominate neighboring windows",
       "kind": "trial",
       "visible": true,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "real-uniform-grid",
+      "id": "trial-uniform-grid",
       "name": "equal values in every window",
       "kind": "trial",
       "visible": true,

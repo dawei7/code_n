@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-zero-with-two-positive-values",
+      "id": "trial-zero-with-two-positive-values",
       "name": "zero produces two forms of the same positive selection",
       "kind": "trial",
       "visible": true,
@@ -125,6 +125,43 @@
       "tags": [
         "zero-edge",
         "range"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "l": 6,
+        "r": 6
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "l": 6,
+        "r": 6
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

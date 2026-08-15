@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-all-windows-descending",
+      "id": "trial-all-windows-descending",
       "name": "every fixed-length window has the maximum count",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-remove-and-add-contributions",
+      "id": "trial-remove-and-add-contributions",
       "name": "outgoing and incoming contributions both change",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries-and-duplicates",
+      "id": "trial-value-boundaries-and-duplicates",
       "name": "extreme legal values retain strict duplicate semantics",
       "kind": "trial",
       "visible": true,
@@ -232,6 +232,27 @@
       "tags": [
         "value-boundary",
         "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          2,
+          5,
+          4
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

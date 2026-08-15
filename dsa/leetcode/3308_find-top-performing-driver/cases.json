@@ -359,8 +359,8 @@
       ]
     },
     {
-      "id": "real-multiple-vehicles",
-      "name": "real: aggregate a driver's vehicles within one fuel",
+      "id": "trial-multiple-vehicles",
+      "name": "aggregate a driver's vehicles within one fuel",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -451,8 +451,8 @@
       ]
     },
     {
-      "id": "real-no-trip-driver",
-      "name": "real: vehicles without trips do not create a result",
+      "id": "trial-no-trip-driver",
+      "name": "vehicles without trips do not create a result",
       "kind": "trial",
       "visible": true,
       "input": {

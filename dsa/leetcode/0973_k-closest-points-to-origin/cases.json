@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "equal distances inside selected set",
       "kind": "trial",
       "visible": true,
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "coordinate bounds",
       "kind": "trial",
       "visible": true,
@@ -275,7 +275,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "closest point appears last",
       "kind": "trial",
       "visible": true,

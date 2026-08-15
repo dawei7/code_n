@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-deficit-two",
+      "id": "trial-deficit-two",
       "name": "deficit of two still needs one swap",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-deficit-four",
+      "id": "trial-deficit-four",
       "name": "four leading closings need two swaps",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-multiple-balanced-blocks",
+      "id": "trial-multiple-balanced-blocks",
       "name": "concatenated balanced blocks need no swap",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-interleaved-deficit",
+      "id": "trial-interleaved-deficit",
       "name": "later balanced pairs do not deepen the initial deficit",
       "kind": "trial",
       "visible": true,
@@ -140,6 +140,34 @@
       "tags": [
         "interleaved",
         "one-swap"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "]"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "]]]"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

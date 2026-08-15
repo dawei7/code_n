@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-one-is-universal",
+      "id": "trial-one-is-universal",
       "name": "value one remains compatible beyond an equal parent",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-sibling-restoration",
+      "id": "trial-sibling-restoration",
       "name": "completed sibling state cannot leak across branches",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-closest-compatible",
+      "id": "trial-closest-compatible",
       "name": "choose the deepest compatible ancestor",
       "kind": "trial",
       "visible": true,

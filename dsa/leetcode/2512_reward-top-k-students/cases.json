@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-single-student",
+      "id": "trial-single-student",
       "name": "one student is always selected",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-negative-scores",
+      "id": "trial-negative-scores",
       "name": "negative scores still rank in descending order",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-score-before-id",
+      "id": "trial-score-before-id",
       "name": "a higher score outranks a much smaller identifier",
       "kind": "trial",
       "visible": true,
@@ -226,6 +226,69 @@
       ],
       "tags": [
         "ranking-priority"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in positive_feedback",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "positive_feedback": [
+          "smart"
+        ],
+        "negative_feedback": [
+          "not"
+        ],
+        "report": [
+          "this student is studious",
+          "the student is smart"
+        ],
+        "student_id": [
+          1,
+          2
+        ],
+        "k": 2
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in positive_feedback",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "positive_feedback": [
+          "smart",
+          "smart"
+        ],
+        "negative_feedback": [
+          "not"
+        ],
+        "report": [
+          "this student is studious",
+          "the student is smart"
+        ],
+        "student_id": [
+          1,
+          2
+        ],
+        "k": 2
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

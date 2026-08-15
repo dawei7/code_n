@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-duplicate-min",
+      "id": "trial-duplicate-min",
       "name": "the leftmost duplicate minimum is optimal",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-duplicate-max",
+      "id": "trial-duplicate-max",
       "name": "the rightmost duplicate maximum is optimal",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "equal values already occupy both required endpoints",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-reversed",
+      "id": "trial-reversed",
       "name": "maximum first and minimum last cross",
       "kind": "trial",
       "visible": true,
@@ -169,6 +169,39 @@
       "expected": 7,
       "tags": [
         "reversed-extremes"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -98,8 +98,8 @@
       ]
     },
     {
-      "id": "real-single",
-      "name": "real: single element",
+      "id": "trial-single",
+      "name": "single element",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -114,8 +114,8 @@
       ]
     },
     {
-      "id": "real-two-records",
-      "name": "real: only first and second values are records",
+      "id": "trial-two-records",
+      "name": "only first and second values are records",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -133,8 +133,8 @@
       ]
     },
     {
-      "id": "real-long-low-tail",
-      "name": "real: values below the initial maximum never form blocks",
+      "id": "trial-long-low-tail",
+      "name": "values below the initial maximum never form blocks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,6 +152,39 @@
       "tags": [
         "real",
         "low-tail"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-repeated-in-both",
+      "id": "trial-repeated-in-both",
       "name": "common values repeated in both arrays do not qualify",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-asymmetric-repetition",
+      "id": "trial-asymmetric-repetition",
       "name": "each one-sided duplicate is rejected",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-order-independent",
+      "id": "trial-order-independent",
       "name": "matching positions are unnecessary",
       "kind": "trial",
       "visible": true,

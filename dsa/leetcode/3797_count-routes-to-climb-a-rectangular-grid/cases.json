@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-blocked-top",
+      "id": "trial-blocked-top",
       "name": "an open bottom cannot reach a blocked top",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-two-open-rows",
+      "id": "trial-two-open-rows",
       "name": "optional horizontal moves on both rows",
       "kind": "trial",
       "visible": true,
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-middle-obstacle",
+      "id": "trial-middle-obstacle",
       "name": "three rows with a blocked middle cell",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-blocked-bottom",
+      "id": "trial-blocked-bottom",
       "name": "no available bottom-row start",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-narrow-unit-climb",
+      "id": "trial-narrow-unit-climb",
       "name": "unit distance forces vertical columns",
       "kind": "trial",
       "visible": true,

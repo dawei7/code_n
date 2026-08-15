@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-low-threshold",
+      "id": "trial-low-threshold",
       "name": "expensive chocolates create negative losses",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-high-threshold",
+      "id": "trial-high-threshold",
       "name": "all prices are fully paid",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "maximum price creates the minimum loss",
       "kind": "trial",
       "visible": true,
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "real-convex-splits",
+      "id": "trial-convex-splits",
       "name": "optima use interior prefix-suffix splits",
       "kind": "trial",
       "visible": true,

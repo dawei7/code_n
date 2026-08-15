@@ -100,8 +100,8 @@
       ]
     },
     {
-      "id": "real-alternating-prefix",
-      "name": "real: balanced alternating prefix plus singleton",
+      "id": "trial-alternating-prefix",
+      "name": "balanced alternating prefix plus singleton",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -114,8 +114,8 @@
       ]
     },
     {
-      "id": "real-two-frequency-blocks",
-      "name": "real: two uniform-frequency blocks",
+      "id": "trial-two-frequency-blocks",
+      "name": "two uniform-frequency blocks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -128,8 +128,8 @@
       ]
     },
     {
-      "id": "real-balanced-prefix-and-tail",
-      "name": "real: distinct prefix and repeated tail",
+      "id": "trial-balanced-prefix-and-tail",
+      "name": "distinct prefix and repeated tail",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -142,8 +142,8 @@
       ]
     },
     {
-      "id": "real-three-growing-runs",
-      "name": "real: three runs require three parts",
+      "id": "trial-three-growing-runs",
+      "name": "three runs require three parts",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -156,8 +156,8 @@
       ]
     },
     {
-      "id": "real-whole-string-balanced-out-of-order",
-      "name": "real: equal totals despite interleaving",
+      "id": "trial-whole-string-balanced-out-of-order",
+      "name": "equal totals despite interleaving",
       "kind": "trial",
       "visible": true,
       "input": {

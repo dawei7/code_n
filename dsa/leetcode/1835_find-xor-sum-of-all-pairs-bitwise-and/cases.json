@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-odd-duplicate-count",
+      "id": "trial-odd-duplicate-count",
       "name": "three equal values contribute once",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-disjoint-bits",
+      "id": "trial-disjoint-bits",
       "name": "disjoint aggregate bits produce zero",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum legal values preserve all common bits",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-one-side-cancels",
+      "id": "trial-one-side-cancels",
       "name": "only one zero aggregate is needed",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-varied-values",
+      "id": "trial-varied-values",
       "name": "several values leave a multi-bit result",
       "kind": "trial",
       "visible": true,

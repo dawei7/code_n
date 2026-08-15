@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-point-after-exponent",
+      "id": "trial-point-after-exponent",
       "name": "decimal point in exponent",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-double-sign",
+      "id": "trial-double-sign",
       "name": "misplaced second sign",
       "kind": "trial",
       "visible": true,

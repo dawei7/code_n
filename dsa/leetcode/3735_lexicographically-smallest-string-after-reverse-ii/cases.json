@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-full-reversal",
+      "id": "trial-full-reversal",
       "name": "reversing the complete descending string is optimal",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-already-increasing",
+      "id": "trial-already-increasing",
       "name": "the legal no-visible-change operation retains the minimum",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "every reversal of equal characters is identical",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-prefix-choice",
+      "id": "trial-prefix-choice",
       "name": "one prefix reversal beats every suffix choice",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-suffix-choice",
+      "id": "trial-suffix-choice",
       "name": "a suffix reversal improves after a shared prefix",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-longer-prefix",
+      "id": "trial-longer-prefix",
       "name": "a longer prefix reversal exposes the smallest leading character",
       "kind": "trial",
       "visible": true,
@@ -199,6 +199,34 @@
       "tags": [
         "prefix-reversal",
         "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "d"
+      },
+      "expected": "d",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ddd"
+      },
+      "expected": "ddd",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

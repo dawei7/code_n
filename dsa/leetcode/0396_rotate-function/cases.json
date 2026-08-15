@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "hidden-mixed",
+      "id": "trial-mixed",
       "name": "mixed signs",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "hidden-duplicates",
+      "id": "trial-duplicates",
       "name": "repeated values",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "hidden-two",
+      "id": "trial-two",
       "name": "two-element boundary",
       "kind": "trial",
       "visible": true,

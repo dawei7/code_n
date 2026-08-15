@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-unique-pair",
+      "id": "trial-unique-pair",
       "name": "only one disjoint mask pair",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-one-column-zero",
+      "id": "trial-one-column-zero",
       "name": "zero row in one-column matrix",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate nonzero masks do not help",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-complementary-five-columns",
+      "id": "trial-complementary-five-columns",
       "name": "disjoint masks across five columns",
       "kind": "trial",
       "visible": true,

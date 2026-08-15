@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "second rise after descent",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "longer valid mountain",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "interior plateau",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "maximum value at peak",
       "kind": "trial",
       "visible": true,
@@ -185,6 +185,39 @@
       "expected": true,
       "tags": [
         "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

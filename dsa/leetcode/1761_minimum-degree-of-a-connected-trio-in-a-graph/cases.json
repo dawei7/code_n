@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-complete-four",
+      "id": "trial-complete-four",
       "name": "every triple in a complete graph has degree three",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "real-separate-leaves",
+      "id": "trial-separate-leaves",
       "name": "separate leaves contribute three boundary edges",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-overlapping-trios",
+      "id": "trial-overlapping-trios",
       "name": "overlapping trios have different degrees",
       "kind": "trial",
       "visible": true,
@@ -281,7 +281,7 @@
       ]
     },
     {
-      "id": "real-almost-triangle",
+      "id": "trial-almost-triangle",
       "name": "two sides do not form a trio",
       "kind": "trial",
       "visible": true,

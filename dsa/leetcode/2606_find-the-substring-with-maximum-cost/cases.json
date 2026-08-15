@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-repeated-reset",
+      "id": "trial-repeated-reset",
       "name": "negative separators split positive runs",
       "kind": "trial",
       "visible": true,
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-positive-override",
+      "id": "trial-positive-override",
       "name": "positive override dominates defaults",
       "kind": "trial",
       "visible": true,
@@ -109,6 +109,42 @@
       "expected": 1052,
       "tags": [
         "positive-override"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "chars": "d",
+        "vals": [
+          -1000
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "chars": "d",
+        "vals": [
+          -1000
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

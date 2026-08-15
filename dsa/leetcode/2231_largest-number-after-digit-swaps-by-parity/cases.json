@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-parity-pattern",
+      "id": "trial-parity-pattern",
       "name": "the original parity pattern remains fixed",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-repeated-digits",
+      "id": "trial-repeated-digits",
       "name": "repeated values are handled independently",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "the legal upper bound is unchanged",
       "kind": "trial",
       "visible": true,

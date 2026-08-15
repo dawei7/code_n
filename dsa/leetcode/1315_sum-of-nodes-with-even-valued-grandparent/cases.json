@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "hidden-mixed-levels",
+      "id": "trial-mixed-levels",
       "name": "qualifying nodes at several depths",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "hidden-right-chain",
+      "id": "trial-right-chain",
       "name": "ancestry along a skewed tree",
       "kind": "trial",
       "visible": true,

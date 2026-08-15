@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-length-four",
+      "id": "trial-length-four",
       "name": "four equal digits would require two pairs",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-two-pairs",
+      "id": "trial-two-pairs",
       "name": "two separate pairs violate uniqueness",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-pair-and-triple",
+      "id": "trial-pair-and-triple",
       "name": "one pair followed by one triple is valid",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-triples-and-final-pair",
+      "id": "trial-triples-and-final-pair",
       "name": "several triples surround one final pair",
       "kind": "trial",
       "visible": true,
@@ -138,6 +138,34 @@
       "tags": [
         "multiple-runs",
         "single-pair"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

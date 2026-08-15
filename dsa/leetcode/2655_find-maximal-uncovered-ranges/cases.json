@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-adjacent",
+      "id": "trial-adjacent",
       "name": "adjacent coverage merges",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-single-uncovered",
+      "id": "trial-single-uncovered",
       "name": "one-index domain uncovered",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-single-covered",
+      "id": "trial-single-covered",
       "name": "one-index domain covered",
       "kind": "trial",
       "visible": true,
@@ -225,6 +225,39 @@
       "tags": [
         "minimum-n",
         "fully-covered"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "ranges": [
+          [
+            3,
+            5
+          ],
+          [
+            7,
+            8
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          2
+        ],
+        [
+          6,
+          6
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-boundary-ring",
+      "id": "trial-boundary-ring",
       "name": "cycle follows outer boundary",
       "kind": "trial",
       "visible": true,
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": "real-single-component-tree",
+      "id": "trial-single-component-tree",
       "name": "branching component without cycle",
       "kind": "trial",
       "visible": true,
@@ -271,7 +271,7 @@
       ]
     },
     {
-      "id": "real-cycle-late",
+      "id": "trial-cycle-late",
       "name": "cycle occurs in a later component",
       "kind": "trial",
       "visible": true,
@@ -311,7 +311,7 @@
       ]
     },
     {
-      "id": "real-three-sided-shape",
+      "id": "trial-three-sided-shape",
       "name": "open shape does not close",
       "kind": "trial",
       "visible": true,
@@ -345,7 +345,7 @@
       ]
     },
     {
-      "id": "real-multiple-cycles",
+      "id": "trial-multiple-cycles",
       "name": "dense component has several cycles",
       "kind": "trial",
       "visible": true,

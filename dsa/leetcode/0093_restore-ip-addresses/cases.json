@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "real-leading-zero",
+      "id": "trial-leading-zero",
       "name": "leading-zero constraints",
       "kind": "trial",
       "visible": true,

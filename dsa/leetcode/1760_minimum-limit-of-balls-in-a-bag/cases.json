@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-maximum-bag",
+      "id": "trial-maximum-bag",
       "name": "one split at the maximum bag value",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-equal-bags",
+      "id": "trial-equal-bags",
       "name": "each equal bag needs one split",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-mixed-threshold",
+      "id": "trial-mixed-threshold",
       "name": "several bags jointly determine feasibility",
       "kind": "trial",
       "visible": true,

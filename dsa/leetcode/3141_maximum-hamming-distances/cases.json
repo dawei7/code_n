@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-repeated-complement",
-      "name": "real: duplicate sources do not change distances",
+      "id": "trial-repeated-complement",
+      "name": "duplicate sources do not change distances",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -164,8 +164,8 @@
       ]
     },
     {
-      "id": "real-single-bit-neighborhood",
-      "name": "real: sparse values share nearby farthest choices",
+      "id": "trial-single-bit-neighborhood",
+      "name": "sparse values share nearby farthest choices",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -189,8 +189,8 @@
       ]
     },
     {
-      "id": "real-high-bit-leading-zero",
-      "name": "real: high bit differs from a low-width value",
+      "id": "trial-high-bit-leading-zero",
+      "name": "high bit differs from a low-width value",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -215,8 +215,8 @@
       ]
     },
     {
-      "id": "real-complete-two-bit-domain",
-      "name": "real: every two-bit value is present",
+      "id": "trial-complete-two-bit-domain",
+      "name": "every two-bit value is present",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -240,8 +240,8 @@
       ]
     },
     {
-      "id": "real-no-exact-complement",
-      "name": "real: nearest complement source is one step away",
+      "id": "trial-no-exact-complement",
+      "name": "nearest complement source is one step away",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -265,8 +265,8 @@
       ]
     },
     {
-      "id": "real-higher-bit-width",
-      "name": "real: complements at a higher bit width",
+      "id": "trial-higher-bit-width",
+      "name": "complements at a higher bit width",
       "kind": "trial",
       "visible": true,
       "input": {

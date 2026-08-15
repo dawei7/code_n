@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-zero-after-odd-negatives",
+      "id": "trial-zero-after-odd-negatives",
       "name": "late zero overrides a negative prefix",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-two-boundary-negatives",
+      "id": "trial-two-boundary-negatives",
       "name": "two minimum values make a positive sign",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-many-ones",
+      "id": "trial-many-ones",
       "name": "multiplicative identities preserve positive sign",
       "kind": "trial",
       "visible": true,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-alternating-signs",
+      "id": "trial-alternating-signs",
       "name": "five negatives remain negative",
       "kind": "trial",
       "visible": true,
@@ -194,6 +194,39 @@
       "tags": [
         "alternating",
         "odd-negatives"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-length-only",
+      "id": "trial-length-only",
       "name": "overlength password without repeat runs",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-long-run",
+      "id": "trial-long-run",
       "name": "deletion and replacement costs overlap",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "hidden-mixed-remainders",
+      "id": "trial-mixed-remainders",
       "name": "repeat runs have different deletion priorities",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "hidden-missing-classes",
+      "id": "trial-missing-classes",
       "name": "one long digit run lacks two classes",
       "kind": "trial",
       "visible": true,

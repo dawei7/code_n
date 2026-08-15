@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-middle-minimum",
+      "id": "trial-middle-minimum",
       "name": "minimum retained window is internal",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "maximum length with one move",
       "kind": "trial",
       "visible": true,
@@ -100143,6 +100143,29 @@
       "expected": 1,
       "tags": [
         "maximum"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cardPoints": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

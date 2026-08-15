@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "hidden-middle-successor",
+      "id": "trial-middle-successor",
       "name": "carry advances an earlier index",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "hidden-exhaustion",
+      "id": "trial-exhaustion",
       "name": "consume every pair",
       "kind": "trial",
       "visible": true,

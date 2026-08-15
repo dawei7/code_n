@@ -329,7 +329,7 @@
       }
     },
     {
-      "id": "real-missing-month",
+      "id": "trial-missing-month",
       "name": "customer with only June spending fails",
       "kind": "trial",
       "visible": true,
@@ -400,7 +400,7 @@
       }
     },
     {
-      "id": "real-duplicate-names",
+      "id": "trial-duplicate-names",
       "name": "customer identity is not the name",
       "kind": "trial",
       "visible": true,

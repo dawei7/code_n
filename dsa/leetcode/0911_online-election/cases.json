@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "maximum query time",
       "kind": "trial",
       "visible": true,
@@ -252,7 +252,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "queries in reverse order",
       "kind": "trial",
       "visible": true,
@@ -295,7 +295,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "leader survives minority votes",
       "kind": "trial",
       "visible": true,
@@ -334,7 +334,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "repeated tie changes",
       "kind": "trial",
       "visible": true,

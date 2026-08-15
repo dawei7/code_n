@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-complete-tie",
+      "id": "trial-complete-tie",
       "name": "six ballots tie every position",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "hidden-first-position",
+      "id": "trial-first-position",
       "name": "first-place majority dominates",
       "kind": "trial",
       "visible": true,

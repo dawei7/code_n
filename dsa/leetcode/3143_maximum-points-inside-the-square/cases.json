@@ -202,8 +202,8 @@
       ]
     },
     {
-      "id": "real-same-radius-duplicate",
-      "name": "real: duplicate tag on the nearest boundary",
+      "id": "trial-same-radius-duplicate",
+      "name": "duplicate tag on the nearest boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -230,8 +230,8 @@
       ]
     },
     {
-      "id": "real-unrelated-point-on-conflict-boundary",
-      "name": "real: unrelated point enters on the conflicting boundary",
+      "id": "trial-unrelated-point-on-conflict-boundary",
+      "name": "unrelated point enters on the conflicting boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -262,8 +262,8 @@
       ]
     },
     {
-      "id": "real-earliest-of-several-conflicts",
-      "name": "real: the earliest duplicate tag controls",
+      "id": "trial-earliest-of-several-conflicts",
+      "name": "the earliest duplicate tag controls",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -298,8 +298,8 @@
       ]
     },
     {
-      "id": "real-origin-tag-repeats-farther",
-      "name": "real: origin tag repeats at a later radius",
+      "id": "trial-origin-tag-repeats-farther",
+      "name": "origin tag repeats at a later radius",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -326,8 +326,8 @@
       ]
     },
     {
-      "id": "real-nearest-arrives-later-in-input",
-      "name": "real: a closer duplicate is processed later",
+      "id": "trial-nearest-arrives-later-in-input",
+      "name": "a closer duplicate is processed later",
       "kind": "trial",
       "visible": true,
       "input": {

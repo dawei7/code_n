@@ -127,8 +127,8 @@
       ]
     },
     {
-      "id": "real-identity-truthiness",
-      "name": "real: identity removes only zero",
+      "id": "trial-identity-truthiness",
+      "name": "identity removes only zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-even-indices",
-      "name": "real: numeric index is passed to callback",
+      "id": "trial-even-indices",
+      "name": "numeric index is passed to callback",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -180,8 +180,8 @@
       ]
     },
     {
-      "id": "real-strict-threshold",
-      "name": "real: threshold equality is excluded",
+      "id": "trial-strict-threshold",
+      "name": "threshold equality is excluded",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -204,8 +204,8 @@
       ]
     },
     {
-      "id": "real-no-matches",
-      "name": "real: callback rejects every item",
+      "id": "trial-no-matches",
+      "name": "callback rejects every item",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-leading-zero-before-one",
+      "id": "trial-leading-zero-before-one",
       "name": "zero cannot prefix a longer result",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-repeated-pattern",
+      "id": "trial-repeated-pattern",
       "name": "repeated mixed pattern creates duplicate index choices",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating bits",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-ten-ones",
+      "id": "trial-ten-ones",
       "name": "homogeneous repeated input",
       "kind": "trial",
       "visible": true,
@@ -168,6 +168,20 @@
       "tags": [
         "deduplication",
         "ones"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in binary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "binary": "000"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

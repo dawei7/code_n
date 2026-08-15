@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-rare-separator",
+      "id": "trial-rare-separator",
       "name": "rare separator divides valid blocks",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-no-valid",
+      "id": "trial-no-valid",
       "name": "no character reaches threshold",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "hidden-inner-optimum",
+      "id": "trial-inner-optimum",
       "name": "optimum excludes both ends",
       "kind": "trial",
       "visible": true,

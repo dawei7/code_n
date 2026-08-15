@@ -284,7 +284,7 @@
       ]
     },
     {
-      "id": "real-horizontal-restart",
+      "id": "trial-horizontal-restart",
       "name": "the row scan restarts after a damaging prefix",
       "kind": "trial",
       "visible": true,
@@ -318,7 +318,7 @@
       ]
     },
     {
-      "id": "real-negative-interior-singleton",
+      "id": "trial-negative-interior-singleton",
       "name": "the least negative interior cell is optimal",
       "kind": "trial",
       "visible": true,
@@ -360,7 +360,7 @@
       ]
     },
     {
-      "id": "real-two-rows",
+      "id": "trial-two-rows",
       "name": "two rows leave no strictly interior row",
       "kind": "trial",
       "visible": true,
@@ -392,7 +392,7 @@
       ]
     },
     {
-      "id": "real-two-columns",
+      "id": "trial-two-columns",
       "name": "two columns leave no strictly interior column",
       "kind": "trial",
       "visible": true,
@@ -430,7 +430,7 @@
       ]
     },
     {
-      "id": "real-row-column-tie",
+      "id": "trial-row-column-tie",
       "name": "equal best scores from different orientations are harmless",
       "kind": "trial",
       "visible": true,
@@ -463,7 +463,7 @@
       ]
     },
     {
-      "id": "real-all-maximum",
+      "id": "trial-all-maximum",
       "name": "an all-maximum rectangle favors its longer dimension",
       "kind": "trial",
       "visible": true,
@@ -509,7 +509,7 @@
       ]
     },
     {
-      "id": "real-all-minimum-two-rows",
+      "id": "trial-all-minimum-two-rows",
       "name": "all minimum values still require two shared cells",
       "kind": "trial",
       "visible": true,
@@ -543,7 +543,7 @@
       ]
     },
     {
-      "id": "real-singleton-versus-segments",
+      "id": "trial-singleton-versus-segments",
       "name": "an interior singleton defeats all adjacent pairs",
       "kind": "trial",
       "visible": true,

@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "hidden-five",
+      "id": "trial-five",
       "name": "up to five digits",
       "kind": "trial",
       "visible": true,
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "hidden-seven",
+      "id": "trial-seven",
       "name": "up to seven digits",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "hidden-maximum",
+      "id": "trial-maximum",
       "name": "maximum n",
       "kind": "trial",
       "visible": true,

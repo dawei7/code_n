@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-flat",
+      "id": "trial-flat",
       "name": "constant plateau",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "separated high peaks",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-late-mountain",
+      "id": "trial-late-mountain",
       "name": "flat prefix followed by mountain",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-boundary-mix",
+      "id": "trial-boundary-mix",
       "name": "minimum and maximum target values alternate",
       "kind": "trial",
       "visible": true,

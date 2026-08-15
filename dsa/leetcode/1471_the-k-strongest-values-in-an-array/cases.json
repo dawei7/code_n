@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-official-median-walkthrough",
+      "id": "trial-official-median-walkthrough",
       "name": "negative extreme outranks positive extreme",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-duplicates-across-median",
+      "id": "trial-duplicates-across-median",
       "name": "multiplicities survive endpoint selection",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-all-values",
+      "id": "trial-all-values",
       "name": "requesting the complete multiset",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-value-bounds",
+      "id": "trial-value-bounds",
       "name": "inclusive value bounds and tie-break",
       "kind": "trial",
       "visible": true,
@@ -249,6 +249,46 @@
       "tags": [
         "bounds",
         "tie-break"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1
+        ],
+        "k": 2
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

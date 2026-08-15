@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-long-word-cheaper",
-      "name": "real: one long word beats reusable pieces",
+      "id": "trial-long-word-cheaper",
+      "name": "one long word beats reusable pieces",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -177,8 +177,8 @@
       ]
     },
     {
-      "id": "real-impossible-suffix",
-      "name": "real: a valid prefix cannot cover the final suffix",
+      "id": "trial-impossible-suffix",
+      "name": "a valid prefix cannot cover the final suffix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -200,8 +200,8 @@
       ]
     },
     {
-      "id": "real-overlapping-not-allowed",
-      "name": "real: overlapping matches do not form a concatenation",
+      "id": "trial-overlapping-not-allowed",
+      "name": "overlapping matches do not form a concatenation",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -221,8 +221,8 @@
       ]
     },
     {
-      "id": "real-cost-tradeoff",
-      "name": "real: dynamic programming compares multiple split points",
+      "id": "trial-cost-tradeoff",
+      "name": "dynamic programming compares multiple split points",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -252,8 +252,8 @@
       ]
     },
     {
-      "id": "real-unused-word-longer",
-      "name": "real: oversized matching alternatives are ignored at boundaries",
+      "id": "trial-unused-word-longer",
+      "name": "oversized matching alternatives are ignored at boundaries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -277,8 +277,8 @@
       ]
     },
     {
-      "id": "real-many-lengths",
-      "name": "real: several dictionary lengths reach the same endpoint",
+      "id": "trial-many-lengths",
+      "name": "several dictionary lengths reach the same endpoint",
       "kind": "trial",
       "visible": true,
       "input": {

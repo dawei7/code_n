@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "hidden-unsorted",
+      "id": "trial-unsorted",
       "name": "unsorted times with wraparound minimum",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "hidden-adjacent",
+      "id": "trial-adjacent",
       "name": "ordinary adjacent minutes",
       "kind": "trial",
       "visible": true,

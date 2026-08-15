@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-overlap-fifteen",
+      "id": "trial-overlap-fifteen",
       "name": "common multiple is counted once",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-triple-overlap",
+      "id": "trial-triple-overlap",
       "name": "least common multiple of all divisors",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum upper bound",
       "kind": "trial",
       "visible": true,

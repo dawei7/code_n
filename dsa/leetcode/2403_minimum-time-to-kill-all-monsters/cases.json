@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-order-sensitive",
+      "id": "trial-order-sensitive",
       "name": "easy monster first halves the hard wait",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-mixed-ceilings",
+      "id": "trial-mixed-ceilings",
       "name": "several ceiling divisions interact",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-maximum-power",
+      "id": "trial-maximum-power",
       "name": "maximum power with one monster",
       "kind": "trial",
       "visible": true,

@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternate discarded and retained values",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-final-n",
+      "id": "trial-final-n",
       "name": "target ends at stream boundary",
       "kind": "trial",
       "visible": true,

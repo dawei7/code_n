@@ -147,8 +147,8 @@
       ]
     },
     {
-      "id": "real-powers-of-two",
-      "name": "real: every adjacent pair sets two bits",
+      "id": "trial-powers-of-two",
+      "name": "every adjacent pair sets two bits",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -175,8 +175,8 @@
       ]
     },
     {
-      "id": "real-overlapping-bits",
-      "name": "real: overlapping bits saturate pair results",
+      "id": "trial-overlapping-bits",
+      "name": "overlapping bits saturate pair results",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -197,8 +197,8 @@
       ]
     },
     {
-      "id": "real-alternating-extremes",
-      "name": "real: alternating zero and maximum",
+      "id": "trial-alternating-extremes",
+      "name": "alternating zero and maximum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -224,8 +224,8 @@
       ]
     },
     {
-      "id": "real-repeated-middle-value",
-      "name": "real: repeated values preserve the same mask",
+      "id": "trial-repeated-middle-value",
+      "name": "repeated values preserve the same mask",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -248,8 +248,8 @@
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "real: maximum legal array length",
+      "id": "trial-maximum-length",
+      "name": "maximum legal array length",
       "kind": "trial",
       "visible": true,
       "input": {

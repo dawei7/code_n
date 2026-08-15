@@ -82,8 +82,8 @@
       ]
     },
     {
-      "id": "real-all-target",
-      "name": "real: all elements already target",
+      "id": "trial-all-target",
+      "name": "all elements already target",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -102,8 +102,8 @@
       ]
     },
     {
-      "id": "real-one-source",
-      "name": "real: convert an entire equal array",
+      "id": "trial-one-source",
+      "name": "convert an entire equal array",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -123,8 +123,8 @@
       ]
     },
     {
-      "id": "real-target-penalties",
-      "name": "real: existing targets split source gains",
+      "id": "trial-target-penalties",
+      "name": "existing targets split source gains",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -144,8 +144,8 @@
       ]
     },
     {
-      "id": "real-separated-values",
-      "name": "real: distinct sources cannot combine",
+      "id": "trial-separated-values",
+      "name": "distinct sources cannot combine",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -166,8 +166,8 @@
       ]
     },
     {
-      "id": "real-keep-central-targets",
-      "name": "real: best gain avoids excessive penalties",
+      "id": "trial-keep-central-targets",
+      "name": "best gain avoids excessive penalties",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -188,8 +188,8 @@
       ]
     },
     {
-      "id": "real-full-domain",
-      "name": "real: values across the domain",
+      "id": "trial-full-domain",
+      "name": "values across the domain",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -212,6 +212,41 @@
       "tags": [
         "real",
         "boundaries"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

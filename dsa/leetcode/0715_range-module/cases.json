@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "re-add removed center",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "coordinate upper boundary",
       "kind": "trial",
       "visible": true,
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-3",
       "name": "nested add changes nothing",
       "kind": "trial",
       "visible": true,

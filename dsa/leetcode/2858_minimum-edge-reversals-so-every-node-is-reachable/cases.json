@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-forward-chain",
+      "id": "trial-forward-chain",
       "name": "answers increase along a forward chain",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-backward-chain",
+      "id": "trial-backward-chain",
       "name": "answers decrease along a backward chain",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-outward-star",
+      "id": "trial-outward-star",
       "name": "an outward center costs zero",
       "kind": "trial",
       "visible": true,
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-inward-star",
+      "id": "trial-inward-star",
       "name": "every edge points into the center",
       "kind": "trial",
       "visible": true,
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "id": "real-mixed-branched-tree",
+      "id": "trial-mixed-branched-tree",
       "name": "mixed directions reroot across several branches",
       "kind": "trial",
       "visible": true,

@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-power-related",
+      "id": "trial-power-related",
       "name": "multiple complete halvings",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-hundred",
+      "id": "trial-hundred",
       "name": "larger even count",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "hidden-odd-large",
+      "id": "trial-odd-large",
       "name": "large odd count",
       "kind": "trial",
       "visible": true,

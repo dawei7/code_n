@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "real-odd-middle",
+      "id": "trial-odd-middle",
       "name": "an odd middle player advances automatically",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-even-interior-opponents",
+      "id": "trial-even-interior-opponents",
       "name": "interior mirror positions are first-round opponents",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-six-variable",
+      "id": "trial-six-variable",
       "name": "unrelated outcomes vary a six-player meeting",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-twelve-wide-range",
+      "id": "trial-twelve-wide-range",
       "name": "a twelve-player bracket permits rounds two through four",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-maximum-adjacent",
+      "id": "trial-maximum-adjacent",
       "name": "adjacent edge players survive until the fifth round",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-maximum-variable",
+      "id": "trial-maximum-variable",
       "name": "maximum-size bracket spans rounds two through five",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "real-maximum-immediate",
+      "id": "trial-maximum-immediate",
       "name": "mirrored maximum-size positions meet at once",
       "kind": "trial",
       "visible": true,

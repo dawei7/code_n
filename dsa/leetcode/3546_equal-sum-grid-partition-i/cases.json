@@ -94,8 +94,8 @@
       ]
     },
     {
-      "id": "real-single-column",
-      "name": "real: single column permits only a horizontal cut",
+      "id": "trial-single-column",
+      "name": "single column permits only a horizontal cut",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -118,8 +118,8 @@
       ]
     },
     {
-      "id": "real-odd-total",
-      "name": "real: odd total cannot split equally",
+      "id": "trial-odd-total",
+      "name": "odd total cannot split equally",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -141,8 +141,8 @@
       ]
     },
     {
-      "id": "real-late-horizontal-boundary",
-      "name": "real: balancing horizontal cut follows multiple rows",
+      "id": "trial-late-horizontal-boundary",
+      "name": "balancing horizontal cut follows multiple rows",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -169,8 +169,8 @@
       ]
     },
     {
-      "id": "real-no-outer-edge-cut",
-      "name": "real: a section may not be empty",
+      "id": "trial-no-outer-edge-cut",
+      "name": "a section may not be empty",
       "kind": "trial",
       "visible": true,
       "input": {

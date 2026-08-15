@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-broken-outer",
+      "id": "trial-broken-outer",
       "name": "broken outer border leaves inner square",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-offset",
+      "id": "trial-offset",
       "name": "largest square is offset from origin",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-no-side-two",
+      "id": "trial-no-side-two",
       "name": "isolated ones only",
       "kind": "trial",
       "visible": true,

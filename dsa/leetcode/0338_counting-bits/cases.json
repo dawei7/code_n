@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "hidden-four-bit-block",
+      "id": "trial-four-bit-block",
       "name": "complete four-bit range",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "hidden-next-power",
+      "id": "trial-next-power",
       "name": "count resets at sixteen",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "hidden-five-bit-block",
+      "id": "trial-five-bit-block",
       "name": "complete five-bit range",
       "kind": "trial",
       "visible": true,

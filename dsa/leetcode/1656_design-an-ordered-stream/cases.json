@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-several-buffered",
+      "id": "trial-several-buffered",
       "name": "one insertion releases several buffered successors",
       "kind": "trial",
       "visible": true,
@@ -304,7 +304,7 @@
       ]
     },
     {
-      "id": "real-alternating-gaps",
+      "id": "trial-alternating-gaps",
       "name": "alternating gaps release staggered chunks",
       "kind": "trial",
       "visible": true,
@@ -372,7 +372,7 @@
       ]
     },
     {
-      "id": "real-last-arrives-early",
+      "id": "trial-last-arrives-early",
       "name": "final ID remains buffered behind earlier gaps",
       "kind": "trial",
       "visible": true,
@@ -433,7 +433,7 @@
       ]
     },
     {
-      "id": "real-duplicate-values",
+      "id": "trial-duplicate-values",
       "name": "equal strings remain distinct stream positions",
       "kind": "trial",
       "visible": true,
@@ -477,7 +477,7 @@
       ]
     },
     {
-      "id": "real-middle-gap-last",
+      "id": "trial-middle-gap-last",
       "name": "final call closes a middle gap and drains suffix",
       "kind": "trial",
       "visible": true,

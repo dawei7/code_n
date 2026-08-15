@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "hidden-b-anti-diagonal",
+      "id": "trial-b-anti-diagonal",
       "name": "B wins on the anti-diagonal",
       "kind": "trial",
       "visible": true,
@@ -224,7 +224,7 @@
       ]
     },
     {
-      "id": "hidden-eight-pending",
+      "id": "trial-eight-pending",
       "name": "eight occupied cells without a winner",
       "kind": "trial",
       "visible": true,

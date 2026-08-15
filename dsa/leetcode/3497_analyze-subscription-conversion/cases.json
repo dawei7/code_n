@@ -277,8 +277,8 @@
       ]
     },
     {
-      "id": "real-no-conversions",
-      "name": "real: no user has both stages",
+      "id": "trial-no-conversions",
+      "name": "no user has both stages",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -325,8 +325,8 @@
       ]
     },
     {
-      "id": "real-order-and-single-day-stages",
-      "name": "real: ordered users with one day per stage",
+      "id": "trial-order-and-single-day-stages",
+      "name": "ordered users with one day per stage",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "full reverse order",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "lower value blocked",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "late obstruction",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "longer mixed valid sequence",
       "kind": "trial",
       "visible": true,
@@ -225,6 +225,53 @@
       "expected": true,
       "tags": [
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in pushed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pushed": [
+          1
+        ],
+        "popped": [
+          4,
+          5,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in pushed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pushed": [
+          1,
+          1
+        ],
+        "popped": [
+          4,
+          5,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

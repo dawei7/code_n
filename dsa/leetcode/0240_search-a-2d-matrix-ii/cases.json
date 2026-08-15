@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "real-empty",
+      "id": "trial-empty",
       "name": "empty matrix",
       "kind": "trial",
       "visible": true,

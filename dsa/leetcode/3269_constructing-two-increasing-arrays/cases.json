@@ -145,8 +145,8 @@
       ]
     },
     {
-      "id": "real-all-zeroes",
-      "name": "real: two runs of even requirements",
+      "id": "trial-all-zeroes",
+      "name": "two runs of even requirements",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -169,8 +169,8 @@
       ]
     },
     {
-      "id": "real-all-ones",
-      "name": "real: two runs of odd requirements",
+      "id": "trial-all-ones",
+      "name": "two runs of odd requirements",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -193,8 +193,8 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "real: opposing alternating patterns",
+      "id": "trial-alternating",
+      "name": "opposing alternating patterns",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -222,8 +222,8 @@
       ]
     },
     {
-      "id": "real-blocks",
-      "name": "real: parity blocks create interleaving choices",
+      "id": "trial-blocks",
+      "name": "parity blocks create interleaving choices",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -251,8 +251,8 @@
       ]
     },
     {
-      "id": "real-mixed-twelve",
-      "name": "real: twelve mixed positions",
+      "id": "trial-mixed-twelve",
+      "name": "twelve mixed positions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -277,6 +277,24 @@
       "tags": [
         "mixed",
         "balanced"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums2",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [],
+        "nums2": [
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

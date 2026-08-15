@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-equal-plateau",
+      "id": "trial-equal-plateau",
       "name": "every tower belongs to the peak plateau",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-deep-valley",
+      "id": "trial-deep-valley",
       "name": "a deep valley separates tall regions",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "large values require a wide integer sum",
       "kind": "trial",
       "visible": true,

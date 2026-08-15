@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-impossible-skew",
+      "id": "trial-impossible-skew",
       "name": "one separator cannot hold all zeroes",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-symmetric-skew",
+      "id": "trial-symmetric-skew",
       "name": "symmetric lone-zero boundary",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-balanced-four",
+      "id": "trial-balanced-four",
       "name": "several runs can reach the limit",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-unbalanced-medium",
+      "id": "trial-unbalanced-medium",
       "name": "unequal counts with length-three runs",
       "kind": "trial",
       "visible": true,
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-modulo",
+      "id": "trial-modulo",
       "name": "large count requires modular arithmetic",
       "kind": "trial",
       "visible": true,

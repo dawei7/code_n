@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-extreme-values",
+      "id": "trial-extreme-values",
       "name": "full coordinate extremes",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-unsorted-many",
+      "id": "trial-unsorted-many",
       "name": "several minimum pairs from unsorted input",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-negative-only",
+      "id": "trial-negative-only",
       "name": "all values are negative",
       "kind": "trial",
       "visible": true,

@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "hidden-wide-bricks",
+      "id": "trial-wide-bricks",
       "name": "widths rather than indices determine edges",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "hidden-no-shared",
+      "id": "trial-no-shared",
       "name": "every internal edge is unique",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "hidden-outer-edge",
+      "id": "trial-outer-edge",
       "name": "the common right boundary is illegal",
       "kind": "trial",
       "visible": true,

@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-multiple-components",
+      "id": "trial-multiple-components",
       "name": "separate components optimize their sign counts independently",
       "kind": "trial",
       "visible": true,
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-parity-separated-components",
+      "id": "trial-parity-separated-components",
       "name": "components containing one parity do not improve the sum",
       "kind": "trial",
       "visible": true,
@@ -249,7 +249,7 @@
       ]
     },
     {
-      "id": "real-duplicate-values",
+      "id": "trial-duplicate-values",
       "name": "duplicate values remain valid component members",
       "kind": "trial",
       "visible": true,
@@ -278,7 +278,7 @@
       ]
     },
     {
-      "id": "real-odd-only-edge",
+      "id": "trial-odd-only-edge",
       "name": "an odd-only edge cannot move values to positive indices",
       "kind": "trial",
       "visible": true,
@@ -303,7 +303,7 @@
       ]
     },
     {
-      "id": "real-independent-pairs",
+      "id": "trial-independent-pairs",
       "name": "each cross-parity pair selects its larger positive value",
       "kind": "trial",
       "visible": true,

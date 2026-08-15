@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-count-transition",
+      "id": "trial-count-transition",
       "name": "removing one copy stops a value repeating",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-many-copies",
+      "id": "trial-many-copies",
       "name": "extra copies do not increase repeat-value count",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-separated-duplicates",
+      "id": "trial-separated-duplicates",
       "name": "distant copies constrain the window",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-k-covers-all",
+      "id": "trial-k-covers-all",
       "name": "k covers every repeated distinct value",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-high-values",
+      "id": "trial-high-values",
       "name": "values at the upper bound",
       "kind": "trial",
       "visible": true,
@@ -253,7 +253,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating groups create several feasible maxima",
       "kind": "trial",
       "visible": true,

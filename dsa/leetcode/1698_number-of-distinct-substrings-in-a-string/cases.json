@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-banana",
+      "id": "trial-banana",
       "name": "overlapping suffix patterns in banana",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-repeated-prefix",
+      "id": "trial-repeated-prefix",
       "name": "final character repeats the prefix",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-period-three",
+      "id": "trial-period-three",
       "name": "period-three string shares long substrings",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-clone-pattern",
+      "id": "trial-clone-pattern",
       "name": "repeated edge characters around a unique middle",
       "kind": "trial",
       "visible": true,
@@ -126,6 +126,20 @@
       "tags": [
         "clone",
         "repetition"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

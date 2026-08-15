@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-unmatched-two-regions",
+      "id": "trial-unmatched-two-regions",
       "name": "mismatches on both sides cannot form one block",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-parameter-swap",
+      "id": "trial-parameter-swap",
       "name": "either input may be the shorter sentence",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-repeated-overlap",
+      "id": "trial-repeated-overlap",
       "name": "repeated words do not double-count one position",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-case-sensitive",
+      "id": "trial-case-sensitive",
       "name": "capitalization changes word identity",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-single-word-prefix",
+      "id": "trial-single-word-prefix",
       "name": "a single first word can anchor an appended block",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "maximum-length repeated-word sentence",
       "kind": "trial",
       "visible": true,
@@ -179,6 +179,36 @@
       "tags": [
         "maximum-length",
         "repeated-words"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in sentence1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence1": "M",
+        "sentence2": "My Haley"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in sentence1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence1": "MMM",
+        "sentence2": "My Haley"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

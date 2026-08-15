@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-single-invalid",
+      "id": "trial-single-invalid",
       "name": "one invalid singleton",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-all-valid-duplicates",
+      "id": "trial-all-valid-duplicates",
       "name": "every duplicate-index subset is valid",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-none-valid",
+      "id": "trial-none-valid",
       "name": "smallest singleton already exceeds target",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "only the small boundary singleton is valid",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-modulo",
+      "id": "trial-modulo",
       "name": "large all-valid count is reduced modulo the modulus",
       "kind": "trial",
       "visible": true,

@@ -158,8 +158,8 @@
       ]
     },
     {
-      "id": "real-length-seven",
-      "name": "real: deeper prefixes prune consecutive-zero branches",
+      "id": "trial-length-seven",
+      "name": "deeper prefixes prune consecutive-zero branches",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -209,8 +209,8 @@
       ]
     },
     {
-      "id": "real-length-eight",
-      "name": "real: unordered output contains every unique result",
+      "id": "trial-length-eight",
+      "name": "unordered output contains every unique result",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -281,8 +281,8 @@
       ]
     },
     {
-      "id": "real-length-nine",
-      "name": "real: all strings preserve the local pair condition",
+      "id": "trial-length-nine",
+      "name": "all strings preserve the local pair condition",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -387,8 +387,8 @@
       ]
     },
     {
-      "id": "real-length-ten",
-      "name": "real: output-sensitive generation at ten bits",
+      "id": "trial-length-ten",
+      "name": "output-sensitive generation at ten bits",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -548,8 +548,8 @@
       ]
     },
     {
-      "id": "real-length-eleven",
-      "name": "real: recursive depth eleven",
+      "id": "trial-length-eleven",
+      "name": "recursive depth eleven",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -798,8 +798,8 @@
       ]
     },
     {
-      "id": "real-length-twelve",
-      "name": "real: larger valid-string family",
+      "id": "trial-length-twelve",
+      "name": "larger valid-string family",
       "kind": "trial",
       "visible": true,
       "input": {

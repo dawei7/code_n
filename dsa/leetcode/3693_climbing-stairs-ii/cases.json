@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-irregular-costs",
+      "id": "trial-irregular-costs",
       "name": "irregular costs require comparing all predecessors",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-all-maximum-costs",
+      "id": "trial-all-maximum-costs",
       "name": "all maximum landing costs favor fewer jumps",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-alternating-low-high",
+      "id": "trial-alternating-low-high",
       "name": "alternating costs mix one- and two-step choices",
       "kind": "trial",
       "visible": true,
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-cheap-even-steps",
+      "id": "trial-cheap-even-steps",
       "name": "cheap even steps compete with jump penalties",
       "kind": "trial",
       "visible": true,
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "real-expensive-blocks",
+      "id": "trial-expensive-blocks",
       "name": "expensive blocks require changing jump lengths",
       "kind": "trial",
       "visible": true,

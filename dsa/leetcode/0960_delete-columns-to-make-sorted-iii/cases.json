@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "every row strictly descending",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "nonadjacent compatible subsequence",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "duplicate plateaus remain",
       "kind": "trial",
       "visible": true,
@@ -149,6 +149,39 @@
       },
       "expected": 0,
       "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in strs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "strs": [
+          "babca"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in strs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "strs": [
+          "babca",
+          "babca"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

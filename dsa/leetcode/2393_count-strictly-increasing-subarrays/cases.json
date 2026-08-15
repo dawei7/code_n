@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-decreasing",
+      "id": "trial-decreasing",
       "name": "only singleton ranges qualify",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-several-runs",
+      "id": "trial-several-runs",
       "name": "triangular counts from several run lengths",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "upper-bound values preserve strict comparison",
       "kind": "trial",
       "visible": true,

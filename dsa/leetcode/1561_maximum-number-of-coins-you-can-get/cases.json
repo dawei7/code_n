@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-consecutive-twelve",
+      "id": "trial-consecutive-twelve",
       "name": "four consecutive groups",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-duplicates-across-ranks",
+      "id": "trial-duplicates-across-ranks",
       "name": "duplicates cross player boundaries",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-one-large",
+      "id": "trial-one-large",
       "name": "one pile is much larger",
       "kind": "trial",
       "visible": true,
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-unsorted-mixed",
+      "id": "trial-unsorted-mixed",
       "name": "arbitrary order and uneven gaps",
       "kind": "trial",
       "visible": true,
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "real-upper-values",
+      "id": "trial-upper-values",
       "name": "values near the source maximum",
       "kind": "trial",
       "visible": true,
@@ -254,6 +254,39 @@
         "real",
         "upper-bound",
         "two-groups"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in piles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "piles": [
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in piles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "piles": [
+          2,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

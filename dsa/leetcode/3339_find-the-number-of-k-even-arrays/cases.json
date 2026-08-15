@@ -99,8 +99,8 @@
       ]
     },
     {
-      "id": "real-one-qualifying-pair",
-      "name": "real: exactly one even-even adjacency among four positions",
+      "id": "trial-one-qualifying-pair",
+      "name": "exactly one even-even adjacency among four positions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -115,8 +115,8 @@
       ]
     },
     {
-      "id": "real-maximum-k",
-      "name": "real: every adjacent pair qualifies only for all-even arrays",
+      "id": "trial-maximum-k",
+      "name": "every adjacent pair qualifies only for all-even arrays",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -132,8 +132,8 @@
       ]
     },
     {
-      "id": "real-nontrivial-odd-domain",
-      "name": "real: odd domain size gives unequal parity choice counts",
+      "id": "trial-nontrivial-odd-domain",
+      "name": "odd domain size gives unequal parity choice counts",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -149,8 +149,8 @@
       ]
     },
     {
-      "id": "real-maximum-constraints",
-      "name": "real: maximum length and value domain",
+      "id": "trial-maximum-constraints",
+      "name": "maximum length and value domain",
       "kind": "trial",
       "visible": true,
       "input": {

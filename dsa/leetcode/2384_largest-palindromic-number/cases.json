@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-largest-leftover-center",
+      "id": "trial-largest-leftover-center",
       "name": "choose the largest leftover center",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-extra-zero-center",
+      "id": "trial-extra-zero-center",
       "name": "odd zero count supplies the center",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-no-pairs",
+      "id": "trial-no-pairs",
       "name": "select the largest single digit",
       "kind": "trial",
       "visible": true,

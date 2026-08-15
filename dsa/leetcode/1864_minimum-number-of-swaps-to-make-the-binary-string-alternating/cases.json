@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-single-one",
+      "id": "trial-single-one",
       "name": "one one is already alternating",
       "kind": "trial",
       "visible": true,
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-two-equal",
+      "id": "trial-two-equal",
       "name": "two equal characters cannot alternate",
       "kind": "trial",
       "visible": true,
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-forced-zero-start",
+      "id": "trial-forced-zero-start",
       "name": "extra zero forces the starting character",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-balanced-one-swap",
+      "id": "trial-balanced-one-swap",
       "name": "equal counts choose the cheaper target",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-nontrivial-permutation",
+      "id": "trial-nontrivial-permutation",
       "name": "scattered mismatches pair across the string",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-long-blocks",
+      "id": "trial-long-blocks",
       "name": "long balanced blocks require several swaps",
       "kind": "trial",
       "visible": true,
@@ -169,6 +169,20 @@
       "tags": [
         "blocks",
         "balanced"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111"
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

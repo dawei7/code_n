@@ -79,8 +79,8 @@
       ]
     },
     {
-      "id": "real-all-contain-zero",
-      "name": "real: every number contains a zero digit",
+      "id": "trial-all-contain-zero",
+      "name": "every number contains a zero digit",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -95,8 +95,8 @@
       ]
     },
     {
-      "id": "real-four-digit-block",
-      "name": "real: mixed four-digit interval",
+      "id": "trial-four-digit-block",
+      "name": "mixed four-digit interval",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -110,8 +110,8 @@
       ]
     },
     {
-      "id": "real-interior-range",
-      "name": "real: subtract two nontrivial three-digit prefix counts",
+      "id": "trial-interior-range",
+      "name": "subtract two nontrivial three-digit prefix counts",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -125,8 +125,8 @@
       ]
     },
     {
-      "id": "real-dense-nines",
-      "name": "real: three-digit interval ending in all nines",
+      "id": "trial-dense-nines",
+      "name": "three-digit interval ending in all nines",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,6 +138,36 @@
         "real",
         "three-digits",
         "all-nines"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value l=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 1,
+        "r": 20
+      },
+      "expected": 11,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value r=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 10,
+        "r": 1
+      },
+      "expected": -8,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

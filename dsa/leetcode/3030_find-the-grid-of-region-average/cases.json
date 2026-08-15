@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "real-partial-coverage",
+      "id": "trial-partial-coverage",
       "name": "pixels outside the only valid region retain their values",
       "kind": "trial",
       "visible": true,
@@ -326,7 +326,7 @@
       ]
     },
     {
-      "id": "real-zero-threshold",
+      "id": "trial-zero-threshold",
       "name": "zero threshold requires equality along every region edge",
       "kind": "trial",
       "visible": true,
@@ -378,7 +378,7 @@
       ]
     },
     {
-      "id": "real-second-floor",
+      "id": "trial-second-floor",
       "name": "overlapping region averages are floored before aggregation",
       "kind": "trial",
       "visible": true,
@@ -427,6 +427,59 @@
       ],
       "tags": [
         "two-stage-rounding"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value threshold=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "image": [
+          [
+            5,
+            6,
+            7,
+            10
+          ],
+          [
+            8,
+            9,
+            10,
+            10
+          ],
+          [
+            11,
+            12,
+            13,
+            10
+          ]
+        ],
+        "threshold": 1
+      },
+      "expected": [
+        [
+          5,
+          6,
+          7,
+          10
+        ],
+        [
+          8,
+          9,
+          10,
+          10
+        ],
+        [
+          11,
+          12,
+          13,
+          10
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -262,8 +262,8 @@
       ]
     },
     {
-      "id": "real-reuse-task-id",
-      "name": "real: a removed task ID is reused by a new user",
+      "id": "trial-reuse-task-id",
+      "name": "a removed task ID is reused by a new user",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -329,8 +329,8 @@
       ]
     },
     {
-      "id": "real-repeated-edits",
-      "name": "real: repeated edits leave several stale ranks",
+      "id": "trial-repeated-edits",
+      "name": "repeated edits leave several stale ranks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -387,8 +387,8 @@
       ]
     },
     {
-      "id": "real-zero-values",
-      "name": "real: zero-valued IDs and priorities remain valid",
+      "id": "trial-zero-values",
+      "name": "zero-valued IDs and priorities remain valid",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -431,8 +431,8 @@
       ]
     },
     {
-      "id": "real-maximum-priority",
-      "name": "real: maximum priorities still use task ID tie-breaking",
+      "id": "trial-maximum-priority",
+      "name": "maximum priorities still use task ID tie-breaking",
       "kind": "trial",
       "visible": true,
       "input": {

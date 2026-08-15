@@ -48,7 +48,7 @@
       ]
     },
     {
-      "id": "real-minimum-input",
+      "id": "trial-minimum-input",
       "name": "minimum input takes one operation",
       "kind": "trial",
       "visible": true,
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "real-zero-remainder-invalid",
+      "id": "trial-zero-remainder-invalid",
       "name": "adjusted zero cannot form positive powers",
       "kind": "trial",
       "visible": true,
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-negative-one-step",
+      "id": "trial-negative-one-step",
       "name": "negative term permits one operation",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-opposite-extrema",
+      "id": "trial-opposite-extrema",
       "name": "opposite signed value extrema",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-many-operations",
+      "id": "trial-many-operations",
       "name": "feasible positive term needs many operations",
       "kind": "trial",
       "visible": true,

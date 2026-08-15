@@ -125,8 +125,8 @@
       ]
     },
     {
-      "id": "real-single-impossible",
-      "name": "real: singleton remains one unit short",
+      "id": "trial-single-impossible",
+      "name": "singleton remains one unit short",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -148,8 +148,8 @@
       ]
     },
     {
-      "id": "real-consume-future-query",
-      "name": "real: an early irrelevant query still belongs to the prefix",
+      "id": "trial-consume-future-query",
+      "name": "an early irrelevant query still belongs to the prefix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -177,8 +177,8 @@
       ]
     },
     {
-      "id": "real-disjoint-sequence",
-      "name": "real: later index requires the second query",
+      "id": "trial-disjoint-sequence",
+      "name": "later index requires the second query",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -206,8 +206,8 @@
       ]
     },
     {
-      "id": "real-independent-amounts",
-      "name": "real: covered indices choose different amounts",
+      "id": "trial-independent-amounts",
+      "name": "covered indices choose different amounts",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -236,8 +236,8 @@
       ]
     },
     {
-      "id": "real-one-query",
-      "name": "real: one query covers the only positive value",
+      "id": "trial-one-query",
+      "name": "one query covers the only positive value",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -265,8 +265,8 @@
       ]
     },
     {
-      "id": "real-interior-hole",
-      "name": "real: ranges miss a positive interior index",
+      "id": "trial-interior-hole",
+      "name": "ranges miss a positive interior index",
       "kind": "trial",
       "visible": true,
       "input": {

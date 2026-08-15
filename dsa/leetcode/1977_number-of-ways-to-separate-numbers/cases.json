@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-increasing-digits",
+      "id": "trial-increasing-digits",
       "name": "several increasing partitions",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-internal-zero",
+      "id": "trial-internal-zero",
       "name": "zero may occur inside one number",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-repeated-nines",
+      "id": "trial-repeated-nines",
       "name": "repeated equal digits",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-long-increasing",
+      "id": "trial-long-increasing",
       "name": "longer increasing digit string",
       "kind": "trial",
       "visible": true,
@@ -138,6 +138,34 @@
       "tags": [
         "longer",
         "increasing"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "3"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "333"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

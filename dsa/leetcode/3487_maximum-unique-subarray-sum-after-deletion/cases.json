@@ -103,8 +103,8 @@
       ]
     },
     {
-      "id": "real-single-positive",
-      "name": "real: one positive element",
+      "id": "trial-single-positive",
+      "name": "one positive element",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -120,8 +120,8 @@
       ]
     },
     {
-      "id": "real-single-negative",
-      "name": "real: one negative element",
+      "id": "trial-single-negative",
+      "name": "one negative element",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -137,8 +137,8 @@
       ]
     },
     {
-      "id": "real-repeated-distinct-positives",
-      "name": "real: each positive value contributes once",
+      "id": "trial-repeated-distinct-positives",
+      "name": "each positive value contributes once",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -161,8 +161,8 @@
       ]
     },
     {
-      "id": "real-delete-between-kept-values",
-      "name": "real: deletions make separated positives adjacent",
+      "id": "trial-delete-between-kept-values",
+      "name": "deletions make separated positives adjacent",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -183,8 +183,8 @@
       ]
     },
     {
-      "id": "real-opposite-signs-are-distinct",
-      "name": "real: opposite signs are different values",
+      "id": "trial-opposite-signs-are-distinct",
+      "name": "opposite signs are different values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -204,8 +204,8 @@
       ]
     },
     {
-      "id": "real-boundary-duplicates",
-      "name": "real: boundary values and duplicates",
+      "id": "trial-boundary-duplicates",
+      "name": "boundary values and duplicates",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -224,8 +224,8 @@
       ]
     },
     {
-      "id": "real-order-does-not-restrict-selection",
-      "name": "real: arbitrary deletions remove intervening elements",
+      "id": "trial-order-does-not-restrict-selection",
+      "name": "arbitrary deletions remove intervening elements",
       "kind": "trial",
       "visible": true,
       "input": {

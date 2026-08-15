@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-many-trips",
+      "id": "trial-many-trips",
       "name": "coprime bus durations share a large target",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-overshoot",
+      "id": "trial-overshoot",
       "name": "earliest instant can exceed the target count",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-unsorted",
+      "id": "trial-unsorted",
       "name": "duration order does not affect the result",
       "kind": "trial",
       "visible": true,

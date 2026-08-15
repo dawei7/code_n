@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-all-chain-edges-free",
+      "id": "trial-all-chain-edges-free",
       "name": "enough hops for the entire chain",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-route-switch",
+      "id": "trial-route-switch",
       "name": "a hop changes the optimal route",
       "kind": "trial",
       "visible": true,
@@ -268,7 +268,7 @@
       ]
     },
     {
-      "id": "real-arbitrary-endpoints",
+      "id": "trial-arbitrary-endpoints",
       "name": "source and destination are interior labels",
       "kind": "trial",
       "visible": true,
@@ -311,7 +311,7 @@
       ]
     },
     {
-      "id": "real-cycle",
+      "id": "trial-cycle",
       "name": "cycle with competing free transitions",
       "kind": "trial",
       "visible": true,
@@ -349,7 +349,7 @@
       ]
     },
     {
-      "id": "real-unused-capacity",
+      "id": "trial-unused-capacity",
       "name": "extra hop budget does not require a detour",
       "kind": "trial",
       "visible": true,

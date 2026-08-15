@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-leading-one",
+      "id": "trial-maximum-leading-one",
       "name": "maximum input starts with the requested one",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-absent-two",
+      "id": "trial-maximum-absent-two",
       "name": "maximum input omits the requested digit",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "hidden-five-nines-no-zero",
+      "id": "trial-five-nines-no-zero",
       "name": "repeated nines do not contain zero",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "hidden-final-five",
+      "id": "trial-final-five",
       "name": "target in the least significant position is valid",
       "kind": "trial",
       "visible": true,
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "hidden-leading-one-with-distinct-tail",
+      "id": "trial-leading-one-with-distinct-tail",
       "name": "distinct trailing digits do not repair a leading target",
       "kind": "trial",
       "visible": true,
@@ -235,6 +235,21 @@
       "tags": [
         "leading-digit",
         "distinct-digits"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "x": 0
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-even-minimum-first",
+      "id": "trial-even-minimum-first",
       "name": "an odd value makes an even-minimum array impossible",
       "kind": "trial",
       "visible": true,
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "real-even-minimum-last",
+      "id": "trial-even-minimum-last",
       "name": "the forced minimum may appear last",
       "kind": "trial",
       "visible": true,
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "real-extreme-odd-minimum",
+      "id": "trial-extreme-odd-minimum",
       "name": "the smallest legal value anchors large inputs",
       "kind": "trial",
       "visible": true,
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "real-extreme-even-minimum",
+      "id": "trial-extreme-even-minimum",
       "name": "a large odd value cannot escape an even minimum",
       "kind": "trial",
       "visible": true,
@@ -284,7 +284,7 @@
       ]
     },
     {
-      "id": "real-irregular-feasible",
+      "id": "trial-irregular-feasible",
       "name": "irregular order with an odd minimum is feasible",
       "kind": "trial",
       "visible": true,
@@ -307,7 +307,7 @@
       ]
     },
     {
-      "id": "real-irregular-impossible",
+      "id": "trial-irregular-impossible",
       "name": "irregular mixed parity with an even minimum fails",
       "kind": "trial",
       "visible": true,
@@ -327,6 +327,39 @@
       "tags": [
         "irregular",
         "even-minimum"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

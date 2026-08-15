@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-maximum-input",
+      "id": "trial-maximum-input",
       "name": "the maximum input is a single component",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-separated-end-digits",
+      "id": "trial-separated-end-digits",
       "name": "zeros separate the highest and lowest components",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-alternating-digits",
+      "id": "trial-alternating-digits",
       "name": "alternating zeros omit every other position",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-all-nines",
+      "id": "trial-all-nines",
       "name": "every decimal position contributes at its maximum digit",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-sparse-middle-component",
+      "id": "trial-sparse-middle-component",
       "name": "sparse nonzero digits retain descending order",
       "kind": "trial",
       "visible": true,

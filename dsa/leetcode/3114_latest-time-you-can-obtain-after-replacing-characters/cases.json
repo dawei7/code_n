@@ -84,8 +84,8 @@
       ]
     },
     {
-      "id": "real-minute-tens",
-      "name": "real: hidden minute tens becomes five",
+      "id": "trial-minute-tens",
+      "name": "hidden minute tens becomes five",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -98,8 +98,8 @@
       ]
     },
     {
-      "id": "real-minute-ones",
-      "name": "real: hidden minute ones becomes nine",
+      "id": "trial-minute-ones",
+      "name": "hidden minute ones becomes nine",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -112,8 +112,8 @@
       ]
     },
     {
-      "id": "real-no-hidden-latest",
-      "name": "real: already-complete latest time remains unchanged",
+      "id": "trial-no-hidden-latest",
+      "name": "already-complete latest time remains unchanged",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -126,8 +126,8 @@
       ]
     },
     {
-      "id": "real-no-hidden-earliest",
-      "name": "real: already-complete earliest time remains unchanged",
+      "id": "trial-no-hidden-earliest",
+      "name": "already-complete earliest time remains unchanged",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -140,8 +140,8 @@
       ]
     },
     {
-      "id": "real-fixed-latest-minute",
-      "name": "real: fixed latest minute leaves only the hour to maximize",
+      "id": "trial-fixed-latest-minute",
+      "name": "fixed latest minute leaves only the hour to maximize",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -154,8 +154,8 @@
       ]
     },
     {
-      "id": "real-fixed-leading-one",
-      "name": "real: leading one chooses one for a hidden second digit",
+      "id": "trial-fixed-leading-one",
+      "name": "leading one chooses one for a hidden second digit",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -165,6 +165,34 @@
       "tags": [
         "real",
         "hour"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1"
+      },
+      "expected": "11:59",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111"
+      },
+      "expected": null,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

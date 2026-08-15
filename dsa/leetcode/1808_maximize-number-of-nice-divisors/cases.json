@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-divisible-by-three",
+      "id": "trial-divisible-by-three",
       "name": "budget divisible by three",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-remainder-one",
+      "id": "trial-remainder-one",
       "name": "larger remainder one budget",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-remainder-two",
+      "id": "trial-remainder-two",
       "name": "larger remainder two budget",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-modular-reduction",
+      "id": "trial-modular-reduction",
       "name": "moderate power requires modular reduction",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum legal budget",
       "kind": "trial",
       "visible": true,

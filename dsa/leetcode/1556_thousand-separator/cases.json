@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-one-digit",
+      "id": "trial-one-digit",
       "name": "one-digit positive value",
       "kind": "trial",
       "visible": true,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-before-transition",
+      "id": "trial-before-transition",
       "name": "last value without a separator",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-after-transition",
+      "id": "trial-after-transition",
       "name": "value just above one thousand",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-million-transition",
+      "id": "trial-million-transition",
       "name": "exact one million",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-internal-zeros",
+      "id": "trial-internal-zeros",
       "name": "zeros retained inside groups",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "maximum permitted integer",
       "kind": "trial",
       "visible": true,
@@ -174,6 +174,20 @@
         "real",
         "upper-bound",
         "three-separators"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": "1",
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

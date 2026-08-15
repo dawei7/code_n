@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-existing-suffix-reused",
+      "id": "trial-existing-suffix-reused",
       "name": "duplicate literal suffix becomes nested",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-gap-before-preoccupied",
+      "id": "trial-gap-before-preoccupied",
       "name": "choose free suffix before occupied larger suffix",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-parenthesized-literal",
+      "id": "trial-parenthesized-literal",
       "name": "parenthesized request is independent base",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-generated-then-requested",
+      "id": "trial-generated-then-requested",
       "name": "later request collides with generated name",
       "kind": "trial",
       "visible": true,
@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "suffix a maximum-length requested name",
       "kind": "trial",
       "visible": true,

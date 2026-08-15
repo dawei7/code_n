@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "real-duplicate-conflict",
+      "id": "trial-duplicate-conflict",
       "name": "duplicate block conflicts with next value",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-consecutive-chain",
+      "id": "trial-consecutive-chain",
       "name": "consecutive value chain",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-no-conflicts",
+      "id": "trial-no-conflicts",
       "name": "forbidden difference exceeds every pair gap",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-separate-conflict-chains",
+      "id": "trial-separate-conflict-chains",
       "name": "two independent difference chains",
       "kind": "trial",
       "visible": true,

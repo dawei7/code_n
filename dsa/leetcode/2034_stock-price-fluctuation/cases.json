@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-correct-both-extremes",
+      "id": "trial-correct-both-extremes",
       "name": "successive corrections invalidate both heap extremes",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-domain-boundaries",
+      "id": "trial-domain-boundaries",
       "name": "maximum timestamp and price bounds",
       "kind": "trial",
       "visible": true,
@@ -249,7 +249,7 @@
       ]
     },
     {
-      "id": "real-duplicate-prices",
+      "id": "trial-duplicate-prices",
       "name": "one correction preserves another equal price",
       "kind": "trial",
       "visible": true,

@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-low-fat-only",
+      "id": "trial-low-fat-only",
       "name": "low fat alone is insufficient",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-recyclable-only",
+      "id": "trial-recyclable-only",
       "name": "recyclable alone is insufficient",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-single-match",
+      "id": "trial-single-match",
       "name": "one qualifying product is projected",
       "kind": "trial",
       "visible": true,
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "real-unsorted-identifiers",
+      "id": "trial-unsorted-identifiers",
       "name": "input order does not affect membership",
       "kind": "trial",
       "visible": true,
@@ -260,7 +260,7 @@
       ]
     },
     {
-      "id": "real-many-nonmatches",
+      "id": "trial-many-nonmatches",
       "name": "qualifying rows remain among varied exclusions",
       "kind": "trial",
       "visible": true,

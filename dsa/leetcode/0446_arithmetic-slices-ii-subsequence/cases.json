@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "hidden-no-sequence",
+      "id": "trial-no-sequence",
       "name": "no three indices share a difference",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "hidden-overlapping",
+      "id": "trial-overlapping",
       "name": "arithmetic subsequences share endpoints",
       "kind": "trial",
       "visible": true,

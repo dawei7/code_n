@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-mixed-cycle-and-tail",
+      "id": "trial-mixed-cycle-and-tail",
       "name": "mixed windows repeat some displacement vectors",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-direction-blocks",
+      "id": "trial-direction-blocks",
       "name": "direction blocks generate six removed vectors",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-two-balanced-window-vectors",
+      "id": "trial-two-balanced-window-vectors",
       "name": "balanced length-four windows collapse into two vectors",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-alternating-cancellation",
+      "id": "trial-alternating-cancellation",
       "name": "every alternating pair has zero displacement",
       "kind": "trial",
       "visible": true,
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-partial-direction-blocks",
+      "id": "trial-partial-direction-blocks",
       "name": "windows crossing block boundaries stay distinct",
       "kind": "trial",
       "visible": true,
@@ -175,6 +175,36 @@
       "expected": 4,
       "tags": [
         "direction-blocks"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "L",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "LLL",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

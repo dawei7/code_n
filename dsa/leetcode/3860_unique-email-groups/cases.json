@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-plus-variants",
+      "id": "trial-plus-variants",
       "name": "distinct plus suffixes are ignored",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-different-domains",
+      "id": "trial-different-domains",
       "name": "equal local names do not merge different domains",
       "kind": "trial",
       "visible": true,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-case-collapse",
+      "id": "trial-case-collapse",
       "name": "both local and domain names are case-insensitive",
       "kind": "trial",
       "visible": true,
@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "real-digit-distinction",
+      "id": "trial-digit-distinction",
       "name": "digits remain part of the normalized local name",
       "kind": "trial",
       "visible": true,
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "real-exact-duplicates",
+      "id": "trial-exact-duplicates",
       "name": "repeated raw addresses remain one group",
       "kind": "trial",
       "visible": true,
@@ -236,7 +236,7 @@
       ]
     },
     {
-      "id": "real-dots-after-plus",
+      "id": "trial-dots-after-plus",
       "name": "punctuation after the first plus is irrelevant",
       "kind": "trial",
       "visible": true,
@@ -256,7 +256,7 @@
       ]
     },
     {
-      "id": "real-all-unique",
+      "id": "trial-all-unique",
       "name": "distinct normalized local-domain pairs stay separate",
       "kind": "trial",
       "visible": true,
@@ -275,6 +275,39 @@
       "tags": [
         "all-unique",
         "local-domain-pair"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in emails",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "emails": [
+          "test.email+alex@leetcode.com"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in emails",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "emails": [
+          "test.email+alex@leetcode.com",
+          "test.email+alex@leetcode.com"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

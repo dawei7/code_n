@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-later-losing-order",
+      "id": "trial-later-losing-order",
       "name": "a later residue-one order remains losing",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-maximum-order",
+      "id": "trial-maximum-order",
       "name": "the maximum legal order is winning",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-residue-five",
+      "id": "trial-residue-five",
       "name": "residue five is winning",
       "kind": "trial",
       "visible": true,

@@ -310,7 +310,7 @@
       ]
     },
     {
-      "id": "hidden-movie-average",
+      "id": "trial-movie-average",
       "name": "average not rating sum",
       "kind": "trial",
       "visible": true,
@@ -380,7 +380,7 @@
       ]
     },
     {
-      "id": "hidden-movie-lexical",
+      "id": "trial-movie-lexical",
       "name": "lexical movie tie-break",
       "kind": "trial",
       "visible": true,
@@ -440,7 +440,7 @@
       ]
     },
     {
-      "id": "hidden-output-order",
+      "id": "trial-output-order",
       "name": "user row precedes movie row",
       "kind": "trial",
       "visible": true,

@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-all-low-bits-differ",
+      "id": "trial-all-low-bits-differ",
       "name": "distribute every controllable bit",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-fixed-high-prefix",
+      "id": "trial-fixed-high-prefix",
       "name": "fixed high bits make one factor larger",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-fifty-equal-bits",
+      "id": "trial-fifty-equal-bits",
       "name": "fifty controllable equal bits",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-fifty-differing-bits",
+      "id": "trial-fifty-differing-bits",
       "name": "fifty controllable differing bits",
       "kind": "trial",
       "visible": true,
@@ -150,6 +150,38 @@
       "tags": [
         "maximum-n",
         "balancing"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value a=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": 5,
+        "n": 4
+      },
+      "expected": 165,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value b=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 12,
+        "b": 1,
+        "n": 4
+      },
+      "expected": 70,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

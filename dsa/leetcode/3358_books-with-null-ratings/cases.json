@@ -239,8 +239,8 @@
       ]
     },
     {
-      "id": "real-projection-and-order",
-      "name": "real: preserve text fields while excluding rating",
+      "id": "trial-projection-and-order",
+      "name": "preserve text fields while excluding rating",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -299,8 +299,8 @@
       ]
     },
     {
-      "id": "real-single-unrated-row",
-      "name": "real: one unrated book among rated neighbors",
+      "id": "trial-single-unrated-row",
+      "name": "one unrated book among rated neighbors",
       "kind": "trial",
       "visible": true,
       "input": {

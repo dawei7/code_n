@@ -279,7 +279,7 @@
       ]
     },
     {
-      "id": "real-transitive-chain",
+      "id": "trial-transitive-chain",
       "name": "alternating shared coordinates connect transitively",
       "kind": "trial",
       "visible": true,
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "id": "real-common-y",
+      "id": "trial-common-y",
       "name": "a repeated y-coordinate forms one component",
       "kind": "trial",
       "visible": true,
@@ -355,7 +355,7 @@
       ]
     },
     {
-      "id": "real-coordinate-boundaries",
+      "id": "trial-coordinate-boundaries",
       "name": "opposite coordinate bounds remain separate",
       "kind": "trial",
       "visible": true,
@@ -381,7 +381,7 @@
       ]
     },
     {
-      "id": "real-cycle-and-pair",
+      "id": "trial-cycle-and-pair",
       "name": "a four-point cycle joins a separate pair",
       "kind": "trial",
       "visible": true,
@@ -423,7 +423,7 @@
       ]
     },
     {
-      "id": "real-duplicate-axis-values",
+      "id": "trial-duplicate-axis-values",
       "name": "repeated x and y values merge several groups",
       "kind": "trial",
       "visible": true,

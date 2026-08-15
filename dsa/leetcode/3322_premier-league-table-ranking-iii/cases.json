@@ -418,8 +418,8 @@
       ]
     },
     {
-      "id": "real-independent-seasons",
-      "name": "real: positions restart and seasons sort",
+      "id": "trial-independent-seasons",
+      "name": "positions restart and seasons sort",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -522,8 +522,8 @@
       ]
     },
     {
-      "id": "real-zero-record",
-      "name": "real: zero match statistics remain valid",
+      "id": "trial-zero-record",
+      "name": "zero match statistics remain valid",
       "kind": "trial",
       "visible": true,
       "input": {

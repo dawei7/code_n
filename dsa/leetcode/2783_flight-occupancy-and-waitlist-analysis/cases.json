@@ -237,7 +237,7 @@
       ]
     },
     {
-      "id": "real-order-and-counts",
+      "id": "trial-order-and-counts",
       "name": "unsorted flights with every occupancy state",
       "kind": "trial",
       "visible": true,
@@ -313,7 +313,7 @@
       ]
     },
     {
-      "id": "real-only-orphans",
+      "id": "trial-only-orphans",
       "name": "passenger table contains only unmatched flights",
       "kind": "trial",
       "visible": true,

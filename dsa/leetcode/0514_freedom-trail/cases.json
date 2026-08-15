@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-alternating",
+      "id": "trial-alternating",
       "name": "choose among repeated occurrences",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-reverse",
+      "id": "trial-reverse",
       "name": "several counterclockwise moves",
       "kind": "trial",
       "visible": true,

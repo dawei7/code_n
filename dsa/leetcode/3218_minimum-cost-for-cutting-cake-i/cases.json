@@ -127,8 +127,8 @@
       ]
     },
     {
-      "id": "real-unsorted-costs",
-      "name": "real: merge two unsorted cost collections",
+      "id": "trial-unsorted-costs",
+      "name": "merge two unsorted cost collections",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -150,8 +150,8 @@
       ]
     },
     {
-      "id": "real-maximum-costs",
-      "name": "real: maximum costs occur in both orientations",
+      "id": "trial-maximum-costs",
+      "name": "maximum costs occur in both orientations",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -173,8 +173,8 @@
       ]
     },
     {
-      "id": "real-expensive-vertical",
-      "name": "real: one expensive vertical cut comes first",
+      "id": "trial-expensive-vertical",
+      "name": "one expensive vertical cut comes first",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -196,8 +196,8 @@
       ]
     },
     {
-      "id": "real-expensive-horizontal",
-      "name": "real: one expensive horizontal cut comes first",
+      "id": "trial-expensive-horizontal",
+      "name": "one expensive horizontal cut comes first",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -219,8 +219,8 @@
       ]
     },
     {
-      "id": "real-interleaved-order",
-      "name": "real: optimal order alternates orientations",
+      "id": "trial-interleaved-order",
+      "name": "optimal order alternates orientations",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -243,8 +243,8 @@
       ]
     },
     {
-      "id": "real-larger-square",
-      "name": "real: mixed costs on a larger square",
+      "id": "trial-larger-square",
+      "name": "mixed costs on a larger square",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -266,6 +266,50 @@
       "expected": 100,
       "tags": [
         "mixed-costs"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value m=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 2,
+        "horizontalCut": [
+          1,
+          3
+        ],
+        "verticalCut": [
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 1,
+        "horizontalCut": [
+          1,
+          3
+        ],
+        "verticalCut": [
+          5
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

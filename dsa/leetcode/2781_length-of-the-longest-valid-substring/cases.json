@@ -146,7 +146,7 @@
       "expected": 10
     },
     {
-      "id": "real-separated-hits",
+      "id": "trial-separated-hits",
       "name": "valid region after an early forbidden hit",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       "expected": 4
     },
     {
-      "id": "real-mixed-patterns",
+      "id": "trial-mixed-patterns",
       "name": "several forbidden lengths and positions",
       "kind": "trial",
       "visible": true,
@@ -178,6 +178,42 @@
         "mixed"
       ],
       "expected": 5
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "c",
+        "forbidden": [
+          "aaa",
+          "cb"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "ccc",
+        "forbidden": [
+          "aaa",
+          "cb"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

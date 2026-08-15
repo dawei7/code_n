@@ -101,8 +101,8 @@
       ]
     },
     {
-      "id": "real-singletons",
-      "name": "real: every element must be its own part",
+      "id": "trial-singletons",
+      "name": "every element must be its own part",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "real: repeated values create several zero XOR choices",
+      "id": "trial-all-equal",
+      "name": "repeated values create several zero XOR choices",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -145,8 +145,8 @@
       ]
     },
     {
-      "id": "real-non-greedy-cuts",
-      "name": "real: the best cut is not determined by segment length",
+      "id": "trial-non-greedy-cuts",
+      "name": "the best cut is not determined by segment length",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -168,8 +168,8 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: large values exercise the full XOR range",
+      "id": "trial-large-values",
+      "name": "large values exercise the full XOR range",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -188,8 +188,8 @@
       ]
     },
     {
-      "id": "real-many-parts",
-      "name": "real: several part counts compete across prefixes",
+      "id": "trial-many-parts",
+      "name": "several part counts compete across prefixes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -210,6 +210,24 @@
         "real",
         "many-parts",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

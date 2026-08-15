@@ -54,7 +54,7 @@
       ]
     },
     {
-      "id": "real-limit",
+      "id": "trial-limit",
       "name": "largest legal staircase",
       "kind": "trial",
       "visible": true,

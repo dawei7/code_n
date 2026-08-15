@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-ten-to-nine",
+      "id": "trial-ten-to-nine",
       "name": "deleting at count ten crosses a digit threshold",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-hundred-to-ninety-nine",
+      "id": "trial-hundred-to-ninety-nine",
       "name": "deleting at count one hundred crosses a digit threshold",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-one-middle-remains",
+      "id": "trial-one-middle-remains",
       "name": "insufficient budget leaves a middle singleton",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-threshold-or-tail",
+      "id": "trial-threshold-or-tail",
       "name": "either deletion keeps the same optimum length",
       "kind": "trial",
       "visible": true,
@@ -156,6 +156,36 @@
         "real",
         "threshold-10",
         "alternative-optima"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

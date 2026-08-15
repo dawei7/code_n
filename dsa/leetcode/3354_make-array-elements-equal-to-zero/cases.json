@@ -78,8 +78,8 @@
       ]
     },
     {
-      "id": "real-two-one-off-zeroes",
-      "name": "real: two zeroes each permit one direction",
+      "id": "trial-two-one-off-zeroes",
+      "name": "two zeroes each permit one direction",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -96,8 +96,8 @@
       ]
     },
     {
-      "id": "real-all-zeroes",
-      "name": "real: every zero and direction succeeds",
+      "id": "trial-all-zeroes",
+      "name": "every zero and direction succeeds",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -115,8 +115,8 @@
       ]
     },
     {
-      "id": "real-left-larger",
-      "name": "real: only the left-first direction succeeds",
+      "id": "trial-left-larger",
+      "name": "only the left-first direction succeeds",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -133,8 +133,8 @@
       ]
     },
     {
-      "id": "real-right-larger",
-      "name": "real: only the right-first direction succeeds",
+      "id": "trial-right-larger",
+      "name": "only the right-first direction succeeds",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -151,8 +151,8 @@
       ]
     },
     {
-      "id": "real-separated-balanced-zeroes",
-      "name": "real: two balanced zero positions",
+      "id": "trial-separated-balanced-zeroes",
+      "name": "two balanced zero positions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -170,8 +170,8 @@
       ]
     },
     {
-      "id": "real-constraint-values",
-      "name": "real: balanced maximum values",
+      "id": "trial-constraint-values",
+      "name": "balanced maximum values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -185,6 +185,39 @@
       "tags": [
         "value-boundary",
         "balanced"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -129,8 +129,8 @@
       ]
     },
     {
-      "id": "real-duplicates-expand",
-      "name": "real: strict expansion handles duplicate boundary values",
+      "id": "trial-duplicates-expand",
+      "name": "strict expansion handles duplicate boundary values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -153,8 +153,8 @@
       ]
     },
     {
-      "id": "real-mixed-window-widths",
-      "name": "real: answer widths vary across overlapping windows",
+      "id": "trial-mixed-window-widths",
+      "name": "answer widths vary across overlapping windows",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -182,8 +182,8 @@
       ]
     },
     {
-      "id": "real-equal-inversion-core",
-      "name": "real: equal values surround an inversion core",
+      "id": "trial-equal-inversion-core",
+      "name": "equal values surround an inversion core",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -210,8 +210,8 @@
       ]
     },
     {
-      "id": "real-descending-three",
-      "name": "real: a decreasing triple needs all three positions",
+      "id": "trial-descending-three",
+      "name": "a decreasing triple needs all three positions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -232,8 +232,8 @@
       ]
     },
     {
-      "id": "real-sorted-and-unsorted-neighbors",
-      "name": "real: sorted window lies between unsorted neighbors",
+      "id": "trial-sorted-and-unsorted-neighbors",
+      "name": "sorted window lies between unsorted neighbors",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -257,6 +257,41 @@
         "real",
         "already-sorted",
         "overlap"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 3
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

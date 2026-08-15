@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-interior-pair",
+      "id": "trial-interior-pair",
       "name": "a two-element suffix is better than the unbalanced full array",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "both value-boundary parities are tracked by last occurrence",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-long-duplicate-runs",
+      "id": "trial-long-duplicate-runs",
       "name": "duplicate runs can make a long balanced subarray",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "real-distinct-balanced",
+      "id": "trial-distinct-balanced",
       "name": "four distinct values of each parity balance the whole array",
       "kind": "trial",
       "visible": true,
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "real-last-occurrence-shifts",
+      "id": "trial-last-occurrence-shifts",
       "name": "repeated values change only a suffix of left-endpoint balances",
       "kind": "trial",
       "visible": true,
@@ -285,6 +285,23 @@
       },
       "tags": [
         "last-occurrence",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

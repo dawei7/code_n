@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-grandchildren",
+      "id": "trial-grandchildren",
       "name": "root plus four grandchildren wins",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "hidden-children",
+      "id": "trial-children",
       "name": "both children beat root",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "hidden-mixed-depth",
+      "id": "trial-mixed-depth",
       "name": "choices differ across branches",
       "kind": "trial",
       "visible": true,

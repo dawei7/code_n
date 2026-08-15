@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-both-sides-cross",
+      "id": "trial-both-sides-cross",
       "name": "middle counts require both directions",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-unrelated-label-order",
+      "id": "trial-unrelated-label-order",
       "name": "value labels do not determine position order",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-rotation",
+      "id": "trial-rotation",
       "name": "rotation preserves only one triple",
       "kind": "trial",
       "visible": true,

@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-terminal-wins",
+      "id": "trial-terminal-wins",
       "name": "the terminal window exceeds short internal gaps",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-leap-day-users",
+      "id": "trial-leap-day-users",
       "name": "leap-day arithmetic and user partitions stay independent",
       "kind": "trial",
       "visible": true,

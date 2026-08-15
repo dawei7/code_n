@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-nonsquare-composite",
+      "id": "trial-nonsquare-composite",
       "name": "a composite nonsquare cannot have exactly three divisors",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-larger-prime-square",
+      "id": "trial-larger-prime-square",
       "name": "forty-nine is the square of prime seven",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-maximum-boundary",
+      "id": "trial-maximum-boundary",
       "name": "ten thousand is a composite square",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-largest-prime-square",
+      "id": "trial-largest-prime-square",
       "name": "ninety-seven squared qualifies near the upper bound",
       "kind": "trial",
       "visible": true,

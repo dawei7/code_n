@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-triple",
+      "id": "trial-triple",
       "name": "three equal copies",
       "kind": "trial",
       "visible": true,

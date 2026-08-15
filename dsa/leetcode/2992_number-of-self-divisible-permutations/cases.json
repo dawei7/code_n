@@ -68,8 +68,8 @@
       ]
     },
     {
-      "id": "real-eleven",
-      "name": "real: odd near-maximum size",
+      "id": "trial-eleven",
+      "name": "odd near-maximum size",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -81,8 +81,8 @@
       ]
     },
     {
-      "id": "real-twelve",
-      "name": "real: maximum size",
+      "id": "trial-twelve",
+      "name": "maximum size",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-single-character",
+      "id": "trial-single-character",
       "name": "one character always satisfies the order",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-late-violation",
+      "id": "trial-late-violation",
       "name": "one final a invalidates a long prefix",
       "kind": "trial",
       "visible": true,
@@ -94,6 +94,20 @@
       "expected": false,
       "tags": [
         "late-violation"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

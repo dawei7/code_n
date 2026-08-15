@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "hidden-tradeoff",
+      "id": "trial-tradeoff",
       "name": "several small strings beat one large string",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "hidden-duplicate-items",
+      "id": "trial-duplicate-items",
       "name": "duplicate strings are separate items",
       "kind": "trial",
       "visible": true,

@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-vertical",
+      "id": "trial-vertical",
       "name": "only adjacent points on one vertical line are empty",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-corners",
+      "id": "trial-corners",
       "name": "four corners expose three empty boundary pairs",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-mixed",
+      "id": "trial-mixed",
       "name": "mixed visible frontier and blockers",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "real-coordinate-boundaries",
+      "id": "trial-coordinate-boundaries",
       "name": "coordinate extrema form a valid pair",
       "kind": "trial",
       "visible": true,

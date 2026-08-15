@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-repeated-groups",
+      "id": "trial-repeated-groups",
       "name": "every ordered vowel group has repetitions",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-skipped-vowel-then-valid",
+      "id": "trial-skipped-vowel-then-valid",
       "name": "a skipped group is followed by a valid run",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-two-valid-runs",
+      "id": "trial-two-valid-runs",
       "name": "choose the longer of two beautiful runs",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-only-u",
+      "id": "trial-only-u",
       "name": "repeated final vowel alone is not beautiful",
       "kind": "trial",
       "visible": true,
@@ -140,6 +140,20 @@
       "tags": [
         "single-vowel-kind",
         "missing-vowels"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaa"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

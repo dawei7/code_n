@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "hidden-equal-nonzero",
+      "id": "trial-equal-nonzero",
       "name": "equal nonzero values are not doubles",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "hidden-negative-none",
+      "id": "trial-negative-none",
       "name": "mixed signs without a pair",
       "kind": "trial",
       "visible": true,
@@ -145,6 +145,39 @@
       "expected": false,
       "tags": [
         "none"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          10
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          10,
+          10
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

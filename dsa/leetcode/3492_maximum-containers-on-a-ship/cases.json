@@ -83,8 +83,8 @@
       ]
     },
     {
-      "id": "real-floor-division",
-      "name": "real: leftover capacity cannot hold another container",
+      "id": "trial-floor-division",
+      "name": "leftover capacity cannot hold another container",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -100,8 +100,8 @@
       ]
     },
     {
-      "id": "real-deck-one-cell",
-      "name": "real: abundant capacity cannot exceed one deck cell",
+      "id": "trial-deck-one-cell",
+      "name": "abundant capacity cannot exceed one deck cell",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -117,8 +117,8 @@
       ]
     },
     {
-      "id": "real-maximum-deck-and-weight",
-      "name": "real: maximum deck and capacity permit every cell",
+      "id": "trial-maximum-deck-and-weight",
+      "name": "maximum deck and capacity permit every cell",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -134,8 +134,8 @@
       ]
     },
     {
-      "id": "real-large-deck-small-capacity",
-      "name": "real: large deck with sharply limiting capacity",
+      "id": "trial-large-deck-small-capacity",
+      "name": "large deck with sharply limiting capacity",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -148,6 +148,38 @@
         "real",
         "maximum-deck",
         "weight-limit"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "w": 3,
+        "maxWeight": 15
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value w=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "w": 1,
+        "maxWeight": 15
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

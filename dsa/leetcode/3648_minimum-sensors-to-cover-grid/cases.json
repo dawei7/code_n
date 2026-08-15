@@ -83,8 +83,8 @@
       ]
     },
     {
-      "id": "real-one-dimensional-row",
-      "name": "real: one-row grid reduces to column bands",
+      "id": "trial-one-dimensional-row",
+      "name": "one-row grid reduces to column bands",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -99,8 +99,8 @@
       ]
     },
     {
-      "id": "real-one-dimensional-column",
-      "name": "real: one-column grid reduces to row bands",
+      "id": "trial-one-dimensional-column",
+      "name": "one-column grid reduces to row bands",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -115,8 +115,8 @@
       ]
     },
     {
-      "id": "real-partial-final-bands",
-      "name": "real: both dimensions end with partial bands",
+      "id": "trial-partial-final-bands",
+      "name": "both dimensions end with partial bands",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -131,8 +131,8 @@
       ]
     },
     {
-      "id": "real-rectangular",
-      "name": "real: rectangular dimensions need different counts",
+      "id": "trial-rectangular",
+      "name": "rectangular dimensions need different counts",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -147,8 +147,8 @@
       ]
     },
     {
-      "id": "real-maximum-grid-zero-radius",
-      "name": "real: maximum grid with zero radius",
+      "id": "trial-maximum-grid-zero-radius",
+      "name": "maximum grid with zero radius",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -164,8 +164,8 @@
       ]
     },
     {
-      "id": "real-maximum-radius",
-      "name": "real: maximum radius covers maximum grid",
+      "id": "trial-maximum-radius",
+      "name": "maximum radius covers maximum grid",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -177,6 +177,38 @@
       "tags": [
         "real",
         "maximum-radius"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "m": 5,
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value m=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "m": 1,
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

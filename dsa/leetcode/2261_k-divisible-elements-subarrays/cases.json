@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-all-divisible",
+      "id": "trial-all-divisible",
       "name": "only singleton length remains under a one-element limit",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-none-divisible",
+      "id": "trial-none-divisible",
       "name": "distinct increasing values yield every subarray",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-overlapping-pattern",
+      "id": "trial-overlapping-pattern",
       "name": "overlapping alternating sequences merge by value path",
       "kind": "trial",
       "visible": true,
@@ -162,6 +162,43 @@
       "tags": [
         "overlap",
         "pattern"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ],
+        "k": 2,
+        "p": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "k": 2,
+        "p": 2
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

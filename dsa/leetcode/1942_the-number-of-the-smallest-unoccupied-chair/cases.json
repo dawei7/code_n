@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-multiple-same-departures",
+      "id": "trial-multiple-same-departures",
       "name": "all chairs leaving together are released",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-index-not-arrival-order",
+      "id": "trial-index-not-arrival-order",
       "name": "friend indices differ from arrival order",
       "kind": "trial",
       "visible": true,
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": "real-gap-in-occupied-chairs",
+      "id": "trial-gap-in-occupied-chairs",
       "name": "target fills the smallest internal chair gap",
       "kind": "trial",
       "visible": true,
@@ -276,7 +276,7 @@
       ]
     },
     {
-      "id": "real-reuse-after-several-waves",
+      "id": "trial-reuse-after-several-waves",
       "name": "repeated departures and arrivals preserve chair priority",
       "kind": "trial",
       "visible": true,

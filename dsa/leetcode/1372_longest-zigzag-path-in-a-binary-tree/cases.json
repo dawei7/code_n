@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "hidden-straight-right",
+      "id": "trial-straight-right",
       "name": "straight right chain",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "hidden-alternating-six",
+      "id": "trial-alternating-six",
       "name": "six-node alternating chain",
       "kind": "trial",
       "visible": true,

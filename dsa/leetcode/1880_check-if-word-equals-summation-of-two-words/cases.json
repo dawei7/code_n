@@ -66,7 +66,7 @@
       ]
     },
     {
-      "id": "real-zero-addend",
+      "id": "trial-zero-addend",
       "name": "zero leaves the other addend unchanged",
       "kind": "trial",
       "visible": true,
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "id": "real-carry",
+      "id": "trial-carry",
       "name": "decimal addition carries into a new position",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-leading-zero-prefix",
+      "id": "trial-leading-zero-prefix",
       "name": "several leading zero digits are ignored numerically",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-false-concatenation",
+      "id": "trial-false-concatenation",
       "name": "concatenating addends is not decimal addition",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-long-carry",
+      "id": "trial-long-carry",
       "name": "nine-eight-nine plus one equals nine-nine-zero",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "eight-digit maximum is preserved by adding zero",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-order-sensitive",
+      "id": "trial-order-sensitive",
       "name": "reversed letters produce different place values",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-two-addends",
+      "id": "trial-two-addends",
       "name": "four-digit values add with aligned place values",
       "kind": "trial",
       "visible": true,
@@ -184,6 +184,38 @@
       "expected": true,
       "tags": [
         "multi-digit"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in firstWord",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "firstWord": "a",
+        "secondWord": "cba",
+        "targetWord": "cdb"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in firstWord",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "firstWord": "aaa",
+        "secondWord": "cba",
+        "targetWord": "cdb"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

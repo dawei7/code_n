@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-one-unit-orders",
+      "id": "trial-one-unit-orders",
       "name": "steady arrivals keep one-unit orders idle-free",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-backlog-clears",
+      "id": "trial-backlog-clears",
       "name": "a long gap clears an earlier backlog",
       "kind": "trial",
       "visible": true,
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "maximum arrival and preparation values remain valid",
       "kind": "trial",
       "visible": true,
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "real-fractional",
+      "id": "trial-fractional",
       "name": "result requires a non-integer average",
       "kind": "trial",
       "visible": true,

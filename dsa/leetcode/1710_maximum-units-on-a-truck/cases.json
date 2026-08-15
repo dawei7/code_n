@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-unsorted-values",
+      "id": "trial-unsorted-values",
       "name": "input order does not determine loading priority",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-exact-capacity-boundary",
+      "id": "trial-exact-capacity-boundary",
       "name": "capacity ends exactly after a type",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-single-type-partial",
+      "id": "trial-single-type-partial",
       "name": "a single abundant type is partially loaded",
       "kind": "trial",
       "visible": true,
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "real-do-not-expand",
+      "id": "trial-do-not-expand",
       "name": "large counts are aggregated by multiplication",
       "kind": "trial",
       "visible": true,
@@ -272,6 +272,34 @@
       "tags": [
         "large-counts",
         "partial-type"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value truckSize=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "boxTypes": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "truckSize": 1
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-balanced-mixed",
+      "id": "trial-balanced-mixed",
       "name": "separated mixed-case vowels balance across halves",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-first-heavy",
+      "id": "trial-first-heavy",
       "name": "first half contains three distinct vowels",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-second-heavy",
+      "id": "trial-second-heavy",
       "name": "second half contains repeated uppercase vowels",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-unequal-subtle",
+      "id": "trial-unequal-subtle",
       "name": "one repeated vowel separates otherwise similar halves",
       "kind": "trial",
       "visible": true,
@@ -140,6 +140,34 @@
       "tags": [
         "repeated-vowel",
         "midpoint"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "b"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bbb"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

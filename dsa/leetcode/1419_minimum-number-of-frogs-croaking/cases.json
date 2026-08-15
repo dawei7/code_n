@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-incomplete",
+      "id": "trial-incomplete",
       "name": "ordered but incomplete ending",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-premature",
+      "id": "trial-premature",
       "name": "later stage has no predecessor",
       "kind": "trial",
       "visible": true,

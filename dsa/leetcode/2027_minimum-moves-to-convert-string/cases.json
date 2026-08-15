@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-final-position",
+      "id": "trial-final-position",
       "name": "a final X is covered by a boundary move",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-two-dense-regions",
+      "id": "trial-two-dense-regions",
       "name": "two greedy blocks cover a mixed dense string",
       "kind": "trial",
       "visible": true,
@@ -94,6 +94,20 @@
       "expected": 2,
       "tags": [
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "X"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
       ]
     }
   ]

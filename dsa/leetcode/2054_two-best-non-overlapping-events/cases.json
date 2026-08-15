@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-unsorted",
+      "id": "trial-unsorted",
       "name": "input order does not determine chronology",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-best-nonadjacent",
+      "id": "trial-best-nonadjacent",
       "name": "suffix maximum may skip intervening events",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-all-overlap",
+      "id": "trial-all-overlap",
       "name": "all-overlapping events force a singleton",
       "kind": "trial",
       "visible": true,

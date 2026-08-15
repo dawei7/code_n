@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-largest-duration",
+      "id": "trial-largest-duration",
       "name": "maximum duration with no movement",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-expensive-costs",
+      "id": "trial-expensive-costs",
       "name": "choose between two legal field decompositions",
       "kind": "trial",
       "visible": true,
@@ -134,6 +134,40 @@
       "tags": [
         "multiple-representations",
         "cost-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value moveCost=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startAt": 1,
+        "moveCost": 1,
+        "pushCost": 1,
+        "targetSeconds": 600
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value targetSeconds=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startAt": 1,
+        "moveCost": 2,
+        "pushCost": 1,
+        "targetSeconds": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

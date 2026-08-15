@@ -163,8 +163,8 @@
       ]
     },
     {
-      "id": "real-adjusted-predecessor-cascade",
-      "name": "real: comparisons use the adjusted predecessor",
+      "id": "trial-adjusted-predecessor-cascade",
+      "name": "comparisons use the adjusted predecessor",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -190,8 +190,8 @@
       ]
     },
     {
-      "id": "real-independent-columns",
-      "name": "real: columns contribute independent costs",
+      "id": "trial-independent-columns",
+      "name": "columns contribute independent costs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -217,8 +217,8 @@
       ]
     },
     {
-      "id": "real-near-input-maximum",
-      "name": "real: final values may exceed the input bound",
+      "id": "trial-near-input-maximum",
+      "name": "final values may exceed the input bound",
       "kind": "trial",
       "visible": true,
       "input": {

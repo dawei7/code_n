@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-zero-requirements",
+      "id": "trial-zero-requirements",
       "name": "zero-strength workers complete zero-requirement tasks",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-save-pill-for-hard-task",
+      "id": "trial-save-pill-for-hard-task",
       "name": "an easy direct match preserves a pill for harder work",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-worker-shortage",
+      "id": "trial-worker-shortage",
       "name": "extra feasible tasks cannot exceed worker count",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "a maximum-strength pill reaches a maximum task",
       "kind": "trial",
       "visible": true,

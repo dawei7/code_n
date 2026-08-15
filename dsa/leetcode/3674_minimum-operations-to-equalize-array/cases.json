@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-difference-at-end",
+      "id": "trial-difference-at-end",
       "name": "a differing final value prevents zero operations",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-all-maximum-values",
+      "id": "trial-all-maximum-values",
       "name": "equal maximum values need no operation",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-many-distinct-values",
+      "id": "trial-many-distinct-values",
       "name": "one full-array operation handles many distinct values",
       "kind": "trial",
       "visible": true,
@@ -127,6 +127,39 @@
       "expected": 1,
       "tags": [
         "many-distinct"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "an all-equal array yields one value",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "handle large values and close ordering",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-input-order-irrelevant",
+      "id": "trial-input-order-irrelevant",
       "name": "output order follows value rather than input position",
       "kind": "trial",
       "visible": true,
@@ -195,6 +195,45 @@
       "tags": [
         "ordering",
         "top-k"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          84
+        ],
+        "k": 3
+      },
+      "expected": [
+        84
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          84,
+          84
+        ],
+        "k": 3
+      },
+      "expected": [
+        84
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

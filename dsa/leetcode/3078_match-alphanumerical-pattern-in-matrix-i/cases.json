@@ -192,8 +192,8 @@
       ]
     },
     {
-      "id": "real-pattern-larger-than-board",
-      "name": "real: pattern does not fit inside the board",
+      "id": "trial-pattern-larger-than-board",
+      "name": "pattern does not fit inside the board",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -217,8 +217,8 @@
       ]
     },
     {
-      "id": "real-fixed-literal-row",
-      "name": "real: all-literal pattern matches exactly",
+      "id": "trial-fixed-literal-row",
+      "name": "all-literal pattern matches exactly",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -246,8 +246,8 @@
       ]
     },
     {
-      "id": "real-two-letter-structure",
-      "name": "real: repeated two-letter structure",
+      "id": "trial-two-letter-structure",
+      "name": "repeated two-letter structure",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -275,6 +275,79 @@
         "real",
         "bijection",
         "repetition"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "board": [
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            3
+          ]
+        ],
+        "pattern": [
+          "ab"
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "board": [
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            3
+          ]
+        ],
+        "pattern": [
+          "ab",
+          "ab"
+        ]
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

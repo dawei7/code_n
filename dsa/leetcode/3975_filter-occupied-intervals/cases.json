@@ -261,7 +261,7 @@
       ]
     },
     {
-      "id": "real-right-trim",
+      "id": "trial-right-trim",
       "name": "free interval extends beyond the occupied right boundary",
       "kind": "trial",
       "visible": true,
@@ -287,7 +287,7 @@
       ]
     },
     {
-      "id": "real-free-between-components",
+      "id": "trial-free-between-components",
       "name": "free points already absent do not change the union",
       "kind": "trial",
       "visible": true,
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "id": "real-transitive-overlap-and-touch",
+      "id": "trial-transitive-overlap-and-touch",
       "name": "overlap and touching form one unsorted chain",
       "kind": "trial",
       "visible": true,
@@ -363,7 +363,7 @@
       ]
     },
     {
-      "id": "real-duplicates-and-nesting",
+      "id": "trial-duplicates-and-nesting",
       "name": "duplicate and nested intervals collapse before a point removal",
       "kind": "trial",
       "visible": true,
@@ -401,7 +401,7 @@
       ]
     },
     {
-      "id": "real-free-spans-components",
+      "id": "trial-free-spans-components",
       "name": "one free interval trims and removes several components",
       "kind": "trial",
       "visible": true,
@@ -439,7 +439,7 @@
       ]
     },
     {
-      "id": "real-maximum-coordinate-touch",
+      "id": "trial-maximum-coordinate-touch",
       "name": "touching intervals merge at the maximum coordinate",
       "kind": "trial",
       "visible": true,
@@ -469,7 +469,7 @@
       ]
     },
     {
-      "id": "real-overlapping-bridge-split",
+      "id": "trial-overlapping-bridge-split",
       "name": "free interval crosses the overlap that joined two inputs",
       "kind": "trial",
       "visible": true,
@@ -500,6 +500,102 @@
       "tags": [
         "overlap",
         "two-sided-removal"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "minimal value freeStart=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "occupiedIntervals": [
+          [
+            2,
+            6
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            10,
+            12
+          ],
+          [
+            14,
+            16
+          ]
+        ],
+        "freeStart": 1,
+        "freeEnd": 11
+      },
+      "expected": [
+        [
+          12,
+          12
+        ],
+        [
+          14,
+          16
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "minimal value freeEnd=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "occupiedIntervals": [
+          [
+            2,
+            6
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            10,
+            12
+          ],
+          [
+            14,
+            16
+          ]
+        ],
+        "freeStart": 7,
+        "freeEnd": 1
+      },
+      "expected": [
+        [
+          2,
+          8
+        ],
+        [
+          10,
+          12
+        ],
+        [
+          14,
+          16
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

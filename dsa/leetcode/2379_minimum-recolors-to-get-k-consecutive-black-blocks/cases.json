@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-all-white",
+      "id": "trial-all-white",
       "name": "every selected block needs recoloring",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-best-at-end",
+      "id": "trial-best-at-end",
       "name": "optimal window ends at the final block",
       "kind": "trial",
       "visible": true,
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-overlapping-windows",
+      "id": "trial-overlapping-windows",
       "name": "rolling count removes and adds whites",
       "kind": "trial",
       "visible": true,
@@ -116,6 +116,36 @@
       "expected": 1,
       "tags": [
         "overlap"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "blocks": "W",
+        "k": 7
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in blocks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "blocks": "WWW",
+        "k": 7
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

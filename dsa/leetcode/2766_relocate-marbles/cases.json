@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-destination-occupied",
+      "id": "trial-destination-occupied",
       "name": "moving into an occupied position",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-merged-position-moves",
+      "id": "trial-merged-position-moves",
       "name": "a merged position moves again",
       "kind": "trial",
       "visible": true,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "coordinates at the upper bound",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-source-reoccupied",
+      "id": "trial-source-reoccupied",
       "name": "a vacated source is reoccupied and moved again",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-many-merge",
+      "id": "trial-many-merge",
       "name": "many starting positions collapse into one",
       "kind": "trial",
       "visible": true,
@@ -256,7 +256,7 @@
       ]
     },
     {
-      "id": "real-self-among-moves",
+      "id": "trial-self-among-moves",
       "name": "self-move between ordinary moves",
       "kind": "trial",
       "visible": true,
@@ -285,6 +285,70 @@
       "tags": [
         "self-move",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in moveFrom",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          6,
+          7,
+          8
+        ],
+        "moveFrom": [
+          1
+        ],
+        "moveTo": [
+          2,
+          9,
+          5
+        ]
+      },
+      "expected": [
+        2,
+        6,
+        7,
+        8
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in moveTo",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          6,
+          7,
+          8
+        ],
+        "moveFrom": [
+          1,
+          7,
+          2
+        ],
+        "moveTo": [
+          2
+        ]
+      },
+      "expected": [
+        2,
+        6,
+        7,
+        8
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-first-hundred",
+      "id": "trial-first-hundred",
       "name": "repeated sums across two and three digits",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-cross-hundred",
+      "id": "trial-cross-hundred",
       "name": "narrow interval crosses one hundred",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-midrange",
+      "id": "trial-midrange",
       "name": "repeated sums away from one",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-near-maximum",
+      "id": "trial-near-maximum",
       "name": "interval reaches maximum label",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-broad-two-digit-prefix",
+      "id": "trial-broad-two-digit-prefix",
       "name": "broad prefix through two-digit labels",
       "kind": "trial",
       "visible": true,
@@ -148,6 +148,21 @@
       "tags": [
         "wide-range",
         "two-digit"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value highLimit=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "lowLimit": 1,
+        "highLimit": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

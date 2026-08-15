@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-mixed-signs",
+      "id": "trial-mixed-signs",
       "name": "mixed signs and a late gain",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-minimum-value",
+      "id": "trial-minimum-value",
       "name": "minimum-length input at the value boundary",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-extreme-values",
+      "id": "trial-extreme-values",
       "name": "extreme values do not imply compatible endpoints",
       "kind": "trial",
       "visible": true,

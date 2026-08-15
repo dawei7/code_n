@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-ordinal-exception",
+      "id": "trial-ordinal-exception",
       "name": "teen ordinal uses th",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-twenty-first",
+      "id": "trial-twenty-first",
       "name": "compound st suffix",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-twenty-second",
+      "id": "trial-twenty-second",
       "name": "compound nd suffix",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "latest permitted date",
       "kind": "trial",
       "visible": true,

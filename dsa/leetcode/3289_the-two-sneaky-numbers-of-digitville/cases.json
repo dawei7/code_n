@@ -125,8 +125,8 @@
       ]
     },
     {
-      "id": "real-range-ends",
-      "name": "real: smallest and largest values repeat",
+      "id": "trial-range-ends",
+      "name": "smallest and largest values repeat",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -150,8 +150,8 @@
       ]
     },
     {
-      "id": "real-separated",
-      "name": "real: repeated copies are widely separated",
+      "id": "trial-separated",
+      "name": "repeated copies are widely separated",
       "kind": "trial",
       "visible": true,
       "input": {

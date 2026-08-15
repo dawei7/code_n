@@ -114,8 +114,8 @@
       ]
     },
     {
-      "id": "real-one-short-input",
-      "name": "real: single digit zeros higher positions",
+      "id": "trial-one-short-input",
+      "name": "single digit zeros higher positions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -130,8 +130,8 @@
       ]
     },
     {
-      "id": "real-two-digit-padding",
-      "name": "real: two-digit input controls higher places",
+      "id": "trial-two-digit-padding",
+      "name": "two-digit input controls higher places",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-zero-in-each-place",
-      "name": "real: distributed zero digits erase the key",
+      "id": "trial-zero-in-each-place",
+      "name": "distributed zero digits erase the key",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -162,8 +162,8 @@
       ]
     },
     {
-      "id": "real-repeated-patterns",
-      "name": "real: repeated alternating digits",
+      "id": "trial-repeated-patterns",
+      "name": "repeated alternating digits",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -178,8 +178,8 @@
       ]
     },
     {
-      "id": "real-asymmetric-boundaries",
-      "name": "real: minimum and maximum with a mixed input",
+      "id": "trial-asymmetric-boundaries",
+      "name": "minimum and maximum with a mixed input",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -191,6 +191,38 @@
       "tags": [
         "bounds",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value num2=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 1,
+        "num2": 1,
+        "num3": 1000
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "minimal value num3=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 1,
+        "num2": 10,
+        "num3": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

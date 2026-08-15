@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-cross-row",
+      "id": "trial-cross-row",
       "name": "oversized gather fails while scatter succeeds",
       "kind": "trial",
       "visible": true,
@@ -276,7 +276,7 @@
       ]
     },
     {
-      "id": "real-earliest-seats",
+      "id": "trial-earliest-seats",
       "name": "allocation resumes in the earliest partial row",
       "kind": "trial",
       "visible": true,
@@ -333,7 +333,7 @@
       ]
     },
     {
-      "id": "real-capacity-boundary",
+      "id": "trial-capacity-boundary",
       "name": "exact prefix capacity succeeds once",
       "kind": "trial",
       "visible": true,

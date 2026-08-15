@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-leap-day",
+      "id": "trial-leap-day",
       "name": "valid leap day",
       "kind": "trial",
       "visible": true,
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-leap-year-end",
+      "id": "trial-leap-year-end",
       "name": "final day of a leap year",
       "kind": "trial",
       "visible": true,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "latest permitted date",
       "kind": "trial",
       "visible": true,

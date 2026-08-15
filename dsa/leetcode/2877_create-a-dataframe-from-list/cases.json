@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-repeated-ages",
+      "id": "trial-repeated-ages",
       "name": "repeated ages remain separate records",
       "kind": "trial",
       "visible": true,

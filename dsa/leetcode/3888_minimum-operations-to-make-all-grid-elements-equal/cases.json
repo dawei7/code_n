@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-negative-forced-target",
+      "id": "trial-negative-forced-target",
       "name": "overlapping increments force a zero target from negative values",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-boundary-mismatch",
+      "id": "trial-boundary-mismatch",
       "name": "incompatible uncovered boundary cells make equality impossible",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-dense-overlap",
+      "id": "trial-dense-overlap",
       "name": "four differently repeated squares overlap in the center",
       "kind": "trial",
       "visible": true,
@@ -260,7 +260,7 @@
       ]
     },
     {
-      "id": "real-perturbed-corner",
+      "id": "trial-perturbed-corner",
       "name": "one perturbed finished corner invalidates an overlap construction",
       "kind": "trial",
       "visible": true,
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "id": "real-equal-rectangle",
+      "id": "trial-equal-rectangle",
       "name": "an equal rectangular grid needs no square",
       "kind": "trial",
       "visible": true,
@@ -325,7 +325,7 @@
       ]
     },
     {
-      "id": "real-single-row-unit-squares",
+      "id": "trial-single-row-unit-squares",
       "name": "a single row is legal when k is one",
       "kind": "trial",
       "visible": true,
@@ -347,7 +347,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "unit squares span both stated value limits",
       "kind": "trial",
       "visible": true,
@@ -367,7 +367,7 @@
       ]
     },
     {
-      "id": "real-three-by-three-overlap",
+      "id": "trial-three-by-three-overlap",
       "name": "six operations overlap across a four-by-five grid",
       "kind": "trial",
       "visible": true,

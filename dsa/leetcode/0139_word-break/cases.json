@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-reused-words",
+      "id": "trial-reused-words",
       "name": "reused dictionary words",
       "kind": "trial",
       "visible": true,

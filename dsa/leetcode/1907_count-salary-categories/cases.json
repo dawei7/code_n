@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-around-low-boundary",
+      "id": "trial-around-low-boundary",
       "name": "values around twenty thousand split low from average",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-around-high-boundary",
+      "id": "trial-around-high-boundary",
       "name": "values around fifty thousand split average from high",
       "kind": "trial",
       "visible": true,
@@ -249,7 +249,7 @@
       ]
     },
     {
-      "id": "real-only-low",
+      "id": "trial-only-low",
       "name": "only low salaries leave two explicit zero rows",
       "kind": "trial",
       "visible": true,
@@ -300,7 +300,7 @@
       ]
     },
     {
-      "id": "real-only-average",
+      "id": "trial-only-average",
       "name": "only average salaries leave low and high at zero",
       "kind": "trial",
       "visible": true,
@@ -351,7 +351,7 @@
       ]
     },
     {
-      "id": "real-only-high",
+      "id": "trial-only-high",
       "name": "only high salaries leave two explicit zero rows",
       "kind": "trial",
       "visible": true,
@@ -398,7 +398,7 @@
       ]
     },
     {
-      "id": "real-balanced",
+      "id": "trial-balanced",
       "name": "equal counts across all categories",
       "kind": "trial",
       "visible": true,
@@ -461,7 +461,7 @@
       ]
     },
     {
-      "id": "real-uneven",
+      "id": "trial-uneven",
       "name": "uneven category populations are counted independently",
       "kind": "trial",
       "visible": true,

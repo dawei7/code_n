@@ -427,7 +427,7 @@
       ]
     },
     {
-      "id": "real-multiple-same-direction",
+      "id": "trial-multiple-same-direction",
       "name": "repeated transfers all count",
       "kind": "trial",
       "visible": true,
@@ -499,7 +499,7 @@
       ]
     },
     {
-      "id": "real-cycle-conservation",
+      "id": "trial-cycle-conservation",
       "name": "transfer cycle preserves each equal balance",
       "kind": "trial",
       "visible": true,
@@ -582,7 +582,7 @@
       ]
     },
     {
-      "id": "real-duplicate-names",
+      "id": "trial-duplicate-names",
       "name": "duplicate names remain separate users",
       "kind": "trial",
       "visible": true,
@@ -640,7 +640,7 @@
       ]
     },
     {
-      "id": "real-dates-irrelevant",
+      "id": "trial-dates-irrelevant",
       "name": "chronology does not alter total",
       "kind": "trial",
       "visible": true,

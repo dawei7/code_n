@@ -76,8 +76,8 @@
       ]
     },
     {
-      "id": "real-repeated-four",
-      "name": "real: all cuts of four equal values are beautiful",
+      "id": "trial-repeated-four",
+      "name": "all cuts of four equal values are beautiful",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -95,8 +95,8 @@
       ]
     },
     {
-      "id": "real-second-prefix-only",
-      "name": "real: alternating values exercise second-prefix matches",
+      "id": "trial-second-prefix-only",
+      "name": "alternating values exercise second-prefix matches",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -116,8 +116,8 @@
       ]
     },
     {
-      "id": "real-overlap-regression",
-      "name": "real: overlapping repeated runs and isolated values",
+      "id": "trial-overlap-regression",
+      "name": "overlapping repeated runs and isolated values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -142,8 +142,8 @@
       ]
     },
     {
-      "id": "real-boundary-values",
-      "name": "real: alternating minimum and maximum values",
+      "id": "trial-boundary-values",
+      "name": "alternating minimum and maximum values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -161,6 +161,39 @@
       "tags": [
         "boundary-values",
         "alternating"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

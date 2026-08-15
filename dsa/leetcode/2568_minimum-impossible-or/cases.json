@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-no-one",
+      "id": "trial-no-one",
       "name": "a lone non-power cannot form one",
       "kind": "trial",
       "visible": true,
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-duplicates-and-gap",
+      "id": "trial-duplicates-and-gap",
       "name": "duplicate powers do not fill a missing bit",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-extra-bits-do-not-help",
+      "id": "trial-extra-bits-do-not-help",
       "name": "multi-bit values cannot isolate missing two",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-unsorted-powers",
+      "id": "trial-unsorted-powers",
       "name": "input order does not affect expressibility",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-all-legal-powers",
+      "id": "trial-all-legal-powers",
       "name": "answer may exceed the element bound",
       "kind": "trial",
       "visible": true,

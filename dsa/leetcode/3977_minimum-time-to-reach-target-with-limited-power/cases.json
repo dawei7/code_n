@@ -326,7 +326,7 @@
       ]
     },
     {
-      "id": "real-parallel-directed-edges",
+      "id": "trial-parallel-directed-edges",
       "name": "the faster of two parallel edges controls the route",
       "kind": "trial",
       "visible": true,
@@ -368,7 +368,7 @@
       ]
     },
     {
-      "id": "real-exact-power-over-route",
+      "id": "trial-exact-power-over-route",
       "name": "the route consumes exactly all available power",
       "kind": "trial",
       "visible": true,
@@ -405,7 +405,7 @@
       ]
     },
     {
-      "id": "real-cycle-does-not-improve",
+      "id": "trial-cycle-does-not-improve",
       "name": "a directed cycle cannot beat the simple positive-time route",
       "kind": "trial",
       "visible": true,
@@ -458,7 +458,7 @@
       ]
     },
     {
-      "id": "real-self-loop",
+      "id": "trial-self-loop",
       "name": "a self-loop only wastes time and power",
       "kind": "trial",
       "visible": true,
@@ -494,7 +494,7 @@
       ]
     },
     {
-      "id": "real-wide-total-time",
+      "id": "trial-wide-total-time",
       "name": "several maximum edge times require a wide integer sum",
       "kind": "trial",
       "visible": true,
@@ -537,7 +537,7 @@
       ]
     },
     {
-      "id": "real-edge-direction-matters",
+      "id": "trial-edge-direction-matters",
       "name": "reverse-facing edges do not make an undirected path",
       "kind": "trial",
       "visible": true,
@@ -574,7 +574,7 @@
       ]
     },
     {
-      "id": "real-slower-state-enables-target",
+      "id": "trial-slower-state-enables-target",
       "name": "a slower high-power state is needed after a faster state gets stuck",
       "kind": "trial",
       "visible": true,

@@ -229,8 +229,8 @@
       ]
     },
     {
-      "id": "real-mixed-week",
-      "name": "real: weekday purchase in same week is excluded",
+      "id": "trial-mixed-week",
+      "name": "weekday purchase in same week is excluded",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -271,8 +271,8 @@
       ]
     },
     {
-      "id": "real-empty-middle-weeks",
-      "name": "real: omitted weeks are not zero-filled",
+      "id": "trial-empty-middle-weeks",
+      "name": "omitted weeks are not zero-filled",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-bob-owns-group-maximum",
+      "id": "trial-bob-owns-group-maximum",
       "name": "Bob has the greatest same-initial word",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-smaller-response-is-strategic",
+      "id": "trial-smaller-response-is-strategic",
       "name": "advancing an initial too early changes the winner",
       "kind": "trial",
       "visible": true,
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-final-letter",
+      "id": "trial-final-letter",
       "name": "there is no initial after z",
       "kind": "trial",
       "visible": true,
@@ -180,6 +180,45 @@
       "expected": true,
       "tags": [
         "alphabet-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in a",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": [
+          "avokado"
+        ],
+        "b": [
+          "brazil"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in a",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": [
+          "avokado",
+          "avokado"
+        ],
+        "b": [
+          "brazil"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

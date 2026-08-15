@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "real-head-tail",
+      "id": "trial-head-tail",
       "name": "remove head and tail",
       "kind": "trial",
       "visible": true,

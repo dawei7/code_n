@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-equal-large-sums",
+      "id": "trial-equal-large-sums",
       "name": "distinct groups can produce equal large sums",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-mixed-boundaries",
+      "id": "trial-mixed-boundaries",
       "name": "group boundaries control aggregation",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "values at the input maximum are accumulated",
       "kind": "trial",
       "visible": true,

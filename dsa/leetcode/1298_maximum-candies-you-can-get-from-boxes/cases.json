@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "hidden-locked-child",
+      "id": "trial-locked-child",
       "name": "contained box remains locked",
       "kind": "trial",
       "visible": true,
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "hidden-open-but-unowned",
+      "id": "trial-open-but-unowned",
       "name": "open box is never obtained",
       "kind": "trial",
       "visible": true,

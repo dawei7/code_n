@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-one-missing",
+      "id": "trial-one-missing",
       "name": "one missing corner prevents extraction",
       "kind": "trial",
       "visible": true,
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "real-mixed-shapes",
+      "id": "trial-mixed-shapes",
       "name": "horizontal vertical and single-cell artifacts coexist",
       "kind": "trial",
       "visible": true,
@@ -270,7 +270,7 @@
       ]
     },
     {
-      "id": "real-all-partial",
+      "id": "trial-all-partial",
       "name": "each multi-cell artifact has an undug part",
       "kind": "trial",
       "visible": true,
@@ -307,7 +307,7 @@
       ]
     },
     {
-      "id": "real-unordered-dig",
+      "id": "trial-unordered-dig",
       "name": "excavation order does not affect membership",
       "kind": "trial",
       "visible": true,
@@ -353,6 +353,44 @@
       "expected": 2,
       "tags": [
         "unordered"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "artifacts": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            1
+          ]
+        ],
+        "dig": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

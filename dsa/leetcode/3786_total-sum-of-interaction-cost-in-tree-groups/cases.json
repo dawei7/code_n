@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-four-path",
+      "id": "trial-four-path",
       "name": "all pair distances on a four-node path",
       "kind": "trial",
       "visible": true,
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-separated-groups",
+      "id": "trial-separated-groups",
       "name": "two interleaved groups on a path",
       "kind": "trial",
       "visible": true,
@@ -257,7 +257,7 @@
       ]
     },
     {
-      "id": "real-balanced-tree",
+      "id": "trial-balanced-tree",
       "name": "repeated labels across branches",
       "kind": "trial",
       "visible": true,
@@ -308,7 +308,7 @@
       ]
     },
     {
-      "id": "real-all-distinct",
+      "id": "trial-all-distinct",
       "name": "every label is different",
       "kind": "trial",
       "visible": true,
@@ -354,7 +354,7 @@
       ]
     },
     {
-      "id": "real-one-repeated-pair",
+      "id": "trial-one-repeated-pair",
       "name": "only two distant nodes share a label",
       "kind": "trial",
       "visible": true,
@@ -400,7 +400,7 @@
       ]
     },
     {
-      "id": "real-label-twenty",
+      "id": "trial-label-twenty",
       "name": "maximum label appears in separate branches",
       "kind": "trial",
       "visible": true,

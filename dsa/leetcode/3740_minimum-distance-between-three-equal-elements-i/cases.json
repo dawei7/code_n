@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-even-spacing",
+      "id": "trial-even-spacing",
       "name": "one value appears at evenly spaced indices",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-four-occurrences",
+      "id": "trial-four-occurrences",
       "name": "overlapping occurrence triples tie",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-two-values",
+      "id": "trial-two-values",
       "name": "compare triples belonging to two values",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-later-closer",
+      "id": "trial-later-closer",
       "name": "the latest consecutive triple has the minimum span",
       "kind": "trial",
       "visible": true,
@@ -224,7 +224,7 @@
       ]
     },
     {
-      "id": "real-value-upper-bound",
+      "id": "trial-value-upper-bound",
       "name": "a maximum legal value forms a tuple",
       "kind": "trial",
       "visible": true,

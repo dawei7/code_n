@@ -328,7 +328,7 @@
       ]
     },
     {
-      "id": "hidden-seven",
+      "id": "trial-seven",
       "name": "high feasible count",
       "kind": "trial",
       "visible": true,
@@ -393,7 +393,7 @@
       ]
     },
     {
-      "id": "hidden-eight",
+      "id": "trial-eight",
       "name": "maximum feasible count",
       "kind": "trial",
       "visible": true,
@@ -418,7 +418,7 @@
       ]
     },
     {
-      "id": "hidden-ten",
+      "id": "trial-ten",
       "name": "every physical LED requested",
       "kind": "trial",
       "visible": true,

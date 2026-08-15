@@ -255,7 +255,7 @@
       ]
     },
     {
-      "id": "real-withdrawal-removes-qualification",
+      "id": "trial-withdrawal-removes-qualification",
       "name": "withdrawal lowers a large deposit to threshold",
       "kind": "trial",
       "visible": true,
@@ -317,7 +317,7 @@
       ]
     },
     {
-      "id": "real-user-without-transactions",
+      "id": "trial-user-without-transactions",
       "name": "user without transactions remains at zero",
       "kind": "trial",
       "visible": true,
@@ -360,7 +360,7 @@
       ]
     },
     {
-      "id": "real-no-qualifying-users",
+      "id": "trial-no-qualifying-users",
       "name": "all balances stay below threshold",
       "kind": "trial",
       "visible": true,
@@ -404,7 +404,7 @@
       ]
     },
     {
-      "id": "real-date-order-irrelevant",
+      "id": "trial-date-order-irrelevant",
       "name": "transaction date order does not change the sum",
       "kind": "trial",
       "visible": true,
@@ -449,7 +449,7 @@
       ]
     },
     {
-      "id": "real-large-signed-balance",
+      "id": "trial-large-signed-balance",
       "name": "large positive and negative changes",
       "kind": "trial",
       "visible": true,

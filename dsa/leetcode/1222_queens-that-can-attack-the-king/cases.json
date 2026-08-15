@@ -310,7 +310,7 @@
       ]
     },
     {
-      "id": "real-single-diagonal",
+      "id": "trial-single-diagonal",
       "name": "single diagonal queen",
       "kind": "trial",
       "visible": true,
@@ -387,7 +387,7 @@
       ]
     },
     {
-      "id": "real-no-alignment",
+      "id": "trial-no-alignment",
       "name": "no queen shares an attack ray",
       "kind": "trial",
       "visible": true,

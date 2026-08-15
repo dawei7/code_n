@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-single-point",
+      "id": "trial-single-point",
       "name": "one point produces no rectangle",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-negative-nonconsecutive",
+      "id": "trial-negative-nonconsecutive",
       "name": "negative coordinates and nonconsecutive IDs",
       "kind": "trial",
       "visible": true,
@@ -236,7 +236,7 @@
       ]
     },
     {
-      "id": "real-duplicate-coordinates",
+      "id": "trial-duplicate-coordinates",
       "name": "duplicate coordinates are degenerate with each other",
       "kind": "trial",
       "visible": true,
@@ -285,7 +285,7 @@
       ]
     },
     {
-      "id": "real-area-order",
+      "id": "trial-area-order",
       "name": "larger areas precede smaller areas",
       "kind": "trial",
       "visible": true,

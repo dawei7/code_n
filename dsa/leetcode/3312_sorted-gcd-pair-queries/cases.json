@@ -160,8 +160,8 @@
       ]
     },
     {
-      "id": "real-one-rare-larger-gcd",
-      "name": "real: final rank has the larger GCD",
+      "id": "trial-one-rare-larger-gcd",
+      "name": "final rank has the larger GCD",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -187,8 +187,8 @@
       ]
     },
     {
-      "id": "real-reversed-query-order",
-      "name": "real: query order differs from rank order",
+      "id": "trial-reversed-query-order",
+      "name": "query order differs from rank order",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -214,8 +214,8 @@
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "real: values at the upper boundary",
+      "id": "trial-maximum-values",
+      "name": "values at the upper boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -240,8 +240,8 @@
       ]
     },
     {
-      "id": "real-one-and-multiples",
-      "name": "real: one forces several coprime pairs",
+      "id": "trial-one-and-multiples",
+      "name": "one forces several coprime pairs",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "large identifier in both roles",
       "kind": "trial",
       "visible": true,
@@ -286,7 +286,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "mixed network with unique hub",
       "kind": "trial",
       "visible": true,

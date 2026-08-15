@@ -256,6 +256,48 @@
         "maximum-length",
         "mapping-coverage"
       ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "repeated character in digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digits": "222"
+      },
+      "expected": [
+        "aaa",
+        "aab",
+        "aac",
+        "aba",
+        "abb",
+        "abc",
+        "aca",
+        "acb",
+        "acc",
+        "baa",
+        "bab",
+        "bac",
+        "bba",
+        "bbb",
+        "bbc",
+        "bca",
+        "bcb",
+        "bcc",
+        "caa",
+        "cab",
+        "cac",
+        "cba",
+        "cbb",
+        "cbc",
+        "cca",
+        "ccb",
+        "ccc"
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

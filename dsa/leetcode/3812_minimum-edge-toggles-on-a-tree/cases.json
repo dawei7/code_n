@@ -289,7 +289,7 @@
       ]
     },
     {
-      "id": "real-all-path-edges",
+      "id": "trial-all-path-edges",
       "name": "every edge in a path is forced",
       "kind": "trial",
       "visible": true,
@@ -336,7 +336,7 @@
       ]
     },
     {
-      "id": "real-shuffled-branching-tree",
+      "id": "trial-shuffled-branching-tree",
       "name": "a branching tree preserves shuffled edge indices",
       "kind": "trial",
       "visible": true,
@@ -381,7 +381,7 @@
       ]
     },
     {
-      "id": "real-nonzero-start",
+      "id": "trial-nonzero-start",
       "name": "operations apply to a nonzero initial coloring",
       "kind": "trial",
       "visible": true,
@@ -417,7 +417,7 @@
       ]
     },
     {
-      "id": "real-all-star-edges",
+      "id": "trial-all-star-edges",
       "name": "all star edges are required when every node differs",
       "kind": "trial",
       "visible": true,
@@ -462,6 +462,63 @@
         "star",
         "all-edges",
         "even-parity"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in start",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "start": "000",
+        "target": "100"
+      },
+      "expected": [
+        -1
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "start": "010",
+        "target": "111"
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

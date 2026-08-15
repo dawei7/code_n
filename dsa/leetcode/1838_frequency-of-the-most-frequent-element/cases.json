@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-cannot-decrease",
+      "id": "trial-cannot-decrease",
       "name": "a large value cannot be lowered to join a small one",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-large-budget",
+      "id": "trial-large-budget",
       "name": "budget raises every value to the maximum",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-unsorted-input",
+      "id": "trial-unsorted-input",
       "name": "original ordering does not constrain the group",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum input values and one lower neighbor",
       "kind": "trial",
       "visible": true,

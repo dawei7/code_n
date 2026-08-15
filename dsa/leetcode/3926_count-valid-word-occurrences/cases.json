@@ -405,7 +405,7 @@
       ]
     },
     {
-      "id": "hidden-complex-hyphen-mix",
+      "id": "trial-complex-hyphen-mix",
       "name": "mixed valid and invalid hyphens form exact maximal words",
       "kind": "trial",
       "visible": true,
@@ -438,7 +438,7 @@
       ]
     },
     {
-      "id": "hidden-triple-hyphen",
+      "id": "trial-triple-hyphen",
       "name": "three consecutive hyphens separate both letters",
       "kind": "trial",
       "visible": true,
@@ -463,7 +463,7 @@
       ]
     },
     {
-      "id": "hidden-boundaries-around-space",
+      "id": "trial-boundaries-around-space",
       "name": "single-character chunks preserve a space separator",
       "kind": "trial",
       "visible": true,
@@ -492,7 +492,7 @@
       ]
     },
     {
-      "id": "hidden-repeated-mixed-words",
+      "id": "trial-repeated-mixed-words",
       "name": "plain and hyphenated words keep separate frequencies",
       "kind": "trial",
       "visible": true,
@@ -519,7 +519,7 @@
       ]
     },
     {
-      "id": "hidden-twenty-letter-chunks",
+      "id": "trial-twenty-letter-chunks",
       "name": "twenty letter chunks become one long word",
       "kind": "trial",
       "visible": true,
@@ -563,7 +563,7 @@
       ]
     },
     {
-      "id": "hidden-long-hyphen-chain",
+      "id": "trial-long-hyphen-chain",
       "name": "a longer valid hyphen chain remains one word",
       "kind": "trial",
       "visible": true,

@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-paired-stones",
+      "id": "trial-paired-stones",
       "name": "paired stones and remainder",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-descending",
+      "id": "trial-descending",
       "name": "descending weights",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-many-equal",
+      "id": "trial-many-equal",
       "name": "all equal even count",
       "kind": "trial",
       "visible": true,

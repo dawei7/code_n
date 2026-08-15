@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-right-edge",
+      "id": "trial-right-edge",
       "name": "symmetric target at the right edge",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-slope-reaches-one",
+      "id": "trial-slope-reaches-one",
       "name": "both slopes flatten at one",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-large-singleton",
+      "id": "trial-large-singleton",
       "name": "largest budget with one position",
       "kind": "trial",
       "visible": true,

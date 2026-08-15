@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "real-all-non-negative",
+      "id": "trial-all-non-negative",
       "name": "rotating the movable sequence rotates the whole array",
       "kind": "trial",
       "visible": true,
@@ -234,7 +234,7 @@
       ]
     },
     {
-      "id": "real-oversized-with-zero",
+      "id": "trial-oversized-with-zero",
       "name": "oversized k is reduced by the movable count",
       "kind": "trial",
       "visible": true,
@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "real-one-zero-movable",
+      "id": "trial-one-zero-movable",
       "name": "a sole zero stays fixed under maximum rotation",
       "kind": "trial",
       "visible": true,
@@ -292,7 +292,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "boundary values rotate around fixed negatives",
       "kind": "trial",
       "visible": true,
@@ -320,7 +320,7 @@
       ]
     },
     {
-      "id": "real-repeated-values",
+      "id": "trial-repeated-values",
       "name": "repeated movable values retain their cyclic order",
       "kind": "trial",
       "visible": true,
@@ -347,6 +347,46 @@
       "tags": [
         "repeated-values",
         "alternating-signs"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 3
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

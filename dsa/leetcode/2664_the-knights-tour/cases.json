@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-three-by-four-opposite-corner",
+      "id": "trial-three-by-four-opposite-corner",
       "name": "opposite corner start",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-four-by-five",
+      "id": "trial-four-by-five",
       "name": "twenty-cell board",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-five-by-four",
+      "id": "trial-five-by-four",
       "name": "transposed twenty-cell board",
       "kind": "trial",
       "visible": true,
@@ -260,7 +260,7 @@
       ]
     },
     {
-      "id": "real-five-by-five-corner",
+      "id": "trial-five-by-five-corner",
       "name": "maximum board from a corner",
       "kind": "trial",
       "visible": true,
@@ -313,7 +313,7 @@
       ]
     },
     {
-      "id": "real-five-by-five-center",
+      "id": "trial-five-by-five-center",
       "name": "maximum board from the center",
       "kind": "trial",
       "visible": true,
@@ -366,7 +366,7 @@
       ]
     },
     {
-      "id": "real-five-by-five-opposite-corner",
+      "id": "trial-five-by-five-opposite-corner",
       "name": "maximum board from opposite corner",
       "kind": "trial",
       "visible": true,

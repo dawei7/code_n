@@ -269,8 +269,8 @@
       ]
     },
     {
-      "id": "real-active-groups-only",
-      "name": "real: omit teams and halves without outgoing passes",
+      "id": "trial-active-groups-only",
+      "name": "omit teams and halves without outgoing passes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -318,8 +318,8 @@
       ]
     },
     {
-      "id": "real-single-team",
-      "name": "real: every pass succeeds when all players share a team",
+      "id": "trial-single-team",
+      "name": "every pass succeeds when all players share a team",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -382,8 +382,8 @@
       ]
     },
     {
-      "id": "real-negative-and-name-order",
-      "name": "real: preserve negative scores and alphabetical ordering",
+      "id": "trial-negative-and-name-order",
+      "name": "preserve negative scores and alphabetical ordering",
       "kind": "trial",
       "visible": true,
       "input": {

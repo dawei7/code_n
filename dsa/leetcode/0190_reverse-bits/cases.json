@@ -42,7 +42,7 @@
       ]
     },
     {
-      "id": "real-all-ones",
+      "id": "trial-all-ones",
       "name": "all bits set",
       "kind": "trial",
       "visible": true,

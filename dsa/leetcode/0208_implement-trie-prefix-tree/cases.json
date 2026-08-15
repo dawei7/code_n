@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-word-prefix",
+      "id": "trial-word-prefix",
       "name": "shorter word inserted after longer",
       "kind": "trial",
       "visible": true,

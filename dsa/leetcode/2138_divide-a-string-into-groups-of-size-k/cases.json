@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "real-one-character",
+      "id": "trial-one-character",
       "name": "one character is padded",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-one-fill-needed",
+      "id": "trial-one-fill-needed",
       "name": "exactly one fill character completes the result",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-fill-occurs-in-source",
+      "id": "trial-fill-occurs-in-source",
       "name": "original fill characters are not removed",
       "kind": "trial",
       "visible": true,
@@ -130,6 +130,42 @@
       ],
       "tags": [
         "fill-collision"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 3,
+        "fill": "x"
+      },
+      "expected": [
+        "axx"
+      ],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "k": 3,
+        "fill": "x"
+      },
+      "expected": [
+        "aaa"
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

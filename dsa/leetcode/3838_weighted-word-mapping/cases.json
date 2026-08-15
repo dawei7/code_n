@@ -348,7 +348,7 @@
       ]
     },
     {
-      "id": "real-minimum-input",
+      "id": "trial-minimum-input",
       "name": "one minimum-weight character",
       "kind": "trial",
       "visible": true,
@@ -395,7 +395,7 @@
       ]
     },
     {
-      "id": "real-whole-alphabet",
+      "id": "trial-whole-alphabet",
       "name": "a complete alphabet sum wraps to zero",
       "kind": "trial",
       "visible": true,
@@ -442,7 +442,7 @@
       ]
     },
     {
-      "id": "real-every-letter-weight",
+      "id": "trial-every-letter-weight",
       "name": "singleton words exercise all twenty-six weights",
       "kind": "trial",
       "visible": true,
@@ -514,7 +514,7 @@
       ]
     },
     {
-      "id": "real-repeated-words",
+      "id": "trial-repeated-words",
       "name": "repeated words retain multiplicity and order",
       "kind": "trial",
       "visible": true,
@@ -564,7 +564,7 @@
       ]
     },
     {
-      "id": "real-maximum-word-count",
+      "id": "trial-maximum-word-count",
       "name": "maximum number of words",
       "kind": "trial",
       "visible": true,

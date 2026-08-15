@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-last-richest",
+      "id": "trial-last-richest",
       "name": "final customer overtakes earlier rows",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-all-tie",
+      "id": "trial-all-tie",
       "name": "different distributions share maximum wealth",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-single-bank",
+      "id": "trial-single-bank",
       "name": "one bank per customer",
       "kind": "trial",
       "visible": true,

@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-minimum",
+      "id": "trial-minimum",
       "name": "minimum input is prime",
       "kind": "trial",
       "visible": true,
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-perfect-square",
+      "id": "trial-perfect-square",
       "name": "repeated square factor leads through multiple values",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum input has many repeated prime factors",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-large-prime",
+      "id": "trial-large-prime",
       "name": "prime remains unchanged",
       "kind": "trial",
       "visible": true,
@@ -126,6 +126,20 @@
       "expected": 997,
       "tags": [
         "prime"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

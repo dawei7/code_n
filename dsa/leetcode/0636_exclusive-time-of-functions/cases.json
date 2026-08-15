@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "sequential functions",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "unused function remains zero",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-3",
       "name": "repeated calls accumulate",
       "kind": "trial",
       "visible": true,
@@ -156,6 +156,47 @@
       ],
       "tags": [
         "repeated-calls"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in logs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "logs": [
+          "0:start:0"
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in logs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "logs": [
+          "0:start:0",
+          "0:start:0"
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

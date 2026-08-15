@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-single-benefit",
+      "id": "trial-single-benefit",
       "name": "one beneficial mapping changes a single digit",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-stop-before-loss",
+      "id": "trial-stop-before-loss",
       "name": "mutation stops before a decreasing replacement",
       "kind": "trial",
       "visible": true,
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "real-beneficial-suffix",
+      "id": "trial-beneficial-suffix",
       "name": "optimal substring begins near the end",
       "kind": "trial",
       "visible": true,
@@ -237,7 +237,7 @@
       ]
     },
     {
-      "id": "real-leading-zeroes",
+      "id": "trial-leading-zeroes",
       "name": "leading zeroes can begin the improving substring",
       "kind": "trial",
       "visible": true,
@@ -260,6 +260,58 @@
       "tags": [
         "leading-zero",
         "prefix-mutation"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "1",
+        "change": [
+          9,
+          8,
+          5,
+          0,
+          3,
+          6,
+          4,
+          2,
+          6,
+          8
+        ]
+      },
+      "expected": "8",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "111",
+        "change": [
+          9,
+          8,
+          5,
+          0,
+          3,
+          6,
+          4,
+          2,
+          6,
+          8
+        ]
+      },
+      "expected": "888",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

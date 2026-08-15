@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-decreasing-rotate-then-reverse",
+      "id": "trial-decreasing-rotate-then-reverse",
       "name": "rotating before reversal is cheaper",
       "kind": "trial",
       "visible": true,
@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "real-decreasing-balanced-costs",
+      "id": "trial-decreasing-balanced-costs",
       "name": "both decreasing-orientation routes meet near the middle",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-adjacent-transposition-unreachable",
+      "id": "trial-adjacent-transposition-unreachable",
       "name": "one transposition breaks both cyclic orientations",
       "kind": "trial",
       "visible": true,
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": "real-arbitrary-unreachable",
+      "id": "trial-arbitrary-unreachable",
       "name": "an arbitrary permutation cannot be repaired",
       "kind": "trial",
       "visible": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "real-length-two-reversed",
+      "id": "trial-length-two-reversed",
       "name": "both cyclic orientations coincide at length two",
       "kind": "trial",
       "visible": true,
@@ -292,7 +292,7 @@
       ]
     },
     {
-      "id": "real-larger-increasing-half-rotation",
+      "id": "trial-larger-increasing-half-rotation",
       "name": "a larger increasing rotation places zero halfway",
       "kind": "trial",
       "visible": true,
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "id": "real-larger-decreasing-half-rotation",
+      "id": "trial-larger-decreasing-half-rotation",
       "name": "a larger decreasing rotation balances both routes",
       "kind": "trial",
       "visible": true,
@@ -347,6 +347,23 @@
       },
       "tags": [
         "decreasing-orientation"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

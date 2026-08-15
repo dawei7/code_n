@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-all-square-factors",
+      "id": "trial-all-square-factors",
       "name": "every value contains a repeated prime factor",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-pairwise-overlap",
+      "id": "trial-pairwise-overlap",
       "name": "square-free values may still conflict with each other",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-mixed-masks",
+      "id": "trial-mixed-masks",
       "name": "mixed square-free and invalid values",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-many-independent-primes",
+      "id": "trial-many-independent-primes",
       "name": "disjoint prime values combine freely with one",
       "kind": "trial",
       "visible": true,

@@ -130,8 +130,8 @@
       ]
     },
     {
-      "id": "real-only-subtraction",
-      "name": "real: subtraction applies only to eligible values",
+      "id": "trial-only-subtraction",
+      "name": "subtraction applies only to eligible values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -151,8 +151,8 @@
       ]
     },
     {
-      "id": "real-balanced-operations",
-      "name": "real: both budgets compete across mixed values",
+      "id": "trial-balanced-operations",
+      "name": "both budgets compete across mixed values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -175,8 +175,8 @@
       ]
     },
     {
-      "id": "real-combined-operation",
-      "name": "real: both operations belong on the same index",
+      "id": "trial-combined-operation",
+      "name": "both operations belong on the same index",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -194,8 +194,8 @@
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "real: separate operations beat combining them",
+      "id": "trial-maximum-values",
+      "name": "separate operations beat combining them",
       "kind": "trial",
       "visible": true,
       "input": {

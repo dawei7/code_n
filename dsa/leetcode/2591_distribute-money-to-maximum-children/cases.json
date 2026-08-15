@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "real-small-valid",
+      "id": "trial-small-valid",
       "name": "a small valid unequal distribution",
       "kind": "trial",
       "visible": true,
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-no-eight-yet",
+      "id": "trial-no-eight-yet",
       "name": "total below one eight-dollar child",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-one-eight",
+      "id": "trial-one-eight",
       "name": "one child receives eight and one receives one",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-three-remainder",
+      "id": "trial-three-remainder",
       "name": "remaining three dollars would create a four",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-all-eight-leftover",
+      "id": "trial-all-eight-leftover",
       "name": "extra money prevents every child receiving eight",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-two-eights",
+      "id": "trial-two-eights",
       "name": "two eights and seven use all money",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-three-eights",
+      "id": "trial-three-eights",
       "name": "every child receives eight exactly",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-three-eights-leftover",
+      "id": "trial-three-eights-leftover",
       "name": "one extra dollar reduces an all-eight plan",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum money and children",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-maximum-children-short",
+      "id": "trial-maximum-children-short",
       "name": "maximum children with insufficient money",
       "kind": "trial",
       "visible": true,
@@ -200,6 +200,36 @@
       "tags": [
         "maximum-children",
         "impossible"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "minimal value money=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "money": 1,
+        "children": 3
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "minimal value children=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "money": 20,
+        "children": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

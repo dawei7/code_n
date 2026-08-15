@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-two-students",
+      "id": "trial-two-students",
       "name": "two distinct marks map to zero and one hundred",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-all-tied",
+      "id": "trial-all-tied",
       "name": "all equal marks share zero percent",
       "kind": "trial",
       "visible": true,
@@ -290,7 +290,7 @@
       ]
     },
     {
-      "id": "real-independent-departments",
+      "id": "trial-independent-departments",
       "name": "each department has its own denominator",
       "kind": "trial",
       "visible": true,

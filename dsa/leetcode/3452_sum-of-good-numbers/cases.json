@@ -83,8 +83,8 @@
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "real: no value wins an equal comparison",
+      "id": "trial-all-equal",
+      "name": "no value wins an equal comparison",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -103,8 +103,8 @@
       ]
     },
     {
-      "id": "real-mixed-local-maxima",
-      "name": "real: only late values satisfy both sides",
+      "id": "trial-mixed-local-maxima",
+      "name": "only late values satisfy both sides",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -127,8 +127,8 @@
       ]
     },
     {
-      "id": "real-asymmetric-boundaries",
-      "name": "real: good values can have only one neighbor",
+      "id": "trial-asymmetric-boundaries",
+      "name": "good values can have only one neighbor",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -147,8 +147,8 @@
       ]
     },
     {
-      "id": "real-decreasing",
-      "name": "real: first value is the only good value",
+      "id": "trial-decreasing",
+      "name": "first value is the only good value",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "real-negative-path",
+      "id": "trial-negative-path",
       "name": "negative values improve path",
       "kind": "trial",
       "visible": true,

@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "hidden-whole-array",
+      "id": "trial-whole-array",
       "name": "whole array window exactly qualifies",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "hidden-fractional",
+      "id": "trial-fractional",
       "name": "fractional average above threshold",
       "kind": "trial",
       "visible": true,

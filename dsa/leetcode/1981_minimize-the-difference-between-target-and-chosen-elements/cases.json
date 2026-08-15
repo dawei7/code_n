@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-maximum-row-count",
+      "id": "trial-maximum-row-count",
       "name": "seventy singleton rows",
       "kind": "trial",
       "visible": true,
@@ -425,7 +425,7 @@
       ]
     },
     {
-      "id": "real-maximum-column-count",
+      "id": "trial-maximum-column-count",
       "name": "one row with seventy choices",
       "kind": "trial",
       "visible": true,
@@ -513,7 +513,7 @@
       ]
     },
     {
-      "id": "real-smallest-excess-dominates",
+      "id": "trial-smallest-excess-dominates",
       "name": "smallest partial excess must survive",
       "kind": "trial",
       "visible": true,
@@ -537,7 +537,7 @@
       ]
     },
     {
-      "id": "real-mixed-nearest-below",
+      "id": "trial-mixed-nearest-below",
       "name": "closest result lies below target",
       "kind": "trial",
       "visible": true,
@@ -565,6 +565,37 @@
       "tags": [
         "mixed",
         "nearest-below"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value target=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ],
+        "target": 1
+      },
+      "expected": 11,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

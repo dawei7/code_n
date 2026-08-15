@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-special-value-keys",
+      "id": "trial-special-value-keys",
       "name": "prototype-like strings remain data keys",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-integer-key-order",
+      "id": "trial-integer-key-order",
       "name": "integer-like keys use JavaScript enumeration order",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-empty-and-numeric-values",
+      "id": "trial-empty-and-numeric-values",
       "name": "empty and numeric-looking strings are ordinary values",
       "kind": "trial",
       "visible": true,

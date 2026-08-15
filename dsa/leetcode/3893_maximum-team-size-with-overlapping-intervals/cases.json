@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-overlap-chain",
+      "id": "trial-overlap-chain",
       "name": "a chain's middle hubs overlap only their neighbors",
       "kind": "trial",
       "visible": true,
@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "real-nested-intervals",
+      "id": "trial-nested-intervals",
       "name": "nested intervals all overlap every possible hub",
       "kind": "trial",
       "visible": true,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "real-many-touch-one-endpoint",
+      "id": "trial-many-touch-one-endpoint",
       "name": "four intervals meeting at one endpoint form a full team",
       "kind": "trial",
       "visible": true,
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "real-unsorted-input",
+      "id": "trial-unsorted-input",
       "name": "employee order does not affect interval counting",
       "kind": "trial",
       "visible": true,
@@ -289,7 +289,7 @@
       ]
     },
     {
-      "id": "real-long-hub-last",
+      "id": "trial-long-hub-last",
       "name": "the final input employee overlaps every earlier interval",
       "kind": "trial",
       "visible": true,
@@ -314,7 +314,7 @@
       ]
     },
     {
-      "id": "real-time-boundaries",
+      "id": "trial-time-boundaries",
       "name": "maximum time endpoints still obey inclusive overlap",
       "kind": "trial",
       "visible": true,
@@ -337,7 +337,7 @@
       ]
     },
     {
-      "id": "real-two-components",
+      "id": "trial-two-components",
       "name": "the larger of two interval components determines the answer",
       "kind": "trial",
       "visible": true,

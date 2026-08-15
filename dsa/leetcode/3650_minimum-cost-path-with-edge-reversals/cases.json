@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-several-reversals",
-      "name": "real: different node switches support several reversals",
+      "id": "trial-several-reversals",
+      "name": "different node switches support several reversals",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -169,8 +169,8 @@
       ]
     },
     {
-      "id": "real-parallel-edges",
-      "name": "real: cheaper parallel direction is selected",
+      "id": "trial-parallel-edges",
+      "name": "cheaper parallel direction is selected",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -205,8 +205,8 @@
       ]
     },
     {
-      "id": "real-reversal-beats-direct",
-      "name": "real: reversed detour beats expensive direct edge",
+      "id": "trial-reversal-beats-direct",
+      "name": "reversed detour beats expensive direct edge",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -241,8 +241,8 @@
       ]
     },
     {
-      "id": "real-directed-cycle",
-      "name": "real: positive cycle is never beneficial",
+      "id": "trial-directed-cycle",
+      "name": "positive cycle is never beneficial",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -282,8 +282,8 @@
       ]
     },
     {
-      "id": "real-self-loop-ignored",
-      "name": "real: self loop does not improve route",
+      "id": "trial-self-loop-ignored",
+      "name": "self loop does not improve route",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -313,8 +313,8 @@
       ]
     },
     {
-      "id": "real-maximum-weights",
-      "name": "real: doubled maximum edge cost",
+      "id": "trial-maximum-weights",
+      "name": "doubled maximum edge cost",
       "kind": "trial",
       "visible": true,
       "input": {

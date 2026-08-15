@@ -467,7 +467,7 @@
       ]
     },
     {
-      "id": "hidden-unit-gaps",
+      "id": "trial-unit-gaps",
       "name": "every equal unit gap discounts only toward smaller indices internally",
       "kind": "trial",
       "visible": true,
@@ -511,7 +511,7 @@
       ]
     },
     {
-      "id": "hidden-large-accumulated-cost",
+      "id": "trial-large-accumulated-cost",
       "name": "accumulated costs require integers wider than 32 bits",
       "kind": "trial",
       "visible": true,
@@ -554,7 +554,7 @@
       ]
     },
     {
-      "id": "hidden-repeated-ties",
+      "id": "trial-repeated-ties",
       "name": "repeated wide ties preserve the smaller-index rule",
       "kind": "trial",
       "visible": true,
@@ -607,7 +607,7 @@
       ]
     },
     {
-      "id": "hidden-monotone-gap-decrease",
+      "id": "trial-monotone-gap-decrease",
       "name": "decreasing gaps make rightward closest moves form a chain",
       "kind": "trial",
       "visible": true,

@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-two-values-one-bit",
+      "id": "trial-two-values-one-bit",
       "name": "smallest bit width and both legal values",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-maximum-bit",
+      "id": "trial-maximum-bit",
       "name": "maximum bit width and maximum legal value",
       "kind": "trial",
       "visible": true,
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-zero-prefixes",
+      "id": "trial-zero-prefixes",
       "name": "all-zero prefixes always choose the mask",
       "kind": "trial",
       "visible": true,
@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "real-sequential",
+      "id": "trial-sequential",
       "name": "sequential ascending values change several bits",
       "kind": "trial",
       "visible": true,

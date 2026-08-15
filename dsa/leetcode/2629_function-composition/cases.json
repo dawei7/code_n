@@ -92,8 +92,8 @@
       ]
     },
     {
-      "id": "real-negative-input",
-      "name": "real: negative input through negate and offset",
+      "id": "trial-negative-input",
+      "name": "negative input through negate and offset",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -110,8 +110,8 @@
       ]
     },
     {
-      "id": "real-single-function",
-      "name": "real: one function is called directly",
+      "id": "trial-single-function",
+      "name": "one function is called directly",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -127,8 +127,8 @@
       ]
     },
     {
-      "id": "real-zero-propagation",
-      "name": "real: rightmost zeroing function controls later inputs",
+      "id": "trial-zero-propagation",
+      "name": "rightmost zeroing function controls later inputs",
       "kind": "trial",
       "visible": true,
       "input": {

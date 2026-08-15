@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-multiplicity",
+      "id": "trial-multiplicity",
       "name": "equal letter sets with different counts remain distinct",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-separated-signatures",
+      "id": "trial-separated-signatures",
       "name": "separated anagrams belong to different runs",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-boundaries",
+      "id": "trial-boundaries",
       "name": "collapse runs at both array boundaries",
       "kind": "trial",
       "visible": true,

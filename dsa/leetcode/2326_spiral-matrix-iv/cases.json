@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-full-rectangle",
+      "id": "trial-full-rectangle",
       "name": "full rectangular matrix reaches an inner row",
       "kind": "trial",
       "visible": true,
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "real-tall-partial",
+      "id": "trial-tall-partial",
       "name": "tall matrix stops on the returning bottom edge",
       "kind": "trial",
       "visible": true,

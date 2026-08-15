@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "replace the entire string",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "replacements at both boundaries",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "adjacent successful sources",
       "kind": "trial",
       "visible": true,
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-ext-4",
       "name": "original text controls all matches",
       "kind": "trial",
       "visible": true,
@@ -253,7 +253,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "source would exceed suffix",
       "kind": "trial",
       "visible": true,
@@ -275,7 +275,7 @@
       ]
     },
     {
-      "id": "hidden-6",
+      "id": "trial-6",
       "name": "unchanged gaps between matches",
       "kind": "trial",
       "visible": true,
@@ -297,6 +297,58 @@
       "expected": "0a3456bcdef9",
       "tags": [
         "gaps"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "indices": [
+          0,
+          2
+        ],
+        "sources": [
+          "a",
+          "cd"
+        ],
+        "targets": [
+          "eee",
+          "ffff"
+        ]
+      },
+      "expected": "eee",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "indices": [
+          0,
+          2
+        ],
+        "sources": [
+          "a",
+          "cd"
+        ],
+        "targets": [
+          "eee",
+          "ffff"
+        ]
+      },
+      "expected": "eeeaa",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

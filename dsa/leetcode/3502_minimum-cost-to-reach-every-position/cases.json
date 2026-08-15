@@ -100,8 +100,8 @@
       ]
     },
     {
-      "id": "real-repeated-minimum",
-      "name": "real: equal minima do not change later answers",
+      "id": "trial-repeated-minimum",
+      "name": "equal minima do not change later answers",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -128,8 +128,8 @@
       ]
     },
     {
-      "id": "real-minimum-at-last-position",
-      "name": "real: last target introduces the cheapest swap",
+      "id": "trial-minimum-at-last-position",
+      "name": "last target introduces the cheapest swap",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -156,8 +156,8 @@
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "real: every direct price is equal",
+      "id": "trial-all-equal",
+      "name": "every direct price is equal",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -182,8 +182,8 @@
       ]
     },
     {
-      "id": "real-mixed-records",
-      "name": "real: alternating record and non-record costs",
+      "id": "trial-mixed-records",
+      "name": "alternating record and non-record costs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -211,6 +211,44 @@
       "tags": [
         "real",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          5
+        ]
+      },
+      "expected": [
+        5
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          5,
+          5
+        ]
+      },
+      "expected": [
+        5,
+        5
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

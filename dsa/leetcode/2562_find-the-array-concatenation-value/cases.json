@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-odd-different-widths",
+      "id": "trial-odd-different-widths",
       "name": "middle value follows a wide outer pair",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-largest-values",
+      "id": "trial-largest-values",
       "name": "concatenate two maximum input values",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-direction-sensitive",
+      "id": "trial-direction-sensitive",
       "name": "reversing the pair would change the result",
       "kind": "trial",
       "visible": true,
@@ -140,6 +140,39 @@
       "expected": 123,
       "tags": [
         "order"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7
+        ]
+      },
+      "expected": 77,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

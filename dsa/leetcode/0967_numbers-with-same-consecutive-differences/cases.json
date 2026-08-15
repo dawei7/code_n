@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "branching difference three",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "alternating difference five",
       "kind": "trial",
       "visible": true,
@@ -195,6 +195,79 @@
       },
       "tags": [
         "alternating"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 7
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "k": 1
+      },
+      "expected": [
+        123,
+        121,
+        101,
+        234,
+        232,
+        212,
+        210,
+        345,
+        343,
+        323,
+        321,
+        456,
+        454,
+        434,
+        432,
+        567,
+        565,
+        545,
+        543,
+        678,
+        676,
+        656,
+        654,
+        789,
+        787,
+        767,
+        765,
+        898,
+        878,
+        876,
+        989,
+        987
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-descending-forty",
+      "id": "trial-descending-forty",
       "name": "input order does not affect positional trimming",
       "kind": "trial",
       "visible": true,
@@ -288,7 +288,7 @@
       ]
     },
     {
-      "id": "real-wide-range",
+      "id": "trial-wide-range",
       "name": "large endpoint values are discarded",
       "kind": "trial",
       "visible": true,
@@ -323,7 +323,7 @@
       ]
     },
     {
-      "id": "real-zero-middle",
+      "id": "trial-zero-middle",
       "name": "zeros remain after high outlier removal",
       "kind": "trial",
       "visible": true,
@@ -358,7 +358,7 @@
       ]
     },
     {
-      "id": "real-fractional-middle",
+      "id": "trial-fractional-middle",
       "name": "retained values produce a nonterminating decimal",
       "kind": "trial",
       "visible": true,
@@ -390,6 +390,23 @@
       "tags": [
         "fractional",
         "precision"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1
+        ]
+      },
+      "expected": 1.0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

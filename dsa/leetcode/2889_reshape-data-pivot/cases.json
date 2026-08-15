@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-three-cities-two-months",
+      "id": "trial-three-cities-two-months",
       "name": "three city columns preserve exact values",
       "kind": "trial",
       "visible": true,

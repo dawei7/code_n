@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "hidden-cutoff-tie",
+      "id": "trial-cutoff-tie",
       "name": "several valid pairs share cutoff sum",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "hidden-duplicate-grid",
+      "id": "trial-duplicate-grid",
       "name": "multiplicity from both arrays",
       "kind": "trial",
       "visible": true,
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "hidden-zero-k",
+      "id": "trial-zero-k",
       "name": "request no pairs",
       "kind": "trial",
       "visible": true,

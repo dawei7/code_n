@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "exact case-sensitive strings",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "best appears late in second list",
       "kind": "trial",
       "visible": true,
@@ -205,6 +205,53 @@
       },
       "tags": [
         "late"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in list1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "list1": [
+          "Shogun"
+        ],
+        "list2": [
+          "KFC",
+          "Shogun",
+          "Burger King"
+        ]
+      },
+      "expected": [
+        "Shogun"
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in list1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "list1": [
+          "Shogun",
+          "Shogun"
+        ],
+        "list2": [
+          "KFC",
+          "Shogun",
+          "Burger King"
+        ]
+      },
+      "expected": [
+        "Shogun"
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

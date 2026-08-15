@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-even-middle-push",
+      "id": "trial-even-middle-push",
       "name": "middle push uses frontmost insertion position",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-even-middle-pop",
+      "id": "trial-even-middle-pop",
       "name": "middle pop uses frontmost middle",
       "kind": "trial",
       "visible": true,
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-singletons",
+      "id": "trial-singletons",
       "name": "each position handles a singleton",
       "kind": "trial",
       "visible": true,
@@ -277,7 +277,7 @@
       ]
     },
     {
-      "id": "real-duplicate-values",
+      "id": "trial-duplicate-values",
       "name": "duplicate values remain distinct entries",
       "kind": "trial",
       "visible": true,
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "id": "real-alternating-parity",
+      "id": "trial-alternating-parity",
       "name": "alternating methods rebalance after every mutation",
       "kind": "trial",
       "visible": true,

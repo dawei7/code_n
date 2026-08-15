@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-independent-types",
+      "id": "trial-independent-types",
       "name": "exhausting big does not consume medium",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-failures-preserve-state",
+      "id": "trial-failures-preserve-state",
       "name": "failed small arrivals leave big available",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-interleaved",
+      "id": "trial-interleaved",
       "name": "interleaved types use their own counters",
       "kind": "trial",
       "visible": true,
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "real-medium-only",
+      "id": "trial-medium-only",
       "name": "only medium capacity exists",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-large-capacity-prefix",
+      "id": "trial-large-capacity-prefix",
       "name": "several successful big arrivals",
       "kind": "trial",
       "visible": true,
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "real-zero-big-positive-others",
+      "id": "trial-zero-big-positive-others",
       "name": "big fails while other types succeed",
       "kind": "trial",
       "visible": true,
@@ -290,7 +290,7 @@
       ]
     },
     {
-      "id": "real-repeated-after-exhaustion",
+      "id": "trial-repeated-after-exhaustion",
       "name": "repeated failures remain failures",
       "kind": "trial",
       "visible": true,

@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "real-binary-six",
+      "id": "trial-binary-six",
       "name": "the first multi-digit decimal match",
       "kind": "trial",
       "visible": true,
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-ternary-four",
+      "id": "trial-ternary-four",
       "name": "early one-digit values need no special handling",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-base-nine-eight",
+      "id": "trial-base-nine-eight",
       "name": "every positive digit below the base qualifies",
       "kind": "trial",
       "visible": true,

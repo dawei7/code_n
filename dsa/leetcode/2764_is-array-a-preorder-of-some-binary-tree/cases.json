@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-two-subtrees",
+      "id": "trial-two-subtrees",
       "name": "two complete sibling subtrees",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-return-too-late",
+      "id": "trial-return-too-late",
       "name": "return to an already closed subtree",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-deep-unwind",
+      "id": "trial-deep-unwind",
       "name": "unwind from a deep path to an uncle",
       "kind": "trial",
       "visible": true,
@@ -234,7 +234,7 @@
       ]
     },
     {
-      "id": "real-parent-after-child",
+      "id": "trial-parent-after-child",
       "name": "a node appears before its parent",
       "kind": "trial",
       "visible": true,
@@ -268,7 +268,7 @@
       ]
     },
     {
-      "id": "real-root-not-first",
+      "id": "trial-root-not-first",
       "name": "the root is not first",
       "kind": "trial",
       "visible": true,
@@ -290,7 +290,7 @@
       ]
     },
     {
-      "id": "real-id-boundary",
+      "id": "trial-id-boundary",
       "name": "identifiers at the allowed boundary",
       "kind": "trial",
       "visible": true,

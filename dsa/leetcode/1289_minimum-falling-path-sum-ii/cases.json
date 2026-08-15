@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "hidden-mixed",
+      "id": "trial-mixed",
       "name": "mixed positive and negative values",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "hidden-four",
+      "id": "trial-four",
       "name": "four rows with changing best column",
       "kind": "trial",
       "visible": true,

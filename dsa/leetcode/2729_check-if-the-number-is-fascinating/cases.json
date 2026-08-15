@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-product-four-digits",
+      "id": "trial-product-four-digits",
       "name": "concatenation longer than nine digits",
       "kind": "trial",
       "visible": true,
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-lower-bound",
+      "id": "trial-lower-bound",
       "name": "lower input boundary",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-third-fascinating",
+      "id": "trial-third-fascinating",
       "name": "273 is fascinating",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-fourth-fascinating",
+      "id": "trial-fourth-fascinating",
       "name": "327 is fascinating",
       "kind": "trial",
       "visible": true,

@@ -63,7 +63,7 @@
       "expected": 101
     },
     {
-      "id": "real-maximum-number",
+      "id": "trial-maximum-number",
       "name": "maximum number with one operation",
       "kind": "trial",
       "visible": true,
@@ -77,7 +77,7 @@
       "expected": 52
     },
     {
-      "id": "real-both-maximum",
+      "id": "trial-both-maximum",
       "name": "both inputs at their maximum",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       "expected": 150
     },
     {
-      "id": "real-balanced-interior",
+      "id": "trial-balanced-interior",
       "name": "equal interior inputs",
       "kind": "trial",
       "visible": true,
@@ -105,7 +105,7 @@
       "expected": 75
     },
     {
-      "id": "real-asymmetric-interior",
+      "id": "trial-asymmetric-interior",
       "name": "asymmetric interior inputs",
       "kind": "trial",
       "visible": true,

@@ -66,7 +66,7 @@
       ]
     },
     {
-      "id": "real-null-property",
+      "id": "trial-null-property",
       "name": "null property value still counts",
       "kind": "trial",
       "visible": true,
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "id": "real-nested-empty",
+      "id": "trial-nested-empty",
       "name": "nested empty object is still a property",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-single-null-element",
+      "id": "trial-single-null-element",
       "name": "one null array element",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-empty-string-key",
+      "id": "trial-empty-string-key",
       "name": "empty-string key counts as a property",
       "kind": "trial",
       "visible": true,

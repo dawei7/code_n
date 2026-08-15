@@ -103,8 +103,8 @@
       ]
     },
     {
-      "id": "real-one-short-of-budget",
-      "name": "real: the unique feasible transformation needs two operations",
+      "id": "trial-one-short-of-budget",
+      "name": "the unique feasible transformation needs two operations",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -123,8 +123,8 @@
       ]
     },
     {
-      "id": "real-exact-budget",
-      "name": "real: the unique feasible transformation uses the exact budget",
+      "id": "trial-exact-budget",
+      "name": "the unique feasible transformation uses the exact budget",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -143,8 +143,8 @@
       ]
     },
     {
-      "id": "real-interior-flip",
-      "name": "real: one interior operation makes four values negative",
+      "id": "trial-interior-flip",
+      "name": "one interior operation makes four values negative",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -164,8 +164,8 @@
       ]
     },
     {
-      "id": "real-already-uniform",
-      "name": "real: an already uniform array needs no operation",
+      "id": "trial-already-uniform",
+      "name": "an already uniform array needs no operation",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -185,8 +185,8 @@
       ]
     },
     {
-      "id": "real-alternating-insufficient-budget",
-      "name": "real: a longer alternating array exceeds the operation budget",
+      "id": "trial-alternating-insufficient-budget",
+      "name": "a longer alternating array exceeds the operation budget",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -206,6 +206,41 @@
         "real",
         "alternating-signs",
         "insufficient-k"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 3
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

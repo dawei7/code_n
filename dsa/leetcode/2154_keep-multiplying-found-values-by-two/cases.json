@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-bound-start",
+      "id": "trial-bound-start",
       "name": "a maximum allowed starting value can double",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-gap-in-chain",
+      "id": "trial-gap-in-chain",
       "name": "later present values do not bridge a missing double",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-one-chain",
+      "id": "trial-one-chain",
       "name": "powers of two from one",
       "kind": "trial",
       "visible": true,
@@ -154,6 +154,41 @@
       "expected": 128,
       "tags": [
         "powers-of-two"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "original": 3
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5
+        ],
+        "original": 3
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

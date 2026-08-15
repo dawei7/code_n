@@ -104,8 +104,8 @@
       ]
     },
     {
-      "id": "real-empty-subsequence-forbidden",
-      "name": "real: empty subsequence cannot satisfy target zero",
+      "id": "trial-empty-subsequence-forbidden",
+      "name": "empty subsequence cannot satisfy target zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -123,8 +123,8 @@
       ]
     },
     {
-      "id": "real-fallback-positive-product",
-      "name": "real: oversized product leaves smaller valid choice",
+      "id": "trial-fallback-positive-product",
+      "name": "oversized product leaves smaller valid choice",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -144,8 +144,8 @@
       ]
     },
     {
-      "id": "real-product-one",
-      "name": "real: repeated ones preserve product one",
+      "id": "trial-product-one",
+      "name": "repeated ones preserve product one",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -166,8 +166,8 @@
       ]
     },
     {
-      "id": "real-order-and-parity",
-      "name": "real: all three positions produce target one",
+      "id": "trial-order-and-parity",
+      "name": "all three positions produce target one",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -188,8 +188,8 @@
       ]
     },
     {
-      "id": "real-zero-only-feasible-product",
-      "name": "real: only a zero product remains within the limit",
+      "id": "trial-zero-only-feasible-product",
+      "name": "only a zero product remains within the limit",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -210,8 +210,8 @@
       ]
     },
     {
-      "id": "real-maximum-exact-limit",
-      "name": "real: mixed values attain the limit exactly",
+      "id": "trial-maximum-exact-limit",
+      "name": "mixed values attain the limit exactly",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -231,6 +231,43 @@
         "real",
         "mixed-values",
         "exact-limit"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 2,
+        "limit": 10
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 2,
+        "limit": 10
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -17,8 +17,8 @@
       ]
     },
     {
-      "id": "real-n-02",
-      "name": "real: initial pile of 2 stones",
+      "id": "trial-n-02",
+      "name": "initial pile of 2 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -32,8 +32,8 @@
       ]
     },
     {
-      "id": "real-n-03",
-      "name": "real: initial pile of 3 stones",
+      "id": "trial-n-03",
+      "name": "initial pile of 3 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -47,8 +47,8 @@
       ]
     },
     {
-      "id": "real-n-04",
-      "name": "real: initial pile of 4 stones",
+      "id": "trial-n-04",
+      "name": "initial pile of 4 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -62,8 +62,8 @@
       ]
     },
     {
-      "id": "real-n-05",
-      "name": "real: initial pile of 5 stones",
+      "id": "trial-n-05",
+      "name": "initial pile of 5 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -77,8 +77,8 @@
       ]
     },
     {
-      "id": "real-n-06",
-      "name": "real: initial pile of 6 stones",
+      "id": "trial-n-06",
+      "name": "initial pile of 6 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -92,8 +92,8 @@
       ]
     },
     {
-      "id": "real-n-07",
-      "name": "real: initial pile of 7 stones",
+      "id": "trial-n-07",
+      "name": "initial pile of 7 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-n-08",
-      "name": "real: initial pile of 8 stones",
+      "id": "trial-n-08",
+      "name": "initial pile of 8 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-n-11",
-      "name": "real: initial pile of 11 stones",
+      "id": "trial-n-11",
+      "name": "initial pile of 11 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -182,8 +182,8 @@
       ]
     },
     {
-      "id": "real-n-13",
-      "name": "real: initial pile of 13 stones",
+      "id": "trial-n-13",
+      "name": "initial pile of 13 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -197,8 +197,8 @@
       ]
     },
     {
-      "id": "real-n-14",
-      "name": "real: initial pile of 14 stones",
+      "id": "trial-n-14",
+      "name": "initial pile of 14 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -212,8 +212,8 @@
       ]
     },
     {
-      "id": "real-n-15",
-      "name": "real: initial pile of 15 stones",
+      "id": "trial-n-15",
+      "name": "initial pile of 15 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -227,8 +227,8 @@
       ]
     },
     {
-      "id": "real-n-16",
-      "name": "real: initial pile of 16 stones",
+      "id": "trial-n-16",
+      "name": "initial pile of 16 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -242,8 +242,8 @@
       ]
     },
     {
-      "id": "real-n-17",
-      "name": "real: initial pile of 17 stones",
+      "id": "trial-n-17",
+      "name": "initial pile of 17 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -287,8 +287,8 @@
       ]
     },
     {
-      "id": "real-n-20",
-      "name": "real: initial pile of 20 stones",
+      "id": "trial-n-20",
+      "name": "initial pile of 20 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -302,8 +302,8 @@
       ]
     },
     {
-      "id": "real-n-21",
-      "name": "real: initial pile of 21 stones",
+      "id": "trial-n-21",
+      "name": "initial pile of 21 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -317,8 +317,8 @@
       ]
     },
     {
-      "id": "real-n-22",
-      "name": "real: initial pile of 22 stones",
+      "id": "trial-n-22",
+      "name": "initial pile of 22 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -332,8 +332,8 @@
       ]
     },
     {
-      "id": "real-n-23",
-      "name": "real: initial pile of 23 stones",
+      "id": "trial-n-23",
+      "name": "initial pile of 23 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -347,8 +347,8 @@
       ]
     },
     {
-      "id": "real-n-24",
-      "name": "real: initial pile of 24 stones",
+      "id": "trial-n-24",
+      "name": "initial pile of 24 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -362,8 +362,8 @@
       ]
     },
     {
-      "id": "real-n-25",
-      "name": "real: initial pile of 25 stones",
+      "id": "trial-n-25",
+      "name": "initial pile of 25 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -407,8 +407,8 @@
       ]
     },
     {
-      "id": "real-n-28",
-      "name": "real: initial pile of 28 stones",
+      "id": "trial-n-28",
+      "name": "initial pile of 28 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -422,8 +422,8 @@
       ]
     },
     {
-      "id": "real-n-29",
-      "name": "real: initial pile of 29 stones",
+      "id": "trial-n-29",
+      "name": "initial pile of 29 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -437,8 +437,8 @@
       ]
     },
     {
-      "id": "real-n-30",
-      "name": "real: initial pile of 30 stones",
+      "id": "trial-n-30",
+      "name": "initial pile of 30 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -452,8 +452,8 @@
       ]
     },
     {
-      "id": "real-n-31",
-      "name": "real: initial pile of 31 stones",
+      "id": "trial-n-31",
+      "name": "initial pile of 31 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -467,8 +467,8 @@
       ]
     },
     {
-      "id": "real-n-32",
-      "name": "real: initial pile of 32 stones",
+      "id": "trial-n-32",
+      "name": "initial pile of 32 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -512,8 +512,8 @@
       ]
     },
     {
-      "id": "real-n-35",
-      "name": "real: initial pile of 35 stones",
+      "id": "trial-n-35",
+      "name": "initial pile of 35 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -527,8 +527,8 @@
       ]
     },
     {
-      "id": "real-n-36",
-      "name": "real: initial pile of 36 stones",
+      "id": "trial-n-36",
+      "name": "initial pile of 36 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -542,8 +542,8 @@
       ]
     },
     {
-      "id": "real-n-37",
-      "name": "real: initial pile of 37 stones",
+      "id": "trial-n-37",
+      "name": "initial pile of 37 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -557,8 +557,8 @@
       ]
     },
     {
-      "id": "real-n-38",
-      "name": "real: initial pile of 38 stones",
+      "id": "trial-n-38",
+      "name": "initial pile of 38 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -602,8 +602,8 @@
       ]
     },
     {
-      "id": "real-n-41",
-      "name": "real: initial pile of 41 stones",
+      "id": "trial-n-41",
+      "name": "initial pile of 41 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -617,8 +617,8 @@
       ]
     },
     {
-      "id": "real-n-42",
-      "name": "real: initial pile of 42 stones",
+      "id": "trial-n-42",
+      "name": "initial pile of 42 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -632,8 +632,8 @@
       ]
     },
     {
-      "id": "real-n-43",
-      "name": "real: initial pile of 43 stones",
+      "id": "trial-n-43",
+      "name": "initial pile of 43 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -677,8 +677,8 @@
       ]
     },
     {
-      "id": "real-n-46",
-      "name": "real: initial pile of 46 stones",
+      "id": "trial-n-46",
+      "name": "initial pile of 46 stones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -692,8 +692,8 @@
       ]
     },
     {
-      "id": "real-n-47",
-      "name": "real: initial pile of 47 stones",
+      "id": "trial-n-47",
+      "name": "initial pile of 47 stones",
       "kind": "trial",
       "visible": true,
       "input": {

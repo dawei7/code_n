@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-hundred-digits",
+      "id": "trial-hundred-digits",
       "name": "maximum permitted digit length",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-many-duplicates",
+      "id": "trial-many-duplicates",
       "name": "repeated middle value spans several ranks",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-zero-minimum",
+      "id": "trial-zero-minimum",
       "name": "zero is the final rank",
       "kind": "trial",
       "visible": true,
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-length-boundaries",
+      "id": "trial-length-boundaries",
       "name": "adjacent digit lengths",
       "kind": "trial",
       "visible": true,

@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-conventional-palindrome",
+      "id": "trial-conventional-palindrome",
       "name": "ordinary palindrome splits into characters",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-two-halves",
+      "id": "trial-two-halves",
       "name": "only the equal halves match",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-near-match",
+      "id": "trial-near-match",
       "name": "long near-matching ends still form one chunk",
       "kind": "trial",
       "visible": true,
@@ -113,6 +113,34 @@
       "tags": [
         "real",
         "late-mismatch"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in text",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "g"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in text",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "ggg"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

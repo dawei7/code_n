@@ -167,8 +167,8 @@
       ]
     },
     {
-      "id": "real-two-enemies",
-      "name": "real: exact pairwise exchange boundary",
+      "id": "trial-two-enemies",
+      "name": "exact pairwise exchange boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -189,8 +189,8 @@
       ]
     },
     {
-      "id": "real-many-ties",
-      "name": "real: several equal attack counts",
+      "id": "trial-many-ties",
+      "name": "several equal attack counts",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -217,8 +217,8 @@
       ]
     },
     {
-      "id": "real-divisible-health",
-      "name": "real: every health divides by power",
+      "id": "trial-divisible-health",
+      "name": "every health divides by power",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -243,8 +243,8 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: large rates and health use wide totals",
+      "id": "trial-large-values",
+      "name": "large rates and health use wide totals",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -267,8 +267,8 @@
       ]
     },
     {
-      "id": "real-eight-enemies",
-      "name": "real: eight deterministic enemies",
+      "id": "trial-eight-enemies",
+      "name": "eight deterministic enemies",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -298,6 +298,55 @@
       "tags": [
         "mixed",
         "larger"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value power=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "power": 1,
+        "damage": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "health": [
+          4,
+          5,
+          6,
+          8
+        ]
+      },
+      "expected": 135,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in damage",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "power": 4,
+        "damage": [
+          1
+        ],
+        "health": [
+          4,
+          5,
+          6,
+          8
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

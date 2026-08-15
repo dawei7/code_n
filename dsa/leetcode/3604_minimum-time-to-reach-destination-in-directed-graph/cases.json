@@ -145,8 +145,8 @@
       ]
     },
     {
-      "id": "real-expired-after-arrival",
-      "name": "real: an edge closes before its source is reached",
+      "id": "trial-expired-after-arrival",
+      "name": "an edge closes before its source is reached",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -174,8 +174,8 @@
       ]
     },
     {
-      "id": "real-parallel-windows",
-      "name": "real: parallel edges offer different arrival times",
+      "id": "trial-parallel-windows",
+      "name": "parallel edges offer different arrival times",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -209,8 +209,8 @@
       ]
     },
     {
-      "id": "real-cycle-does-not-help",
-      "name": "real: a directed cycle cannot improve an arrival",
+      "id": "trial-cycle-does-not-help",
+      "name": "a directed cycle cannot improve an arrival",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -256,8 +256,8 @@
       ]
     },
     {
-      "id": "real-more-hops-earlier",
-      "name": "real: more immediate hops beat a late direct edge",
+      "id": "trial-more-hops-earlier",
+      "name": "more immediate hops beat a late direct edge",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -303,8 +303,8 @@
       ]
     },
     {
-      "id": "real-large-time",
-      "name": "real: availability endpoints reach one billion",
+      "id": "trial-large-time",
+      "name": "availability endpoints reach one billion",
       "kind": "trial",
       "visible": true,
       "input": {

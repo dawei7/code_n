@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-null-prototype-object",
+      "id": "trial-null-prototype-object",
       "name": "null-prototype object does not inherit Object",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-symbol-primitive",
+      "id": "trial-symbol-primitive",
       "name": "symbol primitive uses Symbol methods",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-deep-ancestor",
+      "id": "trial-deep-ancestor",
       "name": "requested prototype is deep in the chain",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-deep-miss",
+      "id": "trial-deep-miss",
       "name": "unrelated target is absent from a deep chain",
       "kind": "trial",
       "visible": true,

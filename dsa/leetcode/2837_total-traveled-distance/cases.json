@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "real-single-user-multiple-rides",
+      "id": "trial-single-user-multiple-rides",
       "name": "one user owns every ride",
       "kind": "trial",
       "visible": true,
@@ -341,7 +341,7 @@
       ]
     },
     {
-      "id": "real-interleaved-rides",
+      "id": "trial-interleaved-rides",
       "name": "ride order does not affect grouped totals",
       "kind": "trial",
       "visible": true,

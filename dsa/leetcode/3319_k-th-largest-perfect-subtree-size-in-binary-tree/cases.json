@@ -148,8 +148,8 @@
       ]
     },
     {
-      "id": "real-two-perfect-branches",
-      "name": "real: imperfect root above perfect branches",
+      "id": "trial-two-perfect-branches",
+      "name": "imperfect root above perfect branches",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -176,8 +176,8 @@
       ]
     },
     {
-      "id": "real-mixed-shapes",
-      "name": "real: several nested perfect candidates",
+      "id": "trial-mixed-shapes",
+      "name": "several nested perfect candidates",
       "kind": "trial",
       "visible": true,
       "input": {

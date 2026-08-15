@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-palindrome-outer",
+      "id": "trial-palindrome-outer",
       "name": "an outer palindrome match wins immediately",
       "kind": "trial",
       "visible": true,
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-match-at-one",
+      "id": "trial-match-at-one",
       "name": "reject the endpoints before an index-one match",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "repeated characters return zero",
       "kind": "trial",
       "visible": true,
@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "real-maximum-no-match",
+      "id": "trial-maximum-no-match",
       "name": "maximum even length has no mirrored equality",
       "kind": "trial",
       "visible": true,
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "real-maximum-middle-match",
+      "id": "trial-maximum-middle-match",
       "name": "maximum even length first matches at index 49",
       "kind": "trial",
       "visible": true,
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-maximum-odd-center",
+      "id": "trial-maximum-odd-center",
       "name": "a 99-character string first matches at its center",
       "kind": "trial",
       "visible": true,
@@ -249,7 +249,7 @@
       ]
     },
     {
-      "id": "real-alphabet-no-match",
+      "id": "trial-alphabet-no-match",
       "name": "opposite alphabet positions all differ",
       "kind": "trial",
       "visible": true,
@@ -263,6 +263,20 @@
       "tags": [
         "distinct-characters",
         "no-match"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

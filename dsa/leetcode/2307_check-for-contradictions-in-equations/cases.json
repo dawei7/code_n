@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-repeated-conflict",
+      "id": "trial-repeated-conflict",
       "name": "a repeated equation changes its value",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-long-chain",
+      "id": "trial-long-chain",
       "name": "a longer chain supports a consistent shortcut",
       "kind": "trial",
       "visible": true,
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-self-conflict",
+      "id": "trial-self-conflict",
       "name": "a variable divided by itself must equal one",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "real-within-tolerance",
+      "id": "trial-within-tolerance",
       "name": "a discrepancy below the tolerance is accepted",
       "kind": "trial",
       "visible": true,
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "real-at-tolerance",
+      "id": "trial-at-tolerance",
       "name": "a discrepancy at the tolerance is contradictory",
       "kind": "trial",
       "visible": true,

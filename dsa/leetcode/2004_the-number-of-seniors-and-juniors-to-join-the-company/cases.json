@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-priority-over-total-count",
+      "id": "trial-priority-over-total-count",
       "name": "senior priority reduces the possible junior count",
       "kind": "trial",
       "visible": true,
@@ -307,7 +307,7 @@
       ]
     },
     {
-      "id": "real-cheapest-not-input-order",
+      "id": "trial-cheapest-not-input-order",
       "name": "salary ordering determines the affordable prefix",
       "kind": "trial",
       "visible": true,
@@ -371,7 +371,7 @@
       ]
     },
     {
-      "id": "real-equal-salary-ties",
+      "id": "trial-equal-salary-ties",
       "name": "equal salaries still produce the correct count",
       "kind": "trial",
       "visible": true,

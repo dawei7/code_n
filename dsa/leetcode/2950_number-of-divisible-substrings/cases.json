@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "real-highest-group",
+      "id": "trial-highest-group",
       "name": "every substring has mapped average nine",
       "kind": "trial",
       "visible": true,
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-group-boundaries",
+      "id": "trial-group-boundaries",
       "name": "letters straddle several mapping boundaries",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-mixed-averages",
+      "id": "trial-mixed-averages",
       "name": "different substrings realize different integer averages",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-repeated-pattern",
+      "id": "trial-repeated-pattern",
       "name": "repeated alphabet pattern creates overlapping matches",
       "kind": "trial",
       "visible": true,
@@ -129,6 +129,34 @@
       "expected": 52,
       "tags": [
         "overlapping"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "a"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaa"
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

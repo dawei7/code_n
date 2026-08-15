@@ -55,7 +55,7 @@
       ]
     },
     {
-      "id": "real-zeros",
+      "id": "trial-zeros",
       "name": "zero amounts between values",
       "kind": "trial",
       "visible": true,

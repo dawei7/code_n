@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-two-pieces",
+      "id": "trial-two-pieces",
       "name": "choose the best of several boundaries",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-palindromic-words",
+      "id": "trial-palindromic-words",
       "name": "concatenated palindromes",
       "kind": "trial",
       "visible": true,
@@ -103,6 +103,36 @@
       "expected": 0,
       "tags": [
         "long-palindromes"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

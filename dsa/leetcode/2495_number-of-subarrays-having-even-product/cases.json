@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-single-odd",
+      "id": "trial-single-odd",
       "name": "one odd element",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-even-at-start",
+      "id": "trial-even-at-start",
       "name": "an early even value certifies one start per endpoint",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-even-at-end",
+      "id": "trial-even-at-end",
       "name": "a final even value certifies every start",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-several-evens",
+      "id": "trial-several-evens",
       "name": "contributions change at several even indices",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-long-odd-runs",
+      "id": "trial-long-odd-runs",
       "name": "separated even values and odd runs",
       "kind": "trial",
       "visible": true,
@@ -166,6 +166,39 @@
       "tags": [
         "odd-runs",
         "multiple-even"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          9
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

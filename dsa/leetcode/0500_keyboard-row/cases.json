@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "hidden-spans-rows",
+      "id": "trial-spans-rows",
       "name": "letters span all rows",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "hidden-preserve-order",
+      "id": "trial-preserve-order",
       "name": "preserve input order and case",
       "kind": "trial",
       "visible": true,
@@ -132,6 +132,39 @@
       ],
       "tags": [
         "order"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "Hello"
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "Hello",
+          "Hello"
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

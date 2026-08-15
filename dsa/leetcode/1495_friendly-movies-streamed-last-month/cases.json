@@ -345,7 +345,7 @@
       ]
     },
     {
-      "id": "real-no-match",
+      "id": "trial-no-match",
       "name": "no row meets every predicate",
       "kind": "trial",
       "visible": true,
@@ -391,7 +391,7 @@
       ]
     },
     {
-      "id": "real-unmatched-content",
+      "id": "trial-unmatched-content",
       "name": "content without a program is absent",
       "kind": "trial",
       "visible": true,
@@ -436,7 +436,7 @@
       ]
     },
     {
-      "id": "real-channel-irrelevant",
+      "id": "trial-channel-irrelevant",
       "name": "multiple channels do not duplicate title",
       "kind": "trial",
       "visible": true,

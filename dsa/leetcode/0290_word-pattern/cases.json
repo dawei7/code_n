@@ -46,7 +46,7 @@
       ]
     },
     {
-      "id": "real-reverse-fail",
+      "id": "trial-reverse-fail",
       "name": "different characters share one word",
       "kind": "trial",
       "visible": true,
@@ -57,6 +57,36 @@
       "expected": false,
       "tags": [
         "reverse"
+      ]
+    },
+    {
+      "id": "trial-boundary-5",
+      "name": "single character in pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pattern": "a",
+        "s": "dog cat cat dog"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-6",
+      "name": "repeated character in pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "pattern": "aaa",
+        "s": "dog cat cat dog"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

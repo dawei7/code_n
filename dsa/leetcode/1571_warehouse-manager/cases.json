@@ -336,7 +336,7 @@
       ]
     },
     {
-      "id": "real-unused-product",
+      "id": "trial-unused-product",
       "name": "unused catalog row contributes nothing",
       "kind": "trial",
       "visible": true,
@@ -386,7 +386,7 @@
       ]
     },
     {
-      "id": "real-three-products",
+      "id": "trial-three-products",
       "name": "three row volumes aggregate together",
       "kind": "trial",
       "visible": true,
@@ -453,7 +453,7 @@
       ]
     },
     {
-      "id": "real-name-grouping",
+      "id": "trial-name-grouping",
       "name": "product name does not split warehouse group",
       "kind": "trial",
       "visible": true,
@@ -508,7 +508,7 @@
       ]
     },
     {
-      "id": "real-independent-warehouses",
+      "id": "trial-independent-warehouses",
       "name": "each name receives its own aggregate",
       "kind": "trial",
       "visible": true,

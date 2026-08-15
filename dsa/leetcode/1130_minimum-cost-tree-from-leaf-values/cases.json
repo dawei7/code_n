@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "all leaf values equal",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-small-between-large",
+      "id": "trial-small-between-large",
       "name": "small leaves between equal maxima",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-value-bounds",
+      "id": "trial-value-bounds",
       "name": "minimum and maximum leaf values",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-zigzag",
+      "id": "trial-zigzag",
       "name": "repeated rises and falls",
       "kind": "trial",
       "visible": true,

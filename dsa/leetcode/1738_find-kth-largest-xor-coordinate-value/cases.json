@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-one-row",
+      "id": "trial-one-row",
       "name": "one row reduces to running XOR values",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-one-column",
+      "id": "trial-one-column",
       "name": "one column reduces to running XOR values",
       "kind": "trial",
       "visible": true,
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "duplicate zero values occupy every rank",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-three-by-three",
+      "id": "trial-three-by-three",
       "name": "interior prefixes combine four recurrence terms",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-duplicate-nonzero",
+      "id": "trial-duplicate-nonzero",
       "name": "repeated nonzero prefixes retain separate ranks",
       "kind": "trial",
       "visible": true,

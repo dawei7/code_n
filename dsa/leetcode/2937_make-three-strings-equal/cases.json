@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-single-character-mismatch",
+      "id": "trial-single-character-mismatch",
       "name": "length-one mismatch cannot be repaired",
       "kind": "trial",
       "visible": true,
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-long-common-prefix",
+      "id": "trial-long-common-prefix",
       "name": "retain a long prefix before different suffixes",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-unequal-lengths",
+      "id": "trial-unequal-lengths",
       "name": "all strings delete different suffix lengths",
       "kind": "trial",
       "visible": true,
@@ -120,6 +120,38 @@
       "expected": 13,
       "tags": [
         "unequal-lengths"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "a",
+        "s2": "abb",
+        "s3": "ab"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "aaa",
+        "s2": "abb",
+        "s3": "ab"
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

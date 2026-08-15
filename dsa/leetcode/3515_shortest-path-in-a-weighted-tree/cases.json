@@ -292,8 +292,8 @@
       ]
     },
     {
-      "id": "real-deep-subtree-only",
-      "name": "real: deep update excludes ancestors and sibling",
+      "id": "trial-deep-subtree-only",
+      "name": "deep update excludes ancestors and sibling",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -363,8 +363,8 @@
       ]
     },
     {
-      "id": "real-multiple-ancestor-deltas",
-      "name": "real: descendant accumulates multiple updated ancestors",
+      "id": "trial-multiple-ancestor-deltas",
+      "name": "descendant accumulates multiple updated ancestors",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -431,8 +431,8 @@
       ]
     },
     {
-      "id": "real-maximum-weights",
-      "name": "real: large root-path totals",
+      "id": "trial-maximum-weights",
+      "name": "large root-path totals",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -482,8 +482,8 @@
       ]
     },
     {
-      "id": "real-update-root-child",
-      "name": "real: root-child update shifts its whole branch",
+      "id": "trial-update-root-child",
+      "name": "root-child update shifts its whole branch",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-numeric-boundaries",
+      "id": "trial-numeric-boundaries",
       "name": "positive and negative numeric limits",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-different-winning-rows",
+      "id": "trial-different-winning-rows",
       "name": "each column width comes from a different row",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-single-row",
+      "id": "trial-single-row",
       "name": "a single row with varied widths",
       "kind": "trial",
       "visible": true,

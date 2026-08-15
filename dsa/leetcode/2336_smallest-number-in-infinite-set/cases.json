@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "real-cross-frontier",
+      "id": "trial-cross-frontier",
       "name": "restored values drain before fresh frontier values",
       "kind": "trial",
       "visible": true,
@@ -249,7 +249,7 @@
       ]
     },
     {
-      "id": "real-repeat-cycle",
+      "id": "trial-repeat-cycle",
       "name": "one value can be restored through repeated cycles",
       "kind": "trial",
       "visible": true,

@@ -86,8 +86,8 @@
       ]
     },
     {
-      "id": "real-interleaved-new-minimum",
-      "name": "real: a later letter becomes the next minimum",
+      "id": "trial-interleaved-new-minimum",
+      "name": "a later letter becomes the next minimum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -101,8 +101,8 @@
       ]
     },
     {
-      "id": "real-all-equal-removed",
-      "name": "real: all equal letters are removed",
+      "id": "trial-all-equal-removed",
+      "name": "all equal letters are removed",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -116,8 +116,8 @@
       ]
     },
     {
-      "id": "real-repeated-ties",
-      "name": "real: repeated stars resolve equal minimum ties",
+      "id": "trial-repeated-ties",
+      "name": "repeated stars resolve equal minimum ties",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -131,8 +131,8 @@
       ]
     },
     {
-      "id": "real-fully-interleaved",
-      "name": "real: each interleaved star removes its preceding letter",
+      "id": "trial-fully-interleaved",
+      "name": "each interleaved star removes its preceding letter",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-word-two-stars",
-      "name": "real: two trailing stars remove c and d",
+      "id": "trial-word-two-stars",
+      "name": "two trailing stars remove c and d",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -161,8 +161,8 @@
       ]
     },
     {
-      "id": "real-new-a-between-stars",
-      "name": "real: a newly encountered a is selected next",
+      "id": "trial-new-a-between-stars",
+      "name": "a newly encountered a is selected next",
       "kind": "trial",
       "visible": true,
       "input": {

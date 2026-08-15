@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "hidden-duplicate",
+      "id": "trial-duplicate",
       "name": "duplicate rectangle overlap",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "hidden-gap-overlap",
+      "id": "trial-gap-overlap",
       "name": "equal area hides gap and overlap",
       "kind": "trial",
       "visible": true,
@@ -257,7 +257,7 @@
       ]
     },
     {
-      "id": "hidden-shared-edges",
+      "id": "trial-shared-edges",
       "name": "unequal strips share complete edges",
       "kind": "trial",
       "visible": true,

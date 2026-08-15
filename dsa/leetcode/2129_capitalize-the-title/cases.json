@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-mixed-lengths",
+      "id": "trial-mixed-lengths",
       "name": "all word-length rules occur together",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-already-normalized",
+      "id": "trial-already-normalized",
       "name": "normalized title is unchanged",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-all-uppercase",
+      "id": "trial-all-uppercase",
       "name": "uppercase words normalize completely",
       "kind": "trial",
       "visible": true,
@@ -109,6 +109,34 @@
       "expected": "to be or Not to be",
       "tags": [
         "uppercase"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in title",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "title": "c"
+      },
+      "expected": "c",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in title",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "title": "ccc"
+      },
+      "expected": "Ccc",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -216,8 +216,8 @@
       ]
     },
     {
-      "id": "real-five-node-path",
-      "name": "real: five-node path",
+      "id": "trial-five-node-path",
+      "name": "five-node path",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -253,8 +253,8 @@
       ]
     },
     {
-      "id": "real-asymmetric-branches",
-      "name": "real: asymmetric branches",
+      "id": "trial-asymmetric-branches",
+      "name": "asymmetric branches",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -300,8 +300,8 @@
       ]
     },
     {
-      "id": "real-odd-center-with-tail",
-      "name": "real: odd center with tail",
+      "id": "trial-odd-center-with-tail",
+      "name": "odd center with tail",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -342,8 +342,8 @@
       ]
     },
     {
-      "id": "real-even-chain-reordered",
-      "name": "real: reordered parity-heavy chain",
+      "id": "trial-even-chain-reordered",
+      "name": "reordered parity-heavy chain",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -389,8 +389,8 @@
       ]
     },
     {
-      "id": "real-multiple-tied-branches",
-      "name": "real: multiple tied branches",
+      "id": "trial-multiple-tied-branches",
+      "name": "multiple tied branches",
       "kind": "trial",
       "visible": true,
       "input": {

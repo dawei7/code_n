@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-zero-chain",
+      "id": "trial-zero-chain",
       "name": "every zero in a skewed tree matches",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-internal-match",
+      "id": "trial-internal-match",
       "name": "one internal branch and all leaves match",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "upper-bound values preserve matching averages",
       "kind": "trial",
       "visible": true,

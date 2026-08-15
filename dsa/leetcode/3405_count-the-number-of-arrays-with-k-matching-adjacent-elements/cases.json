@@ -114,8 +114,8 @@
       ]
     },
     {
-      "id": "real-multiple-values",
-      "name": "real: choose two matching slots among four",
+      "id": "trial-multiple-values",
+      "name": "choose two matching slots among four",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -130,8 +130,8 @@
       ]
     },
     {
-      "id": "real-large-modulo",
-      "name": "real: a large exponent requires modular arithmetic",
+      "id": "trial-large-modulo",
+      "name": "a large exponent requires modular arithmetic",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -45,7 +45,7 @@
       ]
     },
     {
-      "id": "real-pattern",
+      "id": "trial-pattern",
       "name": "repeated pattern matches",
       "kind": "trial",
       "visible": true,
@@ -56,6 +56,36 @@
       "expected": true,
       "tags": [
         "pattern"
+      ]
+    },
+    {
+      "id": "trial-boundary-5",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "e",
+        "t": "add"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-6",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "eee",
+        "t": "add"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

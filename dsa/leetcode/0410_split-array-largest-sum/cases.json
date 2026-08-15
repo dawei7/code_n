@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "hidden-dominant",
+      "id": "trial-dominant",
       "name": "one value dominates every partition",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "hidden-equal",
+      "id": "trial-equal",
       "name": "equal values split evenly",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "hidden-many-groups",
+      "id": "trial-many-groups",
       "name": "exact nontrivial group count",
       "kind": "trial",
       "visible": true,

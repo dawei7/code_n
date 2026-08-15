@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-no-food",
+      "id": "trial-no-food",
       "name": "a grid without food returns minus one",
       "kind": "trial",
       "visible": true,
@@ -268,7 +268,7 @@
       ]
     },
     {
-      "id": "real-wall-between-start-and-food",
+      "id": "trial-wall-between-start-and-food",
       "name": "a wall blocks the only row",
       "kind": "trial",
       "visible": true,
@@ -288,7 +288,7 @@
       ]
     },
     {
-      "id": "real-boundary-corridor",
+      "id": "trial-boundary-corridor",
       "name": "shortest route follows the outer boundary",
       "kind": "trial",
       "visible": true,
@@ -318,7 +318,7 @@
       ]
     },
     {
-      "id": "real-nearest-not-first-in-scan",
+      "id": "trial-nearest-not-first-in-scan",
       "name": "BFS distance overrides row-major food order",
       "kind": "trial",
       "visible": true,

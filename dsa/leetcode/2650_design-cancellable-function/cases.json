@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-caught-rejection",
+      "id": "trial-caught-rejection",
       "name": "rejected yield is thrown back and recovered",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-cancel-yield-recovery",
+      "id": "trial-cancel-yield-recovery",
       "name": "cancellation resolves with next yielded value and stops",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-cancel-after-completion",
+      "id": "trial-cancel-after-completion",
       "name": "cancellation after awaited completion has no effect",
       "kind": "trial",
       "visible": true,

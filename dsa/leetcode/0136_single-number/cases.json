@@ -54,7 +54,7 @@
       ]
     },
     {
-      "id": "real-negative-single",
+      "id": "trial-negative-single",
       "name": "negative single",
       "kind": "trial",
       "visible": true,

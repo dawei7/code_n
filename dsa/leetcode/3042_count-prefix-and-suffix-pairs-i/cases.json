@@ -90,8 +90,8 @@
       ]
     },
     {
-      "id": "real-earlier-longer",
-      "name": "real: longer earlier word cannot match shorter later word",
+      "id": "trial-earlier-longer",
+      "name": "longer earlier word cannot match shorter later word",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -108,8 +108,8 @@
       ]
     },
     {
-      "id": "real-overlapping",
-      "name": "real: overlapping prefix-suffix relationships",
+      "id": "trial-overlapping",
+      "name": "overlapping prefix-suffix relationships",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -129,8 +129,8 @@
       ]
     },
     {
-      "id": "real-prefix-only",
-      "name": "real: prefix without suffix does not count",
+      "id": "trial-prefix-only",
+      "name": "prefix without suffix does not count",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-suffix-only",
-      "name": "real: suffix without prefix does not count",
+      "id": "trial-suffix-only",
+      "name": "suffix without prefix does not count",
       "kind": "trial",
       "visible": true,
       "input": {

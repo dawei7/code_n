@@ -115,8 +115,8 @@
       ]
     },
     {
-      "id": "real-varied",
-      "name": "real: alternating mana pressure",
+      "id": "trial-varied",
+      "name": "alternating mana pressure",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -141,8 +141,8 @@
       ]
     },
     {
-      "id": "real-two-by-two",
-      "name": "real: tight two-by-two schedule",
+      "id": "trial-two-by-two",
+      "name": "tight two-by-two schedule",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -162,8 +162,8 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: large products require wide integers",
+      "id": "trial-large-values",
+      "name": "large products require wide integers",
       "kind": "trial",
       "visible": true,
       "input": {

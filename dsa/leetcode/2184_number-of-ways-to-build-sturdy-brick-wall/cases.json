@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-two-compositions",
+      "id": "trial-two-compositions",
       "name": "two complementary row layouts alternate",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-modulus",
+      "id": "trial-modulus",
       "name": "tall wall count is reduced modulo the modulus",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-all-widths",
+      "id": "trial-all-widths",
       "name": "every seam mask is realizable",
       "kind": "trial",
       "visible": true,

@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-duplicate-rows",
+      "id": "trial-duplicate-rows",
       "name": "duplicate rows count independently",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-competing-pairs",
+      "id": "trial-competing-pairs",
       "name": "choose the pair covering the largest family",
       "kind": "trial",
       "visible": true,
@@ -236,7 +236,7 @@
       ]
     },
     {
-      "id": "real-single-selection",
+      "id": "trial-single-selection",
       "name": "one column covers its singleton rows and zero row",
       "kind": "trial",
       "visible": true,

@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-equal-cells",
+      "id": "trial-equal-cells",
       "name": "equal rows balance at the center",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "maximum cell values require a wide sum",
       "kind": "trial",
       "visible": true,

@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "real-single-mechanic",
+      "id": "trial-single-mechanic",
       "name": "one mechanic repairs several cars",
       "kind": "trial",
       "visible": true,
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-threshold-jump",
+      "id": "trial-threshold-jump",
       "name": "next car requires a large time jump",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-three-ranks",
+      "id": "trial-three-ranks",
       "name": "first feasible mixed-rank time",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-maximum-cars",
+      "id": "trial-maximum-cars",
       "name": "maximum car count with one mechanic",
       "kind": "trial",
       "visible": true,

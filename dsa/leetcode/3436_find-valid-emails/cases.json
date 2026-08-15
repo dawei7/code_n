@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-multiple-at",
+      "id": "trial-multiple-at",
       "name": "exactly one at symbol",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-domain-restrictions",
+      "id": "trial-domain-restrictions",
       "name": "domain contains letters only",
       "kind": "trial",
       "visible": true,
@@ -224,7 +224,7 @@
       ]
     },
     {
-      "id": "real-local-restrictions",
+      "id": "trial-local-restrictions",
       "name": "local part rejects punctuation and spaces",
       "kind": "trial",
       "visible": true,
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "real-suffix-anchoring",
+      "id": "trial-suffix-anchoring",
       "name": "suffix must be final and exact",
       "kind": "trial",
       "visible": true,
@@ -310,7 +310,7 @@
       ]
     },
     {
-      "id": "real-empty-result",
+      "id": "trial-empty-result",
       "name": "no valid addresses",
       "kind": "trial",
       "visible": true,

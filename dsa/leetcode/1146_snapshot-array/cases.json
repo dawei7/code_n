@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-two-snapshots",
+      "id": "trial-two-snapshots",
       "name": "reads distinguish two historical values",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-later-overwrite",
+      "id": "trial-later-overwrite",
       "name": "later same-id overwrite does not alter prior snapshot",
       "kind": "trial",
       "visible": true,
@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "real-independent-indices",
+      "id": "trial-independent-indices",
       "name": "indices retain independent histories",
       "kind": "trial",
       "visible": true,

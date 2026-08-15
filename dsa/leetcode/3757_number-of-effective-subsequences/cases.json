@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-ten-bit-groups",
+      "id": "trial-ten-bit-groups",
       "name": "five occurrences of every active bit require modular inclusion-exclusion",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "real-two-large-groups",
+      "id": "trial-two-large-groups",
       "name": "many duplicate indices contribute separately",
       "kind": "trial",
       "visible": true,
@@ -308,6 +308,39 @@
       "tags": [
         "multiplicity",
         "modulo"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "first vowel-equivalent word wins",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "consonants cannot change",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "repeated queries preserve order",
       "kind": "trial",
       "visible": true,
@@ -204,6 +204,85 @@
       ],
       "tags": [
         "order"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in wordlist",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "wordlist": [
+          "KiTe"
+        ],
+        "queries": [
+          "kite",
+          "Kite",
+          "KiTe",
+          "Hare",
+          "HARE",
+          "Hear",
+          "hear",
+          "keti",
+          "keet",
+          "keto"
+        ]
+      },
+      "expected": [
+        "KiTe",
+        "KiTe",
+        "KiTe",
+        "",
+        "",
+        "",
+        "",
+        "KiTe",
+        "",
+        "KiTe"
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in wordlist",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "wordlist": [
+          "KiTe",
+          "KiTe"
+        ],
+        "queries": [
+          "kite",
+          "Kite",
+          "KiTe",
+          "Hare",
+          "HARE",
+          "Hear",
+          "hear",
+          "keti",
+          "keet",
+          "keto"
+        ]
+      },
+      "expected": [
+        "KiTe",
+        "KiTe",
+        "KiTe",
+        "",
+        "",
+        "",
+        "",
+        "KiTe",
+        "",
+        "KiTe"
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

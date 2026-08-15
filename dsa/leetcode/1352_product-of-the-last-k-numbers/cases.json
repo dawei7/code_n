@@ -279,7 +279,7 @@
       ]
     },
     {
-      "id": "hidden-zero-between-queries",
+      "id": "trial-zero-between-queries",
       "name": "zero between product queries",
       "kind": "trial",
       "visible": true,
@@ -343,7 +343,7 @@
       ]
     },
     {
-      "id": "hidden-several-suffixes",
+      "id": "trial-several-suffixes",
       "name": "several suffix lengths",
       "kind": "trial",
       "visible": true,

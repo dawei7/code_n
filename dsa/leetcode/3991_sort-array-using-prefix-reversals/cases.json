@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-full-prefix-two-state-component",
+      "id": "trial-full-prefix-two-state-component",
       "name": "a rotation is unreachable with only full reversal",
       "kind": "trial",
       "visible": true,
@@ -249,7 +249,7 @@
       ]
     },
     {
-      "id": "real-all-prefixes-short-route",
+      "id": "trial-all-prefixes-short-route",
       "name": "all useful lengths sort a rotation in two moves",
       "kind": "trial",
       "visible": true,
@@ -275,7 +275,7 @@
       ]
     },
     {
-      "id": "real-restricted-five-elements",
+      "id": "trial-restricted-five-elements",
       "name": "a restricted generator set has a three-step route",
       "kind": "trial",
       "visible": true,
@@ -300,7 +300,7 @@
       ]
     },
     {
-      "id": "real-six-elements-full-reversal",
+      "id": "trial-six-elements-full-reversal",
       "name": "reverse a maximum even prefix once",
       "kind": "trial",
       "visible": true,
@@ -324,7 +324,7 @@
       ]
     },
     {
-      "id": "real-six-elements-deep-state",
+      "id": "trial-six-elements-deep-state",
       "name": "an all-prefix state is seven moves from sorted",
       "kind": "trial",
       "visible": true,
@@ -353,7 +353,7 @@
       ]
     },
     {
-      "id": "real-eight-elements-even-prefixes",
+      "id": "trial-eight-elements-even-prefixes",
       "name": "one maximum even reversal sorts eight elements",
       "kind": "trial",
       "visible": true,
@@ -382,7 +382,7 @@
       ]
     },
     {
-      "id": "real-eight-elements-odd-prefixes",
+      "id": "trial-eight-elements-odd-prefixes",
       "name": "odd prefix lengths cannot repair the first swap",
       "kind": "trial",
       "visible": true,
@@ -411,7 +411,7 @@
       ]
     },
     {
-      "id": "real-eight-elements-only-full-prefix",
+      "id": "trial-eight-elements-only-full-prefix",
       "name": "a rotation is outside the full-reversal component",
       "kind": "trial",
       "visible": true,
@@ -437,7 +437,7 @@
       ]
     },
     {
-      "id": "real-noop-among-useful-prefixes",
+      "id": "trial-noop-among-useful-prefixes",
       "name": "length one does not change a useful shortest route",
       "kind": "trial",
       "visible": true,
@@ -459,7 +459,7 @@
       ]
     },
     {
-      "id": "real-four-elements-farthest",
+      "id": "trial-four-elements-farthest",
       "name": "a farthest four-element all-prefix state",
       "kind": "trial",
       "visible": true,

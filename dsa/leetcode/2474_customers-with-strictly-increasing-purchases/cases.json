@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-equal-yearly-totals",
+      "id": "trial-equal-yearly-totals",
       "name": "equal adjacent totals fail strict increase",
       "kind": "trial",
       "visible": true,
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "real-decreasing-total",
+      "id": "trial-decreasing-total",
       "name": "a later decrease disqualifies the customer",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-interior-gap",
+      "id": "trial-interior-gap",
       "name": "an interior year without orders has total zero",
       "kind": "trial",
       "visible": true,
@@ -283,7 +283,7 @@
       ]
     },
     {
-      "id": "real-several-customers",
+      "id": "trial-several-customers",
       "name": "customers are evaluated independently",
       "kind": "trial",
       "visible": true,

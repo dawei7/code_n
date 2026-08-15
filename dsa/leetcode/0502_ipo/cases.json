@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "hidden-max-profit",
+      "id": "trial-max-profit",
       "name": "choose larger of two affordable profits",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "hidden-excess-k",
+      "id": "trial-excess-k",
       "name": "selections exceed project count",
       "kind": "trial",
       "visible": true,

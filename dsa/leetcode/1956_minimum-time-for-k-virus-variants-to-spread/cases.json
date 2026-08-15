@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-four-corners",
+      "id": "trial-four-corners",
       "name": "all corners of a small square",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-far-horizontal",
+      "id": "trial-far-horizontal",
       "name": "pair spans the horizontal coordinate range",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-duplicate-subset",
+      "id": "trial-duplicate-subset",
       "name": "two colocated variants satisfy k before a distant third",
       "kind": "trial",
       "visible": true,
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "real-cross",
+      "id": "trial-cross",
       "name": "center minimizes the maximum arm distance",
       "kind": "trial",
       "visible": true,
@@ -276,6 +276,30 @@
       "tags": [
         "all-variants",
         "geometry"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            6,
+            1
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

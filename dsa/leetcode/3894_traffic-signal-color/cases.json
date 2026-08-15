@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-one-after-green",
+      "id": "trial-one-after-green",
       "name": "one is invalid immediately after green",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-invalid-low-interior",
+      "id": "trial-invalid-low-interior",
       "name": "a low interior value remains invalid",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-red-near-upper-endpoint",
+      "id": "trial-red-near-upper-endpoint",
       "name": "eighty-nine is still red",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-invalid-after-red",
+      "id": "trial-invalid-after-red",
       "name": "ninety-one is invalid immediately after red",
       "kind": "trial",
       "visible": true,
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-red-interior",
+      "id": "trial-red-interior",
       "name": "an interior red value selects red",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-invalid-high-interior",
+      "id": "trial-invalid-high-interior",
       "name": "a high interior value is invalid",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-maximum-timer",
+      "id": "trial-maximum-timer",
       "name": "the maximum legal timer is invalid",
       "kind": "trial",
       "visible": true,

@@ -215,8 +215,8 @@
       ]
     },
     {
-      "id": "real-overlapping-roads",
-      "name": "real: overlapping road additions",
+      "id": "trial-overlapping-roads",
+      "name": "overlapping road additions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -257,8 +257,8 @@
       ]
     },
     {
-      "id": "real-backward-frontier",
-      "name": "real: useful shortcuts added from right to left",
+      "id": "trial-backward-frontier",
+      "name": "useful shortcuts added from right to left",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -294,8 +294,8 @@
       ]
     },
     {
-      "id": "real-every-query-improves",
-      "name": "real: every query improves the answer",
+      "id": "trial-every-query-improves",
+      "name": "every query improves the answer",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -331,8 +331,8 @@
       ]
     },
     {
-      "id": "real-long-combinations",
-      "name": "real: long graph with competing combinations",
+      "id": "trial-long-combinations",
+      "name": "long graph with competing combinations",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -378,8 +378,8 @@
       ]
     },
     {
-      "id": "real-chain-to-direct",
-      "name": "real: chained shortcuts culminate in direct road",
+      "id": "trial-chain-to-direct",
+      "name": "chained shortcuts culminate in direct road",
       "kind": "trial",
       "visible": true,
       "input": {

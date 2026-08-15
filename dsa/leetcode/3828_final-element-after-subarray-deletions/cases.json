@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-left-endpoint-longer",
+      "id": "trial-left-endpoint-longer",
       "name": "the left endpoint beats the right endpoint",
       "kind": "trial",
       "visible": true,
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-right-endpoint-longer",
+      "id": "trial-right-endpoint-longer",
       "name": "the right endpoint beats every other endpoint choice",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-largest-value-interior",
+      "id": "trial-largest-value-interior",
       "name": "the maximum allowed value in the middle is irrelevant",
       "kind": "trial",
       "visible": true,
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "real-largest-value-left",
+      "id": "trial-largest-value-left",
       "name": "the maximum allowed value is the left endpoint",
       "kind": "trial",
       "visible": true,
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "id": "real-many-interior-peaks",
+      "id": "trial-many-interior-peaks",
       "name": "many larger interior entries do not matter",
       "kind": "trial",
       "visible": true,
@@ -261,6 +261,39 @@
       "tags": [
         "interior-peaks",
         "right-endpoint"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

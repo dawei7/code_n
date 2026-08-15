@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-common-multiple-present",
+      "id": "trial-common-multiple-present",
       "name": "twelve is divisible by both other values",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-pairwise-incomparable",
+      "id": "trial-pairwise-incomparable",
       "name": "every present target costs at least the absent bound",
       "kind": "trial",
       "visible": true,
@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "real-frequency-weight",
+      "id": "trial-frequency-weight",
       "name": "duplicate frequency changes the best score",
       "kind": "trial",
       "visible": true,
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-two-ones",
+      "id": "trial-two-ones",
       "name": "two ones multiply to the existing target",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-one-divisor-and-one-multiple",
+      "id": "trial-one-divisor-and-one-multiple",
       "name": "target six has a divisor and a multiple",
       "kind": "trial",
       "visible": true,
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "real-maximum-divisibility-chain",
+      "id": "trial-maximum-divisibility-chain",
       "name": "maximum value in a three-level divisibility chain",
       "kind": "trial",
       "visible": true,
@@ -285,7 +285,7 @@
       ]
     },
     {
-      "id": "real-large-distinct-primes",
+      "id": "trial-large-distinct-primes",
       "name": "large primes have no divisibility relationship",
       "kind": "trial",
       "visible": true,
@@ -303,7 +303,7 @@
       ]
     },
     {
-      "id": "real-mixed-divisors",
+      "id": "trial-mixed-divisors",
       "name": "several divisors compete for the target",
       "kind": "trial",
       "visible": true,
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "id": "real-one-and-divisor-lattice",
+      "id": "trial-one-and-divisor-lattice",
       "name": "one participates in a divisor lattice",
       "kind": "trial",
       "visible": true,
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "id": "real-five-composites",
+      "id": "trial-five-composites",
       "name": "overlapping composite divisibility relations",
       "kind": "trial",
       "visible": true,
@@ -357,6 +357,39 @@
       "tags": [
         "composites",
         "divisors"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-22",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          6
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

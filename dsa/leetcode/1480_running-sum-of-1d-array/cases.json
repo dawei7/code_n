@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-negative-values",
+      "id": "trial-negative-values",
       "name": "totals rise and fall",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-cancellation",
+      "id": "trial-cancellation",
       "name": "prefixes repeatedly cancel",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-value-bounds",
+      "id": "trial-value-bounds",
       "name": "inclusive magnitude bounds",
       "kind": "trial",
       "visible": true,

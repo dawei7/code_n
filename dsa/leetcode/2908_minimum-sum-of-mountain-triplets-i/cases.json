@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-competing-peaks",
+      "id": "trial-competing-peaks",
       "name": "side minima differ between competing peaks",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-late-smaller-right",
+      "id": "trial-late-smaller-right",
       "name": "the best right endpoint need not be adjacent",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "equal values never satisfy strict mountain sides",
       "kind": "trial",
       "visible": true,
@@ -155,6 +155,39 @@
       "expected": -1,
       "tags": [
         "all-equal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          8
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

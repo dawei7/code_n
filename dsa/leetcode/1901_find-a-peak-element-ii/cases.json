@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-single-column",
+      "id": "trial-single-column",
       "name": "a decreasing single column peaks at its top edge",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-two-row-peaks",
+      "id": "trial-two-row-peaks",
       "name": "separated peaks in one row are both acceptable",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-interior-peak",
+      "id": "trial-interior-peak",
       "name": "a unique interior value dominates all four neighbors",
       "kind": "trial",
       "visible": true,
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "real-monotone",
+      "id": "trial-monotone",
       "name": "monotone rows and columns force the bottom-right peak",
       "kind": "trial",
       "visible": true,
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "real-saddle",
+      "id": "trial-saddle",
       "name": "a column maximum guides the search away from a saddle",
       "kind": "trial",
       "visible": true,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "values near the upper constraint behave normally",
       "kind": "trial",
       "visible": true,
@@ -324,7 +324,7 @@
       ]
     },
     {
-      "id": "real-tall-matrix",
+      "id": "trial-tall-matrix",
       "name": "column maxima move right in a tall matrix",
       "kind": "trial",
       "visible": true,

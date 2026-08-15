@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "hidden-child-order",
+      "id": "trial-child-order",
       "name": "sibling order is not sorted",
       "kind": "trial",
       "visible": true,
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "hidden-multiple-parents",
+      "id": "trial-multiple-parents",
       "name": "next level combines children from several parents",
       "kind": "trial",
       "visible": true,

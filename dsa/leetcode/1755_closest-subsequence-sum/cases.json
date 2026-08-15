@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-negative-only",
+      "id": "trial-negative-only",
       "name": "negative values approach a negative goal",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-cross-half-match",
+      "id": "trial-cross-half-match",
       "name": "exact result combines choices from both halves",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-goal-boundary",
+      "id": "trial-goal-boundary",
       "name": "empty subsequence wins at the negative goal boundary",
       "kind": "trial",
       "visible": true,

@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-wrong-owner",
+      "id": "trial-wrong-owner",
       "name": "another user cannot complete a task",
       "kind": "trial",
       "visible": true,
@@ -248,7 +248,7 @@
       ]
     },
     {
-      "id": "real-repeat-complete",
+      "id": "trial-repeat-complete",
       "name": "repeated completion remains a no-op",
       "kind": "trial",
       "visible": true,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "real-tag-filter",
+      "id": "trial-tag-filter",
       "name": "tag filtering excludes unrelated work",
       "kind": "trial",
       "visible": true,
@@ -354,7 +354,7 @@
       ]
     },
     {
-      "id": "real-completed-tag",
+      "id": "trial-completed-tag",
       "name": "completed tasks disappear from tag results",
       "kind": "trial",
       "visible": true,
@@ -409,7 +409,7 @@
       ]
     },
     {
-      "id": "real-no-tags",
+      "id": "trial-no-tags",
       "name": "an untagged task never matches a tag query",
       "kind": "trial",
       "visible": true,
@@ -450,7 +450,7 @@
       ]
     },
     {
-      "id": "real-unknown-task",
+      "id": "trial-unknown-task",
       "name": "completing an unknown ID changes nothing",
       "kind": "trial",
       "visible": true,
@@ -491,7 +491,7 @@
       ]
     },
     {
-      "id": "real-users-isolated",
+      "id": "trial-users-isolated",
       "name": "equal tag names remain user-scoped",
       "kind": "trial",
       "visible": true,

@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "an equal plateau uses the whole array",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-increasing",
+      "id": "trial-increasing",
       "name": "increasing input requires final stack flush",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-decreasing",
+      "id": "trial-decreasing",
       "name": "decreasing input repeatedly inherits the left boundary",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-high-central-pair",
+      "id": "trial-high-central-pair",
       "name": "a high equal pair beats the full array",
       "kind": "trial",
       "visible": true,
@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "real-separated-peaks",
+      "id": "trial-separated-peaks",
       "name": "low separator prevents combining two high values",
       "kind": "trial",
       "visible": true,
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-modulo-after-maximum",
+      "id": "trial-modulo-after-maximum",
       "name": "large product is reduced only after maximization",
       "kind": "trial",
       "visible": true,

@@ -69,7 +69,7 @@
       ]
     },
     {
-      "id": "real-nested-containment",
+      "id": "trial-nested-containment",
       "name": "longest word contains both shorter words",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-duplicate-inputs",
+      "id": "trial-duplicate-inputs",
       "name": "duplicate and contained inputs add no characters",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-overlap-lexicographic-tie",
+      "id": "trial-overlap-lexicographic-tie",
       "name": "equal-length overlap candidates use lexical order",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-maximum-length-containment",
+      "id": "trial-maximum-length-containment",
       "name": "maximum-length word contains both others",
       "kind": "trial",
       "visible": true,

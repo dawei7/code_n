@@ -97,8 +97,8 @@
       ]
     },
     {
-      "id": "real-no-change-full-array",
-      "name": "real: the entire array shares a common factor",
+      "id": "trial-no-change-full-array",
+      "name": "the entire array shares a common factor",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -118,8 +118,8 @@
       ]
     },
     {
-      "id": "real-change-every-element",
-      "name": "real: enough changes eliminate stable singletons",
+      "id": "trial-change-every-element",
+      "name": "enough changes eliminate stable singletons",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -137,8 +137,8 @@
       ]
     },
     {
-      "id": "real-one-index-hits-two",
-      "name": "real: one middle edit covers two overlapping stable pairs",
+      "id": "trial-one-index-hits-two",
+      "name": "one middle edit covers two overlapping stable pairs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -157,8 +157,8 @@
       ]
     },
     {
-      "id": "real-ones-separate-regions",
-      "name": "real: existing ones split stable regions",
+      "id": "trial-ones-separate-regions",
+      "name": "existing ones split stable regions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -179,8 +179,8 @@
       ]
     },
     {
-      "id": "real-long-power-chain",
-      "name": "real: one edit bisects a long stable region",
+      "id": "trial-long-power-chain",
+      "name": "one edit bisects a long stable region",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -201,8 +201,8 @@
       ]
     },
     {
-      "id": "real-large-coprime-values",
-      "name": "real: large coprime neighbors are not jointly stable",
+      "id": "trial-large-coprime-values",
+      "name": "large coprime neighbors are not jointly stable",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -217,6 +217,41 @@
         "real",
         "large-values",
         "coprime"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ],
+        "maxC": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ],
+        "maxC": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

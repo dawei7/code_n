@@ -55,7 +55,7 @@
       ]
     },
     {
-      "id": "real-separated-blocks",
+      "id": "trial-separated-blocks",
       "name": "separated blocks",
       "kind": "trial",
       "visible": true,
@@ -75,6 +75,39 @@
       "expected": 8,
       "tags": [
         "trial"
+      ]
+    },
+    {
+      "id": "trial-boundary-5",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-6",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

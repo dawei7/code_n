@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-nonpalindromic-prefix-boundary",
+      "id": "trial-nonpalindromic-prefix-boundary",
       "name": "compare the mirrored leading half with the bound",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-complete-eight-bits",
+      "id": "trial-complete-eight-bits",
       "name": "all palindromes through eight bits",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-maximum-bound",
+      "id": "trial-maximum-bound",
       "name": "count through the maximum legal input",
       "kind": "trial",
       "visible": true,

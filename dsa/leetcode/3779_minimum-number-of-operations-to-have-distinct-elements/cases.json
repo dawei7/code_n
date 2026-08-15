@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-duplicate-only-in-prefix",
+      "id": "trial-duplicate-only-in-prefix",
       "name": "prefix duplicates disappear after one removal",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-three-operations",
+      "id": "trial-three-operations",
       "name": "a duplicate in the final pair forces removal of every chunk",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-cross-prefix-copy",
+      "id": "trial-cross-prefix-copy",
       "name": "a removed early copy no longer duplicates the suffix",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-all-equal-seven",
+      "id": "trial-all-equal-seven",
       "name": "seven equal values stop at a one-element suffix",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-two-operations",
+      "id": "trial-two-operations",
       "name": "the second surviving chunk still contains a duplicate",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-maximum-value",
+      "id": "trial-maximum-value",
       "name": "the upper value bound behaves like any other key",
       "kind": "trial",
       "visible": true,
@@ -268,6 +268,39 @@
       },
       "tags": [
         "value-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

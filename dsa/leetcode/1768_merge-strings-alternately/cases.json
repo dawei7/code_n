@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-repeated-letters",
+      "id": "trial-repeated-letters",
       "name": "repeated values retain positional multiplicity",
       "kind": "trial",
       "visible": true,
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-distinct-suffix",
+      "id": "trial-distinct-suffix",
       "name": "a long first suffix remains contiguous",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-alphabetic",
+      "id": "trial-alphabetic",
       "name": "all characters preserve their source order",
       "kind": "trial",
       "visible": true,

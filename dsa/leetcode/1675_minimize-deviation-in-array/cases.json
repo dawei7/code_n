@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-two-odds",
+      "id": "trial-two-odds",
       "name": "odd values may stay or double once",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-duplicate-maxima",
+      "id": "trial-duplicate-maxima",
       "name": "every maximum occurrence must be processed",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-best-before-bottom",
+      "id": "trial-best-before-bottom",
       "name": "best range occurs before every chain bottoms out",
       "kind": "trial",
       "visible": true,

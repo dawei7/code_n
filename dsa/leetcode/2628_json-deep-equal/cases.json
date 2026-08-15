@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-null-object-mismatch",
-      "name": "real: null differs from empty object",
+      "id": "trial-null-object-mismatch",
+      "name": "null differs from empty object",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-different-key-sets",
-      "name": "real: equal key counts but different keys",
+      "id": "trial-different-key-sets",
+      "name": "equal key counts but different keys",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -159,8 +159,8 @@
       ]
     },
     {
-      "id": "real-array-order",
-      "name": "real: array order is significant",
+      "id": "trial-array-order",
+      "name": "array order is significant",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -191,8 +191,8 @@
       ]
     },
     {
-      "id": "real-empty-structures",
-      "name": "real: matching empty structures",
+      "id": "trial-empty-structures",
+      "name": "matching empty structures",
       "kind": "trial",
       "visible": true,
       "input": {

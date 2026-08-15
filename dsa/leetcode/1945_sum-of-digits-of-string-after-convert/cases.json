@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-short-one-digit-positions",
+      "id": "trial-short-one-digit-positions",
       "name": "positions below ten sum directly",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-repeat-two-digit-position",
+      "id": "trial-repeat-two-digit-position",
       "name": "second transform reduces a two-digit first sum",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-complete-alphabet",
+      "id": "trial-complete-alphabet",
       "name": "every alphabet position contributes its decimal digits",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-repeated-a",
+      "id": "trial-repeated-a",
       "name": "repeated smallest positions reduce from ten to one",
       "kind": "trial",
       "visible": true,
@@ -148,6 +148,36 @@
       "tags": [
         "repeated-letter",
         "extra-transforms"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "i",
+        "k": 1
+      },
+      "expected": 9,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "iii",
+        "k": 1
+      },
+      "expected": 27,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

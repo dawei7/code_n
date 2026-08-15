@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-repeated-crossing",
+      "id": "trial-repeated-crossing",
       "name": "characters cross the cursor repeatedly without reordering",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-delete-after-middle",
+      "id": "trial-delete-after-middle",
       "name": "backspace in the middle preserves the right suffix",
       "kind": "trial",
       "visible": true,
@@ -295,7 +295,7 @@
       ]
     },
     {
-      "id": "real-multiple-inserts",
+      "id": "trial-multiple-inserts",
       "name": "several cursor-local insertions compose in order",
       "kind": "trial",
       "visible": true,

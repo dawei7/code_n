@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-too-many-locked-opens",
+      "id": "trial-too-many-locked-opens",
       "name": "editable positions cannot close every locked opening",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-flexible-boundaries",
+      "id": "trial-flexible-boundaries",
       "name": "editable endpoints satisfy both directions",
       "kind": "trial",
       "visible": true,
@@ -118,6 +118,36 @@
       "expected": true,
       "tags": [
         "editable-endpoints"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": ")",
+        "locked": "010100"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": ")))",
+        "locked": "010100"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

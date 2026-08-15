@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-distant-maximum-blocks-global",
+      "id": "trial-distant-maximum-blocks-global",
       "name": "a distant maximum leaves one local beauty",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-only-final-interior-global",
+      "id": "trial-only-final-interior-global",
       "name": "only the final interior value satisfies both sides",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "strict global order at the value limits",
       "kind": "trial",
       "visible": true,
@@ -150,6 +150,39 @@
       "expected": 2,
       "tags": [
         "value-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

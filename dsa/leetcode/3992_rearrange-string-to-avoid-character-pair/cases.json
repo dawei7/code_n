@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "real-all-x",
+      "id": "trial-all-x",
       "name": "every character equals x",
       "kind": "trial",
       "visible": true,
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "id": "real-all-y",
+      "id": "trial-all-y",
       "name": "every character equals y",
       "kind": "trial",
       "visible": true,
@@ -280,7 +280,7 @@
       ]
     },
     {
-      "id": "real-full-alphabet-x-less-y",
+      "id": "trial-full-alphabet-x-less-y",
       "name": "alphabet endpoints require z before a",
       "kind": "trial",
       "visible": true,
@@ -299,7 +299,7 @@
       ]
     },
     {
-      "id": "real-reverse-alphabet-x-greater-y",
+      "id": "trial-reverse-alphabet-x-greater-y",
       "name": "reverse alphabet endpoints require a before z",
       "kind": "trial",
       "visible": true,
@@ -318,7 +318,7 @@
       ]
     },
     {
-      "id": "real-repeated-neutral-characters",
+      "id": "trial-repeated-neutral-characters",
       "name": "repeated targets surround repeated neutral characters",
       "kind": "trial",
       "visible": true,
@@ -337,7 +337,7 @@
       ]
     },
     {
-      "id": "real-only-targets-alternating",
+      "id": "trial-only-targets-alternating",
       "name": "alternating targets have no neutral group",
       "kind": "trial",
       "visible": true,
@@ -356,7 +356,7 @@
       ]
     },
     {
-      "id": "real-maximum-mixed-length",
+      "id": "trial-maximum-mixed-length",
       "name": "maximum length mixes both targets and neutral characters",
       "kind": "trial",
       "visible": true,
@@ -375,7 +375,7 @@
       ]
     },
     {
-      "id": "real-maximum-both-absent",
+      "id": "trial-maximum-both-absent",
       "name": "maximum length contains neither target",
       "kind": "trial",
       "visible": true,
@@ -391,6 +391,38 @@
       "tags": [
         "maximum-length",
         "both-absent"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "x": "a",
+        "y": "c"
+      },
+      "expected": "a",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-22",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "x": "a",
+        "y": "c"
+      },
+      "expected": "aaa",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

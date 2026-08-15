@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-two-equal-among-noise",
+      "id": "trial-two-equal-among-noise",
       "name": "duplicate pair beats nearby distinct values",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-late-window",
+      "id": "trial-late-window",
       "name": "optimum is the final sorted window",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-multiple-optima",
+      "id": "trial-multiple-optima",
       "name": "several windows share the optimum",
       "kind": "trial",
       "visible": true,
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-four-duplicates",
+      "id": "trial-four-duplicates",
       "name": "exact duplicate multiplicity meets k",
       "kind": "trial",
       "visible": true,

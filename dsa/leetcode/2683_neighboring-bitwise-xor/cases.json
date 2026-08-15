@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-even-ones",
+      "id": "trial-even-ones",
       "name": "an even number of set bits is valid",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-odd-ones",
+      "id": "trial-odd-ones",
       "name": "an odd number of set bits is invalid",
       "kind": "trial",
       "visible": true,

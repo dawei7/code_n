@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-alternating-bits",
+      "id": "trial-alternating-bits",
       "name": "alternating binary bits",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-dense-bits",
+      "id": "trial-dense-bits",
       "name": "ten set bits",
       "kind": "trial",
       "visible": true,

@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-hub-initially-fixed",
-      "name": "real: zero hub begins correctly placed",
+      "id": "trial-hub-initially-fixed",
+      "name": "zero hub begins correctly placed",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -145,8 +145,8 @@
       ]
     },
     {
-      "id": "real-high-bit-answer",
-      "name": "real: high-bit cycle has answer twelve",
+      "id": "trial-high-bit-answer",
+      "name": "high-bit cycle has answer twelve",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -177,8 +177,8 @@
       ]
     },
     {
-      "id": "real-two-cycle-zero",
-      "name": "real: swapped values have disjoint bits",
+      "id": "trial-two-cycle-zero",
+      "name": "swapped values have disjoint bits",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -197,8 +197,8 @@
       ]
     },
     {
-      "id": "real-multiple-cycles",
-      "name": "real: separate cycles share only one bit",
+      "id": "trial-multiple-cycles",
+      "name": "separate cycles share only one bit",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -217,6 +217,23 @@
       "tags": [
         "real",
         "multiple-cycles"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

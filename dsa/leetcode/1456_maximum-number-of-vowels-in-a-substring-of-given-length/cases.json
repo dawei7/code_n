@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-whole-string",
+      "id": "trial-whole-string",
       "name": "whole string is the only window",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-best-first",
+      "id": "trial-best-first",
       "name": "best window is the first one",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-best-last",
+      "id": "trial-best-last",
       "name": "best window is the final one",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-remove-and-add-vowels",
+      "id": "trial-remove-and-add-vowels",
       "name": "outgoing and incoming vowels balance",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-single-consonant",
+      "id": "trial-single-consonant",
       "name": "minimum input with no vowel",
       "kind": "trial",
       "visible": true,
@@ -145,6 +145,36 @@
       "expected": 0,
       "tags": [
         "minimum"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

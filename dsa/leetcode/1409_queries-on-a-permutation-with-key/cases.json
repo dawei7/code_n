@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-current-front",
+      "id": "trial-current-front",
       "name": "querying current front preserves index zero",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternate two moved values",
       "kind": "trial",
       "visible": true,

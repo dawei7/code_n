@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-six-digits",
+      "id": "trial-six-digits",
       "name": "nearby six-digit fair value",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-maximum-input",
+      "id": "trial-maximum-input",
       "name": "maximum legal input",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-large-odd-length",
+      "id": "trial-large-odd-length",
       "name": "large odd-length value skips its length",
       "kind": "trial",
       "visible": true,

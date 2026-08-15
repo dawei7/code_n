@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-first-frequent-recharge",
+      "id": "trial-first-frequent-recharge",
       "name": "the first drone's individual capacity is binding",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-second-frequent-recharge",
+      "id": "trial-second-frequent-recharge",
       "name": "the second drone's individual capacity is binding",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "real-coprime-intervals",
+      "id": "trial-coprime-intervals",
       "name": "coprime recharge cycles share only LCM hours",
       "kind": "trial",
       "visible": true,
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-dividing-intervals",
+      "id": "trial-dividing-intervals",
       "name": "one recharge cycle divides the other",
       "kind": "trial",
       "visible": true,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "real-high-balanced-quotas",
+      "id": "trial-high-balanced-quotas",
       "name": "large equal quotas require logarithmic search",
       "kind": "trial",
       "visible": true,
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "real-high-skewed-quotas",
+      "id": "trial-high-skewed-quotas",
       "name": "one maximum quota dominates the individual bound",
       "kind": "trial",
       "visible": true,
@@ -284,6 +284,48 @@
       "tags": [
         "quota-boundary",
         "skewed-quotas"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in d",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "d": [
+          3,
+          3
+        ],
+        "r": [
+          2,
+          3
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in r",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "d": [
+          3,
+          1
+        ],
+        "r": [
+          2,
+          2
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

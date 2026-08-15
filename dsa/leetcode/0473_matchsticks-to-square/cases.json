@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "hidden-long-stick",
+      "id": "trial-long-stick",
       "name": "one stick exceeds side length",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "hidden-many-duplicates",
+      "id": "trial-many-duplicates",
       "name": "duplicate sticks fill every side",
       "kind": "trial",
       "visible": true,
@@ -141,6 +141,39 @@
       },
       "expected": true,
       "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in matchsticks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matchsticks": [
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in matchsticks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "matchsticks": [
+          1,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

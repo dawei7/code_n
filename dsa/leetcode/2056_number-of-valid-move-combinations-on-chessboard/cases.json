@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-opposite-corners",
+      "id": "trial-opposite-corners",
       "name": "different piece types move from opposite corners",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-adjacent-diagonal",
+      "id": "trial-adjacent-diagonal",
       "name": "queen and bishop have intersecting diagonal trajectories",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-three-rooks",
+      "id": "trial-three-rooks",
       "name": "three edge rooks require multi-piece collision checks",
       "kind": "trial",
       "visible": true,

@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-different-demands",
+      "id": "trial-different-demands",
       "name": "different capacities satisfy different demands",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-several-groups",
+      "id": "trial-several-groups",
       "name": "three customers use three value groups",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-share-and-separate",
+      "id": "trial-share-and-separate",
       "name": "two small requests share one value beside a larger request",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-total-enough-but-fragmented",
+      "id": "trial-total-enough-but-fragmented",
       "name": "sufficient total inventory is fragmented across capacities",
       "kind": "trial",
       "visible": true,
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "real-demand-too-large",
+      "id": "trial-demand-too-large",
       "name": "no single frequency can satisfy a large request",
       "kind": "trial",
       "visible": true,

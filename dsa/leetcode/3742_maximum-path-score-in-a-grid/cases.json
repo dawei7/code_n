@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-score-two-wins",
+      "id": "trial-score-two-wins",
       "name": "equal cost favors a value-two cell",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-zero-budget-impossible",
+      "id": "trial-zero-budget-impossible",
       "name": "a nonzero destination invalidates every zero-budget path",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-all-zero-rectangle",
+      "id": "trial-all-zero-rectangle",
       "name": "a zero-cost path across a rectangular grid",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-inactive-budget",
+      "id": "trial-inactive-budget",
       "name": "a large budget selects the maximum-score route",
       "kind": "trial",
       "visible": true,
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "real-zero-detour",
+      "id": "trial-zero-detour",
       "name": "a zero route remains when scored routes exceed budget",
       "kind": "trial",
       "visible": true,
@@ -269,7 +269,7 @@
       ]
     },
     {
-      "id": "real-one-cost-choice",
+      "id": "trial-one-cost-choice",
       "name": "one value-two route beats a value-one route",
       "kind": "trial",
       "visible": true,

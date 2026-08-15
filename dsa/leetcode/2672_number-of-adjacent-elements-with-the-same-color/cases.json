@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-break-middle",
+      "id": "trial-break-middle",
       "name": "breaking the middle removes two pairs",
       "kind": "trial",
       "visible": true,

@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-k-equals-length",
+      "id": "trial-k-equals-length",
       "name": "removing the complete word permits immediate reconstruction",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-nondivisible-length",
+      "id": "trial-nondivisible-length",
       "name": "complete removal may require a final partial original block",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-late-overlap",
+      "id": "trial-late-overlap",
       "name": "only the second reachable suffix matches",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "a maximum-length word without a proper overlap needs fifty seconds",
       "kind": "trial",
       "visible": true,
@@ -146,6 +146,36 @@
       "tags": [
         "maximum-length",
         "worst-case"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "a",
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaa",
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

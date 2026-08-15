@@ -130,8 +130,8 @@
       ]
     },
     {
-      "id": "real-kth-difference",
-      "name": "real: threshold selects the fifth difference",
+      "id": "trial-kth-difference",
+      "name": "threshold selects the fifth difference",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-descending",
-      "name": "real: descending array with repeated differences",
+      "id": "trial-descending",
+      "name": "descending array with repeated differences",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -174,8 +174,8 @@
       ]
     },
     {
-      "id": "real-value-limits",
-      "name": "real: value range reaches one billion",
+      "id": "trial-value-limits",
+      "name": "value range reaches one billion",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -195,8 +195,8 @@
       ]
     },
     {
-      "id": "real-k-exceeds-pairs",
-      "name": "real: requested count exceeds all inversions",
+      "id": "trial-k-exceeds-pairs",
+      "name": "requested count exceeds all inversions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -218,8 +218,8 @@
       ]
     },
     {
-      "id": "real-large-k",
-      "name": "real: contractual maximum k remains impossible",
+      "id": "trial-large-k",
+      "name": "contractual maximum k remains impossible",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -234,6 +234,41 @@
         "real",
         "maximum-k",
         "impossible"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 7
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 7
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

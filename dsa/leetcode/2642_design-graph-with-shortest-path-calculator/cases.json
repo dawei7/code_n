@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-cycle",
+      "id": "trial-cycle",
       "name": "positive cycle is safely ignored",
       "kind": "trial",
       "visible": true,
@@ -268,7 +268,7 @@
       ]
     },
     {
-      "id": "real-parallel-directions",
+      "id": "trial-parallel-directions",
       "name": "opposite directions are independent",
       "kind": "trial",
       "visible": true,
@@ -314,7 +314,7 @@
       ]
     },
     {
-      "id": "real-large-cost",
+      "id": "trial-large-cost",
       "name": "path total exceeds one edge limit",
       "kind": "trial",
       "visible": true,

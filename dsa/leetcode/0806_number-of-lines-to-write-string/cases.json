@@ -274,7 +274,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "two exact full lines",
       "kind": "trial",
       "visible": true,
@@ -318,7 +318,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "narrow letters leave partial line",
       "kind": "trial",
       "visible": true,
@@ -362,7 +362,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "alphabet endpoints use distinct widths",
       "kind": "trial",
       "visible": true,
@@ -403,6 +403,96 @@
       ],
       "tags": [
         "variable-width"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "widths": [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "s": "a"
+      },
+      "expected": [
+        1,
+        10
+      ],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "widths": [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "s": "aaa"
+      },
+      "expected": [
+        1,
+        30
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "predecessor reaches two-node cycle",
       "kind": "trial",
       "visible": true,
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "branches merge into terminal",
       "kind": "trial",
       "visible": true,
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "cycle beside independent safe chain",
       "kind": "trial",
       "visible": true,

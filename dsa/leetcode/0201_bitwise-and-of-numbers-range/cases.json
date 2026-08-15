@@ -45,7 +45,7 @@
       ]
     },
     {
-      "id": "real-wider",
+      "id": "trial-wider",
       "name": "shared high prefix",
       "kind": "trial",
       "visible": true,

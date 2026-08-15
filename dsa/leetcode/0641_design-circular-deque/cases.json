@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "front and rear deletions",
       "kind": "trial",
       "visible": true,
@@ -270,7 +270,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "refill after emptying",
       "kind": "trial",
       "visible": true,

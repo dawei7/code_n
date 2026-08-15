@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-winding-corridor",
+      "id": "trial-winding-corridor",
       "name": "only a winding route reaches the target",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-cycle",
+      "id": "trial-cycle",
       "name": "open cycle does not repeat cells",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-target-in-separate-component",
+      "id": "trial-target-in-separate-component",
       "name": "target is present but disconnected",
       "kind": "trial",
       "visible": true,

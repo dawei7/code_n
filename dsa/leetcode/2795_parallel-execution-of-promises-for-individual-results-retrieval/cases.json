@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-multiple-rejections",
+      "id": "trial-multiple-rejections",
       "name": "every rejection keeps its own input position",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-tied-settlements",
+      "id": "trial-tied-settlements",
       "name": "tied settlements retain input order",
       "kind": "trial",
       "visible": true,
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "id": "real-maximum-functions",
+      "id": "trial-maximum-functions",
       "name": "ten functions all begin together",
       "kind": "trial",
       "visible": true,
@@ -374,7 +374,7 @@
       ]
     },
     {
-      "id": "real-structured-payloads",
+      "id": "trial-structured-payloads",
       "name": "structured values and reasons are preserved",
       "kind": "trial",
       "visible": true,

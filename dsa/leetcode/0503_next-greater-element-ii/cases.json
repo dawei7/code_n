@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "hidden-standard",
+      "id": "trial-standard",
       "name": "several stack resolutions",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "hidden-increasing",
+      "id": "trial-increasing",
       "name": "increasing values with one wrap answer",
       "kind": "trial",
       "visible": true,
@@ -160,6 +160,26 @@
       ],
       "tags": [
         "increasing"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

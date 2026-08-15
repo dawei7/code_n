@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "real-two-equal-best-chains",
+      "id": "trial-two-equal-best-chains",
       "name": "two disjoint compatible chains tie",
       "kind": "trial",
       "visible": true,
@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "extreme values connect through the midpoint",
       "kind": "trial",
       "visible": true,
@@ -287,7 +287,7 @@
       ]
     },
     {
-      "id": "real-zero-limit-all-rows",
+      "id": "trial-zero-limit-all-rows",
       "name": "identical columns satisfy zero limit in every row",
       "kind": "trial",
       "visible": true,
@@ -314,7 +314,7 @@
       ]
     },
     {
-      "id": "real-only-final-pair",
+      "id": "trial-only-final-pair",
       "name": "widely separated prefix leaves one final compatible edge",
       "kind": "trial",
       "visible": true,
@@ -335,7 +335,7 @@
       ]
     },
     {
-      "id": "real-interleaved-chains",
+      "id": "trial-interleaved-chains",
       "name": "interleaved value bands preserve two index-ordered chains",
       "kind": "trial",
       "visible": true,
@@ -359,7 +359,7 @@
       ]
     },
     {
-      "id": "real-decreasing-values",
+      "id": "trial-decreasing-values",
       "name": "decreasing values remain valid in index order",
       "kind": "trial",
       "visible": true,
@@ -380,7 +380,7 @@
       ]
     },
     {
-      "id": "real-extreme-return",
+      "id": "trial-extreme-return",
       "name": "skip an incompatible extreme jump at maximum limit",
       "kind": "trial",
       "visible": true,
@@ -402,7 +402,7 @@
       ]
     },
     {
-      "id": "real-maximum-columns",
+      "id": "trial-maximum-columns",
       "name": "a wide grid has only incompatible columns",
       "kind": "trial",
       "visible": true,
@@ -549,7 +549,7 @@
       ]
     },
     {
-      "id": "real-maximum-rows",
+      "id": "trial-maximum-rows",
       "name": "one pair must satisfy all 250 rows",
       "kind": "trial",
       "visible": true,
@@ -1566,7 +1566,7 @@
       ]
     },
     {
-      "id": "real-multirow-outlier-column",
+      "id": "trial-multirow-outlier-column",
       "name": "a five-column chain skips one outlier in every row",
       "kind": "trial",
       "visible": true,
@@ -1604,6 +1604,27 @@
         "multiple-rows",
         "outlier-column",
         "long-chain"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "minimal value limit=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            -2,
+            0,
+            3
+          ]
+        ],
+        "limit": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

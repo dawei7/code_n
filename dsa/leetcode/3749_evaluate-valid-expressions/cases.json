@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-negative-dividend",
+      "id": "trial-negative-dividend",
       "name": "exact division of a negative dividend",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-negative-divisor",
+      "id": "trial-negative-divisor",
       "name": "exact division by a negative divisor",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-both-operands-nested",
+      "id": "trial-both-operands-nested",
       "name": "both operands are nested expressions",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-left-associated-shape",
+      "id": "trial-left-associated-shape",
       "name": "nesting repeatedly occurs in the left operand",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-truncation-not-needed",
+      "id": "trial-truncation-not-needed",
       "name": "exact negative quotient stays integral",
       "kind": "trial",
       "visible": true,

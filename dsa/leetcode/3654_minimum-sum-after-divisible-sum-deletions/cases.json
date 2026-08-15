@@ -99,8 +99,8 @@
       ]
     },
     {
-      "id": "real-disjoint-intervals",
-      "name": "real: two disjoint intervals are deleted",
+      "id": "trial-disjoint-intervals",
+      "name": "two disjoint intervals are deleted",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -121,8 +121,8 @@
       ]
     },
     {
-      "id": "real-merged-gap-deletion",
-      "name": "real: gap-closing sequence merges to original interval",
+      "id": "trial-merged-gap-deletion",
+      "name": "gap-closing sequence merges to original interval",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -143,8 +143,8 @@
       ]
     },
     {
-      "id": "real-repeated-remainders",
-      "name": "real: best cost among repeated remainders matters",
+      "id": "trial-repeated-remainders",
+      "name": "best cost among repeated remainders matters",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -166,8 +166,8 @@
       ]
     },
     {
-      "id": "real-singleton-deletions",
-      "name": "real: individually divisible values disappear",
+      "id": "trial-singleton-deletions",
+      "name": "individually divisible values disappear",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -187,8 +187,8 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: large retained sums use wide integer",
+      "id": "trial-large-values",
+      "name": "large retained sums use wide integer",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -207,8 +207,8 @@
       ]
     },
     {
-      "id": "real-large-modulus-boundary",
-      "name": "real: modulus at maximum can delete exact sum",
+      "id": "trial-large-modulus-boundary",
+      "name": "modulus at maximum can delete exact sum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -223,6 +223,41 @@
       "tags": [
         "real",
         "maximum-modulus"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -209,8 +209,8 @@
       ]
     },
     {
-      "id": "real-double-reversal",
-      "name": "real: two reversals restore the sequence",
+      "id": "trial-double-reversal",
+      "name": "two reversals restore the sequence",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -246,8 +246,8 @@
       ]
     },
     {
-      "id": "real-zero-values",
-      "name": "real: zero update changes the full XOR",
+      "id": "trial-zero-values",
+      "name": "zero update changes the full XOR",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -289,8 +289,8 @@
       ]
     },
     {
-      "id": "real-nested-reversals",
-      "name": "real: overlapping reversals preserve logical positions",
+      "id": "trial-nested-reversals",
+      "name": "overlapping reversals preserve logical positions",
       "kind": "trial",
       "visible": true,
       "input": {

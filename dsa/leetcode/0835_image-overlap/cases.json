@@ -241,7 +241,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "diagonal versus anti-diagonal",
       "kind": "trial",
       "visible": true,
@@ -287,7 +287,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "dense versus checkerboard",
       "kind": "trial",
       "visible": true,
@@ -319,7 +319,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "complementary checkerboards",
       "kind": "trial",
       "visible": true,
@@ -365,7 +365,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "translated corner triomino",
       "kind": "trial",
       "visible": true,
@@ -411,7 +411,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "unequal counts limit overlap",
       "kind": "trial",
       "visible": true,

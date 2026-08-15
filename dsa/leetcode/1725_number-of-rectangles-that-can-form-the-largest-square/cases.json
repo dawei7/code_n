@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-maximum-dimensions",
+      "id": "trial-maximum-dimensions",
       "name": "two rectangles attain the largest legal limiting side",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-best-at-start-and-end",
+      "id": "trial-best-at-start-and-end",
       "name": "equal maxima surround smaller rectangles",
       "kind": "trial",
       "visible": true,
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "real-width-limits",
+      "id": "trial-width-limits",
       "name": "widths determine every attainable square",
       "kind": "trial",
       "visible": true,
@@ -270,7 +270,7 @@
       ]
     },
     {
-      "id": "real-length-limits",
+      "id": "trial-length-limits",
       "name": "lengths determine every attainable square",
       "kind": "trial",
       "visible": true,

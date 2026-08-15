@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "real-first-slower",
+      "id": "trial-first-slower",
       "name": "first promise determines completion",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-both-negative",
+      "id": "trial-both-negative",
       "name": "two negative values",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "large values retain numeric addition",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-equal-delays",
+      "id": "trial-equal-delays",
       "name": "equal settlement delays",
       "kind": "trial",
       "visible": true,

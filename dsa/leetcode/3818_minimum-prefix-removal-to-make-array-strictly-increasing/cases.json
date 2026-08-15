@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-strictly-decreasing",
+      "id": "trial-strictly-decreasing",
       "name": "a strictly decreasing array leaves its last value",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-negative-increasing",
+      "id": "trial-negative-increasing",
       "name": "negative values can already be strictly increasing",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-late-duplicate",
+      "id": "trial-late-duplicate",
       "name": "a late equality determines the suffix boundary",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-multiple-violations",
+      "id": "trial-multiple-violations",
       "name": "the final violation determines the removable prefix",
       "kind": "trial",
       "visible": true,
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "legal extreme values remain strictly increasing",
       "kind": "trial",
       "visible": true,
@@ -272,6 +272,39 @@
       "tags": [
         "value-boundaries",
         "already-increasing"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

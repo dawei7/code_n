@@ -56,8 +56,8 @@
       ]
     },
     {
-      "id": "real-multiple-parities",
-      "name": "real: several odd and even candidates",
+      "id": "trial-multiple-parities",
+      "name": "several odd and even candidates",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -70,8 +70,8 @@
       ]
     },
     {
-      "id": "real-negative-choice",
-      "name": "real: select two rather than four as even count",
+      "id": "trial-negative-choice",
+      "name": "select two rather than four as even count",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -84,8 +84,8 @@
       ]
     },
     {
-      "id": "real-large-odd",
-      "name": "real: large odd frequency dominates",
+      "id": "trial-large-odd",
+      "name": "large odd frequency dominates",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -98,8 +98,8 @@
       ]
     },
     {
-      "id": "real-full-length",
-      "name": "real: maximum legal length",
+      "id": "trial-full-length",
+      "name": "maximum legal length",
       "kind": "trial",
       "visible": true,
       "input": {

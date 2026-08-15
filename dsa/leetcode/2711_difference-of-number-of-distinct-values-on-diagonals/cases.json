@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-one-row",
+      "id": "trial-one-row",
       "name": "one row has only singleton diagonals",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-one-column",
+      "id": "trial-one-column",
       "name": "one column has only singleton diagonals",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-rectangular",
+      "id": "trial-rectangular",
       "name": "rectangular grid diagonals",
       "kind": "trial",
       "visible": true,
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": "real-duplicate-asymmetry",
+      "id": "trial-duplicate-asymmetry",
       "name": "duplicate values affect only distinct counts",
       "kind": "trial",
       "visible": true,

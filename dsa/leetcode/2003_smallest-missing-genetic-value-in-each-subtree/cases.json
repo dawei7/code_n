@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-gap-inside-ancestor-subtree",
+      "id": "trial-gap-inside-ancestor-subtree",
       "name": "an internal subtree has a gap below the root answer",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "real-one-leaf-with-siblings",
+      "id": "trial-one-leaf-with-siblings",
       "name": "upward expansion adds sibling branches once",
       "kind": "trial",
       "visible": true,
@@ -226,6 +226,61 @@
       "tags": [
         "siblings",
         "incremental"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in parents",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parents": [
+          -1
+        ],
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        2,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in parents",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "parents": [
+          -1,
+          -1
+        ],
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        2,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

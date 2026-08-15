@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-middle-rank",
+      "id": "trial-middle-rank",
       "name": "middle rank in a partially filled tree",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-too-few-levels",
+      "id": "trial-too-few-levels",
       "name": "k exceeds the number of levels",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-right-skewed",
+      "id": "trial-right-skewed",
       "name": "every node forms its own level",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "level sums require wide integer arithmetic",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-uneven-tree",
+      "id": "trial-uneven-tree",
       "name": "missing children do not split a level",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-equal-ranks",
+      "id": "trial-equal-ranks",
       "name": "duplicate sums occupy first and second ranks",
       "kind": "trial",
       "visible": true,

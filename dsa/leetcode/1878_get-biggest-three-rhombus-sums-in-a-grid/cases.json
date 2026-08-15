@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-distinct-row",
+      "id": "trial-distinct-row",
       "name": "one row returns its three largest distinct cells",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "real-distinct-column",
+      "id": "trial-distinct-column",
       "name": "one column returns its three largest distinct cells",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-two-by-two",
+      "id": "trial-two-by-two",
       "name": "two rows cannot contain a positive-area rhombus",
       "kind": "trial",
       "visible": true,
@@ -253,7 +253,7 @@
       ]
     },
     {
-      "id": "real-uniform-five",
+      "id": "trial-uniform-five",
       "name": "maximum radius contributes eight border cells",
       "kind": "trial",
       "visible": true,
@@ -307,7 +307,7 @@
       ]
     },
     {
-      "id": "real-large-center",
+      "id": "trial-large-center",
       "name": "an interior value may dominate both cells and borders",
       "kind": "trial",
       "visible": true,
@@ -341,7 +341,7 @@
       ]
     },
     {
-      "id": "real-corner-accounting",
+      "id": "trial-corner-accounting",
       "name": "four unequal corners are counted exactly once",
       "kind": "trial",
       "visible": true,
@@ -375,7 +375,7 @@
       ]
     },
     {
-      "id": "real-rectangular",
+      "id": "trial-rectangular",
       "name": "rectangular grid limits radius by its shorter dimension",
       "kind": "trial",
       "visible": true,

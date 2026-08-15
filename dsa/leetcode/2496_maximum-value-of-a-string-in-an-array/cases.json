@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "real-single-letter",
+      "id": "trial-single-letter",
       "name": "one alphabetic character",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-single-zero",
+      "id": "trial-single-zero",
       "name": "one zero digit has numeric value zero",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-all-zeroes",
+      "id": "trial-all-zeroes",
       "name": "many leading zeroes still represent zero",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-maximum-numeric",
+      "id": "trial-maximum-numeric",
       "name": "a nine-digit numeric string",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-letter-anywhere",
+      "id": "trial-letter-anywhere",
       "name": "any letter selects the full string length",
       "kind": "trial",
       "visible": true,

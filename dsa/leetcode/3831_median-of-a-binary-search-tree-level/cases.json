@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-single-maximum",
+      "id": "trial-single-maximum",
       "name": "a maximum-valued singleton root",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-right-skewed-deep",
+      "id": "trial-right-skewed-deep",
       "name": "a deep right-skewed level contains one node",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-left-skewed-deep",
+      "id": "trial-left-skewed-deep",
       "name": "a deep left-skewed level contains one node",
       "kind": "trial",
       "visible": true,
@@ -224,7 +224,7 @@
       ]
     },
     {
-      "id": "real-four-value-upper-median",
+      "id": "trial-four-value-upper-median",
       "name": "a complete four-value level chooses its upper middle",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-six-value-sparse-level",
+      "id": "trial-six-value-sparse-level",
       "name": "a sparse six-value level remains ordered",
       "kind": "trial",
       "visible": true,
@@ -285,7 +285,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "level values span both numeric boundaries",
       "kind": "trial",
       "visible": true,
@@ -308,7 +308,7 @@
       ]
     },
     {
-      "id": "real-maximum-missing-level",
+      "id": "trial-maximum-missing-level",
       "name": "the maximum requested level lies beyond a small tree",
       "kind": "trial",
       "visible": true,
@@ -330,7 +330,7 @@
       ]
     },
     {
-      "id": "real-uneven-six-value-level",
+      "id": "trial-uneven-six-value-level",
       "name": "an uneven tree preserves sorted level order",
       "kind": "trial",
       "visible": true,

@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-date-range",
+      "id": "trial-date-range",
       "name": "trips outside the date range are excluded",
       "kind": "trial",
       "visible": true,

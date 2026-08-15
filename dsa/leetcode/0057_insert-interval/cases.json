@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-cover-all",
+      "id": "trial-cover-all",
       "name": "insertion covers all intervals",
       "kind": "trial",
       "visible": true,

@@ -352,7 +352,7 @@
       ]
     },
     {
-      "id": "real-complete-five",
+      "id": "trial-complete-five",
       "name": "every vertex in a five-vertex clique has degree four",
       "kind": "trial",
       "visible": true,
@@ -408,7 +408,7 @@
       ]
     },
     {
-      "id": "real-empty-six",
+      "id": "trial-empty-six",
       "name": "an empty six-vertex graph has all-zero degrees",
       "kind": "trial",
       "visible": true,
@@ -478,7 +478,7 @@
       ]
     },
     {
-      "id": "real-two-triangles",
+      "id": "trial-two-triangles",
       "name": "two disconnected triangles are both two-regular",
       "kind": "trial",
       "visible": true,
@@ -548,7 +548,7 @@
       ]
     },
     {
-      "id": "real-mixed-seven",
+      "id": "trial-mixed-seven",
       "name": "an irregular graph exercises distinct row totals",
       "kind": "trial",
       "visible": true,
@@ -634,7 +634,7 @@
       ]
     },
     {
-      "id": "real-complete-bipartite",
+      "id": "trial-complete-bipartite",
       "name": "the two sides of K3,4 have complementary degrees",
       "kind": "trial",
       "visible": true,
@@ -720,7 +720,7 @@
       ]
     },
     {
-      "id": "real-maximum-complete",
+      "id": "trial-maximum-complete",
       "name": "a maximum-size complete graph reaches degree ninety-nine",
       "kind": "trial",
       "visible": true,

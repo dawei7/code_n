@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-three-digits-one",
+      "id": "trial-three-digits-one",
       "name": "one followed by two zeros",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-three-digits-eight",
+      "id": "trial-three-digits-eight",
       "name": "a sub-nine leading digit",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-three-digits-ten",
+      "id": "trial-three-digits-ten",
       "name": "greedy nine then remainder",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-three-digits-seventeen",
+      "id": "trial-three-digits-seventeen",
       "name": "two nonzero digits and a zero",
       "kind": "trial",
       "visible": true,
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "real-three-digits-nineteen",
+      "id": "trial-three-digits-nineteen",
       "name": "remainder after two nines",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-three-digits-full",
+      "id": "trial-three-digits-full",
       "name": "maximum feasible three-digit sum",
       "kind": "trial",
       "visible": true,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "real-three-digits-impossible",
+      "id": "trial-three-digits-impossible",
       "name": "one above three-digit capacity",
       "kind": "trial",
       "visible": true,
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "real-four-digits-twenty",
+      "id": "trial-four-digits-twenty",
       "name": "greedy prefix with trailing zero",
       "kind": "trial",
       "visible": true,
@@ -268,7 +268,7 @@
       ]
     },
     {
-      "id": "real-five-digits-near-full",
+      "id": "trial-five-digits-near-full",
       "name": "one below maximum total",
       "kind": "trial",
       "visible": true,
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "id": "real-five-digits-full",
+      "id": "trial-five-digits-full",
       "name": "maximum input digit capacity",
       "kind": "trial",
       "visible": true,

@@ -172,8 +172,8 @@
       ]
     },
     {
-      "id": "real-near-maximum-run",
-      "name": "real: a long run reaches one million",
+      "id": "trial-near-maximum-run",
+      "name": "a long run reaches one million",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -203,8 +203,8 @@
       ]
     },
     {
-      "id": "real-duplicate-recovery",
-      "name": "real: valid windows recover after an equal pair",
+      "id": "trial-duplicate-recovery",
+      "name": "valid windows recover after an equal pair",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -233,8 +233,8 @@
       ]
     },
     {
-      "id": "real-repeated-resets",
-      "name": "real: several break types reset the streak",
+      "id": "trial-repeated-resets",
+      "name": "several break types reset the streak",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -272,8 +272,8 @@
       ]
     },
     {
-      "id": "real-window-two",
-      "name": "real: pair windows expose each adjacency",
+      "id": "trial-window-two",
+      "name": "pair windows expose each adjacency",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -302,8 +302,8 @@
       ]
     },
     {
-      "id": "real-long-overlap",
-      "name": "real: many overlapping valid windows around one break",
+      "id": "trial-long-overlap",
+      "name": "many overlapping valid windows around one break",
       "kind": "trial",
       "visible": true,
       "input": {

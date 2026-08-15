@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-zero-values",
+      "id": "trial-zero-values",
       "name": "zero values retain their string positions",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum values are summed without coercion errors",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-single-value-string",
+      "id": "trial-single-value-string",
       "name": "one element has no comma",
       "kind": "trial",
       "visible": true,

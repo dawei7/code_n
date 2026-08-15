@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-later-experience-deficit",
+      "id": "trial-later-experience-deficit",
       "name": "experience repair is needed after an earlier victory",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-repeated-small",
+      "id": "trial-repeated-small",
       "name": "both deficits with repeated opponents",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum opponent values",
       "kind": "trial",
       "visible": true,

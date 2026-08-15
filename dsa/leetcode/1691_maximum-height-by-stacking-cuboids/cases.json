@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-incomparable-equal-height",
+      "id": "trial-incomparable-equal-height",
       "name": "equal maximum dimensions do not ensure compatibility",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-equality-chain",
+      "id": "trial-equality-chain",
       "name": "boundary dimensions and equality form a full chain",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-varied-incomparable",
+      "id": "trial-varied-incomparable",
       "name": "tall individual beats incompatible alternatives",
       "kind": "trial",
       "visible": true,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "real-shared-maximum",
+      "id": "trial-shared-maximum",
       "name": "shared heights with crossing base dimensions",
       "kind": "trial",
       "visible": true,

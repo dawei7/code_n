@@ -117,8 +117,8 @@
       ]
     },
     {
-      "id": "real-fixed-directions",
-      "name": "real: paths remain straight in all eight directions",
+      "id": "trial-fixed-directions",
+      "name": "paths remain straight in all eight directions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -140,8 +140,8 @@
       ]
     },
     {
-      "id": "real-repeated-eleven",
-      "name": "real: the same prime is counted from every valid path",
+      "id": "trial-repeated-eleven",
+      "name": "the same prime is counted from every valid path",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -163,8 +163,8 @@
       ]
     },
     {
-      "id": "real-rectangular-grid",
-      "name": "real: rectangular grid uses horizontal and vertical rays",
+      "id": "trial-rectangular-grid",
+      "name": "rectangular grid uses horizontal and vertical rays",
       "kind": "trial",
       "visible": true,
       "input": {

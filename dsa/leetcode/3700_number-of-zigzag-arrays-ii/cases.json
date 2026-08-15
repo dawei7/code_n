@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-maximum-length-two-values",
+      "id": "trial-maximum-length-two-values",
       "name": "maximum length over the minimum range",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-maximum-length-three-values",
+      "id": "trial-maximum-length-three-values",
       "name": "a huge exponent over three values",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-large-exponent-four-values",
+      "id": "trial-large-exponent-four-values",
       "name": "binary exponentiation uses a mixed-bit exponent",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-moderate-matrix",
+      "id": "trial-moderate-matrix",
       "name": "an eight-value transition matrix with modular growth",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-maximum-range-minimum-length",
+      "id": "trial-maximum-range-minimum-length",
       "name": "maximum legal value range at minimum length",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-modulo-five-values",
+      "id": "trial-modulo-five-values",
       "name": "repeated powers require modular reduction",
       "kind": "trial",
       "visible": true,
@@ -192,6 +192,38 @@
       "tags": [
         "modulo",
         "shift-invariance"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value l=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "l": 1,
+        "r": 5
+      },
+      "expected": 60,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "minimal value r=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "l": 4,
+        "r": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

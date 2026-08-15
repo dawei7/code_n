@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-leading-run",
+      "id": "trial-leading-run",
       "name": "longest maximum run occurs first",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-trailing-run",
+      "id": "trial-trailing-run",
       "name": "longest maximum run occurs last",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-maximum-value",
+      "id": "trial-maximum-value",
       "name": "legal maximum integer repeats",
       "kind": "trial",
       "visible": true,

@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-short-right",
+      "id": "trial-short-right",
       "name": "shortest leaf on right",
       "kind": "trial",
       "visible": true,

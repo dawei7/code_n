@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-unequal-day-gaps",
+      "id": "trial-unequal-day-gaps",
       "name": "unequal day gaps preserve an exact common slope",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-returning-slope",
+      "id": "trial-returning-slope",
       "name": "returning to an earlier slope starts another line",
       "kind": "trial",
       "visible": true,
@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "real-large-coordinates",
+      "id": "trial-large-coordinates",
       "name": "large exact products remain collinear",
       "kind": "trial",
       "visible": true,

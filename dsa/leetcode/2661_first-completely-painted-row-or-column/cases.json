@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-row-first",
+      "id": "trial-row-first",
       "name": "first row completes",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-column-first",
+      "id": "trial-column-first",
       "name": "first column completes",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-delayed",
+      "id": "trial-delayed",
       "name": "every row and column stays one cell short",
       "kind": "trial",
       "visible": true,
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-permuted-matrix",
+      "id": "trial-permuted-matrix",
       "name": "values require position lookup",
       "kind": "trial",
       "visible": true,

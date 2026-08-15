@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-supported-stack",
+      "id": "trial-supported-stack",
       "name": "seven cards form rows of widths two and one",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-two-decompositions",
+      "id": "trial-two-decompositions",
       "name": "thirteen cards admit two width subsets",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-larger-count",
+      "id": "trial-larger-count",
       "name": "larger total has many distinct houses",
       "kind": "trial",
       "visible": true,

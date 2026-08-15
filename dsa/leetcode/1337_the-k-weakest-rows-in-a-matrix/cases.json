@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "hidden-boundaries",
+      "id": "trial-boundaries",
       "name": "zero and full soldier boundaries",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "hidden-many-ties",
+      "id": "trial-many-ties",
       "name": "several equal-strength rows",
       "kind": "trial",
       "visible": true,

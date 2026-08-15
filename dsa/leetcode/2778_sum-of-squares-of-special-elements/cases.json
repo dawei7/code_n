@@ -104,8 +104,8 @@
       ]
     },
     {
-      "id": "real-many-divisors",
-      "name": "real: length with several divisor pairs",
+      "id": "trial-many-divisors",
+      "name": "length with several divisor pairs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -131,8 +131,8 @@
       ]
     },
     {
-      "id": "real-power-of-two-length",
-      "name": "real: power-of-two divisors",
+      "id": "trial-power-of-two-length",
+      "name": "power-of-two divisors",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -162,8 +162,8 @@
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "real: maximum length with uniform values",
+      "id": "trial-maximum-length",
+      "name": "maximum length with uniform values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -228,8 +228,8 @@
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "real: maximum values at every special index",
+      "id": "trial-maximum-values",
+      "name": "maximum values at every special index",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -249,8 +249,8 @@
       ]
     },
     {
-      "id": "real-ignore-nonspecial-values",
-      "name": "real: large values at non-special indices are ignored",
+      "id": "trial-ignore-nonspecial-values",
+      "name": "large values at non-special indices are ignored",
       "kind": "trial",
       "visible": true,
       "input": {

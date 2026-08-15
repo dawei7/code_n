@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-no-points",
+      "id": "trial-no-points",
       "name": "every post-damage health misses the requirement",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-reset-between-starts",
+      "id": "trial-reset-between-starts",
       "name": "each new starting room resets health",
       "kind": "trial",
       "visible": true,
@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "large health and maximum damage values",
       "kind": "trial",
       "visible": true,
@@ -230,6 +230,52 @@
       "tags": [
         "value-boundary",
         "maximum-score"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value hp=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hp": 1,
+        "damage": [
+          3,
+          6,
+          7
+        ],
+        "requirement": [
+          4,
+          2,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in damage",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hp": 11,
+        "damage": [
+          3
+        ],
+        "requirement": [
+          4,
+          2,
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

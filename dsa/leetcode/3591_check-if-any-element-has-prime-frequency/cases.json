@@ -129,8 +129,8 @@
       ]
     },
     {
-      "id": "real-several-composite-frequencies",
-      "name": "real: several distinct composite frequencies remain false",
+      "id": "trial-several-composite-frequencies",
+      "name": "several distinct composite frequencies remain false",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -159,8 +159,8 @@
       ]
     },
     {
-      "id": "real-largest-prime-frequency",
-      "name": "real: the largest possible prime frequency is recognized",
+      "id": "trial-largest-prime-frequency",
+      "name": "the largest possible prime frequency is recognized",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -272,8 +272,8 @@
       ]
     },
     {
-      "id": "real-maximum-composite-frequency",
-      "name": "real: the maximum legal frequency is composite",
+      "id": "trial-maximum-composite-frequency",
+      "name": "the maximum legal frequency is composite",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -389,8 +389,8 @@
       ]
     },
     {
-      "id": "real-prime-count-hidden-among-unique-values",
-      "name": "real: a repeated zero among unique values determines the result",
+      "id": "trial-prime-count-hidden-among-unique-values",
+      "name": "a repeated zero among unique values determines the result",
       "kind": "trial",
       "visible": true,
       "input": {

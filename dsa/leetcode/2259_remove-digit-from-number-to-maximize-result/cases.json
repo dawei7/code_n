@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-all-target",
+      "id": "trial-all-target",
       "name": "every occurrence is the target digit",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-target-at-start",
+      "id": "trial-target-at-start",
       "name": "an initial target before a larger digit is removed",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-target-at-end",
+      "id": "trial-target-at-end",
       "name": "sole target at the end is removed",
       "kind": "trial",
       "visible": true,

@@ -331,7 +331,7 @@
       }
     },
     {
-      "id": "real-multiple-matches",
+      "id": "trial-multiple-matches",
       "name": "multiple qualifying tokens still return one patient",
       "kind": "trial",
       "visible": true,
@@ -380,7 +380,7 @@
       }
     },
     {
-      "id": "real-id-order",
+      "id": "trial-id-order",
       "name": "deterministic output follows patient id",
       "kind": "trial",
       "visible": true,
@@ -439,7 +439,7 @@
       }
     },
     {
-      "id": "real-late-near-miss",
+      "id": "trial-late-near-miss",
       "name": "long row with a late near miss",
       "kind": "trial",
       "visible": true,
@@ -483,7 +483,7 @@
       }
     },
     {
-      "id": "real-single-row",
+      "id": "trial-single-row",
       "name": "one qualifying patient",
       "kind": "trial",
       "visible": true,

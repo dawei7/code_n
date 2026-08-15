@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-duplicate-composites",
+      "id": "trial-duplicate-composites",
       "name": "duplicate composite values connect",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-indirect-chain",
+      "id": "trial-indirect-chain",
       "name": "connectivity uses a chain of primes",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-two-primes",
+      "id": "trial-two-primes",
       "name": "distinct primes are disconnected",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-shared-large-prime",
+      "id": "trial-shared-large-prime",
       "name": "large common factor connects values",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-two-components",
+      "id": "trial-two-components",
       "name": "internally connected groups remain separate",
       "kind": "trial",
       "visible": true,

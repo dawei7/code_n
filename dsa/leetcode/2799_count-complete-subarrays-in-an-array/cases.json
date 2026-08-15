@@ -81,7 +81,7 @@
       ]
     },
     {
-      "id": "real-single-value",
+      "id": "trial-single-value",
       "name": "one-element array has one complete subarray",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-last-distinct-late",
+      "id": "trial-last-distinct-late",
       "name": "final required value first appears at the end",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-larger-mixed",
+      "id": "trial-larger-mixed",
       "name": "overlapping complete windows in a mixed array",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "minimum and maximum values alternate",
       "kind": "trial",
       "visible": true,
@@ -153,6 +153,39 @@
       "tags": [
         "value-boundaries",
         "alternating"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

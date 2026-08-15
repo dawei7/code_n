@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-larger-drop",
+      "id": "trial-larger-drop",
       "name": "a larger decrease is not smooth",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-full-run",
+      "id": "trial-full-run",
       "name": "every subarray is smooth",
       "kind": "trial",
       "visible": true,
@@ -135,6 +135,39 @@
       "tags": [
         "full-descent",
         "integer-width"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          3,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

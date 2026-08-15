@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-four-odds",
+      "id": "trial-four-odds",
       "name": "one-parity input allows only lengths one and two",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-alternating-five",
+      "id": "trial-alternating-five",
       "name": "one nonconsecutive choice creates an unstable run",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-two-parity-runs",
+      "id": "trial-two-parity-runs",
       "name": "multiple trailing-run states contribute",
       "kind": "trial",
       "visible": true,
@@ -146,6 +146,23 @@
       "expected": 30,
       "tags": [
         "parity-runs"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

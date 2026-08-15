@@ -60,7 +60,7 @@
       ]
     },
     {
-      "id": "real-one",
+      "id": "trial-one",
       "name": "smallest possible duplicate",
       "kind": "trial",
       "visible": true,

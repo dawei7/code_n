@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "hidden-same-value-swap",
+      "id": "trial-same-value-swap",
       "name": "moved occurrence equals removed value",
       "kind": "trial",
       "visible": true,
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "hidden-middle-swap",
+      "id": "trial-middle-swap",
       "name": "moved different value updates index set",
       "kind": "trial",
       "visible": true,
@@ -290,7 +290,7 @@
       ]
     },
     {
-      "id": "hidden-random-members",
+      "id": "trial-random-members",
       "name": "random result follows remaining counts",
       "kind": "trial",
       "visible": true,

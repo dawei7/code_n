@@ -65,7 +65,7 @@
       ]
     },
     {
-      "id": "real-unit-carpets",
+      "id": "trial-unit-carpets",
       "name": "unit carpets cover individual white tiles",
       "kind": "trial",
       "visible": true,
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "real-more-carpets-than-needed",
+      "id": "trial-more-carpets-than-needed",
       "name": "extra carpets may overlap harmlessly",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-carpet-whole-floor",
+      "id": "trial-carpet-whole-floor",
       "name": "one full-length carpet covers every white tile",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-overlap-not-required",
+      "id": "trial-overlap-not-required",
       "name": "disjoint placements cover separate clusters",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-isolated-whites",
+      "id": "trial-isolated-whites",
       "name": "limited carpets choose among isolated tiles",
       "kind": "trial",
       "visible": true,

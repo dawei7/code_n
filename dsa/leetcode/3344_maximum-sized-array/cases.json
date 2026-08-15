@@ -58,8 +58,8 @@
       ]
     },
     {
-      "id": "real-million-budget",
-      "name": "real: medium budget crosses several bit boundaries",
+      "id": "trial-million-budget",
+      "name": "medium budget crosses several bit boundaries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -73,8 +73,8 @@
       ]
     },
     {
-      "id": "real-maximum-budget",
-      "name": "real: maximum legal budget",
+      "id": "trial-maximum-budget",
+      "name": "maximum legal budget",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-uniform-alice",
+      "id": "trial-uniform-alice",
       "name": "two arrows per won section select the top six",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-large-leftover",
+      "id": "trial-large-leftover",
       "name": "all valuable sections are won and leftovers go to zero",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-mixed-costs",
+      "id": "trial-mixed-costs",
       "name": "subset choice balances scores and costs",
       "kind": "trial",
       "visible": true,
@@ -213,6 +213,66 @@
       },
       "tags": [
         "mixed-costs"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value numArrows=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numArrows": 1,
+        "aliceArrows": [
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          2,
+          1,
+          0,
+          1,
+          2,
+          0
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in aliceArrows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numArrows": 9,
+        "aliceArrows": [
+          1
+        ]
+      },
+      "expected": [
+        9
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

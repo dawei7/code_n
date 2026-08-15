@@ -56,8 +56,8 @@
       ]
     },
     {
-      "id": "real-reversed-extreme-pair",
-      "name": "real: direction does not change the score",
+      "id": "trial-reversed-extreme-pair",
+      "name": "direction does not change the score",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -70,8 +70,8 @@
       ]
     },
     {
-      "id": "real-consecutive-letters",
-      "name": "real: consecutive ascending letters",
+      "id": "trial-consecutive-letters",
+      "name": "consecutive ascending letters",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -84,8 +84,8 @@
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "real: every contribution is zero",
+      "id": "trial-all-equal",
+      "name": "every contribution is zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -98,8 +98,8 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "real: repeated maximum differences",
+      "id": "trial-alternating",
+      "name": "repeated maximum differences",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -112,8 +112,8 @@
       ]
     },
     {
-      "id": "real-palindrome",
-      "name": "real: changes reverse around the center",
+      "id": "trial-palindrome",
+      "name": "changes reverse around the center",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -126,8 +126,8 @@
       ]
     },
     {
-      "id": "real-leetcode",
-      "name": "real: varied repeated letters",
+      "id": "trial-leetcode",
+      "name": "varied repeated letters",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -140,8 +140,8 @@
       ]
     },
     {
-      "id": "real-full-alphabet",
-      "name": "real: every consecutive lowercase letter",
+      "id": "trial-full-alphabet",
+      "name": "every consecutive lowercase letter",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -154,8 +154,8 @@
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "real: maximum length and maximum total score",
+      "id": "trial-maximum-length",
+      "name": "maximum length and maximum total score",
       "kind": "trial",
       "visible": true,
       "input": {

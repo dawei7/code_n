@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-largest-middle",
+      "id": "trial-largest-middle",
       "name": "invalid largest side may appear in column B",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-mixed-valid",
+      "id": "trial-mixed-valid",
       "name": "equality classification follows validity",
       "kind": "trial",
       "visible": true,

@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-one-dominant-value",
+      "id": "trial-one-dominant-value",
       "name": "repeatedly halve the dominant value",
       "kind": "trial",
       "visible": true,
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-many-ones",
+      "id": "trial-many-ones",
       "name": "each unit contributes one half",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-switching-maximum",
+      "id": "trial-switching-maximum",
       "name": "the maximum changes after each reduction",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-large-value-boundary",
+      "id": "trial-large-value-boundary",
       "name": "maximum legal magnitude remains precise",
       "kind": "trial",
       "visible": true,

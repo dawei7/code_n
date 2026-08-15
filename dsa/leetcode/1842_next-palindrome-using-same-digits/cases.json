@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-simple-swap",
+      "id": "trial-simple-swap",
       "name": "swap the only increasing half pair",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-odd-center-fixed",
+      "id": "trial-odd-center-fixed",
       "name": "an odd center stays fixed",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-rightmost-successor",
+      "id": "trial-rightmost-successor",
       "name": "choose the least greater suffix digit",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-descending-long-half",
+      "id": "trial-descending-long-half",
       "name": "a longer non-increasing half has no successor",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-carry-leftward",
+      "id": "trial-carry-leftward",
       "name": "pivot search crosses repeated trailing digits",
       "kind": "trial",
       "visible": true,
@@ -172,6 +172,34 @@
       "tags": [
         "pivot-search",
         "repeated-suffix"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "1"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "111"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

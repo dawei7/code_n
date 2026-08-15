@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-diamond",
+      "id": "trial-diamond",
       "name": "a diamond joins parallel branches before the final course",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-disconnected-components",
+      "id": "trial-disconnected-components",
       "name": "choose the slower of separate prerequisite components",
       "kind": "trial",
       "visible": true,

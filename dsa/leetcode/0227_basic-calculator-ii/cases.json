@@ -43,7 +43,7 @@
       ]
     },
     {
-      "id": "real-negative-intermediate",
+      "id": "trial-negative-intermediate",
       "name": "division after subtraction",
       "kind": "trial",
       "visible": true,
@@ -54,6 +54,34 @@
       "tags": [
         "truncation",
         "precedence"
+      ]
+    },
+    {
+      "id": "trial-boundary-5",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "3"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-6",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "333"
+      },
+      "expected": 333,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

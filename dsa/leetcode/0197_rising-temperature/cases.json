@@ -122,7 +122,7 @@
       }
     },
     {
-      "id": "real-unsorted-ids",
+      "id": "trial-unsorted-ids",
       "name": "dates and ids use different orders",
       "kind": "trial",
       "visible": true,

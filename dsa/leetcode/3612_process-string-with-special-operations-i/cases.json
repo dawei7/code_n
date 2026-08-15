@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-double-reversal",
+      "id": "trial-double-reversal",
       "name": "two reversals restore the order",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-delete-after-duplicates",
+      "id": "trial-delete-after-duplicates",
       "name": "removals follow two duplications",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-interleaved-sequence",
+      "id": "trial-interleaved-sequence",
       "name": "interleave all special operations",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-maximum-letters",
+      "id": "trial-maximum-letters",
       "name": "maximum input length of ordinary letters",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-maximum-special-only",
+      "id": "trial-maximum-special-only",
       "name": "maximum input length with no produced letters",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-large-duplication",
+      "id": "trial-large-duplication",
       "name": "twelve duplications create 4096 letters",
       "kind": "trial",
       "visible": true,
@@ -199,6 +199,34 @@
       "tags": [
         "exponential-output",
         "duplicate"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": "a",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": "aaa",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-strict-threshold",
+      "id": "trial-strict-threshold",
       "name": "equality does not satisfy greater than",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-simple-path",
+      "id": "trial-simple-path",
       "name": "path degrees across three thresholds",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-mixed-components",
+      "id": "trial-mixed-components",
       "name": "repeated edge and disconnected component",
       "kind": "trial",
       "visible": true,
@@ -279,7 +279,7 @@
       ]
     },
     {
-      "id": "real-orientation-independent",
+      "id": "trial-orientation-independent",
       "name": "reversed duplicate orientation shares one multiplicity",
       "kind": "trial",
       "visible": true,

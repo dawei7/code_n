@@ -129,8 +129,8 @@
       ]
     },
     {
-      "id": "real-all-single-digits",
-      "name": "real: only single-digit values",
+      "id": "trial-all-single-digits",
+      "name": "only single-digit values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -148,8 +148,8 @@
       ]
     },
     {
-      "id": "real-all-double-digits",
-      "name": "real: only double-digit values",
+      "id": "trial-all-double-digits",
+      "name": "only double-digit values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -166,8 +166,8 @@
       ]
     },
     {
-      "id": "real-many-values-tie",
-      "name": "real: repeated values produce an exact tie",
+      "id": "trial-many-values-tie",
+      "name": "repeated values produce an exact tie",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -192,8 +192,8 @@
       ]
     },
     {
-      "id": "real-boundary-heavy",
-      "name": "real: repeated minimum and maximum values",
+      "id": "trial-boundary-heavy",
+      "name": "repeated minimum and maximum values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -210,8 +210,8 @@
       ]
     },
     {
-      "id": "real-single-group-barely-wins",
-      "name": "real: single-digit group wins by one",
+      "id": "trial-single-group-barely-wins",
+      "name": "single-digit group wins by one",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-same-ending-point",
+      "id": "trial-same-ending-point",
       "name": "choose the best predecessor for a shared endpoint",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-gap-before-ride",
+      "id": "trial-gap-before-ride",
       "name": "travel empty before taking a distant profitable ride",
       "kind": "trial",
       "visible": true,

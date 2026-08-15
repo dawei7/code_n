@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "hidden-large-odd",
+      "id": "trial-large-odd",
       "name": "large odd length",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "hidden-maximum",
+      "id": "trial-maximum",
       "name": "maximum legal length",
       "kind": "trial",
       "visible": true,

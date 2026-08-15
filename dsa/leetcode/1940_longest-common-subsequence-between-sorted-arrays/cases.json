@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-smallest-array",
+      "id": "trial-smallest-array",
       "name": "result is limited by a one-element array",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-subset-only",
+      "id": "trial-subset-only",
       "name": "values shared by only two of three arrays are excluded",
       "kind": "trial",
       "visible": true,
@@ -249,7 +249,7 @@
       ]
     },
     {
-      "id": "real-many-arrays",
+      "id": "trial-many-arrays",
       "name": "five arrays share two separated values",
       "kind": "trial",
       "visible": true,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "real-no-global-common",
+      "id": "trial-no-global-common",
       "name": "pairwise overlap does not imply global overlap",
       "kind": "trial",
       "visible": true,

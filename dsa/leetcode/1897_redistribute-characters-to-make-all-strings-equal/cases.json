@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-identical",
+      "id": "trial-identical",
       "name": "already identical words satisfy every divisibility condition",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-balanced-mixed",
+      "id": "trial-balanced-mixed",
       "name": "mixed source words have enough of each letter for four equal targets",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-total-length-not-enough",
+      "id": "trial-total-length-not-enough",
       "name": "one rare letter prevents four equal strings",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-length-divisible-character-not",
+      "id": "trial-length-divisible-character-not",
       "name": "divisible total length is insufficient when individual letter counts differ",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-different-lengths",
+      "id": "trial-different-lengths",
       "name": "source word lengths may differ before redistribution",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-many-copies",
+      "id": "trial-many-copies",
       "name": "repeated letters distribute evenly across five targets",
       "kind": "trial",
       "visible": true,

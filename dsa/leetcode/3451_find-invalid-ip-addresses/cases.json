@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-count-and-ip-order",
+      "id": "trial-count-and-ip-order",
       "name": "count then IP descending order",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-large-octet-positions",
+      "id": "trial-large-octet-positions",
       "name": "oversized value in every octet position",
       "kind": "trial",
       "visible": true,
@@ -314,7 +314,7 @@
       ]
     },
     {
-      "id": "real-no-invalid-rows",
+      "id": "trial-no-invalid-rows",
       "name": "all rows avoid the three invalidity rules",
       "kind": "trial",
       "visible": true,

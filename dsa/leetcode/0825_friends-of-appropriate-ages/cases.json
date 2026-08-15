@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "opposite age extremes",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "threshold excludes age fifteen",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "one request across consecutive ages",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-ext-4",
       "name": "duplicates across several valid ages",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "dense equal-age groups",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "hidden-6",
+      "id": "trial-6",
       "name": "crossing above one hundred is one-way",
       "kind": "trial",
       "visible": true,
@@ -233,6 +233,22 @@
       "tags": [
         "age-100",
         "directed"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in ages",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ages": [
+          16
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

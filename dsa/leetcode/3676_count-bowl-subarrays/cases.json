@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-pops-and-survivor",
+      "id": "trial-pops-and-survivor",
       "name": "current endpoints count popped and surviving candidates",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-deeper-candidate-blocked",
+      "id": "trial-deeper-candidate-blocked",
       "name": "the nearest greater survivor blocks deeper entries",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-alternating-walls",
+      "id": "trial-alternating-walls",
       "name": "alternating high walls create several local bowls",
       "kind": "trial",
       "visible": true,
@@ -158,6 +158,39 @@
       "expected": 3,
       "tags": [
         "alternating"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

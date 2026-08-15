@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-duplicate-grains",
+      "id": "trial-duplicate-grains",
       "name": "coincident grains are all eaten together",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-greedy-assignment",
+      "id": "trial-greedy-assignment",
       "name": "an early hen should leave later grains",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-coordinate-bound",
+      "id": "trial-coordinate-bound",
       "name": "maximum coordinate distance",
       "kind": "trial",
       "visible": true,

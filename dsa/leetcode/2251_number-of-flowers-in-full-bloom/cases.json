@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-large-time",
+      "id": "trial-large-time",
       "name": "large coordinates preserve endpoint rules",
       "kind": "trial",
       "visible": true,
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-unsorted",
+      "id": "trial-unsorted",
       "name": "endpoint and query input order is irrelevant",
       "kind": "trial",
       "visible": true,
@@ -259,7 +259,7 @@
       ]
     },
     {
-      "id": "real-shared-end",
+      "id": "trial-shared-end",
       "name": "several flowers remain active at a shared end",
       "kind": "trial",
       "visible": true,

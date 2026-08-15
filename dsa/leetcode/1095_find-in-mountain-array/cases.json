@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-minimum-length",
+      "id": "trial-minimum-length",
       "name": "three-element mountain",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "large values and absent target",
       "kind": "trial",
       "visible": true,

@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-reset-required",
+      "id": "trial-reset-required",
       "name": "a closing parcel cannot start the next shipment",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-equal-then-drop",
+      "id": "trial-equal-then-drop",
       "name": "equality does not close but a later drop does",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-multiple-peaks",
+      "id": "trial-multiple-peaks",
       "name": "rising runs each end with a lower parcel",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-unused-prefix",
+      "id": "trial-unused-prefix",
       "name": "parcels before the useful maximum may be included",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-no-final-drop",
+      "id": "trial-no-final-drop",
       "name": "an unfinished rising suffix creates no extra shipment",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "compare values near the upper bound",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-alternating-equals",
+      "id": "trial-alternating-equals",
       "name": "equal plateaus separated by strict drops",
       "kind": "trial",
       "visible": true,
@@ -244,6 +244,39 @@
       "tags": [
         "plateau",
         "strictness"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in weight",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "weight": [
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in weight",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "weight": [
+          2,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

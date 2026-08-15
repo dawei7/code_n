@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-minimum-length",
+      "id": "trial-minimum-length",
       "name": "do not take an unnecessary extra value",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-order",
+      "id": "trial-order",
       "name": "result is non-increasing",
       "kind": "trial",
       "visible": true,

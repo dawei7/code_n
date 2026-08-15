@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-two-zeros",
+      "id": "trial-two-zeros",
       "name": "multiple zeros",
       "kind": "trial",
       "visible": true,

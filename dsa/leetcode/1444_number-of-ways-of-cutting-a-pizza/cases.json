@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-full-two-by-two",
+      "id": "trial-full-two-by-two",
       "name": "all cells have apples",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-one-row",
+      "id": "trial-one-row",
       "name": "choose two vertical boundaries in one row",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-one-column",
+      "id": "trial-one-column",
       "name": "every horizontal boundary is required",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-separated-apples",
+      "id": "trial-separated-apples",
       "name": "empty bands constrain valid cuts",
       "kind": "trial",
       "visible": true,

@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-boundary-occurrences",
+      "id": "trial-boundary-occurrences",
       "name": "both inclusive boundaries contain the value",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-absent-and-outside",
+      "id": "trial-absent-and-outside",
       "name": "globally absent and range-absent values return zero",
       "kind": "trial",
       "visible": true,
@@ -234,7 +234,7 @@
       ]
     },
     {
-      "id": "real-repeated-read-only-queries",
+      "id": "trial-repeated-read-only-queries",
       "name": "queries do not modify the index",
       "kind": "trial",
       "visible": true,

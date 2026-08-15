@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-left-boundary",
+      "id": "trial-left-boundary",
       "name": "removal begins at earliest legal index",
       "kind": "trial",
       "visible": true,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-right-boundary",
+      "id": "trial-right-boundary",
       "name": "removal ends at latest legal index",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-duplicate-values",
+      "id": "trial-duplicate-values",
       "name": "duplicate values do not identify boundaries",
       "kind": "trial",
       "visible": true,
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": "real-entire-interior",
+      "id": "trial-entire-interior",
       "name": "replace every node except endpoints",
       "kind": "trial",
       "visible": true,

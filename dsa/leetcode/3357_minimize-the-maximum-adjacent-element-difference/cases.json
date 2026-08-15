@@ -118,8 +118,8 @@
       ]
     },
     {
-      "id": "real-maximum-value-long-gap",
-      "name": "real: maximum values across one long missing run",
+      "id": "trial-maximum-value-long-gap",
+      "name": "maximum values across one long missing run",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-leading-trailing-and-internal",
-      "name": "real: leading, trailing, and internal missing runs",
+      "id": "trial-leading-trailing-and-internal",
+      "name": "leading, trailing, and internal missing runs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -163,8 +163,8 @@
       ]
     },
     {
-      "id": "real-global-pair-across-many-gaps",
-      "name": "real: one pair must satisfy several distinct gaps",
+      "id": "trial-global-pair-across-many-gaps",
+      "name": "one pair must satisfy several distinct gaps",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -184,6 +184,39 @@
         "real",
         "global-pair",
         "mixed-runs"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

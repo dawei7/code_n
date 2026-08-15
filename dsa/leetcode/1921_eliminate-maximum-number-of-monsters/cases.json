@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-three-way-tie",
+      "id": "trial-three-way-tie",
       "name": "a repeated minute-one deadline blocks the third shot",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-fractional-tie",
+      "id": "trial-fractional-tie",
       "name": "fractional arrivals after minute one permit two shots",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-input-order",
+      "id": "trial-input-order",
       "name": "urgent monsters appear late in the input",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-failure-after-three",
+      "id": "trial-failure-after-three",
       "name": "the fourth deadline is already missed",
       "kind": "trial",
       "visible": true,
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "large distances and speeds use exact integer arithmetic",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-all-minute-one",
+      "id": "trial-all-minute-one",
       "name": "all immediate arrivals allow only the initial shot",
       "kind": "trial",
       "visible": true,

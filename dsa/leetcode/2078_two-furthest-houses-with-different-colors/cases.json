@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "real-outlier-near-right",
+      "id": "trial-outlier-near-right",
       "name": "a late outlier is farther from the left end",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-several-colors",
+      "id": "trial-several-colors",
       "name": "numeric color values have no ordering role",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-long-endpoint-span",
+      "id": "trial-long-endpoint-span",
       "name": "differing endpoints are globally optimal",
       "kind": "trial",
       "visible": true,

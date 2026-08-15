@@ -289,7 +289,7 @@
       ]
     },
     {
-      "id": "real-three-shapes",
+      "id": "trial-three-shapes",
       "name": "horizontal, vertical, and singleton groups",
       "kind": "trial",
       "visible": true,
@@ -360,7 +360,7 @@
       ]
     },
     {
-      "id": "real-interior-rectangle",
+      "id": "trial-interior-rectangle",
       "name": "rectangle surrounded by forest",
       "kind": "trial",
       "visible": true,
@@ -409,7 +409,7 @@
       ]
     },
     {
-      "id": "real-corner-groups",
+      "id": "trial-corner-groups",
       "name": "separated corner groups",
       "kind": "trial",
       "visible": true,
@@ -470,7 +470,7 @@
       ]
     },
     {
-      "id": "real-wide-grid",
+      "id": "trial-wide-grid",
       "name": "several separated rectangles across a wide map",
       "kind": "trial",
       "visible": true,

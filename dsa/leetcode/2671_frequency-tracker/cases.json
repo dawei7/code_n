@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-bucket-transitions",
+      "id": "trial-bucket-transitions",
       "name": "values move through different frequency buckets",
       "kind": "trial",
       "visible": true,
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "real-return-to-zero",
+      "id": "trial-return-to-zero",
       "name": "repeated deletion removes a value completely",
       "kind": "trial",
       "visible": true,

@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-four-candies",
+      "id": "trial-four-candies",
       "name": "one discounted group leaves one paid candy",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-five-candies",
+      "id": "trial-five-candies",
       "name": "one discounted group leaves two paid candies",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-duplicate-tiers",
+      "id": "trial-duplicate-tiers",
       "name": "duplicate prices cross group boundaries",
       "kind": "trial",
       "visible": true,
@@ -145,6 +145,39 @@
       },
       "expected": 10,
       "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

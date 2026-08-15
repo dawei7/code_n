@@ -139,8 +139,8 @@
       ]
     },
     {
-      "id": "real-equal-values",
-      "name": "real: equal reachable values yield zero",
+      "id": "trial-equal-values",
+      "name": "equal reachable values yield zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -162,8 +162,8 @@
       ]
     },
     {
-      "id": "real-multi-move-route",
-      "name": "real: best endpoints need both movement directions",
+      "id": "trial-multi-move-route",
+      "name": "best endpoints need both movement directions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -192,8 +192,8 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "real: minimum value reaches maximum value",
+      "id": "trial-value-boundaries",
+      "name": "minimum value reaches maximum value",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -215,8 +215,8 @@
       ]
     },
     {
-      "id": "real-late-prefix-minimum",
-      "name": "real: best start appears in destination row",
+      "id": "trial-late-prefix-minimum",
+      "name": "best start appears in destination row",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -240,8 +240,8 @@
       ]
     },
     {
-      "id": "real-current-cell-excluded",
-      "name": "real: high current value cannot be its own start",
+      "id": "trial-current-cell-excluded",
+      "name": "high current value cannot be its own start",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -263,8 +263,8 @@
       ]
     },
     {
-      "id": "real-wide-grid",
-      "name": "real: two-row wide grid",
+      "id": "trial-wide-grid",
+      "name": "two-row wide grid",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -292,8 +292,8 @@
       ]
     },
     {
-      "id": "real-tall-grid",
-      "name": "real: two-column tall grid",
+      "id": "trial-tall-grid",
+      "name": "two-column tall grid",
       "kind": "trial",
       "visible": true,
       "input": {

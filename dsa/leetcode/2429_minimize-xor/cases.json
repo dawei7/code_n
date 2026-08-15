@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "real-fill-three-bits",
+      "id": "trial-fill-three-bits",
       "name": "one source bit and three added bits",
       "kind": "trial",
       "visible": true,
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-equal-maximum",
+      "id": "trial-equal-maximum",
       "name": "equal maximum inputs",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-twenty-nine-required-bits",
+      "id": "trial-twenty-nine-required-bits",
       "name": "fill nearly the complete legal width",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-single-high-source-bit",
+      "id": "trial-single-high-source-bit",
       "name": "preserve a high bit and fill below it",
       "kind": "trial",
       "visible": true,
@@ -115,6 +115,36 @@
       "expected": 536870915,
       "tags": [
         "high-source"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value num1=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 1,
+        "num2": 5
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value num2=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 3,
+        "num2": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

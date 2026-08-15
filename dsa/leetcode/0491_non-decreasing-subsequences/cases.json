@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "hidden-two-branches",
+      "id": "trial-two-branches",
       "name": "two different increasing pairs",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "hidden-negative",
+      "id": "trial-negative",
       "name": "negative repeated values",
       "kind": "trial",
       "visible": true,
@@ -222,6 +222,44 @@
       },
       "tags": [
         "negative"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4
+        ]
+      },
+      "expected": [
+        [
+          4,
+          4
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

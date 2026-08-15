@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-single-value",
+      "id": "trial-single-value",
       "name": "singleton",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-even-split",
+      "id": "trial-even-split",
       "name": "exact half-weight split",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-duplicate-values",
+      "id": "trial-duplicate-values",
       "name": "duplicate weighted values",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-large-weight",
+      "id": "trial-large-weight",
       "name": "large dominant weight",
       "kind": "trial",
       "visible": true,
@@ -175,6 +175,51 @@
       "expected": 999999,
       "tags": [
         "large-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "cost": [
+          2,
+          3,
+          1,
+          14
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "cost": [
+          2,
+          3,
+          1,
+          14
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

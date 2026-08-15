@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-separated-points",
+      "id": "trial-separated-points",
       "name": "one-position carpet covers one separated tile",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-unsorted-choice",
+      "id": "trial-unsorted-choice",
       "name": "sorting exposes the best full interval",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-coordinate-bound",
+      "id": "trial-coordinate-bound",
       "name": "upper-bound interval uses inclusive length",
       "kind": "trial",
       "visible": true,
@@ -199,6 +199,42 @@
       "tags": [
         "coordinate-bound",
         "inclusive"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value carpetLen=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tiles": [
+          [
+            1,
+            5
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            12,
+            18
+          ],
+          [
+            20,
+            25
+          ],
+          [
+            30,
+            32
+          ]
+        ],
+        "carpetLen": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

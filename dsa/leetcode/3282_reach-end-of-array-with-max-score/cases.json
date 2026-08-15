@@ -133,8 +133,8 @@
       ]
     },
     {
-      "id": "real-late-large-value",
-      "name": "real: largest value appears only at destination",
+      "id": "trial-late-large-value",
+      "name": "largest value appears only at destination",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-repeated-records",
-      "name": "real: repeated prefix records",
+      "id": "trial-repeated-records",
+      "name": "repeated prefix records",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -174,8 +174,8 @@
       ]
     },
     {
-      "id": "real-alternating-records",
-      "name": "real: alternating lows and new highs",
+      "id": "trial-alternating-records",
+      "name": "alternating lows and new highs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -197,8 +197,8 @@
       ]
     },
     {
-      "id": "real-upper-bound-values",
-      "name": "real: maximum values require wide total",
+      "id": "trial-upper-bound-values",
+      "name": "maximum values require wide total",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -217,8 +217,8 @@
       ]
     },
     {
-      "id": "real-long-plateau",
-      "name": "real: early record persists across a plateau",
+      "id": "trial-long-plateau",
+      "name": "early record persists across a plateau",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -237,6 +237,39 @@
       "tags": [
         "plateau",
         "prefix-maximum"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

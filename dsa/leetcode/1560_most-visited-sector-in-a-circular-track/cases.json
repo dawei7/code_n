@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-intermediate-irrelevance",
+      "id": "trial-intermediate-irrelevance",
       "name": "many checkpoints share endpoint answer",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-wrap-to-one",
+      "id": "trial-wrap-to-one",
       "name": "wrapped arc ends at sector one",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-start-one",
+      "id": "trial-start-one",
       "name": "arc begins at first sector",
       "kind": "trial",
       "visible": true,
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "real-end-n",
+      "id": "trial-end-n",
       "name": "arc ends at final sector",
       "kind": "trial",
       "visible": true,
@@ -260,7 +260,7 @@
       ]
     },
     {
-      "id": "real-many-full-laps",
+      "id": "trial-many-full-laps",
       "name": "full laps do not alter sole winner",
       "kind": "trial",
       "visible": true,

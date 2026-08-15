@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-all-z",
+      "id": "trial-all-z",
       "name": "reduce the leading character",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-five-as",
+      "id": "trial-five-as",
       "name": "odd all-a palindrome",
       "kind": "trial",
       "visible": true,
@@ -96,6 +96,20 @@
       "expected": "aaaab",
       "tags": [
         "suffix-change"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "repeated character in palindrome",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "palindrome": "aaa"
+      },
+      "expected": "aab",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

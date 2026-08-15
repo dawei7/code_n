@@ -234,8 +234,8 @@
       ]
     },
     {
-      "id": "real-prefix-limited",
-      "name": "real: only obstacles within the query prefix matter",
+      "id": "trial-prefix-limited",
+      "name": "only obstacles within the query prefix matter",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -280,8 +280,8 @@
       ]
     },
     {
-      "id": "real-obstacle-beyond-prefix",
-      "name": "real: a later obstacle does not constrain an earlier prefix",
+      "id": "trial-obstacle-beyond-prefix",
+      "name": "a later obstacle does not constrain an earlier prefix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -312,8 +312,8 @@
       ]
     },
     {
-      "id": "real-multiple-splits",
-      "name": "real: repeated insertions split the current largest gap",
+      "id": "trial-multiple-splits",
+      "name": "repeated insertions split the current largest gap",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -352,8 +352,8 @@
       ]
     },
     {
-      "id": "real-maximum-legal-coordinate-for-length",
-      "name": "real: exact fit at the coordinate bound implied by query count",
+      "id": "trial-maximum-legal-coordinate-for-length",
+      "name": "exact fit at the coordinate bound implied by query count",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -384,8 +384,8 @@
       ]
     },
     {
-      "id": "real-query-endpoint-is-obstacle",
-      "name": "real: query boundary may coincide with an obstacle",
+      "id": "trial-query-endpoint-is-obstacle",
+      "name": "query boundary may coincide with an obstacle",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -420,8 +420,8 @@
       ]
     },
     {
-      "id": "real-query-does-not-place-block",
-      "name": "real: successful checks leave later state unchanged",
+      "id": "trial-query-does-not-place-block",
+      "name": "successful checks leave later state unchanged",
       "kind": "trial",
       "visible": true,
       "input": {

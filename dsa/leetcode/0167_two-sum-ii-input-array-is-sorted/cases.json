@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-inner-pair",
+      "id": "trial-inner-pair",
       "name": "discard both extremes",
       "kind": "trial",
       "visible": true,
@@ -109,6 +109,23 @@
       ],
       "tags": [
         "inner"
+      ]
+    },
+    {
+      "id": "trial-boundary-6",
+      "name": "single element in numbers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numbers": [
+          2
+        ],
+        "target": 9
+      },
+      "expected": null,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

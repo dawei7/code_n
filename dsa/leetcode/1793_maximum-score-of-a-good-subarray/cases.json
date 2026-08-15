@@ -66,7 +66,7 @@
       ]
     },
     {
-      "id": "real-equal-middle-values",
+      "id": "trial-equal-middle-values",
       "name": "equal neighboring values may expand in either order",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-right-boundary-index",
+      "id": "trial-right-boundary-index",
       "name": "expansion proceeds only left from the final index",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-flat-plateau",
+      "id": "trial-flat-plateau",
       "name": "the whole equal plateau is optimal",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-deep-valley-at-k",
+      "id": "trial-deep-valley-at-k",
       "name": "low required element fixes every minimum",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-local-plateau-beats-whole-array",
+      "id": "trial-local-plateau-beats-whole-array",
       "name": "adding a low endpoint would reduce the best score",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-asymmetric-neighbors",
+      "id": "trial-asymmetric-neighbors",
       "name": "larger right neighbor is consumed before a low left boundary",
       "kind": "trial",
       "visible": true,
@@ -184,6 +184,41 @@
       "tags": [
         "asymmetric",
         "greedy-direction"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

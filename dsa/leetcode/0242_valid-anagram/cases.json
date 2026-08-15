@@ -46,7 +46,7 @@
       ]
     },
     {
-      "id": "real-count-mismatch",
+      "id": "trial-count-mismatch",
       "name": "same set but different counts",
       "kind": "trial",
       "visible": true,

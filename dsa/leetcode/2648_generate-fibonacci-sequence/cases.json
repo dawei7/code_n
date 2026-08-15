@@ -67,7 +67,7 @@
       ]
     },
     {
-      "id": "real-ten",
+      "id": "trial-ten",
       "name": "recurrence through ten yields",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-twenty",
+      "id": "trial-twenty",
       "name": "persistent state through twenty yields",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum call count",
       "kind": "trial",
       "visible": true,

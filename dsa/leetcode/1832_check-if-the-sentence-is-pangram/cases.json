@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-duplicates-missing-one",
+      "id": "trial-duplicates-missing-one",
       "name": "duplicates do not replace a missing letter",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-two-full-alphabets",
+      "id": "trial-two-full-alphabets",
       "name": "repeated complete alphabets remain a pangram",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-final-character-completes",
+      "id": "trial-final-character-completes",
       "name": "the final character completes the set",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-shuffled-pangram",
+      "id": "trial-shuffled-pangram",
       "name": "nonalphabetical coverage with repeated vowels",
       "kind": "trial",
       "visible": true,
@@ -141,6 +141,34 @@
       "tags": [
         "shuffled",
         "pangram"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in sentence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "t"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in sentence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "ttt"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

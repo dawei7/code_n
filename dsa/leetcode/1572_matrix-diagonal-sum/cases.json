@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-varied-even",
+      "id": "trial-varied-even",
       "name": "varied four-by-four diagonals",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-primary-dominates",
+      "id": "trial-primary-dominates",
       "name": "large primary diagonal and small secondary",
       "kind": "trial",
       "visible": true,
@@ -259,7 +259,7 @@
       ]
     },
     {
-      "id": "real-secondary-dominates",
+      "id": "trial-secondary-dominates",
       "name": "large secondary diagonal and small primary",
       "kind": "trial",
       "visible": true,
@@ -299,7 +299,7 @@
       ]
     },
     {
-      "id": "real-center-correction",
+      "id": "trial-center-correction",
       "name": "dominant center is not doubled",
       "kind": "trial",
       "visible": true,
@@ -330,7 +330,7 @@
       ]
     },
     {
-      "id": "real-five-by-five",
+      "id": "trial-five-by-five",
       "name": "both diagonals across five rows",
       "kind": "trial",
       "visible": true,
@@ -381,7 +381,7 @@
       ]
     },
     {
-      "id": "real-all-hundreds",
+      "id": "trial-all-hundreds",
       "name": "odd all-equal matrix has five unique diagonal cells",
       "kind": "trial",
       "visible": true,

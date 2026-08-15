@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-missing-queries",
+      "id": "trial-missing-queries",
       "name": "missing exact word and prefix both return zero",
       "kind": "trial",
       "visible": true,
@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "real-reinsert-after-zero",
+      "id": "trial-reinsert-after-zero",
       "name": "word can be inserted after its count reaches zero",
       "kind": "trial",
       "visible": true,
@@ -244,7 +244,7 @@
       ]
     },
     {
-      "id": "real-single-character-multiplicity",
+      "id": "trial-single-character-multiplicity",
       "name": "single-character duplicates retain multiplicity",
       "kind": "trial",
       "visible": true,
@@ -295,7 +295,7 @@
       ]
     },
     {
-      "id": "real-branch-isolation",
+      "id": "trial-branch-isolation",
       "name": "erasing one branch leaves siblings unchanged",
       "kind": "trial",
       "visible": true,
@@ -351,7 +351,7 @@
       ]
     },
     {
-      "id": "real-prefix-multiplicity",
+      "id": "trial-prefix-multiplicity",
       "name": "prefix query counts every duplicate occurrence",
       "kind": "trial",
       "visible": true,

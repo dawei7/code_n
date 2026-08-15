@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-complete-day-range",
+      "id": "trial-complete-day-range",
       "name": "the widest legal same-day interval",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-last-second",
+      "id": "trial-last-second",
       "name": "the final one-second interval of the day",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-from-midnight",
+      "id": "trial-from-midnight",
       "name": "conversion from midnight to an interior time",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-to-final-second",
+      "id": "trial-to-final-second",
       "name": "conversion from an interior time to the final second",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-leading-zero-components",
+      "id": "trial-leading-zero-components",
       "name": "leading zeroes in every component",
       "kind": "trial",
       "visible": true,
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-mixed-carries",
+      "id": "trial-mixed-carries",
       "name": "seconds and minutes both cross component boundaries",
       "kind": "trial",
       "visible": true,
@@ -224,7 +224,7 @@
       ]
     },
     {
-      "id": "real-same-hour",
+      "id": "trial-same-hour",
       "name": "a duration confined to one hour",
       "kind": "trial",
       "visible": true,

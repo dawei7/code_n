@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-one-odd-frequency",
+      "id": "trial-one-odd-frequency",
       "name": "one odd count prevents a complete pairing",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-many-value-groups",
+      "id": "trial-many-value-groups",
       "name": "every independent value group has even size",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-even-length-not-sufficient",
+      "id": "trial-even-length-not-sufficient",
       "name": "total parity does not repair odd group frequencies",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-all-same",
+      "id": "trial-all-same",
       "name": "one value with an even frequency pairs completely",
       "kind": "trial",
       "visible": true,

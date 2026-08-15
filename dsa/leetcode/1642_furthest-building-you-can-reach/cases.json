@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-insufficient-bricks",
+      "id": "trial-insufficient-bricks",
       "name": "bricks one short cannot cross the first climb",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-one-ladder",
+      "id": "trial-one-ladder",
       "name": "one ladder covers a climb with no bricks",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-exact-bricks",
+      "id": "trial-exact-bricks",
       "name": "ladder takes one climb and bricks exactly cover two",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-retroactive-exchange",
+      "id": "trial-retroactive-exchange",
       "name": "a later larger climb displaces an earlier ladder choice",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-height-boundary",
+      "id": "trial-height-boundary",
       "name": "maximum-height climbs use one ladder and exact bricks",
       "kind": "trial",
       "visible": true,
@@ -206,6 +206,43 @@
       "tags": [
         "height-boundary",
         "exact-bricks"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in heights",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          4
+        ],
+        "bricks": 5,
+        "ladders": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in heights",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "heights": [
+          4,
+          4
+        ],
+        "bricks": 5,
+        "ladders": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-two-upper",
+      "id": "trial-two-upper",
       "name": "upper value in two-number range",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-large-middle",
+      "id": "trial-large-middle",
       "name": "large search range",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "hidden-near-end",
+      "id": "trial-near-end",
       "name": "one below upper bound",
       "kind": "trial",
       "visible": true,

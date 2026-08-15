@@ -156,8 +156,8 @@
       ]
     },
     {
-      "id": "real-overlap-everywhere",
-      "name": "real: overlapping equal-character matches cover every cell",
+      "id": "trial-overlap-everywhere",
+      "name": "overlapping equal-character matches cover every cell",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -182,8 +182,8 @@
       ]
     },
     {
-      "id": "real-one-character",
-      "name": "real: one-character pattern qualifies exactly matching cells",
+      "id": "trial-one-character",
+      "name": "one-character pattern qualifies exactly matching cells",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -208,8 +208,8 @@
       ]
     },
     {
-      "id": "real-full-length-mismatch",
-      "name": "real: full horizontal match is absent vertically",
+      "id": "trial-full-length-mismatch",
+      "name": "full horizontal match is absent vertically",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -229,6 +229,98 @@
       "tags": [
         "real",
         "full-length-pattern"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "a",
+            "a",
+            "c",
+            "c"
+          ],
+          [
+            "b",
+            "b",
+            "b",
+            "c"
+          ],
+          [
+            "a",
+            "a",
+            "b",
+            "a"
+          ],
+          [
+            "c",
+            "a",
+            "a",
+            "c"
+          ],
+          [
+            "a",
+            "a",
+            "b",
+            "a"
+          ]
+        ],
+        "pattern": "a"
+      },
+      "expected": 10,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "a",
+            "a",
+            "c",
+            "c"
+          ],
+          [
+            "b",
+            "b",
+            "b",
+            "c"
+          ],
+          [
+            "a",
+            "a",
+            "b",
+            "a"
+          ],
+          [
+            "c",
+            "a",
+            "a",
+            "c"
+          ],
+          [
+            "a",
+            "a",
+            "b",
+            "a"
+          ]
+        ],
+        "pattern": "aaa"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

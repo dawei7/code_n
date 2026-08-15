@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-all-same",
+      "id": "trial-all-same",
       "name": "identical buildings cannot alternate",
       "kind": "trial",
       "visible": true,
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-single-middle",
+      "id": "trial-single-middle",
       "name": "every zero pair around one creates a choice",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-five-alternating",
+      "id": "trial-five-alternating",
       "name": "nonconsecutive choices also alternate",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-separated-runs",
+      "id": "trial-separated-runs",
       "name": "choices depend on indices rather than runs",
       "kind": "trial",
       "visible": true,
@@ -107,6 +107,34 @@
       "expected": 27,
       "tags": [
         "repeated-runs"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

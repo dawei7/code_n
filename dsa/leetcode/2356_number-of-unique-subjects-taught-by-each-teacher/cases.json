@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-mixed-distinct-counts",
+      "id": "trial-mixed-distinct-counts",
       "name": "mixed counts and repeated subjects",
       "kind": "trial",
       "visible": true,
@@ -256,7 +256,7 @@
       ]
     },
     {
-      "id": "real-nonconsecutive-identifiers",
+      "id": "trial-nonconsecutive-identifiers",
       "name": "identifiers need not be consecutive",
       "kind": "trial",
       "visible": true,

@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-heading-restored-away",
+      "id": "trial-heading-restored-away",
       "name": "net eastward displacement with north heading",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-four-quarter-turns",
+      "id": "trial-four-quarter-turns",
       "name": "rotated path closes after four cycles",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-full-rotation",
+      "id": "trial-full-rotation",
       "name": "full turn remains at origin",
       "kind": "trial",
       "visible": true,

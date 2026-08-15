@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-discard-remainder",
+      "id": "trial-discard-remainder",
       "name": "unused remainder permits three length-three pieces",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-combine-ribbons",
+      "id": "trial-combine-ribbons",
       "name": "piece counts combine across ribbons",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-unit-only",
+      "id": "trial-unit-only",
       "name": "requiring all available material forces unit length",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-large-k",
+      "id": "trial-large-k",
       "name": "maximum k exceeds available unit pieces",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "one maximum ribbon supplies both requested pieces",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "equal ribbons contribute identical piece counts",
       "kind": "trial",
       "visible": true,
@@ -200,6 +200,41 @@
       "tags": [
         "duplicates",
         "at-least-k"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in ribbons",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ribbons": [
+          9
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in ribbons",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ribbons": [
+          9,
+          9
+        ],
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

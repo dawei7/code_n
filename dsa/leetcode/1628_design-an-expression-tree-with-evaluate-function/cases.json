@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-large-leaves",
+      "id": "trial-large-leaves",
       "name": "large operand leaves multiply exactly",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-deep-left",
+      "id": "trial-deep-left",
       "name": "left-deep tree evaluates repeated additions",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-deep-right",
+      "id": "trial-deep-right",
       "name": "delayed operators form a right-sensitive expression",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-all-operators",
+      "id": "trial-all-operators",
       "name": "all four operators compose in one valid tree",
       "kind": "trial",
       "visible": true,

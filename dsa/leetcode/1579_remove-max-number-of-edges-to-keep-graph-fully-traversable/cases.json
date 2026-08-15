@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-redundant-types",
+      "id": "trial-redundant-types",
       "name": "extra private edges duplicate shared reachability",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-shared-cycle",
+      "id": "trial-shared-cycle",
       "name": "one edge in a shared triangle is removable",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "real-mixed-bridge",
+      "id": "trial-mixed-bridge",
       "name": "private edges bridge two shared components",
       "kind": "trial",
       "visible": true,
@@ -274,7 +274,7 @@
       ]
     },
     {
-      "id": "real-bob-disconnected",
+      "id": "trial-bob-disconnected",
       "name": "Alice connects but Bob remains disconnected",
       "kind": "trial",
       "visible": true,
@@ -310,7 +310,7 @@
       ]
     },
     {
-      "id": "real-complex-redundancy",
+      "id": "trial-complex-redundancy",
       "name": "useful shared edges maximize overlap",
       "kind": "trial",
       "visible": true,
@@ -362,7 +362,7 @@
       ]
     },
     {
-      "id": "real-shared-plus-private-cycle",
+      "id": "trial-shared-plus-private-cycle",
       "name": "shared tree makes private cycles removable",
       "kind": "trial",
       "visible": true,
@@ -404,7 +404,7 @@
       ]
     },
     {
-      "id": "real-alice-only",
+      "id": "trial-alice-only",
       "name": "Bob has no path between two nodes",
       "kind": "trial",
       "visible": true,
@@ -426,7 +426,7 @@
       ]
     },
     {
-      "id": "real-shared-order-late",
+      "id": "trial-shared-order-late",
       "name": "shared edge appears after private alternatives",
       "kind": "trial",
       "visible": true,

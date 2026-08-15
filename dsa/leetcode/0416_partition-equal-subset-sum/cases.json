@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "hidden-many-ones",
+      "id": "trial-many-ones",
       "name": "repeated unit values",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "hidden-large-value",
+      "id": "trial-large-value",
       "name": "dominant value prevents partition",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "hidden-combination",
+      "id": "trial-combination",
       "name": "target requires several values",
       "kind": "trial",
       "visible": true,

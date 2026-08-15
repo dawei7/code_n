@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-many-singletons",
+      "id": "trial-many-singletons",
       "name": "operation overhead dominates isolated potholes",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-budget-exceeds-cost",
+      "id": "trial-budget-exceeds-cost",
       "name": "excess budget repairs every pothole",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-equal-run-tie",
+      "id": "trial-equal-run-tie",
       "name": "equal run lengths are interchangeable",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-long-smooth-road",
+      "id": "trial-long-smooth-road",
       "name": "a long smooth road still returns zero",
       "kind": "trial",
       "visible": true,

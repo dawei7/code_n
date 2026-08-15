@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "hidden-endpoint-ones",
+      "id": "trial-endpoint-ones",
       "name": "two endpoint ones with zero interior are coherent",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "hidden-alternating",
+      "id": "trial-alternating",
       "name": "alternating bits favor retaining one existing one",
       "kind": "trial",
       "visible": true,
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "id": "hidden-ones-heavy",
+      "id": "trial-ones-heavy",
       "name": "flipping two endpoint zeros produces all ones",
       "kind": "trial",
       "visible": true,
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "id": "hidden-grouped-middle-ones",
+      "id": "trial-grouped-middle-ones",
       "name": "grouped middle ones favor retaining one one",
       "kind": "trial",
       "visible": true,
@@ -266,6 +266,20 @@
       "tags": [
         "grouped-ones",
         "at-most-one-one"
+      ]
+    },
+    {
+      "id": "trial-boundary-19",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

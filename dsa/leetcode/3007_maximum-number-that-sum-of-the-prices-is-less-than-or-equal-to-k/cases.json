@@ -72,8 +72,8 @@
       ]
     },
     {
-      "id": "real-small-second-position",
-      "name": "real: smallest budget at second positions",
+      "id": "trial-small-second-position",
+      "name": "smallest budget at second positions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -86,8 +86,8 @@
       ]
     },
     {
-      "id": "real-large-budget",
-      "name": "real: large budget with every bit selected",
+      "id": "trial-large-budget",
+      "name": "large budget with every bit selected",
       "kind": "trial",
       "visible": true,
       "input": {

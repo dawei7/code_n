@@ -73,8 +73,8 @@
       ]
     },
     {
-      "id": "real-all-zeroes",
-      "name": "real: every intermediate digit remains zero",
+      "id": "trial-all-zeroes",
+      "name": "every intermediate digit remains zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -87,8 +87,8 @@
       ]
     },
     {
-      "id": "real-descending-digits",
-      "name": "real: descending digits produce unequal endpoints",
+      "id": "trial-descending-digits",
+      "name": "descending digits produce unequal endpoints",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -101,8 +101,8 @@
       ]
     },
     {
-      "id": "real-pi-prefix",
-      "name": "real: longer nonperiodic digit sequence",
+      "id": "trial-pi-prefix",
+      "name": "longer nonperiodic digit sequence",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -115,8 +115,8 @@
       ]
     },
     {
-      "id": "real-beyond-easy-bound",
-      "name": "real: periodic input exceeds Operations I length bound",
+      "id": "trial-beyond-easy-bound",
+      "name": "periodic input exceeds Operations I length bound",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -129,8 +129,8 @@
       ]
     },
     {
-      "id": "real-uniform-257",
-      "name": "real: uniform digits remain equal across many rounds",
+      "id": "trial-uniform-257",
+      "name": "uniform digits remain equal across many rounds",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -141,6 +141,34 @@
         "real",
         "uniform",
         "long-input"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "3"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "333"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

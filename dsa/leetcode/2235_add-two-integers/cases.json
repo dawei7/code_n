@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-lower-bound",
+      "id": "trial-lower-bound",
       "name": "both inputs at the lower bound",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "both inputs at the upper bound",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-order",
+      "id": "trial-order",
       "name": "mixed signs with positive result",
       "kind": "trial",
       "visible": true,
@@ -115,6 +115,36 @@
       "expected": 1,
       "tags": [
         "mixed-sign"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value num1=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 1,
+        "num2": 5
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value num2=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 12,
+        "num2": 1
+      },
+      "expected": 13,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

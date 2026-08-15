@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-already-equal",
+      "id": "trial-already-equal",
       "name": "no reversal is required",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-boundary-values",
+      "id": "trial-boundary-values",
       "name": "minimum and maximum values are permuted",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-cycle-permutation",
+      "id": "trial-cycle-permutation",
       "name": "transformation needs more than one adjacent swap",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-all-identical-mismatch",
+      "id": "trial-all-identical-mismatch",
       "name": "one differing value among repeated entries",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-heavy-duplicates",
+      "id": "trial-heavy-duplicates",
       "name": "several duplicate groups match",
       "kind": "trial",
       "visible": true,
@@ -241,6 +241,51 @@
       "expected": true,
       "tags": [
         "heavy-duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": [
+          1
+        ],
+        "arr": [
+          2,
+          4,
+          1,
+          3
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": [
+          1,
+          1
+        ],
+        "arr": [
+          2,
+          4,
+          1,
+          3
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

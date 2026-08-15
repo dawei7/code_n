@@ -72,8 +72,8 @@
       ]
     },
     {
-      "id": "real-minimum-value",
-      "name": "real: minimum single value",
+      "id": "trial-minimum-value",
+      "name": "minimum single value",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -87,8 +87,8 @@
       ]
     },
     {
-      "id": "real-maximum-value",
-      "name": "real: maximum single value",
+      "id": "trial-maximum-value",
+      "name": "maximum single value",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -102,8 +102,8 @@
       ]
     },
     {
-      "id": "real-all-ones",
-      "name": "real: every window has at most two values",
+      "id": "trial-all-ones",
+      "name": "every window has at most two values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -121,8 +121,8 @@
       ]
     },
     {
-      "id": "real-all-large",
-      "name": "real: every endpoint uses the full prefix",
+      "id": "trial-all-large",
+      "name": "every endpoint uses the full prefix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -140,8 +140,8 @@
       ]
     },
     {
-      "id": "real-increasing",
-      "name": "real: increasing values use full prefixes",
+      "id": "trial-increasing",
+      "name": "increasing values use full prefixes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -159,8 +159,8 @@
       ]
     },
     {
-      "id": "real-late-clamp",
-      "name": "real: final value reaches index zero",
+      "id": "trial-late-clamp",
+      "name": "final value reaches index zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -176,8 +176,8 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "real: alternating window lengths",
+      "id": "trial-alternating",
+      "name": "alternating window lengths",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -195,8 +195,8 @@
       ]
     },
     {
-      "id": "real-decreasing",
-      "name": "real: decreasing values",
+      "id": "trial-decreasing",
+      "name": "decreasing values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -214,8 +214,8 @@
       ]
     },
     {
-      "id": "real-mixed-window",
-      "name": "real: varied back references",
+      "id": "trial-mixed-window",
+      "name": "varied back references",
       "kind": "trial",
       "visible": true,
       "input": {

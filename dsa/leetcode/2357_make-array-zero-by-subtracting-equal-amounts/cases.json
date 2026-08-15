@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-many-zeros",
+      "id": "trial-many-zeros",
       "name": "zeros never require an operation",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-unsorted-levels",
+      "id": "trial-unsorted-levels",
       "name": "input order does not affect the answer",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "several zeros",
       "kind": "trial",
       "visible": true,

@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-four-budget-two",
+      "id": "trial-four-budget-two",
       "name": "index two can coexist with the leading one",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-five-budget-three",
+      "id": "trial-five-budget-three",
       "name": "several isolated one placements share the budget",
       "kind": "trial",
       "visible": true,
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "real-six-budget-four",
+      "id": "trial-six-budget-four",
       "name": "cost and adjacency prune different branches",
       "kind": "trial",
       "visible": true,
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "real-eight-small-budget",
+      "id": "trial-eight-small-budget",
       "name": "a small budget prunes most of a longer string",
       "kind": "trial",
       "visible": true,
@@ -290,7 +290,7 @@
       ]
     },
     {
-      "id": "real-maximum-length-zero-budget",
+      "id": "trial-maximum-length-zero-budget",
       "name": "maximum length with zero budget",
       "kind": "trial",
       "visible": true,
@@ -311,7 +311,7 @@
       ]
     },
     {
-      "id": "real-maximum-length-budget-one",
+      "id": "trial-maximum-length-budget-one",
       "name": "maximum length with budget one",
       "kind": "trial",
       "visible": true,
@@ -333,7 +333,7 @@
       ]
     },
     {
-      "id": "real-maximum-length-budget-five",
+      "id": "trial-maximum-length-budget-five",
       "name": "maximum length with several affordable positions",
       "kind": "trial",
       "visible": true,
@@ -362,6 +362,24 @@
       "tags": [
         "maximum-n",
         "multiple-ones"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 1
+      },
+      "expected": [
+        "0",
+        "1"
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

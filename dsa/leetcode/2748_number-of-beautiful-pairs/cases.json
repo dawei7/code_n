@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "real-one-beautiful-pair",
+      "id": "trial-one-beautiful-pair",
       "name": "one two-value pair is beautiful",
       "kind": "trial",
       "visible": true,
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum values are not coprime",
       "kind": "trial",
       "visible": true,
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-last-digit-one",
+      "id": "trial-last-digit-one",
       "name": "last digit one accepts every first digit",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-mixed-digits",
+      "id": "trial-mixed-digits",
       "name": "mixed first and last digits",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-directional",
+      "id": "trial-directional",
       "name": "directional first and last digit roles",
       "kind": "trial",
       "visible": true,
@@ -141,6 +141,22 @@
       "expected": 2,
       "tags": [
         "order"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

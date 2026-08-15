@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-user-tie-order",
+      "id": "trial-user-tie-order",
       "name": "equal spenders are ordered by ascending user ID",
       "kind": "trial",
       "visible": true,
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "real-price-weighted",
+      "id": "trial-price-weighted",
       "name": "price can outweigh a larger quantity",
       "kind": "trial",
       "visible": true,
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "id": "real-repeated-product",
+      "id": "trial-repeated-product",
       "name": "repeated purchases of one product all count",
       "kind": "trial",
       "visible": true,

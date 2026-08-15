@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-indirect-beats-heavy",
+      "id": "trial-indirect-beats-heavy",
       "name": "light indirect path bypasses a heavy direct edge",
       "kind": "trial",
       "visible": true,
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": "real-disconnected",
+      "id": "trial-disconnected",
       "name": "separate components remain disconnected",
       "kind": "trial",
       "visible": true,
@@ -298,7 +298,7 @@
       ]
     },
     {
-      "id": "real-unsorted-limits",
+      "id": "trial-unsorted-limits",
       "name": "answers restore the original unsorted query order",
       "kind": "trial",
       "visible": true,

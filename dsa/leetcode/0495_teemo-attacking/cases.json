@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "hidden-repeated-time",
+      "id": "trial-repeated-time",
       "name": "repeated attack timestamp",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "hidden-touching",
+      "id": "trial-touching",
       "name": "intervals touch without overlap",
       "kind": "trial",
       "visible": true,

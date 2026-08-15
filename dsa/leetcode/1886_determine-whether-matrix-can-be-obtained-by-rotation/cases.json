@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-single-cell-different",
+      "id": "trial-single-cell-different",
       "name": "one unequal cell cannot be repaired by rotation",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-distinct-ninety",
+      "id": "trial-distinct-ninety",
       "name": "an asymmetric matrix matches only after ninety degrees",
       "kind": "trial",
       "visible": true,
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "real-distinct-one-eighty",
+      "id": "trial-distinct-one-eighty",
       "name": "an asymmetric matrix matches only after one hundred eighty degrees",
       "kind": "trial",
       "visible": true,
@@ -289,7 +289,7 @@
       ]
     },
     {
-      "id": "real-distinct-two-seventy",
+      "id": "trial-distinct-two-seventy",
       "name": "an asymmetric matrix matches only after two hundred seventy degrees",
       "kind": "trial",
       "visible": true,
@@ -336,7 +336,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "a fully symmetric zero matrix matches every rotation",
       "kind": "trial",
       "visible": true,
@@ -383,7 +383,7 @@
       ]
     },
     {
-      "id": "real-same-count-no-match",
+      "id": "trial-same-count-no-match",
       "name": "equal one-count does not imply rotational equality",
       "kind": "trial",
       "visible": true,

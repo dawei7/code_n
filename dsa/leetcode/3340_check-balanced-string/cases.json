@@ -73,8 +73,8 @@
       ]
     },
     {
-      "id": "real-balanced-symmetric",
-      "name": "real: symmetric digits have equal alternating sums",
+      "id": "trial-balanced-symmetric",
+      "name": "symmetric digits have equal alternating sums",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -88,8 +88,8 @@
       ]
     },
     {
-      "id": "real-odd-length-unbalanced",
-      "name": "real: extra even-index digit changes the sum",
+      "id": "trial-odd-length-unbalanced",
+      "name": "extra even-index digit changes the sum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -103,8 +103,8 @@
       ]
     },
     {
-      "id": "real-maximum-balanced",
-      "name": "real: maximum length with equal maximum digits",
+      "id": "trial-maximum-balanced",
+      "name": "maximum length with equal maximum digits",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -118,8 +118,8 @@
       ]
     },
     {
-      "id": "real-maximum-unbalanced",
-      "name": "real: maximum length with contributions on one side only",
+      "id": "trial-maximum-unbalanced",
+      "name": "maximum length with contributions on one side only",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -130,6 +130,34 @@
         "real",
         "maximum-length",
         "unbalanced"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "1"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "111"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

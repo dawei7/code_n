@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "real-cost-order",
+      "id": "trial-cost-order",
       "name": "swapping cost order preserves count",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-one-way",
+      "id": "trial-one-way",
       "name": "minimum budget below both prices",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-large-cost-gap",
+      "id": "trial-large-cost-gap",
       "name": "large cost imbalance uses short outer range",
       "kind": "trial",
       "visible": true,
@@ -125,6 +125,38 @@
       "tags": [
         "upper-bound",
         "cost-gap"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value total=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "total": 1,
+        "cost1": 10,
+        "cost2": 5
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value cost1=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "total": 20,
+        "cost1": 1,
+        "cost2": 5
+      },
+      "expected": 55,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

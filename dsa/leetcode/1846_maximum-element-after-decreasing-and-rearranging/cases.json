@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-all-equal-large",
+      "id": "trial-all-equal-large",
       "name": "equal large values can form every step",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-many-ones",
+      "id": "trial-many-ones",
       "name": "repeated ones stall growth",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-unsorted-consecutive",
+      "id": "trial-unsorted-consecutive",
       "name": "input order does not affect a complete sequence",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-one-and-huge-values",
+      "id": "trial-one-and-huge-values",
       "name": "several huge values fill successive steps",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-no-original-one",
+      "id": "trial-no-original-one",
       "name": "the smallest value is decreased to one",
       "kind": "trial",
       "visible": true,
@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "maximum-domain values are bounded by array length",
       "kind": "trial",
       "visible": true,
@@ -216,6 +216,39 @@
       "tags": [
         "value-boundary",
         "decreasing"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-all-ones",
+      "id": "trial-all-ones",
       "name": "repeated unit values",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-symmetric",
+      "id": "trial-symmetric",
       "name": "symmetric three-element array",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-two-value-boundaries",
+      "id": "trial-two-value-boundaries",
       "name": "minimum and maximum values",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-six-increasing",
+      "id": "trial-six-increasing",
       "name": "several odd lengths in an even array",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-maximum-domain",
+      "id": "trial-maximum-domain",
       "name": "maximum length and values",
       "kind": "trial",
       "visible": true,

@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-long-coin-path",
+      "id": "trial-long-coin-path",
       "name": "central path must be traversed twice",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-redundant-branches",
+      "id": "trial-redundant-branches",
       "name": "coinless branches disappear before distance trimming",
       "kind": "trial",
       "visible": true,

@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-capped-copy-completes-target",
+      "id": "trial-capped-copy-completes-target",
       "name": "capped copies first complete six at cap two",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-answer-can-disappear",
+      "id": "trial-answer-can-disappear",
       "name": "feasibility is not monotonic as the cap grows",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-only-original-values-work",
+      "id": "trial-only-original-values-work",
       "name": "target appears only at the final cap",
       "kind": "trial",
       "visible": true,
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-all-ones-full-target",
+      "id": "trial-all-ones-full-target",
       "name": "all positions are required to form four",
       "kind": "trial",
       "visible": true,
@@ -209,6 +209,31 @@
       "tags": [
         "duplicates",
         "all-elements"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          4
+        ],
+        "k": 1
+      },
+      "expected": [
+        true,
+        false,
+        false,
+        false
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

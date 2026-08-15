@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "real-first-right-endpoint",
+      "id": "trial-first-right-endpoint",
       "name": "first traversal ends at the right endpoint",
       "kind": "trial",
       "visible": true,
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-complete-period",
+      "id": "trial-complete-period",
       "name": "one complete period returns to person one",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-after-complete-period",
+      "id": "trial-after-complete-period",
       "name": "first pass after a complete period",
       "kind": "trial",
       "visible": true,
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-return-before-left-endpoint",
+      "id": "trial-return-before-left-endpoint",
       "name": "return traversal approaches the left endpoint",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-maximum-line-endpoint",
+      "id": "trial-maximum-line-endpoint",
       "name": "maximum line reaches its right endpoint",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-maximum-input",
+      "id": "trial-maximum-input",
       "name": "maximum time begins the return traversal",
       "kind": "trial",
       "visible": true,
@@ -146,6 +146,36 @@
       "tags": [
         "maximum-n",
         "maximum-time"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "time": 5
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value time=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "time": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-zero-diagonal",
+      "id": "trial-zero-diagonal",
       "name": "zero-cost diagonal covers both groups",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-uncovered-column-repair",
+      "id": "trial-uncovered-column-repair",
       "name": "expensive column needs one repair edge",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-rectangular-choice",
+      "id": "trial-rectangular-choice",
       "name": "four first-group points and two endpoints",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-zero-perfect-coverage",
+      "id": "trial-zero-perfect-coverage",
       "name": "three zero-cost columns",
       "kind": "trial",
       "visible": true,
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "real-all-ties",
+      "id": "trial-all-ties",
       "name": "every edge has equal cost",
       "kind": "trial",
       "visible": true,
@@ -269,7 +269,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "all connections are free",
       "kind": "trial",
       "visible": true,
@@ -292,7 +292,7 @@
       ]
     },
     {
-      "id": "real-extra-row-mixed-costs",
+      "id": "trial-extra-row-mixed-costs",
       "name": "mixed costs with more rows than columns",
       "kind": "trial",
       "visible": true,

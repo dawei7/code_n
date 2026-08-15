@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-adjacent-shared-bit",
+      "id": "trial-adjacent-shared-bit",
       "name": "two values share one bit",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-multiple-removals",
+      "id": "trial-multiple-removals",
       "name": "incoming value conflicts with several residents",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-two-long-windows",
+      "id": "trial-two-long-windows",
       "name": "later disjoint suffix becomes optimal",
       "kind": "trial",
       "visible": true,

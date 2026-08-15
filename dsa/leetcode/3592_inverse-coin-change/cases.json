@@ -132,8 +132,8 @@
       ]
     },
     {
-      "id": "real-sparse-three-six",
-      "name": "real: recover sparse multiples three and six",
+      "id": "trial-sparse-three-six",
+      "name": "recover sparse multiples three and six",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -157,8 +157,8 @@
       ]
     },
     {
-      "id": "real-overlapping-two-three",
-      "name": "real: overlapping denominations create mixed combinations",
+      "id": "trial-overlapping-two-three",
+      "name": "overlapping denominations create mixed combinations",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -184,8 +184,8 @@
       ]
     },
     {
-      "id": "real-every-small-amount-is-a-coin",
-      "name": "real: every amount through ten is recovered",
+      "id": "trial-every-small-amount-is-a-coin",
+      "name": "every amount through ten is recovered",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -221,8 +221,8 @@
       ]
     },
     {
-      "id": "real-late-deficit",
-      "name": "real: a count below the smaller-coin total is impossible",
+      "id": "trial-late-deficit",
+      "name": "a count below the smaller-coin total is impossible",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -244,8 +244,8 @@
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "real: recover a denomination at the maximum amount",
+      "id": "trial-maximum-length",
+      "name": "recover a denomination at the maximum amount",
       "kind": "trial",
       "visible": true,
       "input": {

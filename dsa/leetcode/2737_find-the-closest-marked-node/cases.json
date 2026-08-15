@@ -140,7 +140,7 @@
       "expected": 2
     },
     {
-      "id": "real-parallel-edges",
+      "id": "trial-parallel-edges",
       "name": "parallel edges choose lower cost",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       "expected": 7
     },
     {
-      "id": "real-unreachable-components",
+      "id": "trial-unreachable-components",
       "name": "all marked nodes in unreachable components",
       "kind": "trial",
       "visible": true,
@@ -198,7 +198,7 @@
       "expected": -1
     },
     {
-      "id": "real-indirect-beats-direct",
+      "id": "trial-indirect-beats-direct",
       "name": "indirect route beats direct edge",
       "kind": "trial",
       "visible": true,
@@ -234,7 +234,7 @@
       "expected": 15
     },
     {
-      "id": "real-large-path-sum",
+      "id": "trial-large-path-sum",
       "name": "path sum exceeds one edge bound",
       "kind": "trial",
       "visible": true,
@@ -258,6 +258,87 @@
         ]
       },
       "expected": 2000000
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in marked",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            2
+          ],
+          [
+            0,
+            3,
+            4
+          ]
+        ],
+        "s": 0,
+        "marked": [
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in marked",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            2
+          ],
+          [
+            0,
+            3,
+            4
+          ]
+        ],
+        "s": 0,
+        "marked": [
+          2,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

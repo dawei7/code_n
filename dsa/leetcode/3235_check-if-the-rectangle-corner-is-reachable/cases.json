@@ -184,8 +184,8 @@
       ]
     },
     {
-      "id": "real-outside-top-intersects-side",
-      "name": "real: outside center reaches only top side",
+      "id": "trial-outside-top-intersects-side",
+      "name": "outside center reaches only top side",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -206,8 +206,8 @@
       ]
     },
     {
-      "id": "real-three-circle-diagonal-barrier",
-      "name": "real: three-circle diagonal barrier",
+      "id": "trial-three-circle-diagonal-barrier",
+      "name": "three-circle diagonal barrier",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -238,8 +238,8 @@
       ]
     },
     {
-      "id": "real-isolated-interior-circles",
-      "name": "real: isolated interior circles",
+      "id": "trial-isolated-interior-circles",
+      "name": "isolated interior circles",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -269,8 +269,8 @@
       ]
     },
     {
-      "id": "real-endpoint-covered",
-      "name": "real: destination lies inside a circle",
+      "id": "trial-endpoint-covered",
+      "name": "destination lies inside a circle",
       "kind": "trial",
       "visible": true,
       "input": {

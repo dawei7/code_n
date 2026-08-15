@@ -236,7 +236,7 @@
       ]
     },
     {
-      "id": "real-zero-and-five-values",
+      "id": "trial-zero-and-five-values",
       "name": "five values include zero and mixed signs",
       "kind": "trial",
       "visible": true,
@@ -294,7 +294,7 @@
       ]
     },
     {
-      "id": "real-balanced-pairs",
+      "id": "trial-balanced-pairs",
       "name": "opposite-value pairs create many zeros",
       "kind": "trial",
       "visible": true,
@@ -335,7 +335,7 @@
       ]
     },
     {
-      "id": "real-three-zeros",
+      "id": "trial-three-zeros",
       "name": "three zero-valued elements",
       "kind": "trial",
       "visible": true,
@@ -366,7 +366,7 @@
       ]
     },
     {
-      "id": "real-sign-alternative",
+      "id": "trial-sign-alternative",
       "name": "sign-alternative reconstruction is valid",
       "kind": "trial",
       "visible": true,

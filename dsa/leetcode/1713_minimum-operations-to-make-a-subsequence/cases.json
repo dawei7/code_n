@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-irrelevant-interleaving",
+      "id": "trial-irrelevant-interleaving",
       "name": "unrelated values do not disrupt a subsequence",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-use-later-duplicate",
+      "id": "trial-use-later-duplicate",
       "name": "a later duplicate enables a longer ordered match",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-single-present",
+      "id": "trial-single-present",
       "name": "one target value already occurs",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-single-absent",
+      "id": "trial-single-absent",
       "name": "one absent target requires one insertion",
       "kind": "trial",
       "visible": true,
@@ -242,6 +242,53 @@
       "tags": [
         "single-target",
         "absent"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": [
+          5
+        ],
+        "arr": [
+          9,
+          4,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": [
+          5,
+          5
+        ],
+        "arr": [
+          9,
+          4,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

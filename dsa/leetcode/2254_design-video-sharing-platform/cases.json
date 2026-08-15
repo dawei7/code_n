@@ -315,7 +315,7 @@
       ]
     },
     {
-      "id": "real-double-remove",
+      "id": "trial-double-remove",
       "name": "repeated removal does not duplicate a reusable id",
       "kind": "trial",
       "visible": true,
@@ -360,7 +360,7 @@
       ]
     },
     {
-      "id": "real-independent-records",
+      "id": "trial-independent-records",
       "name": "videos maintain independent views and reactions",
       "kind": "trial",
       "visible": true,
@@ -445,7 +445,7 @@
       ]
     },
     {
-      "id": "real-remove-preserves-others",
+      "id": "trial-remove-preserves-others",
       "name": "removing one video leaves every other record unchanged",
       "kind": "trial",
       "visible": true,

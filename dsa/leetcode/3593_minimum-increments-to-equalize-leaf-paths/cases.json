@@ -203,8 +203,8 @@
       ]
     },
     {
-      "id": "real-nested-imbalances",
-      "name": "real: independent imbalances occur at three branching boundaries",
+      "id": "trial-nested-imbalances",
+      "name": "independent imbalances occur at three branching boundaries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -253,8 +253,8 @@
       ]
     },
     {
-      "id": "real-unordered-edges",
-      "name": "real: edge orientation and input order do not matter",
+      "id": "trial-unordered-edges",
+      "name": "edge orientation and input order do not matter",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -298,8 +298,8 @@
       ]
     },
     {
-      "id": "real-deep-shared-correction",
-      "name": "real: a deep internal correction covers three descendant leaves",
+      "id": "trial-deep-shared-correction",
+      "name": "a deep internal correction covers three descendant leaves",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -353,8 +353,8 @@
       ]
     },
     {
-      "id": "real-all-distinct-star-leaves",
-      "name": "real: every nonmaximum star leaf needs its own node",
+      "id": "trial-all-distinct-star-leaves",
+      "name": "every nonmaximum star leaf needs its own node",
       "kind": "trial",
       "visible": true,
       "input": {

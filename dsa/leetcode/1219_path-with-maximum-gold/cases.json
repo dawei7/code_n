@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-no-gold",
+      "id": "trial-no-gold",
       "name": "an empty mine has no starting cell",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-branch-choice",
+      "id": "trial-branch-choice",
       "name": "a high center still requires the best branch choices",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-restore-between-starts",
+      "id": "trial-restore-between-starts",
       "name": "later starts require full grid restoration",
       "kind": "trial",
       "visible": true,

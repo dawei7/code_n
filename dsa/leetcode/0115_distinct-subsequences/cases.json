@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-combinations",
+      "id": "trial-combinations",
       "name": "repeated-character combinations",
       "kind": "trial",
       "visible": true,

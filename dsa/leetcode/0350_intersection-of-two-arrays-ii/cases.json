@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "hidden-negative",
+      "id": "trial-negative",
       "name": "signed values and zero",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "hidden-second-shorter",
+      "id": "trial-second-shorter",
       "name": "count the second array",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "hidden-disjoint",
+      "id": "trial-disjoint",
       "name": "no shared values",
       "kind": "trial",
       "visible": true,

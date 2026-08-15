@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-balanced-tree",
+      "id": "trial-balanced-tree",
       "name": "balanced branches exercise disjoint ancestry intervals",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-long-path",
+      "id": "trial-long-path",
       "name": "path permits cuts nested at different depths",
       "kind": "trial",
       "visible": true,
@@ -272,7 +272,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "values near the upper bound preserve bitwise semantics",
       "kind": "trial",
       "visible": true,

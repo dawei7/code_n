@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "real-repeat-after-gap",
+      "id": "trial-repeat-after-gap",
       "name": "repeat moves the left boundary",
       "kind": "trial",
       "visible": true,
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-cyclic-three",
+      "id": "trial-cyclic-three",
       "name": "repeated three-letter cycle",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-full-alphabet",
+      "id": "trial-full-alphabet",
       "name": "all lowercase letters once",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-stale-occurrence",
+      "id": "trial-stale-occurrence",
       "name": "stale occurrence must not move left backward",
       "kind": "trial",
       "visible": true,

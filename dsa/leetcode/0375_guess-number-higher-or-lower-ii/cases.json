@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-four",
+      "id": "trial-four",
       "name": "four-value interval",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-seven",
+      "id": "trial-seven",
       "name": "seven-value interval",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "hidden-twelve",
+      "id": "trial-twelve",
       "name": "larger interval",
       "kind": "trial",
       "visible": true,

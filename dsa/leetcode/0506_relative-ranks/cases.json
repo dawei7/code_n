@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "hidden-four",
+      "id": "trial-four",
       "name": "all medal positions are permuted",
       "kind": "trial",
       "visible": true,
@@ -135,6 +135,44 @@
       ],
       "tags": [
         "permutation"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "single element in score",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "score": [
+          5
+        ]
+      },
+      "expected": [
+        "Gold Medal"
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in score",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "score": [
+          5,
+          5
+        ]
+      },
+      "expected": [
+        "Gold Medal",
+        "Silver Medal"
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

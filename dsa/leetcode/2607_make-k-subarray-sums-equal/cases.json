@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-three-cycles",
+      "id": "trial-three-cycles",
       "name": "three independent residue classes",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-wide-values",
+      "id": "trial-wide-values",
       "name": "operation count uses wide arithmetic",
       "kind": "trial",
       "visible": true,

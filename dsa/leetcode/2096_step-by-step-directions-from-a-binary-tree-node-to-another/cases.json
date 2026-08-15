@@ -65,7 +65,7 @@
       ]
     },
     {
-      "id": "real-destination-is-ancestor",
+      "id": "trial-destination-is-ancestor",
       "name": "path consists only of upward moves",
       "kind": "trial",
       "visible": true,
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-start-is-ancestor",
+      "id": "trial-start-is-ancestor",
       "name": "path descends through mixed directions",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-sparse-cross-branch",
+      "id": "trial-sparse-cross-branch",
       "name": "null child slots preserve edge directions",
       "kind": "trial",
       "visible": true,

@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-blocks-balanced",
+      "id": "trial-blocks-balanced",
       "name": "separate blocks have equal totals",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-majority-b",
+      "id": "trial-majority-b",
       "name": "several b characters remain",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-balanced-interleaved",
+      "id": "trial-balanced-interleaved",
       "name": "interleaved characters all disappear",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-all-b",
+      "id": "trial-all-b",
       "name": "all b characters remain",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-one-excess-a",
+      "id": "trial-one-excess-a",
       "name": "one excess a remains after cancellations",
       "kind": "trial",
       "visible": true,
@@ -182,6 +182,20 @@
       },
       "tags": [
         "majority-a"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

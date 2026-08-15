@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "hidden-width-tie-trap",
+      "id": "trial-width-tie-trap",
       "name": "descending tie order prevents false chain",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "hidden-decreasing-heights",
+      "id": "trial-decreasing-heights",
       "name": "increasing widths with decreasing heights",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "hidden-unsorted-chain",
+      "id": "trial-unsorted-chain",
       "name": "full chain arrives unsorted",
       "kind": "trial",
       "visible": true,

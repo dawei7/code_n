@@ -298,7 +298,7 @@
       ]
     },
     {
-      "id": "real-asymmetric-branches",
+      "id": "trial-asymmetric-branches",
       "name": "asymmetric branch lengths produce one special node",
       "kind": "trial",
       "visible": true,
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "id": "real-target-at-star-center",
+      "id": "trial-target-at-star-center",
       "name": "a center target can be the only special node",
       "kind": "trial",
       "visible": true,
@@ -374,7 +374,7 @@
       ]
     },
     {
-      "id": "real-two-junctions",
+      "id": "trial-two-junctions",
       "name": "a two-junction tree has three special nodes",
       "kind": "trial",
       "visible": true,
@@ -424,7 +424,7 @@
       ]
     },
     {
-      "id": "real-many-unselected-leaves",
+      "id": "trial-many-unselected-leaves",
       "name": "additional star leaves do not create new triplets",
       "kind": "trial",
       "visible": true,
@@ -482,7 +482,7 @@
       ]
     },
     {
-      "id": "real-path-no-special",
+      "id": "trial-path-no-special",
       "name": "another target arrangement on a path has no solution",
       "kind": "trial",
       "visible": true,

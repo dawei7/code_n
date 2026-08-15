@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-negative",
+      "id": "trial-negative",
       "name": "negative scores retain dense order",
       "kind": "trial",
       "visible": true,

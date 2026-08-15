@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-minimum-first",
+      "id": "trial-minimum-first",
       "name": "leading minimum permits one suffix sort",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-maximum-last",
+      "id": "trial-maximum-last",
       "name": "trailing maximum permits one prefix sort",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-other-descending-pair",
+      "id": "trial-other-descending-pair",
       "name": "every descending pair is impossible",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-three-operations",
+      "id": "trial-three-operations",
       "name": "unique extremes occupy opposite endpoints",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-repeated-minimum",
+      "id": "trial-repeated-minimum",
       "name": "repeated trailing minimum reduces answer to two",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-minimum-in-prefix",
+      "id": "trial-minimum-in-prefix",
       "name": "a minimum in a proper prefix enables two moves",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-longer-three-operation",
+      "id": "trial-longer-three-operation",
       "name": "longer reverse string retains unique endpoint extremes",
       "kind": "trial",
       "visible": true,

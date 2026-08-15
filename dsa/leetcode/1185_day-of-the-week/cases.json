@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "real-modern-leap-day",
+      "id": "trial-modern-leap-day",
       "name": "modern leap day",
       "kind": "trial",
       "visible": true,
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-nonleap-century",
+      "id": "trial-nonleap-century",
       "name": "2100 is not a leap year",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-end-first-year",
+      "id": "trial-end-first-year",
       "name": "end of first allowed year",
       "kind": "trial",
       "visible": true,

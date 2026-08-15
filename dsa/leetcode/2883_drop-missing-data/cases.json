@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-all-names-missing",
+      "id": "trial-all-names-missing",
       "name": "every student name is missing",
       "kind": "trial",
       "visible": true,

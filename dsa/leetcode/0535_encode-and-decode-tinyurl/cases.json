@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "hidden-shared-prefix",
+      "id": "trial-shared-prefix",
       "name": "similar URLs remain distinct",
       "kind": "trial",
       "visible": true,

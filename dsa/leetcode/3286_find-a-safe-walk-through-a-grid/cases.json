@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-longer-detour",
+      "id": "trial-longer-detour",
       "name": "a longer route avoids the unsafe direct corridor",
       "kind": "trial",
       "visible": true,
@@ -236,7 +236,7 @@
       ]
     },
     {
-      "id": "real-exact-boundary",
+      "id": "trial-exact-boundary",
       "name": "minimum cost equal to health is unsafe",
       "kind": "trial",
       "visible": true,

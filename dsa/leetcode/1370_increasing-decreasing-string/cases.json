@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-paired-alphabet",
+      "id": "trial-paired-alphabet",
       "name": "paired ascending alphabet prefix",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-reverse-input",
+      "id": "trial-reverse-input",
       "name": "physical input order does not matter",
       "kind": "trial",
       "visible": true,

@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-duplicate-cancellation",
+      "id": "trial-duplicate-cancellation",
       "name": "duplicate values cancel without removals",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-keep-extra-zeros",
+      "id": "trial-keep-extra-zeros",
       "name": "zero values increase the retained count",
       "kind": "trial",
       "visible": true,
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "real-remove-nonzero-keep-zero",
+      "id": "trial-remove-nonzero-keep-zero",
       "name": "keep zero while removing a nonzero value",
       "kind": "trial",
       "visible": true,
@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "real-best-of-two-representations",
+      "id": "trial-best-of-two-representations",
       "name": "prefer the larger subset for the same XOR",
       "kind": "trial",
       "visible": true,
@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "real-maximum-target",
+      "id": "trial-maximum-target",
       "name": "two values combine to the maximum target",
       "kind": "trial",
       "visible": true,
@@ -286,7 +286,7 @@
       ]
     },
     {
-      "id": "real-maximum-target-unreachable",
+      "id": "trial-maximum-target-unreachable",
       "name": "maximum target is absent from reachable states",
       "kind": "trial",
       "visible": true,
@@ -306,7 +306,7 @@
       ]
     },
     {
-      "id": "real-keep-one-of-five-powers",
+      "id": "trial-keep-one-of-five-powers",
       "name": "only one independent power matches the target",
       "kind": "trial",
       "visible": true,
@@ -327,6 +327,41 @@
       "tags": [
         "powers-of-two",
         "four-removals"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "target": 2
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "target": 2
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

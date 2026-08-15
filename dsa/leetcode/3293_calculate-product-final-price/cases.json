@@ -232,8 +232,8 @@
       ]
     },
     {
-      "id": "real-product-id-order",
-      "name": "real: output order ignores input row order",
+      "id": "trial-product-id-order",
+      "name": "output order ignores input row order",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -296,8 +296,8 @@
       ]
     },
     {
-      "id": "real-exact-join-key",
-      "name": "real: only the matching category receives a discount",
+      "id": "trial-exact-join-key",
+      "name": "only the matching category receives a discount",
       "kind": "trial",
       "visible": true,
       "input": {

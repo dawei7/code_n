@@ -288,7 +288,7 @@
       ]
     },
     {
-      "id": "hidden-frequency-priority",
+      "id": "trial-frequency-priority",
       "name": "frequency dominates more recent low-use key",
       "kind": "trial",
       "visible": true,
@@ -348,7 +348,7 @@
       ]
     },
     {
-      "id": "hidden-capacity-one",
+      "id": "trial-capacity-one",
       "name": "capacity one replaces the only key",
       "kind": "trial",
       "visible": true,

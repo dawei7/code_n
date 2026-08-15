@@ -277,7 +277,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "duplicate non-sex fields stay unchanged",
       "kind": "trial",
       "visible": true,
@@ -338,7 +338,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "alternating values",
       "kind": "trial",
       "visible": true,

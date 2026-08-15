@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-last-four-digit",
+      "id": "trial-last-four-digit",
       "name": "final four-digit lucky number",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-first-five-digit",
+      "id": "trial-first-five-digit",
       "name": "first five-digit lucky number",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-maximum-index",
+      "id": "trial-maximum-index",
       "name": "maximum legal index",
       "kind": "trial",
       "visible": true,

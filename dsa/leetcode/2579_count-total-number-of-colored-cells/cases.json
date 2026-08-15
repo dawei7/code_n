@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-five-minutes",
+      "id": "trial-five-minutes",
       "name": "four expanded layers",
       "kind": "trial",
       "visible": true,
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-ten-minutes",
+      "id": "trial-ten-minutes",
       "name": "small arithmetic-series total",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-hundred-minutes",
+      "id": "trial-hundred-minutes",
       "name": "two-digit minute count",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-odd-large-minute",
+      "id": "trial-odd-large-minute",
       "name": "odd near-thousand minute count",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-thousand-minutes",
+      "id": "trial-thousand-minutes",
       "name": "exact power-of-ten minute count",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-maximum-input",
+      "id": "trial-maximum-input",
       "name": "maximum result needs 64-bit arithmetic",
       "kind": "trial",
       "visible": true,

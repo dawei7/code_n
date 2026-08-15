@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "real-two-different-shapes",
+      "id": "trial-two-different-shapes",
       "name": "a nested piece and an adjacent pair",
       "kind": "trial",
       "visible": true,
@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-all-pairs",
+      "id": "trial-all-pairs",
       "name": "every pair closes immediately",
       "kind": "trial",
       "visible": true,
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-reversed-nesting",
+      "id": "trial-reversed-nesting",
       "name": "negative balance also waits for zero",
       "kind": "trial",
       "visible": true,
@@ -93,6 +93,34 @@
       "expected": 1,
       "tags": [
         "negative-balance"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "R"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "RRR"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

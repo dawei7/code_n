@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-merged-components",
+      "id": "trial-merged-components",
       "name": "separate two-letter components",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-disconnected",
+      "id": "trial-disconnected",
       "name": "unrelated base letters remain",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-repeated-pairs",
+      "id": "trial-repeated-pairs",
       "name": "duplicate declarations",
       "kind": "trial",
       "visible": true,
@@ -140,6 +140,38 @@
       "expected": "aaaa",
       "tags": [
         "duplicate"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in s1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "p",
+        "s2": "morris",
+        "baseStr": "parser"
+      },
+      "expected": "marser",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in s1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "ppp",
+        "s2": "morris",
+        "baseStr": "parser"
+      },
+      "expected": "mamsem",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

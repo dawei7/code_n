@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-mixed-run-lengths",
+      "id": "trial-mixed-run-lengths",
       "name": "length two is the most frequent class",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-tied-frequency-classes",
+      "id": "trial-tied-frequency-classes",
       "name": "three run lengths tie for the maximum frequency",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-separated-same-letter",
+      "id": "trial-separated-same-letter",
       "name": "separators make equal-letter runs distinct",
       "kind": "trial",
       "visible": true,

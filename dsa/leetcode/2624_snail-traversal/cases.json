@@ -173,8 +173,8 @@
       ]
     },
     {
-      "id": "real-three-by-two",
-      "name": "real: final column travels upward",
+      "id": "trial-three-by-two",
+      "name": "final column travels upward",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -209,8 +209,8 @@
       ]
     },
     {
-      "id": "real-empty-source",
-      "name": "real: empty source cannot fill positive dimensions",
+      "id": "trial-empty-source",
+      "name": "empty source cannot fill positive dimensions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -226,8 +226,8 @@
       ]
     },
     {
-      "id": "real-extra-value",
-      "name": "real: dimensions leave an extra value",
+      "id": "trial-extra-value",
+      "name": "dimensions leave an extra value",
       "kind": "trial",
       "visible": true,
       "input": {

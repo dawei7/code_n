@@ -108,8 +108,8 @@
       ]
     },
     {
-      "id": "real-leap-day",
-      "name": "real: daily range includes leap day",
+      "id": "trial-leap-day",
+      "name": "daily range includes leap day",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -131,8 +131,8 @@
       ]
     },
     {
-      "id": "real-month-boundary",
-      "name": "real: stepped range crosses month boundary",
+      "id": "trial-month-boundary",
+      "name": "stepped range crosses month boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -153,8 +153,8 @@
       ]
     },
     {
-      "id": "real-step-thousand",
-      "name": "real: maximum step remains within maximum span",
+      "id": "trial-step-thousand",
+      "name": "maximum step remains within maximum span",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -174,8 +174,8 @@
       ]
     },
     {
-      "id": "real-equal-endpoints-large-step",
-      "name": "real: equal endpoints ignore large step",
+      "id": "trial-equal-endpoints-large-step",
+      "name": "equal endpoints ignore large step",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -194,8 +194,8 @@
       ]
     },
     {
-      "id": "real-aligned-weekly-end",
-      "name": "real: weekly progression includes aligned end",
+      "id": "trial-aligned-weekly-end",
+      "name": "weekly progression includes aligned end",
       "kind": "trial",
       "visible": true,
       "input": {

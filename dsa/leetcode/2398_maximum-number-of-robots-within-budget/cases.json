@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-best-middle-window",
+      "id": "trial-best-middle-window",
       "name": "optimal interval excludes both expensive ends",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-equal-charge-times",
+      "id": "trial-equal-charge-times",
       "name": "equal charge values may replace older deque entries",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-large-budget",
+      "id": "trial-large-budget",
       "name": "large arithmetic permits the full interval",
       "kind": "trial",
       "visible": true,

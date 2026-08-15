@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-alternating-values",
+      "id": "trial-alternating-values",
       "name": "alternating values keep long subarrays at two distinct values",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "minimum and maximum values can repeat",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-maximum-length-all-equal",
+      "id": "trial-maximum-length-all-equal",
       "name": "all 5050 subarrays have one distinct value",
       "kind": "trial",
       "visible": true,
@@ -238,6 +238,22 @@
       "tags": [
         "maximum-length",
         "all-equal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

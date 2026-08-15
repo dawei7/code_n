@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "hidden-all-negative",
+      "id": "trial-all-negative",
       "name": "every cell negative",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "hidden-rectangular",
+      "id": "trial-rectangular",
       "name": "rectangular staircase",
       "kind": "trial",
       "visible": true,

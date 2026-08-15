@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-last",
+      "id": "trial-last",
       "name": "final lexicographic value",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-power-ten",
+      "id": "trial-power-ten",
       "name": "exact power of ten forms a deep prefix",
       "kind": "trial",
       "visible": true,

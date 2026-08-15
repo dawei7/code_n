@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "real-longer-route",
+      "id": "trial-longer-route",
       "name": "longer route has the best product",
       "kind": "trial",
       "visible": true,
@@ -256,7 +256,7 @@
       ]
     },
     {
-      "id": "real-cycle",
+      "id": "trial-cycle",
       "name": "probability-one cycle does not repeat forever",
       "kind": "trial",
       "visible": true,
@@ -311,7 +311,7 @@
       ]
     },
     {
-      "id": "real-competing-paths",
+      "id": "trial-competing-paths",
       "name": "heap must replace a stale lower route",
       "kind": "trial",
       "visible": true,
@@ -371,7 +371,7 @@
       ]
     },
     {
-      "id": "real-isolated-components",
+      "id": "trial-isolated-components",
       "name": "nonempty graph with separated components",
       "kind": "trial",
       "visible": true,

@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-urgent-before-durable",
+      "id": "trial-urgent-before-durable",
       "name": "urgent batch must precede a durable batch",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-late-gap",
+      "id": "trial-late-gap",
       "name": "a later batch arrives after all earlier fruit rots",
       "kind": "trial",
       "visible": true,
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-multiple-expirations",
+      "id": "trial-multiple-expirations",
       "name": "several batch expirations interleave",
       "kind": "trial",
       "visible": true,
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-zero-between-overlaps",
+      "id": "trial-zero-between-overlaps",
       "name": "old fruit is eaten on a zero-production day",
       "kind": "trial",
       "visible": true,

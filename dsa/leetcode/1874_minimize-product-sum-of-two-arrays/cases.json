@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-two-values",
+      "id": "trial-two-values",
       "name": "larger value pairs with smaller counterpart",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate multiplicities are preserved",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-already-opposite",
+      "id": "trial-already-opposite",
       "name": "already optimal input needs no conceptual swap",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-same-order",
+      "id": "trial-same-order",
       "name": "same-order arrays require complete reversal",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum values remain within integer result range",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-mixed-repetitions",
+      "id": "trial-mixed-repetitions",
       "name": "several frequency groups pair across extremes",
       "kind": "trial",
       "visible": true,
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "id": "real-longer-sequence",
+      "id": "trial-longer-sequence",
       "name": "unordered sequences use every occurrence once",
       "kind": "trial",
       "visible": true,
@@ -271,7 +271,7 @@
       ]
     },
     {
-      "id": "real-ones-against-varied",
+      "id": "trial-ones-against-varied",
       "name": "equal first values make pairing neutral",
       "kind": "trial",
       "visible": true,
@@ -294,6 +294,51 @@
       "expected": 28,
       "tags": [
         "equal-first-array"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          5
+        ],
+        "nums2": [
+          4,
+          2,
+          2,
+          5
+        ]
+      },
+      "expected": 25,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          5,
+          5
+        ],
+        "nums2": [
+          4,
+          2,
+          2,
+          5
+        ]
+      },
+      "expected": 45,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

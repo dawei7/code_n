@@ -220,7 +220,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "fill from boundary around holes",
       "kind": "trial",
       "visible": true,
@@ -286,7 +286,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "same color in separate regions",
       "kind": "trial",
       "visible": true,
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-3",
       "name": "rectangular full component",
       "kind": "trial",
       "visible": true,
@@ -383,6 +383,55 @@
       ],
       "tags": [
         "rectangular"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value color=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "image": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ]
+        ],
+        "sr": 1,
+        "sc": 1,
+        "color": 1
+      },
+      "expected": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

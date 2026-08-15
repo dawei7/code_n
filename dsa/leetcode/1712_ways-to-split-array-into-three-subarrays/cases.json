@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-leading-zero",
+      "id": "trial-leading-zero",
       "name": "a zero left sum admits multiple middle boundaries",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-zero-plateaus",
+      "id": "trial-zero-plateaus",
       "name": "zero plateaus create distinct cuts with equal sums",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-late-balance",
+      "id": "trial-late-balance",
       "name": "several left cuts share one balanced middle end",
       "kind": "trial",
       "visible": true,
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum legal values preserve exact arithmetic",
       "kind": "trial",
       "visible": true,

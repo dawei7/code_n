@@ -262,7 +262,7 @@
       ]
     },
     {
-      "id": "real-consecutive-starts",
+      "id": "trial-consecutive-starts",
       "name": "consecutive starts precede consecutive stops",
       "kind": "trial",
       "visible": true,
@@ -312,7 +312,7 @@
       ]
     },
     {
-      "id": "real-unordered-two-days",
+      "id": "trial-unordered-two-days",
       "name": "unordered rows total exactly two days",
       "kind": "trial",
       "visible": true,

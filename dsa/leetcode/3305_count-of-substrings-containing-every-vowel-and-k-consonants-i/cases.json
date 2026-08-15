@@ -88,8 +88,8 @@
       ]
     },
     {
-      "id": "real-overlapping-vowels",
-      "name": "real: repeated vowel cycles create overlapping ranges",
+      "id": "trial-overlapping-vowels",
+      "name": "repeated vowel cycles create overlapping ranges",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -102,8 +102,8 @@
       ]
     },
     {
-      "id": "real-repeated-leading-a",
-      "name": "real: four starts share the remaining vowels",
+      "id": "trial-repeated-leading-a",
+      "name": "four starts share the remaining vowels",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -116,8 +116,8 @@
       ]
     },
     {
-      "id": "real-sliding-trap",
-      "name": "real: both boundary consonants and whole range qualify",
+      "id": "trial-sliding-trap",
+      "name": "both boundary consonants and whole range qualify",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -130,8 +130,8 @@
       ]
     },
     {
-      "id": "real-zero-before-consonants",
-      "name": "real: zero-consonant range ends before suffix",
+      "id": "trial-zero-before-consonants",
+      "name": "zero-consonant range ends before suffix",
       "kind": "trial",
       "visible": true,
       "input": {

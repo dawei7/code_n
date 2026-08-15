@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-all-negative",
+      "id": "trial-all-negative",
       "name": "choose how many negative stones to take",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-future-response",
+      "id": "trial-future-response",
       "name": "immediate large stone is not the whole decision",
       "kind": "trial",
       "visible": true,

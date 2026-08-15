@@ -151,8 +151,8 @@
       ]
     },
     {
-      "id": "real-extreme-coordinates",
-      "name": "real: maximum coordinates exercise the integer range",
+      "id": "trial-extreme-coordinates",
+      "name": "maximum coordinates exercise the integer range",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -178,8 +178,8 @@
       ]
     },
     {
-      "id": "real-discussion-configuration",
-      "name": "real: mixed points with competing transformed extremes",
+      "id": "trial-discussion-configuration",
+      "name": "mixed points with competing transformed extremes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -217,8 +217,8 @@
       ]
     },
     {
-      "id": "real-vertical-line",
-      "name": "real: one-dimensional spread on a vertical line",
+      "id": "trial-vertical-line",
+      "name": "one-dimensional spread on a vertical line",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -248,8 +248,8 @@
       ]
     },
     {
-      "id": "real-difference-axis",
-      "name": "real: the x-minus-y projection controls the diameter",
+      "id": "trial-difference-axis",
+      "name": "the x-minus-y projection controls the diameter",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -279,8 +279,8 @@
       ]
     },
     {
-      "id": "real-mixed-interior",
-      "name": "real: an interior point is not a useful removal",
+      "id": "trial-mixed-interior",
+      "name": "an interior point is not a useful removal",
       "kind": "trial",
       "visible": true,
       "input": {

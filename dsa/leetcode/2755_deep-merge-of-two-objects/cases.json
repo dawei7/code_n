@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-object-array-mismatch",
+      "id": "trial-object-array-mismatch",
       "name": "object and array containers do not merge",
       "kind": "trial",
       "visible": true,
@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "real-null-versus-object",
+      "id": "trial-null-versus-object",
       "name": "null is a leaf rather than an object container",
       "kind": "trial",
       "visible": true,
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": "real-empty-and-nested",
+      "id": "trial-empty-and-nested",
       "name": "empty containers and nested unique keys are preserved",
       "kind": "trial",
       "visible": true,

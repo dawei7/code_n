@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-all-match",
+      "id": "trial-all-match",
       "name": "every item has the requested type",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-repeated-rows",
+      "id": "trial-repeated-rows",
       "name": "identical item rows count independently",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-value-in-other-columns",
+      "id": "trial-value-in-other-columns",
       "name": "requested text appears only in unselected columns",
       "kind": "trial",
       "visible": true,
@@ -210,6 +210,70 @@
       "tags": [
         "wrong-field",
         "exact-schema"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in ruleKey",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "items": [
+          [
+            "phone",
+            "blue",
+            "pixel"
+          ],
+          [
+            "computer",
+            "silver",
+            "lenovo"
+          ],
+          [
+            "phone",
+            "gold",
+            "iphone"
+          ]
+        ],
+        "ruleKey": "c",
+        "ruleValue": "silver"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in ruleKey",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "items": [
+          [
+            "phone",
+            "blue",
+            "pixel"
+          ],
+          [
+            "computer",
+            "silver",
+            "lenovo"
+          ],
+          [
+            "phone",
+            "gold",
+            "iphone"
+          ]
+        ],
+        "ruleKey": "ccc",
+        "ruleValue": "silver"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -127,8 +127,8 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "real: alternating two values",
+      "id": "trial-alternating",
+      "name": "alternating two values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -148,8 +148,8 @@
       ]
     },
     {
-      "id": "real-all-distinct",
-      "name": "real: distinct values with varied subarray lengths",
+      "id": "trial-all-distinct",
+      "name": "distinct values with varied subarray lengths",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -168,8 +168,8 @@
       ]
     },
     {
-      "id": "real-mixed-frequency",
-      "name": "real: mixed repeated frequencies",
+      "id": "trial-mixed-frequency",
+      "name": "mixed repeated frequencies",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -192,8 +192,8 @@
       ]
     },
     {
-      "id": "real-blocks",
-      "name": "real: adjacent duplicate blocks",
+      "id": "trial-blocks",
+      "name": "adjacent duplicate blocks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -213,8 +213,8 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "real: minimum and maximum values",
+      "id": "trial-value-boundaries",
+      "name": "minimum and maximum values",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "hidden-nested-duplicates",
+      "id": "trial-nested-duplicates",
       "name": "nested and duplicate intervals",
       "kind": "trial",
       "visible": true,
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "hidden-negative",
+      "id": "trial-negative",
       "name": "negative and positive groups",
       "kind": "trial",
       "visible": true,

@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-overshoot-contamination",
+      "id": "trial-overshoot-contamination",
       "name": "a needed third value is unusable because it overshoots another coordinate",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-discard-partial-match",
+      "id": "trial-discard-partial-match",
       "name": "an exact coordinate from an overshooting triplet must be discarded",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "real-three-separate",
+      "id": "trial-three-separate",
       "name": "three separate safe triplets provide the target coordinates",
       "kind": "trial",
       "visible": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "real-target-amid-overshoots",
+      "id": "trial-target-amid-overshoots",
       "name": "irrelevant overshooting triplets do not invalidate an existing target",
       "kind": "trial",
       "visible": true,
@@ -313,7 +313,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate witnesses are harmless but one coordinate remains missing",
       "kind": "trial",
       "visible": true,
@@ -353,7 +353,7 @@
       ]
     },
     {
-      "id": "real-mixed-safe-unsafe",
+      "id": "trial-mixed-safe-unsafe",
       "name": "safe witnesses can be selected around an unsafe triplet",
       "kind": "trial",
       "visible": true,

@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-invalid-heavy-window",
+      "id": "trial-invalid-heavy-window",
       "name": "larger repeated-value sum must be rejected",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-frequency-survives-removal",
+      "id": "trial-frequency-survives-removal",
       "name": "outgoing duplicate still remains in the window",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-single-element",
+      "id": "trial-single-element",
       "name": "single-element windows",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-only-full-array",
+      "id": "trial-only-full-array",
       "name": "the full array is the only candidate",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-late-maximum",
+      "id": "trial-late-maximum",
       "name": "best qualifying window appears near the end",
       "kind": "trial",
       "visible": true,

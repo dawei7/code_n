@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-near-center-mismatch",
+      "id": "trial-near-center-mismatch",
       "name": "reject only after matching outer pairs",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-repeated-letters-not-enough",
+      "id": "trial-repeated-letters-not-enough",
       "name": "repeated letters do not imply a palindrome",
       "kind": "trial",
       "visible": true,
@@ -123,6 +123,39 @@
       "tags": [
         "duplicates",
         "first-match"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc"
+        ]
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "abc"
+        ]
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-later-values-ignored",
+      "id": "trial-later-values-ignored",
       "name": "later arguments cannot affect the result",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-product-zero",
+      "id": "trial-product-zero",
       "name": "defined zero remains a recorded first result",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-many-arguments",
+      "id": "trial-many-arguments",
       "name": "forwards every first-call argument",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-negative-product",
+      "id": "trial-negative-product",
       "name": "preserves the wrapped function result",
       "kind": "trial",
       "visible": true,

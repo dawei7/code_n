@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "hidden-unsorted",
+      "id": "trial-unsorted",
       "name": "input order does not affect count",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "hidden-larger",
+      "id": "trial-larger",
       "name": "several reused values",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "hidden-all-too-large",
+      "id": "trial-all-too-large",
       "name": "every value exceeds target",
       "kind": "trial",
       "visible": true,

@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-partial-shift",
+      "id": "trial-partial-shift",
       "name": "boundary duplication replaces trailing value",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-leading-zeros",
+      "id": "trial-leading-zeros",
       "name": "consecutive leading zeros",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-all-zeros",
+      "id": "trial-all-zeros",
       "name": "all zeros remain zeros",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-interleaved",
+      "id": "trial-interleaved",
       "name": "several separated duplicates",
       "kind": "trial",
       "visible": true,

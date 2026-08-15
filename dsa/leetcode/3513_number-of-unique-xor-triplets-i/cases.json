@@ -97,8 +97,8 @@
       ]
     },
     {
-      "id": "real-eight-power-boundary",
-      "name": "real: eight values require sixteen results",
+      "id": "trial-eight-power-boundary",
+      "name": "eight values require sixteen results",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -121,8 +121,8 @@
       ]
     },
     {
-      "id": "real-nine-after-boundary",
-      "name": "real: one above a power of two keeps the range",
+      "id": "trial-nine-after-boundary",
+      "name": "one above a power of two keeps the range",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-order-independence",
-      "name": "real: reverse order does not affect the count",
+      "id": "trial-order-independence",
+      "name": "reverse order does not affect the count",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -168,8 +168,8 @@
       ]
     },
     {
-      "id": "real-three-canonical-order",
-      "name": "real: canonical order has the same full range",
+      "id": "trial-three-canonical-order",
+      "name": "canonical order has the same full range",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -184,6 +184,23 @@
         "real",
         "repeated-indices",
         "zero-attainable"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

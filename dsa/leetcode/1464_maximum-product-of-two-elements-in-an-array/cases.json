@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-second-largest",
+      "id": "trial-second-largest",
       "name": "isolated maximum needs the true runner-up",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-maximum-constraints",
+      "id": "trial-maximum-constraints",
       "name": "duplicate upper-bound values",
       "kind": "trial",
       "visible": true,
@@ -108,6 +108,39 @@
       "tags": [
         "duplicates",
         "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

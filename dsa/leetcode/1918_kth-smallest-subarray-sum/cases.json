@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "real-smallest-rank",
+      "id": "trial-smallest-rank",
       "name": "first rank is the minimum element",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-largest-rank",
+      "id": "trial-largest-rank",
       "name": "final rank is the complete-array sum",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-equal-elements",
+      "id": "trial-equal-elements",
       "name": "equal elements create repeated ranked sums",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-overlapping-sums",
+      "id": "trial-overlapping-sums",
       "name": "overlapping intervals share several sums",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-asymmetric",
+      "id": "trial-asymmetric",
       "name": "asymmetric values select an interior rank",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-large-neighbors",
+      "id": "trial-large-neighbors",
       "name": "small middle values sit between large endpoints",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-mixed",
+      "id": "trial-mixed",
       "name": "varied values select the eighth rank",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "large values preserve exact integer bounds",
       "kind": "trial",
       "visible": true,

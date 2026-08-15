@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-two-dimensional-removal",
-      "name": "real: interior removal is safe in a two-dimensional section",
+      "id": "trial-two-dimensional-removal",
+      "name": "interior removal is safe in a two-dimensional section",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -174,8 +174,8 @@
       ]
     },
     {
-      "id": "real-single-column-endpoint",
-      "name": "real: endpoint rule on a single column",
+      "id": "trial-single-column-endpoint",
+      "name": "endpoint rule on a single column",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -205,8 +205,8 @@
       ]
     },
     {
-      "id": "real-repeated-difference-interior",
-      "name": "real: repeated values do not bypass connectivity",
+      "id": "trial-repeated-difference-interior",
+      "name": "repeated values do not bypass connectivity",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -236,8 +236,8 @@
       ]
     },
     {
-      "id": "real-larger-suffix",
-      "name": "real: discount comes from the reverse-direction section",
+      "id": "trial-larger-suffix",
+      "name": "discount comes from the reverse-direction section",
       "kind": "trial",
       "visible": true,
       "input": {

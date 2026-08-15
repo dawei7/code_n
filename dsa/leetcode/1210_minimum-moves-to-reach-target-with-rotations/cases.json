@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-open-four",
+      "id": "trial-open-four",
       "name": "open grid uses translations only",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-target-blocked",
+      "id": "trial-target-blocked",
       "name": "blocked target makes the goal unreachable",
       "kind": "trial",
       "visible": true,
@@ -248,7 +248,7 @@
       ]
     },
     {
-      "id": "real-cut-off-row",
+      "id": "trial-cut-off-row",
       "name": "solid barrier separates the target",
       "kind": "trial",
       "visible": true,

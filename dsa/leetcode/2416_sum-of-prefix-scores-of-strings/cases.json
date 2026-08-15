@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-branching",
+      "id": "trial-branching",
       "name": "words branch after a shared prefix",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-one-letter-duplicates",
+      "id": "trial-one-letter-duplicates",
       "name": "duplicate one-letter words",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-late-branch",
+      "id": "trial-late-branch",
       "name": "words differ only at the final character",
       "kind": "trial",
       "visible": true,
@@ -163,6 +163,24 @@
       ],
       "tags": [
         "late-branch"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc"
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

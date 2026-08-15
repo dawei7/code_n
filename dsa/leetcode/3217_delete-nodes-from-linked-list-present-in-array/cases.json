@@ -160,8 +160,8 @@
       ]
     },
     {
-      "id": "real-consecutive-middle",
-      "name": "real: unlink consecutive middle nodes",
+      "id": "trial-consecutive-middle",
+      "name": "unlink consecutive middle nodes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -191,8 +191,8 @@
       ]
     },
     {
-      "id": "real-duplicate-survivors",
-      "name": "real: preserve duplicate allowed values",
+      "id": "trial-duplicate-survivors",
+      "name": "preserve duplicate allowed values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -219,8 +219,8 @@
       ]
     },
     {
-      "id": "real-head-and-tail",
-      "name": "real: remove both boundaries",
+      "id": "trial-head-and-tail",
+      "name": "remove both boundaries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -246,8 +246,8 @@
       ]
     },
     {
-      "id": "real-many-unused-values",
-      "name": "real: unused deletion values do not affect survivors",
+      "id": "trial-many-unused-values",
+      "name": "unused deletion values do not affect survivors",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -274,8 +274,8 @@
       ]
     },
     {
-      "id": "real-one-of-many-survives",
-      "name": "real: retain one node among many deletions",
+      "id": "trial-one-of-many-survives",
+      "name": "retain one node among many deletions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -301,8 +301,8 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "real: handle minimum and maximum allowed values",
+      "id": "trial-value-boundaries",
+      "name": "handle minimum and maximum allowed values",
       "kind": "trial",
       "visible": true,
       "input": {

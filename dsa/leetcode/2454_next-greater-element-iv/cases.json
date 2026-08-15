@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-zero-and-rise",
+      "id": "trial-zero-and-rise",
       "name": "zeros with later increases",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-decreasing",
+      "id": "trial-decreasing",
       "name": "strictly decreasing array",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-singleton",
+      "id": "trial-singleton",
       "name": "singleton",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "maximum values and strict equality",
       "kind": "trial",
       "visible": true,

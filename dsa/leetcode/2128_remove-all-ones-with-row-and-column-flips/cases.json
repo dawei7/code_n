@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-rectangular-valid",
+      "id": "trial-rectangular-valid",
       "name": "rectangular matrix with both row types",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-late-mismatch",
+      "id": "trial-late-mismatch",
       "name": "a final bit breaks the complement pattern",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-single-column",
+      "id": "trial-single-column",
       "name": "every single-column matrix is removable",
       "kind": "trial",
       "visible": true,

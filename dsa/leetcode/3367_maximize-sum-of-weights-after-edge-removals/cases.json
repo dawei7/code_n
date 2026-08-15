@@ -167,8 +167,8 @@
       ]
     },
     {
-      "id": "real-path-no-removal",
-      "name": "real: degree two retains an entire path",
+      "id": "trial-path-no-removal",
+      "name": "degree two retains an entire path",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -198,8 +198,8 @@
       ]
     },
     {
-      "id": "real-negative-parent-gains",
-      "name": "real: child edges outweigh both parent connections",
+      "id": "trial-negative-parent-gains",
+      "name": "child edges outweigh both parent connections",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -244,8 +244,8 @@
       ]
     },
     {
-      "id": "real-nonmonotone-labels",
-      "name": "real: rooting is independent of node labels",
+      "id": "trial-nonmonotone-labels",
+      "name": "rooting is independent of node labels",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -275,8 +275,8 @@
       ]
     },
     {
-      "id": "real-unrestricted-star",
-      "name": "real: maximum k keeps every star edge",
+      "id": "trial-unrestricted-star",
+      "name": "maximum k keeps every star edge",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -311,8 +311,8 @@
       ]
     },
     {
-      "id": "real-competing-subtrees",
-      "name": "real: parent slots compete with descendants",
+      "id": "trial-competing-subtrees",
+      "name": "parent slots compete with descendants",
       "kind": "trial",
       "visible": true,
       "input": {

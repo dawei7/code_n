@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-earliest-boundary",
+      "id": "trial-earliest-boundary",
       "name": "maximum consumption must pass the earlier prefix",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-latest-boundary",
+      "id": "trial-latest-boundary",
       "name": "minimum consumption may equal the type endpoint",
       "kind": "trial",
       "visible": true,
@@ -236,7 +236,7 @@
       ]
     },
     {
-      "id": "real-one-per-day",
+      "id": "trial-one-per-day",
       "name": "cap one fixes the exact candy position",
       "kind": "trial",
       "visible": true,
@@ -281,7 +281,7 @@
       ]
     },
     {
-      "id": "real-huge-day-cap",
+      "id": "trial-huge-day-cap",
       "name": "large products use wide integer arithmetic",
       "kind": "trial",
       "visible": true,
@@ -313,7 +313,7 @@
       ]
     },
     {
-      "id": "real-many-types-one-each",
+      "id": "trial-many-types-one-each",
       "name": "prefix positions across singleton types",
       "kind": "trial",
       "visible": true,
@@ -360,7 +360,7 @@
       ]
     },
     {
-      "id": "real-middle-window",
+      "id": "trial-middle-window",
       "name": "both overlap inequalities matter independently",
       "kind": "trial",
       "visible": true,

@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "hidden-second-cycle",
+      "id": "trial-second-cycle",
       "name": "discount repeats at later multiples",
       "kind": "trial",
       "visible": true,
@@ -292,7 +292,7 @@
       ]
     },
     {
-      "id": "hidden-quantities",
+      "id": "trial-quantities",
       "name": "several quantities in one subtotal",
       "kind": "trial",
       "visible": true,

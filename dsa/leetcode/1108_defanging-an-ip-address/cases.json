@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "real-loopback",
+      "id": "trial-loopback",
       "name": "loopback address",
       "kind": "trial",
       "visible": true,
@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-private-network",
+      "id": "trial-private-network",
       "name": "private network address",
       "kind": "trial",
       "visible": true,
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-alternating-widths",
+      "id": "trial-alternating-widths",
       "name": "alternating octet widths",
       "kind": "trial",
       "visible": true,
@@ -93,6 +93,34 @@
       "expected": "9[.]87[.]6[.]123",
       "tags": [
         "text-preservation"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in address",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "address": "1"
+      },
+      "expected": "1",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in address",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "address": "111"
+      },
+      "expected": "111",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

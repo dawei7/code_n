@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-several-qualify",
+      "id": "trial-several-qualify",
       "name": "several lucky values",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-near-misses",
+      "id": "trial-near-misses",
       "name": "reject counts adjacent to values",
       "kind": "trial",
       "visible": true,

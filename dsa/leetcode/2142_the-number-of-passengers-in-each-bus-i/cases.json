@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-shared-arrival-time",
+      "id": "trial-shared-arrival-time",
       "name": "several passengers arrive with the same bus",
       "kind": "trial",
       "visible": true,
@@ -236,7 +236,7 @@
       ]
     },
     {
-      "id": "real-consecutive-empty-buses",
+      "id": "trial-consecutive-empty-buses",
       "name": "consecutive buses can both be empty",
       "kind": "trial",
       "visible": true,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "real-nonmonotone-identifiers",
+      "id": "trial-nonmonotone-identifiers",
       "name": "passenger assignment follows time only",
       "kind": "trial",
       "visible": true,

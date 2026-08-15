@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "real-reinsert-expired-key",
+      "id": "trial-reinsert-expired-key",
       "name": "reinserting an expired key is not an overwrite",
       "kind": "trial",
       "visible": true,
@@ -259,7 +259,7 @@
       ]
     },
     {
-      "id": "real-stale-timer-cancelled",
+      "id": "trial-stale-timer-cancelled",
       "name": "old timer cannot delete a replacement",
       "kind": "trial",
       "visible": true,

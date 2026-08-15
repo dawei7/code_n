@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "real-single-no-match",
+      "id": "trial-single-no-match",
       "name": "a single nonzero value has no match",
       "kind": "trial",
       "visible": true,
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-index-ten",
+      "id": "trial-index-ten",
       "name": "modulo repeats after index nine",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-multiple-matches",
+      "id": "trial-multiple-matches",
       "name": "return the earlier of several matches",
       "kind": "trial",
       "visible": true,
@@ -136,6 +136,23 @@
       "expected": 1,
       "tags": [
         "multiple-matches"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

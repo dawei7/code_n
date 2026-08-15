@@ -487,8 +487,8 @@
       ]
     },
     {
-      "id": "real-elective-grade-c",
-      "name": "real: C does not qualify an elective",
+      "id": "trial-elective-grade-c",
+      "name": "C does not qualify an elective",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -563,8 +563,8 @@
       ]
     },
     {
-      "id": "real-exact-gpa-boundary",
-      "name": "real: average GPA exactly 2.5 qualifies",
+      "id": "trial-exact-gpa-boundary",
+      "name": "average GPA exactly 2.5 qualifies",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -643,8 +643,8 @@
       ]
     },
     {
-      "id": "real-outside-major-lowers-gpa",
-      "name": "real: an outside-major course lowers the overall GPA",
+      "id": "trial-outside-major-lowers-gpa",
+      "name": "an outside-major course lowers the overall GPA",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -733,8 +733,8 @@
       ]
     },
     {
-      "id": "real-outside-major-grade-ignored",
-      "name": "real: outside-major letter grade does not affect course gates",
+      "id": "trial-outside-major-grade-ignored",
+      "name": "outside-major letter grade does not affect course gates",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -827,8 +827,8 @@
       ]
     },
     {
-      "id": "real-retakes-distinct-courses",
-      "name": "real: retakes count once while every GPA remains",
+      "id": "trial-retakes-distinct-courses",
+      "name": "retakes count once while every GPA remains",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -921,8 +921,8 @@
       ]
     },
     {
-      "id": "real-mixed-majors-ordered",
-      "name": "real: qualifying students from different majors are ordered",
+      "id": "trial-mixed-majors-ordered",
+      "name": "qualifying students from different majors are ordered",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -1043,8 +1043,8 @@
       ]
     },
     {
-      "id": "real-lower-retake-with-qualifying-attempt",
-      "name": "real: a qualifying attempt covers a course despite another lower attempt",
+      "id": "trial-lower-retake-with-qualifying-attempt",
+      "name": "a qualifying attempt covers a course despite another lower attempt",
       "kind": "trial",
       "visible": true,
       "input": {

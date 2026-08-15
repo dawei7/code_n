@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-corner-counted-once",
+      "id": "trial-corner-counted-once",
       "name": "the turn cell must not be counted twice",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-best-up-right",
+      "id": "trial-best-up-right",
       "name": "best path uses the up-right orientation",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-separated-factors",
+      "id": "trial-separated-factors",
       "name": "twos and fives can come from different arms",
       "kind": "trial",
       "visible": true,

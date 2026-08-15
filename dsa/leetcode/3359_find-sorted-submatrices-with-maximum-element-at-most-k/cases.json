@@ -153,8 +153,8 @@
       ]
     },
     {
-      "id": "real-mixed-widths",
-      "name": "real: row suffix widths vary across vertical intervals",
+      "id": "trial-mixed-widths",
+      "name": "row suffix widths vary across vertical intervals",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -182,8 +182,8 @@
       ]
     },
     {
-      "id": "real-order-and-threshold-interaction",
-      "name": "real: ordering breaks and oversized values interact",
+      "id": "trial-order-and-threshold-interaction",
+      "name": "ordering breaks and oversized values interact",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -214,8 +214,8 @@
       ]
     },
     {
-      "id": "real-multirow-nonincreasing",
-      "name": "real: several rows share different valid suffix lengths",
+      "id": "trial-multirow-nonincreasing",
+      "name": "several rows share different valid suffix lengths",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -243,6 +243,34 @@
         "real",
         "equal-values",
         "mixed-widths"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            4,
+            3,
+            2,
+            1
+          ],
+          [
+            8,
+            7,
+            6,
+            1
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

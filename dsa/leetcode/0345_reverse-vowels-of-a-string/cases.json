@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "hidden-all-vowels",
+      "id": "trial-all-vowels",
       "name": "every character is a vowel",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "hidden-fixed-symbols",
+      "id": "trial-fixed-symbols",
       "name": "punctuation remains fixed",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "hidden-internal-pair",
+      "id": "trial-internal-pair",
       "name": "swap vowels around consonants",
       "kind": "trial",
       "visible": true,
@@ -108,6 +108,34 @@
       "expected": "bcEAd",
       "tags": [
         "internal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "I"
+      },
+      "expected": "I",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "III"
+      },
+      "expected": "III",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

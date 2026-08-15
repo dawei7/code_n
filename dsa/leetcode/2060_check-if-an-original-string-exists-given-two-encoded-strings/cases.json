@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "real-wildcard-consumes-letter",
+      "id": "trial-wildcard-consumes-letter",
       "name": "positive and negative balances consume literals",
       "kind": "trial",
       "visible": true,
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-complex-partitions",
+      "id": "trial-complex-partitions",
       "name": "several numeric interpretations can align",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-direct-mismatch",
+      "id": "trial-direct-mismatch",
       "name": "unequal literals with no wildcard cannot align",
       "kind": "trial",
       "visible": true,
@@ -102,6 +102,36 @@
       "expected": false,
       "tags": [
         "literal-mismatch"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "i",
+        "s2": "i18n"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "iii",
+        "s2": "i18n"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

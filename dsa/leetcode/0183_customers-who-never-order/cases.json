@@ -149,7 +149,7 @@
       }
     },
     {
-      "id": "real-duplicate-orders",
+      "id": "trial-duplicate-orders",
       "name": "repeated orders do not duplicate output",
       "kind": "trial",
       "visible": true,

@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "coordinate extremes and spanning interval",
       "kind": "trial",
       "visible": true,
@@ -266,7 +266,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "separate peaks merge",
       "kind": "trial",
       "visible": true,
@@ -317,7 +317,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-3",
       "name": "narrow region sets the maximum",
       "kind": "trial",
       "visible": true,

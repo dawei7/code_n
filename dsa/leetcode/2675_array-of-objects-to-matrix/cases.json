@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "real-nested-empty",
+      "id": "trial-nested-empty",
       "name": "empty branches create no leaf path",
       "kind": "trial",
       "visible": true,
@@ -271,7 +271,7 @@
       ]
     },
     {
-      "id": "real-types",
+      "id": "trial-types",
       "name": "preserve every JSON primitive type",
       "kind": "trial",
       "visible": true,

@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-single-zero",
+      "id": "trial-single-zero",
       "name": "one zero digit",
       "kind": "trial",
       "visible": true,
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-large-divisor-hit",
+      "id": "trial-large-divisor-hit",
       "name": "the final prefix equals the maximum divisor",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-repeated-ones",
+      "id": "trial-repeated-ones",
       "name": "periodic divisibility by three",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-no-divisible-prefix",
+      "id": "trial-no-divisible-prefix",
       "name": "no prefix has zero remainder",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-overflow-length",
+      "id": "trial-overflow-length",
       "name": "long numeric value is handled as remainders",
       "kind": "trial",
       "visible": true,
@@ -213,6 +213,42 @@
       ],
       "tags": [
         "overflow-avoidance"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "9",
+        "m": 3
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "999",
+        "m": 3
+      },
+      "expected": [
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

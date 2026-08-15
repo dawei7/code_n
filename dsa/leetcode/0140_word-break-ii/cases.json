@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-small-ambiguous",
+      "id": "trial-small-ambiguous",
       "name": "small ambiguous string",
       "kind": "trial",
       "visible": true,

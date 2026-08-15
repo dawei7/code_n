@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "real-reset-by-nonmultiple",
+      "id": "trial-reset-by-nonmultiple",
       "name": "nonmultiple blocks qualifying spans",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-gcd-emerges",
+      "id": "trial-gcd-emerges",
       "name": "target gcd appears only after extension",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "target at large value boundary",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-no-match",
+      "id": "trial-no-match",
       "name": "target divides no subarray gcd",
       "kind": "trial",
       "visible": true,

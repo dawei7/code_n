@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-only-middle-is-best",
+      "id": "trial-only-middle-is-best",
       "name": "middle removal preserves both outside flavors",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-distinct-window-tradeoff",
+      "id": "trial-distinct-window-tradeoff",
       "name": "removing distinct candies can preserve repeated flavors",
       "kind": "trial",
       "visible": true,

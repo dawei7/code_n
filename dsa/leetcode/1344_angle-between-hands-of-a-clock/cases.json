@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "hidden-before-twelve",
+      "id": "trial-before-twelve",
       "name": "one minute before twelve",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "hidden-obtuse-complement",
+      "id": "trial-obtuse-complement",
       "name": "complementary route is smaller",
       "kind": "trial",
       "visible": true,
@@ -118,6 +118,21 @@
       "expected": 22.5,
       "tags": [
         "complement"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value hour=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hour": 1,
+        "minutes": 30
+      },
+      "expected": 135.0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

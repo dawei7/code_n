@@ -90,8 +90,8 @@
       ]
     },
     {
-      "id": "real-seven-character-word",
-      "name": "real: several pairs and one center",
+      "id": "trial-seven-character-word",
+      "name": "several pairs and one center",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -105,8 +105,8 @@
       ]
     },
     {
-      "id": "real-two-identical-characters",
-      "name": "real: two identical boundary letters",
+      "id": "trial-two-identical-characters",
+      "name": "two identical boundary letters",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -120,8 +120,8 @@
       ]
     },
     {
-      "id": "real-all-letters-paired",
-      "name": "real: every lowercase letter appears twice",
+      "id": "trial-all-letters-paired",
+      "name": "every lowercase letter appears twice",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -135,8 +135,8 @@
       ]
     },
     {
-      "id": "real-smallest-letter-is-center",
-      "name": "real: smallest letter is forced into the center",
+      "id": "trial-smallest-letter-is-center",
+      "name": "smallest letter is forced into the center",
       "kind": "trial",
       "visible": true,
       "input": {

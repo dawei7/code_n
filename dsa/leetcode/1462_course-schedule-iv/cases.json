@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "real-disconnected",
+      "id": "trial-disconnected",
       "name": "paths do not cross components",
       "kind": "trial",
       "visible": true,
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "id": "real-redundant-direct-edge",
+      "id": "trial-redundant-direct-edge",
       "name": "direct and indirect routes coexist",
       "kind": "trial",
       "visible": true,
@@ -315,7 +315,7 @@
       ]
     },
     {
-      "id": "real-isolated-middle-label",
+      "id": "trial-isolated-middle-label",
       "name": "isolated course remains unreachable",
       "kind": "trial",
       "visible": true,
@@ -366,7 +366,7 @@
       ]
     },
     {
-      "id": "real-branch-merge",
+      "id": "trial-branch-merge",
       "name": "branches merge into a shared suffix",
       "kind": "trial",
       "visible": true,

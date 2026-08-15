@@ -219,8 +219,8 @@
       ]
     },
     {
-      "id": "real-nonuniform-three-rounds",
-      "name": "real: nonuniform rules compose across three transformations",
+      "id": "trial-nonuniform-three-rounds",
+      "name": "nonuniform rules compose across three transformations",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -263,8 +263,8 @@
       ]
     },
     {
-      "id": "real-full-alphabet-long-run",
-      "name": "real: every source letter participates in a long nonuniform run",
+      "id": "trial-full-alphabet-long-run",
+      "name": "every source letter participates in a long nonuniform run",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -307,8 +307,8 @@
       ]
     },
     {
-      "id": "real-maximum-time-and-expansion",
-      "name": "real: maximum time and maximum replacement length",
+      "id": "trial-maximum-time-and-expansion",
+      "name": "maximum time and maximum replacement length",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -348,6 +348,92 @@
         "real",
         "maximum-t",
         "modulo"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "t": 2,
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "t": 2,
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

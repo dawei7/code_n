@@ -10196,6 +10196,38 @@
         "maximum-length",
         "balanced"
       ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "4"
+      },
+      "expected": [
+        4
+      ],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "444"
+      },
+      "expected": [
+        444
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

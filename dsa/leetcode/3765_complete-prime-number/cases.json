@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-prime-prefixes-bad-suffix",
+      "id": "trial-prime-prefixes-bad-suffix",
       "name": "233 has prime prefixes but suffix 33 is composite",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-four-digit-complete",
+      "id": "trial-four-digit-complete",
       "name": "every truncation of 3797 is prime",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-prime-whole-leading-one",
+      "id": "trial-prime-whole-leading-one",
       "name": "a prime whole number still fails when prefix 1 appears",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "the upper bound is composite and ends in zero",
       "kind": "trial",
       "visible": true,

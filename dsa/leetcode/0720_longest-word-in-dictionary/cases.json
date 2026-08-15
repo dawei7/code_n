@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "no valid starting word",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "deep lexicographic tie",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-3",
       "name": "missing middle prefix blocks longer word",
       "kind": "trial",
       "visible": true,
@@ -162,6 +162,39 @@
       "expected": "qui",
       "tags": [
         "blocked-branch"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "w"
+        ]
+      },
+      "expected": "w",
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "w",
+          "w"
+        ]
+      },
+      "expected": "w",
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

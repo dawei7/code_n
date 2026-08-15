@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-final-bit",
+      "id": "trial-final-bit",
       "name": "final value supplies a required bit",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-multiple-bits",
+      "id": "trial-multiple-bits",
       "name": "one final value supplies several suffix bits",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-maximum-value",
+      "id": "trial-maximum-value",
       "name": "maximum legal value as a singleton",
       "kind": "trial",
       "visible": true,

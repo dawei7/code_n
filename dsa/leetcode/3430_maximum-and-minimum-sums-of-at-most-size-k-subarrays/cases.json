@@ -74,8 +74,8 @@
       ]
     },
     {
-      "id": "real-full-length",
-      "name": "real: full array length allowed",
+      "id": "trial-full-length",
+      "name": "full array length allowed",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -93,8 +93,8 @@
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "real: duplicate extremes",
+      "id": "trial-all-equal",
+      "name": "duplicate extremes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -112,8 +112,8 @@
       ]
     },
     {
-      "id": "real-all-negative",
-      "name": "real: all values negative",
+      "id": "trial-all-negative",
+      "name": "all values negative",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -131,8 +131,8 @@
       ]
     },
     {
-      "id": "real-repeated-extremes",
-      "name": "real: repeated minima and maxima",
+      "id": "trial-repeated-extremes",
+      "name": "repeated minima and maxima",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -151,8 +151,8 @@
       ]
     },
     {
-      "id": "real-mixed-window",
-      "name": "real: mixed values with bounded windows",
+      "id": "trial-mixed-window",
+      "name": "mixed values with bounded windows",
       "kind": "trial",
       "visible": true,
       "input": {

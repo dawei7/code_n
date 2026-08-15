@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-one-positive-pair",
+      "id": "trial-one-positive-pair",
       "name": "one positive and one negative difference still qualify",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "equal arrays produce no strict pair",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-all-positive",
+      "id": "trial-all-positive",
       "name": "every pair qualifies when every difference is positive",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-mixed-duplicates",
+      "id": "trial-mixed-duplicates",
       "name": "mixed differences create several threshold crossings",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-symmetric-differences",
+      "id": "trial-symmetric-differences",
       "name": "symmetric values emphasize strict zero rejection",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "extreme legal values preserve signed differences",
       "kind": "trial",
       "visible": true,
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "real-all-negative",
+      "id": "trial-all-negative",
       "name": "no pair qualifies when every difference is negative",
       "kind": "trial",
       "visible": true,
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "real-repeated-threshold",
+      "id": "trial-repeated-threshold",
       "name": "duplicate values retain pair multiplicity",
       "kind": "trial",
       "visible": true,
@@ -291,6 +291,51 @@
       "tags": [
         "duplicates",
         "multiplicity"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2
+        ],
+        "nums2": [
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          2
+        ],
+        "nums2": [
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

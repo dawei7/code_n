@@ -1232,6 +1232,46 @@
         "maximum-cost",
         "blocked-destination"
       ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in coins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          1
+        ],
+        "maxJump": 2
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in coins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          1,
+          1
+        ],
+        "maxJump": 2
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

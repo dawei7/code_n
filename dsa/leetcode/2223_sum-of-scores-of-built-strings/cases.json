@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "real-distinct",
+      "id": "trial-distinct",
       "name": "no proper suffix shares the first character",
       "kind": "trial",
       "visible": true,
@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-overlapping-prefix",
+      "id": "trial-overlapping-prefix",
       "name": "repeated alternating prefixes overlap",
       "kind": "trial",
       "visible": true,
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-separated-runs",
+      "id": "trial-separated-runs",
       "name": "matches stop at different internal boundaries",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-repeated-block",
+      "id": "trial-repeated-block",
       "name": "several suffixes begin with a repeated block",
       "kind": "trial",
       "visible": true,
@@ -106,6 +106,34 @@
       "expected": 18,
       "tags": [
         "repeated-block"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "b"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bbb"
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-empty",
+      "id": "trial-empty",
       "name": "empty tree",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-sparse-cross-links",
+      "id": "trial-sparse-cross-links",
       "name": "sparse tree with cross-level random links",
       "kind": "trial",
       "visible": true,
@@ -278,7 +278,7 @@
       ]
     },
     {
-      "id": "real-duplicate-identities",
+      "id": "trial-duplicate-identities",
       "name": "equal values retain distinct identities",
       "kind": "trial",
       "visible": true,
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "id": "real-all-null-random",
+      "id": "trial-all-null-random",
       "name": "complete tree without random edges",
       "kind": "trial",
       "visible": true,
@@ -396,7 +396,7 @@
       ]
     },
     {
-      "id": "real-random-cycle",
+      "id": "trial-random-cycle",
       "name": "random-only cycle across branches",
       "kind": "trial",
       "visible": true,

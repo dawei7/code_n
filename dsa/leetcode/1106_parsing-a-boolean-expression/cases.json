@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "real-mixed-branches",
+      "id": "trial-mixed-branches",
       "name": "mixed nested operators",
       "kind": "trial",
       "visible": true,
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-single-operands",
+      "id": "trial-single-operands",
       "name": "unary-width AND and OR groups",
       "kind": "trial",
       "visible": true,
@@ -82,6 +82,34 @@
       "expected": true,
       "tags": [
         "single-operand"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "single character in expression",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "expression": "&"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "repeated character in expression",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "expression": "&&&"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

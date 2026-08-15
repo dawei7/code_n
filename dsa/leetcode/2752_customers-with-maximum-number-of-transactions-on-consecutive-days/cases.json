@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": "real-two-winning-islands-same-customer",
+      "id": "trial-two-winning-islands-same-customer",
       "name": "separate maximum streaks preserve repeated customer rows",
       "kind": "trial",
       "visible": true,
@@ -313,7 +313,7 @@
       ]
     },
     {
-      "id": "real-ordering-and-tie",
+      "id": "trial-ordering-and-tie",
       "name": "tied winning streak rows sort by customer",
       "kind": "trial",
       "visible": true,

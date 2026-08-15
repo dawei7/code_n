@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-many-odds",
+      "id": "trial-many-odds",
       "name": "several odd counts share one center",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-one-uppercase-pair",
+      "id": "trial-one-uppercase-pair",
       "name": "only uppercase values pair",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "hidden-all-same",
+      "id": "trial-all-same",
       "name": "repeated single character kind",
       "kind": "trial",
       "visible": true,

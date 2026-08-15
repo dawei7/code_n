@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-node-with-no-incoming-edge",
+      "id": "trial-node-with-no-incoming-edge",
       "name": "zero-score nodes do not beat a positive score",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-nonzero-tie",
+      "id": "trial-nonzero-tie",
       "name": "tie between nonzero target indices",
       "kind": "trial",
       "visible": true,
@@ -136,6 +136,23 @@
       "expected": 1,
       "tags": [
         "tie"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in edges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

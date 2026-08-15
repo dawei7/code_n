@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-single-element",
+      "id": "trial-single-element",
       "name": "one element cannot populate both groups",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-total-too-small",
+      "id": "trial-total-too-small",
       "name": "total sum is below twice k",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-every-nonempty-side-works",
+      "id": "trial-every-nonempty-side-works",
       "name": "every proper nonempty assignment is great",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-modulo",
+      "id": "trial-modulo",
       "name": "many indexed assignments require modulo reduction",
       "kind": "trial",
       "visible": true,
@@ -202,6 +202,41 @@
       "expected": 511620081,
       "tags": [
         "modulo"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 4
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 4
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

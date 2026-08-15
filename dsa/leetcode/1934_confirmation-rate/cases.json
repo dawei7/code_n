@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "real-round-down",
+      "id": "trial-round-down",
       "name": "one of three confirmations rounds to 0.33",
       "kind": "trial",
       "visible": true,
@@ -287,7 +287,7 @@
       ]
     },
     {
-      "id": "real-round-up",
+      "id": "trial-round-up",
       "name": "two of three confirmations rounds to 0.67",
       "kind": "trial",
       "visible": true,
@@ -339,7 +339,7 @@
       ]
     },
     {
-      "id": "real-independent-users",
+      "id": "trial-independent-users",
       "name": "rates are grouped independently by user",
       "kind": "trial",
       "visible": true,
@@ -394,7 +394,7 @@
       ]
     },
     {
-      "id": "real-two-unmatched",
+      "id": "trial-two-unmatched",
       "name": "every unmatched signup remains in the output",
       "kind": "trial",
       "visible": true,
@@ -445,7 +445,7 @@
       ]
     },
     {
-      "id": "real-five-requests",
+      "id": "trial-five-requests",
       "name": "three of five confirmations produce 0.6",
       "kind": "trial",
       "visible": true,
@@ -507,7 +507,7 @@
       ]
     },
     {
-      "id": "real-timestamps-irrelevant",
+      "id": "trial-timestamps-irrelevant",
       "name": "timestamp order does not change the aggregate",
       "kind": "trial",
       "visible": true,

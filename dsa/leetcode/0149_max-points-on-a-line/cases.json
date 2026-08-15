@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-vertical-line",
+      "id": "trial-vertical-line",
       "name": "vertical line",
       "kind": "trial",
       "visible": true,

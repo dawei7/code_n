@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "hidden-left-boundary-jump",
+      "id": "trial-left-boundary-jump",
       "name": "only useful jump goes to index zero",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "hidden-disconnected-zero",
+      "id": "trial-disconnected-zero",
       "name": "zero lies in another component",
       "kind": "trial",
       "visible": true,

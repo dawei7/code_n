@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-long-ones",
+      "id": "trial-long-ones",
       "name": "several trailing one bits",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-mixed",
+      "id": "trial-mixed",
       "name": "alternating odd and even steps",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "hidden-int-max",
+      "id": "trial-int-max",
       "name": "maximum signed integer",
       "kind": "trial",
       "visible": true,

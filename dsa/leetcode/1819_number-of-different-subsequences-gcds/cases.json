@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-absent-gcd",
+      "id": "trial-absent-gcd",
       "name": "an absent value occurs as a pair GCD",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-mixed-small",
+      "id": "trial-mixed-small",
       "name": "mixed small values share GCD one",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-several-shared-divisors",
+      "id": "trial-several-shared-divisors",
       "name": "several subsets converge to GCD six",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-maximum-single",
+      "id": "trial-maximum-single",
       "name": "maximum legal value alone",
       "kind": "trial",
       "visible": true,

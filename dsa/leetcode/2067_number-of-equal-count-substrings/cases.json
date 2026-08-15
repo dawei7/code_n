@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "real-overlapping-pairs",
+      "id": "trial-overlapping-pairs",
       "name": "overlapping copies of one letter count separately",
       "kind": "trial",
       "visible": true,
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-two-uniform-blocks",
+      "id": "trial-two-uniform-blocks",
       "name": "individual blocks and their union qualify",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-interleaved-letters",
+      "id": "trial-interleaved-letters",
       "name": "positions need not form letter blocks",
       "kind": "trial",
       "visible": true,
@@ -101,6 +101,21 @@
       "expected": 1,
       "tags": [
         "interleaved"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "count": 3
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
       ]
     }
   ]

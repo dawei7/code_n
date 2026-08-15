@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-one-visible",
+      "id": "trial-one-visible",
       "name": "one visible stick gives a factorial count",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-four-all-visible",
+      "id": "trial-four-all-visible",
       "name": "all-visible boundary remains unique",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-five-two-visible",
+      "id": "trial-five-two-visible",
       "name": "recurrence combines both insertion cases",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-six-three-visible",
+      "id": "trial-six-three-visible",
       "name": "balanced visibility state",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-ten-five-visible",
+      "id": "trial-ten-five-visible",
       "name": "larger unmodded dynamic-programming value",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-maximum-n",
+      "id": "trial-maximum-n",
       "name": "maximum n exercises rolling storage",
       "kind": "trial",
       "visible": true,

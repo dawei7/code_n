@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-all-unplaced",
+      "id": "trial-all-unplaced",
       "name": "every basket is too small",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-no-reuse",
+      "id": "trial-no-reuse",
       "name": "a sufficient basket cannot be reused",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-skip-insufficient-prefix",
+      "id": "trial-skip-insufficient-prefix",
       "name": "scan past several small available baskets",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-fruit-order-matters",
+      "id": "trial-fruit-order-matters",
       "name": "fruit processing order is preserved",
       "kind": "trial",
       "visible": true,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-duplicate-values",
+      "id": "trial-duplicate-values",
       "name": "duplicate quantities and capacities are distinct positions",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-single-fit",
+      "id": "trial-single-fit",
       "name": "minimum length with an exact fit",
       "kind": "trial",
       "visible": true,
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "real-single-unfit",
+      "id": "trial-single-unfit",
       "name": "minimum length with no fit",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "legal maximum quantity and capacity",
       "kind": "trial",
       "visible": true,

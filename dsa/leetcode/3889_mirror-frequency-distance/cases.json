@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-complete-character-domain",
+      "id": "trial-complete-character-domain",
       "name": "every possible pair is balanced across the complete domain",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-one-unbalanced-letter-pair",
+      "id": "trial-one-unbalanced-letter-pair",
       "name": "repeated opposite letters differ by two",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-balanced-and-unbalanced-digits",
+      "id": "trial-balanced-and-unbalanced-digits",
       "name": "one digit pair balances while another does not",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-reversed-orientation",
+      "id": "trial-reversed-orientation",
       "name": "encountering high-end mirrors first does not double count",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-high-end-characters-only",
+      "id": "trial-high-end-characters-only",
       "name": "high-end letters and digits all have absent mirrors",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "real-inner-high-half",
+      "id": "trial-inner-high-half",
       "name": "inner characters from both high halves form six pairs",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-several-frequency-gaps",
+      "id": "trial-several-frequency-gaps",
       "name": "several pairs contribute independent frequency gaps",
       "kind": "trial",
       "visible": true,

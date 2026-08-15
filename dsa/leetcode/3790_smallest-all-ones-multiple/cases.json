@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-nine",
+      "id": "trial-nine",
       "name": "repeated factor of three",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-thirteen",
+      "id": "trial-thirteen",
       "name": "six-digit repunit for thirteen",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-seventeen",
+      "id": "trial-seventeen",
       "name": "nearly divisor-length cycle",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-twenty-seven",
+      "id": "trial-twenty-seven",
       "name": "prime-power divisor",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-nine-nine-nine",
+      "id": "trial-nine-nine-nine",
       "name": "composite divisor with shorter cycle",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum even divisor is impossible",
       "kind": "trial",
       "visible": true,
@@ -200,6 +200,20 @@
       "tags": [
         "maximum",
         "impossible"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

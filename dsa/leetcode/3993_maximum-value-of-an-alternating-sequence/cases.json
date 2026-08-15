@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "real-hundred-unit-limit",
+      "id": "trial-hundred-unit-limit",
       "name": "unit limit prevents pairwise growth",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-odd-unit-limit",
+      "id": "trial-odd-unit-limit",
       "name": "odd length with unit limit and nonminimum start",
       "kind": "trial",
       "visible": true,
@@ -234,7 +234,7 @@
       ]
     },
     {
-      "id": "real-seven-moderate",
+      "id": "trial-seven-moderate",
       "name": "odd length counts three high positions",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-eight-moderate",
+      "id": "trial-eight-moderate",
       "name": "even length adds the fourth high position",
       "kind": "trial",
       "visible": true,
@@ -266,7 +266,7 @@
       ]
     },
     {
-      "id": "real-maximum-n-unit-limit",
+      "id": "trial-maximum-n-unit-limit",
       "name": "maximum length with no pairwise growth",
       "kind": "trial",
       "visible": true,
@@ -283,7 +283,7 @@
       ]
     },
     {
-      "id": "real-maximum-odd-length",
+      "id": "trial-maximum-odd-length",
       "name": "largest odd length and maximum rise",
       "kind": "trial",
       "visible": true,
@@ -300,7 +300,7 @@
       ]
     },
     {
-      "id": "real-maximum-even-length-minimum-start",
+      "id": "trial-maximum-even-length-minimum-start",
       "name": "maximum length and rise from minimum start",
       "kind": "trial",
       "visible": true,
@@ -317,7 +317,7 @@
       ]
     },
     {
-      "id": "real-all-maximum-inputs",
+      "id": "trial-all-maximum-inputs",
       "name": "all input values at their maxima",
       "kind": "trial",
       "visible": true,
@@ -330,6 +330,38 @@
       "tags": [
         "large-result",
         "maximum-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "s": 3,
+        "m": 5
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-22",
+      "name": "minimal value s=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "s": 1,
+        "m": 5
+      },
+      "expected": 10,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

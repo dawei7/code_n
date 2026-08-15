@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-equal-odd-cycle",
+      "id": "trial-equal-odd-cycle",
       "name": "two positions on an equal odd cycle each cost one",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-equal-odd-cycle-impossible",
+      "id": "trial-equal-odd-cycle-impossible",
       "name": "an odd cycle cannot reach a majority of peaks",
       "kind": "trial",
       "visible": true,
@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "real-negative-values",
+      "id": "trial-negative-values",
       "name": "negative values use the same strict local threshold",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-lower-bound-values",
+      "id": "trial-lower-bound-values",
       "name": "equal minimum-bound values each need one increment",
       "kind": "trial",
       "visible": true,
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "real-even-maximum-count",
+      "id": "trial-even-maximum-count",
       "name": "an even cycle compares its two alternating maximum sets",
       "kind": "trial",
       "visible": true,
@@ -268,7 +268,7 @@
       ]
     },
     {
-      "id": "real-cheapest-costs-adjacent",
+      "id": "trial-cheapest-costs-adjacent",
       "name": "the individually cheapest positions are adjacent",
       "kind": "trial",
       "visible": true,
@@ -289,7 +289,7 @@
       ]
     },
     {
-      "id": "real-wrapped-endpoints-conflict",
+      "id": "trial-wrapped-endpoints-conflict",
       "name": "cheap first and last positions conflict through the wrap edge",
       "kind": "trial",
       "visible": true,
@@ -307,6 +307,41 @@
       "tags": [
         "circular-boundary",
         "greedy-trap"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ],
+        "k": 1
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

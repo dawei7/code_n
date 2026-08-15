@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-repeated-values",
+      "id": "trial-repeated-values",
       "name": "duplicate OR states collapse safely",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-order-restriction",
+      "id": "trial-order-restriction",
       "name": "pair order follows original indices",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-overlapping-bits",
+      "id": "trial-overlapping-bits",
       "name": "multiple selections produce overlapping OR masks",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-seven-bit-range",
+      "id": "trial-seven-bit-range",
       "name": "states span all seven available bits",
       "kind": "trial",
       "visible": true,
@@ -176,6 +176,41 @@
       "expected": 126,
       "tags": [
         "bit-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

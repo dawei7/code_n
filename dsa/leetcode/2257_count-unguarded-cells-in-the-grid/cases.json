@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-one-column",
+      "id": "trial-one-column",
       "name": "vertical sweeps handle a one-column grid",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-guards-block",
+      "id": "trial-guards-block",
       "name": "guards block sight but also illuminate beyond themselves",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-corner-shadows",
+      "id": "trial-corner-shadows",
       "name": "perpendicular walls create independent shadows",
       "kind": "trial",
       "visible": true,

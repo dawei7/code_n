@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-single-maximum-value",
+      "id": "trial-single-maximum-value",
       "name": "maximum value needs a cube-root-scale k",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-one-hundred-ones",
+      "id": "trial-one-hundred-ones",
       "name": "square budget is controlled only by array length",
       "kind": "trial",
       "visible": true,
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "real-maximum-with-small-values",
+      "id": "trial-maximum-with-small-values",
       "name": "small elements contribute their own operations",
       "kind": "trial",
       "visible": true,
@@ -288,7 +288,7 @@
       ]
     },
     {
-      "id": "real-equality-at-answer",
+      "id": "trial-equality-at-answer",
       "name": "equality with k squared is accepted",
       "kind": "trial",
       "visible": true,
@@ -308,7 +308,7 @@
       ]
     },
     {
-      "id": "real-four-equal-values",
+      "id": "trial-four-equal-values",
       "name": "the first feasible k follows several failed candidates",
       "kind": "trial",
       "visible": true,
@@ -327,6 +327,39 @@
       "tags": [
         "repeated-values",
         "binary-search-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-prime-target",
+      "id": "trial-prime-target",
       "name": "prime destination invalidates the route",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-weighted-detour",
+      "id": "trial-weighted-detour",
       "name": "cheapest weighted route is not fewest operations",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-one-digit-prime-barrier",
+      "id": "trial-one-digit-prime-barrier",
       "name": "prime states split the one-digit graph",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-four-digit-width",
+      "id": "trial-four-digit-width",
       "name": "four-digit boundary keeps its full width",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-four-digit-mixed",
+      "id": "trial-four-digit-mixed",
       "name": "maximum-width identity path",
       "kind": "trial",
       "visible": true,

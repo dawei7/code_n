@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-extreme-valley",
+      "id": "trial-extreme-valley",
       "name": "either direction pays the same extreme adjustment",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating values merge into isotonic blocks",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-central-valleys",
+      "id": "trial-central-valleys",
       "name": "the cheaper monotonic fit spans several blocks",
       "kind": "trial",
       "visible": true,

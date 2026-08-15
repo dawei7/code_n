@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-out-of-range-candidate",
+      "id": "trial-out-of-range-candidate",
       "name": "value exceeds length-derived candidate",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-missing-middle-value",
+      "id": "trial-missing-middle-value",
       "name": "repeated lower value replaces a required value",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-larger-good-array",
+      "id": "trial-larger-good-array",
       "name": "shuffled base seven",
       "kind": "trial",
       "visible": true,

@@ -71,8 +71,8 @@
       ]
     },
     {
-      "id": "real-every-boundary",
-      "name": "real: every adjacent pair differs",
+      "id": "trial-every-boundary",
+      "name": "every adjacent pair differs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -90,8 +90,8 @@
       ]
     },
     {
-      "id": "real-repeated-blocks",
-      "name": "real: repeated value blocks",
+      "id": "trial-repeated-blocks",
+      "name": "repeated value blocks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -110,8 +110,8 @@
       ]
     },
     {
-      "id": "real-extreme-values",
-      "name": "real: alternating constraint extremes",
+      "id": "trial-extreme-values",
+      "name": "alternating constraint extremes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -128,8 +128,8 @@
       ]
     },
     {
-      "id": "real-increasing-plateaus",
-      "name": "real: three constant runs",
+      "id": "trial-increasing-plateaus",
+      "name": "three constant runs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -149,8 +149,8 @@
       ]
     },
     {
-      "id": "real-zero-crossings",
-      "name": "real: changes around zero",
+      "id": "trial-zero-crossings",
+      "name": "changes around zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -170,8 +170,8 @@
       ]
     },
     {
-      "id": "real-equal-negative",
-      "name": "real: equal negative values",
+      "id": "trial-equal-negative",
+      "name": "equal negative values",
       "kind": "trial",
       "visible": true,
       "input": {

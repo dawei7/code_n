@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-input-order-irrelevant",
+      "id": "trial-input-order-irrelevant",
       "name": "rows arrive far from descending power order",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-sign-and-magnitude",
+      "id": "trial-sign-and-magnitude",
       "name": "every term carries an explicit sign",
       "kind": "trial",
       "visible": true,

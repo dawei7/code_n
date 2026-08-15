@@ -234,7 +234,7 @@
       ]
     },
     {
-      "id": "real-disjoint-keys",
+      "id": "trial-disjoint-keys",
       "name": "added and removed keys are both omitted",
       "kind": "trial",
       "visible": true,
@@ -260,7 +260,7 @@
       ]
     },
     {
-      "id": "real-primitive-types",
+      "id": "trial-primitive-types",
       "name": "equal-looking primitive values keep their JSON types",
       "kind": "trial",
       "visible": true,
@@ -289,7 +289,7 @@
       ]
     },
     {
-      "id": "real-extra-array-tail",
+      "id": "trial-extra-array-tail",
       "name": "removed array suffixes are ignored while shared indices recurse",
       "kind": "trial",
       "visible": true,

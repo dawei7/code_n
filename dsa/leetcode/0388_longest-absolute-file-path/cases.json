@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-shallower-reset",
+      "id": "trial-shallower-reset",
       "name": "return to shallower branch",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-no-files",
+      "id": "trial-no-files",
       "name": "several directories only",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "hidden-multiple-roots",
+      "id": "trial-multiple-roots",
       "name": "root-level file after directory",
       "kind": "trial",
       "visible": true,
@@ -109,6 +109,34 @@
       "expected": 17,
       "tags": [
         "root-file"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "input": "d"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "input": "ddd"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

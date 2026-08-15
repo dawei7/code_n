@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-wrap-gap",
+      "id": "trial-wrap-gap",
       "name": "wraparound gap determines the answer",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-clustered-occurrences",
+      "id": "trial-clustered-occurrences",
       "name": "clustered copies leave a long opposite arc",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "values use the full numeric range",
       "kind": "trial",
       "visible": true,

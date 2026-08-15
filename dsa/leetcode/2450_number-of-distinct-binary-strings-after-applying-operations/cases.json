@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "real-four-windows",
+      "id": "trial-four-windows",
       "name": "four eligible windows",
       "kind": "trial",
       "visible": true,
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-content-independent",
+      "id": "trial-content-independent",
       "name": "content does not affect the count",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-long-power",
+      "id": "trial-long-power",
       "name": "twenty independent bit flips",
       "kind": "trial",
       "visible": true,

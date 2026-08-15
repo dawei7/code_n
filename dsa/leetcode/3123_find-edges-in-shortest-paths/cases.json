@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "real-shared-middle",
+      "id": "trial-shared-middle",
       "name": "shortest paths share a middle edge",
       "kind": "trial",
       "visible": true,
@@ -308,7 +308,7 @@
       ]
     },
     {
-      "id": "real-equal-direct-and-indirect",
+      "id": "trial-equal-direct-and-indirect",
       "name": "direct and indirect routes tie",
       "kind": "trial",
       "visible": true,
@@ -361,7 +361,7 @@
       ]
     },
     {
-      "id": "real-isolated-internal-component",
+      "id": "trial-isolated-internal-component",
       "name": "unrelated component edges stay false",
       "kind": "trial",
       "visible": true,
@@ -414,7 +414,7 @@
       ]
     },
     {
-      "id": "real-heavy-shortcut",
+      "id": "trial-heavy-shortcut",
       "name": "a heavy shortcut is excluded",
       "kind": "trial",
       "visible": true,
@@ -474,7 +474,7 @@
       ]
     },
     {
-      "id": "real-reversed-orientation",
+      "id": "trial-reversed-orientation",
       "name": "input orientation does not matter",
       "kind": "trial",
       "visible": true,
@@ -528,7 +528,7 @@
       ]
     },
     {
-      "id": "real-one-shortest-chain",
+      "id": "trial-one-shortest-chain",
       "name": "only a chain forms the shortest path",
       "kind": "trial",
       "visible": true,

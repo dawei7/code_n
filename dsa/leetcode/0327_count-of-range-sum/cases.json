@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "hidden-negative-range",
+      "id": "trial-negative-range",
       "name": "negative inclusive interval",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "hidden-exact-bound",
+      "id": "trial-exact-bound",
       "name": "equal lower and upper",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "hidden-wide-values",
+      "id": "trial-wide-values",
       "name": "prefix sums exceed signed element scale",
       "kind": "trial",
       "visible": true,

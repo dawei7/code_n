@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-same-philosopher-overlap",
+      "id": "trial-same-philosopher-overlap",
       "name": "repeated calls may overlap for one philosopher",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-randomized-start",
+      "id": "trial-randomized-start",
       "name": "shuffled starts preserve safety",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-maximum-rounds",
+      "id": "trial-maximum-rounds",
       "name": "maximum request count",
       "kind": "trial",
       "visible": true,

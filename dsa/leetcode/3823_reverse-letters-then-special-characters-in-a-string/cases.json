@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-special-characters-at-both-ends",
+      "id": "trial-special-characters-at-both-ends",
       "name": "boundary special characters exchange positions",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-one-letter-among-specials",
+      "id": "trial-one-letter-among-specials",
       "name": "a lone letter stays in its original slot",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-one-special-among-letters",
+      "id": "trial-one-special-among-letters",
       "name": "a lone special character stays in its original slot",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-permitted-alphabet-boundaries",
+      "id": "trial-permitted-alphabet-boundaries",
       "name": "parentheses and punctuation use the same special category",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-repeated-letters-and-specials",
+      "id": "trial-repeated-letters-and-specials",
       "name": "duplicate values do not collapse category sequences",
       "kind": "trial",
       "visible": true,
@@ -193,6 +193,34 @@
       "tags": [
         "duplicates",
         "multiplicity"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": ")"
+      },
+      "expected": ")",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": ")))"
+      },
+      "expected": ")))",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

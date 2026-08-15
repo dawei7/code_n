@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-cubed-prime-factor",
+      "id": "trial-cubed-prime-factor",
       "name": "a cubed prime factor requires four vowels",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-two-prime-factors",
+      "id": "trial-two-prime-factors",
       "name": "the complete string first reaches the required period",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-all-vowels",
+      "id": "trial-all-vowels",
       "name": "all vowels never balance",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-mixed-periods",
+      "id": "trial-mixed-periods",
       "name": "several balanced lengths meet the derived period",
       "kind": "trial",
       "visible": true,
@@ -140,6 +140,36 @@
       "expected": 10,
       "tags": [
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "b",
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bbb",
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

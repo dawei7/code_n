@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-single-wall",
+      "id": "trial-single-wall",
       "name": "one wall input",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-coverage-tradeoff",
+      "id": "trial-coverage-tradeoff",
       "name": "longer job beats two cheaper-looking choices",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-two-cheap-jobs",
+      "id": "trial-two-cheap-jobs",
       "name": "two cheap jobs beat long expensive job",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-all-unit-times",
+      "id": "trial-all-unit-times",
       "name": "choose the cheapest required count",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-cost-boundary",
+      "id": "trial-cost-boundary",
       "name": "large costs",
       "kind": "trial",
       "visible": true,

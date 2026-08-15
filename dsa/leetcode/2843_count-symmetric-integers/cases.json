@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "real-odd-digit-range",
+      "id": "trial-odd-digit-range",
       "name": "every three-digit candidate is rejected",
       "kind": "trial",
       "visible": true,
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-cross-digit-boundary",
+      "id": "trial-cross-digit-boundary",
       "name": "interval crosses from two to three digits",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-four-digit-start",
+      "id": "trial-four-digit-start",
       "name": "first hundred four-digit candidates",
       "kind": "trial",
       "visible": true,
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "legal upper bound is included",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-minimum-bound",
+      "id": "trial-minimum-bound",
       "name": "minimum legal value is not symmetric",
       "kind": "trial",
       "visible": true,

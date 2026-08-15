@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-disconnected-low-edge",
+      "id": "trial-disconnected-low-edge",
       "name": "lower roads in another component are irrelevant",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-component-cycle",
+      "id": "trial-component-cycle",
       "name": "light edge is accessible through a cycle",
       "kind": "trial",
       "visible": true,
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "real-distance-bound",
+      "id": "trial-distance-bound",
       "name": "component includes distance bounds",
       "kind": "trial",
       "visible": true,

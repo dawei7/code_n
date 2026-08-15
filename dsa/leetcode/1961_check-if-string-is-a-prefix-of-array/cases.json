@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-late-mismatch",
+      "id": "trial-late-mismatch",
       "name": "mismatch occurs after several complete words",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-words-too-short",
+      "id": "trial-words-too-short",
       "name": "all words end before the target",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-extra-words",
+      "id": "trial-extra-words",
       "name": "words after the matching boundary are irrelevant",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-exceeds-target",
+      "id": "trial-exceeds-target",
       "name": "next whole word extends beyond the target",
       "kind": "trial",
       "visible": true,

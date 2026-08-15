@@ -111,8 +111,8 @@
       ]
     },
     {
-      "id": "real-many-fast-workers",
-      "name": "real: enough workers finish in one second",
+      "id": "trial-many-fast-workers",
+      "name": "enough workers finish in one second",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -132,8 +132,8 @@
       ]
     },
     {
-      "id": "real-large-single-worker",
-      "name": "real: maximum values require 64-bit result",
+      "id": "trial-large-single-worker",
+      "name": "maximum values require 64-bit result",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -149,8 +149,8 @@
       ]
     },
     {
-      "id": "real-nonuniform",
-      "name": "real: nonuniform worker capacities cross triangular boundaries",
+      "id": "trial-nonuniform",
+      "name": "nonuniform worker capacities cross triangular boundaries",
       "kind": "trial",
       "visible": true,
       "input": {

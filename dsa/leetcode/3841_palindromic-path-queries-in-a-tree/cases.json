@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-star-root-replacement",
+      "id": "trial-star-root-replacement",
       "name": "a root update affects paths between every pair of branches",
       "kind": "trial",
       "visible": true,
@@ -281,7 +281,7 @@
       ]
     },
     {
-      "id": "real-balanced-lca-paths",
+      "id": "trial-balanced-lca-paths",
       "name": "balanced-tree paths use the root as lowest common ancestor",
       "kind": "trial",
       "visible": true,
@@ -337,7 +337,7 @@
       ]
     },
     {
-      "id": "real-chain-successive-updates",
+      "id": "trial-chain-successive-updates",
       "name": "successive updates toggle full and internal chain paths",
       "kind": "trial",
       "visible": true,
@@ -392,7 +392,7 @@
       ]
     },
     {
-      "id": "real-no-op-then-change",
+      "id": "trial-no-op-then-change",
       "name": "no-op assignment does not alter a later answer",
       "kind": "trial",
       "visible": true,
@@ -431,7 +431,7 @@
       ]
     },
     {
-      "id": "real-subtree-boundaries",
+      "id": "trial-subtree-boundaries",
       "name": "updates affect descendant root masks but not unrelated paths",
       "kind": "trial",
       "visible": true,
@@ -480,7 +480,7 @@
       ]
     },
     {
-      "id": "real-full-alphabet",
+      "id": "trial-full-alphabet",
       "name": "all letter bits and endpoint-inclusive paths",
       "kind": "trial",
       "visible": true,
@@ -611,6 +611,69 @@
       "tags": [
         "full-alphabet",
         "bit-boundaries"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "s": "aaa",
+        "queries": [
+          "query 0 2",
+          "update 1 b",
+          "query 0 2"
+        ]
+      },
+      "expected": [
+        true,
+        true
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in queries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "s": "aac",
+        "queries": [
+          "query 0 2"
+        ]
+      },
+      "expected": [
+        true
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

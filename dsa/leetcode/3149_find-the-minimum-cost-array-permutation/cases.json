@@ -109,8 +109,8 @@
       ]
     },
     {
-      "id": "real-four-value-reverse",
-      "name": "real: reversed four-value input",
+      "id": "trial-four-value-reverse",
+      "name": "reversed four-value input",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -133,8 +133,8 @@
       ]
     },
     {
-      "id": "real-score-orientation",
-      "name": "real: ordered score relation changes the optimum",
+      "id": "trial-score-orientation",
+      "name": "ordered score relation changes the optimum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -157,8 +157,8 @@
       ]
     },
     {
-      "id": "real-five-values",
-      "name": "real: five-value cyclic assignment",
+      "id": "trial-five-values",
+      "name": "five-value cyclic assignment",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -183,8 +183,8 @@
       ]
     },
     {
-      "id": "real-six-values",
-      "name": "real: six-value exact DP case",
+      "id": "trial-six-values",
+      "name": "six-value exact DP case",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -211,8 +211,8 @@
       ]
     },
     {
-      "id": "real-seven-values",
-      "name": "real: seven-value tie reconstruction",
+      "id": "trial-seven-values",
+      "name": "seven-value tie reconstruction",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -241,8 +241,8 @@
       ]
     },
     {
-      "id": "real-eight-values",
-      "name": "real: eight-value alternating input",
+      "id": "trial-eight-values",
+      "name": "eight-value alternating input",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -273,8 +273,8 @@
       ]
     },
     {
-      "id": "real-nine-values",
-      "name": "real: nine-value lexicographic optimum",
+      "id": "trial-nine-values",
+      "name": "nine-value lexicographic optimum",
       "kind": "trial",
       "visible": true,
       "input": {

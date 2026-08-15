@@ -78,8 +78,8 @@
       ]
     },
     {
-      "id": "real-even-two-cell-gains",
-      "name": "real: repeated two-cell alternation",
+      "id": "trial-even-two-cell-gains",
+      "name": "repeated two-cell alternation",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -96,8 +96,8 @@
       ]
     },
     {
-      "id": "real-varied-points",
-      "name": "real: several competing bottlenecks",
+      "id": "trial-varied-points",
+      "name": "several competing bottlenecks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -117,8 +117,8 @@
       ]
     },
     {
-      "id": "real-large-move-budget",
-      "name": "real: result requires 64-bit arithmetic",
+      "id": "trial-large-move-budget",
+      "name": "result requires 64-bit arithmetic",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -135,8 +135,8 @@
       ]
     },
     {
-      "id": "real-expensive-middle",
-      "name": "real: high-value middle does not remove edge costs",
+      "id": "trial-expensive-middle",
+      "name": "high-value middle does not remove edge costs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -151,6 +151,41 @@
       "tags": [
         "real",
         "movement"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in points",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          2
+        ],
+        "m": 3
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in points",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          2,
+          2
+        ],
+        "m": 3
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

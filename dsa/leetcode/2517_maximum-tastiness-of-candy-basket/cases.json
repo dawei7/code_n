@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-two-equal-candies",
+      "id": "trial-two-equal-candies",
       "name": "duplicate selected prices give zero tastiness",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-k-is-n",
+      "id": "trial-k-is-n",
       "name": "selecting every candy uses the smallest adjacent gap",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-large-range",
+      "id": "trial-large-range",
       "name": "prices span the full allowed range",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-duplicate-groups",
+      "id": "trial-duplicate-groups",
       "name": "distinct candies may share prices",
       "kind": "trial",
       "visible": true,
@@ -172,6 +172,41 @@
       },
       "expected": 1,
       "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in price",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "price": [
+          13
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in price",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "price": [
+          13,
+          13
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

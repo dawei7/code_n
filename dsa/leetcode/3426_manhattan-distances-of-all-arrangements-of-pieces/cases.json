@@ -66,8 +66,8 @@
       ]
     },
     {
-      "id": "real-all-cells-line",
-      "name": "real: every cell of a row occupied",
+      "id": "trial-all-cells-line",
+      "name": "every cell of a row occupied",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -82,8 +82,8 @@
       ]
     },
     {
-      "id": "real-rectangle-two",
-      "name": "real: all cell pairs in a rectangle",
+      "id": "trial-rectangle-two",
+      "name": "all cell pairs in a rectangle",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -98,8 +98,8 @@
       ]
     },
     {
-      "id": "real-rectangle-three",
-      "name": "real: each pair appears in four arrangements",
+      "id": "trial-rectangle-three",
+      "name": "each pair appears in four arrangements",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -113,8 +113,8 @@
       ]
     },
     {
-      "id": "real-rectangle-four",
-      "name": "real: complementary binomial choice",
+      "id": "trial-rectangle-four",
+      "name": "complementary binomial choice",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -129,8 +129,8 @@
       ]
     },
     {
-      "id": "real-square-middle-k",
-      "name": "real: square grid with middle piece count",
+      "id": "trial-square-middle-k",
+      "name": "square grid with middle piece count",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -145,8 +145,8 @@
       ]
     },
     {
-      "id": "real-modular-rectangle",
-      "name": "real: modular arithmetic on an asymmetric rectangle",
+      "id": "trial-modular-rectangle",
+      "name": "modular arithmetic on an asymmetric rectangle",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -161,8 +161,8 @@
       ]
     },
     {
-      "id": "real-modular-square",
-      "name": "real: modular arithmetic on a square grid",
+      "id": "trial-modular-square",
+      "name": "modular arithmetic on a square grid",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -177,8 +177,8 @@
       ]
     },
     {
-      "id": "real-long-line-two",
-      "name": "real: long line with two pieces",
+      "id": "trial-long-line-two",
+      "name": "long line with two pieces",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -193,8 +193,8 @@
       ]
     },
     {
-      "id": "real-long-line-all",
-      "name": "real: long line fully occupied",
+      "id": "trial-long-line-all",
+      "name": "long line fully occupied",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -209,8 +209,8 @@
       ]
     },
     {
-      "id": "real-transposed-line-all",
-      "name": "real: transposed long line fully occupied",
+      "id": "trial-transposed-line-all",
+      "name": "transposed long line fully occupied",
       "kind": "trial",
       "visible": true,
       "input": {

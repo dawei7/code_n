@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-four-terms",
+      "id": "trial-four-terms",
       "name": "repeated multi-digit starting terms",
       "kind": "trial",
       "visible": true,
@@ -81,6 +81,34 @@
       "expected": true,
       "tags": [
         "multi-digit"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "single character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "1"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "repeated character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "111"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

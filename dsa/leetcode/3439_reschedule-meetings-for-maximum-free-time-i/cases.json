@@ -127,8 +127,8 @@
       ]
     },
     {
-      "id": "real-irregular-gaps",
-      "name": "real: choose middle consecutive gaps",
+      "id": "trial-irregular-gaps",
+      "name": "choose middle consecutive gaps",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -154,8 +154,8 @@
       ]
     },
     {
-      "id": "real-zero-boundaries",
-      "name": "real: meetings touch both event boundaries",
+      "id": "trial-zero-boundaries",
+      "name": "meetings touch both event boundaries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -179,8 +179,8 @@
       ]
     },
     {
-      "id": "real-large-clock",
-      "name": "real: large event-time values",
+      "id": "trial-large-clock",
+      "name": "large event-time values",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-large-identifiers",
+      "id": "trial-large-identifiers",
       "name": "large user IDs remain independent",
       "kind": "trial",
       "visible": true,
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": "real-unsorted-logs",
+      "id": "trial-unsorted-logs",
       "name": "input order does not affect UAM",
       "kind": "trial",
       "visible": true,
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "id": "real-uam-equals-k",
+      "id": "trial-uam-equals-k",
       "name": "maximum UAM occupies final bucket",
       "kind": "trial",
       "visible": true,
@@ -319,7 +319,7 @@
       ]
     },
     {
-      "id": "real-wide-k",
+      "id": "trial-wide-k",
       "name": "large k leaves a sparse suffix",
       "kind": "trial",
       "visible": true,

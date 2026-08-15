@@ -300,7 +300,7 @@
       ]
     },
     {
-      "id": "real-disjoint-updates",
+      "id": "trial-disjoint-updates",
       "name": "disjoint cells retain independent values",
       "kind": "trial",
       "visible": true,
@@ -373,7 +373,7 @@
       ]
     },
     {
-      "id": "real-nested-overwrites",
+      "id": "trial-nested-overwrites",
       "name": "latest nested assignment wins",
       "kind": "trial",
       "visible": true,
@@ -471,7 +471,7 @@
       ]
     },
     {
-      "id": "real-value-bound",
+      "id": "trial-value-bound",
       "name": "maximum assigned value",
       "kind": "trial",
       "visible": true,

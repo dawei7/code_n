@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "real-touching",
+      "id": "trial-touching",
       "name": "touching edge has zero overlap",
       "kind": "trial",
       "visible": true,

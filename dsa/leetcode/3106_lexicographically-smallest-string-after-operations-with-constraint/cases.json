@@ -104,8 +104,8 @@
       ]
     },
     {
-      "id": "real-surplus-budget",
-      "name": "real: surplus budget leaves the all-a optimum",
+      "id": "trial-surplus-budget",
+      "name": "surplus budget leaves the all-a optimum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -119,8 +119,8 @@
       ]
     },
     {
-      "id": "real-wrap-then-partial",
-      "name": "real: an early wrap leaves one step for the next letter",
+      "id": "trial-wrap-then-partial",
+      "name": "an early wrap leaves one step for the next letter",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -135,8 +135,8 @@
       ]
     },
     {
-      "id": "real-leading-a-zero-budget",
-      "name": "real: an existing a costs nothing before budget exhaustion",
+      "id": "trial-leading-a-zero-budget",
+      "name": "an existing a costs nothing before budget exhaustion",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -150,8 +150,8 @@
       ]
     },
     {
-      "id": "real-leading-a-wrap",
-      "name": "real: a free leading a preserves budget for a wrapped z",
+      "id": "trial-leading-a-wrap",
+      "name": "a free leading a preserves budget for a wrapped z",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -165,8 +165,8 @@
       ]
     },
     {
-      "id": "real-budget-exhausted-midstring",
-      "name": "real: budget is exhausted after minimizing a prefix",
+      "id": "trial-budget-exhausted-midstring",
+      "name": "budget is exhausted after minimizing a prefix",
       "kind": "trial",
       "visible": true,
       "input": {

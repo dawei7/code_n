@@ -127,7 +127,7 @@
       "expected": 5
     },
     {
-      "id": "real-max-all-distinct",
+      "id": "trial-max-all-distinct",
       "name": "maximum size with all distinct categories",
       "kind": "trial",
       "visible": true,
@@ -243,7 +243,7 @@
       "expected": 100
     },
     {
-      "id": "real-max-all-same",
+      "id": "trial-max-all-same",
       "name": "maximum size with one category",
       "kind": "trial",
       "visible": true,
@@ -357,6 +357,28 @@
         "early-break"
       ],
       "expected": 1
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "categoryHandler": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
     }
   ]
 }

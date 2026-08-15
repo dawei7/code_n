@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-repeated-pairs",
+      "id": "trial-repeated-pairs",
       "name": "several identical lower and higher pairs",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-upper-values",
+      "id": "trial-upper-values",
       "name": "a pair reaches the input upper bound",
       "kind": "trial",
       "visible": true,
@@ -176,6 +176,39 @@
       },
       "tags": [
         "large-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

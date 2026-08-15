@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-repeated-one",
+      "id": "trial-repeated-one",
       "name": "leading one repeats before reducible digit",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-all-nine",
+      "id": "trial-all-nine",
       "name": "maximum is already fixed",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "largest legal input",
       "kind": "trial",
       "visible": true,

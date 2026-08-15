@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-double-reversal",
+      "id": "trial-double-reversal",
       "name": "two reversals preserve every index",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-delete-empty-then-build",
+      "id": "trial-delete-empty-then-build",
       "name": "deletion ambiguity resolves through stored prefix lengths",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-interleaved",
+      "id": "trial-interleaved",
       "name": "trace through every operation type",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-huge-conceptual-result",
+      "id": "trial-huge-conceptual-result",
       "name": "locate the last index of a 2^49-character result",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-huge-out-of-range",
+      "id": "trial-huge-out-of-range",
       "name": "k at the maximum bound exceeds a small result",
       "kind": "trial",
       "visible": true,
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-maximum-input-length",
+      "id": "trial-maximum-input-length",
       "name": "direct index in one hundred thousand letters",
       "kind": "trial",
       "visible": true,
@@ -228,6 +228,36 @@
       "tags": [
         "maximum-input",
         "letters-only"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 1
+      },
+      "expected": ".",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "k": 1
+      },
+      "expected": "a",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

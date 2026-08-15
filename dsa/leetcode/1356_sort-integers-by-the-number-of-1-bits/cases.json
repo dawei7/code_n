@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "hidden-numeric-ties",
+      "id": "trial-numeric-ties",
       "name": "several equal population counts",
       "kind": "trial",
       "visible": true,
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "hidden-decimal-values",
+      "id": "trial-decimal-values",
       "name": "differing decimal magnitudes",
       "kind": "trial",
       "visible": true,

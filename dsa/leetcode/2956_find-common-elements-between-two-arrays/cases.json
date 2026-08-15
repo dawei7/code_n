@@ -155,8 +155,8 @@
       ]
     },
     {
-      "id": "real-one-way-frequency",
-      "name": "real: one shared value with unequal frequencies",
+      "id": "trial-one-way-frequency",
+      "name": "one shared value with unequal frequencies",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -183,8 +183,8 @@
       ]
     },
     {
-      "id": "real-partial-distinct",
-      "name": "real: several distinct values with partial overlap",
+      "id": "trial-partial-distinct",
+      "name": "several distinct values with partial overlap",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-single-shortfall",
+      "id": "trial-single-shortfall",
       "name": "one character occurs one fewer time",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-reversed-alphabet",
+      "id": "trial-reversed-alphabet",
       "name": "separated characters have equal counts",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-one-duplicate",
+      "id": "trial-one-duplicate",
       "name": "one duplicated character breaks equality",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-alphabet-imbalance",
+      "id": "trial-alphabet-imbalance",
       "name": "one letter occurs twice while the rest occur once",
       "kind": "trial",
       "visible": true,

@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-all-singletons",
+      "id": "trial-all-singletons",
       "name": "pairwise coprime values are valid separately",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-trailing-one",
+      "id": "trial-trailing-one",
       "name": "a trailing one cannot end any valid part",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-prime-chain",
+      "id": "trial-prime-chain",
       "name": "different shared primes create successive parts",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-unreachable-sentinel-growth",
+      "id": "trial-unreachable-sentinel-growth",
       "name": "long infeasible prefix must return minus one",
       "kind": "trial",
       "visible": true,

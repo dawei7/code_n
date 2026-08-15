@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-disjoint-row-ranges",
+      "id": "trial-disjoint-row-ranges",
       "name": "rows have widely separated ranges",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-maximum-bound",
+      "id": "trial-maximum-bound",
       "name": "values approach the upper constraint",
       "kind": "trial",
       "visible": true,

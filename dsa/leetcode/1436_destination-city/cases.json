@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-unordered",
+      "id": "trial-unordered",
       "name": "endpoint edge occurs in the middle",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-longer",
+      "id": "trial-longer",
       "name": "five-edge shuffled chain",
       "kind": "trial",
       "visible": true,

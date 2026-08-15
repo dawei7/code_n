@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-only-zero-maximum-length",
+      "id": "trial-only-zero-maximum-length",
       "name": "only zero remains zero at maximum k",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-one-repeated-one",
+      "id": "trial-one-repeated-one",
       "name": "repeated ones form a repunit",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-repeated-nine-modulo",
+      "id": "trial-repeated-nine-modulo",
       "name": "ten repeated nines cross the modulus",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-middle-digit-range",
+      "id": "trial-middle-digit-range",
       "name": "five middle digits across four positions",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-full-range-maximum-length",
+      "id": "trial-full-range-maximum-length",
       "name": "every digit at maximum k",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-large-arbitrary-exponent",
+      "id": "trial-large-arbitrary-exponent",
       "name": "a large non-round k requires binary exponentiation",
       "kind": "trial",
       "visible": true,
@@ -237,7 +237,7 @@
       ]
     },
     {
-      "id": "real-single-maximum-digit",
+      "id": "trial-single-maximum-digit",
       "name": "one position with one digit",
       "kind": "trial",
       "visible": true,
@@ -253,6 +253,38 @@
       "tags": [
         "one-position",
         "single-choice"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "minimal value r=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 1,
+        "r": 1,
+        "k": 2
+      },
+      "expected": 11,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 1,
+        "r": 2,
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

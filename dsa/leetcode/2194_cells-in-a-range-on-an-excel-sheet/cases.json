@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-first-column",
+      "id": "trial-first-column",
       "name": "first column spans all legal rows",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-last-columns",
+      "id": "trial-last-columns",
       "name": "final two columns cross the alphabet boundary",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-middle-row",
+      "id": "trial-middle-row",
       "name": "middle alphabet interval uses one row",
       "kind": "trial",
       "visible": true,

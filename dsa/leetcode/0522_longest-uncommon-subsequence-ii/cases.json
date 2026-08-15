@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "hidden-duplicate-short",
+      "id": "trial-duplicate-short",
       "name": "a unique longer string survives",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "hidden-unique-peer",
+      "id": "trial-unique-peer",
       "name": "one equal-length peer is unique",
       "kind": "trial",
       "visible": true,
@@ -124,6 +124,39 @@
       "expected": 3,
       "tags": [
         "equal-length"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in strs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "strs": [
+          "aba"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in strs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "strs": [
+          "aba",
+          "aba"
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

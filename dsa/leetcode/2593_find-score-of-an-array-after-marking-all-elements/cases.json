@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "real-two-increasing",
+      "id": "trial-two-increasing",
       "name": "one choice marks both positions",
       "kind": "trial",
       "visible": true,
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-two-decreasing",
+      "id": "trial-two-decreasing",
       "name": "right minimum marks its neighbor",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "equal values are selected at alternating indices",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-increasing",
+      "id": "trial-increasing",
       "name": "increasing values select alternating positions",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-descending",
+      "id": "trial-descending",
       "name": "descending values select alternating suffix positions",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-adjacent-valleys",
+      "id": "trial-adjacent-valleys",
       "name": "the earlier equal valley suppresses the later one",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-separated-minima",
+      "id": "trial-separated-minima",
       "name": "every separated minimum contributes",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "largest legal value may contribute",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-three-valleys",
+      "id": "trial-three-valleys",
       "name": "descending minima mark the whole array",
       "kind": "trial",
       "visible": true,
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "real-three-equal",
+      "id": "trial-three-equal",
       "name": "tie order leaves the last equal value available",
       "kind": "trial",
       "visible": true,

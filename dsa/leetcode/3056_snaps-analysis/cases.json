@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "real-fractional-rounding",
+      "id": "trial-fractional-rounding",
       "name": "round the completed fractional ratios",
       "kind": "trial",
       "visible": true,
@@ -266,7 +266,7 @@
       ]
     },
     {
-      "id": "real-bucket-isolation",
+      "id": "trial-bucket-isolation",
       "name": "calculate age buckets independently",
       "kind": "trial",
       "visible": true,

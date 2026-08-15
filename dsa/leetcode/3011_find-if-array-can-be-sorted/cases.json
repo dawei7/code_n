@@ -97,8 +97,8 @@
       ]
     },
     {
-      "id": "real-separated-same-count",
-      "name": "real: equal-popcount values are separated",
+      "id": "trial-separated-same-count",
+      "name": "equal-popcount values are separated",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -114,8 +114,8 @@
       ]
     },
     {
-      "id": "real-duplicate-boundary",
-      "name": "real: equality across block ranges is safe",
+      "id": "trial-duplicate-boundary",
+      "name": "equality across block ranges is safe",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -132,8 +132,8 @@
       ]
     },
     {
-      "id": "real-upper-values",
-      "name": "real: upper contract values form valid ranges",
+      "id": "trial-upper-values",
+      "name": "upper contract values form valid ranges",
       "kind": "trial",
       "visible": true,
       "input": {

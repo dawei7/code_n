@@ -354,7 +354,7 @@
       ]
     },
     {
-      "id": "real-seller-without-orders",
+      "id": "trial-seller-without-orders",
       "name": "seller with no orders cannot become a top seller",
       "kind": "trial",
       "visible": true,
@@ -451,7 +451,7 @@
       ]
     },
     {
-      "id": "real-all-orders-repeat-one-item",
+      "id": "trial-all-orders-repeat-one-item",
       "name": "many orders remain one unique item",
       "kind": "trial",
       "visible": true,

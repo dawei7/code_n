@@ -234,7 +234,7 @@
       ]
     },
     {
-      "id": "real-order-and-mixed",
+      "id": "trial-order-and-mixed",
       "name": "active and inactive accounts return in id order",
       "kind": "trial",
       "visible": true,
@@ -344,7 +344,7 @@
       ]
     },
     {
-      "id": "real-year-boundary",
+      "id": "trial-year-boundary",
       "name": "streak crosses a year boundary",
       "kind": "trial",
       "visible": true,
@@ -397,7 +397,7 @@
       ]
     },
     {
-      "id": "real-two-streaks",
+      "id": "trial-two-streaks",
       "name": "multiple qualifying streaks emit one account row",
       "kind": "trial",
       "visible": true,

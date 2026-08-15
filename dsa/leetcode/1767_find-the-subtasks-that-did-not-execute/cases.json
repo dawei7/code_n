@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-noncontiguous-gaps",
+      "id": "trial-noncontiguous-gaps",
       "name": "missing subtasks form several gaps",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-independent-ranges",
+      "id": "trial-independent-ranges",
       "name": "subtask numbering restarts for each task",
       "kind": "trial",
       "visible": true,
@@ -259,7 +259,7 @@
       ]
     },
     {
-      "id": "real-unsorted-source",
+      "id": "trial-unsorted-source",
       "name": "output order is independent of table row order",
       "kind": "trial",
       "visible": true,
@@ -313,7 +313,7 @@
       ]
     },
     {
-      "id": "real-one-missing-at-end",
+      "id": "trial-one-missing-at-end",
       "name": "only the final identifier is absent",
       "kind": "trial",
       "visible": true,

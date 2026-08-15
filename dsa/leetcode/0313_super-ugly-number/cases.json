@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-classic",
+      "id": "trial-classic",
       "name": "tenth classic ugly number",
       "kind": "trial",
       "visible": true,

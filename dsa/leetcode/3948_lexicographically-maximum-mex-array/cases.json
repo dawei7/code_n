@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-maximum-value",
+      "id": "trial-maximum-value",
       "name": "the maximum legal value does not affect a small MEX",
       "kind": "trial",
       "visible": true,
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-duplicate-required-value",
+      "id": "trial-duplicate-required-value",
       "name": "duplicate zero does not satisfy the missing one",
       "kind": "trial",
       "visible": true,
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "real-three-segment-descent",
+      "id": "trial-three-segment-descent",
       "name": "suffix MEX values descend across three segments",
       "kind": "trial",
       "visible": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "real-four-then-two",
+      "id": "trial-four-then-two",
       "name": "a complete zero-through-three prefix leaves MEX two",
       "kind": "trial",
       "visible": true,
@@ -300,7 +300,7 @@
       ]
     },
     {
-      "id": "real-all-positive",
+      "id": "trial-all-positive",
       "name": "positive-only input maximizes the number of zero entries",
       "kind": "trial",
       "visible": true,
@@ -327,7 +327,7 @@
       ]
     },
     {
-      "id": "real-four-then-one",
+      "id": "trial-four-then-one",
       "name": "an out-of-order full prefix leaves one zero",
       "kind": "trial",
       "visible": true,
@@ -353,7 +353,7 @@
       ]
     },
     {
-      "id": "real-mex-five",
+      "id": "trial-mex-five",
       "name": "all values below five appear before a final zero",
       "kind": "trial",
       "visible": true,

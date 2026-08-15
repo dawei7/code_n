@@ -339,7 +339,7 @@
       ]
     },
     {
-      "id": "real-mixed-eligibility",
+      "id": "trial-mixed-eligibility",
       "name": "count and strict-average filters act independently",
       "kind": "trial",
       "visible": true,
@@ -417,7 +417,7 @@
       ]
     },
     {
-      "id": "real-descending-average",
+      "id": "trial-descending-average",
       "name": "averages sort descending",
       "kind": "trial",
       "visible": true,
@@ -484,7 +484,7 @@
       ]
     },
     {
-      "id": "real-rounded-average-tie",
+      "id": "trial-rounded-average-tie",
       "name": "equal rounded averages use the secondary key",
       "kind": "trial",
       "visible": true,
@@ -552,7 +552,7 @@
       ]
     },
     {
-      "id": "real-five-prompts",
+      "id": "trial-five-prompts",
       "name": "all prompts contribute to the group average",
       "kind": "trial",
       "visible": true,

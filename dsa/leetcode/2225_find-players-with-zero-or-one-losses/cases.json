@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-winner-also-loser",
+      "id": "trial-winner-also-loser",
       "name": "later participation updates an existing winner",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-disconnected",
+      "id": "trial-disconnected",
       "name": "independent matches retain sorted groups",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-many-wins",
+      "id": "trial-many-wins",
       "name": "repeated winner remains lossless",
       "kind": "trial",
       "visible": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "real-excluded-losers",
+      "id": "trial-excluded-losers",
       "name": "players with multiple losses are omitted",
       "kind": "trial",
       "visible": true,

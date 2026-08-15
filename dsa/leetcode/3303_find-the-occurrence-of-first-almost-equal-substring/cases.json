@@ -105,8 +105,8 @@
       ]
     },
     {
-      "id": "real-two-mismatches",
-      "name": "real: three-character windows remain too different",
+      "id": "trial-two-mismatches",
+      "name": "three-character windows remain too different",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -119,8 +119,8 @@
       ]
     },
     {
-      "id": "real-earlier-almost",
-      "name": "real: almost match precedes a later exact match",
+      "id": "trial-earlier-almost",
+      "name": "almost match precedes a later exact match",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -133,8 +133,8 @@
       ]
     },
     {
-      "id": "real-repeated-exact",
-      "name": "real: earliest of repeated exact windows is returned",
+      "id": "trial-repeated-exact",
+      "name": "earliest of repeated exact windows is returned",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -144,6 +144,36 @@
       "expected": 0,
       "tags": [
         "exact",
+        "repeated"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "pattern": "bcdffg"
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "pattern": "bcdffg"
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
         "repeated"
       ]
     }

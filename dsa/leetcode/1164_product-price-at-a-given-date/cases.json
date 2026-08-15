@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-latest-before-target",
+      "id": "trial-latest-before-target",
       "name": "choose latest eligible change",
       "kind": "trial",
       "visible": true,
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-interleaved-products",
+      "id": "trial-interleaved-products",
       "name": "group products independently",
       "kind": "trial",
       "visible": true,

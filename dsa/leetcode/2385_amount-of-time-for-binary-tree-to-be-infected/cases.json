@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-balanced-leaf",
+      "id": "trial-balanced-leaf",
       "name": "farthest node lies across the root",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-sparse-cross-branch",
+      "id": "trial-sparse-cross-branch",
       "name": "sparse tree preserves parent-child distances",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-deep-opposite-leaf",
+      "id": "trial-deep-opposite-leaf",
       "name": "deepest leaf infects the opposite branch last",
       "kind": "trial",
       "visible": true,

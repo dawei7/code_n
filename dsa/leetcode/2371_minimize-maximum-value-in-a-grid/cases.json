@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-two-by-three",
+      "id": "trial-two-by-three",
       "name": "alternating local orders",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-three-by-three",
+      "id": "trial-three-by-three",
       "name": "row and column chains interact",
       "kind": "trial",
       "visible": true,

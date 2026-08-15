@@ -269,7 +269,7 @@
       ]
     },
     {
-      "id": "hidden-known-self",
+      "id": "trial-known-self",
       "name": "self query for known endpoint",
       "kind": "trial",
       "visible": true,
@@ -312,7 +312,7 @@
       ]
     },
     {
-      "id": "hidden-fraction-chain",
+      "id": "trial-fraction-chain",
       "name": "fractional chain products",
       "kind": "trial",
       "visible": true,
@@ -360,7 +360,7 @@
       ]
     },
     {
-      "id": "hidden-merge-components",
+      "id": "trial-merge-components",
       "name": "equation joins prior components",
       "kind": "trial",
       "visible": true,

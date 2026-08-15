@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-first-long",
+      "id": "trial-first-long",
       "name": "exception at first index",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-leftover-deep",
+      "id": "trial-leftover-deep",
       "name": "repeated odd splits expose an unpaired candidate",
       "kind": "trial",
       "visible": true,
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-small-excess",
+      "id": "trial-small-excess",
       "name": "exceptional value differs by only one",
       "kind": "trial",
       "visible": true,
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "real-query-budget",
+      "id": "trial-query-budget",
       "name": "larger power-of-two array stays below query cap",
       "kind": "trial",
       "visible": true,

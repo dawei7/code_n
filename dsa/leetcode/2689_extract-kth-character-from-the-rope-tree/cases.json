@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-right-only",
+      "id": "trial-right-only",
       "name": "internal node has only a right child",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-deep-target",
+      "id": "trial-deep-target",
       "name": "position descends through several right children",
       "kind": "trial",
       "visible": true,

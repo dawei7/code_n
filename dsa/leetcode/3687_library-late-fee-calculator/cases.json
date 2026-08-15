@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-maximum-delay",
+      "id": "trial-maximum-delay",
       "name": "maximum delay receives triple fee",
       "kind": "trial",
       "visible": true,
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-consecutive-delays",
+      "id": "trial-consecutive-delays",
       "name": "every fee transition is exercised in order",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-mixed-order",
+      "id": "trial-mixed-order",
       "name": "input order does not alter independent fees",
       "kind": "trial",
       "visible": true,
@@ -127,6 +127,39 @@
       "tags": [
         "mixed-order",
         "maximum"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in daysLate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "daysLate": [
+          5
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in daysLate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "daysLate": [
+          5,
+          5
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

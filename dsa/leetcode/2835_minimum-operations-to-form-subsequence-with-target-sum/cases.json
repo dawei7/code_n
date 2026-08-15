@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-single-large-cascade",
+      "id": "trial-single-large-cascade",
       "name": "one large power supplies every lower target bit",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-existing-low-plus-large",
+      "id": "trial-existing-low-plus-large",
       "name": "an existing low bit shortens only part of the cascade",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-siblings-reused",
+      "id": "trial-siblings-reused",
       "name": "siblings from one chain satisfy multiple target bits",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-nearest-higher",
+      "id": "trial-nearest-higher",
       "name": "split the nearest duplicate power once",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-maximum-target",
+      "id": "trial-maximum-target",
       "name": "two maximum powers form the largest legal target",
       "kind": "trial",
       "visible": true,
@@ -198,6 +198,41 @@
       "tags": [
         "maximum-target",
         "maximum-value"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "target": 7
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "target": 7
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

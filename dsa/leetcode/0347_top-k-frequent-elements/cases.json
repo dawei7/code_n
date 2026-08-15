@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "hidden-four-ranks",
+      "id": "trial-four-ranks",
       "name": "four distinct frequency ranks",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "hidden-zero",
+      "id": "trial-zero",
       "name": "zero is most frequent",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "hidden-late-leader",
+      "id": "trial-late-leader",
       "name": "most frequent value appears late",
       "kind": "trial",
       "visible": true,

@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-negative-values",
+      "id": "trial-negative-values",
       "name": "a negative sum repeats later",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-extreme-values",
+      "id": "trial-extreme-values",
       "name": "large positive and negative values",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-mixed-distinct",
+      "id": "trial-mixed-distinct",
       "name": "mixed signs with no repeated pair sum",
       "kind": "trial",
       "visible": true,

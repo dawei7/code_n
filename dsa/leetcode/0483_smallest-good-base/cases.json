@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-two-digits",
+      "id": "trial-two-digits",
       "name": "only universal two-digit representation",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-long-base-two",
+      "id": "trial-long-base-two",
       "name": "many ones in base two",
       "kind": "trial",
       "visible": true,
@@ -96,6 +96,34 @@
       "expected": "2",
       "tags": [
         "base-two"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in n",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": "1"
+      },
+      "expected": "0",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in n",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": "111"
+      },
+      "expected": "10",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

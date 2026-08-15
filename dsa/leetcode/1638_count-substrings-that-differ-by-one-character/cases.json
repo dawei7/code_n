@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-identical-strings",
+      "id": "trial-identical-strings",
       "name": "identical full strings still differ across shifted substring choices",
       "kind": "trial",
       "visible": true,
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-all-distinct-alphabets",
+      "id": "trial-all-distinct-alphabets",
       "name": "only length-one pairs survive when every aligned character differs",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-repeated-runs",
+      "id": "trial-repeated-runs",
       "name": "one mismatch can be extended through matching runs on both sides",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-unequal-lengths",
+      "id": "trial-unequal-lengths",
       "name": "a singleton is compared with every position in a longer string",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-two-mismatch-boundaries",
+      "id": "trial-two-mismatch-boundaries",
       "name": "extensions stop when a second boundary mismatch appears",
       "kind": "trial",
       "visible": true,
@@ -148,6 +148,36 @@
       "tags": [
         "second-mismatch",
         "boundary-mismatches"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "t": "baba"
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "t": "baba"
+      },
+      "expected": 13,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

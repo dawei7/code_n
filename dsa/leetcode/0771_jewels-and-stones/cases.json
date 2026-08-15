@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "disjoint letter sets",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "all alphabet cases are jewels",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "repeated non-jewels around matches",
       "kind": "trial",
       "visible": true,
@@ -131,6 +131,36 @@
       },
       "expected": 3,
       "tags": [
+        "repeated"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in jewels",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "jewels": "a",
+        "stones": "aAAbbbb"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in jewels",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "jewels": "aaa",
+        "stones": "aAAbbbb"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
         "repeated"
       ]
     }

@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-two-negatives",
+      "id": "trial-two-negatives",
       "name": "delete only one of adjacent negatives",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-large-gap",
+      "id": "trial-large-gap",
       "name": "delete a large separating loss",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-zero-values",
+      "id": "trial-zero-values",
       "name": "zeros preserve a non-empty answer",
       "kind": "trial",
       "visible": true,

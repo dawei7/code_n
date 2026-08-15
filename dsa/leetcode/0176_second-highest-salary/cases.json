@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-negative",
+      "id": "trial-negative",
       "name": "negative salaries retain ordering",
       "kind": "trial",
       "visible": true,

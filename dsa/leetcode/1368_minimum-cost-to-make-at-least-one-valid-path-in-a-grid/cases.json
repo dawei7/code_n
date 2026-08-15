@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "hidden-two-by-two",
+      "id": "trial-two-by-two",
       "name": "two-by-two correction",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "hidden-one-column",
+      "id": "trial-one-column",
       "name": "one column follows down arrows",
       "kind": "trial",
       "visible": true,

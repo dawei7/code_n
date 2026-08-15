@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-late-longest",
+      "id": "trial-late-longest",
       "name": "longest match appears only at the end",
       "kind": "trial",
       "visible": true,
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "real-repeated-difference",
+      "id": "trial-repeated-difference",
       "name": "earliest repeated difference must be retained",
       "kind": "trial",
       "visible": true,
@@ -248,7 +248,7 @@
       ]
     },
     {
-      "id": "real-only-middle",
+      "id": "trial-only-middle",
       "name": "matching range excludes both ends",
       "kind": "trial",
       "visible": true,
@@ -276,7 +276,7 @@
       ]
     },
     {
-      "id": "real-long-alternation",
+      "id": "trial-long-alternation",
       "name": "twenty positions repeatedly return to zero",
       "kind": "trial",
       "visible": true,
@@ -330,6 +330,51 @@
       "tags": [
         "repeated-prefix",
         "full-range"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1
+        ],
+        "nums2": [
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

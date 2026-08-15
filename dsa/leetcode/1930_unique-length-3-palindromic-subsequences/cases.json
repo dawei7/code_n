@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-one-pair",
+      "id": "trial-one-pair",
       "name": "exactly one matching outer pair",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-overlap",
+      "id": "trial-overlap",
       "name": "overlapping subsequences use two outer letters",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-duplicate-realizations",
+      "id": "trial-duplicate-realizations",
       "name": "repeated indices do not multiply unique strings",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-three-middle-values",
+      "id": "trial-three-middle-values",
       "name": "one outer letter admits three middle values",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-two-cycles",
+      "id": "trial-two-cycles",
       "name": "two alphabet cycles create six palindromes",
       "kind": "trial",
       "visible": true,

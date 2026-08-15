@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-all-return-to-zero",
+      "id": "trial-all-return-to-zero",
       "name": "repeated full-prefix detours",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-mixed-back-jumps",
+      "id": "trial-mixed-back-jumps",
       "name": "recurrence references several earlier arrivals",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-last-entry-irrelevant",
+      "id": "trial-last-entry-irrelevant",
       "name": "the last room's outgoing rule does not change first coverage",
       "kind": "trial",
       "visible": true,

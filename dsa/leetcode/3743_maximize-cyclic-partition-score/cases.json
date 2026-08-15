@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "every cyclic part has zero range",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-two-alternating-pairs",
+      "id": "trial-two-alternating-pairs",
       "name": "two disjoint high-low parts",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-odd-cycle",
+      "id": "trial-odd-cycle",
       "name": "three elements support only one positive range",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-wrap-dominates",
+      "id": "trial-wrap-dominates",
       "name": "the best pairing crosses the displayed cut",
       "kind": "trial",
       "visible": true,
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "real-global-range",
+      "id": "trial-global-range",
       "name": "one part uses the array maximum and minimum",
       "kind": "trial",
       "visible": true,
@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "real-large-score",
+      "id": "trial-large-score",
       "name": "two extreme pairs require a wide result",
       "kind": "trial",
       "visible": true,
@@ -263,6 +263,41 @@
       "tags": [
         "value-boundaries",
         "large-score"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

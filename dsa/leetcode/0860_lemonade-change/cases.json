@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "first customer pays twenty",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "preserve fives with greedy preference",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "second twenty cannot be changed",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "alternating successful transactions",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "many exact payments",
       "kind": "trial",
       "visible": true,
@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "hidden-6",
+      "id": "trial-6",
       "name": "tens exhaust all fives",
       "kind": "trial",
       "visible": true,
@@ -222,6 +222,23 @@
       "expected": false,
       "tags": [
         "depletion"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in bills",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "bills": [
+          5,
+          5
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

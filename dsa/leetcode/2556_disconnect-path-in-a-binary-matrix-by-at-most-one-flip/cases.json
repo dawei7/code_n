@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-single-cell",
+      "id": "trial-single-cell",
       "name": "one cell is both protected endpoints",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-two-endpoints",
+      "id": "trial-two-endpoints",
       "name": "a two-cell path has no legal flip",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-single-column-bottleneck",
+      "id": "trial-single-column-bottleneck",
       "name": "an interior cell cuts a one-column path",
       "kind": "trial",
       "visible": true,

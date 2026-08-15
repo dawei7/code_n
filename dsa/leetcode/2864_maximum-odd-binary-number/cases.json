@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-alternating-bits",
+      "id": "trial-alternating-bits",
       "name": "all high-value set bits move left",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-two-ones-no-zeros",
+      "id": "trial-two-ones-no-zeros",
       "name": "two set bits remain unchanged",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-unordered-mix",
+      "id": "trial-unordered-mix",
       "name": "multiplicities alone determine the answer",
       "kind": "trial",
       "visible": true,
@@ -109,6 +109,34 @@
       "expected": "11100001",
       "tags": [
         "mixed-bits"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0"
+      },
+      "expected": "01",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000"
+      },
+      "expected": "0001",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

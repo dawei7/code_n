@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-stream-on-first-day",
+      "id": "trial-stream-on-first-day",
       "name": "a stream on January first disqualifies",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-no-overlapping-subscription",
+      "id": "trial-no-overlapping-subscription",
       "name": "accounts outside 2021 are ignored",
       "kind": "trial",
       "visible": true,
@@ -269,7 +269,7 @@
       ]
     },
     {
-      "id": "real-multiple-streams-one-account",
+      "id": "trial-multiple-streams-one-account",
       "name": "multiple sessions still exclude one account once",
       "kind": "trial",
       "visible": true,

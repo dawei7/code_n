@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-equal-endpoints-one-difference",
+      "id": "trial-equal-endpoints-one-difference",
       "name": "one interior difference is two positions from either boundary",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-centered-difference",
+      "id": "trial-centered-difference",
       "name": "a centered unequal word has equal endpoint distances",
       "kind": "trial",
       "visible": true,
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-unequal-interior-block",
+      "id": "trial-unequal-interior-block",
       "name": "an unequal interior block reaches four positions",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-maximum-length-single-difference",
+      "id": "trial-maximum-length-single-difference",
       "name": "one differing word in a maximum-length array",
       "kind": "trial",
       "visible": true,
@@ -298,7 +298,7 @@
       ]
     },
     {
-      "id": "real-unequal-maximum-word-length-endpoints",
+      "id": "trial-unequal-maximum-word-length-endpoints",
       "name": "unequal ten-character endpoints span the array",
       "kind": "trial",
       "visible": true,
@@ -316,6 +316,39 @@
       "tags": [
         "maximum-word-length",
         "endpoint-pair"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "leetcode"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "leetcode",
+          "leetcode"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

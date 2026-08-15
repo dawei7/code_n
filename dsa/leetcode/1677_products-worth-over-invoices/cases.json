@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-mixed-empty-products",
+      "id": "trial-mixed-empty-products",
       "name": "invoiced and empty products coexist",
       "kind": "trial",
       "visible": true,
@@ -269,7 +269,7 @@
       ]
     },
     {
-      "id": "real-independent-columns",
+      "id": "trial-independent-columns",
       "name": "do not combine the four monetary categories",
       "kind": "trial",
       "visible": true,
@@ -324,7 +324,7 @@
       ]
     },
     {
-      "id": "real-row-order-independent",
+      "id": "trial-row-order-independent",
       "name": "invoice row order does not affect groups",
       "kind": "trial",
       "visible": true,
@@ -399,7 +399,7 @@
       ]
     },
     {
-      "id": "real-single-invoice-each",
+      "id": "trial-single-invoice-each",
       "name": "one invoice per product remains distinct",
       "kind": "trial",
       "visible": true,

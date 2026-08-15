@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-duplicate-and-third",
+      "id": "trial-duplicate-and-third",
       "name": "repeated ones and one four produce a gap of three",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-localized-ranges",
+      "id": "trial-localized-ranges",
       "name": "overlapping ranges expose different present values",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-consecutive-values",
+      "id": "trial-consecutive-values",
       "name": "any consecutive pair makes the answer one",
       "kind": "trial",
       "visible": true,
@@ -257,7 +257,7 @@
       ]
     },
     {
-      "id": "real-query-length-two-same",
+      "id": "trial-query-length-two-same",
       "name": "a two-position range may still contain one distinct value",
       "kind": "trial",
       "visible": true,
@@ -294,7 +294,7 @@
       ]
     },
     {
-      "id": "real-many-copies",
+      "id": "trial-many-copies",
       "name": "multiplicity never changes the distinct-value gaps",
       "kind": "trial",
       "visible": true,
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "id": "real-unsorted-values",
+      "id": "trial-unsorted-values",
       "name": "value order in nums does not affect sorted gaps",
       "kind": "trial",
       "visible": true,
@@ -379,7 +379,7 @@
       ]
     },
     {
-      "id": "real-single-query-wide",
+      "id": "trial-single-query-wide",
       "name": "a wide query with sparse values uses the smallest adjacent gap",
       "kind": "trial",
       "visible": true,

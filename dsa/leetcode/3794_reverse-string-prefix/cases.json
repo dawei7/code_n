@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-thirteen-character-prefix",
+      "id": "trial-thirteen-character-prefix",
       "name": "reverse half of the alphabet",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-one-short-of-complete",
+      "id": "trial-one-short-of-complete",
       "name": "leave only the final character fixed",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-duplicate-boundary",
+      "id": "trial-duplicate-boundary",
       "name": "equal characters straddle the prefix boundary",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "maximum legal string length",
       "kind": "trial",
       "visible": true,

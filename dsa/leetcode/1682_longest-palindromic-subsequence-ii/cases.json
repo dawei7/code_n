@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-whole-abba",
+      "id": "trial-whole-abba",
       "name": "complete four-character good palindrome",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-whole-six",
+      "id": "trial-whole-six",
       "name": "alternating layers around one equal center",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-odd-source",
+      "id": "trial-odd-source",
       "name": "odd source still yields an even subsequence",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-statement-contrast",
+      "id": "trial-statement-contrast",
       "name": "longer source with only a four-letter optimum",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-many-layers",
+      "id": "trial-many-layers",
       "name": "fourteen-character good palindrome",
       "kind": "trial",
       "visible": true,

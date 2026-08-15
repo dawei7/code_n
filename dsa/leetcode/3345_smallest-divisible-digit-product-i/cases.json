@@ -81,8 +81,8 @@
       ]
     },
     {
-      "id": "real-carry-into-trailing-zero",
-      "name": "real: incrementing crosses into a trailing zero",
+      "id": "trial-carry-into-trailing-zero",
+      "name": "incrementing crosses into a trailing zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -97,8 +97,8 @@
       ]
     },
     {
-      "id": "real-late-nonzero-answer",
-      "name": "real: several rejected products precede a nonzero answer",
+      "id": "trial-late-nonzero-answer",
+      "name": "several rejected products precede a nonzero answer",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -113,8 +113,8 @@
       ]
     },
     {
-      "id": "real-maximum-lower-bound",
-      "name": "real: maximum legal lower bound is immediately valid",
+      "id": "trial-maximum-lower-bound",
+      "name": "maximum legal lower bound is immediately valid",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-recover-after-outlier",
+      "id": "trial-recover-after-outlier",
       "name": "valid short windows resume after an outlier",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-equal-tail",
+      "id": "trial-equal-tail",
       "name": "a zero-cost equal tail contributes all of its subarrays",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-alternating-extrema",
+      "id": "trial-alternating-extrema",
       "name": "every adjacent pair lies exactly on the threshold",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-maximum-k",
+      "id": "trial-maximum-k",
       "name": "the maximum threshold admits every boundary-valued subarray",
       "kind": "trial",
       "visible": true,
@@ -253,7 +253,7 @@
       ]
     },
     {
-      "id": "real-large-equal-count",
+      "id": "trial-large-equal-count",
       "name": "a longer equal run produces a triangular count",
       "kind": "trial",
       "visible": true,

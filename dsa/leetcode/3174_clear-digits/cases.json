@@ -85,8 +85,8 @@
       ]
     },
     {
-      "id": "real-suffix-survives",
-      "name": "real: a suffix letter follows all deletions",
+      "id": "trial-suffix-survives",
+      "name": "a suffix letter follows all deletions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -99,8 +99,8 @@
       ]
     },
     {
-      "id": "real-varied-digits",
-      "name": "real: digit values do not affect deletion",
+      "id": "trial-varied-digits",
+      "name": "digit values do not affect deletion",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -113,8 +113,8 @@
       ]
     },
     {
-      "id": "real-long-untouched-word",
-      "name": "real: a longer all-letter string is preserved",
+      "id": "trial-long-untouched-word",
+      "name": "a longer all-letter string is preserved",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -126,8 +126,8 @@
       ]
     },
     {
-      "id": "real-mixed-survivors",
-      "name": "real: separated operations leave outer letters",
+      "id": "trial-mixed-survivors",
+      "name": "separated operations leave outer letters",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -140,8 +140,8 @@
       ]
     },
     {
-      "id": "real-two-of-four-survive",
-      "name": "real: two trailing digits remove the two nearest letters",
+      "id": "trial-two-of-four-survive",
+      "name": "two trailing digits remove the two nearest letters",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -154,8 +154,8 @@
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "real: maximum legal length with all pairs deleted",
+      "id": "trial-maximum-length",
+      "name": "maximum legal length with all pairs deleted",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -165,6 +165,34 @@
       "tags": [
         "maximum-length",
         "consecutive-digits"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": "a",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": "aaa",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

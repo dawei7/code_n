@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-all-black",
+      "id": "trial-all-black",
       "name": "all black balls",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-all-white",
+      "id": "trial-all-white",
       "name": "all white balls",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-reverse-grouped",
+      "id": "trial-reverse-grouped",
       "name": "every black precedes every white",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-mixed",
+      "id": "trial-mixed",
       "name": "several separated black groups",
       "kind": "trial",
       "visible": true,
@@ -132,6 +132,20 @@
       "expected": 8,
       "tags": [
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

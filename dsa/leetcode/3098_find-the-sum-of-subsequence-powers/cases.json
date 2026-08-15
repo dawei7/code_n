@@ -118,8 +118,8 @@
       ]
     },
     {
-      "id": "real-duplicate-index-choices",
-      "name": "real: equal values create distinct index choices",
+      "id": "trial-duplicate-index-choices",
+      "name": "equal values create distinct index choices",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -139,8 +139,8 @@
       ]
     },
     {
-      "id": "real-uneven-gaps",
-      "name": "real: different subsequences have different minimum gaps",
+      "id": "trial-uneven-gaps",
+      "name": "different subsequences have different minimum gaps",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -159,8 +159,8 @@
       ]
     },
     {
-      "id": "real-extreme-pair",
-      "name": "real: the maximum legal absolute difference",
+      "id": "trial-extreme-pair",
+      "name": "the maximum legal absolute difference",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -177,8 +177,8 @@
       ]
     },
     {
-      "id": "real-modulo-reduction",
-      "name": "real: many extreme pairs require modulo reduction",
+      "id": "trial-modulo-reduction",
+      "name": "many extreme pairs require modulo reduction",
       "kind": "trial",
       "visible": true,
       "input": {

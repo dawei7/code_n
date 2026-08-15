@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-two-thirds",
+      "id": "trial-two-thirds",
       "name": "two thirds rounds down to sixty-six",
       "kind": "trial",
       "visible": true,
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-one-percent",
+      "id": "trial-one-percent",
       "name": "one match among one hundred positions",
       "kind": "trial",
       "visible": true,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-half",
+      "id": "trial-half",
       "name": "exact whole percentage needs no rounding",
       "kind": "trial",
       "visible": true,
@@ -114,6 +114,36 @@
       "expected": 50,
       "tags": [
         "exact-percentage"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "f",
+        "letter": "o"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "fff",
+        "letter": "o"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

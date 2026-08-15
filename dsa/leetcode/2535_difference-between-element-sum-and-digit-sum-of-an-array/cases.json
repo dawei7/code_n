@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-repeated",
+      "id": "trial-repeated",
       "name": "repeated maximum values",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-mixed",
+      "id": "trial-mixed",
       "name": "varied digit lengths",
       "kind": "trial",
       "visible": true,
@@ -106,6 +106,39 @@
       "expected": 2304,
       "tags": [
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

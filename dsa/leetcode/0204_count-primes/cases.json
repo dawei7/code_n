@@ -42,7 +42,7 @@
       ]
     },
     {
-      "id": "real-hundred",
+      "id": "trial-hundred",
       "name": "primes below one hundred",
       "kind": "trial",
       "visible": true,

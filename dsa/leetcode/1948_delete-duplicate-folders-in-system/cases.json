@@ -289,7 +289,7 @@
       ]
     },
     {
-      "id": "real-different-depths",
+      "id": "trial-different-depths",
       "name": "duplicate structures at different depths are deleted",
       "kind": "trial",
       "visible": true,
@@ -327,7 +327,7 @@
       ]
     },
     {
-      "id": "real-name-sensitive",
+      "id": "trial-name-sensitive",
       "name": "equal shapes with different child names are unique",
       "kind": "trial",
       "visible": true,
@@ -370,7 +370,7 @@
       ]
     },
     {
-      "id": "real-duplicate-under-one-parent",
+      "id": "trial-duplicate-under-one-parent",
       "name": "sibling folders may have matching nonempty structures",
       "kind": "trial",
       "visible": true,
@@ -418,7 +418,7 @@
       ]
     },
     {
-      "id": "real-unique-chain",
+      "id": "trial-unique-chain",
       "name": "nested suffixes with different depths remain unique",
       "kind": "trial",
       "visible": true,

@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "real-empty-middle-bus",
+      "id": "trial-empty-middle-bus",
       "name": "a bus may depart empty before later arrivals",
       "kind": "trial",
       "visible": true,
@@ -311,7 +311,7 @@
       ]
     },
     {
-      "id": "real-passenger-after-final",
+      "id": "trial-passenger-after-final",
       "name": "arrivals after the final bus never board",
       "kind": "trial",
       "visible": true,

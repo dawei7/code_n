@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-midnight-boundary",
+      "id": "trial-midnight-boundary",
       "name": "adjacent timestamps across midnight form separate dates",
       "kind": "trial",
       "visible": true,
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-same-day-number-different-month",
+      "id": "trial-same-day-number-different-month",
       "name": "equal day numbers in different months stay separate",
       "kind": "trial",
       "visible": true,
@@ -274,7 +274,7 @@
       ]
     },
     {
-      "id": "real-tied-max-with-lower-row",
+      "id": "trial-tied-max-with-lower-row",
       "name": "preserve only both co-maxima",
       "kind": "trial",
       "visible": true,
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "id": "real-id-order-across-dates",
+      "id": "trial-id-order-across-dates",
       "name": "global ID ordering differs from date order",
       "kind": "trial",
       "visible": true,
@@ -371,7 +371,7 @@
       ]
     },
     {
-      "id": "real-year-boundary",
+      "id": "trial-year-boundary",
       "name": "same month and day in different years stay separate",
       "kind": "trial",
       "visible": true,
@@ -413,7 +413,7 @@
       ]
     },
     {
-      "id": "real-many-daily-groups",
+      "id": "trial-many-daily-groups",
       "name": "select maxima independently for several groups",
       "kind": "trial",
       "visible": true,

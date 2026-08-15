@@ -248,7 +248,7 @@
       }
     },
     {
-      "id": "real-forbidden-prefix",
+      "id": "trial-forbidden-prefix",
       "name": "forbidden prefix punctuation",
       "kind": "trial",
       "visible": true,
@@ -307,7 +307,7 @@
       }
     },
     {
-      "id": "real-lookalike-domain",
+      "id": "trial-lookalike-domain",
       "name": "suffix must occupy the exact end",
       "kind": "trial",
       "visible": true,
@@ -366,7 +366,7 @@
       }
     },
     {
-      "id": "real-duplicate-addresses",
+      "id": "trial-duplicate-addresses",
       "name": "filtering preserves distinct user rows",
       "kind": "trial",
       "visible": true,
@@ -415,7 +415,7 @@
       }
     },
     {
-      "id": "real-empty-and-domain-only",
+      "id": "trial-empty-and-domain-only",
       "name": "empty and domain-only strings fail",
       "kind": "trial",
       "visible": true,
@@ -464,7 +464,7 @@
       }
     },
     {
-      "id": "real-ascii-only",
+      "id": "trial-ascii-only",
       "name": "non-English initial letters fail",
       "kind": "trial",
       "visible": true,
@@ -513,7 +513,7 @@
       }
     },
     {
-      "id": "real-long-prefix",
+      "id": "trial-long-prefix",
       "name": "long legal prefix remains valid",
       "kind": "trial",
       "visible": true,

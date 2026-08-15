@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-remove-prefix",
+      "id": "trial-remove-prefix",
       "name": "remove only the first value",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-equal-boundary-join",
+      "id": "trial-equal-boundary-join",
       "name": "equality permits a shorter join",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-short-middle",
+      "id": "trial-short-middle",
       "name": "remove two disruptive middle values",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-long-middle-dip",
+      "id": "trial-long-middle-dip",
       "name": "remove a low run between ordered sides",
       "kind": "trial",
       "visible": true,
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-preserve-both-sides",
+      "id": "trial-preserve-both-sides",
       "name": "retain a prefix and suffix around two large values",
       "kind": "trial",
       "visible": true,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "real-descending-blocks",
+      "id": "trial-descending-blocks",
       "name": "descending duplicate blocks",
       "kind": "trial",
       "visible": true,
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "id": "real-upper-bound-values",
+      "id": "trial-upper-bound-values",
       "name": "maximum values remain sorted with equality",
       "kind": "trial",
       "visible": true,
@@ -276,6 +276,39 @@
       "tags": [
         "real",
         "upper-bound",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

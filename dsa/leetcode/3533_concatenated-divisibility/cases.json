@@ -103,8 +103,8 @@
       ]
     },
     {
-      "id": "real-all-orders-valid",
-      "name": "real: both orders valid, choose ascending values",
+      "id": "trial-all-orders-valid",
+      "name": "both orders valid, choose ascending values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -124,8 +124,8 @@
       ]
     },
     {
-      "id": "real-duplicate-indices",
-      "name": "real: repeated values remain separate elements",
+      "id": "trial-duplicate-indices",
+      "name": "repeated values remain separate elements",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -147,8 +147,8 @@
       ]
     },
     {
-      "id": "real-numeric-not-string-order",
-      "name": "real: numeric lexicographic reconstruction with different digit lengths",
+      "id": "trial-numeric-not-string-order",
+      "name": "numeric lexicographic reconstruction with different digit lengths",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -170,8 +170,8 @@
       ]
     },
     {
-      "id": "real-modulus-one",
-      "name": "real: modulus one returns numeric sort",
+      "id": "trial-modulus-one",
+      "name": "modulus one returns numeric sort",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -193,8 +193,8 @@
       ]
     },
     {
-      "id": "real-multiple-digits",
-      "name": "real: multi-digit remainder transitions",
+      "id": "trial-multiple-digits",
+      "name": "multi-digit remainder transitions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -213,6 +213,41 @@
       "tags": [
         "real",
         "decimal-shift"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ],
+        "k": 5
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ],
+        "k": 5
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

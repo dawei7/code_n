@@ -54,7 +54,7 @@
       ]
     },
     {
-      "id": "real-interleaved",
+      "id": "trial-interleaved",
       "name": "three molecules with interleaved arrivals",
       "kind": "trial",
       "visible": true,

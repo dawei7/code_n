@@ -309,7 +309,7 @@
       ]
     },
     {
-      "id": "real-common-friends-below-endpoints",
+      "id": "trial-common-friends-below-endpoints",
       "name": "common friends with smaller IDs are counted",
       "kind": "trial",
       "visible": true,
@@ -370,7 +370,7 @@
       ]
     },
     {
-      "id": "real-two-disconnected-components",
+      "id": "trial-two-disconnected-components",
       "name": "only the qualifying graph component emits a row",
       "kind": "trial",
       "visible": true,
@@ -438,7 +438,7 @@
       ]
     },
     {
-      "id": "real-one-common-friend",
+      "id": "trial-one-common-friend",
       "name": "one shared neighbor remains below the threshold",
       "kind": "trial",
       "visible": true,
@@ -476,7 +476,7 @@
       ]
     },
     {
-      "id": "real-disjoint-edges",
+      "id": "trial-disjoint-edges",
       "name": "disjoint friendships have no common neighbors",
       "kind": "trial",
       "visible": true,
@@ -515,7 +515,7 @@
       ]
     },
     {
-      "id": "real-empty-table",
+      "id": "trial-empty-table",
       "name": "no friendships produce no result rows",
       "kind": "trial",
       "visible": true,

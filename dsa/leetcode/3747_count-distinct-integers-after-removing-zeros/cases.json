@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-two-digit-maximum",
+      "id": "trial-two-digit-maximum",
       "name": "every zero-free value through two digits",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-power-of-ten",
+      "id": "trial-power-of-ten",
       "name": "a new decimal length adds no value yet",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-internal-zero",
+      "id": "trial-internal-zero",
       "name": "internal zero terminates prefix counting",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-mixed-prefix",
+      "id": "trial-mixed-prefix",
       "name": "count several complete and partial prefix groups",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-largest-zero-free",
+      "id": "trial-largest-zero-free",
       "name": "largest fifteen-digit zero-free bound",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum legal bound begins a blocked length",
       "kind": "trial",
       "visible": true,

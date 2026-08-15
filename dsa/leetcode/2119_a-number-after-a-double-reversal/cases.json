@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-palindrome",
+      "id": "trial-palindrome",
       "name": "being a palindrome is not required",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "the maximum value ends in zeros",
       "kind": "trial",
       "visible": true,
@@ -96,6 +96,20 @@
       "tags": [
         "maximum",
         "many-zeros"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value num=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

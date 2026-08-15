@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-single-video",
+      "id": "trial-single-video",
       "name": "one video",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-best-video-late",
+      "id": "trial-best-video-late",
       "name": "later video becomes the creator's best",
       "kind": "trial",
       "visible": true,
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "real-tied-video-earlier-id-late",
+      "id": "trial-tied-video-earlier-id-late",
       "name": "lexicographically smaller tied id arrives later",
       "kind": "trial",
       "visible": true,
@@ -256,7 +256,7 @@
       ]
     },
     {
-      "id": "real-three-way-creator-tie",
+      "id": "trial-three-way-creator-tie",
       "name": "three creators share maximum popularity",
       "kind": "trial",
       "visible": true,

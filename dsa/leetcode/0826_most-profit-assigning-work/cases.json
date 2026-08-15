@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "maximum job and ability values",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "abilities just below all jobs",
       "kind": "trial",
       "visible": true,
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "easiest job remains most profitable",
       "kind": "trial",
       "visible": true,
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "repeated best job across abilities",
       "kind": "trial",
       "visible": true,
@@ -275,7 +275,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "preserve difficulty-profit pairing",
       "kind": "trial",
       "visible": true,
@@ -302,6 +302,65 @@
       "tags": [
         "paired-arrays",
         "dominated-job"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in difficulty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "difficulty": [
+          2
+        ],
+        "profit": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "worker": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": 40,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in difficulty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "difficulty": [
+          2,
+          2
+        ],
+        "profit": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "worker": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": 80,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -96,8 +96,8 @@
       ]
     },
     {
-      "id": "real-three-tied-groups",
-      "name": "real: three maximum groups",
+      "id": "trial-three-tied-groups",
+      "name": "three maximum groups",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -120,8 +120,8 @@
       ]
     },
     {
-      "id": "real-clear-winner",
-      "name": "real: one frequency is strictly greatest",
+      "id": "trial-clear-winner",
+      "name": "one frequency is strictly greatest",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -142,8 +142,8 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "real: values at both contract boundaries",
+      "id": "trial-value-boundaries",
+      "name": "values at both contract boundaries",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-two-points",
+      "id": "trial-two-points",
       "name": "exactly two points determine a line",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-negative-diagonal",
+      "id": "trial-negative-diagonal",
       "name": "collinear points with a negative slope",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-late-outlier",
+      "id": "trial-late-outlier",
       "name": "final point departs from the line",
       "kind": "trial",
       "visible": true,

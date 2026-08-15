@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "real-positive-front",
+      "id": "trial-positive-front",
       "name": "a larger digit belongs at the highest place",
       "kind": "trial",
       "visible": true,
@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-negative-example",
+      "id": "trial-negative-example",
       "name": "a small digit minimizes the negative magnitude prefix",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-positive-append",
+      "id": "trial-positive-append",
       "name": "smaller inserted digit belongs at the end",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-negative-append",
+      "id": "trial-negative-append",
       "name": "larger inserted digit belongs at the end of a negative value",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-single-positive",
+      "id": "trial-single-positive",
       "name": "one positive digit uses the ordinary comparison",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-single-negative",
+      "id": "trial-single-negative",
       "name": "one negative digit reverses the comparison",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-equal-run-positive",
+      "id": "trial-equal-run-positive",
       "name": "cross equal digits before the first smaller one",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-equal-run-negative",
+      "id": "trial-equal-run-negative",
       "name": "cross equal digits before the first larger one",
       "kind": "trial",
       "visible": true,
@@ -179,6 +179,36 @@
       "tags": [
         "equal-run",
         "negative"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in n",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": "9",
+        "x": 9
+      },
+      "expected": "99",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in n",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": "999",
+        "x": 9
+      },
+      "expected": "9999",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

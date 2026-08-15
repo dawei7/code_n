@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-predicates-on-different-rows",
+      "id": "trial-predicates-on-different-rows",
       "name": "separate near-miss rows cannot combine",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-zero-amount-threshold",
+      "id": "trial-zero-amount-threshold",
       "name": "zero threshold permits a zero purchase",
       "kind": "trial",
       "visible": true,

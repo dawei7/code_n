@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "hidden-right-choice",
+      "id": "trial-right-choice",
       "name": "optimal right endpoint opening",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "hidden-mixed",
+      "id": "trial-mixed",
       "name": "mixed six-score game",
       "kind": "trial",
       "visible": true,

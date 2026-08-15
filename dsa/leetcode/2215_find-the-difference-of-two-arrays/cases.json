@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-one-sided-empty",
+      "id": "trial-one-sided-empty",
       "name": "all first values also occur in the second",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-negative-duplicates",
+      "id": "trial-negative-duplicates",
       "name": "duplicates and signs do not affect membership",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-singletons-same",
+      "id": "trial-singletons-same",
       "name": "equal singleton arrays have no difference",
       "kind": "trial",
       "visible": true,
@@ -224,7 +224,7 @@
       ]
     },
     {
-      "id": "real-domain-boundaries",
+      "id": "trial-domain-boundaries",
       "name": "numeric boundary values remain distinct",
       "kind": "trial",
       "visible": true,
@@ -253,6 +253,67 @@
       },
       "tags": [
         "boundaries"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          2,
+          4,
+          6
+        ]
+      },
+      "expected": [
+        [
+          1
+        ],
+        [
+          2,
+          4,
+          6
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1
+        ],
+        "nums2": [
+          2,
+          4,
+          6
+        ]
+      },
+      "expected": [
+        [
+          1
+        ],
+        [
+          2,
+          4,
+          6
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

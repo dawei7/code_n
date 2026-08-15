@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-inclusive-end",
+      "id": "trial-inclusive-end",
       "name": "an ad at the end boundary excludes the session",
       "kind": "trial",
       "visible": true,
@@ -256,7 +256,7 @@
       ]
     },
     {
-      "id": "real-ads-outside-interval",
+      "id": "trial-ads-outside-interval",
       "name": "ads immediately outside both boundaries do not match",
       "kind": "trial",
       "visible": true,
@@ -303,7 +303,7 @@
       ]
     },
     {
-      "id": "real-ad-in-gap",
+      "id": "trial-ad-in-gap",
       "name": "an ad between nonoverlapping sessions affects neither",
       "kind": "trial",
       "visible": true,
@@ -354,7 +354,7 @@
       ]
     },
     {
-      "id": "real-multiple-ads",
+      "id": "trial-multiple-ads",
       "name": "several matching ads still exclude one session",
       "kind": "trial",
       "visible": true,

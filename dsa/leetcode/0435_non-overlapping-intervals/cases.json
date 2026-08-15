@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "hidden-negative",
+      "id": "trial-negative",
       "name": "intervals cross negative coordinates",
       "kind": "trial",
       "visible": true,
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "hidden-nested",
+      "id": "trial-nested",
       "name": "earliest finish beats nested alternatives",
       "kind": "trial",
       "visible": true,
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "hidden-all-overlap",
+      "id": "trial-all-overlap",
       "name": "every pair overlaps",
       "kind": "trial",
       "visible": true,

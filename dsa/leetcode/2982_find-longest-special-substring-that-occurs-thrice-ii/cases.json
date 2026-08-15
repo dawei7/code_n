@@ -69,8 +69,8 @@
       ]
     },
     {
-      "id": "real-three-runs",
-      "name": "real: one occurrence from each of three runs",
+      "id": "trial-three-runs",
+      "name": "one occurrence from each of three runs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -82,8 +82,8 @@
       ]
     },
     {
-      "id": "real-competing",
-      "name": "real: choose the best character",
+      "id": "trial-competing",
+      "name": "choose the best character",
       "kind": "trial",
       "visible": true,
       "input": {

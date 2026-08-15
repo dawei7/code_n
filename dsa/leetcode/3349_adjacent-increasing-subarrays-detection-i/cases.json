@@ -116,8 +116,8 @@
       ]
     },
     {
-      "id": "real-separated-short-blocks",
-      "name": "real: increasing blocks are not adjacent",
+      "id": "trial-separated-short-blocks",
+      "name": "increasing blocks are not adjacent",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-equal-shared-boundary",
-      "name": "real: equality across block boundary is allowed",
+      "id": "trial-equal-shared-boundary",
+      "name": "equality across block boundary is allowed",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -158,8 +158,8 @@
       ]
     },
     {
-      "id": "real-negative-exact-runs",
-      "name": "real: negative and positive consecutive runs",
+      "id": "trial-negative-exact-runs",
+      "name": "negative and positive consecutive runs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -182,8 +182,8 @@
       ]
     },
     {
-      "id": "real-strictly-descending",
-      "name": "real: no increasing pair in descending input",
+      "id": "trial-strictly-descending",
+      "name": "no increasing pair in descending input",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -204,8 +204,8 @@
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "real: maximum-length single run",
+      "id": "trial-maximum-length",
+      "name": "maximum-length single run",
       "kind": "trial",
       "visible": true,
       "input": {

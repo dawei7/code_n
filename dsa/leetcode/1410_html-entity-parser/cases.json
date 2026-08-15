@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-single-pass",
+      "id": "trial-single-pass",
       "name": "decoded ampersand is not parsed again",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-incomplete",
+      "id": "trial-incomplete",
       "name": "unknown and incomplete spellings",
       "kind": "trial",
       "visible": true,
@@ -95,6 +95,34 @@
       "expected": "a &unknown; b &amp c <",
       "tags": [
         "incomplete"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in text",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "&"
+      },
+      "expected": "&",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in text",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "&&&"
+      },
+      "expected": "&&&",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

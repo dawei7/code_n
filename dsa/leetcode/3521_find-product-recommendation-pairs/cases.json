@@ -256,8 +256,8 @@
       ]
     },
     {
-      "id": "real-no-qualifying-pairs",
-      "name": "real: all shared counts below three",
+      "id": "trial-no-qualifying-pairs",
+      "name": "all shared counts below three",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -325,8 +325,8 @@
       ]
     },
     {
-      "id": "real-count-and-id-ordering",
-      "name": "real: descending counts and ascending pair tie-breakers",
+      "id": "trial-count-and-id-ordering",
+      "name": "descending counts and ascending pair tie-breakers",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -493,8 +493,8 @@
       ]
     },
     {
-      "id": "real-nonconsecutive-identifiers",
-      "name": "real: normalize nonconsecutive product identifiers",
+      "id": "trial-nonconsecutive-identifiers",
+      "name": "normalize nonconsecutive product identifiers",
       "kind": "trial",
       "visible": true,
       "input": {

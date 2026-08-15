@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-gap-already-large",
+      "id": "trial-gap-already-large",
       "name": "intervening tasks satisfy the spacing",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-multiple-types",
+      "id": "trial-multiple-types",
       "name": "each type retains its own last day",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-large-identifiers",
+      "id": "trial-large-identifiers",
       "name": "task identifiers are sparse",
       "kind": "trial",
       "visible": true,

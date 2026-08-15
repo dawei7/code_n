@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-two-equal",
+      "id": "trial-two-equal",
       "name": "equal values at two indices count separately",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-three-ones",
+      "id": "trial-three-ones",
       "name": "duplicate one bits occur in half the subsets",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-disjoint-bits",
+      "id": "trial-disjoint-bits",
       "name": "disjoint powers of two combine in the OR",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-high-and-low-bit",
+      "id": "trial-high-and-low-bit",
       "name": "separated high and low bits both contribute",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-overlapping-bits",
+      "id": "trial-overlapping-bits",
       "name": "overlapping and distinct bits share one formula",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "twelve equal values count index multiplicity",
       "kind": "trial",
       "visible": true,
@@ -216,6 +216,39 @@
       },
       "tags": [
         "maximum-length",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

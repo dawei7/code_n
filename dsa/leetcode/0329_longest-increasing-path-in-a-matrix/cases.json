@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "hidden-snake",
+      "id": "trial-snake",
       "name": "path visits every cell",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "hidden-negative",
+      "id": "trial-negative",
       "name": "negative increasing path",
       "kind": "trial",
       "visible": true,
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "hidden-separated",
+      "id": "trial-separated",
       "name": "duplicate values separate climbs",
       "kind": "trial",
       "visible": true,

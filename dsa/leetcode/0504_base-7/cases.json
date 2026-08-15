@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-single-positive",
+      "id": "trial-single-positive",
       "name": "positive single digit",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-large-power",
+      "id": "trial-large-power",
       "name": "a large exact power of seven",
       "kind": "trial",
       "visible": true,
@@ -96,6 +96,20 @@
       "expected": "1000000",
       "tags": [
         "power"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value num=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1
+      },
+      "expected": "1",
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

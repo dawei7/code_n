@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-zero-first-prefix",
+      "id": "trial-zero-first-prefix",
       "name": "original begins with zero",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-middle-zero-prefix",
+      "id": "trial-middle-zero-prefix",
       "name": "prefix XOR becomes zero",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum legal prefix values",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-alternating-prefix",
+      "id": "trial-alternating-prefix",
       "name": "alternating prefixes",
       "kind": "trial",
       "visible": true,

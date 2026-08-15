@@ -73,8 +73,8 @@
       ]
     },
     {
-      "id": "real-first-square-letter",
-      "name": "real: hexadecimal square uses its first letter",
+      "id": "trial-first-square-letter",
+      "name": "hexadecimal square uses its first letter",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -87,8 +87,8 @@
       ]
     },
     {
-      "id": "real-base36-letter",
-      "name": "real: cube produces base-36 letter digits",
+      "id": "trial-base36-letter",
+      "name": "cube produces base-36 letter digits",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -101,8 +101,8 @@
       ]
     },
     {
-      "id": "real-midrange",
-      "name": "real: several digits in both bases",
+      "id": "trial-midrange",
+      "name": "several digits in both bases",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -115,8 +115,8 @@
       ]
     },
     {
-      "id": "real-near-maximum",
-      "name": "real: input just below the upper bound",
+      "id": "trial-near-maximum",
+      "name": "input just below the upper bound",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -129,8 +129,8 @@
       ]
     },
     {
-      "id": "real-maximum",
-      "name": "real: maximum legal input",
+      "id": "trial-maximum",
+      "name": "maximum legal input",
       "kind": "trial",
       "visible": true,
       "input": {

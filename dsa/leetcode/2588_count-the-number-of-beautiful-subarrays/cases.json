@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-single-nonzero",
+      "id": "trial-single-nonzero",
       "name": "one nonzero value cannot pair its bits",
       "kind": "trial",
       "visible": true,
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-equal-pair",
+      "id": "trial-equal-pair",
       "name": "equal values cancel under XOR",
       "kind": "trial",
       "visible": true,
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-whole-only",
+      "id": "trial-whole-only",
       "name": "only the complete triple has zero XOR",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-zero-between-pair",
+      "id": "trial-zero-between-pair",
       "name": "an internal zero and the complete range qualify",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-four-zeros",
+      "id": "trial-four-zeros",
       "name": "all ten nonempty zero subarrays qualify",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-three-equal",
+      "id": "trial-three-equal",
       "name": "adjacent equal pairs qualify separately",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-maximum-value-pair",
+      "id": "trial-maximum-value-pair",
       "name": "equal values at the legal maximum qualify",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-multiple-bit-parities",
+      "id": "trial-multiple-bit-parities",
       "name": "two pairs and their union have even bit counts",
       "kind": "trial",
       "visible": true,

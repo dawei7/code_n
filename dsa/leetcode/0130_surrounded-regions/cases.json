@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-mixed-regions",
+      "id": "trial-mixed-regions",
       "name": "mixed captured and safe regions",
       "kind": "trial",
       "visible": true,

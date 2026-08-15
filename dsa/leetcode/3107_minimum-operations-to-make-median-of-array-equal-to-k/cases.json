@@ -118,8 +118,8 @@
       ]
     },
     {
-      "id": "real-duplicate-target",
-      "name": "real: duplicate target already occupies upper middle",
+      "id": "trial-duplicate-target",
+      "name": "duplicate target already occupies upper middle",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-raise-one-boundary",
-      "name": "real: only the middle value needs raising",
+      "id": "trial-raise-one-boundary",
+      "name": "only the middle value needs raising",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -159,8 +159,8 @@
       ]
     },
     {
-      "id": "real-lower-two-boundaries",
-      "name": "real: two left-half values need lowering",
+      "id": "trial-lower-two-boundaries",
+      "name": "two left-half values need lowering",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -180,8 +180,8 @@
       ]
     },
     {
-      "id": "real-unsorted",
-      "name": "real: unsorted values hide the median",
+      "id": "trial-unsorted",
+      "name": "unsorted values hide the median",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -203,8 +203,8 @@
       ]
     },
     {
-      "id": "real-maximum-gap",
-      "name": "real: maximum legal unit gap",
+      "id": "trial-maximum-gap",
+      "name": "maximum legal unit gap",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -222,8 +222,8 @@
       ]
     },
     {
-      "id": "real-raise-right-suffix",
-      "name": "real: several right-half values need raising",
+      "id": "trial-raise-right-suffix",
+      "name": "several right-half values need raising",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-zero-rectangle",
+      "id": "trial-zero-rectangle",
       "name": "all-zero rectangle has minimum zero",
       "kind": "trial",
       "visible": true,
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-maximum-two-by-two",
+      "id": "trial-maximum-two-by-two",
       "name": "odd path length preserves maximum value",
       "kind": "trial",
       "visible": true,
@@ -258,7 +258,7 @@
       ]
     },
     {
-      "id": "real-maximum-two-by-three",
+      "id": "trial-maximum-two-by-three",
       "name": "even path length cancels repeated values",
       "kind": "trial",
       "visible": true,
@@ -286,7 +286,7 @@
       ]
     },
     {
-      "id": "real-distinct-powers",
+      "id": "trial-distinct-powers",
       "name": "compare three distinct-value routes",
       "kind": "trial",
       "visible": true,
@@ -314,7 +314,7 @@
       ]
     },
     {
-      "id": "real-three-by-three",
+      "id": "trial-three-by-three",
       "name": "several intermediate XOR states compete",
       "kind": "trial",
       "visible": true,
@@ -347,7 +347,7 @@
       ]
     },
     {
-      "id": "real-single-row-boundaries",
+      "id": "trial-single-row-boundaries",
       "name": "boundary values on one forced path",
       "kind": "trial",
       "visible": true,
@@ -372,7 +372,7 @@
       ]
     },
     {
-      "id": "real-four-by-four-zero-minimum",
+      "id": "trial-four-by-four-zero-minimum",
       "name": "one of many paths reaches XOR zero",
       "kind": "trial",
       "visible": true,

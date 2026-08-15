@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-single-target",
+      "id": "trial-single-target",
       "name": "one element equals the target",
       "kind": "trial",
       "visible": true,
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-invalid-divider-resets",
+      "id": "trial-invalid-divider-resets",
       "name": "a non-divisor separates valid regions",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-repeated-target",
+      "id": "trial-repeated-target",
       "name": "every repeated target interval qualifies",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-over-target",
+      "id": "trial-over-target",
       "name": "an over-target value cannot join a valid subarray",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-multiple-lcm-states",
+      "id": "trial-multiple-lcm-states",
       "name": "several divisor states merge at later endpoints",
       "kind": "trial",
       "visible": true,

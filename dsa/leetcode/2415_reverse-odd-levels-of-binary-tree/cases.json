@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "equal values remain indistinguishable",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-minimum-swap",
+      "id": "trial-minimum-swap",
       "name": "smallest nontrivial perfect tree",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-five-levels",
+      "id": "trial-five-levels",
       "name": "deeper perfect tree preserves even levels",
       "kind": "trial",
       "visible": true,

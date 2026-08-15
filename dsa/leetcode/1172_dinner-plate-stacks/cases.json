@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-leftmost-choice",
+      "id": "trial-leftmost-choice",
       "name": "choose the smaller of two holes",
       "kind": "trial",
       "visible": true,
@@ -310,7 +310,7 @@
       ]
     },
     {
-      "id": "real-trim-and-recreate",
+      "id": "trial-trim-and-recreate",
       "name": "trim an empty suffix and recreate indices",
       "kind": "trial",
       "visible": true,
@@ -390,7 +390,7 @@
       ]
     },
     {
-      "id": "real-invalid-index",
+      "id": "trial-invalid-index",
       "name": "invalid index leaves state unchanged",
       "kind": "trial",
       "visible": true,

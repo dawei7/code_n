@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-middle-split",
+      "id": "trial-middle-split",
       "name": "Alice and Bob split the middle gate of a chain",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-avoid-negative-gate",
+      "id": "trial-avoid-negative-gate",
       "name": "Bob opening a negative gate can help Alice",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-deeper-choice",
+      "id": "trial-deeper-choice",
       "name": "a later positive branch outweighs an early reward",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-bob-off-path",
+      "id": "trial-bob-off-path",
       "name": "Bob's route does not affect the best deep branch",
       "kind": "trial",
       "visible": true,

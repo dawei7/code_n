@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-negative-values",
+      "id": "trial-negative-values",
       "name": "negative values normalize to residue classes",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-value-one",
+      "id": "trial-value-one",
       "name": "every element shares the only residue",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-zero-unavailable",
+      "id": "trial-zero-unavailable",
       "name": "no element belongs to residue zero",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-uneven-cycles",
+      "id": "trial-uneven-cycles",
       "name": "repeated cycles exhaust one residue",
       "kind": "trial",
       "visible": true,

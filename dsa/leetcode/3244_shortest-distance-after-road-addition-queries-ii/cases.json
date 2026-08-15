@@ -213,8 +213,8 @@
       ]
     },
     {
-      "id": "real-outer-first",
-      "name": "real: outer shortcut makes inner roads irrelevant",
+      "id": "trial-outer-first",
+      "name": "outer shortcut makes inner roads irrelevant",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -250,8 +250,8 @@
       ]
     },
     {
-      "id": "real-disjoint-chain",
-      "name": "real: chain of disjoint shortcuts",
+      "id": "trial-disjoint-chain",
+      "name": "chain of disjoint shortcuts",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -287,8 +287,8 @@
       ]
     },
     {
-      "id": "real-disjoint-then-outer",
-      "name": "real: disjoint shortcuts followed by enclosing road",
+      "id": "trial-disjoint-then-outer",
+      "name": "disjoint shortcuts followed by enclosing road",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -319,8 +319,8 @@
       ]
     },
     {
-      "id": "real-same-source-expansion",
-      "name": "real: nested and same-source expansion",
+      "id": "trial-same-source-expansion",
+      "name": "nested and same-source expansion",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -356,8 +356,8 @@
       ]
     },
     {
-      "id": "real-mixed-to-direct",
-      "name": "real: mixed valid intervals culminate in direct road",
+      "id": "trial-mixed-to-direct",
+      "name": "mixed valid intervals culminate in direct road",
       "kind": "trial",
       "visible": true,
       "input": {

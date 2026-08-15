@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "cyclic transfer network",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "singleton routes do not connect",
       "kind": "trial",
       "visible": true,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "several equal minimum journeys",
       "kind": "trial",
       "visible": true,
@@ -273,6 +273,33 @@
       "expected": 3,
       "tags": [
         "multiple-paths"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value target=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "routes": [
+          [
+            1,
+            2,
+            7
+          ],
+          [
+            3,
+            6,
+            7
+          ]
+        ],
+        "source": 1,
+        "target": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-independent-runs",
+      "id": "trial-independent-runs",
       "name": "clear three independent pairs",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-double-cascade",
+      "id": "trial-double-cascade",
       "name": "two insertions cause chained removals",
       "kind": "trial",
       "visible": true,

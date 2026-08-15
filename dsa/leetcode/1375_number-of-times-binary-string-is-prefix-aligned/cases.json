@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "hidden-reverse",
+      "id": "trial-reverse",
       "name": "reverse order",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "hidden-late-first",
+      "id": "trial-late-first",
       "name": "first position arrives late",
       "kind": "trial",
       "visible": true,

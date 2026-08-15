@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-box-count-limit",
+      "id": "trial-box-count-limit",
       "name": "box limit forces three same-port loads",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-weight-limit",
+      "id": "trial-weight-limit",
       "name": "weight limit separates otherwise compatible boxes",
       "kind": "trial",
       "visible": true,
@@ -237,7 +237,7 @@
       ]
     },
     {
-      "id": "real-split-boundary",
+      "id": "trial-split-boundary",
       "name": "split boundary replaces a port change with return pair",
       "kind": "trial",
       "visible": true,
@@ -271,7 +271,7 @@
       ]
     },
     {
-      "id": "real-mixed-capacities",
+      "id": "trial-mixed-capacities",
       "name": "both constraints expire different starts",
       "kind": "trial",
       "visible": true,

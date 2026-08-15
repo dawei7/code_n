@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-maximum-rate-two",
+      "id": "trial-maximum-rate-two",
       "name": "maximum bottles at exchange rate two",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-equal-maximums",
+      "id": "trial-equal-maximums",
       "name": "maximum count equals maximum threshold",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-remainder-chain",
+      "id": "trial-remainder-chain",
       "name": "several rounds leave an unusable remainder",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-one-short",
+      "id": "trial-one-short",
       "name": "initial bottles are one short of exchange",
       "kind": "trial",
       "visible": true,
@@ -155,6 +155,21 @@
         "real",
         "one-short",
         "no-exchange"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value numBottles=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numBottles": 1,
+        "numExchange": 3
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

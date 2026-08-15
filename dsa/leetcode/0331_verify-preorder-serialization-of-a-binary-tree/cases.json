@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "hidden-extra-null",
+      "id": "trial-extra-null",
       "name": "extra null after leaf",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "hidden-left-child",
+      "id": "trial-left-child",
       "name": "root with left leaf",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "hidden-negative",
+      "id": "trial-negative",
       "name": "negative node token",
       "kind": "trial",
       "visible": true,

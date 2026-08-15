@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "real-single-character",
+      "id": "trial-single-character",
       "name": "minimum input length contributes zero",
       "kind": "trial",
       "visible": true,
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-exact-good",
+      "id": "trial-exact-good",
       "name": "one distinct three-character window",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-exact-bad",
+      "id": "trial-exact-bad",
       "name": "one repeated three-character window",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-all-same",
+      "id": "trial-all-same",
       "name": "uniform string has no good windows",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-all-cycle",
+      "id": "trial-all-cycle",
       "name": "every cyclic window is good",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-adjacent-repeat",
+      "id": "trial-adjacent-repeat",
       "name": "adjacent duplicates invalidate nearby windows",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-separated-repeat",
+      "id": "trial-separated-repeat",
       "name": "repeated first and third characters invalidate every window",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-distinct-alphabet",
+      "id": "trial-distinct-alphabet",
       "name": "all windows of a distinct string are good",
       "kind": "trial",
       "visible": true,
@@ -162,6 +162,34 @@
       "expected": 4,
       "tags": [
         "all-distinct"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "x"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "xxx"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

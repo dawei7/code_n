@@ -313,7 +313,7 @@
       ]
     },
     {
-      "id": "real-six-overlapping-squares",
+      "id": "trial-six-overlapping-squares",
       "name": "overlapping endpoint groups yield six squares",
       "kind": "trial",
       "visible": true,
@@ -374,7 +374,7 @@
       ]
     },
     {
-      "id": "real-bottom-would-reuse-right",
+      "id": "trial-bottom-would-reuse-right",
       "name": "matching bottom cannot reuse the right word",
       "kind": "trial",
       "visible": true,
@@ -396,7 +396,7 @@
       ]
     },
     {
-      "id": "real-chain-is-not-a-square",
+      "id": "trial-chain-is-not-a-square",
       "name": "adjacent endpoint chain is insufficient",
       "kind": "trial",
       "visible": true,
@@ -418,7 +418,7 @@
       ]
     },
     {
-      "id": "real-valid-pair-with-distractors",
+      "id": "trial-valid-pair-with-distractors",
       "name": "unrelated words do not change the valid pair",
       "kind": "trial",
       "visible": true,
@@ -455,7 +455,7 @@
       ]
     },
     {
-      "id": "real-source-square-with-same-corner-distractors",
+      "id": "trial-source-square-with-same-corner-distractors",
       "name": "source square remains sorted among distractors",
       "kind": "trial",
       "visible": true,
@@ -489,6 +489,39 @@
       "tags": [
         "distractors",
         "lexicographic-order"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "able"
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "able",
+          "able"
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

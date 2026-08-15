@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-varying-rates",
+      "id": "trial-varying-rates",
       "name": "rates need not increase with boundaries",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-full-rate",
+      "id": "trial-full-rate",
       "name": "the largest legal income at a full rate",
       "kind": "trial",
       "visible": true,

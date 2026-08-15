@@ -65,7 +65,7 @@
       ]
     },
     {
-      "id": "real-through-one-hundred",
+      "id": "trial-through-one-hundred",
       "name": "range includes every one- and two-digit stepping number",
       "kind": "trial",
       "visible": true,
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "real-hundred-through-thousand",
+      "id": "trial-hundred-through-thousand",
       "name": "decrementing a power-of-ten lower endpoint",
       "kind": "trial",
       "visible": true,
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-long-stepping-singleton",
+      "id": "trial-long-stepping-singleton",
       "name": "a long alternating value is stepping",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-full-legal-prefix",
+      "id": "trial-full-legal-prefix",
       "name": "maximum-width prefix count requires modulo reduction",
       "kind": "trial",
       "visible": true,

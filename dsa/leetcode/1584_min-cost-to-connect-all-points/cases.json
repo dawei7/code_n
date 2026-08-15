@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-right-triangle",
+      "id": "trial-right-triangle",
       "name": "axis-aligned right triangle",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-unit-square",
+      "id": "trial-unit-square",
       "name": "three unit edges connect a square",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "real-collinear",
+      "id": "trial-collinear",
       "name": "gaps along a horizontal line",
       "kind": "trial",
       "visible": true,
@@ -220,7 +220,7 @@
       ]
     },
     {
-      "id": "real-vertical-negative",
+      "id": "trial-vertical-negative",
       "name": "vertical points cross zero",
       "kind": "trial",
       "visible": true,
@@ -248,7 +248,7 @@
       ]
     },
     {
-      "id": "real-large-coordinates",
+      "id": "trial-large-coordinates",
       "name": "opposite coordinate bounds",
       "kind": "trial",
       "visible": true,
@@ -271,7 +271,7 @@
       ]
     },
     {
-      "id": "real-cross",
+      "id": "trial-cross",
       "name": "center connects four arms",
       "kind": "trial",
       "visible": true,
@@ -307,7 +307,7 @@
       ]
     },
     {
-      "id": "real-irregular",
+      "id": "trial-irregular",
       "name": "indirect cheap edges beat direct star",
       "kind": "trial",
       "visible": true,
@@ -338,7 +338,7 @@
       ]
     },
     {
-      "id": "real-diagonal-chain",
+      "id": "trial-diagonal-chain",
       "name": "consecutive diagonal points",
       "kind": "trial",
       "visible": true,

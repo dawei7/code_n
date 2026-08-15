@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "real-passenger-only",
+      "id": "trial-passenger-only",
       "name": "passenger-only people are omitted",
       "kind": "trial",
       "visible": true,
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "real-several-counts",
+      "id": "trial-several-counts",
       "name": "independent counts for several drivers",
       "kind": "trial",
       "visible": true,
@@ -319,7 +319,7 @@
       ]
     },
     {
-      "id": "real-large-identifiers",
+      "id": "trial-large-identifiers",
       "name": "identifiers are values rather than dense indices",
       "kind": "trial",
       "visible": true,

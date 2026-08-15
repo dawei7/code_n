@@ -258,7 +258,7 @@
       ]
     },
     {
-      "id": "real-multiple-products",
+      "id": "trial-multiple-products",
       "name": "chained multiplication composes globally",
       "kind": "trial",
       "visible": true,
@@ -304,7 +304,7 @@
       ]
     },
     {
-      "id": "real-modulo-wrap",
+      "id": "trial-modulo-wrap",
       "name": "repeated large multipliers wrap modulo the prime",
       "kind": "trial",
       "visible": true,
@@ -360,7 +360,7 @@
       ]
     },
     {
-      "id": "real-interleaved-appends",
+      "id": "trial-interleaved-appends",
       "name": "each append cancels a different accumulated transform",
       "kind": "trial",
       "visible": true,
@@ -426,7 +426,7 @@
       ]
     },
     {
-      "id": "real-large-index",
+      "id": "trial-large-index",
       "name": "a far outside index returns minus one without mutation",
       "kind": "trial",
       "visible": true,

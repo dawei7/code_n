@@ -109,8 +109,8 @@
       ]
     },
     {
-      "id": "real-more-performers-than-stages",
-      "name": "real: stages cap the band count",
+      "id": "trial-more-performers-than-stages",
+      "name": "stages cap the band count",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -124,8 +124,8 @@
       ]
     },
     {
-      "id": "real-multiple-modular-terms",
-      "name": "real: modular combinatorial sum",
+      "id": "trial-multiple-modular-terms",
+      "name": "modular combinatorial sum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -137,6 +137,38 @@
       "tags": [
         "modulo",
         "band-counts"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value x=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "x": 1,
+        "y": 3
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value y=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "x": 2,
+        "y": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

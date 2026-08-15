@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-three-equal-ones",
+      "id": "trial-three-equal-ones",
       "name": "only even-length ranges balance equal ones",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-all-zeroes",
+      "id": "trial-all-zeroes",
       "name": "every zero choice pattern is balanced",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-opposite-zero-placement",
+      "id": "trial-opposite-zero-placement",
       "name": "singleton and full-range balances coexist",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-large-equal-values",
+      "id": "trial-large-equal-values",
       "name": "values at the upper bound preserve signed-state behavior",
       "kind": "trial",
       "visible": true,
@@ -169,6 +169,49 @@
       "expected": 2,
       "tags": [
         "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          2,
+          6,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1
+        ],
+        "nums2": [
+          2,
+          6,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

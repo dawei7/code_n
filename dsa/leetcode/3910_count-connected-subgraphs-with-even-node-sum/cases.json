@@ -297,7 +297,7 @@
       ]
     },
     {
-      "id": "hidden-two-components",
+      "id": "trial-two-components",
       "name": "valid subsets cannot cross disconnected components",
       "kind": "trial",
       "visible": true,
@@ -331,7 +331,7 @@
       ]
     },
     {
-      "id": "hidden-dense-mixed-graph",
+      "id": "trial-dense-mixed-graph",
       "name": "dense local cycles and a bridge",
       "kind": "trial",
       "visible": true,
@@ -383,7 +383,7 @@
       ]
     },
     {
-      "id": "hidden-branching-tree",
+      "id": "trial-branching-tree",
       "name": "branching tree has many disconnected selections",
       "kind": "trial",
       "visible": true,
@@ -432,7 +432,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-empty-graph",
+      "id": "trial-maximum-empty-graph",
       "name": "maximum all-zero graph without edges",
       "kind": "trial",
       "visible": true,
@@ -462,7 +462,7 @@
       ]
     },
     {
-      "id": "hidden-long-alternating-path",
+      "id": "trial-long-alternating-path",
       "name": "long path with alternating values",
       "kind": "trial",
       "visible": true,
@@ -531,7 +531,7 @@
       ]
     },
     {
-      "id": "hidden-dense-all-zero",
+      "id": "trial-dense-all-zero",
       "name": "every non-empty subset of an eight-node all-zero clique counts",
       "kind": "trial",
       "visible": true,

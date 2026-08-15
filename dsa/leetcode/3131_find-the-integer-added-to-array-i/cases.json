@@ -137,8 +137,8 @@
       ]
     },
     {
-      "id": "real-large-negative-offset",
-      "name": "real: negative shift preserves nonnegative values",
+      "id": "trial-large-negative-offset",
+      "name": "negative shift preserves nonnegative values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -161,8 +161,8 @@
       ]
     },
     {
-      "id": "real-large-positive-offset",
-      "name": "real: positive shift reaches upper boundary",
+      "id": "trial-large-positive-offset",
+      "name": "positive shift reaches upper boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -186,8 +186,8 @@
       ]
     },
     {
-      "id": "real-minimum-not-first",
-      "name": "real: minimum values occur away from the first position",
+      "id": "trial-minimum-not-first",
+      "name": "minimum values occur away from the first position",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -211,8 +211,8 @@
       ]
     },
     {
-      "id": "real-all-equal-negative",
-      "name": "real: all equal values with a negative shift",
+      "id": "trial-all-equal-negative",
+      "name": "all equal values with a negative shift",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -239,8 +239,8 @@
       ]
     },
     {
-      "id": "real-zero-offset-permuted",
-      "name": "real: zero shift with a nontrivial permutation",
+      "id": "trial-zero-offset-permuted",
+      "name": "zero shift with a nontrivial permutation",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -268,8 +268,8 @@
       ]
     },
     {
-      "id": "real-boundary-span",
-      "name": "real: values span both input boundaries",
+      "id": "trial-boundary-span",
+      "name": "values span both input boundaries",
       "kind": "trial",
       "visible": true,
       "input": {

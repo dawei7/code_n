@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "real-fifth-permutation",
+      "id": "trial-fifth-permutation",
       "name": "several next-permutation steps change multiple positions",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-repeated-middle-digits",
+      "id": "trial-repeated-middle-digits",
       "name": "stable matching handles duplicate digits",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-leading-zero-later-target",
+      "id": "trial-leading-zero-later-target",
       "name": "several successors preserve leading zeros",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-minimum-length",
+      "id": "trial-minimum-length",
       "name": "a two-digit number has one successor",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-first-of-duplicates",
+      "id": "trial-first-of-duplicates",
       "name": "the first successor with repeated digits is adjacent",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-large-k",
+      "id": "trial-large-k",
       "name": "the maximum k-scale is supported",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-many-duplicates",
+      "id": "trial-many-duplicates",
       "name": "many duplicate occurrences retain stable order",
       "kind": "trial",
       "visible": true,

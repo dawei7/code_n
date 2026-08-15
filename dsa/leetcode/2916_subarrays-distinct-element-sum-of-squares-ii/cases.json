@@ -93,7 +93,7 @@
       "expected": 28
     },
     {
-      "id": "real-singleton",
+      "id": "trial-singleton",
       "name": "singleton at maximum value",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       "expected": 1
     },
     {
-      "id": "real-maximum-value-repeat",
+      "id": "trial-maximum-value-repeat",
       "name": "maximum value reappears around another value",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       "expected": 15
     },
     {
-      "id": "real-multiple-reappearances",
+      "id": "trial-multiple-reappearances",
       "name": "several values reappear at different distances",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       "expected": 132
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "every subarray has one distinct value",
       "kind": "trial",
       "visible": true,

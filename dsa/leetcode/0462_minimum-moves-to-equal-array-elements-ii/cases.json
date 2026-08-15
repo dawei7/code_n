@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "hidden-all-equal",
+      "id": "trial-all-equal",
       "name": "no movement required",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "hidden-wide-range",
+      "id": "trial-wide-range",
       "name": "wide signed range",
       "kind": "trial",
       "visible": true,

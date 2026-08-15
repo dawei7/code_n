@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-several-odd-counts",
+      "id": "trial-several-odd-counts",
       "name": "each odd frequency leaves one value",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-mixed-boundaries",
+      "id": "trial-mixed-boundaries",
       "name": "values at both domain boundaries are independent",
       "kind": "trial",
       "visible": true,

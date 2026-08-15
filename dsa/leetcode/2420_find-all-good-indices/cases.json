@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-center-excluded",
+      "id": "trial-center-excluded",
       "name": "center value does not affect either block",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-failing-suffix",
+      "id": "trial-failing-suffix",
       "name": "descending suffix rejects the candidate",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-boundary-values",
+      "id": "trial-boundary-values",
       "name": "extreme values preserve ordering semantics",
       "kind": "trial",
       "visible": true,

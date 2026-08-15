@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-duplicate-required-inside-cover",
+      "id": "trial-duplicate-required-inside-cover",
       "name": "shortest covering interval contains a duplicate",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-late-singleton",
+      "id": "trial-late-singleton",
       "name": "qualifying singleton appears at the end",
       "kind": "trial",
       "visible": true,
@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "real-entire-array",
+      "id": "trial-entire-array",
       "name": "only the complete array reaches the threshold",
       "kind": "trial",
       "visible": true,
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum legal value meets threshold alone",
       "kind": "trial",
       "visible": true,
@@ -248,7 +248,7 @@
       ]
     },
     {
-      "id": "real-maximum-threshold-impossible",
+      "id": "trial-maximum-threshold-impossible",
       "name": "maximum threshold cannot be reached",
       "kind": "trial",
       "visible": true,

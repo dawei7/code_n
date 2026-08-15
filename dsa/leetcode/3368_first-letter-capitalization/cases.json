@@ -165,8 +165,8 @@
       ]
     },
     {
-      "id": "real-unsorted-identifiers",
-      "name": "real: output order follows identifiers not insertion",
+      "id": "trial-unsorted-identifiers",
+      "name": "output order follows identifiers not insertion",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -217,8 +217,8 @@
       ]
     },
     {
-      "id": "real-already-normalized",
-      "name": "real: normalized words remain unchanged",
+      "id": "trial-already-normalized",
+      "name": "normalized words remain unchanged",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -251,8 +251,8 @@
       ]
     },
     {
-      "id": "real-one-word",
-      "name": "real: normalize a single all-caps word",
+      "id": "trial-one-word",
+      "name": "normalize a single all-caps word",
       "kind": "trial",
       "visible": true,
       "input": {

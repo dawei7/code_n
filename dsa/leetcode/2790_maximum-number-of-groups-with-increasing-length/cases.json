@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-all-single-use",
+      "id": "trial-all-single-use",
       "name": "six single uses meet three triangular levels",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-uniform-middle-limit",
+      "id": "trial-uniform-middle-limit",
       "name": "six equal limits stop before the sixth group",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-mixed-complete",
+      "id": "trial-mixed-complete",
       "name": "shuffled capacities support every group",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-all-maximum",
+      "id": "trial-all-maximum",
       "name": "every oversized limit is safely clamped",
       "kind": "trial",
       "visible": true,
@@ -185,6 +185,22 @@
       "expected": 5,
       "tags": [
         "maximum"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in usageLimits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "usageLimits": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

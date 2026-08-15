@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-single-decrement",
+      "id": "trial-single-decrement",
       "name": "decrement returns the updated value",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-reset-discards-history",
+      "id": "trial-reset-discards-history",
       "name": "reset repeatedly restores the original value",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-lower-bound",
+      "id": "trial-lower-bound",
       "name": "values may fall below the initialization bound",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "values may rise above the initialization bound",
       "kind": "trial",
       "visible": true,
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating updates share one current value",
       "kind": "trial",
       "visible": true,

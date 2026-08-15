@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "real-gcd-two",
+      "id": "trial-gcd-two",
       "name": "even coordinates with gcd two",
       "kind": "trial",
       "visible": true,
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-even-nonpower",
+      "id": "trial-even-nonpower",
       "name": "even gcd still contains an odd factor",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-equal-power",
+      "id": "trial-equal-power",
       "name": "equal power-of-two coordinates",
       "kind": "trial",
       "visible": true,

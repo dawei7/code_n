@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-consecutive",
+      "id": "trial-consecutive",
       "name": "consecutive weights",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-perfect-mixed",
+      "id": "trial-perfect-mixed",
       "name": "mixed perfect partition",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-dominant-stone",
+      "id": "trial-dominant-stone",
       "name": "dominant stone cannot be balanced",
       "kind": "trial",
       "visible": true,

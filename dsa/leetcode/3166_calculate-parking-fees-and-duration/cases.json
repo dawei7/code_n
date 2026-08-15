@@ -323,8 +323,8 @@
       ]
     },
     {
-      "id": "real-overnight",
-      "name": "real: one visit crosses midnight",
+      "id": "trial-overnight",
+      "name": "one visit crosses midnight",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -365,8 +365,8 @@
       ]
     },
     {
-      "id": "real-aggregate-before-rank",
-      "name": "real: repeated shorter visits win in aggregate",
+      "id": "trial-aggregate-before-rank",
+      "name": "repeated shorter visits win in aggregate",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -422,8 +422,8 @@
       ]
     },
     {
-      "id": "real-decimal-fee",
-      "name": "real: decimal fee and half-hour duration",
+      "id": "trial-decimal-fee",
+      "name": "decimal fee and half-hour duration",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -465,8 +465,8 @@
       ]
     },
     {
-      "id": "real-three-lots",
-      "name": "real: three lots contribute to one car total",
+      "id": "trial-three-lots",
+      "name": "three lots contribute to one car total",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -521,8 +521,8 @@
       ]
     },
     {
-      "id": "real-back-to-back",
-      "name": "real: back-to-back visits do not overlap",
+      "id": "trial-back-to-back",
+      "name": "back-to-back visits do not overlap",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -570,8 +570,8 @@
       ]
     },
     {
-      "id": "real-empty-table",
-      "name": "real: no parking transactions",
+      "id": "trial-empty-table",
+      "name": "no parking transactions",
       "kind": "trial",
       "visible": true,
       "input": {

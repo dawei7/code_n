@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-repeated-maximum",
+      "id": "trial-repeated-maximum",
       "name": "repeated maxima remain unchanged in the derived array",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-all-ones",
+      "id": "trial-all-ones",
       "name": "every all-one pair contributes one",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-maximum-value",
+      "id": "trial-maximum-value",
       "name": "values at the upper bound use Euclid's algorithm",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-two-values",
+      "id": "trial-two-values",
       "name": "a smaller second value is reduced by the first maximum",
       "kind": "trial",
       "visible": true,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-coprime-derived-values",
+      "id": "trial-coprime-derived-values",
       "name": "multiple derived ones surround an ignored middle",
       "kind": "trial",
       "visible": true,
@@ -268,7 +268,7 @@
       ]
     },
     {
-      "id": "real-mixed-extremes",
+      "id": "trial-mixed-extremes",
       "name": "sorted derived values form three distinct extreme pairs",
       "kind": "trial",
       "visible": true,
@@ -292,7 +292,7 @@
       ]
     },
     {
-      "id": "real-late-new-maximum",
+      "id": "trial-late-new-maximum",
       "name": "a late maximum changes later derived values",
       "kind": "trial",
       "visible": true,

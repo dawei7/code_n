@@ -236,7 +236,7 @@
       ]
     },
     {
-      "id": "real-large-radius",
+      "id": "trial-large-radius",
       "name": "radius covers both entire trees",
       "kind": "trial",
       "visible": true,
@@ -278,7 +278,7 @@
       ]
     },
     {
-      "id": "real-two-stars",
+      "id": "trial-two-stars",
       "name": "star centers and leaves have different first counts",
       "kind": "trial",
       "visible": true,
@@ -337,7 +337,7 @@
       ]
     },
     {
-      "id": "real-second-center-choice",
+      "id": "trial-second-center-choice",
       "name": "best second endpoint is internal to a path",
       "kind": "trial",
       "visible": true,

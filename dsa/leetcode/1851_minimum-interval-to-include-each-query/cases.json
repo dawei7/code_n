@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-unsorted-queries",
+      "id": "trial-unsorted-queries",
       "name": "answers restore original query order",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-nested",
+      "id": "trial-nested",
       "name": "smallest nested interval wins",
       "kind": "trial",
       "visible": true,
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "repeated queries retain repeated answers",
       "kind": "trial",
       "visible": true,
@@ -252,7 +252,7 @@
       ]
     },
     {
-      "id": "real-touching-endpoints",
+      "id": "trial-touching-endpoints",
       "name": "both closed endpoints are included",
       "kind": "trial",
       "visible": true,
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "id": "real-expired-short",
+      "id": "trial-expired-short",
       "name": "expired short interval cannot answer later query",
       "kind": "trial",
       "visible": true,
@@ -316,7 +316,7 @@
       ]
     },
     {
-      "id": "real-duplicate-intervals",
+      "id": "trial-duplicate-intervals",
       "name": "duplicate intervals do not change the minimum",
       "kind": "trial",
       "visible": true,
@@ -356,7 +356,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "maximum coordinate point interval",
       "kind": "trial",
       "visible": true,

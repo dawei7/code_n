@@ -65,7 +65,7 @@
       ]
     },
     {
-      "id": "real-nested-values",
+      "id": "trial-nested-values",
       "name": "nested arrays and objects are ignored",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-ten-arguments",
+      "id": "trial-ten-arguments",
       "name": "maximum argument count",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-confusing-target-text",
+      "id": "trial-confusing-target-text",
       "name": "near-match input cannot replace exact result",
       "kind": "trial",
       "visible": true,

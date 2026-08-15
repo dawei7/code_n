@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-symmetric-distinct",
+      "id": "trial-symmetric-distinct",
       "name": "a symmetric matrix has two distinct matches",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-one-duplicated-column",
+      "id": "trial-one-duplicated-column",
       "name": "two identical rows match one column",
       "kind": "trial",
       "visible": true,

@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-many-empty-groups",
-      "name": "real: empty groups do not advance arity",
+      "id": "trial-many-empty-groups",
+      "name": "empty groups do not advance arity",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -180,8 +180,8 @@
       ]
     },
     {
-      "id": "real-values-include-zero",
-      "name": "real: zero arguments are retained",
+      "id": "trial-values-include-zero",
+      "name": "zero arguments are retained",
       "kind": "trial",
       "visible": true,
       "input": {

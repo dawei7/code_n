@@ -486,7 +486,7 @@
       ]
     },
     {
-      "id": "hidden-first-positive-candidate",
+      "id": "trial-first-positive-candidate",
       "name": "the first edge weight is the minimum threshold",
       "kind": "trial",
       "visible": true,
@@ -515,7 +515,7 @@
       ]
     },
     {
-      "id": "hidden-repeated-weight-jump",
+      "id": "trial-repeated-weight-jump",
       "name": "repeated weights make feasibility jump at seven",
       "kind": "trial",
       "visible": true,
@@ -554,7 +554,7 @@
       ]
     },
     {
-      "id": "hidden-budget-equals-path-length",
+      "id": "trial-budget-equals-path-length",
       "name": "four heavy edges are all allowed",
       "kind": "trial",
       "visible": true,
@@ -593,7 +593,7 @@
       ]
     },
     {
-      "id": "hidden-one-edge-must-turn-light",
+      "id": "trial-one-edge-must-turn-light",
       "name": "reducing four heavy edges to three needs threshold ten",
       "kind": "trial",
       "visible": true,
@@ -632,7 +632,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-edge-weight",
+      "id": "trial-maximum-edge-weight",
       "name": "the maximum legal weight must become light",
       "kind": "trial",
       "visible": true,
@@ -656,7 +656,7 @@
       ]
     },
     {
-      "id": "hidden-large-budget-cannot-connect-components",
+      "id": "trial-large-budget-cannot-connect-components",
       "name": "a large heavy budget cannot cross a missing edge",
       "kind": "trial",
       "visible": true,
@@ -700,7 +700,7 @@
       ]
     },
     {
-      "id": "hidden-multiple-routes-first-feasible-weight",
+      "id": "trial-multiple-routes-first-feasible-weight",
       "name": "a mixed route becomes feasible at weight one",
       "kind": "trial",
       "visible": true,
@@ -751,6 +751,50 @@
       "tags": [
         "alternative-paths",
         "first-feasible"
+      ]
+    },
+    {
+      "id": "trial-boundary-22",
+      "name": "minimal value target=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1,
+            5
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            3,
+            4,
+            4
+          ],
+          [
+            4,
+            5,
+            1
+          ],
+          [
+            1,
+            4,
+            2
+          ]
+        ],
+        "source": 0,
+        "target": 1,
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-earlier-maximum",
+      "id": "trial-earlier-maximum",
       "name": "the earlier maximum detects the qualifying direction",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "the only valid pair spans the maximum-length array",
       "kind": "trial",
       "visible": true,

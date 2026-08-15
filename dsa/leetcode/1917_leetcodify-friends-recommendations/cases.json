@@ -253,7 +253,7 @@
       ]
     },
     {
-      "id": "real-split-across-days",
+      "id": "trial-split-across-days",
       "name": "shared songs on different days cannot be accumulated",
       "kind": "trial",
       "visible": true,
@@ -316,7 +316,7 @@
       ]
     },
     {
-      "id": "real-duplicates-do-not-inflate",
+      "id": "trial-duplicates-do-not-inflate",
       "name": "duplicate listen rows do not turn two songs into three",
       "kind": "trial",
       "visible": true,
@@ -379,7 +379,7 @@
       ]
     },
     {
-      "id": "real-existing-friends",
+      "id": "trial-existing-friends",
       "name": "qualifying existing friends produce no recommendation",
       "kind": "trial",
       "visible": true,
@@ -441,7 +441,7 @@
       ]
     },
     {
-      "id": "real-multiple-qualifying-days",
+      "id": "trial-multiple-qualifying-days",
       "name": "qualifying on two days still emits one row per direction",
       "kind": "trial",
       "visible": true,
@@ -543,7 +543,7 @@
       ]
     },
     {
-      "id": "real-two-independent-pairs",
+      "id": "trial-two-independent-pairs",
       "name": "separate days can qualify separate user pairs",
       "kind": "trial",
       "visible": true,
@@ -653,7 +653,7 @@
       ]
     },
     {
-      "id": "real-empty-listens",
+      "id": "trial-empty-listens",
       "name": "no listening facts produce no recommendations",
       "kind": "trial",
       "visible": true,

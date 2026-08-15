@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-irregular-gaps",
+      "id": "trial-irregular-gaps",
       "name": "irregular interior gaps",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-middle-cluster",
+      "id": "trial-middle-cluster",
       "name": "central consecutive cluster",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-upper-bound-cluster",
+      "id": "trial-upper-bound-cluster",
       "name": "consecutive near coordinate limit",
       "kind": "trial",
       "visible": true,

@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-hyphen-boundaries",
+      "id": "trial-hyphen-boundaries",
       "name": "only the internally surrounded hyphen is valid",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-multiple-restricted-marks",
+      "id": "trial-multiple-restricted-marks",
       "name": "repeated hyphens and punctuation are invalid",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-punctuation-position",
+      "id": "trial-punctuation-position",
       "name": "punctuation must occur only at the final index",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-spaces-and-valid-forms",
+      "id": "trial-spaces-and-valid-forms",
       "name": "leading and repeated spaces do not create tokens",
       "kind": "trial",
       "visible": true,
@@ -124,6 +124,34 @@
       "tags": [
         "spaces",
         "valid-forms"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in sentence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "c"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in sentence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "ccc"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

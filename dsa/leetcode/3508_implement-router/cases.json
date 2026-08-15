@@ -251,8 +251,8 @@
       ]
     },
     {
-      "id": "real-duplicate-after-forward",
-      "name": "real: forwarded triple can be inserted again",
+      "id": "trial-duplicate-after-forward",
+      "name": "forwarded triple can be inserted again",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -303,8 +303,8 @@
       ]
     },
     {
-      "id": "real-duplicate-after-eviction",
-      "name": "real: evicted triple is no longer a duplicate",
+      "id": "trial-duplicate-after-eviction",
+      "name": "evicted triple is no longer a duplicate",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -370,8 +370,8 @@
       ]
     },
     {
-      "id": "real-inclusive-count-boundaries",
-      "name": "real: range endpoints are both inclusive",
+      "id": "trial-inclusive-count-boundaries",
+      "name": "range endpoints are both inclusive",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -443,8 +443,8 @@
       ]
     },
     {
-      "id": "real-equal-timestamps-distinct-packets",
-      "name": "real: equal timestamps do not make packets duplicates",
+      "id": "trial-equal-timestamps-distinct-packets",
+      "name": "equal timestamps do not make packets duplicates",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -509,8 +509,8 @@
       ]
     },
     {
-      "id": "real-mixed-destination-removals",
-      "name": "real: removals advance only the matching destination",
+      "id": "trial-mixed-destination-removals",
+      "name": "removals advance only the matching destination",
       "kind": "trial",
       "visible": true,
       "input": {

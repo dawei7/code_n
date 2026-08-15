@@ -141,7 +141,7 @@
       "expected": 0
     },
     {
-      "id": "real-no-split-blocks",
+      "id": "trial-no-split-blocks",
       "name": "dominant prefix followed by another-value block",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       "expected": -1
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "values near the upper bound",
       "kind": "trial",
       "visible": true,

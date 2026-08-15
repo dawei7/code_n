@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-all-negative",
+      "id": "trial-all-negative",
       "name": "every path accumulates damage",
       "kind": "trial",
       "visible": true,

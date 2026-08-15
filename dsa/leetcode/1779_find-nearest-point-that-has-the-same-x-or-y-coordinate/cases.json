@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-later-closer",
+      "id": "trial-later-closer",
       "name": "later valid point is strictly closer",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-invalid-between-valid",
+      "id": "trial-invalid-between-valid",
       "name": "invalid points do not affect the best",
       "kind": "trial",
       "visible": true,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-duplicate-location",
+      "id": "trial-duplicate-location",
       "name": "first duplicate zero-distance point wins",
       "kind": "trial",
       "visible": true,
@@ -200,6 +200,80 @@
         "duplicate",
         "zero-distance",
         "tie-break"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value x=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 1,
+        "y": 4,
+        "points": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value y=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 3,
+        "y": 1,
+        "points": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

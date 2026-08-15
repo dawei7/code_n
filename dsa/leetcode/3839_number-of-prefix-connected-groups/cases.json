@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-many-pairs-one-group",
+      "id": "trial-many-pairs-one-group",
       "name": "four words with one prefix still count once",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-groups-and-singleton",
+      "id": "trial-groups-and-singleton",
       "name": "two repeated prefixes and one singleton",
       "kind": "trial",
       "visible": true,
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-one-letter-prefix",
+      "id": "trial-one-letter-prefix",
       "name": "minimum prefix length",
       "kind": "trial",
       "visible": true,
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "id": "real-maximum-prefix-length",
+      "id": "trial-maximum-prefix-length",
       "name": "maximum prefix length excludes a ninety-nine-character word",
       "kind": "trial",
       "visible": true,
@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "real-longer-words-same-prefix",
+      "id": "trial-longer-words-same-prefix",
       "name": "suffix differences do not affect connectivity",
       "kind": "trial",
       "visible": true,

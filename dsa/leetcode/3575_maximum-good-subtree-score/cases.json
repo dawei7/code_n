@@ -117,8 +117,8 @@
       ]
     },
     {
-      "id": "real-invalid-root-valid-child",
-      "name": "real: an invalid root does not exclude a valid descendant",
+      "id": "trial-invalid-root-valid-child",
+      "name": "an invalid root does not exclude a valid descendant",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -139,8 +139,8 @@
       ]
     },
     {
-      "id": "real-nontopological-parent-indices",
-      "name": "real: traversal follows parents rather than node-number order",
+      "id": "trial-nontopological-parent-indices",
+      "name": "traversal follows parents rather than node-number order",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -165,8 +165,8 @@
       ]
     },
     {
-      "id": "real-zero-digit-conflict",
-      "name": "real: embedded zero conflicts across otherwise valid values",
+      "id": "trial-zero-digit-conflict",
+      "name": "embedded zero conflicts across otherwise valid values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -189,8 +189,8 @@
       ]
     },
     {
-      "id": "real-modulo-total",
-      "name": "real: reduce the sum of subtree maxima modulo the required prime",
+      "id": "trial-modulo-total",
+      "name": "reduce the sum of subtree maxima modulo the required prime",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -211,8 +211,8 @@
       ]
     },
     {
-      "id": "real-overlapping-multidigit-masks",
-      "name": "real: choose the larger of two values with the same digit mask",
+      "id": "trial-overlapping-multidigit-masks",
+      "name": "choose the larger of two values with the same digit mask",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -232,6 +232,47 @@
         "real",
         "same-mask",
         "maximize-score"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in vals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "vals": [
+          2
+        ],
+        "par": [
+          -1,
+          0
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in vals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "vals": [
+          2,
+          2
+        ],
+        "par": [
+          -1,
+          0
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

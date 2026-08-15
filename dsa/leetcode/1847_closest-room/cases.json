@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-exact-preferred",
+      "id": "trial-exact-preferred",
       "name": "an eligible preferred ID has zero distance",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-exact-ineligible",
+      "id": "trial-exact-ineligible",
       "name": "an undersized exact ID is ignored",
       "kind": "trial",
       "visible": true,
@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "real-threshold-equality",
+      "id": "trial-threshold-equality",
       "name": "size equal to the minimum qualifies",
       "kind": "trial",
       "visible": true,
@@ -276,7 +276,7 @@
       ]
     },
     {
-      "id": "real-right-candidate-closer",
+      "id": "trial-right-candidate-closer",
       "name": "successor can beat the predecessor",
       "kind": "trial",
       "visible": true,
@@ -310,7 +310,7 @@
       ]
     },
     {
-      "id": "real-preferred-outside-range",
+      "id": "trial-preferred-outside-range",
       "name": "queries outside the ID range use one-sided candidates",
       "kind": "trial",
       "visible": true,
@@ -349,7 +349,7 @@
       ]
     },
     {
-      "id": "real-original-query-order",
+      "id": "trial-original-query-order",
       "name": "offline processing restores input order",
       "kind": "trial",
       "visible": true,

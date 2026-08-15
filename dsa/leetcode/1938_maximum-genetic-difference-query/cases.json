@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-deeper-branches",
+      "id": "trial-deeper-branches",
       "name": "queries on separate deep branches use distinct paths",
       "kind": "trial",
       "visible": true,
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-exclude-cousin",
+      "id": "trial-exclude-cousin",
       "name": "cousin labels are not eligible ancestors",
       "kind": "trial",
       "visible": true,
@@ -258,7 +258,7 @@
       ]
     },
     {
-      "id": "real-large-query-value",
+      "id": "trial-large-query-value",
       "name": "trie width includes the maximum query value",
       "kind": "trial",
       "visible": true,
@@ -294,7 +294,7 @@
       ]
     },
     {
-      "id": "real-same-node-many",
+      "id": "trial-same-node-many",
       "name": "multiple queries at one node preserve order",
       "kind": "trial",
       "visible": true,
@@ -331,7 +331,7 @@
       ]
     },
     {
-      "id": "real-root-only-path",
+      "id": "trial-root-only-path",
       "name": "a root query has exactly one candidate",
       "kind": "trial",
       "visible": true,

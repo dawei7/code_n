@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-reverse-order-jump",
+      "id": "trial-reverse-order-jump",
       "name": "reverse uploads trigger one final jump",
       "kind": "trial",
       "visible": true,
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": "real-large-recorded-run",
+      "id": "trial-large-recorded-run",
       "name": "closing the first gap crosses a recorded run",
       "kind": "trial",
       "visible": true,
@@ -324,7 +324,7 @@
       ]
     },
     {
-      "id": "real-repeated-queries",
+      "id": "trial-repeated-queries",
       "name": "repeated longest calls preserve state",
       "kind": "trial",
       "visible": true,

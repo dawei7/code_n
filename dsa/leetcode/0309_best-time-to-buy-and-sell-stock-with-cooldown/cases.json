@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-multiple",
+      "id": "trial-multiple",
       "name": "several competing transaction plans",
       "kind": "trial",
       "visible": true,

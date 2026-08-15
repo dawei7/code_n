@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-leading-small-value-loses",
+      "id": "trial-leading-small-value-loses",
       "name": "a later two-digit value has the wider range",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-upper-bound-present",
+      "id": "trial-upper-bound-present",
       "name": "the upper-bound value need not have the widest range",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-two-qualifying-values",
+      "id": "trial-two-qualifying-values",
       "name": "two different values tie above repeated digits",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-range-nine-tie",
+      "id": "trial-range-nine-tie",
       "name": "two five-digit values tie at range nine",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-powers-of-ten-all-tie",
+      "id": "trial-powers-of-ten-all-tie",
       "name": "powers of ten all have digit range one",
       "kind": "trial",
       "visible": true,
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-range-nine-after-smaller-ranges",
+      "id": "trial-range-nine-after-smaller-ranges",
       "name": "the final value replaces every earlier contributor",
       "kind": "trial",
       "visible": true,
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "real-two-digit-reversal-tie",
+      "id": "trial-two-digit-reversal-tie",
       "name": "only the wider reversed pair contributes",
       "kind": "trial",
       "visible": true,
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "id": "real-both-domain-boundaries",
+      "id": "trial-both-domain-boundaries",
       "name": "minimum and maximum legal values tie",
       "kind": "trial",
       "visible": true,
@@ -278,7 +278,7 @@
       ]
     },
     {
-      "id": "real-duplicate-positions-count-separately",
+      "id": "trial-duplicate-positions-count-separately",
       "name": "duplicate maximum-range values are not deduplicated",
       "kind": "trial",
       "visible": true,
@@ -293,6 +293,39 @@
       "tags": [
         "duplicates",
         "all-qualify"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5724
+        ]
+      },
+      "expected": 5724,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-18",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5724,
+          5724
+        ]
+      },
+      "expected": 11448,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

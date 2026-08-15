@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-repeated-letter",
+      "id": "trial-repeated-letter",
       "name": "repeated current letter needs only typing",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-alternating-wrap",
+      "id": "trial-alternating-wrap",
       "name": "alternate across the circle boundary",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-alphabet",
+      "id": "trial-alphabet",
       "name": "type the alphabet in order",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-word",
+      "id": "trial-word",
       "name": "mixed ordinary word",
       "kind": "trial",
       "visible": true,

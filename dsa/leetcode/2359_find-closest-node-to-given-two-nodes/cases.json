@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-tail-into-cycle",
+      "id": "trial-tail-into-cycle",
       "name": "paths enter the same cycle at different points",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-common-sink",
+      "id": "trial-common-sink",
       "name": "unequal tails meet at a sink",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-one-path-enters-other",
+      "id": "trial-one-path-enters-other",
       "name": "first common node minimizes the maximum distance",
       "kind": "trial",
       "visible": true,

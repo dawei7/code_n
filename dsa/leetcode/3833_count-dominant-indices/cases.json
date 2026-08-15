@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-average-not-maximum",
+      "id": "trial-average-not-maximum",
       "name": "dominance does not require exceeding every suffix value",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-only-late-index",
+      "id": "trial-only-late-index",
       "name": "only an index near the end qualifies",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-only-first-index",
+      "id": "trial-only-first-index",
       "name": "only the first value beats its complete suffix average",
       "kind": "trial",
       "visible": true,
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "minimum and maximum values alternate",
       "kind": "trial",
       "visible": true,
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "one low endpoint makes every earlier maximum dominant",
       "kind": "trial",
       "visible": true,
@@ -361,6 +361,39 @@
       "tags": [
         "maximum-length",
         "maximum-value"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

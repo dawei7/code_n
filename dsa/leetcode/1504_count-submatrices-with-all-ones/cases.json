@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-single-row-runs",
+      "id": "trial-single-row-runs",
       "name": "zeros separate horizontal runs",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-single-column-run",
+      "id": "trial-single-column-run",
       "name": "vertical run uses the same interval count",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-diagonal-isolated",
+      "id": "trial-diagonal-isolated",
       "name": "diagonal ones do not combine into rectangles",
       "kind": "trial",
       "visible": true,
@@ -220,7 +220,7 @@
       ]
     },
     {
-      "id": "real-four-by-four-all-ones",
+      "id": "trial-four-by-four-all-ones",
       "name": "closed-form dense count",
       "kind": "trial",
       "visible": true,

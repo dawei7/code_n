@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-many-even-runs",
+      "id": "trial-many-even-runs",
       "name": "several uniform even runs need no changes",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-balanced-but-not-beautiful",
+      "id": "trial-balanced-but-not-beautiful",
       "name": "equal zero and one counts do not make mismatched pairs valid",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-long-alternating",
+      "id": "trial-long-alternating",
       "name": "a long alternating string changes one bit per pair",
       "kind": "trial",
       "visible": true,
@@ -109,6 +109,34 @@
       "tags": [
         "long-input",
         "alternating"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

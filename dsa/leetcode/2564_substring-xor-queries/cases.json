@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-leading-zeroes",
+      "id": "trial-leading-zeroes",
       "name": "leading zeroes lose the shortest-length tie",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-leftmost-tie",
+      "id": "trial-leftmost-tie",
       "name": "equal-length matches choose the smallest left index",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-mixed-results",
+      "id": "trial-mixed-results",
       "name": "found and missing targets preserve query order",
       "kind": "trial",
       "visible": true,
@@ -235,6 +235,72 @@
       ],
       "tags": [
         "mixed-results"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1",
+        "queries": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          -1,
+          -1
+        ],
+        [
+          -1,
+          -1
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111",
+        "queries": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          -1,
+          -1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

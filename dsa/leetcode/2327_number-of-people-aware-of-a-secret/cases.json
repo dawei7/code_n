@@ -81,7 +81,7 @@
       ]
     },
     {
-      "id": "real-overlapping-cohorts",
+      "id": "trial-overlapping-cohorts",
       "name": "several sharing and forgetting cohorts overlap",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-modulus",
+      "id": "trial-modulus",
       "name": "rapid growth requires modular arithmetic",
       "kind": "trial",
       "visible": true,

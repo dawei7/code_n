@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-prime",
+      "id": "trial-prime",
       "name": "prime input",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum input",
       "kind": "trial",
       "visible": true,

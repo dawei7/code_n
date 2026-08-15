@@ -183,7 +183,7 @@
       }
     },
     {
-      "id": "real-negative-salaries",
+      "id": "trial-negative-salaries",
       "name": "maximum can be negative",
       "kind": "trial",
       "visible": true,

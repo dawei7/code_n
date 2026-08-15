@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "maximum k",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "several carry positions",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "leading digit unchanged",
       "kind": "trial",
       "visible": true,
@@ -204,6 +204,47 @@
       ],
       "tags": [
         "length"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": [
+          1
+        ],
+        "k": 34
+      },
+      "expected": [
+        3,
+        5
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": [
+          1,
+          1
+        ],
+        "k": 34
+      },
+      "expected": [
+        4,
+        5
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

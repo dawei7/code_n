@@ -88,8 +88,8 @@
       ]
     },
     {
-      "id": "real-upper-start",
-      "name": "real: upper-bound starting value",
+      "id": "trial-upper-start",
+      "name": "upper-bound starting value",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -102,8 +102,8 @@
       ]
     },
     {
-      "id": "real-upper-target",
-      "name": "real: upper-bound target above start",
+      "id": "trial-upper-target",
+      "name": "upper-bound target above start",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -116,8 +116,8 @@
       ]
     },
     {
-      "id": "real-five-then-unit",
-      "name": "real: divide then decrement",
+      "id": "trial-five-then-unit",
+      "name": "divide then decrement",
       "kind": "trial",
       "visible": true,
       "input": {

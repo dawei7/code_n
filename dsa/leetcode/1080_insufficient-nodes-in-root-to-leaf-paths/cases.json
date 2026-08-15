@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-new-leaf-trap",
+      "id": "trial-new-leaf-trap",
       "name": "internal node cannot become a new leaf",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-one-child-survives",
+      "id": "trial-one-child-survives",
       "name": "keep parent with one sufficient child",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-zero-boundary",
+      "id": "trial-zero-boundary",
       "name": "equality with limit is sufficient",
       "kind": "trial",
       "visible": true,

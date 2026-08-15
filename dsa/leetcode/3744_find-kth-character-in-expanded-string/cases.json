@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-third-block-start",
+      "id": "trial-third-block-start",
       "name": "first copy of the third character",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-third-block-end",
+      "id": "trial-third-block-end",
       "name": "final expanded character of one word",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-one-letter-separator",
+      "id": "trial-one-letter-separator",
       "name": "separator between one-letter words",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-reset-after-space",
+      "id": "trial-reset-after-space",
       "name": "repetition position resets in the next word",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-repeated-letter",
+      "id": "trial-repeated-letter",
       "name": "identical source characters still form separate blocks",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-tenth-block-end",
+      "id": "trial-tenth-block-end",
       "name": "final copy at a triangular boundary",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-second-word-interior",
+      "id": "trial-second-word-interior",
       "name": "an interior copy in the second word",
       "kind": "trial",
       "visible": true,
@@ -209,6 +209,36 @@
       },
       "tags": [
         "multiple-words"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "h",
+        "k": 0
+      },
+      "expected": "h",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "hhh",
+        "k": 0
+      },
+      "expected": "h",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

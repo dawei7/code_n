@@ -95,8 +95,8 @@
       ]
     },
     {
-      "id": "real-shorter-inserted-first",
-      "name": "real: existing terminal node blocks a longer number",
+      "id": "trial-shorter-inserted-first",
+      "name": "existing terminal node blocks a longer number",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -113,8 +113,8 @@
       ]
     },
     {
-      "id": "real-leading-zeros-remain-distinct",
-      "name": "real: leading-zero strings are compared as characters",
+      "id": "trial-leading-zeros-remain-distinct",
+      "name": "leading-zero strings are compared as characters",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -133,8 +133,8 @@
       ]
     },
     {
-      "id": "real-single-character-prefix",
-      "name": "real: one-character number prefixes a later entry",
+      "id": "trial-single-character-prefix",
+      "name": "one-character number prefixes a later entry",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -153,8 +153,8 @@
       ]
     },
     {
-      "id": "real-maximum-length-pair",
-      "name": "real: two maximum-length numbers differ only at the end",
+      "id": "trial-maximum-length-pair",
+      "name": "two maximum-length numbers differ only at the end",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -168,6 +168,39 @@
         "real",
         "maximum-length",
         "late-difference"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in numbers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numbers": [
+          "1"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in numbers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numbers": [
+          "1",
+          "1"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

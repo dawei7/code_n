@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "hidden-long-first",
+      "id": "trial-long-first",
       "name": "trailing columns disappear on lower rows",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "hidden-long-last",
+      "id": "trial-long-last",
       "name": "leading spaces remain on lower rows",
       "kind": "trial",
       "visible": true,
@@ -129,6 +129,40 @@
       ],
       "tags": [
         "leading-spaces"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "H"
+      },
+      "expected": [
+        "H"
+      ],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "HHH"
+      },
+      "expected": [
+        "H",
+        "H",
+        "H"
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

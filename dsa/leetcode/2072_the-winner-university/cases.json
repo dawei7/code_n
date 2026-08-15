@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-zero-count-draw",
+      "id": "trial-zero-count-draw",
       "name": "equal zero excellent counts are a draw",
       "kind": "trial",
       "visible": true,
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "id": "real-count-not-score-sum",
+      "id": "trial-count-not-score-sum",
       "name": "more excellent students beat one perfect score",
       "kind": "trial",
       "visible": true,
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "id": "real-california-multiple",
+      "id": "trial-california-multiple",
       "name": "California wins by two excellent students",
       "kind": "trial",
       "visible": true,

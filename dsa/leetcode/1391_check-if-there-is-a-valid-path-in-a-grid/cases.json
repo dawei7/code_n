@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-all-turn-types",
+      "id": "trial-all-turn-types",
       "name": "path uses compatible turns",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-one-sided-connection",
+      "id": "trial-one-sided-connection",
       "name": "reject one-sided border",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-horizontal-destination",
+      "id": "trial-horizontal-destination",
       "name": "destination may open away after arrival",
       "kind": "trial",
       "visible": true,

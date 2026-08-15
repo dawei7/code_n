@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-complement-palindromes",
+      "id": "trial-complement-palindromes",
       "name": "complementary index sets give lengths two and three",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating characters support two length-three choices",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "twelve equal characters split into balanced halves",
       "kind": "trial",
       "visible": true,

@@ -81,7 +81,7 @@
       ]
     },
     {
-      "id": "real-mixed-subtrees",
+      "id": "trial-mixed-subtrees",
       "name": "mixed left and right subtrees",
       "kind": "trial",
       "visible": true,

@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-express-then-free-return",
+      "id": "trial-express-then-free-return",
       "name": "express is useful before a cheap regular segment",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-stay-express",
+      "id": "trial-stay-express",
       "name": "one transfer serves several express segments",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-reenter-express",
+      "id": "trial-reenter-express",
       "name": "alternating advantages justify a second transfer",
       "kind": "trial",
       "visible": true,

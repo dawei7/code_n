@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-interleaved-rows",
+      "id": "trial-interleaved-rows",
       "name": "optimal order alternates between rows",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-uneven-value-gaps",
+      "id": "trial-uneven-value-gaps",
       "name": "large gaps do not change the greedy rule",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-wide-total",
+      "id": "trial-wide-total",
       "name": "large repeated values require a wide total",
       "kind": "trial",
       "visible": true,

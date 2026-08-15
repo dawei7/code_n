@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-compatible-bridge",
-      "name": "real: several deletions join compatible sides",
+      "id": "trial-compatible-bridge",
+      "name": "several deletions join compatible sides",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -126,8 +126,8 @@
       ]
     },
     {
-      "id": "real-two-descents",
-      "name": "real: both descents constrain the interval",
+      "id": "trial-two-descents",
+      "name": "both descents constrain the interval",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: strict comparisons near the value maximum",
+      "id": "trial-large-values",
+      "name": "strict comparisons near the value maximum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -161,6 +161,22 @@
       "expected": 8,
       "tags": [
         "value-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

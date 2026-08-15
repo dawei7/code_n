@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-left-clipping",
+      "id": "trial-left-clipping",
       "name": "a key at the first index clips its interval",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-right-clipping",
+      "id": "trial-right-clipping",
       "name": "a key at the last index clips its interval",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-large-k",
+      "id": "trial-large-k",
       "name": "maximum distance covers the entire array",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-touching",
+      "id": "trial-touching",
       "name": "intervals that touch are emitted continuously",
       "kind": "trial",
       "visible": true,
@@ -241,6 +241,43 @@
       ],
       "tags": [
         "touching-intervals"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ],
+        "key": 9,
+        "k": 1
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ],
+        "key": 9,
+        "k": 1
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-one-order-customers",
+      "id": "trial-one-order-customers",
       "name": "every customer has one order",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-row-order-irrelevant",
+      "id": "trial-row-order-irrelevant",
       "name": "input row order does not determine first delivery",
       "kind": "trial",
       "visible": true,

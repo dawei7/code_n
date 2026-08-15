@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-several-runs",
-      "name": "real: limited operations split several long runs",
+      "id": "trial-several-runs",
+      "name": "limited operations split several long runs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-balanced-neighboring-runs",
-      "name": "real: a flip must respect both neighboring runs",
+      "id": "trial-balanced-neighboring-runs",
+      "name": "a flip must respect both neighboring runs",
       "kind": "trial",
       "visible": true,
       "input": {

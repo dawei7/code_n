@@ -58,8 +58,8 @@
       ]
     },
     {
-      "id": "real-single-character",
-      "name": "real: minimum-length string",
+      "id": "trial-single-character",
+      "name": "minimum-length string",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -72,8 +72,8 @@
       ]
     },
     {
-      "id": "real-unique-maximum",
-      "name": "real: one letter has the unique maximum",
+      "id": "trial-unique-maximum",
+      "name": "one letter has the unique maximum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -86,8 +86,8 @@
       ]
     },
     {
-      "id": "real-three-way-tie",
-      "name": "real: three maximum-frequency letters have interleaved endings",
+      "id": "trial-three-way-tie",
+      "name": "three maximum-frequency letters have interleaved endings",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -100,8 +100,8 @@
       ]
     },
     {
-      "id": "real-skewed-counts",
-      "name": "real: the dominant letter survives alone",
+      "id": "trial-skewed-counts",
+      "name": "the dominant letter survives alone",
       "kind": "trial",
       "visible": true,
       "input": {

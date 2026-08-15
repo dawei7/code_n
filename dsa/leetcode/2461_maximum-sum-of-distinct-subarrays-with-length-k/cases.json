@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-duplicate-leaves",
+      "id": "trial-duplicate-leaves",
       "name": "removing a duplicate restores distinctness",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-whole-array",
+      "id": "trial-whole-array",
       "name": "entire array is one valid window",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-equal-sums",
+      "id": "trial-equal-sums",
       "name": "multiple valid windows share the maximum",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-all-invalid",
+      "id": "trial-all-invalid",
       "name": "every candidate contains a duplicate",
       "kind": "trial",
       "visible": true,

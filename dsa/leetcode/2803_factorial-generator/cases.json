@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-four",
+      "id": "trial-four",
       "name": "factorial sequence through four",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-ten",
+      "id": "trial-ten",
       "name": "longer persistent multiplication state",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum legal factorial index",
       "kind": "trial",
       "visible": true,

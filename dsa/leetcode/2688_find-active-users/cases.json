@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-adjacent-pair",
+      "id": "trial-adjacent-pair",
       "name": "nearby middle pair survives distant outliers",
       "kind": "trial",
       "visible": true,
@@ -237,7 +237,7 @@
       ]
     },
     {
-      "id": "real-distinct-users",
+      "id": "trial-distinct-users",
       "name": "multiple qualifying pairs emit each user once",
       "kind": "trial",
       "visible": true,

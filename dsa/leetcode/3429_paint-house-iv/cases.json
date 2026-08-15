@@ -242,8 +242,8 @@
       ]
     },
     {
-      "id": "real-mirrored-tradeoff",
-      "name": "real: locally cheapest colors conflict",
+      "id": "trial-mirrored-tradeoff",
+      "name": "locally cheapest colors conflict",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -278,8 +278,8 @@
       ]
     },
     {
-      "id": "real-asymmetric-six",
-      "name": "real: asymmetric costs",
+      "id": "trial-asymmetric-six",
+      "name": "asymmetric costs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -324,8 +324,8 @@
       ]
     },
     {
-      "id": "real-eight-houses",
-      "name": "real: eight houses with alternating cheap colors",
+      "id": "trial-eight-houses",
+      "name": "eight houses with alternating cheap colors",
       "kind": "trial",
       "visible": true,
       "input": {

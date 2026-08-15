@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-two-elements",
+      "id": "trial-two-elements",
       "name": "the only pivot can be made valid",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-alternating-signs",
+      "id": "trial-alternating-signs",
       "name": "unchanged balance wins with alternating signs",
       "kind": "trial",
       "visible": true,

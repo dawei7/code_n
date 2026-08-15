@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-lopsided",
+      "id": "trial-lopsided",
       "name": "lopsided branches share one center",
       "kind": "trial",
       "visible": true,

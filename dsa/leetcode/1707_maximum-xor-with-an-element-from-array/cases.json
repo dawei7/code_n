@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-high-bit",
+      "id": "trial-high-bit",
       "name": "the highest supported bit controls the optimum",
       "kind": "trial",
       "visible": true,
@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "real-limit-equality",
+      "id": "trial-limit-equality",
       "name": "a value equal to the limit is eligible",
       "kind": "trial",
       "visible": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "real-repeated-queries",
+      "id": "trial-repeated-queries",
       "name": "repeated queries preserve duplicate outputs",
       "kind": "trial",
       "visible": true,
@@ -309,7 +309,7 @@
       ]
     },
     {
-      "id": "real-prefer-significant-bit",
+      "id": "trial-prefer-significant-bit",
       "name": "significant differing bit beats lower-bit gains",
       "kind": "trial",
       "visible": true,

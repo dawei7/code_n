@@ -81,7 +81,7 @@
       ]
     },
     {
-      "id": "real-even-only",
+      "id": "trial-even-only",
       "name": "even values not divisible by three",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-single-qualifier",
+      "id": "trial-single-qualifier",
       "name": "one qualifying value",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-singleton-nonqualifier",
+      "id": "trial-singleton-nonqualifier",
       "name": "singleton without a match",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "values near the upper bound",
       "kind": "trial",
       "visible": true,
@@ -147,6 +147,23 @@
       "expected": 501,
       "tags": [
         "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

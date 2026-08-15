@@ -196,8 +196,8 @@
       ]
     },
     {
-      "id": "real-all-ones-two-by-two",
-      "name": "real: four ones already satisfy every condition",
+      "id": "trial-all-ones-two-by-two",
+      "name": "four ones already satisfy every condition",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -219,8 +219,8 @@
       ]
     },
     {
-      "id": "real-diagonal-two-by-two",
-      "name": "real: balanced four-cell orbit",
+      "id": "trial-diagonal-two-by-two",
+      "name": "balanced four-cell orbit",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -242,8 +242,8 @@
       ]
     },
     {
-      "id": "real-odd-rectangle",
-      "name": "real: odd rectangle combines every orbit type",
+      "id": "trial-odd-rectangle",
+      "name": "odd rectangle combines every orbit type",
       "kind": "trial",
       "visible": true,
       "input": {

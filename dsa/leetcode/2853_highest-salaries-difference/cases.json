@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-marketing-higher",
+      "id": "trial-marketing-higher",
       "name": "absolute value handles a larger marketing maximum",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-ignore-other-departments",
+      "id": "trial-ignore-other-departments",
       "name": "unrelated department salaries do not affect either maximum",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-highest-row-not-first",
+      "id": "trial-highest-row-not-first",
       "name": "row order does not determine the maximum",
       "kind": "trial",
       "visible": true,
@@ -299,7 +299,7 @@
       ]
     },
     {
-      "id": "real-same-name-two-departments",
+      "id": "trial-same-name-two-departments",
       "name": "the composite key permits one name in both departments",
       "kind": "trial",
       "visible": true,

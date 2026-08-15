@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "hidden-alternating",
+      "id": "trial-alternating",
       "name": "alternating difficulties",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "hidden-order-sensitive",
+      "id": "trial-order-sensitive",
       "name": "best late boundary",
       "kind": "trial",
       "visible": true,
@@ -142,6 +142,41 @@
       "expected": 12,
       "tags": [
         "order"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in jobDifficulty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "jobDifficulty": [
+          6
+        ],
+        "d": 2
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in jobDifficulty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "jobDifficulty": [
+          6,
+          6
+        ],
+        "d": 2
+      },
+      "expected": 12,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

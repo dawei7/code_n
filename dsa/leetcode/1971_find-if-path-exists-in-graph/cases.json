@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-long-chain",
+      "id": "trial-long-chain",
       "name": "destination at the end of a chain",
       "kind": "trial",
       "visible": true,
@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "real-branch-dead-end",
+      "id": "trial-branch-dead-end",
       "name": "branches do not reach the target component",
       "kind": "trial",
       "visible": true,
@@ -244,7 +244,7 @@
       ]
     },
     {
-      "id": "real-cycle-tail",
+      "id": "trial-cycle-tail",
       "name": "path leaves a cycle through a tail",
       "kind": "trial",
       "visible": true,
@@ -290,7 +290,7 @@
       ]
     },
     {
-      "id": "real-unrelated-dense-component",
+      "id": "trial-unrelated-dense-component",
       "name": "dense component does not connect the queried vertices",
       "kind": "trial",
       "visible": true,
@@ -333,6 +333,36 @@
       "tags": [
         "components",
         "dense"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value destination=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "source": 0,
+        "destination": 1
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

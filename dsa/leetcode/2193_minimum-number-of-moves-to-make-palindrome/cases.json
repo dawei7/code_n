@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-mamad",
+      "id": "trial-mamad",
       "name": "several greedy pair shifts interact",
       "kind": "trial",
       "visible": true,
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-center-after-pairs",
+      "id": "trial-center-after-pairs",
       "name": "odd character crosses multiple positions",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-three-pairs",
+      "id": "trial-three-pairs",
       "name": "three grouped pairs require six swaps",
       "kind": "trial",
       "visible": true,
@@ -106,6 +106,34 @@
       "expected": 6,
       "tags": [
         "grouped-pairs"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

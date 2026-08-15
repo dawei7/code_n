@@ -82,8 +82,8 @@
       ]
     },
     {
-      "id": "real-consonants-only",
-      "name": "real: no vowel",
+      "id": "trial-consonants-only",
+      "name": "no vowel",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -96,8 +96,8 @@
       ]
     },
     {
-      "id": "real-uppercase-valid",
-      "name": "real: uppercase vowel and consonant",
+      "id": "trial-uppercase-valid",
+      "name": "uppercase vowel and consonant",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -110,8 +110,8 @@
       ]
     },
     {
-      "id": "real-digits-only",
-      "name": "real: digits satisfy neither letter class",
+      "id": "trial-digits-only",
+      "name": "digits satisfy neither letter class",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -124,8 +124,8 @@
       ]
     },
     {
-      "id": "real-invalid-at-end",
-      "name": "real: forbidden symbol at end",
+      "id": "trial-invalid-at-end",
+      "name": "forbidden symbol at end",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-maximum-valid",
-      "name": "real: maximum legal length",
+      "id": "trial-maximum-valid",
+      "name": "maximum legal length",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-maximum-invalid",
-      "name": "real: forbidden symbol at maximum length",
+      "id": "trial-maximum-invalid",
+      "name": "forbidden symbol at maximum length",
       "kind": "trial",
       "visible": true,
       "input": {

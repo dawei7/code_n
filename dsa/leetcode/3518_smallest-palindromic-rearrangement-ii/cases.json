@@ -98,8 +98,8 @@
       ]
     },
     {
-      "id": "real-just-beyond-total",
-      "name": "real: rank immediately beyond the total",
+      "id": "trial-just-beyond-total",
+      "name": "rank immediately beyond the total",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -114,8 +114,8 @@
       ]
     },
     {
-      "id": "real-second-with-center",
-      "name": "real: second rank with a fixed center",
+      "id": "trial-second-with-center",
+      "name": "second rank with a fixed center",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -130,8 +130,8 @@
       ]
     },
     {
-      "id": "real-middle-rank-with-duplicates",
-      "name": "real: interior rank with duplicate half letters",
+      "id": "trial-middle-rank-with-duplicates",
+      "name": "interior rank with duplicate half letters",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-millionth-rank",
-      "name": "real: maximum requested rank",
+      "id": "trial-millionth-rank",
+      "name": "maximum requested rank",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -159,6 +159,36 @@
         "real",
         "maximum-k",
         "distinct-half"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 2
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "k": 2
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

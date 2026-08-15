@@ -154,8 +154,8 @@
       ]
     },
     {
-      "id": "real-complete-chain-shuffled",
-      "name": "real: original array order does not constrain the path",
+      "id": "trial-complete-chain-shuffled",
+      "name": "original array order does not constrain the path",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -194,8 +194,8 @@
       ]
     },
     {
-      "id": "real-incomparable-points",
-      "name": "real: all other points are incomparable with target",
+      "id": "trial-incomparable-points",
+      "name": "all other points are incomparable with target",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -237,8 +237,8 @@
       ]
     },
     {
-      "id": "real-upper-only",
-      "name": "real: only the upper-right side contributes",
+      "id": "trial-upper-only",
+      "name": "only the upper-right side contributes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -284,8 +284,8 @@
       ]
     },
     {
-      "id": "real-coordinate-boundaries",
-      "name": "real: zero and billion coordinate boundaries",
+      "id": "trial-coordinate-boundaries",
+      "name": "zero and billion coordinate boundaries",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "hidden-square-boundary",
+      "id": "trial-square-boundary",
       "name": "exact square changes the count",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "hidden-above-square",
+      "id": "trial-above-square",
       "name": "values after a square keep its count",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "hidden-maximum",
+      "id": "trial-maximum",
       "name": "maximum-scale input",
       "kind": "trial",
       "visible": true,

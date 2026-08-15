@@ -132,8 +132,8 @@
       ]
     },
     {
-      "id": "real-mixed-grid",
-      "name": "real: competing paths through mixed opening times",
+      "id": "trial-mixed-grid",
+      "name": "competing paths through mixed opening times",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -172,8 +172,8 @@
       ]
     },
     {
-      "id": "real-detour-rectangle",
-      "name": "real: detour avoids a late direct neighbor",
+      "id": "trial-detour-rectangle",
+      "name": "detour avoids a late direct neighbor",
       "kind": "trial",
       "visible": true,
       "input": {

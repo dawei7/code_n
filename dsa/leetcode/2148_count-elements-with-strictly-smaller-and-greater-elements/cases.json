@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-repeated-extrema",
+      "id": "trial-repeated-extrema",
       "name": "repeated extrema remain excluded",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-many-interior-duplicates",
+      "id": "trial-many-interior-duplicates",
       "name": "every interior occurrence counts",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-unsorted-mixed-signs",
+      "id": "trial-unsorted-mixed-signs",
       "name": "order does not affect qualification",
       "kind": "trial",
       "visible": true,
@@ -151,6 +151,39 @@
       "tags": [
         "mixed-signs",
         "unsorted"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          11
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          11,
+          11
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

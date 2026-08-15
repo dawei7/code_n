@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "every legal bit is set",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-alternating-high-first",
+      "id": "trial-alternating-high-first",
       "name": "complementary alternating bit pattern",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-low-and-high-bits",
+      "id": "trial-low-and-high-bits",
       "name": "both boundary bits and one interior bit",
       "kind": "trial",
       "visible": true,

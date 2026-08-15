@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-open-two-by-two",
+      "id": "trial-open-two-by-two",
       "name": "a small open room cleans every boundary cell",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-internal-turns",
+      "id": "trial-internal-turns",
       "name": "obstacles redirect the robot through an inner route",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-unreachable-region",
+      "id": "trial-unreachable-region",
       "name": "disconnected empty cells remain uncleaned",
       "kind": "trial",
       "visible": true,

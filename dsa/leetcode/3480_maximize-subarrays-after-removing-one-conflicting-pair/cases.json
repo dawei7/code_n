@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-duplicate-rules",
+      "id": "trial-duplicate-rules",
       "name": "deleting one duplicate leaves the other",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-two-top-boundaries",
+      "id": "trial-two-top-boundaries",
       "name": "second boundary determines the gain",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-nested-conflicts",
+      "id": "trial-nested-conflicts",
       "name": "nested conflicts change dominance",
       "kind": "trial",
       "visible": true,
@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "real-adjacent-chain",
+      "id": "trial-adjacent-chain",
       "name": "each adjacent conflict dominates briefly",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-layered-conflicts",
+      "id": "trial-layered-conflicts",
       "name": "layered endpoint buckets",
       "kind": "trial",
       "visible": true,
@@ -268,7 +268,7 @@
       ]
     },
     {
-      "id": "real-separated-dominance",
+      "id": "trial-separated-dominance",
       "name": "one removal gains in separated regions",
       "kind": "trial",
       "visible": true,
@@ -295,7 +295,7 @@
       ]
     },
     {
-      "id": "real-many-crossing-pairs",
+      "id": "trial-many-crossing-pairs",
       "name": "crossing and nested conflicts coexist",
       "kind": "trial",
       "visible": true,

@@ -113,8 +113,8 @@
       ]
     },
     {
-      "id": "real-remove-all-internal",
-      "name": "real: exactly all internal signs are removed",
+      "id": "trial-remove-all-internal",
+      "name": "exactly all internal signs are removed",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -143,8 +143,8 @@
       ]
     },
     {
-      "id": "real-two-consecutive",
-      "name": "real: optimum may remove consecutive signs",
+      "id": "trial-two-consecutive",
+      "name": "optimum may remove consecutive signs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -175,8 +175,8 @@
       ]
     },
     {
-      "id": "real-three-merges",
-      "name": "real: several partitions compete",
+      "id": "trial-three-merges",
+      "name": "several partitions compete",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -209,8 +209,8 @@
       ]
     },
     {
-      "id": "real-wide-distance",
-      "name": "real: a wide interval dominates the choice",
+      "id": "trial-wide-distance",
+      "name": "a wide interval dominates the choice",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -234,6 +234,62 @@
       "tags": [
         "real",
         "distance-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value l=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 1,
+        "n": 4,
+        "k": 1,
+        "position": [
+          0,
+          3,
+          8,
+          10
+        ],
+        "time": [
+          5,
+          8,
+          3,
+          6
+        ]
+      },
+      "expected": 62,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 10,
+        "n": 1,
+        "k": 1,
+        "position": [
+          0,
+          3,
+          8,
+          10
+        ],
+        "time": [
+          5,
+          8,
+          3,
+          6
+        ]
+      },
+      "expected": 1000000000000000000000000000000,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

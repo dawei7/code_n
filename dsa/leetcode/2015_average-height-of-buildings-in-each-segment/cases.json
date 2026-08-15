@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-touching-same-height",
+      "id": "trial-touching-same-height",
       "name": "touching equal-height buildings merge",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-touching-different-heights",
+      "id": "trial-touching-different-heights",
       "name": "touching different averages remain separate",
       "kind": "trial",
       "visible": true,
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "real-nested-buildings",
+      "id": "trial-nested-buildings",
       "name": "nested overlaps restore the outer average",
       "kind": "trial",
       "visible": true,

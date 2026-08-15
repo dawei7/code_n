@@ -121,8 +121,8 @@
       ]
     },
     {
-      "id": "real-two-source-cycles-converge",
-      "name": "real: two unreachable source cycles share a tail",
+      "id": "trial-two-source-cycles-converge",
+      "name": "two unreachable source cycles share a tail",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -162,8 +162,8 @@
       ]
     },
     {
-      "id": "real-isolated-noncrystals",
-      "name": "real: isolated points each need a rune",
+      "id": "trial-isolated-noncrystals",
+      "name": "isolated points each need a rune",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -185,8 +185,8 @@
       ]
     },
     {
-      "id": "real-multiple-crystals-cover-all",
-      "name": "real: separate crystals cover separate branches",
+      "id": "trial-multiple-crystals-cover-all",
+      "name": "separate crystals cover separate branches",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -219,8 +219,8 @@
       ]
     },
     {
-      "id": "real-cycle-with-incoming-chain",
-      "name": "real: source chain reaches an unreachable cycle",
+      "id": "trial-cycle-with-incoming-chain",
+      "name": "source chain reaches an unreachable cycle",
       "kind": "trial",
       "visible": true,
       "input": {

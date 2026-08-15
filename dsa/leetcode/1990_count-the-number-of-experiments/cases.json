@@ -483,7 +483,7 @@
       ]
     },
     {
-      "id": "real-nonconsecutive-ids",
+      "id": "trial-nonconsecutive-ids",
       "name": "identifiers need not be consecutive",
       "kind": "trial",
       "visible": true,
@@ -571,7 +571,7 @@
       ]
     },
     {
-      "id": "real-balanced-counts",
+      "id": "trial-balanced-counts",
       "name": "different pairs share equal counts independently",
       "kind": "trial",
       "visible": true,
@@ -674,7 +674,7 @@
       ]
     },
     {
-      "id": "real-skewed-distribution",
+      "id": "trial-skewed-distribution",
       "name": "one dominant group does not affect others",
       "kind": "trial",
       "visible": true,

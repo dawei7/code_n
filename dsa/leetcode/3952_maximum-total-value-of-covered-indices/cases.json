@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-two-isolated-blocks",
+      "id": "trial-two-isolated-blocks",
       "name": "isolated token blocks optimize independently",
       "kind": "trial",
       "visible": true,
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-initial-pair",
+      "id": "trial-initial-pair",
       "name": "a leading token pair cannot use a negative index",
       "kind": "trial",
       "visible": true,
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "real-trailing-pair",
+      "id": "trial-trailing-pair",
       "name": "a trailing run compares its preceding position",
       "kind": "trial",
       "visible": true,
@@ -277,7 +277,7 @@
       ]
     },
     {
-      "id": "real-equal-values",
+      "id": "trial-equal-values",
       "name": "equal values make every move choice equivalent",
       "kind": "trial",
       "visible": true,
@@ -299,7 +299,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "large values require a wide integer result",
       "kind": "trial",
       "visible": true,
@@ -322,7 +322,7 @@
       ]
     },
     {
-      "id": "real-two-mixed-runs",
+      "id": "trial-two-mixed-runs",
       "name": "two runs omit different local minima",
       "kind": "trial",
       "visible": true,

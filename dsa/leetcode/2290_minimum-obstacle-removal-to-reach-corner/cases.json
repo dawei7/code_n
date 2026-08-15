@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-long-zero-detour",
+      "id": "trial-long-zero-detour",
       "name": "a winding empty route beats obstacle shortcuts",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-one-wall",
+      "id": "trial-one-wall",
       "name": "crossing one vertical wall is necessary",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-winding-grid",
+      "id": "trial-winding-grid",
       "name": "zero corridors contain cycles and branches",
       "kind": "trial",
       "visible": true,
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": "real-cheaper-long-path",
+      "id": "trial-cheaper-long-path",
       "name": "cost takes priority over step count",
       "kind": "trial",
       "visible": true,

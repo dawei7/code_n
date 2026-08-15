@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-name-with-space",
+      "id": "trial-name-with-space",
       "name": "preserve spaces already inside a name",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-nonconsecutive-ids",
+      "id": "trial-nonconsecutive-ids",
       "name": "widely separated ids still sort numerically",
       "kind": "trial",
       "visible": true,
@@ -257,7 +257,7 @@
       ]
     },
     {
-      "id": "real-no-added-whitespace",
+      "id": "trial-no-added-whitespace",
       "name": "parentheses immediately follow every name",
       "kind": "trial",
       "visible": true,

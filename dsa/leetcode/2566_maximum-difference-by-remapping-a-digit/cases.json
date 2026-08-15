@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-repeated-leading-digit",
+      "id": "trial-repeated-leading-digit",
       "name": "every selected leading digit is replaced",
       "kind": "trial",
       "visible": true,
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-internal-zero",
+      "id": "trial-internal-zero",
       "name": "zero can be selected only for the maximum",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-distinct-digits",
+      "id": "trial-distinct-digits",
       "name": "the most significant digit controls both extrema",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-power-of-ten-boundary",
+      "id": "trial-power-of-ten-boundary",
       "name": "largest legal input allows leading zeroes in the minimum",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-long-trailing-zeroes",
+      "id": "trial-long-trailing-zeroes",
       "name": "remapping the leading one changes one position",
       "kind": "trial",
       "visible": true,

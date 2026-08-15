@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-all-zeroes",
+      "id": "trial-all-zeroes",
       "name": "all zeroes",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-single-character",
+      "id": "trial-single-character",
       "name": "shortest input",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-truncate-both-runs",
+      "id": "trial-truncate-both-runs",
       "name": "balanced substring can use suffix and prefix of runs",
       "kind": "trial",
       "visible": true,
@@ -108,6 +108,20 @@
       "expected": 4,
       "tags": [
         "unequal-runs"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

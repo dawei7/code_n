@@ -319,7 +319,7 @@
       ]
     },
     {
-      "id": "real-max-square-one-path",
+      "id": "trial-max-square-one-path",
       "name": "one forced path across the maximum square",
       "kind": "trial",
       "visible": true,
@@ -353,7 +353,7 @@
       ]
     },
     {
-      "id": "real-max-square-two-paths",
+      "id": "trial-max-square-two-paths",
       "name": "two paths merge before a long corridor",
       "kind": "trial",
       "visible": true,
@@ -387,7 +387,7 @@
       ]
     },
     {
-      "id": "real-square-three-paths",
+      "id": "trial-square-three-paths",
       "name": "three paths merge into a square-grid corridor",
       "kind": "trial",
       "visible": true,
@@ -415,7 +415,7 @@
       ]
     },
     {
-      "id": "real-three-by-two-four-impossible",
+      "id": "trial-three-by-two-four-impossible",
       "name": "four paths do not fit in three by two",
       "kind": "trial",
       "visible": true,
@@ -437,7 +437,7 @@
       ]
     },
     {
-      "id": "real-two-by-three-four-impossible",
+      "id": "trial-two-by-three-four-impossible",
       "name": "four paths do not fit in two by three",
       "kind": "trial",
       "visible": true,
@@ -459,7 +459,7 @@
       ]
     },
     {
-      "id": "real-three-by-four-four-paths",
+      "id": "trial-three-by-four-four-paths",
       "name": "horizontal four-path block with one corridor row",
       "kind": "trial",
       "visible": true,
@@ -486,7 +486,7 @@
       ]
     },
     {
-      "id": "real-four-by-three-four-paths",
+      "id": "trial-four-by-three-four-paths",
       "name": "vertical four-path block with one corridor column",
       "kind": "trial",
       "visible": true,
@@ -514,7 +514,7 @@
       ]
     },
     {
-      "id": "real-max-square-four-paths",
+      "id": "trial-max-square-four-paths",
       "name": "four paths across the maximum square",
       "kind": "trial",
       "visible": true,
@@ -545,6 +545,38 @@
         "maximum-dimensions",
         "four-path-block",
         "corridor"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "minimal value m=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 3,
+        "k": 2
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-22",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 1,
+        "k": 2
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

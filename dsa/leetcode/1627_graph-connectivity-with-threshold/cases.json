@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "real-one-isolated",
+      "id": "trial-one-isolated",
       "name": "city one stays isolated above threshold zero",
       "kind": "trial",
       "visible": true,
@@ -260,7 +260,7 @@
       ]
     },
     {
-      "id": "real-primes",
+      "id": "trial-primes",
       "name": "large primes remain isolated while composites connect",
       "kind": "trial",
       "visible": true,
@@ -303,7 +303,7 @@
       ]
     },
     {
-      "id": "real-reversed",
+      "id": "trial-reversed",
       "name": "reversing a query preserves connectivity",
       "kind": "trial",
       "visible": true,
@@ -346,7 +346,7 @@
       ]
     },
     {
-      "id": "real-mixed-components",
+      "id": "trial-mixed-components",
       "name": "queries cross and remain within divisor components",
       "kind": "trial",
       "visible": true,
@@ -391,6 +391,39 @@
       "tags": [
         "components",
         "threshold"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value threshold=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "threshold": 1,
+        "queries": [
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        false,
+        false,
+        true
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

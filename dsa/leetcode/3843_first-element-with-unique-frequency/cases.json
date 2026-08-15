@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-earliest-of-several-qualifiers",
+      "id": "trial-earliest-of-several-qualifiers",
       "name": "the first value wins when all frequencies differ",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-colliding-prefix-frequencies",
+      "id": "trial-colliding-prefix-frequencies",
       "name": "early values share a frequency before a later qualifier",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-unique-high-frequency",
+      "id": "trial-unique-high-frequency",
       "name": "only the four-occurrence value qualifies",
       "kind": "trial",
       "visible": true,
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-two-frequency-groups",
+      "id": "trial-two-frequency-groups",
       "name": "every represented frequency belongs to two values",
       "kind": "trial",
       "visible": true,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-upper-bound-value-first",
+      "id": "trial-upper-bound-value-first",
       "name": "the upper-bound value is the earliest qualifier",
       "kind": "trial",
       "visible": true,
@@ -266,7 +266,7 @@
       ]
     },
     {
-      "id": "real-answer-after-shared-pairs",
+      "id": "trial-answer-after-shared-pairs",
       "name": "two frequency-two values precede frequency-three and four values",
       "kind": "trial",
       "visible": true,

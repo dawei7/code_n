@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-even-endpoint",
+      "id": "trial-even-endpoint",
       "name": "eleven adds an even-sum endpoint",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-before-three-digits",
+      "id": "trial-before-three-digits",
       "name": "complete two-digit range is balanced",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "legal maximum has odd digit sum",
       "kind": "trial",
       "visible": true,

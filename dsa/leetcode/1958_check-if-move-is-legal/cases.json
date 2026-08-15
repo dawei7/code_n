@@ -591,7 +591,7 @@
       ]
     },
     {
-      "id": "real-adjacent-own-color",
+      "id": "trial-adjacent-own-color",
       "name": "immediate own color has no middle cell",
       "kind": "trial",
       "visible": true,
@@ -689,7 +689,7 @@
       ]
     },
     {
-      "id": "real-free-gap",
+      "id": "trial-free-gap",
       "name": "a free cell interrupts the potential line",
       "kind": "trial",
       "visible": true,
@@ -787,7 +787,7 @@
       ]
     },
     {
-      "id": "real-open-boundary",
+      "id": "trial-open-boundary",
       "name": "opposite run reaches the edge without an endpoint",
       "kind": "trial",
       "visible": true,
@@ -885,7 +885,7 @@
       ]
     },
     {
-      "id": "real-opposite-color",
+      "id": "trial-opposite-color",
       "name": "white move closes a long horizontal line",
       "kind": "trial",
       "visible": true,
@@ -980,6 +980,202 @@
       "tags": [
         "long-line",
         "white"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value rMove=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "board": [
+          [
+            ".",
+            ".",
+            ".",
+            "B",
+            ".",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            "W",
+            ".",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            "W",
+            ".",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            "W",
+            ".",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            "W",
+            "B",
+            "B",
+            ".",
+            "W",
+            "W",
+            "W",
+            "B"
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            "B",
+            ".",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            "B",
+            ".",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            "W",
+            ".",
+            ".",
+            ".",
+            "."
+          ]
+        ],
+        "rMove": 1,
+        "cMove": 3,
+        "color": "B"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value cMove=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "board": [
+          [
+            ".",
+            ".",
+            ".",
+            "B",
+            ".",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            "W",
+            ".",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            "W",
+            ".",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            "W",
+            ".",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            "W",
+            "B",
+            "B",
+            ".",
+            "W",
+            "W",
+            "W",
+            "B"
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            "B",
+            ".",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            "B",
+            ".",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            "W",
+            ".",
+            ".",
+            ".",
+            "."
+          ]
+        ],
+        "rMove": 4,
+        "cMove": 1,
+        "color": "B"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

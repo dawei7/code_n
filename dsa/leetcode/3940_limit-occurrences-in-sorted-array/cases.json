@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-mixed-run-lengths",
+      "id": "trial-mixed-run-lengths",
       "name": "mixed run lengths are capped independently",
       "kind": "trial",
       "visible": true,
@@ -271,7 +271,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "values at the upper boundary are filtered normally",
       "kind": "trial",
       "visible": true,
@@ -301,7 +301,7 @@
       ]
     },
     {
-      "id": "real-heavy-boundary-runs",
+      "id": "trial-heavy-boundary-runs",
       "name": "oversized first and last runs do not affect the middle",
       "kind": "trial",
       "visible": true,
@@ -335,7 +335,7 @@
       ]
     },
     {
-      "id": "real-large-limit-below-length",
+      "id": "trial-large-limit-below-length",
       "name": "a limit just below the length may still remove nothing",
       "kind": "trial",
       "visible": true,
@@ -362,7 +362,7 @@
       ]
     },
     {
-      "id": "real-many-groups",
+      "id": "trial-many-groups",
       "name": "repeated compaction across many groups preserves order",
       "kind": "trial",
       "visible": true,
@@ -407,7 +407,7 @@
       ]
     },
     {
-      "id": "real-maximum-length-distinct",
+      "id": "trial-maximum-length-distinct",
       "name": "maximum-length distinct input remains unchanged",
       "kind": "trial",
       "visible": true,
@@ -627,7 +627,7 @@
       ]
     },
     {
-      "id": "real-long-single-run",
+      "id": "trial-long-single-run",
       "name": "a longer single run retains exactly k copies",
       "kind": "trial",
       "visible": true,
@@ -670,6 +670,46 @@
       },
       "tags": [
         "single-run"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 2
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

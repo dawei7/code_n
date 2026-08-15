@@ -543,7 +543,7 @@
       ]
     },
     {
-      "id": "real-frequency-and-three-key-order",
+      "id": "trial-frequency-and-three-key-order",
       "name": "frequencies and both alphabetical tie-breakers are applied exactly",
       "kind": "trial",
       "visible": true,
@@ -712,7 +712,7 @@
       ]
     },
     {
-      "id": "real-directed-repeated-pairs",
+      "id": "trial-directed-repeated-pairs",
       "name": "repeated adjacencies count and reverse directions remain distinct",
       "kind": "trial",
       "visible": true,
@@ -785,7 +785,7 @@
       ]
     },
     {
-      "id": "real-mixed-qualification",
+      "id": "trial-mixed-qualification",
       "name": "only qualifying users contribute transitions",
       "kind": "trial",
       "visible": true,

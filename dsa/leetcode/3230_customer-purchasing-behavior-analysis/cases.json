@@ -442,8 +442,8 @@
       ]
     },
     {
-      "id": "real-decimal-rounding",
-      "name": "real: decimal totals averages and score",
+      "id": "trial-decimal-rounding",
+      "name": "decimal totals averages and score",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -515,8 +515,8 @@
       ]
     },
     {
-      "id": "real-product-price-ignored",
-      "name": "real: paid amount differs from list price",
+      "id": "trial-product-price-ignored",
+      "name": "paid amount differs from list price",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -570,8 +570,8 @@
       ]
     },
     {
-      "id": "real-repeated-product",
-      "name": "real: repeated purchases are separate transactions",
+      "id": "trial-repeated-product",
+      "name": "repeated purchases are separate transactions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -639,8 +639,8 @@
       ]
     },
     {
-      "id": "real-three-category-counts",
-      "name": "real: one category has a strict frequency lead",
+      "id": "trial-three-category-counts",
+      "name": "one category has a strict frequency lead",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -725,8 +725,8 @@
       ]
     },
     {
-      "id": "real-customer-loyalty-order",
-      "name": "real: higher spend changes loyalty order",
+      "id": "trial-customer-loyalty-order",
+      "name": "higher spend changes loyalty order",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -808,8 +808,8 @@
       ]
     },
     {
-      "id": "real-tied-counts-different-latest-dates",
-      "name": "real: latest date across tied category counts",
+      "id": "trial-tied-counts-different-latest-dates",
+      "name": "latest date across tied category counts",
       "kind": "trial",
       "visible": true,
       "input": {

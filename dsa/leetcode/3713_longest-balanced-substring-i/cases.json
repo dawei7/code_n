@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-frequency-staircase",
+      "id": "trial-frequency-staircase",
       "name": "unequal complete counts leave a shorter balanced run",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-balanced-suffix-counts",
+      "id": "trial-balanced-suffix-counts",
       "name": "a six-character interval uses three letters twice each",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-complete-periods",
+      "id": "trial-complete-periods",
       "name": "the entire repeated pattern has equal frequencies",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-mixed-near-whole",
+      "id": "trial-mixed-near-whole",
       "name": "the longest balanced interval omits one endpoint",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-four-equal-counts",
+      "id": "trial-four-equal-counts",
       "name": "four letters each occur three times across the whole string",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-alphabet-plus-extra",
+      "id": "trial-alphabet-plus-extra",
       "name": "one extra a breaks the 27-character interval but not the alphabet prefix",
       "kind": "trial",
       "visible": true,

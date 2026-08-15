@@ -98,8 +98,8 @@
       ]
     },
     {
-      "id": "real-zero-forces-earlier-boundary",
-      "name": "real: a zero restricts where the original prefix can remain",
+      "id": "trial-zero-forces-earlier-boundary",
+      "name": "a zero restricts where the original prefix can remain",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -114,8 +114,8 @@
       ]
     },
     {
-      "id": "real-increment-zero-and-preserve-prefix",
-      "name": "real: replace a late zero while preserving the preceding prefix",
+      "id": "trial-increment-zero-and-preserve-prefix",
+      "name": "replace a late zero while preserving the preceding prefix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -130,8 +130,8 @@
       ]
     },
     {
-      "id": "real-maximum-divisor-needs-more-digits",
-      "name": "real: maximum divisor requires a longer compact factor pack",
+      "id": "trial-maximum-divisor-needs-more-digits",
+      "name": "maximum divisor requires a longer compact factor pack",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -144,6 +144,36 @@
         "maximum-t",
         "longer-answer",
         "factor-packing"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "1",
+        "t": 256
+      },
+      "expected": "488",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "111",
+        "t": 256
+      },
+      "expected": "488",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

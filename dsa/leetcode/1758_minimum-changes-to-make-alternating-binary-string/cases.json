@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-zero-starting-target",
+      "id": "trial-zero-starting-target",
       "name": "zero-starting target is closer",
       "kind": "trial",
       "visible": true,
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-one-starting-target",
+      "id": "trial-one-starting-target",
       "name": "complementary target is closer",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-late-mismatch",
+      "id": "trial-late-mismatch",
       "name": "one late mismatch breaks a long alternating prefix",
       "kind": "trial",
       "visible": true,

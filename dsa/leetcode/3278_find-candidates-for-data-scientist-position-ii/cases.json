@@ -450,8 +450,8 @@
       ]
     },
     {
-      "id": "real-score-beats-id",
-      "name": "real: higher score beats lower candidate id",
+      "id": "trial-score-beats-id",
+      "name": "higher score beats lower candidate id",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -512,8 +512,8 @@
       ]
     },
     {
-      "id": "real-single-requirement",
-      "name": "real: one required skill",
+      "id": "trial-single-requirement",
+      "name": "one required skill",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -564,8 +564,8 @@
       ]
     },
     {
-      "id": "real-unmatched-project-among-matches",
-      "name": "real: unmatched project is omitted among valid projects",
+      "id": "trial-unmatched-project-among-matches",
+      "name": "unmatched project is omitted among valid projects",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -626,8 +626,8 @@
       ]
     },
     {
-      "id": "real-complete-beats-partial",
-      "name": "real: complete lower-proficiency candidate beats partial expert",
+      "id": "trial-complete-beats-partial",
+      "name": "complete lower-proficiency candidate beats partial expert",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -683,8 +683,8 @@
       ]
     },
     {
-      "id": "real-negative-adjustments",
-      "name": "real: several deficiencies reduce the base score",
+      "id": "trial-negative-adjustments",
+      "name": "several deficiencies reduce the base score",
       "kind": "trial",
       "visible": true,
       "input": {

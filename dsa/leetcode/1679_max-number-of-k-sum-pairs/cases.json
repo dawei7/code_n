@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-unbalanced-counts",
+      "id": "trial-unbalanced-counts",
       "name": "smaller complement frequency limits operations",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-interleaved-consumption",
+      "id": "trial-interleaved-consumption",
       "name": "complements arrive before and after partners",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "values and target reach upper magnitude",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-values-over-target",
+      "id": "trial-values-over-target",
       "name": "impossible positive complements remain unused",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-single-element",
+      "id": "trial-single-element",
       "name": "one element cannot form an operation",
       "kind": "trial",
       "visible": true,
@@ -215,6 +215,41 @@
       "tags": [
         "minimum",
         "self-complement"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 5
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 5
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

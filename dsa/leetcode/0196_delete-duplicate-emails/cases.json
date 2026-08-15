@@ -133,7 +133,7 @@
       }
     },
     {
-      "id": "real-multiple-groups",
+      "id": "trial-multiple-groups",
       "name": "several duplicate groups",
       "kind": "trial",
       "visible": true,

@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "hidden-duplicates",
+      "id": "trial-duplicates",
       "name": "repeated characters",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "hidden-symbols",
+      "id": "trial-symbols",
       "name": "digits and punctuation",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "hidden-mixed-case",
+      "id": "trial-mixed-case",
       "name": "case is preserved",
       "kind": "trial",
       "visible": true,

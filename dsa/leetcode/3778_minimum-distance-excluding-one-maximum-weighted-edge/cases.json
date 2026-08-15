@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-three-edge-alternative",
+      "id": "trial-three-edge-alternative",
       "name": "a large edge dominates a shorter route",
       "kind": "trial",
       "visible": true,
@@ -260,7 +260,7 @@
       ]
     },
     {
-      "id": "real-cross-connected-graph",
+      "id": "trial-cross-connected-graph",
       "name": "cycles and cross edges do not invalidate the free-edge model",
       "kind": "trial",
       "visible": true,
@@ -318,7 +318,7 @@
       ]
     },
     {
-      "id": "real-large-equal-weights",
+      "id": "trial-large-equal-weights",
       "name": "the answer can exceed one edge weight",
       "kind": "trial",
       "visible": true,
@@ -351,7 +351,7 @@
       ]
     },
     {
-      "id": "real-all-unit-chain",
+      "id": "trial-all-unit-chain",
       "name": "exactly one of four equal edges is excluded",
       "kind": "trial",
       "visible": true,
@@ -389,7 +389,7 @@
       ]
     },
     {
-      "id": "real-two-tied-paths",
+      "id": "trial-two-tied-paths",
       "name": "compare routes with different repeated maxima",
       "kind": "trial",
       "visible": true,
@@ -432,7 +432,7 @@
       ]
     },
     {
-      "id": "real-direct-beats-triangle",
+      "id": "trial-direct-beats-triangle",
       "name": "any direct source-target edge can be fully excluded",
       "kind": "trial",
       "visible": true,

@@ -193,8 +193,8 @@
       ]
     },
     {
-      "id": "real-negative-values",
-      "name": "real: negative and duplicate values",
+      "id": "trial-negative-values",
+      "name": "negative and duplicate values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -257,8 +257,8 @@
       ]
     },
     {
-      "id": "real-extreme-values",
-      "name": "real: boundary-sized signed values",
+      "id": "trial-extreme-values",
+      "name": "boundary-sized signed values",
       "kind": "trial",
       "visible": true,
       "input": {

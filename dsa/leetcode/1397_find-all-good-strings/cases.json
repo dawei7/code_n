@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-endpoint-exclusion",
+      "id": "trial-endpoint-exclusion",
       "name": "lower endpoint alone contains evil",
       "kind": "trial",
       "visible": true,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-overlapping-evil",
+      "id": "trial-overlapping-evil",
       "name": "overlapping forbidden prefix excludes range",
       "kind": "trial",
       "visible": true,
@@ -116,6 +116,40 @@
       "expected": 0,
       "tags": [
         "overlap"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "s1": "aa",
+        "s2": "da",
+        "evil": "b"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "s1": "aaa",
+        "s2": "da",
+        "evil": "b"
+      },
+      "expected": 51,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

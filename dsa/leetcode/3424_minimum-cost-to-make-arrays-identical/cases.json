@@ -98,8 +98,8 @@
       ]
     },
     {
-      "id": "real-single-element",
-      "name": "real: one element",
+      "id": "trial-single-element",
+      "name": "one element",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -117,8 +117,8 @@
       ]
     },
     {
-      "id": "real-duplicates",
-      "name": "real: duplicates and negative values",
+      "id": "trial-duplicates",
+      "name": "duplicates and negative values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -147,8 +147,8 @@
       ]
     },
     {
-      "id": "real-direct-zero",
-      "name": "real: identical arrays with positive fee",
+      "id": "trial-direct-zero",
+      "name": "identical arrays with positive fee",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -170,8 +170,8 @@
       ]
     },
     {
-      "id": "real-tied-strategies",
-      "name": "real: direct and rearranged totals tie",
+      "id": "trial-tied-strategies",
+      "name": "direct and rearranged totals tie",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -191,8 +191,8 @@
       ]
     },
     {
-      "id": "real-order-matters",
-      "name": "real: sorting eliminates crossed distance",
+      "id": "trial-order-matters",
+      "name": "sorting eliminates crossed distance",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -212,8 +212,8 @@
       ]
     },
     {
-      "id": "real-large-k",
-      "name": "real: maximum fixed fee is ignored",
+      "id": "trial-large-k",
+      "name": "maximum fixed fee is ignored",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -235,8 +235,8 @@
       ]
     },
     {
-      "id": "real-wide-values",
-      "name": "real: values at both bounds",
+      "id": "trial-wide-values",
+      "name": "values at both bounds",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -256,8 +256,8 @@
       ]
     },
     {
-      "id": "real-rearrange-and-adjust",
-      "name": "real: rearrangement still needs adjustments",
+      "id": "trial-rearrange-and-adjust",
+      "name": "rearrangement still needs adjustments",
       "kind": "trial",
       "visible": true,
       "input": {

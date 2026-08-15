@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "hidden-repeated-index",
+      "id": "trial-repeated-index",
       "name": "same middle position reused",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "hidden-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate values",
       "kind": "trial",
       "visible": true,

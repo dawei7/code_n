@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-two-nodes",
+      "id": "trial-two-nodes",
       "name": "one edge gives one restricted path",
       "kind": "trial",
       "visible": true,
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-equal-distance-edge",
+      "id": "trial-equal-distance-edge",
       "name": "equal-distance endpoints cannot follow each other",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-branching-dag",
+      "id": "trial-branching-dag",
       "name": "long direct edges and shared suffixes",
       "kind": "trial",
       "visible": true,
@@ -269,7 +269,7 @@
       ]
     },
     {
-      "id": "real-modulo-layered",
+      "id": "trial-modulo-layered",
       "name": "exponentially many paths require the modulus",
       "kind": "trial",
       "visible": true,

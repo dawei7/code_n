@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "two-digit power boundary",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "palindromic two-digit input",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-3",
       "name": "adjacent higher prefix is closer",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "tied palindromic neighbors",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "large power of ten",
       "kind": "trial",
       "visible": true,
@@ -135,6 +135,20 @@
       "expected": "99999999999999999",
       "tags": [
         "edge-case"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in n",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": "111"
+      },
+      "expected": "101",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

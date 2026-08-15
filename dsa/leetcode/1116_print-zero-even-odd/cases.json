@@ -44,7 +44,7 @@
       ]
     },
     {
-      "id": "real-even-terminal",
+      "id": "trial-even-terminal",
       "name": "terminal value belongs to even thread",
       "kind": "trial",
       "visible": true,
@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "real-more-handoffs",
+      "id": "trial-more-handoffs",
       "name": "ten alternating numeric handoffs",
       "kind": "trial",
       "visible": true,

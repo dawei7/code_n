@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-unused-full-target",
+      "id": "trial-unused-full-target",
       "name": "a full-target string has no empty partner",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-duplicate-products",
+      "id": "trial-duplicate-products",
       "name": "independent duplicate counts multiply",
       "kind": "trial",
       "visible": true,
@@ -134,6 +134,41 @@
       },
       "expected": 6,
       "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          "777"
+        ],
+        "target": "7777"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          "777",
+          "777"
+        ],
+        "target": "7777"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

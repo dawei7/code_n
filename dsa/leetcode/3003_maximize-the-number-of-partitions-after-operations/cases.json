@@ -86,8 +86,8 @@
       ]
     },
     {
-      "id": "real-full-alphabet-capacity",
-      "name": "real: all letters fit when k is twenty-six",
+      "id": "trial-full-alphabet-capacity",
+      "name": "all letters fit when k is twenty-six",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -100,8 +100,8 @@
       ]
     },
     {
-      "id": "real-nested-pattern",
-      "name": "real: replacement inside nested pattern",
+      "id": "trial-nested-pattern",
+      "name": "replacement inside nested pattern",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "hidden-zero",
+      "id": "trial-zero",
       "name": "all subtree sums are zero",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "hidden-asymmetric",
+      "id": "trial-asymmetric",
       "name": "asymmetric subtree sizes",
       "kind": "trial",
       "visible": true,

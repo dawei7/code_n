@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-previous-one",
+      "id": "trial-previous-one",
       "name": "each value becomes its circular predecessor",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-forward-two",
+      "id": "trial-forward-two",
       "name": "two-value forward window crosses boundary",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-all-previous",
+      "id": "trial-all-previous",
       "name": "maximum negative key includes every other value",
       "kind": "trial",
       "visible": true,
@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "real-all-next",
+      "id": "trial-all-next",
       "name": "maximum positive key includes every other value",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-two-values",
+      "id": "trial-two-values",
       "name": "two-element negative window wraps on every step",
       "kind": "trial",
       "visible": true,
@@ -243,6 +243,46 @@
       "tags": [
         "minimum-nonzero-window",
         "negative"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in code",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "code": [
+          5
+        ],
+        "k": 3
+      },
+      "expected": [
+        15
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in code",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "code": [
+          5,
+          5
+        ],
+        "k": 3
+      },
+      "expected": [
+        15,
+        15
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

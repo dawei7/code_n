@@ -102,8 +102,8 @@
       ]
     },
     {
-      "id": "real-largest-unique-singleton",
-      "name": "real: largest globally unique singleton value",
+      "id": "trial-largest-unique-singleton",
+      "name": "largest globally unique singleton value",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -123,8 +123,8 @@
       ]
     },
     {
-      "id": "real-no-unique-singleton",
-      "name": "real: every value repeats across singleton windows",
+      "id": "trial-no-unique-singleton",
+      "name": "every value repeats across singleton windows",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -144,8 +144,8 @@
       ]
     },
     {
-      "id": "real-only-last-endpoint",
-      "name": "real: only the final endpoint is globally unique",
+      "id": "trial-only-last-endpoint",
+      "name": "only the final endpoint is globally unique",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -168,8 +168,8 @@
       ]
     },
     {
-      "id": "real-larger-first-endpoint",
-      "name": "real: both endpoints qualify and the first is larger",
+      "id": "trial-larger-first-endpoint",
+      "name": "both endpoints qualify and the first is larger",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -190,8 +190,8 @@
       ]
     },
     {
-      "id": "real-repeated-first-endpoint",
-      "name": "real: repeated larger endpoint is disqualified",
+      "id": "trial-repeated-first-endpoint",
+      "name": "repeated larger endpoint is disqualified",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -212,8 +212,8 @@
       ]
     },
     {
-      "id": "real-both-endpoints-repeat",
-      "name": "real: neither endpoint qualifies",
+      "id": "trial-both-endpoints-repeat",
+      "name": "neither endpoint qualifies",
       "kind": "trial",
       "visible": true,
       "input": {

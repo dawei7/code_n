@@ -372,7 +372,7 @@
       ]
     },
     {
-      "id": "real-independent-cutoffs",
+      "id": "trial-independent-cutoffs",
       "name": "each type applies its own three-row cutoff",
       "kind": "trial",
       "visible": true,
@@ -493,7 +493,7 @@
       ]
     },
     {
-      "id": "real-unused-contact",
+      "id": "trial-unused-contact",
       "name": "contacts without calls do not appear",
       "kind": "trial",
       "visible": true,

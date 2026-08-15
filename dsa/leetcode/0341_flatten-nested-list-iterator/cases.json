@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "hidden-empty-between-values",
+      "id": "trial-empty-between-values",
       "name": "empty branches do not interrupt order",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "hidden-signed-values",
+      "id": "trial-signed-values",
       "name": "zero and negative integers",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "hidden-order",
+      "id": "trial-order",
       "name": "preserve depth-first left-to-right order",
       "kind": "trial",
       "visible": true,

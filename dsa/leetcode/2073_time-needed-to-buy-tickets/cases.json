@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-first-pass-stop",
+      "id": "trial-first-pass-stop",
       "name": "the process stops before suffix positions act",
       "kind": "trial",
       "visible": true,
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-suffix-loses-final-turn",
+      "id": "trial-suffix-loses-final-turn",
       "name": "people behind the target miss the final pass",
       "kind": "trial",
       "visible": true,
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-early-finishers",
+      "id": "trial-early-finishers",
       "name": "smaller demands stop contributing after completion",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-demand-boundary",
+      "id": "trial-demand-boundary",
       "name": "maximum ticket demand for one person",
       "kind": "trial",
       "visible": true,
@@ -126,6 +126,25 @@
       "expected": 100,
       "tags": [
         "demand-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tickets": [
+          2,
+          3,
+          2
+        ],
+        "k": 1
+      },
+      "expected": 7,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

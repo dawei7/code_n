@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "hidden-zero-tie",
+      "id": "trial-zero-tie",
       "name": "zero wins a tie",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "hidden-unlisted-cap",
+      "id": "trial-unlisted-cap",
       "name": "optimal cap is not in the array",
       "kind": "trial",
       "visible": true,

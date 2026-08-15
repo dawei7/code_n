@@ -155,8 +155,8 @@
       ]
     },
     {
-      "id": "real-mixed-normalization",
-      "name": "real: eligible and ineligible first-array values mix",
+      "id": "trial-mixed-normalization",
+      "name": "eligible and ineligible first-array values mix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -180,8 +180,8 @@
       ]
     },
     {
-      "id": "real-repeated-divisors",
-      "name": "real: repeated second-array divisors stay distinct",
+      "id": "trial-repeated-divisors",
+      "name": "repeated second-array divisors stay distinct",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -204,8 +204,8 @@
       ]
     },
     {
-      "id": "real-all-ones",
-      "name": "real: every ordered index pair is good",
+      "id": "trial-all-ones",
+      "name": "every ordered index pair is good",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -227,8 +227,8 @@
       ]
     },
     {
-      "id": "real-divisor-too-large",
-      "name": "real: every candidate divisor exceeds the dividends",
+      "id": "trial-divisor-too-large",
+      "name": "every candidate divisor exceeds the dividends",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -248,8 +248,8 @@
       ]
     },
     {
-      "id": "real-sparse-multiples",
-      "name": "real: sparse matches across several scaled divisors",
+      "id": "trial-sparse-multiples",
+      "name": "sparse matches across several scaled divisors",
       "kind": "trial",
       "visible": true,
       "input": {

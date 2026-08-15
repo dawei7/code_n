@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-middle-stop",
+      "id": "trial-middle-stop",
       "name": "all paths stop before the last column",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-boundaries",
+      "id": "trial-boundaries",
       "name": "top and bottom row boundaries",
       "kind": "trial",
       "visible": true,

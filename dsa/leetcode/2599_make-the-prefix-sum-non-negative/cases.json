@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-most-negative-choice",
+      "id": "trial-most-negative-choice",
       "name": "most negative prior value is optimal",
       "kind": "trial",
       "visible": true,
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-long-recovery",
+      "id": "trial-long-recovery",
       "name": "one removal funds later prefixes",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-zeros-and-negatives",
+      "id": "trial-zeros-and-negatives",
       "name": "zeros do not change feasibility",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-integer-width",
+      "id": "trial-integer-width",
       "name": "prefix sum needs wide arithmetic",
       "kind": "trial",
       "visible": true,
@@ -152,6 +152,39 @@
       "expected": 0,
       "tags": [
         "integer-width"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

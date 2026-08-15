@@ -160,7 +160,7 @@
       }
     },
     {
-      "id": "real-unsorted-products",
+      "id": "trial-unsorted-products",
       "name": "source order differs from product order",
       "kind": "trial",
       "visible": true,
@@ -216,7 +216,7 @@
       }
     },
     {
-      "id": "real-store1-only",
+      "id": "trial-store1-only",
       "name": "first store is the only populated column",
       "kind": "trial",
       "visible": true,
@@ -256,7 +256,7 @@
       }
     },
     {
-      "id": "real-store3-only",
+      "id": "trial-store3-only",
       "name": "last store is the only populated column",
       "kind": "trial",
       "visible": true,
@@ -296,7 +296,7 @@
       }
     },
     {
-      "id": "real-interleaved-groups",
+      "id": "trial-interleaved-groups",
       "name": "product rows are interleaved",
       "kind": "trial",
       "visible": true,

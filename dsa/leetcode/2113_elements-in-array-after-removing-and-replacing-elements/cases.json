@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-second-cycle",
+      "id": "trial-second-cycle",
       "name": "phases repeat after the full period",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-partial-restoration",
+      "id": "trial-partial-restoration",
       "name": "only the restored prefix is visible",
       "kind": "trial",
       "visible": true,
@@ -272,7 +272,7 @@
       ]
     },
     {
-      "id": "real-large-time",
+      "id": "trial-large-time",
       "name": "large times reduce to an ordinary phase",
       "kind": "trial",
       "visible": true,
@@ -305,6 +305,85 @@
       "tags": [
         "maximum-time",
         "modulo"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ],
+        "queries": [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            5,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        -1,
+        0,
+        -1,
+        -1
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ],
+        "queries": [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            5,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        -1,
+        -1,
+        -1,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

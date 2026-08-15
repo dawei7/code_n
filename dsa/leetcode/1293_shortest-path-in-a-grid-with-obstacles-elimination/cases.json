@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "hidden-open-route",
+      "id": "trial-open-route",
       "name": "obstacles do not need removal",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "hidden-budget-choice",
+      "id": "trial-budget-choice",
       "name": "preserve elimination for a later obstacle",
       "kind": "trial",
       "visible": true,

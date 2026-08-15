@@ -121,8 +121,8 @@
       ]
     },
     {
-      "id": "real-two-middle-choices",
-      "name": "real: separate middle indices contribute independently",
+      "id": "trial-two-middle-choices",
+      "name": "separate middle indices contribute independently",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -142,8 +142,8 @@
       ]
     },
     {
-      "id": "real-five-zero-combinations",
-      "name": "real: every three of five zeros form a triplet",
+      "id": "trial-five-zero-combinations",
+      "name": "every three of five zeros form a triplet",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -163,8 +163,8 @@
       ]
     },
     {
-      "id": "real-maximum-value-target",
-      "name": "real: the maximum legal value can be an outer target",
+      "id": "trial-maximum-value-target",
+      "name": "the maximum legal value can be an outer target",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -182,8 +182,8 @@
       ]
     },
     {
-      "id": "real-order-prevents-match",
-      "name": "real: matching values exist but not on both sides",
+      "id": "trial-order-prevents-match",
+      "name": "matching values exist but not on both sides",
       "kind": "trial",
       "visible": true,
       "input": {

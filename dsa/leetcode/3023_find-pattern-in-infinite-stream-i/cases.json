@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-nested-fallback",
+      "id": "trial-nested-fallback",
       "name": "nested prefix fallback finds the first occurrence",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-late-single-bit",
+      "id": "trial-late-single-bit",
       "name": "one-bit pattern appears after several reads",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-max-pattern",
+      "id": "trial-max-pattern",
       "name": "maximum-length pattern matches at zero",
       "kind": "trial",
       "visible": true,
@@ -301,7 +301,7 @@
       ]
     },
     {
-      "id": "real-late-pattern",
+      "id": "trial-late-pattern",
       "name": "match begins after a long uniform prefix",
       "kind": "trial",
       "visible": true,

@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-k-too-large-for-boundaries",
+      "id": "trial-k-too-large-for-boundaries",
       "name": "no index has two positions on each side",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-increasing",
+      "id": "trial-increasing",
       "name": "increasing order has no smaller values to the right",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-symmetric-mountain",
+      "id": "trial-symmetric-mountain",
       "name": "three central mountain positions are two-big",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-unsorted",
+      "id": "trial-unsorted",
       "name": "only one interior value qualifies",
       "kind": "trial",
       "visible": true,
@@ -160,6 +160,41 @@
       "expected": 1,
       "tags": [
         "mixed-order"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

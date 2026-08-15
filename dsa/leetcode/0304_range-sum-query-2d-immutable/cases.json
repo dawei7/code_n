@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "real-overlap",
+      "id": "trial-overlap",
       "name": "overlapping interior and boundary rectangles",
       "kind": "trial",
       "visible": true,

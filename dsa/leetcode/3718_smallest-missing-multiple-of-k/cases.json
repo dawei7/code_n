@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-k-one",
+      "id": "trial-k-one",
       "name": "k equal to one searches consecutive positive integers",
       "kind": "trial",
       "visible": true,
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-maximum-k",
+      "id": "trial-maximum-k",
       "name": "the answer can exceed the maximum allowed array value",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-gap-after-two",
+      "id": "trial-gap-after-two",
       "name": "a gap after two multiples wins over a later present value",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-unsorted-prefix",
+      "id": "trial-unsorted-prefix",
       "name": "input order does not change membership",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "all values through one hundred make 101 the answer",
       "kind": "trial",
       "visible": true,

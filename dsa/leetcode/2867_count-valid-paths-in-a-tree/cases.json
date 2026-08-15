@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-prime-center",
+      "id": "trial-prime-center",
       "name": "one prime joins several non-prime components",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-chain",
+      "id": "trial-chain",
       "name": "several prime separators on a chain",
       "kind": "trial",
       "visible": true,
@@ -220,7 +220,7 @@
       ]
     },
     {
-      "id": "real-two-prime-branches",
+      "id": "trial-two-prime-branches",
       "name": "paths through different prime branches stay separate",
       "kind": "trial",
       "visible": true,

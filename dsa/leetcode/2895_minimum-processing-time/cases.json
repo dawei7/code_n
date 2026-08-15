@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum values can produce a result above one billion",
       "kind": "trial",
       "visible": true,

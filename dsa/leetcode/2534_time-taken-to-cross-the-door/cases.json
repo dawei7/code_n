@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-all-enter",
+      "id": "trial-all-enter",
       "name": "same-direction ties follow indices",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-batched-arrivals",
+      "id": "trial-batched-arrivals",
       "name": "queued directions across several arrival batches",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-multiple-idle-periods",
+      "id": "trial-multiple-idle-periods",
       "name": "reset and retain priority across mixed gaps",
       "kind": "trial",
       "visible": true,

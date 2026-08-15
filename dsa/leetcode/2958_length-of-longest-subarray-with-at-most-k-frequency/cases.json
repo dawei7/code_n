@@ -135,8 +135,8 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: large values and repeated endpoints",
+      "id": "trial-large-values",
+      "name": "large values and repeated endpoints",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -157,8 +157,8 @@
       ]
     },
     {
-      "id": "real-late-best",
-      "name": "real: longest window occurs at the end",
+      "id": "trial-late-best",
+      "name": "longest window occurs at the end",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -179,8 +179,8 @@
       ]
     },
     {
-      "id": "real-k-equals-length",
-      "name": "real: k equals array length",
+      "id": "trial-k-equals-length",
+      "name": "k equals array length",
       "kind": "trial",
       "visible": true,
       "input": {

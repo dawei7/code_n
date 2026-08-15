@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-two-characters",
+      "id": "trial-two-characters",
       "name": "one boundary in length two",
       "kind": "trial",
       "visible": true,
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-small-island",
+      "id": "trial-small-island",
       "name": "one-character island",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-equal-ends",
+      "id": "trial-equal-ends",
       "name": "long middle run",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-opposite-ends",
+      "id": "trial-opposite-ends",
       "name": "interior run with opposite edges",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-three-alternating",
+      "id": "trial-three-alternating",
       "name": "alternating length three",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-two-boundaries",
+      "id": "trial-two-boundaries",
       "name": "two wide transitions",
       "kind": "trial",
       "visible": true,

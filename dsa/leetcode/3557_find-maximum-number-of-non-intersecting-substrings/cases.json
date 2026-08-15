@@ -78,8 +78,8 @@
       ]
     },
     {
-      "id": "real-shared-endpoint",
-      "name": "real: intervals sharing an endpoint intersect",
+      "id": "trial-shared-endpoint",
+      "name": "intervals sharing an endpoint intersect",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -93,8 +93,8 @@
       ]
     },
     {
-      "id": "real-three-greedy-blocks",
-      "name": "real: earliest endpoints expose three intervals",
+      "id": "trial-three-greedy-blocks",
+      "name": "earliest endpoints expose three intervals",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -108,8 +108,8 @@
       ]
     },
     {
-      "id": "real-seven-equal",
-      "name": "real: seven equal letters fit only one length-four block",
+      "id": "trial-seven-equal",
+      "name": "seven equal letters fit only one length-four block",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -123,8 +123,8 @@
       ]
     },
     {
-      "id": "real-no-distant-repeat",
-      "name": "real: repeats are all too close",
+      "id": "trial-no-distant-repeat",
+      "name": "repeats are all too close",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-two-different-letters",
-      "name": "real: two valid intervals use different endpoint letters",
+      "id": "trial-two-different-letters",
+      "name": "two valid intervals use different endpoint letters",
       "kind": "trial",
       "visible": true,
       "input": {

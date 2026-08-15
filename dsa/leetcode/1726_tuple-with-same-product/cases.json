@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-geometric-values",
+      "id": "trial-geometric-values",
       "name": "powers of two create several pair collisions",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-maximum-value",
+      "id": "trial-maximum-value",
       "name": "maximum legal value participates in a collision",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-order-invariance",
+      "id": "trial-order-invariance",
       "name": "input order does not change pair collisions",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-several-frequencies",
+      "id": "trial-several-frequencies",
       "name": "consecutive values produce many product frequencies",
       "kind": "trial",
       "visible": true,

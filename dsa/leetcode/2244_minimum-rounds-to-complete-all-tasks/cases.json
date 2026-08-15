@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-single-task",
+      "id": "trial-single-task",
       "name": "one total task is impossible",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-many-pairs",
+      "id": "trial-many-pairs",
       "name": "distinct difficulties can each form one pair",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-seven-and-eight",
+      "id": "trial-seven-and-eight",
       "name": "larger remainder patterns combine",
       "kind": "trial",
       "visible": true,

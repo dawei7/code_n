@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "hidden-delayed-pair",
+      "id": "trial-delayed-pair",
       "name": "preserve earlier pair after first resets",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "hidden-negative",
+      "id": "trial-negative",
       "name": "negative triplet",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "hidden-all-equal",
+      "id": "trial-all-equal",
       "name": "all values equal",
       "kind": "trial",
       "visible": true,

@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-flat",
+      "id": "trial-flat",
       "name": "three equal values",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-ready-longer",
+      "id": "trial-ready-longer",
       "name": "longer array already alternates",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-one-conflict",
+      "id": "trial-one-conflict",
       "name": "one valley conflicts with equal peaks",
       "kind": "trial",
       "visible": true,
@@ -147,6 +147,39 @@
       "tags": [
         "real",
         "interior-equality"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

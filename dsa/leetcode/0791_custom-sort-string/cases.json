@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "ranked subset with several leftovers",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "full alphabet ranking",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "keyboard-prefix ranking",
       "kind": "trial",
       "visible": true,
@@ -162,6 +162,36 @@
       "tags": [
         "unranked",
         "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "order": "c",
+        "s": "abcd"
+      },
+      "expected": "abcd",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "order": "ccc",
+        "s": "abcd"
+      },
+      "expected": "abdc",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

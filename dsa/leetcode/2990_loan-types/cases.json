@@ -191,8 +191,8 @@
       ]
     },
     {
-      "id": "real-user-order",
-      "name": "real: qualifying users sort ascending",
+      "id": "trial-user-order",
+      "name": "qualifying users sort ascending",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -242,8 +242,8 @@
       ]
     },
     {
-      "id": "real-mixed-users",
-      "name": "real: independently qualify each user",
+      "id": "trial-mixed-users",
+      "name": "independently qualify each user",
       "kind": "trial",
       "visible": true,
       "input": {

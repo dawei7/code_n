@@ -237,7 +237,7 @@
       ]
     },
     {
-      "id": "real-three-products",
+      "id": "trial-three-products",
       "name": "only one complete customer",
       "kind": "trial",
       "visible": true,
@@ -297,7 +297,7 @@
       ]
     },
     {
-      "id": "real-nonconsecutive-keys",
+      "id": "trial-nonconsecutive-keys",
       "name": "product keys need not be consecutive",
       "kind": "trial",
       "visible": true,

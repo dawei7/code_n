@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-zero-neutral",
+      "id": "trial-zero-neutral",
       "name": "zero does not improve the best positive singleton",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-duplicate-chain-restart",
+      "id": "trial-duplicate-chain-restart",
       "name": "a path can restart beyond a duplicate ancestor",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "an all-equal tree permits only singleton paths",
       "kind": "trial",
       "visible": true,
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "extreme negative root makes the positive endpoint best",
       "kind": "trial",
       "visible": true,
@@ -275,7 +275,7 @@
       ]
     },
     {
-      "id": "real-large-positive-crossing",
+      "id": "trial-large-positive-crossing",
       "name": "three distinct high values form the best cross path",
       "kind": "trial",
       "visible": true,
@@ -296,7 +296,7 @@
       ]
     },
     {
-      "id": "real-off-path-duplicate",
+      "id": "trial-off-path-duplicate",
       "name": "a duplicate outside the chosen route is harmless",
       "kind": "trial",
       "visible": true,
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "id": "real-mixed-sign-crossing",
+      "id": "trial-mixed-sign-crossing",
       "name": "a mixed-sign path crosses the root",
       "kind": "trial",
       "visible": true,

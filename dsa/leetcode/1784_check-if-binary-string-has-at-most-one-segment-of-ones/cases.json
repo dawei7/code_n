@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "real-trailing-zeros",
+      "id": "trial-trailing-zeros",
       "name": "zeros after the segment do not create another segment",
       "kind": "trial",
       "visible": true,
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-immediate-restart",
+      "id": "trial-immediate-restart",
       "name": "one zero separates two segments",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-long-gap",
+      "id": "trial-long-gap",
       "name": "a long zero gap still separates segments",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-many-segments",
+      "id": "trial-many-segments",
       "name": "several restarts remain invalid",
       "kind": "trial",
       "visible": true,
@@ -112,6 +112,20 @@
       "tags": [
         "multiple-segments",
         "alternating"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

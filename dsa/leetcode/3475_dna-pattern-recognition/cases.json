@@ -272,7 +272,7 @@
       ]
     },
     {
-      "id": "real-start-anchor",
+      "id": "trial-start-anchor",
       "name": "ATG must begin at the first character",
       "kind": "trial",
       "visible": true,
@@ -328,7 +328,7 @@
       ]
     },
     {
-      "id": "real-overlapping-atat",
+      "id": "trial-overlapping-atat",
       "name": "overlapping ATAT occurrences still produce one presence flag",
       "kind": "trial",
       "visible": true,
@@ -385,7 +385,7 @@
       ]
     },
     {
-      "id": "real-consecutive-g",
+      "id": "trial-consecutive-g",
       "name": "only at least three consecutive G characters qualify",
       "kind": "trial",
       "visible": true,
@@ -469,7 +469,7 @@
       ]
     },
     {
-      "id": "real-independent-boundaries",
+      "id": "trial-independent-boundaries",
       "name": "internal codons do not imply start or stop flags",
       "kind": "trial",
       "visible": true,

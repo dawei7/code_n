@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-last-four-digit",
+      "id": "trial-last-four-digit",
       "name": "all four-digit values are included",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-first-five-digit",
+      "id": "trial-first-five-digit",
       "name": "crossing into five digits changes no comma count per value",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-middle",
+      "id": "trial-middle",
       "name": "an interior five-digit endpoint",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-last-five-digit",
+      "id": "trial-last-five-digit",
       "name": "the last five-digit endpoint",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "the maximum legal endpoint",
       "kind": "trial",
       "visible": true,

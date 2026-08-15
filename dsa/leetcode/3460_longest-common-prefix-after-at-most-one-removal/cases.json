@@ -93,8 +93,8 @@
       ]
     },
     {
-      "id": "real-second-mismatch",
-      "name": "real: a second mismatch ends the prefix",
+      "id": "trial-second-mismatch",
+      "name": "a second mismatch ends the prefix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -108,8 +108,8 @@
       ]
     },
     {
-      "id": "real-target-shorter",
-      "name": "real: target ends first",
+      "id": "trial-target-shorter",
+      "name": "target ends first",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -123,8 +123,8 @@
       ]
     },
     {
-      "id": "real-source-shorter",
-      "name": "real: source ends first",
+      "id": "trial-source-shorter",
+      "name": "source ends first",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-remove-final-character",
-      "name": "real: deleting the final mismatch cannot add a match",
+      "id": "trial-remove-final-character",
+      "name": "deleting the final mismatch cannot add a match",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -150,6 +150,36 @@
       "tags": [
         "real",
         "final-removal"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "m",
+        "t": "madam"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "mmm",
+        "t": "madam"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

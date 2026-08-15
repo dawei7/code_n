@@ -224,8 +224,8 @@
       ]
     },
     {
-      "id": "real-counterclockwise-forbidden",
-      "name": "real: counterclockwise continuation cannot be used",
+      "id": "trial-counterclockwise-forbidden",
+      "name": "counterclockwise continuation cannot be used",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -254,8 +254,8 @@
       ]
     },
     {
-      "id": "real-single-row",
-      "name": "real: horizontal adjacency is not diagonal",
+      "id": "trial-single-row",
+      "name": "horizontal adjacency is not diagonal",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -275,8 +275,8 @@
       ]
     },
     {
-      "id": "real-sequence-break",
-      "name": "real: repeated two breaks the required alternation",
+      "id": "trial-sequence-break",
+      "name": "repeated two breaks the required alternation",
       "kind": "trial",
       "visible": true,
       "input": {

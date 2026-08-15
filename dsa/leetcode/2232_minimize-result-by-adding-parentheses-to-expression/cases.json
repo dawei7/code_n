@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-right-multiplier",
+      "id": "trial-right-multiplier",
       "name": "the best placement keeps a right multiplier",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-both-sides-long",
+      "id": "trial-both-sides-long",
       "name": "both operands offer several cuts",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-long-left",
+      "id": "trial-long-left",
       "name": "a long left operand retains one outer digit",
       "kind": "trial",
       "visible": true,

@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "real-moving-into-stationary",
+      "id": "trial-moving-into-stationary",
       "name": "moving cars strike a stationary center",
       "kind": "trial",
       "visible": true,
@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-boundary-runs-and-core",
+      "id": "trial-boundary-runs-and-core",
       "name": "trim both escape runs before counting",
       "kind": "trial",
       "visible": true,
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-single-car",
+      "id": "trial-single-car",
       "name": "one car cannot collide",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-repeated-opposition",
+      "id": "trial-repeated-opposition",
       "name": "all trapped moving cars eventually stop",
       "kind": "trial",
       "visible": true,
@@ -106,6 +106,20 @@
       "expected": 6,
       "tags": [
         "multiple-collisions"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in directions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "directions": "RRR"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

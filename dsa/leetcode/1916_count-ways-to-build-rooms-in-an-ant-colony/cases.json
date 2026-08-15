@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-balanced-binary",
+      "id": "trial-balanced-binary",
       "name": "a complete three-level tree has eighty orders",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-parent-higher-label",
+      "id": "trial-parent-higher-label",
       "name": "parent labels need not precede child labels numerically",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-three-branches",
+      "id": "trial-three-branches",
       "name": "three two-child branches create many interleavings",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-asymmetric-subtrees",
+      "id": "trial-asymmetric-subtrees",
       "name": "unequal subtree shapes can share one count",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-ten-room-star",
+      "id": "trial-ten-room-star",
       "name": "nine independent children give nine factorial",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-wide-under-child",
+      "id": "trial-wide-under-child",
       "name": "one internal room owns three independent children",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-minimum-chain",
+      "id": "trial-minimum-chain",
       "name": "two rooms force root then child",
       "kind": "trial",
       "visible": true,

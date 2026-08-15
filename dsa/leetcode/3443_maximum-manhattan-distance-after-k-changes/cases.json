@@ -75,8 +75,8 @@
       ]
     },
     {
-      "id": "real-partial-budget",
-      "name": "real: budget removes some cancellations",
+      "id": "trial-partial-budget",
+      "name": "budget removes some cancellations",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -90,8 +90,8 @@
       ]
     },
     {
-      "id": "real-zero-budget-zigzag",
-      "name": "real: repeated cancellations without changes",
+      "id": "trial-zero-budget-zigzag",
+      "name": "repeated cancellations without changes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -105,8 +105,8 @@
       ]
     },
     {
-      "id": "real-large-budget",
-      "name": "real: budget exceeds needed changes",
+      "id": "trial-large-budget",
+      "name": "budget exceeds needed changes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -117,6 +117,36 @@
       "tags": [
         "real",
         "full-distance"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "N",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "NNN",
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

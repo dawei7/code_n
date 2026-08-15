@@ -181,8 +181,8 @@
       ]
     },
     {
-      "id": "real-negative-boss-unlocks-child",
-      "name": "real: a losing boss trade enables a larger child gain",
+      "id": "trial-negative-boss-unlocks-child",
+      "name": "a losing boss trade enables a larger child gain",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -211,8 +211,8 @@
       ]
     },
     {
-      "id": "real-odd-price-floor",
-      "name": "real: odd child price uses floor division",
+      "id": "trial-odd-price-floor",
+      "name": "odd child price uses floor division",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -241,8 +241,8 @@
       ]
     },
     {
-      "id": "real-discount-is-not-transitive",
-      "name": "real: a grandparent purchase does not discount a skipped parent",
+      "id": "trial-discount-is-not-transitive",
+      "name": "a grandparent purchase does not discount a skipped parent",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -277,8 +277,8 @@
       ]
     },
     {
-      "id": "real-unprofitable-stock-skipped",
-      "name": "real: buying nothing beats a losing trade",
+      "id": "trial-unprofitable-stock-skipped",
+      "name": "buying nothing beats a losing trade",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -300,8 +300,8 @@
       ]
     },
     {
-      "id": "real-wide-branch-budget",
-      "name": "real: several discounted children compete for budget",
+      "id": "trial-wide-branch-budget",
+      "name": "several discounted children compete for budget",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -348,8 +348,8 @@
       ]
     },
     {
-      "id": "real-mixed-depth-tree",
-      "name": "real: discounts interact across mixed subtree depths",
+      "id": "trial-mixed-depth-tree",
+      "name": "discounts interact across mixed subtree depths",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -399,6 +399,64 @@
         "real",
         "mixed-depth",
         "tree-knapsack"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in present",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "present": [
+          1,
+          1
+        ],
+        "future": [
+          4,
+          3
+        ],
+        "hierarchy": [
+          [
+            1,
+            2
+          ]
+        ],
+        "budget": 3
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in future",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "present": [
+          1,
+          2
+        ],
+        "future": [
+          4,
+          4
+        ],
+        "hierarchy": [
+          [
+            1,
+            2
+          ]
+        ],
+        "budget": 3
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

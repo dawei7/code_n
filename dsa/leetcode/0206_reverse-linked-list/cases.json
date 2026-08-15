@@ -60,7 +60,7 @@
       ]
     },
     {
-      "id": "real-single",
+      "id": "trial-single",
       "name": "single node",
       "kind": "trial",
       "visible": true,

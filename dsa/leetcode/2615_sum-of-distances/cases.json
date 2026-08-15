@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-single-value",
+      "id": "trial-single-value",
       "name": "one element has no partner",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-uneven-groups",
+      "id": "trial-uneven-groups",
       "name": "groups of different sizes",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-equal-values-at-ends",
+      "id": "trial-equal-values-at-ends",
       "name": "equal values occur only at the boundaries",
       "kind": "trial",
       "visible": true,

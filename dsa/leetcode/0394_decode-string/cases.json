@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-nested-prefix",
+      "id": "trial-nested-prefix",
       "name": "nested prefix and suffix",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-adjacent-nesting",
+      "id": "trial-adjacent-nesting",
       "name": "adjacent groups at two levels",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "hidden-one-repeat",
+      "id": "trial-one-repeat",
       "name": "repeat count one",
       "kind": "trial",
       "visible": true,
@@ -109,6 +109,34 @@
       "expected": "abbc",
       "tags": [
         "one"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "3"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "333"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

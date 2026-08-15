@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "hidden-largest-present",
+      "id": "trial-largest-present",
       "name": "largest boundary value appears repeatedly",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "hidden-interleaved",
+      "id": "trial-interleaved",
       "name": "missing values lie between present values",
       "kind": "trial",
       "visible": true,

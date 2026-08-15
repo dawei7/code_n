@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-duplicate-dimensions",
+      "id": "trial-duplicate-dimensions",
       "name": "identical rectangles remain index-distinct",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-large-reduction",
+      "id": "trial-large-reduction",
       "name": "large dimensions reduce to the same exact key",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-integer-division-trap",
+      "id": "trial-integer-division-trap",
       "name": "equal truncated quotients are not equal ratios",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-three-equivalent-one-distinct",
+      "id": "trial-three-equivalent-one-distinct",
       "name": "only one reduced-ratio group contributes",
       "kind": "trial",
       "visible": true,

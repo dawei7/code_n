@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-middle-exact-total",
+      "id": "trial-middle-exact-total",
       "name": "exact total at half-side five",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-after-middle-total",
+      "id": "trial-after-middle-total",
       "name": "one above half-side five",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-largest-requirement",
+      "id": "trial-largest-requirement",
       "name": "maximum allowed apple requirement",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-before-maximum-boundary",
+      "id": "trial-before-maximum-boundary",
       "name": "exact predecessor total near the maximum",
       "kind": "trial",
       "visible": true,

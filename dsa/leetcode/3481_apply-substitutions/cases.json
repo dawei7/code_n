@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-dependency-listed-later",
+      "id": "trial-dependency-listed-later",
       "name": "recursive lookup ignores entry order",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-diamond-dependencies",
+      "id": "trial-diamond-dependencies",
       "name": "shared dependency feeds two branches",
       "kind": "trial",
       "visible": true,
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-two-distinct-dependencies",
+      "id": "trial-two-distinct-dependencies",
       "name": "adjacent placeholders expand independently",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-maximum-depth",
+      "id": "trial-maximum-depth",
       "name": "ten-key dependency chain",
       "kind": "trial",
       "visible": true,
@@ -274,7 +274,7 @@
       ]
     },
     {
-      "id": "real-all-literals-unordered",
+      "id": "trial-all-literals-unordered",
       "name": "arbitrary key and text order",
       "kind": "trial",
       "visible": true,
@@ -305,7 +305,7 @@
       ]
     },
     {
-      "id": "real-doubling-chain",
+      "id": "trial-doubling-chain",
       "name": "repeated expansion grows through a chain",
       "kind": "trial",
       "visible": true,
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "id": "real-cross-linked-dag",
+      "id": "trial-cross-linked-dag",
       "name": "several completed values are reused",
       "kind": "trial",
       "visible": true,

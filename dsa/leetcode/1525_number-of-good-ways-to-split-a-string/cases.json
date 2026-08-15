@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-odd-distinct",
+      "id": "trial-odd-distinct",
       "name": "odd number of unique letters cannot balance",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-skewed-frequency",
+      "id": "trial-skewed-frequency",
       "name": "frequencies differ while distinct counts balance",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-returning-letter",
+      "id": "trial-returning-letter",
       "name": "a letter disappears from the suffix late",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-many-boundaries",
+      "id": "trial-many-boundaries",
       "name": "several repeated blocks create good splits",
       "kind": "trial",
       "visible": true,

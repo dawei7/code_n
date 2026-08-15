@@ -158,8 +158,8 @@
       ]
     },
     {
-      "id": "real-invalid-descendant",
-      "name": "real: matching child hides a different descendant",
+      "id": "trial-invalid-descendant",
+      "name": "matching child hides a different descendant",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -195,8 +195,8 @@
       ]
     },
     {
-      "id": "real-deep-uniform-branch",
-      "name": "real: largest uniform branch is not at root",
+      "id": "trial-deep-uniform-branch",
+      "name": "largest uniform branch is not at root",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -237,8 +237,8 @@
       ]
     },
     {
-      "id": "real-large-color-values",
-      "name": "real: upper-bound colors compare by equality",
+      "id": "trial-large-color-values",
+      "name": "upper-bound colors compare by equality",
       "kind": "trial",
       "visible": true,
       "input": {

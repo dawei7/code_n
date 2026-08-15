@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-rotated",
+      "id": "trial-rotated",
       "name": "rotated dimensions preserve the answer",
       "kind": "trial",
       "visible": true,
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-two-by-seven",
+      "id": "trial-two-by-seven",
       "name": "narrow odd rectangle",
       "kind": "trial",
       "visible": true,
@@ -100,6 +100,36 @@
       "expected": 5,
       "tags": [
         "narrow"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "m": 3
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value m=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "m": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

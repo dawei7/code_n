@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-empty-second",
+      "id": "trial-empty-second",
       "name": "second array is empty",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-partial-properties",
+      "id": "trial-partial-properties",
       "name": "exclusive properties survive an overlap",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-null-override",
+      "id": "trial-null-override",
       "name": "null is a valid overriding value",
       "kind": "trial",
       "visible": true,
@@ -260,7 +260,7 @@
       ]
     },
     {
-      "id": "real-numeric-order",
+      "id": "trial-numeric-order",
       "name": "output uses numeric ascending identifiers",
       "kind": "trial",
       "visible": true,

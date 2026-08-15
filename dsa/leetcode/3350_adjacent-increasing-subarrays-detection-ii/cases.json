@@ -111,8 +111,8 @@
       ]
     },
     {
-      "id": "real-separated-short-blocks",
-      "name": "real: separated length-two blocks cannot pair",
+      "id": "trial-separated-short-blocks",
+      "name": "separated length-two blocks cannot pair",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -132,8 +132,8 @@
       ]
     },
     {
-      "id": "real-equal-shared-boundary",
-      "name": "real: equality at shared boundary is allowed",
+      "id": "trial-equal-shared-boundary",
+      "name": "equality at shared boundary is allowed",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -151,8 +151,8 @@
       ]
     },
     {
-      "id": "real-negative-exact-runs",
-      "name": "real: negative and positive consecutive runs",
+      "id": "trial-negative-exact-runs",
+      "name": "negative and positive consecutive runs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -174,8 +174,8 @@
       ]
     },
     {
-      "id": "real-strictly-descending",
-      "name": "real: descending input yields singleton blocks",
+      "id": "trial-strictly-descending",
+      "name": "descending input yields singleton blocks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -195,8 +195,8 @@
       ]
     },
     {
-      "id": "real-asymmetric-runs",
-      "name": "real: smaller neighboring run limits answer",
+      "id": "trial-asymmetric-runs",
+      "name": "smaller neighboring run limits answer",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -216,8 +216,8 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: comparisons at value limits",
+      "id": "trial-large-values",
+      "name": "comparisons at value limits",
       "kind": "trial",
       "visible": true,
       "input": {

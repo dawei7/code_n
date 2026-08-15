@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-equal-values",
+      "id": "trial-equal-values",
       "name": "equal values collapse the search range",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-adjacent-cheap-pair",
+      "id": "trial-adjacent-cheap-pair",
       "name": "adjacent cheap houses cannot both be used",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-cheap-nonadjacent-pair",
+      "id": "trial-cheap-nonadjacent-pair",
       "name": "separated cheap houses share the threshold",
       "kind": "trial",
       "visible": true,

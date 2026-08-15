@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-country-separation",
+      "id": "trial-country-separation",
       "name": "equal month remains separated by country",
       "kind": "trial",
       "visible": true,
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "real-zero-approved-amount",
+      "id": "trial-zero-approved-amount",
       "name": "approved zero amount still increments count",
       "kind": "trial",
       "visible": true,
@@ -303,7 +303,7 @@
       ]
     },
     {
-      "id": "real-unsorted-input",
+      "id": "trial-unsorted-input",
       "name": "input order does not affect grouped rows",
       "kind": "trial",
       "visible": true,

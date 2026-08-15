@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-delete-tail",
+      "id": "trial-delete-tail",
       "name": "incomplete deletion block reaches tail",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "repeated values remain position based",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "keep one and delete one",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "real-large-keep-and-delete",
+      "id": "trial-large-keep-and-delete",
       "name": "bounds larger than list",
       "kind": "trial",
       "visible": true,

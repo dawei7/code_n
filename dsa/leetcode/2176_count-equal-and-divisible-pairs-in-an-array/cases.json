@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-equal-but-not-divisible",
+      "id": "trial-equal-but-not-divisible",
       "name": "equality alone is insufficient",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-compatible-factors",
+      "id": "trial-compatible-factors",
       "name": "separate index factors can combine to k",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-values-isolate-groups",
+      "id": "trial-values-isolate-groups",
       "name": "compatible indices with different values do not pair",
       "kind": "trial",
       "visible": true,
@@ -165,6 +165,41 @@
       "tags": [
         "value-groups",
         "divisibility"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

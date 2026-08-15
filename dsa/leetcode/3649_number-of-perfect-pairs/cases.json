@@ -113,8 +113,8 @@
       ]
     },
     {
-      "id": "real-just-over-factor-two",
-      "name": "real: values just beyond factor two fail",
+      "id": "trial-just-over-factor-two",
+      "name": "values just beyond factor two fail",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -132,8 +132,8 @@
       ]
     },
     {
-      "id": "real-duplicate-magnitudes",
-      "name": "real: duplicate magnitudes count index pairs",
+      "id": "trial-duplicate-magnitudes",
+      "name": "duplicate magnitudes count index pairs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -151,8 +151,8 @@
       ]
     },
     {
-      "id": "real-mixed-zero-cluster",
-      "name": "real: zero pairs stay within zero cluster",
+      "id": "trial-mixed-zero-cluster",
+      "name": "zero pairs stay within zero cluster",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -174,8 +174,8 @@
       ]
     },
     {
-      "id": "real-extreme-values",
-      "name": "real: integer boundaries and halves",
+      "id": "trial-extreme-values",
+      "name": "integer boundaries and halves",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -193,8 +193,8 @@
       ]
     },
     {
-      "id": "real-all-pairs",
-      "name": "real: every pair in dense magnitude range qualifies",
+      "id": "trial-all-pairs",
+      "name": "every pair in dense magnitude range qualifies",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -306,6 +306,22 @@
         "real",
         "all-pairs",
         "large-count"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

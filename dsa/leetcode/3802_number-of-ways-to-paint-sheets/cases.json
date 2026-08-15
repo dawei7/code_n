@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-three-identical-colors",
+      "id": "trial-three-identical-colors",
       "name": "color identity matters with equal capacities",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-heterogeneous-limits",
+      "id": "trial-heterogeneous-limits",
       "name": "several suffix ranges overlap",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-only-large-color-pairs",
+      "id": "trial-only-large-color-pairs",
       "name": "small colors only pair with the large color",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-modulo",
+      "id": "trial-modulo",
       "name": "large split count is reduced modulo",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-five-colors",
+      "id": "trial-five-colors",
       "name": "mixed valid partner suffixes",
       "kind": "trial",
       "visible": true,
@@ -246,6 +246,42 @@
       "tags": [
         "five-colors",
         "mixed-capacities"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "limit": [
+          3,
+          1,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "limit": [
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

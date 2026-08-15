@@ -268,7 +268,7 @@
       ]
     },
     {
-      "id": "real-mixed-zero-and-positive",
+      "id": "trial-mixed-zero-and-positive",
       "name": "keep zero and positive totals together",
       "kind": "trial",
       "visible": true,
@@ -332,7 +332,7 @@
       ]
     },
     {
-      "id": "real-separate-salespeople",
+      "id": "trial-separate-salespeople",
       "name": "sales remain assigned through customer ownership",
       "kind": "trial",
       "visible": true,

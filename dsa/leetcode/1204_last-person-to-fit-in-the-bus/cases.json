@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-first-only",
+      "id": "trial-first-only",
       "name": "second passenger crosses the limit",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-turn-not-id",
+      "id": "trial-turn-not-id",
       "name": "turn rather than person id controls boarding",
       "kind": "trial",
       "visible": true,
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "real-boundary-before-overflow",
+      "id": "trial-boundary-before-overflow",
       "name": "retain the exact-capacity row before overflow",
       "kind": "trial",
       "visible": true,

@@ -446,7 +446,7 @@
       ]
     },
     {
-      "id": "real-budget-order",
+      "id": "trial-budget-order",
       "name": "level peers sort by subtree budget",
       "kind": "trial",
       "visible": true,
@@ -531,7 +531,7 @@
       ]
     },
     {
-      "id": "real-name-tiebreak",
+      "id": "trial-name-tiebreak",
       "name": "names break equal level and budget",
       "kind": "trial",
       "visible": true,
@@ -602,7 +602,7 @@
       ]
     },
     {
-      "id": "real-shuffled-nonconsecutive",
+      "id": "trial-shuffled-nonconsecutive",
       "name": "row and identifier order are irrelevant",
       "kind": "trial",
       "visible": true,
@@ -687,7 +687,7 @@
       ]
     },
     {
-      "id": "real-balanced-branches",
+      "id": "trial-balanced-branches",
       "name": "two multi-level branches",
       "kind": "trial",
       "visible": true,
@@ -814,7 +814,7 @@
       ]
     },
     {
-      "id": "real-leaf-own-budget",
+      "id": "trial-leaf-own-budget",
       "name": "leaf budget equals own salary",
       "kind": "trial",
       "visible": true,
@@ -885,7 +885,7 @@
       ]
     },
     {
-      "id": "real-department-does-not-partition",
+      "id": "trial-department-does-not-partition",
       "name": "reports cross department boundaries",
       "kind": "trial",
       "visible": true,
@@ -970,7 +970,7 @@
       ]
     },
     {
-      "id": "real-budget-includes-self",
+      "id": "trial-budget-includes-self",
       "name": "own salary remains in every controlled budget",
       "kind": "trial",
       "visible": true,

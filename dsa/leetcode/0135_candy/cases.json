@@ -53,7 +53,7 @@
       ]
     },
     {
-      "id": "real-long-slope",
+      "id": "trial-long-slope",
       "name": "long slope then drop",
       "kind": "trial",
       "visible": true,

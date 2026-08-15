@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-all-negative",
+      "id": "trial-all-negative",
       "name": "shortest prefix wins among negative values",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-late-minimum",
+      "id": "trial-late-minimum",
       "name": "suffix minimum lies beyond the adjacent element",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-best-first",
+      "id": "trial-best-first",
       "name": "first split is optimal",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-best-last",
+      "id": "trial-best-last",
       "name": "last split is optimal",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-large-positive",
+      "id": "trial-large-positive",
       "name": "result exceeds 32-bit signed range",
       "kind": "trial",
       "visible": true,
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-equal-zero",
+      "id": "trial-equal-zero",
       "name": "all-zero scores tie",
       "kind": "trial",
       "visible": true,
@@ -251,6 +251,23 @@
       "tags": [
         "ties",
         "zero"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          10
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

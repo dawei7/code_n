@@ -55,7 +55,7 @@
       ]
     },
     {
-      "id": "real-mixed-zero",
+      "id": "trial-mixed-zero",
       "name": "valid and invalid pair choices",
       "kind": "trial",
       "visible": true,
@@ -65,6 +65,34 @@
       "expected": 2,
       "tags": [
         "zero"
+      ]
+    },
+    {
+      "id": "trial-boundary-6",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

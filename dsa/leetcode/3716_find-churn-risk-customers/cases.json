@@ -484,7 +484,7 @@
       ]
     },
     {
-      "id": "real-latest-active-upgrade",
+      "id": "trial-latest-active-upgrade",
       "name": "a latest upgrade can qualify when an earlier downgrade exists",
       "kind": "trial",
       "visible": true,
@@ -545,7 +545,7 @@
       ]
     },
     {
-      "id": "real-ordering",
+      "id": "trial-ordering",
       "name": "duration descends and equal durations use ascending user identifiers",
       "kind": "trial",
       "visible": true,
@@ -644,7 +644,7 @@
       ]
     },
     {
-      "id": "real-historical-maximum",
+      "id": "trial-historical-maximum",
       "name": "the maximum may occur before several later plan changes",
       "kind": "trial",
       "visible": true,
@@ -713,7 +713,7 @@
       ]
     },
     {
-      "id": "real-current-active-but-too-high",
+      "id": "trial-current-active-but-too-high",
       "name": "an active downgraded user is excluded when current revenue is not below half",
       "kind": "trial",
       "visible": true,

@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "hidden-leaf-extra-time",
+      "id": "trial-leaf-extra-time",
       "name": "leaf waits after first jump",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "hidden-too-deep",
+      "id": "trial-too-deep",
       "name": "target cannot be reached in time",
       "kind": "trial",
       "visible": true,

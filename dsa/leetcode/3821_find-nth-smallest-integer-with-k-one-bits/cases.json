@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-last-two-bit-combination",
+      "id": "trial-last-two-bit-combination",
       "name": "final pair of one bits occupies the two highest positions",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-last-half-bits-combination",
+      "id": "trial-last-half-bits-combination",
       "name": "final twenty-five-bit combination uses the highest positions",
       "kind": "trial",
       "visible": true,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-forty-nine-bits",
+      "id": "trial-forty-nine-bits",
       "name": "final forty-nine-bit value clears only the low bit",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-millionth-ten-bit-value",
+      "id": "trial-millionth-ten-bit-value",
       "name": "a million-scale rank is unranked directly",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-large-interior-rank",
+      "id": "trial-large-interior-rank",
       "name": "a large interior rank with twenty one-bits",
       "kind": "trial",
       "visible": true,
@@ -225,6 +225,36 @@
         "large-rank",
         "twenty-one-bits",
         "interior-rank"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "k": 1
+      },
+      "expected": 8,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

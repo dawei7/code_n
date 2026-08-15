@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "hidden-two-nodes",
+      "id": "trial-two-nodes",
       "name": "repeated draws from two nodes",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "hidden-all-equal",
+      "id": "trial-all-equal",
       "name": "all node values equal",
       "kind": "trial",
       "visible": true,

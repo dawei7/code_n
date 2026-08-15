@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-alternating",
+      "id": "trial-alternating",
       "name": "alternating marked and unmarked tokens",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-length",
+      "id": "trial-maximum-length",
       "name": "maximum-length one-digit encoding",
       "kind": "trial",
       "visible": true,

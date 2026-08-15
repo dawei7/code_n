@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-one-bad-group",
+      "id": "trial-one-bad-group",
       "name": "one modulo group descends",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-duplicate-subsequence",
+      "id": "trial-duplicate-subsequence",
       "name": "upper-bound insertion preserves equal values",
       "kind": "trial",
       "visible": true,

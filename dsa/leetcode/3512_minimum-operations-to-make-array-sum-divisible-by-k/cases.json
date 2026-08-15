@@ -116,8 +116,8 @@
       ]
     },
     {
-      "id": "real-large-values-largest-remainder",
-      "name": "real: large values produce remainder ninety-nine",
+      "id": "trial-large-values-largest-remainder",
+      "name": "large values produce remainder ninety-nine",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -135,8 +135,8 @@
       ]
     },
     {
-      "id": "real-distribution-does-not-matter",
-      "name": "real: only the total controls the result",
+      "id": "trial-distribution-does-not-matter",
+      "name": "only the total controls the result",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -156,8 +156,8 @@
       ]
     },
     {
-      "id": "real-exact-large-multiple",
-      "name": "real: maximum values form an exact multiple",
+      "id": "trial-exact-large-multiple",
+      "name": "maximum values form an exact multiple",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -178,8 +178,8 @@
       ]
     },
     {
-      "id": "real-many-small-values",
-      "name": "real: array length affects the total only",
+      "id": "trial-many-small-values",
+      "name": "array length affects the total only",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -203,6 +203,41 @@
         "real",
         "repeated-values",
         "nonzero-remainder"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ],
+        "k": 5
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ],
+        "k": 5
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

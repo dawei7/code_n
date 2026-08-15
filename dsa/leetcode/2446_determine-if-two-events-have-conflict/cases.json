@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-contained",
+      "id": "trial-contained",
       "name": "first event contains second",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-full-day-boundary",
+      "id": "trial-full-day-boundary",
       "name": "full-day event contains final point",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-reversed-order",
+      "id": "trial-reversed-order",
       "name": "later event supplied first",
       "kind": "trial",
       "visible": true,
@@ -165,6 +165,48 @@
       "expected": false,
       "tags": [
         "order-independent"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in event1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "event1": [
+          "01:15",
+          "01:15"
+        ],
+        "event2": [
+          "02:00",
+          "03:00"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in event2",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "event1": [
+          "01:15",
+          "02:00"
+        ],
+        "event2": [
+          "02:00",
+          "02:00"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

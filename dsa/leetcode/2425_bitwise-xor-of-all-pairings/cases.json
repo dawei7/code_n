@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-second-length-odd",
+      "id": "trial-second-length-odd",
       "name": "only the first array contributes",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-first-length-odd",
+      "id": "trial-first-length-odd",
       "name": "only the second array contributes",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-both-odd",
+      "id": "trial-both-odd",
       "name": "both complete array XORs contribute",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-zero-singletons",
+      "id": "trial-zero-singletons",
       "name": "zero-valued singleton pair",
       "kind": "trial",
       "visible": true,
@@ -166,6 +166,51 @@
       "expected": 0,
       "tags": [
         "zero"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2
+        ],
+        "nums2": [
+          10,
+          2,
+          5,
+          0
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          2
+        ],
+        "nums2": [
+          10,
+          2,
+          5,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

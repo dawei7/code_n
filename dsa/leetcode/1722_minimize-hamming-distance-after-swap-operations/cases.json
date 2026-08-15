@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-three-components",
+      "id": "trial-three-components",
       "name": "only one of three components lacks a value",
       "kind": "trial",
       "visible": true,
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-global-not-local",
+      "id": "trial-global-not-local",
       "name": "equal global multisets cannot cross components",
       "kind": "trial",
       "visible": true,
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "real-redundant-cycle",
+      "id": "trial-redundant-cycle",
       "name": "redundant cycle edges preserve one component",
       "kind": "trial",
       "visible": true,
@@ -320,7 +320,7 @@
       ]
     },
     {
-      "id": "real-mixed-isolates",
+      "id": "trial-mixed-isolates",
       "name": "connected prefix and isolated suffixes",
       "kind": "trial",
       "visible": true,

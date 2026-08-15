@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-above-three",
+      "id": "trial-above-three",
       "name": "one floor above a triangular boundary needs another move",
       "kind": "trial",
       "visible": true,
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-six",
+      "id": "trial-six",
       "name": "three moves exactly cover six floors",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-seven",
+      "id": "trial-seven",
       "name": "seven floors exceed three-move capacity",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-ten",
+      "id": "trial-ten",
       "name": "four moves exactly cover ten floors",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-eleven",
+      "id": "trial-eleven",
       "name": "eleven floors require five moves",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-near-maximum-boundary",
+      "id": "trial-near-maximum-boundary",
       "name": "forty-four moves cover nine hundred ninety floors",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "the maximum input exceeds forty-four-move capacity",
       "kind": "trial",
       "visible": true,

@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-prototype-names",
+      "id": "trial-prototype-names",
       "name": "inherited names become own properties",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-proto-property",
+      "id": "trial-proto-property",
       "name": "__proto__ is an own data property",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-object-conversion",
+      "id": "trial-object-conversion",
       "name": "object keys collide after String conversion",
       "kind": "trial",
       "visible": true,
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "real-array-conversion",
+      "id": "trial-array-conversion",
       "name": "arrays can share a converted property name",
       "kind": "trial",
       "visible": true,
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "real-values-preserved",
+      "id": "trial-values-preserved",
       "name": "JSON values are stored without transformation",
       "kind": "trial",
       "visible": true,

@@ -120,8 +120,8 @@
       ]
     },
     {
-      "id": "real-unsorted-values",
-      "name": "real: unsorted values need greedy ordering",
+      "id": "trial-unsorted-values",
+      "name": "unsorted values need greedy ordering",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -142,8 +142,8 @@
       ]
     },
     {
-      "id": "real-upper-bound-values",
-      "name": "real: happiness values at the upper bound",
+      "id": "trial-upper-bound-values",
+      "name": "happiness values at the upper bound",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -162,8 +162,8 @@
       ]
     },
     {
-      "id": "real-many-equal-low-values",
-      "name": "real: only the first equal low value contributes",
+      "id": "trial-many-equal-low-values",
+      "name": "only the first equal low value contributes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -184,6 +184,41 @@
         "real",
         "duplicates",
         "zero-tail"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in happiness",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "happiness": [
+          1
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in happiness",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "happiness": [
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

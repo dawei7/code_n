@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-equality-does-not-test",
-      "name": "real: batteries equal to offset are skipped",
+      "id": "trial-equality-does-not-test",
+      "name": "batteries equal to offset are skipped",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -127,8 +127,8 @@
       ]
     },
     {
-      "id": "real-late-high-batteries",
-      "name": "real: later high batteries remain testable",
+      "id": "trial-late-high-batteries",
+      "name": "later high batteries remain testable",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -148,8 +148,8 @@
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "real: maximum batteries all test",
+      "id": "trial-maximum-values",
+      "name": "maximum batteries all test",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -218,8 +218,8 @@
       ]
     },
     {
-      "id": "real-dense-mixed",
-      "name": "real: overlapping ranges in a dense profile",
+      "id": "trial-dense-mixed",
+      "name": "overlapping ranges in a dense profile",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -256,8 +256,8 @@
       ]
     },
     {
-      "id": "real-all-zeroes",
-      "name": "real: every queried zero-run substring is valid",
+      "id": "trial-all-zeroes",
+      "name": "every queried zero-run substring is valid",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -289,8 +289,8 @@
       ]
     },
     {
-      "id": "real-k-full-length",
-      "name": "real: global k makes all query substrings valid",
+      "id": "trial-k-full-length",
+      "name": "global k makes all query substrings valid",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -322,8 +322,8 @@
       ]
     },
     {
-      "id": "real-block-overlaps",
-      "name": "real: overlapping ranges across a central block",
+      "id": "trial-block-overlaps",
+      "name": "overlapping ranges across a central block",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -360,8 +360,8 @@
       ]
     },
     {
-      "id": "real-many-nested",
-      "name": "real: five nested mixed ranges",
+      "id": "trial-many-nested",
+      "name": "five nested mixed ranges",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -400,6 +400,29 @@
       "tags": [
         "nested",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0001111",
+        "k": 1,
+        "queries": [
+          [
+            0,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        22
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-three-equal-counts",
+      "id": "trial-three-equal-counts",
       "name": "three equal frequencies descend to distinct positive counts",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-already-staircase",
+      "id": "trial-already-staircase",
       "name": "descending frequency staircase is already unique",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-full-alphabet",
+      "id": "trial-full-alphabet",
       "name": "almost every singleton letter must disappear",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-four-equal-groups",
+      "id": "trial-four-equal-groups",
       "name": "four groups of frequency three require six deletions",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-large-equal-groups",
+      "id": "trial-large-equal-groups",
       "name": "three large equal groups preserve the largest staircase",
       "kind": "trial",
       "visible": true,

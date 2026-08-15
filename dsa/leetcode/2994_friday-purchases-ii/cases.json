@@ -271,8 +271,8 @@
       ]
     },
     {
-      "id": "real-nonfriday-excluded",
-      "name": "real: weekday amount does not affect Friday",
+      "id": "trial-nonfriday-excluded",
+      "name": "weekday amount does not affect Friday",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -328,8 +328,8 @@
       ]
     },
     {
-      "id": "real-zero-purchase",
-      "name": "real: explicit zero purchase retains calendar row",
+      "id": "trial-zero-purchase",
+      "name": "explicit zero purchase retains calendar row",
       "kind": "trial",
       "visible": true,
       "input": {

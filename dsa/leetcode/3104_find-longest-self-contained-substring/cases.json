@@ -97,8 +97,8 @@
       ]
     },
     {
-      "id": "real-closed-prefix",
-      "name": "real: repeated three-character component forms a closed prefix",
+      "id": "trial-closed-prefix",
+      "name": "repeated three-character component forms a closed prefix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -111,8 +111,8 @@
       ]
     },
     {
-      "id": "real-extend-across-components",
-      "name": "real: a valid interval extends across adjacent closed components",
+      "id": "trial-extend-across-components",
+      "name": "a valid interval extends across adjacent closed components",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -125,8 +125,8 @@
       ]
     },
     {
-      "id": "real-later-component",
-      "name": "real: a shared early character invalidates a start before a later block",
+      "id": "trial-later-component",
+      "name": "a shared early character invalidates a start before a later block",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -139,8 +139,8 @@
       ]
     },
     {
-      "id": "real-many-distinct",
-      "name": "real: all distinct characters allow every proper prefix",
+      "id": "trial-many-distinct",
+      "name": "all distinct characters allow every proper prefix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -153,8 +153,8 @@
       ]
     },
     {
-      "id": "real-competing-closures",
-      "name": "real: nested occurrence spans leave a long proper prefix",
+      "id": "trial-competing-closures",
+      "name": "nested occurrence spans leave a long proper prefix",
       "kind": "trial",
       "visible": true,
       "input": {

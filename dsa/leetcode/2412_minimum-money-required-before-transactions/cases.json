@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-cashback-bottleneck",
+      "id": "trial-cashback-bottleneck",
       "name": "large cashback can be the final bottleneck",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-one-loss-one-gain",
+      "id": "trial-one-loss-one-gain",
       "name": "one loss and one gain",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-large-total",
+      "id": "trial-large-total",
       "name": "total requirement can exceed one billion",
       "kind": "trial",
       "visible": true,

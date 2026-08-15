@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-unequal-cycle-counts",
+      "id": "trial-unequal-cycle-counts",
       "name": "aggregate every operation row",
       "kind": "trial",
       "visible": true,

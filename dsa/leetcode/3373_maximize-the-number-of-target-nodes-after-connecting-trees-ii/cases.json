@@ -271,7 +271,7 @@
       ]
     },
     {
-      "id": "real-balanced-first-tree",
+      "id": "trial-balanced-first-tree",
       "name": "balanced first bipartition gives one repeated answer",
       "kind": "trial",
       "visible": true,
@@ -330,7 +330,7 @@
       ]
     },
     {
-      "id": "real-arbitrary-label-order",
+      "id": "trial-arbitrary-label-order",
       "name": "edge order does not follow rooted traversal order",
       "kind": "trial",
       "visible": true,
@@ -397,7 +397,7 @@
       ]
     },
     {
-      "id": "real-two-unbalanced-stars",
+      "id": "trial-two-unbalanced-stars",
       "name": "both trees have strongly unbalanced color classes",
       "kind": "trial",
       "visible": true,

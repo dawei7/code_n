@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-ten-step-three",
+      "id": "trial-ten-step-three",
       "name": "several ordinary elimination rounds",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-twelve-step-four",
+      "id": "trial-twelve-step-four",
       "name": "winner wraps to label one",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-maximum-step-one",
+      "id": "trial-maximum-step-one",
       "name": "maximum circle with unit step",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-maximum-both",
+      "id": "trial-maximum-both",
       "name": "maximum legal circle and step",
       "kind": "trial",
       "visible": true,
@@ -150,6 +150,21 @@
       "tags": [
         "maximum-n",
         "maximum-k"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

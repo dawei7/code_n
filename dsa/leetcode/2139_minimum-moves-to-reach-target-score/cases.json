@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-odd-power-boundary",
+      "id": "trial-odd-power-boundary",
       "name": "odd values require increments around doubles",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-doubles-exhausted",
+      "id": "trial-doubles-exhausted",
       "name": "remaining distance is paid after the final double",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-power-of-two-limited",
+      "id": "trial-power-of-two-limited",
       "name": "a power of two has fewer available doubles than its exponent",
       "kind": "trial",
       "visible": true,
@@ -115,6 +115,21 @@
       "expected": 4,
       "tags": [
         "power-of-two"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value target=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": 1,
+        "maxDoubles": 0
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

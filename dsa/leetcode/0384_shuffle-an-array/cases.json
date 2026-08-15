@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "hidden-negative-values",
+      "id": "trial-negative-values",
       "name": "shuffle signed values",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "hidden-return-original",
+      "id": "trial-return-original",
       "name": "original order is a valid shuffle",
       "kind": "trial",
       "visible": true,

@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-three",
+      "id": "trial-three",
       "name": "two primes can swap",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-twenty",
+      "id": "trial-twenty",
       "name": "modular factorial product",
       "kind": "trial",
       "visible": true,

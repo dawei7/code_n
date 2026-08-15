@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-reference-values",
+      "id": "trial-reference-values",
       "name": "structured values are forwarded unchanged",
       "kind": "trial",
       "visible": true,
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "real-maximum-functions",
+      "id": "trial-maximum-functions",
       "name": "ten wrappers preserve all positions",
       "kind": "trial",
       "visible": true,
@@ -349,7 +349,7 @@
       ]
     },
     {
-      "id": "real-reverse-completion-order",
+      "id": "trial-reverse-completion-order",
       "name": "settlement order does not reorder wrappers",
       "kind": "trial",
       "visible": true,

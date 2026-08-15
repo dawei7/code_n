@@ -60,7 +60,7 @@
       ]
     },
     {
-      "id": "real-zero",
+      "id": "trial-zero",
       "name": "zero numerator",
       "kind": "trial",
       "visible": true,
@@ -71,6 +71,21 @@
       "expected": "0",
       "tags": [
         "zero"
+      ]
+    },
+    {
+      "id": "trial-boundary-6",
+      "name": "minimal value denominator=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numerator": 1,
+        "denominator": 1
+      },
+      "expected": "1",
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

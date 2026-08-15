@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-full-domain",
+      "id": "trial-full-domain",
       "name": "one interval covers the entire legal coordinate domain",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-touching-integers",
+      "id": "trial-touching-integers",
       "name": "consecutive inclusive ranges leave no integer gap",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-overlap",
+      "id": "trial-overlap",
       "name": "overlapping ranges jointly cover the target",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-missing-left",
+      "id": "trial-missing-left",
       "name": "coverage starting after left fails immediately",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-missing-right",
+      "id": "trial-missing-right",
       "name": "coverage ending before right leaves the endpoint uncovered",
       "kind": "trial",
       "visible": true,
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "real-outside-irrelevant",
+      "id": "trial-outside-irrelevant",
       "name": "intervals outside the target do not fill its gap",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-duplicate-overlap",
+      "id": "trial-duplicate-overlap",
       "name": "repeated coverage still yields one boolean result",
       "kind": "trial",
       "visible": true,
@@ -276,6 +276,64 @@
       "tags": [
         "duplicate-ranges",
         "overlap"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value left=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ranges": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "left": 1,
+        "right": 5
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value right=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ranges": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "left": 2,
+        "right": 1
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

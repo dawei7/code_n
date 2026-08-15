@@ -64,7 +64,7 @@
       ]
     },
     {
-      "id": "hidden-descending",
+      "id": "trial-descending",
       "name": "every later value is smaller",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "hidden-ascending",
+      "id": "trial-ascending",
       "name": "no later value is smaller",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "hidden-mixed-duplicates",
+      "id": "trial-mixed-duplicates",
       "name": "strict comparison with duplicates",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "hidden-negative-duplicates",
+      "id": "trial-negative-duplicates",
       "name": "repeated negative values",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "hidden-wide-values",
+      "id": "trial-wide-values",
       "name": "widely separated coordinates",
       "kind": "trial",
       "visible": true,

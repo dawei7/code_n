@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-exact-diagonal",
+      "id": "trial-exact-diagonal",
       "name": "diagonal path reaches in exact minimum time",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-short-diagonal",
+      "id": "trial-short-diagonal",
       "name": "diagonal destination is one second too far",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-axis-extra-time",
+      "id": "trial-axis-extra-time",
       "name": "axial move with two extra seconds",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-zero-time-different",
+      "id": "trial-zero-time-different",
       "name": "zero seconds cannot change cells",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-one-step-horizontal",
+      "id": "trial-one-step-horizontal",
       "name": "horizontally adjacent destination",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-one-extra-diagonal",
+      "id": "trial-one-extra-diagonal",
       "name": "a one-second detour remains possible",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-maximum-coordinates",
+      "id": "trial-maximum-coordinates",
       "name": "adjacent move at the maximum coordinate boundary",
       "kind": "trial",
       "visible": true,
@@ -215,6 +215,42 @@
       "tags": [
         "maximum",
         "exact-time"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value sx=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 1,
+        "sy": 4,
+        "fx": 7,
+        "fy": 7,
+        "t": 6
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "minimal value sy=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 2,
+        "sy": 1,
+        "fx": 7,
+        "fy": 7,
+        "t": 6
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

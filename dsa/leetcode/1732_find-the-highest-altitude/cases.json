@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "every point stays at the starting altitude",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-deep-valley",
+      "id": "trial-deep-valley",
       "name": "later recovery does not exceed the start",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-repeated-peak",
+      "id": "trial-repeated-peak",
       "name": "zero gain repeats the maximum altitude",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-final-peak",
+      "id": "trial-final-peak",
       "name": "maximum occurs at the final point",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "one hundred legal gains are scanned",
       "kind": "trial",
       "visible": true,

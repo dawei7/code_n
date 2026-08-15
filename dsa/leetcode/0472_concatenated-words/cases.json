@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "hidden-many-pieces",
+      "id": "trial-many-pieces",
       "name": "a word uses more than two components",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "hidden-overlapping-prefixes",
+      "id": "trial-overlapping-prefixes",
       "name": "overlapping component lengths",
       "kind": "trial",
       "visible": true,
@@ -173,6 +173,41 @@
       },
       "tags": [
         "prefixes"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "cat"
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "cat",
+          "cat"
+        ]
+      },
+      "expected": [
+        "cat"
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

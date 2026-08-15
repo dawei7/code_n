@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-negative-pairs",
+      "id": "trial-negative-pairs",
       "name": "signed values and repeated pairs",
       "kind": "trial",
       "visible": true,

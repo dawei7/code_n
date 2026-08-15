@@ -93,8 +93,8 @@
       ]
     },
     {
-      "id": "real-palindrome-only-in-s",
-      "name": "real: empty substring from t",
+      "id": "trial-palindrome-only-in-s",
+      "name": "empty substring from t",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -108,8 +108,8 @@
       ]
     },
     {
-      "id": "real-nonwhole-substrings",
-      "name": "real: discard unrelated endpoints",
+      "id": "trial-nonwhole-substrings",
+      "name": "discard unrelated endpoints",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -123,8 +123,8 @@
       ]
     },
     {
-      "id": "real-all-same-character",
-      "name": "real: whole concatenation is palindromic",
+      "id": "trial-all-same-character",
+      "name": "whole concatenation is palindromic",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-repeated-matches-with-short-center",
-      "name": "real: choose the best diagonal and center",
+      "id": "trial-repeated-matches-with-short-center",
+      "name": "choose the best diagonal and center",
       "kind": "trial",
       "visible": true,
       "input": {

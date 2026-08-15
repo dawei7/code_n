@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-disjoint-powers-of-two",
+      "id": "trial-disjoint-powers-of-two",
       "name": "pairwise disjoint bits allow only singleton subsequences",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-highest-bit",
+      "id": "trial-highest-bit",
       "name": "bit position twenty-nine supports a full LIS",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-zero-prefix",
+      "id": "trial-zero-prefix",
       "name": "several zeros contribute no valid bit",
       "kind": "trial",
       "visible": true,
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "real-noncontiguous-shared-bit",
+      "id": "trial-noncontiguous-shared-bit",
       "name": "the optimum skips intervening values",
       "kind": "trial",
       "visible": true,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-maximum-value",
+      "id": "trial-maximum-value",
       "name": "the maximum permitted value forms a valid singleton",
       "kind": "trial",
       "visible": true,

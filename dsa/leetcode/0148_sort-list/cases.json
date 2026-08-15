@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "repeated values",
       "kind": "trial",
       "visible": true,

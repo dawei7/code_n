@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-three-way-cancellation",
+      "id": "trial-three-way-cancellation",
       "name": "three values XOR to zero",
       "kind": "trial",
       "visible": true,
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-odd-duplicate-count",
+      "id": "trial-odd-duplicate-count",
       "name": "odd multiplicity leaves one copy",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "duplicate maximum values cancel",
       "kind": "trial",
       "visible": true,

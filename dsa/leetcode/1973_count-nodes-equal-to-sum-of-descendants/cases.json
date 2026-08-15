@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-nonzero-leaves",
+      "id": "trial-nonzero-leaves",
       "name": "nonzero leaves do not match",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-zero-leaves-only",
+      "id": "trial-zero-leaves-only",
       "name": "only zero leaves match",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-left-chain",
+      "id": "trial-left-chain",
       "name": "descendant sums along a left chain",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-mixed-tree",
+      "id": "trial-mixed-tree",
       "name": "matches occur at different depths",
       "kind": "trial",
       "visible": true,

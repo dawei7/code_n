@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-equal-values",
+      "id": "trial-equal-values",
       "name": "equal values create no strict edge",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-duplicate-connected",
+      "id": "trial-duplicate-connected",
       "name": "duplicates connect through a smaller value",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-several-regions",
+      "id": "trial-several-regions",
       "name": "alternating inversion regions",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "values near the upper bound",
       "kind": "trial",
       "visible": true,
@@ -209,6 +209,44 @@
       "tags": [
         "value-bound",
         "indirect-reachability"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": [
+        2,
+        2
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

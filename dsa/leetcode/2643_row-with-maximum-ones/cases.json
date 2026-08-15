@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "all rows contain no ones",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-all-one-tie",
+      "id": "trial-all-one-tie",
       "name": "fully populated rows tie",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-late-winner",
+      "id": "trial-late-winner",
       "name": "final row uniquely wins",
       "kind": "trial",
       "visible": true,

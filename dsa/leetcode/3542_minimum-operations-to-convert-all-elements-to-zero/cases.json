@@ -96,8 +96,8 @@
       ]
     },
     {
-      "id": "real-nested-levels",
-      "name": "real: lower values merge equal higher-level context",
+      "id": "trial-nested-levels",
+      "name": "lower values merge equal higher-level context",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -116,8 +116,8 @@
       ]
     },
     {
-      "id": "real-zero-separated",
-      "name": "real: zero forces independent positive regions",
+      "id": "trial-zero-separated",
+      "name": "zero forces independent positive regions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-descending",
-      "name": "real: every descending value starts a new level",
+      "id": "trial-descending",
+      "name": "every descending value starts a new level",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -159,8 +159,8 @@
       ]
     },
     {
-      "id": "real-equality-after-higher-values",
-      "name": "real: equal active level survives intervening peaks",
+      "id": "trial-equality-after-higher-values",
+      "name": "equal active level survives intervening peaks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -178,6 +178,39 @@
         "real",
         "equality",
         "monotonic-stack"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

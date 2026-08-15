@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-two-value-blocks",
+      "id": "trial-two-value-blocks",
       "name": "low fillers and repeated high values",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-max-values",
+      "id": "trial-max-values",
       "name": "medians can reach the maximum value",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-many-duplicates",
+      "id": "trial-many-duplicates",
       "name": "duplicate boundaries between fillers and pairs",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-interleaved",
+      "id": "trial-interleaved",
       "name": "input order does not affect grouping",
       "kind": "trial",
       "visible": true,
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "real-three-groups",
+      "id": "trial-three-groups",
       "name": "choose three medians greedily",
       "kind": "trial",
       "visible": true,
@@ -258,7 +258,7 @@
       ]
     },
     {
-      "id": "real-small-positive",
+      "id": "trial-small-positive",
       "name": "all values at the minimum",
       "kind": "trial",
       "visible": true,

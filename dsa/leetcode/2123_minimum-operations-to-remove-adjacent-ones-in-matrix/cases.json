@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-five-cell-path",
+      "id": "trial-five-cell-path",
       "name": "a path of five ones needs two vertices",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-disconnected-components",
+      "id": "trial-disconnected-components",
       "name": "matching sizes add across components",
       "kind": "trial",
       "visible": true,

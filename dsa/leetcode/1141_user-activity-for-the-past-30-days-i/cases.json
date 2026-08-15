@@ -237,7 +237,7 @@
       ]
     },
     {
-      "id": "real-multiple-sessions",
+      "id": "trial-multiple-sessions",
       "name": "one user across sessions counts once",
       "kind": "trial",
       "visible": true,
@@ -283,7 +283,7 @@
       ]
     },
     {
-      "id": "real-every-type",
+      "id": "trial-every-type",
       "name": "every enum activity is valid",
       "kind": "trial",
       "visible": true,
@@ -335,7 +335,7 @@
       ]
     },
     {
-      "id": "real-user-several-days",
+      "id": "trial-user-several-days",
       "name": "a user contributes once on each day",
       "kind": "trial",
       "visible": true,

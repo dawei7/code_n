@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-second-copy-removes-value",
+      "id": "trial-second-copy-removes-value",
       "name": "second occurrences cancel contributions",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-higher-multiplicity",
+      "id": "trial-higher-multiplicity",
       "name": "values occurring more than twice remain excluded",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-duplicate-boundary-only",
+      "id": "trial-duplicate-boundary-only",
       "name": "duplicate upper boundary and one survivor",
       "kind": "trial",
       "visible": true,

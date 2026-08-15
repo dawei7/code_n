@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "hidden-row-matrix",
+      "id": "trial-row-matrix",
       "name": "one-row matrix clips vertically",
       "kind": "trial",
       "visible": true,
@@ -220,7 +220,7 @@
       ]
     },
     {
-      "id": "hidden-column-matrix",
+      "id": "trial-column-matrix",
       "name": "one-column matrix clips horizontally",
       "kind": "trial",
       "visible": true,

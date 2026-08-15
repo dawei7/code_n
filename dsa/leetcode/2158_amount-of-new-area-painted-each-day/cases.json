@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-nested-and-extending",
+      "id": "trial-nested-and-extending",
       "name": "nested and two-sided extensions",
       "kind": "trial",
       "visible": true,
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "real-maximum-coordinate",
+      "id": "trial-maximum-coordinate",
       "name": "intervals ending at the coordinate bound",
       "kind": "trial",
       "visible": true,

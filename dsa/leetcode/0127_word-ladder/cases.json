@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-disconnected",
+      "id": "trial-disconnected",
       "name": "disconnected end",
       "kind": "trial",
       "visible": true,

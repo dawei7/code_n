@@ -248,7 +248,7 @@
       ]
     },
     {
-      "id": "real-multiple-qualifiers",
+      "id": "trial-multiple-qualifiers",
       "name": "multiple qualifying pairs",
       "kind": "trial",
       "visible": true,
@@ -309,7 +309,7 @@
       ]
     },
     {
-      "id": "real-shared-director",
+      "id": "trial-shared-director",
       "name": "actors sharing one director",
       "kind": "trial",
       "visible": true,

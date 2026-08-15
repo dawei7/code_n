@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-equal-first-coordinate",
+      "id": "trial-equal-first-coordinate",
       "name": "vertical candidate is retained",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-maximum-coordinate",
+      "id": "trial-maximum-coordinate",
       "name": "coordinates may equal array length",
       "kind": "trial",
       "visible": true,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-symmetric-closest-pairs",
+      "id": "trial-symmetric-closest-pairs",
       "name": "symmetric closest pairs require index tie-break",
       "kind": "trial",
       "visible": true,

@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "real-one-run",
+      "id": "trial-one-run",
       "name": "every node equal",
       "kind": "trial",
       "visible": true,

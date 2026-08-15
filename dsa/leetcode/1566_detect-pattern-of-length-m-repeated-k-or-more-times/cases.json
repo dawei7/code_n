@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-late-pattern",
+      "id": "trial-late-pattern",
       "name": "valid pattern begins after unrelated prefix",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-reset-then-match",
+      "id": "trial-reset-then-match",
       "name": "mismatch resets before later repetition",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-overlap-too-short",
+      "id": "trial-overlap-too-short",
       "name": "overlapping equal values do not make full blocks",
       "kind": "trial",
       "visible": true,
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-more-than-required",
+      "id": "trial-more-than-required",
       "name": "five singleton copies satisfy four",
       "kind": "trial",
       "visible": true,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "real-separated-copies",
+      "id": "trial-separated-copies",
       "name": "nonadjacent copies do not qualify",
       "kind": "trial",
       "visible": true,

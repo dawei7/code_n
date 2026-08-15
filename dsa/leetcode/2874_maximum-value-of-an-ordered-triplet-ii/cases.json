@@ -78,7 +78,7 @@
       "expected": 16
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum values require a wide integer result",
       "kind": "trial",
       "visible": true,
@@ -95,7 +95,7 @@
       "expected": 999999000000
     },
     {
-      "id": "real-repeated-values",
+      "id": "trial-repeated-values",
       "name": "a later prefix maximum improves the difference",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       "expected": 63
     },
     {
-      "id": "real-best-indices-separated",
+      "id": "trial-best-indices-separated",
       "name": "all three best indices are separated by distractions",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       "expected": 270
     },
     {
-      "id": "real-flat-array",
+      "id": "trial-flat-array",
       "name": "equal values produce zero",
       "kind": "trial",
       "visible": true,
@@ -153,6 +153,39 @@
         "zero"
       ],
       "expected": 0
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          12
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

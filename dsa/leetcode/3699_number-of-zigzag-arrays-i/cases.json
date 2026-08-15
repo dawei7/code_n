@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-shifted-three-values",
+      "id": "trial-shifted-three-values",
       "name": "large endpoints do not change relative order states",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-long-two-value-range",
+      "id": "trial-long-two-value-range",
       "name": "a long minimum-width range still has two arrays",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-modulo-growth",
+      "id": "trial-modulo-growth",
       "name": "rapidly growing counts require modular accumulation",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-medium-length-two-values",
+      "id": "trial-medium-length-two-values",
       "name": "parity of the length does not affect the two alternating choices",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-maximum-value-range",
+      "id": "trial-maximum-value-range",
       "name": "maximum value range at the minimum length",
       "kind": "trial",
       "visible": true,
@@ -190,6 +190,38 @@
         "maximum-range",
         "minimum-length",
         "modulo"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "l": 4,
+        "r": 5
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "minimal value l=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "l": 1,
+        "r": 5
+      },
+      "expected": 60,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

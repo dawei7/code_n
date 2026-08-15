@@ -65,7 +65,7 @@
       ]
     },
     {
-      "id": "real-length",
+      "id": "trial-length",
       "name": "wrong total length",
       "kind": "trial",
       "visible": true,
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "real-ambiguous",
+      "id": "trial-ambiguous",
       "name": "ambiguous prefixes fail late",
       "kind": "trial",
       "visible": true,

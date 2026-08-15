@@ -127,8 +127,8 @@
       ]
     },
     {
-      "id": "real-mixed-grid",
-      "name": "real: competing routes through mixed opening times",
+      "id": "trial-mixed-grid",
+      "name": "competing routes through mixed opening times",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -167,8 +167,8 @@
       ]
     },
     {
-      "id": "real-late-direct-route",
-      "name": "real: spatially direct route is delayed",
+      "id": "trial-late-direct-route",
+      "name": "spatially direct route is delayed",
       "kind": "trial",
       "visible": true,
       "input": {

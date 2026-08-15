@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "hidden-side",
+      "id": "trial-side",
       "name": "child appears on the wrong side",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "hidden-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate values with one structural match",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "hidden-negative",
+      "id": "trial-negative",
       "name": "negative values and structure match",
       "kind": "trial",
       "visible": true,

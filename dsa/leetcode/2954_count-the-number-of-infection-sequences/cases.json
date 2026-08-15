@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-multiple-gaps",
+      "id": "trial-multiple-gaps",
       "name": "endpoint and internal gaps interleave",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-alternating-sick",
+      "id": "trial-alternating-sick",
       "name": "every healthy person is immediately exposed",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-two-front-gap",
+      "id": "trial-two-front-gap",
       "name": "one internal gap has two infection fronts",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-consecutive-sick",
+      "id": "trial-consecutive-sick",
       "name": "adjacent sick people leave only endpoint chains",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-modulus",
+      "id": "trial-modulus",
       "name": "several long gaps require modular arithmetic",
       "kind": "trial",
       "visible": true,

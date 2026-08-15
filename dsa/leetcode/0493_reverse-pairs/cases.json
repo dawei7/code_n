@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "hidden-increasing",
+      "id": "trial-increasing",
       "name": "increasing positives",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "hidden-extremes",
+      "id": "trial-extremes",
       "name": "signed integer extremes",
       "kind": "trial",
       "visible": true,
@@ -128,6 +128,39 @@
       "expected": 1,
       "tags": [
         "overflow"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

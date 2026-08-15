@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-one-score-zero",
+      "id": "trial-one-score-zero",
       "name": "ones have prime score zero",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-all-equal-scores",
+      "id": "trial-all-equal-scores",
       "name": "equal prime scores assign subarrays leftward",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-mixed-ties",
+      "id": "trial-mixed-ties",
       "name": "strict and non-strict boundaries both matter",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "repeated maximum legal values exercise modulo powers",
       "kind": "trial",
       "visible": true,
@@ -171,6 +171,41 @@
       "tags": [
         "modulo",
         "value-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8
+        ],
+        "k": 2
+      },
+      "expected": 8,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          8
+        ],
+        "k": 2
+      },
+      "expected": 64,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

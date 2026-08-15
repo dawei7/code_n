@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-last-rank",
+      "id": "trial-last-rank",
       "name": "request lowest available distinct salary",
       "kind": "trial",
       "visible": true,

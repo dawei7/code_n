@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-overshoot-by-two",
+      "id": "trial-overshoot-by-two",
       "name": "a short overshoot returns home",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-direction-state",
+      "id": "trial-direction-state",
       "name": "route requires revisiting coordinates with direction state",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-detour-around-block",
+      "id": "trial-detour-around-block",
       "name": "forbidden landing forces a longer route",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-blocked-first-jump",
+      "id": "trial-blocked-first-jump",
       "name": "blocked first landing makes target unreachable",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-gcd-unreachable",
+      "id": "trial-gcd-unreachable",
       "name": "jump-length divisibility prevents target alignment",
       "kind": "trial",
       "visible": true,

@@ -54,7 +54,7 @@
       ]
     },
     {
-      "id": "real-already-ordered",
+      "id": "trial-already-ordered",
       "name": "already ordered tokens still lose their digits",
       "kind": "trial",
       "visible": true,
@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-reversed",
+      "id": "trial-reversed",
       "name": "completely reversed token order",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-two-words",
+      "id": "trial-two-words",
       "name": "smallest multiword permutation",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-nine-words",
+      "id": "trial-nine-words",
       "name": "every legal position digit is used",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-mixed-case",
+      "id": "trial-mixed-case",
       "name": "letter case is preserved exactly",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-long-words",
+      "id": "trial-long-words",
       "name": "positions follow suffixes rather than word lengths",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-arbitrary-permutation",
+      "id": "trial-arbitrary-permutation",
       "name": "indexed placement handles a non-patterned shuffle",
       "kind": "trial",
       "visible": true,

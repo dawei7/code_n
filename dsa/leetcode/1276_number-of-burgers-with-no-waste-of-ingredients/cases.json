@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "hidden-too-many",
+      "id": "trial-too-many",
       "name": "too many tomatoes for the cheese",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "hidden-maximum",
+      "id": "trial-maximum",
       "name": "maximum tomato boundary without cheese",
       "kind": "trial",
       "visible": true,
@@ -113,6 +113,36 @@
       "tags": [
         "maximum",
         "no-cheese"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value tomatoSlices=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tomatoSlices": 1,
+        "cheeseSlices": 7
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value cheeseSlices=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tomatoSlices": 16,
+        "cheeseSlices": 1
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

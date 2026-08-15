@@ -240,8 +240,8 @@
       ]
     },
     {
-      "id": "real-overlapping-small-ranges",
-      "name": "real: overlapping ranges and moduli",
+      "id": "trial-overlapping-small-ranges",
+      "name": "overlapping ranges and moduli",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -274,8 +274,8 @@
       ]
     },
     {
-      "id": "real-midrange-overlap",
-      "name": "real: several midrange prefixes",
+      "id": "trial-midrange-overlap",
+      "name": "several midrange prefixes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -308,8 +308,8 @@
       ]
     },
     {
-      "id": "real-large-indices",
-      "name": "real: large indices exercise binary search",
+      "id": "trial-large-indices",
+      "name": "large indices exercise binary search",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -336,8 +336,8 @@
       ]
     },
     {
-      "id": "real-maximum-singleton",
-      "name": "real: one element at the maximum index",
+      "id": "trial-maximum-singleton",
+      "name": "one element at the maximum index",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -358,8 +358,8 @@
       ]
     },
     {
-      "id": "real-maximum-tail",
-      "name": "real: a range ending at the maximum index",
+      "id": "trial-maximum-tail",
+      "name": "a range ending at the maximum index",
       "kind": "trial",
       "visible": true,
       "input": {

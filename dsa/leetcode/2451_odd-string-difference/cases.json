@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-two-letter",
+      "id": "trial-two-letter",
       "name": "two-letter signatures",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-negative-differences",
+      "id": "trial-negative-differences",
       "name": "descending common pattern",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-long-words",
+      "id": "trial-long-words",
       "name": "maximum word length",
       "kind": "trial",
       "visible": true,

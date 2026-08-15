@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-adjacent-k-two-blocks",
+      "id": "trial-adjacent-k-two-blocks",
       "name": "two non-overlapping blocks are both removed",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-two-round-k-one",
+      "id": "trial-two-round-k-one",
       "name": "separated inner pairs create a later pair",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-extra-parentheses-around-k-two",
+      "id": "trial-extra-parentheses-around-k-two",
       "name": "removing a k-two block leaves one ordinary pair",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-smaller-pattern-not-removable",
+      "id": "trial-smaller-pattern-not-removable",
       "name": "k two does not remove ordinary pairs",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-k-three-partial-nesting",
+      "id": "trial-k-three-partial-nesting",
       "name": "one k-three removal leaves a shorter nesting",
       "kind": "trial",
       "visible": true,
@@ -183,6 +183,21 @@
       "tags": [
         "partial-removal",
         "larger-k"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "(",
+        "k": 1
+      },
+      "expected": "(",
+      "tags": [
+        "boundary",
+        "single-char"
       ]
     }
   ]

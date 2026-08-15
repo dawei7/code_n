@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-all-zeroes",
-      "name": "real: zero-heavy substrings remain valid through the one bound",
+      "id": "trial-all-zeroes",
+      "name": "zero-heavy substrings remain valid through the one bound",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-k-two-mixed",
-      "name": "real: a zero block between ones",
+      "id": "trial-k-two-mixed",
+      "name": "a zero block between ones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -137,8 +137,8 @@
       ]
     },
     {
-      "id": "real-k-half-length",
-      "name": "real: k makes every interval valid",
+      "id": "trial-k-half-length",
+      "name": "k makes every interval valid",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-zero-heavy-alternation",
-      "name": "real: alternating center with zero borders",
+      "id": "trial-zero-heavy-alternation",
+      "name": "alternating center with zero borders",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -167,8 +167,8 @@
       ]
     },
     {
-      "id": "real-dense-mixed",
-      "name": "real: dense mixed binary profile",
+      "id": "trial-dense-mixed",
+      "name": "dense mixed binary profile",
       "kind": "trial",
       "visible": true,
       "input": {

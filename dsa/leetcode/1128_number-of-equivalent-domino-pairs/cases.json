@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-two-groups",
+      "id": "trial-two-groups",
       "name": "two equivalence groups",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-mixed-orientation",
+      "id": "trial-mixed-orientation",
       "name": "alternating orientations in one group",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-value-bounds",
+      "id": "trial-value-bounds",
       "name": "lower and upper value bounds",
       "kind": "trial",
       "visible": true,
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "real-repeated-groups",
+      "id": "trial-repeated-groups",
       "name": "differently sized groups",
       "kind": "trial",
       "visible": true,

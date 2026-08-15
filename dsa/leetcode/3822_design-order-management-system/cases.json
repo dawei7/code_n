@@ -343,7 +343,7 @@
       ]
     },
     {
-      "id": "real-modification-preserves-type",
+      "id": "trial-modification-preserves-type",
       "name": "price modification does not change order type",
       "kind": "trial",
       "visible": true,
@@ -400,7 +400,7 @@
       ]
     },
     {
-      "id": "real-cancel-one-of-several",
+      "id": "trial-cancel-one-of-several",
       "name": "cancellation removes only the specified order",
       "kind": "trial",
       "visible": true,
@@ -459,7 +459,7 @@
       ]
     },
     {
-      "id": "real-multiple-bucket-transitions",
+      "id": "trial-multiple-bucket-transitions",
       "name": "repeated modifications keep exactly one current membership",
       "kind": "trial",
       "visible": true,
@@ -528,7 +528,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "maximum ID and price values remain valid",
       "kind": "trial",
       "visible": true,
@@ -587,7 +587,7 @@
       ]
     },
     {
-      "id": "real-independent-orders-after-cancel",
+      "id": "trial-independent-orders-after-cancel",
       "name": "canceled and active orders remain distinguishable",
       "kind": "trial",
       "visible": true,

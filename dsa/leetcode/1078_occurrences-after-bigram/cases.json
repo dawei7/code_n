@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-overlapping",
+      "id": "trial-overlapping",
       "name": "overlapping occurrences",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-repeat-output",
+      "id": "trial-repeat-output",
       "name": "preserve duplicate outputs",
       "kind": "trial",
       "visible": true,

@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-commuted-pair",
+      "id": "trial-commuted-pair",
       "name": "two operands are swapped",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-balanced-reordered",
+      "id": "trial-balanced-reordered",
       "name": "perfect trees reorder all leaves",
       "kind": "trial",
       "visible": true,
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "real-shape-different",
+      "id": "trial-shape-different",
       "name": "skewed and balanced grouping are equivalent",
       "kind": "trial",
       "visible": true,
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-set-equal-counts-differ",
+      "id": "trial-set-equal-counts-differ",
       "name": "equal variable sets have different coefficients",
       "kind": "trial",
       "visible": true,
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "real-duplicate-equivalent",
+      "id": "trial-duplicate-equivalent",
       "name": "duplicate coefficients match after reordering",
       "kind": "trial",
       "visible": true,
@@ -266,7 +266,7 @@
       ]
     },
     {
-      "id": "real-one-extra-leaf",
+      "id": "trial-one-extra-leaf",
       "name": "one expression has an additional term",
       "kind": "trial",
       "visible": true,
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "id": "real-many-variables",
+      "id": "trial-many-variables",
       "name": "several distinct coefficients all match",
       "kind": "trial",
       "visible": true,

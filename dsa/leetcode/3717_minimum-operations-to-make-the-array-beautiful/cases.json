@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-decreasing-suffix",
+      "id": "trial-decreasing-suffix",
       "name": "a fixed divisor raises both smaller suffix values",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-shared-final-value",
+      "id": "trial-shared-final-value",
       "name": "several suffix positions optimally share one multiple",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-multiple-levels",
+      "id": "trial-multiple-levels",
       "name": "the best chain passes through different multiple levels",
       "kind": "trial",
       "visible": true,
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-one-as-first",
+      "id": "trial-one-as-first",
       "name": "a first value of one leaves flexible later choices",
       "kind": "trial",
       "visible": true,
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-maximum-first",
+      "id": "trial-maximum-first",
       "name": "a maximum first value forces every smaller suffix value upward",
       "kind": "trial",
       "visible": true,
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "a maximum-length beautiful array stays unchanged",
       "kind": "trial",
       "visible": true,
@@ -370,6 +370,39 @@
         "maximum-length",
         "maximum-values",
         "already-beautiful"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

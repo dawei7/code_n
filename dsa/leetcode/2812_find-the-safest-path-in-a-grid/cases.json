@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-central-thief",
+      "id": "trial-central-thief",
       "name": "path skirts a central thief",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-thief-barrier",
+      "id": "trial-thief-barrier",
       "name": "thief row creates zero-safeness barrier",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-distant-corner",
+      "id": "trial-distant-corner",
       "name": "one distant corner thief",
       "kind": "trial",
       "visible": true,

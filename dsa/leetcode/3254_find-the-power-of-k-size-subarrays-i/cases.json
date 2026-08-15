@@ -181,8 +181,8 @@
       ]
     },
     {
-      "id": "real-large-jumps",
-      "name": "real: ascending values with gaps are invalid",
+      "id": "trial-large-jumps",
+      "name": "ascending values with gaps are invalid",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -207,8 +207,8 @@
       ]
     },
     {
-      "id": "real-break-and-recover",
-      "name": "real: a run recovers after a duplicate",
+      "id": "trial-break-and-recover",
+      "name": "a run recovers after a duplicate",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -236,8 +236,8 @@
       ]
     },
     {
-      "id": "real-near-maximum",
-      "name": "real: consecutive values end at the maximum bound",
+      "id": "trial-near-maximum",
+      "name": "consecutive values end at the maximum bound",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -262,8 +262,8 @@
       ]
     },
     {
-      "id": "real-repeated-resets",
-      "name": "real: decreases repeatedly reset the streak",
+      "id": "trial-repeated-resets",
+      "name": "decreases repeatedly reset the streak",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -297,8 +297,8 @@
       ]
     },
     {
-      "id": "real-window-two-mixed",
-      "name": "real: all adjacency types with window size two",
+      "id": "trial-window-two-mixed",
+      "name": "all adjacency types with window size two",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -324,6 +324,41 @@
       "tags": [
         "k-two",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 3
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

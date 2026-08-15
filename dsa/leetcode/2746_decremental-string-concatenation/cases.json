@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-single-long-word",
+      "id": "trial-single-long-word",
       "name": "one maximum-length word",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-all-singletons",
+      "id": "trial-all-singletons",
       "name": "repeated matching singleton words",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-no-merges",
+      "id": "trial-no-merges",
       "name": "no matching junctions",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating reversible words",
       "kind": "trial",
       "visible": true,

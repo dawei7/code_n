@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-three-endpoints",
+      "id": "trial-three-endpoints",
       "name": "unordered values with large shared divisor",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "every value is equal",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-min-max-only",
+      "id": "trial-min-max-only",
       "name": "GCD ignores non-endpoint divisibility",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-prime-endpoints",
+      "id": "trial-prime-endpoints",
       "name": "distinct prime endpoints",
       "kind": "trial",
       "visible": true,

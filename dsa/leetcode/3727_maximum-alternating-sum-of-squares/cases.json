@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-all-zeros",
+      "id": "trial-all-zeros",
       "name": "every arrangement of zeros scores zero",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-odd-duplicate-values",
+      "id": "trial-odd-duplicate-values",
       "name": "one extra positive slot remains for odd length",
       "kind": "trial",
       "visible": true,
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "real-zero-and-mixed-signs",
+      "id": "trial-zero-and-mixed-signs",
       "name": "zero and the smallest nonzero square are subtracted",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-even-distinct-squares",
+      "id": "trial-even-distinct-squares",
       "name": "an even array divides equally between signs",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-two-boundary-magnitudes-and-zero",
+      "id": "trial-two-boundary-magnitudes-and-zero",
       "name": "two maximum squares occupy the positive positions",
       "kind": "trial",
       "visible": true,
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": "real-boundary-values-cancel",
+      "id": "trial-boundary-values-cancel",
       "name": "four equal maximum squares cancel in pairs",
       "kind": "trial",
       "visible": true,
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "id": "real-ties-across-split",
+      "id": "trial-ties-across-split",
       "name": "tied squares may straddle the sign boundary",
       "kind": "trial",
       "visible": true,
@@ -282,6 +282,39 @@
       "tags": [
         "ties",
         "odd-length"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

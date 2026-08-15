@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-interleaved-unsorted",
+      "id": "trial-interleaved-unsorted",
       "name": "input order and other players do not change chronology",
       "kind": "trial",
       "visible": true,
@@ -296,7 +296,7 @@
       ]
     },
     {
-      "id": "real-calendar-gaps",
+      "id": "trial-calendar-gaps",
       "name": "days without matches do not break a streak",
       "kind": "trial",
       "visible": true,
@@ -342,7 +342,7 @@
       ]
     },
     {
-      "id": "real-equal-max-runs",
+      "id": "trial-equal-max-runs",
       "name": "equal longest runs still yield one player row",
       "kind": "trial",
       "visible": true,

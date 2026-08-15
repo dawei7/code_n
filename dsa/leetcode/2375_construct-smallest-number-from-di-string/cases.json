@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-all-increasing",
+      "id": "trial-all-increasing",
       "name": "maximum-length increasing pattern",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-all-decreasing",
+      "id": "trial-all-decreasing",
       "name": "maximum-length decreasing pattern",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-decrease-then-increase",
+      "id": "trial-decrease-then-increase",
       "name": "flush a leading decreasing run",
       "kind": "trial",
       "visible": true,

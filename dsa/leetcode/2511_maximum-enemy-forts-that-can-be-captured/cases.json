@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-single-owned-fort",
+      "id": "trial-single-owned-fort",
       "name": "owned fort without an empty destination",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-only-enemies",
+      "id": "trial-only-enemies",
       "name": "no owned fort or empty destination",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-empty-boundary-interruption",
+      "id": "trial-empty-boundary-interruption",
       "name": "an empty position ends the current enemy run",
       "kind": "trial",
       "visible": true,
@@ -163,6 +163,23 @@
       "expected": 3,
       "tags": [
         "boundary-reset"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in forts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "forts": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -93,8 +93,8 @@
       ]
     },
     {
-      "id": "real-monotone-increasing",
-      "name": "real: extra transaction capacity cannot improve one continuous rise",
+      "id": "trial-monotone-increasing",
+      "name": "extra transaction capacity cannot improve one continuous rise",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -116,8 +116,8 @@
       ]
     },
     {
-      "id": "real-monotone-decreasing",
-      "name": "real: one short sale captures a continuous decline",
+      "id": "trial-monotone-decreasing",
+      "name": "one short sale captures a continuous decline",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -139,8 +139,8 @@
       ]
     },
     {
-      "id": "real-select-best-two",
-      "name": "real: select the best two trades across mixed movements",
+      "id": "trial-select-best-two",
+      "name": "select the best two trades across mixed movements",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -162,8 +162,8 @@
       ]
     },
     {
-      "id": "real-profit-exceeds-int32",
-      "name": "real: two boundary-price short sales exceed 32-bit signed range",
+      "id": "trial-profit-exceeds-int32",
+      "name": "two boundary-price short sales exceed 32-bit signed range",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -183,8 +183,8 @@
       ]
     },
     {
-      "id": "real-equal-prices",
-      "name": "real: equal prices yield zero profit",
+      "id": "trial-equal-prices",
+      "name": "equal prices yield zero profit",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -199,6 +199,41 @@
         "real",
         "minimum-length",
         "zero-profit"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          1
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

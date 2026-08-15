@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-both-budgets",
+      "id": "trial-both-budgets",
       "name": "letters with excess parentheses on both sides",
       "kind": "trial",
       "visible": true,
@@ -95,6 +95,38 @@
       ],
       "tags": [
         "both-budgets"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "("
+      },
+      "expected": [
+        ""
+      ],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "((("
+      },
+      "expected": [
+        ""
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

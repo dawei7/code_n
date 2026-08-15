@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-ceiling",
+      "id": "trial-ceiling",
       "name": "integer ceiling separates neighboring potions",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-large-bound",
+      "id": "trial-large-bound",
       "name": "maximum legal threshold is represented exactly",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-spell-order",
+      "id": "trial-spell-order",
       "name": "output retains unsorted spell order",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-duplicate-spells",
+      "id": "trial-duplicate-spells",
       "name": "equal spells receive equal independent counts",
       "kind": "trial",
       "visible": true,

@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-all-singletons",
+      "id": "trial-all-singletons",
       "name": "every prefix remains all singletons",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-overfull-at-end",
+      "id": "trial-overfull-at-end",
       "name": "the full prefix has one overfull group",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-singleton-at-end",
+      "id": "trial-singleton-at-end",
       "name": "one singleton accompanies equal pairs",
       "kind": "trial",
       "visible": true,

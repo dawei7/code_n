@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-one-direct-modulus-factor",
+      "id": "trial-one-direct-modulus-factor",
       "name": "one direct modulus factor makes three outputs zero",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-composite-modulus",
+      "id": "trial-composite-modulus",
       "name": "separate factors multiply to the composite modulus",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-rectangular-shape",
+      "id": "trial-rectangular-shape",
       "name": "prefix and suffix passes cross row boundaries",
       "kind": "trial",
       "visible": true,

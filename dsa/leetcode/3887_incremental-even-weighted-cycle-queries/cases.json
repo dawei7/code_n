@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-rejection-does-not-mutate",
+      "id": "trial-rejection-does-not-mutate",
       "name": "a rejected triangle edge cannot affect later proposals",
       "kind": "trial",
       "visible": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "real-merge-components-and-reject-chord",
+      "id": "trial-merge-components-and-reject-chord",
       "name": "several components merge before an inconsistent chord",
       "kind": "trial",
       "visible": true,
@@ -324,7 +324,7 @@
       ]
     },
     {
-      "id": "real-multiple-consistent-chords",
+      "id": "trial-multiple-consistent-chords",
       "name": "several redundant edges agree with one potential assignment",
       "kind": "trial",
       "visible": true,
@@ -375,7 +375,7 @@
       ]
     },
     {
-      "id": "real-all-one-odd-cycle",
+      "id": "trial-all-one-odd-cycle",
       "name": "an odd-length all-one cycle rejects its closing edge",
       "kind": "trial",
       "visible": true,
@@ -416,7 +416,7 @@
       ]
     },
     {
-      "id": "real-all-one-even-cycle",
+      "id": "trial-all-one-even-cycle",
       "name": "an even-length all-one cycle accepts its closing edge",
       "kind": "trial",
       "visible": true,
@@ -462,7 +462,7 @@
       ]
     },
     {
-      "id": "real-multiple-inconsistent-chords",
+      "id": "trial-multiple-inconsistent-chords",
       "name": "multiple bad chords are rejected while a later good chord remains valid",
       "kind": "trial",
       "visible": true,
@@ -508,7 +508,7 @@
       ]
     },
     {
-      "id": "real-maximum-vertex-labels",
+      "id": "trial-maximum-vertex-labels",
       "name": "parity relations work at the maximum vertex labels",
       "kind": "trial",
       "visible": true,
@@ -544,7 +544,7 @@
       ]
     },
     {
-      "id": "real-disconnected-mixed-cycles",
+      "id": "trial-disconnected-mixed-cycles",
       "name": "even and odd cycles are evaluated independently across components",
       "kind": "trial",
       "visible": true,

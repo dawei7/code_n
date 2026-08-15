@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-exact-digit-counts",
+      "id": "trial-exact-digit-counts",
       "name": "both digit groups contain exactly four digits",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-word-boundaries",
+      "id": "trial-word-boundaries",
       "name": "token cannot be embedded in a larger word",
       "kind": "trial",
       "visible": true,
@@ -281,7 +281,7 @@
       ]
     },
     {
-      "id": "real-multiple-candidates",
+      "id": "trial-multiple-candidates",
       "name": "any valid occurrence qualifies a product once",
       "kind": "trial",
       "visible": true,
@@ -330,7 +330,7 @@
       ]
     },
     {
-      "id": "real-separator-and-prefix-traps",
+      "id": "trial-separator-and-prefix-traps",
       "name": "exact hyphen and adjacent digit rules",
       "kind": "trial",
       "visible": true,
@@ -379,7 +379,7 @@
       ]
     },
     {
-      "id": "real-empty-result",
+      "id": "trial-empty-result",
       "name": "no description contains a valid token",
       "kind": "trial",
       "visible": true,

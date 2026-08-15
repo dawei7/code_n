@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-one-row",
+      "id": "trial-one-row",
       "name": "a one-row grid has no square larger than one",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-one-column",
+      "id": "trial-one-column",
       "name": "a one-column grid has no square larger than one",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-uniform-rectangle",
+      "id": "trial-uniform-rectangle",
       "name": "a uniform rectangle contains a maximum-side magic square",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-checkerboard",
+      "id": "trial-checkerboard",
       "name": "balanced rows and columns do not compensate for unequal diagonals",
       "kind": "trial",
       "visible": true,
@@ -252,7 +252,7 @@
       ]
     },
     {
-      "id": "real-only-two",
+      "id": "trial-only-two",
       "name": "the only nontrivial magic square is a uniform two by two corner",
       "kind": "trial",
       "visible": true,
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "id": "real-embedded-classic",
+      "id": "trial-embedded-classic",
       "name": "a three by three magic square is embedded in a larger noisy grid",
       "kind": "trial",
       "visible": true,
@@ -341,7 +341,7 @@
       ]
     },
     {
-      "id": "real-equal-diagonals-only",
+      "id": "trial-equal-diagonals-only",
       "name": "matching diagonal sums alone do not make the square magic",
       "kind": "trial",
       "visible": true,

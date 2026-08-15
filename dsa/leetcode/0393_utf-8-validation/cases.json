@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-incomplete",
+      "id": "trial-incomplete",
       "name": "incomplete three-byte character",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "hidden-five-byte-prefix",
+      "id": "trial-five-byte-prefix",
       "name": "unsupported five-byte prefix",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "hidden-several-characters",
+      "id": "trial-several-characters",
       "name": "adjacent widths",
       "kind": "trial",
       "visible": true,
@@ -145,6 +145,39 @@
       "expected": true,
       "tags": [
         "mixed-width"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in data",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "data": [
+          197
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in data",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "data": [
+          197,
+          197
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

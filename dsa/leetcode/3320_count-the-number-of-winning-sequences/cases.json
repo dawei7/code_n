@@ -95,8 +95,8 @@
       ]
     },
     {
-      "id": "real-alternating-pairs",
-      "name": "real: alternating Fire and Earth",
+      "id": "trial-alternating-pairs",
+      "name": "alternating Fire and Earth",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -108,8 +108,8 @@
       ]
     },
     {
-      "id": "real-two-full-cycles",
-      "name": "real: two complete cycles",
+      "id": "trial-two-full-cycles",
+      "name": "two complete cycles",
       "kind": "trial",
       "visible": true,
       "input": {

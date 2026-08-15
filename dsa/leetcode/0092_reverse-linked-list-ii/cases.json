@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-suffix",
+      "id": "trial-suffix",
       "name": "reverse through the tail",
       "kind": "trial",
       "visible": true,

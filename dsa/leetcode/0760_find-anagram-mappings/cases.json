@@ -7,90 +7,347 @@
       "name": "sample: five distinct values",
       "kind": "sample",
       "visible": true,
-      "input": {"nums1": [12, 28, 46, 32, 50], "nums2": [50, 12, 32, 46, 28]},
-      "expected": [1, 4, 3, 2, 0],
-      "validator": {"kind": "anagram_mapping"},
-      "tags": ["sample", "distinct", "permutation"]
+      "input": {
+        "nums1": [
+          12,
+          28,
+          46,
+          32,
+          50
+        ],
+        "nums2": [
+          50,
+          12,
+          32,
+          46,
+          28
+        ]
+      },
+      "expected": [
+        1,
+        4,
+        3,
+        2,
+        0
+      ],
+      "validator": {
+        "kind": "anagram_mapping"
+      },
+      "tags": [
+        "sample",
+        "distinct",
+        "permutation"
+      ]
     },
     {
       "id": "sample-2",
       "name": "sample: two values already aligned",
       "kind": "sample",
       "visible": true,
-      "input": {"nums1": [84, 46], "nums2": [84, 46]},
-      "expected": [0, 1],
-      "validator": {"kind": "anagram_mapping"},
-      "tags": ["sample", "identity"]
+      "input": {
+        "nums1": [
+          84,
+          46
+        ],
+        "nums2": [
+          84,
+          46
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "validator": {
+        "kind": "anagram_mapping"
+      },
+      "tags": [
+        "sample",
+        "identity"
+      ]
     },
     {
       "id": "trial-1",
       "name": "trial: duplicate values admit multiple valid mappings",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [1, 2, 1], "nums2": [1, 1, 2]},
-      "expected": [0, 2, 1],
-      "validator": {"kind": "anagram_mapping"},
-      "tags": ["trial", "duplicates", "multiple-answers"]
+      "input": {
+        "nums1": [
+          1,
+          2,
+          1
+        ],
+        "nums2": [
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": [
+        0,
+        2,
+        1
+      ],
+      "validator": {
+        "kind": "anagram_mapping"
+      },
+      "tags": [
+        "trial",
+        "duplicates",
+        "multiple-answers"
+      ]
     },
     {
       "id": "trial-2",
       "name": "trial: minimum length and minimum value",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [0], "nums2": [0]},
-      "expected": [0],
-      "validator": {"kind": "anagram_mapping"},
-      "tags": ["trial", "singleton", "minimum-length", "minimum-value"]
+      "input": {
+        "nums1": [
+          0
+        ],
+        "nums2": [
+          0
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "validator": {
+        "kind": "anagram_mapping"
+      },
+      "tags": [
+        "trial",
+        "singleton",
+        "minimum-length",
+        "minimum-value"
+      ]
     },
     {
       "id": "trial-3",
       "name": "trial: minimum and maximum values reverse positions",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [0, 100000], "nums2": [100000, 0]},
-      "expected": [1, 0],
-      "validator": {"kind": "anagram_mapping"},
-      "tags": ["trial", "value-boundaries", "reverse"]
+      "input": {
+        "nums1": [
+          0,
+          100000
+        ],
+        "nums2": [
+          100000,
+          0
+        ]
+      },
+      "expected": [
+        1,
+        0
+      ],
+      "validator": {
+        "kind": "anagram_mapping"
+      },
+      "tags": [
+        "trial",
+        "value-boundaries",
+        "reverse"
+      ]
     },
     {
       "id": "trial-4",
       "name": "trial: a longer identity mapping preserves every position",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [4, 5, 6, 7], "nums2": [4, 5, 6, 7]},
-      "expected": [0, 1, 2, 3],
-      "validator": {"kind": "anagram_mapping"},
-      "tags": ["trial", "identity", "distinct"]
+      "input": {
+        "nums1": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "nums2": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "validator": {
+        "kind": "anagram_mapping"
+      },
+      "tags": [
+        "trial",
+        "identity",
+        "distinct"
+      ]
     },
     {
       "id": "trial-5",
       "name": "trial: all equal values may reuse any matching position",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [8, 8, 8, 8], "nums2": [8, 8, 8, 8]},
-      "expected": [0, 1, 2, 3],
-      "validator": {"kind": "anagram_mapping"},
-      "tags": ["trial", "all-duplicate", "multiple-answers"]
+      "input": {
+        "nums1": [
+          8,
+          8,
+          8,
+          8
+        ],
+        "nums2": [
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "validator": {
+        "kind": "anagram_mapping"
+      },
+      "tags": [
+        "trial",
+        "all-duplicate",
+        "multiple-answers"
+      ]
     },
     {
       "id": "trial-6",
       "name": "trial: interleaved duplicate groups retain value equality",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [2, 3, 2, 4, 3], "nums2": [3, 2, 4, 2, 3]},
-      "expected": [1, 0, 3, 2, 4],
-      "validator": {"kind": "anagram_mapping"},
-      "tags": ["trial", "duplicates", "interleaved", "multiple-answers"]
+      "input": {
+        "nums1": [
+          2,
+          3,
+          2,
+          4,
+          3
+        ],
+        "nums2": [
+          3,
+          2,
+          4,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        3,
+        2,
+        4
+      ],
+      "validator": {
+        "kind": "anagram_mapping"
+      },
+      "tags": [
+        "trial",
+        "duplicates",
+        "interleaved",
+        "multiple-answers"
+      ]
     },
     {
       "id": "trial-7",
       "name": "trial: reverse ordering maps both endpoints",
       "kind": "trial",
       "visible": true,
-      "input": {"nums1": [10, 20, 30, 40, 50, 60], "nums2": [60, 50, 40, 30, 20, 10]},
-      "expected": [5, 4, 3, 2, 1, 0],
-      "validator": {"kind": "anagram_mapping"},
-      "tags": ["trial", "reverse", "distinct"]
+      "input": {
+        "nums1": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60
+        ],
+        "nums2": [
+          60,
+          50,
+          40,
+          30,
+          20,
+          10
+        ]
+      },
+      "expected": [
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "validator": {
+        "kind": "anagram_mapping"
+      },
+      "tags": [
+        "trial",
+        "reverse",
+        "distinct"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          12
+        ],
+        "nums2": [
+          50,
+          12,
+          32,
+          46,
+          28
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          12,
+          12
+        ],
+        "nums2": [
+          50,
+          12,
+          32,
+          46,
+          28
+        ]
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

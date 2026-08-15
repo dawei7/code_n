@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate maxima expire by index",
       "kind": "trial",
       "visible": true,

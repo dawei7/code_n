@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-duplicate-imbalance",
+      "id": "trial-duplicate-imbalance",
       "name": "unmatched duplicates cannot replace reverses",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-all-paired",
+      "id": "trial-all-paired",
       "name": "every occurrence belongs to a reverse pair",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-mixed-center",
+      "id": "trial-mixed-center",
       "name": "only one leftover symmetric type is central",
       "kind": "trial",
       "visible": true,

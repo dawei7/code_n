@@ -147,8 +147,8 @@
       ]
     },
     {
-      "id": "real-large-other-gap",
-      "name": "real: moved meeting fits in non-adjacent gap",
+      "id": "trial-large-other-gap",
+      "name": "moved meeting fits in non-adjacent gap",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -175,8 +175,8 @@
       ]
     },
     {
-      "id": "real-boundary-destination",
-      "name": "real: relocate into an event-boundary gap",
+      "id": "trial-boundary-destination",
+      "name": "relocate into an event-boundary gap",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -199,8 +199,8 @@
       ]
     },
     {
-      "id": "real-large-clock",
-      "name": "real: large event-time values",
+      "id": "trial-large-clock",
+      "name": "large event-time values",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -81,7 +81,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "one value repeated many times",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-late-collision",
+      "id": "trial-late-collision",
       "name": "equal frequencies belong to distant values",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-four-unique-counts",
+      "id": "trial-four-unique-counts",
       "name": "unsorted values have counts one through four",
       "kind": "trial",
       "visible": true,

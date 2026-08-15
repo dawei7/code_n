@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-six-two",
+      "id": "trial-six-two",
       "name": "moderate shared-endpoint combinations",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-ten-three",
+      "id": "trial-ten-three",
       "name": "three segments over ten points",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-large-balanced",
+      "id": "trial-large-balanced",
       "name": "large parameters require modular arithmetic",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-large-maximum-k",
+      "id": "trial-large-maximum-k",
       "name": "maximum k remains a unique adjacent chain",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-midrange-modulo",
+      "id": "trial-midrange-modulo",
       "name": "midrange count crosses the modulus",
       "kind": "trial",
       "visible": true,
@@ -162,6 +162,36 @@
       "tags": [
         "modulo",
         "midrange"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

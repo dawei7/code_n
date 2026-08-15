@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-repeated-labels",
+      "id": "trial-repeated-labels",
       "name": "skip blocked high value for another label",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-use-limit-two",
+      "id": "trial-use-limit-two",
       "name": "retain two best values per label",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-equal-values",
+      "id": "trial-equal-values",
       "name": "equal values across labels",
       "kind": "trial",
       "visible": true,

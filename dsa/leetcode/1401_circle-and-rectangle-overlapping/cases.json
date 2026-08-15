@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-edge-crossing-no-corner",
+      "id": "trial-edge-crossing-no-corner",
       "name": "overlap through edge interior",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-negative-coordinates",
+      "id": "trial-negative-coordinates",
       "name": "separated shapes with negative coordinates",
       "kind": "trial",
       "visible": true,

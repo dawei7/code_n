@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-target-is-root",
+      "id": "trial-target-is-root",
       "name": "root to deepest sample leaf",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-balanced-opposites",
+      "id": "trial-balanced-opposites",
       "name": "leaves in opposite balanced subtrees",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-left-chain",
+      "id": "trial-left-chain",
       "name": "endpoints of a skewed chain",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-internal-cousins",
+      "id": "trial-internal-cousins",
       "name": "internal targets with a non-root common ancestor",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "values are identifiers rather than indices",
       "kind": "trial",
       "visible": true,

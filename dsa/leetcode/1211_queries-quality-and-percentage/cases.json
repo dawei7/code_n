@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-rating-three",
+      "id": "trial-rating-three",
       "name": "rating three is not poor",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-duplicate-rows",
+      "id": "trial-duplicate-rows",
       "name": "duplicate rows contribute independently",
       "kind": "trial",
       "visible": true,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "real-round-after-average",
+      "id": "trial-round-after-average",
       "name": "ratios are averaged before rounding",
       "kind": "trial",
       "visible": true,

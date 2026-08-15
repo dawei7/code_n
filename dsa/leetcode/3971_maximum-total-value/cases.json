@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-one-selection",
+      "id": "trial-one-selection",
       "name": "one selection takes the largest initial value",
       "kind": "trial",
       "visible": true,
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-decay-changes-ranking",
+      "id": "trial-decay-changes-ranking",
       "name": "a lower initial value supplies two later top gains",
       "kind": "trial",
       "visible": true,
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-first-gain-only",
+      "id": "trial-first-gain-only",
       "name": "every progression contributes exactly its first gain",
       "kind": "trial",
       "visible": true,
@@ -256,7 +256,7 @@
       ]
     },
     {
-      "id": "real-maximum-single-progression",
+      "id": "trial-maximum-single-progression",
       "name": "billion-term arithmetic sum is reduced modulo",
       "kind": "trial",
       "visible": true,
@@ -276,7 +276,7 @@
       ]
     },
     {
-      "id": "real-two-large-singletons",
+      "id": "trial-two-large-singletons",
       "name": "huge budget selects only two positive gains",
       "kind": "trial",
       "visible": true,
@@ -298,7 +298,7 @@
       ]
     },
     {
-      "id": "real-progressions-skip-values",
+      "id": "trial-progressions-skip-values",
       "name": "distinct step sizes skip values around the cutoff",
       "kind": "trial",
       "visible": true,
@@ -320,7 +320,7 @@
       ]
     },
     {
-      "id": "real-many-equal-cutoff-copies",
+      "id": "trial-many-equal-cutoff-copies",
       "name": "surplus identical threshold gains are removed",
       "kind": "trial",
       "visible": true,
@@ -343,6 +343,51 @@
       "tags": [
         "surplus-threshold",
         "ties"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "value": [
+          6
+        ],
+        "decay": [
+          2,
+          1,
+          1
+        ],
+        "m": 4
+      },
+      "expected": 12,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "value": [
+          6,
+          6
+        ],
+        "decay": [
+          2,
+          1,
+          1
+        ],
+        "m": 4
+      },
+      "expected": 21,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

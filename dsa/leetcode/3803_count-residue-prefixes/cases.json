@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-third-distinct-stops-future-matches",
+      "id": "trial-third-distinct-stops-future-matches",
       "name": "three distinct letters prevent later residues",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-two-letter-cycle",
+      "id": "trial-two-letter-cycle",
       "name": "two distinct letters match remainder two repeatedly",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-delayed-second-distinct",
+      "id": "trial-delayed-second-distinct",
       "name": "a new distinct letter arrives at remainder zero",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-alphabet",
+      "id": "trial-alphabet",
       "name": "every lowercase letter appears once",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-maximum-repeated",
+      "id": "trial-maximum-repeated",
       "name": "maximum length with one distinct letter",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-maximum-alternating",
+      "id": "trial-maximum-alternating",
       "name": "maximum length with two distinct letters",
       "kind": "trial",
       "visible": true,
@@ -202,6 +202,20 @@
       "tags": [
         "maximum-length",
         "two-distinct"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
       ]
     }
   ]

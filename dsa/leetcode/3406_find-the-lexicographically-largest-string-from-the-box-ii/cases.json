@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-longer-tied-suffix",
-      "name": "real: a longer suffix wins after an equal prefix",
+      "id": "trial-longer-tied-suffix",
+      "name": "a longer suffix wins after an equal prefix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-long-input",
-      "name": "real: a late larger character dominates a long prefix",
+      "id": "trial-long-input",
+      "name": "a late larger character dominates a long prefix",
       "kind": "trial",
       "visible": true,
       "input": {

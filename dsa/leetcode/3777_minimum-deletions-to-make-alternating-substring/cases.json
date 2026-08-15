@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-double-flip",
+      "id": "trial-double-flip",
       "name": "two flips of one index restore the original edges",
       "kind": "trial",
       "visible": true,
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "real-subrange-excludes-defects",
+      "id": "trial-subrange-excludes-defects",
       "name": "the narrow range is alternating although the full string is not",
       "kind": "trial",
       "visible": true,
@@ -285,7 +285,7 @@
       ]
     },
     {
-      "id": "real-update-outside-range",
+      "id": "trial-update-outside-range",
       "name": "a flip outside the requested pair leaves its answer unchanged",
       "kind": "trial",
       "visible": true,
@@ -320,7 +320,7 @@
       ]
     },
     {
-      "id": "real-two-incident-edges",
+      "id": "trial-two-incident-edges",
       "name": "an interior flip changes both adjacent indicators",
       "kind": "trial",
       "visible": true,
@@ -361,7 +361,7 @@
       ]
     },
     {
-      "id": "real-no-updates",
+      "id": "trial-no-updates",
       "name": "several static ranges use the same structure",
       "kind": "trial",
       "visible": true,
@@ -404,7 +404,7 @@
       ]
     },
     {
-      "id": "real-alternating-after-end-flips",
+      "id": "trial-alternating-after-end-flips",
       "name": "both endpoint flips are reflected in later answers",
       "kind": "trial",
       "visible": true,
@@ -440,6 +440,39 @@
       },
       "tags": [
         "both-endpoints"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "AAA",
+        "queries": [
+          [
+            2,
+            1,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

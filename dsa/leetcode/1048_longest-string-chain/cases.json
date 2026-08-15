@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-branching-chain",
+      "id": "trial-branching-chain",
       "name": "branching predecessor choices",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-internal-insertions",
+      "id": "trial-internal-insertions",
       "name": "insertions at different positions",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-missing-level",
+      "id": "trial-missing-level",
       "name": "missing length breaks chain",
       "kind": "trial",
       "visible": true,

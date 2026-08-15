@@ -206,8 +206,8 @@
       ]
     },
     {
-      "id": "real-disconnected",
-      "name": "real: no edge can reach the isolated vertex",
+      "id": "trial-disconnected",
+      "name": "no edge can reach the isolated vertex",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -241,8 +241,8 @@
       ]
     },
     {
-      "id": "real-excess-budget",
-      "name": "real: upgrade budget exceeds selected optional edges",
+      "id": "trial-excess-budget",
+      "name": "upgrade budget exceeds selected optional edges",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -283,8 +283,8 @@
       ]
     },
     {
-      "id": "real-ignore-weak-cycle",
-      "name": "real: weak cycle edges are not selected",
+      "id": "trial-ignore-weak-cycle",
+      "name": "weak cycle edges are not selected",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -343,8 +343,8 @@
       ]
     },
     {
-      "id": "real-mandatory-tree",
-      "name": "real: all selected edges are mandatory",
+      "id": "trial-mandatory-tree",
+      "name": "all selected edges are mandatory",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -385,8 +385,8 @@
       ]
     },
     {
-      "id": "real-parallel-choices",
-      "name": "real: stronger parallel choices dominate before upgrades",
+      "id": "trial-parallel-choices",
+      "name": "stronger parallel choices dominate before upgrades",
       "kind": "trial",
       "visible": true,
       "input": {

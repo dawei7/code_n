@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-internal-carry",
+      "id": "trial-internal-carry",
       "name": "carry enters the middle digit",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-separated-carries",
+      "id": "trial-separated-carries",
       "name": "separated high digits create independent carries",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating high and low digits",
       "kind": "trial",
       "visible": true,

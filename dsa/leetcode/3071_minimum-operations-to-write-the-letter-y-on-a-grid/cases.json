@@ -190,8 +190,8 @@
       ]
     },
     {
-      "id": "real-valid-five",
-      "name": "real: larger Y uses zero against twos",
+      "id": "trial-valid-five",
+      "name": "larger Y uses zero against twos",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -241,8 +241,8 @@
       ]
     },
     {
-      "id": "real-one-corruption",
-      "name": "real: one incorrect center value",
+      "id": "trial-one-corruption",
+      "name": "one incorrect center value",
       "kind": "trial",
       "visible": true,
       "input": {

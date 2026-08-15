@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "hidden-exact-degenerate-minimum",
+      "id": "trial-exact-degenerate-minimum",
       "name": "the smallest exact degeneracy is rejected",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "hidden-clearly-impossible",
+      "id": "trial-clearly-impossible",
       "name": "a dominant longest side cannot close",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-equilateral",
+      "id": "trial-maximum-equilateral",
       "name": "maximum equal side lengths remain equilateral",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "hidden-thin-valid",
+      "id": "trial-thin-valid",
       "name": "a very thin positive-area triangle remains valid",
       "kind": "trial",
       "visible": true,
@@ -257,7 +257,7 @@
       ]
     },
     {
-      "id": "hidden-upper-bound-degenerate",
+      "id": "trial-upper-bound-degenerate",
       "name": "equality near the upper bound is still invalid",
       "kind": "trial",
       "visible": true,
@@ -280,7 +280,7 @@
       ]
     },
     {
-      "id": "hidden-nearly-equilateral",
+      "id": "trial-nearly-equilateral",
       "name": "large nearly equal sides preserve angle ordering",
       "kind": "trial",
       "visible": true,

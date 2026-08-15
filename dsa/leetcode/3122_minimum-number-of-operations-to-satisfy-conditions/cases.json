@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-alternating-columns",
+      "id": "trial-alternating-columns",
       "name": "uniform alternating columns",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-identical-columns",
+      "id": "trial-identical-columns",
       "name": "identical best digit in every column",
       "kind": "trial",
       "visible": true,
@@ -272,7 +272,7 @@
       ]
     },
     {
-      "id": "real-tied-frequencies",
+      "id": "trial-tied-frequencies",
       "name": "tied digit frequencies require global choices",
       "kind": "trial",
       "visible": true,
@@ -320,7 +320,7 @@
       ]
     },
     {
-      "id": "real-all-digits",
+      "id": "trial-all-digits",
       "name": "all ten digits across columns",
       "kind": "trial",
       "visible": true,

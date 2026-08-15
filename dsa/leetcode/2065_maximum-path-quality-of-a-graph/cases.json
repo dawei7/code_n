@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-disconnected-value",
+      "id": "trial-disconnected-value",
       "name": "an unreachable valuable node is ignored",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-retrace-path",
+      "id": "trial-retrace-path",
       "name": "reaching a deep node requires retracing edges",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-exact-budget",
+      "id": "trial-exact-budget",
       "name": "an exact-budget round trip is valid",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-cannot-return",
+      "id": "trial-cannot-return",
       "name": "reaching a node is insufficient without return time",
       "kind": "trial",
       "visible": true,
@@ -229,6 +229,43 @@
       "expected": 1,
       "tags": [
         "return-required"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value maxTime=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "values": [
+          0,
+          32,
+          10,
+          43
+        ],
+        "edges": [
+          [
+            0,
+            1,
+            10
+          ],
+          [
+            1,
+            2,
+            15
+          ],
+          [
+            0,
+            3,
+            10
+          ]
+        ],
+        "maxTime": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

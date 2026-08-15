@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-left-skewed",
+      "id": "trial-left-skewed",
       "name": "every depth has one node",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-one-sided-siblings",
+      "id": "trial-one-sided-siblings",
       "name": "cousin sum excludes both siblings",
       "kind": "trial",
       "visible": true,
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-multiple-depths",
+      "id": "trial-multiple-depths",
       "name": "cousin sums are independent by depth",
       "kind": "trial",
       "visible": true,

@@ -7,81 +7,212 @@
       "name": "sample: unequal pair needs two moves",
       "kind": "sample",
       "visible": true,
-      "input": {"arr": [1, 2]},
+      "input": {
+        "arr": [
+          1,
+          2
+        ]
+      },
       "expected": 2,
-      "tags": ["sample", "source-example-1"]
+      "tags": [
+        "sample",
+        "source-example-1"
+      ]
     },
     {
       "id": "sample-middle-removal",
       "name": "sample: middle removal creates a larger palindrome",
       "kind": "sample",
       "visible": true,
-      "input": {"arr": [1, 3, 4, 1, 5]},
+      "input": {
+        "arr": [
+          1,
+          3,
+          4,
+          1,
+          5
+        ]
+      },
       "expected": 3,
-      "tags": ["sample", "source-example-2", "merge-after-removal"]
+      "tags": [
+        "sample",
+        "source-example-2",
+        "merge-after-removal"
+      ]
     },
     {
       "id": "trial-single",
       "name": "single value needs one move",
       "kind": "trial",
       "visible": true,
-      "input": {"arr": [7]},
+      "input": {
+        "arr": [
+          7
+        ]
+      },
       "expected": 1,
-      "tags": ["minimum-length", "singleton-palindrome"]
+      "tags": [
+        "minimum-length",
+        "singleton-palindrome"
+      ]
     },
     {
       "id": "trial-whole-palindrome",
       "name": "whole array is removed in one move",
       "kind": "trial",
       "visible": true,
-      "input": {"arr": [1, 2, 3, 2, 1]},
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          2,
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["whole-array-palindrome", "odd-length"]
+      "tags": [
+        "whole-array-palindrome",
+        "odd-length"
+      ]
     },
     {
       "id": "trial-all-distinct",
       "name": "distinct values must be removed separately",
       "kind": "trial",
       "visible": true,
-      "input": {"arr": [1, 2, 3, 4, 5, 6]},
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
       "expected": 6,
-      "tags": ["all-distinct", "no-merge"]
+      "tags": [
+        "all-distinct",
+        "no-merge"
+      ]
     },
     {
       "id": "trial-adjacent-pairs",
       "name": "each adjacent equal pair can leave together",
       "kind": "trial",
       "visible": true,
-      "input": {"arr": [1, 1, 2, 2, 3, 3]},
+      "input": {
+        "arr": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
       "expected": 3,
-      "tags": ["adjacent-equals", "even-palindromes"]
+      "tags": [
+        "adjacent-equals",
+        "even-palindromes"
+      ]
     },
     {
       "id": "trial-nested-palindrome",
       "name": "nested equal values form one full palindrome",
       "kind": "trial",
       "visible": true,
-      "input": {"arr": [1, 2, 1, 3, 1, 2, 1]},
+      "input": {
+        "arr": [
+          1,
+          2,
+          1,
+          3,
+          1,
+          2,
+          1
+        ]
+      },
       "expected": 1,
-      "tags": ["nested-equals", "whole-array-palindrome"]
+      "tags": [
+        "nested-equals",
+        "whole-array-palindrome"
+      ]
     },
     {
       "id": "trial-value-bounds",
       "name": "minimum and maximum values participate in later merges",
       "kind": "trial",
       "visible": true,
-      "input": {"arr": [1, 20, 1, 20]},
+      "input": {
+        "arr": [
+          1,
+          20,
+          1,
+          20
+        ]
+      },
       "expected": 2,
-      "tags": ["value-bounds", "overlapping-palindromes"]
+      "tags": [
+        "value-bounds",
+        "overlapping-palindromes"
+      ]
     },
     {
       "id": "trial-overlapping-repeats",
       "name": "repeated values do not guarantee a single removal",
       "kind": "trial",
       "visible": true,
-      "input": {"arr": [1, 2, 3, 1, 2, 3]},
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          3
+        ]
+      },
       "expected": 4,
-      "tags": ["overlapping-repeats", "interval-planning", "greedy-trap"]
+      "tags": [
+        "overlapping-repeats",
+        "interval-planning",
+        "greedy-trap"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

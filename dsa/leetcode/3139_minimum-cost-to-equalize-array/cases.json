@@ -143,8 +143,8 @@
       ]
     },
     {
-      "id": "real-bottleneck-minimum",
-      "name": "real: one low value limits pairing",
+      "id": "trial-bottleneck-minimum",
+      "name": "one low value limits pairing",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -164,8 +164,8 @@
       ]
     },
     {
-      "id": "real-target-above-maximum",
-      "name": "real: the cheapest target exceeds the current maximum",
+      "id": "trial-target-above-maximum",
+      "name": "the cheapest target exceeds the current maximum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -184,8 +184,8 @@
       ]
     },
     {
-      "id": "real-pair-equals-two-singles",
-      "name": "real: equal operation prices per increment",
+      "id": "trial-pair-equals-two-singles",
+      "name": "equal operation prices per increment",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -205,8 +205,8 @@
       ]
     },
     {
-      "id": "real-near-balanced-deficits",
-      "name": "real: unequal deficits become pairable above maximum",
+      "id": "trial-near-balanced-deficits",
+      "name": "unequal deficits become pairable above maximum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -226,8 +226,8 @@
       ]
     },
     {
-      "id": "real-large-costs-modulo",
-      "name": "real: large raw cost is reduced modulo the modulus",
+      "id": "trial-large-costs-modulo",
+      "name": "large raw cost is reduced modulo the modulus",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -248,8 +248,8 @@
       ]
     },
     {
-      "id": "real-maximum-value",
-      "name": "real: values reach the upper constraint",
+      "id": "trial-maximum-value",
+      "name": "values reach the upper constraint",
       "kind": "trial",
       "visible": true,
       "input": {

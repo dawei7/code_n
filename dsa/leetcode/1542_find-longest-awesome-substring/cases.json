@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-ten-distinct",
+      "id": "trial-ten-distinct",
       "name": "all ten digits remain incompatible beyond one",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-all-even",
+      "id": "trial-all-even",
       "name": "five digit pairs make the whole string valid",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-short-interior",
+      "id": "trial-short-interior",
       "name": "a repeated digit produces a short internal optimum",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-symmetric-counts",
+      "id": "trial-symmetric-counts",
       "name": "mixed symmetric counts use the entire string",
       "kind": "trial",
       "visible": true,
@@ -148,6 +148,34 @@
         "real",
         "one-odd",
         "whole-string"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "3"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "333"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

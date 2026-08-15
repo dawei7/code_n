@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-mixed",
+      "id": "trial-mixed",
       "name": "nonregular permutation",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-late-small",
+      "id": "trial-late-small",
       "name": "small values appearing late cannot be first indices",
       "kind": "trial",
       "visible": true,

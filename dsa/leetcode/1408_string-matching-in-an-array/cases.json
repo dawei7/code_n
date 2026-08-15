@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-equal-length",
+      "id": "trial-equal-length",
       "name": "distinct equal-length words do not match",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-one-word-many-containers",
+      "id": "trial-one-word-many-containers",
       "name": "emit one match only once",
       "kind": "trial",
       "visible": true,
@@ -157,6 +157,42 @@
       },
       "tags": [
         "deduplicate"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "mass"
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "mass",
+          "mass"
+        ]
+      },
+      "expected": [
+        "mass",
+        "mass"
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

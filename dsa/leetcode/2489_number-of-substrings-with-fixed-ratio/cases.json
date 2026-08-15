@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-repeated-unit",
+      "id": "trial-repeated-unit",
       "name": "unit and doubled ratios both occur",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-all-zeros",
+      "id": "trial-all-zeros",
       "name": "every interval lacks ones",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-alternating-longer",
+      "id": "trial-alternating-longer",
       "name": "many repeated prefix scores",
       "kind": "trial",
       "visible": true,

@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-overlapping-values",
+      "id": "trial-overlapping-values",
       "name": "overlapping bit sets combine by OR",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-all-identical",
+      "id": "trial-all-identical",
       "name": "repeated all-set values still contribute once",
       "kind": "trial",
       "visible": true,

@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-reciprocal-rows",
+      "id": "trial-reciprocal-rows",
       "name": "reciprocal rows describe one friendship",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-disconnected-pairs",
+      "id": "trial-disconnected-pairs",
       "name": "disconnected pairs share the global denominator",
       "kind": "trial",
       "visible": true,
@@ -281,7 +281,7 @@
       ]
     },
     {
-      "id": "real-triangle",
+      "id": "trial-triangle",
       "name": "every user has two friends",
       "kind": "trial",
       "visible": true,
@@ -331,7 +331,7 @@
       ]
     },
     {
-      "id": "real-hub",
+      "id": "trial-hub",
       "name": "one hub connects three leaves",
       "kind": "trial",
       "visible": true,
@@ -385,7 +385,7 @@
       ]
     },
     {
-      "id": "real-output-order",
+      "id": "trial-output-order",
       "name": "output order is independent of input order",
       "kind": "trial",
       "visible": true,

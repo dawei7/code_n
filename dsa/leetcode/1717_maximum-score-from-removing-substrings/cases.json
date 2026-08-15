@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-both-orders",
+      "id": "trial-both-orders",
       "name": "both priority directions leave the other pair",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-separator",
+      "id": "trial-separator",
       "name": "a separator prevents cross-region matching",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-ba-priority-chain",
+      "id": "trial-ba-priority-chain",
       "name": "ba priority changes a dense region",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-grouped-maximum-removals",
+      "id": "trial-grouped-maximum-removals",
       "name": "grouped letters create pairs at one boundary",
       "kind": "trial",
       "visible": true,
@@ -161,6 +161,38 @@
       "tags": [
         "grouped-letters",
         "repeated-created-pairs"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "c",
+        "x": 4,
+        "y": 5
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ccc",
+        "x": 4,
+        "y": 5
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -85,8 +85,8 @@
       ]
     },
     {
-      "id": "real-even-inversion-after-mismatches",
-      "name": "real: find an even inversion after mixed parity boundaries",
+      "id": "trial-even-inversion-after-mismatches",
+      "name": "find an even inversion after mixed parity boundaries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -98,8 +98,8 @@
       ]
     },
     {
-      "id": "real-odd-inversion-near-end",
-      "name": "real: find an odd inversion near the end",
+      "id": "trial-odd-inversion-near-end",
+      "name": "find an odd inversion near the end",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -112,8 +112,8 @@
       ]
     },
     {
-      "id": "real-leading-zero",
-      "name": "real: an even swap may create a leading zero",
+      "id": "trial-leading-zero",
+      "name": "an even swap may create a leading zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -125,8 +125,8 @@
       ]
     },
     {
-      "id": "real-increasing-same-parity",
-      "name": "real: increasing same-parity digits remain unchanged",
+      "id": "trial-increasing-same-parity",
+      "name": "increasing same-parity digits remain unchanged",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "real: equal digits remain unchanged",
+      "id": "trial-all-equal",
+      "name": "equal digits remain unchanged",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -151,8 +151,8 @@
       ]
     },
     {
-      "id": "real-multiple-even-inversions",
-      "name": "real: choose the first of multiple even inversions",
+      "id": "trial-multiple-even-inversions",
+      "name": "choose the first of multiple even inversions",
       "kind": "trial",
       "visible": true,
       "input": {

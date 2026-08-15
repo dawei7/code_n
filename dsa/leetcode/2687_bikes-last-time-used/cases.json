@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-interleaved",
+      "id": "trial-interleaved",
       "name": "interleaved rides group by bike",
       "kind": "trial",
       "visible": true,
@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "real-start-time-irrelevant",
+      "id": "trial-start-time-irrelevant",
       "name": "latest end time controls the result",
       "kind": "trial",
       "visible": true,

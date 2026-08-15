@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "hidden-negative",
+      "id": "trial-negative",
       "name": "values do not determine leftness",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "hidden-left-chain",
+      "id": "trial-left-chain",
       "name": "deepest node on a left chain",
       "kind": "trial",
       "visible": true,

@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-even-trailing-run",
+      "id": "trial-even-trailing-run",
       "name": "adjacent set bits start above the units bit",
       "kind": "trial",
       "visible": true,
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-two-adjacent-bits",
+      "id": "trial-two-adjacent-bits",
       "name": "a two-bit run permits either direction",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-alternating-bits",
+      "id": "trial-alternating-bits",
       "name": "isolated set bits are removed separately",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "maximum legal input",
       "kind": "trial",
       "visible": true,

@@ -78,8 +78,8 @@
       ]
     },
     {
-      "id": "real-nested-intervals",
-      "name": "real: choose inner intervals instead of their container",
+      "id": "trial-nested-intervals",
+      "name": "choose inner intervals instead of their container",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -94,8 +94,8 @@
       ]
     },
     {
-      "id": "real-overlap-limits-count",
-      "name": "real: overlapping choices limit the maximum count",
+      "id": "trial-overlap-limits-count",
+      "name": "overlapping choices limit the maximum count",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -109,8 +109,8 @@
       ]
     },
     {
-      "id": "real-all-letters-distinct",
-      "name": "real: every alphabet letter is an independent singleton",
+      "id": "trial-all-letters-distinct",
+      "name": "every alphabet letter is an independent singleton",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -122,6 +122,36 @@
         "real",
         "maximum-k",
         "singletons"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 2
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "k": 2
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

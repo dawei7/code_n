@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "real-deep-lineage",
+      "id": "trial-deep-lineage",
       "name": "one long descendant chain",
       "kind": "trial",
       "visible": true,
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "real-dead-middle-ancestor",
+      "id": "trial-dead-middle-ancestor",
       "name": "dead middle ancestor keeps descendants connected",
       "kind": "trial",
       "visible": true,
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "id": "real-branch-preorder",
+      "id": "trial-branch-preorder",
       "name": "descendants precede younger sibling branches",
       "kind": "trial",
       "visible": true,
@@ -390,7 +390,7 @@
       ]
     },
     {
-      "id": "real-several-deaths",
+      "id": "trial-several-deaths",
       "name": "deaths in separate branches",
       "kind": "trial",
       "visible": true,
@@ -461,7 +461,7 @@
       ]
     },
     {
-      "id": "real-query-before-and-after-birth",
+      "id": "trial-query-before-and-after-birth",
       "name": "later birth updates subsequent query only",
       "kind": "trial",
       "visible": true,
@@ -500,7 +500,7 @@
       ]
     },
     {
-      "id": "real-repeated-query",
+      "id": "trial-repeated-query",
       "name": "repeated queries preserve state",
       "kind": "trial",
       "visible": true,

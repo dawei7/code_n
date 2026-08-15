@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-star",
+      "id": "trial-star",
       "name": "several root neighbors are restricted",
       "kind": "trial",
       "visible": true,
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-unreachable-restriction",
+      "id": "trial-unreachable-restriction",
       "name": "one restriction lies behind another",
       "kind": "trial",
       "visible": true,

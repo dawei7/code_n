@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-diagonal-zero",
+      "id": "trial-diagonal-zero",
       "name": "all diagonal bits are zero",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-diagonal-one",
+      "id": "trial-diagonal-one",
       "name": "all diagonal bits are one",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-mixed-five",
+      "id": "trial-mixed-five",
       "name": "mixed five-bit rows",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "maximum legal string length",
       "kind": "trial",
       "visible": true,

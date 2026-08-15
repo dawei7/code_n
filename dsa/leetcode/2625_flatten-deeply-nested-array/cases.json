@@ -225,8 +225,8 @@
       ]
     },
     {
-      "id": "real-limit-exceeds-depth",
-      "name": "real: oversized limit completely flattens",
+      "id": "trial-limit-exceeds-depth",
+      "name": "oversized limit completely flattens",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -257,8 +257,8 @@
       ]
     },
     {
-      "id": "real-empty-subarrays",
-      "name": "real: expanded empty subarrays contribute no entries",
+      "id": "trial-empty-subarrays",
+      "name": "expanded empty subarrays contribute no entries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -283,8 +283,8 @@
       ]
     },
     {
-      "id": "real-order-through-branches",
-      "name": "real: depth-first expansion preserves global order",
+      "id": "trial-order-through-branches",
+      "name": "depth-first expansion preserves global order",
       "kind": "trial",
       "visible": true,
       "input": {

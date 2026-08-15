@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-predecessor-nearest",
+      "id": "trial-predecessor-nearest",
       "name": "nearest replacement lies below the target",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-successor-nearest",
+      "id": "trial-successor-nearest",
       "name": "nearest replacement lies above the target",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-two-large-differences",
+      "id": "trial-two-large-differences",
       "name": "only one of two differences may improve",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-unsorted-with-tie",
+      "id": "trial-unsorted-with-tie",
       "name": "unsorted source with a large best reduction",
       "kind": "trial",
       "visible": true,

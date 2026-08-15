@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-contracted-parallel",
+      "id": "trial-contracted-parallel",
       "name": "parallel edges after cheaper contraction",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-heavy-unused",
+      "id": "trial-heavy-unused",
       "name": "heavier cycle edge belongs to no MST",
       "kind": "trial",
       "visible": true,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-cycle-with-bridges",
+      "id": "trial-cycle-with-bridges",
       "name": "pseudo cycle attached through critical bridges",
       "kind": "trial",
       "visible": true,
@@ -299,7 +299,7 @@
       ]
     },
     {
-      "id": "real-complete-equal-k4",
+      "id": "trial-complete-equal-k4",
       "name": "every equal edge can enter an MST",
       "kind": "trial",
       "visible": true,
@@ -358,7 +358,7 @@
       ]
     },
     {
-      "id": "real-multiple-weight-cycles",
+      "id": "trial-multiple-weight-cycles",
       "name": "alternatives in separate weight groups",
       "kind": "trial",
       "visible": true,

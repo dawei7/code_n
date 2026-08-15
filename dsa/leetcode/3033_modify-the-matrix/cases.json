@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-zero-maximum",
+      "id": "trial-zero-maximum",
       "name": "zero can be the column maximum",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-rectangular-boundaries",
+      "id": "trial-rectangular-boundaries",
       "name": "rectangular matrix with zero and one hundred",
       "kind": "trial",
       "visible": true,
@@ -271,7 +271,7 @@
       ]
     },
     {
-      "id": "real-column-maximum-not-last",
+      "id": "trial-column-maximum-not-last",
       "name": "maximum may occur before later replacements",
       "kind": "trial",
       "visible": true,

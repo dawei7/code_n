@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-long-hamming-chain",
+      "id": "trial-long-hamming-chain",
       "name": "parent links reconstruct the complete compatible chain",
       "kind": "trial",
       "visible": true,
@@ -183,6 +183,53 @@
       "tags": [
         "dynamic-programming",
         "reconstruction"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "single element in groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "bab",
+          "dab",
+          "cab"
+        ],
+        "groups": [
+          1
+        ]
+      },
+      "expected": [
+        "bab"
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "bab",
+          "dab",
+          "cab"
+        ],
+        "groups": [
+          1,
+          1
+        ]
+      },
+      "expected": [
+        "bab"
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

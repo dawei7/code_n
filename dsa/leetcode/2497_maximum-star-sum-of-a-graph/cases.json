@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-zero-k",
+      "id": "trial-zero-k",
       "name": "edges are irrelevant when k is zero",
       "kind": "trial",
       "visible": true,
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "real-all-negative",
+      "id": "trial-all-negative",
       "name": "every neighbor is harmful",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-negative-center-wins",
+      "id": "trial-negative-center-wins",
       "name": "positive neighbors can outweigh a negative center",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-disconnected",
+      "id": "trial-disconnected",
       "name": "disconnected components and an isolated optimum",
       "kind": "trial",
       "visible": true,
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "id": "real-zero-neighbors",
+      "id": "trial-zero-neighbors",
       "name": "zero-valued neighbors do not improve a star",
       "kind": "trial",
       "visible": true,

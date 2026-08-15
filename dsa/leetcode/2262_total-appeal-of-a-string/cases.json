@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-two-equal",
+      "id": "trial-two-equal",
       "name": "two equal letters create three appeal units",
       "kind": "trial",
       "visible": true,
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-periodic",
+      "id": "trial-periodic",
       "name": "periodic letters reuse three last positions",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-full-alphabet",
+      "id": "trial-full-alphabet",
       "name": "all 26 distinct letters sum substring lengths",
       "kind": "trial",
       "visible": true,
@@ -107,6 +107,20 @@
       "tags": [
         "alphabet",
         "large-result"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

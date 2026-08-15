@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-leading-one",
+      "id": "trial-leading-one",
       "name": "leading-zero window represents one",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-mixed-windows",
+      "id": "trial-mixed-windows",
       "name": "distinct and repeated divisor values qualify",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-no-divisor",
+      "id": "trial-no-divisor",
       "name": "repeated nonzero windows need not divide the number",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "ten-digit upper bound with a two-digit divisor",
       "kind": "trial",
       "visible": true,
@@ -132,6 +132,36 @@
       "tags": [
         "upper-bound",
         "zero-window"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value num=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1,
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 240,
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

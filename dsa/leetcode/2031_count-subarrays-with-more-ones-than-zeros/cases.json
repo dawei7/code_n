@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-all-zeros",
+      "id": "trial-all-zeros",
       "name": "no subarray of all zeros qualifies",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-long-all-ones",
+      "id": "trial-long-all-ones",
       "name": "ten ones contribute every possible subarray",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-leading-zero",
+      "id": "trial-leading-zero",
       "name": "a leading zero can belong to a positive-balance suffix",
       "kind": "trial",
       "visible": true,
@@ -146,6 +146,23 @@
       "expected": 4,
       "tags": [
         "leading-zero"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

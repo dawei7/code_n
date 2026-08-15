@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-modulo",
+      "id": "trial-modulo",
       "name": "long sums are reduced modulo the required constant",
       "kind": "trial",
       "visible": true,
@@ -236,7 +236,7 @@
       ]
     },
     {
-      "id": "real-zero-values",
+      "id": "trial-zero-values",
       "name": "zeros remain part of the index progression",
       "kind": "trial",
       "visible": true,
@@ -275,7 +275,7 @@
       ]
     },
     {
-      "id": "real-original-order",
+      "id": "trial-original-order",
       "name": "grouped steps return answers in original query order",
       "kind": "trial",
       "visible": true,
@@ -319,7 +319,7 @@
       ]
     },
     {
-      "id": "real-large-start",
+      "id": "trial-large-start",
       "name": "a late start shortens a small-step progression",
       "kind": "trial",
       "visible": true,

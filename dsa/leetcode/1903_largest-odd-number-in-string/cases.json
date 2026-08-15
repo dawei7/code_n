@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-middle-odd",
+      "id": "trial-middle-odd",
       "name": "the rightmost odd digit ends a proper prefix",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-internal-zeros",
+      "id": "trial-internal-zeros",
       "name": "internal zeros remain inside the largest odd prefix",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-only-first-odd",
+      "id": "trial-only-first-odd",
       "name": "a long even suffix leaves the first digit",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-many-odd",
+      "id": "trial-many-odd",
       "name": "the last of many odd digits keeps the whole number",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-zero-heavy",
+      "id": "trial-zero-heavy",
       "name": "the final three after many zeros determines parity",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-large-prefix",
+      "id": "trial-large-prefix",
       "name": "a long proper prefix is returned without numeric conversion",
       "kind": "trial",
       "visible": true,
@@ -154,6 +154,34 @@
       "tags": [
         "large-number",
         "proper-prefix"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "5"
+      },
+      "expected": "5",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "555"
+      },
+      "expected": "555",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

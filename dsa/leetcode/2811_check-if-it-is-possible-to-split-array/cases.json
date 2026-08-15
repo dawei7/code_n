@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-threshold-equality",
+      "id": "trial-threshold-equality",
       "name": "equality with threshold is sufficient",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-large-total-insufficient",
+      "id": "trial-large-total-insufficient",
       "name": "large total cannot replace a qualifying adjacent pair",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-edge-pair",
+      "id": "trial-edge-pair",
       "name": "qualifying pair at the array boundary",
       "kind": "trial",
       "visible": true,

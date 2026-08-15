@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-inclusive-two",
+      "id": "trial-inclusive-two",
       "name": "difference exactly two is valid",
       "kind": "trial",
       "visible": true,
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-gap-three",
+      "id": "trial-gap-three",
       "name": "difference three breaks the pair",
       "kind": "trial",
       "visible": true,
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-restart",
+      "id": "trial-restart",
       "name": "later window remains valid after a jump",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-max-values",
+      "id": "trial-max-values",
       "name": "values near the upper bound",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-wide-valid-window",
+      "id": "trial-wide-valid-window",
       "name": "several values within one width-two range",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-multiple-shrinks",
+      "id": "trial-multiple-shrinks",
       "name": "multiple extremes leave across the scan",
       "kind": "trial",
       "visible": true,

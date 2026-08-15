@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-all-negative",
+      "id": "trial-all-negative",
       "name": "bag contains only negative items",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "bag contains only zero items",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-take-everything",
+      "id": "trial-take-everything",
       "name": "exact selection consumes the full bag",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-maximum-counts",
+      "id": "trial-maximum-counts",
       "name": "maximum counts in every category",
       "kind": "trial",
       "visible": true,
@@ -131,6 +131,40 @@
       "expected": 25,
       "tags": [
         "maximum"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value numOnes=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numOnes": 1,
+        "numZeros": 2,
+        "numNegOnes": 0,
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value numZeros=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "numOnes": 3,
+        "numZeros": 1,
+        "numNegOnes": 0,
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

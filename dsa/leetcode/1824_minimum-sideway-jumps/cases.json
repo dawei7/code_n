@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-three-lanes-in-order",
+      "id": "trial-three-lanes-in-order",
       "name": "each lane is blocked in succession",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-spaced-obstacles",
+      "id": "trial-spaced-obstacles",
       "name": "gaps allow one strategic side jump",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-repeated-middle-pressure",
+      "id": "trial-repeated-middle-pressure",
       "name": "repeated inner-lane pattern",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-long-clear-road",
+      "id": "trial-long-clear-road",
       "name": "long obstacle-free road",
       "kind": "trial",
       "visible": true,
@@ -207,6 +207,22 @@
       "tags": [
         "no-obstacles",
         "longer-road"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in obstacles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obstacles": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

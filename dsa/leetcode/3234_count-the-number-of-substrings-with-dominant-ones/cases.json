@@ -83,8 +83,8 @@
       ]
     },
     {
-      "id": "real-equality-two-chars",
-      "name": "real: equality with one zero and one one",
+      "id": "trial-equality-two-chars",
+      "name": "equality with one zero and one one",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -96,8 +96,8 @@
       ]
     },
     {
-      "id": "real-two-leading-zeros",
-      "name": "real: two leading zeroes",
+      "id": "trial-two-leading-zeros",
+      "name": "two leading zeroes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -109,8 +109,8 @@
       ]
     },
     {
-      "id": "real-one-zero-three-ones",
-      "name": "real: one zero before an all-one run",
+      "id": "trial-one-zero-three-ones",
+      "name": "one zero before an all-one run",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "real: alternating bits",
+      "id": "trial-alternating",
+      "name": "alternating bits",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -135,8 +135,8 @@
       ]
     },
     {
-      "id": "real-two-zero-block",
-      "name": "real: centered zero block",
+      "id": "trial-two-zero-block",
+      "name": "centered zero block",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -148,8 +148,8 @@
       ]
     },
     {
-      "id": "real-dense-one-block",
-      "name": "real: dense ones between zero runs",
+      "id": "trial-dense-one-block",
+      "name": "dense ones between zero runs",
       "kind": "trial",
       "visible": true,
       "input": {

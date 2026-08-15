@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-different-one-counts",
+      "id": "trial-different-one-counts",
       "name": "one counts need not match",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-identical-nonzero",
+      "id": "trial-identical-nonzero",
       "name": "identical nonzero strings need no operations",
       "kind": "trial",
       "visible": true,
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-minimum-length",
+      "id": "trial-minimum-length",
       "name": "minimum-length mismatch classes",
       "kind": "trial",
       "visible": true,
@@ -116,6 +116,36 @@
       "expected": false,
       "tags": [
         "minimum"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1",
+        "target": "0110"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111",
+        "target": "0110"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

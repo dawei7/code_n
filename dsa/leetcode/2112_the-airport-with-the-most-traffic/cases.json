@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-chain-all-tie",
+      "id": "trial-chain-all-tie",
       "name": "equal route weights tie every chain endpoint",
       "kind": "trial",
       "visible": true,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "real-weight-not-route-count",
+      "id": "trial-weight-not-route-count",
       "name": "flight weights dominate route degree",
       "kind": "trial",
       "visible": true,

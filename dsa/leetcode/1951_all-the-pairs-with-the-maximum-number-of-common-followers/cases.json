@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "real-one-pair-dominates",
+      "id": "trial-one-pair-dominates",
       "name": "extra follower breaks an otherwise shared tie",
       "kind": "trial",
       "visible": true,
@@ -336,7 +336,7 @@
       ]
     },
     {
-      "id": "real-four-users-one-follower",
+      "id": "trial-four-users-one-follower",
       "name": "one shared follower generates every pair among four users",
       "kind": "trial",
       "visible": true,
@@ -403,7 +403,7 @@
       ]
     },
     {
-      "id": "real-user-also-follower",
+      "id": "trial-user-also-follower",
       "name": "numeric overlap between column roles changes nothing",
       "kind": "trial",
       "visible": true,
@@ -454,7 +454,7 @@
       ]
     },
     {
-      "id": "real-unsorted-input",
+      "id": "trial-unsorted-input",
       "name": "relation storage order does not affect the maximum",
       "kind": "trial",
       "visible": true,
@@ -513,7 +513,7 @@
       ]
     },
     {
-      "id": "real-several-lower-pairs",
+      "id": "trial-several-lower-pairs",
       "name": "lower-count pairs are excluded from the result",
       "kind": "trial",
       "visible": true,

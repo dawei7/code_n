@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-single-element",
+      "id": "trial-single-element",
       "name": "one self-pair contributes one",
       "kind": "trial",
       "visible": true,
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-duplicate-ones",
+      "id": "trial-duplicate-ones",
       "name": "duplicate multiplicity applies on both axes",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-duplicate-denominators",
+      "id": "trial-duplicate-denominators",
       "name": "repeated denominator and numerator values",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-one-and-five",
+      "id": "trial-one-and-five",
       "name": "ordered direction changes the quotient",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-maximum-single",
+      "id": "trial-maximum-single",
       "name": "maximum value alone still contributes one",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-wide-range",
+      "id": "trial-wide-range",
       "name": "one and maximum value create a large quotient",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-multiples",
+      "id": "trial-multiples",
       "name": "multiples align with quotient boundaries",
       "kind": "trial",
       "visible": true,

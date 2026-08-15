@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "irregular island boundaries",
       "kind": "trial",
       "visible": true,
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "bridge departs away from first discovered cell",
       "kind": "trial",
       "visible": true,
@@ -312,7 +312,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "islands near matrix boundary",
       "kind": "trial",
       "visible": true,

@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "maximum balanced counts",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "largest valid imbalance",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "b is the majority",
       "kind": "trial",
       "visible": true,
@@ -139,6 +139,21 @@
       },
       "tags": [
         "majority-b"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value b=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": 1
+      },
+      "expected": "ab",
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

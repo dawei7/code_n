@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-strict-fall",
-      "name": "real: each adjacent value falls",
+      "id": "trial-strict-fall",
+      "name": "each adjacent value falls",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -139,8 +139,8 @@
       ]
     },
     {
-      "id": "real-impossible-zigzag",
-      "name": "real: incompatible large rise after a fall",
+      "id": "trial-impossible-zigzag",
+      "name": "incompatible large rise after a fall",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -158,8 +158,8 @@
       ]
     },
     {
-      "id": "real-maximum-jump",
-      "name": "real: jump from minimum to maximum",
+      "id": "trial-maximum-jump",
+      "name": "jump from minimum to maximum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -175,8 +175,8 @@
       ]
     },
     {
-      "id": "real-mixed-plateaus",
-      "name": "real: plateaus surround rises and falls",
+      "id": "trial-mixed-plateaus",
+      "name": "plateaus surround rises and falls",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -195,8 +195,8 @@
       ]
     },
     {
-      "id": "real-long-decrease",
-      "name": "real: descending values across five positions",
+      "id": "trial-long-decrease",
+      "name": "descending values across five positions",
       "kind": "trial",
       "visible": true,
       "input": {

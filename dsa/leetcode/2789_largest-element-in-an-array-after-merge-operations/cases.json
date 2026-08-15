@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-large-left-barrier",
+      "id": "trial-large-left-barrier",
       "name": "a large first value blocks a smaller suffix",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-suffix-below-prefix",
+      "id": "trial-suffix-below-prefix",
       "name": "mergeable suffix remains below the prefix",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-reset-inside-array",
+      "id": "trial-reset-inside-array",
       "name": "reset block later absorbs the left prefix",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "equal maximum values require a wide sum",
       "kind": "trial",
       "visible": true,

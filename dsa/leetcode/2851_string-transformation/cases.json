@@ -68,7 +68,7 @@
       ]
     },
     {
-      "id": "real-equal-unique-one-operation",
+      "id": "trial-equal-unique-one-operation",
       "name": "a nontrivial rotation cannot keep a unique string fixed",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-equal-unique-two-operations",
+      "id": "trial-equal-unique-two-operations",
       "name": "inverse shifts return a unique string after two moves",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-periodic-nonzero-offsets",
+      "id": "trial-periodic-nonzero-offsets",
       "name": "two nonzero offsets spell the periodic target",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-all-rotations-equal",
+      "id": "trial-all-rotations-equal",
       "name": "every suffix choice preserves a uniform string",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-huge-k-parity",
+      "id": "trial-huge-k-parity",
       "name": "length two alternates deterministically for huge k",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-huge-k-modulo",
+      "id": "trial-huge-k-modulo",
       "name": "uniform rotations require modular exponentiation",
       "kind": "trial",
       "visible": true,

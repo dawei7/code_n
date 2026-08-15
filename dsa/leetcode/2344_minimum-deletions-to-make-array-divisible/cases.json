@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-gcd-not-present",
+      "id": "trial-gcd-not-present",
       "name": "divisors of individual targets need not divide all",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-one-always-works",
+      "id": "trial-one-always-works",
       "name": "one divides every positive target",
       "kind": "trial",
       "visible": true,
@@ -159,6 +159,29 @@
       "expected": 0,
       "tags": [
         "one"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in numsDivide",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          2,
+          4,
+          3
+        ],
+        "numsDivide": [
+          9
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

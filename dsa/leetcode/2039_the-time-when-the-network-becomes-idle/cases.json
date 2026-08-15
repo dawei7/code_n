@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-star-mixed-patience",
+      "id": "trial-star-mixed-patience",
       "name": "one direct neighbor resends and two wait",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-diamond-shortest-path",
+      "id": "trial-diamond-shortest-path",
       "name": "equal shortest paths give the same timing",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-longer-path-no-resends",
+      "id": "trial-longer-path-no-resends",
       "name": "patience beyond every round trip",
       "kind": "trial",
       "visible": true,

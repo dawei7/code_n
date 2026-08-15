@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "hidden-unbalanced",
+      "id": "trial-unbalanced",
       "name": "sparse levels aggregate across branches",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "hidden-duplicates",
+      "id": "trial-duplicates",
       "name": "equal maxima on one row",
       "kind": "trial",
       "visible": true,

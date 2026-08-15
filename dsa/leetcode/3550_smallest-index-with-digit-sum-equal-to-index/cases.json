@@ -93,8 +93,8 @@
       ]
     },
     {
-      "id": "real-maximum-possible-index",
-      "name": "real: digit sum 27 qualifies at the cutoff",
+      "id": "trial-maximum-possible-index",
+      "name": "digit sum 27 qualifies at the cutoff",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -137,8 +137,8 @@
       ]
     },
     {
-      "id": "real-index-condition-uses-value",
-      "name": "real: condition uses the array value rather than index digits",
+      "id": "trial-index-condition-uses-value",
+      "name": "condition uses the array value rather than index digits",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -156,8 +156,8 @@
       ]
     },
     {
-      "id": "real-no-match-through-cutoff",
-      "name": "real: cutoff position is deliberately nonmatching",
+      "id": "trial-no-match-through-cutoff",
+      "name": "cutoff position is deliberately nonmatching",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -199,6 +199,39 @@
         "real",
         "no-match",
         "cutoff"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

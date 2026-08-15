@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-weighted-route-selection",
+      "id": "trial-weighted-route-selection",
       "name": "multiple valid routes require weighted minimization",
       "kind": "trial",
       "visible": true,
@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "real-directed-orientation",
+      "id": "trial-directed-orientation",
       "name": "reverse-facing edges do not connect the source",
       "kind": "trial",
       "visible": true,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "real-parallel-edges",
+      "id": "trial-parallel-edges",
       "name": "parallel edges retain their individual weights",
       "kind": "trial",
       "visible": true,
@@ -326,7 +326,7 @@
       ]
     },
     {
-      "id": "real-node-needs-two-run-states",
+      "id": "trial-node-needs-two-run-states",
       "name": "a costlier arrival preserves a legal final transition",
       "kind": "trial",
       "visible": true,
@@ -369,7 +369,7 @@
       ]
     },
     {
-      "id": "real-alternating-chain",
+      "id": "trial-alternating-chain",
       "name": "every label change resets a limit-one run",
       "kind": "trial",
       "visible": true,
@@ -407,7 +407,7 @@
       ]
     },
     {
-      "id": "real-run-exactly-k",
+      "id": "trial-run-exactly-k",
       "name": "a same-label route may end exactly at the limit",
       "kind": "trial",
       "visible": true,
@@ -440,7 +440,7 @@
       ]
     },
     {
-      "id": "real-run-exceeds-k",
+      "id": "trial-run-exceeds-k",
       "name": "one additional equal label invalidates the chain",
       "kind": "trial",
       "visible": true,
@@ -475,6 +475,39 @@
       "tags": [
         "over-limit",
         "same-label-chain"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "repeated character in labels",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            3
+          ]
+        ],
+        "labels": "aaa",
+        "k": 1
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

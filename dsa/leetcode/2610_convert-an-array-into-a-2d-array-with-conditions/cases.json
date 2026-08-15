@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-single-element",
+      "id": "trial-single-element",
       "name": "minimum input",
       "kind": "trial",
       "visible": true,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-balanced-duplicates",
+      "id": "trial-balanced-duplicates",
       "name": "equal frequencies across values",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-order-flexible",
+      "id": "trial-order-flexible",
       "name": "many valid row orders",
       "kind": "trial",
       "visible": true,

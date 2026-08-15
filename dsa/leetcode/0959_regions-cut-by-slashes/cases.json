@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "alternating enclosed center",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "three forward slashes",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "all blank three by three",
       "kind": "trial",
       "visible": true,
@@ -148,6 +148,23 @@
       "expected": 1,
       "tags": [
         "blank"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          " /",
+          " /"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

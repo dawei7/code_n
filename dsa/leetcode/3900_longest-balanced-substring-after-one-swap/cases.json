@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "hidden-symmetric-majority",
+      "id": "trial-symmetric-majority",
       "name": "exchanging the bit roles preserves the answer",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "hidden-repairable-length-six",
+      "id": "trial-repairable-length-six",
       "name": "an outside zero repairs a length-six window",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "hidden-balanced-prefix",
+      "id": "trial-balanced-prefix",
       "name": "the longest answer may require no swap despite unequal totals",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "hidden-separated-minority",
+      "id": "trial-separated-minority",
       "name": "distant minority bits make the global count bound unattainable",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "hidden-irregular-adversarial",
+      "id": "trial-irregular-adversarial",
       "name": "irregular runs defeat a count-only answer",
       "kind": "trial",
       "visible": true,
@@ -207,6 +207,20 @@
         "irregular-runs",
         "prefix-balance",
         "adversarial"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
       ]
     }
   ]

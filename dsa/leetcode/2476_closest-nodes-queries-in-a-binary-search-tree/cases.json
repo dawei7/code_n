@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-right-skewed",
+      "id": "trial-right-skewed",
       "name": "iterative traversal handles a right-skewed tree",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "real-left-skewed",
+      "id": "trial-left-skewed",
       "name": "bounds in a left-skewed tree",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-duplicate-queries",
+      "id": "trial-duplicate-queries",
       "name": "repeated queries preserve their positions",
       "kind": "trial",
       "visible": true,
@@ -272,7 +272,7 @@
       ]
     },
     {
-      "id": "real-minimum-two-nodes",
+      "id": "trial-minimum-two-nodes",
       "name": "minimum legal tree size",
       "kind": "trial",
       "visible": true,

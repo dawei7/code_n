@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-wrap-to-zero",
+      "id": "trial-wrap-to-zero",
       "name": "circular search wraps from the final server",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "real-multiple-drops",
+      "id": "trial-multiple-drops",
       "name": "a long busy interval drops several requests",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-round-robin-tie",
+      "id": "trial-round-robin-tie",
       "name": "short jobs preserve round-robin balance",
       "kind": "trial",
       "visible": true,
@@ -274,7 +274,7 @@
       ]
     },
     {
-      "id": "real-preferred-busy-next",
+      "id": "trial-preferred-busy-next",
       "name": "choose the first later available ID",
       "kind": "trial",
       "visible": true,
@@ -310,7 +310,7 @@
       ]
     },
     {
-      "id": "real-release-several",
+      "id": "trial-release-several",
       "name": "several servers release before one arrival",
       "kind": "trial",
       "visible": true,
@@ -346,7 +346,7 @@
       ]
     },
     {
-      "id": "real-skewed-busiest",
+      "id": "trial-skewed-busiest",
       "name": "one server wins after repeated wraparound",
       "kind": "trial",
       "visible": true,
@@ -385,7 +385,7 @@
       ]
     },
     {
-      "id": "real-large-times",
+      "id": "trial-large-times",
       "name": "large times and durations retain exact comparisons",
       "kind": "trial",
       "visible": true,

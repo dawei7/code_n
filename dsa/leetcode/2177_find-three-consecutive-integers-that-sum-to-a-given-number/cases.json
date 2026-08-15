@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-large-divisible",
+      "id": "trial-large-divisible",
       "name": "large divisible input remains exact",
       "kind": "trial",
       "visible": true,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-maximum-impossible",
+      "id": "trial-maximum-impossible",
       "name": "maximum input is not divisible by three",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-large-neighbor",
+      "id": "trial-large-neighbor",
       "name": "a large multiple returns consecutive neighbors",
       "kind": "trial",
       "visible": true,

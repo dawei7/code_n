@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-late-wide-row",
+      "id": "trial-late-wide-row",
       "name": "a later row extends diagonal range",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-uneven",
+      "id": "trial-uneven",
       "name": "missing coordinates do not create gaps",
       "kind": "trial",
       "visible": true,

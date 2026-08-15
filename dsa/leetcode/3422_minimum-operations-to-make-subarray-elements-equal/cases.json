@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-full-window",
+      "id": "trial-full-window",
       "name": "k equals the array length",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-negative-values",
+      "id": "trial-negative-values",
       "name": "all values are negative",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-outlier",
+      "id": "trial-outlier",
       "name": "median ignores a one-sided outlier",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "repeated add and discard rebalancing",
       "kind": "trial",
       "visible": true,
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "values span both legal extremes",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-many-equal-windows",
+      "id": "trial-many-equal-windows",
       "name": "several windows share the optimum",
       "kind": "trial",
       "visible": true,

@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "hidden-nested-deadlines",
+      "id": "trial-nested-deadlines",
       "name": "short deadline before flexible events",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "hidden-too-many-for-window",
+      "id": "trial-too-many-for-window",
       "name": "attendance window limits total",
       "kind": "trial",
       "visible": true,

@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-two-key-groups",
+      "id": "trial-two-key-groups",
       "name": "good pairs occur within key groups",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "values near the upper bound",
       "kind": "trial",
       "visible": true,

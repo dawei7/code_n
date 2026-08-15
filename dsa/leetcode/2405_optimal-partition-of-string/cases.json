@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-several-forced-cuts",
+      "id": "trial-several-forced-cuts",
       "name": "spaced repetitions force three parts",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-unique-word",
+      "id": "trial-unique-word",
       "name": "unique word stays intact",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-mixed-repetitions",
+      "id": "trial-mixed-repetitions",
       "name": "mixed repeats require four parts",
       "kind": "trial",
       "visible": true,

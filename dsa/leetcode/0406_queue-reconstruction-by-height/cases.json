@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "hidden-descending-constraints",
+      "id": "trial-descending-constraints",
       "name": "progressively shorter people",
       "kind": "trial",
       "visible": true,
@@ -314,7 +314,7 @@
       ]
     },
     {
-      "id": "hidden-reverse",
+      "id": "trial-reverse",
       "name": "reverse height order",
       "kind": "trial",
       "visible": true,
@@ -365,7 +365,7 @@
       ]
     },
     {
-      "id": "hidden-interleaved",
+      "id": "trial-interleaved",
       "name": "tall and short constraints interleave",
       "kind": "trial",
       "visible": true,

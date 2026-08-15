@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-cycle",
+      "id": "trial-cycle",
       "name": "root values form a merge cycle",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-two-components",
+      "id": "trial-two-components",
       "name": "an unmatched singleton remains unused",
       "kind": "trial",
       "visible": true,
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "real-duplicate-leaf",
+      "id": "trial-duplicate-leaf",
       "name": "one root value appears at two graft positions",
       "kind": "trial",
       "visible": true,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "real-balanced-grafts",
+      "id": "trial-balanced-grafts",
       "name": "both children expand into valid subtrees",
       "kind": "trial",
       "visible": true,

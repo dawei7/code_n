@@ -158,8 +158,8 @@
       ]
     },
     {
-      "id": "real-zero-duration",
-      "name": "real: immediately resolved work still respects order",
+      "id": "trial-zero-duration",
+      "name": "immediately resolved work still respects order",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -194,8 +194,8 @@
       ]
     },
     {
-      "id": "real-fast-slot-refills",
-      "name": "real: fastest slot repeatedly claims next work",
+      "id": "trial-fast-slot-refills",
+      "name": "fastest slot repeatedly claims next work",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -233,8 +233,8 @@
       ]
     },
     {
-      "id": "real-maximum-functions",
-      "name": "real: ten functions under three-slot limit",
+      "id": "trial-maximum-functions",
+      "name": "ten functions under three-slot limit",
       "kind": "trial",
       "visible": true,
       "input": {

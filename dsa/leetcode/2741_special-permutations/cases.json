@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "real-no-edges",
+      "id": "trial-no-edges",
       "name": "no compatible adjacent pair",
       "kind": "trial",
       "visible": true,
@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-two-compatible",
+      "id": "trial-two-compatible",
       "name": "compatible pair has two orders",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-two-incompatible",
+      "id": "trial-two-incompatible",
       "name": "incompatible pair has no order",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-mixed-connectors",
+      "id": "trial-mixed-connectors",
       "name": "several connector values",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-branching-graph",
+      "id": "trial-branching-graph",
       "name": "branching divisibility graph",
       "kind": "trial",
       "visible": true,
@@ -141,6 +141,39 @@
       "expected": 4,
       "tags": [
         "branching"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

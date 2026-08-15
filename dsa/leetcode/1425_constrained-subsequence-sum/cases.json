@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-expiry",
+      "id": "trial-expiry",
       "name": "strong old state expires",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-long-negative",
+      "id": "trial-long-negative",
       "name": "long negative input",
       "kind": "trial",
       "visible": true,

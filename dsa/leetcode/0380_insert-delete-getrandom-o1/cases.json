@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "hidden-swap",
+      "id": "trial-swap",
       "name": "removing middle value updates moved index",
       "kind": "trial",
       "visible": true,
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "hidden-missing",
+      "id": "trial-missing",
       "name": "repeated missing removal",
       "kind": "trial",
       "visible": true,
@@ -284,7 +284,7 @@
       ]
     },
     {
-      "id": "hidden-two-random",
+      "id": "trial-two-random",
       "name": "either current member is random-valid",
       "kind": "trial",
       "visible": true,

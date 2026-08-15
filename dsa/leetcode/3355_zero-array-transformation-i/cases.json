@@ -105,8 +105,8 @@
       ]
     },
     {
-      "id": "real-single-index-short",
-      "name": "real: singleton demand exceeds query count",
+      "id": "trial-single-index-short",
+      "name": "singleton demand exceeds query count",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -131,8 +131,8 @@
       ]
     },
     {
-      "id": "real-overlapping-sufficient",
-      "name": "real: overlapping ranges provide varied coverage",
+      "id": "trial-overlapping-sufficient",
+      "name": "overlapping ranges provide varied coverage",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -165,8 +165,8 @@
       ]
     },
     {
-      "id": "real-interior-deficit",
-      "name": "real: one interior index lacks coverage",
+      "id": "trial-interior-deficit",
+      "name": "one interior index lacks coverage",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -194,8 +194,8 @@
       ]
     },
     {
-      "id": "real-extra-coverage",
-      "name": "real: unused decrements are harmless",
+      "id": "trial-extra-coverage",
+      "name": "unused decrements are harmless",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -226,8 +226,8 @@
       ]
     },
     {
-      "id": "real-uncovered-zero",
-      "name": "real: an uncovered zero does not need a query",
+      "id": "trial-uncovered-zero",
+      "name": "an uncovered zero does not need a query",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -250,8 +250,8 @@
       ]
     },
     {
-      "id": "real-boundary-ranges",
-      "name": "real: endpoints covered independently",
+      "id": "trial-boundary-ranges",
+      "name": "endpoints covered independently",
       "kind": "trial",
       "visible": true,
       "input": {

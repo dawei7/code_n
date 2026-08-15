@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "hidden-ties",
+      "id": "trial-ties",
       "name": "tied frequencies",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "hidden-many-small",
+      "id": "trial-many-small",
       "name": "one large and several small groups",
       "kind": "trial",
       "visible": true,

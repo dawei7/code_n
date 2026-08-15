@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-false-nested",
+      "id": "trial-false-nested",
       "name": "false branch reaches the root through AND",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-true-mixed",
+      "id": "trial-true-mixed",
       "name": "separate mixed subtrees both evaluate true",
       "kind": "trial",
       "visible": true,

@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "hidden-large-modulo",
+      "id": "trial-large-modulo",
       "name": "maximize before applying modulo",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "hidden-asymmetric",
+      "id": "trial-asymmetric",
       "name": "best edge is not adjacent to root",
       "kind": "trial",
       "visible": true,

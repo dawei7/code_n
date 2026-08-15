@@ -147,8 +147,8 @@
       ]
     },
     {
-      "id": "real-identical",
-      "name": "real: identical strings need no conversion",
+      "id": "trial-identical",
+      "name": "identical strings need no conversion",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -170,8 +170,8 @@
       ]
     },
     {
-      "id": "real-cycle",
-      "name": "real: positive cycle does not improve shortest paths",
+      "id": "trial-cycle",
+      "name": "positive cycle does not improve shortest paths",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -199,6 +199,84 @@
       "expected": 11,
       "tags": [
         "cycle"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in source",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "source": "a",
+        "target": "acbe",
+        "original": [
+          "a",
+          "b",
+          "c",
+          "c",
+          "e",
+          "d"
+        ],
+        "changed": [
+          "b",
+          "c",
+          "b",
+          "e",
+          "b",
+          "e"
+        ],
+        "cost": [
+          2,
+          5,
+          5,
+          1,
+          2,
+          20
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in source",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "source": "aaa",
+        "target": "acbe",
+        "original": [
+          "a",
+          "b",
+          "c",
+          "c",
+          "e",
+          "d"
+        ],
+        "changed": [
+          "b",
+          "c",
+          "b",
+          "e",
+          "b",
+          "e"
+        ],
+        "cost": [
+          2,
+          5,
+          5,
+          1,
+          2,
+          20
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

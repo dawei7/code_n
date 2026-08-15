@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "hidden-repeats",
+      "id": "trial-repeats",
       "name": "repeated occurrences count separately",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "hidden-all-far",
+      "id": "trial-all-far",
       "name": "every value qualifies",
       "kind": "trial",
       "visible": true,

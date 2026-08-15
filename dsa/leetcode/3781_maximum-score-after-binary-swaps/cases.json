@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-one-cannot-move-right",
+      "id": "trial-one-cannot-move-right",
       "name": "a leading one cannot claim a later large value",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-one-across-two-zeros",
+      "id": "trial-one-across-two-zeros",
       "name": "one may cross several zeros",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-single-zero",
+      "id": "trial-single-zero",
       "name": "a one-character zero string scores zero",
       "kind": "trial",
       "visible": true,
@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "real-single-one",
+      "id": "trial-single-one",
       "name": "a one-character one string keeps its value",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-prefix-deadlines",
+      "id": "trial-prefix-deadlines",
       "name": "early ones cannot use later score positions",
       "kind": "trial",
       "visible": true,
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": "real-mixed-reachability",
+      "id": "trial-mixed-reachability",
       "name": "choose the best feasible positions across several deadlines",
       "kind": "trial",
       "visible": true,

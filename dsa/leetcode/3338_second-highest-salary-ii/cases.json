@@ -212,8 +212,8 @@
       ]
     },
     {
-      "id": "real-independent-departments",
-      "name": "real: salary ranks restart independently by department",
+      "id": "trial-independent-departments",
+      "name": "salary ranks restart independently by department",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -275,8 +275,8 @@
       ]
     },
     {
-      "id": "real-three-levels-with-second-tie",
-      "name": "real: lower salary levels do not affect a tied second rank",
+      "id": "trial-three-levels-with-second-tie",
+      "name": "lower salary levels do not affect a tied second rank",
       "kind": "trial",
       "visible": true,
       "input": {

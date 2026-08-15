@@ -313,7 +313,7 @@
       ]
     },
     {
-      "id": "real-horizontal",
+      "id": "trial-horizontal",
       "name": "straight horizontal pushes",
       "kind": "trial",
       "visible": true,
@@ -381,7 +381,7 @@
       ]
     },
     {
-      "id": "real-route-around",
+      "id": "trial-route-around",
       "name": "player routes around box",
       "kind": "trial",
       "visible": true,

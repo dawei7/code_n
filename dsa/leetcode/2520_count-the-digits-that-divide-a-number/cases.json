@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "hidden-one-match",
+      "id": "trial-one-match",
       "name": "exactly one matching digit",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "hidden-distinct-digits",
+      "id": "trial-distinct-digits",
       "name": "large number with distinct digits",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "hidden-upper-valid-boundary",
+      "id": "trial-upper-valid-boundary",
       "name": "largest valid nine-digit value",
       "kind": "trial",
       "visible": true,

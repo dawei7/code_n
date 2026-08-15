@@ -269,7 +269,7 @@
       ]
     },
     {
-      "id": "real-mixed-empty",
+      "id": "trial-mixed-empty",
       "name": "sold and unsold products",
       "kind": "trial",
       "visible": true,
@@ -320,7 +320,7 @@
       ]
     },
     {
-      "id": "real-multiple-sales",
+      "id": "trial-multiple-sales",
       "name": "several quantities in one interval",
       "kind": "trial",
       "visible": true,

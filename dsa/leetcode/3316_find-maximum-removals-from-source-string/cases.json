@@ -141,8 +141,8 @@
       ]
     },
     {
-      "id": "real-overlapping-subsequence",
-      "name": "real: hidden overlapping subsequence choices",
+      "id": "trial-overlapping-subsequence",
+      "name": "hidden overlapping subsequence choices",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -163,8 +163,8 @@
       ]
     },
     {
-      "id": "real-forced-removable-character",
-      "name": "real: several eligible characters must remain",
+      "id": "trial-forced-removable-character",
+      "name": "several eligible characters must remain",
       "kind": "trial",
       "visible": true,
       "input": {

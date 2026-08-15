@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "hidden-one-open-row",
+      "id": "trial-one-open-row",
       "name": "alternating seats in one row",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "hidden-center-block",
+      "id": "trial-center-block",
       "name": "open room with center blocked",
       "kind": "trial",
       "visible": true,

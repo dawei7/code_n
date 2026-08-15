@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-mixed-large-divisors",
-      "name": "real: mixed divisors and first indices",
+      "id": "trial-mixed-large-divisors",
+      "name": "mixed divisors and first indices",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -179,6 +179,52 @@
       "tags": [
         "real",
         "first-index"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "single element in groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "groups": [
+          8
+        ],
+        "elements": [
+          4,
+          2
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "groups": [
+          8,
+          8
+        ],
+        "elements": [
+          4,
+          2
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

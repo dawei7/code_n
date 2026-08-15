@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "no pair can be retained from equal values",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-odd-valid-prefix",
+      "id": "trial-odd-valid-prefix",
       "name": "valid pairs plus one tail need one deletion",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-shifting-boundaries",
+      "id": "trial-shifting-boundaries",
       "name": "deletions change which original indices form pairs",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-long-runs",
+      "id": "trial-long-runs",
       "name": "repeated runs may leave later equal adjacency legal",
       "kind": "trial",
       "visible": true,
@@ -158,6 +158,39 @@
       "expected": 4,
       "tags": [
         "duplicate-runs"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

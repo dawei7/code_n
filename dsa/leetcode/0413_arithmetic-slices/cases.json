@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "hidden-break",
+      "id": "trial-break",
       "name": "difference change separates runs",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "hidden-no-slices",
+      "id": "trial-no-slices",
       "name": "every adjacent difference changes",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "hidden-overlapping",
+      "id": "trial-overlapping",
       "name": "several overlapping slices",
       "kind": "trial",
       "visible": true,

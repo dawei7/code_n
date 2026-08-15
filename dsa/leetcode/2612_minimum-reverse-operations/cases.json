@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-even-k-changes-parity",
+      "id": "trial-even-k-changes-parity",
       "name": "even reversal length alternates parity",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-center-with-banned-ends",
+      "id": "trial-center-with-banned-ends",
       "name": "odd length preserves index parity",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-whole-array-single-move",
+      "id": "trial-whole-array-single-move",
       "name": "whole-array reversal forms one edge",
       "kind": "trial",
       "visible": true,

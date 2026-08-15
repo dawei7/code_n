@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "real-three-named-palindromes",
+      "id": "trial-three-named-palindromes",
       "name": "three multi-character palindromes",
       "kind": "trial",
       "visible": true,
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-singleton-last",
+      "id": "trial-singleton-last",
       "name": "final singleton completes the partition",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-near-miss-suffix",
+      "id": "trial-near-miss-suffix",
       "name": "extending the suffix destroys every partition",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-no-long-palindromes",
+      "id": "trial-no-long-palindromes",
       "name": "longer all-distinct string fails",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-palindromic-whole",
+      "id": "trial-palindromic-whole",
       "name": "whole-string palindrome still needs three pieces",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-two-large-blocks-only",
+      "id": "trial-two-large-blocks-only",
       "name": "two obvious palindromes do not guarantee three",
       "kind": "trial",
       "visible": true,
@@ -139,6 +139,20 @@
       "tags": [
         "exactly-three",
         "impossible"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
       ]
     }
   ]

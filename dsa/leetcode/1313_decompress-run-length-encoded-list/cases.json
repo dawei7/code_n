@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-frequency",
+      "id": "trial-maximum-frequency",
       "name": "maximum legal frequency",
       "kind": "trial",
       "visible": true,
@@ -234,7 +234,7 @@
       ]
     },
     {
-      "id": "hidden-many-runs",
+      "id": "trial-many-runs",
       "name": "preserve order across several runs",
       "kind": "trial",
       "visible": true,

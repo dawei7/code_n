@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "hidden-inclusive",
+      "id": "trial-inclusive",
       "name": "path exactly at threshold",
       "kind": "trial",
       "visible": true,
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "hidden-chain",
+      "id": "trial-chain",
       "name": "unequal chain neighborhoods",
       "kind": "trial",
       "visible": true,

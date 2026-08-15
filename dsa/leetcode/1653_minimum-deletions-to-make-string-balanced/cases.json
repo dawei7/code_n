@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-already-balanced",
+      "id": "trial-already-balanced",
       "name": "all a characters precede all b characters",
       "kind": "trial",
       "visible": true,
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating characters require three deletions",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-delete-suffix",
+      "id": "trial-delete-suffix",
       "name": "deleting two trailing a characters beats deleting b block",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-delete-prefix",
+      "id": "trial-delete-prefix",
       "name": "one leading b is the only necessary deletion",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-multiple-choice-points",
+      "id": "trial-multiple-choice-points",
       "name": "several recurrence choices combine across the string",
       "kind": "trial",
       "visible": true,
@@ -133,6 +133,20 @@
       "tags": [
         "dynamic-programming",
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

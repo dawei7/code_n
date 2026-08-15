@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-all-tight",
+      "id": "trial-all-tight",
       "name": "tight tasks require the sum of costs",
       "kind": "trial",
       "visible": true,
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-gap-order",
+      "id": "trial-gap-order",
       "name": "largest reserved gap must be scheduled early",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-unused-energy",
+      "id": "trial-unused-energy",
       "name": "high-gap small task dominates the reserve",
       "kind": "trial",
       "visible": true,
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-equal-pairs",
+      "id": "trial-equal-pairs",
       "name": "identical tasks may appear in any order",
       "kind": "trial",
       "visible": true,
@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "real-four-gaps",
+      "id": "trial-four-gaps",
       "name": "four distinct gaps combine to thirteen",
       "kind": "trial",
       "visible": true,

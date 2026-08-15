@@ -132,8 +132,8 @@
       ]
     },
     {
-      "id": "real-destination-wait-ignored",
-      "name": "real: a huge destination wait does not affect the answer",
+      "id": "trial-destination-wait-ignored",
+      "name": "a huge destination wait does not affect the answer",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -158,8 +158,8 @@
       ]
     },
     {
-      "id": "real-start-wait-ignored",
-      "name": "real: a huge starting wait does not affect the answer",
+      "id": "trial-start-wait-ignored",
+      "name": "a huge starting wait does not affect the answer",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -185,8 +185,8 @@
       ]
     },
     {
-      "id": "real-zero-waits",
-      "name": "real: entrance products alone determine the best route",
+      "id": "trial-zero-waits",
+      "name": "entrance products alone determine the best route",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -218,8 +218,8 @@
       ]
     },
     {
-      "id": "real-non-greedy-waits",
-      "name": "real: a cheap immediate wait can lead to an expensive continuation",
+      "id": "trial-non-greedy-waits",
+      "name": "a cheap immediate wait can lead to an expensive continuation",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -254,8 +254,8 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: totals exceed individual cost bounds",
+      "id": "trial-large-values",
+      "name": "totals exceed individual cost bounds",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -284,6 +284,27 @@
         "real",
         "large-values",
         "integer-range"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 1,
+        "waitCost": [
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

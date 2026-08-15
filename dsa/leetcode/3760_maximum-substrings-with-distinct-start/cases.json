@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-singleton",
+      "id": "trial-singleton",
       "name": "one character forms one substring",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-repeated-suffix",
+      "id": "trial-repeated-suffix",
       "name": "repeated suffix letters add no new starts",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-reverse-alphabet",
+      "id": "trial-reverse-alphabet",
       "name": "order does not change the distinct-letter bound",
       "kind": "trial",
       "visible": true,
@@ -133,6 +133,34 @@
       },
       "tags": [
         "reverse"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

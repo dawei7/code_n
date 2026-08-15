@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-equal-first",
+      "id": "trial-equal-first",
       "name": "equal first coordinates",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-equal-second",
+      "id": "trial-equal-second",
       "name": "equal second coordinates",
       "kind": "trial",
       "visible": true,
@@ -237,7 +237,7 @@
       ]
     },
     {
-      "id": "real-query-order",
+      "id": "trial-query-order",
       "name": "descending processing must restore order",
       "kind": "trial",
       "visible": true,
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "billion-scale sums",
       "kind": "trial",
       "visible": true,

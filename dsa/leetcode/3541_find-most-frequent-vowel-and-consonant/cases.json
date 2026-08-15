@@ -59,8 +59,8 @@
       ]
     },
     {
-      "id": "real-tied-categories",
-      "name": "real: ties within both categories",
+      "id": "trial-tied-categories",
+      "name": "ties within both categories",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -73,8 +73,8 @@
       ]
     },
     {
-      "id": "real-dominant-different-letters",
-      "name": "real: category maxima come from different letters",
+      "id": "trial-dominant-different-letters",
+      "name": "category maxima come from different letters",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -87,8 +87,8 @@
       ]
     },
     {
-      "id": "real-all-letters",
-      "name": "real: every lowercase letter occurs once",
+      "id": "trial-all-letters",
+      "name": "every lowercase letter occurs once",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -101,8 +101,8 @@
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "real: maximum length with one category absent",
+      "id": "trial-maximum-length",
+      "name": "maximum length with one category absent",
       "kind": "trial",
       "visible": true,
       "input": {

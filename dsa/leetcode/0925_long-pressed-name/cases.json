@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "a required repeated letter is missing",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "one-letter name long pressed",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "leading mismatch",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "wrong first character",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "repeated intended run is fully consumed",
       "kind": "trial",
       "visible": true,
@@ -145,6 +145,36 @@
       "expected": true,
       "tags": [
         "repeated-name"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in name",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "name": "a",
+        "typed": "aaleex"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in name",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "name": "aaa",
+        "typed": "aaleex"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

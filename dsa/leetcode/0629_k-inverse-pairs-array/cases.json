@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "central Mahonian coefficient",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "symmetric high inversion count",
       "kind": "trial",
       "visible": true,
@@ -103,6 +103,21 @@
       "expected": 4,
       "tags": [
         "symmetry"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 0
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

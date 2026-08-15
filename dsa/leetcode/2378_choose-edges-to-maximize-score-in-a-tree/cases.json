@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-parent-id-after-child",
+      "id": "trial-parent-id-after-child",
       "name": "parent indices need not precede child indices",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-branching-tree",
+      "id": "trial-branching-tree",
       "name": "best child gain depends on its blocked state",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-zero-weight",
+      "id": "trial-zero-weight",
       "name": "zero weight never forces a choice",
       "kind": "trial",
       "visible": true,

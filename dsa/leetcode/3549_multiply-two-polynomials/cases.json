@@ -134,8 +134,8 @@
       ]
     },
     {
-      "id": "real-cancellation",
-      "name": "real: middle terms cancel exactly",
+      "id": "trial-cancellation",
+      "name": "middle terms cancel exactly",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -159,8 +159,8 @@
       ]
     },
     {
-      "id": "real-maximum-coefficient-signs",
-      "name": "real: maximum-magnitude coefficients with alternating signs",
+      "id": "trial-maximum-coefficient-signs",
+      "name": "maximum-magnitude coefficients with alternating signs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -185,8 +185,8 @@
       ]
     },
     {
-      "id": "real-unequal-lengths",
-      "name": "real: one polynomial is much shorter",
+      "id": "trial-unequal-lengths",
+      "name": "one polynomial is much shorter",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -214,8 +214,8 @@
       ]
     },
     {
-      "id": "real-mixed-dense",
-      "name": "real: dense mixed-sign convolution",
+      "id": "trial-mixed-dense",
+      "name": "dense mixed-sign convolution",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -243,6 +243,54 @@
         "real",
         "dense",
         "mixed-sign"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in poly1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "poly1": [
+          3
+        ],
+        "poly2": [
+          1,
+          4
+        ]
+      },
+      "expected": [
+        3,
+        12
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in poly1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "poly1": [
+          3,
+          3
+        ],
+        "poly2": [
+          1,
+          4
+        ]
+      },
+      "expected": [
+        3,
+        15,
+        12
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-duplicate-weak-characters",
+      "id": "trial-duplicate-weak-characters",
       "name": "duplicate characters are counted independently",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-dominating-maximum",
+      "id": "trial-dominating-maximum",
       "name": "one character dominates several tradeoffs",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-strict-chain",
+      "id": "trial-strict-chain",
       "name": "every character except the maximum is weak",
       "kind": "trial",
       "visible": true,

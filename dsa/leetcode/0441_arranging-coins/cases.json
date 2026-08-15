@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-small",
+      "id": "trial-small",
       "name": "two coins leave the second row incomplete",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-large-boundary",
+      "id": "trial-large-boundary",
       "name": "largest signed 32-bit input",
       "kind": "trial",
       "visible": true,

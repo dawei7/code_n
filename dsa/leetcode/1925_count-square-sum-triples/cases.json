@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "real-six",
+      "id": "trial-six",
       "name": "increasing past five adds no new triple immediately",
       "kind": "trial",
       "visible": true,
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-thirteen",
+      "id": "trial-thirteen",
       "name": "the five-twelve-thirteen pair adds both orientations",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-fifteen",
+      "id": "trial-fifteen",
       "name": "another legal hypotenuse expands the count",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-twenty-five",
+      "id": "trial-twenty-five",
       "name": "primitive and scaled triples coexist",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-thirty",
+      "id": "trial-thirty",
       "name": "larger bound includes several orientations",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-thirty-six",
+      "id": "trial-thirty-six",
       "name": "substantial terminating bound exercises square lookup",
       "kind": "trial",
       "visible": true,

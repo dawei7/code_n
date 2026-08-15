@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-all-negative",
+      "id": "trial-all-negative",
       "name": "all-negative tree",
       "kind": "trial",
       "visible": true,

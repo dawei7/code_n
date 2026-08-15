@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-nine-digits",
+      "id": "trial-nine-digits",
       "name": "descending nine-digit boundary pattern",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-alternating-zeroes",
+      "id": "trial-alternating-zeroes",
       "name": "zeroes preserve alternating positions",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "only legal ten-digit value",
       "kind": "trial",
       "visible": true,

@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-star",
+      "id": "trial-star",
       "name": "hub paired with a leaf",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-two-stars",
+      "id": "trial-two-stars",
       "name": "hubs from disconnected stars form the best pair",
       "kind": "trial",
       "visible": true,
@@ -266,7 +266,7 @@
       ]
     },
     {
-      "id": "real-path",
+      "id": "trial-path",
       "name": "adjacent internal path cities share a road",
       "kind": "trial",
       "visible": true,
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "id": "real-isolated-with-triangle",
+      "id": "trial-isolated-with-triangle",
       "name": "isolated cities do not change triangle rank",
       "kind": "trial",
       "visible": true,

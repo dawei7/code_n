@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-five",
+      "id": "trial-five",
       "name": "rolling state after two updates",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-ten",
+      "id": "trial-ten",
       "name": "middle sequence value",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-thirty",
+      "id": "trial-thirty",
       "name": "high valid index",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "maximum public index",
       "kind": "trial",
       "visible": true,

@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-argument-order",
+      "id": "trial-argument-order",
       "name": "forwarded argument order is preserved",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-nested-lookup",
+      "id": "trial-nested-lookup",
       "name": "nested context remains reachable",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-maximum-arguments",
+      "id": "trial-maximum-arguments",
       "name": "all 100 legal arguments are forwarded",
       "kind": "trial",
       "visible": true,

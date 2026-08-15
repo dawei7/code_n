@@ -131,7 +131,7 @@
       "expected": 212
     },
     {
-      "id": "real-profitable-index-trap",
+      "id": "trial-profitable-index-trap",
       "name": "an early high-profit price cannot serve as a valid left item",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       "expected": 111
     },
     {
-      "id": "real-minimum-length",
+      "id": "trial-minimum-length",
       "name": "exactly three increasing items",
       "kind": "trial",
       "visible": true,
@@ -177,7 +177,7 @@
       "expected": 31
     },
     {
-      "id": "real-maximum-boundaries",
+      "id": "trial-maximum-boundaries",
       "name": "maximum prices and profits preserve the full sum",
       "kind": "trial",
       "visible": true,

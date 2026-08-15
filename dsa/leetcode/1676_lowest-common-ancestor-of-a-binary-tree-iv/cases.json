@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-all-nodes",
+      "id": "trial-all-nodes",
       "name": "every node is requested",
       "kind": "trial",
       "visible": true,
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "real-negative-values",
+      "id": "trial-negative-values",
       "name": "identity is independent of signed values",
       "kind": "trial",
       "visible": true,
@@ -256,7 +256,7 @@
       ]
     },
     {
-      "id": "real-deep-chain",
+      "id": "trial-deep-chain",
       "name": "shallowest selected node on one branch wins",
       "kind": "trial",
       "visible": true,

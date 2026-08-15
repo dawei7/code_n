@@ -261,7 +261,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "one row starting at the east end",
       "kind": "trial",
       "visible": true,
@@ -294,7 +294,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "two-by-three grid starting on the north edge",
       "kind": "trial",
       "visible": true,
@@ -335,7 +335,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "centered odd square",
       "kind": "trial",
       "visible": true,
@@ -388,7 +388,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "tall rectangle starting northwest",
       "kind": "trial",
       "visible": true,
@@ -438,7 +438,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "wide rectangle starting on the south edge",
       "kind": "trial",
       "visible": true,

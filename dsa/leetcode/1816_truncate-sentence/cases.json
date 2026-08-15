@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-two-words-keep-all",
+      "id": "trial-two-words-keep-all",
       "name": "two words retained completely",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-short-words",
+      "id": "trial-short-words",
       "name": "single-letter words preserve separators",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-long-first-word",
+      "id": "trial-long-first-word",
       "name": "cut after a long first word",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-boundary-length",
+      "id": "trial-boundary-length",
       "name": "maximum-length sentence retained completely",
       "kind": "trial",
       "visible": true,
@@ -150,6 +150,36 @@
       "tags": [
         "maximum-length",
         "single-word"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "H",
+        "k": 4
+      },
+      "expected": "H",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "HHH",
+        "k": 4
+      },
+      "expected": "HHH",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

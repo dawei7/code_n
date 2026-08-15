@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-two-negative",
+      "id": "trial-two-negative",
       "name": "carry between negative operands",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-positive-bound",
+      "id": "trial-positive-bound",
       "name": "large positive allowed sum",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "hidden-mixed-bound",
+      "id": "trial-mixed-bound",
       "name": "subtract magnitude through bit addition",
       "kind": "trial",
       "visible": true,

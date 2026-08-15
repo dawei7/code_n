@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-two-groups",
+      "id": "trial-two-groups",
       "name": "two groups with different frequencies",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-interleaved",
+      "id": "trial-interleaved",
       "name": "ordering does not change frequency contribution",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-boundary-values",
+      "id": "trial-boundary-values",
       "name": "both value boundaries repeat",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-large-groups",
+      "id": "trial-large-groups",
       "name": "four groups of five occurrences",
       "kind": "trial",
       "visible": true,

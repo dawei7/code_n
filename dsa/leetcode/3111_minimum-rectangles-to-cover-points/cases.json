@@ -155,8 +155,8 @@
       ]
     },
     {
-      "id": "real-right-boundary",
-      "name": "real: point on the right boundary is covered",
+      "id": "trial-right-boundary",
+      "name": "point on the right boundary is covered",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -179,8 +179,8 @@
       ]
     },
     {
-      "id": "real-just-outside",
-      "name": "real: point beyond the right boundary needs another rectangle",
+      "id": "trial-just-outside",
+      "name": "point beyond the right boundary needs another rectangle",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -203,8 +203,8 @@
       ]
     },
     {
-      "id": "real-unsorted-repeated-x",
-      "name": "real: unsorted points with repeated x coordinates",
+      "id": "trial-unsorted-repeated-x",
+      "name": "unsorted points with repeated x coordinates",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -248,8 +248,8 @@
       ]
     },
     {
-      "id": "real-greedy-clusters",
-      "name": "real: every new rectangle starts at the leftmost uncovered point",
+      "id": "trial-greedy-clusters",
+      "name": "every new rectangle starts at the leftmost uncovered point",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -284,8 +284,8 @@
       ]
     },
     {
-      "id": "real-y-irrelevant",
-      "name": "real: vertical separation does not affect coverage",
+      "id": "trial-y-irrelevant",
+      "name": "vertical separation does not affect coverage",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -316,8 +316,8 @@
       ]
     },
     {
-      "id": "real-full-coordinate-span",
-      "name": "real: maximum width covers the complete coordinate span",
+      "id": "trial-full-coordinate-span",
+      "name": "maximum width covers the complete coordinate span",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -344,8 +344,8 @@
       ]
     },
     {
-      "id": "real-many-duplicates-and-gaps",
-      "name": "real: shared x coordinates do not require extra rectangles",
+      "id": "trial-many-duplicates-and-gaps",
+      "name": "shared x coordinates do not require extra rectangles",
       "kind": "trial",
       "visible": true,
       "input": {

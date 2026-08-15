@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-no-qualifying-pair",
+      "id": "trial-no-qualifying-pair",
       "name": "no sum is small enough",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-duplicate-groups",
+      "id": "trial-duplicate-groups",
       "name": "repeated values form distinct index pairs",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "minimum and maximum values",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-mixed-values",
+      "id": "trial-mixed-values",
       "name": "mixed signs and unordered input",
       "kind": "trial",
       "visible": true,

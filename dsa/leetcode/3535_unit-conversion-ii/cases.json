@@ -190,8 +190,8 @@
       ]
     },
     {
-      "id": "real-long-chain",
-      "name": "real: ratios in both directions along a chain",
+      "id": "trial-long-chain",
+      "name": "ratios in both directions along a chain",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -243,8 +243,8 @@
       ]
     },
     {
-      "id": "real-unit-factors",
-      "name": "real: unit factors preserve every ratio",
+      "id": "trial-unit-factors",
+      "name": "unit factors preserve every ratio",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -291,8 +291,8 @@
       ]
     },
     {
-      "id": "real-largest-factor",
-      "name": "real: the largest legal factor remains invertible",
+      "id": "trial-largest-factor",
+      "name": "the largest legal factor remains invertible",
       "kind": "trial",
       "visible": true,
       "input": {

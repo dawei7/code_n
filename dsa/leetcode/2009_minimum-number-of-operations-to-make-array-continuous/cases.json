@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-duplicate-inside-window",
+      "id": "trial-duplicate-inside-window",
       "name": "a duplicate occupies one replacement position",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-best-middle-window",
+      "id": "trial-best-middle-window",
       "name": "the best interval starts inside sorted values",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-billion-boundary",
+      "id": "trial-billion-boundary",
       "name": "one billion-scale outlier is replaced",
       "kind": "trial",
       "visible": true,

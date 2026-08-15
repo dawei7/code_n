@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-ipv4-boundaries",
+      "id": "trial-ipv4-boundaries",
       "name": "all IPv4 boundary values",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-invalid-hex",
+      "id": "trial-invalid-hex",
       "name": "IPv6 group contains nonhexadecimal letter",
       "kind": "trial",
       "visible": true,

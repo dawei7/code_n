@@ -369,7 +369,7 @@
       ]
     },
     {
-      "id": "hidden-cross-month",
+      "id": "trial-cross-month",
       "name": "windows cross a month boundary",
       "kind": "trial",
       "visible": true,
@@ -451,7 +451,7 @@
       ]
     },
     {
-      "id": "hidden-two-per-day",
+      "id": "trial-two-per-day",
       "name": "two customers visit every date",
       "kind": "trial",
       "visible": true,
@@ -564,7 +564,7 @@
       ]
     },
     {
-      "id": "hidden-fourteen-days",
+      "id": "trial-fourteen-days",
       "name": "two complete weeks of varying revenue",
       "kind": "trial",
       "visible": true,

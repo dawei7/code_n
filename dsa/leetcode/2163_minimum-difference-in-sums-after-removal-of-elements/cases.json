@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-middle-split",
+      "id": "trial-middle-split",
       "name": "optimum uses an interior original split",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "values near the upper constraint",
       "kind": "trial",
       "visible": true,

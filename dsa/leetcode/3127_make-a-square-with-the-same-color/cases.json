@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "real-bottom-left-only",
+      "id": "trial-bottom-left-only",
       "name": "lower-left block supplies three white cells",
       "kind": "trial",
       "visible": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "real-bottom-right-only",
+      "id": "trial-bottom-right-only",
       "name": "lower-right block supplies three black cells",
       "kind": "trial",
       "visible": true,
@@ -303,7 +303,7 @@
       ]
     },
     {
-      "id": "real-balanced-stripes",
+      "id": "trial-balanced-stripes",
       "name": "striped layout keeps every block balanced",
       "kind": "trial",
       "visible": true,
@@ -334,7 +334,7 @@
       ]
     },
     {
-      "id": "real-balanced-columns",
+      "id": "trial-balanced-columns",
       "name": "column pattern keeps every block balanced",
       "kind": "trial",
       "visible": true,

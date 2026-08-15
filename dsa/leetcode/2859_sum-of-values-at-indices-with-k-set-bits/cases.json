@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-all-power-of-two-indices",
+      "id": "trial-all-power-of-two-indices",
       "name": "every in-range power-of-two index contributes",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-several-two-bit-indices",
+      "id": "trial-several-two-bit-indices",
       "name": "multiple nonadjacent indices share the target count",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-unattainable-bit-count",
+      "id": "trial-unattainable-bit-count",
       "name": "no index reaches the maximum allowed k",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "selected values may reach the value limit",
       "kind": "trial",
       "visible": true,

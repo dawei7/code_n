@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-nested-set",
+      "id": "trial-nested-set",
       "name": "nested object assignment reports its key",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-delete",
+      "id": "trial-delete",
       "name": "deletion is rejected as modification",
       "kind": "trial",
       "visible": true,

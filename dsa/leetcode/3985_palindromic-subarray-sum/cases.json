@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-whole-repeated-pattern",
+      "id": "trial-whole-repeated-pattern",
       "name": "a repeated pattern is palindromic end to end",
       "kind": "trial",
       "visible": true,
@@ -220,7 +220,7 @@
       ]
     },
     {
-      "id": "real-large-singleton-beats-longer",
+      "id": "trial-large-singleton-beats-longer",
       "name": "a large singleton beats a longer palindrome",
       "kind": "trial",
       "visible": true,
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "id": "real-large-even-suffix",
+      "id": "trial-large-even-suffix",
       "name": "a high-valued even suffix beats a longer prefix",
       "kind": "trial",
       "visible": true,
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "id": "real-even-whole-array",
+      "id": "trial-even-whole-array",
       "name": "an even whole-array palindrome with distinct layers",
       "kind": "trial",
       "visible": true,
@@ -283,7 +283,7 @@
       ]
     },
     {
-      "id": "real-odd-whole-array",
+      "id": "trial-odd-whole-array",
       "name": "an odd whole-array palindrome with distinct layers",
       "kind": "trial",
       "visible": true,
@@ -305,7 +305,7 @@
       ]
     },
     {
-      "id": "real-equal-ends-not-palindrome",
+      "id": "trial-equal-ends-not-palindrome",
       "name": "equal endpoints do not make the full range palindromic",
       "kind": "trial",
       "visible": true,
@@ -324,7 +324,7 @@
       ]
     },
     {
-      "id": "real-even-layers-around-one",
+      "id": "trial-even-layers-around-one",
       "name": "equal pairs surround an odd center",
       "kind": "trial",
       "visible": true,
@@ -344,7 +344,7 @@
       ]
     },
     {
-      "id": "real-seven-value-whole-array",
+      "id": "trial-seven-value-whole-array",
       "name": "a seven-value layered palindrome",
       "kind": "trial",
       "visible": true,
@@ -366,7 +366,7 @@
       ]
     },
     {
-      "id": "real-large-result-three-values",
+      "id": "trial-large-result-three-values",
       "name": "a three-value palindrome exceeds 32-bit arithmetic",
       "kind": "trial",
       "visible": true,
@@ -384,7 +384,7 @@
       ]
     },
     {
-      "id": "real-large-result-even-run",
+      "id": "trial-large-result-even-run",
       "name": "ten maximum values require a wide sum",
       "kind": "trial",
       "visible": true,
@@ -406,6 +406,22 @@
       "tags": [
         "large-values",
         "even-palindrome"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

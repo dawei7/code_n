@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-nested-wrong-order",
+      "id": "trial-nested-wrong-order",
       "name": "nested grouping yields a partial-credit value",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-operator-boundary",
+      "id": "trial-operator-boundary",
       "name": "fifteen additions have one possible result",
       "kind": "trial",
       "visible": true,

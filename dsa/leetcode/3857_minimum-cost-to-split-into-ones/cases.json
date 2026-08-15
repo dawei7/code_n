@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-six",
+      "id": "trial-six",
       "name": "even input triangular cost",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-ten",
+      "id": "trial-ten",
       "name": "ten ones cost forty-five",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-fifty",
+      "id": "trial-fifty",
       "name": "medium even input",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-one-hundred",
+      "id": "trial-one-hundred",
       "name": "one hundred parts",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-one-twenty-three",
+      "id": "trial-one-twenty-three",
       "name": "non-round odd input",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-two-fifty-seven",
+      "id": "trial-two-fifty-seven",
       "name": "value just above a power of two",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum legal input",
       "kind": "trial",
       "visible": true,

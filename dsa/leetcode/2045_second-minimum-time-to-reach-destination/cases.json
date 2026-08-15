@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-equal-shortest-routes",
+      "id": "trial-equal-shortest-routes",
       "name": "equal shortest paths count as one time value",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-long-green-phase",
+      "id": "trial-long-green-phase",
       "name": "second path finishes before any signal changes",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-time-and-change-one",
+      "id": "trial-time-and-change-one",
       "name": "every intermediate arrival begins a red phase",
       "kind": "trial",
       "visible": true,

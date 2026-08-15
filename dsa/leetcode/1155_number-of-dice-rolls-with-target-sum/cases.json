@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-one-faced",
+      "id": "trial-one-faced",
       "name": "deterministic one-faced dice",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-small-middle",
+      "id": "trial-small-middle",
       "name": "two binary dice make three",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-all-maximum",
+      "id": "trial-all-maximum",
       "name": "only all maximum faces work",
       "kind": "trial",
       "visible": true,
@@ -129,6 +129,38 @@
       "tags": [
         "real",
         "boundary-sum"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 1,
+        "target": 3
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value target=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 6,
+        "target": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-single-bar",
+      "id": "trial-single-bar",
       "name": "one bar has no basin",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-asymmetric-basin",
+      "id": "trial-asymmetric-basin",
       "name": "lower right wall controls the level",
       "kind": "trial",
       "visible": true,
@@ -249,7 +249,7 @@
       ]
     },
     {
-      "id": "real-separated-basins",
+      "id": "trial-separated-basins",
       "name": "sum independent depressions",
       "kind": "trial",
       "visible": true,

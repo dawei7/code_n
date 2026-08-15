@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "unequal box counts",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "partner occurs in the middle",
       "kind": "trial",
       "visible": true,
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "sizes near the maximum",
       "kind": "trial",
       "visible": true,
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "Alice has more candy across equal lengths",
       "kind": "trial",
       "visible": true,
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "multiple distinct valid value pairs",
       "kind": "trial",
       "visible": true,
@@ -309,6 +309,46 @@
       },
       "tags": [
         "multiple-answers"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in aliceSizes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "aliceSizes": [
+          1
+        ],
+        "bobSizes": [
+          2,
+          2
+        ]
+      },
+      "expected": null,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in bobSizes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "aliceSizes": [
+          1,
+          1
+        ],
+        "bobSizes": [
+          2
+        ]
+      },
+      "expected": null,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

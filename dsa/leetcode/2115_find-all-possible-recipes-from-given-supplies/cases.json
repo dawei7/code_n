@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-productive-and-cyclic-components",
+      "id": "trial-productive-and-cyclic-components",
       "name": "a productive chain coexists with a blocked cycle",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-shared-dependency",
+      "id": "trial-shared-dependency",
       "name": "one recipe unlocks several dependents",
       "kind": "trial",
       "visible": true,

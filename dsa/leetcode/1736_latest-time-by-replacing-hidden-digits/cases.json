@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-visible-second-hour-three",
+      "id": "trial-visible-second-hour-three",
       "name": "second hour digit three still permits leading two",
       "kind": "trial",
       "visible": true,
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-minute-ones-visible",
+      "id": "trial-minute-ones-visible",
       "name": "minute tens is maximized around visible ones",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-no-hidden",
+      "id": "trial-no-hidden",
       "name": "already complete time is unchanged",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-leading-two-partial-minute",
+      "id": "trial-leading-two-partial-minute",
       "name": "both constrained hour and minute positions maximize",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-leading-hour-hidden",
+      "id": "trial-leading-hour-hidden",
       "name": "visible hour nine forces leading one",
       "kind": "trial",
       "visible": true,

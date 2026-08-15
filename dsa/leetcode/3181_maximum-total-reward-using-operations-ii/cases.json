@@ -111,8 +111,8 @@
       ]
     },
     {
-      "id": "real-dense-without-one",
-      "name": "real: dense rewards need not begin at one",
+      "id": "trial-dense-without-one",
+      "name": "dense rewards need not begin at one",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -132,8 +132,8 @@
       ]
     },
     {
-      "id": "real-large-gaps",
-      "name": "real: several gaps permit a long valid sequence",
+      "id": "trial-large-gaps",
+      "name": "several gaps permit a long valid sequence",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -153,8 +153,8 @@
       ]
     },
     {
-      "id": "real-unsorted-large-values",
-      "name": "real: unsorted large rewards retain their original indices",
+      "id": "trial-unsorted-large-values",
+      "name": "unsorted large rewards retain their original indices",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -171,8 +171,8 @@
       ]
     },
     {
-      "id": "real-duplicate-doubling-levels",
-      "name": "real: duplicates across doubling levels",
+      "id": "trial-duplicate-doubling-levels",
+      "name": "duplicates across doubling levels",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -194,8 +194,8 @@
       ]
     },
     {
-      "id": "real-maximum-after-half",
-      "name": "real: maximum reward follows an exact half-sized total",
+      "id": "trial-maximum-after-half",
+      "name": "maximum reward follows an exact half-sized total",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -211,8 +211,8 @@
       ]
     },
     {
-      "id": "real-global-total-bound",
-      "name": "real: two largest rewards attain the global upper bound",
+      "id": "trial-global-total-bound",
+      "name": "two largest rewards attain the global upper bound",
       "kind": "trial",
       "visible": true,
       "input": {

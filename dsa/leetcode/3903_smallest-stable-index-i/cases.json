@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "hidden-zero-threshold-at-end",
+      "id": "trial-zero-threshold-at-end",
       "name": "only the maximum-valued final singleton closes the gap",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "hidden-inclusive-ranges",
+      "id": "trial-inclusive-ranges",
       "name": "both extrema ranges include the candidate value",
       "kind": "trial",
       "visible": true,
@@ -224,7 +224,7 @@
       ]
     },
     {
-      "id": "hidden-nonmonotone-scores",
+      "id": "trial-nonmonotone-scores",
       "name": "instability can rise sharply after an initially stable index",
       "kind": "trial",
       "visible": true,
@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "hidden-large-threshold",
+      "id": "trial-large-threshold",
       "name": "the maximum threshold immediately accepts index zero",
       "kind": "trial",
       "visible": true,
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "id": "hidden-long-decreasing-no-solution",
+      "id": "trial-long-decreasing-no-solution",
       "name": "the maximum length can have no stable index",
       "kind": "trial",
       "visible": true,

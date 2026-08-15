@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-even-group",
+      "id": "trial-even-group",
       "name": "even-sized group uses either adjusted median",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-odd-group",
+      "id": "trial-odd-group",
       "name": "odd-sized group centers on its middle one",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-leading-trailing-zeros",
+      "id": "trial-leading-trailing-zeros",
       "name": "exterior zeros do not affect internal grouping",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-middle-consecutive",
+      "id": "trial-middle-consecutive",
       "name": "a later consecutive triple beats sparse alternatives",
       "kind": "trial",
       "visible": true,

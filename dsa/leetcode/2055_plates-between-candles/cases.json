@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-one-candle",
+      "id": "trial-one-candle",
       "name": "one candle cannot enclose a plate",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-ignore-outer-plates",
+      "id": "trial-ignore-outer-plates",
       "name": "plates outside the inner candles are excluded",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-consecutive-candles",
+      "id": "trial-consecutive-candles",
       "name": "consecutive boundaries enclose zero plates",
       "kind": "trial",
       "visible": true,

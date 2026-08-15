@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-partial-two",
+      "id": "trial-partial-two",
       "name": "service stops after both circular students eat",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-equal-counts",
+      "id": "trial-equal-counts",
       "name": "equal type counts succeed despite opposite blocks",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-late-block",
+      "id": "trial-late-block",
       "name": "unavailable square type blocks the last student",
       "kind": "trial",
       "visible": true,
@@ -220,7 +220,7 @@
       ]
     },
     {
-      "id": "real-order-sensitive-stop",
+      "id": "trial-order-sensitive-stop",
       "name": "fixed sandwich order stops before a later useful type",
       "kind": "trial",
       "visible": true,

@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "hidden-non-parent",
+      "id": "trial-non-parent",
       "name": "closest values are not connected by an edge",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "hidden-left-skew",
+      "id": "trial-left-skew",
       "name": "left-skewed tree",
       "kind": "trial",
       "visible": true,

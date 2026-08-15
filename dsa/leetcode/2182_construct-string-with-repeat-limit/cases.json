@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-limit-one",
+      "id": "trial-limit-one",
       "name": "repeat limit one forces alternation",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-multiple-levels",
+      "id": "trial-multiple-levels",
       "name": "construction descends through several letters",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-top-three",
+      "id": "trial-top-three",
       "name": "separators can themselves become blocked later",
       "kind": "trial",
       "visible": true,

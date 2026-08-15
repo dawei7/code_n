@@ -81,8 +81,8 @@
       ]
     },
     {
-      "id": "real-single-value",
-      "name": "real: minimum-length input",
+      "id": "trial-single-value",
+      "name": "minimum-length input",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -97,8 +97,8 @@
       ]
     },
     {
-      "id": "real-too-many-duplicates",
-      "name": "real: three equal values contribute at most two positions",
+      "id": "trial-too-many-duplicates",
+      "name": "three equal values contribute at most two positions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -115,8 +115,8 @@
       ]
     },
     {
-      "id": "real-overlapping-choices",
-      "name": "real: overlapping duplicate choices cannot all be used",
+      "id": "trial-overlapping-choices",
+      "name": "overlapping duplicate choices cannot all be used",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -134,8 +134,8 @@
       ]
     },
     {
-      "id": "real-unsorted-long-chain",
-      "name": "real: a noncontiguous sorted selection forms the optimum",
+      "id": "trial-unsorted-long-chain",
+      "name": "a noncontiguous sorted selection forms the optimum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -164,8 +164,8 @@
       ]
     },
     {
-      "id": "real-upper-bound",
-      "name": "real: a maximum input value may be incremented",
+      "id": "trial-upper-bound",
+      "name": "a maximum input value may be incremented",
       "kind": "trial",
       "visible": true,
       "input": {

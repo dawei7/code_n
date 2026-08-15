@@ -91,8 +91,8 @@
       ]
     },
     {
-      "id": "real-odd-mixed",
-      "name": "real: odd mixed values",
+      "id": "trial-odd-mixed",
+      "name": "odd mixed values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -111,8 +111,8 @@
       ]
     },
     {
-      "id": "real-all-negative",
-      "name": "real: every possible score is negative",
+      "id": "trial-all-negative",
+      "name": "every possible score is negative",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -129,8 +129,8 @@
       ]
     },
     {
-      "id": "real-even-interior",
-      "name": "real: best survivor pair is interior",
+      "id": "trial-even-interior",
+      "name": "best survivor pair is interior",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -150,8 +150,8 @@
       ]
     },
     {
-      "id": "real-repeated-minima",
-      "name": "real: repeated minimum survivors",
+      "id": "trial-repeated-minima",
+      "name": "repeated minimum survivors",
       "kind": "trial",
       "visible": true,
       "input": {

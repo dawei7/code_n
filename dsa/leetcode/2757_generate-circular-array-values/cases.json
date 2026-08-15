@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-exact-multiples",
+      "id": "trial-exact-multiples",
       "name": "jumps by full array multiples do not move",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-large-remainders",
+      "id": "trial-large-remainders",
       "name": "extreme jumps reduce to signed remainders",
       "kind": "trial",
       "visible": true,
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-repeated-zero",
+      "id": "trial-repeated-zero",
       "name": "repeated zero jumps keep the suspended index",
       "kind": "trial",
       "visible": true,
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "id": "real-maximum-steps",
+      "id": "trial-maximum-steps",
       "name": "maximum 100-step sequence preserves generator state",
       "kind": "trial",
       "visible": true,

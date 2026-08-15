@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "real-nonmultiple",
+      "id": "trial-nonmultiple",
       "name": "amount not divisible by available denominations fails",
       "kind": "trial",
       "visible": true,
@@ -313,7 +313,7 @@
       ]
     },
     {
-      "id": "real-exact-large",
+      "id": "trial-exact-large",
       "name": "exact amount favors highest notes",
       "kind": "trial",
       "visible": true,
@@ -355,7 +355,7 @@
       ]
     },
     {
-      "id": "real-depletion",
+      "id": "trial-depletion",
       "name": "successful withdrawal changes later availability",
       "kind": "trial",
       "visible": true,

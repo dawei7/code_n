@@ -92,8 +92,8 @@
       ]
     },
     {
-      "id": "real-partial-duplicates",
-      "name": "real: duplicate one does not change two-value support",
+      "id": "trial-partial-duplicates",
+      "name": "duplicate one does not change two-value support",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -111,8 +111,8 @@
       ]
     },
     {
-      "id": "real-three-bit-basis",
-      "name": "real: three independent bits add their combined XOR",
+      "id": "trial-three-bit-basis",
+      "name": "three independent bits add their combined XOR",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -130,8 +130,8 @@
       ]
     },
     {
-      "id": "real-four-bit-basis",
-      "name": "real: four powers of two produce eight values",
+      "id": "trial-four-bit-basis",
+      "name": "four powers of two produce eight values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -150,8 +150,8 @@
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "real: values near the upper bound",
+      "id": "trial-maximum-values",
+      "name": "values near the upper bound",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -169,8 +169,8 @@
       ]
     },
     {
-      "id": "real-nonconsecutive-values",
-      "name": "real: arbitrary gaps in the value set",
+      "id": "trial-nonconsecutive-values",
+      "name": "arbitrary gaps in the value set",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -185,6 +185,39 @@
         "real",
         "nonconsecutive",
         "sparse-support"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-one-vs-two",
+      "id": "trial-one-vs-two",
       "name": "singleton alphabet cannot match two",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-repeated-singletons",
+      "id": "trial-repeated-singletons",
       "name": "repeated one-character strings become two each",
       "kind": "trial",
       "visible": true,
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-large-gap",
+      "id": "trial-large-gap",
       "name": "one swap cannot close a two-character gap",
       "kind": "trial",
       "visible": true,

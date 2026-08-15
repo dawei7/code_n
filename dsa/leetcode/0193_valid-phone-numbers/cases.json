@@ -51,7 +51,7 @@
       ]
     },
     {
-      "id": "real-anchors",
+      "id": "trial-anchors",
       "name": "reject valid substring with suffix",
       "kind": "trial",
       "visible": true,

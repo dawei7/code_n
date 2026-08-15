@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-independent-segments",
+      "id": "trial-independent-segments",
       "name": "different arrays win consecutive segments",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-no-shared-near-limit",
+      "id": "trial-no-shared-near-limit",
       "name": "values near the element bound stay disjoint",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-middle-and-tail-decisions",
+      "id": "trial-middle-and-tail-decisions",
       "name": "best prefix and suffix come from different arrays",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-modulo-final-total",
+      "id": "trial-modulo-final-total",
       "name": "final score exceeds the modulus",
       "kind": "trial",
       "visible": true,
@@ -346,6 +346,51 @@
         "real",
         "modulo",
         "large-score"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2
+        ],
+        "nums2": [
+          4,
+          6,
+          8,
+          9
+        ]
+      },
+      "expected": 27,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          2
+        ],
+        "nums2": [
+          4,
+          6,
+          8,
+          9
+        ]
+      },
+      "expected": 27,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

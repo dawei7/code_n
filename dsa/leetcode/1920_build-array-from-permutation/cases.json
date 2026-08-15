@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-identity",
+      "id": "trial-identity",
       "name": "identity permutation is its own composition",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-reversal",
+      "id": "trial-reversal",
       "name": "reversal consists of swaps and composes to identity",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-mixed-cycles",
+      "id": "trial-mixed-cycles",
       "name": "a three-cycle and a swap compose independently",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-fixed-and-four-cycle",
+      "id": "trial-fixed-and-four-cycle",
       "name": "fixed endpoints surround a four-cycle",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-two-swaps",
+      "id": "trial-two-swaps",
       "name": "disjoint swaps map every value back to itself",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-seven-cycle",
+      "id": "trial-seven-cycle",
       "name": "one longer cycle preserves direct indexing semantics",
       "kind": "trial",
       "visible": true,
@@ -258,6 +258,26 @@
       "tags": [
         "long-cycle",
         "composition"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

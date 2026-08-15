@@ -160,8 +160,8 @@
       ]
     },
     {
-      "id": "real-skewed-frequency",
-      "name": "real: dominant compressed frequency",
+      "id": "trial-skewed-frequency",
+      "name": "dominant compressed frequency",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -198,8 +198,8 @@
       ]
     },
     {
-      "id": "real-integral-result",
-      "name": "real: weighted quotient is integral",
+      "id": "trial-integral-result",
+      "name": "weighted quotient is integral",
       "kind": "trial",
       "visible": true,
       "input": {

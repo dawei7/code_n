@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-multiple-square-subsets",
+      "id": "trial-multiple-square-subsets",
       "name": "several square subsets reach the target",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-high-exponent-zero",
+      "id": "trial-high-exponent-zero",
       "name": "fifth powers leave no valid subset",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-fourth-power-combination",
+      "id": "trial-fourth-power-combination",
       "name": "two fourth powers form the target",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-modulo-boundary",
+      "id": "trial-modulo-boundary",
       "name": "maximum first-power target requires modulo reduction",
       "kind": "trial",
       "visible": true,

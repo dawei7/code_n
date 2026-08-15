@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-maximum-decimal",
+      "id": "trial-maximum-decimal",
       "name": "maximum input in base ten",
       "kind": "trial",
       "visible": true,
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-maximum-binary",
+      "id": "trial-maximum-binary",
       "name": "maximum input has three binary one bits",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-base-five",
+      "id": "trial-base-five",
       "name": "consecutive base-five powers contribute",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-decimal-nines",
+      "id": "trial-decimal-nines",
       "name": "decimal digits can sum above the base",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-maximum-base-three",
+      "id": "trial-maximum-base-three",
       "name": "zero digits inside a base-three representation",
       "kind": "trial",
       "visible": true,
@@ -150,6 +150,21 @@
       "tags": [
         "base-three",
         "zero-digits"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 6
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

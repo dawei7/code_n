@@ -305,8 +305,8 @@
       ]
     },
     {
-      "id": "real-three-by-two",
-      "name": "real: relabeled three by two rectangle",
+      "id": "trial-three-by-two",
+      "name": "relabeled three by two rectangle",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -365,8 +365,8 @@
       ]
     },
     {
-      "id": "real-relabeled-three-by-four",
-      "name": "real: relabeled three by four rectangle",
+      "id": "trial-relabeled-three-by-four",
+      "name": "relabeled three by four rectangle",
       "kind": "trial",
       "visible": true,
       "input": {

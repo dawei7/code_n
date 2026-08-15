@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "unsorted rows",
       "kind": "trial",
       "visible": true,
@@ -315,7 +315,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "several inner nodes and leaves",
       "kind": "trial",
       "visible": true,

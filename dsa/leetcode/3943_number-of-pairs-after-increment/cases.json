@@ -347,7 +347,7 @@
       ]
     },
     {
-      "id": "real-overlapping-updates",
+      "id": "trial-overlapping-updates",
       "name": "overlapping updates change several fixed-value complements",
       "kind": "trial",
       "visible": true,
@@ -405,7 +405,7 @@
       ]
     },
     {
-      "id": "real-upper-value-duplicates",
+      "id": "trial-upper-value-duplicates",
       "name": "maximum initial values retain full multiplicity after a shift",
       "kind": "trial",
       "visible": true,
@@ -465,7 +465,7 @@
       ]
     },
     {
-      "id": "real-repeated-point-updates",
+      "id": "trial-repeated-point-updates",
       "name": "repeated updates to one index accumulate",
       "kind": "trial",
       "visible": true,
@@ -525,7 +525,7 @@
       ]
     },
     {
-      "id": "real-nested-ranges",
+      "id": "trial-nested-ranges",
       "name": "a nested range follows a wider update",
       "kind": "trial",
       "visible": true,
@@ -583,7 +583,7 @@
       ]
     },
     {
-      "id": "real-many-complements",
+      "id": "trial-many-complements",
       "name": "all five fixed values contribute complements",
       "kind": "trial",
       "visible": true,
@@ -647,7 +647,7 @@
       ]
     },
     {
-      "id": "real-stable-total-after-point-change",
+      "id": "trial-stable-total-after-point-change",
       "name": "a point change redistributes duplicate complements",
       "kind": "trial",
       "visible": true,
@@ -695,7 +695,7 @@
       ]
     },
     {
-      "id": "real-large-targets",
+      "id": "trial-large-targets",
       "name": "large values and an absent billion-scale target",
       "kind": "trial",
       "visible": true,
@@ -739,6 +739,85 @@
       },
       "tags": [
         "large-target"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          3,
+          4
+        ],
+        "queries": [
+          [
+            2,
+            5
+          ],
+          [
+            1,
+            0,
+            0,
+            2
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1
+        ],
+        "nums2": [
+          3,
+          4
+        ],
+        "queries": [
+          [
+            2,
+            5
+          ],
+          [
+            1,
+            0,
+            0,
+            2
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        2
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

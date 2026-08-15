@@ -159,8 +159,8 @@
       ]
     },
     {
-      "id": "real-parallel-edges",
-      "name": "real: shortest parallel edge determines arrival",
+      "id": "trial-parallel-edges",
+      "name": "shortest parallel edge determines arrival",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -204,8 +204,8 @@
       ]
     },
     {
-      "id": "real-invalid-intermediate",
-      "name": "real: path cannot traverse a vanished intermediate node",
+      "id": "trial-invalid-intermediate",
+      "name": "path cannot traverse a vanished intermediate node",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -256,8 +256,8 @@
       ]
     },
     {
-      "id": "real-one-before-boundary",
-      "name": "real: arrival one unit before disappearance is valid",
+      "id": "trial-one-before-boundary",
+      "name": "arrival one unit before disappearance is valid",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -296,8 +296,8 @@
       ]
     },
     {
-      "id": "real-stale-heap-entry",
-      "name": "real: later relaxation supersedes a queued path",
+      "id": "trial-stale-heap-entry",
+      "name": "later relaxation supersedes a queued path",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -355,8 +355,8 @@
       ]
     },
     {
-      "id": "real-self-loops-and-parallel",
-      "name": "real: self loops and parallel edges do not disturb shortest paths",
+      "id": "trial-self-loops-and-parallel",
+      "name": "self loops and parallel edges do not disturb shortest paths",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -416,8 +416,8 @@
       ]
     },
     {
-      "id": "real-large-valid-weight",
-      "name": "real: maximum disappearance admits arrival one unit earlier",
+      "id": "trial-large-valid-weight",
+      "name": "maximum disappearance admits arrival one unit earlier",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -444,8 +444,8 @@
       ]
     },
     {
-      "id": "real-large-invalid-weight",
-      "name": "real: maximum edge arrival equals disappearance",
+      "id": "trial-large-invalid-weight",
+      "name": "maximum edge arrival equals disappearance",
       "kind": "trial",
       "visible": true,
       "input": {

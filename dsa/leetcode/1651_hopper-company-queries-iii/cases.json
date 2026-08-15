@@ -416,7 +416,7 @@
       ]
     },
     {
-      "id": "real-december-window",
+      "id": "trial-december-window",
       "name": "December contributes to the October starting window",
       "kind": "trial",
       "visible": true,
@@ -510,7 +510,7 @@
       ]
     },
     {
-      "id": "real-rejected-and-outside-year",
+      "id": "trial-rejected-and-outside-year",
       "name": "rejected and out-of-year rides are excluded",
       "kind": "trial",
       "visible": true,

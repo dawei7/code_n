@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-minimum",
+      "id": "trial-minimum",
       "name": "minimum target",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-small-even",
+      "id": "trial-small-even",
       "name": "smallest representable even target",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-one-nontrivial-pair",
+      "id": "trial-one-nontrivial-pair",
       "name": "one pair above the minimum",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-many-pairs",
+      "id": "trial-many-pairs",
       "name": "many ordered pairs",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-odd-composite-complement",
+      "id": "trial-odd-composite-complement",
       "name": "odd target without a prime complement",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-no-odd-pair",
+      "id": "trial-no-odd-pair",
       "name": "odd target whose complement is composite",
       "kind": "trial",
       "visible": true,

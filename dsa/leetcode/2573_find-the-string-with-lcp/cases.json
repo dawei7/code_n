@@ -241,7 +241,7 @@
       ]
     },
     {
-      "id": "real-periodic",
+      "id": "trial-periodic",
       "name": "periodic suffix relationships",
       "kind": "trial",
       "visible": true,
@@ -307,7 +307,7 @@
       ]
     },
     {
-      "id": "real-asymmetric",
+      "id": "trial-asymmetric",
       "name": "asymmetric equality claims are impossible",
       "kind": "trial",
       "visible": true,
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "id": "real-broken-recurrence",
+      "id": "trial-broken-recurrence",
       "name": "positive entries must extend consistently",
       "kind": "trial",
       "visible": true,
@@ -373,7 +373,7 @@
       ]
     },
     {
-      "id": "real-too-many-groups",
+      "id": "trial-too-many-groups",
       "name": "27 distinct groups exceed the alphabet",
       "kind": "trial",
       "visible": true,

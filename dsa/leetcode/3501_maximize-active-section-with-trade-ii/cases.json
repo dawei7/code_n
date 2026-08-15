@@ -221,8 +221,8 @@
       ]
     },
     {
-      "id": "real-mixed-runs",
-      "name": "real: internal and truncated zero runs",
+      "id": "trial-mixed-runs",
+      "name": "internal and truncated zero runs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -258,8 +258,8 @@
       ]
     },
     {
-      "id": "real-single-position-queries",
-      "name": "real: one-character substrings cannot trade",
+      "id": "trial-single-position-queries",
+      "name": "one-character substrings cannot trade",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -292,6 +292,28 @@
       "tags": [
         "real",
         "minimum-range"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000",
+        "queries": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

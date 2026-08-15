@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-two-following",
+      "id": "trial-two-following",
       "name": "one strike doubles exactly two turns",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-expired",
+      "id": "trial-expired",
       "name": "strike no longer affects the third later turn",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-late-strike",
+      "id": "trial-late-strike",
       "name": "strike occurs near the end",
       "kind": "trial",
       "visible": true,
@@ -190,6 +190,51 @@
       "expected": 1,
       "tags": [
         "late-strike"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in player1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "player1": [
+          5
+        ],
+        "player2": [
+          6,
+          5,
+          7,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in player1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "player1": [
+          5,
+          5
+        ],
+        "player2": [
+          6,
+          5,
+          7,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

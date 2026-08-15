@@ -570,7 +570,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "nearest pawn blocks farther pawn",
       "kind": "trial",
       "visible": true,
@@ -664,7 +664,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "rook in corner",
       "kind": "trial",
       "visible": true,
@@ -758,7 +758,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "captures mixed with blockers",
       "kind": "trial",
       "visible": true,

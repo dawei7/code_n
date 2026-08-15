@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-exact-drop-budget",
-      "name": "real: one drop exactly consumes the budget",
+      "id": "trial-exact-drop-budget",
+      "name": "one drop exactly consumes the budget",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -140,8 +140,8 @@
       ]
     },
     {
-      "id": "real-plateau-drop",
-      "name": "real: equal-height blocks merge across a drop",
+      "id": "trial-plateau-drop",
+      "name": "equal-height blocks merge across a drop",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -160,8 +160,8 @@
       ]
     },
     {
-      "id": "real-wide-window",
-      "name": "real: mixed rises and drops",
+      "id": "trial-wide-window",
+      "name": "mixed rises and drops",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -185,8 +185,8 @@
       ]
     },
     {
-      "id": "real-large-budget",
-      "name": "real: all subarrays fit a large budget",
+      "id": "trial-large-budget",
+      "name": "all subarrays fit a large budget",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -204,8 +204,8 @@
       ]
     },
     {
-      "id": "real-multiple-contractions",
-      "name": "real: alternating values force repeated contraction",
+      "id": "trial-multiple-contractions",
+      "name": "alternating values force repeated contraction",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -224,8 +224,8 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: billion-scale values require wide arithmetic",
+      "id": "trial-large-values",
+      "name": "billion-scale values require wide arithmetic",
       "kind": "trial",
       "visible": true,
       "input": {

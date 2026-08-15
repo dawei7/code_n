@@ -187,8 +187,8 @@
       ]
     },
     {
-      "id": "real-two-day-network",
-      "name": "real: best bridge is inside two small networks",
+      "id": "trial-two-day-network",
+      "name": "best bridge is inside two small networks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -239,8 +239,8 @@
       ]
     },
     {
-      "id": "real-disconnected-components",
-      "name": "real: currencies reachable on only one day are unusable",
+      "id": "trial-disconnected-components",
+      "name": "currencies reachable on only one day are unusable",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -281,8 +281,8 @@
       ]
     },
     {
-      "id": "real-long-reciprocal-chain",
-      "name": "real: compare full chain with earlier bridge currencies",
+      "id": "trial-long-reciprocal-chain",
+      "name": "compare full chain with earlier bridge currencies",
       "kind": "trial",
       "visible": true,
       "input": {

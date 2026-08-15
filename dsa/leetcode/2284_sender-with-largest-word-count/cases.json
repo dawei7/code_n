@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-late-winner",
+      "id": "trial-late-winner",
       "name": "a late sender wins by total rather than order",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-three-way-tie",
+      "id": "trial-three-way-tie",
       "name": "three-way tie uses the largest name",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-spaces-count",
+      "id": "trial-spaces-count",
       "name": "every single separator adds one word",
       "kind": "trial",
       "visible": true,

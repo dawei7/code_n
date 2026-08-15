@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-contained-duplicate",
+      "id": "trial-contained-duplicate",
       "name": "duplicate inner peaks and one outer mountain",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-shared-center",
+      "id": "trial-shared-center",
       "name": "the tallest mountain at one x-coordinate contains the rest",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-rejection-regression",
+      "id": "trial-rejection-regression",
       "name": "equal-left larger interval must be processed first",
       "kind": "trial",
       "visible": true,

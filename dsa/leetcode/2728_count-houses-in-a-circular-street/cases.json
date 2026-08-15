@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-all-open",
+      "id": "trial-all-open",
       "name": "every door initially open",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-one-open",
+      "id": "trial-one-open",
       "name": "one open door cannot be trusted as marker",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating initial doors",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-long-loose",
+      "id": "trial-long-loose",
       "name": "loose bound on a longer cycle",
       "kind": "trial",
       "visible": true,

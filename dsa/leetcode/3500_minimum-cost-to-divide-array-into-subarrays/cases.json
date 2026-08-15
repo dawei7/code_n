@@ -128,8 +128,8 @@
       ]
     },
     {
-      "id": "real-mixed-costs",
-      "name": "real: mixed prefix values and weights",
+      "id": "trial-mixed-costs",
+      "name": "mixed prefix values and weights",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -158,8 +158,8 @@
       ]
     },
     {
-      "id": "real-large-k",
-      "name": "real: large order penalty",
+      "id": "trial-large-k",
+      "name": "large order penalty",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -184,8 +184,8 @@
       ]
     },
     {
-      "id": "real-skewed-cost",
-      "name": "real: high weights at interior indices",
+      "id": "trial-skewed-cost",
+      "name": "high weights at interior indices",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -212,8 +212,8 @@
       ]
     },
     {
-      "id": "real-uniform",
-      "name": "real: uniform arrays create tied-looking boundaries",
+      "id": "trial-uniform",
+      "name": "uniform arrays create tied-looking boundaries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -235,6 +235,51 @@
       "tags": [
         "real",
         "uniform-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ],
+        "cost": [
+          4,
+          6,
+          6
+        ],
+        "k": 1
+      },
+      "expected": 16,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ],
+        "cost": [
+          4,
+          6,
+          6
+        ],
+        "k": 1
+      },
+      "expected": 64,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

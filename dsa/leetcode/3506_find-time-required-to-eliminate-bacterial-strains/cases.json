@@ -77,8 +77,8 @@
       ]
     },
     {
-      "id": "real-balanced-eight-strains",
-      "name": "real: equal strains form a balanced split tree",
+      "id": "trial-balanced-eight-strains",
+      "name": "equal strains form a balanced split tree",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -102,8 +102,8 @@
       ]
     },
     {
-      "id": "real-one-dominant-strain",
-      "name": "real: dominant strain is assigned after one split",
+      "id": "trial-one-dominant-strain",
+      "name": "dominant strain is assigned after one split",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -123,8 +123,8 @@
       ]
     },
     {
-      "id": "real-expensive-splits",
-      "name": "real: split cost dominates every elimination",
+      "id": "trial-expensive-splits",
+      "name": "split cost dominates every elimination",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -142,8 +142,8 @@
       ]
     },
     {
-      "id": "real-maximum-answer-for-two",
-      "name": "real: value bounds require a wide integer result",
+      "id": "trial-maximum-answer-for-two",
+      "name": "value bounds require a wide integer result",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -161,8 +161,8 @@
       ]
     },
     {
-      "id": "real-input-order-irrelevant",
-      "name": "real: arbitrary strain order does not change scheduling",
+      "id": "trial-input-order-irrelevant",
+      "name": "arbitrary strain order does not change scheduling",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -183,8 +183,8 @@
       ]
     },
     {
-      "id": "real-three-equal-long-strains",
-      "name": "real: three equal strains need unequal depths",
+      "id": "trial-three-equal-long-strains",
+      "name": "three equal strains need unequal depths",
       "kind": "trial",
       "visible": true,
       "input": {

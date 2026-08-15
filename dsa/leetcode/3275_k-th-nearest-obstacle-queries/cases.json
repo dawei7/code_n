@@ -221,8 +221,8 @@
       ]
     },
     {
-      "id": "real-nearest-stays-zero",
-      "name": "real: later obstacles cannot displace the origin",
+      "id": "trial-nearest-stays-zero",
+      "name": "later obstacles cannot displace the origin",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -258,8 +258,8 @@
       ]
     },
     {
-      "id": "real-coordinate-limits",
-      "name": "real: maximum coordinate magnitudes",
+      "id": "trial-coordinate-limits",
+      "name": "maximum coordinate magnitudes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -290,8 +290,8 @@
       ]
     },
     {
-      "id": "real-far-obstacles-do-not-matter",
-      "name": "real: farther arrivals leave rank unchanged",
+      "id": "trial-far-obstacles-do-not-matter",
+      "name": "farther arrivals leave rank unchanged",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -332,8 +332,8 @@
       ]
     },
     {
-      "id": "real-late-near-obstacles",
-      "name": "real: late nearby obstacles lower the rank",
+      "id": "trial-late-near-obstacles",
+      "name": "late nearby obstacles lower the rank",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -374,8 +374,8 @@
       ]
     },
     {
-      "id": "real-origin-enters-second-rank",
-      "name": "real: origin improves the second nearest distance",
+      "id": "trial-origin-enters-second-rank",
+      "name": "origin improves the second nearest distance",
       "kind": "trial",
       "visible": true,
       "input": {

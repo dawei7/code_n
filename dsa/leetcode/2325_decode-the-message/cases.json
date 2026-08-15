@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-repeated-key-letters",
+      "id": "trial-repeated-key-letters",
       "name": "repeated key letters do not advance the alphabet",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-rotated-key",
+      "id": "trial-rotated-key",
       "name": "rotated alphabet checks first and last substitutions",
       "kind": "trial",
       "visible": true,

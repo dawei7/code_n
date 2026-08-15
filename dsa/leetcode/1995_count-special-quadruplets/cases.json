@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-repeated-right-values",
+      "id": "trial-repeated-right-values",
       "name": "equal fourth values count at distinct indices",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-order-boundary",
+      "id": "trial-order-boundary",
       "name": "an irrelevant prefix cannot serve as a late value",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-multiple-boundaries",
+      "id": "trial-multiple-boundaries",
       "name": "matches arise at different middle boundaries",
       "kind": "trial",
       "visible": true,

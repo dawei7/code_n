@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "two by two matrix",
       "kind": "trial",
       "visible": true,
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "repeated zeros",
       "kind": "trial",
       "visible": true,
@@ -279,7 +279,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "value bounds",
       "kind": "trial",
       "visible": true,
@@ -304,7 +304,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "tall four-row matrix",
       "kind": "trial",
       "visible": true,
@@ -337,7 +337,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "wide asymmetric values",
       "kind": "trial",
       "visible": true,
@@ -380,7 +380,7 @@
       ]
     },
     {
-      "id": "hidden-6",
+      "id": "trial-6",
       "name": "mixed signs and duplicates",
       "kind": "trial",
       "visible": true,

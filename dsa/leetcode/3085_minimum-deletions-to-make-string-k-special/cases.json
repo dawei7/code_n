@@ -89,8 +89,8 @@
       ]
     },
     {
-      "id": "real-delete-small-group",
-      "name": "real: deleting a rare group beats trimming the large group",
+      "id": "trial-delete-small-group",
+      "name": "deleting a rare group beats trimming the large group",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -104,8 +104,8 @@
       ]
     },
     {
-      "id": "real-tied-optima",
-      "name": "real: removing low counts ties trimming high counts",
+      "id": "trial-tied-optima",
+      "name": "removing low counts ties trimming high counts",
       "kind": "trial",
       "visible": true,
       "input": {

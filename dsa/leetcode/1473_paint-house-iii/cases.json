@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-target-one",
+      "id": "trial-target-one",
       "name": "common color must respect fixed house",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-maximum-neighborhoods",
+      "id": "trial-maximum-neighborhoods",
       "name": "every adjacent color must differ",
       "kind": "trial",
       "visible": true,
@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "real-fixed-cost-ignored",
+      "id": "trial-fixed-cost-ignored",
       "name": "cost rows for painted houses are irrelevant",
       "kind": "trial",
       "visible": true,
@@ -299,7 +299,7 @@
       ]
     },
     {
-      "id": "real-one-color-impossible",
+      "id": "trial-one-color-impossible",
       "name": "one color cannot form two neighborhoods",
       "kind": "trial",
       "visible": true,
@@ -331,7 +331,7 @@
       ]
     },
     {
-      "id": "real-fixed-and-unpainted-mix",
+      "id": "trial-fixed-and-unpainted-mix",
       "name": "cheapest local colors are not globally feasible",
       "kind": "trial",
       "visible": true,
@@ -377,6 +377,96 @@
       "expected": 3,
       "tags": [
         "global-optimum"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value m=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "houses": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "cost": [
+          [
+            1,
+            10
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "m": 1,
+        "n": 2,
+        "target": 3
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value target=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "houses": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "cost": [
+          [
+            1,
+            10
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "m": 5,
+        "n": 2,
+        "target": 1
+      },
+      "expected": 23,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

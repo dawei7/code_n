@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "real-ignore-outside",
+      "id": "trial-ignore-outside",
       "name": "qualifying words outside the range are ignored",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-first-only",
+      "id": "trial-first-only",
       "name": "starting with a vowel is insufficient",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-last-only",
+      "id": "trial-last-only",
       "name": "ending with a vowel is insufficient",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-all-vowels",
+      "id": "trial-all-vowels",
       "name": "every vowel character qualifies alone",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-inclusive-endpoints",
+      "id": "trial-inclusive-endpoints",
       "name": "both range endpoints are included",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-middle-slice",
+      "id": "trial-middle-slice",
       "name": "inspect only the selected middle slice",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-maximum-word-length",
+      "id": "trial-maximum-word-length",
       "name": "only endpoints matter in a long word",
       "kind": "trial",
       "visible": true,
@@ -210,6 +210,43 @@
       "expected": 1,
       "tags": [
         "maximum-word-length"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "are"
+        ],
+        "left": 0,
+        "right": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "are",
+          "are"
+        ],
+        "left": 0,
+        "right": 2
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

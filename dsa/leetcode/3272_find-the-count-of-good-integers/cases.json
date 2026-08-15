@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-three-digits-one",
-      "name": "real: every palindromic digit multiset qualifies",
+      "id": "trial-three-digits-one",
+      "name": "every palindromic digit multiset qualifies",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-four-digits-seven",
-      "name": "real: four-digit divisor seven",
+      "id": "trial-four-digits-seven",
+      "name": "four-digit divisor seven",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -137,8 +137,8 @@
       ]
     },
     {
-      "id": "real-six-digits-three",
-      "name": "real: six-digit divisor three",
+      "id": "trial-six-digits-three",
+      "name": "six-digit divisor three",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-seven-digits-four",
-      "name": "real: seven-digit divisor four",
+      "id": "trial-seven-digits-four",
+      "name": "seven-digit divisor four",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -167,8 +167,8 @@
       ]
     },
     {
-      "id": "real-eight-digits-nine",
-      "name": "real: eight-digit divisor nine",
+      "id": "trial-eight-digits-nine",
+      "name": "eight-digit divisor nine",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-single-distributed-equivalent",
+      "id": "trial-single-distributed-equivalent",
       "name": "one large requirement has a triangular cost",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-multiple-distributed-equivalent",
+      "id": "trial-multiple-distributed-equivalent",
       "name": "distributed demand has the same total-based cost",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-late-multi-block-deficit",
+      "id": "trial-late-multi-block-deficit",
       "name": "a late requirement needs many blocks together",
       "kind": "trial",
       "visible": true,
@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "real-maximum-k-exactly-suffices",
+      "id": "trial-maximum-k-exactly-suffices",
       "name": "maximum k exactly covers the total demand",
       "kind": "trial",
       "visible": true,
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "id": "real-maximum-value-one-unit-blocks",
+      "id": "trial-maximum-value-one-unit-blocks",
       "name": "a maximum value with unit blocks requires modular arithmetic",
       "kind": "trial",
       "visible": true,
@@ -278,7 +278,7 @@
       ]
     },
     {
-      "id": "real-two-maximum-values",
+      "id": "trial-two-maximum-values",
       "name": "two maximum values exceed fixed-width triangular arithmetic",
       "kind": "trial",
       "visible": true,
@@ -296,7 +296,7 @@
       ]
     },
     {
-      "id": "real-five-free-sized-blocks",
+      "id": "trial-five-free-sized-blocks",
       "name": "five maximum values need four paid blocks",
       "kind": "trial",
       "visible": true,
@@ -317,7 +317,7 @@
       ]
     },
     {
-      "id": "real-many-unit-requirements",
+      "id": "trial-many-unit-requirements",
       "name": "many unit requirements accumulate paid blocks",
       "kind": "trial",
       "visible": true,
@@ -350,6 +350,41 @@
       "tags": [
         "repeated-values",
         "triangular-cost"
+      ]
+    },
+    {
+      "id": "trial-boundary-19",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 4
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-20",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 4
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

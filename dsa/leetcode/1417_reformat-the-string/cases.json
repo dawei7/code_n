@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "repeated characters preserve multiplicity",
       "kind": "trial",
       "visible": true,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-imbalanced",
+      "id": "trial-imbalanced",
       "name": "two extra digits are impossible",
       "kind": "trial",
       "visible": true,

@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-equal-colors",
+      "id": "trial-equal-colors",
       "name": "order ends partway through equal inventories",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-low-colors",
+      "id": "trial-low-colors",
       "name": "dominant color remains above two singleton colors",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-cross-bands",
+      "id": "trial-cross-bands",
       "name": "order count crosses multiple adjacent levels",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-sell-everything",
+      "id": "trial-sell-everything",
       "name": "all available balls are sold",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-modulus",
+      "id": "trial-modulus",
       "name": "raw arithmetic-series profit requires modular reduction",
       "kind": "trial",
       "visible": true,
@@ -179,6 +179,42 @@
       "tags": [
         "large-value",
         "modulus"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in inventory",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "inventory": [
+          2,
+          2
+        ],
+        "orders": 4
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value orders=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "inventory": [
+          2,
+          5
+        ],
+        "orders": 1
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

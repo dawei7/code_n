@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "hidden-carry",
+      "id": "trial-carry",
       "name": "climb after exhausted nines",
       "kind": "trial",
       "visible": true,
@@ -336,7 +336,7 @@
       ]
     },
     {
-      "id": "hidden-power",
+      "id": "trial-power",
       "name": "exact power of ten",
       "kind": "trial",
       "visible": true,
@@ -1350,7 +1350,7 @@
       ]
     },
     {
-      "id": "hidden-mid-prefix",
+      "id": "trial-mid-prefix",
       "name": "bound inside a prefix",
       "kind": "trial",
       "visible": true,

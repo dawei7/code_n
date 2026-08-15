@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-one-already-first",
+      "id": "trial-one-already-first",
       "name": "only maximum must move",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-maximum-already-last",
+      "id": "trial-maximum-already-last",
       "name": "only one must move",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-fully-crossed",
+      "id": "trial-fully-crossed",
       "name": "maximum first and one last",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-near-front",
+      "id": "trial-near-front",
       "name": "one adjacent to front",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-mixed",
+      "id": "trial-mixed",
       "name": "separated reversed endpoints",
       "kind": "trial",
       "visible": true,

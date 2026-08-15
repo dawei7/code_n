@@ -122,6 +122,36 @@
         "long-run"
       ],
       "expected": 836719952
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "t": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "t": 2
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

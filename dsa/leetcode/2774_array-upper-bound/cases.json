@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-all-duplicates",
+      "id": "trial-all-duplicates",
       "name": "every value matches",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-before-range",
+      "id": "trial-before-range",
       "name": "target is smaller than every value",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-after-range",
+      "id": "trial-after-range",
       "name": "target is larger than every value",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-negative-duplicates",
+      "id": "trial-negative-duplicates",
       "name": "negative duplicate run",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-minimum-boundary",
+      "id": "trial-minimum-boundary",
       "name": "target is the minimum legal value at index zero",
       "kind": "trial",
       "visible": true,

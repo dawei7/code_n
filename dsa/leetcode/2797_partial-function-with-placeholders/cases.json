@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-placeholder-string-as-value",
+      "id": "trial-placeholder-string-as-value",
       "name": "underscore supplied at call time remains a value",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-structured-values",
+      "id": "trial-structured-values",
       "name": "structured JSON values are forwarded unchanged",
       "kind": "trial",
       "visible": true,
@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "real-call-receiver",
+      "id": "trial-call-receiver",
       "name": "wrapper forwards its dynamic receiver",
       "kind": "trial",
       "visible": true,

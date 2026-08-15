@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "hidden-both-axes",
+      "id": "trial-both-axes",
       "name": "center communicates on both axes",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "hidden-separated",
+      "id": "trial-separated",
       "name": "intervening empty cells",
       "kind": "trial",
       "visible": true,

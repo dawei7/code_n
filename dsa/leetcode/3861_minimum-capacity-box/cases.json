@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-decreasing-capacities",
+      "id": "trial-decreasing-capacities",
       "name": "minimum eligible capacity occurs last",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-repeated-minimum",
+      "id": "trial-repeated-minimum",
       "name": "strict improvement preserves the first minimum",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-smallest-item",
+      "id": "trial-smallest-item",
       "name": "all boxes fit the minimum item size",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-largest-item",
+      "id": "trial-largest-item",
       "name": "only maximum-capacity boxes can fit",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-last-exact-fit",
+      "id": "trial-last-exact-fit",
       "name": "the sole exact fit appears at the end",
       "kind": "trial",
       "visible": true,
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": "real-capacity-before-index",
+      "id": "trial-capacity-before-index",
       "name": "minimum capacity outranks an earlier index",
       "kind": "trial",
       "visible": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "real-all-below-item",
+      "id": "trial-all-below-item",
       "name": "no repeated undersized box is eligible",
       "kind": "trial",
       "visible": true,
@@ -292,6 +292,41 @@
       "tags": [
         "no-eligible-box",
         "negative-one"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in capacity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": [
+          1
+        ],
+        "itemSize": 3
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in capacity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "capacity": [
+          1,
+          1
+        ],
+        "itemSize": 3
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

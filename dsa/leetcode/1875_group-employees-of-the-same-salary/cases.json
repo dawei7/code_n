@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-one-team",
+      "id": "trial-one-team",
       "name": "one repeated salary starts at team one",
       "kind": "trial",
       "visible": true,
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "real-team-of-three",
+      "id": "trial-team-of-three",
       "name": "every member of a three-person salary group is retained",
       "kind": "trial",
       "visible": true,
@@ -315,7 +315,7 @@
       ]
     },
     {
-      "id": "real-unique-below-team",
+      "id": "trial-unique-below-team",
       "name": "lower unique salary does not consume team one",
       "kind": "trial",
       "visible": true,
@@ -371,7 +371,7 @@
       ]
     },
     {
-      "id": "real-unique-between-teams",
+      "id": "trial-unique-between-teams",
       "name": "middle unique salary creates no rank gap",
       "kind": "trial",
       "visible": true,
@@ -449,7 +449,7 @@
       ]
     },
     {
-      "id": "real-unsorted-input",
+      "id": "trial-unsorted-input",
       "name": "salary and employee order are independent of input order",
       "kind": "trial",
       "visible": true,
@@ -522,7 +522,7 @@
       ]
     },
     {
-      "id": "real-many-unique",
+      "id": "trial-many-unique",
       "name": "several unique salaries around one team are all omitted",
       "kind": "trial",
       "visible": true,
@@ -587,7 +587,7 @@
       ]
     },
     {
-      "id": "real-three-teams",
+      "id": "trial-three-teams",
       "name": "three salaries receive consecutive team identifiers",
       "kind": "trial",
       "visible": true,

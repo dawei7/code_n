@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-unsorted-mixed",
+      "id": "trial-unsorted-mixed",
       "name": "mixed signs and shuffled edges",
       "kind": "trial",
       "visible": true,
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-large-gaps",
+      "id": "trial-large-gaps",
       "name": "numeric distance is irrelevant",
       "kind": "trial",
       "visible": true,
@@ -257,7 +257,7 @@
       ]
     },
     {
-      "id": "real-endpoint-pair-last",
+      "id": "trial-endpoint-pair-last",
       "name": "neither endpoint appears in the first pair",
       "kind": "trial",
       "visible": true,
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "id": "real-eight-values",
+      "id": "trial-eight-values",
       "name": "longer shuffled path",
       "kind": "trial",
       "visible": true,
@@ -357,7 +357,7 @@
       ]
     },
     {
-      "id": "real-zero-endpoint",
+      "id": "trial-zero-endpoint",
       "name": "zero is an endpoint value",
       "kind": "trial",
       "visible": true,

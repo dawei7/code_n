@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "hidden-duplicates-and-powers",
+      "id": "trial-duplicates-and-powers",
       "name": "duplicates repeatedly extend the prefix",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "hidden-late-gap",
+      "id": "trial-late-gap",
       "name": "coverage stops before a late large coin",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "hidden-many-unit-coins",
+      "id": "trial-many-unit-coins",
       "name": "many identical unit coins",
       "kind": "trial",
       "visible": true,

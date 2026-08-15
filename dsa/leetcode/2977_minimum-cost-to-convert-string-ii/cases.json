@@ -147,8 +147,8 @@
       ]
     },
     {
-      "id": "real-duplicate-rule",
-      "name": "real: cheaper duplicate substring rule wins",
+      "id": "trial-duplicate-rule",
+      "name": "cheaper duplicate substring rule wins",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -173,8 +173,8 @@
       ]
     },
     {
-      "id": "real-whole-string",
-      "name": "real: whole-string conversion beats smaller blocks",
+      "id": "trial-whole-string",
+      "name": "whole-string conversion beats smaller blocks",
       "kind": "trial",
       "visible": true,
       "input": {

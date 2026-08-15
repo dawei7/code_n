@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-ascending",
+      "id": "trial-ascending",
       "name": "ascending heights reverse all names",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-case-sensitive",
+      "id": "trial-case-sensitive",
       "name": "names are data rather than sort keys",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-large-heights",
+      "id": "trial-large-heights",
       "name": "boundary heights stay attached",
       "kind": "trial",
       "visible": true,

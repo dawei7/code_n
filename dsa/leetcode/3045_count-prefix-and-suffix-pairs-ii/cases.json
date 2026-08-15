@@ -90,8 +90,8 @@
       ]
     },
     {
-      "id": "real-earlier-longer",
-      "name": "real: longer earlier word cannot match a shorter later word",
+      "id": "trial-earlier-longer",
+      "name": "longer earlier word cannot match a shorter later word",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -108,8 +108,8 @@
       ]
     },
     {
-      "id": "real-overlapping",
-      "name": "real: overlapping prefix-suffix relationships",
+      "id": "trial-overlapping",
+      "name": "overlapping prefix-suffix relationships",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -129,8 +129,8 @@
       ]
     },
     {
-      "id": "real-one-sided-matches",
-      "name": "real: prefix-only and suffix-only matches do not count",
+      "id": "trial-one-sided-matches",
+      "name": "prefix-only and suffix-only matches do not count",
       "kind": "trial",
       "visible": true,
       "input": {

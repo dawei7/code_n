@@ -262,7 +262,7 @@
       ]
     },
     {
-      "id": "real-reverse-recommendation",
+      "id": "trial-reverse-recommendation",
       "name": "reverse the stored friendship for the other user's recommendation",
       "kind": "trial",
       "visible": true,
@@ -305,7 +305,7 @@
       ]
     },
     {
-      "id": "real-two-supporters",
+      "id": "trial-two-supporters",
       "name": "two friends liking one page produce support count two",
       "kind": "trial",
       "visible": true,
@@ -356,7 +356,7 @@
       ]
     },
     {
-      "id": "real-mutual-different-pages",
+      "id": "trial-mutual-different-pages",
       "name": "each friend receives the other user's distinct page",
       "kind": "trial",
       "visible": true,
@@ -408,7 +408,7 @@
       ]
     },
     {
-      "id": "real-friend-no-likes",
+      "id": "trial-friend-no-likes",
       "name": "friends without likes create no null-page row",
       "kind": "trial",
       "visible": true,
@@ -445,7 +445,7 @@
       ]
     },
     {
-      "id": "real-one-friend-several-pages",
+      "id": "trial-one-friend-several-pages",
       "name": "one friend may recommend several pages independently",
       "kind": "trial",
       "visible": true,
@@ -506,7 +506,7 @@
       ]
     },
     {
-      "id": "real-exclude-one-keep-one",
+      "id": "trial-exclude-one-keep-one",
       "name": "own like suppresses one candidate while another survives",
       "kind": "trial",
       "visible": true,
@@ -557,7 +557,7 @@
       ]
     },
     {
-      "id": "real-isolated-liker",
+      "id": "trial-isolated-liker",
       "name": "an isolated user's page creates no recommendations",
       "kind": "trial",
       "visible": true,

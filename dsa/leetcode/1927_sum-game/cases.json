@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-all-unknown",
+      "id": "trial-all-unknown",
       "name": "symmetric all-unknown halves can be paired by Bob",
       "kind": "trial",
       "visible": true,
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-left-compensation",
+      "id": "trial-left-compensation",
       "name": "two extra left unknowns compensate a right sum of nine",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-right-compensation",
+      "id": "trial-right-compensation",
       "name": "two extra right unknowns compensate a left sum of nine",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-equal-unknown-counts",
+      "id": "trial-equal-unknown-counts",
       "name": "equal unknown counts do not repair a known sum gap",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-two-left-unknowns",
+      "id": "trial-two-left-unknowns",
       "name": "unopposed left unknown contribution favors Alice",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-odd-many",
+      "id": "trial-odd-many",
       "name": "any odd total unknown count gives Alice the final move",
       "kind": "trial",
       "visible": true,
@@ -155,6 +155,34 @@
       "tags": [
         "odd-move-count",
         "alice-wins"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "5"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "555"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

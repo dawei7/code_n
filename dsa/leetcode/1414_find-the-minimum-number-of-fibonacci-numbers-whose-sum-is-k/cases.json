@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-between-fibonacci",
+      "id": "trial-between-fibonacci",
       "name": "several greedy remainders",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "maximum input",
       "kind": "trial",
       "visible": true,

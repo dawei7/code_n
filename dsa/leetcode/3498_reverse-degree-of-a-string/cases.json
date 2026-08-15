@@ -72,8 +72,8 @@
       ]
     },
     {
-      "id": "real-za",
-      "name": "real: position changes the endpoint weights",
+      "id": "trial-za",
+      "name": "position changes the endpoint weights",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -86,8 +86,8 @@
       ]
     },
     {
-      "id": "real-repeated-a",
-      "name": "real: repeated maximum values",
+      "id": "trial-repeated-a",
+      "name": "repeated maximum values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -100,8 +100,8 @@
       ]
     },
     {
-      "id": "real-alphabet",
-      "name": "real: complete lowercase alphabet",
+      "id": "trial-alphabet",
+      "name": "complete lowercase alphabet",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -114,8 +114,8 @@
       ]
     },
     {
-      "id": "real-palindrome",
-      "name": "real: equal letters at different positions",
+      "id": "trial-palindrome",
+      "name": "equal letters at different positions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -125,6 +125,20 @@
       "tags": [
         "real",
         "repeated-letters"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": 156,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

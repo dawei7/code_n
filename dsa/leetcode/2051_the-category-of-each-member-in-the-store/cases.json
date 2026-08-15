@@ -305,7 +305,7 @@
       ]
     },
     {
-      "id": "real-amount-irrelevant",
+      "id": "trial-amount-irrelevant",
       "name": "purchase amounts do not weight conversion",
       "kind": "trial",
       "visible": true,
@@ -364,7 +364,7 @@
       ]
     },
     {
-      "id": "real-gold-noninteger-rate",
+      "id": "trial-gold-noninteger-rate",
       "name": "a fractional rate between thresholds is gold",
       "kind": "trial",
       "visible": true,

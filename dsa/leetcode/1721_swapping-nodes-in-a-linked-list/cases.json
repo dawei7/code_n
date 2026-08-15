@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-even-middle",
+      "id": "trial-even-middle",
       "name": "central values in an even list are adjacent",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate values do not identify positions",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-zero-values",
+      "id": "trial-zero-values",
       "name": "zero-valued nodes swap normally",
       "kind": "trial",
       "visible": true,
@@ -248,7 +248,7 @@
       ]
     },
     {
-      "id": "real-longer",
+      "id": "trial-longer",
       "name": "longer list preserves every link order",
       "kind": "trial",
       "visible": true,

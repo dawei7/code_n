@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-perfect-496",
+      "id": "trial-perfect-496",
       "name": "third perfect number",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-perfect-8128",
+      "id": "trial-perfect-8128",
       "name": "fourth perfect number",
       "kind": "trial",
       "visible": true,

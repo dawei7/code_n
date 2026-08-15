@@ -60,7 +60,7 @@
       ]
     },
     {
-      "id": "real-repair-one-character",
+      "id": "trial-repair-one-character",
       "name": "shrink only until the added character is valid",
       "kind": "trial",
       "visible": true,
@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-best-prefix",
+      "id": "trial-best-prefix",
       "name": "optimum occurs before a trailing third copy",
       "kind": "trial",
       "visible": true,
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-three-cycles",
+      "id": "trial-three-cycles",
       "name": "every third copy forces the oldest copy out",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-best-before-end",
+      "id": "trial-best-before-end",
       "name": "final characters do not improve the maximum",
       "kind": "trial",
       "visible": true,

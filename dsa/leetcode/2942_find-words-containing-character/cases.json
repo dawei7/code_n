@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-target-at-varied-positions",
+      "id": "trial-target-at-varied-positions",
       "name": "target occurs at the beginning and end",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-all-match",
+      "id": "trial-all-match",
       "name": "every word contains the target",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-long-word-late-match",
+      "id": "trial-long-word-late-match",
       "name": "target appears at the last legal position",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-sparse-match",
+      "id": "trial-sparse-match",
       "name": "only the final word matches",
       "kind": "trial",
       "visible": true,
@@ -229,6 +229,46 @@
       },
       "tags": [
         "sparse"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "leet"
+        ],
+        "x": "e"
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "leet",
+          "leet"
+        ],
+        "x": "e"
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

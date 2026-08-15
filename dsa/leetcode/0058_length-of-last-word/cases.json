@@ -55,7 +55,7 @@
       ]
     },
     {
-      "id": "real-trailing",
+      "id": "trial-trailing",
       "name": "long trailing suffix",
       "kind": "trial",
       "visible": true,

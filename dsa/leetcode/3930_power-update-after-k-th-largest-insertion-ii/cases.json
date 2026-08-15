@@ -280,7 +280,7 @@
       ]
     },
     {
-      "id": "real-all-values-equal",
+      "id": "trial-all-values-equal",
       "name": "every rank resolves to the same duplicated value",
       "kind": "trial",
       "visible": true,
@@ -319,7 +319,7 @@
       ]
     },
     {
-      "id": "real-growing-smallest-boundary",
+      "id": "trial-growing-smallest-boundary",
       "name": "each query asks for the current smallest",
       "kind": "trial",
       "visible": true,
@@ -358,7 +358,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum bases and exponents require modular power",
       "kind": "trial",
       "visible": true,
@@ -391,7 +391,7 @@
       ]
     },
     {
-      "id": "real-duplicate-rank-boundary",
+      "id": "trial-duplicate-rank-boundary",
       "name": "ranks cross a block of duplicate values",
       "kind": "trial",
       "visible": true,
@@ -431,7 +431,7 @@
       ]
     },
     {
-      "id": "real-smallest-then-largest",
+      "id": "trial-smallest-then-largest",
       "name": "consecutive queries select opposite rank extremes",
       "kind": "trial",
       "visible": true,
@@ -465,7 +465,7 @@
       ]
     },
     {
-      "id": "real-changing-interior-ranks",
+      "id": "trial-changing-interior-ranks",
       "name": "several interior order statistics change over time",
       "kind": "trial",
       "visible": true,
@@ -510,7 +510,7 @@
       ]
     },
     {
-      "id": "real-base-one",
+      "id": "trial-base-one",
       "name": "modular powers preserve a base of one",
       "kind": "trial",
       "visible": true,

@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-highest-buy-first",
+      "id": "trial-highest-buy-first",
       "name": "sell consumes the highest buy before a lower buy",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-lowest-sell-first",
+      "id": "trial-lowest-sell-first",
       "name": "buy consumes only the compatible cheapest sell",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-single-large-order",
+      "id": "trial-single-large-order",
       "name": "single amount is reduced only in the answer",
       "kind": "trial",
       "visible": true,

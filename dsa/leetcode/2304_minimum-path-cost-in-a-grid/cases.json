@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "real-later-start",
+      "id": "trial-later-start",
       "name": "the optimal path need not start at the smallest top value",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-three-columns",
+      "id": "trial-three-columns",
       "name": "each layer compares every predecessor and destination",
       "kind": "trial",
       "visible": true,

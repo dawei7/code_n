@@ -81,8 +81,8 @@
       ]
     },
     {
-      "id": "real-alternating",
-      "name": "real: alternating blocks accumulate prefix ones",
+      "id": "trial-alternating",
+      "name": "alternating blocks accumulate prefix ones",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -94,8 +94,8 @@
       ]
     },
     {
-      "id": "real-leading-zeroes",
-      "name": "real: leading zeroes do not contribute",
+      "id": "trial-leading-zeroes",
+      "name": "leading zeroes do not contribute",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-many-ones-one-block",
-      "name": "real: every preceding one crosses the final block",
+      "id": "trial-many-ones-one-block",
+      "name": "every preceding one crosses the final block",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -120,8 +120,8 @@
       ]
     },
     {
-      "id": "real-all-zeroes",
-      "name": "real: all zeroes have no move",
+      "id": "trial-all-zeroes",
+      "name": "all zeroes have no move",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -133,8 +133,8 @@
       ]
     },
     {
-      "id": "real-all-ones",
-      "name": "real: all ones have no move",
+      "id": "trial-all-ones",
+      "name": "all ones have no move",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-varied-blocks",
-      "name": "real: varied block lengths count once per boundary",
+      "id": "trial-varied-blocks",
+      "name": "varied block lengths count once per boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -156,6 +156,20 @@
       "expected": 15,
       "tags": [
         "multiple-blocks"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

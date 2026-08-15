@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-exact-multiples",
+      "id": "trial-exact-multiples",
       "name": "exact multiples do not overcount endpoints",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-each-gap-needs-one",
+      "id": "trial-each-gap-needs-one",
       "name": "independent gaps each contribute once",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-mixed-gaps",
+      "id": "trial-mixed-gaps",
       "name": "reachable and oversized gaps are combined",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-large-height",
+      "id": "trial-large-height",
       "name": "arithmetic handles a large single height",
       "kind": "trial",
       "visible": true,

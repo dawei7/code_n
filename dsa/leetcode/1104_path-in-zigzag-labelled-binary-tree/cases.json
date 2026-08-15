@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-level-start",
+      "id": "trial-level-start",
       "name": "target is power-of-two level start",
       "kind": "trial",
       "visible": true,
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-next-level-end",
+      "id": "trial-next-level-end",
       "name": "deeper numeric level end",
       "kind": "trial",
       "visible": true,

@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-original-indices",
+      "id": "trial-original-indices",
       "name": "later positions refer to the original string",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-adjacent-indices",
+      "id": "trial-adjacent-indices",
       "name": "adjacent insertion indices",
       "kind": "trial",
       "visible": true,
@@ -135,6 +135,44 @@
       "expected": "h e l lo",
       "tags": [
         "adjacent-indices"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "L",
+        "spaces": [
+          8,
+          13,
+          15
+        ]
+      },
+      "expected": "L",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "LLL",
+        "spaces": [
+          8,
+          13,
+          15
+        ]
+      },
+      "expected": "LLL",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "hidden-irrelevant",
+      "id": "trial-irrelevant",
       "name": "only seats one and ten reserved",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "hidden-blocked",
+      "id": "trial-blocked",
       "name": "every family block obstructed",
       "kind": "trial",
       "visible": true,

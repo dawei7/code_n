@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-whole-string",
+      "id": "trial-whole-string",
       "name": "whole string is one dictionary word",
       "kind": "trial",
       "visible": true,
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-overlap-choice",
+      "id": "trial-overlap-choice",
       "name": "optimal choice resolves overlapping words",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-interior-extras",
+      "id": "trial-interior-extras",
       "name": "extras occur between matched words",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-single-character",
+      "id": "trial-single-character",
       "name": "one unmatched character",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-long-word-ignored",
+      "id": "trial-long-word-ignored",
       "name": "longer dictionary word does not interfere",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-reuse-word",
+      "id": "trial-reuse-word",
       "name": "one dictionary word may be used repeatedly",
       "kind": "trial",
       "visible": true,
@@ -175,6 +175,44 @@
       "expected": 1,
       "tags": [
         "repeated-occurrence"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "l",
+        "dictionary": [
+          "leet",
+          "code",
+          "leetcode"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "lll",
+        "dictionary": [
+          "leet",
+          "code",
+          "leetcode"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

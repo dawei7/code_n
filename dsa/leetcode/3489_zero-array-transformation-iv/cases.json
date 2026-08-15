@@ -221,8 +221,8 @@
       ]
     },
     {
-      "id": "real-subset-sum-combination",
-      "name": "real: several values combine to one target",
+      "id": "trial-subset-sum-combination",
+      "name": "several values combine to one target",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -259,8 +259,8 @@
       ]
     },
     {
-      "id": "real-skip-unhelpful-query",
-      "name": "real: a query may choose an empty subset",
+      "id": "trial-skip-unhelpful-query",
+      "name": "a query may choose an empty subset",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -292,8 +292,8 @@
       ]
     },
     {
-      "id": "real-independent-index-choices",
-      "name": "real: one range query selects only some covered indices",
+      "id": "trial-independent-index-choices",
+      "name": "one range query selects only some covered indices",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -322,8 +322,8 @@
       ]
     },
     {
-      "id": "real-range-exclusion",
-      "name": "real: values only receive decrements from covering ranges",
+      "id": "trial-range-exclusion",
+      "name": "values only receive decrements from covering ranges",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -356,8 +356,8 @@
       ]
     },
     {
-      "id": "real-minimum-prefix",
-      "name": "real: return the first successful prefix",
+      "id": "trial-minimum-prefix",
+      "name": "return the first successful prefix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -390,8 +390,8 @@
       ]
     },
     {
-      "id": "real-mixed-zero-targets",
-      "name": "real: zero targets are satisfied from the start",
+      "id": "trial-mixed-zero-targets",
+      "name": "zero targets are satisfied from the start",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -421,8 +421,8 @@
       ]
     },
     {
-      "id": "real-target-upper-bound",
-      "name": "real: bitset is clipped at the target bound",
+      "id": "trial-target-upper-bound",
+      "name": "bitset is clipped at the target bound",
       "kind": "trial",
       "visible": true,
       "input": {

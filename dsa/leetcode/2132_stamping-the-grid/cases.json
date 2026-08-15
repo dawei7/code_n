@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-oversized-empty",
+      "id": "trial-oversized-empty",
       "name": "an oversized stamp cannot cover an empty cell",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-oversized-all-occupied",
+      "id": "trial-oversized-all-occupied",
       "name": "no stamp is needed when no cell is empty",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-single-blocker",
+      "id": "trial-single-blocker",
       "name": "one occupied cell invalidates the only placement",
       "kind": "trial",
       "visible": true,
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "real-horizontal-overlap",
+      "id": "trial-horizontal-overlap",
       "name": "overlapping horizontal stamps cover a row",
       "kind": "trial",
       "visible": true,
@@ -235,6 +235,100 @@
       "expected": true,
       "tags": [
         "horizontal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value stampHeight=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ],
+        "stampHeight": 1,
+        "stampWidth": 3
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value stampWidth=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ],
+        "stampHeight": 4,
+        "stampWidth": 1
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-zero-literal",
+      "id": "trial-zero-literal",
       "name": "a false literal changes with one operation",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-one-literal",
+      "id": "trial-one-literal",
       "name": "a true literal changes with one operation",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-redundant-parentheses",
+      "id": "trial-redundant-parentheses",
       "name": "redundant parentheses do not change the literal cost",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-parenthesized-precedence",
+      "id": "trial-parenthesized-precedence",
       "name": "parentheses preserve an inner conjunction before the outer OR",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-all-ones-and",
+      "id": "trial-all-ones-and",
       "name": "one false literal makes a long AND chain false",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-balanced-groups",
+      "id": "trial-balanced-groups",
       "name": "independently grouped subexpressions combine through an outer AND",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-false-outer-and",
+      "id": "trial-false-outer-and",
       "name": "changing the outer operator can bypass a false left operand",
       "kind": "trial",
       "visible": true,
@@ -168,6 +168,20 @@
       "tags": [
         "outer-operator",
         "group-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in expression",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "expression": "111"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

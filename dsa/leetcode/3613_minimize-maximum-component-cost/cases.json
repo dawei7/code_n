@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "real-parallel-edges",
+      "id": "trial-parallel-edges",
       "name": "choose the cheaper parallel edge",
       "kind": "trial",
       "visible": true,
@@ -285,7 +285,7 @@
       ]
     },
     {
-      "id": "real-dense-cycles",
+      "id": "trial-dense-cycles",
       "name": "dense cycles do not replace required bottleneck links",
       "kind": "trial",
       "visible": true,
@@ -342,7 +342,7 @@
       ]
     },
     {
-      "id": "real-two-clusters",
+      "id": "trial-two-clusters",
       "name": "stop after forming two inexpensive clusters",
       "kind": "trial",
       "visible": true,
@@ -389,7 +389,7 @@
       ]
     },
     {
-      "id": "real-maximum-weight",
+      "id": "trial-maximum-weight",
       "name": "maximum legal edge weight is retained",
       "kind": "trial",
       "visible": true,
@@ -410,7 +410,7 @@
       ]
     },
     {
-      "id": "real-unsorted-tree",
+      "id": "trial-unsorted-tree",
       "name": "unsorted tree weights require a threshold sweep",
       "kind": "trial",
       "visible": true,
@@ -457,7 +457,7 @@
       ]
     },
     {
-      "id": "real-redundant-light-cycles",
+      "id": "trial-redundant-light-cycles",
       "name": "light cycles reduce no additional components",
       "kind": "trial",
       "visible": true,
@@ -501,6 +501,43 @@
       "tags": [
         "cycle",
         "component-count"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1,
+            4
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            3,
+            2
+          ],
+          [
+            3,
+            4,
+            6
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

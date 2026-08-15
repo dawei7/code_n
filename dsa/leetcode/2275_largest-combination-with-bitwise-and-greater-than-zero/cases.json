@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-noncontiguous",
+      "id": "trial-noncontiguous",
       "name": "selection may skip arbitrary array positions",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-all-identical",
+      "id": "trial-all-identical",
       "name": "every identical occurrence can be selected",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-pairwise-trap",
+      "id": "trial-pairwise-trap",
       "name": "pairwise overlaps do not imply one shared bit",
       "kind": "trial",
       "visible": true,
@@ -143,6 +143,39 @@
       "expected": 2,
       "tags": [
         "pairwise-overlap"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in candidates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candidates": [
+          16
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in candidates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "candidates": [
+          16,
+          16
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

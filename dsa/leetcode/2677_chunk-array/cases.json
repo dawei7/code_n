@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-one-chunk",
+      "id": "trial-one-chunk",
       "name": "size equals the array length",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-final-singleton",
+      "id": "trial-final-singleton",
       "name": "one element remains",
       "kind": "trial",
       "visible": true,

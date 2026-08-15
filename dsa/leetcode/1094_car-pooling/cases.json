@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-three-way-overlap",
+      "id": "trial-three-way-overlap",
       "name": "three groups create a brief overload",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-unsorted-trips",
+      "id": "trial-unsorted-trips",
       "name": "input order differs from travel order",
       "kind": "trial",
       "visible": true,

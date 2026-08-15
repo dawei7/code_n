@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-prime-reappears",
-      "name": "real: primes disappear, reappear, and change overlap",
+      "id": "trial-prime-reappears",
+      "name": "primes disappear, reappear, and change overlap",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -177,8 +177,8 @@
       ]
     },
     {
-      "id": "real-value-boundary",
-      "name": "real: distinguish a large prime from the maximum composite value",
+      "id": "trial-value-boundary",
+      "name": "distinguish a large prime from the maximum composite value",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -215,8 +215,8 @@
       ]
     },
     {
-      "id": "real-unchanged-primes",
-      "name": "real: repeated assignments preserve distinct singleton primes",
+      "id": "trial-unchanged-primes",
+      "name": "repeated assignments preserve distinct singleton primes",
       "kind": "trial",
       "visible": true,
       "input": {

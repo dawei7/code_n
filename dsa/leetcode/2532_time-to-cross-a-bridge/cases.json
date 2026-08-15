@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-one-worker-pipeline",
+      "id": "trial-one-worker-pipeline",
       "name": "one worker processes several boxes serially",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-tied-workers",
+      "id": "trial-tied-workers",
       "name": "equal efficiency uses larger index first",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-right-side-priority",
+      "id": "trial-right-side-priority",
       "name": "returning worker preempts left-side dispatch",
       "kind": "trial",
       "visible": true,

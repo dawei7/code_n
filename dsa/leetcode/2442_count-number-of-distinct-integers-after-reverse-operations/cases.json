@@ -74,7 +74,7 @@
       ]
     },
     {
-      "id": "real-reversal-present",
+      "id": "trial-reversal-present",
       "name": "values reverse into each other",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-palindrome",
+      "id": "trial-palindrome",
       "name": "repeated palindrome stays one value",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-multiple-trailing-zeros",
+      "id": "trial-multiple-trailing-zeros",
       "name": "several originals reverse to one",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "maximum input reverses to one",
       "kind": "trial",
       "visible": true,

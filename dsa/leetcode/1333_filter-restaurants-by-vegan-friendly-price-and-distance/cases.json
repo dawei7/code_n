@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "hidden-inclusive",
+      "id": "trial-inclusive",
       "name": "inclusive price and distance boundaries",
       "kind": "trial",
       "visible": true,
@@ -290,7 +290,7 @@
       ]
     },
     {
-      "id": "hidden-disabled-vegan",
+      "id": "trial-disabled-vegan",
       "name": "disabled vegan flag allows both values",
       "kind": "trial",
       "visible": true,

@@ -423,7 +423,7 @@
       ]
     },
     {
-      "id": "real-zero-active",
+      "id": "trial-zero-active",
       "name": "months before the first driver report zero",
       "kind": "trial",
       "visible": true,
@@ -514,7 +514,7 @@
       ]
     },
     {
-      "id": "real-rejected-and-outside-year",
+      "id": "trial-rejected-and-outside-year",
       "name": "rejected and out-of-year rides do not contribute",
       "kind": "trial",
       "visible": true,

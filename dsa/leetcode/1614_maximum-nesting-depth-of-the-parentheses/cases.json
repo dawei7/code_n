@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-deep-prefix",
+      "id": "trial-deep-prefix",
       "name": "deepest run occurs at the beginning",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-deep-suffix",
+      "id": "trial-deep-suffix",
       "name": "deepest run occurs at the end",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-mixed-operators",
+      "id": "trial-mixed-operators",
       "name": "every supported operator is ignored",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-maximum-depth",
+      "id": "trial-maximum-depth",
       "name": "legal length supports fifty nested pairs",
       "kind": "trial",
       "visible": true,
@@ -137,6 +137,34 @@
       "tags": [
         "maximum-length",
         "maximum-depth"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "("
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "((("
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

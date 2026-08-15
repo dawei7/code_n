@@ -46,7 +46,7 @@
       ]
     },
     {
-      "id": "real-last",
+      "id": "trial-last",
       "name": "last version is first bad",
       "kind": "trial",
       "visible": true,

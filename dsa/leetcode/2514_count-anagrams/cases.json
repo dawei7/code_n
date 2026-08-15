@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-word-order-fixed",
+      "id": "trial-word-order-fixed",
       "name": "words remain in their original positions",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-modular-product",
+      "id": "trial-modular-product",
       "name": "a large product is reduced modulo the prime",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-all-identical-groups",
+      "id": "trial-all-identical-groups",
       "name": "several fixed words each have one arrangement",
       "kind": "trial",
       "visible": true,

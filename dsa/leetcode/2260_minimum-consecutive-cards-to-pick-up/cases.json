@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-single-card",
+      "id": "trial-single-card",
       "name": "one card cannot form a pair",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-late-adjacent",
+      "id": "trial-late-adjacent",
       "name": "a late adjacent pair beats an early distant pair",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-many-values",
+      "id": "trial-many-values",
       "name": "minimum is selected across several repeated values",
       "kind": "trial",
       "visible": true,

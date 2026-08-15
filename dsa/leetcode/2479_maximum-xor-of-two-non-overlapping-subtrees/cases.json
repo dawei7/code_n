@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-nested-versus-sibling",
+      "id": "trial-nested-versus-sibling",
       "name": "descendants overlap with their ancestor",
       "kind": "trial",
       "visible": true,
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-two-node-chain",
+      "id": "trial-two-node-chain",
       "name": "smallest tree cannot form a pair",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-edge-order-arbitrary",
+      "id": "trial-edge-order-arbitrary",
       "name": "edges do not encode parent direction",
       "kind": "trial",
       "visible": true,
@@ -249,7 +249,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "subtree sums exceed 32 bits",
       "kind": "trial",
       "visible": true,

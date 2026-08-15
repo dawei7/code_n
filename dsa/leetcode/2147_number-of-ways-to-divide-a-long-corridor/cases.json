@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-three-gap-options",
+      "id": "trial-three-gap-options",
       "name": "plants between seat pairs create three choices",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-multiple-boundaries",
+      "id": "trial-multiple-boundaries",
       "name": "independent boundaries multiply",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-odd-many-seats",
+      "id": "trial-odd-many-seats",
       "name": "plants do not repair an odd seat count",
       "kind": "trial",
       "visible": true,

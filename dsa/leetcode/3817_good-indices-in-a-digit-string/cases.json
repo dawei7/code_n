@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-two-digit-eleven",
+      "id": "trial-two-digit-eleven",
       "name": "index eleven matches after earlier zeros",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-leading-zero-is-not-a-representation",
+      "id": "trial-leading-zero-is-not-a-representation",
       "name": "an ending pair with a leading zero does not match",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-only-index-eleven",
+      "id": "trial-only-index-eleven",
       "name": "a later pair matches while every one-digit index fails",
       "kind": "trial",
       "visible": true,
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "real-repeated-nines-cross-power",
+      "id": "trial-repeated-nines-cross-power",
       "name": "repeated nines match indices nine and ninety-nine",
       "kind": "trial",
       "visible": true,
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "real-mixed-overlapping-candidates",
+      "id": "trial-mixed-overlapping-candidates",
       "name": "one-digit matches coexist with a later two-digit match",
       "kind": "trial",
       "visible": true,
@@ -248,6 +248,22 @@
       "tags": [
         "mixed-width",
         "overlap"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000"
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

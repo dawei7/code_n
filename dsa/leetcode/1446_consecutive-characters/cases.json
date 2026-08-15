@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-run-at-start",
+      "id": "trial-run-at-start",
       "name": "longest run occurs at the beginning",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-run-at-end",
+      "id": "trial-run-at-end",
       "name": "longest run ends with the string",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-tied-runs",
+      "id": "trial-tied-runs",
       "name": "multiple runs tie for maximum",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-separated-equals",
+      "id": "trial-separated-equals",
       "name": "equal letters in separate runs do not combine",
       "kind": "trial",
       "visible": true,

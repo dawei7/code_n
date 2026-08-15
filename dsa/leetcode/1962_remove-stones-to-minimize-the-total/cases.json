@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-largest-twice",
+      "id": "trial-largest-twice",
       "name": "largest pile remains largest after one operation",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-extra-operations-on-ones",
+      "id": "trial-extra-operations-on-ones",
       "name": "exact operations continue after all gains vanish",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-three-stones",
+      "id": "trial-three-stones",
       "name": "floor removal from three leaves two",
       "kind": "trial",
       "visible": true,
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "maximum pile shrinks to one",
       "kind": "trial",
       "visible": true,

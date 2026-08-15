@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "real-two-unequal",
+      "id": "trial-two-unequal",
       "name": "unequal deepest branches",
       "kind": "trial",
       "visible": true,
@@ -260,7 +260,7 @@
       ]
     },
     {
-      "id": "real-root-not-first",
+      "id": "trial-root-not-first",
       "name": "records do not begin with the root",
       "kind": "trial",
       "visible": true,
@@ -308,7 +308,7 @@
       ]
     },
     {
-      "id": "real-many-depths",
+      "id": "trial-many-depths",
       "name": "high degree with several branch depths",
       "kind": "trial",
       "visible": true,
@@ -385,7 +385,7 @@
       ]
     },
     {
-      "id": "real-one-branch",
+      "id": "trial-one-branch",
       "name": "each internal node has one child",
       "kind": "trial",
       "visible": true,
@@ -423,7 +423,7 @@
       ]
     },
     {
-      "id": "real-balanced",
+      "id": "trial-balanced",
       "name": "balanced three-level tree",
       "kind": "trial",
       "visible": true,

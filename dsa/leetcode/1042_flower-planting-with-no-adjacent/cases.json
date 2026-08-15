@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-even-cycle",
+      "id": "trial-even-cycle",
       "name": "even cycle",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-late-center",
+      "id": "trial-late-center",
       "name": "high-label garden joins earlier leaves",
       "kind": "trial",
       "visible": true,
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "real-components",
+      "id": "trial-components",
       "name": "path and triangle components",
       "kind": "trial",
       "visible": true,

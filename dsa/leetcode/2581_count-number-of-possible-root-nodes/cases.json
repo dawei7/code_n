@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-zero-threshold",
+      "id": "trial-zero-threshold",
       "name": "zero threshold accepts every node",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-opposite-guesses-impossible",
+      "id": "trial-opposite-guesses-impossible",
       "name": "opposite guesses cannot both be true",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-directed-chain",
+      "id": "trial-directed-chain",
       "name": "threshold cuts a prefix of chain roots",
       "kind": "trial",
       "visible": true,
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "id": "real-branching-tree",
+      "id": "trial-branching-tree",
       "name": "mixed directions on a branching tree",
       "kind": "trial",
       "visible": true,
@@ -347,7 +347,7 @@
       ]
     },
     {
-      "id": "real-inward-star",
+      "id": "trial-inward-star",
       "name": "each leaf root satisfies its own inward guess",
       "kind": "trial",
       "visible": true,
@@ -389,7 +389,7 @@
       ]
     },
     {
-      "id": "real-deep-chain",
+      "id": "trial-deep-chain",
       "name": "iterative traversal handles a deep chain",
       "kind": "trial",
       "visible": true,

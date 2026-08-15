@@ -218,8 +218,8 @@
       ]
     },
     {
-      "id": "real-cross-date-count",
-      "name": "real: same hour across dates shares a count",
+      "id": "trial-cross-date-count",
+      "name": "same hour across dates shares a count",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -268,8 +268,8 @@
       ]
     },
     {
-      "id": "real-three-way-tie",
-      "name": "real: retain every tied peak hour",
+      "id": "trial-three-way-tie",
+      "name": "retain every tied peak hour",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "hidden-clear-large",
+      "id": "trial-clear-large",
       "name": "clear two copies of every large set bit",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "hidden-set-large",
+      "id": "trial-set-large",
       "name": "create the large target pattern",
       "kind": "trial",
       "visible": true,
@@ -112,6 +112,38 @@
       "tags": [
         "upper-boundary",
         "set-bits"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value a=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": 6,
+        "c": 5
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value b=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 2,
+        "b": 1,
+        "c": 5
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

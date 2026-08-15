@@ -107,7 +107,7 @@
       }
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "cyclic optimal ties",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       }
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "repeated-character rotations",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       }
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "no overlaps among short words",
       "kind": "trial",
       "visible": true,

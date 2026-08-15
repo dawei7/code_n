@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "real-single-points",
+      "id": "trial-single-points",
       "name": "distinct point intervals each add one",
       "kind": "trial",
       "visible": true,
@@ -244,7 +244,7 @@
       ]
     },
     {
-      "id": "real-domain-extremes",
+      "id": "trial-domain-extremes",
       "name": "both coordinate extremes are represented",
       "kind": "trial",
       "visible": true,
@@ -279,7 +279,7 @@
       ]
     },
     {
-      "id": "real-full-domain",
+      "id": "trial-full-domain",
       "name": "full-domain coverage absorbs later updates",
       "kind": "trial",
       "visible": true,

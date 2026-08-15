@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-adjacent-duplicates",
+      "id": "trial-adjacent-duplicates",
       "name": "duplicate middle values have equal totals",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-several-runs",
+      "id": "trial-several-runs",
       "name": "several duplicate runs",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-even-spacing",
+      "id": "trial-even-spacing",
       "name": "evenly spaced values form symmetric totals",
       "kind": "trial",
       "visible": true,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-large-duplicates",
+      "id": "trial-large-duplicates",
       "name": "large equal endpoints and one smaller value",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-consecutive-seven",
+      "id": "trial-consecutive-seven",
       "name": "consecutive values around a center",
       "kind": "trial",
       "visible": true,
@@ -224,6 +224,44 @@
       "tags": [
         "consecutive",
         "odd-length"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

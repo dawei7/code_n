@@ -117,8 +117,8 @@
       ]
     },
     {
-      "id": "real-numeric-key-order",
-      "name": "real: Object.keys orders integer names first",
+      "id": "trial-numeric-key-order",
+      "name": "Object.keys orders integer names first",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -137,8 +137,8 @@
       ]
     },
     {
-      "id": "real-array-primitives",
-      "name": "real: primitive array retains order",
+      "id": "trial-array-primitives",
+      "name": "primitive array retains order",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -159,8 +159,8 @@
       ]
     },
     {
-      "id": "real-deep-alternation",
-      "name": "real: alternating nested containers",
+      "id": "trial-deep-alternation",
+      "name": "alternating nested containers",
       "kind": "trial",
       "visible": true,
       "input": {

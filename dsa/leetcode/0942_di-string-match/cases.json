@@ -134,7 +134,7 @@
       }
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "alternating from a decrease",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       }
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "long decreasing run",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       }
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "several direction changes",
       "kind": "trial",
       "visible": true,
@@ -211,7 +211,7 @@
       }
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "long increasing run",
       "kind": "trial",
       "visible": true,

@@ -124,8 +124,8 @@
       ]
     },
     {
-      "id": "real-backward-unvisited",
-      "name": "real: backward jump reaches an unvisited index",
+      "id": "trial-backward-unvisited",
+      "name": "backward jump reaches an unvisited index",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-skip-adds",
-      "name": "real: jumps skip add instructions",
+      "id": "trial-skip-adds",
+      "name": "jumps skip add instructions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -182,8 +182,8 @@
       ]
     },
     {
-      "id": "real-cycle-with-negative-score",
-      "name": "real: cycle retains accumulated negative score",
+      "id": "trial-cycle-with-negative-score",
+      "name": "cycle retains accumulated negative score",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -207,6 +207,55 @@
         "real",
         "cycle",
         "negative-score"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "instructions": [
+          "jump",
+          "add",
+          "add",
+          "jump",
+          "add",
+          "jump"
+        ],
+        "values": [
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "instructions": [
+          "jump",
+          "add",
+          "add",
+          "jump",
+          "add",
+          "jump"
+        ],
+        "values": [
+          2,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

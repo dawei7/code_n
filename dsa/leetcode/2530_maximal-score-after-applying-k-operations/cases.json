@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-replacement-vs-others",
+      "id": "trial-replacement-vs-others",
       "name": "replacement remains above small alternatives",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-tied-chains",
+      "id": "trial-tied-chains",
       "name": "equal large values produce competing chains",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-large-value",
+      "id": "trial-large-value",
       "name": "integer ceiling near upper bound",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-beyond-two-chains",
+      "id": "trial-beyond-two-chains",
       "name": "operations continue after values reach one",
       "kind": "trial",
       "visible": true,

@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-modulo",
+      "id": "trial-modulo",
       "name": "maximum dimensions require final modulo",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-interior-gaps",
+      "id": "trial-interior-gaps",
       "name": "largest gaps lie between cuts",
       "kind": "trial",
       "visible": true,

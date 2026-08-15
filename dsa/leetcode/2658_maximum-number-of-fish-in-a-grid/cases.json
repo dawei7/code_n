@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-connected",
+      "id": "trial-connected",
       "name": "every cell is connected",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-diagonal",
+      "id": "trial-diagonal",
       "name": "diagonal water cells are separate",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-irregular",
+      "id": "trial-irregular",
       "name": "irregular components",
       "kind": "trial",
       "visible": true,
@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "real-maximum-grid",
+      "id": "trial-maximum-grid",
       "name": "maximum dimensions and values",
       "kind": "trial",
       "visible": true,

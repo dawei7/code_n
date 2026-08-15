@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-one-divisor-multiple",
+      "id": "trial-one-divisor-multiple",
       "name": "one divisor is a multiple of the other",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-asymmetric-counts",
+      "id": "trial-asymmetric-counts",
       "name": "the first individual capacity is the bottleneck",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-large-counts",
+      "id": "trial-large-counts",
       "name": "larger requests exercise the search range",
       "kind": "trial",
       "visible": true,

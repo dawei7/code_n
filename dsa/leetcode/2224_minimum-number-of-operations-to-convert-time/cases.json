@@ -61,7 +61,7 @@
       ]
     },
     {
-      "id": "real-quarter-hour",
+      "id": "trial-quarter-hour",
       "name": "exact quarter hour uses one operation",
       "kind": "trial",
       "visible": true,
@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-cross-hour",
+      "id": "trial-cross-hour",
       "name": "five minutes may cross an hour boundary",
       "kind": "trial",
       "visible": true,
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-fourteen",
+      "id": "trial-fourteen",
       "name": "remainder combines fives and ones",
       "kind": "trial",
       "visible": true,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-full-day-range",
+      "id": "trial-full-day-range",
       "name": "largest legal difference",
       "kind": "trial",
       "visible": true,

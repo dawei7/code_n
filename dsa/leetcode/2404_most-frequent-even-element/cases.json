@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-three-way-tie",
+      "id": "trial-three-way-tie",
       "name": "smallest value wins a three-way tie",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-late-winner",
+      "id": "trial-late-winner",
       "name": "later occurrences change the frequency winner",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-maximum-value",
+      "id": "trial-maximum-value",
       "name": "maximum legal even value",
       "kind": "trial",
       "visible": true,

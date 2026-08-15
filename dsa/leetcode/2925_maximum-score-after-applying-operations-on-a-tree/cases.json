@@ -178,7 +178,7 @@
       "expected": 100
     },
     {
-      "id": "real-cheap-root",
+      "id": "trial-cheap-root",
       "name": "retaining a cheap root permits all descendants to be selected",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       "expected": 200
     },
     {
-      "id": "real-branch-specific-loss",
+      "id": "trial-branch-specific-loss",
       "name": "each child subtree chooses its own retained cut",
       "kind": "trial",
       "visible": true,
@@ -253,7 +253,7 @@
       "expected": 111
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "score and retained loss require wide integer totals",
       "kind": "trial",
       "visible": true,

@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-rotation",
+      "id": "trial-rotation",
       "name": "one cyclic rotation",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-disjoint-swaps",
+      "id": "trial-disjoint-swaps",
       "name": "several disjoint swaps",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-mixed-fixed-points",
+      "id": "trial-mixed-fixed-points",
       "name": "fixed points among moved characters",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-alphabet-reverse",
+      "id": "trial-alphabet-reverse",
       "name": "reverse the lowercase alphabet",
       "kind": "trial",
       "visible": true,

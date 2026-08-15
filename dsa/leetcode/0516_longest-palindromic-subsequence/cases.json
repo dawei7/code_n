@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-equal",
+      "id": "trial-equal",
       "name": "complete string is palindromic",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-character",
+      "id": "trial-character",
       "name": "noncontiguous palindrome",
       "kind": "trial",
       "visible": true,
@@ -96,6 +96,34 @@
       "expected": 5,
       "tags": [
         "noncontiguous"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "b"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bbb"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

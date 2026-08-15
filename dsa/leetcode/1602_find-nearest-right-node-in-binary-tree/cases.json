@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-duplicate-values",
+      "id": "trial-duplicate-values",
       "name": "identity distinguishes equal-valued nodes",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-sparse-cross-parent",
+      "id": "trial-sparse-cross-parent",
       "name": "sparse level crosses between parents",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-last-node-has-children",
+      "id": "trial-last-node-has-children",
       "name": "next-level child is not a same-level neighbor",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-leftmost-level-one",
+      "id": "trial-leftmost-level-one",
       "name": "root left child neighbors root right child",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-deep-rightmost",
+      "id": "trial-deep-rightmost",
       "name": "deep rightmost leaf returns null",
       "kind": "trial",
       "visible": true,
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "id": "real-unbalanced-level",
+      "id": "trial-unbalanced-level",
       "name": "neighbor follows breadth order in unbalanced tree",
       "kind": "trial",
       "visible": true,
@@ -283,7 +283,7 @@
       ]
     },
     {
-      "id": "real-empty-path",
+      "id": "trial-empty-path",
       "name": "empty path selects root identity",
       "kind": "trial",
       "visible": true,

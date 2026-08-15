@@ -62,7 +62,7 @@
       ]
     },
     {
-      "id": "real-single-step",
+      "id": "trial-single-step",
       "name": "one move cannot cross",
       "kind": "trial",
       "visible": true,
@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-horizontal-reversal",
+      "id": "trial-horizontal-reversal",
       "name": "west returns over one eastward step",
       "kind": "trial",
       "visible": true,
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-non-origin-repeat",
+      "id": "trial-non-origin-repeat",
       "name": "revisits a non-origin coordinate",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-rectangle",
+      "id": "trial-rectangle",
       "name": "closes a rectangle at the origin",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-maximum-straight",
+      "id": "trial-maximum-straight",
       "name": "maximum-length straight path stays distinct",
       "kind": "trial",
       "visible": true,
@@ -127,6 +127,34 @@
       "tags": [
         "maximum-length",
         "no-crossing"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "path": "N"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "path": "NNN"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

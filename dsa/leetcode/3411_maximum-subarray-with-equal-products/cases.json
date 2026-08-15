@@ -142,8 +142,8 @@
       ]
     },
     {
-      "id": "real-conflict-at-ends",
-      "name": "real: a repeated factor excludes one endpoint",
+      "id": "trial-conflict-at-ends",
+      "name": "a repeated factor excludes one endpoint",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -162,8 +162,8 @@
       ]
     },
     {
-      "id": "real-disjoint-composite",
-      "name": "real: a composite can coexist with disjoint primes",
+      "id": "trial-disjoint-composite",
+      "name": "a composite can coexist with disjoint primes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -181,8 +181,8 @@
       ]
     },
     {
-      "id": "real-upper-value",
-      "name": "real: value ten contributes factors two and five",
+      "id": "trial-upper-value",
+      "name": "value ten contributes factors two and five",
       "kind": "trial",
       "visible": true,
       "input": {

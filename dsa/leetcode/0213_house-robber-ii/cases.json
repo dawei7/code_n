@@ -53,7 +53,7 @@
       ]
     },
     {
-      "id": "real-two",
+      "id": "trial-two",
       "name": "two houses are adjacent",
       "kind": "trial",
       "visible": true,

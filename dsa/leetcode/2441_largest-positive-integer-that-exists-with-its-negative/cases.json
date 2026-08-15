@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate copies do not matter",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-only-negative",
+      "id": "trial-only-negative",
       "name": "only negative values",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-boundary",
+      "id": "trial-boundary",
       "name": "largest permitted magnitude",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-reversed-order",
+      "id": "trial-reversed-order",
       "name": "positive appears before negative",
       "kind": "trial",
       "visible": true,

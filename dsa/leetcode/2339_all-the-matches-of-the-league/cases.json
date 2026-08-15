@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-name-order",
+      "id": "trial-name-order",
       "name": "lexical order does not remove either orientation",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-spaced-names",
+      "id": "trial-spaced-names",
       "name": "names with spaces remain distinct values",
       "kind": "trial",
       "visible": true,

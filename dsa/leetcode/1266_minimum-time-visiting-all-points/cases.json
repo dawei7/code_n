@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "hidden-boundaries",
+      "id": "trial-boundaries",
       "name": "coordinate boundaries",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "hidden-pass-through",
+      "id": "trial-pass-through",
       "name": "pass through a later point early",
       "kind": "trial",
       "visible": true,

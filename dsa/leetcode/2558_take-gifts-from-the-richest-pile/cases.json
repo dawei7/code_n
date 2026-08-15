@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-more-operations-than-piles",
+      "id": "trial-more-operations-than-piles",
       "name": "operations revisit reduced piles",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-eventual-ones",
+      "id": "trial-eventual-ones",
       "name": "many remaining operations preserve ones",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-largest-pile-can-repeat",
+      "id": "trial-largest-pile-can-repeat",
       "name": "reduced maximum remains the maximum",
       "kind": "trial",
       "visible": true,

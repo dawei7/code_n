@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-five-low-bits",
+      "id": "trial-five-low-bits",
       "name": "all five low bits are selected",
       "kind": "trial",
       "visible": true,
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-thirty-two-power",
+      "id": "trial-thirty-two-power",
       "name": "bit five alone",
       "kind": "trial",
       "visible": true,
@@ -272,7 +272,7 @@
       ]
     },
     {
-      "id": "real-six-low-bits",
+      "id": "trial-six-low-bits",
       "name": "all six low bits are selected",
       "kind": "trial",
       "visible": true,
@@ -312,7 +312,7 @@
       ]
     },
     {
-      "id": "real-sixty-four-power",
+      "id": "trial-sixty-four-power",
       "name": "bit six alone",
       "kind": "trial",
       "visible": true,
@@ -352,7 +352,7 @@
       ]
     },
     {
-      "id": "real-seven-low-bits",
+      "id": "trial-seven-low-bits",
       "name": "all seven low bits are selected",
       "kind": "trial",
       "visible": true,
@@ -392,7 +392,7 @@
       ]
     },
     {
-      "id": "real-one-hundred-twenty-eight-power",
+      "id": "trial-one-hundred-twenty-eight-power",
       "name": "bit seven alone",
       "kind": "trial",
       "visible": true,
@@ -432,7 +432,7 @@
       ]
     },
     {
-      "id": "real-eight-low-bits",
+      "id": "trial-eight-low-bits",
       "name": "all eight low bits are selected",
       "kind": "trial",
       "visible": true,
@@ -472,7 +472,7 @@
       ]
     },
     {
-      "id": "real-two-hundred-fifty-six-power",
+      "id": "trial-two-hundred-fifty-six-power",
       "name": "bit eight alone",
       "kind": "trial",
       "visible": true,
@@ -512,7 +512,7 @@
       ]
     },
     {
-      "id": "real-nine-low-bits",
+      "id": "trial-nine-low-bits",
       "name": "all nine low bits are selected",
       "kind": "trial",
       "visible": true,
@@ -552,7 +552,7 @@
       ]
     },
     {
-      "id": "real-five-hundred-twelve-power",
+      "id": "trial-five-hundred-twelve-power",
       "name": "highest bit alone",
       "kind": "trial",
       "visible": true,
@@ -593,7 +593,7 @@
       ]
     },
     {
-      "id": "real-near-maximum",
+      "id": "trial-near-maximum",
       "name": "near-maximum sparse and dense bit mixture",
       "kind": "trial",
       "visible": true,
@@ -634,7 +634,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum legal path count",
       "kind": "trial",
       "visible": true,

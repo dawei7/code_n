@@ -102,8 +102,8 @@
       ]
     },
     {
-      "id": "real-later-smaller-index-tie",
-      "name": "real: later smaller index replaces an equal first duration",
+      "id": "trial-later-smaller-index-tie",
+      "name": "later smaller index replaces an equal first duration",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -125,8 +125,8 @@
       ]
     },
     {
-      "id": "real-repeated-button",
-      "name": "real: a repeated button owns the longest press",
+      "id": "trial-repeated-button",
+      "name": "a repeated button owns the longest press",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-maximum-index-and-time",
-      "name": "real: maximum button index has a dominant first press",
+      "id": "trial-maximum-index-and-time",
+      "name": "maximum button index has a dominant first press",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -179,8 +179,8 @@
       ]
     },
     {
-      "id": "real-late-long-duration",
-      "name": "real: final event has a much longer duration",
+      "id": "trial-late-long-duration",
+      "name": "final event has a much longer duration",
       "kind": "trial",
       "visible": true,
       "input": {

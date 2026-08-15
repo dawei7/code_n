@@ -73,8 +73,8 @@
       ]
     },
     {
-      "id": "hidden-eight-orders",
-      "name": "real: 8 labeled orders",
+      "id": "trial-eight-orders",
+      "name": "8 labeled orders",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -87,8 +87,8 @@
       ]
     },
     {
-      "id": "hidden-modular-large",
-      "name": "real: 20 labeled orders",
+      "id": "trial-modular-large",
+      "name": "20 labeled orders",
       "kind": "trial",
       "visible": true,
       "input": {

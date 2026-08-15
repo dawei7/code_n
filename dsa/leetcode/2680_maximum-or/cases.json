@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate values preserve unchanged bits",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-large-shift",
+      "id": "trial-large-shift",
       "name": "maximum operation count",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-high-values",
+      "id": "trial-high-values",
       "name": "values near the upper bound",
       "kind": "trial",
       "visible": true,

@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-exact-balance-boundary",
+      "id": "trial-exact-balance-boundary",
       "name": "largest equals the other two combined",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-permuted-dominance",
+      "id": "trial-permuted-dominance",
       "name": "dominant pile appears first",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-maximum-boundary",
+      "id": "trial-maximum-boundary",
       "name": "maximum pile with minimal partners",
       "kind": "trial",
       "visible": true,
@@ -128,6 +128,38 @@
       "tags": [
         "value-boundary",
         "dominant-pile"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value a=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": 4,
+        "c": 6
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value b=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 2,
+        "b": 1,
+        "c": 6
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

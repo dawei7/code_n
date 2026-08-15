@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-disjoint",
+      "id": "trial-disjoint",
       "name": "disjoint tasks cannot share seconds",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-nested",
+      "id": "trial-nested",
       "name": "nested task reuses later selected seconds",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-same-end",
+      "id": "trial-same-end",
       "name": "tasks sharing an end reuse the latest choices",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-disjoint-three",
+      "id": "trial-disjoint-three",
       "name": "separated intervals add their requirements",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-maximum-time",
+      "id": "trial-maximum-time",
       "name": "the final legal time coordinate",
       "kind": "trial",
       "visible": true,
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-overlapping-full",
+      "id": "trial-overlapping-full",
       "name": "two full short intervals share their overlap",
       "kind": "trial",
       "visible": true,
@@ -248,7 +248,7 @@
       ]
     },
     {
-      "id": "real-contained-full",
+      "id": "trial-contained-full",
       "name": "a full inner task supplies part of an outer task",
       "kind": "trial",
       "visible": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "real-identical-tasks",
+      "id": "trial-identical-tasks",
       "name": "identical tasks use the same active seconds",
       "kind": "trial",
       "visible": true,

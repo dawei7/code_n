@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-overlapping-groups",
+      "id": "trial-overlapping-groups",
       "name": "alternating values create overlapping good ranges",
       "kind": "trial",
       "visible": true,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-identical-threshold",
+      "id": "trial-identical-threshold",
       "name": "identical values cross a combinatorial threshold",
       "kind": "trial",
       "visible": true,

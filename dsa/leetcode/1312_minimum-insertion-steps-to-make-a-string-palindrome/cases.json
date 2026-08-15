@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-all-distinct",
+      "id": "trial-all-distinct",
       "name": "every character differs",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-inner-palindrome",
+      "id": "trial-inner-palindrome",
       "name": "preserve a long inner palindrome",
       "kind": "trial",
       "visible": true,

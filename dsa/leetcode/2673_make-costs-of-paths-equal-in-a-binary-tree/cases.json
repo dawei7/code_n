@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-one-heavy-leaf",
+      "id": "trial-one-heavy-leaf",
       "name": "one leaf path dominates",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-depth-four",
+      "id": "trial-depth-four",
       "name": "mixed fifteen-node tree",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-large-costs",
+      "id": "trial-large-costs",
       "name": "maximum costs with one light sibling",
       "kind": "trial",
       "visible": true,

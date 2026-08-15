@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-single-a",
+      "id": "trial-single-a",
       "name": "one wrapped character",
       "kind": "trial",
       "visible": true,
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-single-non-a",
+      "id": "trial-single-non-a",
       "name": "one decremented character",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-internal-stop",
+      "id": "trial-internal-stop",
       "name": "stop before internal a",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-late-block",
+      "id": "trial-late-block",
       "name": "long leading a run and later block",
       "kind": "trial",
       "visible": true,

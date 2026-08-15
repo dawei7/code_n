@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-asymmetric",
+      "id": "trial-asymmetric",
       "name": "asymmetric four-level tree",
       "kind": "trial",
       "visible": true,

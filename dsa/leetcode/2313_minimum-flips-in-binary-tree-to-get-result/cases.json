@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-xor-equal",
+      "id": "trial-xor-equal",
       "name": "equal XOR inputs require one changed leaf",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-double-not",
+      "id": "trial-double-not",
       "name": "two NOT operators preserve the leaf value",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-cheapest-branch",
+      "id": "trial-cheapest-branch",
       "name": "OR chooses the cheaper subtree to make true",
       "kind": "trial",
       "visible": true,

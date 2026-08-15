@@ -203,8 +203,8 @@
       ]
     },
     {
-      "id": "real-count-order",
-      "name": "real: larger streaming count sorts first",
+      "id": "trial-count-order",
+      "name": "larger streaming count sorts first",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -272,8 +272,8 @@
       ]
     },
     {
-      "id": "real-user-tie-order",
-      "name": "real: equal counts sort by user descending",
+      "id": "trial-user-tie-order",
+      "name": "equal counts sort by user descending",
       "kind": "trial",
       "visible": true,
       "input": {

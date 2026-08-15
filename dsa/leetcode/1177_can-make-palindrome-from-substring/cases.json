@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-repeated-query",
+      "id": "trial-repeated-query",
       "name": "queries do not modify the string",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-single-character",
+      "id": "trial-single-character",
       "name": "every one-character range succeeds",
       "kind": "trial",
       "visible": true,
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "real-even-and-odd",
+      "id": "trial-even-and-odd",
       "name": "center allowance changes parity need",
       "kind": "trial",
       "visible": true,

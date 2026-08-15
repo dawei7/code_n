@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-no-rich-customers",
+      "id": "trial-no-rich-customers",
       "name": "the aggregate returns zero when none qualify",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-many-bills-one-customer",
+      "id": "trial-many-bills-one-customer",
       "name": "several rich bills still represent one customer",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-nonconsecutive-identities",
+      "id": "trial-nonconsecutive-identities",
       "name": "customer identifiers need not be consecutive",
       "kind": "trial",
       "visible": true,

@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-exactly-five",
+      "id": "trial-exactly-five",
       "name": "one occurrence of every vowel",
       "kind": "trial",
       "visible": true,
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-repeated-prefix-vowel",
+      "id": "trial-repeated-prefix-vowel",
       "name": "several legal starts share one ending",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-consonant-reset",
+      "id": "trial-consonant-reset",
       "name": "a consonant separates independent vowel runs",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-two-cycles",
+      "id": "trial-two-cycles",
       "name": "every long range in an all-vowel string qualifies",
       "kind": "trial",
       "visible": true,
@@ -107,6 +107,20 @@
       "expected": 21,
       "tags": [
         "overlapping-ranges"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aaa"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

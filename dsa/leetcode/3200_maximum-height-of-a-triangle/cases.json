@@ -115,8 +115,8 @@
       ]
     },
     {
-      "id": "real-maximum-supplies",
-      "name": "real: both color counts are maximal",
+      "id": "trial-maximum-supplies",
+      "name": "both color counts are maximal",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -129,8 +129,8 @@
       ]
     },
     {
-      "id": "real-odd-square-boundary",
-      "name": "real: an exact odd-row square controls the height",
+      "id": "trial-odd-square-boundary",
+      "name": "an exact odd-row square controls the height",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -143,8 +143,8 @@
       ]
     },
     {
-      "id": "real-even-pronic-boundary",
-      "name": "real: an exact even-row sum controls the height",
+      "id": "trial-even-pronic-boundary",
+      "name": "an exact even-row sum controls the height",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -157,8 +157,8 @@
       ]
     },
     {
-      "id": "real-near-boundary",
-      "name": "real: one missing ball prevents the next required row",
+      "id": "trial-near-boundary",
+      "name": "one missing ball prevents the next required row",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -168,6 +168,21 @@
       "expected": 7,
       "tags": [
         "near-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value red=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "red": 1,
+        "blue": 4
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-even-cycle",
+      "id": "trial-even-cycle",
       "name": "even cycle is valid but has only three layers",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-disconnected",
+      "id": "trial-disconnected",
       "name": "component layer counts and an isolated node add",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-complete-bipartite",
+      "id": "trial-complete-bipartite",
       "name": "complete bipartite graph has three layers",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-disconnected-odd-cycle",
+      "id": "trial-disconnected-odd-cycle",
       "name": "one invalid component rejects the whole graph",
       "kind": "trial",
       "visible": true,

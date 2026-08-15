@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-one-repeat",
+      "id": "trial-one-repeat",
       "name": "exactly one repeat before cancellation",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-negative-product",
+      "id": "trial-negative-product",
       "name": "negative arguments are forwarded",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-zero-result",
+      "id": "trial-zero-result",
       "name": "zero return value is preserved",
       "kind": "trial",
       "visible": true,
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "id": "real-maximum-schedule",
+      "id": "trial-maximum-schedule",
       "name": "maximum legal schedule length",
       "kind": "trial",
       "visible": true,

@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-mixed-heap",
+      "id": "trial-mixed-heap",
       "name": "interleaved powers and small values",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "values immediately below maximum threshold",
       "kind": "trial",
       "visible": true,

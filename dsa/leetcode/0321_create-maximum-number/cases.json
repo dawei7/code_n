@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "hidden-equal-prefixes",
+      "id": "trial-equal-prefixes",
       "name": "long equal merge prefixes",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "hidden-repeated-fives",
+      "id": "trial-repeated-fives",
       "name": "repeated equal choices",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "hidden-short",
+      "id": "trial-short",
       "name": "discard from both sources",
       "kind": "trial",
       "visible": true,

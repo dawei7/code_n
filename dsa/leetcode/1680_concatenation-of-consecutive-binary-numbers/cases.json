@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-after-second-boundary",
+      "id": "trial-after-second-boundary",
       "name": "retain three-bit width after four",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-third-width-change",
+      "id": "trial-third-width-change",
       "name": "width increases before appending eight",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-multiple-modulo-steps",
+      "id": "trial-multiple-modulo-steps",
       "name": "reduce throughout a longer prefix",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-one-hundred",
+      "id": "trial-one-hundred",
       "name": "one hundred consecutive representations",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-large-prefix",
+      "id": "trial-large-prefix",
       "name": "one thousand consecutive representations",
       "kind": "trial",
       "visible": true,

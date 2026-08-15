@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-cycle",
+      "id": "trial-cycle",
       "name": "cycle edge can improve the bottleneck route",
       "kind": "trial",
       "visible": true,
@@ -275,7 +275,7 @@
       ]
     },
     {
-      "id": "real-two-components",
+      "id": "trial-two-components",
       "name": "limits cannot bridge disconnected components",
       "kind": "trial",
       "visible": true,
@@ -336,7 +336,7 @@
       ]
     },
     {
-      "id": "real-equal-weights",
+      "id": "trial-equal-weights",
       "name": "equal-weight chain obeys a strict boundary",
       "kind": "trial",
       "visible": true,
@@ -395,7 +395,7 @@
       ]
     },
     {
-      "id": "real-large-weights",
+      "id": "trial-large-weights",
       "name": "maximum-scale weights remain exact integers",
       "kind": "trial",
       "visible": true,

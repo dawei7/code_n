@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-kadane-restart",
+      "id": "trial-kadane-restart",
       "name": "the best factor discards an adverse prefix",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-bridge-small-penalty",
+      "id": "trial-bridge-small-penalty",
       "name": "two divisible values absorb a small penalty",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-middle-singleton",
+      "id": "trial-middle-singleton",
       "name": "the middle singleton beats the even endpoints",
       "kind": "trial",
       "visible": true,
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-disjoint-primes",
+      "id": "trial-disjoint-primes",
       "name": "disjoint prime factors favor the larger value",
       "kind": "trial",
       "visible": true,
@@ -234,7 +234,7 @@
       ]
     },
     {
-      "id": "real-reset-around-even",
+      "id": "trial-reset-around-even",
       "name": "the only even value forms the best range",
       "kind": "trial",
       "visible": true,
@@ -252,7 +252,7 @@
       ]
     },
     {
-      "id": "real-three-factor-tie",
+      "id": "trial-three-factor-tie",
       "name": "three prime factors tie on one full range",
       "kind": "trial",
       "visible": true,
@@ -270,7 +270,7 @@
       ]
     },
     {
-      "id": "real-distinct-odd-factors",
+      "id": "trial-distinct-odd-factors",
       "name": "a repeated square factor spans the full range",
       "kind": "trial",
       "visible": true,
@@ -288,7 +288,7 @@
       ]
     },
     {
-      "id": "real-large-composite-bridge",
+      "id": "trial-large-composite-bridge",
       "name": "a small penalty stays inside a large divisible run",
       "kind": "trial",
       "visible": true,
@@ -306,7 +306,7 @@
       ]
     },
     {
-      "id": "real-largest-prime-singleton",
+      "id": "trial-largest-prime-singleton",
       "name": "a large prime exercises the product modulus",
       "kind": "trial",
       "visible": true,
@@ -322,7 +322,7 @@
       ]
     },
     {
-      "id": "real-maximum-value-composite",
+      "id": "trial-maximum-value-composite",
       "name": "the maximum value ties on two and five",
       "kind": "trial",
       "visible": true,

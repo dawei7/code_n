@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-transitive-mixed",
+      "id": "trial-transitive-mixed",
       "name": "addition and replacement connect transitively",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-same-size-isolates",
+      "id": "trial-same-size-isolates",
       "name": "disjoint equal-size sets need two replacements",
       "kind": "trial",
       "visible": true,

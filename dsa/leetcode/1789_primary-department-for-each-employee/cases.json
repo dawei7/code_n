@@ -163,7 +163,7 @@
       }
     },
     {
-      "id": "real-all-single",
+      "id": "trial-all-single",
       "name": "every employee has one implicit primary",
       "kind": "trial",
       "visible": true,
@@ -217,7 +217,7 @@
       }
     },
     {
-      "id": "real-primary-last",
+      "id": "trial-primary-last",
       "name": "explicit primary appears after nonprimary rows",
       "kind": "trial",
       "visible": true,
@@ -263,7 +263,7 @@
       }
     },
     {
-      "id": "real-primary-first",
+      "id": "trial-primary-first",
       "name": "explicit primary appears before nonprimary rows",
       "kind": "trial",
       "visible": true,
@@ -309,7 +309,7 @@
       }
     },
     {
-      "id": "real-interleaved-employees",
+      "id": "trial-interleaved-employees",
       "name": "membership rows for employees are interleaved",
       "kind": "trial",
       "visible": true,

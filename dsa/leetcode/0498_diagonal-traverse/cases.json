@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "hidden-tall",
+      "id": "trial-tall",
       "name": "three by two matrix",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "hidden-single",
+      "id": "trial-single",
       "name": "one cell",
       "kind": "trial",
       "visible": true,

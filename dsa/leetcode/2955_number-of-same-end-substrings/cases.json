@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "every substring of the range is same-end",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-overlapping",
+      "id": "trial-overlapping",
       "name": "overlapping ranges reuse prefix counts",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-suffix",
+      "id": "trial-suffix",
       "name": "inclusive right endpoint contains repeated letters",
       "kind": "trial",
       "visible": true,
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-many-letters",
+      "id": "trial-many-letters",
       "name": "several frequencies contribute independently",
       "kind": "trial",
       "visible": true,
@@ -236,7 +236,7 @@
       ]
     },
     {
-      "id": "real-repeated-query",
+      "id": "trial-repeated-query",
       "name": "identical queries produce identical answers",
       "kind": "trial",
       "visible": true,

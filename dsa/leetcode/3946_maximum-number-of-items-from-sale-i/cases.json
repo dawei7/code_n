@@ -249,7 +249,7 @@
       ]
     },
     {
-      "id": "real-divisibility-chain",
+      "id": "trial-divisibility-chain",
       "name": "nested factors create overlapping activation rewards",
       "kind": "trial",
       "visible": true,
@@ -284,7 +284,7 @@
       ]
     },
     {
-      "id": "real-three-duplicate-factors",
+      "id": "trial-three-duplicate-factors",
       "name": "three indexed types share one factor",
       "kind": "trial",
       "visible": true,
@@ -315,7 +315,7 @@
       ]
     },
     {
-      "id": "real-pairwise-nondivisible",
+      "id": "trial-pairwise-nondivisible",
       "name": "no activation produces a free copy",
       "kind": "trial",
       "visible": true,
@@ -346,7 +346,7 @@
       ]
     },
     {
-      "id": "real-three-sources-one-target",
+      "id": "trial-three-sources-one-target",
       "name": "one indexed target is awarded three times",
       "kind": "trial",
       "visible": true,
@@ -381,7 +381,7 @@
       ]
     },
     {
-      "id": "real-maximum-factor-and-budget",
+      "id": "trial-maximum-factor-and-budget",
       "name": "one maximum-priced maximum-factor item is affordable",
       "kind": "trial",
       "visible": true,
@@ -406,7 +406,7 @@
       ]
     },
     {
-      "id": "real-maximum-item-count",
+      "id": "trial-maximum-item-count",
       "name": "one of one thousand equal-factor types can be activated",
       "kind": "trial",
       "visible": true,
@@ -4426,7 +4426,7 @@
       ]
     },
     {
-      "id": "real-mixed-thirty-types",
+      "id": "trial-mixed-thirty-types",
       "name": "mixed prices and factors require the complete DP",
       "kind": "trial",
       "visible": true,

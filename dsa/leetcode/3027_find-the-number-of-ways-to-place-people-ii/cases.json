@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-four-corners",
+      "id": "trial-four-corners",
       "name": "four corners expose the empty edge placements",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-mixed-frontier",
+      "id": "trial-mixed-frontier",
       "name": "mixed frontier contains nested blockers",
       "kind": "trial",
       "visible": true,
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-coordinate-extremes",
+      "id": "trial-coordinate-extremes",
       "name": "signed coordinate extremes remain ordered correctly",
       "kind": "trial",
       "visible": true,
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "real-equal-x-tie",
+      "id": "trial-equal-x-tie",
       "name": "descending-y tie order blocks the long vertical fence",
       "kind": "trial",
       "visible": true,

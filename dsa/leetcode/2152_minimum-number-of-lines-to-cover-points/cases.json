@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-general-position-four",
+      "id": "trial-general-position-four",
       "name": "four parabola points need two lines",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-general-position-five",
+      "id": "trial-general-position-five",
       "name": "an odd general-position set leaves one singleton",
       "kind": "trial",
       "visible": true,
@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "real-two-parallel-lines",
+      "id": "trial-two-parallel-lines",
       "name": "two horizontal lines cover six points",
       "kind": "trial",
       "visible": true,

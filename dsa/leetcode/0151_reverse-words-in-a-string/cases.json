@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "real-short-words",
+      "id": "trial-short-words",
       "name": "many short words and spaces",
       "kind": "trial",
       "visible": true,

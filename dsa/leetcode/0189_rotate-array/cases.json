@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-large-k",
+      "id": "trial-large-k",
       "name": "rotation exceeds length",
       "kind": "trial",
       "visible": true,

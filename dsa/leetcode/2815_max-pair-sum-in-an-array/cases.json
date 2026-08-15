@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-leading-maximum",
+      "id": "trial-leading-maximum",
       "name": "maximum digit occurs at the leading position",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-maximum-value",
+      "id": "trial-maximum-value",
       "name": "upper-bound value groups under digit one",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-many-per-group",
+      "id": "trial-many-per-group",
       "name": "retain only two largest conceptual values per group",
       "kind": "trial",
       "visible": true,
@@ -149,6 +149,39 @@
       "expected": 129,
       "tags": [
         "many-candidates"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          112
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          112,
+          112
+        ]
+      },
+      "expected": 224,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

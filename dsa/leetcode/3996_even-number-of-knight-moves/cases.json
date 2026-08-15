@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "real-main-diagonal",
+      "id": "trial-main-diagonal",
       "name": "separated diagonal cells share a color",
       "kind": "trial",
       "visible": true,
@@ -284,7 +284,7 @@
       ]
     },
     {
-      "id": "real-near-upper-corner",
+      "id": "trial-near-upper-corner",
       "name": "near-corner target has opposite color",
       "kind": "trial",
       "visible": true,
@@ -305,7 +305,7 @@
       ]
     },
     {
-      "id": "real-upper-to-lower-edge",
+      "id": "trial-upper-to-lower-edge",
       "name": "distant edge cells have opposite colors",
       "kind": "trial",
       "visible": true,
@@ -326,7 +326,7 @@
       ]
     },
     {
-      "id": "real-interior-opposite",
+      "id": "trial-interior-opposite",
       "name": "interior cells with different parity",
       "kind": "trial",
       "visible": true,
@@ -347,7 +347,7 @@
       ]
     },
     {
-      "id": "real-interior-same",
+      "id": "trial-interior-same",
       "name": "interior cells with equal parity",
       "kind": "trial",
       "visible": true,
@@ -368,7 +368,7 @@
       ]
     },
     {
-      "id": "real-reflected-cells",
+      "id": "trial-reflected-cells",
       "name": "reflected cells share an odd coordinate sum",
       "kind": "trial",
       "visible": true,
@@ -389,7 +389,7 @@
       ]
     },
     {
-      "id": "real-mixed-interior",
+      "id": "trial-mixed-interior",
       "name": "mixed interior cells have opposite colors",
       "kind": "trial",
       "visible": true,
@@ -410,7 +410,7 @@
       ]
     },
     {
-      "id": "real-edge-to-center",
+      "id": "trial-edge-to-center",
       "name": "edge and center cells share an odd sum",
       "kind": "trial",
       "visible": true,

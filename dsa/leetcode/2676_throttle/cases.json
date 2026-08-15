@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-boundary-call",
+      "id": "trial-boundary-call",
       "name": "a call registered at the release time becomes the trailing call",
       "kind": "trial",
       "visible": true,
@@ -270,7 +270,7 @@
       ]
     },
     {
-      "id": "real-separated-bursts",
+      "id": "trial-separated-bursts",
       "name": "idle windows restore immediate execution",
       "kind": "trial",
       "visible": true,
@@ -334,7 +334,7 @@
       ]
     },
     {
-      "id": "real-maximum-calls",
+      "id": "trial-maximum-calls",
       "name": "ten blocked calls keep only the newest arguments",
       "kind": "trial",
       "visible": true,

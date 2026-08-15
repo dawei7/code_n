@@ -343,7 +343,7 @@
       ]
     },
     {
-      "id": "real-tie-contest-order",
+      "id": "trial-tie-contest-order",
       "name": "equal percentages sort by contest id ascending",
       "kind": "trial",
       "visible": true,
@@ -409,7 +409,7 @@
       ]
     },
     {
-      "id": "real-six-user-rounding",
+      "id": "trial-six-user-rounding",
       "name": "sixths round upward at two decimals",
       "kind": "trial",
       "visible": true,
@@ -491,7 +491,7 @@
       ]
     },
     {
-      "id": "real-shared-users",
+      "id": "trial-shared-users",
       "name": "one user contributes independently to several contests",
       "kind": "trial",
       "visible": true,

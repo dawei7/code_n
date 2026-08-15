@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-asymmetric-counts",
+      "id": "trial-asymmetric-counts",
       "name": "asymmetric multiplicities",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-maximum-color-count",
+      "id": "trial-maximum-color-count",
       "name": "maximum multiplicity with singleton colors",
       "kind": "trial",
       "visible": true,

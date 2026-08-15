@@ -464,7 +464,7 @@
       ]
     },
     {
-      "id": "real-name-order",
+      "id": "trial-name-order",
       "name": "names sort before recency across customers",
       "kind": "trial",
       "visible": true,
@@ -525,7 +525,7 @@
       ]
     },
     {
-      "id": "real-cost-ignored",
+      "id": "trial-cost-ignored",
       "name": "cost does not affect ranking",
       "kind": "trial",
       "visible": true,
@@ -600,7 +600,7 @@
       ]
     },
     {
-      "id": "real-two-customers-many",
+      "id": "trial-two-customers-many",
       "name": "cutoff applies separately per customer",
       "kind": "trial",
       "visible": true,
@@ -721,7 +721,7 @@
       ]
     },
     {
-      "id": "real-unsorted-input",
+      "id": "trial-unsorted-input",
       "name": "insertion order does not affect recency",
       "kind": "trial",
       "visible": true,

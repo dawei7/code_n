@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-four-negatives",
+      "id": "trial-four-negatives",
       "name": "an even negative segment is wholly valid",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-drop-first-negative",
+      "id": "trial-drop-first-negative",
       "name": "odd negative count drops the leading negative",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-drop-last-negative",
+      "id": "trial-drop-last-negative",
       "name": "odd negative count drops the trailing negative",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-two-zero-delimited-segments",
+      "id": "trial-two-zero-delimited-segments",
       "name": "best segment occurs after a zero",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-later-even-segment",
+      "id": "trial-later-even-segment",
       "name": "later segment with four negatives wins",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-only-zeros",
+      "id": "trial-only-zeros",
       "name": "repeated zeros always reset both states",
       "kind": "trial",
       "visible": true,

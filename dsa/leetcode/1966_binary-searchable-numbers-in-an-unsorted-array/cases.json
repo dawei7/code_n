@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-only-largest-last",
+      "id": "trial-only-largest-last",
       "name": "final maximum is the only searchable value",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "sorted extreme values all qualify",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-leading-maximum",
+      "id": "trial-leading-maximum",
       "name": "leading maximum invalidates all middle values",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-two-extremes",
+      "id": "trial-two-extremes",
       "name": "internal disorder leaves only outer extremes",
       "kind": "trial",
       "visible": true,

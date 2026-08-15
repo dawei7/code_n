@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-reverse-wrap-too-small",
+      "id": "trial-reverse-wrap-too-small",
       "name": "a to z needs twenty-five steps",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-distinct-residues",
+      "id": "trial-distinct-residues",
       "name": "different residues may use adjacent moves",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-second-cycle-too-late",
+      "id": "trial-second-cycle-too-late",
       "name": "second equal residue first fits at move twenty-seven",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-third-cycle-too-late",
+      "id": "trial-third-cycle-too-late",
       "name": "third equal residue first fits at move fifty-three",
       "kind": "trial",
       "visible": true,
@@ -169,6 +169,38 @@
         "real",
         "repeated-shift",
         "third-cycle"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "i",
+        "t": "ouput",
+        "k": 9
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "iii",
+        "t": "ouput",
+        "k": 9
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -168,8 +168,8 @@
       ]
     },
     {
-      "id": "real-repeated-segments",
-      "name": "real: separated drink-favored segments",
+      "id": "trial-repeated-segments",
+      "name": "separated drink-favored segments",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -199,8 +199,8 @@
       ]
     },
     {
-      "id": "real-maximum-values",
-      "name": "real: maximum boosts require a wide total",
+      "id": "trial-maximum-values",
+      "name": "maximum boosts require a wide total",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -221,8 +221,8 @@
       ]
     },
     {
-      "id": "real-opposite-peaks",
-      "name": "real: alternating hundred-point peaks",
+      "id": "trial-opposite-peaks",
+      "name": "alternating hundred-point peaks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -250,8 +250,8 @@
       ]
     },
     {
-      "id": "real-long-profile",
-      "name": "real: long profile with several favorable blocks",
+      "id": "trial-long-profile",
+      "name": "long profile with several favorable blocks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -289,8 +289,8 @@
       ]
     },
     {
-      "id": "real-cleanse-pattern",
-      "name": "real: repeated pairs reward planned cleansing",
+      "id": "trial-cleanse-pattern",
+      "name": "repeated pairs reward planned cleansing",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -323,6 +323,49 @@
       "tags": [
         "pattern",
         "multiple-switches"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in energyDrinkA",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "energyDrinkA": [
+          1
+        ],
+        "energyDrinkB": [
+          3,
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in energyDrinkA",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "energyDrinkA": [
+          1,
+          1
+        ],
+        "energyDrinkB": [
+          3,
+          1,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

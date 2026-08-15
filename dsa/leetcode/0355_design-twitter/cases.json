@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": "hidden-duplicate-follow",
+      "id": "trial-duplicate-follow",
       "name": "duplicate follow does not duplicate tweets",
       "kind": "trial",
       "visible": true,
@@ -277,7 +277,7 @@
       ]
     },
     {
-      "id": "hidden-self-follow",
+      "id": "trial-self-follow",
       "name": "self-follow does not duplicate own tweet",
       "kind": "trial",
       "visible": true,
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "id": "hidden-unfollow-missing",
+      "id": "trial-unfollow-missing",
       "name": "unfollow missing relationship is harmless",
       "kind": "trial",
       "visible": true,

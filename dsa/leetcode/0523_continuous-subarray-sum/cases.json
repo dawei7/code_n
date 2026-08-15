@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "hidden-one-element-match",
+      "id": "trial-one-element-match",
       "name": "a one-element divisible sum is insufficient",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "hidden-late-zero-pair",
+      "id": "trial-late-zero-pair",
       "name": "equal remainders surround two zeroes",
       "kind": "trial",
       "visible": true,
@@ -134,6 +134,41 @@
       "expected": true,
       "tags": [
         "zero"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          23
+        ],
+        "k": 6
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          23,
+          23
+        ],
+        "k": 6
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

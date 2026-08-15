@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-arrival-at-completion",
+      "id": "trial-arrival-at-completion",
       "name": "task arriving exactly at completion is eligible",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-unsorted-enqueue-input",
+      "id": "trial-unsorted-enqueue-input",
       "name": "input order differs from arrival order",
       "kind": "trial",
       "visible": true,
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "real-index-tie-after-wait",
+      "id": "trial-index-tie-after-wait",
       "name": "original index breaks a later heap tie",
       "kind": "trial",
       "visible": true,
@@ -271,7 +271,7 @@
       ]
     },
     {
-      "id": "real-large-times",
+      "id": "trial-large-times",
       "name": "large times and cumulative clock remain exact",
       "kind": "trial",
       "visible": true,
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "id": "real-single-task",
+      "id": "trial-single-task",
       "name": "one task after an initial idle interval",
       "kind": "trial",
       "visible": true,

@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-only-o",
+      "id": "trial-only-o",
       "name": "decode adjacent empty-parenthesis tokens",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-only-al",
+      "id": "trial-only-al",
       "name": "decode adjacent al tokens",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternate every token branch",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-long-valid",
+      "id": "trial-long-valid",
       "name": "preserve a longer mixed sequence",
       "kind": "trial",
       "visible": true,
@@ -139,6 +139,20 @@
       "tags": [
         "long",
         "mixed-order"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in command",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "command": "GGG"
+      },
+      "expected": "GGG",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

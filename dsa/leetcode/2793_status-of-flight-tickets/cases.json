@@ -341,7 +341,7 @@
       ]
     },
     {
-      "id": "real-flight-without-passengers",
+      "id": "trial-flight-without-passengers",
       "name": "empty flights produce no passenger row",
       "kind": "trial",
       "visible": true,
@@ -386,7 +386,7 @@
       ]
     },
     {
-      "id": "real-overbooked-capacity-three",
+      "id": "trial-overbooked-capacity-three",
       "name": "fourth booking joins the waitlist",
       "kind": "trial",
       "visible": true,
@@ -454,7 +454,7 @@
       ]
     },
     {
-      "id": "real-under-capacity",
+      "id": "trial-under-capacity",
       "name": "spare seats confirm every booking",
       "kind": "trial",
       "visible": true,

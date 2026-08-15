@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "both partition sums are zero",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-maximum-magnitudes",
+      "id": "trial-maximum-magnitudes",
       "name": "large signed values require wide sums",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-index-not-value",
+      "id": "trial-index-not-value",
       "name": "prime values at non-prime indices still belong to B",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-only-prime-index-values",
+      "id": "trial-only-prime-index-values",
       "name": "nonzero values appear only at prime indices",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-mixed-longer",
+      "id": "trial-mixed-longer",
       "name": "mixed signs across several prime indices",
       "kind": "trial",
       "visible": true,
@@ -260,7 +260,7 @@
       ]
     },
     {
-      "id": "real-maximum-length-zero",
+      "id": "trial-maximum-length-zero",
       "name": "maximum input length of zeros",
       "kind": "trial",
       "visible": true,
@@ -100272,6 +100272,39 @@
       "tags": [
         "maximum-input",
         "all-zero"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

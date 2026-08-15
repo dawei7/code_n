@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-no-op-and-bridge",
+      "id": "trial-no-op-and-bridge",
       "name": "a no-op precedes a bridge update",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-alternating-updates",
+      "id": "trial-alternating-updates",
       "name": "separate updates grow the same run",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-endpoint-updates",
+      "id": "trial-endpoint-updates",
       "name": "both endpoints join neighboring runs",
       "kind": "trial",
       "visible": true,
@@ -153,6 +153,52 @@
       ],
       "tags": [
         "endpoints"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in queryCharacters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "babacc",
+        "queryCharacters": "b",
+        "queryIndices": [
+          1,
+          3,
+          3
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in queryCharacters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "babacc",
+        "queryCharacters": "bbb",
+        "queryIndices": [
+          1,
+          3,
+          3
+        ]
+      },
+      "expected": [
+        3,
+        4,
+        4
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

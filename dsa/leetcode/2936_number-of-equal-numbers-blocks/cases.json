@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-uneven-lengths",
+      "id": "trial-uneven-lengths",
       "name": "short blocks surround a long block",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "value magnitude does not affect boundaries",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-many-singletons",
+      "id": "trial-many-singletons",
       "name": "immediate unequal probes repeatedly advance",
       "kind": "trial",
       "visible": true,

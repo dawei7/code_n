@@ -81,6 +81,20 @@
         "s": "zzazzzb"
       },
       "expected": "zzzb"
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": "aaa",
+      "tags": [
+        "boundary",
+        "repeated"
+      ]
     }
   ]
 }

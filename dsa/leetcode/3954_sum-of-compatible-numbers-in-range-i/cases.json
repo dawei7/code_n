@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-lower-half-around-power-of-two",
+      "id": "trial-lower-half-around-power-of-two",
       "name": "only the lower half avoids the power-of-two bit",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-multiples-of-sixteen",
+      "id": "trial-multiples-of-sixteen",
       "name": "four set low bits admit multiples of sixteen",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-power-of-two-below-boundary",
+      "id": "trial-power-of-two-below-boundary",
       "name": "values below a power of two are all compatible",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-power-of-two-next-bit",
+      "id": "trial-power-of-two-next-bit",
       "name": "the next power of two is also inside the interval",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-alternating-set-bits",
+      "id": "trial-alternating-set-bits",
       "name": "alternating set bits leave several combinations",
       "kind": "trial",
       "visible": true,
@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "real-dense-bits-tight-window",
+      "id": "trial-dense-bits-tight-window",
       "name": "a dense bit pattern excludes the entire tight window",
       "kind": "trial",
       "visible": true,
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "id": "real-both-upper-bounds",
+      "id": "trial-both-upper-bounds",
       "name": "both parameters approach their upper boundaries",
       "kind": "trial",
       "visible": true,

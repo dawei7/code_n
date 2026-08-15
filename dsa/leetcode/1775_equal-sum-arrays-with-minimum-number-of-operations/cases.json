@@ -163,6 +163,55 @@
         "maximum-gain",
         "multiple-operations"
       ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          1,
+          1,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1
+        ],
+        "nums2": [
+          1,
+          1,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate heights",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-boundaries",
+      "id": "trial-boundaries",
       "name": "minimum and maximum heights",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-reverse-even",
+      "id": "trial-reverse-even",
       "name": "reversed even sequence",
       "kind": "trial",
       "visible": true,

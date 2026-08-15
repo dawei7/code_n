@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "hidden-single",
+      "id": "trial-single",
       "name": "one node equals the target",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "hidden-no-path",
+      "id": "trial-no-path",
       "name": "no downward path reaches the target",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "hidden-overlapping-paths",
+      "id": "trial-overlapping-paths",
       "name": "valid paths share nodes",
       "kind": "trial",
       "visible": true,

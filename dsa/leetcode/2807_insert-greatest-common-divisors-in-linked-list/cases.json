@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-divisibility-chain",
+      "id": "trial-divisibility-chain",
       "name": "smaller neighbor divides larger neighbor",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-alternating-gcds",
+      "id": "trial-alternating-gcds",
       "name": "adjacent pairs have different nontrivial GCDs",
       "kind": "trial",
       "visible": true,
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "real-boundary-values",
+      "id": "trial-boundary-values",
       "name": "minimum and maximum values",
       "kind": "trial",
       "visible": true,

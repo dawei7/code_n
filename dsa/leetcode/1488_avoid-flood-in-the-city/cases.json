@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-single-repeat",
+      "id": "trial-single-repeat",
       "name": "one lake dried between rains",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-dry-too-early",
+      "id": "trial-dry-too-early",
       "name": "early dry day cannot prevent later repeat",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-all-dry",
+      "id": "trial-all-dry",
       "name": "every day is unconstrained drying",
       "kind": "trial",
       "visible": true,
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-refill-stale-deadline",
+      "id": "trial-refill-stale-deadline",
       "name": "lake is dried refilled and scheduled again",
       "kind": "trial",
       "visible": true,
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "real-large-identifiers",
+      "id": "trial-large-identifiers",
       "name": "large sparse lake identifiers",
       "kind": "trial",
       "visible": true,
@@ -253,7 +253,7 @@
       ]
     },
     {
-      "id": "real-adjacent-repeat",
+      "id": "trial-adjacent-repeat",
       "name": "consecutive rain on same lake floods",
       "kind": "trial",
       "visible": true,

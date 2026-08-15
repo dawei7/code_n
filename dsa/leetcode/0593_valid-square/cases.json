@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "large translated square",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "negative-coordinate rotated square",
       "kind": "trial",
       "visible": true,
@@ -201,6 +201,64 @@
       "expected": true,
       "tags": [
         "negative"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in p3",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "p1": [
+          0,
+          0
+        ],
+        "p2": [
+          1,
+          1
+        ],
+        "p3": [
+          1,
+          1
+        ],
+        "p4": [
+          0,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in p4",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "p1": [
+          0,
+          0
+        ],
+        "p2": [
+          1,
+          1
+        ],
+        "p3": [
+          1,
+          0
+        ],
+        "p4": [
+          0,
+          0
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

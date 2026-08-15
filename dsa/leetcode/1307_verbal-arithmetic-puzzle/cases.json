@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "hidden-repeated-addend",
+      "id": "trial-repeated-addend",
       "name": "repeated addend letter keeps one digit",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "hidden-ten-letter-solution",
+      "id": "trial-ten-letter-solution",
       "name": "all ten digits participate",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "hidden-result-too-short",
+      "id": "trial-result-too-short",
       "name": "result cannot hold the addend magnitude",
       "kind": "trial",
       "visible": true,

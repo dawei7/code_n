@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "real-best-low-ranked-middle",
+      "id": "trial-best-low-ranked-middle",
       "name": "maximum depends on choosing the right middle edge",
       "kind": "trial",
       "visible": true,
@@ -236,7 +236,7 @@
       ]
     },
     {
-      "id": "real-collision",
+      "id": "trial-collision",
       "name": "high-scoring shared neighbor cannot fill both ends",
       "kind": "trial",
       "visible": true,
@@ -278,7 +278,7 @@
       ]
     },
     {
-      "id": "real-disconnected",
+      "id": "trial-disconnected",
       "name": "best path lies in one disconnected component",
       "kind": "trial",
       "visible": true,

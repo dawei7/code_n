@@ -287,7 +287,7 @@
       ]
     },
     {
-      "id": "real-insert-above-boundary",
+      "id": "trial-insert-above-boundary",
       "name": "a new value enters the top partition",
       "kind": "trial",
       "visible": true,
@@ -322,7 +322,7 @@
       ]
     },
     {
-      "id": "real-insert-below-boundary",
+      "id": "trial-insert-below-boundary",
       "name": "lower insertions leave the selected rank unchanged",
       "kind": "trial",
       "visible": true,
@@ -357,7 +357,7 @@
       ]
     },
     {
-      "id": "real-multiple-boundary-duplicates",
+      "id": "trial-multiple-boundary-duplicates",
       "name": "equal boundary values survive rank movement",
       "kind": "trial",
       "visible": true,
@@ -398,7 +398,7 @@
       ]
     },
     {
-      "id": "real-maximum-values",
+      "id": "trial-maximum-values",
       "name": "maximum values exercise large modular exponents",
       "kind": "trial",
       "visible": true,
@@ -431,7 +431,7 @@
       ]
     },
     {
-      "id": "real-alternating-rank-extremes",
+      "id": "trial-alternating-rank-extremes",
       "name": "ranks alternate by nine in both directions",
       "kind": "trial",
       "visible": true,
@@ -482,7 +482,7 @@
       ]
     },
     {
-      "id": "real-first-complete-rank",
+      "id": "trial-first-complete-rank",
       "name": "first rebalance transfers every current value",
       "kind": "trial",
       "visible": true,
@@ -517,7 +517,7 @@
       ]
     },
     {
-      "id": "real-modular-wrap-and-rank-change",
+      "id": "trial-modular-wrap-and-rank-change",
       "name": "sequential updates cross the modulus under changing ranks",
       "kind": "trial",
       "visible": true,

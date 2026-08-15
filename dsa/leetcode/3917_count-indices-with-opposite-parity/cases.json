@@ -324,7 +324,7 @@
       ]
     },
     {
-      "id": "hidden-irregular-mix",
+      "id": "trial-irregular-mix",
       "name": "irregular values preserve only parity information",
       "kind": "trial",
       "visible": true,
@@ -354,7 +354,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-length",
+      "id": "trial-maximum-length",
       "name": "maximum-length alternating parity sequence",
       "kind": "trial",
       "visible": true,
@@ -568,6 +568,26 @@
         "maximum-length",
         "alternating",
         "value-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

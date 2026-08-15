@@ -112,8 +112,8 @@
       ]
     },
     {
-      "id": "real-composite-run",
-      "name": "real: composite values separate two prime positions",
+      "id": "trial-composite-run",
+      "name": "composite values separate two prime positions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -134,8 +134,8 @@
       ]
     },
     {
-      "id": "real-largest-prime-only",
-      "name": "real: 97 is the only prime near the value limit",
+      "id": "trial-largest-prime-only",
+      "name": "97 is the only prime near the value limit",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-smallest-and-largest-primes",
-      "name": "real: smallest and largest legal prime values",
+      "id": "trial-smallest-and-largest-primes",
+      "name": "smallest and largest legal prime values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -171,8 +171,8 @@
       ]
     },
     {
-      "id": "real-many-primes",
-      "name": "real: interior prime choices cannot exceed the extremes",
+      "id": "trial-many-primes",
+      "name": "interior prime choices cannot exceed the extremes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -193,8 +193,8 @@
       ]
     },
     {
-      "id": "real-late-prime-cluster",
-      "name": "real: first and last primes occur in the latter half",
+      "id": "trial-late-prime-cluster",
+      "name": "first and last primes occur in the latter half",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -220,8 +220,8 @@
       ]
     },
     {
-      "id": "real-duplicate-primes",
-      "name": "real: duplicate prime values count at distinct indices",
+      "id": "trial-duplicate-primes",
+      "name": "duplicate prime values count at distinct indices",
       "kind": "trial",
       "visible": true,
       "input": {

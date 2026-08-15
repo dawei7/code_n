@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-negative-division",
+      "id": "trial-negative-division",
       "name": "negative division toward zero",
       "kind": "trial",
       "visible": true,

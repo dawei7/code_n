@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-nine-nines",
+      "id": "trial-nine-nines",
       "name": "nine copies of the largest digit",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-maximum-value",
+      "id": "trial-maximum-value",
       "name": "the ten-digit upper boundary contains nine zeroes",
       "kind": "trial",
       "visible": true,
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-descending-digits",
+      "id": "trial-descending-digits",
       "name": "descending distinct digits have the same total",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "real-nine-ones",
+      "id": "trial-nine-ones",
       "name": "frequency multiplies a repeated low digit",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-sparse-nonzero-digits",
+      "id": "trial-sparse-nonzero-digits",
       "name": "zeroes separate two nonzero contributions",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-alternating-eight-zero",
+      "id": "trial-alternating-eight-zero",
       "name": "five occurrences of eight are all counted",
       "kind": "trial",
       "visible": true,
@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "real-separated-fours",
+      "id": "trial-separated-fours",
       "name": "repeated fours remain countable across zeroes",
       "kind": "trial",
       "visible": true,

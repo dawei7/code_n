@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-too-few-windows",
+      "id": "trial-too-few-windows",
       "name": "pigeonhole bound rejects before scanning",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "duplicates do not replace missing codes",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-three-bit-complete",
+      "id": "trial-three-bit-complete",
       "name": "compact sequence covers all three-bit codes",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-one-bit-missing",
+      "id": "trial-one-bit-missing",
       "name": "only zero occurs for k one",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-single-character",
+      "id": "trial-single-character",
       "name": "one character cannot contain both one-bit codes",
       "kind": "trial",
       "visible": true,
@@ -146,6 +146,36 @@
       "expected": false,
       "tags": [
         "minimum"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0",
+        "k": 2
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000",
+        "k": 2
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

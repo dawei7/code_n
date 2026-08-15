@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-all-sixes",
+      "id": "trial-all-sixes",
       "name": "choose the most significant of four sixes",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-leading-six",
+      "id": "trial-leading-six",
       "name": "first digit is the unique six",
       "kind": "trial",
       "visible": true,

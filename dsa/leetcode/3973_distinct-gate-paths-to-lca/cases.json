@@ -356,7 +356,7 @@
       ]
     },
     {
-      "id": "real-noncommuting-chain-product",
+      "id": "trial-noncommuting-chain-product",
       "name": "asymmetric gates expose matrix order",
       "kind": "trial",
       "visible": true,
@@ -406,7 +406,7 @@
       ]
     },
     {
-      "id": "real-several-internal-lcas",
+      "id": "trial-several-internal-lcas",
       "name": "three queries use two different internal LCAs",
       "kind": "trial",
       "visible": true,
@@ -486,7 +486,7 @@
       ]
     },
     {
-      "id": "real-xor-cancels-duplicates",
+      "id": "trial-xor-cancels-duplicates",
       "name": "duplicate query values cancel under XOR",
       "kind": "trial",
       "visible": true,
@@ -536,7 +536,7 @@
       ]
     },
     {
-      "id": "real-xor-mixed-query-values",
+      "id": "trial-xor-mixed-query-values",
       "name": "XOR combines three different modular products",
       "kind": "trial",
       "visible": true,
@@ -598,7 +598,7 @@
       ]
     },
     {
-      "id": "real-parent-index-after-child",
+      "id": "trial-parent-index-after-child",
       "name": "valid tree is not numerically topological",
       "kind": "trial",
       "visible": true,
@@ -672,7 +672,7 @@
       ]
     },
     {
-      "id": "real-modular-long-chain",
+      "id": "trial-modular-long-chain",
       "name": "large path counts are reduced before XOR",
       "kind": "trial",
       "visible": true,
@@ -771,7 +771,7 @@
       ]
     },
     {
-      "id": "real-zero-and-empty-routes",
+      "id": "trial-zero-and-empty-routes",
       "name": "blocked, moving, and empty routes share one XOR",
       "kind": "trial",
       "visible": true,

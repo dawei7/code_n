@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-all-water",
+      "id": "trial-all-water",
       "name": "an all-water second grid has no islands",
       "kind": "trial",
       "visible": true,
@@ -256,7 +256,7 @@
       ]
     },
     {
-      "id": "real-diagonal-separate",
+      "id": "trial-diagonal-separate",
       "name": "diagonal cells form three separate contained islands",
       "kind": "trial",
       "visible": true,
@@ -303,7 +303,7 @@
       ]
     },
     {
-      "id": "real-one-cell-invalidates",
+      "id": "trial-one-cell-invalidates",
       "name": "one mismatching cell invalidates an entire connected island",
       "kind": "trial",
       "visible": true,
@@ -350,7 +350,7 @@
       ]
     },
     {
-      "id": "real-multiple-mixed",
+      "id": "trial-multiple-mixed",
       "name": "contained and invalid isolated islands are counted separately",
       "kind": "trial",
       "visible": true,
@@ -403,7 +403,7 @@
       ]
     },
     {
-      "id": "real-extra-reference-land",
+      "id": "trial-extra-reference-land",
       "name": "extra reference land outside the candidate component is irrelevant",
       "kind": "trial",
       "visible": true,
@@ -450,7 +450,7 @@
       ]
     },
     {
-      "id": "real-connected-through-mismatch",
+      "id": "trial-connected-through-mismatch",
       "name": "traversal continues through a mismatching bridge cell",
       "kind": "trial",
       "visible": true,
@@ -477,7 +477,7 @@
       ]
     },
     {
-      "id": "real-four-corners",
+      "id": "trial-four-corners",
       "name": "four disconnected corner cells are all contained",
       "kind": "trial",
       "visible": true,

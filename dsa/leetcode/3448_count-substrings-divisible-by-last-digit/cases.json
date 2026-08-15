@@ -71,8 +71,8 @@
       ]
     },
     {
-      "id": "real-alternating-nine-zero",
-      "name": "real: alternating nine and zero",
+      "id": "trial-alternating-nine-zero",
+      "name": "alternating nine and zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -85,8 +85,8 @@
       ]
     },
     {
-      "id": "real-all-ones",
-      "name": "real: every substring is divisible by one",
+      "id": "trial-all-ones",
+      "name": "every substring is divisible by one",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -99,8 +99,8 @@
       ]
     },
     {
-      "id": "real-leading-zeroes",
-      "name": "real: several starts share a numeric value",
+      "id": "trial-leading-zeroes",
+      "name": "several starts share a numeric value",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -113,8 +113,8 @@
       ]
     },
     {
-      "id": "real-long-zero-run",
-      "name": "real: endpoints around a zero run",
+      "id": "trial-long-zero-run",
+      "name": "endpoints around a zero run",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -124,6 +124,34 @@
       "tags": [
         "real",
         "zero-run"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111"
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

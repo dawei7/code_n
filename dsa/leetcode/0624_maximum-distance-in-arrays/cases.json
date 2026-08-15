@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "later minimum pairs with earlier maximum",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "duplicate extremes in different arrays",
       "kind": "trial",
       "visible": true,

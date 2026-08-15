@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-unsorted-users",
+      "id": "trial-unsorted-users",
       "name": "output is sorted independently of input row order",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-shared-follower",
+      "id": "trial-shared-follower",
       "name": "one follower contributes to several user groups",
       "kind": "trial",
       "visible": true,
@@ -236,7 +236,7 @@
       ]
     },
     {
-      "id": "real-large-identifiers",
+      "id": "trial-large-identifiers",
       "name": "large and zero identifiers are grouped normally",
       "kind": "trial",
       "visible": true,

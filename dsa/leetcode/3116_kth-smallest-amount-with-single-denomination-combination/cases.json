@@ -111,8 +111,8 @@
       ]
     },
     {
-      "id": "real-coprime-small",
-      "name": "real: several nearly coprime streams",
+      "id": "trial-coprime-small",
+      "name": "several nearly coprime streams",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -130,8 +130,8 @@
       ]
     },
     {
-      "id": "real-shared-lcms",
-      "name": "real: subsets share least common multiples",
+      "id": "trial-shared-lcms",
+      "name": "subsets share least common multiples",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -150,8 +150,8 @@
       ]
     },
     {
-      "id": "real-unsorted-denominations",
-      "name": "real: unsorted denominations and larger rank",
+      "id": "trial-unsorted-denominations",
+      "name": "unsorted denominations and larger rank",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -170,8 +170,8 @@
       ]
     },
     {
-      "id": "real-many-redundant-denominations",
-      "name": "real: one stream subsumes many others",
+      "id": "trial-many-redundant-denominations",
+      "name": "one stream subsumes many others",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -190,8 +190,8 @@
       ]
     },
     {
-      "id": "real-maximum-answer",
-      "name": "real: answer exceeds 32-bit signed range",
+      "id": "trial-maximum-answer",
+      "name": "answer exceeds 32-bit signed range",
       "kind": "trial",
       "visible": true,
       "input": {

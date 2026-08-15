@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-zero-and-negatives",
+      "id": "trial-zero-and-negatives",
       "name": "zero stays after every moved negative",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-duplicate-negatives",
+      "id": "trial-duplicate-negatives",
       "name": "duplicate negative values remain valid nodes",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "both signed value limits",
       "kind": "trial",
       "visible": true,

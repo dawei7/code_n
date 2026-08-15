@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-duplicate-boundary",
+      "id": "trial-duplicate-boundary",
       "name": "duplicates span the rotation boundary",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-multiple-descents",
+      "id": "trial-multiple-descents",
       "name": "two internal decreases",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-singleton",
+      "id": "trial-singleton",
       "name": "one-element array",
       "kind": "trial",
       "visible": true,
@@ -150,6 +150,39 @@
       "tags": [
         "minimum-length",
         "value-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

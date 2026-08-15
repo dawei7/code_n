@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-one-source-two-demands",
+      "id": "trial-one-source-two-demands",
       "name": "one source serves two unequal demands",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-demand-at-index-zero",
+      "id": "trial-demand-at-index-zero",
       "name": "two supplies cover the first index",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-distance-choice",
+      "id": "trial-distance-choice",
       "name": "deficits choose different circular routes",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-wraparound-shorter",
+      "id": "trial-wraparound-shorter",
       "name": "the circle edge is shorter than the linear route",
       "kind": "trial",
       "visible": true,
@@ -249,7 +249,7 @@
       ]
     },
     {
-      "id": "real-three-equal-deficits",
+      "id": "trial-three-equal-deficits",
       "name": "one source balances three equal deficits",
       "kind": "trial",
       "visible": true,
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "real-extra-source-balance",
+      "id": "trial-extra-source-balance",
       "name": "one surplus unit remains after three deficits",
       "kind": "trial",
       "visible": true,
@@ -286,7 +286,7 @@
       ]
     },
     {
-      "id": "real-maximum-two-person-transfer",
+      "id": "trial-maximum-two-person-transfer",
       "name": "maximum-magnitude neighboring transfer",
       "kind": "trial",
       "visible": true,
@@ -303,7 +303,7 @@
       ]
     },
     {
-      "id": "real-maximum-split-demand",
+      "id": "trial-maximum-split-demand",
       "name": "maximum supply splits across both neighbors",
       "kind": "trial",
       "visible": true,
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "id": "real-alternating-five-people",
+      "id": "trial-alternating-five-people",
       "name": "alternating supplies and deficits around an odd cycle",
       "kind": "trial",
       "visible": true,
@@ -341,7 +341,7 @@
       ]
     },
     {
-      "id": "real-distant-single-demand",
+      "id": "trial-distant-single-demand",
       "name": "a single large demand has one distant source",
       "kind": "trial",
       "visible": true,
@@ -359,6 +359,23 @@
       "tags": [
         "single-demand",
         "unused-surplus"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "identical elements in balance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          -1,
+          -1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

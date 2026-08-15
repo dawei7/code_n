@@ -66,7 +66,7 @@
       ]
     },
     {
-      "id": "real-identical",
+      "id": "trial-identical",
       "name": "identical strings use the full length",
       "kind": "trial",
       "visible": true,
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "id": "real-shrink-many",
+      "id": "trial-shrink-many",
       "name": "expensive middle position forces several removals",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-exact-budget",
+      "id": "trial-exact-budget",
       "name": "full interval spends the budget exactly",
       "kind": "trial",
       "visible": true,

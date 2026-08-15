@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-unsorted",
+      "id": "trial-unsorted",
       "name": "special floors arrive out of order",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-both-boundaries",
+      "id": "trial-both-boundaries",
       "name": "special floors occupy both rented boundaries",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-large-coordinates",
+      "id": "trial-large-coordinates",
       "name": "sparse floors near the numeric limit",
       "kind": "trial",
       "visible": true,

@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-shift-to-z",
+      "id": "trial-shift-to-z",
       "name": "a shift may land exactly on z",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-all-zero-shifts",
+      "id": "trial-all-zero-shifts",
       "name": "every zero shift duplicates its letter",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-two-independent-pairs",
+      "id": "trial-two-independent-pairs",
       "name": "pairs use their own preceding letters",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-large-and-small-shifts",
+      "id": "trial-large-and-small-shifts",
       "name": "offsets vary independently",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-nine-from-a",
+      "id": "trial-nine-from-a",
       "name": "the largest digit shifts from a to j",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-trailing-letter",
+      "id": "trial-trailing-letter",
       "name": "the final unmatched letter is preserved",
       "kind": "trial",
       "visible": true,

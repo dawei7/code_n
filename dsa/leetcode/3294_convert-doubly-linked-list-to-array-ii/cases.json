@@ -133,8 +133,8 @@
       ]
     },
     {
-      "id": "real-near-head",
-      "name": "real: supplied node follows head",
+      "id": "trial-near-head",
+      "name": "supplied node follows head",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -161,8 +161,8 @@
       ]
     },
     {
-      "id": "real-near-tail",
-      "name": "real: supplied node precedes tail",
+      "id": "trial-near-tail",
+      "name": "supplied node precedes tail",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -191,8 +191,8 @@
       ]
     },
     {
-      "id": "real-value-bounds",
-      "name": "real: unique minimum and maximum values",
+      "id": "trial-value-bounds",
+      "name": "unique minimum and maximum values",
       "kind": "trial",
       "visible": true,
       "input": {

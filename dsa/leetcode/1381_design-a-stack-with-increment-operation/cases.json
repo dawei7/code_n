@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "hidden-future-push",
+      "id": "trial-future-push",
       "name": "old increment does not affect later push",
       "kind": "trial",
       "visible": true,
@@ -283,7 +283,7 @@
       ]
     },
     {
-      "id": "hidden-empty-increment",
+      "id": "trial-empty-increment",
       "name": "increment while empty is discarded",
       "kind": "trial",
       "visible": true,

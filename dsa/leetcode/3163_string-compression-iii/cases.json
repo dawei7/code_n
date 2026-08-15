@@ -86,8 +86,8 @@
       ]
     },
     {
-      "id": "real-alternating-characters",
-      "name": "real: alternating characters expand to unit chunks",
+      "id": "trial-alternating-characters",
+      "name": "alternating characters expand to unit chunks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -100,8 +100,8 @@
       ]
     },
     {
-      "id": "real-eighteen-copies",
-      "name": "real: an exact multiple of nine has no remainder chunk",
+      "id": "trial-eighteen-copies",
+      "name": "an exact multiple of nine has no remainder chunk",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -114,8 +114,8 @@
       ]
     },
     {
-      "id": "real-nineteen-copies",
-      "name": "real: two full chunks and one remainder",
+      "id": "trial-nineteen-copies",
+      "name": "two full chunks and one remainder",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -128,8 +128,8 @@
       ]
     },
     {
-      "id": "real-separated-same-character",
-      "name": "real: equal characters separated by another run stay separate",
+      "id": "trial-separated-same-character",
+      "name": "equal characters separated by another run stay separate",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -142,8 +142,8 @@
       ]
     },
     {
-      "id": "real-distinct-lowercase-letters",
-      "name": "real: distinct lowercase letters remain ordered",
+      "id": "trial-distinct-lowercase-letters",
+      "name": "distinct lowercase letters remain ordered",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -156,8 +156,8 @@
       ]
     },
     {
-      "id": "real-five-full-chunks",
-      "name": "real: a long run emits repeated full chunks",
+      "id": "trial-five-full-chunks",
+      "name": "a long run emits repeated full chunks",
       "kind": "trial",
       "visible": true,
       "input": {

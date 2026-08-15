@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-zero-start",
+      "id": "trial-zero-start",
       "name": "range begins at zero",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-distinct-gap",
+      "id": "trial-distinct-gap",
       "name": "distinct values can still have a gap",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-all-duplicates",
+      "id": "trial-all-duplicates",
       "name": "repeated identical values are not consecutive",
       "kind": "trial",
       "visible": true,
@@ -139,6 +139,39 @@
       },
       "expected": false,
       "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

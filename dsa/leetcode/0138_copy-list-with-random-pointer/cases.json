@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-cycle",
+      "id": "trial-cycle",
       "name": "random-pointer cycle",
       "kind": "trial",
       "visible": true,

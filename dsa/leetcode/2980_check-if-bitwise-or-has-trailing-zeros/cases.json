@@ -91,8 +91,8 @@
       ]
     },
     {
-      "id": "real-late-evens",
-      "name": "real: qualifying values occur at the end",
+      "id": "trial-late-evens",
+      "name": "qualifying values occur at the end",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -111,8 +111,8 @@
       ]
     },
     {
-      "id": "real-duplicate-even",
-      "name": "real: duplicate array elements count separately",
+      "id": "trial-duplicate-even",
+      "name": "duplicate array elements count separately",
       "kind": "trial",
       "visible": true,
       "input": {

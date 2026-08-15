@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-wraparound-failure",
+      "id": "trial-wraparound-failure",
       "name": "internal boundary passes but cycle does not close",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-case-sensitive-pass",
+      "id": "trial-case-sensitive-pass",
       "name": "mixed case matches exactly",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-late-failure",
+      "id": "trial-late-failure",
       "name": "a later internal boundary fails",
       "kind": "trial",
       "visible": true,
@@ -109,6 +109,34 @@
       "expected": false,
       "tags": [
         "late-mismatch"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in sentence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "l"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in sentence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "lll"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

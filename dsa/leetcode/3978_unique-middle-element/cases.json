@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-positional-not-statistical-middle",
+      "id": "trial-positional-not-statistical-middle",
       "name": "middle means the original index rather than the sorted median",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-symmetric-other-duplicates",
+      "id": "trial-symmetric-other-duplicates",
       "name": "symmetric endpoint duplicates leave the middle unique",
       "kind": "trial",
       "visible": true,
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-minimum-middle-value",
+      "id": "trial-minimum-middle-value",
       "name": "minimum legal value is unique at the middle",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-maximum-middle-value-duplicate",
+      "id": "trial-maximum-middle-value-duplicate",
       "name": "maximum legal middle value has a duplicate",
       "kind": "trial",
       "visible": true,
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "real-adjacent-left-duplicate",
+      "id": "trial-adjacent-left-duplicate",
       "name": "duplicate immediately precedes the middle position",
       "kind": "trial",
       "visible": true,
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "real-distant-right-duplicate",
+      "id": "trial-distant-right-duplicate",
       "name": "duplicate appears at the final position",
       "kind": "trial",
       "visible": true,
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "id": "real-maximum-length-all-distinct",
+      "id": "trial-maximum-length-all-distinct",
       "name": "maximum odd length with every value distinct",
       "kind": "trial",
       "visible": true,
@@ -369,7 +369,7 @@
       ]
     },
     {
-      "id": "real-maximum-length-final-duplicate",
+      "id": "trial-maximum-length-final-duplicate",
       "name": "maximum length with the middle value repeated at the end",
       "kind": "trial",
       "visible": true,

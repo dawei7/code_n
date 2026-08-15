@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-many-tied-gaps",
+      "id": "trial-many-tied-gaps",
       "name": "earliest of several equal gaps",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-no-primes",
+      "id": "trial-no-primes",
       "name": "interval without primes",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-moderate-range",
+      "id": "trial-moderate-range",
       "name": "closest pair after lower endpoint",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "range ending at maximum endpoint",
       "kind": "trial",
       "visible": true,

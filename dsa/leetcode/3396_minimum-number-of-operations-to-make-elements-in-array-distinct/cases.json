@@ -140,8 +140,8 @@
       ]
     },
     {
-      "id": "real-distinct-suffix-begins-late",
-      "name": "real: several duplicate pairs disappear after two operations",
+      "id": "trial-distinct-suffix-begins-late",
+      "name": "several duplicate pairs disappear after two operations",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -165,8 +165,8 @@
       ]
     },
     {
-      "id": "real-maximum-all-equal",
-      "name": "real: maximum length leaves one value after thirty-three operations",
+      "id": "trial-maximum-all-equal",
+      "name": "maximum length leaves one value after thirty-three operations",
       "kind": "trial",
       "visible": true,
       "input": {

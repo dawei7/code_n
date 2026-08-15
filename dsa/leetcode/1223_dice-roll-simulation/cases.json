@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-four-no-repeats",
+      "id": "trial-four-no-repeats",
       "name": "closed form when all limits are one",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-no-effective-limit",
+      "id": "trial-no-effective-limit",
       "name": "large limits permit every sequence",
       "kind": "trial",
       "visible": true,

@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate values preserve nodes",
       "kind": "trial",
       "visible": true,

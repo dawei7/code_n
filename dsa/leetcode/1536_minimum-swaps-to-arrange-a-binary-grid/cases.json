@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-reverse-capacities",
+      "id": "trial-reverse-capacities",
       "name": "reversed capacities require maximum swaps",
       "kind": "trial",
       "visible": true,
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-late-impossible",
+      "id": "trial-late-impossible",
       "name": "top succeeds but a later position is impossible",
       "kind": "trial",
       "visible": true,
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "real-duplicate-capacities",
+      "id": "trial-duplicate-capacities",
       "name": "earliest equal-capacity row minimizes movement",
       "kind": "trial",
       "visible": true,
@@ -287,7 +287,7 @@
       ]
     },
     {
-      "id": "real-mixed",
+      "id": "trial-mixed",
       "name": "several requirements use nonconsecutive candidates",
       "kind": "trial",
       "visible": true,

@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "real-no-valid-cut",
+      "id": "trial-no-valid-cut",
       "name": "neither the whole array nor its split follows the sequence",
       "kind": "trial",
       "visible": true,
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-alternating-prefix-xors",
+      "id": "trial-alternating-prefix-xors",
       "name": "repeated prefix XORs contribute to both parity states",
       "kind": "trial",
       "visible": true,
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": "real-maximum-value",
+      "id": "trial-maximum-value",
       "name": "the maximum legal value begins several valid partitions",
       "kind": "trial",
       "visible": true,
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "real-many-alternating-cuts",
+      "id": "trial-many-alternating-cuts",
       "name": "several block counts and cut locations are valid",
       "kind": "trial",
       "visible": true,

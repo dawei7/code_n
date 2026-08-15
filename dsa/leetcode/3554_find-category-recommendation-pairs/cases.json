@@ -336,8 +336,8 @@
       ]
     },
     {
-      "id": "real-count-and-lexical-order",
-      "name": "real: descending count and lexical tie-breakers",
+      "id": "trial-count-and-lexical-order",
+      "name": "descending count and lexical tie-breakers",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -489,8 +489,8 @@
       ]
     },
     {
-      "id": "real-one-user-many-categories",
-      "name": "real: all category combinations are generated",
+      "id": "trial-one-user-many-categories",
+      "name": "all category combinations are generated",
       "kind": "trial",
       "visible": true,
       "input": {

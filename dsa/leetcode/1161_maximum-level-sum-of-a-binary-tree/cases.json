@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-deep-winner",
+      "id": "trial-deep-winner",
       "name": "deepest level wins",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-sparse-tie",
+      "id": "trial-sparse-tie",
       "name": "sparse later level ties the root",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-negative-root",
+      "id": "trial-negative-root",
       "name": "child level exceeds negative root",
       "kind": "trial",
       "visible": true,

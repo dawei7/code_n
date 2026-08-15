@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-leading-and-trailing",
+      "id": "trial-leading-and-trailing",
       "name": "all spaces move into one gap",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-three-words-even",
+      "id": "trial-three-words-even",
       "name": "six spaces divide across two gaps",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-three-words-remainder",
+      "id": "trial-three-words-remainder",
       "name": "five spaces leave one trailing",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-trailing-single-word",
+      "id": "trial-trailing-single-word",
       "name": "existing trailing spaces stay after sole word",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-long-words",
+      "id": "trial-long-words",
       "name": "preserve multi-letter word order",
       "kind": "trial",
       "visible": true,
@@ -136,6 +136,34 @@
       "expected": "alpha    beta    gamma",
       "tags": [
         "word-order"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in text",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": " "
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in text",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "   "
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

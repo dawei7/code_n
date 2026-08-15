@@ -228,7 +228,7 @@
       ]
     },
     {
-      "id": "hidden-shortest-path",
+      "id": "trial-shortest-path",
       "name": "a shorter path prevents later recounting",
       "kind": "trial",
       "visible": true,
@@ -277,7 +277,7 @@
       ]
     },
     {
-      "id": "hidden-duplicate-occurrences",
+      "id": "trial-duplicate-occurrences",
       "name": "repeated entries contribute repeatedly",
       "kind": "trial",
       "visible": true,

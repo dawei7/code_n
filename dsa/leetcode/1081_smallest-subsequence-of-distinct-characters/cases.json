@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-nested-pops",
+      "id": "trial-nested-pops",
       "name": "several safe stack pops",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-leading-fixed",
+      "id": "trial-leading-fixed",
       "name": "leading character cannot be restored",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-word",
+      "id": "trial-word",
       "name": "repeated letters in ordinary word",
       "kind": "trial",
       "visible": true,

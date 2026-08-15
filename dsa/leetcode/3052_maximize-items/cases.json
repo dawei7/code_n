@@ -258,7 +258,7 @@
       ]
     },
     {
-      "id": "real-decimal-floor",
+      "id": "trial-decimal-floor",
       "name": "decimal batch areas are floored only after division",
       "kind": "trial",
       "visible": true,
@@ -311,7 +311,7 @@
       ]
     },
     {
-      "id": "real-prime-priority",
+      "id": "trial-prime-priority",
       "name": "non-prime capacity is computed only after maximal prime allocation",
       "kind": "trial",
       "visible": true,

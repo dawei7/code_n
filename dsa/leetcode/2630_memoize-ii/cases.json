@@ -215,8 +215,8 @@
       ]
     },
     {
-      "id": "real-zero-arguments",
-      "name": "real: empty tuple is cached",
+      "id": "trial-zero-arguments",
+      "name": "empty tuple is cached",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -238,8 +238,8 @@
       ]
     },
     {
-      "id": "real-undefined-result",
-      "name": "real: undefined is a cached result",
+      "id": "trial-undefined-result",
+      "name": "undefined is a cached result",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -270,8 +270,8 @@
       ]
     },
     {
-      "id": "real-false-result",
-      "name": "real: false is a cached result",
+      "id": "trial-false-result",
+      "name": "false is a cached result",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -297,8 +297,8 @@
       ]
     },
     {
-      "id": "real-strict-type",
-      "name": "real: number and string keys differ",
+      "id": "trial-strict-type",
+      "name": "number and string keys differ",
       "kind": "trial",
       "visible": true,
       "input": {

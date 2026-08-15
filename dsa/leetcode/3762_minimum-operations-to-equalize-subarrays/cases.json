@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-large-step",
+      "id": "trial-large-step",
       "name": "values at the numeric boundary differ by one operation",
       "kind": "trial",
       "visible": true,
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "real-already-equal",
+      "id": "trial-already-equal",
       "name": "repeated values need zero operations",
       "kind": "trial",
       "visible": true,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-uneven-distances",
+      "id": "trial-uneven-distances",
       "name": "median minimizes an uneven compatible range",
       "kind": "trial",
       "visible": true,
@@ -272,6 +272,38 @@
       },
       "tags": [
         "median"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          7
+        ],
+        "k": 1,
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        6
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

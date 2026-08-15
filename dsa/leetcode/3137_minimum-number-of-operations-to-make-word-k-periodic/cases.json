@@ -88,8 +88,8 @@
       ]
     },
     {
-      "id": "real-dominant-first",
-      "name": "real: first block occurs twice",
+      "id": "trial-dominant-first",
+      "name": "first block occurs twice",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -103,8 +103,8 @@
       ]
     },
     {
-      "id": "real-dominant-boundaries",
-      "name": "real: dominant block at both ends",
+      "id": "trial-dominant-boundaries",
+      "name": "dominant block at both ends",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -118,8 +118,8 @@
       ]
     },
     {
-      "id": "real-all-unique",
-      "name": "real: every block is different",
+      "id": "trial-all-unique",
+      "name": "every block is different",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -133,8 +133,8 @@
       ]
     },
     {
-      "id": "real-dominant-not-first",
-      "name": "real: most frequent block is not first",
+      "id": "trial-dominant-not-first",
+      "name": "most frequent block is not first",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -148,8 +148,8 @@
       ]
     },
     {
-      "id": "real-long-block-copy",
-      "name": "real: repeated six-character block",
+      "id": "trial-long-block-copy",
+      "name": "repeated six-character block",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -163,8 +163,8 @@
       ]
     },
     {
-      "id": "real-two-maximum-blocks",
-      "name": "real: two equal long blocks",
+      "id": "trial-two-maximum-blocks",
+      "name": "two equal long blocks",
       "kind": "trial",
       "visible": true,
       "input": {

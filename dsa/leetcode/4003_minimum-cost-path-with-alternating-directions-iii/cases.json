@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "real-backward-move-improves-route",
+      "id": "trial-backward-move-improves-route",
       "name": "an optimal route includes a left move",
       "kind": "trial",
       "visible": true,
@@ -286,7 +286,7 @@
       ]
     },
     {
-      "id": "real-zero-penalty-wide-grid",
+      "id": "trial-zero-penalty-wide-grid",
       "name": "zero penalties on a wide rectangle",
       "kind": "trial",
       "visible": true,
@@ -313,7 +313,7 @@
       ]
     },
     {
-      "id": "real-zero-penalty-tall-grid",
+      "id": "trial-zero-penalty-tall-grid",
       "name": "zero penalties on a tall rectangle",
       "kind": "trial",
       "visible": true,
@@ -342,7 +342,7 @@
       ]
     },
     {
-      "id": "real-checkerboard-extremes",
+      "id": "trial-checkerboard-extremes",
       "name": "alternating zero and maximum penalties",
       "kind": "trial",
       "visible": true,
@@ -374,7 +374,7 @@
       ]
     },
     {
-      "id": "real-increasing-penalties",
+      "id": "trial-increasing-penalties",
       "name": "increasing penalties across a square",
       "kind": "trial",
       "visible": true,
@@ -405,7 +405,7 @@
       ]
     },
     {
-      "id": "real-long-zero-row",
+      "id": "trial-long-zero-row",
       "name": "ten-cell row with free violations",
       "kind": "trial",
       "visible": true,
@@ -434,7 +434,7 @@
       ]
     },
     {
-      "id": "real-increasing-row",
+      "id": "trial-increasing-row",
       "name": "ten-cell row with increasing penalties",
       "kind": "trial",
       "visible": true,
@@ -463,7 +463,7 @@
       ]
     },
     {
-      "id": "real-increasing-column",
+      "id": "trial-increasing-column",
       "name": "ten-cell column with increasing penalties",
       "kind": "trial",
       "visible": true,
@@ -510,7 +510,7 @@
       ]
     },
     {
-      "id": "real-four-by-four-mixed",
+      "id": "trial-four-by-four-mixed",
       "name": "mixed penalties in a larger square",
       "kind": "trial",
       "visible": true,
@@ -551,7 +551,7 @@
       ]
     },
     {
-      "id": "real-ninety-nine-cell-row",
+      "id": "trial-ninety-nine-cell-row",
       "name": "long row alternating maximum and zero penalties",
       "kind": "trial",
       "visible": true,

@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-max-values",
+      "id": "trial-max-values",
       "name": "repeated maximum values",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-duplicate-threshold",
+      "id": "trial-duplicate-threshold",
       "name": "interval cuts through equal sums",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-uneven",
+      "id": "trial-uneven",
       "name": "uneven values and broad interval",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-all-ones",
+      "id": "trial-all-ones",
       "name": "many equal sums",
       "kind": "trial",
       "visible": true,
@@ -218,6 +218,50 @@
         "real",
         "all-ones",
         "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "n": 1,
+        "left": 1,
+        "right": 5
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value right=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "n": 4,
+        "left": 1,
+        "right": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

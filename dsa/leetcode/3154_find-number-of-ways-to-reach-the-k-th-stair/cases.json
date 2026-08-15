@@ -82,8 +82,8 @@
       ]
     },
     {
-      "id": "real-power-of-two",
-      "name": "real: exact power-of-two target",
+      "id": "trial-power-of-two",
+      "name": "exact power-of-two target",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -95,8 +95,8 @@
       ]
     },
     {
-      "id": "real-unreachable-after-power",
-      "name": "real: target immediately above a power is unreachable",
+      "id": "trial-unreachable-after-power",
+      "name": "target immediately above a power is unreachable",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -108,8 +108,8 @@
       ]
     },
     {
-      "id": "real-before-power",
-      "name": "real: target immediately below sixteen",
+      "id": "trial-before-power",
+      "name": "target immediately below sixteen",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -121,8 +121,8 @@
       ]
     },
     {
-      "id": "real-sixteen",
-      "name": "real: reach sixteen with only upward moves",
+      "id": "trial-sixteen",
+      "name": "reach sixteen with only upward moves",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -134,8 +134,8 @@
       ]
     },
     {
-      "id": "real-before-thirty-two",
-      "name": "real: six placements reach thirty-one",
+      "id": "trial-before-thirty-two",
+      "name": "six placements reach thirty-one",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -147,8 +147,8 @@
       ]
     },
     {
-      "id": "real-maximum-target",
-      "name": "real: maximum allowed target",
+      "id": "trial-maximum-target",
+      "name": "maximum allowed target",
       "kind": "trial",
       "visible": true,
       "input": {

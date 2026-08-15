@@ -124,8 +124,8 @@
       }
     },
     {
-      "id": "real-wide-empty-gap",
-      "name": "real: minimum of a wide balancing interval",
+      "id": "trial-wide-empty-gap",
+      "name": "minimum of a wide balancing interval",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -153,8 +153,8 @@
       }
     },
     {
-      "id": "real-layered-overlaps",
-      "name": "real: several independently counted overlaps",
+      "id": "trial-layered-overlaps",
+      "name": "several independently counted overlaps",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -192,8 +192,8 @@
       }
     },
     {
-      "id": "real-x-coordinate-irrelevant",
-      "name": "real: x positions do not alter counted strips",
+      "id": "trial-x-coordinate-irrelevant",
+      "name": "x positions do not alter counted strips",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -226,8 +226,8 @@
       }
     },
     {
-      "id": "real-large-coordinate",
-      "name": "real: large coordinate and side length",
+      "id": "trial-large-coordinate",
+      "name": "large coordinate and side length",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-composite-key",
+      "id": "trial-composite-key",
       "name": "same sale id in distinct years",
       "kind": "trial",
       "visible": true,
@@ -271,7 +271,7 @@
       ]
     },
     {
-      "id": "real-unsorted-input",
+      "id": "trial-unsorted-input",
       "name": "input order does not define first year",
       "kind": "trial",
       "visible": true,

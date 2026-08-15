@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "real-zero-one-order",
+      "id": "trial-zero-one-order",
       "name": "zero followed by one is increasing",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-two-value-split",
+      "id": "trial-two-value-split",
       "name": "a three-digit value followed by its predecessor",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-three-value-split",
+      "id": "trial-three-value-split",
       "name": "consecutive values cross a digit-width boundary",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-final-zero",
+      "id": "trial-final-zero",
       "name": "a sequence may end at zero",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-all-zeros",
+      "id": "trial-all-zeros",
       "name": "equal zero values are not descending",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-single-digit",
+      "id": "trial-single-digit",
       "name": "at least two non-empty substrings are required",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "real-consecutive-suffix",
+      "id": "trial-consecutive-suffix",
       "name": "one multi-digit value can precede single digits",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-maximum-length-false",
+      "id": "trial-maximum-length-false",
       "name": "a maximum-length repeated digit string has no valid split",
       "kind": "trial",
       "visible": true,

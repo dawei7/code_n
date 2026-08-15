@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-reversed-digits",
+      "id": "trial-reversed-digits",
       "name": "reversed digit mapping mixes zero and long values",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-permuted-order",
+      "id": "trial-permuted-order",
       "name": "permutation changes several relative positions",
       "kind": "trial",
       "visible": true,
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "values near the legal upper bound map safely",
       "kind": "trial",
       "visible": true,
@@ -272,6 +272,68 @@
       ],
       "tags": [
         "large-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mapping": [
+          8,
+          9,
+          4,
+          0,
+          2,
+          1,
+          3,
+          5,
+          7,
+          6
+        ],
+        "nums": [
+          991
+        ]
+      },
+      "expected": [
+        991
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mapping": [
+          8,
+          9,
+          4,
+          0,
+          2,
+          1,
+          3,
+          5,
+          7,
+          6
+        ],
+        "nums": [
+          991,
+          991
+        ]
+      },
+      "expected": [
+        991,
+        991
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

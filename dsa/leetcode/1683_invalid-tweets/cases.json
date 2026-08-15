@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-space-counts",
+      "id": "trial-space-counts",
       "name": "spaces contribute to content length",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-exclamation-counts",
+      "id": "trial-exclamation-counts",
       "name": "punctuation contributes to content length",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-all-invalid",
+      "id": "trial-all-invalid",
       "name": "retain every row when all are too long",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-mixed-lengths",
+      "id": "trial-mixed-lengths",
       "name": "several valid and invalid lengths coexist",
       "kind": "trial",
       "visible": true,

@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-even-padding",
+      "id": "trial-even-padding",
       "name": "even values preserve prefix parity",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-long-odd-run",
+      "id": "trial-long-odd-run",
       "name": "long run of odd values",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-mixed-repeats",
+      "id": "trial-mixed-repeats",
       "name": "repeated mixed values",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-boundary-values",
+      "id": "trial-boundary-values",
       "name": "minimum and maximum values",
       "kind": "trial",
       "visible": true,

@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "hidden-left-surplus",
+      "id": "trial-left-surplus",
       "name": "surplus travels through a chain",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "hidden-prefix-dominates",
+      "id": "trial-prefix-dominates",
       "name": "boundary congestion exceeds local surplus",
       "kind": "trial",
       "visible": true,
@@ -124,6 +124,39 @@
       "expected": 8,
       "tags": [
         "prefix"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in machines",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "machines": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in machines",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "machines": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

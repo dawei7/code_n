@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-distinct-halves",
+      "id": "trial-distinct-halves",
       "name": "values expose every source index",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-bound-values",
+      "id": "trial-bound-values",
       "name": "source value bounds may repeat",
       "kind": "trial",
       "visible": true,
@@ -162,6 +162,41 @@
       ],
       "tags": [
         "value-bounds"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ],
+        "n": 3
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ],
+        "n": 3
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

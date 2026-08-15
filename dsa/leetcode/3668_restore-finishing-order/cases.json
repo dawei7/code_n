@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-boundary-ids",
+      "id": "trial-boundary-ids",
       "name": "minimum and maximum IDs finish consecutively",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-interleaved-nonfriends",
+      "id": "trial-interleaved-nonfriends",
       "name": "many non-friends separate retained IDs",
       "kind": "trial",
       "visible": true,
@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "reverse order at maximum length",
       "kind": "trial",
       "visible": true,
@@ -319,6 +319,58 @@
       "tags": [
         "maximum-length",
         "reverse"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in friends",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "order": [
+          3,
+          1,
+          2,
+          5,
+          4
+        ],
+        "friends": [
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in friends",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "order": [
+          3,
+          1,
+          2,
+          5,
+          4
+        ],
+        "friends": [
+          1,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

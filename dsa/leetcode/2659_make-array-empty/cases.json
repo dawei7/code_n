@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-middle-minimum",
+      "id": "trial-middle-minimum",
       "name": "minimum begins in the middle",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-negative",
+      "id": "trial-negative",
       "name": "mixed negative values",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "several circular wraps",
       "kind": "trial",
       "visible": true,

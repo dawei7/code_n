@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-prefix-copy",
+      "id": "trial-prefix-copy",
       "name": "all second values come first",
       "kind": "trial",
       "visible": true,

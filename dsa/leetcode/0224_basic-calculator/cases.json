@@ -42,7 +42,7 @@
       ]
     },
     {
-      "id": "real-negated-group",
+      "id": "trial-negated-group",
       "name": "subtract negative group",
       "kind": "trial",
       "visible": true,
@@ -52,6 +52,34 @@
       "expected": 0,
       "tags": [
         "nested-sign"
+      ]
+    },
+    {
+      "id": "trial-boundary-5",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-6",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111"
+      },
+      "expected": 111,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

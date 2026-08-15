@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-min-at-end",
+      "id": "trial-min-at-end",
       "name": "minimum at end",
       "kind": "trial",
       "visible": true,

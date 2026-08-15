@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-mississippi",
+      "id": "trial-mississippi",
       "name": "repeated internal substring",
       "kind": "trial",
       "visible": true,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "id": "real-prefix-repeat",
+      "id": "trial-prefix-repeat",
       "name": "repeated prefix",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-overlap-offset",
+      "id": "trial-overlap-offset",
       "name": "longer shifted overlap",
       "kind": "trial",
       "visible": true,

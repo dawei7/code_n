@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-nonmonotonic-order",
+      "id": "trial-nonmonotonic-order",
       "name": "labels do not follow strength order",
       "kind": "trial",
       "visible": true,
@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "real-last-in-eight",
+      "id": "trial-last-in-eight",
       "name": "candidate changes at the final comparison",
       "kind": "trial",
       "visible": true,
@@ -300,7 +300,7 @@
       ]
     },
     {
-      "id": "real-ten-teams",
+      "id": "trial-ten-teams",
       "name": "larger transitive tournament with central champion label",
       "kind": "trial",
       "visible": true,

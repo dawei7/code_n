@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-no-log-among-active-employees",
+      "id": "trial-no-log-among-active-employees",
       "name": "preserve an employee with no sessions",
       "kind": "trial",
       "visible": true,
@@ -259,7 +259,7 @@
       ]
     },
     {
-      "id": "real-seconds-change-the-verdict",
+      "id": "trial-seconds-change-the-verdict",
       "name": "remaining seconds round a session upward",
       "kind": "trial",
       "visible": true,
@@ -305,7 +305,7 @@
       ]
     },
     {
-      "id": "real-several-short-sessions",
+      "id": "trial-several-short-sessions",
       "name": "several rounded sessions accumulate",
       "kind": "trial",
       "visible": true,

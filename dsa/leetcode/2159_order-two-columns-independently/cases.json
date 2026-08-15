@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "real-mixed-multiplicities",
+      "id": "trial-mixed-multiplicities",
       "name": "unequal duplicate patterns stay independent",
       "kind": "trial",
       "visible": true,
@@ -258,7 +258,7 @@
       ]
     },
     {
-      "id": "real-constant-first-column",
+      "id": "trial-constant-first-column",
       "name": "one constant column does not constrain the other",
       "kind": "trial",
       "visible": true,

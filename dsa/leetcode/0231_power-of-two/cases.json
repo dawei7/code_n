@@ -43,7 +43,7 @@
       ]
     },
     {
-      "id": "real-non-positive",
+      "id": "trial-non-positive",
       "name": "negative and zero boundary",
       "kind": "trial",
       "visible": true,

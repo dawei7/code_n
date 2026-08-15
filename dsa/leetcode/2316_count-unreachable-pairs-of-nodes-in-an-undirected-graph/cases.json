@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-mixed-components",
+      "id": "trial-mixed-components",
       "name": "a cycle, an isolated node, and an edge",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-connected-chain",
+      "id": "trial-connected-chain",
       "name": "sparse connectivity still reaches every node",
       "kind": "trial",
       "visible": true,

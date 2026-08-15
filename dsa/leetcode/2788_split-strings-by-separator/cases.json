@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-single-characters",
+      "id": "trial-single-characters",
       "name": "preserve order of single-character words",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-all-empty",
+      "id": "trial-all-empty",
       "name": "several delimiter-only words flatten to empty",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-maximum-word-length",
+      "id": "trial-maximum-word-length",
       "name": "maximum-length word has no separator",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-mixed-density",
+      "id": "trial-mixed-density",
       "name": "combine unsplit and densely separated words",
       "kind": "trial",
       "visible": true,

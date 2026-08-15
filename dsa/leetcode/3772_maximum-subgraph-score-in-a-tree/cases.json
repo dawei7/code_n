@@ -278,7 +278,7 @@
       ]
     },
     {
-      "id": "real-all-bad-path",
+      "id": "trial-all-bad-path",
       "name": "longer all-bad tree remains negative one everywhere",
       "kind": "trial",
       "visible": true,
@@ -313,7 +313,7 @@
       ]
     },
     {
-      "id": "real-multiple-positive-branches",
+      "id": "trial-multiple-positive-branches",
       "name": "rerooting combines two profitable descendant branches",
       "kind": "trial",
       "visible": true,
@@ -367,7 +367,7 @@
       ]
     },
     {
-      "id": "real-good-center-bad-leaves",
+      "id": "trial-good-center-bad-leaves",
       "name": "harmful leaf branches are independently omitted",
       "kind": "trial",
       "visible": true,

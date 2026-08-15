@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "hidden-right-leaf",
+      "id": "trial-right-leaf",
       "name": "only leaf is a right child",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "hidden-negative",
+      "id": "trial-negative",
       "name": "signed left leaf values",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "hidden-balanced",
+      "id": "trial-balanced",
       "name": "several left and right leaves",
       "kind": "trial",
       "visible": true,

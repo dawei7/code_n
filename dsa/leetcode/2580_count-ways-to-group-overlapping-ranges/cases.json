@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-two-disjoint-ranges",
+      "id": "trial-two-disjoint-ranges",
       "name": "two independent singleton components",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-nested-ranges",
+      "id": "trial-nested-ranges",
       "name": "nested intervals form one component",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-duplicate-ranges",
+      "id": "trial-duplicate-ranges",
       "name": "duplicate point ranges overlap",
       "kind": "trial",
       "visible": true,
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-unsorted-components",
+      "id": "trial-unsorted-components",
       "name": "unsorted input forms three components",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-maximum-coordinate",
+      "id": "trial-maximum-coordinate",
       "name": "overlap at the maximum coordinate",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "real-modulo-many-components",
+      "id": "trial-modulo-many-components",
       "name": "many components require modular exponentiation",
       "kind": "trial",
       "visible": true,

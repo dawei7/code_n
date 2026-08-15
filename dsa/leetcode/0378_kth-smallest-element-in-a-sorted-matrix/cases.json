@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "hidden-all-equal",
+      "id": "trial-all-equal",
       "name": "every rank has same value",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "hidden-negative-mixed",
+      "id": "trial-negative-mixed",
       "name": "sorted negative and positive values",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "hidden-middle",
+      "id": "trial-middle",
       "name": "middle rank in four-by-four matrix",
       "kind": "trial",
       "visible": true,

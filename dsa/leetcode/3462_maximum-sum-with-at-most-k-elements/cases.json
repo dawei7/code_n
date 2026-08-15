@@ -147,8 +147,8 @@
       ]
     },
     {
-      "id": "real-mixed-limits",
-      "name": "real: different capacities on three rows",
+      "id": "trial-mixed-limits",
+      "name": "different capacities on three rows",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -186,8 +186,8 @@
       ]
     },
     {
-      "id": "real-single-cell",
-      "name": "real: one selectable matrix cell",
+      "id": "trial-single-cell",
+      "name": "one selectable matrix cell",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -208,8 +208,8 @@
       ]
     },
     {
-      "id": "real-zero-values",
-      "name": "real: selecting zero-valued cells is harmless",
+      "id": "trial-zero-values",
+      "name": "selecting zero-valued cells is harmless",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -236,8 +236,8 @@
       ]
     },
     {
-      "id": "real-wide-result",
-      "name": "real: result exceeds a small integer range",
+      "id": "trial-wide-result",
+      "name": "result exceeds a small integer range",
       "kind": "trial",
       "visible": true,
       "input": {

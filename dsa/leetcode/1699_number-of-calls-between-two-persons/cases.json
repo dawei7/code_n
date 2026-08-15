@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-shared-person",
+      "id": "trial-shared-person",
       "name": "one person has several pair groups",
       "kind": "trial",
       "visible": true,
@@ -248,7 +248,7 @@
       ]
     },
     {
-      "id": "real-separate-pairs",
+      "id": "trial-separate-pairs",
       "name": "unrelated pairs remain separate",
       "kind": "trial",
       "visible": true,

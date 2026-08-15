@@ -80,8 +80,8 @@
       ]
     },
     {
-      "id": "real-power-boundary",
-      "name": "real: position after a power of two",
+      "id": "trial-power-boundary",
+      "name": "position after a power of two",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -93,8 +93,8 @@
       ]
     },
     {
-      "id": "real-many-bits",
-      "name": "real: position with eight set bits",
+      "id": "trial-many-bits",
+      "name": "position with eight set bits",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -106,8 +106,8 @@
       ]
     },
     {
-      "id": "real-maximum",
-      "name": "real: maximum legal position",
+      "id": "trial-maximum",
+      "name": "maximum legal position",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-leading-zeros",
+      "id": "trial-leading-zeros",
       "name": "numeric order agrees with equal-length suffix order",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-repeated-trim",
+      "id": "trial-repeated-trim",
       "name": "repeated trim lengths reuse the same order",
       "kind": "trial",
       "visible": true,

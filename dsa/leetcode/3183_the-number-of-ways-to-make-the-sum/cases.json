@@ -116,8 +116,8 @@
       ]
     },
     {
-      "id": "real-seven",
-      "name": "real: odd target after the value-six boundary",
+      "id": "trial-seven",
+      "name": "odd target after the value-six boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -130,8 +130,8 @@
       ]
     },
     {
-      "id": "real-nine",
-      "name": "real: odd target permits two value-four coins",
+      "id": "trial-nine",
+      "name": "odd target permits two value-four coins",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -144,8 +144,8 @@
       ]
     },
     {
-      "id": "real-near-maximum",
-      "name": "real: near-maximum target exercises modulo arithmetic",
+      "id": "trial-near-maximum",
+      "name": "near-maximum target exercises modulo arithmetic",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -158,8 +158,8 @@
       ]
     },
     {
-      "id": "real-maximum",
-      "name": "real: maximum target exercises modulo arithmetic",
+      "id": "trial-maximum",
+      "name": "maximum target exercises modulo arithmetic",
       "kind": "trial",
       "visible": true,
       "input": {

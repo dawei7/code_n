@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-duplicate-only",
+      "id": "trial-duplicate-only",
       "name": "many copies in one array do not satisfy the threshold",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-domain-boundaries",
+      "id": "trial-domain-boundaries",
       "name": "minimum and maximum values both qualify",
       "kind": "trial",
       "visible": true,
@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "real-mixed-overlaps",
+      "id": "trial-mixed-overlaps",
       "name": "only values reaching two source sets survive",
       "kind": "trial",
       "visible": true,
@@ -238,6 +238,57 @@
       },
       "tags": [
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          2,
+          3
+        ],
+        "nums3": [
+          3
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1
+        ],
+        "nums2": [
+          2,
+          3
+        ],
+        "nums3": [
+          3
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

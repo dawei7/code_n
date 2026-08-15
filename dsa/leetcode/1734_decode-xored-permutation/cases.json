@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-another-three",
+      "id": "trial-another-three",
       "name": "another ordering at the minimum length",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-identity-five",
+      "id": "trial-identity-five",
       "name": "identity permutation has repeated encoded values",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-reverse-five",
+      "id": "trial-reverse-five",
       "name": "descending permutation",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-mixed-seven",
+      "id": "trial-mixed-seven",
       "name": "mixed permutation of seven values",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-first-middle",
+      "id": "trial-first-middle",
       "name": "first value lies inside the permutation range",
       "kind": "trial",
       "visible": true,
@@ -225,6 +225,46 @@
       "tags": [
         "xor-chain",
         "first-middle"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in encoded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "encoded": [
+          3
+        ]
+      },
+      "expected": [
+        3,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in encoded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "encoded": [
+          3,
+          3
+        ]
+      },
+      "expected": [
+        3,
+        0,
+        3
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

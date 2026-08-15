@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-match-after-near-prefix",
+      "id": "trial-match-after-near-prefix",
       "name": "one-character skips reveal a later valid word",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-repeated-zero",
+      "id": "trial-repeated-zero",
       "name": "noise separates two identical valid words",
       "kind": "trial",
       "visible": true,
@@ -134,6 +134,34 @@
       },
       "tags": [
         "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "o"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ooo"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

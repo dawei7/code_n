@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-alternate-valid-tour",
+      "id": "trial-alternate-valid-tour",
       "name": "alternate valid five by five tour",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-early-illegal-move",
+      "id": "trial-early-illegal-move",
       "name": "visit order breaks immediately",
       "kind": "trial",
       "visible": true,
@@ -220,7 +220,7 @@
       ]
     },
     {
-      "id": "real-valid-seven-by-seven",
+      "id": "trial-valid-seven-by-seven",
       "name": "valid maximum-dimension tour",
       "kind": "trial",
       "visible": true,

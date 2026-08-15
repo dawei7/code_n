@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-separate-tree-and-cycle",
+      "id": "trial-separate-tree-and-cycle",
       "name": "ignore an acyclic component",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-overlapping-cycles",
+      "id": "trial-overlapping-cycles",
       "name": "overlapping cycles have different lengths",
       "kind": "trial",
       "visible": true,

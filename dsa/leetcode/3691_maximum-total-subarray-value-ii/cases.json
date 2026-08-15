@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "every distinct interval has zero range",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-ranked-overlapping-ranges",
+      "id": "trial-ranked-overlapping-ranges",
       "name": "take the five greatest overlapping interval ranges",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-zero-values-after-best",
+      "id": "trial-zero-values-after-best",
       "name": "selecting every interval includes singleton zeros",
       "kind": "trial",
       "visible": true,

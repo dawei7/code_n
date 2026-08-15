@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-upper-start-bound",
+      "id": "trial-upper-start-bound",
       "name": "values may advance beyond the starting bound",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-longer-sequence",
+      "id": "trial-longer-sequence",
       "name": "state persists across many calls",
       "kind": "trial",
       "visible": true,

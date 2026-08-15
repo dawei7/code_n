@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "all-zero image",
       "kind": "trial",
       "visible": true,
@@ -280,7 +280,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "all-one image",
       "kind": "trial",
       "visible": true,
@@ -325,7 +325,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "alternating four by four rows",
       "kind": "trial",
       "visible": true,
@@ -388,7 +388,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "asymmetric two by two image",
       "kind": "trial",
       "visible": true,

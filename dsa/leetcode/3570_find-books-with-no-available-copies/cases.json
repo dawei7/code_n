@@ -345,8 +345,8 @@
       ]
     },
     {
-      "id": "real-borrower-count-descending",
-      "name": "real: larger active borrower count sorts first",
+      "id": "trial-borrower-count-descending",
+      "name": "larger active borrower count sorts first",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -432,8 +432,8 @@
       ]
     },
     {
-      "id": "real-no-unavailable-books",
-      "name": "real: return an empty relation when every book has availability",
+      "id": "trial-no-unavailable-books",
+      "name": "return an empty relation when every book has availability",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -104,8 +104,8 @@
       ]
     },
     {
-      "id": "real-cross-index-carry",
-      "name": "real: multiplicities combine across adjacent bits",
+      "id": "trial-cross-index-carry",
+      "name": "multiplicities combine across adjacent bits",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -123,8 +123,8 @@
       ]
     },
     {
-      "id": "real-single-valid-popcount",
-      "name": "real: one available index with matching popcount",
+      "id": "trial-single-valid-popcount",
+      "name": "one available index with matching popcount",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -141,8 +141,8 @@
       ]
     },
     {
-      "id": "real-single-invalid-popcount",
-      "name": "real: one available index with mismatched popcount",
+      "id": "trial-single-invalid-popcount",
+      "name": "one available index with mismatched popcount",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -159,8 +159,8 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: products require modular reduction",
+      "id": "trial-large-values",
+      "name": "products require modular reduction",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -179,8 +179,8 @@
       ]
     },
     {
-      "id": "real-mixed-counts",
-      "name": "real: several count vectors share the target popcount",
+      "id": "trial-mixed-counts",
+      "name": "several count vectors share the target popcount",
       "kind": "trial",
       "visible": true,
       "input": {

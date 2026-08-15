@@ -199,8 +199,8 @@
       ]
     },
     {
-      "id": "real-just-separated",
-      "name": "real: call after quiet interval starts a new burst",
+      "id": "trial-just-separated",
+      "name": "call after quiet interval starts a new burst",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -240,8 +240,8 @@
       ]
     },
     {
-      "id": "real-maximum-calls",
-      "name": "real: ten same-time calls retain only the last arguments",
+      "id": "trial-maximum-calls",
+      "name": "ten same-time calls retain only the last arguments",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -324,8 +324,8 @@
       ]
     },
     {
-      "id": "real-maximum-delay",
-      "name": "real: maximum delay is added to the call time",
+      "id": "trial-maximum-delay",
+      "name": "maximum delay is added to the call time",
       "kind": "trial",
       "visible": true,
       "input": {

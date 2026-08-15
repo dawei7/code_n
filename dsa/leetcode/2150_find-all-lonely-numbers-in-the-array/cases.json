@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-one-sided-neighbors",
+      "id": "trial-one-sided-neighbors",
       "name": "either adjacent value is enough to exclude",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-mixed-duplicates",
+      "id": "trial-mixed-duplicates",
       "name": "unique separated values survive duplicates elsewhere",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "upper-bound value can be lonely",
       "kind": "trial",
       "visible": true,

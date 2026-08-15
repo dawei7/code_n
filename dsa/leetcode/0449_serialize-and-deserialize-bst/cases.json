@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "hidden-left-skewed",
+      "id": "trial-left-skewed",
       "name": "decreasing left spine",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "hidden-irregular",
+      "id": "trial-irregular",
       "name": "irregular BST shape",
       "kind": "trial",
       "visible": true,

@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-piece-type-mismatch",
+      "id": "trial-piece-type-mismatch",
       "name": "blanks cannot hide a changed piece type",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-order-mismatch",
+      "id": "trial-order-mismatch",
       "name": "equal counts do not permit reordered pieces",
       "kind": "trial",
       "visible": true,
@@ -101,6 +101,36 @@
       "expected": false,
       "tags": [
         "order"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in start",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": "_",
+        "target": "L______RR"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in start",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": "___",
+        "target": "L______RR"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

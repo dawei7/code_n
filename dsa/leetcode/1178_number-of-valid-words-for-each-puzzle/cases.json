@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-duplicate-masks",
+      "id": "trial-duplicate-masks",
       "name": "anagrams and duplicate masks all count",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-required-only",
+      "id": "trial-required-only",
       "name": "zero optional-letter submask",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-first-letter-changes",
+      "id": "trial-first-letter-changes",
       "name": "same seven letters with different required letter",
       "kind": "trial",
       "visible": true,

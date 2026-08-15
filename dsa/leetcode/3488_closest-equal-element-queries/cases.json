@@ -124,8 +124,8 @@
       ]
     },
     {
-      "id": "real-single-element",
-      "name": "real: the queried index cannot match itself",
+      "id": "trial-single-element",
+      "name": "the queried index cannot match itself",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -145,8 +145,8 @@
       ]
     },
     {
-      "id": "real-two-equal-elements",
-      "name": "real: two equal elements in a length-two circle",
+      "id": "trial-two-equal-elements",
+      "name": "two equal elements in a length-two circle",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -172,8 +172,8 @@
       ]
     },
     {
-      "id": "real-direct-versus-wrapped",
-      "name": "real: choose the shorter circular direction",
+      "id": "trial-direct-versus-wrapped",
+      "name": "choose the shorter circular direction",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -204,8 +204,8 @@
       ]
     },
     {
-      "id": "real-multiple-occurrences",
-      "name": "real: only adjacent occurrences in cyclic order matter",
+      "id": "trial-multiple-occurrences",
+      "name": "only adjacent occurrences in cyclic order matter",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -240,8 +240,8 @@
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "real: every position has an equal neighbor",
+      "id": "trial-all-equal",
+      "name": "every position has an equal neighbor",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -273,8 +273,8 @@
       ]
     },
     {
-      "id": "real-repeated-queries",
-      "name": "real: duplicate query indices reuse preprocessing",
+      "id": "trial-repeated-queries",
+      "name": "duplicate query indices reuse preprocessing",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -307,8 +307,8 @@
       ]
     },
     {
-      "id": "real-mixed-groups",
-      "name": "real: independent value groups have different gaps",
+      "id": "trial-mixed-groups",
+      "name": "independent value groups have different gaps",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -345,8 +345,8 @@
       ]
     },
     {
-      "id": "real-large-value-bound",
-      "name": "real: values at the upper bound remain ordinary keys",
+      "id": "trial-large-value-bound",
+      "name": "values at the upper bound remain ordinary keys",
       "kind": "trial",
       "visible": true,
       "input": {

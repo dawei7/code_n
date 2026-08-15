@@ -101,8 +101,8 @@
       ]
     },
     {
-      "id": "real-repeated-number-theory-pattern",
-      "name": "real: selected minimum-exponent elements double a long subarray score",
+      "id": "trial-repeated-number-theory-pattern",
+      "name": "selected minimum-exponent elements double a long subarray score",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -124,8 +124,8 @@
       ]
     },
     {
-      "id": "real-odd-common-factor",
-      "name": "real: odd-factor structure leaves a doubled singleton optimal",
+      "id": "trial-odd-common-factor",
+      "name": "odd-factor structure leaves a doubled singleton optimal",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -144,8 +144,8 @@
       ]
     },
     {
-      "id": "real-minimum-length-prime",
-      "name": "real: the sole element can always be doubled",
+      "id": "trial-minimum-length-prime",
+      "name": "the sole element can always be doubled",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -162,8 +162,8 @@
       ]
     },
     {
-      "id": "real-score-exceeds-int32",
-      "name": "real: doubling two boundary values produces a 64-bit score",
+      "id": "trial-score-exceeds-int32",
+      "name": "doubling two boundary values produces a 64-bit score",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -181,8 +181,8 @@
       ]
     },
     {
-      "id": "real-changing-minimum-exponent",
-      "name": "real: extending a subarray changes its minimum power-of-two exponent",
+      "id": "trial-changing-minimum-exponent",
+      "name": "extending a subarray changes its minimum power-of-two exponent",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -328,8 +328,8 @@
       ]
     },
     {
-      "id": "real-positive-difference",
-      "name": "real: subordinate earns more than CEO",
+      "id": "trial-positive-difference",
+      "name": "subordinate earns more than CEO",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -375,8 +375,8 @@
       ]
     },
     {
-      "id": "real-zero-difference",
-      "name": "real: equal salaries",
+      "id": "trial-zero-difference",
+      "name": "equal salaries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -422,8 +422,8 @@
       ]
     },
     {
-      "id": "real-two-branches",
-      "name": "real: two branches at several levels",
+      "id": "trial-two-branches",
+      "name": "two branches at several levels",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -504,8 +504,8 @@
       ]
     },
     {
-      "id": "real-unordered-input",
-      "name": "real: input rows are not hierarchical order",
+      "id": "trial-unordered-input",
+      "name": "input rows are not hierarchical order",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -574,8 +574,8 @@
       ]
     },
     {
-      "id": "real-nonconsecutive-identifiers",
-      "name": "real: nonconsecutive identifiers",
+      "id": "trial-nonconsecutive-identifiers",
+      "name": "nonconsecutive identifiers",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -632,8 +632,8 @@
       ]
     },
     {
-      "id": "real-wide-second-level",
-      "name": "real: several reports under one manager",
+      "id": "trial-wide-second-level",
+      "name": "several reports under one manager",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -715,8 +715,8 @@
       ]
     },
     {
-      "id": "real-four-level-hierarchy",
-      "name": "real: four subordinate levels",
+      "id": "trial-four-level-hierarchy",
+      "name": "four subordinate levels",
       "kind": "trial",
       "visible": true,
       "input": {

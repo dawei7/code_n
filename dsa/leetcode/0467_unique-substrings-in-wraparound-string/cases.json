@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-repeated-letter",
+      "id": "trial-repeated-letter",
       "name": "repeated equal letters do not extend a run",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-multiple-runs",
+      "id": "trial-multiple-runs",
       "name": "only longest run per ending letter contributes",
       "kind": "trial",
       "visible": true,

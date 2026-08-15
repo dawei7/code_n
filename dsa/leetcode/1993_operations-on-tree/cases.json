@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-locked-ancestor",
+      "id": "trial-locked-ancestor",
       "name": "a locked ancestor blocks upgrade without clearing descendants",
       "kind": "trial",
       "visible": true,
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": "real-clears-all-descendants",
+      "id": "trial-clears-all-descendants",
       "name": "upgrade clears multiple owners throughout its subtree",
       "kind": "trial",
       "visible": true,
@@ -312,7 +312,7 @@
       ]
     },
     {
-      "id": "real-sibling-is-not-descendant",
+      "id": "trial-sibling-is-not-descendant",
       "name": "a locked sibling subtree cannot enable upgrade",
       "kind": "trial",
       "visible": true,

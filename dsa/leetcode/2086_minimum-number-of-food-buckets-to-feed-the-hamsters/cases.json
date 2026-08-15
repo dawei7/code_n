@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-single-hamster",
+      "id": "trial-single-hamster",
       "name": "minimum-length hamster is impossible",
       "kind": "trial",
       "visible": true,
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-adjacent-pair-with-outer-space",
+      "id": "trial-adjacent-pair-with-outer-space",
       "name": "adjacent hamsters use both outer positions",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-overlapping-sharing-options",
+      "id": "trial-overlapping-sharing-options",
       "name": "one bucket cannot cover three alternating hamsters",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-impossible-left-boundary",
+      "id": "trial-impossible-left-boundary",
       "name": "consecutive hamsters at the left boundary fail",
       "kind": "trial",
       "visible": true,

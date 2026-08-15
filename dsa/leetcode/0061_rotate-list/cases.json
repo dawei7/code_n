@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-single",
+      "id": "trial-single",
       "name": "one node and large rotation",
       "kind": "trial",
       "visible": true,

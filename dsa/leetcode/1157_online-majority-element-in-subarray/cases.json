@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-boundaries",
+      "id": "trial-boundaries",
       "name": "endpoint occurrences count",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-different-ranges",
+      "id": "trial-different-ranges",
       "name": "different values dominate different ranges",
       "kind": "trial",
       "visible": true,

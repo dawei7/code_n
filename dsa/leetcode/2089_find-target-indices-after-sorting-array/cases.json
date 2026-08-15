@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-all-target",
+      "id": "trial-all-target",
       "name": "every position belongs to the target block",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-target-smaller-than-all",
+      "id": "trial-target-smaller-than-all",
       "name": "absent target below all values",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-one-minimum",
+      "id": "trial-one-minimum",
       "name": "the only target sorts to index zero",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-unsorted-target-block",
+      "id": "trial-unsorted-target-block",
       "name": "scattered copies become one consecutive block",
       "kind": "trial",
       "visible": true,
@@ -179,6 +179,41 @@
       ],
       "tags": [
         "scattered-duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "target": 2
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "target": 2
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

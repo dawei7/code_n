@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-span-not-divisible",
+      "id": "trial-span-not-divisible",
       "name": "endpoint span cannot supply an integer step",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-duplicate-nonzero-span",
+      "id": "trial-duplicate-nonzero-span",
       "name": "duplicate replaces a required interior term",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-aligned-values-with-gap",
+      "id": "trial-aligned-values-with-gap",
       "name": "divisible span still needs every target value",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-long-descending-progression",
+      "id": "trial-long-descending-progression",
       "name": "descending order is irrelevant",
       "kind": "trial",
       "visible": true,

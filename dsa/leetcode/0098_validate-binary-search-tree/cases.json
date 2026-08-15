@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-deep-violation",
+      "id": "trial-deep-violation",
       "name": "distant ancestor violation",
       "kind": "trial",
       "visible": true,
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-extremes",
+      "id": "trial-extremes",
       "name": "integer extremes",
       "kind": "trial",
       "visible": true,

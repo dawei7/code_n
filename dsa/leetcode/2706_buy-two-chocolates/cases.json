@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "real-two-affordable",
+      "id": "trial-two-affordable",
       "name": "exactly two affordable chocolates",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-two-expensive",
+      "id": "trial-two-expensive",
       "name": "exactly two chocolates are too expensive",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-minima-at-end",
+      "id": "trial-minima-at-end",
       "name": "both minima occur at the end",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-descending",
+      "id": "trial-descending",
       "name": "descending prices repeatedly replace minima",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "equal prices fill both minimum slots",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-budget-one",
+      "id": "trial-budget-one",
       "name": "minimum budget cannot afford positive pair",
       "kind": "trial",
       "visible": true,
@@ -188,6 +188,43 @@
       "expected": 1,
       "tags": [
         "budget-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          1
+        ],
+        "money": 3
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value money=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          2,
+          2
+        ],
+        "money": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

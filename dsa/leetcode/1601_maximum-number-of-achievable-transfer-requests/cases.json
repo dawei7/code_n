@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-duplicate-direction",
+      "id": "trial-duplicate-direction",
       "name": "duplicate direction has one reverse request",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-cycle-plus-extra",
+      "id": "trial-cycle-plus-extra",
       "name": "three-cycle with one unbalanced chord",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-all-self-transfers",
+      "id": "trial-all-self-transfers",
       "name": "every request is independently balanced",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-separate-unbalanced-edge",
+      "id": "trial-separate-unbalanced-edge",
       "name": "balanced pair beside an unusable edge",
       "kind": "trial",
       "visible": true,
@@ -259,7 +259,7 @@
       ]
     },
     {
-      "id": "real-repeated-balanced-pairs",
+      "id": "trial-repeated-balanced-pairs",
       "name": "two copies in each direction",
       "kind": "trial",
       "visible": true,
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "id": "real-long-cycle-plus-chord",
+      "id": "trial-long-cycle-plus-chord",
       "name": "five-cycle excludes one chord",
       "kind": "trial",
       "visible": true,
@@ -331,7 +331,7 @@
       ]
     },
     {
-      "id": "real-two-independent-cycles",
+      "id": "trial-two-independent-cycles",
       "name": "independent cycles are both selected",
       "kind": "trial",
       "visible": true,

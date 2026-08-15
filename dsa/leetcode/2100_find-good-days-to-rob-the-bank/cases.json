@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-insufficient-days",
+      "id": "trial-insufficient-days",
       "name": "no index has enough days on both sides",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-flat-plateau",
+      "id": "trial-flat-plateau",
       "name": "equality satisfies both directions",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-decreasing",
+      "id": "trial-decreasing",
       "name": "decreasing counts fail the right condition",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-multiple-valleys",
+      "id": "trial-multiple-valleys",
       "name": "separated valleys are all returned",
       "kind": "trial",
       "visible": true,
@@ -212,6 +212,41 @@
       },
       "tags": [
         "multiple-valleys"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in security",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "security": [
+          5
+        ],
+        "time": 2
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in security",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "security": [
+          5,
+          5
+        ],
+        "time": 2
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-internal-gain",
+      "id": "trial-internal-gain",
       "name": "best gain is a strict internal interval",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-whole-array",
+      "id": "trial-whole-array",
       "name": "swapping the whole array preserves the larger total",
       "kind": "trial",
       "visible": true,

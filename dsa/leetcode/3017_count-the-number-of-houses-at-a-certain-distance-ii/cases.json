@@ -111,7 +111,7 @@
     },
     {
       "id": "reversed-endpoints",
-      "name": "real: endpoint order does not matter",
+      "name": "endpoint order does not matter",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -133,7 +133,7 @@
     },
     {
       "id": "even-cycle",
-      "name": "real: even cycle has antipodal pairs",
+      "name": "even cycle has antipodal pairs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -157,7 +157,7 @@
     },
     {
       "id": "asymmetric-tails",
-      "name": "real: unequal tails contribute different ranges",
+      "name": "unequal tails contribute different ranges",
       "kind": "trial",
       "visible": true,
       "input": {

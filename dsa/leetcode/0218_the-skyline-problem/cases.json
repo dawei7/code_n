@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-same-start",
+      "id": "trial-same-start",
       "name": "buildings share start",
       "kind": "trial",
       "visible": true,

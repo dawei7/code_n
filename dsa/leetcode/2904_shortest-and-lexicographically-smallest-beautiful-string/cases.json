@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-strip-boundary-zeros",
+      "id": "trial-strip-boundary-zeros",
       "name": "leading and trailing zeros cannot improve a candidate",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "the entire maximum-length string is required",
       "kind": "trial",
       "visible": true,

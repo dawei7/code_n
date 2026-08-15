@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "real-similar-nonfriends",
+      "id": "trial-similar-nonfriends",
       "name": "sufficient overlap without friendship is excluded",
       "kind": "trial",
       "visible": true,
@@ -306,7 +306,7 @@
       ]
     },
     {
-      "id": "real-split-across-days",
+      "id": "trial-split-across-days",
       "name": "common songs on separate dates cannot accumulate",
       "kind": "trial",
       "visible": true,
@@ -368,7 +368,7 @@
       ]
     },
     {
-      "id": "real-duplicates-do-not-inflate",
+      "id": "trial-duplicates-do-not-inflate",
       "name": "duplicate logs do not turn two songs into three",
       "kind": "trial",
       "visible": true,
@@ -430,7 +430,7 @@
       ]
     },
     {
-      "id": "real-multiple-qualifying-days",
+      "id": "trial-multiple-qualifying-days",
       "name": "qualification on two dates emits one friendship",
       "kind": "trial",
       "visible": true,
@@ -527,7 +527,7 @@
       ]
     },
     {
-      "id": "real-two-independent-pairs",
+      "id": "trial-two-independent-pairs",
       "name": "two friendships qualify on different dates",
       "kind": "trial",
       "visible": true,
@@ -632,7 +632,7 @@
       ]
     },
     {
-      "id": "real-empty-listens",
+      "id": "trial-empty-listens",
       "name": "friendships without listening activity do not qualify",
       "kind": "trial",
       "visible": true,

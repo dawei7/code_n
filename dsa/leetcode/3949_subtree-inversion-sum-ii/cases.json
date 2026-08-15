@@ -262,7 +262,7 @@
       ]
     },
     {
-      "id": "real-negative-sibling-leaves",
+      "id": "trial-negative-sibling-leaves",
       "name": "two leaves can be inverted at distance two",
       "kind": "trial",
       "visible": true,
@@ -294,7 +294,7 @@
       ]
     },
     {
-      "id": "real-root-beats-incompatible-leaves",
+      "id": "trial-root-beats-incompatible-leaves",
       "name": "root inversion beats separately incompatible leaves",
       "kind": "trial",
       "visible": true,
@@ -326,7 +326,7 @@
       ]
     },
     {
-      "id": "real-mixed-chain-k-two",
+      "id": "trial-mixed-chain-k-two",
       "name": "alternating signs on a chain allow spaced selections",
       "kind": "trial",
       "visible": true,
@@ -363,7 +363,7 @@
       ]
     },
     {
-      "id": "real-chain-diameter-bound",
+      "id": "trial-chain-diameter-bound",
       "name": "k equal to the chain diameter plus one permits one selection",
       "kind": "trial",
       "visible": true,
@@ -400,7 +400,7 @@
       ]
     },
     {
-      "id": "real-branching-tree",
+      "id": "trial-branching-tree",
       "name": "compatible states must be merged across two branching subtrees",
       "kind": "trial",
       "visible": true,
@@ -452,7 +452,7 @@
       ]
     },
     {
-      "id": "real-all-zeroes",
+      "id": "trial-all-zeroes",
       "name": "inversions cannot change a zero-valued tree",
       "kind": "trial",
       "visible": true,
@@ -494,7 +494,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "maximum magnitude values require a wide sum",
       "kind": "trial",
       "visible": true,

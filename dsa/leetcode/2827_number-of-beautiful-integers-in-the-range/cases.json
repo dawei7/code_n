@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-odd-digit-length",
+      "id": "trial-odd-digit-length",
       "name": "no three-digit number can balance parity counts",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-leading-zero-boundary",
+      "id": "trial-leading-zero-boundary",
       "name": "crossing into a three-digit bound adds no answer",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-zero-is-even",
+      "id": "trial-zero-is-even",
       "name": "four-digit multiples containing zero",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-maximum-endpoint",
+      "id": "trial-maximum-endpoint",
       "name": "narrow range ending at one billion",
       "kind": "trial",
       "visible": true,

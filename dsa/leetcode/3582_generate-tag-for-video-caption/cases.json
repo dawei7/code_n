@@ -93,8 +93,8 @@
       ]
     },
     {
-      "id": "real-many-single-letter-words",
-      "name": "real: every later one-letter word is uppercase",
+      "id": "trial-many-single-letter-words",
+      "name": "every later one-letter word is uppercase",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -108,8 +108,8 @@
       ]
     },
     {
-      "id": "real-second-word-rest-lowercase",
-      "name": "real: only the first letter of a later word remains uppercase",
+      "id": "trial-second-word-rest-lowercase",
+      "name": "only the first letter of a later word remains uppercase",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -123,8 +123,8 @@
       ]
     },
     {
-      "id": "real-exact-cap",
-      "name": "real: 99 letters plus the prefix exactly fill the cap",
+      "id": "trial-exact-cap",
+      "name": "99 letters plus the prefix exactly fill the cap",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -138,8 +138,8 @@
       ]
     },
     {
-      "id": "real-truncate-across-word",
-      "name": "real: truncation cuts inside a later camelCase word",
+      "id": "trial-truncate-across-word",
+      "name": "truncation cuts inside a later camelCase word",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -150,6 +150,34 @@
         "real",
         "truncation",
         "later-word"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in caption",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "caption": "L"
+      },
+      "expected": "#l",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in caption",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "caption": "LLL"
+      },
+      "expected": "#lll",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

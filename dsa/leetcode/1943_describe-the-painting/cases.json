@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "real-common-start",
+      "id": "trial-common-start",
       "name": "several colors begin together and end separately",
       "kind": "trial",
       "visible": true,
@@ -288,7 +288,7 @@
       ]
     },
     {
-      "id": "real-common-end",
+      "id": "trial-common-end",
       "name": "several colors start separately and end together",
       "kind": "trial",
       "visible": true,
@@ -333,7 +333,7 @@
       ]
     },
     {
-      "id": "real-overlap-with-gap",
+      "id": "trial-overlap-with-gap",
       "name": "overlapping clusters are separated by an unpainted gap",
       "kind": "trial",
       "visible": true,
@@ -399,7 +399,7 @@
       ]
     },
     {
-      "id": "real-zero-net-change-boundary",
+      "id": "trial-zero-net-change-boundary",
       "name": "zero net sum change still preserves a color-set boundary",
       "kind": "trial",
       "visible": true,

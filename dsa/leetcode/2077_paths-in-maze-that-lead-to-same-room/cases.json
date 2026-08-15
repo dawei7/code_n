@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-complete-four",
+      "id": "trial-complete-four",
       "name": "every triple in a complete four-room maze",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-square-with-diagonal",
+      "id": "trial-square-with-diagonal",
       "name": "one diagonal closes two triangles",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-two-components",
+      "id": "trial-two-components",
       "name": "disconnected triangles both count",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-four-cycle",
+      "id": "trial-four-cycle",
       "name": "a chordless longer cycle contributes zero",
       "kind": "trial",
       "visible": true,

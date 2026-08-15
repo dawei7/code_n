@@ -131,8 +131,8 @@
       ]
     },
     {
-      "id": "real-minimum-length",
-      "name": "real: minimum even length",
+      "id": "trial-minimum-length",
+      "name": "minimum even length",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -151,8 +151,8 @@
       ]
     },
     {
-      "id": "real-capacity-limits-union",
-      "name": "real: capacity limits a large union",
+      "id": "trial-capacity-limits-union",
+      "name": "capacity limits a large union",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -183,8 +183,8 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: upper-bound values and duplicates",
+      "id": "trial-large-values",
+      "name": "upper-bound values and duplicates",
       "kind": "trial",
       "visible": true,
       "input": {

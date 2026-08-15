@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-right-triangle",
+      "id": "trial-right-triangle",
       "name": "Fermat point is not the right-angle vertex",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-square",
+      "id": "trial-square",
       "name": "square corners minimize at centre",
       "kind": "trial",
       "visible": true,
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "id": "real-weighted-centre",
+      "id": "trial-weighted-centre",
       "name": "interior customer shifts square-corner optimum",
       "kind": "trial",
       "visible": true,
@@ -295,7 +295,7 @@
       ]
     },
     {
-      "id": "real-distant-outlier",
+      "id": "trial-distant-outlier",
       "name": "cluster competes with one distant customer",
       "kind": "trial",
       "visible": true,

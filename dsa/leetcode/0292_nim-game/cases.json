@@ -69,7 +69,7 @@
       ]
     },
     {
-      "id": "real-large-win",
+      "id": "trial-large-win",
       "name": "large non-multiple",
       "kind": "trial",
       "visible": true,
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "real-large-loss",
+      "id": "trial-large-loss",
       "name": "large multiple",
       "kind": "trial",
       "visible": true,

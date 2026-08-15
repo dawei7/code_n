@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-grouped-pairs",
+      "id": "trial-grouped-pairs",
       "name": "grouped vowel pairs",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-consonant-suffix",
+      "id": "trial-consonant-suffix",
       "name": "consonants after one odd vowel",
       "kind": "trial",
       "visible": true,

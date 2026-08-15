@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-one-expensive",
+      "id": "trial-one-expensive",
       "name": "one expensive occurrence outweighs many cheap ones",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-many-expensive",
+      "id": "trial-many-expensive",
       "name": "several occurrences must be retained together",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-alphabet",
+      "id": "trial-alphabet",
       "name": "all lowercase characters occur once",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-large-result",
+      "id": "trial-large-result",
       "name": "deletion total exceeds 32-bit range",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-zero-not-allowed",
+      "id": "trial-zero-not-allowed",
       "name": "positive costs favor retaining every matching character",
       "kind": "trial",
       "visible": true,
@@ -274,7 +274,7 @@
       ]
     },
     {
-      "id": "real-final-position",
+      "id": "trial-final-position",
       "name": "best final character first appears at the end",
       "kind": "trial",
       "visible": true,

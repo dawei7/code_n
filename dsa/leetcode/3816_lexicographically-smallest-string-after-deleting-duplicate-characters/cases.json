@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-multiple-stack-pops",
+      "id": "trial-multiple-stack-pops",
       "name": "repeated future copies permit several improvements",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-interior-duplicate-helpful",
+      "id": "trial-interior-duplicate-helpful",
       "name": "an interior duplicate can improve the next position",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-two-descending-blocks",
+      "id": "trial-two-descending-blocks",
       "name": "later copies allow a smaller starting letter",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-complex-overlap",
+      "id": "trial-complex-overlap",
       "name": "overlapping duplicates preserve required letters",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "real-entire-alphabet",
+      "id": "trial-entire-alphabet",
       "name": "every unique lowercase letter remains unchanged",
       "kind": "trial",
       "visible": true,

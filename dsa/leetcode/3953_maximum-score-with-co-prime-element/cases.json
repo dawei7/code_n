@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-existing-twenty-one",
+      "id": "trial-existing-twenty-one",
       "name": "an original value pays for every shared prime factor conflict",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "real-coprime-large-pair",
+      "id": "trial-coprime-large-pair",
       "name": "the maximum original value needs no modification",
       "kind": "trial",
       "visible": true,
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "real-duplicate-maximum",
+      "id": "trial-duplicate-maximum",
       "name": "one duplicate maximum must change",
       "kind": "trial",
       "visible": true,
@@ -268,7 +268,7 @@
       ]
     },
     {
-      "id": "real-existing-one-hundred-five",
+      "id": "trial-existing-one-hundred-five",
       "name": "an above-limit value conflicts through several primes",
       "kind": "trial",
       "visible": true,
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "id": "real-all-ones",
+      "id": "trial-all-ones",
       "name": "ones never conflict with a created maximum",
       "kind": "trial",
       "visible": true,
@@ -313,7 +313,7 @@
       ]
     },
     {
-      "id": "real-power-of-two-run",
+      "id": "trial-power-of-two-run",
       "name": "retaining the largest power pays for two conflicts",
       "kind": "trial",
       "visible": true,

@@ -139,8 +139,8 @@
       ]
     },
     {
-      "id": "real-gap-violation",
-      "name": "real: equal products do not overcome a missing gap",
+      "id": "trial-gap-violation",
+      "name": "equal products do not overcome a missing gap",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -162,8 +162,8 @@
       ]
     },
     {
-      "id": "real-ratio-reduction",
-      "name": "real: equivalent non-integer ratios match exactly",
+      "id": "trial-ratio-reduction",
+      "name": "equivalent non-integer ratios match exactly",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -184,8 +184,8 @@
       ]
     },
     {
-      "id": "real-mixed-ratios",
-      "name": "real: mixed ratios and required gaps",
+      "id": "trial-mixed-ratios",
+      "name": "mixed ratios and required gaps",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "real-direct-above-range",
+      "id": "trial-direct-above-range",
       "name": "a direct result above one thousand is valid",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-negative-operand",
+      "id": "trial-negative-operand",
       "name": "a negative operand may participate repeatedly",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-reuse",
+      "id": "trial-reuse",
       "name": "the same operand may be used more than once",
       "kind": "trial",
       "visible": true,

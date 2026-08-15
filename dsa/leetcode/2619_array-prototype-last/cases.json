@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-object-last",
+      "id": "trial-object-last",
       "name": "object value is returned by reference semantics",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-nested-array-last",
+      "id": "trial-nested-array-last",
       "name": "nested array remains intact",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-falsy-last",
+      "id": "trial-falsy-last",
       "name": "false is not mistaken for absence",
       "kind": "trial",
       "visible": true,

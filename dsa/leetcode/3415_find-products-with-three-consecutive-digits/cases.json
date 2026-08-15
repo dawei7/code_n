@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-reject-longer-runs",
+      "id": "trial-reject-longer-runs",
       "name": "longer and separated shorter runs do not qualify",
       "kind": "trial",
       "visible": true,
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "real-long-and-exact-runs",
+      "id": "trial-long-and-exact-runs",
       "name": "an independent exact run still qualifies",
       "kind": "trial",
       "visible": true,
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "id": "real-punctuation-boundaries",
+      "id": "trial-punctuation-boundaries",
       "name": "punctuation bounds digit runs",
       "kind": "trial",
       "visible": true,

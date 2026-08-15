@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-all-operations",
+      "id": "trial-all-operations",
       "name": "all arithmetic methods in one chain",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-fraction",
+      "id": "trial-fraction",
       "name": "fractional division result",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-negative",
+      "id": "trial-negative",
       "name": "negative running result",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-zero-power",
+      "id": "trial-zero-power",
       "name": "zero exponent",
       "kind": "trial",
       "visible": true,

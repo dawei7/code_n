@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-five-digit-valid",
+      "id": "trial-five-digit-valid",
       "name": "valid description with two trailing requirements",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-ten-digit-valid",
+      "id": "trial-ten-digit-valid",
       "name": "valid maximum-length self-description",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-leading-zero",
+      "id": "trial-leading-zero",
       "name": "leading zero remains a counted digit",
       "kind": "trial",
       "visible": true,

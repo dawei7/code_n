@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-late-global-maximum",
+      "id": "trial-late-global-maximum",
       "name": "a late global maximum cannot start a full window",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-relative-order",
+      "id": "trial-relative-order",
       "name": "only relative value order controls the start",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "magnitude does not change lexicographic selection",
       "kind": "trial",
       "visible": true,
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "real-preserve-contiguity",
+      "id": "trial-preserve-contiguity",
       "name": "result preserves the elements after the best start",
       "kind": "trial",
       "visible": true,

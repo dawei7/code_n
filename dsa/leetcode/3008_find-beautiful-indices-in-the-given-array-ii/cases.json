@@ -95,8 +95,8 @@
       ]
     },
     {
-      "id": "real-repetitive-no-match",
-      "name": "real: long shared prefix never completes",
+      "id": "trial-repetitive-no-match",
+      "name": "long shared prefix never completes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -111,8 +111,8 @@
       ]
     },
     {
-      "id": "real-both-sides",
-      "name": "real: witnesses appear before and after",
+      "id": "trial-both-sides",
+      "name": "witnesses appear before and after",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -130,8 +130,8 @@
       ]
     },
     {
-      "id": "real-end-boundary",
-      "name": "real: long pattern ends at text boundary",
+      "id": "trial-end-boundary",
+      "name": "long pattern ends at text boundary",
       "kind": "trial",
       "visible": true,
       "input": {

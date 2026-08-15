@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-all-ones",
+      "id": "trial-all-ones",
       "name": "every path contains only ones",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-only-balanced-route",
+      "id": "trial-only-balanced-route",
       "name": "balance requires choosing the lower route",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-narrow-grid",
+      "id": "trial-narrow-grid",
       "name": "two-row grid tracks several reachable counts",
       "kind": "trial",
       "visible": true,

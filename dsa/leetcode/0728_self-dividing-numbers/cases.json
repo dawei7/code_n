@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "repeated and distinct digits",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "consecutive three-digit answers",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-3",
       "name": "upper bound contains zeros",
       "kind": "trial",
       "visible": true,
@@ -153,6 +153,23 @@
       "expected": [],
       "tags": [
         "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value right=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "left": 1,
+        "right": 1
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

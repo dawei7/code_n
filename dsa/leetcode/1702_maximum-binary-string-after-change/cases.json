@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-all-zeros",
+      "id": "trial-all-zeros",
       "name": "all zeros leave one zero at the end",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-separated-zeros",
+      "id": "trial-separated-zeros",
       "name": "separated zeros consolidate to the calculated index",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-interior-pair",
+      "id": "trial-interior-pair",
       "name": "leading and trailing ones surround two zeros",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-all-ones",
+      "id": "trial-all-ones",
       "name": "a longer all-one string is already maximum",
       "kind": "trial",
       "visible": true,
@@ -140,6 +140,20 @@
       "tags": [
         "all-ones",
         "unchanged"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in binary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "binary": "000"
+      },
+      "expected": "110",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-nonintegral-target",
+      "id": "trial-nonintegral-target",
       "name": "total skill cannot divide evenly among teams",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-count-mismatch",
+      "id": "trial-count-mismatch",
       "name": "implied target lacks enough complements",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-value-bound",
+      "id": "trial-value-bound",
       "name": "skills reach the upper bound",
       "kind": "trial",
       "visible": true,
@@ -151,6 +151,39 @@
       "expected": 2998,
       "tags": [
         "value-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in skill",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "skill": [
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in skill",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "skill": [
+          3,
+          3
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

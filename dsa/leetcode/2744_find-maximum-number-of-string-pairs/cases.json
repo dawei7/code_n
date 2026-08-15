@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "real-single",
+      "id": "trial-single",
       "name": "single palindromic word",
       "kind": "trial",
       "visible": true,
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-palindromes-and-pairs",
+      "id": "trial-palindromes-and-pairs",
       "name": "palindromes remain unmatched",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-partners-late",
+      "id": "trial-partners-late",
       "name": "partners appear after unrelated words",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-noise",
+      "id": "trial-noise",
       "name": "one pair among unrelated words",
       "kind": "trial",
       "visible": true,

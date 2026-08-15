@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-alternating-good",
+      "id": "trial-alternating-good",
       "name": "long alternating singleton meets limit one",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-alternating-zero-limit",
+      "id": "trial-alternating-zero-limit",
       "name": "same alternating singleton fails limit zero",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-one-repeated-digit-value",
+      "id": "trial-one-repeated-digit-value",
       "name": "narrow large range contains one zero-limit value",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-middle-interval",
+      "id": "trial-middle-interval",
       "name": "lower endpoint subtraction inside one digit width",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-near-maximum",
+      "id": "trial-near-maximum",
       "name": "interval reaches the maximum endpoint",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-every-number-good",
+      "id": "trial-every-number-good",
       "name": "limit nine accepts the complete legal range",
       "kind": "trial",
       "visible": true,
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "id": "real-zero-limit-full-range",
+      "id": "trial-zero-limit-full-range",
       "name": "repeated-digit values across the complete range",
       "kind": "trial",
       "visible": true,
@@ -241,6 +241,38 @@
       "tags": [
         "maximum-endpoint",
         "zero-limit"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "minimal value l=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 1,
+        "r": 15,
+        "k": 1
+      },
+      "expected": 12,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "minimal value r=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 10,
+        "r": 1,
+        "k": 1
+      },
+      "expected": -8,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

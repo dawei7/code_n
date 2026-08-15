@@ -249,8 +249,8 @@
       ]
     },
     {
-      "id": "real-ancestor-descendant",
-      "name": "real: one endpoint is the other's ancestor",
+      "id": "trial-ancestor-descendant",
+      "name": "one endpoint is the other's ancestor",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -303,8 +303,8 @@
       ]
     },
     {
-      "id": "real-unordered-edges",
-      "name": "real: unordered and reversed edges preserve paths",
+      "id": "trial-unordered-edges",
+      "name": "unordered and reversed edges preserve paths",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -353,8 +353,8 @@
       ]
     },
     {
-      "id": "real-unbalanced-tree",
-      "name": "real: queries cross shallow and deep branches",
+      "id": "trial-unbalanced-tree",
+      "name": "queries cross shallow and deep branches",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -416,8 +416,8 @@
       ]
     },
     {
-      "id": "real-duplicate-queries",
-      "name": "real: duplicate queries are answered independently",
+      "id": "trial-duplicate-queries",
+      "name": "duplicate queries are answered independently",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -467,8 +467,8 @@
       ]
     },
     {
-      "id": "real-modular-distance",
-      "name": "real: long path answer wraps modulo",
+      "id": "trial-modular-distance",
+      "name": "long path answer wraps modulo",
       "kind": "trial",
       "visible": true,
       "input": {

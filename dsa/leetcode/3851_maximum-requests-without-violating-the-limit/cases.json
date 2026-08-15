@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-duplicate-times",
+      "id": "trial-duplicate-times",
       "name": "only k requests at one timestamp may remain",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-users-independent",
+      "id": "trial-users-independent",
       "name": "each user receives an independent allowance",
       "kind": "trial",
       "visible": true,
@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "real-k-covers-group",
+      "id": "trial-k-covers-group",
       "name": "capacity equal to group size keeps every duplicate",
       "kind": "trial",
       "visible": true,
@@ -297,7 +297,7 @@
       ]
     },
     {
-      "id": "real-unsorted-chain",
+      "id": "trial-unsorted-chain",
       "name": "unsorted times require chronological processing",
       "kind": "trial",
       "visible": true,
@@ -333,7 +333,7 @@
       ]
     },
     {
-      "id": "real-repeated-conflicts",
+      "id": "trial-repeated-conflicts",
       "name": "recurring conflicts retain three earliest-feasible times",
       "kind": "trial",
       "visible": true,
@@ -373,7 +373,7 @@
       ]
     },
     {
-      "id": "real-domain-boundaries",
+      "id": "trial-domain-boundaries",
       "name": "maximum identifiers and times preserve inclusive semantics",
       "kind": "trial",
       "visible": true,
@@ -405,7 +405,7 @@
       ]
     },
     {
-      "id": "real-large-window",
+      "id": "trial-large-window",
       "name": "a full-domain window restricts one user to k requests",
       "kind": "trial",
       "visible": true,

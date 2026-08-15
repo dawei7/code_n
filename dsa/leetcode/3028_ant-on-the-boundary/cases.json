@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-single",
+      "id": "trial-single",
       "name": "one nonzero movement cannot return",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-crosses-twice",
+      "id": "trial-crosses-twice",
       "name": "multiple crossings finish away from zero",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-irregular-returns",
+      "id": "trial-irregular-returns",
       "name": "irregular movements return at several prefixes",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-extreme-steps",
+      "id": "trial-extreme-steps",
       "name": "maximum magnitudes cancel repeatedly",
       "kind": "trial",
       "visible": true,

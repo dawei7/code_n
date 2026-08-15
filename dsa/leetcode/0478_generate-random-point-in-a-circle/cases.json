@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "hidden-shifted-center",
+      "id": "trial-shifted-center",
       "name": "zero radial draw preserves shifted center",
       "kind": "trial",
       "visible": true,
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "hidden-diagonal",
+      "id": "trial-diagonal",
       "name": "half-radius-squared diagonal draw",
       "kind": "trial",
       "visible": true,

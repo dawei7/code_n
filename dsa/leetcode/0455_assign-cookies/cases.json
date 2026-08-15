@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "hidden-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate requirements and sizes",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "hidden-unsorted",
+      "id": "trial-unsorted",
       "name": "unsorted values require careful matching",
       "kind": "trial",
       "visible": true,
@@ -153,6 +153,47 @@
       "expected": 4,
       "tags": [
         "unsorted"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in g",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "g": [
+          1
+        ],
+        "s": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in g",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "g": [
+          1,
+          1
+        ],
+        "s": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

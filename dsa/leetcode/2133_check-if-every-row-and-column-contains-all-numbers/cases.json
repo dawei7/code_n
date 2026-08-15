@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-column-valid-row-invalid",
+      "id": "trial-column-valid-row-invalid",
       "name": "columns can be valid while rows repeat",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-valid-four",
+      "id": "trial-valid-four",
       "name": "cyclic four-by-four matrix is valid",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-late-column-duplicate",
+      "id": "trial-late-column-duplicate",
       "name": "a late edit breaks two columns",
       "kind": "trial",
       "visible": true,

@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-single-rejected",
+      "id": "trial-single-rejected",
       "name": "a one-letter word can be rejected",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-last-letter",
+      "id": "trial-last-letter",
       "name": "a broken final character rejects the word",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-repeated-broken",
+      "id": "trial-repeated-broken",
       "name": "repeated broken letters reject one containing word",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-many-broken",
+      "id": "trial-many-broken",
       "name": "several broken keys affect different words",
       "kind": "trial",
       "visible": true,
@@ -150,6 +150,36 @@
       "tags": [
         "multiple-broken-keys",
         "multiple-words"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in text",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "h",
+        "brokenLetters": "ad"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in text",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "hhh",
+        "brokenLetters": "ad"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

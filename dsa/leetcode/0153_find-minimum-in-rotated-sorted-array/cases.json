@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "real-last-drop",
+      "id": "trial-last-drop",
       "name": "minimum at end",
       "kind": "trial",
       "visible": true,

@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "longest border overlaps almost entirely",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-fallback-chain",
+      "id": "trial-fallback-chain",
       "name": "several candidate borders require fallback",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-proper-prefix-only",
+      "id": "trial-proper-prefix-only",
       "name": "never return the entire string",
       "kind": "trial",
       "visible": true,
@@ -108,6 +108,34 @@
       "expected": "z",
       "tags": [
         "proper-prefix"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "l"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "lll"
+      },
+      "expected": "ll",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

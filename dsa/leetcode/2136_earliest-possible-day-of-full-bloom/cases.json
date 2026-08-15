@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-increasing-growth",
+      "id": "trial-increasing-growth",
       "name": "input order is opposite the optimum",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-large-planting",
+      "id": "trial-large-planting",
       "name": "accumulated planting controls the last bloom",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-tie-planting",
+      "id": "trial-tie-planting",
       "name": "planting durations do not determine priority",
       "kind": "trial",
       "visible": true,
@@ -175,6 +175,49 @@
       "expected": 13,
       "tags": [
         "priority"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in plantTime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "plantTime": [
+          1
+        ],
+        "growTime": [
+          2,
+          3,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in plantTime",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "plantTime": [
+          1,
+          1
+        ],
+        "growTime": [
+          2,
+          3,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

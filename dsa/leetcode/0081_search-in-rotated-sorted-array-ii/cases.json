@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-duplicate-block",
+      "id": "trial-duplicate-block",
       "name": "target between duplicate blocks",
       "kind": "trial",
       "visible": true,

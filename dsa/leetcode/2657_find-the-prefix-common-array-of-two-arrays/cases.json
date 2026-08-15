@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-single",
+      "id": "trial-single",
       "name": "one-element permutations",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-crossing",
+      "id": "trial-crossing",
       "name": "common count increases by two",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-delayed",
+      "id": "trial-delayed",
       "name": "no common value until the midpoint",
       "kind": "trial",
       "visible": true,
@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "real-mixed",
+      "id": "trial-mixed",
       "name": "mixed prefix growth",
       "kind": "trial",
       "visible": true,

@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-first-zero-vector",
+      "id": "trial-first-zero-vector",
       "name": "empty first support short-circuits naturally",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-disjoint-alternating",
+      "id": "trial-disjoint-alternating",
       "name": "alternating supports never meet",
       "kind": "trial",
       "visible": true,
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "real-two-overlaps",
+      "id": "trial-two-overlaps",
       "name": "two shared coordinates contribute",
       "kind": "trial",
       "visible": true,
@@ -237,7 +237,7 @@
       ]
     },
     {
-      "id": "real-mixed-overlap",
+      "id": "trial-mixed-overlap",
       "name": "unmatched nonzeros are ignored",
       "kind": "trial",
       "visible": true,
@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "real-smaller-first-map",
+      "id": "trial-smaller-first-map",
       "name": "first vector has fewer nonzeros",
       "kind": "trial",
       "visible": true,
@@ -295,7 +295,7 @@
       ]
     },
     {
-      "id": "real-smaller-second-map",
+      "id": "trial-smaller-second-map",
       "name": "second vector has fewer nonzeros",
       "kind": "trial",
       "visible": true,

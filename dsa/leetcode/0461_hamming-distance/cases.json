@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-high-bit",
+      "id": "trial-high-bit",
       "name": "only the highest allowed bit differs",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-complementary-patterns",
+      "id": "trial-complementary-patterns",
       "name": "alternating patterns differ everywhere",
       "kind": "trial",
       "visible": true,
@@ -103,6 +103,21 @@
       "expected": 31,
       "tags": [
         "alternating"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value y=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "x": 1,
+        "y": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

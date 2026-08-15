@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-all-zero",
+      "id": "trial-all-zero",
       "name": "all zero differences retain index zero",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-large-leading",
+      "id": "trial-large-leading",
       "name": "a large leading value favors the empty suffix split",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-equal-minima",
+      "id": "trial-equal-minima",
       "name": "equal minimum differences preserve the first position",
       "kind": "trial",
       "visible": true,

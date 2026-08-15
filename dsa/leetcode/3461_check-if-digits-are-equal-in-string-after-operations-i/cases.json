@@ -59,8 +59,8 @@
       ]
     },
     {
-      "id": "real-leading-zero",
-      "name": "real: zero participates as an ordinary digit",
+      "id": "trial-leading-zero",
+      "name": "zero participates as an ordinary digit",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -73,8 +73,8 @@
       ]
     },
     {
-      "id": "real-all-zeroes",
-      "name": "real: every intermediate digit remains zero",
+      "id": "trial-all-zeroes",
+      "name": "every intermediate digit remains zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -87,8 +87,8 @@
       ]
     },
     {
-      "id": "real-descending-digits",
-      "name": "real: ten-digit descending input",
+      "id": "trial-descending-digits",
+      "name": "ten-digit descending input",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -101,8 +101,8 @@
       ]
     },
     {
-      "id": "real-alternating-binary-digits",
-      "name": "real: alternating digits converge equally",
+      "id": "trial-alternating-binary-digits",
+      "name": "alternating digits converge equally",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -112,6 +112,20 @@
       "tags": [
         "real",
         "alternating"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "333"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

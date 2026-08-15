@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "hidden-fifty-four-values",
+      "id": "trial-fifty-four-values",
       "name": "long arrays over four high values stay rank-invariant",
       "kind": "trial",
       "visible": true,
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "hidden-odd-near-maximum-interval",
+      "id": "trial-odd-near-maximum-interval",
       "name": "odd maximum-scale length and a huge interval",
       "kind": "trial",
       "visible": true,
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-length-two-values-low",
+      "id": "trial-maximum-length-two-values-low",
       "name": "maximum length with the lowest two-value interval",
       "kind": "trial",
       "visible": true,
@@ -256,7 +256,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-contract",
+      "id": "trial-maximum-contract",
       "name": "maximum length and maximum interval size",
       "kind": "trial",
       "visible": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-length-two-values-high",
+      "id": "trial-maximum-length-two-values-high",
       "name": "the highest two-value interval matches the lowest one",
       "kind": "trial",
       "visible": true,
@@ -286,6 +286,38 @@
       "tags": [
         "maximum-length",
         "translation-invariance"
+      ]
+    },
+    {
+      "id": "trial-boundary-18",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "l": 4,
+        "r": 5
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-19",
+      "name": "minimal value l=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "l": 1,
+        "r": 5
+      },
+      "expected": 60,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

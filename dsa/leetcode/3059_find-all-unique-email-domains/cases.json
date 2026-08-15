@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-exact-suffix",
+      "id": "trial-exact-suffix",
       "name": "com must be the final suffix",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-domain-order",
+      "id": "trial-domain-order",
       "name": "sort domains rather than counts",
       "kind": "trial",
       "visible": true,

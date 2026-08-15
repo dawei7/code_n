@@ -94,8 +94,8 @@
       ]
     },
     {
-      "id": "real-many-breaks",
-      "name": "real: several runs have different lengths",
+      "id": "trial-many-breaks",
+      "name": "several runs have different lengths",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -116,8 +116,8 @@
       ]
     },
     {
-      "id": "real-leading-repeat",
-      "name": "real: a singleton precedes a long alternating run",
+      "id": "trial-leading-repeat",
+      "name": "a singleton precedes a long alternating run",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -137,8 +137,8 @@
       ]
     },
     {
-      "id": "real-long-run",
-      "name": "real: a longer complete run contributes a triangular count",
+      "id": "trial-long-run",
+      "name": "a longer complete run contributes a triangular count",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -159,8 +159,8 @@
       ]
     },
     {
-      "id": "real-mixed-pattern",
-      "name": "real: repeated values split a longer pattern",
+      "id": "trial-mixed-pattern",
+      "name": "repeated values split a longer pattern",
       "kind": "trial",
       "visible": true,
       "input": {

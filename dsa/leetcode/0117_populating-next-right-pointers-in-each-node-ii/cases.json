@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-deep-sparse",
+      "id": "trial-deep-sparse",
       "name": "multiple sparse levels",
       "kind": "trial",
       "visible": true,

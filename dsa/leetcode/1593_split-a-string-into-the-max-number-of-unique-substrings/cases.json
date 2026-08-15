@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-equal-runs-can-use-different-lengths",
+      "id": "trial-equal-runs-can-use-different-lengths",
       "name": "equal run admits unequal pieces",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-overlapping-repetitions",
+      "id": "trial-overlapping-repetitions",
       "name": "overlapping repeated pattern",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-repeated-block",
+      "id": "trial-repeated-block",
       "name": "two copies of a three-character block",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-greedy-shortest-is-not-enough",
+      "id": "trial-greedy-shortest-is-not-enough",
       "name": "locally short choices need revision",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-mixed-long-maximum",
+      "id": "trial-mixed-long-maximum",
       "name": "mixed repeats at maximum length",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-periodic-maximum-length",
+      "id": "trial-periodic-maximum-length",
       "name": "periodic maximum-length string",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-distinct-maximum-length",
+      "id": "trial-distinct-maximum-length",
       "name": "all distinct at maximum length",
       "kind": "trial",
       "visible": true,

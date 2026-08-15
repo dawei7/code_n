@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-inventory",
+      "id": "trial-inventory",
       "name": "unequal character inventory",
       "kind": "trial",
       "visible": true,

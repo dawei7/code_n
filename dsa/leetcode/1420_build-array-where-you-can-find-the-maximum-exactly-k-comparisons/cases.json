@@ -82,7 +82,7 @@
       ]
     },
     {
-      "id": "real-length-one",
+      "id": "trial-length-one",
       "name": "every value works at length one",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-large-cost-one",
+      "id": "trial-large-cost-one",
       "name": "maximum dimensions with cost one",
       "kind": "trial",
       "visible": true,

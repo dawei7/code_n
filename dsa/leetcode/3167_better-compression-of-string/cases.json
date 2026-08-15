@@ -86,8 +86,8 @@
       ]
     },
     {
-      "id": "real-interleaved-groups",
-      "name": "real: interleaved groups merge into four letters",
+      "id": "trial-interleaved-groups",
+      "name": "interleaved groups merge into four letters",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -100,8 +100,8 @@
       ]
     },
     {
-      "id": "real-two-repeated-letters",
-      "name": "real: alternating groups share totals",
+      "id": "trial-two-repeated-letters",
+      "name": "alternating groups share totals",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -114,8 +114,8 @@
       ]
     },
     {
-      "id": "real-sparse-alphabet",
-      "name": "real: sparse alphabet groups arrive out of order",
+      "id": "trial-sparse-alphabet",
+      "name": "sparse alphabet groups arrive out of order",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -128,8 +128,8 @@
       ]
     },
     {
-      "id": "real-large-aggregate",
-      "name": "real: several maximum groups form a larger total",
+      "id": "trial-large-aggregate",
+      "name": "several maximum groups form a larger total",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -142,8 +142,8 @@
       ]
     },
     {
-      "id": "real-reverse-alphabet",
-      "name": "real: every letter must be reordered",
+      "id": "trial-reverse-alphabet",
+      "name": "every letter must be reordered",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -157,8 +157,8 @@
       ]
     },
     {
-      "id": "real-nonconsecutive-repeat",
-      "name": "real: distant occurrences accumulate independently",
+      "id": "trial-nonconsecutive-repeat",
+      "name": "distant occurrences accumulate independently",
       "kind": "trial",
       "visible": true,
       "input": {

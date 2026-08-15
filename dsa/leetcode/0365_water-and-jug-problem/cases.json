@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "hidden-one-full-jug",
+      "id": "trial-one-full-jug",
       "name": "other jug alone measures target",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "hidden-even-gcd",
+      "id": "trial-even-gcd",
       "name": "nontrivial gcd reaches target",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "hidden-over-capacity",
+      "id": "trial-over-capacity",
       "name": "divisible target exceeds total capacity",
       "kind": "trial",
       "visible": true,

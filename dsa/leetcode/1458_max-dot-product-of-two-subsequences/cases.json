@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-all-products-negative",
+      "id": "trial-all-products-negative",
       "name": "choose least negative compatible pair",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-all-pairs-help",
+      "id": "trial-all-pairs-help",
       "name": "optimum extends through every aligned pair",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-single-extreme",
+      "id": "trial-single-extreme",
       "name": "one negative pair reaches positive extreme",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-different-lengths",
+      "id": "trial-different-lengths",
       "name": "shorter input limits selected length",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-skip-middle",
+      "id": "trial-skip-middle",
       "name": "skip a harmful aligned pair",
       "kind": "trial",
       "visible": true,
@@ -215,6 +215,49 @@
       "expected": 512,
       "tags": [
         "skip"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2
+        ],
+        "nums2": [
+          3,
+          0,
+          -6
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          2
+        ],
+        "nums2": [
+          3,
+          0,
+          -6
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

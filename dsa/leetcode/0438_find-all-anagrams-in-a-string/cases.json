@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "hidden-all-match",
+      "id": "trial-all-match",
       "name": "every window matches",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "hidden-no-match",
+      "id": "trial-no-match",
       "name": "no window has the required multiset",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "hidden-last-window",
+      "id": "trial-last-window",
       "name": "only the final window matches",
       "kind": "trial",
       "visible": true,

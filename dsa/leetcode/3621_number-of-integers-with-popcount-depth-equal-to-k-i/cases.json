@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-at-power-depth-one",
+      "id": "trial-at-power-depth-one",
       "name": "include a power-of-two upper bound",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "real-byte-all-ones-depth-three",
+      "id": "trial-byte-all-ones-depth-three",
       "name": "classify every eight-bit popcount",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-twenty-bits-depth-two",
+      "id": "trial-twenty-bits-depth-two",
       "name": "dense twenty-bit combination sums",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-irregular-depth-two",
+      "id": "trial-irregular-depth-two",
       "name": "irregular prefix count for depth two",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-irregular-depth-three",
+      "id": "trial-irregular-depth-three",
       "name": "irregular prefix count for depth three",
       "kind": "trial",
       "visible": true,
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "real-max-depth-two",
+      "id": "trial-max-depth-two",
       "name": "maximum n with depth two",
       "kind": "trial",
       "visible": true,
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "real-max-depth-four",
+      "id": "trial-max-depth-four",
       "name": "maximum n reaches the deepest attainable class",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-max-depth-five",
+      "id": "trial-max-depth-five",
       "name": "requested depth is unattainable",
       "kind": "trial",
       "visible": true,

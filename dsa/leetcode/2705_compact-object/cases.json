@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-deep-object",
+      "id": "trial-deep-object",
       "name": "compact several object levels",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-mixed-arrays",
+      "id": "trial-mixed-arrays",
       "name": "nested arrays close removed positions",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-empty-nested-object",
+      "id": "trial-empty-nested-object",
       "name": "object made empty remains retained",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-array-of-objects",
+      "id": "trial-array-of-objects",
       "name": "compact objects inside an array",
       "kind": "trial",
       "visible": true,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "real-all-falsy-root-array",
+      "id": "trial-all-falsy-root-array",
       "name": "all falsy array entries produce empty array",
       "kind": "trial",
       "visible": true,

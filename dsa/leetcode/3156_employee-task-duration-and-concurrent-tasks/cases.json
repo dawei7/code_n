@@ -319,8 +319,8 @@
       ]
     },
     {
-      "id": "real-disjoint-fractions",
-      "name": "real: disjoint fractional spans are summed before flooring",
+      "id": "trial-disjoint-fractions",
+      "name": "disjoint fractional spans are summed before flooring",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -364,8 +364,8 @@
       ]
     },
     {
-      "id": "real-overlap-chain",
-      "name": "real: overlap chain never has three active tasks",
+      "id": "trial-overlap-chain",
+      "name": "overlap chain never has three active tasks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -415,8 +415,8 @@
       ]
     },
     {
-      "id": "real-multiple-employees",
-      "name": "real: employees are independent and output is ordered",
+      "id": "trial-multiple-employees",
+      "name": "employees are independent and output is ordered",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -472,8 +472,8 @@
       ]
     },
     {
-      "id": "real-sub-hour",
-      "name": "real: a duration below one hour floors to zero",
+      "id": "trial-sub-hour",
+      "name": "a duration below one hour floors to zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -511,8 +511,8 @@
       ]
     },
     {
-      "id": "real-cross-midnight",
-      "name": "real: overlapping tasks cross midnight",
+      "id": "trial-cross-midnight",
+      "name": "overlapping tasks cross midnight",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -556,8 +556,8 @@
       ]
     },
     {
-      "id": "real-triple-peak",
-      "name": "real: staggered intervals reach concurrency three",
+      "id": "trial-triple-peak",
+      "name": "staggered intervals reach concurrency three",
       "kind": "trial",
       "visible": true,
       "input": {

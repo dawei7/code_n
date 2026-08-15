@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-three-cycle",
+      "id": "trial-three-cycle",
       "name": "one level forms a three-cycle",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-sparse-levels",
+      "id": "trial-sparse-levels",
       "name": "sparse children still retain left-to-right level order",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-skewed-tree",
+      "id": "trial-skewed-tree",
       "name": "every skewed-tree level has one node",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-one-fixed-point",
+      "id": "trial-one-fixed-point",
       "name": "a level mixes a cycle with a fixed point",
       "kind": "trial",
       "visible": true,

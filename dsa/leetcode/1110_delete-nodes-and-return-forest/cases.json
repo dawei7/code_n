@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-consecutive-deletions",
+      "id": "trial-consecutive-deletions",
       "name": "consecutive deleted ancestors",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-no-deletions",
+      "id": "trial-no-deletions",
       "name": "empty deletion list preserves the tree",
       "kind": "trial",
       "visible": true,
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "real-delete-all",
+      "id": "trial-delete-all",
       "name": "deleting all nodes returns no roots",
       "kind": "trial",
       "visible": true,

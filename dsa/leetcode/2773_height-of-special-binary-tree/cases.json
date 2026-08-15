@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-left-chain",
+      "id": "trial-left-chain",
       "name": "left-skewed tree",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-right-chain",
+      "id": "trial-right-chain",
       "name": "right-skewed tree",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-uneven-branches",
+      "id": "trial-uneven-branches",
       "name": "shallower full branch and deeper sparse branch",
       "kind": "trial",
       "visible": true,
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "real-deep-fork",
+      "id": "trial-deep-fork",
       "name": "deepest node follows a late fork",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-wide-tree",
+      "id": "trial-wide-tree",
       "name": "complete final level",
       "kind": "trial",
       "visible": true,

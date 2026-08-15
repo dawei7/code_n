@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-sparse",
+      "id": "trial-sparse",
       "name": "sparse tree",
       "kind": "trial",
       "visible": true,

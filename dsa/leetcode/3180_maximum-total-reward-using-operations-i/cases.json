@@ -110,8 +110,8 @@
       ]
     },
     {
-      "id": "real-dense-small-values",
-      "name": "real: dense consecutive rewards require skipping",
+      "id": "trial-dense-small-values",
+      "name": "dense consecutive rewards require skipping",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -130,8 +130,8 @@
       ]
     },
     {
-      "id": "real-unsorted-gaps",
-      "name": "real: unsorted rewards with gaps",
+      "id": "trial-unsorted-gaps",
+      "name": "unsorted rewards with gaps",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -151,8 +151,8 @@
       ]
     },
     {
-      "id": "real-duplicates-before-large",
-      "name": "real: duplicates precede a large final reward",
+      "id": "trial-duplicates-before-large",
+      "name": "duplicates precede a large final reward",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -170,8 +170,8 @@
       ]
     },
     {
-      "id": "real-duplicate-doubling-levels",
-      "name": "real: duplicates across doubling levels",
+      "id": "trial-duplicate-doubling-levels",
+      "name": "duplicates across doubling levels",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -192,8 +192,8 @@
       ]
     },
     {
-      "id": "real-maximum-after-half",
-      "name": "real: maximum reward follows an exact half-sized total",
+      "id": "trial-maximum-after-half",
+      "name": "maximum reward follows an exact half-sized total",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -209,8 +209,8 @@
       ]
     },
     {
-      "id": "real-near-maximum-total",
-      "name": "real: two largest rewards reach the global total bound",
+      "id": "trial-near-maximum-total",
+      "name": "two largest rewards reach the global total bound",
       "kind": "trial",
       "visible": true,
       "input": {

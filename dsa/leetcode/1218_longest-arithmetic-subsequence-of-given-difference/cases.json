@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-full-descending",
+      "id": "trial-full-descending",
       "name": "every value joins a descending chain",
       "kind": "trial",
       "visible": true,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-interleaved-chain",
+      "id": "trial-interleaved-chain",
       "name": "irrelevant values are skipped",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-value-bounds",
+      "id": "trial-value-bounds",
       "name": "boundary values form a chain",
       "kind": "trial",
       "visible": true,

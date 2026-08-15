@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "real-repeated-assignee",
+      "id": "trial-repeated-assignee",
       "name": "repeated assignee rows count separately",
       "kind": "trial",
       "visible": true,
@@ -259,7 +259,7 @@
       ]
     },
     {
-      "id": "real-year-boundary",
+      "id": "trial-year-boundary",
       "name": "weekday classification crosses a year boundary",
       "kind": "trial",
       "visible": true,
@@ -299,7 +299,7 @@
       ]
     },
     {
-      "id": "real-leap-day",
+      "id": "trial-leap-day",
       "name": "leap-day weekday is handled by date arithmetic",
       "kind": "trial",
       "visible": true,

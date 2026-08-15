@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-many-empty-rows",
+      "id": "trial-many-empty-rows",
       "name": "several empty rows preserve the same connection",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-middle-blocks-outer",
+      "id": "trial-middle-blocks-outer",
       "name": "a nonempty middle row blocks outer devices",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-single-column",
+      "id": "trial-single-column",
       "name": "one device in each nonempty row forms adjacent pairs",
       "kind": "trial",
       "visible": true,
@@ -125,6 +125,39 @@
       "expected": 3,
       "tags": [
         "single-column"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in bank",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "bank": [
+          "011001"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in bank",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "bank": [
+          "011001",
+          "011001"
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -61,7 +61,7 @@
     },
     {
       "id": "odd-rectangle",
-      "name": "real: both bounds are odd",
+      "name": "both bounds are odd",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -75,7 +75,7 @@
     },
     {
       "id": "maximum-bounds",
-      "name": "real: maximum bounds require a wide result",
+      "name": "maximum bounds require a wide result",
       "kind": "trial",
       "visible": true,
       "input": {

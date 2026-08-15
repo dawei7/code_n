@@ -104,8 +104,8 @@
       ]
     },
     {
-      "id": "real-all-ones",
-      "name": "real: a second limit one makes assignment impossible",
+      "id": "trial-all-ones",
+      "name": "a second limit one makes assignment impossible",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -121,8 +121,8 @@
       ]
     },
     {
-      "id": "real-tight-feasible",
-      "name": "real: consecutive limits use every full height",
+      "id": "trial-tight-feasible",
+      "name": "consecutive limits use every full height",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -139,8 +139,8 @@
       ]
     },
     {
-      "id": "real-mixed-duplicates",
-      "name": "real: duplicate restricted limits force a lower choice",
+      "id": "trial-mixed-duplicates",
+      "name": "duplicate restricted limits force a lower choice",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -156,8 +156,8 @@
       ]
     },
     {
-      "id": "real-large-total",
-      "name": "real: maximum duplicate limits require a 64-bit sum",
+      "id": "trial-large-total",
+      "name": "maximum duplicate limits require a 64-bit sum",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-full-balanced",
+      "id": "trial-full-balanced",
       "name": "traverse and partially rewind balanced tree",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-right-skewed",
+      "id": "trial-right-skewed",
       "name": "right-skewed tree with reversals",
       "kind": "trial",
       "visible": true,
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "real-left-skewed",
+      "id": "trial-left-skewed",
       "name": "left-skewed tree in ascending iterator order",
       "kind": "trial",
       "visible": true,
@@ -311,7 +311,7 @@
       ]
     },
     {
-      "id": "real-root-with-one-left",
+      "id": "trial-root-with-one-left",
       "name": "two-node left child tree",
       "kind": "trial",
       "visible": true,
@@ -344,7 +344,7 @@
       ]
     },
     {
-      "id": "real-root-with-one-right",
+      "id": "trial-root-with-one-right",
       "name": "two-node right child tree",
       "kind": "trial",
       "visible": true,
@@ -378,7 +378,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "preserve large BST values",
       "kind": "trial",
       "visible": true,

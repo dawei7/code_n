@@ -311,7 +311,7 @@
       ]
     },
     {
-      "id": "hidden-restrictive-distance",
+      "id": "trial-restrictive-distance",
       "name": "a restrictive gap changes the best combination",
       "kind": "trial",
       "visible": true,
@@ -333,7 +333,7 @@
       ]
     },
     {
-      "id": "hidden-duplicate-valleys",
+      "id": "trial-duplicate-valleys",
       "name": "equal valleys require skipping one duplicate",
       "kind": "trial",
       "visible": true,
@@ -355,7 +355,7 @@
       ]
     },
     {
-      "id": "hidden-large-alternating-score",
+      "id": "trial-large-alternating-score",
       "name": "one hundred alternating values require a 64-bit-capable sum",
       "kind": "trial",
       "visible": true,
@@ -472,7 +472,7 @@
       ]
     },
     {
-      "id": "hidden-large-k-singleton",
+      "id": "trial-large-k-singleton",
       "name": "a large k leaves only the largest singleton",
       "kind": "trial",
       "visible": true,
@@ -493,6 +493,41 @@
       "tags": [
         "k-equals-n",
         "singleton"
+      ]
+    },
+    {
+      "id": "trial-boundary-20",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

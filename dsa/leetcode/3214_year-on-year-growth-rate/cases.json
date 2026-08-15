@@ -378,8 +378,8 @@
       ]
     },
     {
-      "id": "real-unchanged",
-      "name": "real: equal totals produce zero growth",
+      "id": "trial-unchanged",
+      "name": "equal totals produce zero growth",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -433,8 +433,8 @@
       ]
     },
     {
-      "id": "real-zero-previous",
-      "name": "real: zero previous total leaves rate null",
+      "id": "trial-zero-previous",
+      "name": "zero previous total leaves rate null",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -488,8 +488,8 @@
       ]
     },
     {
-      "id": "real-interleaved-input",
-      "name": "real: input order does not affect product-year ordering",
+      "id": "trial-interleaved-input",
+      "name": "input order does not affect product-year ordering",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -569,8 +569,8 @@
       ]
     },
     {
-      "id": "real-decimal-rounding",
-      "name": "real: percentage is rounded after decimal aggregation",
+      "id": "trial-decimal-rounding",
+      "name": "percentage is rounded after decimal aggregation",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -624,8 +624,8 @@
       ]
     },
     {
-      "id": "real-three-years",
-      "name": "real: lag advances across three rows",
+      "id": "trial-three-years",
+      "name": "lag advances across three rows",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -692,8 +692,8 @@
       ]
     },
     {
-      "id": "real-multirow-multiproduct",
-      "name": "real: annual sums and partitions interact",
+      "id": "trial-multirow-multiproduct",
+      "name": "annual sums and partitions interact",
       "kind": "trial",
       "visible": true,
       "input": {

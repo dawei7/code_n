@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-late-start",
+      "id": "trial-late-start",
       "name": "late valid start",
       "kind": "trial",
       "visible": true,

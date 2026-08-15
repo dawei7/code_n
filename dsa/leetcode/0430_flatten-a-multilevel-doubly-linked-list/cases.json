@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "hidden-chain-of-children",
+      "id": "trial-chain-of-children",
       "name": "each node is the previous node's child",
       "kind": "trial",
       "visible": true,
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "hidden-several-children",
+      "id": "trial-several-children",
       "name": "separate parents each own a child",
       "kind": "trial",
       "visible": true,

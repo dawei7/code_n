@@ -140,8 +140,8 @@
       ]
     },
     {
-      "id": "real-duplicates-on-both-sides",
-      "name": "real: every duplicate index combination contributes",
+      "id": "trial-duplicates-on-both-sides",
+      "name": "every duplicate index combination contributes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -162,8 +162,8 @@
       ]
     },
     {
-      "id": "real-value-boundary-divisors",
-      "name": "real: divisors at the maximum array value",
+      "id": "trial-value-boundary-divisors",
+      "name": "divisors at the maximum array value",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -189,8 +189,8 @@
       ]
     },
     {
-      "id": "real-maximum-multiplier",
-      "name": "real: maximum multiplier leaves one exact divisor",
+      "id": "trial-maximum-multiplier",
+      "name": "maximum multiplier leaves one exact divisor",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -210,8 +210,8 @@
       ]
     },
     {
-      "id": "real-divisibility-direction",
-      "name": "real: scaled nums2 values divide nums1 values",
+      "id": "trial-divisibility-direction",
+      "name": "scaled nums2 values divide nums1 values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -234,8 +234,8 @@
       ]
     },
     {
-      "id": "real-denominator-exceeds-dividend",
-      "name": "real: every scaled divisor exceeds each dividend",
+      "id": "trial-denominator-exceeds-dividend",
+      "name": "every scaled divisor exceeds each dividend",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -256,8 +256,8 @@
       ]
     },
     {
-      "id": "real-maximum-pair-count",
-      "name": "real: all 2500 index pairs are good at maximum lengths",
+      "id": "trial-maximum-pair-count",
+      "name": "all 2500 index pairs are good at maximum lengths",
       "kind": "trial",
       "visible": true,
       "input": {

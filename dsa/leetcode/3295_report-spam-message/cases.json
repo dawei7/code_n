@@ -106,8 +106,8 @@
       ]
     },
     {
-      "id": "real-two-separated",
-      "name": "real: matches occur at opposite ends",
+      "id": "trial-two-separated",
+      "name": "matches occur at opposite ends",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -129,8 +129,8 @@
       ]
     },
     {
-      "id": "real-exact-only",
-      "name": "real: prefixes and longer words do not match",
+      "id": "trial-exact-only",
+      "name": "prefixes and longer words do not match",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -149,8 +149,8 @@
       ]
     },
     {
-      "id": "real-second-match-early",
-      "name": "real: second match fixes verdict before suffix",
+      "id": "trial-second-match-early",
+      "name": "second match fixes verdict before suffix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -168,6 +168,47 @@
       "expected": true,
       "tags": [
         "early-exit"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in message",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "message": [
+          "hello"
+        ],
+        "bannedWords": [
+          "world",
+          "hello"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in message",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "message": [
+          "hello",
+          "hello"
+        ],
+        "bannedWords": [
+          "world",
+          "hello"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

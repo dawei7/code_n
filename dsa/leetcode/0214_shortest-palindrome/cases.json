@@ -42,7 +42,7 @@
       ]
     },
     {
-      "id": "real-already",
+      "id": "trial-already",
       "name": "already palindrome",
       "kind": "trial",
       "visible": true,

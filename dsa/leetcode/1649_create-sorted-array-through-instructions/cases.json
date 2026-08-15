@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-three-value-middle",
+      "id": "trial-three-value-middle",
       "name": "third value has one element on each side",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-descending-interleave",
+      "id": "trial-descending-interleave",
       "name": "interleaved extremes create several balanced ranks",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-equal-boundary",
+      "id": "trial-equal-boundary",
       "name": "equal existing value is excluded from rank cost",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-repeated-maximum",
+      "id": "trial-repeated-maximum",
       "name": "repeated maximums coexist with interior insertions",
       "kind": "trial",
       "visible": true,
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "real-repeated-low-values",
+      "id": "trial-repeated-low-values",
       "name": "repeated low and middle values preserve strict ranks",
       "kind": "trial",
       "visible": true,
@@ -194,6 +194,23 @@
       "tags": [
         "duplicates",
         "strict-counts"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in instructions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "instructions": [
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

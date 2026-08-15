@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "real-alternating-powers",
+      "id": "trial-alternating-powers",
       "name": "alternating powers exercise both merge branches",
       "kind": "trial",
       "visible": true,
@@ -272,7 +272,7 @@
       ]
     },
     {
-      "id": "real-partial-cancellations",
+      "id": "trial-partial-cancellations",
       "name": "several equal powers cancel while others survive",
       "kind": "trial",
       "visible": true,
@@ -338,7 +338,7 @@
       ]
     },
     {
-      "id": "real-coefficient-boundaries",
+      "id": "trial-coefficient-boundaries",
       "name": "large opposite coefficients leave a small nonzero term",
       "kind": "trial",
       "visible": true,
@@ -380,7 +380,7 @@
       ]
     },
     {
-      "id": "real-long-tail",
+      "id": "trial-long-tail",
       "name": "exhausted first list leaves the full second tail",
       "kind": "trial",
       "visible": true,

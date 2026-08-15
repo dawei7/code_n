@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-mixed-cut-directions",
+      "id": "trial-mixed-cut-directions",
       "name": "the optimum combines horizontal and vertical cuts",
       "kind": "trial",
       "visible": true,
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "real-unsold-remainder",
+      "id": "trial-unsold-remainder",
       "name": "unprofitable remainder pieces may be left unsold",
       "kind": "trial",
       "visible": true,

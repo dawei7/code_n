@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-bridge-two-runs",
+      "id": "trial-bridge-two-runs",
       "name": "bridge merges equal neighboring runs",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-late-isolated",
+      "id": "trial-late-isolated",
       "name": "isolated group survives near the end",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-middle-target",
+      "id": "trial-middle-target",
       "name": "interior run persists through another activation",
       "kind": "trial",
       "visible": true,
@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "real-full-length-shuffled",
+      "id": "trial-full-length-shuffled",
       "name": "shuffled permutation reaches full length last",
       "kind": "trial",
       "visible": true,
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "real-skip-target",
+      "id": "trial-skip-target",
       "name": "merge jumps over requested length",
       "kind": "trial",
       "visible": true,

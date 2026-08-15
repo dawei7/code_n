@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-middle-alphabet",
+      "id": "trial-middle-alphabet",
       "name": "added middle alphabet letter",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-many-duplicates",
+      "id": "trial-many-duplicates",
       "name": "multiplicities cancel",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "hidden-extra-z",
+      "id": "trial-extra-z",
       "name": "extra letter after repeated groups",
       "kind": "trial",
       "visible": true,

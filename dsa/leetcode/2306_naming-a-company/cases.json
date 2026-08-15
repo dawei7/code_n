@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-partial-overlap",
+      "id": "trial-partial-overlap",
       "name": "shared suffixes are removed before multiplication",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-three-groups",
+      "id": "trial-three-groups",
       "name": "contributions accumulate across initial pairs",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-duplicate-suffix-many-groups",
+      "id": "trial-duplicate-suffix-many-groups",
       "name": "one suffix shared across groups contributes nowhere",
       "kind": "trial",
       "visible": true,
@@ -143,6 +143,39 @@
       "expected": 6,
       "tags": [
         "shared-suffix"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in ideas",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ideas": [
+          "coffee"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in ideas",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ideas": [
+          "coffee",
+          "coffee"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

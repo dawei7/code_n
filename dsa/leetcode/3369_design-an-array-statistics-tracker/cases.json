@@ -296,7 +296,7 @@
       ]
     },
     {
-      "id": "real-stale-mode-candidates",
+      "id": "trial-stale-mode-candidates",
       "name": "old high-frequency mode candidates become invalid",
       "kind": "trial",
       "visible": true,
@@ -362,7 +362,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "large values exercise the running total and upper median",
       "kind": "trial",
       "visible": true,
@@ -413,7 +413,7 @@
       ]
     },
     {
-      "id": "real-drain-and-refill",
+      "id": "trial-drain-and-refill",
       "name": "remove down to one value and refill around it",
       "kind": "trial",
       "visible": true,
@@ -480,7 +480,7 @@
       ]
     },
     {
-      "id": "real-alternating-extremes",
+      "id": "trial-alternating-extremes",
       "name": "alternating extremes trigger repeated heap rebalancing",
       "kind": "trial",
       "visible": true,

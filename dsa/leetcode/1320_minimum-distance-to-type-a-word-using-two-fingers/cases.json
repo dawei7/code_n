@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-alphabetical",
+      "id": "trial-alphabetical",
       "name": "traverse the full alphabet",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-keyboard-pattern",
+      "id": "trial-keyboard-pattern",
       "name": "nonalphabetical full-key pattern",
       "kind": "trial",
       "visible": true,
@@ -97,6 +97,34 @@
       "tags": [
         "all-keys",
         "reordering"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "C"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "CCC"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

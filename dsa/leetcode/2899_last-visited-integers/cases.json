@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-several-query-runs",
+      "id": "trial-several-query-runs",
       "name": "several resets and lookup runs",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "maximum-length input queries every seen value",
       "kind": "trial",
       "visible": true,

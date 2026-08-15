@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "hidden-separated",
+      "id": "trial-separated",
       "name": "several separated single-cell ships",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "hidden-multiple",
+      "id": "trial-multiple",
       "name": "horizontal and vertical ships of varied lengths",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "hidden-empty",
+      "id": "trial-empty",
       "name": "larger all-empty board",
       "kind": "trial",
       "visible": true,

@@ -283,8 +283,8 @@
       ]
     },
     {
-      "id": "real-omit-all-intercepted-team",
-      "name": "real: omit a team with no successful outgoing pass",
+      "id": "trial-omit-all-intercepted-team",
+      "name": "omit a team with no successful outgoing pass",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -367,8 +367,8 @@
       ]
     },
     {
-      "id": "real-all-teams-omitted",
-      "name": "real: return no rows when every pass is intercepted",
+      "id": "trial-all-teams-omitted",
+      "name": "return no rows when every pass is intercepted",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -423,8 +423,8 @@
       ]
     },
     {
-      "id": "real-leading-and-trailing-interceptions",
-      "name": "real: ignore zero-length groups around a successful island",
+      "id": "trial-leading-and-trailing-interceptions",
+      "name": "ignore zero-length groups around a successful island",
       "kind": "trial",
       "visible": true,
       "input": {

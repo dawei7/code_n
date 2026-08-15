@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-strictly-decreasing",
-      "name": "real: only remainders of length at most one work",
+      "id": "trial-strictly-decreasing",
+      "name": "only remainders of length at most one work",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -126,8 +126,8 @@
       ]
     },
     {
-      "id": "real-compatible-bridge",
-      "name": "real: several deletions join compatible sides",
+      "id": "trial-compatible-bridge",
+      "name": "several deletions join compatible sides",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -145,8 +145,8 @@
       ]
     },
     {
-      "id": "real-two-descents",
-      "name": "real: both descents constrain the removed interval",
+      "id": "trial-two-descents",
+      "name": "both descents constrain the removed interval",
       "kind": "trial",
       "visible": true,
       "input": {

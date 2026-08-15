@@ -261,7 +261,7 @@
       ]
     },
     {
-      "id": "real-axis-boundaries",
+      "id": "trial-axis-boundaries",
       "name": "horizontal and vertical circumference points",
       "kind": "trial",
       "visible": true,
@@ -305,7 +305,7 @@
       ]
     },
     {
-      "id": "real-coordinate-extremes",
+      "id": "trial-coordinate-extremes",
       "name": "coordinates at both allowed extremes",
       "kind": "trial",
       "visible": true,
@@ -351,7 +351,7 @@
       ]
     },
     {
-      "id": "real-query-order",
+      "id": "trial-query-order",
       "name": "output order follows differently sized queries",
       "kind": "trial",
       "visible": true,
@@ -403,7 +403,7 @@
       ]
     },
     {
-      "id": "real-near-boundary-outside",
+      "id": "trial-near-boundary-outside",
       "name": "squared distance distinguishes nearby outside points",
       "kind": "trial",
       "visible": true,

@@ -135,7 +135,7 @@
       }
     },
     {
-      "id": "real-two-values",
+      "id": "trial-two-values",
       "name": "two distinct qualifying runs",
       "kind": "trial",
       "visible": true,

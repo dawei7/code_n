@@ -474,7 +474,7 @@
       ]
     },
     {
-      "id": "real-order-id-tie",
+      "id": "trial-order-id-tie",
       "name": "order id sorts latest-day rows",
       "kind": "trial",
       "visible": true,
@@ -558,7 +558,7 @@
       ]
     },
     {
-      "id": "real-older-ties-excluded",
+      "id": "trial-older-ties-excluded",
       "name": "older tied date is excluded",
       "kind": "trial",
       "visible": true,
@@ -626,7 +626,7 @@
       ]
     },
     {
-      "id": "real-product-name-order",
+      "id": "trial-product-name-order",
       "name": "product name is primary ordering key",
       "kind": "trial",
       "visible": true,
@@ -695,7 +695,7 @@
       ]
     },
     {
-      "id": "real-customer-irrelevant",
+      "id": "trial-customer-irrelevant",
       "name": "customer identity does not alter latest date",
       "kind": "trial",
       "visible": true,

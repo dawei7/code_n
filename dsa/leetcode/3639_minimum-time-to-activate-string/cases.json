@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-second-step",
+      "id": "trial-second-step",
       "name": "activation occurs after two replacements",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-adjacent-stars",
+      "id": "trial-adjacent-stars",
       "name": "adjacent activations avoid double counting",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-separated-stars",
+      "id": "trial-separated-stars",
       "name": "separated activations split inactive runs",
       "kind": "trial",
       "visible": true,
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "real-full-count",
+      "id": "trial-full-count",
       "name": "every position is needed for every substring",
       "kind": "trial",
       "visible": true,
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-letters-irrelevant",
+      "id": "trial-letters-irrelevant",
       "name": "original character values do not affect counts",
       "kind": "trial",
       "visible": true,
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "id": "real-large-impossible",
+      "id": "trial-large-impossible",
       "name": "k may exceed the quadratic substring total",
       "kind": "trial",
       "visible": true,
@@ -271,6 +271,46 @@
       "tags": [
         "impossible",
         "large-k"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "order": [
+          1,
+          0,
+          2
+        ],
+        "k": 2
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "order": [
+          1,
+          0,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

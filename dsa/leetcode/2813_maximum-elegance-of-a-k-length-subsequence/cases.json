@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-all-unique",
+      "id": "trial-all-unique",
       "name": "all categories already differ",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-multiple-exchanges",
+      "id": "trial-multiple-exchanges",
       "name": "several duplicate slots can be exchanged",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-large-profits",
+      "id": "trial-large-profits",
       "name": "arithmetic exceeds 32-bit range",
       "kind": "trial",
       "visible": true,
@@ -233,6 +233,34 @@
       "expected": 3000000006,
       "tags": [
         "large-values"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "items": [
+          [
+            3,
+            2
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            10,
+            1
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 11,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

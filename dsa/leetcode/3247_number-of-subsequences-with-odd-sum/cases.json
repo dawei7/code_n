@@ -126,8 +126,8 @@
       ]
     },
     {
-      "id": "real-alternating-parity",
-      "name": "real: alternating parity values",
+      "id": "trial-alternating-parity",
+      "name": "alternating parity values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -150,8 +150,8 @@
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: values near the upper bound",
+      "id": "trial-large-values",
+      "name": "values near the upper bound",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -171,8 +171,8 @@
       ]
     },
     {
-      "id": "real-thirty-one-values",
-      "name": "real: modulo applies beyond one billion subsets",
+      "id": "trial-thirty-one-values",
+      "name": "modulo applies beyond one billion subsets",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -217,8 +217,8 @@
       ]
     },
     {
-      "id": "real-sixty-values",
-      "name": "real: sixty index choices",
+      "id": "trial-sixty-values",
+      "name": "sixty index choices",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -292,8 +292,8 @@
       ]
     },
     {
-      "id": "real-many-evens",
-      "name": "real: long all-even array remains zero",
+      "id": "trial-many-evens",
+      "name": "long all-even array remains zero",
       "kind": "trial",
       "visible": true,
       "input": {

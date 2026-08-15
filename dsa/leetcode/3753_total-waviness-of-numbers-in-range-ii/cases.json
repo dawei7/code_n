@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-range-i-domain",
+      "id": "trial-range-i-domain",
       "name": "aggregate the complete Range I domain",
       "kind": "trial",
       "visible": true,
@@ -89,6 +89,36 @@
       },
       "tags": [
         "prefix-aggregation"
+      ]
+    },
+    {
+      "id": "trial-boundary-6",
+      "name": "minimal value num1=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 1,
+        "num2": 130
+      },
+      "expected": 12,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "minimal value num2=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 120,
+        "num2": 1
+      },
+      "expected": -9,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

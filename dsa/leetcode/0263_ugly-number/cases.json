@@ -43,7 +43,7 @@
       ]
     },
     {
-      "id": "real-nonpositive",
+      "id": "trial-nonpositive",
       "name": "zero is not ugly",
       "kind": "trial",
       "visible": true,

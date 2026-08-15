@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-mountain",
+      "id": "trial-mountain",
       "name": "both boundaries around a peak are valid",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-equality-across-boundary",
+      "id": "trial-equality-across-boundary",
       "name": "equality is allowed when it crosses the split",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-equality-left-candidate",
+      "id": "trial-equality-left-candidate",
       "name": "equality invalidates the longer left part",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-equality-right-candidate",
+      "id": "trial-equality-right-candidate",
       "name": "equality invalidates the longer right part",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-valley-no-split",
+      "id": "trial-valley-no-split",
       "name": "a valley orientation admits no valid boundary",
       "kind": "trial",
       "visible": true,

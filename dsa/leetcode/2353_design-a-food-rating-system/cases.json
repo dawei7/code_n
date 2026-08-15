@@ -283,7 +283,7 @@
       ]
     },
     {
-      "id": "real-repeated-updates",
+      "id": "trial-repeated-updates",
       "name": "several stale entries for one food",
       "kind": "trial",
       "visible": true,
@@ -353,7 +353,7 @@
       ]
     },
     {
-      "id": "real-tie-after-decreases",
+      "id": "trial-tie-after-decreases",
       "name": "stale maxima reveal a lexicographic tie",
       "kind": "trial",
       "visible": true,

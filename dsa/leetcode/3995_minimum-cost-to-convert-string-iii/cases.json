@@ -332,7 +332,7 @@
       ]
     },
     {
-      "id": "real-short-rules-beat-long",
+      "id": "trial-short-rules-beat-long",
       "name": "two short rules beat one overlapping long rule",
       "kind": "trial",
       "visible": true,
@@ -366,7 +366,7 @@
       ]
     },
     {
-      "id": "real-pattern-mismatch",
+      "id": "trial-pattern-mismatch",
       "name": "a non-wildcard pattern mismatch blocks the rule",
       "kind": "trial",
       "visible": true,
@@ -390,7 +390,7 @@
       ]
     },
     {
-      "id": "real-target-mismatch",
+      "id": "trial-target-mismatch",
       "name": "an otherwise matching rule has the wrong replacement",
       "kind": "trial",
       "visible": true,
@@ -414,7 +414,7 @@
       ]
     },
     {
-      "id": "real-wildcard-any-character",
+      "id": "trial-wildcard-any-character",
       "name": "wildcards match distinct arbitrary characters",
       "kind": "trial",
       "visible": true,
@@ -438,7 +438,7 @@
       ]
     },
     {
-      "id": "real-four-wildcards",
+      "id": "trial-four-wildcards",
       "name": "a six-character pattern contains four wildcards",
       "kind": "trial",
       "visible": true,
@@ -462,7 +462,7 @@
       ]
     },
     {
-      "id": "real-maximum-wildcards",
+      "id": "trial-maximum-wildcards",
       "name": "a legal pattern uses five wildcards and one letter",
       "kind": "trial",
       "visible": true,
@@ -486,7 +486,7 @@
       ]
     },
     {
-      "id": "real-reuse-rule-disjointly",
+      "id": "trial-reuse-rule-disjointly",
       "name": "one rule is reused on four disjoint positions",
       "kind": "trial",
       "visible": true,
@@ -510,7 +510,7 @@
       ]
     },
     {
-      "id": "real-one-uncovered-position",
+      "id": "trial-one-uncovered-position",
       "name": "one mismatching position cannot be covered",
       "kind": "trial",
       "visible": true,
@@ -536,6 +536,64 @@
       "tags": [
         "uncovered-position",
         "impossible"
+      ]
+    },
+    {
+      "id": "trial-boundary-21",
+      "name": "single character in source",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "source": "h",
+        "target": "world",
+        "rules": [
+          [
+            "he",
+            "wo"
+          ],
+          [
+            "llo",
+            "rld"
+          ]
+        ],
+        "costs": [
+          3,
+          4
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-22",
+      "name": "repeated character in source",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "source": "hhh",
+        "target": "world",
+        "rules": [
+          [
+            "he",
+            "wo"
+          ],
+          [
+            "llo",
+            "rld"
+          ]
+        ],
+        "costs": [
+          3,
+          4
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-seventeen",
+      "id": "trial-seventeen",
       "name": "several denomination counts",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "hidden-gcd",
+      "id": "trial-gcd",
       "name": "one repeated denomination forms target",
       "kind": "trial",
       "visible": true,
@@ -124,6 +124,42 @@
       "expected": 1,
       "tags": [
         "gcd"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value amount=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "amount": 1,
+        "coins": [
+          1,
+          2,
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in coins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "amount": 5,
+        "coins": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
       ]
     }
   ]

@@ -297,7 +297,7 @@
       ]
     },
     {
-      "id": "real-quantity-ignored",
+      "id": "trial-quantity-ignored",
       "name": "quantity does not replace the order count",
       "kind": "trial",
       "visible": true,
@@ -333,7 +333,7 @@
       ]
     },
     {
-      "id": "real-three-year-run",
+      "id": "trial-three-year-run",
       "name": "several adjacent pairs emit one product row",
       "kind": "trial",
       "visible": true,
@@ -415,7 +415,7 @@
       ]
     },
     {
-      "id": "real-two-orders-each",
+      "id": "trial-two-orders-each",
       "name": "two orders in each year remain below threshold",
       "kind": "trial",
       "visible": true,

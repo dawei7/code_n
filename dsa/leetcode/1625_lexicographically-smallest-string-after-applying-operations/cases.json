@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-noncoprime-add",
+      "id": "trial-noncoprime-add",
       "name": "addition visits only one modular residue cycle",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-large-rotation",
+      "id": "trial-large-rotation",
       "name": "rotation amount near the string length",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "real-even-step",
+      "id": "trial-even-step",
       "name": "even rotation restricts changes to original odd positions",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-mixed",
+      "id": "trial-mixed",
       "name": "broad reachable graph has a non-obvious minimum",
       "kind": "trial",
       "visible": true,

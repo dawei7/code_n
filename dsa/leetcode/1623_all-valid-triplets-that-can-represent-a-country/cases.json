@@ -247,7 +247,7 @@
       }
     },
     {
-      "id": "real-all-distinct-product",
+      "id": "trial-all-distinct-product",
       "name": "every Cartesian triplet is valid",
       "kind": "trial",
       "visible": true,
@@ -343,7 +343,7 @@
       }
     },
     {
-      "id": "real-bc-conflicts",
+      "id": "trial-bc-conflicts",
       "name": "B-C collisions filter only affected combinations",
       "kind": "trial",
       "visible": true,
@@ -405,7 +405,7 @@
       }
     },
     {
-      "id": "real-shared-member-across-results",
+      "id": "trial-shared-member-across-results",
       "name": "one A member can belong to several valid triplets",
       "kind": "trial",
       "visible": true,

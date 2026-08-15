@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-partial-overlap",
+      "id": "trial-partial-overlap",
       "name": "multiplicities partly overlap",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-identical",
+      "id": "trial-identical",
       "name": "identical strings",
       "kind": "trial",
       "visible": true,

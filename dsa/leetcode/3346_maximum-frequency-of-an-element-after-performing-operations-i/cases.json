@@ -108,8 +108,8 @@
       ]
     },
     {
-      "id": "real-original-target-bonus",
-      "name": "real: existing copies require no operation budget",
+      "id": "trial-original-target-bonus",
+      "name": "existing copies require no operation budget",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -130,8 +130,8 @@
       ]
     },
     {
-      "id": "real-overlap-limited-by-operations",
-      "name": "real: interval overlap exceeds the operation budget",
+      "id": "trial-overlap-limited-by-operations",
+      "name": "interval overlap exceeds the operation budget",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -153,8 +153,8 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "real: minimum and maximum values meet at an existing target",
+      "id": "trial-value-boundaries",
+      "name": "minimum and maximum values meet at an existing target",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-alternating-targets",
+      "id": "trial-alternating-targets",
       "name": "one target wins across alternating observations",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-maximum-value",
+      "id": "trial-maximum-value",
       "name": "maximum legal value is both key and target",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-nonkey-tail",
+      "id": "trial-nonkey-tail",
       "name": "non-key tail does not affect counted followers",
       "kind": "trial",
       "visible": true,

@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "adjacent alternating teams all match",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-separated-blocks",
+      "id": "trial-separated-blocks",
       "name": "only boundary positions across blocks can match",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-asymmetric-gaps",
+      "id": "trial-asymmetric-gaps",
       "name": "pointers discard both kinds of expired index",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-many-catchers",
+      "id": "trial-many-catchers",
       "name": "surplus catchers remain unmatched",
       "kind": "trial",
       "visible": true,
@@ -250,6 +250,41 @@
       "tags": [
         "unbalanced",
         "surplus-catchers"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in team",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "team": [
+          0
+        ],
+        "dist": 3
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in team",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "team": [
+          0,
+          0
+        ],
+        "dist": 3
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

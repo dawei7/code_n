@@ -98,8 +98,8 @@
       ]
     },
     {
-      "id": "real-duplicate-blocks",
-      "name": "real: duplicate blocks preserve multiplicity",
+      "id": "trial-duplicate-blocks",
+      "name": "duplicate blocks preserve multiplicity",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -114,8 +114,8 @@
       ]
     },
     {
-      "id": "real-multiplicity-mismatch",
-      "name": "real: global anagram hides different block multiplicities",
+      "id": "trial-multiplicity-mismatch",
+      "name": "global anagram hides different block multiplicities",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -130,8 +130,8 @@
       ]
     },
     {
-      "id": "real-block-rotation",
-      "name": "real: several long blocks rotate",
+      "id": "trial-block-rotation",
+      "name": "several long blocks rotate",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-near-match",
-      "name": "real: one cross-boundary exchange invalidates the target",
+      "id": "trial-near-match",
+      "name": "one cross-boundary exchange invalidates the target",
       "kind": "trial",
       "visible": true,
       "input": {

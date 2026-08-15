@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-negative",
+      "id": "trial-negative",
       "name": "all-negative degrees still have a maximum",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-city-order",
+      "id": "trial-city-order",
       "name": "result order follows city ID rather than input order",
       "kind": "trial",
       "visible": true,
@@ -270,7 +270,7 @@
       ]
     },
     {
-      "id": "real-degree-before-day",
+      "id": "trial-degree-before-day",
       "name": "a later higher degree beats an earlier lower degree",
       "kind": "trial",
       "visible": true,

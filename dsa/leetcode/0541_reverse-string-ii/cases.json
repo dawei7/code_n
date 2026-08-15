@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-between",
+      "id": "trial-between",
       "name": "between k and 2k characters remain",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-repeated",
+      "id": "trial-repeated",
       "name": "repeated letters retain positions correctly",
       "kind": "trial",
       "visible": true,
@@ -102,6 +102,36 @@
       },
       "expected": "babaccddee",
       "tags": [
+        "repeated"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 2
+      },
+      "expected": "a",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "k": 2
+      },
+      "expected": "aaa",
+      "tags": [
+        "boundary",
         "repeated"
       ]
     }

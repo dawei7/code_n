@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-single-node",
+      "id": "trial-single-node",
       "name": "one acyclic node has color value one",
       "kind": "trial",
       "visible": true,
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-diamond",
+      "id": "trial-diamond",
       "name": "converging same-color paths do not combine branches",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-disconnected-cycle",
+      "id": "trial-disconnected-cycle",
       "name": "a cycle in another component still forces minus one",
       "kind": "trial",
       "visible": true,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "real-same-color-chain",
+      "id": "trial-same-color-chain",
       "name": "a same-color chain accumulates every node",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-disconnected-dags",
+      "id": "trial-disconnected-dags",
       "name": "choose the best path across acyclic components",
       "kind": "trial",
       "visible": true,
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "id": "real-different-predecessors",
+      "id": "trial-different-predecessors",
       "name": "componentwise merge preserves each color maximum",
       "kind": "trial",
       "visible": true,
@@ -278,7 +278,7 @@
       ]
     },
     {
-      "id": "real-two-node-cycle",
+      "id": "trial-two-node-cycle",
       "name": "ordinary two-node cycle returns minus one",
       "kind": "trial",
       "visible": true,

@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "real-odd-five",
+      "id": "trial-odd-five",
       "name": "odd slice count uses radius cuts",
       "kind": "trial",
       "visible": true,
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-even-six",
+      "id": "trial-even-six",
       "name": "even slice count pairs opposite sectors",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-largest-odd",
+      "id": "trial-largest-odd",
       "name": "largest odd value",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-largest-even",
+      "id": "trial-largest-even",
       "name": "largest legal value",
       "kind": "trial",
       "visible": true,

@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-turn-cost-choice",
+      "id": "trial-turn-cost-choice",
       "name": "choose the cheaper turn order",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-distant-high-value",
+      "id": "trial-distant-high-value",
       "name": "unreachable high value must not enter the window",
       "kind": "trial",
       "visible": true,
@@ -216,6 +216,64 @@
       "tags": [
         "unreachable",
         "fruit-at-start"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "minimal value startPos=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fruits": [
+          [
+            2,
+            8
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            8,
+            6
+          ]
+        ],
+        "startPos": 1,
+        "k": 4
+      },
+      "expected": 8,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fruits": [
+          [
+            2,
+            8
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            8,
+            6
+          ]
+        ],
+        "startPos": 5,
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

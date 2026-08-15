@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-ten",
+      "id": "trial-ten",
       "name": "two-digit result",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-upper-bound",
+      "id": "trial-upper-bound",
       "name": "maximum supported index",
       "kind": "trial",
       "visible": true,

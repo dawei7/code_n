@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-all-short",
+      "id": "trial-all-short",
       "name": "a fastest server is free at every arrival",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-long-backlog",
+      "id": "trial-long-backlog",
       "name": "queued tasks advance to successive finish events",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-simultaneous-tie",
+      "id": "trial-simultaneous-tie",
       "name": "simultaneous equal-weight finishers choose the lower index",
       "kind": "trial",
       "visible": true,
@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "real-weight-before-index",
+      "id": "trial-weight-before-index",
       "name": "lower weight beats lower index when both are free",
       "kind": "trial",
       "visible": true,
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "id": "real-release-at-arrival",
+      "id": "trial-release-at-arrival",
       "name": "a server finishing at the arrival second is immediately free",
       "kind": "trial",
       "visible": true,
@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "real-many-finishers",
+      "id": "trial-many-finishers",
       "name": "all finishers reenter before the oldest queued task is assigned",
       "kind": "trial",
       "visible": true,
@@ -298,7 +298,7 @@
       ]
     },
     {
-      "id": "real-single-task",
+      "id": "trial-single-task",
       "name": "one task chooses the globally lightest server",
       "kind": "trial",
       "visible": true,
@@ -322,7 +322,7 @@
       ]
     },
     {
-      "id": "real-large-durations",
+      "id": "trial-large-durations",
       "name": "finish times may extend far beyond all arrivals",
       "kind": "trial",
       "visible": true,

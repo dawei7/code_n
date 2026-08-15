@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-sibling-sharing",
+      "id": "trial-sibling-sharing",
       "name": "deep edit preserves sibling values",
       "kind": "trial",
       "visible": true,
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "real-repeated-path",
+      "id": "trial-repeated-path",
       "name": "later assignment in one batch wins",
       "kind": "trial",
       "visible": true,

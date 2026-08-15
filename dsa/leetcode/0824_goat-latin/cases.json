@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "every uppercase vowel",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "preserve case through rotation",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "suffix grows at every position",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-ext-4",
       "name": "vowel then consonant with preserved order",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "maximum-length single word",
       "kind": "trial",
       "visible": true,
@@ -155,6 +155,20 @@
       "tags": [
         "length-boundary",
         "single-word"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in sentence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "III"
+      },
+      "expected": "IIImaa",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

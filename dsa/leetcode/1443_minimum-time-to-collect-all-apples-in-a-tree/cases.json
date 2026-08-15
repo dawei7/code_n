@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-deep-chain",
+      "id": "trial-deep-chain",
       "name": "one apple at the end of a chain",
       "kind": "trial",
       "visible": true,
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "real-nested-apples",
+      "id": "trial-nested-apples",
       "name": "ancestor and descendant apples share every upper edge",
       "kind": "trial",
       "visible": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "real-three-branches",
+      "id": "trial-three-branches",
       "name": "apples require five distinct edges",
       "kind": "trial",
       "visible": true,
@@ -316,7 +316,7 @@
       ]
     },
     {
-      "id": "real-internal-apple",
+      "id": "trial-internal-apple",
       "name": "an internal apple does not require child edges",
       "kind": "trial",
       "visible": true,

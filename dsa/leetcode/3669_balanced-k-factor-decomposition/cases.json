@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-balanced-nonpower",
+      "id": "trial-balanced-nonpower",
       "name": "three distinct balanced factors",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-four-mixed-factors",
+      "id": "trial-four-mixed-factors",
       "name": "four-factor decomposition with repetition",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-maximum-perfect-power",
+      "id": "trial-maximum-perfect-power",
       "name": "maximum n has five equal factors",
       "kind": "trial",
       "visible": true,
@@ -176,6 +176,41 @@
       "tags": [
         "maximum-n",
         "perfect-power"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 2
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100,
+        "k": 1
+      },
+      "expected": [
+        100
+      ],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

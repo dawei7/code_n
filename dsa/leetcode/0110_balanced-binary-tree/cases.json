@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-deep-internal",
+      "id": "trial-deep-internal",
       "name": "internal imbalance",
       "kind": "trial",
       "visible": true,

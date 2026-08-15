@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-full-square-domain",
+      "id": "trial-full-square-domain",
       "name": "maximum range includes zero and every legal square",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-last-legal-square",
+      "id": "trial-last-legal-square",
       "name": "interval begins at the largest square below one billion",
       "kind": "trial",
       "visible": true,
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "real-above-last-square",
+      "id": "trial-above-last-square",
       "name": "tail above the largest legal square is empty",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-maximum-exponent-no-power",
+      "id": "trial-maximum-exponent-no-power",
       "name": "maximum exponent has no qualifying value above one",
       "kind": "trial",
       "visible": true,
@@ -237,7 +237,7 @@
       ]
     },
     {
-      "id": "real-large-odd-exponent",
+      "id": "trial-large-odd-exponent",
       "name": "zero, one, and two to an odd power qualify",
       "kind": "trial",
       "visible": true,
@@ -257,7 +257,7 @@
       ]
     },
     {
-      "id": "real-consecutive-fifth-powers",
+      "id": "trial-consecutive-fifth-powers",
       "name": "both endpoints and four interior fifth powers qualify",
       "kind": "trial",
       "visible": true,
@@ -276,7 +276,7 @@
       ]
     },
     {
-      "id": "real-two-cube-endpoints",
+      "id": "trial-two-cube-endpoints",
       "name": "two consecutive cubes coincide with the endpoints",
       "kind": "trial",
       "visible": true,
@@ -292,6 +292,22 @@
       "tags": [
         "cubes",
         "exact-endpoints"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 1,
+        "r": 9,
+        "k": 1
+      },
+      "expected": 9,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

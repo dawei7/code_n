@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-long-balanced",
+      "id": "trial-long-balanced",
       "name": "repeated balanced blocks need no replacement",
       "kind": "trial",
       "visible": true,
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-excess-two-kinds",
+      "id": "trial-excess-two-kinds",
       "name": "replacement absorbs excess from two characters",
       "kind": "trial",
       "visible": true,

@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-valid-five",
+      "id": "trial-valid-five",
       "name": "valid odd-sized matrix",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-secondary-zero",
+      "id": "trial-secondary-zero",
       "name": "zero on secondary diagonal",
       "kind": "trial",
       "visible": true,

@@ -165,8 +165,8 @@
       ]
     },
     {
-      "id": "real-near-corner-game",
-      "name": "real: three pawns near a corner",
+      "id": "trial-near-corner-game",
+      "name": "three pawns near a corner",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -194,8 +194,8 @@
       ]
     },
     {
-      "id": "real-four-around-center",
-      "name": "real: four pawns around the knight",
+      "id": "trial-four-around-center",
+      "name": "four pawns around the knight",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -227,8 +227,8 @@
       ]
     },
     {
-      "id": "real-boundary-and-interior",
-      "name": "real: boundary and interior pawn mix",
+      "id": "trial-boundary-and-interior",
+      "name": "boundary and interior pawn mix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -256,8 +256,8 @@
       ]
     },
     {
-      "id": "real-upper-corner-cluster",
-      "name": "real: upper corner pawn cluster",
+      "id": "trial-upper-corner-cluster",
+      "name": "upper corner pawn cluster",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -285,8 +285,8 @@
       ]
     },
     {
-      "id": "real-five-pawn-game",
-      "name": "real: five-pawn alternating game",
+      "id": "trial-five-pawn-game",
+      "name": "five-pawn alternating game",
       "kind": "trial",
       "visible": true,
       "input": {

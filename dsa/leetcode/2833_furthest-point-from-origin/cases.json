@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-balanced-with-flexible",
+      "id": "trial-balanced-with-flexible",
       "name": "flexible moves decide direction after balanced fixed moves",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-left-imbalance",
+      "id": "trial-left-imbalance",
       "name": "all flexible moves reinforce a left imbalance",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-balanced-many-flexible",
+      "id": "trial-balanced-many-flexible",
       "name": "equal forced counts leave only flexible distance",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-no-flexible-right",
+      "id": "trial-no-flexible-right",
       "name": "forced right moves need no choices",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "every maximum-length move is flexible",
       "kind": "trial",
       "visible": true,
@@ -150,6 +150,20 @@
       "tags": [
         "maximum-length",
         "all-flexible"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "repeated character in moves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moves": "LLL"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

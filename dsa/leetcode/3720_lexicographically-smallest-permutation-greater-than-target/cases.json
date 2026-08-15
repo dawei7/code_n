@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-duplicate-backtrack",
+      "id": "trial-duplicate-backtrack",
       "name": "duplicate letters are restored while moving the first difference left",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-duplicate-next",
+      "id": "trial-duplicate-next",
       "name": "repeated letters still produce the next distinct permutation",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-missing-target-letter",
+      "id": "trial-missing-target-letter",
       "name": "an unavailable equal letter triggers an increase at that position",
       "kind": "trial",
       "visible": true,
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-target-above-maximum",
+      "id": "trial-target-above-maximum",
       "name": "a target above the maximum permutation has no answer",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "maximum-length input remains linear",
       "kind": "trial",
       "visible": true,
@@ -218,6 +218,36 @@
       },
       "tags": [
         "maximum-length"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "target": "bba"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "target": "bba"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

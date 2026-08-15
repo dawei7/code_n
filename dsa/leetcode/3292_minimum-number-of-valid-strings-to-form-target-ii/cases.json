@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-dead-end",
-      "name": "real: reachable prefix ends before unmatched suffix",
+      "id": "trial-dead-end",
+      "name": "reachable prefix ends before unmatched suffix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -125,8 +125,8 @@
       ]
     },
     {
-      "id": "real-shared-prefixes",
-      "name": "real: several words share long prefixes",
+      "id": "trial-shared-prefixes",
+      "name": "several words share long prefixes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -143,8 +143,8 @@
       ]
     },
     {
-      "id": "real-one-piece",
-      "name": "real: complete target is a valid prefix",
+      "id": "trial-one-piece",
+      "name": "complete target is a valid prefix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -157,6 +157,41 @@
       "expected": 1,
       "tags": [
         "one-piece"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc"
+        ],
+        "target": "aabcdabc"
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "abc"
+        ],
+        "target": "aabcdabc"
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

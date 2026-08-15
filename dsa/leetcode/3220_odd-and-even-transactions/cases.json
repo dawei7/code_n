@@ -302,8 +302,8 @@
       ]
     },
     {
-      "id": "real-many-odd",
-      "name": "real: an odd-only date returns zero even sum",
+      "id": "trial-many-odd",
+      "name": "an odd-only date returns zero even sum",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -349,8 +349,8 @@
       ]
     },
     {
-      "id": "real-same-date-mixed",
-      "name": "real: alternating parity on one date",
+      "id": "trial-same-date-mixed",
+      "name": "alternating parity on one date",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -401,8 +401,8 @@
       ]
     },
     {
-      "id": "real-year-boundary",
-      "name": "real: dates sort across a year boundary",
+      "id": "trial-year-boundary",
+      "name": "dates sort across a year boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -448,8 +448,8 @@
       ]
     },
     {
-      "id": "real-large-amounts",
-      "name": "real: large amounts aggregate by parity",
+      "id": "trial-large-amounts",
+      "name": "large amounts aggregate by parity",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -495,8 +495,8 @@
       ]
     },
     {
-      "id": "real-repeated-dates",
-      "name": "real: multiple groups receive independent sums",
+      "id": "trial-repeated-dates",
+      "name": "multiple groups receive independent sums",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -552,8 +552,8 @@
       ]
     },
     {
-      "id": "real-four-dates",
-      "name": "real: four dates with varied group sizes",
+      "id": "trial-four-dates",
+      "name": "four dates with varied group sizes",
       "kind": "trial",
       "visible": true,
       "input": {

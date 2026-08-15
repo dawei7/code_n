@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-right-triangle",
+      "id": "trial-right-triangle",
       "name": "a right triangle uses its hypotenuse as diameter",
       "kind": "trial",
       "visible": true,
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-acute-triangle",
+      "id": "trial-acute-triangle",
       "name": "an acute triangle requires its circumcircle",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-long-collinear",
+      "id": "trial-long-collinear",
       "name": "interior collinear points do not change the extreme diameter",
       "kind": "trial",
       "visible": true,
@@ -252,7 +252,7 @@
       ]
     },
     {
-      "id": "real-square",
+      "id": "trial-square",
       "name": "square corners share a diagonal circle",
       "kind": "trial",
       "visible": true,
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "id": "real-interior-and-duplicate",
+      "id": "trial-interior-and-duplicate",
       "name": "interior and duplicate coordinates add no boundary constraint",
       "kind": "trial",
       "visible": true,
@@ -334,7 +334,7 @@
       ]
     },
     {
-      "id": "real-coordinate-boundary",
+      "id": "trial-coordinate-boundary",
       "name": "opposite coordinate bounds form a diagonal diameter",
       "kind": "trial",
       "visible": true,

@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-two-target-lengths",
+      "id": "trial-two-target-lengths",
       "name": "both block orders contribute across two lengths",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-equal-block-lengths",
+      "id": "trial-equal-block-lengths",
       "name": "equal block lengths still represent different characters",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-wider-range",
+      "id": "trial-wider-range",
       "name": "several reachable lengths contribute",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-power-of-two",
+      "id": "trial-power-of-two",
       "name": "unit blocks count all binary strings at one length",
       "kind": "trial",
       "visible": true,

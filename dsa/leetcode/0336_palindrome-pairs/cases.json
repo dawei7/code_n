@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "hidden-many-directions",
+      "id": "trial-many-directions",
       "name": "every distinct pair is palindromic",
       "kind": "trial",
       "visible": true,
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "hidden-prefix-complements",
+      "id": "trial-prefix-complements",
       "name": "several prefix and suffix complements",
       "kind": "trial",
       "visible": true,
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "id": "hidden-reverse-and-short",
+      "id": "trial-reverse-and-short",
       "name": "complete reverse plus shorter word",
       "kind": "trial",
       "visible": true,
@@ -258,6 +258,39 @@
       },
       "tags": [
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcd"
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcd",
+          "abcd"
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

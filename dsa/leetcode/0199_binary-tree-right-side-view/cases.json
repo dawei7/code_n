@@ -61,7 +61,7 @@
       ]
     },
     {
-      "id": "real-left-visible",
+      "id": "trial-left-visible",
       "name": "left descendants become visible",
       "kind": "trial",
       "visible": true,

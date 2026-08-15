@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-stone-wall",
+      "id": "trial-stone-wall",
       "name": "stones completely separate endpoints",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-isolated-flood",
+      "id": "trial-isolated-flood",
       "name": "isolated flood cannot enter corridor",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-detour-overtaken",
+      "id": "trial-detour-overtaken",
       "name": "flood overtakes the only stone detour",
       "kind": "trial",
       "visible": true,

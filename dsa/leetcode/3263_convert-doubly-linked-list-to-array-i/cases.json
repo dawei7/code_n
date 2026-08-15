@@ -178,8 +178,8 @@
       ]
     },
     {
-      "id": "real-descending",
-      "name": "real: descending values remain ordered",
+      "id": "trial-descending",
+      "name": "descending values remain ordered",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -214,8 +214,8 @@
       ]
     },
     {
-      "id": "real-bound-alternation",
-      "name": "real: alternating value bounds",
+      "id": "trial-bound-alternation",
+      "name": "alternating value bounds",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -246,8 +246,8 @@
       ]
     },
     {
-      "id": "real-mixed-duplicates",
-      "name": "real: mixed runs and repeated values",
+      "id": "trial-mixed-duplicates",
+      "name": "mixed runs and repeated values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -280,8 +280,8 @@
       ]
     },
     {
-      "id": "real-even-palindrome",
-      "name": "real: even-length palindrome",
+      "id": "trial-even-palindrome",
+      "name": "even-length palindrome",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -308,8 +308,8 @@
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "real: all fifty legal nodes",
+      "id": "trial-maximum-length",
+      "name": "all fifty legal nodes",
       "kind": "trial",
       "visible": true,
       "input": {

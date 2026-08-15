@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-single-letter",
+      "id": "trial-single-letter",
       "name": "one-letter word is valid by itself",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-one-letter-tie",
+      "id": "trial-one-letter-tie",
       "name": "smallest one-letter word wins a tie",
       "kind": "trial",
       "visible": true,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-missing-middle-prefix",
+      "id": "trial-missing-middle-prefix",
       "name": "missing middle prefix blocks a longer branch",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-deep-tie",
+      "id": "trial-deep-tie",
       "name": "lexicographic comparison happens at a deep character",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-long-invalid-distractor",
+      "id": "trial-long-invalid-distractor",
       "name": "a longer word without its prefixes cannot win",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-branch-after-valid-prefix",
+      "id": "trial-branch-after-valid-prefix",
       "name": "valid prefix can have both valid and blocked descendants",
       "kind": "trial",
       "visible": true,
@@ -230,6 +230,39 @@
       "tags": [
         "branching",
         "missing-prefix"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "k"
+        ]
+      },
+      "expected": "k",
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "k",
+          "k"
+        ]
+      },
+      "expected": "k",
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

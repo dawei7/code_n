@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-full",
+      "id": "trial-full",
       "name": "full three-by-three square",
       "kind": "trial",
       "visible": true,

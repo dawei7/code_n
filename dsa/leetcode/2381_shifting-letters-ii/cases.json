@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-full-range",
+      "id": "trial-full-range",
       "name": "full range shifts together",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-net-repeated-shifts",
+      "id": "trial-net-repeated-shifts",
       "name": "repeated shifts accumulate modulo 26",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-disjoint-ranges",
+      "id": "trial-disjoint-ranges",
       "name": "disjoint updates preserve unaffected positions",
       "kind": "trial",
       "visible": true,

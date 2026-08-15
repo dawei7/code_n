@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-score-without-experience",
+      "id": "trial-score-without-experience",
       "name": "high score does not replace required experience",
       "kind": "trial",
       "visible": true,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-candidate-without-rounds",
+      "id": "trial-candidate-without-rounds",
       "name": "an interview with no rounds cannot qualify",
       "kind": "trial",
       "visible": true,
@@ -292,7 +292,7 @@
       ]
     },
     {
-      "id": "real-shared-interview",
+      "id": "trial-shared-interview",
       "name": "eligible candidates sharing an interview remain separate",
       "kind": "trial",
       "visible": true,

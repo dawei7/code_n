@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-five-character-block",
+      "id": "trial-five-character-block",
       "name": "nontrivial block repeated twice",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-near-repeat",
+      "id": "trial-near-repeat",
       "name": "long border without complete tiling",
       "kind": "trial",
       "visible": true,

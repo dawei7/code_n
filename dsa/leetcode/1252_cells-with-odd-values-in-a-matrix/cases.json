@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-mixed-repeats",
+      "id": "trial-mixed-repeats",
       "name": "mixed repeated indices",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-one-row",
+      "id": "trial-one-row",
       "name": "one row and several columns",
       "kind": "trial",
       "visible": true,

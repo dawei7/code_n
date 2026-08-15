@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-odd-level-equality",
+      "id": "trial-odd-level-equality",
       "name": "equal even values are not strictly decreasing",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-odd-level-increases",
+      "id": "trial-odd-level-increases",
       "name": "even values increase on an odd level",
       "kind": "trial",
       "visible": true,
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-even-level-decreases",
+      "id": "trial-even-level-decreases",
       "name": "odd values decrease on an even level",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-sparse-valid",
+      "id": "trial-sparse-valid",
       "name": "sparse children preserve left-to-right order",
       "kind": "trial",
       "visible": true,
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "real-valid-chain",
+      "id": "trial-valid-chain",
       "name": "one-node levels alternate parity",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-deep-parity-violation",
+      "id": "trial-deep-parity-violation",
       "name": "only a deep node has the wrong parity",
       "kind": "trial",
       "visible": true,
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-order-valid-parity-invalid",
+      "id": "trial-order-valid-parity-invalid",
       "name": "proper direction still fails wrong parity",
       "kind": "trial",
       "visible": true,

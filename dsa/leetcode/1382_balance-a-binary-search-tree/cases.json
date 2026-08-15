@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "hidden-mixed",
+      "id": "trial-mixed",
       "name": "uneven branches",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "hidden-two",
+      "id": "trial-two",
       "name": "two-node tree",
       "kind": "trial",
       "visible": true,

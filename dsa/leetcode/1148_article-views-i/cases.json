@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-one-author-many-articles",
+      "id": "trial-one-author-many-articles",
       "name": "one author self-views several articles",
       "kind": "trial",
       "visible": true,
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "real-mixed",
+      "id": "trial-mixed",
       "name": "qualifying and nonqualifying rows interleave",
       "kind": "trial",
       "visible": true,
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "id": "real-duplicate-only",
+      "id": "trial-duplicate-only",
       "name": "exact duplicate self-views collapse",
       "kind": "trial",
       "visible": true,

@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-interleaved",
+      "id": "trial-interleaved",
       "name": "interleaved transfer boundary",
       "kind": "trial",
       "visible": true,

@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-spaces-and-punctuation",
+      "id": "trial-spaces-and-punctuation",
       "name": "preserve spaces and punctuation",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-mixed-binary-count",
+      "id": "trial-mixed-binary-count",
       "name": "larger count with mixed binary digits",
       "kind": "trial",
       "visible": true,
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-longer-receiver",
+      "id": "trial-longer-receiver",
       "name": "preserve a longer receiver across copies",
       "kind": "trial",
       "visible": true,

@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-disjoint",
+      "id": "trial-disjoint",
       "name": "separated unit circles have disjoint point sets",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-diagonal-boundary",
+      "id": "trial-diagonal-boundary",
       "name": "diagonal candidates can lie outside a circle",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-large-radius",
+      "id": "trial-large-radius",
       "name": "radius four exercises a larger bounding square",
       "kind": "trial",
       "visible": true,

@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-row-column-ties",
+      "id": "trial-row-column-ties",
       "name": "row and column break equal distance and price ties",
       "kind": "trial",
       "visible": true,
@@ -288,7 +288,7 @@
       ]
     },
     {
-      "id": "real-price-filter",
+      "id": "trial-price-filter",
       "name": "traversable out-of-range items are not returned",
       "kind": "trial",
       "visible": true,
@@ -330,7 +330,7 @@
       ]
     },
     {
-      "id": "real-k-truncation",
+      "id": "trial-k-truncation",
       "name": "ranking truncates before later eligible cells",
       "kind": "trial",
       "visible": true,

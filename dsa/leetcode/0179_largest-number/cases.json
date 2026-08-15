@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-similar-prefixes",
+      "id": "trial-similar-prefixes",
       "name": "several similar prefixes",
       "kind": "trial",
       "visible": true,

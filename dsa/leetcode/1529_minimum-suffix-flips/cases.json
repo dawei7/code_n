@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-leading-zero",
+      "id": "trial-leading-zero",
       "name": "first transition occurs later",
       "kind": "trial",
       "visible": true,
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-trailing-zero",
+      "id": "trial-trailing-zero",
       "name": "return to zero at the end",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-many-runs",
+      "id": "trial-many-runs",
       "name": "several unequal run lengths",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-long-alternating",
+      "id": "trial-long-alternating",
       "name": "every position forces a transition",
       "kind": "trial",
       "visible": true,
@@ -145,6 +145,20 @@
         "real",
         "alternating",
         "many-flips"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "111"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

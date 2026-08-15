@@ -74,8 +74,8 @@
       ]
     },
     {
-      "id": "real-paired-multiplicities",
-      "name": "real: three digit values each appear twice",
+      "id": "trial-paired-multiplicities",
+      "name": "three digit values each appear twice",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -89,8 +89,8 @@
       ]
     },
     {
-      "id": "real-maximum-length",
-      "name": "real: maximum length with a single distinct permutation",
+      "id": "trial-maximum-length",
+      "name": "maximum length with a single distinct permutation",
       "kind": "trial",
       "visible": true,
       "input": {

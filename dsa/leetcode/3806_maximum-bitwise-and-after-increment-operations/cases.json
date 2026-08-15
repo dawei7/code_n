@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-no-operation-needed",
+      "id": "trial-no-operation-needed",
       "name": "the optimum leaves duplicate values unchanged",
       "kind": "trial",
       "visible": true,
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-shared-bit-without-equality",
+      "id": "trial-shared-bit-without-equality",
       "name": "selected values need only share mask bits",
       "kind": "trial",
       "visible": true,
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "real-two-carries",
+      "id": "trial-two-carries",
       "name": "both selected values cross the same boundary",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-mixed-bit-patterns",
+      "id": "trial-mixed-bit-patterns",
       "name": "mixed values require a composite candidate mask",
       "kind": "trial",
       "visible": true,
@@ -257,7 +257,7 @@
       ]
     },
     {
-      "id": "real-large-values-and-budget",
+      "id": "trial-large-values-and-budget",
       "name": "numeric and operation upper bounds",
       "kind": "trial",
       "visible": true,
@@ -280,7 +280,7 @@
       ]
     },
     {
-      "id": "real-larger-selection",
+      "id": "trial-larger-selection",
       "name": "select three values from five bit patterns",
       "kind": "trial",
       "visible": true,
@@ -302,6 +302,43 @@
       "tags": [
         "subset",
         "mixed-bits"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3
+        ],
+        "k": 8,
+        "m": 2
+      },
+      "expected": 11,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3
+        ],
+        "k": 8,
+        "m": 2
+      },
+      "expected": 7,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

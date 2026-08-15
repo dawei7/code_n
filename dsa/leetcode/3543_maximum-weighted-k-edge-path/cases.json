@@ -127,8 +127,8 @@
       ]
     },
     {
-      "id": "real-multiple-sums-one-endpoint",
-      "name": "real: preserve several sums ending at one node",
+      "id": "trial-multiple-sums-one-endpoint",
+      "name": "preserve several sums ending at one node",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -170,8 +170,8 @@
       ]
     },
     {
-      "id": "real-nontopological-labels",
-      "name": "real: labels do not encode topological order",
+      "id": "trial-nontopological-labels",
+      "name": "labels do not encode topological order",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -209,8 +209,8 @@
       ]
     },
     {
-      "id": "real-insufficient-length",
-      "name": "real: graph has no path with enough edges",
+      "id": "trial-insufficient-length",
+      "name": "graph has no path with enough edges",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -237,8 +237,8 @@
       ]
     },
     {
-      "id": "real-best-feasible-not-heaviest-prefix",
-      "name": "real: smaller prefix enables the best feasible completion",
+      "id": "trial-best-feasible-not-heaviest-prefix",
+      "name": "smaller prefix enables the best feasible completion",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -273,6 +273,62 @@
         "real",
         "threshold",
         "state-retention"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value k=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            2
+          ]
+        ],
+        "k": 1,
+        "t": 4
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value t=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            2
+          ]
+        ],
+        "k": 2,
+        "t": 1
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

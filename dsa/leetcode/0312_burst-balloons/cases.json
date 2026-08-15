@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-middle-first",
+      "id": "trial-middle-first",
       "name": "optimal order bursts the middle first",
       "kind": "trial",
       "visible": true,

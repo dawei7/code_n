@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "hidden-cross",
+      "id": "trial-cross",
       "name": "center and arms create several distance groups",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "hidden-no-equal-distance",
+      "id": "trial-no-equal-distance",
       "name": "every pivot distance is distinct",
       "kind": "trial",
       "visible": true,

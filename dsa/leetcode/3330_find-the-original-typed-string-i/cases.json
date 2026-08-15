@@ -72,8 +72,8 @@
       ]
     },
     {
-      "id": "real-separated-repeat",
-      "name": "real: equal letters separated by other characters",
+      "id": "trial-separated-repeat",
+      "name": "equal letters separated by other characters",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -86,8 +86,8 @@
       ]
     },
     {
-      "id": "real-mixed-run-lengths",
-      "name": "real: several different run lengths",
+      "id": "trial-mixed-run-lengths",
+      "name": "several different run lengths",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "hidden-two-rejections",
+      "id": "trial-two-rejections",
       "name": "multiple rejected pairs before acceptance",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "hidden-cycle-offset",
+      "id": "trial-cycle-offset",
       "name": "stream position carries across draws",
       "kind": "trial",
       "visible": true,

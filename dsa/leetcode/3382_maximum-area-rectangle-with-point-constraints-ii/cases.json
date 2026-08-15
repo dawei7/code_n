@@ -133,8 +133,8 @@
       ]
     },
     {
-      "id": "real-point-outside-height",
-      "name": "real: intervening point above rectangle is harmless",
+      "id": "trial-point-outside-height",
+      "name": "intervening point above rectangle is harmless",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -160,8 +160,8 @@
       ]
     },
     {
-      "id": "real-disjoint-rectangles",
-      "name": "real: choose larger of disjoint rectangles",
+      "id": "trial-disjoint-rectangles",
+      "name": "choose larger of disjoint rectangles",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -193,8 +193,8 @@
       ]
     },
     {
-      "id": "real-adjacent-segments",
-      "name": "real: adjacent vertical segments split larger shapes",
+      "id": "trial-adjacent-segments",
+      "name": "adjacent vertical segments split larger shapes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -226,8 +226,8 @@
       ]
     },
     {
-      "id": "real-maximum-coordinate-area",
-      "name": "real: area requires wide integer",
+      "id": "trial-maximum-coordinate-area",
+      "name": "area requires wide integer",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "hidden-interleaved-chains",
+      "id": "trial-interleaved-chains",
       "name": "values alternate between skewed trees",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "hidden-value-bounds",
+      "id": "trial-value-bounds",
       "name": "values at both allowed bounds",
       "kind": "trial",
       "visible": true,

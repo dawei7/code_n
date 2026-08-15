@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-three-odd-operations",
+      "id": "trial-three-odd-operations",
       "name": "one zero with a large odd k",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-even-multi-operation",
+      "id": "trial-even-multi-operation",
       "name": "complement capacity controls even branch",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-all-zeros-three-operations",
+      "id": "trial-all-zeros-three-operations",
       "name": "partition all zeros across repeated flips",
       "kind": "trial",
       "visible": true,
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-arrangement-irrelevant",
+      "id": "trial-arrangement-irrelevant",
       "name": "interleaved zeros share the same count state",
       "kind": "trial",
       "visible": true,

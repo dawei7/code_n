@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-restart-overlap",
+      "id": "trial-restart-overlap",
       "name": "the pair surrounding a failure begins a longer run",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-equal-best-runs",
+      "id": "trial-equal-best-runs",
       "name": "two separate runs share the maximum length",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-upper-bound-valid-sum",
+      "id": "trial-upper-bound-valid-sum",
       "name": "two half-billion values produce the maximum legal next value",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-sum-exceeds-bound",
+      "id": "trial-sum-exceeds-bound",
       "name": "a sum above the element bound cannot match the next value",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-run-at-end",
+      "id": "trial-run-at-end",
       "name": "the longest recurrence begins after several failures",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-all-ones",
+      "id": "trial-all-ones",
       "name": "repeated ones never form a valid third term",
       "kind": "trial",
       "visible": true,
@@ -249,6 +249,39 @@
       "tags": [
         "repeated-values",
         "full-scan"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

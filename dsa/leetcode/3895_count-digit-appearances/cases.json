@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-growing-repetitions",
+      "id": "trial-growing-repetitions",
       "name": "repeated sevens accumulate across values",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-zero-absent",
+      "id": "trial-zero-absent",
       "name": "positive repeated nines contain no zero",
       "kind": "trial",
       "visible": true,
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "id": "real-mirrored-values",
+      "id": "trial-mirrored-values",
       "name": "a digit occurs once in each mirrored value",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-all-nines",
+      "id": "trial-all-nines",
       "name": "every position in two values is nine",
       "kind": "trial",
       "visible": true,
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-trailing-zeroes",
+      "id": "trial-trailing-zeroes",
       "name": "each three-digit value contributes two zeroes",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-mixed-zero-patterns",
+      "id": "trial-mixed-zero-patterns",
       "name": "zeroes occur in boundary and alternating values",
       "kind": "trial",
       "visible": true,
@@ -248,7 +248,7 @@
       ]
     },
     {
-      "id": "real-one-per-position",
+      "id": "trial-one-per-position",
       "name": "the requested digit moves between positions",
       "kind": "trial",
       "visible": true,
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "real-powers-of-ten-with-six",
+      "id": "trial-powers-of-ten-with-six",
       "name": "six appears once before increasing zero suffixes",
       "kind": "trial",
       "visible": true,
@@ -287,6 +287,41 @@
       "tags": [
         "mixed-lengths",
         "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12
+        ],
+        "digit": 2
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          12,
+          12
+        ],
+        "digit": 2
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

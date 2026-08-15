@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-only-square-value",
+      "id": "trial-only-square-value",
       "name": "an intrinsic square factor invalidates the value",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-duplicate-prime",
+      "id": "trial-duplicate-prime",
       "name": "duplicate equal primes are separate singleton choices",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-pairwise-overlap",
+      "id": "trial-pairwise-overlap",
       "name": "every pair repeats a prime",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-invalid-values-with-ones",
+      "id": "trial-invalid-values-with-ones",
       "name": "invalid values are excluded while ones remain optional",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-many-ones",
+      "id": "trial-many-ones",
       "name": "many ones require modular exponentiation",
       "kind": "trial",
       "visible": true,

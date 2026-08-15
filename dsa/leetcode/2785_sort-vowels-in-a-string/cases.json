@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-duplicates-and-case",
+      "id": "trial-duplicates-and-case",
       "name": "duplicate vowels with uppercase ordering",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-only-consonants",
+      "id": "trial-only-consonants",
       "name": "every character is a consonant",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-already-sorted",
+      "id": "trial-already-sorted",
       "name": "vowels are already in ASCII order",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-reverse-vowels",
+      "id": "trial-reverse-vowels",
       "name": "reverse ASCII order with fixed consonants",
       "kind": "trial",
       "visible": true,

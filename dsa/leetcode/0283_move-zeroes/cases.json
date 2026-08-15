@@ -67,7 +67,7 @@
       ]
     },
     {
-      "id": "real-leading",
+      "id": "trial-leading",
       "name": "leading consecutive zeros",
       "kind": "trial",
       "visible": true,

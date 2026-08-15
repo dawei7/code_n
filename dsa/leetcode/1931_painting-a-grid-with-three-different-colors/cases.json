@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-three-column",
+      "id": "trial-three-column",
       "name": "one three-cell column has twelve states",
       "kind": "trial",
       "visible": true,
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "real-three-square",
+      "id": "trial-three-square",
       "name": "three-by-three transition count",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-four-by-two",
+      "id": "trial-four-by-two",
       "name": "taller neighboring columns",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-five-single-column",
+      "id": "trial-five-single-column",
       "name": "maximum-height state count",
       "kind": "trial",
       "visible": true,

@@ -141,7 +141,7 @@
       "expected": 2
     },
     {
-      "id": "real-equal-values",
+      "id": "trial-equal-values",
       "name": "equality preserves a full run",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       "expected": 6
     },
     {
-      "id": "real-both-decreasing",
+      "id": "trial-both-decreasing",
       "name": "cross-array choices only form short runs",
       "kind": "trial",
       "visible": true,
@@ -193,7 +193,7 @@
       "expected": 2
     },
     {
-      "id": "real-extreme-values",
+      "id": "trial-extreme-values",
       "name": "extreme values still permit one transition",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       "expected": 2
     },
     {
-      "id": "real-identical-arrays",
+      "id": "trial-identical-arrays",
       "name": "identical non-decreasing arrays",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       "expected": 4
     },
     {
-      "id": "real-alternating-options",
+      "id": "trial-alternating-options",
       "name": "alternating choices sustain a long interior run",
       "kind": "trial",
       "visible": true,
@@ -265,6 +265,49 @@
         "cross-source"
       ],
       "expected": 5
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2
+        ],
+        "nums2": [
+          1,
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          2
+        ],
+        "nums2": [
+          1,
+          2,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
+      ]
     }
   ]
 }

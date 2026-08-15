@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-coordinate-boundaries",
+      "id": "trial-coordinate-boundaries",
       "name": "x-coordinate boundaries define the widest legal gap",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-many-duplicates",
+      "id": "trial-many-duplicates",
       "name": "repeated boundary coordinates do not alter the maximum",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-input-order",
+      "id": "trial-input-order",
       "name": "a shuffled sequence must be sorted before scanning",
       "kind": "trial",
       "visible": true,
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "real-gap-at-start",
+      "id": "trial-gap-at-start",
       "name": "the widest gap occurs between the two smallest x-coordinates",
       "kind": "trial",
       "visible": true,
@@ -281,7 +281,7 @@
       ]
     },
     {
-      "id": "real-gap-at-end",
+      "id": "trial-gap-at-end",
       "name": "the widest gap occurs between the two largest x-coordinates",
       "kind": "trial",
       "visible": true,

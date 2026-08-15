@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-odd-delay",
+      "id": "trial-odd-delay",
       "name": "odd duration is passed through unchanged",
       "kind": "trial",
       "visible": true,
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-maximum-delay",
+      "id": "trial-maximum-delay",
       "name": "maximum legal delay resolves successfully",
       "kind": "trial",
       "visible": true,

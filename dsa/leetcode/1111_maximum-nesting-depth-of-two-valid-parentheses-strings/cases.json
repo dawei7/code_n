@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-deep",
+      "id": "trial-deep",
       "name": "one deeply nested component",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-mixed-components",
+      "id": "trial-mixed-components",
       "name": "components with different depths",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "real-sibling-nesting",
+      "id": "trial-sibling-nesting",
       "name": "nested siblings at several levels",
       "kind": "trial",
       "visible": true,
@@ -191,6 +191,40 @@
       },
       "tags": [
         "siblings"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in seq",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "seq": "("
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in seq",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "seq": "((("
+      },
+      "expected": [
+        0,
+        1,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

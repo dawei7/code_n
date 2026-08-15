@@ -93,8 +93,8 @@
       ]
     },
     {
-      "id": "real-distance-two-conflict",
-      "name": "real: powers two apart conflict",
+      "id": "trial-distance-two-conflict",
+      "name": "powers two apart conflict",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -110,8 +110,8 @@
       ]
     },
     {
-      "id": "real-distance-three-compatible",
-      "name": "real: powers three apart are compatible",
+      "id": "trial-distance-three-compatible",
+      "name": "powers three apart are compatible",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -127,8 +127,8 @@
       ]
     },
     {
-      "id": "real-grouped-choice",
-      "name": "real: aggregated groups change the best choice",
+      "id": "trial-grouped-choice",
+      "name": "aggregated groups change the best choice",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -148,8 +148,8 @@
       ]
     },
     {
-      "id": "real-compatible-chain",
-      "name": "real: several compatible groups form a chain",
+      "id": "trial-compatible-chain",
+      "name": "several compatible groups form a chain",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -169,8 +169,8 @@
       ]
     },
     {
-      "id": "real-maximum-power",
-      "name": "real: maximum values and a distant spell",
+      "id": "trial-maximum-power",
+      "name": "maximum values and a distant spell",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -188,8 +188,8 @@
       ]
     },
     {
-      "id": "real-dense-consecutive",
-      "name": "real: dense consecutive powers",
+      "id": "trial-dense-consecutive",
+      "name": "dense consecutive powers",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -213,8 +213,8 @@
       ]
     },
     {
-      "id": "real-unsorted-heavy-duplicates",
-      "name": "real: unsorted powers with competing duplicate groups",
+      "id": "trial-unsorted-heavy-duplicates",
+      "name": "unsorted powers with competing duplicate groups",
       "kind": "trial",
       "visible": true,
       "input": {

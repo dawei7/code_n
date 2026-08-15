@@ -128,8 +128,8 @@
       ]
     },
     {
-      "id": "real-k-equals-length",
-      "name": "real: whole-circle blocks exclude a different endpoint edge",
+      "id": "trial-k-equals-length",
+      "name": "whole-circle blocks exclude a different endpoint edge",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -149,8 +149,8 @@
       ]
     },
     {
-      "id": "real-wraparound-only",
-      "name": "real: valid groups can cross the array boundary",
+      "id": "trial-wraparound-only",
+      "name": "valid groups can cross the array boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -170,8 +170,8 @@
       ]
     },
     {
-      "id": "real-two-broken-edges",
-      "name": "real: separated equal pairs invalidate overlapping windows",
+      "id": "trial-two-broken-edges",
+      "name": "separated equal pairs invalidate overlapping windows",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -193,8 +193,8 @@
       ]
     },
     {
-      "id": "real-long-alternating-run",
-      "name": "real: one long run contributes several overlapping groups",
+      "id": "trial-long-alternating-run",
+      "name": "one long run contributes several overlapping groups",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -217,8 +217,8 @@
       ]
     },
     {
-      "id": "real-minimum-k",
-      "name": "real: k three matches local middle-tile alternation",
+      "id": "trial-minimum-k",
+      "name": "k three matches local middle-tile alternation",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -239,8 +239,8 @@
       ]
     },
     {
-      "id": "real-alternating-prefix-suffix",
-      "name": "real: prefix and suffix join into a circular run",
+      "id": "trial-alternating-prefix-suffix",
+      "name": "prefix and suffix join into a circular run",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -259,6 +259,41 @@
       "expected": 2,
       "tags": [
         "circular-run"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in colors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": [
+          0
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in colors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": [
+          0,
+          0
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-both-modes-collide",
+      "id": "trial-both-modes-collide",
       "name": "compare both second-best resolutions",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-odd-length",
+      "id": "trial-odd-length",
       "name": "valid alternating array has an extra even index",
       "kind": "trial",
       "visible": true,

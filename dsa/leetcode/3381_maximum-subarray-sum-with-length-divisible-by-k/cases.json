@@ -98,8 +98,8 @@
       ]
     },
     {
-      "id": "real-interior-length-three",
-      "name": "real: interior eligible block",
+      "id": "trial-interior-length-three",
+      "name": "interior eligible block",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -120,8 +120,8 @@
       ]
     },
     {
-      "id": "real-whole-array-only",
-      "name": "real: k equals array length",
+      "id": "trial-whole-array-only",
+      "name": "k equals array length",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -143,8 +143,8 @@
       ]
     },
     {
-      "id": "real-competing-lengths",
-      "name": "real: compare two eligible lengths",
+      "id": "trial-competing-lengths",
+      "name": "compare two eligible lengths",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -167,8 +167,8 @@
       ]
     },
     {
-      "id": "real-wide-integer-sums",
-      "name": "real: billion-scale values",
+      "id": "trial-wide-integer-sums",
+      "name": "billion-scale values",
       "kind": "trial",
       "visible": true,
       "input": {

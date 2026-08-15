@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-sign-change",
+      "id": "trial-sign-change",
       "name": "neither prefix direction persists",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-one-direction",
+      "id": "trial-one-direction",
       "name": "first string dominates with ties",
       "kind": "trial",
       "visible": true,

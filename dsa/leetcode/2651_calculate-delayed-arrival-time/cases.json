@@ -61,7 +61,7 @@
       ]
     },
     {
-      "id": "real-full-day",
+      "id": "trial-full-day",
       "name": "twenty-four-hour delay preserves hour",
       "kind": "trial",
       "visible": true,
@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "real-latest-midnight",
+      "id": "trial-latest-midnight",
       "name": "latest scheduled hour plus one",
       "kind": "trial",
       "visible": true,
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-latest-sum",
+      "id": "trial-latest-sum",
       "name": "maximum possible sum",
       "kind": "trial",
       "visible": true,
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-wrap-nonzero",
+      "id": "trial-wrap-nonzero",
       "name": "wrapped result is nonzero",
       "kind": "trial",
       "visible": true,

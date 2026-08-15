@@ -380,7 +380,7 @@
       ]
     },
     {
-      "id": "real-count-and-name-order",
+      "id": "trial-count-and-name-order",
       "name": "count descending then name ascending",
       "kind": "trial",
       "visible": true,
@@ -493,7 +493,7 @@
       ]
     },
     {
-      "id": "real-nonqualifying-employees",
+      "id": "trial-nonqualifying-employees",
       "name": "one heavy week and no meetings are excluded",
       "kind": "trial",
       "visible": true,
@@ -547,7 +547,7 @@
       ]
     },
     {
-      "id": "real-same-day-types",
+      "id": "trial-same-day-types",
       "name": "all meeting types and same-day rows contribute",
       "kind": "trial",
       "visible": true,

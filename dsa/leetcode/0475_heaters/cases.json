@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "hidden-left-outside",
+      "id": "trial-left-outside",
       "name": "farthest house lies left of all heaters",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "hidden-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate houses and heaters",
       "kind": "trial",
       "visible": true,
@@ -151,6 +151,45 @@
       },
       "expected": 1,
       "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single element in houses",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "houses": [
+          1
+        ],
+        "heaters": [
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "identical elements in houses",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "houses": [
+          1,
+          1
+        ],
+        "heaters": [
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

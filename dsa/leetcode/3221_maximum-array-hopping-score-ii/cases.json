@@ -111,8 +111,8 @@
       ]
     },
     {
-      "id": "real-early-peak",
-      "name": "real: early peak covers only its preceding boundary",
+      "id": "trial-early-peak",
+      "name": "early peak covers only its preceding boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -129,8 +129,8 @@
       ]
     },
     {
-      "id": "real-maximum-value",
-      "name": "real: maximum value at the final index",
+      "id": "trial-maximum-value",
+      "name": "maximum value at the final index",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-two-peaks",
-      "name": "real: two suffix peaks divide the boundaries",
+      "id": "trial-two-peaks",
+      "name": "two suffix peaks divide the boundaries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -165,8 +165,8 @@
       ]
     },
     {
-      "id": "real-late-peak",
-      "name": "real: late peak controls several boundaries",
+      "id": "trial-late-peak",
+      "name": "late peak controls several boundaries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -184,8 +184,8 @@
       ]
     },
     {
-      "id": "real-near-decreasing",
-      "name": "real: high decreasing suffix uses unit hops",
+      "id": "trial-near-decreasing",
+      "name": "high decreasing suffix uses unit hops",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -202,8 +202,8 @@
       ]
     },
     {
-      "id": "real-separated-peaks",
-      "name": "real: separated peak and tail values",
+      "id": "trial-separated-peaks",
+      "name": "separated peak and tail values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -219,6 +219,39 @@
       "expected": 32,
       "tags": [
         "multiple-peaks"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-leading-zeroes",
+      "id": "trial-leading-zeroes",
       "name": "original leading zeroes still belong to groups",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-three-groups",
+      "id": "trial-three-groups",
       "name": "group results are concatenated before repeating",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-max-k",
+      "id": "trial-max-k",
       "name": "maximum k prevents a round at maximum input length",
       "kind": "trial",
       "visible": true,
@@ -118,6 +118,36 @@
       "tags": [
         "maximum-length",
         "no-round"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1",
+        "k": 3
+      },
+      "expected": "1",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111",
+        "k": 3
+      },
+      "expected": "111",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

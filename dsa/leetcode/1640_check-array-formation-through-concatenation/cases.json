@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-middle-mismatch",
+      "id": "trial-middle-mismatch",
       "name": "a piece starts correctly but disagrees in its middle",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "real-missing-start",
+      "id": "trial-missing-start",
       "name": "no piece starts with the next target value",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-all-singletons",
+      "id": "trial-all-singletons",
       "name": "many singleton pieces arrive in reverse collection order",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-boundary-values",
+      "id": "trial-boundary-values",
       "name": "minimum and maximum values occur in separate pieces",
       "kind": "trial",
       "visible": true,
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "id": "real-boundary-crossing",
+      "id": "trial-boundary-crossing",
       "name": "correct values grouped across the wrong piece boundary fail",
       "kind": "trial",
       "visible": true,
@@ -281,6 +281,55 @@
       "tags": [
         "piece-boundary",
         "internal-mismatch"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          15
+        ],
+        "pieces": [
+          [
+            88
+          ],
+          [
+            15
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in arr",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          15,
+          15
+        ],
+        "pieces": [
+          [
+            88
+          ],
+          [
+            15
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

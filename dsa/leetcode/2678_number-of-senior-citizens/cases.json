@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-two-digit-boundaries",
+      "id": "trial-two-digit-boundaries",
       "name": "ages around both decimal boundaries",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-single",
+      "id": "trial-single",
       "name": "one qualifying passenger",
       "kind": "trial",
       "visible": true,

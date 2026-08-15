@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "real-get-refreshes",
+      "id": "trial-get-refreshes",
       "name": "get changes the eviction victim",
       "kind": "trial",
       "visible": true,

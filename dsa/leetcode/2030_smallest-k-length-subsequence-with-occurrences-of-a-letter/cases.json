@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "real-all-slots-required",
+      "id": "trial-all-slots-required",
       "name": "every output position must use the required letter",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-protected-prefix",
+      "id": "trial-protected-prefix",
       "name": "scarce required letters cannot be popped",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-required-before-smaller-suffix",
+      "id": "trial-required-before-smaller-suffix",
       "name": "one early required character precedes smaller letters",
       "kind": "trial",
       "visible": true,
@@ -133,6 +133,40 @@
       "expected": "zaa",
       "tags": [
         "order-constraint"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "l",
+        "k": 3,
+        "letter": "e",
+        "repetition": 1
+      },
+      "expected": "l",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "lll",
+        "k": 3,
+        "letter": "e",
+        "repetition": 1
+      },
+      "expected": "ll",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-ten-bits",
+      "id": "trial-ten-bits",
       "name": "ten-bit domain",
       "kind": "trial",
       "visible": true,
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "real-fifteen-bits",
+      "id": "trial-fifteen-bits",
       "name": "fifteen-bit domain",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-thirty-bits",
+      "id": "trial-thirty-bits",
       "name": "thirty-bit domain",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-sixty-bits",
+      "id": "trial-sixty-bits",
       "name": "maximum binary width",
       "kind": "trial",
       "visible": true,

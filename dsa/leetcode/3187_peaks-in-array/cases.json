@@ -201,8 +201,8 @@
       ]
     },
     {
-      "id": "real-update-creates-peak",
-      "name": "real: update creates a peak",
+      "id": "trial-update-creates-peak",
+      "name": "update creates a peak",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -233,8 +233,8 @@
       ]
     },
     {
-      "id": "real-update-removes-peak",
-      "name": "real: update removes a peak",
+      "id": "trial-update-removes-peak",
+      "name": "update removes a peak",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -265,8 +265,8 @@
       ]
     },
     {
-      "id": "real-update-affects-three-statuses",
-      "name": "real: one update changes neighboring peak statuses",
+      "id": "trial-update-affects-three-statuses",
+      "name": "one update changes neighboring peak statuses",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -305,8 +305,8 @@
       ]
     },
     {
-      "id": "real-strict-plateau",
-      "name": "real: equal neighbors do not form a peak",
+      "id": "trial-strict-plateau",
+      "name": "equal neighbors do not form a peak",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -344,8 +344,8 @@
       ]
     },
     {
-      "id": "real-left-edge-update",
-      "name": "real: updating the first element changes index one",
+      "id": "trial-left-edge-update",
+      "name": "updating the first element changes index one",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -383,8 +383,8 @@
       ]
     },
     {
-      "id": "real-right-edge-update",
-      "name": "real: updating the last element changes its neighbor",
+      "id": "trial-right-edge-update",
+      "name": "updating the last element changes its neighbor",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -422,8 +422,8 @@
       ]
     },
     {
-      "id": "real-interleaved-operations",
-      "name": "real: interleaved updates and varied ranges",
+      "id": "trial-interleaved-operations",
+      "name": "interleaved updates and varied ranges",
       "kind": "trial",
       "visible": true,
       "input": {

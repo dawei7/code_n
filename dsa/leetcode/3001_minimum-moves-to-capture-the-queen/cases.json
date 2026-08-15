@@ -94,8 +94,8 @@
       ]
     },
     {
-      "id": "real-bishop-blocked",
-      "name": "real: rook blocks the bishop",
+      "id": "trial-bishop-blocked",
+      "name": "rook blocks the bishop",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -113,8 +113,8 @@
       ]
     },
     {
-      "id": "real-crossing-diagonal",
-      "name": "real: rook lies on crossing diagonal",
+      "id": "trial-crossing-diagonal",
+      "name": "rook lies on crossing diagonal",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -131,8 +131,8 @@
       ]
     },
     {
-      "id": "real-rook-column-blocked",
-      "name": "real: bishop blocks a rook column",
+      "id": "trial-rook-column-blocked",
+      "name": "bishop blocks a rook column",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -147,6 +147,44 @@
       "tags": [
         "rook",
         "blocked"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value c=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": 1,
+        "c": 1,
+        "d": 8,
+        "e": 2,
+        "f": 3
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value d=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": 1,
+        "c": 8,
+        "d": 1,
+        "e": 2,
+        "f": 3
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-frequency-ties",
+      "id": "trial-frequency-ties",
       "name": "several multi-element blocks have tied frequencies",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "both value boundaries participate in ties",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-input-order-irrelevant",
+      "id": "trial-input-order-irrelevant",
       "name": "interleaved copies must form frequency blocks",
       "kind": "trial",
       "visible": true,
@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "real-zero-and-negatives",
+      "id": "trial-zero-and-negatives",
       "name": "zero is ordered numerically among equal frequencies",
       "kind": "trial",
       "visible": true,

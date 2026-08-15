@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "real-low-digit-two",
+      "id": "trial-low-digit-two",
       "name": "least significant ternary digit is two",
       "kind": "trial",
       "visible": true,
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-single-higher-power",
+      "id": "trial-single-higher-power",
       "name": "one higher power is valid",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-dense-maximum-digits",
+      "id": "trial-dense-maximum-digits",
       "name": "every legal ternary position is selected",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-maximum-input",
+      "id": "trial-maximum-input",
       "name": "public maximum contains a digit two",
       "kind": "trial",
       "visible": true,

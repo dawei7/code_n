@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-only-bob-run",
+      "id": "trial-only-bob-run",
       "name": "Alice cannot move before Bob's run matters",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-alternating-colors",
+      "id": "trial-alternating-colors",
       "name": "no same-color triple exists",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-alice-one-extra",
+      "id": "trial-alice-one-extra",
       "name": "Alice wins with exactly one extra move",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-multiple-runs",
+      "id": "trial-multiple-runs",
       "name": "separated runs contribute independently",
       "kind": "trial",
       "visible": true,

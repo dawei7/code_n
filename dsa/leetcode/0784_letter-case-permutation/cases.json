@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "one digit",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "uppercase and lowercase around digit",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "three letters and two digits",
       "kind": "trial",
       "visible": true,
@@ -187,6 +187,29 @@
       },
       "tags": [
         "mixed"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": [
+        "aaa",
+        "aaA",
+        "aAA",
+        "aAa",
+        "AAa",
+        "AAA",
+        "AaA",
+        "Aaa"
+      ],
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

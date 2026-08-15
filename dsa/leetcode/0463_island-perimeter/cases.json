@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "hidden-corner-shape",
+      "id": "trial-corner-shape",
       "name": "concave corner shape",
       "kind": "trial",
       "visible": true,
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "id": "hidden-water-border",
+      "id": "trial-water-border",
       "name": "island surrounded inside the matrix",
       "kind": "trial",
       "visible": true,

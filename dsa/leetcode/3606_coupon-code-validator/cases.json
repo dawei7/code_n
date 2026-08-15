@@ -131,8 +131,8 @@
       ]
     },
     {
-      "id": "real-all-invalid",
-      "name": "real: every coupon violates a different rule",
+      "id": "trial-all-invalid",
+      "name": "every coupon violates a different rule",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -163,8 +163,8 @@
       ]
     },
     {
-      "id": "real-inactive-valid-shape",
-      "name": "real: a syntactically valid inactive coupon is excluded",
+      "id": "trial-inactive-valid-shape",
+      "name": "a syntactically valid inactive coupon is excluded",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -191,8 +191,8 @@
       ]
     },
     {
-      "id": "real-ascii-lexicographic",
-      "name": "real: codes use ascending ASCII lexicographical order",
+      "id": "trial-ascii-lexicographic",
+      "name": "codes use ascending ASCII lexicographical order",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -236,8 +236,8 @@
       ]
     },
     {
-      "id": "real-category-before-code",
-      "name": "real: category rank is compared before coupon text",
+      "id": "trial-category-before-code",
+      "name": "category rank is compared before coupon text",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -273,8 +273,8 @@
       ]
     },
     {
-      "id": "real-duplicates-preserved",
-      "name": "real: separate equal coupons remain separate entries",
+      "id": "trial-duplicates-preserved",
+      "name": "separate equal coupons remain separate entries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -306,8 +306,8 @@
       ]
     },
     {
-      "id": "real-maximum-code-length",
-      "name": "real: a one-hundred-character alphanumeric code is valid",
+      "id": "trial-maximum-code-length",
+      "name": "a one-hundred-character alphanumeric code is valid",
       "kind": "trial",
       "visible": true,
       "input": {

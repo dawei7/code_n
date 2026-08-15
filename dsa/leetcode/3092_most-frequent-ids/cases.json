@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-stale-maximums",
+      "id": "trial-stale-maximums",
       "name": "several obsolete heap maxima require cleanup",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-large-deltas",
+      "id": "trial-large-deltas",
       "name": "apply large changes as whole deltas",
       "kind": "trial",
       "visible": true,
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-nonleader-removal",
+      "id": "trial-nonleader-removal",
       "name": "reducing a nonleader leaves the maximum unchanged",
       "kind": "trial",
       "visible": true,
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-leader-switches",
+      "id": "trial-leader-switches",
       "name": "leadership moves among three IDs",
       "kind": "trial",
       "visible": true,

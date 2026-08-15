@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-nearest-left",
+      "id": "trial-nearest-left",
       "name": "a left occurrence is nearer than a right occurrence",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-nearest-right",
+      "id": "trial-nearest-right",
       "name": "a right occurrence is nearest",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-equidistant-targets",
+      "id": "trial-equidistant-targets",
       "name": "equal-distance occurrences produce their shared distance",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-target-at-last-index",
+      "id": "trial-target-at-last-index",
       "name": "the only target is the final element",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-target-at-first-index",
+      "id": "trial-target-at-first-index",
       "name": "the only target is the first element",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "large values use ordinary equality",
       "kind": "trial",
       "visible": true,
@@ -251,6 +251,50 @@
       "tags": [
         "value-boundary",
         "multiple-targets"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value target=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "target": 1,
+        "start": 3
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "minimal value start=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "target": 5,
+        "start": 1
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

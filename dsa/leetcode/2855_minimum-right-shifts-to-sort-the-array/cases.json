@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-pivot-near-front",
+      "id": "trial-pivot-near-front",
       "name": "long suffix moves to the front",
       "kind": "trial",
       "visible": true,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-pivot-near-end",
+      "id": "trial-pivot-near-end",
       "name": "one trailing value moves to the front",
       "kind": "trial",
       "visible": true,
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-two-descents",
+      "id": "trial-two-descents",
       "name": "two internal descents make sorting impossible",
       "kind": "trial",
       "visible": true,
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "real-longer-valid-rotation",
+      "id": "trial-longer-valid-rotation",
       "name": "distinct nonconsecutive values preserve the same order rule",
       "kind": "trial",
       "visible": true,

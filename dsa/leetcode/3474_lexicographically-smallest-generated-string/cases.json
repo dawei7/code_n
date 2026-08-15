@@ -77,8 +77,8 @@
       ]
     },
     {
-      "id": "real-two-true-conflict",
-      "name": "real: adjacent true windows cannot both match",
+      "id": "trial-two-true-conflict",
+      "name": "adjacent true windows cannot both match",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -92,8 +92,8 @@
       ]
     },
     {
-      "id": "real-separated-true-windows",
-      "name": "real: false windows lie between forced matches",
+      "id": "trial-separated-true-windows",
+      "name": "false windows lie between forced matches",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-single-letter-all-false",
-      "name": "real: every free position must avoid letter a",
+      "id": "trial-single-letter-all-false",
+      "name": "every free position must avoid letter a",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-non-a-pattern",
-      "name": "real: all-a word avoids a different single letter",
+      "id": "trial-non-a-pattern",
+      "name": "all-a word avoids a different single letter",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -137,8 +137,8 @@
       ]
     },
     {
-      "id": "real-break-after-forced-window",
-      "name": "real: free suffix breaks a false overlap",
+      "id": "trial-break-after-forced-window",
+      "name": "free suffix breaks a false overlap",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-break-before-forced-window",
-      "name": "real: free prefix breaks a false overlap",
+      "id": "trial-break-before-forced-window",
+      "name": "free prefix breaks a false overlap",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -167,8 +167,8 @@
       ]
     },
     {
-      "id": "real-forced-false-contradiction",
-      "name": "real: true overlaps force a forbidden middle match",
+      "id": "trial-forced-false-contradiction",
+      "name": "true overlaps force a forbidden middle match",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -183,8 +183,8 @@
       ]
     },
     {
-      "id": "real-kmp-overlap",
-      "name": "real: pattern prefix and suffix overlap",
+      "id": "trial-kmp-overlap",
+      "name": "pattern prefix and suffix overlap",
       "kind": "trial",
       "visible": true,
       "input": {

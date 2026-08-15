@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-all-zeros",
+      "id": "trial-all-zeros",
       "name": "zero-only array has no pair",
       "kind": "trial",
       "visible": true,
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "real-reverse-separated",
+      "id": "trial-reverse-separated",
       "name": "reverse-order values remain valid",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "every transition supplies distance one",
       "kind": "trial",
       "visible": true,
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "real-value-blocks",
+      "id": "trial-value-blocks",
       "name": "the block boundary is the closest pair",
       "kind": "trial",
       "visible": true,
@@ -271,7 +271,7 @@
       ]
     },
     {
-      "id": "real-two-sided-twos",
+      "id": "trial-two-sided-twos",
       "name": "choose the nearer two around one",
       "kind": "trial",
       "visible": true,
@@ -295,7 +295,7 @@
       ]
     },
     {
-      "id": "real-maximum-separation",
+      "id": "trial-maximum-separation",
       "name": "only pair spans the maximum legal array",
       "kind": "trial",
       "visible": true,
@@ -413,7 +413,7 @@
       ]
     },
     {
-      "id": "real-late-adjacent-improvement",
+      "id": "trial-late-adjacent-improvement",
       "name": "a late adjacent pair improves an earlier distance",
       "kind": "trial",
       "visible": true,
@@ -435,6 +435,23 @@
       "tags": [
         "late-improvement",
         "adjacent"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

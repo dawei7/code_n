@@ -238,8 +238,8 @@
       ]
     },
     {
-      "id": "real-rectangular-mixed",
-      "name": "real: mixed five by four board",
+      "id": "trial-rectangular-mixed",
+      "name": "mixed five by four board",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -283,8 +283,8 @@
       ]
     },
     {
-      "id": "real-minimum-values",
-      "name": "real: all cells at negative one billion",
+      "id": "trial-minimum-values",
+      "name": "all cells at negative one billion",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -313,8 +313,8 @@
       ]
     },
     {
-      "id": "real-maximum-diagonal",
-      "name": "real: maximum-bound diagonal placement",
+      "id": "trial-maximum-diagonal",
+      "name": "maximum-bound diagonal placement",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -343,8 +343,8 @@
       ]
     },
     {
-      "id": "real-mixed-four-square",
-      "name": "real: competing highs across a four-square",
+      "id": "trial-mixed-four-square",
+      "name": "competing highs across a four-square",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -382,8 +382,8 @@
       ]
     },
     {
-      "id": "real-ten-square-formula",
-      "name": "real: increasing ten by ten board",
+      "id": "trial-ten-square-formula",
+      "name": "increasing ten by ten board",
       "kind": "trial",
       "visible": true,
       "input": {

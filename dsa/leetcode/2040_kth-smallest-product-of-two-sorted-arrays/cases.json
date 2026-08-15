@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-duplicate-products",
+      "id": "trial-duplicate-products",
       "name": "every indexed pair has the same product",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-minimum-product-bound",
+      "id": "trial-minimum-product-bound",
       "name": "first rank reaches the negative product limit",
       "kind": "trial",
       "visible": true,
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "real-maximum-product-bound",
+      "id": "trial-maximum-product-bound",
       "name": "last rank reaches the positive product limit",
       "kind": "trial",
       "visible": true,
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-ceiling-division-boundary",
+      "id": "trial-ceiling-division-boundary",
       "name": "negative factor counting crosses through zero",
       "kind": "trial",
       "visible": true,

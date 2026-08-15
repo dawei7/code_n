@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-single-request",
+      "id": "trial-single-request",
       "name": "one request cannot form a pair",
       "kind": "trial",
       "visible": true,
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "real-one-of-two-users",
+      "id": "trial-one-of-two-users",
       "name": "only the user with a close pair is returned",
       "kind": "trial",
       "visible": true,
@@ -322,7 +322,7 @@
       ]
     },
     {
-      "id": "real-middle-pair",
+      "id": "trial-middle-pair",
       "name": "a close middle pair qualifies despite distant endpoints",
       "kind": "trial",
       "visible": true,
@@ -377,7 +377,7 @@
       ]
     },
     {
-      "id": "real-unsorted-fixture",
+      "id": "trial-unsorted-fixture",
       "name": "chronological order is derived rather than assumed",
       "kind": "trial",
       "visible": true,
@@ -422,7 +422,7 @@
       ]
     },
     {
-      "id": "real-many-qualifying-pairs",
+      "id": "trial-many-qualifying-pairs",
       "name": "one user is emitted once despite several close requests",
       "kind": "trial",
       "visible": true,
@@ -472,7 +472,7 @@
       ]
     },
     {
-      "id": "real-empty-confirmations",
+      "id": "trial-empty-confirmations",
       "name": "no requests produce no active users",
       "kind": "trial",
       "visible": true,

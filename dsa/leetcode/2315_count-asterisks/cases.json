@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-empty-pair",
+      "id": "trial-empty-pair",
       "name": "an empty pair does not hide later asterisks",
       "kind": "trial",
       "visible": true,
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "id": "real-only-asterisks",
+      "id": "trial-only-asterisks",
       "name": "no bars means every asterisk counts",
       "kind": "trial",
       "visible": true,
@@ -94,6 +94,34 @@
       "expected": 7,
       "tags": [
         "no-bars"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "l"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "lll"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

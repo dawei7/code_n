@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-reversed-pairs",
+      "id": "trial-reversed-pairs",
       "name": "reversed letters are not removable",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-adjacent-pairs",
+      "id": "trial-adjacent-pairs",
       "name": "adjacent independent pairs all disappear",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-nested-chain",
+      "id": "trial-nested-chain",
       "name": "a long center-out chain disappears",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-unmatched-boundaries",
+      "id": "trial-unmatched-boundaries",
       "name": "unmatched characters remain around reductions",
       "kind": "trial",
       "visible": true,
@@ -123,6 +123,34 @@
       "expected": 2,
       "tags": [
         "boundaries"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "A"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "AAA"
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

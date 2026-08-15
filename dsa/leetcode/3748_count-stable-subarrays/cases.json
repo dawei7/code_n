@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "real-mixed-runs",
+      "id": "trial-mixed-runs",
       "name": "queries truncate and cross several runs",
       "kind": "trial",
       "visible": true,
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "all equal values form one run",
       "kind": "trial",
       "visible": true,
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "real-prefix-after-break",
+      "id": "trial-prefix-after-break",
       "name": "query begins immediately after a decrease",
       "kind": "trial",
       "visible": true,
@@ -297,7 +297,7 @@
       ]
     },
     {
-      "id": "real-query-before-break",
+      "id": "trial-query-before-break",
       "name": "query ends immediately before a decrease",
       "kind": "trial",
       "visible": true,
@@ -337,7 +337,7 @@
       ]
     },
     {
-      "id": "real-nested-queries",
+      "id": "trial-nested-queries",
       "name": "nested ranges use different first-run truncations",
       "kind": "trial",
       "visible": true,

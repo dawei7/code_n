@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "real-every-vowel-after-consonant",
+      "id": "trial-every-vowel-after-consonant",
       "name": "remove every vowel type after the last consonant",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-vowels-inside-word",
+      "id": "trial-vowels-inside-word",
       "name": "vowels inside a word are not trailing",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-queue-collapses-to-q",
+      "id": "trial-queue-collapses-to-q",
       "name": "a long vowel suffix leaves one consonant",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-word-ending-consonant",
+      "id": "trial-word-ending-consonant",
       "name": "a vowel-rich word ending in a consonant remains",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-maximum-all-vowels",
+      "id": "trial-maximum-all-vowels",
       "name": "maximum-length vowel string becomes empty",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-maximum-all-consonants",
+      "id": "trial-maximum-all-consonants",
       "name": "maximum-length consonant string remains unchanged",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-only-last-character-trimmed",
+      "id": "trial-only-last-character-trimmed",
       "name": "remove exactly one trailing vowel",
       "kind": "trial",
       "visible": true,
@@ -227,6 +227,34 @@
       "tags": [
         "short-suffix",
         "internal-vowel"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "i"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-15",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "iii"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

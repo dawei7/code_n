@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-single-element",
+      "id": "trial-single-element",
       "name": "a nonzero singleton must become zero",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-full-length-fix",
+      "id": "trial-full-length-fix",
       "name": "one change can repair the only segment",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-two-periodic-groups",
+      "id": "trial-two-periodic-groups",
       "name": "two constant groups need equal chosen values",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-maximum-value",
+      "id": "trial-maximum-value",
       "name": "the highest legal ten-bit value is supported",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-mixed-frequencies",
+      "id": "trial-mixed-frequencies",
       "name": "group frequency tradeoffs determine the xor state",
       "kind": "trial",
       "visible": true,

@@ -70,7 +70,7 @@
     },
     {
       "id": "all-distinct",
-      "name": "real: all lowercase letters occur once",
+      "name": "all lowercase letters occur once",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -83,7 +83,7 @@
     },
     {
       "id": "all-equal-frequencies",
-      "name": "real: every letter occurs twice",
+      "name": "every letter occurs twice",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -96,7 +96,7 @@
     },
     {
       "id": "dominant-letter",
-      "name": "real: one dominant frequency remains at cost one",
+      "name": "one dominant frequency remains at cost one",
       "kind": "trial",
       "visible": true,
       "input": {

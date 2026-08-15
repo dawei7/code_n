@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-l-shaped-articulation",
+      "id": "trial-l-shaped-articulation",
       "name": "corner joins two arms",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-diagonal-islands",
+      "id": "trial-diagonal-islands",
       "name": "diagonal contact does not connect land",
       "kind": "trial",
       "visible": true,
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-ring-cycle",
+      "id": "trial-ring-cycle",
       "name": "ring has alternate routes around every cell",
       "kind": "trial",
       "visible": true,
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "real-zigzag-bridge",
+      "id": "trial-zigzag-bridge",
       "name": "narrow zigzag path has articulation cells",
       "kind": "trial",
       "visible": true,
@@ -248,7 +248,7 @@
       ]
     },
     {
-      "id": "real-island-plus-singleton",
+      "id": "trial-island-plus-singleton",
       "name": "main island plus isolated land is already disconnected",
       "kind": "trial",
       "visible": true,
@@ -279,7 +279,7 @@
       ]
     },
     {
-      "id": "real-solid-rectangle",
+      "id": "trial-solid-rectangle",
       "name": "solid rectangle has no articulation cell",
       "kind": "trial",
       "visible": true,

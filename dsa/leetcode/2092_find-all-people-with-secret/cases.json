@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-reversed-same-time-order",
+      "id": "trial-reversed-same-time-order",
       "name": "input order cannot block same-time closure",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-separate-components-one-seeded",
+      "id": "trial-separate-components-one-seeded",
       "name": "only a seeded component learns within a time batch",
       "kind": "trial",
       "visible": true,
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "real-late-seeding-no-retroactivity",
+      "id": "trial-late-seeding-no-retroactivity",
       "name": "later knowledge cannot traverse an old component",
       "kind": "trial",
       "visible": true,

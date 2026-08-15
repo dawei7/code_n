@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "hidden-zeroes",
+      "id": "trial-zeroes",
       "name": "zero at several depths",
       "kind": "trial",
       "visible": true,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "hidden-siblings",
+      "id": "trial-siblings",
       "name": "nested sibling lists",
       "kind": "trial",
       "visible": true,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "hidden-multi-digit",
+      "id": "trial-multi-digit",
       "name": "signed multi-digit limits",
       "kind": "trial",
       "visible": true,

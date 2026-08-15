@@ -96,8 +96,8 @@
       ]
     },
     {
-      "id": "real-single-selection",
-      "name": "real: k equals one",
+      "id": "trial-single-selection",
+      "name": "k equals one",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -121,8 +121,8 @@
       ]
     },
     {
-      "id": "real-single-word",
-      "name": "real: removing the only word",
+      "id": "trial-single-word",
+      "name": "removing the only word",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -141,8 +141,8 @@
       ]
     },
     {
-      "id": "real-fragile-deep-prefix",
-      "name": "real: one removal destroys the unique qualifying branch",
+      "id": "trial-fragile-deep-prefix",
+      "name": "one removal destroys the unique qualifying branch",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -165,8 +165,8 @@
       ]
     },
     {
-      "id": "real-alternative-branch",
-      "name": "real: a second branch preserves the deepest depth",
+      "id": "trial-alternative-branch",
+      "name": "a second branch preserves the deepest depth",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -190,8 +190,8 @@
       ]
     },
     {
-      "id": "real-fallback-to-shallower-prefix",
-      "name": "real: removal falls back to a shallower qualifying prefix",
+      "id": "trial-fallback-to-shallower-prefix",
+      "name": "removal falls back to a shallower qualifying prefix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -218,8 +218,8 @@
       ]
     },
     {
-      "id": "real-k-nearly-all",
-      "name": "real: k is one less than the array length",
+      "id": "trial-k-nearly-all",
+      "name": "k is one less than the array length",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -244,8 +244,8 @@
       ]
     },
     {
-      "id": "real-identical-strings",
-      "name": "real: all strings are identical",
+      "id": "trial-identical-strings",
+      "name": "all strings are identical",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -269,8 +269,8 @@
       ]
     },
     {
-      "id": "real-distinct-indices",
-      "name": "real: duplicate values at distinct indices remain selectable",
+      "id": "trial-distinct-indices",
+      "name": "duplicate values at distinct indices remain selectable",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -293,6 +293,46 @@
       "tags": [
         "real",
         "distinct-indices",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "jump"
+        ],
+        "k": 2
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "jump",
+          "jump"
+        ],
+        "k": 2
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "boundary",
         "duplicates"
       ]
     }

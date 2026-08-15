@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-reset-between-suffixes",
+      "id": "trial-reset-between-suffixes",
       "name": "each suffix starts from the original cell",
       "kind": "trial",
       "visible": true,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-late-boundary",
+      "id": "trial-late-boundary",
       "name": "alternating moves delay the first invalid step",
       "kind": "trial",
       "visible": true,

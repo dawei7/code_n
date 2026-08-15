@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "real-competing",
+      "id": "trial-competing",
       "name": "one long word competes with two short words",
       "kind": "trial",
       "visible": true,
@@ -314,7 +314,7 @@
       ]
     },
     {
-      "id": "real-zero-score",
+      "id": "trial-zero-score",
       "name": "zero-score letters still constrain",
       "kind": "trial",
       "visible": true,

@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-wide-grid",
+      "id": "trial-wide-grid",
       "name": "horizontal-heavy destination and interior rank",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-tall-grid",
+      "id": "trial-tall-grid",
       "name": "vertical-heavy destination and interior rank",
       "kind": "trial",
       "visible": true,
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-balanced-middle-rank",
+      "id": "trial-balanced-middle-rank",
       "name": "balanced grid chooses across several rank blocks",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-maximum-rank",
+      "id": "trial-maximum-rank",
       "name": "maximum rank places all vertical moves first",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-maximum-destination-first",
+      "id": "trial-maximum-destination-first",
       "name": "maximum destination with the first rank",
       "kind": "trial",
       "visible": true,

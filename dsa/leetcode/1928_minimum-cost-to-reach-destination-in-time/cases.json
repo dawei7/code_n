@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "real-cheap-slow",
+      "id": "trial-cheap-slow",
       "name": "a slower route wins when both alternatives fit",
       "kind": "trial",
       "visible": true,
@@ -257,7 +257,7 @@
       ]
     },
     {
-      "id": "real-fast-required",
+      "id": "trial-fast-required",
       "name": "only the expensive fast route meets the budget",
       "kind": "trial",
       "visible": true,
@@ -299,7 +299,7 @@
       ]
     },
     {
-      "id": "real-parallel-roads",
+      "id": "trial-parallel-roads",
       "name": "the faster of two parallel roads enables arrival",
       "kind": "trial",
       "visible": true,
@@ -335,7 +335,7 @@
       ]
     },
     {
-      "id": "real-direct-versus-detour",
+      "id": "trial-direct-versus-detour",
       "name": "an over-budget direct edge leaves one feasible detour",
       "kind": "trial",
       "visible": true,
@@ -377,7 +377,7 @@
       ]
     },
     {
-      "id": "real-extra-time-layer",
+      "id": "trial-extra-time-layer",
       "name": "destination is cheapest at an earlier than maximum layer",
       "kind": "trial",
       "visible": true,
@@ -410,6 +410,60 @@
       "tags": [
         "minimum-over-time",
         "direct-versus-detour"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "minimal value maxTime=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "maxTime": 1,
+        "edges": [
+          [
+            0,
+            1,
+            10
+          ],
+          [
+            1,
+            2,
+            10
+          ],
+          [
+            2,
+            5,
+            10
+          ],
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            3,
+            4,
+            10
+          ],
+          [
+            4,
+            5,
+            15
+          ]
+        ],
+        "passingFees": [
+          5,
+          1,
+          2,
+          20,
+          20,
+          3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

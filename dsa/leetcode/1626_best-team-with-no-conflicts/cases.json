@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-decreasing-scores",
+      "id": "trial-decreasing-scores",
       "name": "increasing ages with decreasing scores force one choice",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-duplicate-pairs",
+      "id": "trial-duplicate-pairs",
       "name": "duplicate ages and scores combine through ties",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-order-independent",
+      "id": "trial-order-independent",
       "name": "input order does not determine team order",
       "kind": "trial",
       "visible": true,
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-mixed-optimum",
+      "id": "trial-mixed-optimum",
       "name": "optimum skips conflicting middle players",
       "kind": "trial",
       "visible": true,
@@ -258,6 +258,53 @@
       "tags": [
         "mixed",
         "subsequence"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in scores",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "scores": [
+          1
+        ],
+        "ages": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in scores",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "scores": [
+          1,
+          1
+        ],
+        "ages": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

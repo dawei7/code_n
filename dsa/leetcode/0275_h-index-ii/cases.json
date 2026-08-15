@@ -52,7 +52,7 @@
       ]
     },
     {
-      "id": "real-all-high",
+      "id": "trial-all-high",
       "name": "all papers qualify",
       "kind": "trial",
       "visible": true,

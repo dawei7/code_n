@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-single-element",
+      "id": "trial-single-element",
       "name": "one element has no later index",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-maximum-delay",
+      "id": "trial-maximum-delay",
       "name": "maximum delay excludes every later position",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-all-distinct",
+      "id": "trial-all-distinct",
       "name": "distinct values never match",
       "kind": "trial",
       "visible": true,
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "id": "real-all-equal-zero-delay",
+      "id": "trial-all-equal-zero-delay",
       "name": "every later equal value contributes",
       "kind": "trial",
       "visible": true,
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "minimum and maximum values repeat beyond the delay",
       "kind": "trial",
       "visible": true,
@@ -319,7 +319,7 @@
       ]
     },
     {
-      "id": "real-late-matches-only",
+      "id": "trial-late-matches-only",
       "name": "matches appear only near the end",
       "kind": "trial",
       "visible": true,

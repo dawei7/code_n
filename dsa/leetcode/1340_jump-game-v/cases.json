@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "hidden-higher-barrier",
+      "id": "trial-higher-barrier",
       "name": "higher intermediate blocks destination",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "hidden-both-directions",
+      "id": "trial-both-directions",
       "name": "best path changes direction",
       "kind": "trial",
       "visible": true,

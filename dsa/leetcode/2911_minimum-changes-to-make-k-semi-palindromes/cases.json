@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-full-palindrome",
+      "id": "trial-full-palindrome",
       "name": "divisor one repairs a nearly palindromic whole string",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-forced-pairs",
+      "id": "trial-forced-pairs",
       "name": "maximum k forces three length-two parts",
       "kind": "trial",
       "visible": true,
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-uniform-string",
+      "id": "trial-uniform-string",
       "name": "every legal partition of a uniform string costs zero",
       "kind": "trial",
       "visible": true,

@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-all-nine",
+      "id": "trial-all-nine",
       "name": "carry through every digit",
       "kind": "trial",
       "visible": true,

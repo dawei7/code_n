@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "all equal values fill the array",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-decreasing",
+      "id": "trial-decreasing",
       "name": "decreasing values require repeated expiry",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-late-window",
+      "id": "trial-late-window",
       "name": "longest window begins after invalid prefix",
       "kind": "trial",
       "visible": true,

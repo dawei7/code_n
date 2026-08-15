@@ -176,8 +176,8 @@
       ]
     },
     {
-      "id": "real-one-upgrade-after-sales",
-      "name": "real: sales finance exactly one upgrade",
+      "id": "trial-one-upgrade-after-sales",
+      "name": "sales finance exactly one upgrade",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -202,8 +202,8 @@
       ]
     },
     {
-      "id": "real-high-sale-price",
-      "name": "real: high sale price funds half the servers",
+      "id": "trial-high-sale-price",
+      "name": "high sale price funds half the servers",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -228,8 +228,8 @@
       ]
     },
     {
-      "id": "real-maximum-balanced-values",
-      "name": "real: maximum equal values",
+      "id": "trial-maximum-balanced-values",
+      "name": "maximum equal values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -255,8 +255,8 @@
       ]
     },
     {
-      "id": "real-single-affordable",
-      "name": "real: one server affordable without sale",
+      "id": "trial-single-affordable",
+      "name": "one server affordable without sale",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -281,8 +281,8 @@
       ]
     },
     {
-      "id": "real-single-unaffordable",
-      "name": "real: selling the only server leaves none to upgrade",
+      "id": "trial-single-unaffordable",
+      "name": "selling the only server leaves none to upgrade",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -308,8 +308,8 @@
       ]
     },
     {
-      "id": "real-multiple-boundaries",
-      "name": "real: independent floor and cap boundaries",
+      "id": "trial-multiple-boundaries",
+      "name": "independent floor and cap boundaries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -347,6 +347,68 @@
       "tags": [
         "independent-centers",
         "boundaries"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "count": [
+          4
+        ],
+        "upgrade": [
+          3,
+          5
+        ],
+        "sell": [
+          4,
+          2
+        ],
+        "money": [
+          8,
+          9
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "count": [
+          4,
+          4
+        ],
+        "upgrade": [
+          3,
+          5
+        ],
+        "sell": [
+          4,
+          2
+        ],
+        "money": [
+          8,
+          9
+        ]
+      },
+      "expected": [
+        3,
+        2
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

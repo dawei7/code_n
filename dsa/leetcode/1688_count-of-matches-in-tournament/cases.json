@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "real-one-bye",
+      "id": "trial-one-bye",
       "name": "three teams require one bye round",
       "kind": "trial",
       "visible": true,
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "real-power-of-two",
+      "id": "trial-power-of-two",
       "name": "complete bracket of sixteen teams",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-several-byes",
+      "id": "trial-several-byes",
       "name": "repeated odd rounds preserve elimination count",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-near-maximum",
+      "id": "trial-near-maximum",
       "name": "one below the upper bound",
       "kind": "trial",
       "visible": true,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum legal team count",
       "kind": "trial",
       "visible": true,

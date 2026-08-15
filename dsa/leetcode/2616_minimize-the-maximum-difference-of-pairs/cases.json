@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-forced-cross-block-pair",
+      "id": "trial-forced-cross-block-pair",
       "name": "duplicate blocks still require one cross-value pair",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-evenly-spaced-values",
+      "id": "trial-evenly-spaced-values",
       "name": "all adjacent gaps are equal",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-ignore-large-outliers",
+      "id": "trial-ignore-large-outliers",
       "name": "unpaired outliers do not affect the optimum",
       "kind": "trial",
       "visible": true,

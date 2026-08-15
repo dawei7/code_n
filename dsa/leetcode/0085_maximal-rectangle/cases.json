@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-separated",
+      "id": "trial-separated",
       "name": "zero splits wide rectangles",
       "kind": "trial",
       "visible": true,

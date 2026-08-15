@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "hidden-uneven",
+      "id": "trial-uneven",
       "name": "deepest branch is not first",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "hidden-negative",
+      "id": "trial-negative",
       "name": "values do not affect depth",
       "kind": "trial",
       "visible": true,

@@ -89,8 +89,8 @@
       ]
     },
     {
-      "id": "real-disjoint-repeats",
-      "name": "real: no common character",
+      "id": "trial-disjoint-repeats",
+      "name": "no common character",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -104,8 +104,8 @@
       ]
     },
     {
-      "id": "real-internal-common-block",
-      "name": "real: shared internal substring",
+      "id": "trial-internal-common-block",
+      "name": "shared internal substring",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -119,8 +119,8 @@
       ]
     },
     {
-      "id": "real-overlapping-repeats",
-      "name": "real: overlapping repeated substring",
+      "id": "trial-overlapping-repeats",
+      "name": "overlapping repeated substring",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -134,8 +134,8 @@
       ]
     },
     {
-      "id": "real-suffix-prefix",
-      "name": "real: suffix and prefix match",
+      "id": "trial-suffix-prefix",
+      "name": "suffix and prefix match",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -149,8 +149,8 @@
       ]
     },
     {
-      "id": "real-ambiguous-repeats",
-      "name": "real: repeated block at opposite ends",
+      "id": "trial-ambiguous-repeats",
+      "name": "repeated block at opposite ends",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -164,8 +164,8 @@
       ]
     },
     {
-      "id": "real-reversed-alphabet",
-      "name": "real: only length-one matches",
+      "id": "trial-reversed-alphabet",
+      "name": "only length-one matches",
       "kind": "trial",
       "visible": true,
       "input": {

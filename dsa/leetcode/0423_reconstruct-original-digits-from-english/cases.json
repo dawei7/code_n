@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-derived",
+      "id": "trial-derived",
       "name": "digits determined after unique-letter subtraction",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-unique",
+      "id": "trial-unique",
       "name": "only uniquely identified even digits",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "hidden-many-ones",
+      "id": "trial-many-ones",
       "name": "repeated residual digit",
       "kind": "trial",
       "visible": true,

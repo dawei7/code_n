@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "real-single-high",
+      "id": "trial-single-high",
       "name": "one high ID yields a long prefix",
       "kind": "trial",
       "visible": true,
@@ -244,7 +244,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "every odd ID is absent",
       "kind": "trial",
       "visible": true,
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "id": "real-one-interior",
+      "id": "trial-one-interior",
       "name": "exactly one middle ID is absent",
       "kind": "trial",
       "visible": true,
@@ -347,7 +347,7 @@
       ]
     },
     {
-      "id": "real-unsorted-rows",
+      "id": "trial-unsorted-rows",
       "name": "table order does not affect numeric output",
       "kind": "trial",
       "visible": true,
@@ -401,7 +401,7 @@
       ]
     },
     {
-      "id": "real-large-consecutive-tail",
+      "id": "trial-large-consecutive-tail",
       "name": "multiple gaps precede a consecutive tail",
       "kind": "trial",
       "visible": true,

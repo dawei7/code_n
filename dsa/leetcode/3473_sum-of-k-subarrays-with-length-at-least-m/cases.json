@@ -116,8 +116,8 @@
       ]
     },
     {
-      "id": "real-single-element",
-      "name": "real: one available singleton",
+      "id": "trial-single-element",
+      "name": "one available singleton",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -134,8 +134,8 @@
       ]
     },
     {
-      "id": "real-negative-singletons",
-      "name": "real: choose the least harmful negative singletons",
+      "id": "trial-negative-singletons",
+      "name": "choose the least harmful negative singletons",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -156,8 +156,8 @@
       ]
     },
     {
-      "id": "real-negative-length-two",
-      "name": "real: a negative subarray must meet length two",
+      "id": "trial-negative-length-two",
+      "name": "a negative subarray must meet length two",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -178,8 +178,8 @@
       ]
     },
     {
-      "id": "real-separated-peaks",
-      "name": "real: large negative values separate singleton peaks",
+      "id": "trial-separated-peaks",
+      "name": "large negative values separate singleton peaks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -200,8 +200,8 @@
       ]
     },
     {
-      "id": "real-tight-length-three",
-      "name": "real: exact capacity forces two length-three blocks",
+      "id": "trial-tight-length-three",
+      "name": "exact capacity forces two length-three blocks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -224,8 +224,8 @@
       ]
     },
     {
-      "id": "real-three-blocks",
-      "name": "real: choose three separated multi-element blocks",
+      "id": "trial-three-blocks",
+      "name": "choose three separated multi-element blocks",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -248,6 +248,43 @@
       "tags": [
         "real",
         "multiple-selections"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 2,
+        "m": 2
+      },
+      "expected": -1000000000000000000000000000000,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 2,
+        "m": 2
+      },
+      "expected": -1000000000000000000000000000000,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

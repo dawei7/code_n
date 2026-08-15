@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "real-final-match",
+      "id": "trial-final-match",
       "name": "only the final entries match",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-singletons",
+      "id": "trial-singletons",
       "name": "equal one-element arrays",
       "kind": "trial",
       "visible": true,
@@ -133,6 +133,47 @@
       "tags": [
         "singleton",
         "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-boundary-7",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          2,
+          4
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1
+        ],
+        "nums2": [
+          2,
+          4
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

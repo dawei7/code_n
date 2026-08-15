@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-three-late",
+      "id": "trial-three-late",
       "name": "minimum prohibited late streak",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-separated-late",
+      "id": "trial-separated-late",
       "name": "separated late streaks reset",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "hidden-separated-absences",
+      "id": "trial-separated-absences",
       "name": "separated absences still accumulate",
       "kind": "trial",
       "visible": true,

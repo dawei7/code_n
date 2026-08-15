@@ -106,8 +106,8 @@
       ]
     },
     {
-      "id": "real-dead-end",
-      "name": "real: construction reaches an unmatched suffix",
+      "id": "trial-dead-end",
+      "name": "construction reaches an unmatched suffix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -124,8 +124,8 @@
       ]
     },
     {
-      "id": "real-branching-trie",
-      "name": "real: shared trie branches offer different cuts",
+      "id": "trial-branching-trie",
+      "name": "shared trie branches offer different cuts",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -144,8 +144,8 @@
       ]
     },
     {
-      "id": "real-entire-target",
-      "name": "real: target itself is one valid prefix",
+      "id": "trial-entire-target",
+      "name": "target itself is one valid prefix",
       "kind": "trial",
       "visible": true,
       "input": {

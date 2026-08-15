@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-all-same",
+      "id": "trial-all-same",
       "name": "one long duplicate run",
       "kind": "trial",
       "visible": true,

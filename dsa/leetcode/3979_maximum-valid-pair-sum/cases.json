@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-late-right-with-early-maximum",
+      "id": "trial-late-right-with-early-maximum",
       "name": "late right endpoint combines with the earliest maximum",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-newly-eligible-left",
+      "id": "trial-newly-eligible-left",
       "name": "the best left value becomes eligible during the scan",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-largest-values-too-close",
+      "id": "trial-largest-values-too-close",
       "name": "the two largest values violate the distance requirement",
       "kind": "trial",
       "visible": true,
@@ -207,7 +207,7 @@
       ]
     },
     {
-      "id": "real-increasing-array",
+      "id": "trial-increasing-array",
       "name": "increasing values select the last two eligible endpoints",
       "kind": "trial",
       "visible": true,
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "id": "real-decreasing-array",
+      "id": "trial-decreasing-array",
       "name": "decreasing values select the first eligible pair",
       "kind": "trial",
       "visible": true,
@@ -249,7 +249,7 @@
       ]
     },
     {
-      "id": "real-repeated-maxima",
+      "id": "trial-repeated-maxima",
       "name": "repeated maxima become valid only at the required gap",
       "kind": "trial",
       "visible": true,
@@ -270,7 +270,7 @@
       ]
     },
     {
-      "id": "real-prefix-maximum-tie",
+      "id": "trial-prefix-maximum-tie",
       "name": "tied prefix maxima give the same best sum",
       "kind": "trial",
       "visible": true,
@@ -290,7 +290,7 @@
       ]
     },
     {
-      "id": "real-best-pair-is-interior",
+      "id": "trial-best-pair-is-interior",
       "name": "optimum uses neither array endpoint",
       "kind": "trial",
       "visible": true,
@@ -309,6 +309,41 @@
       "tags": [
         "interior-pair",
         "exact-gap"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

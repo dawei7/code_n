@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "real-wide-three-gaps",
+      "id": "trial-wide-three-gaps",
       "name": "three choices at each one boundary",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-leading-trailing-zeros",
+      "id": "trial-leading-trailing-zeros",
       "name": "exterior zeros do not change boundary gaps",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-six-ones",
+      "id": "trial-six-ones",
       "name": "two ones belong to each part",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-nine-ones",
+      "id": "trial-nine-ones",
       "name": "three ones per part with long zero gaps",
       "kind": "trial",
       "visible": true,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating three-one string",
       "kind": "trial",
       "visible": true,
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-hundred-zeros",
+      "id": "trial-hundred-zeros",
       "name": "larger all-zero combination count",
       "kind": "trial",
       "visible": true,
@@ -180,6 +180,20 @@
         "real",
         "all-zero",
         "combinations"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
       ]
     }
   ]

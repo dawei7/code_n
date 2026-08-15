@@ -200,7 +200,7 @@
       }
     },
     {
-      "id": "real-balanced-totals",
+      "id": "trial-balanced-totals",
       "name": "tied totals remain separate player rows",
       "kind": "trial",
       "visible": true,
@@ -271,7 +271,7 @@
       }
     },
     {
-      "id": "real-last-column-only",
+      "id": "trial-last-column-only",
       "name": "eventual winner appears only in Australian Open",
       "kind": "trial",
       "visible": true,
@@ -326,7 +326,7 @@
       }
     },
     {
-      "id": "real-noncontiguous-ids",
+      "id": "trial-noncontiguous-ids",
       "name": "identifiers need not be contiguous or input-sorted",
       "kind": "trial",
       "visible": true,
@@ -397,7 +397,7 @@
       }
     },
     {
-      "id": "real-repeated-champion",
+      "id": "trial-repeated-champion",
       "name": "title count accumulates across every column and year",
       "kind": "trial",
       "visible": true,

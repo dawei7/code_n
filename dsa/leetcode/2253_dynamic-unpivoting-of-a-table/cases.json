@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "real-zero-price",
+      "id": "trial-zero-price",
       "name": "zero price is emitted rather than filtered",
       "kind": "trial",
       "visible": true,
@@ -253,7 +253,7 @@
       ]
     },
     {
-      "id": "real-shared-price",
+      "id": "trial-shared-price",
       "name": "equal prices from distinct cells are preserved",
       "kind": "trial",
       "visible": true,
@@ -305,7 +305,7 @@
       ]
     },
     {
-      "id": "real-mixed-products",
+      "id": "trial-mixed-products",
       "name": "each product can expose a different store subset",
       "kind": "trial",
       "visible": true,

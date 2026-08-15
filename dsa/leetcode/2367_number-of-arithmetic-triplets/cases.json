@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-large-diff",
+      "id": "trial-large-diff",
       "name": "maximum legal difference",
       "kind": "trial",
       "visible": true,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "real-missing-middle",
+      "id": "trial-missing-middle",
       "name": "endpoints without a middle do not count",
       "kind": "trial",
       "visible": true,

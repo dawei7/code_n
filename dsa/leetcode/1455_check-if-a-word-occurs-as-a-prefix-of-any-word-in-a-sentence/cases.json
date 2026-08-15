@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "real-middle-only",
+      "id": "trial-middle-only",
       "name": "middle occurrence does not qualify",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "real-longer-search",
+      "id": "trial-longer-search",
       "name": "search word cannot cross a separator",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-single",
+      "id": "trial-single",
       "name": "single-word sentence matches",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-late-and-early",
+      "id": "trial-late-and-early",
       "name": "earliest matching prefix wins",
       "kind": "trial",
       "visible": true,
@@ -131,6 +131,36 @@
       "expected": 2,
       "tags": [
         "minimum-index"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "single character in sentence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "i",
+        "searchWord": "burg"
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "repeated character in sentence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "iii",
+        "searchWord": "burg"
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

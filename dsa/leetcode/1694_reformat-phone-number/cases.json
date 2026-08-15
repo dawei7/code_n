@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-five-digits",
+      "id": "trial-five-digits",
       "name": "five digits reserve a final pair",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-ten-digits",
+      "id": "trial-ten-digits",
       "name": "ten digits end with two pairs",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-adjacent-separators",
+      "id": "trial-adjacent-separators",
       "name": "leading trailing and adjacent separators",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-zeroes",
+      "id": "trial-zeroes",
       "name": "zero digits retain their positions",
       "kind": "trial",
       "visible": true,

@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-three-equal-choices",
+      "id": "trial-three-equal-choices",
       "name": "choose two among three equal occurrences",
       "kind": "trial",
       "visible": true,
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "id": "real-two-duplicate-groups",
+      "id": "trial-two-duplicate-groups",
       "name": "several duplicate-value combinations qualify",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-equal-first-values",
+      "id": "trial-equal-first-values",
       "name": "a qualifying repeated smaller value uses falling frequency",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-no-divisor",
+      "id": "trial-no-divisor",
       "name": "a sum divisible by none of the values does not qualify",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-upper-domain",
+      "id": "trial-upper-domain",
       "name": "values near the domain maximum",
       "kind": "trial",
       "visible": true,

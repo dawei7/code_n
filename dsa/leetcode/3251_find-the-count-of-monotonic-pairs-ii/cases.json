@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-strict-fall",
-      "name": "real: consecutive values fall by one",
+      "id": "trial-strict-fall",
+      "name": "consecutive values fall by one",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -139,8 +139,8 @@
       ]
     },
     {
-      "id": "real-impossible-zigzag",
-      "name": "real: a large rise after a restrictive fall",
+      "id": "trial-impossible-zigzag",
+      "name": "a large rise after a restrictive fall",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -158,8 +158,8 @@
       ]
     },
     {
-      "id": "real-maximum-jump",
-      "name": "real: rise from one to the maximum value",
+      "id": "trial-maximum-jump",
+      "name": "rise from one to the maximum value",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -175,8 +175,8 @@
       ]
     },
     {
-      "id": "real-large-valley",
-      "name": "real: large values surround a one-step valley",
+      "id": "trial-large-valley",
+      "name": "large values surround a one-step valley",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -193,8 +193,8 @@
       ]
     },
     {
-      "id": "real-large-mixed-profile",
-      "name": "real: large alternating changes leave one pair",
+      "id": "trial-large-mixed-profile",
+      "name": "large alternating changes leave one pair",
       "kind": "trial",
       "visible": true,
       "input": {

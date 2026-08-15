@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-cheapest-over-original-order",
+      "id": "trial-cheapest-over-original-order",
       "name": "original order must not drive purchases",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-one-coin-bars",
+      "id": "trial-one-coin-bars",
       "name": "minimum prices maximize a small budget",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-maximum-cost-exact",
+      "id": "trial-maximum-cost-exact",
       "name": "maximum legal price can be bought exactly",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-leftover-insufficient",
+      "id": "trial-leftover-insufficient",
       "name": "leftover coins cannot cover the next price",
       "kind": "trial",
       "visible": true,
@@ -201,6 +201,41 @@
       "tags": [
         "leftover-budget",
         "prefix"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in costs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [
+          1
+        ],
+        "coins": 7
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in costs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "costs": [
+          1,
+          1
+        ],
+        "coins": 7
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

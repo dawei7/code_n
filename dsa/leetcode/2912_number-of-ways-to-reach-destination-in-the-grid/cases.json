@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-one-move-neither",
+      "id": "trial-one-move-neither",
       "name": "differing row and column cannot reach the destination directly",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-two-by-two-cycle",
+      "id": "trial-two-by-two-cycle",
       "name": "repeated movement on the smallest legal grid",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-billion-dimension-modulo",
+      "id": "trial-billion-dimension-modulo",
       "name": "huge dimensions require aggregation and modular arithmetic",
       "kind": "trial",
       "visible": true,
@@ -191,6 +191,54 @@
       "tags": [
         "large-dimensions",
         "modulo"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "m": 2,
+        "k": 2,
+        "source": [
+          1,
+          1
+        ],
+        "dest": [
+          2,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value m=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "m": 1,
+        "k": 2,
+        "source": [
+          1,
+          1
+        ],
+        "dest": [
+          2,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

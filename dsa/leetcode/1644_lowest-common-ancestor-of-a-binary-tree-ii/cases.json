@@ -139,7 +139,7 @@
       ]
     },
     {
-      "id": "real-same-left-subtree",
+      "id": "trial-same-left-subtree",
       "name": "targets meet below the root in the left subtree",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-same-right-subtree",
+      "id": "trial-same-right-subtree",
       "name": "targets meet below the root in the right subtree",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-negative-values",
+      "id": "trial-negative-values",
       "name": "unique negative values preserve the same ancestry rules",
       "kind": "trial",
       "visible": true,
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "id": "real-one-absent-deep",
+      "id": "trial-one-absent-deep",
       "name": "a deep present target cannot be returned when the other is absent",
       "kind": "trial",
       "visible": true,
@@ -257,7 +257,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "boundary node values in opposite subtrees",
       "kind": "trial",
       "visible": true,

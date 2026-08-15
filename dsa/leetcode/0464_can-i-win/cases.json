@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "hidden-small-win",
+      "id": "trial-small-win",
       "name": "first player has a forcing move",
       "kind": "trial",
       "visible": true,
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "id": "hidden-deep-loss",
+      "id": "trial-deep-loss",
       "name": "deeper memoized losing game",
       "kind": "trial",
       "visible": true,

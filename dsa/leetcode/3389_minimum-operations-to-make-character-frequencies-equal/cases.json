@@ -72,8 +72,8 @@
       ]
     },
     {
-      "id": "real-uneven-blocks",
-      "name": "real: several uneven neighboring frequencies",
+      "id": "trial-uneven-blocks",
+      "name": "several uneven neighboring frequencies",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -86,8 +86,8 @@
       ]
     },
     {
-      "id": "real-alternating-gaps",
-      "name": "real: nonconsecutive present letters and repeated runs",
+      "id": "trial-alternating-gaps",
+      "name": "nonconsecutive present letters and repeated runs",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -100,8 +100,8 @@
       ]
     },
     {
-      "id": "real-z-boundary",
-      "name": "real: the final alphabet letter cannot wrap",
+      "id": "trial-z-boundary",
+      "name": "the final alphabet letter cannot wrap",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -111,6 +111,34 @@
       "tags": [
         "z-boundary",
         "deletion"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaa"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

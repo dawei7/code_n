@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-high-wall-detour",
+      "id": "trial-high-wall-detour",
       "name": "low perimeter avoids a high interior wall",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "real-unavoidable-edge",
+      "id": "trial-unavoidable-edge",
       "name": "every route crosses the same height boundary",
       "kind": "trial",
       "visible": true,
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "real-nonmonotone",
+      "id": "trial-nonmonotone",
       "name": "optimal minimax path need not minimize total difference",
       "kind": "trial",
       "visible": true,
@@ -272,7 +272,7 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
+      "id": "trial-value-boundaries",
       "name": "extreme heights permit a smaller intermediate route",
       "kind": "trial",
       "visible": true,

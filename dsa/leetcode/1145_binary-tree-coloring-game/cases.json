@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-middle-chain",
+      "id": "trial-middle-chain",
       "name": "chain split evenly around the chosen node",
       "kind": "trial",
       "visible": true,
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "real-chain-majority",
+      "id": "trial-chain-majority",
       "name": "descendant side is a majority",
       "kind": "trial",
       "visible": true,
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "real-interior",
+      "id": "trial-interior",
       "name": "largest interior region is exactly half rounded down",
       "kind": "trial",
       "visible": true,

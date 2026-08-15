@@ -275,8 +275,8 @@
       ]
     },
     {
-      "id": "real-older-decline-ignored",
-      "name": "real: an older decline does not affect the latest three reviews",
+      "id": "trial-older-decline-ignored",
+      "name": "an older decline does not affect the latest three reviews",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -339,8 +339,8 @@
       ]
     },
     {
-      "id": "real-plateau-and-decline-excluded",
-      "name": "real: both a plateau and a final decline violate strict improvement",
+      "id": "trial-plateau-and-decline-excluded",
+      "name": "both a plateau and a final decline violate strict improvement",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -414,8 +414,8 @@
       ]
     },
     {
-      "id": "real-score-and-name-order",
-      "name": "real: score sorts first and name breaks equal-score ties",
+      "id": "trial-score-and-name-order",
+      "name": "score sorts first and name breaks equal-score ties",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -526,8 +526,8 @@
       ]
     },
     {
-      "id": "real-latest-three-break-old-trend",
-      "name": "real: a declining newest rating breaks an earlier improving history",
+      "id": "trial-latest-three-break-old-trend",
+      "name": "a declining newest rating breaks an earlier improving history",
       "kind": "trial",
       "visible": true,
       "input": {

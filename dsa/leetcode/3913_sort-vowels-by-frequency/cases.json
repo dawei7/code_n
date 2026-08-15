@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "hidden-frequency-order-overrides-first",
+      "id": "trial-frequency-order-overrides-first",
       "name": "descending counts override first-occurrence order",
       "kind": "trial",
       "visible": true,
@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "hidden-natural-language-pattern",
+      "id": "trial-natural-language-pattern",
       "name": "mixed word has several frequency groups",
       "kind": "trial",
       "visible": true,
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "hidden-tie-with-consonants",
+      "id": "trial-tie-with-consonants",
       "name": "tied types use first occurrence while consonants stay fixed",
       "kind": "trial",
       "visible": true,
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "hidden-long-equal-cycle",
+      "id": "trial-long-equal-cycle",
       "name": "long equal-frequency cycle groups all five types",
       "kind": "trial",
       "visible": true,

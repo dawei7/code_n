@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-smallest-hundredth",
+      "id": "trial-smallest-hundredth",
       "name": "smallest positive hundredth",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "maximum Celsius value",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-two-decimal-value",
+      "id": "trial-two-decimal-value",
       "name": "both conversion results are fractional",
       "kind": "trial",
       "visible": true,

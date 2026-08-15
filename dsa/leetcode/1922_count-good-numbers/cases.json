@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-five",
+      "id": "trial-five",
       "name": "three even-indexed and two odd-indexed positions",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-ten",
+      "id": "trial-ten",
       "name": "equal position counts before modulus wraparound",
       "kind": "trial",
       "visible": true,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-twenty-five",
+      "id": "trial-twenty-five",
       "name": "odd length after modular reduction",
       "kind": "trial",
       "visible": true,
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-ninety-nine",
+      "id": "trial-ninety-nine",
       "name": "larger odd exponent pair",
       "kind": "trial",
       "visible": true,
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-one-hundred",
+      "id": "trial-one-hundred",
       "name": "larger even exponent pair",
       "kind": "trial",
       "visible": true,
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-large-exponent",
+      "id": "trial-large-exponent",
       "name": "a large terminating exponent exercises modular reduction",
       "kind": "trial",
       "visible": true,

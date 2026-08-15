@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-left-skewed",
+      "id": "trial-left-skewed",
       "name": "left-skewed BST",
       "kind": "trial",
       "visible": true,

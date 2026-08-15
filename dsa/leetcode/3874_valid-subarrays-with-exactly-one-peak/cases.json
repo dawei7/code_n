@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-two-peaks-small-k",
+      "id": "trial-two-peaks-small-k",
       "name": "k clips both peaks to immediate neighbors",
       "kind": "trial",
       "visible": true,
@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-negative-values",
+      "id": "trial-negative-values",
       "name": "a peak can be negative",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "real-three-alternating-peaks",
+      "id": "trial-three-alternating-peaks",
       "name": "three peaks partition the endpoint ranges",
       "kind": "trial",
       "visible": true,
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "real-uneven-peak-spacing",
+      "id": "trial-uneven-peak-spacing",
       "name": "uneven neighboring gaps produce different products",
       "kind": "trial",
       "visible": true,
@@ -290,7 +290,7 @@
       ]
     },
     {
-      "id": "real-early-peak-k-clipped",
+      "id": "trial-early-peak-k-clipped",
       "name": "an early peak is clipped on the right by k",
       "kind": "trial",
       "visible": true,
@@ -315,7 +315,7 @@
       ]
     },
     {
-      "id": "real-irregular-values",
+      "id": "trial-irregular-values",
       "name": "only strict local maxima divide an irregular array",
       "kind": "trial",
       "visible": true,
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "id": "real-four-peaks",
+      "id": "trial-four-peaks",
       "name": "four separated peaks use both neighbor and k bounds",
       "kind": "trial",
       "visible": true,
@@ -365,6 +365,41 @@
       "tags": [
         "four-peaks",
         "neighbor-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

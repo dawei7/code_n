@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "real-both-blocks",
+      "id": "trial-both-blocks",
       "name": "both arithmetic progressions contain several values",
       "kind": "trial",
       "visible": true,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-target-one",
+      "id": "trial-target-one",
       "name": "target one excludes no positive pair",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-small-even-target",
+      "id": "trial-small-even-target",
       "name": "only one low value precedes the high block",
       "kind": "trial",
       "visible": true,
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-modulo-sensitive",
+      "id": "trial-modulo-sensitive",
       "name": "large unmodded sum requires final reduction",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-maximum-both",
+      "id": "trial-maximum-both",
       "name": "both inputs reach their maximum",
       "kind": "trial",
       "visible": true,
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "real-maximum-n-target-one",
+      "id": "trial-maximum-n-target-one",
       "name": "maximum length with no forbidden positive pair",
       "kind": "trial",
       "visible": true,
@@ -177,6 +177,36 @@
       "tags": [
         "maximum",
         "target-one"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "target": 3
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "minimal value target=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "target": 1
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

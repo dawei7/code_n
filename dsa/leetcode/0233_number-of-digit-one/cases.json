@@ -43,7 +43,7 @@
       ]
     },
     {
-      "id": "real-partial-hundreds",
+      "id": "trial-partial-hundreds",
       "name": "partial cycle at one hundred one",
       "kind": "trial",
       "visible": true,

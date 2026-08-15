@@ -328,7 +328,7 @@
       ]
     },
     {
-      "id": "real-repeated-revisions",
+      "id": "trial-repeated-revisions",
       "name": "several obsolete leaders are skipped after the final revision",
       "kind": "trial",
       "visible": true,
@@ -384,7 +384,7 @@
       ]
     },
     {
-      "id": "real-repeated-empty-polls",
+      "id": "trial-repeated-empty-polls",
       "name": "every poll after exhaustion returns minus one",
       "kind": "trial",
       "visible": true,
@@ -421,7 +421,7 @@
       ]
     },
     {
-      "id": "real-maximum-identifiers-and-priorities",
+      "id": "trial-maximum-identifiers-and-priorities",
       "name": "maximum values preserve the smaller-ID tie-break",
       "kind": "trial",
       "visible": true,
@@ -466,7 +466,7 @@
       ]
     },
     {
-      "id": "real-minimum-priority-tie",
+      "id": "trial-minimum-priority-tie",
       "name": "an update to minimum priority creates a tie",
       "kind": "trial",
       "visible": true,
@@ -510,7 +510,7 @@
       ]
     },
     {
-      "id": "real-all-events-tied",
+      "id": "trial-all-events-tied",
       "name": "tied events are removed in ascending ID order",
       "kind": "trial",
       "visible": true,
@@ -562,7 +562,7 @@
       ]
     },
     {
-      "id": "real-stale-top-chain",
+      "id": "trial-stale-top-chain",
       "name": "stale high-priority entries precede every valid leader",
       "kind": "trial",
       "visible": true,
@@ -631,7 +631,7 @@
       ]
     },
     {
-      "id": "real-poll-then-update-another",
+      "id": "trial-poll-then-update-another",
       "name": "removing one event does not affect later updates to another",
       "kind": "trial",
       "visible": true,
@@ -682,7 +682,7 @@
       ]
     },
     {
-      "id": "real-boundary-mixed-trace",
+      "id": "trial-boundary-mixed-trace",
       "name": "boundary values remain valid across a tie, update, and exhaustion",
       "kind": "trial",
       "visible": true,

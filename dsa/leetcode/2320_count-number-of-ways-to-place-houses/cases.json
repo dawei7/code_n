@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-ten-plots",
+      "id": "trial-ten-plots",
       "name": "longer recurrence",
       "kind": "trial",
       "visible": true,
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-twelve-plots",
+      "id": "trial-twelve-plots",
       "name": "square the one-side count after twelve plots",
       "kind": "trial",
       "visible": true,

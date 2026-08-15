@@ -81,8 +81,8 @@
       ]
     },
     {
-      "id": "real-all-vowels",
-      "name": "real: a string of vowels is winning",
+      "id": "trial-all-vowels",
+      "name": "a string of vowels is winning",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -94,8 +94,8 @@
       ]
     },
     {
-      "id": "real-long-consonants",
-      "name": "real: many consonants remain losing",
+      "id": "trial-long-consonants",
+      "name": "many consonants remain losing",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-middle-vowel",
-      "name": "real: one interior vowel is sufficient",
+      "id": "trial-middle-vowel",
+      "name": "one interior vowel is sufficient",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -120,8 +120,8 @@
       ]
     },
     {
-      "id": "real-repeated-consonant",
-      "name": "real: repeated consonants do not create a move",
+      "id": "trial-repeated-consonant",
+      "name": "repeated consonants do not create a move",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -133,8 +133,8 @@
       ]
     },
     {
-      "id": "real-odd-vowels",
-      "name": "real: odd total can be removed immediately",
+      "id": "trial-odd-vowels",
+      "name": "odd total can be removed immediately",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -146,8 +146,8 @@
       ]
     },
     {
-      "id": "real-y-only",
-      "name": "real: y is not an English vowel",
+      "id": "trial-y-only",
+      "name": "y is not an English vowel",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -156,6 +156,34 @@
       "expected": false,
       "tags": [
         "vowel-definition"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "l"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "lll"
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

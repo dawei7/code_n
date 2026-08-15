@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "hidden-two-values",
+      "id": "trial-two-values",
       "name": "two-element boundary",
       "kind": "trial",
       "visible": true,
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "hidden-far-right-maximum",
+      "id": "trial-far-right-maximum",
       "name": "maximum remains at far right",
       "kind": "trial",
       "visible": true,

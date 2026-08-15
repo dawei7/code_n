@@ -101,7 +101,7 @@
       ]
     },
     {
-      "id": "real-whole-array",
+      "id": "trial-whole-array",
       "name": "total equals x and the kept middle is empty",
       "kind": "trial",
       "visible": true,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "real-x-exceeds-total",
+      "id": "trial-x-exceeds-total",
       "name": "x exceeds the sum of all elements",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-one-from-each-end",
+      "id": "trial-one-from-each-end",
       "name": "the optimum removes one value from each end",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-keep-long-middle",
+      "id": "trial-keep-long-middle",
       "name": "two large ends form the target",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-multiple-target-windows",
+      "id": "trial-multiple-target-windows",
       "name": "longest matching middle determines the minimum",
       "kind": "trial",
       "visible": true,
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "real-left-only",
+      "id": "trial-left-only",
       "name": "the best sequence removes only a prefix",
       "kind": "trial",
       "visible": true,
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "real-large-blocker",
+      "id": "trial-large-blocker",
       "name": "a large interior value separates possible end sums",
       "kind": "trial",
       "visible": true,
@@ -242,6 +242,41 @@
       "tags": [
         "interior-blocker",
         "impossible"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "x": 5
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "x": 5
+      },
+      "expected": -1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

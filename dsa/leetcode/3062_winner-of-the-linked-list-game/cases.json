@@ -80,7 +80,7 @@
       ]
     },
     {
-      "id": "real-odd-sweep",
+      "id": "trial-odd-sweep",
       "name": "Odd wins every pair",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-final-pair-breaks-tie",
+      "id": "trial-final-pair-breaks-tie",
       "name": "final pair decides the winner",
       "kind": "trial",
       "visible": true,
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "real-long-alternating-tie",
+      "id": "trial-long-alternating-tie",
       "name": "alternating pair winners tie",
       "kind": "trial",
       "visible": true,

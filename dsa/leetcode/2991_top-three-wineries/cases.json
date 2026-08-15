@@ -247,8 +247,8 @@
       ]
     },
     {
-      "id": "real-aggregate-rows",
-      "name": "real: repeated winery rows combine before ranking",
+      "id": "trial-aggregate-rows",
+      "name": "repeated winery rows combine before ranking",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -299,8 +299,8 @@
       ]
     },
     {
-      "id": "real-top-three-only",
-      "name": "real: fourth winery is excluded",
+      "id": "trial-top-three-only",
+      "name": "fourth winery is excluded",
       "kind": "trial",
       "visible": true,
       "input": {

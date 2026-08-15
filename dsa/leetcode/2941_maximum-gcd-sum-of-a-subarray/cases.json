@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-best-pair",
+      "id": "trial-best-pair",
       "name": "a later pair has the strongest gcd-sum",
       "kind": "trial",
       "visible": true,
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-gcd-transitions",
+      "id": "trial-gcd-transitions",
       "name": "several suffix gcd values merge",
       "kind": "trial",
       "visible": true,
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "real-longer-than-k",
+      "id": "trial-longer-than-k",
       "name": "the best range is longer than k",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-single-element-array",
+      "id": "trial-single-element-array",
       "name": "minimum array length",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "result requires a wide integer",
       "kind": "trial",
       "visible": true,

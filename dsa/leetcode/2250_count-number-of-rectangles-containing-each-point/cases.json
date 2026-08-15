@@ -198,7 +198,7 @@
       ]
     },
     {
-      "id": "real-width-large",
+      "id": "trial-width-large",
       "name": "large widths preserve ordinary comparisons",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-height-exclusion",
+      "id": "trial-height-exclusion",
       "name": "wide but short rectangles remain excluded",
       "kind": "trial",
       "visible": true,
@@ -276,7 +276,7 @@
       ]
     },
     {
-      "id": "real-query-order",
+      "id": "trial-query-order",
       "name": "output follows query input order",
       "kind": "trial",
       "visible": true,

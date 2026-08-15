@@ -129,7 +129,7 @@
       ]
     },
     {
-      "id": "real-double-nine",
+      "id": "trial-double-nine",
       "name": "two high digits",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-double-four",
+      "id": "trial-double-four",
       "name": "two medium digits remain below the threshold",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-two-five-seven",
+      "id": "trial-two-five-seven",
       "name": "distinct digits combine past fifty",
       "kind": "trial",
       "visible": true,
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "real-zeros-between-nines",
+      "id": "trial-zeros-between-nines",
       "name": "interior zeroes do not affect two nines",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "real-ascending-digits",
+      "id": "trial-ascending-digits",
       "name": "many distinct nonzero digits",
       "kind": "trial",
       "visible": true,
@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "real-one-followed-by-zeros",
+      "id": "trial-one-followed-by-zeros",
       "name": "the maximum input has score zero",
       "kind": "trial",
       "visible": true,
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "id": "real-nine-digit-maximum",
+      "id": "trial-nine-digit-maximum",
       "name": "every digit has the maximum contribution",
       "kind": "trial",
       "visible": true,
@@ -248,7 +248,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "alternating high and low digits",
       "kind": "trial",
       "visible": true,

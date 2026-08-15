@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "real-corner-through-blocks",
+      "id": "trial-corner-through-blocks",
       "name": "diagonal crosses blocked orthogonal neighbors",
       "kind": "trial",
       "visible": true,
@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "real-no-route",
+      "id": "trial-no-route",
       "name": "open endpoints separated",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-shorter-diagonal",
+      "id": "trial-shorter-diagonal",
       "name": "choose diagonal over longer edge route",
       "kind": "trial",
       "visible": true,

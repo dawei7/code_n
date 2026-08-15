@@ -130,7 +130,7 @@
       ]
     },
     {
-      "id": "real-short-windows",
+      "id": "trial-short-windows",
       "name": "short windows",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-single-peak",
+      "id": "trial-single-peak",
       "name": "one peak covers three positions",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-separated-peaks",
+      "id": "trial-separated-peaks",
       "name": "separated endpoint peaks",
       "kind": "trial",
       "visible": true,

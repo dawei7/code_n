@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-complementary-pairs",
+      "id": "trial-complementary-pairs",
       "name": "two complementary pairs reset the batch",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-residual-choice",
+      "id": "trial-residual-choice",
       "name": "unmatched remainders require ordering search",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-large-group-values",
+      "id": "trial-large-group-values",
       "name": "only remainders of large values matter",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-single-group",
+      "id": "trial-single-group",
       "name": "the first group is always happy",
       "kind": "trial",
       "visible": true,
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "real-maximum-count-all-ones",
+      "id": "trial-maximum-count-all-ones",
       "name": "thirty equal remainders cross four boundaries",
       "kind": "trial",
       "visible": true,

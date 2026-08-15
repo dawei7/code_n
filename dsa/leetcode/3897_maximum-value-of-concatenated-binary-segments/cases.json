@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "real-all-pure-ones",
+      "id": "trial-all-pure-ones",
       "name": "all pure-one segments merge into one run",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "real-all-pure-zeros",
+      "id": "trial-all-pure-zeros",
       "name": "every possible concatenation represents zero",
       "kind": "trial",
       "visible": true,
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "id": "real-identical-mixed-segments",
+      "id": "trial-identical-mixed-segments",
       "name": "identical mixed segments are a true tie",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-interleaved-categories",
+      "id": "trial-interleaved-categories",
       "name": "input order interleaves every segment category",
       "kind": "trial",
       "visible": true,
@@ -277,7 +277,7 @@
       ]
     },
     {
-      "id": "real-many-equal-one-runs",
+      "id": "trial-many-equal-one-runs",
       "name": "ascending zero counts resolve a four-way tie",
       "kind": "trial",
       "visible": true,
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "id": "real-long-all-one-value",
+      "id": "trial-long-all-one-value",
       "name": "a twenty-thousand-bit all-one value requires modulo reduction",
       "kind": "trial",
       "visible": true,
@@ -323,7 +323,7 @@
       ]
     },
     {
-      "id": "real-maximum-total-length",
+      "id": "trial-maximum-total-length",
       "name": "the total bit count reaches its upper bound",
       "kind": "trial",
       "visible": true,
@@ -381,7 +381,7 @@
       ]
     },
     {
-      "id": "real-large-mixed-runs",
+      "id": "trial-large-mixed-runs",
       "name": "large unequal mixed runs exercise both ordering keys",
       "kind": "trial",
       "visible": true,
@@ -405,7 +405,7 @@
       ]
     },
     {
-      "id": "real-zero-runs-interspersed",
+      "id": "trial-zero-runs-interspersed",
       "name": "zero-only segments move behind every segment containing ones",
       "kind": "trial",
       "visible": true,
@@ -427,6 +427,47 @@
       "tags": [
         "pure-zeros",
         "unsorted-input"
+      ]
+    },
+    {
+      "id": "trial-boundary-18",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums0": [
+          1,
+          0
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-19",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1
+        ],
+        "nums0": [
+          1,
+          0
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

@@ -86,8 +86,8 @@
       ]
     },
     {
-      "id": "real-one-internal-run",
-      "name": "real: one internal active run",
+      "id": "trial-one-internal-run",
+      "name": "one internal active run",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -100,8 +100,8 @@
       ]
     },
     {
-      "id": "real-only-boundary-ones",
-      "name": "real: active runs touch augmented boundaries",
+      "id": "trial-only-boundary-ones",
+      "name": "active runs touch augmented boundaries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -114,8 +114,8 @@
       ]
     },
     {
-      "id": "real-unequal-zero-runs",
-      "name": "real: select the best adjacent zero-run pair",
+      "id": "trial-unequal-zero-runs",
+      "name": "select the best adjacent zero-run pair",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -128,8 +128,8 @@
       ]
     },
     {
-      "id": "real-three-zero-runs",
-      "name": "real: middle zero run participates in either trade",
+      "id": "trial-three-zero-runs",
+      "name": "middle zero run participates in either trade",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -139,6 +139,20 @@
       "tags": [
         "real",
         "multiple-candidates"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-char"
       ]
     }
   ]

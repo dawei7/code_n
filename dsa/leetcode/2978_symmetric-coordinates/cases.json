@@ -186,8 +186,8 @@
       ]
     },
     {
-      "id": "real-mixed-order",
-      "name": "real: negative and positive pairs sort lexicographically",
+      "id": "trial-mixed-order",
+      "name": "negative and positive pairs sort lexicographically",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -244,8 +244,8 @@
       ]
     },
     {
-      "id": "real-no-pairs",
-      "name": "real: no reversed coordinate exists",
+      "id": "trial-no-pairs",
+      "name": "no reversed coordinate exists",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-single-character",
+      "id": "trial-single-character",
       "name": "reverse the entire one-character word",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-whole-word",
+      "id": "trial-whole-word",
       "name": "the final character selects the whole word",
       "kind": "trial",
       "visible": true,
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-maximum-length",
+      "id": "trial-maximum-length",
       "name": "reverse the maximum-length prefix",
       "kind": "trial",
       "visible": true,

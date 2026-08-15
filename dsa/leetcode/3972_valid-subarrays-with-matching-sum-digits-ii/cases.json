@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-valid-invalid-valid-prefixes",
+      "id": "trial-valid-invalid-valid-prefixes",
       "name": "validity changes twice as one start is extended",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-two-overlapping-matches",
+      "id": "trial-two-overlapping-matches",
       "name": "a pair and its trailing singleton both match",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-carry-to-three-digits",
+      "id": "trial-carry-to-three-digits",
       "name": "addition creates a matching three-digit sum",
       "kind": "trial",
       "visible": true,
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "real-billion-scale-carry",
+      "id": "trial-billion-scale-carry",
       "name": "maximum-scale values require wide prefix sums",
       "kind": "trial",
       "visible": true,
@@ -220,7 +220,7 @@
       ]
     },
     {
-      "id": "real-repeated-singletons",
+      "id": "trial-repeated-singletons",
       "name": "only singleton sums match among repeated ones",
       "kind": "trial",
       "visible": true,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "real-several-nested-matches",
+      "id": "trial-several-nested-matches",
       "name": "nested subarrays produce eleven and one hundred one",
       "kind": "trial",
       "visible": true,
@@ -258,7 +258,7 @@
       ]
     },
     {
-      "id": "real-digit-nine-overlaps",
+      "id": "trial-digit-nine-overlaps",
       "name": "matching digit nine across singleton and pair sums",
       "kind": "trial",
       "visible": true,
@@ -274,6 +274,24 @@
       "tags": [
         "digit-nine",
         "overlap"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ],
+        "x": 1
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

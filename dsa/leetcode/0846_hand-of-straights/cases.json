@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "separated valid pairs",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "zero begins a valid partition",
       "kind": "trial",
       "visible": true,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "duplicate starts lack successors",
       "kind": "trial",
       "visible": true,
@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "hidden-4",
+      "id": "trial-4",
       "name": "one complete group",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "hidden-5",
+      "id": "trial-5",
       "name": "equal cards cannot be consecutive",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "hidden-6",
+      "id": "trial-6",
       "name": "many parallel groups",
       "kind": "trial",
       "visible": true,
@@ -251,6 +251,41 @@
       "expected": true,
       "tags": [
         "multiplicity"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in hand",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hand": [
+          1
+        ],
+        "groupSize": 3
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in hand",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "hand": [
+          1,
+          1
+        ],
+        "groupSize": 3
+      },
+      "expected": false,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

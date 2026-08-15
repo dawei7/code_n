@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "real-largest-skew",
+      "id": "trial-largest-skew",
       "name": "largest in right-skewed tree",
       "kind": "trial",
       "visible": true,

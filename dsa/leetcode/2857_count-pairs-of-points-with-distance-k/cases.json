@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "real-zero-target-duplicate-groups",
+      "id": "trial-zero-target-duplicate-groups",
       "name": "each duplicate group contributes its own combinations",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-all-distance-splits",
+      "id": "trial-all-distance-splits",
       "name": "one anchor matches every split from zero through k",
       "kind": "trial",
       "visible": true,
@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "real-repeated-partners",
+      "id": "trial-repeated-partners",
       "name": "frequencies count every cross-group index pair",
       "kind": "trial",
       "visible": true,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "id": "real-positive-target-identical-points",
+      "id": "trial-positive-target-identical-points",
       "name": "identical points do not match a positive target",
       "kind": "trial",
       "visible": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "real-large-coordinate-values",
+      "id": "trial-large-coordinate-values",
       "name": "bit operations remain valid near the coordinate limit",
       "kind": "trial",
       "visible": true,

@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-prefixes-only",
+      "id": "trial-prefixes-only",
       "name": "embedded prefixes are not complete words",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-synonyms-deduplicate",
+      "id": "trial-synonyms-deduplicate",
       "name": "multiple matching words emit one topic ID",
       "kind": "trial",
       "visible": true,
@@ -267,7 +267,7 @@
       ]
     },
     {
-      "id": "real-extra-spaces",
+      "id": "trial-extra-spaces",
       "name": "repeated spaces preserve whole-word matching",
       "kind": "trial",
       "visible": true,
@@ -316,7 +316,7 @@
       ]
     },
     {
-      "id": "real-all-ambiguous",
+      "id": "trial-all-ambiguous",
       "name": "every unmatched post remains in the result",
       "kind": "trial",
       "visible": true,

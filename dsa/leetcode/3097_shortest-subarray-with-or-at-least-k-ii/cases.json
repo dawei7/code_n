@@ -116,8 +116,8 @@
       ]
     },
     {
-      "id": "real-shrink-window",
-      "name": "real: removing an indispensable bit lowers the OR",
+      "id": "trial-shrink-window",
+      "name": "removing an indispensable bit lowers the OR",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -139,8 +139,8 @@
       ]
     },
     {
-      "id": "real-high-bit",
-      "name": "real: the highest legal bit combines with a low bit",
+      "id": "trial-high-bit",
+      "name": "the highest legal bit combines with a low bit",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -159,8 +159,8 @@
       ]
     },
     {
-      "id": "real-all-zero-impossible",
-      "name": "real: zeros cannot reach a positive threshold",
+      "id": "trial-all-zero-impossible",
+      "name": "zeros cannot reach a positive threshold",
       "kind": "trial",
       "visible": true,
       "input": {

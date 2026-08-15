@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "real-zero-with-powers",
+      "id": "trial-zero-with-powers",
       "name": "zero pairs independently with positive powers",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-no-good-sum",
+      "id": "trial-no-good-sum",
       "name": "no pair sum is a power of two",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "id": "real-mixed-duplicates",
+      "id": "trial-mixed-duplicates",
       "name": "repeated complements count previous indices",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-combinations",
+      "id": "trial-combinations",
       "name": "a duplicate group contributes every index combination",
       "kind": "trial",
       "visible": true,

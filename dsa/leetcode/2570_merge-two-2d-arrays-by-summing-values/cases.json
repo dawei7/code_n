@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-first-array-before-second",
+      "id": "trial-first-array-before-second",
       "name": "the first array is exhausted before the second",
       "kind": "trial",
       "visible": true,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "real-second-array-before-first",
+      "id": "trial-second-array-before-first",
       "name": "the second array is exhausted before the first",
       "kind": "trial",
       "visible": true,
@@ -296,7 +296,7 @@
       ]
     },
     {
-      "id": "real-complete-overlap",
+      "id": "trial-complete-overlap",
       "name": "every ID receives two contributions",
       "kind": "trial",
       "visible": true,
@@ -349,7 +349,7 @@
       ]
     },
     {
-      "id": "real-unequal-mixed",
+      "id": "trial-unequal-mixed",
       "name": "overlap and unequal tails merge together",
       "kind": "trial",
       "visible": true,
@@ -410,7 +410,7 @@
       ]
     },
     {
-      "id": "real-maximum-id-and-values",
+      "id": "trial-maximum-id-and-values",
       "name": "summed value may exceed an individual value bound",
       "kind": "trial",
       "visible": true,

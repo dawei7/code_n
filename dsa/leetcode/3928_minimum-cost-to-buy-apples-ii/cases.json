@@ -383,7 +383,7 @@
       ]
     },
     {
-      "id": "hidden-large-intermediate",
+      "id": "trial-large-intermediate",
       "name": "wide arithmetic handles a taxed billion-cost road",
       "kind": "trial",
       "visible": true,
@@ -412,7 +412,7 @@
       ]
     },
     {
-      "id": "hidden-cheap-two-edge-trip",
+      "id": "trial-cheap-two-edge-trip",
       "name": "an indirect shop beats every local price",
       "kind": "trial",
       "visible": true,
@@ -457,7 +457,7 @@
       ]
     },
     {
-      "id": "hidden-unhelpful-cheap-island",
+      "id": "trial-unhelpful-cheap-island",
       "name": "the globally cheapest shop may be unreachable",
       "kind": "trial",
       "visible": true,
@@ -496,7 +496,7 @@
       ]
     },
     {
-      "id": "hidden-competing-purchase-shops",
+      "id": "trial-competing-purchase-shops",
       "name": "travel costs can outweigh a lower purchase price",
       "kind": "trial",
       "visible": true,
@@ -549,7 +549,7 @@
       ]
     },
     {
-      "id": "hidden-asymmetric-metrics",
+      "id": "trial-asymmetric-metrics",
       "name": "taxes reverse which route is shortest",
       "kind": "trial",
       "visible": true,
@@ -605,6 +605,35 @@
       "tags": [
         "different-paths",
         "route-reversal"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "identical elements in prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "prices": [
+          8,
+          8
+        ],
+        "roads": [
+          [
+            0,
+            1,
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        8,
+        8
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

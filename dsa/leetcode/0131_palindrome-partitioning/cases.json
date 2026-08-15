@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-overlap",
+      "id": "trial-overlap",
       "name": "overlapping palindromes",
       "kind": "trial",
       "visible": true,

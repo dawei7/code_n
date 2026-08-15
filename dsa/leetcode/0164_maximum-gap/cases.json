@@ -71,7 +71,7 @@
       ]
     },
     {
-      "id": "real-duplicates-and-outlier",
+      "id": "trial-duplicates-and-outlier",
       "name": "duplicate cluster and outlier",
       "kind": "trial",
       "visible": true,

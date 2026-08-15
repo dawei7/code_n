@@ -141,8 +141,8 @@
       ]
     },
     {
-      "id": "real-interleaved-duplicates",
-      "name": "real: interleaved duplicates across three benches",
+      "id": "trial-interleaved-duplicates",
+      "name": "interleaved duplicates across three benches",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -192,8 +192,8 @@
       ]
     },
     {
-      "id": "real-every-row-duplicate",
-      "name": "real: all rows describe one presence",
+      "id": "trial-every-row-duplicate",
+      "name": "all rows describe one presence",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -223,8 +223,8 @@
       ]
     },
     {
-      "id": "real-single-row",
-      "name": "real: one observed student",
+      "id": "trial-single-row",
+      "name": "one observed student",
       "kind": "trial",
       "visible": true,
       "input": {

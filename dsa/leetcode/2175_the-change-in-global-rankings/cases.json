@@ -276,7 +276,7 @@
       ]
     },
     {
-      "id": "real-original-tie",
+      "id": "trial-original-tie",
       "name": "original ties also use lexicographical order",
       "kind": "trial",
       "visible": true,
@@ -348,7 +348,7 @@
       ]
     },
     {
-      "id": "real-updated-three-way-tie",
+      "id": "trial-updated-three-way-tie",
       "name": "a three-way updated tie is name ordered",
       "kind": "trial",
       "visible": true,
@@ -420,7 +420,7 @@
       ]
     },
     {
-      "id": "real-unordered-tables",
+      "id": "trial-unordered-tables",
       "name": "physical row order does not define rank",
       "kind": "trial",
       "visible": true,

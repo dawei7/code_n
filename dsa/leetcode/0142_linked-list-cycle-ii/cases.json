@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "real-self-loop",
+      "id": "trial-self-loop",
       "name": "one-node self-loop",
       "kind": "trial",
       "visible": true,

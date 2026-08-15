@@ -108,7 +108,7 @@
       ]
     },
     {
-      "id": "real-three-expensive",
+      "id": "trial-three-expensive",
       "name": "choose how to acquire the first uncovered fruit",
       "kind": "trial",
       "visible": true,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "repeated prices leave reward reach decisive",
       "kind": "trial",
       "visible": true,
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "id": "real-decreasing",
+      "id": "trial-decreasing",
       "name": "later fruits become cheaper",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "real-increasing",
+      "id": "trial-increasing",
       "name": "early purchases are cheaper",
       "kind": "trial",
       "visible": true,

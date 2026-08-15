@@ -156,7 +156,7 @@
       ]
     },
     {
-      "id": "hidden-digit-width-transition",
+      "id": "trial-digit-width-transition",
       "name": "the interval crosses from three to four written digits",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "hidden-maximum-upper-bound",
+      "id": "trial-maximum-upper-bound",
       "name": "the largest legal value decreases immediately from nine",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "hidden-high-good-singleton",
+      "id": "trial-high-good-singleton",
       "name": "a high value has non-decreasing first-column and bottom-row digits",
       "kind": "trial",
       "visible": true,
@@ -204,7 +204,7 @@
       ]
     },
     {
-      "id": "hidden-high-invalid-singleton",
+      "id": "trial-high-invalid-singleton",
       "name": "a high value decreases across the top row",
       "kind": "trial",
       "visible": true,
@@ -220,7 +220,7 @@
       ]
     },
     {
-      "id": "hidden-cross-trillion-boundary",
+      "id": "trial-cross-trillion-boundary",
       "name": "prefix subtraction spans a thirteen-digit boundary",
       "kind": "trial",
       "visible": true,

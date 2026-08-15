@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-independent-cities",
+      "id": "trial-independent-cities",
       "name": "distribute additions with range zero",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-zero-baseline",
+      "id": "trial-zero-baseline",
       "name": "create coverage from no existing stations",
       "kind": "trial",
       "visible": true,
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "real-edge-heavy",
+      "id": "trial-edge-heavy",
       "name": "strong edges leave the center limiting",
       "kind": "trial",
       "visible": true,
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-separated-clusters",
+      "id": "trial-separated-clusters",
       "name": "additions bridge separated powered regions",
       "kind": "trial",
       "visible": true,

@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "real-alternating",
+      "id": "trial-alternating",
       "name": "each named drink fills the following row",
       "kind": "trial",
       "visible": true,
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "id": "real-repeated-name",
+      "id": "trial-repeated-name",
       "name": "repeated drink names remain separate updates",
       "kind": "trial",
       "visible": true,
@@ -296,7 +296,7 @@
       ]
     },
     {
-      "id": "real-nonnumeric-order",
+      "id": "trial-nonnumeric-order",
       "name": "identifier order does not define previous row",
       "kind": "trial",
       "visible": true,

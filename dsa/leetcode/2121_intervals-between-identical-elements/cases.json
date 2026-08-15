@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-all-distinct",
+      "id": "trial-all-distinct",
       "name": "every value forms a singleton group",
       "kind": "trial",
       "visible": true,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "id": "real-interleaved-groups",
+      "id": "trial-interleaved-groups",
       "name": "several groups are interleaved unevenly",
       "kind": "trial",
       "visible": true,
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-two-endpoints",
+      "id": "trial-two-endpoints",
       "name": "matching values occur only at opposite ends",
       "kind": "trial",
       "visible": true,

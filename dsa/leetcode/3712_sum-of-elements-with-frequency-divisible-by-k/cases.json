@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-several-divisible-counts",
+      "id": "trial-several-divisible-counts",
       "name": "frequencies six and three both divide by three",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-value-upper-bound",
+      "id": "trial-value-upper-bound",
       "name": "maximum values contribute with full multiplicity",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-frequency-not-value",
+      "id": "trial-frequency-not-value",
       "name": "divisibility applies to frequency rather than the value",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-k-equals-frequency",
+      "id": "trial-k-equals-frequency",
       "name": "a frequency exactly equal to k qualifies",
       "kind": "trial",
       "visible": true,
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "real-maximum-k-no-match",
+      "id": "trial-maximum-k-no-match",
       "name": "maximum k cannot divide a smaller positive frequency",
       "kind": "trial",
       "visible": true,
@@ -237,7 +237,7 @@
       ]
     },
     {
-      "id": "real-all-one-value",
+      "id": "trial-all-one-value",
       "name": "one frequency class supplies the complete sum",
       "kind": "trial",
       "visible": true,

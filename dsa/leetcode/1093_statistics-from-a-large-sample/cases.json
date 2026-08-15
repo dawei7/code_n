@@ -1128,7 +1128,7 @@
       ]
     },
     {
-      "id": "real-large-frequency",
+      "id": "trial-large-frequency",
       "name": "maximum allowed represented population",
       "kind": "trial",
       "visible": true,
@@ -1408,7 +1408,7 @@
       ]
     },
     {
-      "id": "real-separated-odd",
+      "id": "trial-separated-odd",
       "name": "separated bins and odd population",
       "kind": "trial",
       "visible": true,

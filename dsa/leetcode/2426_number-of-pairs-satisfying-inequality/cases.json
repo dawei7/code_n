@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-equality-negative-diff",
+      "id": "trial-equality-negative-diff",
       "name": "inclusive boundary with negative tolerance",
       "kind": "trial",
       "visible": true,
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "real-duplicate-differences",
+      "id": "trial-duplicate-differences",
       "name": "every duplicate occurrence contributes",
       "kind": "trial",
       "visible": true,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "real-mixed-signed-values",
+      "id": "trial-mixed-signed-values",
       "name": "transformed values cross zero",
       "kind": "trial",
       "visible": true,
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "real-large-positive-diff",
+      "id": "trial-large-positive-diff",
       "name": "tolerance makes all pairs valid",
       "kind": "trial",
       "visible": true,
@@ -189,6 +189,51 @@
       "expected": 6,
       "tags": [
         "large-diff"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          3
+        ],
+        "nums2": [
+          2,
+          2,
+          1
+        ],
+        "diff": 1
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in nums1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          3,
+          3
+        ],
+        "nums2": [
+          2,
+          2,
+          1
+        ],
+        "diff": 1
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

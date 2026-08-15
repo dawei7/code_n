@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "hidden-single-upper",
+      "id": "trial-single-upper",
       "name": "one uppercase character",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "hidden-single-lower",
+      "id": "trial-single-lower",
       "name": "one lowercase character",
       "kind": "trial",
       "visible": true,
@@ -96,6 +96,34 @@
       "expected": true,
       "tags": [
         "singleton"
+      ]
+    },
+    {
+      "id": "trial-boundary-8",
+      "name": "single character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "U"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "repeated character in word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "UUU"
+      },
+      "expected": true,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

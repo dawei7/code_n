@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-full-cycle",
+      "id": "trial-full-cycle",
       "name": "the first matching residue occurs at count ten",
       "kind": "trial",
       "visible": true,
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "real-residue-matches-but-too-large",
+      "id": "trial-residue-matches-but-too-large",
       "name": "a matching count can exceed the target",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-maximum-target",
+      "id": "trial-maximum-target",
       "name": "the maximum target remains a constant-size check",
       "kind": "trial",
       "visible": true,

@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "real-two-equal-requests",
+      "id": "trial-two-equal-requests",
       "name": "equal adjacent values remain legal",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-three-equal-requests",
+      "id": "trial-three-equal-requests",
       "name": "three repeated digit-sum-one requests",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "real-source-prefix-extended",
+      "id": "trial-source-prefix-extended",
       "name": "every source pair has one legal continuation",
       "kind": "trial",
       "visible": true,
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "real-4999-to-5000",
+      "id": "trial-4999-to-5000",
       "name": "the upper endpoint follows the maximum digit-sum value",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-no-value-after-4999",
+      "id": "trial-no-value-after-4999",
       "name": "no digit-sum-four value can follow 4999",
       "kind": "trial",
       "visible": true,
@@ -270,7 +270,7 @@
       ]
     },
     {
-      "id": "real-four-sum-two",
+      "id": "trial-four-sum-two",
       "name": "four positions draw from ten matching values",
       "kind": "trial",
       "visible": true,
@@ -292,7 +292,7 @@
       ]
     },
     {
-      "id": "real-five-before-31",
+      "id": "trial-five-before-31",
       "name": "every digit-sum-five value except 5000 can precede 4999",
       "kind": "trial",
       "visible": true,
@@ -309,6 +309,39 @@
       "tags": [
         "upper-boundary",
         "direction-sensitive"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in digitSum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digitSum": [
+          25
+        ]
+      },
+      "expected": 80,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in digitSum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "digitSum": [
+          25,
+          25
+        ]
+      },
+      "expected": 3240,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

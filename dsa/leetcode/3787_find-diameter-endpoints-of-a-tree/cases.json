@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "real-asymmetric",
+      "id": "trial-asymmetric",
       "name": "endpoints occur at unequal root depths",
       "kind": "trial",
       "visible": true,
@@ -243,7 +243,7 @@
       ]
     },
     {
-      "id": "real-broom",
+      "id": "trial-broom",
       "name": "several leaves share one diameter side",
       "kind": "trial",
       "visible": true,
@@ -285,7 +285,7 @@
       ]
     },
     {
-      "id": "real-center-leaf",
+      "id": "trial-center-leaf",
       "name": "short branch is not peripheral",
       "kind": "trial",
       "visible": true,
@@ -323,7 +323,7 @@
       ]
     },
     {
-      "id": "real-double-star",
+      "id": "trial-double-star",
       "name": "leaves on either side are all special",
       "kind": "trial",
       "visible": true,
@@ -369,7 +369,7 @@
       ]
     },
     {
-      "id": "real-renumbered-path",
+      "id": "trial-renumbered-path",
       "name": "node numbers do not follow path order",
       "kind": "trial",
       "visible": true,
@@ -403,7 +403,7 @@
       ]
     },
     {
-      "id": "real-three-arm",
+      "id": "trial-three-arm",
       "name": "only the two longest arms supply endpoints",
       "kind": "trial",
       "visible": true,

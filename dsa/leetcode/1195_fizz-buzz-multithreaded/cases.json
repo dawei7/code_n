@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-first-fizz",
+      "id": "trial-first-fizz",
       "name": "sequence ends on fizz",
       "kind": "trial",
       "visible": true,
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "real-after-fizzbuzz",
+      "id": "trial-after-fizzbuzz",
       "name": "workers continue after a multiple of fifteen",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-maximum",
+      "id": "trial-maximum",
       "name": "maximum sequence length",
       "kind": "trial",
       "visible": true,

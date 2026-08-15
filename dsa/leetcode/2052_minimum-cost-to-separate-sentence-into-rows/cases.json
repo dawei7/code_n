@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "real-exact-width",
+      "id": "trial-exact-width",
       "name": "exact-width non-final rows contribute zero",
       "kind": "trial",
       "visible": true,
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "real-many-short-words",
+      "id": "trial-many-short-words",
       "name": "spaces prevent pairing one-letter words at width two",
       "kind": "trial",
       "visible": true,
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "real-long-words",
+      "id": "trial-long-words",
       "name": "the final long word remains unpenalized",
       "kind": "trial",
       "visible": true,

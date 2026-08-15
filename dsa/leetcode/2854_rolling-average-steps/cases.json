@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "real-partitions-are-independent",
+      "id": "trial-partitions-are-independent",
       "name": "observations from different users never mix",
       "kind": "trial",
       "visible": true,
@@ -294,7 +294,7 @@
       ]
     },
     {
-      "id": "real-overlapping-windows-and-input-order",
+      "id": "trial-overlapping-windows-and-input-order",
       "name": "a long streak yields overlapping windows in sorted order",
       "kind": "trial",
       "visible": true,
@@ -362,7 +362,7 @@
       ]
     },
     {
-      "id": "real-month-boundary",
+      "id": "trial-month-boundary",
       "name": "consecutive dates may cross a month boundary",
       "kind": "trial",
       "visible": true,
@@ -409,7 +409,7 @@
       ]
     },
     {
-      "id": "real-one-and-two-row-partitions",
+      "id": "trial-one-and-two-row-partitions",
       "name": "short user histories produce no rows",
       "kind": "trial",
       "visible": true,

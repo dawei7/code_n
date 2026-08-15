@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "real-boundary-values",
+      "id": "trial-boundary-values",
       "name": "boundary values and tied frequencies",
       "kind": "trial",
       "visible": true,
@@ -163,7 +163,7 @@
       ]
     },
     {
-      "id": "real-several-count-groups",
+      "id": "trial-several-count-groups",
       "name": "several values share and differ in counts",
       "kind": "trial",
       "visible": true,

@@ -118,7 +118,7 @@
       "expected": 4
     },
     {
-      "id": "real-two-components",
+      "id": "trial-two-components",
       "name": "disconnected source components prevent uniqueness",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       "expected": -1
     },
     {
-      "id": "real-dense-order",
+      "id": "trial-dense-order",
       "name": "transitively closed total order has one source",
       "kind": "trial",
       "visible": true,
@@ -206,7 +206,7 @@
       "expected": 2
     },
     {
-      "id": "real-direct-and-transitive-edges",
+      "id": "trial-direct-and-transitive-edges",
       "name": "redundant transitive edges do not change indegree status",
       "kind": "trial",
       "visible": true,

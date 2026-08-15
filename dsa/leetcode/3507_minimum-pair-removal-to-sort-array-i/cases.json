@@ -75,8 +75,8 @@
       ]
     },
     {
-      "id": "real-decreasing-negatives",
-      "name": "real: every element is eventually merged",
+      "id": "trial-decreasing-negatives",
+      "name": "every element is eventually merged",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -95,8 +95,8 @@
       ]
     },
     {
-      "id": "real-value-boundaries",
-      "name": "real: opposite input bounds form zero",
+      "id": "trial-value-boundaries",
+      "name": "opposite input bounds form zero",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -112,8 +112,8 @@
       ]
     },
     {
-      "id": "real-minimum-pair-not-inversion",
-      "name": "real: mandatory minimum pair can already be ordered",
+      "id": "trial-minimum-pair-not-inversion",
+      "name": "mandatory minimum pair can already be ordered",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -132,8 +132,8 @@
       ]
     },
     {
-      "id": "real-all-equal",
-      "name": "real: equal values need no operation",
+      "id": "trial-all-equal",
+      "name": "equal values need no operation",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-changing-neighbor-sums",
-      "name": "real: a replacement changes the next chosen pair",
+      "id": "trial-changing-neighbor-sums",
+      "name": "a replacement changes the next chosen pair",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -171,8 +171,8 @@
       ]
     },
     {
-      "id": "real-mixed-signs-to-singleton",
-      "name": "real: mixed signs require all four replacements",
+      "id": "trial-mixed-signs-to-singleton",
+      "name": "mixed signs require all four replacements",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -189,6 +189,39 @@
         "real",
         "mixed-signs",
         "worst-case-operations"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

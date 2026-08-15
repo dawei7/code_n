@@ -272,7 +272,7 @@
       }
     },
     {
-      "id": "real-short-department",
+      "id": "trial-short-department",
       "name": "department with two salary levels",
       "kind": "trial",
       "visible": true,

@@ -130,7 +130,7 @@
       "expected": 3
     },
     {
-      "id": "real-requires-skip",
+      "id": "trial-requires-skip",
       "name": "longest route skips invalid values",
       "kind": "trial",
       "visible": true,
@@ -152,7 +152,7 @@
       "expected": 4
     },
     {
-      "id": "real-two-index-unreachable",
+      "id": "trial-two-index-unreachable",
       "name": "only possible jump exceeds the threshold",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       "expected": -1
     },
     {
-      "id": "real-all-values-reachable",
+      "id": "trial-all-values-reachable",
       "name": "a large threshold permits every index",
       "kind": "trial",
       "visible": true,
@@ -190,7 +190,7 @@
       "expected": 4
     },
     {
-      "id": "real-extreme-values",
+      "id": "trial-extreme-values",
       "name": "extreme values with a narrow valid chain",
       "kind": "trial",
       "visible": true,
@@ -209,7 +209,7 @@
       "expected": 2
     },
     {
-      "id": "real-unreachable-predecessors",
+      "id": "trial-unreachable-predecessors",
       "name": "mutually connected indices remain unreachable",
       "kind": "trial",
       "visible": true,

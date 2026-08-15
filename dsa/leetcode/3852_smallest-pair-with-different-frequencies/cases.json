@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-many-equal-before-different",
+      "id": "trial-many-equal-before-different",
       "name": "several equal-frequency candidates precede the answer",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-all-distinct",
+      "id": "trial-all-distinct",
       "name": "all distinct values share frequency one",
       "kind": "trial",
       "visible": true,
@@ -214,7 +214,7 @@
       ]
     },
     {
-      "id": "real-all-twice",
+      "id": "trial-all-twice",
       "name": "repeated values can still have uniform frequencies",
       "kind": "trial",
       "visible": true,
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "id": "real-domain-endpoints",
+      "id": "trial-domain-endpoints",
       "name": "the legal value endpoints form the answer",
       "kind": "trial",
       "visible": true,
@@ -265,7 +265,7 @@
       ]
     },
     {
-      "id": "real-smallest-most-frequent",
+      "id": "trial-smallest-most-frequent",
       "name": "the smallest value may be the most frequent",
       "kind": "trial",
       "visible": true,
@@ -295,7 +295,7 @@
       ]
     },
     {
-      "id": "real-reordered-occurrences",
+      "id": "trial-reordered-occurrences",
       "name": "occurrence positions do not determine pair order",
       "kind": "trial",
       "visible": true,
@@ -326,7 +326,7 @@
       ]
     },
     {
-      "id": "real-late-domain-answer",
+      "id": "trial-late-domain-answer",
       "name": "scan to the maximum value for a different count",
       "kind": "trial",
       "visible": true,

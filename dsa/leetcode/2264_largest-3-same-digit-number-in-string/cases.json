@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-zero-only",
+      "id": "trial-zero-only",
       "name": "the whole input is the zero candidate",
       "kind": "trial",
       "visible": true,
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "real-late-maximum",
+      "id": "trial-late-maximum",
       "name": "a later maximum beats earlier lower triples",
       "kind": "trial",
       "visible": true,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "real-repeated-highest",
+      "id": "trial-repeated-highest",
       "name": "repeated highest candidates do not change the result",
       "kind": "trial",
       "visible": true,
@@ -110,6 +110,34 @@
       "expected": "888",
       "tags": [
         "duplicates"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "6"
+      },
+      "expected": "",
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "repeated character in num",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "666"
+      },
+      "expected": "666",
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

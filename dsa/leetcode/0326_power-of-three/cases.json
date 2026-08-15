@@ -72,7 +72,7 @@
       ]
     },
     {
-      "id": "hidden-largest-power",
+      "id": "trial-largest-power",
       "name": "largest signed-32-bit power",
       "kind": "trial",
       "visible": true,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "hidden-below-largest",
+      "id": "trial-below-largest",
       "name": "value below largest power",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "hidden-smaller-power",
+      "id": "trial-smaller-power",
       "name": "middle exponent",
       "kind": "trial",
       "visible": true,

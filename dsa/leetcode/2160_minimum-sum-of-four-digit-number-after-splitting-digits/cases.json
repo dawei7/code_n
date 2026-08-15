@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "largest legal input",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-zero-and-large-pair",
+      "id": "trial-zero-and-large-pair",
       "name": "one zero and two equal large digits",
       "kind": "trial",
       "visible": true,

@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "real-query-is-shorter",
+      "id": "trial-query-is-shorter",
       "name": "a full query may be a suffix of longer words",
       "kind": "trial",
       "visible": true,
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "id": "real-container-word-ends-early",
+      "id": "trial-container-word-ends-early",
       "name": "terminal word remains best at an internal path",
       "kind": "trial",
       "visible": true,
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-no-match-shortest-index",
+      "id": "trial-no-match-shortest-index",
       "name": "empty suffix uses shortest then earliest",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-mixed-branches",
+      "id": "trial-mixed-branches",
       "name": "queries stop at different trie depths",
       "kind": "trial",
       "visible": true,
@@ -212,6 +212,57 @@
       "tags": [
         "mixed-depths",
         "branches"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in wordsContainer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "wordsContainer": [
+          "abcd"
+        ],
+        "wordsQuery": [
+          "cd",
+          "bcd",
+          "xyz"
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in wordsContainer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "wordsContainer": [
+          "abcd",
+          "abcd"
+        ],
+        "wordsQuery": [
+          "cd",
+          "bcd",
+          "xyz"
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

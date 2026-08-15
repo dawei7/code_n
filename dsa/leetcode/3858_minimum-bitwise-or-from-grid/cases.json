@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-shared-one",
+      "id": "trial-shared-one",
       "name": "every row can select the shared low bit",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-overlapping-bits",
+      "id": "trial-overlapping-bits",
       "name": "choices combine overlapping bit patterns",
       "kind": "trial",
       "visible": true,
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "real-duplicate-values",
+      "id": "trial-duplicate-values",
       "name": "duplicate cells do not change feasibility",
       "kind": "trial",
       "visible": true,
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "id": "real-row-minima-suboptimal",
+      "id": "trial-row-minima-suboptimal",
       "name": "row-wise numerical minima need not give the best OR",
       "kind": "trial",
       "visible": true,
@@ -276,7 +276,7 @@
       ]
     },
     {
-      "id": "real-maximum-cell-value",
+      "id": "trial-maximum-cell-value",
       "name": "maximum cell value participates in a one-row minimum",
       "kind": "trial",
       "visible": true,
@@ -298,7 +298,7 @@
       ]
     },
     {
-      "id": "real-high-bit-avoidable",
+      "id": "trial-high-bit-avoidable",
       "name": "all rows can avoid the highest available bit",
       "kind": "trial",
       "visible": true,
@@ -328,7 +328,7 @@
       ]
     },
     {
-      "id": "real-high-bit-forced",
+      "id": "trial-high-bit-forced",
       "name": "one row forces the highest available bit",
       "kind": "trial",
       "visible": true,

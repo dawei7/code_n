@@ -57,7 +57,7 @@
       ]
     },
     {
-      "id": "real-length-ten",
+      "id": "trial-length-ten",
       "name": "several transition rounds",
       "kind": "trial",
       "visible": true,
@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-length-twelve",
+      "id": "trial-length-twelve",
       "name": "count grows beyond manual enumeration",
       "kind": "trial",
       "visible": true,
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-transition-growth",
+      "id": "trial-transition-growth",
       "name": "another transition length is counted exactly",
       "kind": "trial",
       "visible": true,

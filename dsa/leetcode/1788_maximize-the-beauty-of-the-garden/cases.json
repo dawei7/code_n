@@ -79,7 +79,7 @@
       ]
     },
     {
-      "id": "real-negative-endpoints",
+      "id": "trial-negative-endpoints",
       "name": "positive interior outweighs negative endpoints",
       "kind": "trial",
       "visible": true,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "real-zero-endpoints",
+      "id": "trial-zero-endpoints",
       "name": "zero endpoints retain positive interior beauty",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-several-equal-endpoints",
+      "id": "trial-several-equal-endpoints",
       "name": "later matching endpoint can include more positive beauty",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-all-negative",
+      "id": "trial-all-negative",
       "name": "choose the least damaging repeated value",
       "kind": "trial",
       "visible": true,
@@ -157,7 +157,7 @@
       ]
     },
     {
-      "id": "real-large-values",
+      "id": "trial-large-values",
       "name": "boundary values accumulate safely",
       "kind": "trial",
       "visible": true,
@@ -173,6 +173,23 @@
       "tags": [
         "maximum-value",
         "large-sum"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "identical elements in flowers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "flowers": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

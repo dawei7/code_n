@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "hidden-palindromic-upper-region",
+      "id": "trial-palindromic-upper-region",
       "name": "a composite three-digit palindrome remains zero",
       "kind": "trial",
       "visible": true,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "id": "hidden-prime-large-reversal",
+      "id": "trial-prime-large-reversal",
       "name": "a prime endpoint and its smaller reversal are inclusive",
       "kind": "trial",
       "visible": true,
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "hidden-maximum",
+      "id": "trial-maximum",
       "name": "maximum n reverses to one",
       "kind": "trial",
       "visible": true,

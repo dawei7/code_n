@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-same-pair-cross-then-swap",
+      "id": "trial-same-pair-cross-then-swap",
       "name": "cross plus ordinary swap fixes equal orientations",
       "kind": "trial",
       "visible": true,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "real-same-pair-flips",
+      "id": "trial-same-pair-flips",
       "name": "two flips beat cross plus swap",
       "kind": "trial",
       "visible": true,
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "real-mixed-counts",
+      "id": "trial-mixed-counts",
       "name": "pair opposite orientations before remainder",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-four-same-orientation",
+      "id": "trial-four-same-orientation",
       "name": "two same-orientation pairs",
       "kind": "trial",
       "visible": true,
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-three-same-orientation",
+      "id": "trial-three-same-orientation",
       "name": "pair plus one unavoidable flip",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "real-matches-around-mismatches",
+      "id": "trial-matches-around-mismatches",
       "name": "matching positions are ignored",
       "kind": "trial",
       "visible": true,
@@ -256,6 +256,42 @@
       "tags": [
         "matching-positions",
         "mixed-mismatches"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0",
+        "t": "10111",
+        "flipCost": 10,
+        "swapCost": 2,
+        "crossCost": 2
+      },
+      "expected": 10,
+      "tags": [
+        "boundary",
+        "single-char"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "repeated character in s",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000",
+        "t": "10111",
+        "flipCost": 10,
+        "swapCost": 2,
+        "crossCost": 2
+      },
+      "expected": 4,
+      "tags": [
+        "boundary",
+        "repeated"
       ]
     }
   ]

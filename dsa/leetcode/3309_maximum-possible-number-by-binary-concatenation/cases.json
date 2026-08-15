@@ -89,8 +89,8 @@
       ]
     },
     {
-      "id": "real-wide-bit-lengths",
-      "name": "real: one-, seven-, and seven-bit values",
+      "id": "trial-wide-bit-lengths",
+      "name": "one-, seven-, and seven-bit values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -106,8 +106,8 @@
       ]
     },
     {
-      "id": "real-random-triple",
-      "name": "real: nontrivial permutation",
+      "id": "trial-random-triple",
+      "name": "nontrivial permutation",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -123,8 +123,8 @@
       ]
     },
     {
-      "id": "real-comparator-trap",
-      "name": "real: numeric order is not optimal order",
+      "id": "trial-comparator-trap",
+      "name": "numeric order is not optimal order",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -140,8 +140,8 @@
       ]
     },
     {
-      "id": "real-near-maximum",
-      "name": "real: near-boundary values and one bit",
+      "id": "trial-near-maximum",
+      "name": "near-boundary values and one bit",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -157,8 +157,8 @@
       ]
     },
     {
-      "id": "real-all-maximum",
-      "name": "real: every value is the maximum",
+      "id": "trial-all-maximum",
+      "name": "every value is the maximum",
       "kind": "trial",
       "visible": true,
       "input": {

@@ -168,7 +168,7 @@
       ]
     },
     {
-      "id": "hidden-interleaved-pairs",
+      "id": "trial-interleaved-pairs",
       "name": "interleaved pair requests",
       "kind": "trial",
       "visible": true,
@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "hidden-repeated-groups",
+      "id": "trial-repeated-groups",
       "name": "several groups share a size",
       "kind": "trial",
       "visible": true,

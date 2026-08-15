@@ -90,7 +90,7 @@
       ]
     },
     {
-      "id": "real-left-cascade",
+      "id": "trial-left-cascade",
       "name": "cancellation exposes pair to the left",
       "kind": "trial",
       "visible": true,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "real-partial-cascade",
+      "id": "trial-partial-cascade",
       "name": "nested middle cancellation leaves outer text",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-alternating-survivors",
+      "id": "trial-alternating-survivors",
       "name": "alternating unrelated cases survive",
       "kind": "trial",
       "visible": true,
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "real-multiple-regimes",
+      "id": "trial-multiple-regimes",
       "name": "separated cancellation runs reduce independently",
       "kind": "trial",
       "visible": true,

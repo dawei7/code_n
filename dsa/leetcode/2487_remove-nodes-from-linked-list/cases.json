@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "real-equal-peaks",
+      "id": "trial-equal-peaks",
       "name": "equal suffix maxima remain",
       "kind": "trial",
       "visible": true,
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "real-separated-peaks",
+      "id": "trial-separated-peaks",
       "name": "separated suffix maxima",
       "kind": "trial",
       "visible": true,
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "repeated maximum value",
       "kind": "trial",
       "visible": true,

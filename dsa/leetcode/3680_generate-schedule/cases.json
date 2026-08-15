@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "real-six-teams",
+      "id": "trial-six-teams",
       "name": "construct an even-team schedule",
       "kind": "trial",
       "visible": true,
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "real-seven-teams",
+      "id": "trial-seven-teams",
       "name": "omit dummy fixtures for an odd team count",
       "kind": "trial",
       "visible": true,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "id": "real-twelve-teams",
+      "id": "trial-twelve-teams",
       "name": "preserve boundaries across many full rounds",
       "kind": "trial",
       "visible": true,
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "real-maximum-teams",
+      "id": "trial-maximum-teams",
       "name": "construct all fixtures at the maximum team count",
       "kind": "trial",
       "visible": true,
@@ -135,6 +135,20 @@
       },
       "tags": [
         "maximum-team-count"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value n=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": [],
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "hidden-duplicates",
+      "id": "trial-duplicates",
       "name": "duplicate rows both contribute",
       "kind": "trial",
       "visible": true,
@@ -286,7 +286,7 @@
       ]
     },
     {
-      "id": "hidden-below-threshold",
+      "id": "trial-below-threshold",
       "name": "February total remains below threshold",
       "kind": "trial",
       "visible": true,
@@ -320,7 +320,7 @@
       ]
     },
     {
-      "id": "hidden-multiple-products",
+      "id": "trial-multiple-products",
       "name": "several groups with deterministic names",
       "kind": "trial",
       "visible": true,

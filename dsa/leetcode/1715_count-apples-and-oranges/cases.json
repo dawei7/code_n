@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "real-repeated-chest",
+      "id": "trial-repeated-chest",
       "name": "one chest identifier contributes for every box occurrence",
       "kind": "trial",
       "visible": true,
@@ -236,7 +236,7 @@
       ]
     },
     {
-      "id": "real-unreferenced-chest",
+      "id": "trial-unreferenced-chest",
       "name": "unreferenced chests do not enter the total",
       "kind": "trial",
       "visible": true,

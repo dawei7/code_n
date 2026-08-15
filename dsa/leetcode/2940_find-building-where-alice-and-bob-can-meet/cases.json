@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-descending",
+      "id": "trial-descending",
       "name": "no later building is tall enough",
       "kind": "trial",
       "visible": true,
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "real-skip-insufficient-height",
+      "id": "trial-skip-insufficient-height",
       "name": "skip buildings that satisfy only one person",
       "kind": "trial",
       "visible": true,
@@ -257,7 +257,7 @@
       ]
     },
     {
-      "id": "real-equal-intermediate",
+      "id": "trial-equal-intermediate",
       "name": "equal height is not reachable",
       "kind": "trial",
       "visible": true,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "real-increasing",
+      "id": "trial-increasing",
       "name": "the later start is immediately reachable",
       "kind": "trial",
       "visible": true,

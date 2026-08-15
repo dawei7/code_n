@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "real-transitive",
+      "id": "trial-transitive",
       "name": "nested chain excludes every nonmaximal list",
       "kind": "trial",
       "visible": true,
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-input-order",
+      "id": "trial-input-order",
       "name": "company order does not affect containment",
       "kind": "trial",
       "visible": true,
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-multiple-witnesses",
+      "id": "trial-multiple-witnesses",
       "name": "one list can be contained by several others",
       "kind": "trial",
       "visible": true,

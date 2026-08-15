@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "real-central-valley",
+      "id": "trial-central-valley",
       "name": "a central valley controls every longer window",
       "kind": "trial",
       "visible": true,
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "real-zero-valley",
+      "id": "trial-zero-valley",
       "name": "zero controls all windows spanning the middle",
       "kind": "trial",
       "visible": true,
@@ -184,7 +184,7 @@
       ]
     },
     {
-      "id": "real-duplicate-peaks",
+      "id": "trial-duplicate-peaks",
       "name": "duplicate peaks and valleys share spans correctly",
       "kind": "trial",
       "visible": true,
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "real-value-boundary",
+      "id": "trial-value-boundary",
       "name": "maximum legal values require no special handling",
       "kind": "trial",
       "visible": true,
@@ -226,6 +226,44 @@
       ],
       "tags": [
         "value-boundary"
+      ]
+    },
+    {
+      "id": "trial-boundary-11",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-12",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

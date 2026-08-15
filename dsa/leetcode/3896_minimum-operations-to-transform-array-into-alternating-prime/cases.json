@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "real-both-special-costs",
+      "id": "trial-both-special-costs",
       "name": "a prime gap and odd-index two costs combine",
       "kind": "trial",
       "visible": true,
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "real-repairs-at-every-index",
+      "id": "trial-repairs-at-every-index",
       "name": "every position requires an increment sequence",
       "kind": "trial",
       "visible": true,
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "real-maximum-value",
+      "id": "trial-maximum-value",
       "name": "the maximum legal value advances beyond the input bound",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-all-ones",
+      "id": "trial-all-ones",
       "name": "only even indices repair repeated ones",
       "kind": "trial",
       "visible": true,
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "real-primes-on-odd-indices",
+      "id": "trial-primes-on-odd-indices",
       "name": "even composites and odd primes all need repairs",
       "kind": "trial",
       "visible": true,
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "real-composite-squares",
+      "id": "trial-composite-squares",
       "name": "composite squares advance to later primes",
       "kind": "trial",
       "visible": true,
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "id": "real-repeated-large-prime",
+      "id": "trial-repeated-large-prime",
       "name": "a large prime changes only at odd indices",
       "kind": "trial",
       "visible": true,

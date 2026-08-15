@@ -83,7 +83,7 @@
       ]
     },
     {
-      "id": "real-invalid-first-digit",
+      "id": "trial-invalid-first-digit",
       "name": "string starts with a non-prime digit",
       "kind": "trial",
       "visible": true,
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "real-invalid-last-digit",
+      "id": "trial-invalid-last-digit",
       "name": "string ends with a prime digit",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "real-insufficient-length",
+      "id": "trial-insufficient-length",
       "name": "required parts cannot fit",
       "kind": "trial",
       "visible": true,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "real-no-valid-internal-cut",
+      "id": "trial-no-valid-internal-cut",
       "name": "length fits but digit boundary does not",
       "kind": "trial",
       "visible": true,

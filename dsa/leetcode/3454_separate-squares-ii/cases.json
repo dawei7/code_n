@@ -129,8 +129,8 @@
       }
     },
     {
-      "id": "real-layered-union",
-      "name": "real: layered union with changing width",
+      "id": "trial-layered-union",
+      "name": "layered union with changing width",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -168,8 +168,8 @@
       }
     },
     {
-      "id": "real-duplicates",
-      "name": "real: duplicate squares add no union area",
+      "id": "trial-duplicates",
+      "name": "duplicate squares add no union area",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -202,8 +202,8 @@
       }
     },
     {
-      "id": "real-contained-square",
-      "name": "real: contained square does not change the union",
+      "id": "trial-contained-square",
+      "name": "contained square does not change the union",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -231,8 +231,8 @@
       }
     },
     {
-      "id": "real-large-coordinate",
-      "name": "real: large coordinate and side length",
+      "id": "trial-large-coordinate",
+      "name": "large coordinate and side length",
       "kind": "trial",
       "visible": true,
       "input": {

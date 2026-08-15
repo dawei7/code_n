@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "real-zero-run",
+      "id": "trial-zero-run",
       "name": "every subarray of a zero run is good",
       "kind": "trial",
       "visible": true,
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "id": "real-neutral-middle",
+      "id": "trial-neutral-middle",
       "name": "a neutral middle zero preserves pair witnesses",
       "kind": "trial",
       "visible": true,
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "id": "real-alternating-incompatible",
+      "id": "trial-alternating-incompatible",
       "name": "repeated values do not rescue incompatible pairs",
       "kind": "trial",
       "visible": true,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "real-multiple-rightmost-witnesses",
+      "id": "trial-multiple-rightmost-witnesses",
       "name": "intervals are assigned to their rightmost equal witness",
       "kind": "trial",
       "visible": true,
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "id": "real-maximum-repeated",
+      "id": "trial-maximum-repeated",
       "name": "maximum legal values surround a neutral zero",
       "kind": "trial",
       "visible": true,
@@ -283,7 +283,7 @@
       ]
     },
     {
-      "id": "real-high-disjoint-bits",
+      "id": "trial-high-disjoint-bits",
       "name": "disjoint high-bit values have an absent combined OR",
       "kind": "trial",
       "visible": true,
@@ -303,7 +303,7 @@
       ]
     },
     {
-      "id": "real-mixed-blockers",
+      "id": "trial-mixed-blockers",
       "name": "several witnesses and blockers interact",
       "kind": "trial",
       "visible": true,
@@ -324,6 +324,39 @@
       "tags": [
         "mixed-boundaries",
         "multiple-witnesses"
+      ]
+    },
+    {
+      "id": "trial-boundary-16",
+      "name": "single element in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-17",
+      "name": "identical elements in nums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

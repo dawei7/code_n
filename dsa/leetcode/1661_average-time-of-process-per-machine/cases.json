@@ -206,7 +206,7 @@
       ]
     },
     {
-      "id": "real-round-after-average",
+      "id": "trial-round-after-average",
       "name": "rounding occurs after averaging durations",
       "kind": "trial",
       "visible": true,
@@ -258,7 +258,7 @@
       ]
     },
     {
-      "id": "real-nonconsecutive-ids",
+      "id": "trial-nonconsecutive-ids",
       "name": "identifiers need not be consecutive",
       "kind": "trial",
       "visible": true,
@@ -309,7 +309,7 @@
       ]
     },
     {
-      "id": "real-event-order-independent",
+      "id": "trial-event-order-independent",
       "name": "table row order does not pair events",
       "kind": "trial",
       "visible": true,

@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "real-single-zero",
+      "id": "trial-single-zero",
       "name": "one non-negative person is already balanced",
       "kind": "trial",
       "visible": true,
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "real-opposite-tie",
+      "id": "trial-opposite-tie",
       "name": "an opposite donor has equal routes",
       "kind": "trial",
       "visible": true,
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "id": "real-multiple-distances",
+      "id": "trial-multiple-distances",
       "name": "supply is consumed across two distance levels",
       "kind": "trial",
       "visible": true,
@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "real-large-units",
+      "id": "trial-large-units",
       "name": "the move count exceeds ordinary small-case scale",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-surplus-unused",
+      "id": "trial-surplus-unused",
       "name": "excess supply remains at its donor",
       "kind": "trial",
       "visible": true,
@@ -233,7 +233,7 @@
       ]
     },
     {
-      "id": "real-all-distance-two",
+      "id": "trial-all-distance-two",
       "name": "zeros separate the deficit from its donor",
       "kind": "trial",
       "visible": true,
@@ -253,6 +253,39 @@
       "tags": [
         "zeros",
         "distance-two"
+      ]
+    },
+    {
+      "id": "trial-boundary-13",
+      "name": "single element in balance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-14",
+      "name": "identical elements in balance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "balance": [
+          5,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

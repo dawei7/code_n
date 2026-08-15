@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "hidden-flat",
+      "id": "trial-flat",
       "name": "flat terrain",
       "kind": "trial",
       "visible": true,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "id": "hidden-rectangular-basin",
+      "id": "trial-rectangular-basin",
       "name": "rectangular basin with varied floor",
       "kind": "trial",
       "visible": true,
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "hidden-low-side",
+      "id": "trial-low-side",
       "name": "lower side controls water level",
       "kind": "trial",
       "visible": true,

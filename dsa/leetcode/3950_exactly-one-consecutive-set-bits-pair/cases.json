@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "real-separated-zero",
+      "id": "trial-separated-zero",
       "name": "one pair and one separated set bit",
       "kind": "trial",
       "visible": true,
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "real-overlap-with-trailing-zero",
+      "id": "trial-overlap-with-trailing-zero",
       "name": "1110 still contains two overlapping pairs",
       "kind": "trial",
       "visible": true,
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "id": "real-four-consecutive-ones",
+      "id": "trial-four-consecutive-ones",
       "name": "four consecutive ones create three pairs",
       "kind": "trial",
       "visible": true,
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "real-two-disjoint-pairs",
+      "id": "trial-two-disjoint-pairs",
       "name": "11011 contains two separated pairs",
       "kind": "trial",
       "visible": true,
@@ -224,7 +224,7 @@
       ]
     },
     {
-      "id": "real-one-low-pair",
+      "id": "trial-one-low-pair",
       "name": "several isolated bits accompany one low pair",
       "kind": "trial",
       "visible": true,
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "id": "real-upper-bound",
+      "id": "trial-upper-bound",
       "name": "the maximum legal value contains two pairs",
       "kind": "trial",
       "visible": true,

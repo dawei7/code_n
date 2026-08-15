@@ -92,8 +92,8 @@
       ]
     },
     {
-      "id": "real-zero-bit-gaps",
-      "name": "real: source bits fill separated zero positions",
+      "id": "trial-zero-bit-gaps",
+      "name": "source bits fill separated zero positions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -107,8 +107,8 @@
       ]
     },
     {
-      "id": "real-alternating-fixed-bits",
-      "name": "real: alternating fixed and available bits",
+      "id": "trial-alternating-fixed-bits",
+      "name": "alternating fixed and available bits",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -122,8 +122,8 @@
       ]
     },
     {
-      "id": "real-multi-bit-index",
-      "name": "real: several index bits merge around fixed bits",
+      "id": "trial-multi-bit-index",
+      "name": "several index bits merge around fixed bits",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -137,8 +137,8 @@
       ]
     },
     {
-      "id": "real-power-of-two-x",
-      "name": "real: first free bit lies below x",
+      "id": "trial-power-of-two-x",
+      "name": "first free bit lies below x",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -152,8 +152,8 @@
       ]
     },
     {
-      "id": "real-maximum-n-minimum-x",
-      "name": "real: maximum n with minimum x",
+      "id": "trial-maximum-n-minimum-x",
+      "name": "maximum n with minimum x",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -168,8 +168,8 @@
       ]
     },
     {
-      "id": "real-both-inputs-maximum",
-      "name": "real: both inputs at the maximum",
+      "id": "trial-both-inputs-maximum",
+      "name": "both inputs at the maximum",
       "kind": "trial",
       "visible": true,
       "input": {

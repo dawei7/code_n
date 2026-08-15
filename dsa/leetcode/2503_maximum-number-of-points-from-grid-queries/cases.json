@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "real-low-cells-behind-barrier",
+      "id": "trial-low-cells-behind-barrier",
       "name": "low cells remain unreachable behind an ineligible barrier",
       "kind": "trial",
       "visible": true,
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "one threshold step reveals the entire grid",
       "kind": "trial",
       "visible": true,
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "id": "real-rectangular-path",
+      "id": "trial-rectangular-path",
       "name": "a narrow path grows one threshold at a time",
       "kind": "trial",
       "visible": true,

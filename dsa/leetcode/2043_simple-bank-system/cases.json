@@ -141,7 +141,7 @@
       ]
     },
     {
-      "id": "real-invalid-destination-is-atomic",
+      "id": "trial-invalid-destination-is-atomic",
       "name": "failed transfer preserves the valid source balance",
       "kind": "trial",
       "visible": true,
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "id": "real-exact-balance-and-zero",
+      "id": "trial-exact-balance-and-zero",
       "name": "exact and zero withdrawals are valid",
       "kind": "trial",
       "visible": true,
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "real-self-transfer",
+      "id": "trial-self-transfer",
       "name": "a self-transfer preserves available funds",
       "kind": "trial",
       "visible": true,
@@ -259,7 +259,7 @@
       ]
     },
     {
-      "id": "real-money-boundary",
+      "id": "trial-money-boundary",
       "name": "balances can grow beyond the transaction bound",
       "kind": "trial",
       "visible": true,

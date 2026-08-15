@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-nonadjacent-best",
+      "id": "trial-nonadjacent-best",
       "name": "nonadjacent active pair is optimal",
       "kind": "trial",
       "visible": true,
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "real-negative-answer",
+      "id": "trial-negative-answer",
       "name": "maximum equation value is negative",
       "kind": "trial",
       "visible": true,
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "id": "real-equal-scores",
+      "id": "trial-equal-scores",
       "name": "newer equal score safely dominates",
       "kind": "trial",
       "visible": true,
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "id": "real-coordinate-boundaries",
+      "id": "trial-coordinate-boundaries",
       "name": "extreme coordinates and values",
       "kind": "trial",
       "visible": true,
@@ -224,7 +224,7 @@
       ]
     },
     {
-      "id": "real-mixed-windows",
+      "id": "trial-mixed-windows",
       "name": "repeated expiration and insertion",
       "kind": "trial",
       "visible": true,

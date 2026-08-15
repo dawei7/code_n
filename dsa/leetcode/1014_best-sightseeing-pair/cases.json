@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "hidden-1",
+      "id": "trial-ext-1",
       "name": "two late high values",
       "kind": "trial",
       "visible": true,
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "hidden-2",
+      "id": "trial-ext-2",
       "name": "early value offsets distance",
       "kind": "trial",
       "visible": true,
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "hidden-3",
+      "id": "trial-ext-3",
       "name": "interior adjacent pair wins",
       "kind": "trial",
       "visible": true,
@@ -147,6 +147,39 @@
       "expected": 17,
       "tags": [
         "interior"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "single element in values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "values": [
+          8
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "identical elements in values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "values": [
+          8,
+          8
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "boundary",
+        "duplicates"
       ]
     }
   ]

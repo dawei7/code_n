@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "real-mixed-recurrence",
+      "id": "trial-mixed-recurrence",
       "name": "several reachable lengths and block orders",
       "kind": "trial",
       "visible": true,
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "real-single-character",
+      "id": "trial-single-character",
       "name": "both one-character strings",
       "kind": "trial",
       "visible": true,
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "real-exact-combination",
+      "id": "trial-exact-combination",
       "name": "exact length from groups three and four",
       "kind": "trial",
       "visible": true,
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "id": "real-asymmetric-groups",
+      "id": "trial-asymmetric-groups",
       "name": "unit one groups and triple zero groups",
       "kind": "trial",
       "visible": true,
@@ -131,6 +131,40 @@
       "expected": 10,
       "tags": [
         "asymmetric"
+      ]
+    },
+    {
+      "id": "trial-boundary-9",
+      "name": "minimal value minLength=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "minLength": 1,
+        "maxLength": 3,
+        "oneGroup": 1,
+        "zeroGroup": 2
+      },
+      "expected": 6,
+      "tags": [
+        "boundary",
+        "minimal"
+      ]
+    },
+    {
+      "id": "trial-boundary-10",
+      "name": "minimal value maxLength=1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "minLength": 2,
+        "maxLength": 1,
+        "oneGroup": 1,
+        "zeroGroup": 2
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "minimal"
       ]
     }
   ]

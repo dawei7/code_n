@@ -188,7 +188,7 @@
       ]
     },
     {
-      "id": "real-star",
+      "id": "trial-star",
       "name": "wide star with repeated root label",
       "kind": "trial",
       "visible": true,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "real-distinct",
+      "id": "trial-distinct",
       "name": "all labels distinct",
       "kind": "trial",
       "visible": true,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "real-siblings",
+      "id": "trial-siblings",
       "name": "sibling matches do not enter each other's subtrees",
       "kind": "trial",
       "visible": true,
@@ -343,7 +343,7 @@
       ]
     },
     {
-      "id": "real-unbalanced",
+      "id": "trial-unbalanced",
       "name": "repeated labels in an unbalanced tree",
       "kind": "trial",
       "visible": true,
@@ -403,7 +403,7 @@
       ]
     },
     {
-      "id": "real-reversed-edges",
+      "id": "trial-reversed-edges",
       "name": "endpoint direction does not define parenthood",
       "kind": "trial",
       "visible": true,

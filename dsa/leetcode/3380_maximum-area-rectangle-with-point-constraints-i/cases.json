@@ -216,7 +216,7 @@
       ]
     },
     {
-      "id": "real-maximum-coordinate-area",
+      "id": "trial-maximum-coordinate-area",
       "name": "maximum coordinate span",
       "kind": "trial",
       "visible": true,
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "real-several-candidates",
+      "id": "trial-several-candidates",
       "name": "choose the largest empty candidate",
       "kind": "trial",
       "visible": true,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "real-grid-with-interior",
+      "id": "trial-grid-with-interior",
       "name": "dense grid leaves only adjacent empty cells",
       "kind": "trial",
       "visible": true,

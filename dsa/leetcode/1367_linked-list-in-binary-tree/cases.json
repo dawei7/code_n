@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "hidden-overlap-fallback",
+      "id": "trial-overlap-fallback",
       "name": "overlapping prefix restarts in chain",
       "kind": "trial",
       "visible": true,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "hidden-direction-mismatch",
+      "id": "trial-direction-mismatch",
       "name": "value order exists but not downward",
       "kind": "trial",
       "visible": true,

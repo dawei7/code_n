@@ -191,7 +191,7 @@
       ]
     },
     {
-      "id": "real-large-k-period",
+      "id": "trial-large-k-period",
       "name": "a billion rotations are a full period for two-by-two",
       "kind": "trial",
       "visible": true,
@@ -224,7 +224,7 @@
       ]
     },
     {
-      "id": "real-wide-grid",
+      "id": "trial-wide-grid",
       "name": "a wide perimeter rotates five positions",
       "kind": "trial",
       "visible": true,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "id": "real-tall-grid",
+      "id": "trial-tall-grid",
       "name": "a tall perimeter rotates seven positions",
       "kind": "trial",
       "visible": true,
@@ -338,7 +338,7 @@
       ]
     },
     {
-      "id": "real-four-by-six",
+      "id": "trial-four-by-six",
       "name": "two rectangular layers rotate independently",
       "kind": "trial",
       "visible": true,
@@ -419,7 +419,7 @@
       ]
     },
     {
-      "id": "real-six-by-six",
+      "id": "trial-six-by-six",
       "name": "three layers use three different perimeters",
       "kind": "trial",
       "visible": true,
@@ -532,7 +532,7 @@
       ]
     },
     {
-      "id": "real-repeated-border",
+      "id": "trial-repeated-border",
       "name": "an equal outer border can hide inner movement",
       "kind": "trial",
       "visible": true,

@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "real-one-column",
+      "id": "trial-one-column",
       "name": "one operation across several rows",
       "kind": "trial",
       "visible": true,
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "real-rectangular",
+      "id": "trial-rectangular",
       "name": "rectangular matrix with interleaved row orders",
       "kind": "trial",
       "visible": true,
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "real-all-equal",
+      "id": "trial-all-equal",
       "name": "every deletion has the same value",
       "kind": "trial",
       "visible": true,

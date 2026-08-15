@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "real-adjacent-pair-blocked",
+      "id": "trial-adjacent-pair-blocked",
       "name": "every possible middle node touches an odd endpoint",
       "kind": "trial",
       "visible": true,
@@ -225,7 +225,7 @@
       ]
     },
     {
-      "id": "real-six-odd",
+      "id": "trial-six-odd",
       "name": "two edges cannot repair six odd degrees",
       "kind": "trial",
       "visible": true,
@@ -253,7 +253,7 @@
       ]
     },
     {
-      "id": "real-four-odd-alternate-pairing",
+      "id": "trial-four-odd-alternate-pairing",
       "name": "only an alternate pairing avoids existing edges",
       "kind": "trial",
       "visible": true,
