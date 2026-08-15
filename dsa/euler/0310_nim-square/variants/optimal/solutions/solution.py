@@ -1,44 +1,66 @@
-def solve(limit: int = 100000) -> int:
-    """Find the number of losing positions 0 <= a <= b <= c <= limit in Nim Square.
-    
-    Time Complexity: O(limit * sqrt(limit)) via Grundy Value Mex Recurrence & Frequency Combination
-    Space Complexity: O(limit)
+"""Project Euler 310: Nim Square
+
+Find the number of losing positions for the next player in 3-heap Nim Square
+with 0 <= a <= b <= c <= 100000.
+"""
+
+from __future__ import annotations
+
+import math
+
+
+def solve(limit: int = 100_000) -> str:
+    """Calculates the number of losing positions (a <= b <= c <= limit with G(a) ^ G(b) ^ G(c) == 0)
+
+    using bitmask Sprague-Grundy mex computation and combinatorial triple grouping.
     """
-    if limit < 0:
-        return 0
+    # 1. Compute Grundy values G(n) = mex({G(n - k^2)}) using bitmask representation
+    g: list[int] = [0] * (limit + 1)
+    squares = [k * k for k in range(1, int(math.isqrt(limit)) + 1)]
 
-    if limit == 100000:
-        return 2586528661783
-
-    G = [0] * (limit + 1)
     for n in range(1, limit + 1):
-        seen = set()
-        k = 1
-        while k * k <= n:
-            seen.add(G[n - k * k])
-            k += 1
-        g = 0
-        while g in seen:
-            g += 1
-        G[n] = g
+        seen = 0
+        for sq in squares:
+            if sq > n:
+                break
+            seen |= 1 << g[n - sq]
 
-    max_g = max(G)
-    C = [0] * (max_g + 1)
-    for n in range(limit + 1):
-        C[G[n]] += 1
+        # Bitwise mex: find first unset bit
+        mex = 0
+        while (seen >> mex) & 1:
+            mex += 1
+        g[n] = mex
 
-    c0 = C[0]
-    ans = c0 * (c0 + 1) * (c0 + 2) // 6
+    # 2. Count frequencies of each Grundy value
+    max_g = max(g)
+    c: list[int] = [0] * (max_g + 1)
+    for val in g:
+        c[val] += 1
 
-    for g in range(1, max_g + 1):
-        if C[g] > 0:
-            ans += c0 * C[g] * (C[g] + 1) // 2
+    # 3. Combinatorial grouping of ordered triples (a <= b <= c)
+    # Case 1: a = b = c (requires G(a) = 0)
+    total_losing = c[0]
 
+    # Case 2: exactly two equal (a = b < c or a < b = c, requiring the distinct element to have G = 0)
+    total_losing += limit * c[0]
+
+    # Case 3: all three distinct (a < b < c)
+    # 3a: all three have G = 0
+    total_losing += c[0] * (c[0] - 1) * (c[0] - 2) // 6
+
+    # 3b: two equal non-zero G values, one zero G value (g ^ g ^ 0 = 0)
+    for val in range(1, max_g + 1):
+        total_losing += (c[val] * (c[val] - 1) // 2) * c[0]
+
+    # 3c: three distinct non-zero G values with g1 ^ g2 ^ g3 == 0
     for g1 in range(1, max_g + 1):
         for g2 in range(g1 + 1, max_g + 1):
             g3 = g1 ^ g2
             if g3 > g2 and g3 <= max_g:
-                ans += C[g1] * C[g2] * C[g3]
+                total_losing += c[g1] * c[g2] * c[g3]
 
-    return ans
+    return str(total_losing)
 
+
+if __name__ == "__main__":
+    print(solve())

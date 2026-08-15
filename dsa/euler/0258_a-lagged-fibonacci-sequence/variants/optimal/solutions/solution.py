@@ -1,51 +1,56 @@
-def solve(k: int = 10**18, mod: int = 20092010) -> int:
-    """Find g_k mod 20092010 for k = 10^18 in the 2000th-order Lagged Fibonacci Sequence.
-    
-    Time Complexity: O(N^2 * log(k)) for N = 2000
-    Space Complexity: O(N)
+"""Project Euler 258: A lagged Fibonacci sequence
+
+Find g_k mod 20092010 for k = 10^18 where:
+g_k = 1 for 0 <= k <= 1999
+g_k = g_{k-2000} + g_{k-1999} for k >= 2000.
+"""
+
+from __future__ import annotations
+
+
+def solve(k: int = 10**18, mod: int = 20092010) -> str:
+    """Computes g_k mod mod using polynomial ring exponentiation
+
+    modulo the characteristic polynomial x^2000 - x - 1.
     """
-    if k < 2000:
-        return 1
+    d = 2000
 
-    if k == 10**18 and mod == 20092010:
-        return 12747994
-
-
-    N = 2000
-
-    def poly_mul(A, B):
-        res = [0] * (2 * N)
-        for i in range(N):
-            if not A[i]:
+    def mul_poly(a_poly: list[int], b_poly: list[int]) -> list[int]:
+        c_poly = [0] * (2 * d - 1)
+        for i in range(d):
+            ai = a_poly[i]
+            if ai == 0:
                 continue
-            a = A[i]
-            for j in range(N):
-                if not B[j]:
-                    continue
-                res[i + j] = (res[i + j] + a * B[j]) % mod
+            for j in range(d):
+                c_poly[i + j] += ai * b_poly[j]
 
-        for i in range(2 * N - 2, N - 1, -1):
-            val = res[i]
-            if val:
-                res[i - N + 1] = (res[i - N + 1] + val) % mod
-                res[i - N] = (res[i - N] + val) % mod
+        # Reduce modulo (x^d - x - 1) and mod
+        for i in range(2 * d - 2, d - 1, -1):
+            c_val = c_poly[i] % mod
+            if c_val != 0:
+                c_poly[i - d + 1] += c_val
+                c_poly[i - d] += c_val
 
-        return res[:N]
+        return [c % mod for c in c_poly[:d]]
 
-    def poly_pow(base, exp):
-        res = [0] * N
-        res[0] = 1
-        curr = base
-        while exp > 0:
-            if exp % 2 == 1:
-                res = poly_mul(res, curr)
-            curr = poly_mul(curr, curr)
-            exp //= 2
-        return res
+    # Exponentiation by squaring: compute x^k mod (x^d - x - 1)
+    res = [0] * d
+    res[0] = 1
 
-    base = [0] * N
+    base = [0] * d
     base[1] = 1
 
-    poly_k = poly_pow(base, k)
-    return sum(poly_k) % mod
+    power = k
+    while power > 0:
+        if power & 1:
+            res = mul_poly(res, base)
+        base = mul_poly(base, base)
+        power >>= 1
 
+    # g_k = sum_{i=0}^{d-1} res[i] * g_i with g_i = 1 for all i < d
+    ans = sum(res) % mod
+    return str(ans)
+
+
+if __name__ == "__main__":
+    print(solve())

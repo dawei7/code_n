@@ -27,7 +27,7 @@ import * as fs from 'node:fs';
 
 
 /** How long to wait for the server to log its port, then for /api/health. */
-const PORT_TIMEOUT_MS = 60_000;
+const PORT_TIMEOUT_MS = 120_000;
 const HEALTH_TIMEOUT_MS = 20_000;
 const HEALTH_POLL_INTERVAL_MS = 100;
 

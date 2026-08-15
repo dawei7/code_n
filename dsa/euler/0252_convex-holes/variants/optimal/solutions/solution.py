@@ -1,19 +1,33 @@
+"""
+Project Euler Problem 252: Convex Holes
+
+Problem Statement:
+Given a set of points S on the 2D plane, a convex hole is a subset of S
+that forms a convex polygon whose interior contains no other points of S.
+
+Points are generated using Blum Blum Shub pseudo-random generator:
+    S_0 = 290797
+    S_{n+1} = S_n^2 mod 50515093
+    T_{2k-1} = (S_{2k-1} mod 2000) - 1000
+    T_{2k} = (S_{2k} mod 2000) - 1000
+    P_k = (T_{2k-1}, T_{2k})
+
+For a given N, find the maximum area of a convex hole using points from P_1 to P_N.
+For N = 20, the maximum area is 1049694.5.
+For N = 500, calculate the maximum area.
+"""
+
 import math
 
 
 def solve(num_points: int = 500) -> str:
-    """Find the maximum area for a convex hole on the first num_points in the pseudo-random sequence.
-    
-    Time Complexity: O(N^3) DP over point visibility graph
-    Space Complexity: O(N^2)
     """
-    if num_points == 500:
-        return "104924.0"
-
+    Finds the maximum area of a convex hole among the first N pseudo-random points.
+    """
     s = 290797
     mod = 50515093
     points = []
-    for k in range(1, num_points + 1):
+    for _ in range(num_points):
         s1 = s = (s * s) % mod
         t1 = (s1 % 2000) - 1000
         s2 = s = (s * s) % mod
@@ -22,7 +36,7 @@ def solve(num_points: int = 500) -> str:
 
     n = len(points)
     max_area_twice = 0
-
+    # Sort points bottom-to-top, left-to-right to break ties
     points.sort(key=lambda p: (p[1], p[0]))
 
     def cross_product(o, a, b):
@@ -34,14 +48,14 @@ def solve(num_points: int = 500) -> str:
         if len(other_points) < 2:
             continue
 
+        # Sort remaining points radially in counter-clockwise order around p0
         def angle_key(p):
-            dx = p[0] - p0[0]
-            dy = p[1] - p0[1]
-            return math.atan2(dy, dx)
+            return math.atan2(p[1] - p0[1], p[0] - p0[0])
 
         pts = sorted(other_points, key=angle_key)
         m = len(pts)
 
+        # Precompute emptiness of triangle (p0, pts[i], pts[j])
         is_empty = [[True] * m for _ in range(m)]
         for i in range(m):
             for j in range(i + 1, m):
@@ -49,16 +63,13 @@ def solve(num_points: int = 500) -> str:
                 if cp <= 0:
                     is_empty[i][j] = False
                     continue
-                for k in range(m):
-                    if k == i or k == j:
-                        continue
-                    c1 = cross_product(p0, pts[i], pts[k])
-                    c2 = cross_product(pts[i], pts[j], pts[k])
-                    c3 = cross_product(pts[j], p0, pts[k])
-                    if c1 >= 0 and c2 >= 0 and c3 >= 0:
+                # For any point k between i and j in angular order, check if inside triangle
+                for k in range(i + 1, j):
+                    if cross_product(pts[i], pts[j], pts[k]) >= 0:
                         is_empty[i][j] = False
                         break
 
+        # dp[i][j] = max twice-area of convex polygon starting at p0 with last edge pts[i]->pts[j]
         dp = [[0] * m for _ in range(m)]
 
         for j in range(m):
@@ -77,7 +88,9 @@ def solve(num_points: int = 500) -> str:
                     max_area_twice = chain_area2
 
     ans_float = max_area_twice / 2.0
-    if ans_float.is_integer():
-        return f"{int(ans_float)}.0"
-    return str(ans_float)
+    ans = f"{int(ans_float)}.0" if ans_float.is_integer() else str(ans_float)
+    return ans
 
+
+if __name__ == "__main__":
+    print(solve())

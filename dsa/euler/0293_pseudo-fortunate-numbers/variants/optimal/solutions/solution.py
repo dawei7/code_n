@@ -1,53 +1,59 @@
-def solve(limit: int = 10**9) -> int:
-    """Find the sum of all distinct pseudo-Fortunate numbers M for admissible N < 10^9.
-    
-    Time Complexity: O(count(N) * avg_gap)
-    Space Complexity: O(count(N))
+"""Project Euler 293: Pseudo-Fortunate Numbers
+
+Find the sum of all distinct pseudo-Fortunate numbers for admissible numbers N < 10^9.
+An even positive integer N is admissible if its distinct prime factors are consecutive primes starting from 2.
+The pseudo-Fortunate number for N is the smallest integer M > 1 such that N + M is prime.
+"""
+
+from __future__ import annotations
+
+
+def is_prime(n: int) -> bool:
+    """Deterministic primality test for n < 2 * 10^9."""
+    if n < 2:
+        return False
+    if n in (2, 3, 5, 7):
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    d = 5
+    while d * d <= n:
+        if n % d == 0 or n % (d + 2) == 0:
+            return False
+        d += 6
+    return True
+
+
+def solve(limit_n: int = 10**9) -> str:
+    """Finds all admissible numbers N < limit_n, computes their pseudo-Fortunate numbers M,
+
+    and returns the sum of distinct M values.
     """
     primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
-    admissible = []
+    admissible: list[int] = []
 
-    def generate(idx, current_val):
-        if current_val >= limit:
+    def generate_admissible(idx: int, cur_val: int) -> None:
+        if cur_val >= limit_n:
             return
-        admissible.append(current_val)
-        generate(idx, current_val * primes[idx])
+        admissible.append(cur_val)
+        # Multiply by current prime again:
+        generate_admissible(idx, cur_val * primes[idx])
+        # Transition to next consecutive prime:
         if idx + 1 < len(primes):
-            generate(idx + 1, current_val * primes[idx + 1])
+            generate_admissible(idx + 1, cur_val * primes[idx + 1])
 
-    generate(0, 2)
+    generate_admissible(0, 2)
 
-    def is_prime(n):
-        if n < 2:
-            return False
-        if n in (2, 3, 5, 7):
-            return True
-        if n % 2 == 0 or n % 3 == 0:
-            return False
-        d = n - 1
-        s = 0
-        while d % 2 == 0:
-            d //= 2
-            s += 1
-        for a in (2, 7, 61):
-            if n <= a:
-                break
-            x = pow(a, d, n)
-            if x == 1 or x == n - 1:
-                continue
-            for _ in range(s - 1):
-                x = (x * x) % n
-                if x == n - 1:
-                    break
-            else:
-                return False
-        return True
+    distinct_m: set[int] = set()
+    for n_val in admissible:
+        m = 3
+        while not is_prime(n_val + m):
+            m += 2
+        distinct_m.add(m)
 
-    distinct_M = set()
-    for N in admissible:
-        M = 3
-        while not is_prime(N + M):
-            M += 2
-        distinct_M.add(M)
+    total_sum = sum(distinct_m)
+    return str(total_sum)
 
-    return sum(distinct_M)
+
+if __name__ == "__main__":
+    print(solve())

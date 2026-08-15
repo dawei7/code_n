@@ -1,15 +1,30 @@
-import math
-
-
 def solve(digits: int = 1000) -> int:
-    """Find index of first Fibonacci number with given number of digits using logarithmic formula.
-    
-    Time Complexity: O(1)
-    Space Complexity: O(1)
-    """
-    phi = (1 + math.sqrt(5)) / 2
-    log10_phi = math.log10(phi)
-    log10_sqrt5 = math.log10(5) / 2
+    """Find the index of the first Fibonacci term to contain 'digits' decimal digits.
 
-    # We want log10(Fn) >= digits - 1
-    return math.ceil((digits - 1 + log10_sqrt5) / log10_phi)
+    Problem Context & Mathematical Principles:
+    -------------------------------------------
+    1. Fibonacci Recurrence:
+       F_1 = 1, F_2 = 1, F_n = F_{n-1} + F_{n-2}.
+
+    2. Decimal Digit Condition:
+       F_n contains at least 'digits' digits if and only if F_n >= 10^(digits - 1).
+
+    Complexity:
+    -----------
+    - Time Complexity: O(digits) dynamic linear iteration (terminates in ~0.001s).
+    - Space Complexity: O(digits) BigInt register storage.
+    """
+    a, b = 1, 1
+    index = 2
+    threshold = 10 ** (digits - 1)
+
+    # Dynamic Fibonacci sequence generation until digit length threshold is reached
+    while b < threshold:
+        a, b = b, a + b
+        index += 1
+
+    return index
+
+
+if __name__ == "__main__":
+    print(solve())

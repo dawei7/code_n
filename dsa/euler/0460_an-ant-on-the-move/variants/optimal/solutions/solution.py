@@ -1,45 +1,68 @@
-import heapq
-import math
+"""Project Euler Problem 460: An Ant on the Move.
+
+Find F(10000), the minimum travel time for an ant on the Euclidean lattice
+from (0, 1) to (d, 1) with logarithmic mean segment velocities, rounded to 9 decimal places.
+"""
+
+from math import hypot, log, sqrt
+from typing import List
 
 
-def solve(d: int = 10000, decimals: int = 9) -> str:
-    """Find F(d) rounded to decimals places for the minimum travel time of the ant.
+def _min_step_excess(
+    y0: int, y1: int, h: int, logs: List[float]
+) -> float:
+    dy = y1 - y0
+    v = dy / (logs[y1] - logs[y0])
+    denom = sqrt(h * h - v * v)
+    dx_star = dy * v / denom
 
-    Time Complexity: O(d * H * log H) via Convex Trajectory Dynamic Programming & Dijkstra Shortest Path
-    Space Complexity: O(d * H)
-    """
-    if d == 10000 and decimals == 9:
-        return "18.420738199"
-
-    def speed(y1: int, y2: int) -> float:
-        if y1 == y2:
-            return float(y1)
-        return (y2 - y1) / (math.log(y2) - math.log(y1))
-
-    def time_dist(p1: tuple[int, int], p2: tuple[int, int]) -> float:
-        x1, y1 = p1
-        x2, y2 = p2
-        dist = math.hypot(x2 - x1, y2 - y1)
-        return dist / speed(y1, y2)
-
-    max_y = int(math.isqrt(d * d // 4)) + 2
-    dist_map = {(0, 1): 0.0}
-    pq = [(0.0, 0, 1)]
-
-    while pq:
-        t, x, y = heapq.heappop(pq)
-        if t > dist_map.get((x, y), float("inf")):
+    best = float("inf")
+    k = int(dx_star)
+    for dx in (k, k + 1):
+        if dx < 0:
             continue
-        if x == d and y == 1:
-            return f"{t:.{decimals}f}"
+        val = hypot(dx, dy) / v - dx / h
+        if val < best:
+            best = val
+    return best
 
-        for nx in range(x + 1, d + 1):
-            max_ny = min(max_y, int(math.isqrt((nx - x) * (d - nx + 1))) + 5)
-            for ny in range(1, max_ny + 1):
-                new_t = t + time_dist((x, y), (nx, ny))
-                if new_t < dist_map.get((nx, ny), float("inf")):
-                    dist_map[(nx, ny)] = new_t
-                    heapq.heappush(pq, (new_t, nx, ny))
 
-    ans = dist_map.get((d, 1), 0.0)
-    return f"{ans:.{decimals}f}"
+def _best_climb_excess(h: int, window_const: int = 64) -> float:
+    logs = [0.0] * (h + 1)
+    for y in range(1, h + 1):
+        logs[y] = log(y)
+
+    dp = [float("inf")] * (h + 1)
+    dp[1] = 0.0
+
+    for y in range(2, h + 1):
+        m_val = int(window_const * h / y) + 2
+        y0_min = 1 if y - m_val < 1 else y - m_val
+
+        best = float("inf")
+        for y0 in range(y0_min, y):
+            cand = dp[y0] + _min_step_excess(y0, y, h, logs)
+            if cand < best:
+                best = cand
+        dp[y] = best
+
+    return dp[h]
+
+
+def solve(d: int = 10000) -> str:
+    """Compute F(d) using convex excess DP along the hyperbolic geodesic ascent."""
+    h0 = d // 2
+    candidates = [h0] if (d & 1) == 0 else [h0, h0 + 1]
+    best = float("inf")
+    for h in candidates:
+        if h < 1:
+            continue
+        excess = _best_climb_excess(h)
+        total = 2.0 * excess + d / h
+        if total < best:
+            best = total
+    return f"{best:.9f}"
+
+
+if __name__ == "__main__":
+    print(solve())

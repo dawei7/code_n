@@ -1,19 +1,32 @@
 def solve(n: int = 10**25) -> int:
-    """Find number of ways to express n as sum of powers of 2 using each power at most twice.
-    
-    Time Complexity: O(log_2(n))
-    Space Complexity: O(log_2(n))
+    """Find f(n), the number of ways to express n as a sum of powers of 2 (each power used at most twice).
+
+    Problem Context & Mathematical Principles:
+    -------------------------------------------
+    1. Stern's Diatomic Sequence & Hyperbinary Representations:
+       Let f(n) be the number of partitions of n into powers of 2 with part multiplicity at most 2.
+       This is computed iteratively over the binary representation of n:
+       State (a, b) where a = f(prefix) and b = f(prefix - 1).
+       For bit = 0: a' = a + b, b' = b
+       For bit = 1: a' = a, b' = a + b
+
+    Complexity:
+    -----------
+    - Time Complexity: O(log_2 n) operations (~0.0001s for n = 10^25).
+    - Space Complexity: O(1) auxiliary memory.
     """
-    memo = {0: 1, 1: 1}
+    # Express n in binary without '0b'
+    bits = bin(n)[2:]
+    a, b = 1, 0
 
-    def f(k: int) -> int:
-        if k in memo:
-            return memo[k]
-        if k % 2 == 1:
-            ans = f(k // 2)
+    for bit in bits:
+        if bit == "1":
+            b = a + b
         else:
-            ans = f(k // 2) + f(k // 2 - 1)
-        memo[k] = ans
-        return ans
+            a = a + b
 
-    return f(n)
+    return a
+
+
+if __name__ == "__main__":
+    print(solve())

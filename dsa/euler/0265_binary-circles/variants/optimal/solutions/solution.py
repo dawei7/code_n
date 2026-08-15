@@ -1,43 +1,57 @@
-def solve(n: int = 5) -> int:
-    """Find S(5), the sum of all unique numeric representations of De Bruijn binary circles of order 5.
-    
-    Time Complexity: O(2^(2^N)) with bitmask DFS pruning
-    Space Complexity: O(2^N)
+"""Project Euler 265: Binary Circles
+
+Find S(5), the sum of all unique numeric representations of De Bruijn sequences of order N=5,
+starting with N consecutive zeros.
+"""
+
+from __future__ import annotations
+
+
+def solve(n: int = 5) -> str:
+    """Computes S(N) by enumerating all circular De Bruijn sequences of order N
+
+    using depth-first search with bitmask window tracking.
     """
-    length = 1 << n
-    mask = (1 << n) - 1
-    total_sum = 0
+    target_len = 1 << n
+    mask = target_len - 1
+    results: list[int] = []
 
-    def dfs(seq_bits, visited_mask, current_subseq):
-        nonlocal total_sum
-        bits_count = len(seq_bits)
-
-        if bits_count == length:
-            v_mask = visited_mask
+    def backtrack(
+        seq: list[int], visited_mask: int, curr_window: int
+    ) -> None:
+        if len(seq) == target_len:
+            # Validate wrap-around subsequences
             valid = True
-            for k in range(1, n):
-                sub = 0
-                for idx in range(length - n + k, length):
-                    sub = (sub << 1) | seq_bits[idx]
-                sub <<= k
-                if (v_mask & (1 << sub)) != 0:
+            w = curr_window
+            temp_mask = visited_mask
+            for i in range(n - 1):
+                b = seq[i]
+                w = ((w << 1) | b) & mask
+                if (temp_mask & (1 << w)) != 0:
                     valid = False
                     break
-                v_mask |= 1 << sub
+                temp_mask |= 1 << w
 
-            if valid and v_mask == (1 << length) - 1:
-                num = 0
-                for b in seq_bits:
-                    num = (num << 1) | b
-                total_sum += num
+            if valid and temp_mask == (1 << target_len) - 1:
+                val = 0
+                for bit in seq:
+                    val = (val << 1) | bit
+                results.append(val)
             return
 
-        for bit in (0, 1):
-            next_subseq = ((current_subseq << 1) & mask) | bit
-            if (visited_mask & (1 << next_subseq)) == 0:
-                seq_bits.append(bit)
-                dfs(seq_bits, visited_mask | (1 << next_subseq), next_subseq)
-                seq_bits.pop()
+        for b in (0, 1):
+            next_w = ((curr_window << 1) | b) & mask
+            if (visited_mask & (1 << next_w)) == 0:
+                seq.append(b)
+                backtrack(seq, visited_mask | (1 << next_w), next_w)
+                seq.pop()
 
-    dfs([0] * n, 1 << 0, 0)
-    return total_sum
+    initial_seq = [0] * n
+    initial_visited_mask = 1 << 0
+    backtrack(initial_seq, initial_visited_mask, 0)
+
+    return str(sum(results))
+
+
+if __name__ == "__main__":
+    print(solve())

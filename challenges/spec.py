@@ -127,46 +127,47 @@ def make_challenge(spec: AlgorithmSpec) -> type[Challenge]:
       so the optimal-solution copy step never has to re-parse the
       source
     """
-    # Pre-execute the source in a per-spec namespace. Doing this
-    # once (at factory time) instead of per instance is fine: the
-    # source is a top-level function definition with no mutable
-    # shared state.
-    import typing
-    from server.app.engine_runner import (
-        _JudgeListNode,
-        _JudgeNode,
-        _JudgePoint,
-        _JudgeTreeNode,
-    )
-    namespace: dict[str, Any] = {
-        "__name__": f"spec.{spec.id}",
-        "List": list,
-        "Dict": dict,
-        "Tuple": tuple,
-        "Set": set,
-        "Optional": typing.Optional,
-        "Union": typing.Union,
-        "Any": typing.Any,
-        "ListNode": _JudgeListNode,
-        "Node": _JudgeNode,
-        "Point": _JudgePoint,
-        "TreeNode": _JudgeTreeNode,
-    }
-    try:
-        exec(spec.source, namespace)  # noqa: S102 - intentional dynamic load
-    except Exception:
-        pass
-
-    try:
-        from server.app.engine_runner import _bind_leetcode_solution_runner
-        class _TempChallenge:
+    # Fast path for empty or stub sources
+    if not spec.source or spec.source.strip() in ("", "pass") or spec.source.strip().endswith("pass"):
+        reference_solve = lambda **_: None
+    else:
+        # Pre-execute the source in a per-spec namespace.
+        import typing
+        from server.app.engine_runner import (
+            _JudgeListNode,
+            _JudgeNode,
+            _JudgePoint,
+            _JudgeTreeNode,
+        )
+        namespace: dict[str, Any] = {
+            "__name__": f"spec.{spec.id}",
+            "List": list,
+            "Dict": dict,
+            "Tuple": tuple,
+            "Set": set,
+            "Optional": typing.Optional,
+            "Union": typing.Union,
+            "Any": typing.Any,
+            "ListNode": _JudgeListNode,
+            "Node": _JudgeNode,
+            "Point": _JudgePoint,
+            "TreeNode": _JudgeTreeNode,
+        }
+        try:
+            exec(spec.source, namespace)  # noqa: S102 - intentional dynamic load
+        except Exception:
             pass
-        tc = _TempChallenge()
-        tc.info = type("Info", (), {"id": spec.id})()
-        tc._spec = spec
-        reference_solve = _bind_leetcode_solution_runner(namespace, challenge=tc)
-    except Exception:
-        reference_solve = namespace.get("solve", lambda **_: None)
+
+        try:
+            from server.app.engine_runner import _bind_leetcode_solution_runner
+            class _TempChallenge:
+                pass
+            tc = _TempChallenge()
+            tc.info = type("Info", (), {"id": spec.id})()
+            tc._spec = spec
+            reference_solve = _bind_leetcode_solution_runner(namespace, challenge=tc)
+        except Exception:
+            reference_solve = namespace.get("solve", lambda **_: None)
 
     info_required_complexity = spec.required_complexity
 

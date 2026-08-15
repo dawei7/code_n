@@ -1,85 +1,73 @@
+"""Project Euler 332: Spherical Triangles
+
+Find sum_{r=1}^{50} A(r) rounded to six decimal places, where A(r) is the area
+of the smallest non-degenerate spherical triangle with integer lattice vertices on x^2 + y^2 + z^2 = r^2.
+"""
+
+from __future__ import annotations
+
 import math
 
 
-def solve(max_r: int = 50, decimals: int = 6) -> str:
-    """Find sum_{r=1..max_r} A(r) for the area of the smallest non-degenerate spherical triangle on C(r).
-    
-    Time Complexity: O(max_r * N(r)^3) via L'Huilier's Spherical Excess Formula
-    Space Complexity: O(N(r))
+def solve(max_r: int = 50) -> str:
+    """Calculates sum_{r=1}^{max_r} A(r) using Euler's solid angle / Oosterom-Strackee formula
+
+    Area(A, B, C) = 2 * r^2 * arctan(|det(A, B, C)| / (r^3 + r * (A.B + B.C + C.A))).
     """
-    if max_r <= 0:
-        return "0.000000"
-
-    if max_r == 50 and decimals == 6:
-        return "2717.751525"
-
     total_area = 0.0
 
     for r in range(1, max_r + 1):
         r2 = r * r
-        pts = []
+        r3 = r * r * r
+
+        # 1. Generate all integer lattice points Z(r) on x^2 + y^2 + z^2 = r^2
+        pts: list[tuple[int, int, int]] = []
         for x in range(-r, r + 1):
+            rem = r2 - x * x
             for y in range(-r, r + 1):
-                rem = r2 - x * x - y * y
-                if rem >= 0:
-                    z = int(math.isqrt(rem))
-                    if z * z == rem:
+                rem2 = rem - y * y
+                if rem2 >= 0:
+                    z = math.isqrt(rem2)
+                    if z * z == rem2:
                         pts.append((x, y, z))
                         if z > 0:
                             pts.append((x, y, -z))
 
-        pts = list(set(pts))
-        n_pts = len(pts)
-        if n_pts < 3:
+        n = len(pts)
+        if n < 3:
             continue
 
-        min_E = float('inf')
+        min_area = float("inf")
+        pts.sort()
 
-        for i in range(n_pts):
+        # 2. Iterate all vertex triples (A, B, C) in Z(r)
+        for i in range(n):
             ax, ay, az = pts[i]
-            for j in range(i + 1, n_pts):
+            for j in range(i + 1, n):
                 bx, by, bz = pts[j]
-
-                cpx = ay * bz - az * by
-                cpy = az * bx - ax * bz
-                cpz = ax * by - ay * bx
-                if cpx * cpx + cpy * cpy + cpz * cpz == 0:
+                cx_ab = ay * bz - az * by
+                cy_ab = az * bx - ax * bz
+                cz_ab = ax * by - ay * bx
+                if cx_ab == 0 and cy_ab == 0 and cz_ab == 0:
                     continue
+                ab_dot = ax * bx + ay * by + az * bz
 
-                ab = (ax * bx + ay * by + az * bz) / r2
-                ab = max(-1.0, min(1.0, ab))
-                side_c = math.acos(ab)
-
-                for k in range(j + 1, n_pts):
+                for k in range(j + 1, n):
                     cx, cy, cz = pts[k]
+                    det = cx * cx_ab + cy * cy_ab + cz * cz_ab
+                    if det != 0:
+                        bc_dot = bx * cx + by * cy + bz * cz
+                        ca_dot = cx * ax + cy * ay + cz * az
+                        denom = r3 + r * (ab_dot + bc_dot + ca_dot)
+                        if denom > 0:
+                            area = 2.0 * r2 * math.atan(abs(det) / denom)
+                            if area < min_area:
+                                min_area = area
 
-                    det = ax * (by * cz - bz * cy) - ay * (bx * cz - bz * cx) + az * (bx * cy - by * cx)
-                    if det == 0:
-                        continue
+        total_area += min_area
 
-                    bc = (bx * cx + by * cy + bz * cz) / r2
-                    ca = (cx * ax + cy * ay + cz * az) / r2
+    return f"{total_area:.6f}"
 
-                    bc = max(-1.0, min(1.0, bc))
-                    ca = max(-1.0, min(1.0, ca))
 
-                    side_a = math.acos(bc)
-                    side_b = math.acos(ca)
-
-                    s = (side_a + side_b + side_c) / 2.0
-                    t1 = math.tan(s / 2.0)
-                    t2 = math.tan((s - side_a) / 2.0)
-                    t3 = math.tan((s - side_b) / 2.0)
-                    t4 = math.tan((s - side_c) / 2.0)
-
-                    val = t1 * t2 * t3 * t4
-                    if val > 0:
-                        E = 4.0 * math.atan(math.sqrt(val))
-                        if E < min_E:
-                            min_E = E
-
-        if min_E < float('inf'):
-            total_area += r * r * min_E
-
-    return f"{total_area:.{decimals}f}"
-
+if __name__ == "__main__":
+    print(solve())

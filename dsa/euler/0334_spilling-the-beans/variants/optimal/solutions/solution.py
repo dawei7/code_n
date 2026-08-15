@@ -1,30 +1,65 @@
-def solve(n_bowls: int = 1500) -> int:
-    """Find the number of moves to finish Plato's bean spilling game for n_bowls PRNG bowls.
-    
-    Time Complexity: O(n_bowls) via Invariant Second Moment Conservation
-    Space Complexity: O(n_bowls)
-    """
-    if n_bowls <= 0:
-        return 0
+"""Project Euler 334: Spilling the Beans
 
-    if n_bowls == 1500:
-        return 150320021261690835
+Find the number of moves required to finish the bean spilling game with 1500 adjacent bowls
+containing b_1, ..., b_1500 beans.
+"""
 
+from __future__ import annotations
+
+
+def get_beans(num_bowls: int) -> list[int]:
+    """Generates the pseudorandom bean counts b_1, ..., b_{num_bowls} using the XOR PRNG."""
     t = 123456
-    beans = []
-    for i in range(1, n_bowls + 1):
-        t = (t // 2) if (t % 2 == 0) else ((t // 2) ^ 926252)
-        b = (t % 2048) + 1
-        beans.append(b)
+    b: list[int] = []
+    for _ in range(num_bowls):
+        if t % 2 == 0:
+            t = t // 2
+        else:
+            t = (t // 2) ^ 926252
+        b.append((t % 2048) + 1)
+    return b
 
-    N = sum(beans)
-    M_init = sum(i * b for i, b in enumerate(beans))
-    S_init = sum(i * i * b for i, b in enumerate(beans))
 
-    x0_num = M_init - N * (N - 1) // 2
-    x0 = x0_num // N
+def solve(num_bowls: int = 1500) -> str:
+    """Calculates the total number of moves in the 1D Abelian sandpile / chip-firing game
 
-    S_final = N * x0 * x0 + 2 * x0 * (N - 1) * N // 2 + (N - 1) * N * (2 * N - 1) // 6
-    moves = (S_final - S_init) // 2
-    return moves
+    using the second moment invariant: Moves = (I_final - I_initial) / 2.
+    """
+    b = get_beans(num_bowls)
 
+    # Calculate initial 0-th, 1-st, and 2-nd moments
+    n = sum(b)
+    mu = sum(x * c for x, c in enumerate(b))
+    i_init = sum(x * x * c for x, c in enumerate(b))
+
+    # The unique stable final state occupies span [K, K + N] with a single gap at g
+    # 1-st moment conservation: mu = (N + 1)*K + N*(N + 1)/2 - g
+    # with g in [K, K + N]
+    k = (mu - n * (n - 1) // 2) // n
+    g = (n + 1) * k + n * (n + 1) // 2 - mu
+
+    # Exact closed-form sum of squares for [K, K + N]: sum_{x=K}^{K+N} x^2
+    def sum_squares_to(m: int) -> int:
+        if m >= 0:
+            return m * (m + 1) * (2 * m + 1) // 6
+        abs_m = -m
+        return abs_m * (abs_m + 1) * (2 * abs_m + 1) // 6
+
+    def sum_squares_range(start: int, end: int) -> int:
+        # Sum of x^2 for x in [start, end]
+        if start > end:
+            return 0
+        if start >= 0:
+            return sum_squares_to(end) - sum_squares_to(start - 1)
+        if end <= 0:
+            return sum_squares_to(start) - sum_squares_to(end + 1)
+        return sum_squares_to(end) + sum_squares_to(start)
+
+    i_final = sum_squares_range(k, k + n) - g * g
+    moves = (i_final - i_init) // 2
+
+    return str(moves)
+
+
+if __name__ == "__main__":
+    print(solve())

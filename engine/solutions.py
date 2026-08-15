@@ -65,6 +65,7 @@ def _build_templates() -> dict[str, dict]:
     in :func:`_solution_template` consumes those three keys.
     """
     from challenges.registry import get_challenge
+    from challenges.algorithms.leetcode import load_full_leetcode_spec
 
     templates: dict[str, dict] = {}
     for challenge_id, _cls in _iter_registered_ids():
@@ -74,6 +75,10 @@ def _build_templates() -> dict[str, dict]:
         spec = getattr(challenge, "_spec", None)
         if spec is None:
             continue
+        if challenge_id.startswith("lc_"):
+            full = load_full_leetcode_spec(challenge_id)
+            if full is not None:
+                spec = full
         templates[spec.id] = {
             "params": list(spec.params),
             "inputs": dict(spec.inputs),

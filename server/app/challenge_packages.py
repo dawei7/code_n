@@ -77,17 +77,27 @@ def euler_frontend_id(challenge_id: str) -> str:
     return challenge_id.removeprefix(EULER_ID_PREFIX)
 
 
+@lru_cache(maxsize=1)
+def _euler_packages_by_frontend_id() -> dict[str, Path]:
+    if not EULER_ROOT.is_dir():
+        return {}
+    mapping: dict[str, Path] = {}
+    for entry in EULER_ROOT.iterdir():
+        if entry.is_dir():
+            prefix = entry.name.split("_")[0]
+            mapping[prefix] = entry
+            stripped = prefix.lstrip("0") or "0"
+            mapping[stripped] = entry
+    return mapping
+
+
 def euler_package_dir(challenge_id: str) -> Path | None:
     if not is_euler_id(challenge_id):
         return None
     frontend_id = euler_frontend_id(challenge_id)
+    mapping = _euler_packages_by_frontend_id()
     padded = frontend_id.zfill(4)
-    if not EULER_ROOT.is_dir():
-        return None
-    for entry in EULER_ROOT.iterdir():
-        if entry.is_dir() and (entry.name.startswith(f"{padded}_") or entry.name == padded):
-            return entry
-    return None
+    return mapping.get(padded) or mapping.get(frontend_id) or mapping.get(frontend_id.lstrip("0") or "0")
 
 
 def _safe_slug(value: str) -> str:
@@ -580,10 +590,11 @@ def leetcode_submission_manifest_path(
     challenge_id: str,
     variant_id: str | None = None,
 ) -> Path | None:
-    variant_dir = _variant_directory(challenge_id, variant_id)
-    if variant_dir is None:
+    package_dir = leetcode_package_dir(challenge_id)
+    if package_dir is None:
         return None
-    return variant_dir / "submission.json"
+    candidate = package_dir / "variants" / (variant_id or "optimal") / "submission.json"
+    return candidate if candidate.is_file() else None
 
 
 def iter_leetcode_package_dirs() -> list[Path]:

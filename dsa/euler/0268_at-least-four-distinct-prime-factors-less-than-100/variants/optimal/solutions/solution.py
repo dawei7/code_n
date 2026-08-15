@@ -1,42 +1,71 @@
+"""Project Euler 268: At Least Four Distinct Prime Factors Less Than 100
+
+Find how many positive integers less than 10^16 are divisible by at least four distinct primes less than 100.
+"""
+
+from __future__ import annotations
+
 import math
 
 
-def solve(limit: int = 10**16) -> int:
-    """Find the number of positive integers < limit divisible by at least 4 distinct primes < 100.
-    
-    Time Complexity: O(valid_prime_subsets)
-    Space Complexity: O(depth)
+def solve(limit: int = 10**16) -> str:
+    """Calculates the count of integers < limit divisible by >= 4 primes < 100
+
+    using the generalized Principle of Inclusion-Exclusion (PIE) with binomial weighting.
     """
-    if limit < 2 * 3 * 5 * 7:
-        return 0
+    # 25 primes below 100
+    primes = [
+        2,
+        3,
+        5,
+        7,
+        11,
+        13,
+        17,
+        19,
+        23,
+        29,
+        31,
+        37,
+        41,
+        43,
+        47,
+        53,
+        59,
+        61,
+        67,
+        71,
+        73,
+        79,
+        83,
+        89,
+        97,
+    ]
+    n_limit = limit - 1
+    num_primes = len(primes)
 
-    def get_primes(n: int):
-        sieve = [True] * (n + 1)
-        sieve[0] = sieve[1] = False
-        for i in range(2, int(n**0.5) + 1):
-            if sieve[i]:
-                for j in range(i * i, n + 1, i):
-                    sieve[j] = False
-        return [i for i in range(n + 1) if sieve[i]]
-
-    primes = get_primes(97)
-    N = len(primes)
-    target_N = limit - 1
+    # Precompute inclusion-exclusion coefficients c_j = (-1)^(j-4) * comb(j-1, 3)
+    coeffs = [0] * (num_primes + 1)
+    for j in range(4, num_primes + 1):
+        coeffs[j] = ((-1) ** (j - 4)) * math.comb(j - 1, 3)
 
     total_count = 0
 
-    def dfs(idx: int, count: int, prod: int):
+    def dfs(idx: int, curr_prod: int, size: int) -> None:
         nonlocal total_count
-        if count >= 4:
-            coef = ((-1) ** (count - 4)) * math.comb(count - 1, 3)
-            total_count += coef * (target_N // prod)
+        if size >= 4:
+            total_count += coeffs[size] * (n_limit // curr_prod)
 
-        for i in range(idx, N):
+        for i in range(idx, num_primes):
             p = primes[i]
-            if prod * p > target_N:
+            if curr_prod * p <= n_limit:
+                dfs(i + 1, curr_prod * p, size + 1)
+            else:
                 break
-            dfs(i + 1, count + 1, prod * p)
 
-    dfs(0, 0, 1)
-    return total_count
+    dfs(0, 1, 0)
+    return str(total_count)
 
+
+if __name__ == "__main__":
+    print(solve())

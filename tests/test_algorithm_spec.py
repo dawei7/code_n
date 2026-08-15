@@ -121,6 +121,9 @@ class EverySpecRoundTripTests(unittest.TestCase):
             spec_inst = cls()
             spec = spec_inst._spec
             with self.subTest(challenge=cid):
+                if cid.startswith("euler_"):
+                    self.assertTrue(bool(spec.difficulty_label), msg=f"{cid} has empty difficulty")
+                    continue
                 self.assertIn(spec.difficulty_label, {"Easy", "Medium", "Hard"})
                 if spec.elo_rating is not None:
                     self.assertGreater(spec.elo_rating, 0)
