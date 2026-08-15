@@ -585,5 +585,6 @@ def main(argv: list[str]) -> None:
 def solve(n: int = 1_000_000_000) -> str:
     return str(G_fast(n) % MOD)
 
+
 if __name__ == "__main__":
     print(solve())

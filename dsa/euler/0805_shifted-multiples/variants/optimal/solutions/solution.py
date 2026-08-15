@@ -266,5 +266,6 @@ def main() -> None:
 def solve() -> str:
     return str(T(M))
 
+
 if __name__ == "__main__":
     print(solve())

@@ -244,5 +244,6 @@ def solve(n: int = 50_000) -> str:
     G = poly_mul(B, invA, M + 1)
     return str(G[M] % MOD)
 
+
 if __name__ == "__main__":
     print(solve())

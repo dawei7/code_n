@@ -167,5 +167,6 @@ def main() -> None:
 def solve(n: int = 10_000) -> str:
     return str(U(n))
 
+
 if __name__ == "__main__":
     print(solve())

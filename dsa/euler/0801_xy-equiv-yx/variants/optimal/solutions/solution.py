@@ -327,5 +327,6 @@ def solve() -> str:
     hi = lo + 10**6
     return str(S(lo, hi, MOD))
 
+
 if __name__ == "__main__":
     print(solve())

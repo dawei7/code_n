@@ -152,5 +152,6 @@ def main() -> None:
 def solve(n: int = 12345678) -> str:
     return str(compute_G(n))
 
+
 if __name__ == "__main__":
     print(solve())

@@ -201,5 +201,6 @@ def main() -> None:
 def solve(n: int = 10**9) -> str:
     return str(B(n))
 
+
 if __name__ == "__main__":
     print(solve())

@@ -157,5 +157,6 @@ def main() -> None:
 def solve(n: int = 10**7) -> str:
     return str(P_mod(n))
 
+
 if __name__ == "__main__":
     print(solve())

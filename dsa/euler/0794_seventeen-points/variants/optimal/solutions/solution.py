@@ -142,5 +142,6 @@ def solve() -> str:
     best17, denom, _ = search_best_sum(18, 17)
     return format_scaled(best17, denom, 12)
 
+
 if __name__ == "__main__":
     print(solve())

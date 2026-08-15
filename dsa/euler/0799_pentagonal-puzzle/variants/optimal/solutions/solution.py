@@ -379,5 +379,6 @@ def main() -> None:
 def solve(target: int = 100) -> str:
     return str(find_answer(target))
 
+
 if __name__ == "__main__":
     print(solve())

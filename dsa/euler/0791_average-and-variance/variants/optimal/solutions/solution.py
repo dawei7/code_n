@@ -193,5 +193,6 @@ def main() -> None:
 def solve(n: int = 10**8, mod: int = 433494437) -> str:
     return str(solve_orig(n, mod=mod) % mod)
 
+
 if __name__ == "__main__":
     print(solve())

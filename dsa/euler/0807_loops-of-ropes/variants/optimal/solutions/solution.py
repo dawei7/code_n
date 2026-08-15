@@ -90,5 +90,6 @@ def main() -> None:
 def solve(n: int = 80, prec: int = 10) -> str:
     return str(p_rounded_str(n, prec))
 
+
 if __name__ == "__main__":
     print(solve())

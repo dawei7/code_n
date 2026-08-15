@@ -138,5 +138,6 @@ def solve() -> str:
     ans = expected_cards_for_all_suits_ranks_and_decks().quantize(Decimal("0.00000001"), rounding=ROUND_HALF_UP)
     return str(ans)
 
+
 if __name__ == "__main__":
     print(solve())

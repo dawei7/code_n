@@ -364,5 +364,6 @@ def solve() -> str:
             best = idx
     return str(best)
 
+
 if __name__ == "__main__":
     print(solve())
