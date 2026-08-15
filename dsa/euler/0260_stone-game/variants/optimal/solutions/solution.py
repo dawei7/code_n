@@ -1,49 +1,80 @@
-def solve(limit: int = 1000) -> int:
-    """Find sum(x + y + z) over all losing configurations with x <= y <= z <= limit in 3-pile Nim variant.
-    
-    Time Complexity: O(limit^3) via Game Theory DP
-    Space Complexity: O(limit^2)
+"""Project Euler 260: Stone Game
+
+Find the sum of (x_i + y_i + z_i) over all losing configurations (x_i, y_i, z_i)
+with x_i <= y_i <= z_i <= 1000 in the 3-pile Nim/Wythoff game.
+"""
+
+from __future__ import annotations
+
+
+def solve(limit: int = 1000) -> str:
+    """Computes the sum of all losing positions (x, y, z) with x <= y <= z <= limit
+
+    using 3D state marking across all 7 legal move directions.
     """
-    if limit < 0:
-        return 0
+    n = limit + 1
+    n2 = n * n
+    is_winning = bytearray(n * n2)
 
-    if limit == 1000:
-        return 167542057
+    total_sum = 0
+
+    for x in range(n):
+        x_n2 = x * n2
+        for y in range(x, n):
+            xy = x_n2 + y * n
+            for z in range(y, n):
+                if not is_winning[xy + z]:
+                    total_sum += x + y + z
+
+                    # 1-pile moves (along 3 axes)
+                    for k in range(1, n - z):
+                        is_winning[xy + (z + k)] = 1
+                    for k in range(1, n - y):
+                        yk = y + k
+                        if yk <= z:
+                            is_winning[x_n2 + yk * n + z] = 1
+                        else:
+                            is_winning[x_n2 + z * n + yk] = 1
+                    for k in range(1, n - x):
+                        xk = x + k
+                        if xk <= y:
+                            is_winning[xk * n2 + y * n + z] = 1
+                        elif xk <= z:
+                            is_winning[y * n2 + xk * n + z] = 1
+                        else:
+                            is_winning[y * n2 + z * n + xk] = 1
+
+                    # 2-pile moves (along 3 diagonal planes)
+                    for k in range(1, min(n - x, n - y)):
+                        xk = x + k
+                        yk = y + k
+                        if yk <= z:
+                            is_winning[xk * n2 + yk * n + z] = 1
+                        elif xk <= z:
+                            is_winning[xk * n2 + z * n + yk] = 1
+                        else:
+                            is_winning[z * n2 + xk * n + yk] = 1
+                    for k in range(1, min(n - x, n - z)):
+                        xk = x + k
+                        zk = z + k
+                        if xk <= y:
+                            is_winning[xk * n2 + y * n + zk] = 1
+                        else:
+                            is_winning[y * n2 + xk * n + zk] = 1
+                    for k in range(1, min(n - y, n - z)):
+                        yk = y + k
+                        zk = z + k
+                        is_winning[x_n2 + yk * n + zk] = 1
+
+                    # 3-pile moves (along main diagonal ray)
+                    for k in range(1, min(n - x, n - y, n - z)):
+                        is_winning[(x + k) * n2 + (y + k) * n + (z + k)] = 1
+
+                    # For a fixed (x, y), there is at most one losing z, so break
+                    break
+
+    return str(total_sum)
 
 
-    MAX = limit
-    has_2vals = [[False] * (MAX + 1) for _ in range(MAX + 1)]
-    has_val_diff = [[False] * (MAX + 1) for _ in range(MAX + 1)]
-    has_diffs = [[False] * (MAX + 1) for _ in range(MAX + 1)]
-
-    ans = 0
-
-    for sum_val in range(3 * MAX + 1):
-        for x in range(min(MAX, sum_val // 3) + 1):
-            max_y = min(MAX, (sum_val - x) // 2)
-            for y in range(x, max_y + 1):
-                z = sum_val - x - y
-                if z > MAX:
-                    continue
-
-                if has_2vals[x][y] or has_2vals[x][z] or has_2vals[y][z]:
-                    continue
-                if has_val_diff[x][z - y] or has_val_diff[y][z - x] or has_val_diff[z][y - x]:
-                    continue
-                if has_diffs[y - x][z - y]:
-                    continue
-
-                ans += x + y + z
-
-                has_2vals[x][y] = True
-                has_2vals[x][z] = True
-                has_2vals[y][z] = True
-
-                has_val_diff[x][z - y] = True
-                has_val_diff[y][z - x] = True
-                has_val_diff[z][y - x] = True
-
-                has_diffs[y - x][z - y] = True
-
-    return ans
-
+if __name__ == "__main__":
+    print(solve())

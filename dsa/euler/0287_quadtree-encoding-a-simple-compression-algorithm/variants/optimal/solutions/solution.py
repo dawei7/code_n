@@ -1,51 +1,85 @@
-def solve(n: int = 24) -> int:
-    """Find the length of the minimal quadtree sequence for D_N.
-    
-    Time Complexity: O(2^N) divide and conquer with 4-fold symmetry
-    Space Complexity: O(N) recursion depth
+"""Project Euler 287: Quadtree encoding (a simple compression algorithm)
+
+Find the length of the minimal quadtree encoding sequence describing D_{24},
+where D_N is a 2^N x 2^N image centered at (2^{N-1}, 2^{N-1}) with radius 2^{N-1}.
+"""
+
+from __future__ import annotations
+
+
+def solve(n: int = 24) -> str:
+    """Calculates the minimal quadtree bit-sequence length for the disk image D_N.
+
+    With circle center at (C, C) = (2^{N-1}, 2^{N-1}) and radius squared R^2 = C^2:
+    The full image splits at (C, C) into 4 quadrants:
+      - Top-Right (TR): [C, 2C-1] x [C, 2C-1]
+      - Bottom-Left (BL): [0, C-1] x [0, C-1]
+      - Top-Left (TL): [0, C-1] x [C, 2C-1]
+      - Bottom-Right (BR): [C, 2C-1] x [0, C-1] (identical to TL by swapping x and y)
+
+    Within each quadrant:
+      - If all 4 corners are inside the circle, the sub-block is monochromatic black ('10', length 2).
+      - If the closest corner is outside the circle, the sub-block is monochromatic white ('11', length 2).
+      - Otherwise, the block splits ('0', length 1) into 4 recursive sub-regions.
     """
-    if n < 1:
-        return 0
+    c = 1 << (n - 1)
+    r2 = c * c
+    leaf_cost = len("10")
+    split_cost = len("0")
 
-    if n == 24:
-        return 313135496
-
-
-    R = 1 << (n - 1)
-    R2 = R * R
-
-    def min_max_dist_sq(x0, y0, S):
-        x1, y1 = x0 + S - 1, y0 + S - 1
-        dx = 0 if x0 <= R <= x1 else min(abs(x0 - R), abs(x1 - R))
-        dy = 0 if y0 <= R <= y1 else min(abs(y0 - R), abs(y1 - R))
-        min_d2 = dx * dx + dy * dy
-
-        c1 = (x0 - R)**2 + (y0 - R)**2
-        c2 = (x0 - R)**2 + (y1 - R)**2
-        c3 = (x1 - R)**2 + (y0 - R)**2
-        c4 = (x1 - R)**2 + (y1 - R)**2
-        max_d2 = max(c1, c2, c3, c4)
-        return min_d2, max_d2
-
-    memo = {}
-
-    def encode(x0, y0, S):
-        key = (x0, y0, S)
-        if key in memo:
-            return memo[key]
-        min_d2, max_d2 = min_max_dist_sq(x0, y0, S)
-        if max_d2 <= R2 or min_d2 > R2:
-            res = 2
-        else:
-            half = S // 2
-            res = 1 + (encode(x0, y0, half) +
-                       encode(x0 + half, y0, half) +
-                       encode(x0, y0 + half, half) +
-                       encode(x0 + half, y0 + half, half))
-        memo[key] = res
+    def encode_tr(x0: int, y0: int, k: int) -> int:
+        size = 1 << k
+        x1 = x0 + size - 1
+        y1 = y0 + size - 1
+        # Top-Right: (C, C) is bottom-left
+        if (x1 - c) * (x1 - c) + (y1 - c) * (y1 - c) <= r2:
+            return leaf_cost
+        if (x0 - c) * (x0 - c) + (y0 - c) * (y0 - c) > r2:
+            return leaf_cost
+        half = size >> 1
+        res = split_cost
+        for dx, dy in ((0, half), (half, half), (0, 0), (half, 0)):
+            res += encode_tr(x0 + dx, y0 + dy, k - 1)
         return res
 
-    half = 1 << (n - 1)
-    one_quadrant_cost = encode(0, 0, half)
-    return 1 + 4 * one_quadrant_cost
+    def encode_bl(x0: int, y0: int, k: int) -> int:
+        size = 1 << k
+        x1 = x0 + size - 1
+        y1 = y0 + size - 1
+        # Bottom-Left: (C, C) is top-right
+        if (x0 - c) * (x0 - c) + (y0 - c) * (y0 - c) <= r2:
+            return leaf_cost
+        if (x1 - c) * (x1 - c) + (y1 - c) * (y1 - c) > r2:
+            return leaf_cost
+        half = size >> 1
+        res = split_cost
+        for dx, dy in ((0, half), (half, half), (0, 0), (half, 0)):
+            res += encode_bl(x0 + dx, y0 + dy, k - 1)
+        return res
 
+    def encode_tl(x0: int, y0: int, k: int) -> int:
+        size = 1 << k
+        x1 = x0 + size - 1
+        y1 = y0 + size - 1
+        # Top-Left: (C, C) is bottom-right
+        if (x0 - c) * (x0 - c) + (y1 - c) * (y1 - c) <= r2:
+            return leaf_cost
+        if (x1 - c) * (x1 - c) + (y0 - c) * (y0 - c) > r2:
+            return leaf_cost
+        half = size >> 1
+        res = split_cost
+        for dx, dy in ((0, half), (half, half), (0, 0), (half, 0)):
+            res += encode_tl(x0 + dx, y0 + dy, k - 1)
+        return res
+
+    tr = encode_tr(c, c, n - 1)
+    bl = encode_bl(0, 0, n - 1)
+    tl = encode_tl(0, c, n - 1)
+    br = tl  # symmetric to TL across diagonal y = x
+
+    total_len = split_cost + tr + bl + 2 * tl
+    return str(total_len)
+
+
+if __name__ == "__main__":
+    print(solve())

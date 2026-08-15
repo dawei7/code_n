@@ -1,74 +1,69 @@
+"""Project Euler 266: Pseudo Square Root
+
+Find PSR(p) mod 10^16, where p is the product of all prime numbers below 190.
+"""
+
+from __future__ import annotations
+
 import bisect
 import math
 
 
-def solve(limit: int = 190, mod: int = 10**16) -> int:
-    """Find PSR(p) mod 10^16 where p is the product of primes < limit.
-    
-    Time Complexity: O(2^(N/2) * log(2^(N/2))) Meet-in-the-Middle for N primes
-    Space Complexity: O(2^(N/2))
+def solve(max_prime: int = 190) -> str:
+    """Finds the pseudo square root PSR(p) mod 10^16 using logarithmic meet-in-the-middle
+
+    subset-product optimization over the prime factors below `max_prime`.
     """
-    if limit <= 2:
-        return 1
+    # Generate all prime numbers below max_prime
+    sieve = [True] * max_prime
+    primes: list[int] = []
+    for p in range(2, max_prime):
+        if sieve[p]:
+            primes.append(p)
+            for mult in range(p * p, max_prime, p):
+                sieve[mult] = False
 
-    def get_primes(n: int):
-        sieve = [True] * (n + 1)
-        sieve[0] = sieve[1] = False
-        for i in range(2, int(n**0.5) + 1):
-            if sieve[i]:
-                for j in range(i * i, n + 1, i):
-                    sieve[j] = False
-        return [i for i in range(n + 1) if sieve[i]]
+    logs = [math.log(p) for p in primes]
+    total_log = sum(logs)
+    target_log = total_log / 2.0
 
-    primes = get_primes(limit - 1)
-    N = len(primes)
-    if N == 0:
-        return 1
+    # Split primes into two halves for meet-in-the-middle
+    mid = len(primes) // 2
+    primes_a, logs_a = primes[:mid], logs[:mid]
+    primes_b, logs_b = primes[mid:], logs[mid:]
 
-    log_primes = [math.log(p) for p in primes]
-    half_log_sum = sum(log_primes) / 2.0
+    # 1. Enumerate all subset products for half A
+    list_a: list[tuple[float, int]] = [(0.0, 1)]
+    for p, lp in zip(primes_a, logs_a):
+        new_items = [(s + lp, prod * p) for s, prod in list_a]
+        list_a.extend(new_items)
 
-    mid = N // 2
-    p1 = primes[:mid]
-    log1 = log_primes[:mid]
+    list_a.sort(key=lambda x: x[0])
+    logs_a_sorted = [x[0] for x in list_a]
 
-    p2 = primes[mid:]
-    log2 = log_primes[mid:]
+    # 2. Enumerate all subset products for half B and query against A
+    list_b: list[tuple[float, int]] = [(0.0, 1)]
+    for p, lp in zip(primes_b, logs_b):
+        new_items = [(s + lp, prod * p) for s, prod in list_b]
+        list_b.extend(new_items)
 
-    left_subsets = []
+    best_log = 0.0
+    best_prod = 1
 
-    def gen_left(idx: int, curr_log: float, curr_val: int):
-        if idx == len(p1):
-            left_subsets.append((curr_log, curr_val))
-            return
-        gen_left(idx + 1, curr_log, curr_val)
-        gen_left(idx + 1, curr_log + log1[idx], (curr_val * p1[idx]) % mod)
+    for s_b, prod_b in list_b:
+        rem_log = target_log - s_b
+        if rem_log >= 0.0:
+            idx = bisect.bisect_right(logs_a_sorted, rem_log) - 1
+            if idx >= 0:
+                s_a, prod_a = list_a[idx]
+                curr_log = s_a + s_b
+                if curr_log > best_log:
+                    best_log = curr_log
+                    best_prod = prod_a * prod_b
 
-    gen_left(0, 0.0, 1)
+    ans = best_prod % (10**16)
+    return str(ans)
 
-    left_subsets.sort(key=lambda x: x[0])
-    left_logs = [x[0] for x in left_subsets]
 
-    best_log = -1.0
-    best_val_mod = 0
-
-    def gen_right_and_match(idx: int, curr_log: float, curr_val: int):
-        nonlocal best_log, best_val_mod
-        if idx == len(p2):
-            rem_log = half_log_sum - curr_log
-            if rem_log >= 0:
-                pos = bisect.bisect_right(left_logs, rem_log) - 1
-                if pos >= 0:
-                    matched_log = curr_log + left_logs[pos]
-                    if matched_log > best_log:
-                        best_log = matched_log
-                        best_val_mod = (curr_val * left_subsets[pos][1]) % mod
-            return
-
-        gen_right_and_match(idx + 1, curr_log, curr_val)
-        gen_right_and_match(idx + 1, curr_log + log2[idx], (curr_val * p2[idx]) % mod)
-
-    gen_right_and_match(0, 0.0, 1)
-
-    return best_val_mod
-
+if __name__ == "__main__":
+    print(solve())

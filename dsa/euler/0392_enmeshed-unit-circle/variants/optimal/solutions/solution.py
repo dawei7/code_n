@@ -1,52 +1,77 @@
-import math
+"""Project Euler Problem 392: Enmeshed Unit Circle.
+
+Find the minimal area occupied by red cells in an (N+1)x(N+1) grid covering the unit circle
+for N=400, rounded to 10 decimal places.
+"""
+
+from math import sqrt
+from typing import List
 
 
-def solve(n: int = 400, decimals: int = 10) -> str:
-    """Find the min red cell area overlapping unit circle for N gridlines.
+def _f(x_val: float) -> float:
+    """Return sqrt(1 - x^2) for x in [0, 1]."""
+    return sqrt(max(0.0, 1.0 - x_val * x_val))
 
-    Time Complexity: O(N * BSearch_Steps) via Shooting Method Recurrence Optimization
-    Space Complexity: O(N)
-    """
-    M = n // 2
 
-    def simulate(theta1: float) -> tuple[float, list[float]]:
-        theta = [0.0] * (M + 2)
-        theta[0] = 0.0
-        theta[1] = theta1
+def _end_x(m: int, x1: float) -> float:
+    """Generate x_m using the Euler-Lagrange optimality recurrence."""
+    if not (0.0 < x1 < 1.0):
+        return float("inf")
 
-        sin2 = 2.0 * math.sin(theta1) - math.tan(theta1 / 2.0)
-        if sin2 >= 1.0 or sin2 <= math.sin(theta1):
-            return 2.0, theta
-        theta[2] = math.asin(sin2)
+    x_cur = x1
+    g_prev = 1.0
 
-        for i in range(2, M + 1):
-            cot_i = math.cos(theta[i]) / math.sin(theta[i])
-            diff = math.cos(theta[i - 1]) - math.cos(theta[i])
-            sin_next = math.sin(theta[i]) + cot_i * diff
-            if sin_next >= 1.0:
-                return 2.0, theta
-            theta[i + 1] = math.asin(sin_next)
+    for _ in range(1, m):
+        if x_cur <= 0.0:
+            return float("inf")
+        if x_cur >= 1.0:
+            return x_cur
 
-        return theta[M + 1], theta
+        g_cur = _f(x_cur)
+        x_next = x_cur + (g_prev - g_cur) * g_cur / x_cur
+        if not (x_cur < x_next):
+            return float("inf")
 
-    low = 0.0
-    high = math.pi / 2.0
+        x_cur = x_next
+        g_prev = g_cur
 
-    best_theta: list[float] = []
-    for _ in range(500):
-        mid = (low + high) / 2.0
-        res, t_arr = simulate(mid)
-        if res >= 2.0 or res > math.pi / 2.0:
-            high = mid
+    return x_cur
+
+
+def solve(n: int = 400) -> str:
+    """Compute minimal red cell area for N inner gridlines rounded to 10 decimal places."""
+    m = n // 2 + 1
+
+    lo = 1e-6
+    while _end_x(m, lo) >= 1.0:
+        lo *= 0.5
+
+    hi = 0.9
+    while _end_x(m, hi) <= 1.0:
+        hi = (hi + 1.0) / 2.0
+
+    for _ in range(200):
+        mid = (lo + hi) / 2.0
+        if _end_x(m, mid) > 1.0:
+            hi = mid
         else:
-            best_theta = t_arr
-            low = mid
+            lo = mid
 
-    area_1st = math.sin(best_theta[1]) * 1.0
-    for i in range(1, M + 1):
-        dx = math.sin(best_theta[i + 1]) - math.sin(best_theta[i])
-        height = math.cos(best_theta[i])
-        area_1st += dx * height
+    x1 = (lo + hi) / 2.0
 
-    area = 4.0 * area_1st
-    return f"{area:.{decimals}f}"
+    # Build optimal grid
+    xs: List[float] = [0.0, x1]
+    g_prev = 1.0
+    for k in range(1, m):
+        xk = xs[k]
+        gk = _f(xk)
+        xs.append(xk + (g_prev - gk) * gk / xk)
+        g_prev = gk
+
+    area_q = sum((xs[i + 1] - xs[i]) * _f(xs[i]) for i in range(m))
+    area_total = 4.0 * area_q
+    return f"{area_total:.10f}"
+
+
+if __name__ == "__main__":
+    print(solve())

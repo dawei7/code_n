@@ -1,63 +1,83 @@
+"""Project Euler 264: Triangle Centres
+
+Find the sum of all distinct triangle perimeters <= 10^5 having:
+1. All vertices on integer coordinates.
+2. Circumcentre at the origin O(0, 0).
+3. Orthocentre at H(5, 0).
+"""
+
+from __future__ import annotations
+
 import math
 
 
-def solve(max_perimeter: int = 10**5) -> str:
-    """Find the sum of perimeters of all lattice triangles with circumcentre O(0,0) and orthocentre H(5,0) with perimeter <= max_perimeter.
-    
-    Time Complexity: O(R_max^2)
-    Space Complexity: O(R_max)
+def solve(max_perimeter: float = 100000.0) -> str:
+    """Finds the sum of perimeters of all integer-coordinate triangles with circumcentre O(0, 0)
+
+    and orthocentre H(5, 0) using algebraic complex circle parameterization.
     """
-    if max_perimeter < 5:
-        return "0.0000"
+    triangles: dict[
+        tuple[tuple[int, int], tuple[int, int], tuple[int, int]], float
+    ] = {}
 
-    if max_perimeter == 10**5:
-        return "2816417.1055"
+    for v in range(1, 3000):
+        for u in range(1, int(math.sqrt(3) * v) + 20):
+            if math.gcd(u, v) != 1:
+                continue
+            n = u * u - 3 * v * v
+            if n == 0:
+                continue
+            d = u * u + v * v
 
-    total_perimeter = 0.0
+            # Maximum k such that (N * k * v)^2 <= 100 * v^2 * D
+            max_k_sq = (100 * d) // (n * n)
+            max_k = int(math.isqrt(max_k_sq))
+            if max_k_sq < 0:
+                continue
 
-    # Max radius R bounded by max_perimeter / 2
-    max_R = int(max_perimeter / 2) + 1
+            for k in range(-max_k, max_k + 1):
+                y3 = k * v
+                cap_y = n * y3
+                rem = 100 * v * v * d - cap_y * cap_y
+                if rem < 0:
+                    continue
+                cap_x = math.isqrt(rem)
+                if cap_x * cap_x != rem:
+                    continue
 
-    for R2 in range(1, max_R * max_R + 1):
-        # Find all lattice points on x^2 + y^2 = R2
-        circle_pts = []
-        d = 0
-        while d * d <= R2:
-            rem = R2 - d * d
-            r = math.isqrt(rem)
-            if r * r == rem:
-                circle_pts.append((d, r))
-                if d > 0:
-                    circle_pts.append((-d, r))
-                if r > 0:
-                    circle_pts.append((d, -r))
-                if d > 0 and r > 0:
-                    circle_pts.append((-d, -r))
-            d += 1
-
-        if len(circle_pts) < 3:
-            continue
-
-        # Find triplets A, B, C such that A + B + C = (5, 0)
-        n_pts = len(circle_pts)
-        for i in range(n_pts):
-            Ax, Ay = circle_pts[i]
-            for j in range(i + 1, n_pts):
-                Bx, By = circle_pts[j]
-                Cx = 5 - Ax - Bx
-                Cy = 0 - Ay - By
-                if Cx * Cx + Cy * Cy == R2:
-                    # Ensure C is after B to avoid duplicate triangles
-                    # Check non-collinear
-                    if (Bx - Ax) * (Cy - Ay) - (By - Ay) * (Cx - Ax) == 0:
+                for sx in [cap_x, -cap_x] if cap_x != 0 else [0]:
+                    if (sx + 5 * d) % n != 0:
                         continue
-                    p1 = math.hypot(Ax - Bx, Ay - By)
-                    p2 = math.hypot(Bx - Cx, By - Cy)
-                    p3 = math.hypot(Cx - Ax, Cy - Ay)
-                    perim = p1 + p2 + p3
-                    if perim <= max_perimeter:
-                        total_perimeter += perim
+                    x3 = (sx + 5 * d) // n
 
-    ans = total_perimeter / 6.0 # Divide by 6 due to 3! permutations
-    return f"{ans:.4f}"
+                    # Verify v divides (5 - x3)
+                    if (5 - x3) % v != 0:
+                        continue
 
+                    val_x1 = 5 - x3 + (y3 * u) // v
+                    val_y1 = -y3 + ((5 - x3) * u) // v
+                    val_x2 = 5 - x3 - (y3 * u) // v
+                    val_y2 = -y3 - ((5 - x3) * u) // v
+
+                    if val_x1 % 2 == 0 and val_y1 % 2 == 0:
+                        x1, y1 = val_x1 // 2, val_y1 // 2
+                        x2, y2 = val_x2 // 2, val_y2 // 2
+
+                        pts = tuple(
+                            sorted([(x1, y1), (x2, y2), (x3, y3)])
+                        )
+                        if len(set(pts)) == 3:
+                            r2 = x3 * x3 + y3 * y3
+                            c = math.sqrt(3 * r2 + 10 * x3 - 25)
+                            a = math.sqrt(3 * r2 + 10 * x1 - 25)
+                            b = math.sqrt(3 * r2 + 10 * x2 - 25)
+                            p = a + b + c
+                            if p <= max_perimeter:
+                                triangles[pts] = p
+
+    total_perimeter = sum(triangles.values())
+    return f"{total_perimeter:.4f}"
+
+
+if __name__ == "__main__":
+    print(solve())

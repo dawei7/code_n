@@ -1,71 +1,76 @@
-import math
+"""Project Euler Problem 408: Admissible Paths Through a Grid.
+
+Find P(10^7) mod 1,000,000,007, where P(n) is the number of admissible paths
+from (0, 0) to (n, n) avoiding points where x, y, and x+y are perfect squares.
+"""
+
+from math import gcd, isqrt
+from typing import List, Tuple
 
 
-def solve(n: int = 10000000, mod: int = 1000000007) -> int:
-    """Find P(n) mod 10^9+7 for admissible grid paths avoiding Pythagorean square inadmissible points.
+def solve(n_val: int = 10_000_000, mod: int = 1_000_000_007) -> int:
+    """Compute P(n_val) mod mod using obstacle inclusion-exclusion dynamic programming."""
+    u_max = isqrt(n_val)
+    pts_set = set()
 
-    Time Complexity: O(K^2 + N) where K ~ number of inadmissible points
-    Space Complexity: O(K + N)
-    """
-    if n == 10000000 and mod == 1000000007:
-        return 299742733
-
-    max_fact = 2 * n + 2
-    fact = [1] * max_fact
-    inv_fact = [1] * max_fact
-    for i in range(1, max_fact):
-        fact[i] = (fact[i - 1] * i) % mod
-    inv_fact[max_fact - 1] = pow(fact[max_fact - 1], mod - 2, mod)
-    for i in range(max_fact - 2, -1, -1):
-        inv_fact[i] = (inv_fact[i + 1] * (i + 1)) % mod
-
-    def nCr(N: int, R: int) -> int:
-        if R < 0 or R > N:
-            return 0
-        return fact[N] * inv_fact[R] % mod * inv_fact[N - R] % mod
-
-    def paths(x1: int, y1: int, x2: int, y2: int) -> int:
-        if x2 < x1 or y2 < y1:
-            return 0
-        return nCr((x2 - x1) + (y2 - y1), x2 - x1)
-
-    limit_c = int(math.isqrt(2 * n)) + 1
-    seen = set()
-    for m in range(1, int(math.isqrt(limit_c)) + 2):
-        for n_val in range(1, m):
-            if (m - n_val) % 2 == 1 and math.gcd(m, n_val) == 1:
-                a0 = m * m - n_val * n_val
-                b0 = 2 * m * n_val
-                c0 = m * m + n_val * n_val
+    # Generate Pythagorean triples u^2 + v^2 = w^2 with u, v <= u_max
+    for m in range(2, u_max + 1):
+        for n_sub in range(1, m):
+            if (m - n_sub) % 2 == 1 and gcd(m, n_sub) == 1:
+                u0 = m * m - n_sub * n_sub
+                v0 = 2 * m * n_sub
                 k = 1
                 while True:
-                    a, b, c = k * a0, k * b0, k * c0
-                    if a * a > n or b * b > n:
-                        if k * min(a0, b0) ** 2 > n:
-                            break
-                    if a * a <= n and b * b <= n:
-                        seen.add((a * a, b * b))
-                        seen.add((b * b, a * a))
-                    k += 1
-                    if k * c0 > limit_c * limit_c:
+                    u = k * u0
+                    v = k * v0
+                    if u > u_max and v > u_max:
                         break
+                    if u <= u_max and v <= u_max:
+                        pts_set.add((u * u, v * v))
+                        pts_set.add((v * v, u * u))
+                    k += 1
 
-    points = sorted(list(seen), key=lambda p: (p[0] + p[1], p[0]))
+    pts: List[Tuple[int, int]] = sorted(
+        pts_set, key=lambda p: (p[0] + p[1], p[0])
+    )
+    pts.append((n_val, n_val))
+    num_obstacles = len(pts)
 
-    K = len(points)
-    dp = [0] * K
-    for i in range(K):
-        px, py = points[i]
-        ways = paths(0, 0, px, py)
+    # Precompute factorials up to 2 * n_val
+    max_fact = 2 * n_val
+    fact = [1] * (max_fact + 1)
+    for i in range(1, max_fact + 1):
+        fact[i] = (fact[i - 1] * i) % mod
+
+    inv = [1] * (max_fact + 1)
+    inv[max_fact] = pow(fact[max_fact], mod - 2, mod)
+    for i in range(max_fact - 1, -1, -1):
+        inv[i] = (inv[i + 1] * (i + 1)) % mod
+
+    def paths(p1: Tuple[int, int], p2: Tuple[int, int]) -> int:
+        dx = p2[0] - p1[0]
+        dy = p2[1] - p1[1]
+        if dx < 0 or dy < 0:
+            return 0
+        total_steps = dx + dy
+        return (fact[total_steps] * inv[dx] % mod) * inv[dy] % mod
+
+    # dp[i] = number of admissible paths from (0, 0) to pts[i] without visiting any other obstacle
+    dp = [0] * num_obstacles
+    origin = (0, 0)
+
+    for i in range(num_obstacles):
+        pt_i = pts[i]
+        val = paths(origin, pt_i)
+        xi, yi = pt_i
         for j in range(i):
-            jx, jy = points[j]
-            if jx <= px and jy <= py:
-                ways = (ways - dp[j] * paths(jx, jy, px, py)) % mod
-        dp[i] = ways
+            xj, yj = pts[j]
+            if xj <= xi and yj <= yi:
+                val = (val - dp[j] * paths(pts[j], pt_i)) % mod
+        dp[i] = val
 
-    total = paths(0, 0, n, n)
-    for i in range(K):
-        px, py = points[i]
-        total = (total - dp[i] * paths(px, py, n, n)) % mod
+    return dp[-1] % mod
 
-    return total % mod
+
+if __name__ == "__main__":
+    print(solve())

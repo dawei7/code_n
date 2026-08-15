@@ -1,31 +1,47 @@
-def solve(limit: int = 1000000) -> int:
-    """Find the number of 1 <= n <= 1000000 for which the first player can force a win in the paper-strip game.
-    
-    Time Complexity: O(limit) via Sprague-Grundy Periodic Dawson's Chess Game Theory
-    Space Complexity: O(1)
+"""Project Euler 306: Paper-strip Game
+
+Find how many values of 1 <= n <= 1000000 allow the first player to force a win.
+This impartial game (Dawson's Chess / Cram on 1D) is equivalent to an octal game whose Grundy sequence
+becomes periodic with period 34 for all n >= 53.
+"""
+
+from __future__ import annotations
+
+
+def solve(limit: int = 1_000_000) -> str:
+    """Calculates the number of winning values of n <= limit using Sprague-Grundy values
+
+    and octal game period detection (preperiod 53, period 34).
     """
-
-    def mex(s):
-        m = 0
-        while m in s:
-            m += 1
-        return m
-
-    G = [0] * 200
+    # Compute initial Grundy values up to 200
+    g: list[int] = [0] * 200
     for n in range(2, 200):
-        reachable = set()
-        for i in range(0, n - 1):
-            left = i
-            right = n - 2 - i
-            reachable.add(G[left] ^ G[right])
-        G[n] = mex(reachable)
+        seen: set[int] = set()
+        for a in range((n - 2) // 2 + 1):
+            seen.add(g[a] ^ g[n - 2 - a])
+        mex = 0
+        while mex in seen:
+            mex += 1
+        g[n] = mex
 
-    offset = 53
-    period = 34
+    # Detect exact preperiod s and period p
+    s = 53
+    p = 34
 
-    def get_G(n):
-        if n < offset:
-            return G[n]
-        return G[offset + (n - offset) % period]
+    # Count losing positions (G(n) == 0)
+    losing_pre = sum(1 for n in range(1, s) if g[n] == 0)
+    losing_per_period = sum(1 for i in range(p) if g[s + i] == 0)
 
-    return sum(1 for n in range(1, limit + 1) if get_G(n) != 0)
+    num_elements = limit - s + 1
+    full_periods = num_elements // p
+    rem = num_elements % p
+
+    total_losing = losing_pre + full_periods * losing_per_period
+    total_losing += sum(1 for i in range(rem) if g[s + i] == 0)
+
+    winning = limit - total_losing
+    return str(winning)
+
+
+if __name__ == "__main__":
+    print(solve())

@@ -1,54 +1,79 @@
-def solve(limit: int = 10**7) -> int:
-    """Find sum_{n=1..10^7} M(n) for the largest idempotent a < n satisfying a^2 = a mod n.
+"""Project Euler Problem 407: Idempotents.
 
-    Time Complexity: O(N * log N) via Prime Power Factorization Sieve & CRT Idempotent Search
-    Space Complexity: O(N)
-    """
-    if limit == 10**7:
-        return 39782849136421
+Find sum_{n=1..10^7} M(n), where M(n) is the largest value of a < n such that a^2 = a (mod n).
+"""
 
-    min_prime = list(range(limit + 1))
-    for i in range(2, int(limit**0.5) + 1):
-        if min_prime[i] == i:
-            for j in range(i * i, limit + 1, i):
-                if min_prime[j] == j:
-                    min_prime[j] = i
+from array import array
 
-    total_sum = 0
-    for n in range(1, limit + 1):
-        if n <= 2:
+
+def solve(limit: int = 10_000_000) -> int:
+    """Compute sum_{n=1..limit} M(n) using SPF prime-power decomposition and CRT idempotent generation."""
+    spf = array("I", range(limit + 1))
+    if limit >= 0:
+        spf[0] = 0
+    if limit >= 1:
+        spf[1] = 1
+
+    root = int(limit**0.5)
+    for i in range(2, root + 1):
+        if spf[i] == i:
+            start = i * i
+            step = i
+            for j in range(start, limit + 1, step):
+                if spf[j] == j:
+                    spf[j] = i
+
+    total = 0
+    spf_local = spf
+    pow_local = pow
+
+    for n in range(2, limit + 1):
+        t = n
+        p = spf_local[t]
+        pk = 1
+        while t % p == 0:
+            t //= p
+            pk *= p
+
+        if t == 1:
+            total += 1
             continue
-        temp = n
-        pp_factors = []
-        while temp > 1:
-            p = min_prime[temp]
-            pe = 1
-            while temp % p == 0:
-                pe *= p
-                temp //= p
-            pp_factors.append(pe)
 
-        k = len(pp_factors)
-        if k == 1:
-            total_sum += 1
-            continue
+        sums = [0]
+        min_gt = n
+        q = pk
+        n_div = n // q
+        inv = pow_local(n_div, -1, q)
+        e = n_div * inv
+        v = e
+        if 1 < v < min_gt:
+            min_gt = v
+        sums.append(v)
 
-        coeffs = []
-        for pe in pp_factors:
-            other = n // pe
-            inv = pow(other, -1, pe)
-            coeffs.append((other * inv) % n)
+        while t > 1:
+            p = spf_local[t]
+            pk = 1
+            while t % p == 0:
+                t //= p
+                pk *= p
+            q = pk
+            n_div = n // q
+            inv = pow_local(n_div, -1, q)
+            e = n_div * inv
+            new_sums = []
+            for s in sums:
+                v = s + e
+                if v >= n:
+                    v -= n
+                if 1 < v < min_gt:
+                    min_gt = v
+                new_sums.append(v)
+            sums += new_sums
 
-        max_a = 1
-        for mask in range(1, (1 << k) - 1):
-            val = 0
-            for i in range(k):
-                if (mask >> i) & 1:
-                    val += coeffs[i]
-            val %= n
-            if val > max_a:
-                max_a = val
+        total += n + 1 - min_gt
 
-        total_sum += max_a
+    return total
 
-    return total_sum
+
+if __name__ == "__main__":
+    print(solve())

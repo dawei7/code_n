@@ -26,7 +26,7 @@ class ChallengesRouteTest(conftest._Base):
         self.assertEqual(response.status_code, 200, response.text)
         summaries = response.json()
         self.assertGreater(len(summaries), 3900)
-        self.assertTrue(all(item["id"].startswith("lc_") for item in summaries))
+        self.assertTrue(all(item["id"].startswith("lc_") or item["id"].startswith("euler_") for item in summaries))
         self.assertTrue(
             all(
                 item["supported_languages"] == [item["primary_language"]]
@@ -55,7 +55,7 @@ class ChallengesRouteTest(conftest._Base):
             response = self.client.get("/api/challenges")
             self.assertEqual(response.status_code, 200, response.text)
             ids = [item["id"] for item in response.json()]
-            self.assertTrue(all(item.startswith("lc_") for item in ids))
+            self.assertTrue(all(item.startswith("lc_") or item.startswith("euler_") for item in ids))
             canonical_ids = canonical_ids or ids
             self.assertEqual(ids, canonical_ids)
 
@@ -65,7 +65,7 @@ class ChallengesRouteTest(conftest._Base):
         self.assertEqual(response.status_code, 200, response.text)
         summaries = response.json()
         self.assertGreater(len(summaries), 3900)
-        self.assertTrue(all(item["id"].startswith("lc_") for item in summaries))
+        self.assertTrue(all(item["id"].startswith("lc_") or item["id"].startswith("euler_") for item in summaries))
         self.assertGreater(
             sum(
                 any(membership.get("kind") == "neetcode" for membership in item["leetcode_external_subsets"])
@@ -90,7 +90,7 @@ class ChallengesRouteTest(conftest._Base):
         self.assertEqual(response.status_code, 200, response.text)
         summaries = response.json()
         self.assertGreater(len(summaries), 3900)
-        self.assertTrue(all(item["id"].startswith("lc_") for item in summaries))
+        self.assertTrue(all(item["id"].startswith("lc_") or item["id"].startswith("euler_") for item in summaries))
 
         members_by_list = {slug: set() for slug in ("am-600", "am-300", "am-150", "am-75")}
         for summary in summaries:

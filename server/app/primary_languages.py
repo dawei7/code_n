@@ -76,7 +76,10 @@ def primary_language_for_challenge(
     reference_metadata: dict[str, object] | None = None,
 ) -> PrimaryLanguage:
     """Return the verified submission family, with a safe legacy fallback."""
-
+    if reference_metadata and (
+        reference_metadata.get("primary_language") or reference_metadata.get("category")
+    ):
+        return _metadata_fallback(reference_metadata)
     return _verified_primary_language(challenge_id) or _metadata_fallback(reference_metadata)
 
 

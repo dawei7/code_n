@@ -1,4 +1,10 @@
-# Python venv + bytecode
+# Compiled shared libraries and objects
+*.dll
+*.so
+*.dylib
+*.o
+scratch/
+
 .venv/
 __pycache__/
 *.py[cod]

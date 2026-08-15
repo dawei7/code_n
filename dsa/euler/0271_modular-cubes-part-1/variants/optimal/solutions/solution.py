@@ -1,36 +1,53 @@
+"""Project Euler 271: Modular Cubes, Part 1
+
+Find S(13082761331670030), the sum of all integers 1 < x < n such that x^3 = 1 mod n.
+"""
+
+from __future__ import annotations
+
 import itertools
-from functools import reduce
 
 
-def solve() -> int:
-    """Find S(13082761331670030), the sum of all 1 < x < N for which x^3 = 1 (mod N).
-    
-    Time Complexity: O(3^k) CRT combinations for k primes = 1 (mod 3)
-    Space Complexity: O(3^k)
+def solve(n: int = 13082761331670030) -> str:
+    """Calculates S(n) by finding all cube roots of unity modulo each prime factor of n
+
+    and combining them via the Chinese Remainder Theorem (CRT).
     """
-    primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43]
-    N = reduce(lambda a, b: a * b, primes)
+    # Factor square-free n into prime factors
+    primes: list[int] = []
+    temp = n
+    d = 2
+    while d * d <= temp:
+        if temp % d == 0:
+            primes.append(d)
+            while temp % d == 0:
+                temp //= d
+        d += 1
+    if temp > 1:
+        primes.append(temp)
 
-    def extended_gcd(a, b):
-        if a == 0:
-            return b, 0, 1
-        gcd, x1, y1 = extended_gcd(b % a, a)
-        return gcd, y1 - (b // a) * x1, x1
+    # For each prime factor p, find all solutions to r^3 = 1 mod p
+    roots_by_p: list[list[int]] = []
+    crt_weights: list[int] = []
 
-    crt_info = []
     for p in primes:
-        roots = [x for x in range(p) if (x * x * x) % p == 1]
-        M_i = N // p
-        _, inv, _ = extended_gcd(M_i, p)
-        crt_info.append((p, roots, M_i, inv % p))
+        roots = [r for r in range(1, p) if (r * r * r) % p == 1]
+        roots_by_p.append(roots)
 
-    ans = 0
-    for choice in itertools.product(*[info[1] for info in crt_info]):
-        x = 0
-        for i in range(len(primes)):
-            _, _, M_i, inv = crt_info[i]
-            x = (x + choice[i] * M_i * inv) % N
+        # Precompute CRT weight: M_i * (M_i^-1 mod p_i)
+        m_i = n // p
+        y_i = pow(m_i, -1, p)
+        crt_weights.append(m_i * y_i)
+
+    # Combine all root combinations via Chinese Remainder Theorem
+    total_sum = 0
+    for choice in itertools.product(*roots_by_p):
+        x = sum(r * w for r, w in zip(choice, crt_weights)) % n
         if x > 1:
-            ans += x
+            total_sum += x
 
-    return ans
+    return str(total_sum)
+
+
+if __name__ == "__main__":
+    print(solve())

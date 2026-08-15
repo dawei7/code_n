@@ -1,65 +1,57 @@
-import numpy as np
+"""Project Euler 154: Exploring Pascal's Pyramid
+
+Find the number of trinomial coefficients in (x+y+z)^N (N=200,000) divisible by 10^12 = 2^12 * 5^12.
+"""
+
+from __future__ import annotations
 
 
-def solve(N: int = 200000) -> int:
-    """Find number of coefficients in (x+y+z)^N divisible by 10^12 = 2^12 * 5^12.
-    
-    Time Complexity: O(N^2 / Vectorization)
-    Space Complexity: O(N)
+def solve(n: int = 200_000) -> str:
+    """Calculates the number of trinomial coefficients divisible by 10^12 in pure Python
+
+    using Kummer's theorem on multinomial p-adic valuations and base-5 / base-2 digit sums:
+    v_5(N! / (i! j! k!)) = (S_5(i) + S_5(j) + S_5(k) - S_5(N)) / 4 >= 12 <=> S_5(i) + S_5(j) + S_5(k) >= 56
+    v_2(N! / (i! j! k!)) = S_2(i) + S_2(j) + S_2(k) - S_2(N) >= 12 <=> S_2(i) + S_2(j) + S_2(k) >= 18
+    where i + j + k = N and 0 <= i <= j <= k.
     """
-    f2 = np.zeros(N + 1, dtype=np.int32)
-    f5 = np.zeros(N + 1, dtype=np.int32)
+    # 1. Precompute base-5 digit sum S_5(x) and base-2 popcount S_2(x)
+    s5 = [0] * (n + 1)
+    s2 = [0] * (n + 1)
+    for x in range(1, n + 1):
+        s5[x] = s5[x // 5] + (x % 5)
+        s2[x] = s2[x >> 1] + (x & 1)
 
-    for p, f in [(2, f2), (5, f5)]:
-        v = 0
-        for i in range(1, N + 1):
-            x = i
-            while x % p == 0:
-                v += 1
-                x //= p
-            f[i] = v
+    s5_n = s5[n]  # S_5(200000) = 8
+    s2_n = s2[n]  # S_2(200000) = 6
+    min_s5 = 48 + s5_n  # 56
+    min_s2 = 12 + s2_n  # 18
 
-    v2_N = f2[N]
-    v5_N = f5[N]
+    # 2. Iterate canonical representative partitions 0 <= i <= j <= k = n - i - j
+    count = 0
+    max_i = n // 3
 
-    total_count = 0
-
-    for i in range(0, N // 3 + 1):
-        f5_i = f5[i]
-        rem5_i = v5_N - f5_i
-        if rem5_i < 12:
+    for i in range(max_i + 1):
+        s5_i = s5[i]
+        req_5 = min_s5 - s5_i
+        if req_5 > 56:  # Max possible sum of two numbers <= 200000 is 28 + 28 = 56
             continue
+        s2_i = s2[i]
+        req_2 = min_s2 - s2_i
 
-        f2_i = f2[i]
-        rem2_i = v2_N - f2_i
-        if rem2_i < 12:
-            continue
+        m = n - i
+        max_j = m // 2
+        for j in range(i, max_j + 1):
+            k = m - j
+            if s5[j] + s5[k] >= req_5 and s2[j] + s2[k] >= req_2:
+                if i == j == k:
+                    count += 1
+                elif i == j or j == k or i == k:
+                    count += 3
+                else:
+                    count += 6
 
-        max_j = (N - i) // 2
+    return str(count)
 
-        # Slices: j goes from i to max_j
-        # k = N - i - j goes from N - 2*i down to N - i - max_j
-        f5_j = f5[i:max_j + 1]
-        f5_k = f5[N - 2 * i:N - i - max_j - 1:-1]
 
-        mask5 = (rem5_i - f5_j - f5_k >= 12)
-        if not np.any(mask5):
-            continue
-
-        f2_j = f2[i:max_j + 1][mask5]
-        f2_k = f2[N - 2 * i:N - i - max_j - 1:-1][mask5]
-        mask2 = (rem2_i - f2_j - f2_k >= 12)
-
-        valid_j = np.arange(i, max_j + 1, dtype=np.int32)[mask5][mask2]
-        valid_k = (N - i) - valid_j
-
-        is_all_equal = (i == valid_j) & (valid_j == valid_k)
-        is_two_equal = (i == valid_j) | (valid_j == valid_k) | (i == valid_k)
-
-        c1 = int(np.sum(is_all_equal))
-        c3 = int(np.sum(is_two_equal & ~is_all_equal))
-        c6 = int(np.sum(~is_two_equal))
-
-        total_count += c1 + 3 * c3 + 6 * c6
-
-    return total_count
+if __name__ == "__main__":
+    print(solve())

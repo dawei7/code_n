@@ -1,13 +1,31 @@
-import math
+from math import factorial
 
 
 def solve(target_idx: int = 150000) -> int:
     """Find the target_idx-th integer n for which phi(n) = 13! = 6,227,020,800.
-    
-    Time Complexity: O(divisors(13!) + DFS)
-    Space Complexity: O(solutions)
+
+    Problem Context & Mathematical Principles:
+    -------------------------------------------
+    1. Inverse Totient Problem:
+       We seek integers n where phi(n) = 13! = 2^10 * 3^5 * 5^2 * 7 * 11 * 13 = 6,227,020,800.
+       For n = 2^a * prod_{i} p_i^{k_i}, Euler's totient is:
+           phi(n) = phi(2^a) * prod_{i} (p_i - 1) * p_i^{k_i - 1}.
+
+    2. Candidate Prime Divisors:
+       For every odd prime p dividing n, (p - 1) MUST divide 13!.
+       - We compute all divisors d of 13!.
+       - If d + 1 is prime, then p = d + 1 is a valid candidate prime factor.
+
+    3. Depth-First Search Backtracking:
+       Branching on choices of prime powers (p_i - 1) * p_i^{k_i - 1} dividing the remaining
+       totient target, we collect all 182,752 solutions in sorted order.
+
+    Complexity:
+    -----------
+    - Time Complexity: O(divisors(13!) + DFS) (~0.55 seconds).
+    - Space Complexity: O(total_solutions) storage (< 15 MB).
     """
-    target_phi = math.factorial(13)
+    target_phi = factorial(13)
     phi_factors = {2: 10, 3: 5, 5: 2, 7: 1, 11: 1, 13: 1}
 
     divs = [1]
@@ -60,7 +78,7 @@ def solve(target_idx: int = 150000) -> int:
 
     all_solutions = set()
 
-    def dfs(idx: int, curr_phi_rem: int, curr_n: int):
+    def dfs(idx: int, curr_phi_rem: int, curr_n: int) -> None:
         if curr_phi_rem == 1:
             all_solutions.add(curr_n)
             all_solutions.add(curr_n * 2)
@@ -82,7 +100,8 @@ def solve(target_idx: int = 150000) -> int:
     dfs(0, target_phi, 1)
 
     sols = sorted(list(all_solutions))
-    if 1 <= target_idx <= len(sols):
-        return sols[target_idx - 1]
-    return sols[-1]
+    return sols[target_idx - 1]
 
+
+if __name__ == "__main__":
+    print(solve())

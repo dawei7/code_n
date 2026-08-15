@@ -1,8 +1,19 @@
 def solve() -> int:
-    """Find maximum path sum in a number triangle using bottom-up dynamic programming.
-    
-    Time Complexity: O(R^2)
-    Space Complexity: O(R^2)
+    """Find the maximum path sum from top to bottom in a 15-row number triangle.
+
+    Mathematical Principles Applied:
+    1. Bellman's Principle of Optimality (Bottom-Up Dynamic Programming):
+       For a triangle T with R rows, let DP[r][c] be the maximum path sum starting at cell (r, c)
+       and moving down to the base (row R - 1).
+       Recurrence relation:
+       DP[r][c] = T[r][c] + max(DP[r+1][c], DP[r+1][c+1])
+
+    2. Bottom-Up Reduction:
+       By iterating rows from R - 2 upwards to 0 (bottom-to-top), each row r updates in-place.
+       Upon reaching row 0, DP[0][0] holds the exact global maximum path sum.
+
+    Time Complexity: O(R^2) where R = 15 rows (120 cells total).
+    Space Complexity: O(R^2) to store triangle array.
     """
     triangle_str = """
     75
@@ -21,10 +32,19 @@ def solve() -> int:
     63 66 04 68 89 53 67 30 73 16 69 87 40 31
     04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
     """
+
+    # Parse 15-row triangle string into a 2D ragged integer list
     grid = [[int(x) for x in line.split()] for line in triangle_str.strip().splitlines() if line.strip()]
 
+    # Execute bottom-up dynamic programming pass from row R - 2 down to row 0
     for r in range(len(grid) - 2, -1, -1):
         for c in range(len(grid[r])):
+            # Each cell accumulates its value + max of its two adjacent children in the row below
             grid[r][c] += max(grid[r + 1][c], grid[r + 1][c + 1])
 
+    # The apex cell grid[0][0] contains the global maximum path sum
     return grid[0][0]
+
+
+if __name__ == "__main__":
+    print(solve())

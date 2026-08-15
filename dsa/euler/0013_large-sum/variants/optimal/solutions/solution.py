@@ -1,8 +1,17 @@
 def solve() -> int:
     """Find the first ten digits of the sum of 100 50-digit numbers.
-    
-    Time Complexity: O(N * L)
-    Space Complexity: O(N * L)
+
+    Mathematical Principles Applied:
+    1. Exact Large Integer Summation:
+       Python supports arbitrary-precision integers natively. Summing 100 50-digit numbers
+       yields a ~52-digit exact integer S.
+
+    2. Leading Digit Truncation:
+       Converting S to a decimal string representation and extracting s[:10] yields the
+       first 10 most significant digits.
+
+    Time Complexity: O(N * L) where N = 100 numbers and L = 50 digits.
+    Space Complexity: O(N * L) memory.
     """
     raw_data = """
     37107287533902102798797998220837590246510135740250
@@ -106,5 +115,18 @@ def solve() -> int:
     20849603980134001723930671666823555245252804609722
     53503534226472524250874054075591789781264330331690
     """
-    total = sum(int(line.strip()) for line in raw_data.strip().splitlines() if line.strip())
-    return int(str(total)[:10])
+    # Parse 100 50-digit numbers into integer list
+    numbers = [int(line.strip()) for line in raw_data.strip().splitlines() if line.strip()]
+
+    # Compute exact 52-digit sum of all 100 numbers
+    total_sum = sum(numbers)
+
+    # Extract the first 10 most significant digits as an integer
+    first_ten_digits = int(str(total_sum)[:10])
+
+    # Return the first 10 digits of the sum
+    return first_ten_digits
+
+
+if __name__ == "__main__":
+    print(solve())

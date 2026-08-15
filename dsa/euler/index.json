@@ -1,6 +1,6 @@
 {
   "source": "https://projecteuler.net/",
-  "count": 1007,
+  "count": 1009,
   "questions": [
     {
       "frontend_id": "1",
@@ -7895,6 +7895,18 @@
       "category_title": "Math",
       "topics": [],
       "url": "https://projecteuler.net/problem=312",
+      "package_name": "0312_cyclic-paths-on-sierpinski-graphs"
+    },
+    {
+      "frontend_id": "312",
+      "title": "Cyclic Paths on Sierpi\u0144ski Graphs",
+      "slug": "cyclic-paths-on-sierpi\u0144ski-graphs",
+      "difficulty": "Level 19",
+      "euler_level": 19,
+      "category": "math",
+      "category_title": "Math",
+      "topics": [],
+      "url": "https://projecteuler.net/problem=312",
       "package_name": "0312_cyclic-paths-on-sierpi\u0144ski-graphs"
     },
     {
@@ -8507,7 +8519,7 @@
       "category_title": "Math",
       "topics": [],
       "url": "https://projecteuler.net/problem=363",
-      "package_name": "0363_b\u00e9zier-curves"
+      "package_name": "0363_bezier-curves"
     },
     {
       "frontend_id": "364",
@@ -22479,6 +22491,18 @@
       "topics": [],
       "url": "https://projecteuler.net/problem=786",
       "package_name": "0786_billiard"
+    },
+    {
+      "frontend_id": "787",
+      "title": "B\u00e9zout's Game",
+      "slug": "b\u00e9zouts-game",
+      "difficulty": "Level 24",
+      "euler_level": 24,
+      "category": "math",
+      "category_title": "Math",
+      "topics": [],
+      "url": "https://projecteuler.net/problem=787",
+      "package_name": "0787_bzouts-game"
     },
     {
       "frontend_id": "787",

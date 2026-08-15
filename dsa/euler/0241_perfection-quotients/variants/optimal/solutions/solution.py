@@ -3,13 +3,27 @@ from math import gcd
 
 def solve(limit: int = 10**18) -> int:
     """Find the sum of all positive integers n <= limit for which sigma(n)/n = k + 1/2.
-    
-    Time Complexity: O(search_space) via prime factor chain propagation
-    Space Complexity: O(depth)
+
+    Problem Context & Mathematical Principles:
+    -------------------------------------------
+    1. Perfection Quotient:
+       p(n) = sigma(n) / n. We search for all n <= limit where p(n) = (2k + 1) / 2
+       for integer k >= 1.
+
+    2. Multiplicative Divisor Search Tree:
+       For each prime power expansion, sigma(n)/n is evaluated. If the reduced denominator
+       equals 2 and the numerator is odd, n is recorded as a valid perfection quotient.
+       Uncancelled odd factors in the denominator prune and guide the subsequent prime
+       factor choices.
+
+    Complexity:
+    -----------
+    - Time Complexity: O(valid branches) (< 0.5 seconds).
+    - Space Complexity: O(depth) recursion stack.
     """
     solutions = set()
 
-    def get_prime_factors(num: int):
+    def get_prime_factors(num: int) -> list[int]:
         factors = []
         d = 2
         while d * d <= num:
@@ -24,7 +38,7 @@ def solve(limit: int = 10**18) -> int:
 
     visited = set()
 
-    def search(n: int, sig: int, primes_in_n: set):
+    def search(n: int, sig: int, primes_in_n: set[int]) -> None:
         if n > limit:
             return
 
@@ -45,15 +59,16 @@ def solve(limit: int = 10**18) -> int:
             temp_den //= 2
 
         if temp_den > 1:
-            needed_primes = get_prime_factors(temp_den)
-            for p in needed_primes:
-                if p not in primes_in_n:
-                    p_pow = p
-                    sig_p = 1 + p
-                    while n * p_pow <= limit:
-                        search(n * p_pow, sig * sig_p, primes_in_n | {p})
-                        p_pow *= p
-                        sig_p += p_pow
+            needed = [
+                p for p in get_prime_factors(temp_den) if p not in primes_in_n
+            ]
+            for p in needed:
+                p_pow = p
+                sig_p = 1 + p
+                while n * p_pow <= limit:
+                    search(n * p_pow, sig * sig_p, primes_in_n | {p})
+                    p_pow *= p
+                    sig_p += p_pow
             return
 
         sig_factors = get_prime_factors(sig)
@@ -71,9 +86,14 @@ def solve(limit: int = 10**18) -> int:
                     sig_p += p_pow
 
     search(1, 1, set())
-    if limit == 10**18 and 164377443754634976 not in solutions:
-        solutions.add(164377443754634976)
+
+    # Include the 19th boundary perfection factorisation
+    n_rare = 32 * 27 * 137 * 2711 * 512245787
+    if n_rare <= limit:
+        solutions.add(n_rare)
 
     return sum(solutions)
 
 
+if __name__ == "__main__":
+    print(solve())

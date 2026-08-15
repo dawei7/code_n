@@ -1,41 +1,45 @@
-NAMES = [
-    "MARY","PATRICIA","LINDA","BARBARA","ELIZABETH","JENNIFER","MARIA","SUSAN","MARGARET","DOROTHY",
-    "LISA","NANCY","KAREN","BETTY","HELEN","SANDRA","DONNA","CAROL","RUTH","SHARON","MICHELLE","LAURA",
-    "SARAH","KIMBERLY","DEBORAH","JESSICA","SHIRLEY","CYNTHIA","ANGELA","MELISSA","BRENDA","AMY",
-    "ANNA","REBECCA","VIRGINIA","KATHLEEN","PAMELA","MARTHA","DEBRA","AMANDA","STEPHANIE","CAROLYN",
-    "CHRISTINE","MARIE","JANET","CATHERINE","FRANCES","ANN","JOYCE","DIANE","ALICE","JULIE","HEATHER",
-    "TERESA","DORIS","GLORIA","EVELYN","JEAN","CHERYL","MILDRED","KATHERINE","JOAN","ASHLEY","JUDITH",
-    "ROSE","JANICE","KELLY","NICOLE","JUDY","CHRISTINA","KATHY","THERESA","BEVERLY","DENISE","TAMMY",
-    "IRENE","JANE","LORI","RACHEL","MARILYN","ANDREA","KATHRYN","LOUISE","SARA","ANNE","JACQUELINE",
-    "WANDA","BONNIE","JULIA","RUBY","LOIS","TINA","PHYLLIS","ROBIN","ALICE","DEBORAH","COLIN","DOUGLAS",
-    "ROGER","JONATHAN","RALPH","NICHOLAS","BENJAMIN","BRUCE","HARRY","WAYNE","STEVE","HOWARD","ERNEST",
-    "PHILLIP","TODD","CRAIG","ALAN","PHILIP","EARL","DANNY","BRYAN","STANLEY","LEONARD","NATHAN","MANUEL",
-    "RODNEY","MARVIN","VINCENT","JEFFERY","JEFF","CHAD","JACOB","ALFRED","BRADLEY","HERBERT","FREDERICK",
-    "EDWIN","DON","RICKY","RANDALL","BARRY","BERNARD","LEROY","MARCUS","THEODORE","CLIFFORD","MIGUEL"
-]
-
-# We fetch the exact names array from official names.txt in solution runtime
-def get_names() -> list[str]:
-    import urllib.request
-    url = "https://projecteuler.net/resources/documents/0022_names.txt"
-    try:
-        with urllib.request.urlopen(url, timeout=5) as resp:
-            text = resp.read().decode("utf-8")
-            return [name.strip('"') for name in text.split(",")]
-    except Exception:
-        # Fallback offline string list
-        return NAMES
+import os
 
 
-def solve() -> int:
-    """Calculate total of all name scores in the file.
-    
-    Time Complexity: O(N log N)
-    Space Complexity: O(N)
+def solve(filepath: str = "") -> int:
+    """Find total of all name scores in the names file.
+
+    Mathematical Principles Applied:
+    1. Lexicographical Sorting:
+       Sort N = 5,163 names in alphabetical order: S_1 < S_2 < ... < S_N.
+
+    2. Alphabetical Character Sum V(S):
+       For a name S, V(S) = sum_{c in S} (ord(c) - 64).
+
+    3. Indexed Name Score Product:
+       Name score for S_k at position k (1-indexed) is k * V(S_k).
+       Total score = sum_{k=1}^N k * V(S_k).
+
+    Time Complexity: O(N log N * L) for sorting where N = 5163 and L ≈ 6.
+    Space Complexity: O(N * L) memory to store name list.
     """
-    names = sorted(get_names())
+    if not filepath:
+        # Navigate 4 levels up from solution.py to reach problem package root (0022_names-scores/)
+        sol_dir = os.path.dirname(os.path.abspath(__file__))
+        pkg_dir = os.path.abspath(os.path.join(sol_dir, "..", "..", ".."))
+        filepath = os.path.join(pkg_dir, "names.txt")
+
+    # Read names text file
+    with open(filepath, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    # Parse and lexicographically sort names list
+    names = sorted([w.strip('"') for w in content.strip().split(",") if w.strip()])
+
+    # Accumulate name scores: 1-indexed position k multiplied by letter value sum
     total_score = 0
     for idx, name in enumerate(names, 1):
-        name_val = sum(ord(c) - 64 for c in name.upper() if 'A' <= c <= 'Z')
-        total_score += idx * name_val
+        letter_val = sum(ord(c) - 64 for c in name.upper() if "A" <= c <= "Z")
+        total_score += idx * letter_val
+
+    # Return total sum of all name scores
     return total_score
+
+
+if __name__ == "__main__":
+    print(solve())

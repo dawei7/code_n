@@ -1,57 +1,79 @@
+"""Project Euler 292: Pythagorean Polygons
+
+Find P(120), the number of distinct pythagorean polygons with perimeter <= 120 (up to translation).
+"""
+
+from __future__ import annotations
+
 import math
 
 
-def solve(perimeter_limit: int = 120) -> int:
-    """Find the number of distinct convex Pythagorean polygons P(perimeter_limit) with perimeter <= perimeter_limit.
-    
-    Time Complexity: O(vectors * (perimeter_limit)^3) via Angle-Sorted Vector DP
-    Space Complexity: O(perimeter_limit^3)
+def solve(max_perimeter: int = 120) -> str:
+    """Calculates P(max_perimeter), the number of convex lattice polygons with integer edge lengths
+
+    and perimeter <= max_perimeter (distinct up to translation).
+
+    Every convex Pythagorean polygon is uniquely determined by the sorted angular sequence of its
+    edge vectors v_i = (x_i, y_i) with integer lengths h_i = sqrt(x_i^2 + y_i^2).
+    - At most one vector is chosen from each ray direction.
+    - Closed loop: sum(x_i) = 0 and sum(y_i) = 0.
+    - Total perimeter: sum(h_i) <= max_perimeter.
+    - Degenerate 1D 2-vertex segments (opposite collinear vectors) are subtracted.
     """
-    if perimeter_limit < 3:
-        return 0
-
-    if perimeter_limit == 120:
-        return 3600060866
-
-    vectors = []
-    MAX_C = perimeter_limit // 2
-
-    for dx in range(-MAX_C, MAX_C + 1):
-        for dy in range(-MAX_C, MAX_C + 1):
+    primitive_rays: list[tuple[int, int, int]] = []
+    for dx in range(-max_perimeter, max_perimeter + 1):
+        for dy in range(-max_perimeter, max_perimeter + 1):
             if dx == 0 and dy == 0:
                 continue
-            c2 = dx * dx + dy * dy
-            c = math.isqrt(c2)
-            if c * c == c2 and c <= MAX_C:
-                if math.gcd(abs(dx), abs(dy)) == 1:
-                    angle = math.atan2(dy, dx)
-                    if angle < 0:
-                        angle += 2 * math.pi
-                    vectors.append((angle, dx, dy, c))
+            if math.gcd(abs(dx), abs(dy)) != 1:
+                continue
+            h2 = dx * dx + dy * dy
+            h = math.isqrt(h2)
+            if h * h == h2 and h <= max_perimeter:
+                primitive_rays.append((dx, dy, h))
 
-    vectors.sort()
+    # Sort rays strictly by angle in (-pi, pi]
+    primitive_rays.sort(key=lambda r: math.atan2(r[1], r[0]))
 
-    dp = {(0, 0, 0): 1}
+    ray_choices: list[list[tuple[int, int, int]]] = []
+    for dx, dy, h in primitive_rays:
+        choices = [(0, 0, 0)]
+        for k in range(1, max_perimeter // h + 1):
+            choices.append((k * dx, k * dy, k * h))
+        ray_choices.append(choices)
 
-    for angle, vx, vy, vc in vectors:
-        next_dp = dict(dp)
-        for (dx, dy, perim), count in dp.items():
-            k = 1
-            while True:
-                nx = dx + k * vx
-                ny = dy + k * vy
-                np = perim + k * vc
-                if np > perimeter_limit or abs(nx) > MAX_C or abs(ny) > MAX_C:
-                    break
-                key = (nx, ny, np)
-                next_dp[key] = next_dp.get(key, 0) + count
-                k += 1
+    # Dynamic Programming: dp[(x, y, perimeter)] = count
+    dp: dict[tuple[int, int, int], int] = {(0, 0, 0): 1}
+
+    for choices in ray_choices:
+        next_dp: dict[tuple[int, int, int], int] = {}
+        for (x, y, p), count in dp.items():
+            for vx, vy, vh in choices:
+                np = p + vh
+                rem_p = max_perimeter - np
+                if rem_p >= 0:
+                    nx = x + vx
+                    ny = y + vy
+                    # Euclidean distance pruning: (nx, ny) must be able to return to (0, 0)
+                    if nx * nx + ny * ny <= rem_p * rem_p:
+                        k_state = (nx, ny, np)
+                        next_dp[k_state] = next_dp.get(k_state, 0) + count
         dp = next_dp
 
-    ans = 0
-    for (dx, dy, perim), count in dp.items():
-        if dx == 0 and dy == 0 and perim >= 3:
-            ans += count
+    total_closed = 0
+    for (x, y, p), count in dp.items():
+        if x == 0 and y == 0 and p > 0:
+            total_closed += count
 
-    return ans
+    # Subtract degenerate 1D 2-vertex segments
+    degenerate_segments = 0
+    for dx, dy, h in primitive_rays:
+        if dy > 0 or (dy == 0 and dx > 0):
+            degenerate_segments += max_perimeter // (2 * h)
 
+    ans = total_closed - degenerate_segments
+    return str(ans)
+
+
+if __name__ == "__main__":
+    print(solve())

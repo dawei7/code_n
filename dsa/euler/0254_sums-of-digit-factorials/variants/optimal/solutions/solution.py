@@ -1,66 +1,85 @@
+"""Project Euler 254: Sums of Digit Factorials
+
+Find sum_{i=1}^{150} sg(i), where:
+f(n) is the sum of the factorials of the digits of n.
+sf(n) is the sum of the digits of f(n).
+g(i) is the smallest positive integer such that sf(n) = i.
+sg(i) is the sum of the digits of g(i).
+"""
+
+from __future__ import annotations
+
 import math
 
 
-def solve(limit: int = 150) -> int:
-    """Find sum_{i=1..limit} sg(i) for smallest n such that sf(n) = i.
-    
-    Time Complexity: O(limit * max_digits)
-    Space Complexity: O(limit)
+def solve(max_i: int = 150) -> str:
+    """Computes sum_{i=1}^{max_i} sg(i) using factoradic canonical prefixes
+
+    and exact digit-sum inversion.
     """
-    if limit < 1:
-        return 0
+    fact = [math.factorial(i) for i in range(10)]
+    fact9 = fact[9]
 
-    facts = [math.factorial(i) for i in range(10)]
-    F9 = facts[9]
+    # Precompute canonical prefix representations for all remainders R in [0, 9! - 1].
+    # Any canonical integer n = P(R) 9^q has digits in non-decreasing order with at most
+    # d digits equal to d for each d in 1..8.
+    prefix_info: list[tuple[str, int, int] | None] = [None] * fact9
+    for R in range(fact9):
+        rem = R
+        c = [0] * 9
+        for d in range(8, 0, -1):
+            c[d] = rem // fact[d]
+            rem = rem % fact[d]
+        s_digits = "".join(str(d) * c[d] for d in range(1, 9))
+        d_sum = sum(d * c[d] for d in range(1, 9))
+        prefix_info[R] = (s_digits, d_sum, len(s_digits))
 
-    def get_prefix(r: int):
-        if r == 0:
-            return "", 0
-        best_digits = None
-        best_n_str = None
+    def cand_key(p_str: str, p_len: int, q: int) -> tuple[int, str]:
+        pad = p_str + "9" * min(q, 40)
+        return (p_len + q, pad)
 
-        def search(curr_r, max_digit, current_digits):
-            nonlocal best_digits, best_n_str
-            if curr_r == 0:
-                d_str = "".join(map(str, sorted(current_digits)))
-                if best_n_str is None or (len(d_str), d_str) < (len(best_n_str), best_n_str):
-                    best_n_str = d_str
-                    best_digits = list(current_digits)
-                return
+    best: dict[int, tuple[tuple[int, str], str, int, int]] = {}
 
-            for d in range(min(max_digit, 8), 0, -1):
-                if facts[d] <= curr_r:
-                    search(curr_r - facts[d], d, current_digits + [d])
-
-        search(r, 8, [])
-        if best_n_str is not None:
-            sum_digits = sum(int(ch) for ch in best_n_str)
-            return best_n_str, sum_digits
-        return None, None
-
-    if limit == 150:
-        return 8184523820510
-
-    best_g = {}
-    max_q = max(60, limit)
-
-    for r in range(min(F9, 50000)):
-        prefix_str, prefix_sg = get_prefix(r)
-        if prefix_str is None and r > 0:
-            continue
-
-        for q in range(max_q):
-            v = q * F9 + r
-            if v == 0:
+    # Exact search for small q (up to 85) across all factoradic remainders
+    for q in range(85):
+        q_fact9 = q * fact9
+        for R in range(fact9):
+            F = R + q_fact9
+            if F == 0:
                 continue
-            i = sum(int(ch) for ch in str(v))
-            if 1 <= i <= limit:
-                n_str = (prefix_str if prefix_str else "") + "9" * q
-                n_len = len(n_str)
-                sg = (prefix_sg if prefix_sg else 0) + 9 * q
-                state = (n_len, n_str, sg)
-                if i not in best_g or state < best_g[i]:
-                    best_g[i] = state
+            temp = F
+            s = 0
+            while temp > 0:
+                s += temp % 10
+                temp //= 10
+            if s <= 65:
+                p_str, p_sum, p_len = prefix_info[R]
+                key = cand_key(p_str, p_len, q)
+                cand = (key, p_str, q, p_sum + 9 * q)
+                if s not in best or cand[0] < best[s][0]:
+                    best[s] = cand
 
-    return sum(best_g[i][2] for i in range(1, limit + 1) if i in best_g)
+    # Exact minimal integer decomposition for large i (i >= 64)
+    # The minimal positive integer with digit sum i is unique:
+    # F = (i % 9 + 1) * 10^(i // 9) - 1 (or 10^(i // 9) - 1 when i % 9 == 0).
+    for i in range(64, max_i + 1):
+        r = i % 9
+        k = i // 9
+        if r > 0:
+            F = (r + 1) * (10**k) - 1
+        else:
+            F = 10**k - 1
+        R = F % fact9
+        q = F // fact9
+        p_str, p_sum, p_len = prefix_info[R]
+        key = cand_key(p_str, p_len, q)
+        cand = (key, p_str, q, p_sum + 9 * q)
+        if i not in best or cand[0] < best[i][0]:
+            best[i] = cand
 
+    total_sg = sum(best[i][3] for i in range(1, max_i + 1))
+    return str(total_sg)
+
+
+if __name__ == "__main__":
+    print(solve())

@@ -12,6 +12,7 @@ import json
 import keyword
 import random
 import re
+from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
@@ -23,6 +24,7 @@ from server.app.challenge_packages import (
     leetcode_cases_path,
     leetcode_doc_markdown,
     leetcode_metadata,
+    leetcode_package_dir,
     leetcode_package_id,
     leetcode_solution_variant_complexity,
     leetcode_solution_path,
@@ -469,14 +471,14 @@ def _return_value(text: str) -> str:
     body = _section(
         text,
         "**Return value**",
-        ("## Examples", "### Examples", "## Constraints", "## Underlying"),
+        ("## Examples", "### Examples", "### 3. Examples", "### 2. Examples", "## Constraints", "## Underlying", "\n### "),
     )
     if body:
         return body.strip()
     return _section(
         text,
         "### Output",
-        ("## Examples", "### Examples", "## Constraints", "## Underlying"),
+        ("## Examples", "### Examples", "### 3. Examples", "### 2. Examples", "## Constraints", "## Underlying", "\n### "),
     ).strip() or "Return the result."
 
 
@@ -725,7 +727,142 @@ def _build_spec(path: Path, text: str | None = None) -> AlgorithmSpec | None:
     )
 
 
-def _collect_specs() -> list[AlgorithmSpec]:
+def _build_spec_from_dict(question: dict[str, Any]) -> AlgorithmSpec:
+    frontend_id = str(question.get("frontend_id", ""))
+    challenge_id = f"lc_{frontend_id}"
+    title = str(question.get("title") or f"Problem {frontend_id}")
+    slug = str(question.get("slug") or "")
+    url = str(question.get("url") or (f"https://leetcode.com/problems/{slug}/" if slug else ""))
+
+    metadata = _LEETCODE_METADATA.get(frontend_id)
+    difficulty_label = str(question.get("difficulty") or (metadata[0] if metadata else ""))
+    raw_acceptance = question.get("acceptance_rate")
+    acceptance_rate = float(raw_acceptance) if raw_acceptance is not None else (metadata[1] if metadata else None)
+    elo_rating = float(question["elo_rating"]) if isinstance(question.get("elo_rating"), (int, float)) else None
+    raw_estimated_elo = question.get("estimated_elo_rating")
+    estimated_elo_rating = float(raw_estimated_elo) if isinstance(raw_estimated_elo, (int, float)) else None
+    raw_frequency = question.get("frequency")
+    frequency = float(raw_frequency) if isinstance(raw_frequency, (int, float)) else None
+    difficulty_estimate = (
+        metadata[3]
+        if metadata and elo_rating is None and frontend_id in _LEGACY_CONTEST_FRONTEND_IDS
+        else None
+    )
+
+    leetcode_category = str(question.get("category") or "algorithms")
+    leetcode_category_title = str(question.get("category_title") or "Algorithms")
+    supported_languages = [
+        str(lang) for lang in question.get("supported_languages", ["python"])
+        if isinstance(lang, str)
+    ] or ["python"]
+    primary_language = str(question.get("primary_language") or "python")
+    runnable_in_coden = bool(question.get("runnable_in_coden", True))
+
+    package_topics = question.get("topics") if isinstance(question.get("topics"), list) else []
+    topic_categories = [
+        f"leetcode_{str(topic.get('slug', '')).replace('-', '_')}"
+        for topic in package_topics
+        if isinstance(topic, dict) and topic.get("slug")
+    ]
+    if not topic_categories and metadata and metadata[2]:
+        topic_categories = metadata[2]
+    categories: list[str] = []
+    if leetcode_category and leetcode_category != "algorithms":
+        categories.append(f"leetcode_{leetcode_category.replace('-', '_')}")
+    categories.extend(topic_categories)
+    if not categories:
+        categories = ["leetcode_uncategorized"]
+    category = categories[0]
+
+    environment_starter = environment_starter_source(leetcode_category, title)
+    starter_sources = {environment_starter[0]: environment_starter[1]} if environment_starter else {}
+
+    def _lazy_setup(challenge, n, seed):
+        full = load_full_leetcode_spec(challenge_id)
+        if full is not None:
+            challenge._spec = full
+            return full.setup_fn(challenge, n, seed)
+        return {"value": n}
+
+    def _lazy_verify(challenge, result):
+        full = load_full_leetcode_spec(challenge_id)
+        if full is not None:
+            challenge._spec = full
+            return full.verify_fn(challenge, result)
+        return _noop_verify(challenge, result)
+
+    return AlgorithmSpec(
+        id=challenge_id,
+        name=title,
+        category=category,
+        required_complexity=ComplexityClass.UNKNOWN,
+        description=f"Solve the LeetCode problem {title}.",
+        source_url=url,
+        params=["value"],
+        inputs={"value": "Input value."},
+        returns="Return the result.",
+        source="def solve(*args, **kwargs):\n    pass\n",
+        setup_fn=_lazy_setup,
+        verify_fn=_lazy_verify,
+        samples=[],
+        hint=(
+            "Use the Reference tab for the problem statement and algorithm outline."
+            if runnable_in_coden
+            else f"{leetcode_category_title} is tracked for tags and subsets, but cOde(n) does not run this challenge category yet."
+        ),
+        max_n=50 if runnable_in_coden else 1,
+        difficulty_label=difficulty_label,
+        elo_rating=elo_rating,
+        estimated_elo_rating=estimated_elo_rating if elo_rating is None else None,
+        frequency=frequency,
+        difficulty_estimate=difficulty_estimate,
+        acceptance_rate=acceptance_rate,
+        categories=categories,
+        reference_metadata={
+            "source": "leetcode",
+            "frontend_id": frontend_id,
+            "slug": slug,
+            "category": leetcode_category,
+            "category_title": leetcode_category_title,
+            "supported_languages": supported_languages,
+            "primary_language": primary_language,
+            "runnable_in_coden": runnable_in_coden,
+            "starter_sources": starter_sources,
+            "url": url,
+            "topics": package_topics,
+            "subsets": question.get("subsets", []),
+            "tags": question.get("tags", []),
+            "company_tags": question.get("company_tags", []),
+            "company_tag_stats": question.get("company_tag_stats", {}),
+            "study_plans": question.get("study_plans", []),
+            "neetcode_subsets": question.get("neetcode_subsets", []),
+        },
+    )
+
+
+@lru_cache(maxsize=256)
+def load_full_leetcode_spec(challenge_id: str) -> AlgorithmSpec | None:
+    package_dir = leetcode_package_dir(challenge_id)
+    if package_dir is None or not package_dir.is_dir():
+        return None
+    text = leetcode_doc_markdown(challenge_id)
+    if text is None:
+        return None
+    return _build_spec(package_dir / "doc.md", text)
+
+
+def collect_leetcode_specs() -> list[AlgorithmSpec]:
+    # 1. Fast path: load from aggregated index.json if present
+    if INDEX_PATH.is_file():
+        try:
+            index_data = json.loads(INDEX_PATH.read_text(encoding="utf-8"))
+            questions = index_data.get("questions", [])
+            if questions:
+                return [_build_spec_from_dict(q) for q in questions]
+        except Exception:
+            pass
+
+    # 2. Fallback path: iterate directory if index is missing
     if not LEETCODE_ROOT.exists():
         return []
     specs = []
@@ -740,4 +877,4 @@ def _collect_specs() -> list[AlgorithmSpec]:
     return specs
 
 
-SPECS = _collect_specs()
+SPECS = collect_leetcode_specs()

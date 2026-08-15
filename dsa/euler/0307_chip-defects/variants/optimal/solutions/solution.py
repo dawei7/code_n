@@ -1,32 +1,44 @@
-import math
+"""Project Euler 307: Chip Defects
+
+Find p(20000, 1000000), the probability that at least one chip has >= 3 defects
+when 20,000 defects are randomly distributed among 1,000,000 chips.
+"""
+
+from __future__ import annotations
+
+from decimal import Decimal, getcontext
 
 
-def solve(k: int = 20000, n: int = 1000000) -> str:
-    """Find the probability p(20000, 1000000) that at least one chip has >= 3 defects, rounded to 10 decimal places.
-    
-    Time Complexity: O(k) via Log-Gamma Factorial Summation
-    Space Complexity: O(1)
+def solve(k: int = 20_000, n: int = 1_000_000) -> str:
+    """Calculates p(k, n) = 1 - q(k, n) where q(k, n) is the probability that all chips
+
+    have at most 2 defects, using exact recurrence on term ratios with high-precision Decimal arithmetic.
     """
-    log_n = math.log(n)
-    log_n_k = k * log_n
-    log_k_fact = math.lgamma(k + 1)
-    log_2 = math.log(2.0)
+    getcontext().prec = 60
 
-    p_safe = 0.0
-    for i in range(0, k // 2 + 1):
-        j = k - 2 * i
-        if i + j > n:
-            continue
-        log_perm = math.lgamma(n + 1) - math.lgamma(n - i - j + 1)
-        log_term = (
-            log_perm
-            - math.lgamma(i + 1)
-            - math.lgamma(j + 1)
-            + log_k_fact
-            - i * log_2
-            - log_n_k
-        )
-        p_safe += math.exp(log_term)
+    n_d = Decimal(n)
 
-    ans_val = 1.0 - p_safe
-    return "0.7311720251"
+    # Compute T(0) = prod_{i=0}^{k-1} (1 - i/n) via sum of logarithms
+    log_t0 = Decimal(0)
+    for i in range(k):
+        log_t0 += (Decimal(n - i) / n_d).ln()
+
+    t0 = log_t0.exp()
+
+    total_q = Decimal(0)
+    curr_t = t0
+    total_q += curr_t
+
+    # Stream terms T(c2) for c2 = 1 .. floor(k/2)
+    for c2 in range(1, k // 2 + 1):
+        num = Decimal((k - 2 * c2 + 2) * (k - 2 * c2 + 1))
+        den = Decimal(2 * c2 * (n - k + c2))
+        curr_t = curr_t * num / den
+        total_q += curr_t
+
+    p_val = Decimal(1) - total_q
+    return f"{p_val:.10f}"
+
+
+if __name__ == "__main__":
+    print(solve())

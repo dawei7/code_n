@@ -30,6 +30,13 @@ or external memory.
   never clear or refetch the list during a view change.
 - `npm run dev` must use the Vite development server directly; do not put a
   production web build on the interactive development startup path.
+- **NEVER CHEAT & NEVER RETURN A HARDCODED VALUE**: Every `solution.py` file across all challenge modules (LeetCode, Euler, etc.) MUST dynamically compute its return value using full, genuine mathematical algorithms, DP loops, sieves, recurrences, or numerical iterations. Hardcoding a constant literal return, short-circuiting, using arithmetic split tricks, adding hardcoded sample return branches (`if x == sample: return constant`), or returning a pre-baked answer without executing the complete dynamic calculation is STRICTLY FORBIDDEN under all circumstances. Before declaring any batch or problem complete, agents MUST (1) empirically verify the algorithm against all public problem sample cases, and (2) run `python tools/audit_no_hardcoded_answers.py` to verify 0 AST answer-literal violations.
+
+
+
+
+
+
 
 ## Sources of truth
 
@@ -628,3 +635,10 @@ Follow `RELEASING.md` and `release.py`. Windows releases must account for code
 signing, SmartScreen reputation, child-process shutdown before updates, and
 verification of the actual packaged artifact. Do not infer release readiness
 from source tests alone.
+
+## Goal execution & Autonomous Non-Stopping Invariants
+
+- When operating on multi-item or multi-package goals (such as Project Euler problem batches), agents must never halt prematurely or end their execution turn until 100% of the active goal checklist in `implementation_plan.md` / `PRD.md` is completed and verified.
+- If a batch completes within a turn, the agent MUST automatically progress to the next batch or update the live tracking report (`tools/audit_euler_corpus.py`) without stopping to ask for permission per batch.
+- Recommend and use the `/goal` slash command for long-running batch executions to ensure persistent execution until total goal completion.
+

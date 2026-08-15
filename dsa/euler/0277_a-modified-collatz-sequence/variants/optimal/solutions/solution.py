@@ -1,43 +1,49 @@
+"""Project Euler 277: A Modified Collatz sequence
+
+Find the smallest a_1 > 10^15 that begins with the sequence 'UDDDUdddDDUDDddDdDddDDUDDdUUDd'.
+"""
+
+from __future__ import annotations
+
+
 def solve(
-    seq: str = "UDDDUdddDDUDDddDdDddDDUDDdUUDd", target: int = 10**15
-) -> int:
-    """Find the smallest starting value a_1 > 10^15 that begins with the given modified Collatz sequence.
-    
-    Time Complexity: O(3 * |seq|^2)
-    Space Complexity: O(1)
+    seq: str = "UDDDUdddDDUDDddDdDddDDUDDdUUDd",
+    min_val: int = 10**15,
+) -> str:
+    """Calculates the smallest integer a_1 > min_val whose modified Collatz trajectory begins with
+
+    the given prefix using 3-adic Hensel modular lifting.
     """
+    transitions = {
+        "D": lambda a: a // 3,
+        "U": lambda a: (4 * a + 2) // 3,
+        "d": lambda a: (2 * a - 1) // 3,
+    }
+    char_map = {0: "D", 1: "U", 2: "d"}
+
+    # Iterative Hensel lifting mod 3^L
     r = 0
     mod = 1
-    for idx in range(len(seq)):
-        for k in (0, 1, 2):
-            cand = r + k * mod
+
+    for i, target_char in enumerate(seq):
+        for m in (0, 1, 2):
+            cand = r + m * mod
             val = cand
-            valid = True
-            for i in range(idx + 1):
-                c = seq[i]
-                rem = val % 3
-                if c == "D":
-                    if rem != 0:
-                        valid = False
-                        break
-                    val = val // 3
-                elif c == "U":
-                    if rem != 1:
-                        valid = False
-                        break
-                    val = (4 * val + 2) // 3
-                elif c == "d":
-                    if rem != 2:
-                        valid = False
-                        break
-                    val = (2 * val - 1) // 3
-            if valid:
+            for k in range(i):
+                val = transitions[seq[k]](val)
+            if char_map[val % 3] == target_char:
                 r = cand
                 mod *= 3
                 break
 
-    M = 0
-    while r + M * mod <= target:
-        M += 1
+    # Determine smallest a_1 > min_val of the form r + k * mod
+    k = (min_val - r) // mod
+    while r + k * mod <= min_val:
+        k += 1
 
-    return r + M * mod
+    ans = r + k * mod
+    return str(ans)
+
+
+if __name__ == "__main__":
+    print(solve())

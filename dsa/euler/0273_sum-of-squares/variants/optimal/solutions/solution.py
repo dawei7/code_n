@@ -1,59 +1,59 @@
+"""Project Euler 273: Sum of Squares
+
+Find the sum of S(N) for all square-free N only divisible by primes of the form 4k + 1 < 150.
+"""
+
+from __future__ import annotations
+
 import math
 
 
-def solve(limit_prime: int = 150) -> int:
-    """Find sum(S(N)) for all squarefree N only divisible by primes p = 1 (mod 4) < 150.
-    
-    Time Complexity: O(3^K) Gaussian integer tree multiplication for K = 16 primes
-    Space Complexity: O(2^K)
+def solve(max_prime: int = 150) -> str:
+    """Calculates the sum of all minimal base representations a for a^2 + b^2 = N across all square-free
+
+    subsets of primes 4k+1 < 150 using Gaussian integer multiplication trees.
     """
+    # 1. Extract all primes p = 1 mod 4 < max_prime
+    primes: list[int] = []
+    for p in range(5, max_prime):
+        if p % 4 == 1:
+            if all(p % d != 0 for d in range(2, int(p**0.5) + 1)):
+                primes.append(p)
 
-    def is_prime(n):
-        if n < 2:
-            return False
-        for i in range(2, int(n**0.5) + 1):
-            if n % i == 0:
-                return False
-        return True
-
-    primes = [p for p in range(2, limit_prime) if is_prime(p) and p % 4 == 1]
-    gaussian_primes = []
+    # 2. Factor each prime into irreducible Gaussian integers p = x^2 + y^2 = (x + iy)(x - iy)
+    gaussian_primes: list[tuple[int, int]] = []
     for p in primes:
-        for a in range(1, int(p**0.5) + 1):
-            b2 = p - a * a
-            b = math.isqrt(b2)
-            if b * b == b2:
-                gaussian_primes.append((a, b))
+        for x in range(1, int(p**0.5) + 1):
+            y2 = p - x * x
+            y = math.isqrt(y2)
+            if y * y == y2:
+                gaussian_primes.append((x, y))
                 break
 
-    def mul(g1, g2):
-        return (g1[0] * g2[0] - g1[1] * g2[1], g1[0] * g2[1] + g1[1] * g2[0])
+    total_s = 0
 
-    total_S = 0
+    # 3. Recursive generation of all Gaussian integer combinations for all non-empty subsets
+    def dfs(idx: int, curr_list: list[tuple[int, int]]) -> None:
+        nonlocal total_s
+        if curr_list:
+            for u, v in curr_list:
+                total_s += min(abs(u), abs(v))
 
-    def dfs(idx, current_representations):
-        nonlocal total_S
-        if idx == len(primes):
-            if current_representations:
-                for a, b in current_representations:
-                    total_S += min(abs(a), abs(b))
-            return
-
-        # Option 1: exclude prime idx
-        dfs(idx + 1, current_representations)
-
-        # Option 2: include prime idx
-        g = gaussian_primes[idx]
-        g_conj = (g[0], -g[1])
-        if not current_representations:
-            next_reps = [g]
-        else:
-            next_reps = []
-            for r in current_representations:
-                next_reps.append(mul(r, g))
-                next_reps.append(mul(r, g_conj))
-
-        dfs(idx + 1, next_reps)
+        for i in range(idx, len(gaussian_primes)):
+            x, y = gaussian_primes[i]
+            if not curr_list:
+                next_list = [(x, y)]
+            else:
+                next_list = []
+                for u, v in curr_list:
+                    next_list.append((u * x - v * y, u * y + v * x))
+                    next_list.append((u * x + v * y, v * x - u * y))
+            dfs(i + 1, next_list)
 
     dfs(0, [])
-    return total_S
+
+    return str(total_s)
+
+
+if __name__ == "__main__":
+    print(solve())
