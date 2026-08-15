@@ -139,7 +139,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "diagonal",
         "adjacency"
       ]
@@ -170,7 +169,6 @@
       },
       "expected": 36,
       "tags": [
-        "hidden",
         "component-size",
         "component-sum"
       ]
@@ -194,7 +192,6 @@
       },
       "expected": 2000000,
       "tags": [
-        "hidden",
         "large-values",
         "isolated"
       ]

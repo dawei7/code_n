@@ -150,7 +150,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "row"
       ]
     },
@@ -179,7 +178,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "column"
       ]
     },
@@ -220,7 +218,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "delayed",
         "simultaneous"
       ]
@@ -258,7 +255,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "position-map"
       ]
     }

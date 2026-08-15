@@ -120,7 +120,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "shared"
       ]
     },
@@ -141,7 +140,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -159,7 +157,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "empty-result"
       ]
     },
@@ -180,7 +177,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "word-length"
       ]
     },
@@ -198,7 +194,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "single-word"
       ]
     }

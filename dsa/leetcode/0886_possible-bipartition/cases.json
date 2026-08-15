@@ -161,7 +161,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "even-cycle"
       ]
     },
@@ -193,7 +192,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "disconnected",
         "odd-cycle"
       ]
@@ -230,7 +228,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "star"
       ]
     },
@@ -282,7 +279,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "dense"
       ]
     },
@@ -314,7 +310,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "path",
         "isolated"
       ]

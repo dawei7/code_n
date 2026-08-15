@@ -82,7 +82,6 @@
       },
       "expected": "t'nac pots",
       "tags": [
-        "hidden",
         "characters"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": "A cb FED",
       "tags": [
-        "hidden",
         "characters"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": "z",
       "tags": [
-        "hidden",
         "characters"
       ]
     }

@@ -72,7 +72,6 @@
       },
       "expected": "abcd",
       "tags": [
-        "hidden",
         "local-conflict"
       ]
     },
@@ -87,7 +86,6 @@
       },
       "expected": "acba",
       "tags": [
-        "hidden",
         "carry",
         "suffix"
       ]
@@ -103,7 +101,6 @@
       },
       "expected": "cbd",
       "tags": [
-        "hidden",
         "greedy"
       ]
     },
@@ -118,7 +115,6 @@
       },
       "expected": "acb",
       "tags": [
-        "hidden",
         "suffix"
       ]
     },
@@ -133,7 +129,6 @@
       },
       "expected": "abea",
       "tags": [
-        "hidden",
         "alphabet"
       ]
     },
@@ -148,7 +143,6 @@
       },
       "expected": "",
       "tags": [
-        "hidden",
         "impossible",
         "maximum"
       ]

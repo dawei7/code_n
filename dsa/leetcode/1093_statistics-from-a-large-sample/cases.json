@@ -1404,7 +1404,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "large-frequency"
       ]
     },
@@ -1685,7 +1684,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "odd-median",
         "separated"
       ]

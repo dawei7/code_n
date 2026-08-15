@@ -82,7 +82,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "odd-counts"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "uppercase"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "all-same"
       ]
     }

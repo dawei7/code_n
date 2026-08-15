@@ -119,7 +119,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "greedy-subset"
       ]
     },
@@ -143,7 +142,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "greedy-subset"
       ]
     },
@@ -167,7 +165,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-positive"
       ]
     },
@@ -191,7 +188,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-negative"
       ]
     },
@@ -216,7 +212,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "greedy-subset"
       ]
     },
@@ -234,7 +229,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "impossible-magnitude"
       ]
     }

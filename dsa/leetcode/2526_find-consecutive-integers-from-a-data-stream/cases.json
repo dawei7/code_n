@@ -188,7 +188,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "long-run"
       ]
     },
@@ -242,7 +241,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "mismatch"
       ]
     },
@@ -286,7 +284,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

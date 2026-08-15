@@ -97,7 +97,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "prime-exponent"
       ]
     },
@@ -112,7 +111,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "number-theory"
       ]
     },
@@ -127,7 +125,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "no-consonants"
       ]
     },
@@ -142,7 +139,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

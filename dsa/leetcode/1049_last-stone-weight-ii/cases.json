@@ -128,7 +128,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "partition"
       ]
     },
@@ -147,7 +146,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "perfect-partition"
       ]
     },
@@ -166,7 +164,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "dominant"
       ]
     }

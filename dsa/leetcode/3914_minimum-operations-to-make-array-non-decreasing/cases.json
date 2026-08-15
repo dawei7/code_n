@@ -292,7 +292,6 @@
       },
       "expected": 184,
       "tags": [
-        "hidden",
         "multiple-drops",
         "varying-magnitudes"
       ]
@@ -408,7 +407,6 @@
       },
       "expected": 99,
       "tags": [
-        "hidden",
         "long-array",
         "strictly-decreasing"
       ]
@@ -524,7 +522,6 @@
       },
       "expected": 49999999950,
       "tags": [
-        "hidden",
         "alternating",
         "maximum-value",
         "large-result"

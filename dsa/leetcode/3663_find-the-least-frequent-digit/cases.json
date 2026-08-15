@@ -83,7 +83,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "all-unique",
         "tie-break"
       ]
@@ -98,7 +97,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "frequency-priority"
       ]
     },
@@ -112,7 +110,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "zero",
         "ten-digits"
       ]
@@ -127,7 +124,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "maximum-input",
         "ten-digits"
       ]

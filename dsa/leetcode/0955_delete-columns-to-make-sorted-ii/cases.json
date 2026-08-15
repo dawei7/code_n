@@ -120,7 +120,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "equal"
       ]
     },
@@ -138,7 +137,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "resolved"
       ]
     },
@@ -156,7 +154,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "middle-column"
       ]
     }

@@ -122,7 +122,6 @@
       },
       "expected": "aaa",
       "tags": [
-        "hidden",
         "overlap",
         "leftmost"
       ]
@@ -141,7 +140,6 @@
       },
       "expected": "xyz",
       "tags": [
-        "hidden",
         "large-values",
         "zero-base-residue"
       ]

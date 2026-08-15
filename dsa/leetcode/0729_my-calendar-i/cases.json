@@ -202,7 +202,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "domain-boundary"
       ]
     },
@@ -242,7 +241,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "gap"
       ]
     },
@@ -288,7 +286,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "mixed-trace"
       ]
     }

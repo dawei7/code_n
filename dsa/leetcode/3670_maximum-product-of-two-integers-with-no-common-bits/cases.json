@@ -110,7 +110,6 @@
       },
       "expected": 56,
       "tags": [
-        "hidden",
         "maximum-product"
       ]
     },
@@ -129,7 +128,6 @@
       },
       "expected": 36,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -148,7 +146,6 @@
       },
       "expected": 249410093056,
       "tags": [
-        "hidden",
         "maximum-bit-width",
         "large-product"
       ]
@@ -169,7 +166,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "sparse-compatibility"
       ]
     }

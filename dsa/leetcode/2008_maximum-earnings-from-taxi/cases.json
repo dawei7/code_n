@@ -188,7 +188,6 @@
       },
       "expected": 28,
       "tags": [
-        "hidden",
         "shared-end"
       ]
     },
@@ -219,7 +218,6 @@
       },
       "expected": 100014,
       "tags": [
-        "hidden",
         "large-road",
         "gap"
       ]

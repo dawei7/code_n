@@ -169,7 +169,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -196,7 +195,6 @@
         8
       ],
       "tags": [
-        "hidden",
         "global-sort"
       ]
     },
@@ -221,7 +219,6 @@
         11
       ],
       "tags": [
-        "hidden",
         "already-minimal"
       ]
     },
@@ -246,7 +243,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "inclusive-limit"
       ]
     }

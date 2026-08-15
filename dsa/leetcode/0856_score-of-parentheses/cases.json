@@ -96,7 +96,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "concatenation"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "wrapper"
       ]
     },
@@ -124,7 +122,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -138,7 +135,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "nested"
       ]
     },
@@ -152,7 +148,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "multiple"
       ]
     },
@@ -166,7 +161,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "flat"
       ]
     }

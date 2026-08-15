@@ -116,7 +116,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "repeated-candidate"
       ]
     },
@@ -134,7 +133,6 @@
       },
       "expected": 2147483647,
       "tags": [
-        "hidden",
         "large-value"
       ]
     }

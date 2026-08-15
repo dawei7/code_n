@@ -102,7 +102,6 @@
       },
       "expected": 51,
       "tags": [
-        "hidden",
         "order-sensitive"
       ]
     },
@@ -121,7 +120,6 @@
       },
       "expected": 63,
       "tags": [
-        "hidden",
         "ceiling"
       ]
     },
@@ -137,7 +135,6 @@
       },
       "expected": 1000000000,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

@@ -157,7 +157,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "boundary-update"
       ],
       "expected": 4
@@ -176,7 +175,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "mixed"
       ],
       "expected": 5

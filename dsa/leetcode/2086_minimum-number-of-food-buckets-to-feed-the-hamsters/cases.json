@@ -67,7 +67,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "minimum",
         "impossible"
       ]
@@ -82,7 +81,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "adjacent-pair"
       ]
     },
@@ -96,7 +94,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "overlapping-options"
       ]
     },
@@ -110,7 +107,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "boundary",
         "impossible"
       ]

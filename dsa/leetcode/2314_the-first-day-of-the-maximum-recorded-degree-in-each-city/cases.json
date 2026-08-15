@@ -209,7 +209,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -267,7 +266,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "output-order"
       ]
     },
@@ -310,7 +308,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "priority"
       ]
     }

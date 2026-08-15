@@ -144,7 +144,6 @@
         -3
       ],
       "tags": [
-        "hidden",
         "positive-order"
       ]
     },
@@ -172,7 +171,6 @@
         -7
       ],
       "tags": [
-        "hidden",
         "negative-order"
       ]
     },
@@ -200,7 +198,6 @@
         -4
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

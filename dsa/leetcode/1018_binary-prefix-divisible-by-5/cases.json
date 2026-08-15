@@ -130,7 +130,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -156,7 +155,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "leading-zeroes"
       ]
     },
@@ -184,7 +182,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "remainders"
       ]
     }

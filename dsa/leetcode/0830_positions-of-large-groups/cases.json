@@ -149,7 +149,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "end-boundary"
       ]
     },
@@ -168,7 +167,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "start-boundary"
       ]
     },
@@ -195,7 +193,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "adjacent-groups"
       ]
     },
@@ -209,7 +206,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "below-threshold"
       ]
     },
@@ -232,7 +228,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "multiple-groups",
         "boundaries"
       ]

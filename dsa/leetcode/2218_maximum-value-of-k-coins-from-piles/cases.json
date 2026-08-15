@@ -135,7 +135,6 @@
       },
       "expected": 500,
       "tags": [
-        "hidden",
         "top-only"
       ]
     },
@@ -162,7 +161,6 @@
       },
       "expected": 23,
       "tags": [
-        "hidden",
         "take-all"
       ]
     },
@@ -191,7 +189,6 @@
       },
       "expected": 131,
       "tags": [
-        "hidden",
         "allocation-tradeoff"
       ]
     },
@@ -213,7 +210,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "single-pile"
       ]
     }

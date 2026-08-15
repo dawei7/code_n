@@ -139,7 +139,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "fully-connected"
       ]
     },
@@ -162,7 +161,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "diagonal"
       ]
     },
@@ -192,7 +190,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "irregular"
       ]
     },
@@ -327,7 +324,6 @@
       },
       "expected": 1000,
       "tags": [
-        "hidden",
         "maximum-dimensions",
         "maximum-value"
       ]

@@ -267,7 +267,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "empty"
       ]
     },
@@ -311,7 +310,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "types"
       ]
     }

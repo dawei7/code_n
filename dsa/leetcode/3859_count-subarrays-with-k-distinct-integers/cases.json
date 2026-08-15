@@ -145,7 +145,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "removable-prefix",
         "surplus-frequency"
       ]
@@ -172,7 +171,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "group-boundaries",
         "exact-k"
       ]
@@ -198,7 +196,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "m-one",
         "exact-distinct"
       ]
@@ -225,7 +222,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-same",
         "many-valid-windows"
       ]
@@ -253,7 +249,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "separate-runs",
         "k-one"
       ]
@@ -278,7 +273,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "alternating-pairs"
       ]
@@ -308,7 +302,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "window-reset",
         "semantic-trap"
       ]
@@ -335,7 +328,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "insufficient-frequency",
         "zero-answer"
       ]

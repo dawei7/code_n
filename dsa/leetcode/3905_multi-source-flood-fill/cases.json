@@ -379,7 +379,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "adjacent-sources",
         "permanent-colors"
       ]
@@ -433,7 +432,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "four-sources",
         "center-tie"
       ]
@@ -472,7 +470,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "maximum-color",
         "boundary"
       ]
@@ -517,7 +514,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "single-row",
         "multiple-ties"
       ]
@@ -579,7 +575,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "rectangular-grid",
         "four-directions"
       ]

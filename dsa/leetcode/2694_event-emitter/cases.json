@@ -433,7 +433,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "remove-middle",
         "order"
       ]
@@ -503,7 +502,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "event-isolation",
         "unsubscribe"
       ]

@@ -159,7 +159,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -194,7 +193,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "negative-slope"
       ]
     },
@@ -233,7 +231,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "late-outlier"
       ]
     }

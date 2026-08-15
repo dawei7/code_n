@@ -95,7 +95,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "immediate-failure"
       ]
     },
@@ -116,7 +115,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -136,7 +134,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

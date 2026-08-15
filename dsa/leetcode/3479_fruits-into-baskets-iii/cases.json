@@ -115,7 +115,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "root-rejection"
       ]
     },
@@ -136,7 +135,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "basket-uniqueness"
       ]
     },
@@ -161,7 +159,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "tree-descent"
       ]
     },
@@ -184,7 +181,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "fruit-order"
       ]
     },
@@ -209,7 +205,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -228,7 +223,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -247,7 +241,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -270,7 +263,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-values"
       ]
     }

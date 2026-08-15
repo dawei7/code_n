@@ -171,7 +171,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "k-zero"
       ]
     },
@@ -200,7 +199,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "all-negative"
       ]
     },
@@ -229,7 +227,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "negative-center"
       ]
     },
@@ -260,7 +257,6 @@
       },
       "expected": 100,
       "tags": [
-        "hidden",
         "disconnected",
         "isolated"
       ]
@@ -295,7 +291,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "zero-values"
       ]
     }

@@ -152,7 +152,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "deadline-order"
       ]
     },
@@ -187,7 +186,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "several-replacements"
       ]
     }

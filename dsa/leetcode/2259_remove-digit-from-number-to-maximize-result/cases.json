@@ -88,7 +88,6 @@
       },
       "expected": "9999",
       "tags": [
-        "hidden",
         "all-equal"
       ]
     },
@@ -103,7 +102,6 @@
       },
       "expected": "8991",
       "tags": [
-        "hidden",
         "first-index"
       ]
     },
@@ -118,7 +116,6 @@
       },
       "expected": "8765",
       "tags": [
-        "hidden",
         "last-index"
       ]
     }

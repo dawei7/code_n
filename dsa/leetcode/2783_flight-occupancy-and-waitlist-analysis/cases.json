@@ -309,7 +309,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ordering"
       ]
     },
@@ -365,7 +364,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "orphans"
       ]
     }

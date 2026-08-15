@@ -114,7 +114,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "interior"
       ]
     },
@@ -134,7 +133,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "suffix"
       ]
     },
@@ -154,7 +152,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "prefix"
       ]
     },
@@ -176,7 +173,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "suffix"
       ]
     }

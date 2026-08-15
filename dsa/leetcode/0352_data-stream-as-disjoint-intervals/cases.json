@@ -255,7 +255,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "bridge"
       ]
     },
@@ -319,7 +318,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "ordering"
       ]
     },
@@ -367,7 +365,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "duplicate",
         "bridge"
       ]

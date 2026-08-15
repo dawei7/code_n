@@ -303,7 +303,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "priority"
       ]
     },
@@ -368,7 +367,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "ordering"
       ]
     },
@@ -428,7 +426,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "ties"
       ]
     }

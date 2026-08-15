@@ -96,7 +96,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "consecutive"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "trailing-zero"
       ]
     },
@@ -124,7 +122,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "equal-gaps"
       ]
     },
@@ -138,7 +135,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -152,7 +148,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "maximum"
       ]
     },
@@ -166,7 +161,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "dense"
       ]
     }

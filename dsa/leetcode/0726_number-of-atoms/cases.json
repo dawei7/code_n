@@ -82,7 +82,6 @@
       },
       "expected": "B99N33",
       "tags": [
-        "hidden",
         "composed-multipliers"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": "H6O3",
       "tags": [
-        "hidden",
         "aggregation"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": "He3Uuo2",
       "tags": [
-        "hidden",
         "lexicographic"
       ]
     }

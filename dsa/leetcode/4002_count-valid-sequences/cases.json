@@ -163,7 +163,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "all-odd-complement"
       ]
     },
@@ -178,7 +177,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "parity"
       ]
     },
@@ -193,7 +191,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "complement"
       ]
     },
@@ -208,7 +205,6 @@
       },
       "expected": 64,
       "tags": [
-        "hidden",
         "binomial"
       ]
     },
@@ -223,7 +219,6 @@
       },
       "expected": 126,
       "tags": [
-        "hidden",
         "parity"
       ]
     },
@@ -238,7 +233,6 @@
       },
       "expected": 90376,
       "tags": [
-        "hidden",
         "binomial"
       ]
     },
@@ -253,7 +247,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "singleton"
       ]
     },
@@ -268,7 +261,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-ones"
       ]
     },
@@ -283,7 +275,6 @@
       },
       "expected": 750118547,
       "tags": [
-        "hidden",
         "modulo"
       ]
     },
@@ -298,7 +289,6 @@
       },
       "expected": 98,
       "tags": [
-        "hidden",
         "near-all-ones",
         "order"
       ]

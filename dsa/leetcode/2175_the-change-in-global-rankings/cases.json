@@ -343,7 +343,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "original-tie",
         "lexicographical"
       ]
@@ -416,7 +415,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "updated-tie",
         "lexicographical"
       ]
@@ -489,7 +487,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "input-order",
         "join"
       ]

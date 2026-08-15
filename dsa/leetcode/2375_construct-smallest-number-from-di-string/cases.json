@@ -82,7 +82,6 @@
       },
       "expected": "123456789",
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": "987654321",
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": "3214765",
       "tags": [
-        "hidden",
         "runs"
       ]
     }

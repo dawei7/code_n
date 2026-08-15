@@ -131,7 +131,6 @@
         7
       ],
       "tags": [
-        "hidden",
         "final-singleton"
       ]
     },
@@ -165,7 +164,6 @@
         9
       ],
       "tags": [
-        "hidden",
         "truncated-odd"
       ]
     },
@@ -191,7 +189,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "repeated-values"
       ]
     }

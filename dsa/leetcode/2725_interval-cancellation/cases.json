@@ -178,7 +178,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "one-repeat"
       ]
     },
@@ -215,7 +214,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -253,7 +251,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -341,7 +338,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "maximum-invocations"
       ]
     }

@@ -116,7 +116,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "equal-values"
       ]
     },
@@ -136,7 +135,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "adjacency"
       ]
     },
@@ -157,7 +155,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "non-adjacent"
       ]
     }

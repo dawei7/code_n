@@ -220,7 +220,6 @@
         8
       ],
       "tags": [
-        "hidden",
         "modulo",
         "multiple-cycles"
       ]
@@ -268,7 +267,6 @@
         8
       ],
       "tags": [
-        "hidden",
         "replacement",
         "prefix"
       ]
@@ -305,7 +303,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "maximum-time",
         "modulo"
       ]

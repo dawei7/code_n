@@ -164,7 +164,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "corner"
       ]
     },
@@ -210,7 +209,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "twenty-cells"
       ]
     },
@@ -258,7 +256,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "transposed"
       ]
     },
@@ -311,7 +308,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "maximum",
         "corner"
       ]
@@ -365,7 +361,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "maximum",
         "center"
       ]
@@ -419,7 +414,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "maximum",
         "corner"
       ]

@@ -109,7 +109,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -128,7 +127,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -145,7 +143,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "boundary",
         "self-pair"
       ]

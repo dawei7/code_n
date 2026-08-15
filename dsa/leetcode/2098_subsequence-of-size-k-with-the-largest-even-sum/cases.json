@@ -97,7 +97,6 @@
       },
       "expected": 26,
       "tags": [
-        "hidden",
         "parity-repair",
         "even-to-odd"
       ]
@@ -118,7 +117,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -139,7 +137,6 @@
       },
       "expected": 22,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -158,7 +155,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "all-selected",
         "impossible"
       ]

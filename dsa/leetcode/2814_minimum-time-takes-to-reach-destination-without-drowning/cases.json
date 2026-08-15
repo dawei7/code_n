@@ -175,7 +175,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "stone-wall"
       ]
     },
@@ -205,7 +204,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "isolated-flood"
       ]
     },
@@ -240,7 +238,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "detour",
         "impossible"
       ]

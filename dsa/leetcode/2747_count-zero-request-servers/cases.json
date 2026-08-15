@@ -164,7 +164,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -202,7 +201,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "frequency"
       ]
     },
@@ -228,7 +226,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "minimum",
         "boundary"
       ]
@@ -257,7 +254,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "empty-window"
       ]
     },
@@ -299,7 +295,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "query-order"
       ]
     }

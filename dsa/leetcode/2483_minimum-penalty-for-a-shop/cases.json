@@ -82,7 +82,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "tie"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "alternating",
         "tie"
       ]
@@ -111,7 +109,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "interior"
       ]
     }

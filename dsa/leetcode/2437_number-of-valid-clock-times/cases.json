@@ -81,7 +81,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "hour-boundary"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": 100,
       "tags": [
-        "hidden",
         "units"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": 24,
       "tags": [
-        "hidden",
         "hours"
       ]
     }

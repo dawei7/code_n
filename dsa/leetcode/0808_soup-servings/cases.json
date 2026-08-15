@@ -125,7 +125,6 @@
         "tolerance": 1e-09
       },
       "tags": [
-        "hidden",
         "memoization"
       ]
     },
@@ -143,7 +142,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "cutoff"
       ]
     },
@@ -161,7 +159,6 @@
         "tolerance": 1e-09
       },
       "tags": [
-        "hidden",
         "cutoff"
       ]
     }

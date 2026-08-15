@@ -92,7 +92,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -111,7 +110,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "late-distinct-value"
       ]
     },
@@ -134,7 +132,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "overlap",
         "mixed"
       ]
@@ -154,7 +151,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "value-boundaries",
         "alternating"
       ]

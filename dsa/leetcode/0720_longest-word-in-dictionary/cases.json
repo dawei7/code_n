@@ -120,7 +120,6 @@
       },
       "expected": "",
       "tags": [
-        "hidden",
         "empty-answer"
       ]
     },
@@ -141,7 +140,6 @@
       },
       "expected": "ate",
       "tags": [
-        "hidden",
         "deep-tie"
       ]
     },
@@ -163,7 +161,6 @@
       },
       "expected": "qui",
       "tags": [
-        "hidden",
         "blocked-branch"
       ]
     }

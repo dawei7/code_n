@@ -166,7 +166,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "late-rejection"
       ]
     },
@@ -202,7 +201,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "first-rejection"
       ]
     },
@@ -233,7 +231,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "tie"
       ]
     },
@@ -315,7 +312,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "maximum-functions",
         "parallel-start"
       ]

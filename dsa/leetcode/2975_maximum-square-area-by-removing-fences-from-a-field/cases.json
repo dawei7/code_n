@@ -110,7 +110,6 @@
       },
       "expected": 36,
       "tags": [
-        "hidden",
         "repeated-distances"
       ]
     },
@@ -131,7 +130,6 @@
       },
       "expected": 64,
       "tags": [
-        "hidden",
         "modulo",
         "coordinate-boundary"
       ]

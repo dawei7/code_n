@@ -158,7 +158,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "origin"
       ]
     },
@@ -181,7 +180,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "repeated-block"
       ]
     },
@@ -204,7 +202,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "path-maximum"
       ]
     },
@@ -224,7 +221,6 @@
       },
       "expected": 25,
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -252,7 +248,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "blocked-first-step"
       ]
     }

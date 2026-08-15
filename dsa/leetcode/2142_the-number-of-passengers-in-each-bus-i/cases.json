@@ -231,7 +231,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "duplicate-passenger-time",
         "equal-arrival"
       ]
@@ -290,7 +289,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "consecutive-empty"
       ]
     },
@@ -356,7 +354,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "identifier-order"
       ]
     }

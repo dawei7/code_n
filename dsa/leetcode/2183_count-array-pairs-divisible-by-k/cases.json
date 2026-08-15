@@ -113,7 +113,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-of-k"
       ]
     },
@@ -135,7 +134,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "gcd-classes"
       ]
     },
@@ -155,7 +153,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "duplicates",
         "shared-factors"
       ]

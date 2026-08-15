@@ -128,7 +128,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "singleton",
         "no-common-value"
       ]
@@ -154,7 +153,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "duplicates",
         "multiple-common-values"
       ]
@@ -180,7 +178,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "late-match"
       ]
     }

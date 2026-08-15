@@ -158,7 +158,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "boundary-values",
         "duplicate-frequencies"
       ]
@@ -197,7 +196,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "mixed-counts",
         "duplicate-frequencies"
       ]

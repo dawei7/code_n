@@ -154,7 +154,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "star",
         "root"
       ]
@@ -221,7 +220,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "balanced",
         "composed-jumps"
       ]
@@ -250,7 +248,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "boundary",
         "single-node"
       ]
@@ -311,7 +308,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "chain",
         "power-of-two"
       ]
@@ -367,7 +363,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "repeated",
         "state"
       ]

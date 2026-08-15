@@ -112,7 +112,6 @@
       },
       "expected": 96,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -133,7 +132,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "duplicate-groups"
       ]
     },
@@ -152,7 +150,6 @@
       },
       "expected": 1000000,
       "tags": [
-        "hidden",
         "boundary-values"
       ]
     }

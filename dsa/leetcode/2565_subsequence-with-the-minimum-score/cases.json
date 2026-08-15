@@ -87,7 +87,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "score-span"
       ]
     },
@@ -102,7 +101,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "repeated-characters"
       ]
     },
@@ -117,7 +115,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "noncontiguous-removals"
       ]
     },
@@ -132,7 +129,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "middle-interval"
       ]
     }

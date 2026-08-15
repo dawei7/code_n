@@ -237,7 +237,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "values",
         "maximum-delay"
       ]
@@ -345,7 +344,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "maximum-functions",
         "mixed-outcomes"
       ]
@@ -399,7 +397,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "ordering"
       ]
     }

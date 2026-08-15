@@ -151,7 +151,6 @@
         "kind": "maximum_bob_points"
       },
       "tags": [
-        "hidden",
         "uniform-cost"
       ]
     },
@@ -182,7 +181,6 @@
         "kind": "maximum_bob_points"
       },
       "tags": [
-        "hidden",
         "maximum-arrows",
         "leftover"
       ]
@@ -214,7 +212,6 @@
         "kind": "maximum_bob_points"
       },
       "tags": [
-        "hidden",
         "mixed-costs"
       ]
     }

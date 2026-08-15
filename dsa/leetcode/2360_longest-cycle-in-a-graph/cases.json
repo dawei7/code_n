@@ -110,7 +110,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "tail"
       ]
     },
@@ -129,7 +128,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
@@ -149,7 +147,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "disconnected"
       ]
     }

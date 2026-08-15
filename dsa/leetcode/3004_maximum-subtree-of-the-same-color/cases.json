@@ -191,7 +191,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "propagation"
       ]
     },
@@ -234,7 +233,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "branch"
       ]
     },
@@ -262,7 +260,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "color-boundary"
       ]
     }

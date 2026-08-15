@@ -104,7 +104,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "negative"
       ]
     }

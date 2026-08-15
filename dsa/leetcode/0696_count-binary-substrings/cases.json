@@ -82,7 +82,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "unequal-runs"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "run-boundaries"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "single-character"
       ]
     }

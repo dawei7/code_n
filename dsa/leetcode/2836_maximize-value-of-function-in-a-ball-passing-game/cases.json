@@ -117,7 +117,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "starting-contribution"
       ]
     },
@@ -134,7 +133,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-k",
         "self-loop"
       ]
@@ -153,7 +151,6 @@
       },
       "expected": 5000000001,
       "tags": [
-        "hidden",
         "maximum-k",
         "cycle"
       ]
@@ -174,7 +171,6 @@
       },
       "expected": 33,
       "tags": [
-        "hidden",
         "tail",
         "self-loop"
       ]
@@ -199,7 +195,6 @@
       },
       "expected": 126,
       "tags": [
-        "hidden",
         "components",
         "binary-lifting"
       ]

@@ -125,7 +125,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "multiple-targets"
       ]
     },
@@ -147,7 +146,6 @@
       },
       "expected": 1000,
       "tags": [
-        "hidden",
         "maximum-value",
         "self-follower"
       ]
@@ -172,7 +170,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "nonkey-tail"
       ]
     }

@@ -128,7 +128,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "decreasing"
       ]
     },
@@ -148,7 +147,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "ties"
       ]
     },
@@ -168,7 +166,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

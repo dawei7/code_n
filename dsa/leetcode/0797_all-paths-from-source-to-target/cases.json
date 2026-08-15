@@ -277,7 +277,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "dead-end"
       ]
     },
@@ -339,7 +338,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "layered"
       ]
     },
@@ -374,7 +372,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "disconnected"
       ]
     }

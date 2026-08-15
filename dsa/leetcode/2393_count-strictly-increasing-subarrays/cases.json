@@ -93,7 +93,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "decreasing"
       ]
     },
@@ -114,7 +113,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "runs"
       ]
     },
@@ -132,7 +130,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "maximum-values"
       ]
     }

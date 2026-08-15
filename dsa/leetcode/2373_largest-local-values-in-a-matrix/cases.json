@@ -289,7 +289,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -337,7 +336,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "uniform"
       ]
     }

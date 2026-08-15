@@ -222,7 +222,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "dense"
       ]
     },
@@ -245,7 +244,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "disconnected"
       ]
     },
@@ -286,7 +284,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "disconnected",
         "even-cycle"
       ]

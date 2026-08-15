@@ -193,7 +193,6 @@
         9
       ],
       "tags": [
-        "hidden",
         "ordering",
         "all-defeated"
       ]
@@ -222,7 +221,6 @@
         3000000000
       ],
       "tags": [
-        "hidden",
         "maximum-values",
         "large-total"
       ]
@@ -253,7 +251,6 @@
         15
       ],
       "tags": [
-        "hidden",
         "none-defeated",
         "all-defeated"
       ]

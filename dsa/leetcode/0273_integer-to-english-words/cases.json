@@ -52,7 +52,6 @@
       },
       "expected": "One Million Ten",
       "tags": [
-        "hidden",
         "zero-chunks"
       ]
     }

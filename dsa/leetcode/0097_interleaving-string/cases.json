@@ -76,7 +76,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "length"
       ]
     },
@@ -92,7 +91,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "branching"
       ]
     }

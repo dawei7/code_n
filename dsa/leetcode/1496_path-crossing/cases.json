@@ -71,7 +71,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -85,7 +84,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "immediate-reversal"
       ]
     },
@@ -99,7 +97,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "non-origin",
         "late-crossing"
       ]
@@ -114,7 +111,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "origin",
         "closed-loop"
       ]
@@ -129,7 +125,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "maximum-length",
         "no-crossing"
       ]

@@ -181,7 +181,6 @@
         7
       ],
       "tags": [
-        "hidden",
         "value-bounds",
         "stability"
       ]
@@ -207,7 +206,6 @@
         -2
       ],
       "tags": [
-        "hidden",
         "empty-greater-group",
         "negative"
       ]

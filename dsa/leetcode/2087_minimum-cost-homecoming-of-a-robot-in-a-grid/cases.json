@@ -124,7 +124,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "horizontal-only"
       ]
     },
@@ -155,7 +154,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "vertical-only",
         "zero-cost"
       ]
@@ -187,7 +185,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "exclude-start",
         "include-home"
       ]
@@ -219,7 +216,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero-costs"
       ]
     }

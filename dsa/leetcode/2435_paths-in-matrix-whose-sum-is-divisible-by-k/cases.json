@@ -146,7 +146,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "single-cell"
       ]
     },
@@ -165,7 +164,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "single-cell"
       ]
     },
@@ -189,7 +187,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero-count"
       ]
     }

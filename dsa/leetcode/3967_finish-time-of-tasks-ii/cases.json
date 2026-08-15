@@ -284,7 +284,6 @@
       },
       "expected": 22,
       "tags": [
-        "hidden",
         "edge-order",
         "chain"
       ]
@@ -334,7 +333,6 @@
       },
       "expected": 24,
       "tags": [
-        "hidden",
         "balanced",
         "branching"
       ]
@@ -389,7 +387,6 @@
       },
       "expected": 23,
       "tags": [
-        "hidden",
         "broom",
         "reroot"
       ]
@@ -424,7 +421,6 @@
       },
       "expected": 200000,
       "tags": [
-        "hidden",
         "maximum-values",
         "duplicate-extrema"
       ]
@@ -514,7 +510,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "chain",
         "odd-length"
       ]
@@ -579,7 +574,6 @@
       },
       "expected": 48,
       "tags": [
-        "hidden",
         "branching",
         "depth"
       ]
@@ -754,7 +748,6 @@
       },
       "expected": 64,
       "tags": [
-        "hidden",
         "long-chain",
         "edge-order"
       ]

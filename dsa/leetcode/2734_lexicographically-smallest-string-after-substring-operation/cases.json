@@ -67,7 +67,6 @@
       },
       "expected": "z",
       "tags": [
-        "hidden",
         "single",
         "wraparound"
       ]
@@ -82,7 +81,6 @@
       },
       "expected": "a",
       "tags": [
-        "hidden",
         "single"
       ]
     },
@@ -96,7 +94,6 @@
       },
       "expected": "aaba",
       "tags": [
-        "hidden",
         "internal-a"
       ]
     },
@@ -110,7 +107,6 @@
       },
       "expected": "aaaaabaad",
       "tags": [
-        "hidden",
         "leading-run",
         "stop"
       ]

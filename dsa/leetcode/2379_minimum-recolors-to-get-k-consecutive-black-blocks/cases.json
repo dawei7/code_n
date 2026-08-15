@@ -87,7 +87,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "all-white"
       ]
     },
@@ -102,7 +101,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "boundary-window"
       ]
     },
@@ -117,7 +115,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "overlap"
       ]
     }

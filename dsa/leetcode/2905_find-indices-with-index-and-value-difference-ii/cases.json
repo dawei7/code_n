@@ -156,7 +156,6 @@
         "kind": "index_value_pair"
       },
       "tags": [
-        "hidden",
         "prefix-maximum",
         "value-boundary"
       ]
@@ -184,7 +183,6 @@
         "kind": "index_value_pair"
       },
       "tags": [
-        "hidden",
         "prefix-minimum",
         "value-boundary"
       ]

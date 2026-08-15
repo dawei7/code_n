@@ -111,7 +111,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "late"
       ]
     },
@@ -131,7 +130,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "none"
       ]
     }

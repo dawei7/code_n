@@ -272,7 +272,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "gather-vs-scatter"
       ]
     },
@@ -329,7 +328,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "earliest-row",
         "partial-row"
       ]
@@ -375,7 +373,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "exact-capacity",
         "max-row"
       ]

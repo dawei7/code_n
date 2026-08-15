@@ -177,7 +177,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "independent"
       ]
     },
@@ -212,7 +211,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "single-character"
       ]
     },
@@ -247,7 +245,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "length-parity"
       ]
     }

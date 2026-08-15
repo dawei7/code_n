@@ -98,7 +98,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "left-endpoint"
       ]
     },
@@ -119,7 +118,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "multiple-colors"
       ]
     },
@@ -139,7 +137,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "maximum-span"
       ]
     }

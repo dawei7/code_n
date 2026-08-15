@@ -110,7 +110,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "repeated-letter"
       ]
     },
@@ -128,7 +127,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "ten-letters",
         "boundary"
       ]
@@ -146,7 +144,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "leading-zero",
         "length"
       ]

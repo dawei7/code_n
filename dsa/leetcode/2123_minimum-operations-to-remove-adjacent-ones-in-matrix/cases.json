@@ -145,7 +145,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "path"
       ]
     },
@@ -178,7 +177,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "disconnected"
       ]
     }

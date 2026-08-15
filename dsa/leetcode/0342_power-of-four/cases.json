@@ -80,7 +80,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "odd-position"
       ]
     },
@@ -94,7 +93,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "large"
       ]
     },
@@ -108,7 +106,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "odd-position",
         "large"
       ]

@@ -140,7 +140,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "self-loop"
       ]
     },
@@ -168,7 +167,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "chain"
       ]
     }

@@ -55,7 +55,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "pattern"
       ]
     }

@@ -166,7 +166,6 @@
         "tolerance": 1e-09
       },
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -197,7 +196,6 @@
         "tolerance": 1e-09
       },
       "tags": [
-        "hidden",
         "pruning"
       ]
     }

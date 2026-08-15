@@ -292,7 +292,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "price-threshold",
         "tie"
       ]
@@ -328,7 +327,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "sorting",
         "multiple-batches"
       ]
@@ -360,7 +358,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicate-factors",
         "self-exclusion"
       ]
@@ -396,7 +393,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "factor-one",
         "full-batch"
       ]
@@ -420,7 +416,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary",
         "maximum-budget"
       ]
@@ -460,7 +455,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary",
         "maximum-factor"
       ]
@@ -504,7 +498,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-factors",
         "mixed-prices"
       ]

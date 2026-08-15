@@ -71,7 +71,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "full-day"
       ]
     },
@@ -86,7 +85,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "boundary",
         "midnight"
       ]
@@ -102,7 +100,6 @@
       },
       "expected": 23,
       "tags": [
-        "hidden",
         "maximum",
         "full-day"
       ]
@@ -118,7 +115,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "wrap"
       ]
     }

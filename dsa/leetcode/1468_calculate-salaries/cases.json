@@ -307,7 +307,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "company-wide-rate"
       ]
     },
@@ -357,7 +356,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "composite-key",
         "independent-groups"
       ]

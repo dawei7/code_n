@@ -80,7 +80,7 @@
       },
       "expected": 56,
       "tags": [
-        "hidden"
+        "trial"
       ]
     },
     {
@@ -93,7 +93,6 @@
       },
       "expected": 99,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

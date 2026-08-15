@@ -105,7 +105,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "equal-values"
       ]
     },
@@ -123,7 +122,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "strict-boundary"
       ]
     },
@@ -142,7 +140,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "late-failure"
       ]
     }

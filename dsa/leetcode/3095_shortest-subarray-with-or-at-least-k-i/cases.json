@@ -132,7 +132,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "prefix",
         "or-not-sum"
       ]
@@ -154,7 +153,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "impossible",
         "maximum-threshold"
       ]
@@ -176,7 +174,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "late-answer",
         "pair"
       ]

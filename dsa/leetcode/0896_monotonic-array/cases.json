@@ -128,7 +128,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -149,7 +148,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "increasing",
         "plateaus"
       ]
@@ -171,7 +169,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "late-reversal"
       ]
     },
@@ -189,7 +186,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "boundaries"
       ]
     }

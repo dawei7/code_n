@@ -94,7 +94,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "duplicates",
         "zero-range"
       ]
@@ -116,7 +115,6 @@
       },
       "expected": 36,
       "tags": [
-        "hidden",
         "interior-extrema"
       ]
     },
@@ -134,7 +132,6 @@
       },
       "expected": 100000000000000,
       "tags": [
-        "hidden",
         "maximum",
         "wide-integer"
       ]

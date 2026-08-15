@@ -121,7 +121,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "below-range"
       ]
     },
@@ -141,7 +140,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "above-range"
       ]
     },
@@ -162,7 +160,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "negative",
         "middle"
       ]

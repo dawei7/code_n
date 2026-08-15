@@ -118,7 +118,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "mixed-windows"
       ]
     },
@@ -133,7 +132,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "direction-blocks"
       ]
     },
@@ -148,7 +146,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "balanced-window"
       ]
     },
@@ -163,7 +160,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "cancellation"
       ]
     },
@@ -178,7 +174,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "direction-blocks"
       ]
     }

@@ -126,7 +126,6 @@
       },
       "expected": 288,
       "tags": [
-        "hidden",
         "shift-invariance"
       ]
     },
@@ -142,7 +141,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "maximum-length",
         "minimum-range"
       ]
@@ -159,7 +157,6 @@
       },
       "expected": 725640181,
       "tags": [
-        "hidden",
         "modulo"
       ]
     },
@@ -175,7 +172,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "minimum-range"
       ]
     },
@@ -191,7 +187,6 @@
       },
       "expected": 329333965,
       "tags": [
-        "hidden",
         "maximum-range",
         "minimum-length",
         "modulo"

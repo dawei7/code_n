@@ -116,7 +116,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "competing-peaks"
       ]
     },
@@ -136,7 +135,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "suffix-minimum"
       ]
     },
@@ -156,7 +154,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "all-equal"
       ]
     }

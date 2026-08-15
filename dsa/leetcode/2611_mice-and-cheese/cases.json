@@ -119,7 +119,6 @@
       },
       "expected": 28,
       "tags": [
-        "hidden",
         "negative-differences"
       ]
     },
@@ -145,7 +144,6 @@
       },
       "expected": 25,
       "tags": [
-        "hidden",
         "ties"
       ]
     },
@@ -171,7 +169,6 @@
       },
       "expected": 24,
       "tags": [
-        "hidden",
         "mixed-differences"
       ]
     }

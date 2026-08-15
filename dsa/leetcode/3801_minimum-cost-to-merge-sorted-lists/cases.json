@@ -195,7 +195,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "merge-order",
         "median-distance"
       ]
@@ -226,7 +225,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "negative-values",
         "unequal-lengths"
       ]
@@ -259,7 +257,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "outlier",
         "subset-median"
       ]
@@ -290,7 +287,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "unequal-lengths"
       ]
@@ -322,7 +318,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unequal-lengths",
         "merge-order"
       ]
@@ -365,7 +360,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "many-lists",
         "singletons"
       ]

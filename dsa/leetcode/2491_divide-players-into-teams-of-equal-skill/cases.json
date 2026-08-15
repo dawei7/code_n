@@ -112,7 +112,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "sum-divisibility"
       ]
     },
@@ -133,7 +132,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "frequency-mismatch"
       ]
     },
@@ -152,7 +150,6 @@
       },
       "expected": 2998,
       "tags": [
-        "hidden",
         "value-bound"
       ]
     }

@@ -141,7 +141,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "age-extremes"
       ]
     },
@@ -159,7 +158,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "threshold-boundary",
         "duplicates"
       ]
@@ -178,7 +176,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "directed"
       ]
     },
@@ -197,7 +194,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "duplicates",
         "multiple-ages"
       ]
@@ -218,7 +214,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "equal-age",
         "directed"
       ]
@@ -236,7 +231,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "age-100",
         "directed"
       ]

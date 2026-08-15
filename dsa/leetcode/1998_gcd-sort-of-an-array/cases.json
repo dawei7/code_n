@@ -108,7 +108,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "transitive"
       ]
     },
@@ -126,7 +125,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "isolated"
       ]
     },
@@ -145,7 +143,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

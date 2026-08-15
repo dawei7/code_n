@@ -143,7 +143,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "skewed"
       ]
     },
@@ -178,7 +177,6 @@
         8
       ],
       "tags": [
-        "hidden",
         "descendants"
       ]
     },
@@ -201,7 +199,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "upper-bound",
         "not-found"
       ]

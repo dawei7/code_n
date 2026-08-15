@@ -195,7 +195,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "barrier"
       ]
     },
@@ -234,7 +233,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "barrier"
       ]
     },
@@ -264,7 +262,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "detour"
       ]
     }

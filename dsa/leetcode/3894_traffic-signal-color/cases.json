@@ -117,7 +117,6 @@
       },
       "expected": "Invalid",
       "tags": [
-        "hidden",
         "invalid",
         "above-green"
       ]
@@ -132,7 +131,6 @@
       },
       "expected": "Invalid",
       "tags": [
-        "hidden",
         "invalid",
         "low-range"
       ]
@@ -147,7 +145,6 @@
       },
       "expected": "Red",
       "tags": [
-        "hidden",
         "red",
         "upper-interior"
       ]
@@ -162,7 +159,6 @@
       },
       "expected": "Invalid",
       "tags": [
-        "hidden",
         "invalid",
         "above-red"
       ]
@@ -177,7 +173,6 @@
       },
       "expected": "Red",
       "tags": [
-        "hidden",
         "red",
         "interval-interior"
       ]
@@ -192,7 +187,6 @@
       },
       "expected": "Invalid",
       "tags": [
-        "hidden",
         "invalid",
         "high-range"
       ]
@@ -207,7 +201,6 @@
       },
       "expected": "Invalid",
       "tags": [
-        "hidden",
         "invalid",
         "upper-bound"
       ]

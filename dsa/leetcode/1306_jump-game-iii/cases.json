@@ -124,7 +124,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "left-jump",
         "boundary"
       ]
@@ -147,7 +146,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "unreachable",
         "cycle"
       ]

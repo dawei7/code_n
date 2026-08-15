@@ -208,7 +208,6 @@
       },
       "expected": 44,
       "tags": [
-        "hidden",
         "partial-reduction",
         "absent-divisors"
       ]
@@ -228,7 +227,6 @@
       },
       "expected": 174991,
       "tags": [
-        "hidden",
         "maximum-value",
         "large-prime"
       ]
@@ -264,7 +262,6 @@
       },
       "expected": 2000000,
       "tags": [
-        "hidden",
         "duplicates",
         "large-sum"
       ]
@@ -285,7 +282,6 @@
       },
       "expected": 51,
       "tags": [
-        "hidden",
         "smallest-divisor",
         "multiple-divisors"
       ]
@@ -307,7 +303,6 @@
       },
       "expected": 54,
       "tags": [
-        "hidden",
         "disjoint-families",
         "duplicates-after-replacement"
       ]

@@ -109,7 +109,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "branching"
       ]
     },
@@ -127,7 +126,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "dead-end"
       ]
     },
@@ -147,7 +145,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "matching-branch"
       ]
     }

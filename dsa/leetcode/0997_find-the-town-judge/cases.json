@@ -153,7 +153,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "label-one"
       ]
     },
@@ -177,7 +176,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "missing-edge"
       ]
     },
@@ -217,7 +215,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "extra-edges"
       ]
     }

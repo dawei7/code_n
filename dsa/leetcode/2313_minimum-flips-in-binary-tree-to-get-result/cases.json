@@ -131,7 +131,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "xor"
       ]
     },
@@ -151,7 +150,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "nested-not"
       ]
     },
@@ -174,7 +172,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "branch-choice"
       ]
     }

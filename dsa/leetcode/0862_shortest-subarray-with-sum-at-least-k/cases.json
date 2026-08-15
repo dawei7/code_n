@@ -132,7 +132,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "dominance"
       ]
     },
@@ -153,7 +152,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -172,7 +170,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "full-array"
       ]
     },
@@ -193,7 +190,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "single"
       ]
     },
@@ -213,7 +209,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "positive"
       ]
     },
@@ -231,7 +226,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "bounds"
       ]
     }

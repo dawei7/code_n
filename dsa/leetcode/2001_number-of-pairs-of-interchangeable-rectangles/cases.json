@@ -130,7 +130,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -157,7 +156,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "gcd"
       ]
     },
@@ -184,7 +182,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "exact-ratio"
       ]
     },
@@ -215,7 +212,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

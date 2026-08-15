@@ -132,7 +132,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "reverse-order"
       ]
     },
@@ -153,7 +152,6 @@
       },
       "expected": 20001,
       "tags": [
-        "hidden",
         "duration-bound"
       ]
     },
@@ -176,7 +174,6 @@
       },
       "expected": 13,
       "tags": [
-        "hidden",
         "priority"
       ]
     }

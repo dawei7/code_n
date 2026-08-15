@@ -117,7 +117,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "composite"
       ]
     },
@@ -134,7 +133,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "prime"
       ]
     },
@@ -151,7 +149,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "prime",
         "long-cycle"
       ]
@@ -169,7 +166,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "prime-power"
       ]
     },
@@ -186,7 +182,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "composite"
       ]
     },
@@ -203,7 +198,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum",
         "impossible"
       ]

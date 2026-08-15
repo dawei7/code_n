@@ -235,7 +235,6 @@
       },
       "expected": 1.0,
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
@@ -270,7 +269,6 @@
       },
       "expected": 0.0,
       "tags": [
-        "hidden",
         "collinear"
       ]
     },
@@ -301,7 +299,6 @@
       },
       "expected": 5.0,
       "tags": [
-        "hidden",
         "rotated"
       ]
     }

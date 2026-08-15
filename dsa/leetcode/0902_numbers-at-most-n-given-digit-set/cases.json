@@ -132,7 +132,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "matching-prefix"
       ]
     },
@@ -151,7 +150,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "missing-digit"
       ]
     },
@@ -169,7 +167,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "length-boundary"
       ]
     },
@@ -194,7 +191,6 @@
       },
       "expected": 90,
       "tags": [
-        "hidden",
         "all-digits"
       ]
     }

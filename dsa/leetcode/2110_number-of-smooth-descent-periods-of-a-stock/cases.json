@@ -112,7 +112,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "larger-drop",
         "multiple-runs"
       ]
@@ -134,7 +133,6 @@
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "full-descent",
         "integer-width"
       ]

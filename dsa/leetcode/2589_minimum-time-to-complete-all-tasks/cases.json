@@ -122,7 +122,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "disjoint"
       ]
     },
@@ -147,7 +146,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "nested"
       ]
     },
@@ -172,7 +170,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "same-end"
       ]
     },
@@ -202,7 +199,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "disjoint",
         "single-point"
       ]
@@ -223,7 +219,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "maximum-time"
       ]
     },
@@ -248,7 +243,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "overlap",
         "full-duration"
       ]
@@ -274,7 +268,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "contained",
         "reuse"
       ]
@@ -305,7 +298,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "identical",
         "reuse"
       ]

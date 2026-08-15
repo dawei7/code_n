@@ -87,7 +87,6 @@
       },
       "expected": "z",
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -102,7 +101,6 @@
       },
       "expected": "desserts",
       "tags": [
-        "hidden",
         "whole-word"
       ]
     },
@@ -117,7 +115,6 @@
       },
       "expected": "zaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "tags": [
-        "hidden",
         "maximum-length"
       ]
     }

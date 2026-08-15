@@ -161,7 +161,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "both-parities",
         "prime-two"
       ]
@@ -181,7 +180,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "all-positions",
         "prime-gaps"
       ]
@@ -198,7 +196,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "upper-bound",
         "next-prime-beyond-bound"
       ]
@@ -219,7 +216,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "one-is-non-prime",
         "index-parity"
       ]
@@ -241,7 +237,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "both-parities",
         "mixed-prime-gaps"
       ]
@@ -261,7 +256,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "composite-squares",
         "next-prime"
       ]
@@ -281,7 +275,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "large-prime",
         "index-parity"
       ]

@@ -73,7 +73,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "endpoint"
       ]
     },
@@ -88,7 +87,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "full-cycle"
       ]
     },
@@ -103,7 +101,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "period-boundary"
       ]
     },
@@ -118,7 +115,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "return-trip"
       ]
     },
@@ -133,7 +129,6 @@
       },
       "expected": 1000,
       "tags": [
-        "hidden",
         "maximum-n",
         "endpoint"
       ]
@@ -149,7 +144,6 @@
       },
       "expected": 999,
       "tags": [
-        "hidden",
         "maximum-n",
         "maximum-time"
       ]

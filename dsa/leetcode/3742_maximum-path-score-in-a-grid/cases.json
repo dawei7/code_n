@@ -151,7 +151,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "score-cost-difference"
       ]
     },
@@ -178,7 +177,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero-budget"
       ]
     },
@@ -207,7 +205,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-zero"
       ]
     },
@@ -234,7 +231,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "inactive-budget"
       ]
     },
@@ -268,7 +264,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "detour",
         "zero-budget"
       ]
@@ -303,7 +298,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "budget-choice"
       ]
     }

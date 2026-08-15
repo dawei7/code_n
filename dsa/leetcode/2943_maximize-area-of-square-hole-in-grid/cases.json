@@ -155,7 +155,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "large-dimensions"
       ]
     },
@@ -180,7 +179,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -207,7 +205,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "mixed-runs"
       ]
     },
@@ -266,7 +263,6 @@
       },
       "expected": 441,
       "tags": [
-        "hidden",
         "long-run"
       ]
     }

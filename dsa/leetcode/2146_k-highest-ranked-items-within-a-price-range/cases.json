@@ -284,7 +284,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "row-column-ties"
       ]
     },
@@ -327,7 +326,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "price-filter"
       ]
     },
@@ -366,7 +364,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "k-truncation"
       ]
     }

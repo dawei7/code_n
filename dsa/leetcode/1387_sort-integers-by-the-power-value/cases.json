@@ -94,7 +94,6 @@
       },
       "expected": 954,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": 27,
       "tags": [
-        "hidden",
         "last-rank"
       ]
     }

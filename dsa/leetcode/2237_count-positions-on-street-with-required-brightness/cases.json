@@ -176,7 +176,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "uncovered"
       ]
     },
@@ -203,7 +202,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "wide-range"
       ]
     },
@@ -241,7 +239,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "thresholds"
       ]
     }

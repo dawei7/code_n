@@ -238,7 +238,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "null"
       ]
     },
@@ -318,7 +317,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "ties",
         "fractional-votes"
       ]
@@ -349,7 +347,6 @@
         "rows": []
       },
       "tags": [
-        "hidden",
         "empty-result",
         "null"
       ]

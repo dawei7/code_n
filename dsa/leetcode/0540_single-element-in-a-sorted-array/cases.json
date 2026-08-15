@@ -120,7 +120,6 @@
       },
       "expected": -2,
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -146,7 +145,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "balanced"
       ]
     }

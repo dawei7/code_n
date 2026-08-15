@@ -268,7 +268,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "rejected-edge",
         "later-queries"
       ]
@@ -320,7 +319,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "component-merge",
         "inconsistent-chord"
       ]
@@ -372,7 +370,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "consistent-chords",
         "multiple-cycles"
       ]
@@ -414,7 +411,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "odd-cycle",
         "all-one"
       ]
@@ -461,7 +457,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "even-cycle",
         "all-one"
       ]
@@ -508,7 +503,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "multiple-rejections",
         "consistent-chord"
       ]
@@ -545,7 +539,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "vertex-boundary",
         "component-merge"
       ]
@@ -597,7 +590,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "disconnected",
         "mixed-cycles"
       ]

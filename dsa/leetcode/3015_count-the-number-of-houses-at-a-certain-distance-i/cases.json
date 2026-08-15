@@ -122,7 +122,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "endpoint-order"
       ]
     },
@@ -145,7 +144,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
@@ -168,7 +166,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "self-loop"
       ]
     }

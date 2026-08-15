@@ -262,7 +262,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -316,7 +315,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "order"
       ]
     }

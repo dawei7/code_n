@@ -68,7 +68,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "boundary-move"
       ]
     },
@@ -82,7 +81,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
@@ -96,7 +94,6 @@
       },
       "expected": 351,
       "tags": [
-        "hidden",
         "alphabet"
       ]
     },
@@ -110,7 +107,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "stale-index"
       ]
     }

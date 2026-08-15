@@ -81,7 +81,6 @@
       },
       "expected": "7777",
       "tags": [
-        "hidden",
         "length-boundary",
         "all-seven"
       ]
@@ -96,7 +95,6 @@
       },
       "expected": "44444",
       "tags": [
-        "hidden",
         "length-boundary",
         "all-four"
       ]
@@ -111,7 +109,6 @@
       },
       "expected": "77477744774747744747444444447",
       "tags": [
-        "hidden",
         "maximum-index",
         "bit-pattern"
       ]

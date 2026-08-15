@@ -103,7 +103,6 @@
       },
       "expected": 2231,
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
@@ -121,7 +120,6 @@
       },
       "expected": 350573560,
       "tags": [
-        "hidden",
         "modulo"
       ]
     }

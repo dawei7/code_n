@@ -69,7 +69,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -86,7 +85,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -105,7 +103,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "digit-one"
       ]
     },
@@ -126,7 +123,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -144,7 +140,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "order"
       ]
     }

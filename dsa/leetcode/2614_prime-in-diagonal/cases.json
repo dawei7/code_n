@@ -128,7 +128,6 @@
       },
       "expected": 13,
       "tags": [
-        "hidden",
         "off-diagonal"
       ]
     },
@@ -151,7 +150,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "prime-definition"
       ]
     },
@@ -174,7 +172,6 @@
       },
       "expected": 3999971,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

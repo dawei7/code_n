@@ -82,7 +82,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "wraparound"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "case-sensitive"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "late-mismatch"
       ]
     }

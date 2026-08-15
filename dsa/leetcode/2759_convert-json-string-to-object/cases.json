@@ -113,7 +113,6 @@
         "word": "hello world"
       },
       "tags": [
-        "hidden",
         "null",
         "quoted-punctuation"
       ]
@@ -140,7 +139,6 @@
         "c": "done"
       },
       "tags": [
-        "hidden",
         "nested",
         "mixed"
       ]
@@ -160,7 +158,6 @@
         "constructor": 5
       },
       "tags": [
-        "hidden",
         "prototype-key"
       ]
     },
@@ -176,7 +173,6 @@
         "x": 2
       },
       "tags": [
-        "hidden",
         "duplicate-key"
       ]
     }

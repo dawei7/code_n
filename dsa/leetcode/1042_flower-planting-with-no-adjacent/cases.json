@@ -222,7 +222,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
@@ -260,7 +259,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "ordering"
       ]
     },
@@ -304,7 +302,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "disconnected"
       ]
     }

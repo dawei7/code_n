@@ -127,7 +127,6 @@
         "kind": "nested_integer"
       },
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -157,7 +156,6 @@
         "kind": "nested_integer"
       },
       "tags": [
-        "hidden",
         "siblings"
       ]
     },
@@ -180,7 +178,6 @@
         "kind": "nested_integer"
       },
       "tags": [
-        "hidden",
         "multi-digit"
       ]
     }

@@ -125,7 +125,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "no-split",
         "integral-average"
       ]
@@ -145,7 +144,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "pair-subset"
       ]
     },
@@ -164,7 +162,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

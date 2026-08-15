@@ -134,7 +134,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "zero",
         "mixed-sign"
       ]
@@ -159,7 +158,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "duplicates",
         "ties"
       ]
@@ -180,7 +178,6 @@
         5000
       ],
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

@@ -110,7 +110,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "single"
       ]
     },
@@ -132,7 +131,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "global-minimum"
       ]
     },
@@ -154,7 +152,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "multiple-values"
       ]
     }

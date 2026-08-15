@@ -67,7 +67,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-same"
       ]
     },
@@ -81,7 +80,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "pattern-010"
       ]
     },
@@ -95,7 +93,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -109,7 +106,6 @@
       },
       "expected": 27,
       "tags": [
-        "hidden",
         "repeated-runs"
       ]
     }

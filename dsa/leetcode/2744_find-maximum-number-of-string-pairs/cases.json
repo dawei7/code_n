@@ -91,7 +91,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "length-boundary"
       ]
     },
@@ -112,7 +111,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "palindrome"
       ]
     },
@@ -133,7 +131,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "order"
       ]
     },
@@ -155,7 +152,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "noise"
       ]
     }

@@ -104,7 +104,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "distinct"
       ]
     },
@@ -123,7 +122,6 @@
       },
       "expected": 46,
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
@@ -143,7 +141,6 @@
       },
       "expected": 87,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -162,7 +159,6 @@
       },
       "expected": 699995,
       "tags": [
-        "hidden",
         "maximum-value"
       ]
     },
@@ -186,7 +182,6 @@
       },
       "expected": 3084,
       "tags": [
-        "hidden",
         "descending"
       ]
     }

@@ -193,7 +193,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "interleaved"
       ]
     },
@@ -243,7 +242,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "star"
       ]
     },
@@ -306,7 +304,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "mixed-sizes"
       ]
     }

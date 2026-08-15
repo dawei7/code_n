@@ -191,7 +191,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
@@ -239,7 +238,6 @@
       },
       "expected": 30,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -279,7 +277,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "unused"
       ]
     }

@@ -106,7 +106,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "all-negative"
       ]
     },
@@ -124,7 +123,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "singleton-optimum"
       ]
     },
@@ -143,7 +141,6 @@
       },
       "expected": 400000,
       "tags": [
-        "hidden",
         "value-boundary",
         "wide-result"
       ]
@@ -163,7 +160,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zeros"
       ]
     }

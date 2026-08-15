@@ -150,7 +150,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "multiple-qualifying-values"
       ]
     },
@@ -172,7 +171,6 @@
       },
       "expected": 598,
       "tags": [
-        "hidden",
         "value-boundary",
         "multiplicity"
       ]
@@ -194,7 +192,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "semantic-trap"
       ]
     },
@@ -217,7 +214,6 @@
       },
       "expected": 32,
       "tags": [
-        "hidden",
         "exact-divisibility"
       ]
     },
@@ -237,7 +233,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "k-boundary"
       ]
     },
@@ -261,7 +256,6 @@
       },
       "expected": 72,
       "tags": [
-        "hidden",
         "single-value",
         "multiplicity"
       ]

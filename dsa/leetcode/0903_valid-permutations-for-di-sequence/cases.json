@@ -96,7 +96,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "valley"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -124,7 +122,6 @@
       },
       "expected": 272,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -138,7 +135,6 @@
       },
       "expected": 461,
       "tags": [
-        "hidden",
         "grouped"
       ]
     }

@@ -162,7 +162,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "isolated"
       ]
     },
@@ -198,7 +197,6 @@
       },
       "expected": 30,
       "tags": [
-        "hidden",
         "equal-degrees"
       ]
     },
@@ -230,7 +228,6 @@
       },
       "expected": 32,
       "tags": [
-        "hidden",
         "disconnected",
         "degree-order"
       ]

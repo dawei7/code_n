@@ -174,7 +174,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "partial-delete"
       ]
     },
@@ -204,7 +203,6 @@
         7
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -236,7 +234,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -264,7 +261,6 @@
         50
       ],
       "tags": [
-        "hidden",
         "parameter-bounds"
       ]
     }

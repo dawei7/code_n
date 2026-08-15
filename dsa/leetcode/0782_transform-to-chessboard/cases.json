@@ -185,7 +185,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "singleton"
       ]
     },
@@ -224,7 +223,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "transformable"
       ]
     },
@@ -254,7 +252,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "impossible",
         "odd-side"
       ]

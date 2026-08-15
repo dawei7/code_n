@@ -128,7 +128,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "open-room"
       ]
     },
@@ -158,7 +157,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "turns"
       ]
     },
@@ -191,7 +189,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "unreachable"
       ]
     }

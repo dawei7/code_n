@@ -166,7 +166,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "rectangular"
       ]
     },
@@ -194,7 +193,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "orientation"
       ]
     },
@@ -218,7 +216,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "negative-target"
       ]
     }

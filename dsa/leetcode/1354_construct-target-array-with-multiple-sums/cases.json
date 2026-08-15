@@ -118,7 +118,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "rest-one"
       ]
     },
@@ -136,7 +135,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "dominance"
       ]
     }

@@ -226,7 +226,6 @@
         "kind": "accounts_merge"
       },
       "tags": [
-        "hidden",
         "single-account"
       ]
     },
@@ -275,7 +274,6 @@
         "kind": "accounts_merge"
       },
       "tags": [
-        "hidden",
         "nonadjacent-chain"
       ]
     },
@@ -318,7 +316,6 @@
         "kind": "accounts_merge"
       },
       "tags": [
-        "hidden",
         "same-name-components"
       ]
     }

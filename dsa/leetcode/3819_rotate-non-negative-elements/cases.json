@@ -229,7 +229,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-non-negative",
         "single-shift"
       ]
@@ -260,7 +259,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "oversized-k",
         "modulo",
         "zero"
@@ -288,7 +286,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "single-non-negative",
         "zero",
         "maximum-k"
@@ -318,7 +315,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundaries",
         "zero"
       ]
@@ -349,7 +345,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-values",
         "alternating-signs"
       ]

@@ -104,7 +104,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -123,7 +122,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "indirect"
       ]
     },
@@ -140,7 +138,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "primes"
       ]
     },
@@ -157,7 +154,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "large-prime"
       ]
     },
@@ -177,7 +173,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "components"
       ]
     }

@@ -280,7 +280,6 @@
         "kind": "modified_graph_edges"
       },
       "tags": [
-        "hidden",
         "impossible",
         "competing-path"
       ]
@@ -313,7 +312,6 @@
         "kind": "modified_graph_edges"
       },
       "tags": [
-        "hidden",
         "lower-bound"
       ]
     },
@@ -386,7 +384,6 @@
         "kind": "modified_graph_edges"
       },
       "tags": [
-        "hidden",
         "multiple-routes"
       ]
     },
@@ -419,7 +416,6 @@
         "kind": "modified_graph_edges"
       },
       "tags": [
-        "hidden",
         "maximum-target"
       ]
     }

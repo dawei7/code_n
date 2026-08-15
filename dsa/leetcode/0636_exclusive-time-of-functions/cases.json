@@ -112,7 +112,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "sequential"
       ]
     },
@@ -134,7 +133,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "unused",
         "offset"
       ]
@@ -157,7 +155,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "repeated-calls"
       ]
     }

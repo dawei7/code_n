@@ -52,7 +52,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "truncation",
         "precedence"
       ]

@@ -134,7 +134,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "sorting"
       ]
     },
@@ -161,7 +160,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "zero-capacity"
       ]
     },
@@ -189,7 +187,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "capacity"
       ]
     },
@@ -212,7 +209,6 @@
       },
       "expected": 2000000000,
       "tags": [
-        "hidden",
         "large-coordinates"
       ]
     }

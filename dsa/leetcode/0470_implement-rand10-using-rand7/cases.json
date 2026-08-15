@@ -131,7 +131,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "rejection"
       ]
     },
@@ -157,7 +156,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "stream"
       ]
     }

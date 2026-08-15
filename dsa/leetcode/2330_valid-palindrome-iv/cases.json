@@ -93,7 +93,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "odd-length"
       ]
     },
@@ -107,7 +106,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "late-rejection"
       ]
     },
@@ -121,7 +119,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "separated-mismatches"
       ]
     }

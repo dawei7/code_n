@@ -210,7 +210,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "container-type"
       ]
     },
@@ -237,7 +236,6 @@
         "keep": 1
       },
       "tags": [
-        "hidden",
         "null"
       ]
     },
@@ -280,7 +278,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "empty",
         "nested-union"
       ]

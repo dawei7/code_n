@@ -103,7 +103,6 @@
         "answer": 42
       },
       "tags": [
-        "hidden",
         "object"
       ]
     },
@@ -128,7 +127,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "nested-array"
       ]
     },
@@ -145,7 +143,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "falsy-value"
       ]
     }

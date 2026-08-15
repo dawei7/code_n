@@ -141,7 +141,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "balanced"
       ]
     },
@@ -184,7 +183,6 @@
       },
       "expected": 26,
       "tags": [
-        "hidden",
         "alphabet"
       ]
     },
@@ -206,7 +204,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "parity"
       ]
     },
@@ -228,7 +225,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "all-valid"
       ]
     }

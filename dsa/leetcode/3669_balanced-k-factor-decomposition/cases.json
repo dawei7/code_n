@@ -129,7 +129,6 @@
         "kind": "balanced_factor_decomposition"
       },
       "tags": [
-        "hidden",
         "distinct-factors"
       ]
     },
@@ -152,7 +151,6 @@
         "kind": "balanced_factor_decomposition"
       },
       "tags": [
-        "hidden",
         "four-factors"
       ]
     },
@@ -176,7 +174,6 @@
         "kind": "balanced_factor_decomposition"
       },
       "tags": [
-        "hidden",
         "maximum-n",
         "perfect-power"
       ]

@@ -96,7 +96,6 @@
       },
       "expected": 1022,
       "tags": [
-        "hidden",
         "long-detour"
       ]
     },
@@ -116,7 +115,6 @@
       },
       "expected": 26,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -135,7 +133,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "last-room"
       ]
     }

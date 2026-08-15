@@ -95,7 +95,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "early-exit"
       ]
     }

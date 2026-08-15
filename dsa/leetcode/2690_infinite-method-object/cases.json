@@ -67,7 +67,6 @@
       },
       "expected": "toString",
       "tags": [
-        "hidden",
         "prototype-name"
       ]
     },
@@ -81,7 +80,6 @@
       },
       "expected": "__proto__",
       "tags": [
-        "hidden",
         "prototype-name"
       ]
     },
@@ -95,7 +93,6 @@
       },
       "expected": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
       "tags": [
-        "hidden",
         "long-name"
       ]
     }

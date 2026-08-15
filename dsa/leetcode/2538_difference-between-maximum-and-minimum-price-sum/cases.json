@@ -146,7 +146,6 @@
       },
       "expected": 30,
       "tags": [
-        "hidden",
         "star",
         "endpoint-choice"
       ]
@@ -181,7 +180,6 @@
       },
       "expected": 106,
       "tags": [
-        "hidden",
         "chain",
         "endpoint-choice"
       ]
@@ -216,7 +214,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "branch-order"
       ]
     }

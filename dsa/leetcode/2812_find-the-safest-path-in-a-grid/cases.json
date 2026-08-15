@@ -168,7 +168,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "central-thief"
       ]
     },
@@ -198,7 +197,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "barrier"
       ]
     },
@@ -237,7 +235,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "destination-thief"
       ]
     }

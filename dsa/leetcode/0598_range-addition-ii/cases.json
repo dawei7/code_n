@@ -139,7 +139,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "whole-matrix"
       ]
     },
@@ -168,7 +167,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "intersection"
       ]
     }

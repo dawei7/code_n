@@ -86,7 +86,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "maximum-budget"
       ]
     },
@@ -101,7 +100,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

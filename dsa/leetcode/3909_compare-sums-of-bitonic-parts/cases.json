@@ -220,7 +220,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "maximum-peak",
         "equal-sums"
       ]
@@ -241,7 +240,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "descending-greater",
         "large-values"
       ]
@@ -262,7 +260,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "ascending-greater",
         "large-values"
       ]
@@ -284,7 +281,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "descending-greater",
         "mixed-lengths"
       ]
@@ -306,7 +302,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "ascending-greater",
         "several-tail-values"
       ]

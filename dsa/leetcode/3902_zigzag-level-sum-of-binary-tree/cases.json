@@ -272,7 +272,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "full-tree-discovery",
         "semantic-trap"
       ]
@@ -308,7 +307,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "perfect-tree",
         "complete-prefix"
       ]
@@ -344,7 +342,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "maximum-value",
         "wide-sum"
       ]
@@ -380,7 +377,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "minimum-value",
         "negative-sum"
       ]
@@ -412,7 +408,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "negative-prefix",
         "odd-level-stop"
       ]

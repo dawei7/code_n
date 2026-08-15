@@ -100,7 +100,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "grouping"
       ]
     },
@@ -117,7 +116,6 @@
       },
       "expected": 666,
       "tags": [
-        "hidden",
         "cycle"
       ]
     }

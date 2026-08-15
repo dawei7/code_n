@@ -86,7 +86,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "component"
       ]
     }

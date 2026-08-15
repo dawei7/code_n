@@ -120,7 +120,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "replacement"
       ]
     }

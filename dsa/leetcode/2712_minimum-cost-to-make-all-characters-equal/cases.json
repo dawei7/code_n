@@ -67,7 +67,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -81,7 +80,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "island"
       ]
     },
@@ -95,7 +93,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "runs"
       ]
     },
@@ -109,7 +106,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "runs"
       ]
     },
@@ -123,7 +119,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -137,7 +132,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "boundaries"
       ]
     }

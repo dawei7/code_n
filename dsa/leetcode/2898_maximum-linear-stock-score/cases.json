@@ -110,7 +110,6 @@
       },
       "expected": 3999999994,
       "tags": [
-        "hidden",
         "large-sum",
         "maximum-values"
       ]

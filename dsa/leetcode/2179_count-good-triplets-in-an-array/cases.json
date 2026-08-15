@@ -147,7 +147,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "both-sides"
       ]
     },
@@ -176,7 +175,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "permutation-map"
       ]
     },
@@ -203,7 +201,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "rotation"
       ]
     }

@@ -177,7 +177,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "at-count"
       ]
     },
@@ -221,7 +220,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "domain"
       ]
     },
@@ -265,7 +263,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "local"
       ]
     },
@@ -309,7 +306,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "anchoring"
       ]
     },
@@ -340,7 +336,6 @@
         "rows": []
       },
       "tags": [
-        "hidden",
         "empty"
       ]
     }

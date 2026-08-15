@@ -248,7 +248,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "early-failure"
       ]
     },
@@ -290,7 +289,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "crossing"
       ]
     },
@@ -332,7 +330,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "late-failure"
       ]
     }

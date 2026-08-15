@@ -144,7 +144,6 @@
         9
       ],
       "tags": [
-        "hidden",
         "reverse"
       ]
     },
@@ -168,7 +167,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -196,7 +194,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "duplicates",
         "negative"
       ]
@@ -219,7 +216,6 @@
         50000
       ],
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -239,7 +235,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "two-values"
       ]
     }

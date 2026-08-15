@@ -360,7 +360,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "count-not-revenue"
       ]
     },
@@ -424,7 +423,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "fractional-rate"
       ]
     }

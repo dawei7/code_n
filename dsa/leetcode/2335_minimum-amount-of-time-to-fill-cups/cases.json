@@ -106,7 +106,6 @@
       },
       "expected": 150,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     },
@@ -124,7 +123,6 @@
       },
       "expected": 100,
       "tags": [
-        "hidden",
         "dominant-type"
       ]
     }

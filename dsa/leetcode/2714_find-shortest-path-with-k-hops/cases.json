@@ -226,7 +226,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "chain"
       ]
     },
@@ -265,7 +264,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "route-choice"
       ]
     },
@@ -309,7 +307,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "endpoints"
       ]
     },
@@ -348,7 +345,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
@@ -382,7 +378,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "at-most"
       ]
     }

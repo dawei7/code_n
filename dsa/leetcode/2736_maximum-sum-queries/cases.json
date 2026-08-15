@@ -193,7 +193,6 @@
         13
       ],
       "tags": [
-        "hidden",
         "duplicate-coordinate"
       ]
     },
@@ -234,7 +233,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "equal-second"
       ]
     },
@@ -280,7 +278,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "query-order"
       ]
     },
@@ -314,7 +311,6 @@
         2000000000
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

@@ -144,7 +144,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "multiple-sources",
         "disconnected"
       ],
@@ -201,7 +200,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "dense",
         "transitive"
       ],
@@ -242,7 +240,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "transitive-closure"
       ],
       "expected": 1

@@ -157,7 +157,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "decreasing",
         "last-index"
       ]
@@ -181,7 +180,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-minimum",
         "strict-update"
       ]
@@ -204,7 +202,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-item",
         "all-eligible"
       ]
@@ -227,7 +224,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-item",
         "earliest-tie"
       ]
@@ -250,7 +246,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "last-index",
         "exact-fit"
       ]
@@ -273,7 +268,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "priority-order",
         "semantic-trap"
       ]
@@ -296,7 +290,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "no-eligible-box",
         "negative-one"
       ]

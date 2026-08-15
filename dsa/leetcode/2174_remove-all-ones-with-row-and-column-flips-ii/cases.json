@@ -149,7 +149,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "isolated-ones"
       ]
     },
@@ -179,7 +178,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "dense"
       ]
     },
@@ -214,7 +212,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "asymmetric",
         "choice-order"
       ]

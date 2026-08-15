@@ -94,7 +94,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum-rank"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "rectangular"
       ]
     },
@@ -126,7 +124,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

@@ -116,7 +116,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "disjoint"
       ]
     },
@@ -147,7 +146,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "nested"
       ]
     },
@@ -174,7 +172,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "duplicates",
         "point-ranges"
       ]
@@ -210,7 +207,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "unsorted",
         "three-components"
       ]
@@ -238,7 +234,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "maximum-coordinate"
       ]
     },
@@ -393,7 +388,6 @@
       },
       "expected": 359738130,
       "tags": [
-        "hidden",
         "modulo",
         "many-components"
       ]

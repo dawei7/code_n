@@ -126,7 +126,6 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "full-scan"
       ]
     },
@@ -153,7 +152,6 @@
       },
       "expected": 25,
       "tags": [
-        "hidden",
         "completion-sum"
       ]
     },
@@ -180,7 +178,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "tie"
       ]
     }

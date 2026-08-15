@@ -282,7 +282,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "main-diagonal"
       ]
     },
@@ -328,7 +327,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

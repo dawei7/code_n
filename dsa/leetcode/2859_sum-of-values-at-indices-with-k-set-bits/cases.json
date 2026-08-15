@@ -118,7 +118,6 @@
       },
       "expected": 19,
       "tags": [
-        "hidden",
         "powers-of-two"
       ]
     },
@@ -142,7 +141,6 @@
       },
       "expected": 170,
       "tags": [
-        "hidden",
         "nonadjacent-indices"
       ]
     },
@@ -163,7 +161,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "unattainable-k"
       ]
     },
@@ -183,7 +180,6 @@
       },
       "expected": 100000,
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

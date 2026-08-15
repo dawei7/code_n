@@ -92,7 +92,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "three-stones"
       ]
     },
@@ -112,7 +111,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "uneven-gaps"
       ]
     },
@@ -132,7 +130,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "late-maximum"
       ]
     },
@@ -153,7 +150,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "irregular-gaps"
       ]
     },
@@ -170,7 +166,6 @@
       },
       "expected": 1000000000,
       "tags": [
-        "hidden",
         "boundary",
         "large-coordinate"
       ]

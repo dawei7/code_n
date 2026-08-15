@@ -172,7 +172,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -199,7 +198,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "internal-values"
       ]
     },
@@ -228,7 +226,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "suffix"
       ]
     },
@@ -252,7 +249,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -283,7 +279,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "order",
         "skewed"
       ]

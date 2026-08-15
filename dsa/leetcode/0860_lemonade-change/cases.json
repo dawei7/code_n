@@ -122,7 +122,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "no-change"
       ]
     },
@@ -145,7 +144,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "greedy"
       ]
     },
@@ -166,7 +164,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "depletion"
       ]
     },
@@ -185,7 +182,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -206,7 +202,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "exact"
       ]
     },
@@ -226,7 +221,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "depletion"
       ]
     }

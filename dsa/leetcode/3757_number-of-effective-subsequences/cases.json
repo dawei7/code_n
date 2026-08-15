@@ -188,7 +188,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "modulo",
         "ten-bits"
       ]
@@ -307,7 +306,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiplicity",
         "modulo"
       ]

@@ -124,7 +124,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "dense"
       ]
     },
@@ -146,7 +145,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "late-gap"
       ]
     },
@@ -170,7 +168,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "alternate"
       ]
     }

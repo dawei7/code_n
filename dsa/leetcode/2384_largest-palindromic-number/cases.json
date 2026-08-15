@@ -80,7 +80,6 @@
       },
       "expected": "3219123",
       "tags": [
-        "hidden",
         "center"
       ]
     },
@@ -94,7 +93,6 @@
       },
       "expected": "20002",
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -108,7 +106,6 @@
       },
       "expected": "5",
       "tags": [
-        "hidden",
         "single-digit"
       ]
     }

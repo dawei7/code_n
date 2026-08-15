@@ -116,7 +116,6 @@
       },
       "expected": 127,
       "tags": [
-        "hidden",
         "dense"
       ]
     },
@@ -133,7 +132,6 @@
       },
       "expected": 2147483647,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -153,7 +151,6 @@
       },
       "expected": 63,
       "tags": [
-        "hidden",
         "pair-choice"
       ]
     }

@@ -540,7 +540,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "complete-history",
         "latest-event"
       ]
@@ -640,7 +639,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ordering",
         "tie-break"
       ]
@@ -710,7 +708,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "historical-maximum",
         "multiple-events"
       ]
@@ -764,7 +761,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "percentage-threshold",
         "empty-result"
       ]

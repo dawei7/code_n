@@ -147,7 +147,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "lowest-common-ancestor"
       ]
     },
@@ -184,7 +183,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "batch",
         "ancestor"
       ]
@@ -207,7 +205,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "maximum-height",
         "parent-child"
       ]

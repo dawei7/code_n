@@ -156,7 +156,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "oversized"
       ]
     },
@@ -181,7 +180,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "vacuous"
       ]
     },
@@ -213,7 +211,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "single-blocker"
       ]
     },
@@ -237,7 +234,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "horizontal"
       ]
     }

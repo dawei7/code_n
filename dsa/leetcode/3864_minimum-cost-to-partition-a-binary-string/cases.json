@@ -137,7 +137,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "sensitive-pair",
         "split"
       ]
@@ -157,7 +156,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-pair",
         "split"
       ]
@@ -177,7 +175,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-pair",
         "unsplit"
       ]
@@ -197,7 +194,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "odd-halves",
         "one-split"
       ]
@@ -217,7 +213,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero-only",
         "power-of-two"
       ]
@@ -237,7 +232,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "alternating",
         "deep-split"
       ]
@@ -257,7 +251,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-sensitive",
         "deep-split"
       ]

@@ -108,7 +108,6 @@
       },
       "expected": 999,
       "tags": [
-        "hidden",
         "late-minimum"
       ]
     },
@@ -125,7 +124,6 @@
       },
       "expected": 999999999,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -142,7 +140,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "index-order"
       ]
     }

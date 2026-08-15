@@ -199,7 +199,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "zero-threshold"
       ]
     },
@@ -229,7 +228,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "opposite-guesses",
         "no-root"
       ]
@@ -280,7 +278,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "chain"
       ]
     },
@@ -346,7 +343,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "branching"
       ]
     },
@@ -388,7 +384,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "star",
         "inward-guesses"
       ]
@@ -1199,7 +1194,6 @@
       },
       "expected": 50,
       "tags": [
-        "hidden",
         "deep-chain",
         "iterative"
       ]

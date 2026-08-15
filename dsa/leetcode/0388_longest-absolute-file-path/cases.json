@@ -82,7 +82,6 @@
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "branch-reset"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "no-file"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "root-file"
       ]
     }

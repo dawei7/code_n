@@ -77,7 +77,6 @@
       },
       "expected": 129744,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -91,7 +90,6 @@
       },
       "expected": 63504,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

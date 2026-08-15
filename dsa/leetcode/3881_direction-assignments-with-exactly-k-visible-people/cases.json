@@ -197,7 +197,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "one-visible",
         "binomial"
       ]
@@ -217,7 +216,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "two-visible",
         "symmetry"
       ]
@@ -237,7 +235,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "interior-k",
         "binomial"
       ]
@@ -257,7 +254,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-k",
         "symmetry"
       ]
@@ -277,7 +273,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "central-k",
         "larger-count"
       ]
@@ -297,7 +292,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "modulo",
         "large-coefficient"
       ]

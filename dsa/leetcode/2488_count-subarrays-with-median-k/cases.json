@@ -114,7 +114,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "right-boundary"
       ]
     },
@@ -134,7 +133,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "maximum"
       ]
     },
@@ -157,7 +155,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "balance-repetition"
       ]
     }

@@ -152,7 +152,6 @@
         "hasOwnProperty": 3
       },
       "tags": [
-        "hidden",
         "prototype-names"
       ]
     },
@@ -182,7 +181,6 @@
         "safe": 5
       },
       "tags": [
-        "hidden",
         "prototype-safety",
         "duplicate"
       ]
@@ -212,7 +210,6 @@
         "[object Object]": "first"
       },
       "tags": [
-        "hidden",
         "object-conversion",
         "duplicate"
       ]
@@ -244,7 +241,6 @@
         "1,2": 10
       },
       "tags": [
-        "hidden",
         "array-conversion",
         "duplicate"
       ]
@@ -285,7 +281,6 @@
         "flag": false
       },
       "tags": [
-        "hidden",
         "value-types"
       ]
     }

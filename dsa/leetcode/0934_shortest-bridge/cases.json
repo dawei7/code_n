@@ -259,7 +259,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "irregular"
       ]
     },
@@ -309,7 +308,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "multi-source"
       ]
     },
@@ -348,7 +346,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

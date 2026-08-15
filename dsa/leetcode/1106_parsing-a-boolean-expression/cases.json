@@ -68,7 +68,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -82,7 +81,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "single-operand"
       ]
     }

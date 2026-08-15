@@ -185,7 +185,6 @@
       },
       "expected": 41,
       "tags": [
-        "hidden",
         "direction-change",
         "route-cost"
       ]
@@ -215,7 +214,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "unreachable",
         "fruit-at-start"
       ]

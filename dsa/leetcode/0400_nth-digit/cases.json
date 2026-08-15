@@ -82,7 +82,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "block-end"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "middle"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "large"
       ]
     }

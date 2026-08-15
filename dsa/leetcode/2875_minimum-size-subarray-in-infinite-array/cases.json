@@ -114,7 +114,6 @@
         "target": 37
       },
       "tags": [
-        "hidden",
         "cycles",
         "wraparound"
       ],
@@ -134,7 +133,6 @@
         "target": 1000000000
       },
       "tags": [
-        "hidden",
         "large-target"
       ],
       "expected": 1000000000
@@ -154,7 +152,6 @@
         "target": 23
       },
       "tags": [
-        "hidden",
         "impossible",
         "cycles"
       ],

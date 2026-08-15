@@ -328,7 +328,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "dense"
       ]
     },
@@ -408,7 +407,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "ordering"
       ]
     }

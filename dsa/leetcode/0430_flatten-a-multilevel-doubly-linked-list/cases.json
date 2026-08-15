@@ -231,7 +231,6 @@
         "kind": "flattened_multilevel_list"
       },
       "tags": [
-        "hidden",
         "deep"
       ]
     },
@@ -282,7 +281,6 @@
         "kind": "flattened_multilevel_list"
       },
       "tags": [
-        "hidden",
         "multiple-children"
       ]
     }

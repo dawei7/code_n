@@ -100,7 +100,6 @@
       },
       "expected": 0.125,
       "tags": [
-        "hidden",
         "two-moves"
       ]
     },
@@ -117,7 +116,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "central-square"
       ]
     },
@@ -134,7 +132,6 @@
       },
       "expected": 0.40625,
       "tags": [
-        "hidden",
         "edge"
       ]
     }

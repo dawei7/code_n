@@ -82,7 +82,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "high-bit-violation"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "boundary",
         "alternating"
       ]
@@ -111,7 +109,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "boundary",
         "equal-adjacent"
       ]

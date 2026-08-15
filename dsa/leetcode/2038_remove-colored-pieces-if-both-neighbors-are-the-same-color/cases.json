@@ -81,7 +81,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "alice-no-move"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "one-extra-move"
       ]
     },
@@ -123,7 +120,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "multiple-runs"
       ]
     }

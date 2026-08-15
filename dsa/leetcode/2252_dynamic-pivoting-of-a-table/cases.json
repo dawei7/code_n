@@ -276,7 +276,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "global-schema"
       ]
     },
@@ -329,7 +328,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "zero-price"
       ]
     },
@@ -387,7 +385,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "product-identifiers"
       ]
     }

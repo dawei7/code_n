@@ -87,7 +87,6 @@
       },
       "expected": 81,
       "tags": [
-        "hidden",
         "small-target"
       ]
     },
@@ -102,7 +101,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
@@ -117,7 +115,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

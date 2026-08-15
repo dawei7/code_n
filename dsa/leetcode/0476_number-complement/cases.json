@@ -82,7 +82,6 @@
       },
       "expected": 1073741823,
       "tags": [
-        "hidden",
         "high-bit"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 10760938,
       "tags": [
-        "hidden",
         "large"
       ]
     }

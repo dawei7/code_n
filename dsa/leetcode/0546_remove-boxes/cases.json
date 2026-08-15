@@ -113,7 +113,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "nested-merge"
       ]
     },
@@ -132,7 +131,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "all-distinct"
       ]
     },
@@ -153,7 +151,6 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "run-merge"
       ]
     },
@@ -173,7 +170,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "alternating"
       ]
     }

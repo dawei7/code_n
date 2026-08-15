@@ -281,7 +281,6 @@
       },
       "expected": 86,
       "tags": [
-        "hidden",
         "backtracking",
         "state-parity"
       ]
@@ -309,7 +308,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "rectangular",
         "zero-penalty"
       ]
@@ -339,7 +337,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "rectangular",
         "zero-penalty"
       ]
@@ -372,7 +369,6 @@
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "checkerboard",
         "maximum-penalty"
       ]
@@ -405,7 +401,6 @@
       },
       "expected": 26,
       "tags": [
-        "hidden",
         "mixed-penalty"
       ]
     },
@@ -434,7 +429,6 @@
       },
       "expected": 55,
       "tags": [
-        "hidden",
         "single-row",
         "zero-penalty"
       ]
@@ -464,7 +458,6 @@
       },
       "expected": 71,
       "tags": [
-        "hidden",
         "single-row",
         "mixed-penalty"
       ]
@@ -512,7 +505,6 @@
       },
       "expected": 71,
       "tags": [
-        "hidden",
         "single-column",
         "mixed-penalty"
       ]
@@ -554,7 +546,6 @@
       },
       "expected": 55,
       "tags": [
-        "hidden",
         "mixed-penalty",
         "square"
       ]
@@ -673,7 +664,6 @@
       },
       "expected": 4950,
       "tags": [
-        "hidden",
         "long-row",
         "maximum-penalty"
       ]

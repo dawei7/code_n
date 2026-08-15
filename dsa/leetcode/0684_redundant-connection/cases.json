@@ -198,7 +198,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "late-cycle-edge"
       ]
     },
@@ -236,7 +235,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "branch"
       ]
     },
@@ -274,7 +272,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "high-labels"
       ]
     }

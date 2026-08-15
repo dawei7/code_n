@@ -133,7 +133,6 @@
       },
       "expected": 28,
       "tags": [
-        "hidden",
         "skip"
       ]
     },
@@ -157,7 +156,6 @@
       },
       "expected": 95,
       "tags": [
-        "hidden",
         "odd-start"
       ]
     },
@@ -187,7 +185,6 @@
       },
       "expected": 470,
       "tags": [
-        "hidden",
         "regression",
         "dominance"
       ]
@@ -209,7 +206,6 @@
       },
       "expected": 4999995,
       "tags": [
-        "hidden",
         "large-score"
       ]
     }

@@ -221,7 +221,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "one-value",
         "zero-cost"
       ]
@@ -246,7 +245,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "one-swap"
       ]
@@ -283,7 +281,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-imbalances",
         "multiple-values"
       ]
@@ -312,7 +309,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "odd-frequency",
         "impossible"
       ]
@@ -349,7 +345,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "balanced-groups",
         "disjoint-groups"
       ]
@@ -386,7 +381,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "shared-values",
         "frequency-imbalance"
       ]
@@ -419,7 +413,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "late-odd-frequency",
         "impossible"
       ]

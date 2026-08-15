@@ -172,7 +172,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "corner-overlap"
       ]
     },
@@ -202,7 +201,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "orientation"
       ]
     },
@@ -232,7 +230,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "factor-pairing"
       ]
     }

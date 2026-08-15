@@ -215,7 +215,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "open"
       ]
     },
@@ -245,7 +244,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "unreachable"
       ]
     },
@@ -284,7 +282,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "barrier"
       ]
     }

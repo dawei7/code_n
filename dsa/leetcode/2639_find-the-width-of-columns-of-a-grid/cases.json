@@ -154,7 +154,6 @@
         10
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -188,7 +187,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "rectangular"
       ]
     },
@@ -216,7 +214,6 @@
         10
       ],
       "tags": [
-        "hidden",
         "single-row"
       ]
     }

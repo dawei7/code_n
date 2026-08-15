@@ -131,7 +131,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "three-types"
       ]
     },
@@ -153,7 +152,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "trailing-run"
       ]
     },
@@ -173,7 +171,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -196,7 +193,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "overlap"
       ]
     }

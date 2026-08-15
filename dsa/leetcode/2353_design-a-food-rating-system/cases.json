@@ -349,7 +349,6 @@
         "ac"
       ],
       "tags": [
-        "hidden",
         "lazy-deletion"
       ]
     },
@@ -403,7 +402,6 @@
         "ba"
       ],
       "tags": [
-        "hidden",
         "tie",
         "stale-entry"
       ]

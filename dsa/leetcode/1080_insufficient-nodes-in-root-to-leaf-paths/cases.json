@@ -167,7 +167,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "original-leaf"
       ]
     },
@@ -196,7 +195,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "partial"
       ]
     },
@@ -219,7 +217,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "equality"
       ]
     }

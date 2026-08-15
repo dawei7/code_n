@@ -210,7 +210,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "nested",
         "extension"
       ]
@@ -237,7 +236,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "upper-bound",
         "overlap"
       ]

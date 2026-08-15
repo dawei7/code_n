@@ -89,7 +89,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "both-parities"
       ]
     },
@@ -104,7 +103,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "duplicates",
         "frequency"
       ]
@@ -120,7 +118,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "anagram-trap",
         "cross-parity"
       ]
@@ -136,7 +133,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "odd-length",
         "even-parity"
       ]
@@ -152,7 +148,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "duplicates",
         "frequency-mismatch"
       ]

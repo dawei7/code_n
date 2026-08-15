@@ -98,7 +98,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "internal"
       ]
     }

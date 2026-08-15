@@ -159,7 +159,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "mirror"
       ]
     },
@@ -185,7 +184,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "repeated-letter"
       ]
     },
@@ -213,7 +211,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "repeated-block"
       ]
     },
@@ -240,7 +237,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -266,7 +262,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "single-letter",
         "duplicates"
       ]

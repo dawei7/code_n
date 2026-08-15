@@ -137,7 +137,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "capped-copies"
       ]
     },
@@ -162,7 +161,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "non-monotonic"
       ]
     },
@@ -185,7 +183,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "final-cap"
       ]
     },
@@ -210,7 +207,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "duplicates",
         "all-elements"
       ]

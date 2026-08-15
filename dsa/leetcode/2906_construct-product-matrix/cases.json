@@ -145,7 +145,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "modulo",
         "factor"
       ]
@@ -178,7 +177,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "composite-modulus",
         "no-division"
       ]
@@ -215,7 +213,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "rectangular",
         "row-boundary"
       ]

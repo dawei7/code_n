@@ -174,7 +174,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "operation-priority",
         "wide-range"
       ]
@@ -200,7 +199,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "negative-values",
         "zero-operations"
       ]
@@ -224,7 +222,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "two-elements",
         "direction-choice"
       ]
@@ -248,7 +245,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "domain-boundaries",
         "large-range"
       ]
@@ -274,7 +270,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "domain-boundaries",
         "tied-patterns"
       ]
@@ -301,7 +296,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "odd-first",
         "zero-operations"
       ]
@@ -328,7 +322,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "even-first",
         "mixed-sign"
       ]

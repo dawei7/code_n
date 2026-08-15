@@ -226,7 +226,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "at-most-m",
         "skip-negative"
       ]
@@ -251,7 +250,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "whole-array",
         "fixed-length"
       ]
@@ -276,7 +274,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "numeric-boundary",
         "two-subarrays"
       ]
@@ -301,7 +298,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zeros",
         "minimum-length"
       ]
@@ -328,7 +324,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-signs",
         "multiple-subarrays"
       ]
@@ -352,7 +347,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "numeric-boundary",
         "all-negative"
       ]
@@ -379,7 +373,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "count-limit",
         "non-overlap"
       ]

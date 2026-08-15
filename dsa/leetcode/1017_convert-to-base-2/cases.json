@@ -93,7 +93,6 @@
       },
       "expected": "101",
       "tags": [
-        "hidden",
         "small"
       ]
     },
@@ -107,7 +106,6 @@
       },
       "expected": "11011",
       "tags": [
-        "hidden",
         "small"
       ]
     },
@@ -121,7 +119,6 @@
       },
       "expected": "1101011",
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

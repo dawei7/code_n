@@ -180,7 +180,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "sixth-game",
         "equal-values"
       ]
@@ -205,7 +204,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "odd-values",
         "double-swap"
       ]
@@ -231,7 +229,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "persistent-state",
         "even-values"
       ]
@@ -262,7 +259,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "upper-value-bound",
         "multiple-sixth-games"
       ]
@@ -288,7 +284,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "upper-value-bound",
         "mixed-parity"
       ]

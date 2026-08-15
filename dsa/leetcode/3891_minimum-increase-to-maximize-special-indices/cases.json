@@ -178,7 +178,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "even-length",
         "middle-switch"
       ]
@@ -202,7 +201,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "even-length",
         "middle-switch"
       ]
@@ -225,7 +223,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "odd-length",
         "equal-values"
       ]
@@ -249,7 +246,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "even-length",
         "equal-values"
       ]
@@ -274,7 +270,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "odd-length",
         "descending"
       ]
@@ -300,7 +295,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "even-length",
         "ascending"
       ]
@@ -327,7 +321,6 @@
       },
       "expected": 5000000000,
       "tags": [
-        "hidden",
         "odd-length",
         "large-total"
       ]

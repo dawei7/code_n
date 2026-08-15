@@ -174,7 +174,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -203,7 +202,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -239,7 +237,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

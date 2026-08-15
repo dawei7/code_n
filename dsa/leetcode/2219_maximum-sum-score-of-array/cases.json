@@ -84,7 +84,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "all-negative"
       ]
     },
@@ -103,7 +102,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "suffix-maximum"
       ]
     },
@@ -122,7 +120,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zeros"
       ]
     },
@@ -141,7 +138,6 @@
       },
       "expected": 200000,
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

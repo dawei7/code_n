@@ -81,7 +81,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "extra-token"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "skewed"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "negative"
       ]
     }

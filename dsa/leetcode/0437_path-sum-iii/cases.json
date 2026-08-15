@@ -124,7 +124,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "single"
       ]
     },
@@ -145,7 +144,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "none"
       ]
     },
@@ -168,7 +166,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "overlapping"
       ]
     }

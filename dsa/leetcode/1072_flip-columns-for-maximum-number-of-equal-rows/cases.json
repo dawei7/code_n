@@ -205,7 +205,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -244,7 +243,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "unique"
       ]
     },
@@ -283,7 +281,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "canonical"
       ]
     }

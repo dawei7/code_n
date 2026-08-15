@@ -114,7 +114,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "reset"
       ]
     },
@@ -133,7 +132,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -153,7 +151,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

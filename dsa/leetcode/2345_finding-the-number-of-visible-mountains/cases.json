@@ -161,7 +161,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "duplicates",
         "containment"
       ]
@@ -189,7 +188,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "nested"
       ]
     },
@@ -240,7 +238,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "same-left",
         "regression"
       ]

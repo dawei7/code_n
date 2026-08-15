@@ -98,7 +98,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "allocation"
       ]
     },
@@ -120,7 +119,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "zero-baseline"
       ]
     },
@@ -142,7 +140,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "edge-coverage"
       ]
     },
@@ -165,7 +162,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "overlap"
       ]
     }

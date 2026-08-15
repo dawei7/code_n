@@ -166,7 +166,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "power-of-two",
         "contiguous-compatible-run"
       ]
@@ -185,7 +184,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-k",
         "dense-set-bits"
       ]
@@ -204,7 +202,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "power-of-two",
         "lower-interval"
       ]
@@ -223,7 +220,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "power-of-two",
         "upper-endpoint"
       ]
@@ -242,7 +238,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "alternating-bits",
         "mixed-values"
       ]
@@ -261,7 +256,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "dense-set-bits",
         "zero-result"
       ]
@@ -280,7 +274,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary",
         "maximum-k"
       ]

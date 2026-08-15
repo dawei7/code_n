@@ -52,7 +52,6 @@
       },
       "expected": 1536,
       "tags": [
-        "hidden",
         "deduplication"
       ]
     }

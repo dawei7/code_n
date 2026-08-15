@@ -105,7 +105,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -125,7 +124,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "value-one",
         "integer-bounds"
       ]
@@ -145,7 +143,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero-missing"
       ]
     },
@@ -167,7 +164,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "uneven-counts"
       ]
     }

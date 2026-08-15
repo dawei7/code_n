@@ -81,7 +81,6 @@
       },
       "expected": "aaaa",
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": "aabaa",
       "tags": [
-        "hidden",
         "fallback"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": "z",
       "tags": [
-        "hidden",
         "proper-prefix"
       ]
     }

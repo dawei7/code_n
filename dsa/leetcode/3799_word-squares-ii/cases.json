@@ -369,7 +369,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "overlapping-buckets",
         "six-results"
       ]
@@ -392,7 +391,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "distinct-roles",
         "reuse-trap"
       ]
@@ -415,7 +413,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-four-corners",
         "no-result"
       ]
@@ -453,7 +450,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "distractors",
         "transpose"
       ]
@@ -491,7 +487,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "distractors",
         "lexicographic-order"
       ]

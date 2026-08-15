@@ -141,7 +141,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-digits",
         "good"
       ]
@@ -159,7 +158,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-digits",
         "not-good"
       ]
@@ -177,7 +175,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-digits",
         "good"
       ]
@@ -195,7 +192,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero-digits",
         "good"
       ]
@@ -213,7 +209,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "nine-digits",
         "good"
       ]
@@ -231,7 +226,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-boundary",
         "not-good"
       ]
@@ -249,7 +243,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "nine-digits",
         "good"
       ]
@@ -267,7 +260,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "alternating-digits",
         "good"
       ]

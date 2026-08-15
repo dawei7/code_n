@@ -326,7 +326,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "multiple-components",
         "even-sum"
       ]
@@ -378,7 +377,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "cycles",
         "bridge",
         "mixed-parity"
@@ -428,7 +426,6 @@
       },
       "expected": 18,
       "tags": [
-        "hidden",
         "tree",
         "branches",
         "mixed-parity"
@@ -459,7 +456,6 @@
       },
       "expected": 13,
       "tags": [
-        "hidden",
         "maximum-n",
         "empty-graph",
         "singletons"
@@ -529,7 +525,6 @@
       },
       "expected": 30,
       "tags": [
-        "hidden",
         "long-path",
         "path",
         "alternating-values"
@@ -668,7 +663,6 @@
       },
       "expected": 255,
       "tags": [
-        "hidden",
         "dense",
         "complete-graph",
         "all-zero"

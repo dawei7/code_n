@@ -181,7 +181,6 @@
         "kind": "hamming_alternating_subsequence"
       },
       "tags": [
-        "hidden",
         "dynamic-programming",
         "reconstruction"
       ]

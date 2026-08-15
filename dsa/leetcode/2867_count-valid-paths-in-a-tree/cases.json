@@ -164,7 +164,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "component-pairs"
       ]
     },
@@ -216,7 +215,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "chain",
         "multiple-primes"
       ]
@@ -245,7 +243,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "unordered-paths"
       ]
     }

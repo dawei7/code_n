@@ -264,7 +264,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
@@ -311,7 +310,6 @@
         9
       ],
       "tags": [
-        "hidden",
         "directions"
       ]
     },
@@ -357,7 +355,6 @@
         3000000
       ],
       "tags": [
-        "hidden",
         "large-cost"
       ]
     }

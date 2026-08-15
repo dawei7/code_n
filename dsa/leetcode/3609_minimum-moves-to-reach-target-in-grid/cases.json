@@ -192,7 +192,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "mixed-transitions"
       ]
     },
@@ -209,7 +208,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "parity",
         "impossible"
       ]
@@ -227,7 +225,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "equality",
         "impossible"
       ]
@@ -245,7 +242,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "overshoot",
         "impossible"
       ]
@@ -263,7 +259,6 @@
       },
       "expected": 29,
       "tags": [
-        "hidden",
         "large",
         "doubling"
       ]
@@ -281,7 +276,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "large",
         "parity",
         "impossible"

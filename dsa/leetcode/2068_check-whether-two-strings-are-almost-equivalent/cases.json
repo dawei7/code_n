@@ -73,7 +73,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "difference-three"
       ]
     },
@@ -88,7 +87,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "negative-difference"
       ]
     },
@@ -103,7 +101,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "equal-length"
       ]
     }

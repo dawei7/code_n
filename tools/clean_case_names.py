@@ -52,6 +52,15 @@ def clean_case_names():
                 c["visible"] = True
                 modified = True
 
+            tags = c.get("tags", [])
+            if "hidden" in tags:
+                new_tags = [t for t in tags if t.lower() != "hidden"]
+                if not new_tags:
+                    new_tags = ["trial"]
+                c["tags"] = new_tags
+                modified = True
+                total_cleaned += 1
+
         if modified:
             cases_file.write_text(json.dumps(data, indent=2), encoding="utf-8")
             total_files_modified += 1

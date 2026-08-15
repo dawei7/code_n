@@ -51,7 +51,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "digits"
       ]
     }

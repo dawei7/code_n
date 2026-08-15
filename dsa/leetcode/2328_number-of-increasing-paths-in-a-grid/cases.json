@@ -140,7 +140,6 @@
       },
       "expected": 53,
       "tags": [
-        "hidden",
         "two-dimensional"
       ]
     },
@@ -165,7 +164,6 @@
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "merging"
       ]
     }

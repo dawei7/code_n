@@ -905,7 +905,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ordering",
         "tie-break"
       ]
@@ -997,7 +996,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "timestamp-extrema",
         "input-order"
       ]
@@ -1137,7 +1135,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "conditional-counts"
       ]
     }

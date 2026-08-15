@@ -306,7 +306,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "empty-bus",
         "equal-arrival"
       ]
@@ -359,7 +358,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "after-final",
         "ordering"
       ]

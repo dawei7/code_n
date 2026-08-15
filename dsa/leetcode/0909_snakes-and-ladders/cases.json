@@ -204,7 +204,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "unreachable",
         "cycle"
       ]
@@ -244,7 +243,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "single-transition"
       ]
     },
@@ -274,7 +272,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "snake"
       ]
     },
@@ -313,7 +310,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "no-transitions"
       ]
     },
@@ -768,7 +764,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "dimension-bound"
       ]
     }

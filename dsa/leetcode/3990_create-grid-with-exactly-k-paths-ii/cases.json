@@ -228,7 +228,6 @@
         "paths_param": "k"
       },
       "tags": [
-        "hidden",
         "dense-bits"
       ]
     },
@@ -269,7 +268,6 @@
         "paths_param": "k"
       },
       "tags": [
-        "hidden",
         "power-of-two"
       ]
     },
@@ -310,7 +308,6 @@
         "paths_param": "k"
       },
       "tags": [
-        "hidden",
         "dense-bits"
       ]
     },
@@ -351,7 +348,6 @@
         "paths_param": "k"
       },
       "tags": [
-        "hidden",
         "power-of-two"
       ]
     },
@@ -392,7 +388,6 @@
         "paths_param": "k"
       },
       "tags": [
-        "hidden",
         "dense-bits"
       ]
     },
@@ -433,7 +428,6 @@
         "paths_param": "k"
       },
       "tags": [
-        "hidden",
         "power-of-two"
       ]
     },
@@ -474,7 +468,6 @@
         "paths_param": "k"
       },
       "tags": [
-        "hidden",
         "dense-bits"
       ]
     },
@@ -515,7 +508,6 @@
         "paths_param": "k"
       },
       "tags": [
-        "hidden",
         "power-of-two"
       ]
     },
@@ -556,7 +548,6 @@
         "paths_param": "k"
       },
       "tags": [
-        "hidden",
         "dense-bits"
       ]
     },
@@ -597,7 +588,6 @@
         "paths_param": "k"
       },
       "tags": [
-        "hidden",
         "highest-bit",
         "power-of-two"
       ]
@@ -639,7 +629,6 @@
         "paths_param": "k"
       },
       "tags": [
-        "hidden",
         "near-maximum",
         "multiple-bits"
       ]
@@ -681,7 +670,6 @@
         "paths_param": "k"
       },
       "tags": [
-        "hidden",
         "maximum",
         "multiple-bits"
       ]

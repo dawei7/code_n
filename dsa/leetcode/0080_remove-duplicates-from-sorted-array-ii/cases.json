@@ -155,7 +155,6 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

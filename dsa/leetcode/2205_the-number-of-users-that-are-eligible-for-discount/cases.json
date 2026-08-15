@@ -203,7 +203,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "inclusive",
         "midnight"
       ]
@@ -250,7 +249,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "amount-boundary"
       ]
     },
@@ -301,7 +299,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "same-row",
         "and"
       ]
@@ -348,7 +345,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "negative",
         "threshold"
       ]

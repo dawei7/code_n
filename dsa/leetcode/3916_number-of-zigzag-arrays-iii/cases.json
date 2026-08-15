@@ -218,7 +218,6 @@
       },
       "expected": 142298065,
       "tags": [
-        "hidden",
         "large-values",
         "modulo"
       ]
@@ -235,7 +234,6 @@
       },
       "expected": 711887154,
       "tags": [
-        "hidden",
         "odd-length",
         "interpolation",
         "large-interval"
@@ -253,7 +251,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "maximum-length",
         "two-values"
       ]
@@ -270,7 +267,6 @@
       },
       "expected": 122743172,
       "tags": [
-        "hidden",
         "maximum-length",
         "maximum-interval",
         "modulo"
@@ -288,7 +284,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "maximum-length",
         "translation-invariance"
       ]

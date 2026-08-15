@@ -82,7 +82,6 @@
       },
       "expected": "a    b",
       "tags": [
-        "hidden",
         "leading",
         "trailing"
       ]
@@ -97,7 +96,6 @@
       },
       "expected": "a   b   c",
       "tags": [
-        "hidden",
         "even-division"
       ]
     },
@@ -111,7 +109,6 @@
       },
       "expected": "a  b  c ",
       "tags": [
-        "hidden",
         "remainder"
       ]
     },
@@ -125,7 +122,6 @@
       },
       "expected": "alone   ",
       "tags": [
-        "hidden",
         "single-word"
       ]
     },
@@ -139,7 +135,6 @@
       },
       "expected": "alpha    beta    gamma",
       "tags": [
-        "hidden",
         "word-order"
       ]
     }

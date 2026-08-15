@@ -121,7 +121,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "isolated"
       ]
     },
@@ -140,7 +139,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "connected"
       ]
     },
@@ -160,7 +158,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "component"
       ]
     },
@@ -179,7 +176,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "duplicate-components"
       ]
     }

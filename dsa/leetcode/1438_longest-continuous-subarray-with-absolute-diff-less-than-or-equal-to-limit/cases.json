@@ -121,7 +121,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -143,7 +142,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "decreasing"
       ]
     },
@@ -165,7 +163,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "late-window"
       ]
     }

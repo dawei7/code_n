@@ -84,7 +84,6 @@
       },
       "expected": "UU",
       "tags": [
-        "hidden",
         "upward-only"
       ]
     },
@@ -108,7 +107,6 @@
       },
       "expected": "LR",
       "tags": [
-        "hidden",
         "downward-only"
       ]
     },
@@ -134,7 +132,6 @@
       },
       "expected": "UUURL",
       "tags": [
-        "hidden",
         "sparse-tree"
       ]
     }

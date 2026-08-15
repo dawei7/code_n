@@ -94,7 +94,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "all-open"
       ]
     },
@@ -117,7 +116,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "initial-marker-trap"
       ]
     },
@@ -141,7 +139,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "alternating",
         "tight-bound"
       ]
@@ -171,7 +168,6 @@
       },
       "expected": 13,
       "tags": [
-        "hidden",
         "loose-bound"
       ]
     }

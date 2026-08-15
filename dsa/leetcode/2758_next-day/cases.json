@@ -68,7 +68,6 @@
       },
       "expected": "2019-03-01",
       "tags": [
-        "hidden",
         "common-year",
         "month-boundary"
       ]
@@ -83,7 +82,6 @@
       },
       "expected": "2024-01-01",
       "tags": [
-        "hidden",
         "year-boundary"
       ]
     },
@@ -97,7 +95,6 @@
       },
       "expected": "2100-03-01",
       "tags": [
-        "hidden",
         "century",
         "common-year"
       ]
@@ -112,7 +109,6 @@
       },
       "expected": "1970-01-01",
       "tags": [
-        "hidden",
         "epoch",
         "year-boundary"
       ]

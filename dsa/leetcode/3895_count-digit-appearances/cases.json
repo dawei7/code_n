@@ -150,7 +150,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "repeated-digit",
         "multiple-elements"
       ]
@@ -170,7 +169,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero-digit",
         "absent-digit"
       ]
@@ -189,7 +187,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "different-positions",
         "multiple-elements"
       ]
@@ -208,7 +205,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "repeated-digit",
         "maximum-six-digit"
       ]
@@ -228,7 +224,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "zero-digit",
         "trailing-zeroes"
       ]
@@ -248,7 +243,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "zero-digit",
         "upper-bound"
       ]
@@ -268,7 +262,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "different-positions",
         "one-per-value"
       ]
@@ -292,7 +285,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "mixed-lengths",
         "upper-bound"
       ]

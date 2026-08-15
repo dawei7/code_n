@@ -96,7 +96,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "isolated-one"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -124,7 +122,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "clusters"
       ]
     }

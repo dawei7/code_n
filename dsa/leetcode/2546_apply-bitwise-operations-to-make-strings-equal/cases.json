@@ -87,7 +87,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "count-change"
       ]
     },
@@ -102,7 +101,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "zero-operations"
       ]
     },
@@ -117,7 +115,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "minimum"
       ]
     }

@@ -144,7 +144,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "maximum-width",
         "singleton"
       ]
@@ -161,7 +160,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-width",
         "zero-limit"
       ]
@@ -178,7 +176,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "large-values",
         "zero-limit"
       ]
@@ -195,7 +192,6 @@
       },
       "expected": 111,
       "tags": [
-        "hidden",
         "range-subtraction"
       ]
     },
@@ -211,7 +207,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "maximum-endpoint",
         "digit-boundary"
       ]
@@ -228,7 +223,6 @@
       },
       "expected": 999999999999991,
       "tags": [
-        "hidden",
         "maximum-endpoint",
         "maximum-limit"
       ]
@@ -245,7 +239,6 @@
       },
       "expected": 126,
       "tags": [
-        "hidden",
         "maximum-endpoint",
         "zero-limit"
       ]

@@ -202,7 +202,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "interleaved"
       ]
     },
@@ -252,7 +251,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "end-time"
       ]
     }

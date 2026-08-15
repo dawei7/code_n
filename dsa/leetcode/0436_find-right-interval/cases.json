@@ -184,7 +184,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "indices"
       ]
     },
@@ -215,7 +214,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "none"
       ]
     }

@@ -130,7 +130,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "even-run"
       ]
     },
@@ -156,7 +155,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -178,7 +176,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "interior"
       ]
     },
@@ -199,7 +196,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -220,7 +216,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "one-person"
       ]
     },
@@ -240,7 +235,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "adjacent"
       ]
     }

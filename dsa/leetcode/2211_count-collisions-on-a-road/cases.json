@@ -66,7 +66,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "stationary-center"
       ]
     },
@@ -80,7 +79,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundary-runs"
       ]
     },
@@ -94,7 +92,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -108,7 +105,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "multiple-collisions"
       ]
     }

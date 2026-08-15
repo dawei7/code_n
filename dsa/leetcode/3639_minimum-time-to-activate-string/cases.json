@@ -162,7 +162,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "multiple-stars"
       ]
     },
@@ -185,7 +184,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -209,7 +207,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "inactive-runs"
       ]
     },
@@ -231,7 +228,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "full-activation"
       ]
     },
@@ -254,7 +250,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "string-content"
       ]
     },
@@ -274,7 +269,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "impossible",
         "large-k"
       ]

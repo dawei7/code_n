@@ -152,7 +152,6 @@
         7
       ],
       "tags": [
-        "hidden",
         "one-child"
       ]
     },
@@ -178,7 +177,6 @@
         -3
       ],
       "tags": [
-        "hidden",
         "negative"
       ]
     }

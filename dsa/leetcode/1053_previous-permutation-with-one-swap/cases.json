@@ -157,7 +157,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -181,7 +180,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "target-choice"
       ]
     },
@@ -209,7 +207,6 @@
         7
       ],
       "tags": [
-        "hidden",
         "tail-pivot"
       ]
     }

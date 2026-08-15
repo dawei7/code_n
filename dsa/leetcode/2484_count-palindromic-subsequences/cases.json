@@ -82,7 +82,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "overlap",
         "combinations"
       ]
@@ -97,7 +96,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "nested",
         "multiple-centers"
       ]
@@ -112,7 +110,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "repeated-pairs"
       ]
     }

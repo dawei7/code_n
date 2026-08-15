@@ -173,7 +173,6 @@
         7
       ],
       "tags": [
-        "hidden",
         "heap-fill"
       ]
     },
@@ -199,7 +198,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -227,7 +225,6 @@
         10
       ],
       "tags": [
-        "hidden",
         "no-replacement"
       ]
     }

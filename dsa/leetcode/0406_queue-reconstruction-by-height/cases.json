@@ -310,7 +310,6 @@
         "people_param": "people"
       },
       "tags": [
-        "hidden",
         "descending-constraints"
       ]
     },
@@ -362,7 +361,6 @@
         "people_param": "people"
       },
       "tags": [
-        "hidden",
         "reverse"
       ]
     },
@@ -422,7 +420,6 @@
         "people_param": "people"
       },
       "tags": [
-        "hidden",
         "interleaved"
       ]
     }

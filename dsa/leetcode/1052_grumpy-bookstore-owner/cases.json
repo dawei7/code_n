@@ -171,7 +171,6 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "window-choice"
       ]
     },
@@ -199,7 +198,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "separated"
       ]
     },
@@ -227,7 +225,6 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "all-grumpy"
       ]
     }

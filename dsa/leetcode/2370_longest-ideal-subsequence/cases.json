@@ -86,7 +86,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
@@ -101,7 +100,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -116,7 +114,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "order"
       ]
     },
@@ -131,7 +128,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "dynamic-programming"
       ]
     }

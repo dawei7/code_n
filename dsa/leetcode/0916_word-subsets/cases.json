@@ -172,7 +172,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "empty-result"
       ]
     },
@@ -199,7 +198,6 @@
         "teller"
       ],
       "tags": [
-        "hidden",
         "duplicate-requirement"
       ]
     },
@@ -222,7 +220,6 @@
         "aaaaaaaaaa"
       ],
       "tags": [
-        "hidden",
         "maximum-length"
       ]
     },
@@ -245,7 +242,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "independent-maxima"
       ]
     }

@@ -195,7 +195,6 @@
         "draws_param": "draws"
       },
       "tags": [
-        "hidden",
         "repeated-draws"
       ]
     },
@@ -233,7 +232,6 @@
         "draws_param": "draws"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

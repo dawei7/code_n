@@ -82,7 +82,6 @@
       },
       "expected": "-1/4",
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": "3/2",
       "tags": [
-        "hidden",
         "improper"
       ]
     }

@@ -203,7 +203,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "minimum-length"
       ]
@@ -225,7 +224,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-modulus",
         "second-best"
       ]
@@ -249,7 +247,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "circular-distance",
         "wraparound"
       ]
@@ -275,7 +272,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-modulus",
         "already-valid"
       ]
@@ -301,7 +297,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-modulus",
         "shared-remainder"
       ]
@@ -421,7 +416,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "maximum-modulus"
       ]
@@ -541,7 +535,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "all-remainders"
       ]

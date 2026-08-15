@@ -143,7 +143,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "two-turn-window"
       ]
     },
@@ -168,7 +167,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "expired-bonus"
       ]
     },
@@ -191,7 +189,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "late-strike"
       ]
     }

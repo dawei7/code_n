@@ -82,7 +82,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "small"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "minimax"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "larger"
       ]
     }

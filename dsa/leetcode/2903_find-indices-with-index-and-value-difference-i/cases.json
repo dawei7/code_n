@@ -156,7 +156,6 @@
         "kind": "index_value_pair"
       },
       "tags": [
-        "hidden",
         "prefix-maximum"
       ]
     },
@@ -279,7 +278,6 @@
         "kind": "index_value_pair"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "boundary"
       ]

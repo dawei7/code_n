@@ -188,7 +188,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-zero"
       ]
     },
@@ -223,7 +222,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero-gaps"
       ]
     },
@@ -263,7 +261,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundaries"
       ]
     }

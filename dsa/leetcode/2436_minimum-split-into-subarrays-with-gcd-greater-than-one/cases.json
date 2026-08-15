@@ -89,7 +89,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -109,7 +108,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "long-group"
       ]
     },
@@ -128,7 +126,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "late-cut"
       ]
     },
@@ -145,7 +142,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

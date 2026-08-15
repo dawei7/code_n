@@ -141,7 +141,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "repeated-endpoints"
       ]
     },
@@ -161,7 +160,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "centered-difference"
       ]
     },
@@ -181,7 +179,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "repeated-endpoints"
       ]
     },
@@ -296,7 +293,6 @@
       },
       "expected": 51,
       "tags": [
-        "hidden",
         "maximum-length",
         "centered-difference"
       ]
@@ -318,7 +314,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "maximum-word-length",
         "endpoint-pair"
       ]

@@ -291,7 +291,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "chronological-order",
         "partitioning"
       ]
@@ -338,7 +337,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "date-gap",
         "all-wins"
       ]
@@ -395,7 +393,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "equal-maxima",
         "one-row-per-player"
       ]

@@ -238,7 +238,6 @@
         109
       ],
       "tags": [
-        "hidden",
         "overlapping-ranges"
       ]
     },
@@ -287,7 +286,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "flip-parity"
       ]
     },
@@ -343,7 +341,6 @@
         9
       ],
       "tags": [
-        "hidden",
         "full-range",
         "partial-range"
       ]
@@ -379,7 +376,6 @@
         2002000000
       ],
       "tags": [
-        "hidden",
         "large-values"
       ]
     },
@@ -414,7 +410,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "no-output"
       ]
     }

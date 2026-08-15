@@ -152,7 +152,6 @@
       },
       "expected": 27,
       "tags": [
-        "hidden",
         "reverse-orientation"
       ]
     },
@@ -179,7 +178,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "ties"
       ]
     }

@@ -157,7 +157,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "strict-majority"
       ],
       "expected": -1
@@ -178,7 +177,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "large-values"
       ],
       "expected": 0

@@ -106,7 +106,6 @@
         "fizz"
       ],
       "tags": [
-        "hidden",
         "termination"
       ]
     },
@@ -143,7 +142,6 @@
         16
       ],
       "tags": [
-        "hidden",
         "handoff"
       ]
     },
@@ -214,7 +212,6 @@
         "buzz"
       ],
       "tags": [
-        "hidden",
         "maximum",
         "deadlock"
       ]

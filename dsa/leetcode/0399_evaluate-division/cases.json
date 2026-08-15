@@ -308,7 +308,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "self"
       ]
     },
@@ -357,7 +356,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "fraction"
       ]
     },
@@ -411,7 +409,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "merge"
       ]
     }

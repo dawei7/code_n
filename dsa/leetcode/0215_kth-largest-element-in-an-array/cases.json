@@ -79,7 +79,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "three-way"
       ]
     }

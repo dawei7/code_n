@@ -67,7 +67,6 @@
       },
       "expected": 999,
       "tags": [
-        "hidden",
         "repeated-digit"
       ]
     },
@@ -81,7 +80,6 @@
       },
       "expected": 999,
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -95,7 +93,6 @@
       },
       "expected": 900000,
       "tags": [
-        "hidden",
         "distinct-digits"
       ]
     },
@@ -109,7 +106,6 @@
       },
       "expected": 900000000,
       "tags": [
-        "hidden",
         "maximum-input",
         "leading-zeroes"
       ]
@@ -124,7 +120,6 @@
       },
       "expected": 90000,
       "tags": [
-        "hidden",
         "leading-digit"
       ]
     }

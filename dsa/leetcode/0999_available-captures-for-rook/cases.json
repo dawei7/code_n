@@ -660,7 +660,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "nearest-piece"
       ]
     },
@@ -755,7 +754,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "corner"
       ]
     },
@@ -850,7 +848,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

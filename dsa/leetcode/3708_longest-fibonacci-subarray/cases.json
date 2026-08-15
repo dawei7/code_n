@@ -141,7 +141,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "reset",
         "overlapping-runs"
       ]
@@ -163,7 +162,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-runs"
       ]
     },
@@ -181,7 +179,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "value-boundary",
         "valid-triple"
       ]
@@ -201,7 +198,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "large-sum",
         "length-two"
       ]
@@ -225,7 +221,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "suffix-run"
       ]
     },
@@ -252,7 +247,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "repeated-values",
         "full-scan"
       ]

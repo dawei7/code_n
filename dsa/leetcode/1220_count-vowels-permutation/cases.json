@@ -66,7 +66,7 @@
       },
       "expected": 1739,
       "tags": [
-        "hidden"
+        "trial"
       ]
     },
     {
@@ -79,7 +79,7 @@
       },
       "expected": 6377,
       "tags": [
-        "hidden"
+        "trial"
       ]
     },
     {
@@ -92,7 +92,6 @@
       },
       "expected": 249,
       "tags": [
-        "hidden",
         "growth"
       ]
     }

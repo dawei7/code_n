@@ -200,7 +200,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "empty-groups"
       ]
     },
@@ -248,7 +247,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "cross-group"
       ]
     },
@@ -277,7 +275,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "item-cycle"
       ]
     },
@@ -308,7 +305,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "group-cycle"
       ]
     }

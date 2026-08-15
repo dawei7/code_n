@@ -135,7 +135,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "power-boundary",
         "inclusive-bound"
       ]
@@ -151,7 +150,6 @@
       },
       "expected": 140,
       "tags": [
-        "hidden",
         "all-ones-bound",
         "combinations"
       ]
@@ -167,7 +165,6 @@
       },
       "expected": 135850,
       "tags": [
-        "hidden",
         "dense",
         "combinations"
       ]
@@ -183,7 +180,6 @@
       },
       "expected": 13510040,
       "tags": [
-        "hidden",
         "irregular-bound",
         "digit-counting"
       ]
@@ -199,7 +195,6 @@
       },
       "expected": 56913806,
       "tags": [
-        "hidden",
         "irregular-bound",
         "digit-counting"
       ]
@@ -215,7 +210,6 @@
       },
       "expected": 18469940886122,
       "tags": [
-        "hidden",
         "maximum",
         "depth-two"
       ]
@@ -231,7 +225,6 @@
       },
       "expected": 498389083131446,
       "tags": [
-        "hidden",
         "maximum",
         "depth-four"
       ]
@@ -247,7 +240,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum",
         "unattainable-depth"
       ]

@@ -112,7 +112,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "duplicate-minimum"
       ]
     },
@@ -132,7 +131,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "duplicate-maximum"
       ]
     },
@@ -151,7 +149,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-equal"
       ]
     },
@@ -171,7 +168,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "reversed-extremes"
       ]
     }

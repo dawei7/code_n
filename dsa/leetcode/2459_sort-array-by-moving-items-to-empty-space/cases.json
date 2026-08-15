@@ -111,7 +111,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "empty-cycle"
       ]
     },
@@ -130,7 +129,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "external-cycle"
       ]
     },
@@ -149,7 +147,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "choose-target"
       ]
     }

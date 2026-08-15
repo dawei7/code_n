@@ -163,7 +163,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "inclusive-bounds"
       ]
     },
@@ -203,7 +202,6 @@
         8
       ],
       "tags": [
-        "hidden",
         "both-sides"
       ]
     }

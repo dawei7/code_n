@@ -245,7 +245,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "frontier"
       ]
     },
@@ -288,7 +287,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "repeated-restore"
       ]
     }

@@ -95,7 +95,6 @@
       },
       "expected": "",
       "tags": [
-        "hidden",
         "cascade",
         "complete-cancellation"
       ]
@@ -110,7 +109,6 @@
       },
       "expected": "x",
       "tags": [
-        "hidden",
         "cascade"
       ]
     },
@@ -124,7 +122,6 @@
       },
       "expected": "acabac",
       "tags": [
-        "hidden",
         "mixed-runs"
       ]
     }

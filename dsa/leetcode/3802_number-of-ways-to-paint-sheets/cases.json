@@ -153,7 +153,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "equal-limits",
         "color-identity"
       ]
@@ -177,7 +176,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "heterogeneous-limits",
         "ordered-pairs"
       ]
@@ -200,7 +198,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "threshold",
         "duplicate-limits"
       ]
@@ -223,7 +220,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "modulo",
         "large-n"
       ]
@@ -248,7 +244,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "five-colors",
         "mixed-capacities"
       ]

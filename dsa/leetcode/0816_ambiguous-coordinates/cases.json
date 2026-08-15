@@ -143,7 +143,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -162,7 +161,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "leading-zero"
       ]
     },
@@ -190,7 +188,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "maximum-branching"
       ]
     }

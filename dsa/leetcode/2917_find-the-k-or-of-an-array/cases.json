@@ -119,7 +119,6 @@
         "k": 1
       },
       "tags": [
-        "hidden",
         "zero",
         "singleton"
       ],
@@ -139,7 +138,6 @@
         "k": 3
       },
       "tags": [
-        "hidden",
         "maximum-threshold"
       ],
       "expected": 1
@@ -158,7 +156,6 @@
         "k": 2
       },
       "tags": [
-        "hidden",
         "bit-30",
         "boundary"
       ],

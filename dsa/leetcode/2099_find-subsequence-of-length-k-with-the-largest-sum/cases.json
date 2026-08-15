@@ -128,7 +128,6 @@
         "kind": "maximum_sum_subsequence"
       },
       "tags": [
-        "hidden",
         "all-values"
       ]
     },
@@ -156,7 +155,6 @@
         "kind": "maximum_sum_subsequence"
       },
       "tags": [
-        "hidden",
         "all-negative"
       ]
     },
@@ -183,7 +181,6 @@
         "kind": "maximum_sum_subsequence"
       },
       "tags": [
-        "hidden",
         "subsequence-order"
       ]
     },
@@ -210,7 +207,6 @@
         "kind": "maximum_sum_subsequence"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "non-unique"
       ]

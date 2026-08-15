@@ -104,7 +104,6 @@
         "kind": "string_without_triples"
       },
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -122,7 +121,6 @@
         "kind": "string_without_triples"
       },
       "tags": [
-        "hidden",
         "imbalanced"
       ]
     },
@@ -140,7 +138,6 @@
         "kind": "string_without_triples"
       },
       "tags": [
-        "hidden",
         "majority-b"
       ]
     }

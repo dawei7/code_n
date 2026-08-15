@@ -115,7 +115,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "negative-prefix"
       ]
     },
@@ -135,7 +134,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "zero-difference"
       ]
     },
@@ -154,7 +152,6 @@
       },
       "expected": 100001,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

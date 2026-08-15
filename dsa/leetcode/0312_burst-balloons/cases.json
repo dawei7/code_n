@@ -100,7 +100,6 @@
       },
       "expected": 33,
       "tags": [
-        "hidden",
         "order"
       ]
     }

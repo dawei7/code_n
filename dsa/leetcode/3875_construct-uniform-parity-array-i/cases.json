@@ -193,7 +193,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundaries",
         "mixed-parity"
       ]
@@ -217,7 +216,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "descending",
         "mixed-parity"
       ]
@@ -244,7 +242,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "alternating-parity",
         "odd-anchor"
       ]
@@ -270,7 +267,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "irregular",
         "mixed-parity"
       ]
@@ -294,7 +290,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-odd",
         "large-values"
       ]
@@ -413,7 +408,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "complete-value-domain"
       ]

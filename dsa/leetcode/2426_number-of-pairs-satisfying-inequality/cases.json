@@ -113,7 +113,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "equality"
       ]
     },
@@ -139,7 +138,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -165,7 +163,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "signed"
       ]
     },
@@ -191,7 +188,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "large-diff"
       ]
     }

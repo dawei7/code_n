@@ -220,7 +220,6 @@
       },
       "expected": "B",
       "tags": [
-        "hidden",
         "anti-diagonal"
       ]
     },
@@ -267,7 +266,6 @@
       },
       "expected": "Pending",
       "tags": [
-        "hidden",
         "near-full"
       ]
     }

@@ -242,7 +242,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "tie-break"
       ]
     },
@@ -299,7 +298,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "price"
       ]
     },
@@ -354,7 +352,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "repeated-sales"
       ]
     }

@@ -279,7 +279,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "divisibility-chain",
         "overlapping-rewards"
       ]
@@ -311,7 +310,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicate-factor",
         "additional-copy"
       ]
@@ -343,7 +341,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "no-free-copies",
         "additional-copy"
       ]
@@ -379,7 +376,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-free-target",
         "multiple-activations"
       ]
@@ -403,7 +399,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary",
         "maximum-factor",
         "maximum-price",
@@ -4425,7 +4420,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary",
         "maximum-length",
         "duplicate-factor"
@@ -4566,7 +4560,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-factors",
         "mixed-prices"
       ]

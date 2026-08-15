@@ -328,7 +328,6 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "distance",
         "starts-down"
       ]
@@ -351,7 +350,6 @@
       },
       "expected": 30,
       "tags": [
-        "hidden",
         "duplicates",
         "strictness"
       ]
@@ -468,7 +466,6 @@
       },
       "expected": 5000050,
       "tags": [
-        "hidden",
         "long-array",
         "whole-array",
         "large-score"
@@ -494,7 +491,6 @@
       },
       "expected": 100,
       "tags": [
-        "hidden",
         "k-equals-n",
         "singleton"
       ]

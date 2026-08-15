@@ -82,7 +82,6 @@
       },
       "expected": "110001",
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": "11",
       "tags": [
-        "hidden",
         "no-zeros"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": "11100001",
       "tags": [
-        "hidden",
         "mixed-bits"
       ]
     }

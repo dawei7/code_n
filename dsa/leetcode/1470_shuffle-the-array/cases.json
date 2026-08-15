@@ -137,7 +137,6 @@
         81
       ],
       "tags": [
-        "hidden",
         "index-mapping"
       ]
     },
@@ -162,7 +161,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "value-bounds"
       ]
     }

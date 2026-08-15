@@ -158,7 +158,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "equal-width"
       ]
     },
@@ -189,7 +188,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "decreasing"
       ]
     },
@@ -224,7 +222,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "unsorted"
       ]
     }

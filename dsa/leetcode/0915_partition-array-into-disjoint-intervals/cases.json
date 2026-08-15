@@ -136,7 +136,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "boundary-repair"
       ]
     },
@@ -154,7 +153,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "value-bounds"
       ]
     },
@@ -174,7 +172,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "equal-left-max"
       ]
     },
@@ -196,7 +193,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "repeated-extension"
       ]
     }

@@ -133,7 +133,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "empty"
       ]
     },
@@ -163,7 +162,6 @@
         -3
       ],
       "tags": [
-        "hidden",
         "signed"
       ]
     },
@@ -193,7 +191,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "order"
       ]
     }

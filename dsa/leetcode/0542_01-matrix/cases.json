@@ -232,7 +232,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "column"
       ]
     },
@@ -272,7 +271,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "rectangular"
       ]
     }

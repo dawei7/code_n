@@ -120,7 +120,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "all-distinct"
       ]
     },
@@ -152,7 +151,6 @@
         14
       ],
       "tags": [
-        "hidden",
         "interleaved"
       ]
     },
@@ -178,7 +176,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "endpoints"
       ]
     }

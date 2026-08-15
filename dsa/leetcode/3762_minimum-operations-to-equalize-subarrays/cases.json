@@ -207,7 +207,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -242,7 +241,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -273,7 +271,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "median"
       ]
     }

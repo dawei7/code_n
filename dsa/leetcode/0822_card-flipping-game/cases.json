@@ -155,7 +155,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "late-candidate"
       ]
     },
@@ -180,7 +179,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -203,7 +201,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "back-only"
       ]
     },
@@ -228,7 +225,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

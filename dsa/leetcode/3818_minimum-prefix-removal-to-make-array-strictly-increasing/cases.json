@@ -181,7 +181,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "strictly-decreasing",
         "maximum-removal"
       ]
@@ -203,7 +202,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "negative-values",
         "empty-prefix"
       ]
@@ -228,7 +226,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "late-duplicate",
         "strictness"
       ]
@@ -252,7 +249,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-violations",
         "last-violation"
       ]
@@ -274,7 +270,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundaries",
         "already-increasing"
       ]

@@ -123,7 +123,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "right-endpoint-deletion",
         "boundary-core"
       ]
@@ -141,7 +140,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "right-endpoint-deletion",
         "whole-string"
       ]
@@ -159,7 +157,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "left-endpoint-deletion",
         "whole-string"
       ]
@@ -177,7 +174,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "internal-deletion",
         "skip-left"
       ]
@@ -195,7 +191,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "distinct-characters",
         "minimum-answer"
       ]
@@ -213,7 +208,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "proper-substring",
         "left-endpoint-deletion"
       ]

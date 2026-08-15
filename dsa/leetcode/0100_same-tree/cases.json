@@ -127,7 +127,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "deep"
       ]
     }

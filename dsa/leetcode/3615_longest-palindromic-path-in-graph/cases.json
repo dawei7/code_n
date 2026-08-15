@@ -237,7 +237,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "cycle",
         "maximum-path"
       ]
@@ -267,7 +266,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "disconnected",
         "cycle"
       ]
@@ -345,7 +343,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "complete-graph",
         "label-counts"
       ]
@@ -447,7 +444,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "complete-graph",
         "single-node"
       ]
@@ -493,7 +489,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "mixed-centers",
         "cycle"
       ]
@@ -875,7 +870,6 @@
       },
       "expected": 13,
       "tags": [
-        "hidden",
         "maximum-n",
         "complete-graph"
       ]

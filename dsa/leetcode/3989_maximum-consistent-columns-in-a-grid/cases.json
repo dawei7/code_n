@@ -261,7 +261,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-optima"
       ]
     },
@@ -282,7 +281,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "value-boundaries",
         "maximum-limit",
         "adjacent-only"
@@ -310,7 +308,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "zero-limit",
         "multiple-rows",
         "retain-all"
@@ -334,7 +331,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "late-pair"
       ]
     },
@@ -358,7 +354,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "interleaved",
         "multiple-optima"
       ]
@@ -380,7 +375,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "decreasing-values",
         "order-semantics"
       ]
@@ -403,7 +397,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "value-boundaries",
         "skipped-column"
       ]
@@ -550,7 +543,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "wide-columns",
         "zero-limit",
         "single-column-answer"
@@ -1568,7 +1560,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "maximum-rows",
         "zero-limit",
         "retain-all"
@@ -1610,7 +1601,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "multiple-rows",
         "outlier-column",
         "long-chain"

@@ -197,7 +197,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "multiple-roles"
       ]
     },
@@ -229,7 +228,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "disconnected",
         "sorting"
       ]
@@ -271,7 +269,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "repeated-winner"
       ]
     },
@@ -314,7 +311,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "multiple-losses"
       ]
     }

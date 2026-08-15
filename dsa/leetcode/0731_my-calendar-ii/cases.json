@@ -256,7 +256,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "domain-boundary"
       ]
     },
@@ -308,7 +307,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "disjoint-overlaps"
       ]
     },
@@ -354,7 +352,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "narrow-conflict"
       ]
     }

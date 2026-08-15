@@ -82,7 +82,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "inclusive-range"
       ]
     },
@@ -99,7 +98,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "equal-lengths"
       ]
     },
@@ -116,7 +114,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "range-sum"
       ]
     },
@@ -133,7 +130,6 @@
       },
       "expected": 1048576,
       "tags": [
-        "hidden",
         "large-count"
       ]
     }

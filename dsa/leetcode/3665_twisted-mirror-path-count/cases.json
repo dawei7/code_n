@@ -195,7 +195,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "mirror-chain"
       ]
     },
@@ -234,7 +233,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "dense-mirrors"
       ]
     },
@@ -289,7 +287,6 @@
       },
       "expected": 126,
       "tags": [
-        "hidden",
         "empty-grid",
         "rectangle"
       ]
@@ -745,7 +742,6 @@
       },
       "expected": 345263555,
       "tags": [
-        "hidden",
         "modulo",
         "large-count"
       ]

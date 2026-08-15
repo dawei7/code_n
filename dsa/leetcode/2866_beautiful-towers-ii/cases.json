@@ -134,7 +134,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "plateau"
       ]
     },
@@ -156,7 +155,6 @@
       },
       "expected": 33,
       "tags": [
-        "hidden",
         "valley"
       ]
     },
@@ -174,7 +172,6 @@
       },
       "expected": 3000000000,
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

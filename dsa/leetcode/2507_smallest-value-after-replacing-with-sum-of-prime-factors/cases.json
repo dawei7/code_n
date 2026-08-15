@@ -84,7 +84,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "minimum",
         "prime"
       ]
@@ -99,7 +98,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "perfect-square"
       ]
     },
@@ -113,7 +111,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "maximum",
         "multiplicity"
       ]
@@ -128,7 +125,6 @@
       },
       "expected": 997,
       "tags": [
-        "hidden",
         "prime"
       ]
     }

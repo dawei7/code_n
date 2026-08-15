@@ -163,7 +163,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "rectangle"
       ]
     },
@@ -197,7 +196,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

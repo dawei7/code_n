@@ -156,7 +156,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "balanced"
       ]
     },
@@ -184,7 +183,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "single-row"
       ]
     },
@@ -218,7 +216,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "single-column"
       ]
     },
@@ -254,7 +251,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "all-zeros"
       ]
     }

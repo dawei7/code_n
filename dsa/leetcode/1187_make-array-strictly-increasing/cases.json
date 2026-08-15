@@ -139,7 +139,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "multiple-replacements"
       ]
     },
@@ -167,7 +166,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "binary-search"
       ]
     },
@@ -191,7 +189,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

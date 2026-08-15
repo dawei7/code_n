@@ -149,7 +149,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-groups"
       ]
     },
@@ -171,7 +170,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "wraparound",
         "constant-words"
       ]
@@ -194,7 +192,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "full-key-required"
       ]
     },
@@ -216,7 +213,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "wraparound",
         "group-counting"
       ]
@@ -240,7 +236,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-groups",
         "duplicates-by-pattern"
       ]

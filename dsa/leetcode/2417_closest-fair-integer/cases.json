@@ -80,7 +80,6 @@
       },
       "expected": 100011,
       "tags": [
-        "hidden",
         "length-change"
       ]
     },
@@ -94,7 +93,6 @@
       },
       "expected": 1000001111,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -108,7 +106,6 @@
       },
       "expected": 1000001111,
       "tags": [
-        "hidden",
         "odd-length"
       ]
     }

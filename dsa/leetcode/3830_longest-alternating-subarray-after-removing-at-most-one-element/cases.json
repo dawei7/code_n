@@ -163,7 +163,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-equal",
         "singleton"
       ]
@@ -187,7 +186,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "strictly-increasing",
         "repeated-direction"
       ]
@@ -212,7 +210,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "regression",
         "repeated-direction",
         "bridge"
@@ -237,7 +234,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "no-removal"
       ]
@@ -258,7 +254,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-length",
         "strict-comparison"
       ]
@@ -284,7 +279,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "partial-join",
         "directional-state"
       ]
@@ -309,7 +303,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "equal-bridge",
         "no-crossing"
       ]
@@ -336,7 +329,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "central-duplicate",
         "long-join"
       ]

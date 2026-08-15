@@ -194,7 +194,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "skew"
       ]
     },
@@ -233,7 +232,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "integral"
       ]
     }

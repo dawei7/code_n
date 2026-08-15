@@ -129,7 +129,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "split"
       ]
     }

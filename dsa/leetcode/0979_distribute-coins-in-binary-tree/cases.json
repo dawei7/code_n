@@ -107,7 +107,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "chain"
       ]
     },
@@ -128,7 +127,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "balanced-shape"
       ]
     },
@@ -150,7 +148,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "no-moves"
       ]
     }

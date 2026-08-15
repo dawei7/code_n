@@ -96,7 +96,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "undershoot"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -124,7 +122,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "exact-run"
       ]
     }

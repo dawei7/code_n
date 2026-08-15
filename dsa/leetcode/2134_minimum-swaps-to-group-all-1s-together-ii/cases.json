@@ -120,7 +120,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "single-one"
       ]
     },
@@ -143,7 +142,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -164,7 +162,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "interior-window"
       ]
     }

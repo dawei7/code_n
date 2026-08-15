@@ -299,7 +299,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "numeric-order"
       ]
     },
@@ -340,7 +339,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "zero-cells"
       ]
     }

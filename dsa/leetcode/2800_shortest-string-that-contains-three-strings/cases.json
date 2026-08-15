@@ -80,7 +80,6 @@
       },
       "expected": "abcd",
       "tags": [
-        "hidden",
         "nested-containment"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": "aa",
       "tags": [
-        "hidden",
         "duplicates",
         "containment"
       ]
@@ -113,7 +111,6 @@
       },
       "expected": "aaba",
       "tags": [
-        "hidden",
         "tie-breaking",
         "overlap"
       ]
@@ -130,7 +127,6 @@
       },
       "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "tags": [
-        "hidden",
         "maximum-length",
         "containment"
       ]

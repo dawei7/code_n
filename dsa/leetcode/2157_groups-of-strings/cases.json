@@ -148,7 +148,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "transitive",
         "mixed-operations"
       ]
@@ -170,7 +169,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "isolated",
         "replacement-distance"
       ]

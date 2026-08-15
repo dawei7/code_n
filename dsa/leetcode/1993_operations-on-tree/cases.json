@@ -235,7 +235,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "ancestor",
         "atomicity"
       ]
@@ -308,7 +307,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "subtree",
         "multiple-users"
       ]
@@ -362,7 +360,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "subtree-boundary"
       ]
     }

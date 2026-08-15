@@ -121,7 +121,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "minimum-length",
         "large-value"
       ]
@@ -145,7 +144,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "interleaved",
         "pairs"
       ]
@@ -176,7 +174,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "remainder-one",
         "remainder-two"
       ]

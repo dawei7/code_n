@@ -167,7 +167,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "digit-width",
         "leading-zeros"
       ]
@@ -184,7 +183,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-bound",
         "sixteen-digits"
       ]
@@ -201,7 +199,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "high-value",
         "singleton"
       ]
@@ -218,7 +215,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "high-value",
         "early-decrease"
       ]
@@ -235,7 +231,6 @@
       },
       "expected": 201,
       "tags": [
-        "hidden",
         "range-boundary",
         "prefix-subtraction"
       ]

@@ -111,7 +111,6 @@
         "E"
       ],
       "tags": [
-        "hidden",
         "trailing-spaces"
       ]
     },
@@ -129,7 +128,6 @@
         "  E"
       ],
       "tags": [
-        "hidden",
         "leading-spaces"
       ]
     }

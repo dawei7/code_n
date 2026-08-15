@@ -120,7 +120,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "competing-pairs"
       ]
     },
@@ -140,7 +139,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "gap"
       ]
     }

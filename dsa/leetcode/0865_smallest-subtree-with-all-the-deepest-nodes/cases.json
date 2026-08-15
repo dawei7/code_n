@@ -173,7 +173,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "whole-tree"
       ]
     },
@@ -197,7 +196,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "chain"
       ]
     },
@@ -225,7 +223,6 @@
         13
       ],
       "tags": [
-        "hidden",
         "nested"
       ]
     },
@@ -244,7 +241,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "one-child"
       ]
     },
@@ -278,7 +274,6 @@
         7
       ],
       "tags": [
-        "hidden",
         "nested"
       ]
     },
@@ -296,7 +291,6 @@
         500
       ],
       "tags": [
-        "hidden",
         "bounds"
       ]
     }

@@ -137,7 +137,6 @@
       },
       "expected": 171,
       "tags": [
-        "hidden",
         "merge"
       ]
     },
@@ -167,7 +166,6 @@
       },
       "expected": 3236,
       "tags": [
-        "hidden",
         "greedy"
       ]
     },
@@ -192,7 +190,6 @@
       },
       "expected": 21000000,
       "tags": [
-        "hidden",
         "boundary",
         "wide-integer"
       ]

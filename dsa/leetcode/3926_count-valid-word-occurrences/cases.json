@@ -433,7 +433,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "mixed-hyphens",
         "edge-hyphens"
       ]
@@ -459,7 +458,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "consecutive-hyphens",
         "separators"
       ]
@@ -489,7 +487,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "chunk-boundary",
         "space"
       ]
@@ -517,7 +514,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "repeated-words",
         "duplicate-queries"
       ]
@@ -562,7 +558,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "many-chunks",
         "long-word"
       ]
@@ -590,7 +585,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "hyphen-chain",
         "exact-word"
       ]

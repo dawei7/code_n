@@ -233,7 +233,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "adjacent"
       ]
     },
@@ -301,7 +300,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "deduplicate"
       ]
     }

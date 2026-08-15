@@ -155,7 +155,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "combinations"
       ]
     },
@@ -180,7 +179,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "exact-threshold"
       ]
     },
@@ -201,7 +199,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -224,7 +221,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "zero-profit"
       ]
     },
@@ -247,7 +243,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicate-data"
       ]
     }

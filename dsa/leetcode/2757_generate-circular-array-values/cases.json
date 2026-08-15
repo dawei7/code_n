@@ -195,7 +195,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "full-cycle"
       ]
     },
@@ -229,7 +228,6 @@
         10
       ],
       "tags": [
-        "hidden",
         "extreme-jumps"
       ]
     },
@@ -260,7 +258,6 @@
         -2
       ],
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -487,7 +484,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "maximum-steps",
         "persistent-state"
       ]

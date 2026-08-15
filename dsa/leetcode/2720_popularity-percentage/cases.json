@@ -227,7 +227,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "deduplication"
       ]
     },
@@ -278,7 +277,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "global-user-count"
       ]
     },
@@ -329,7 +327,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "complete-component"
       ]
     },
@@ -384,7 +381,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "hub"
       ]
     },
@@ -439,7 +435,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ordering"
       ]
     }

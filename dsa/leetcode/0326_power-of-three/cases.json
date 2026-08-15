@@ -81,7 +81,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "large"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "near-boundary"
       ]
     },
@@ -109,7 +107,7 @@
       },
       "expected": true,
       "tags": [
-        "hidden"
+        "trial"
       ]
     }
   ]

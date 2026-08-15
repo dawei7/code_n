@@ -79,7 +79,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "balanced"
       ]
     },
@@ -93,7 +92,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "multiple-excess"
       ]
     }

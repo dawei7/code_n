@@ -223,7 +223,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "digit-count"
       ]
     },
@@ -278,7 +277,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "word-boundary"
       ]
     },
@@ -328,7 +326,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "multiple-occurrences"
       ]
     },
@@ -378,7 +375,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "separator"
       ]
     },
@@ -412,7 +408,6 @@
         "rows": []
       },
       "tags": [
-        "hidden",
         "empty"
       ]
     }

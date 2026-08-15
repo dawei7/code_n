@@ -153,7 +153,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "insufficient-negatives"
       ]
     },
@@ -179,7 +178,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "unit-window",
         "bounds"
       ]
@@ -203,7 +201,6 @@
         -49
       ],
       "tags": [
-        "hidden",
         "full-window",
         "bounds"
       ]

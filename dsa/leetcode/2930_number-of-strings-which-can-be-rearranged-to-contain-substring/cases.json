@@ -79,7 +79,6 @@
       },
       "expected": 106620,
       "tags": [
-        "hidden",
         "overlaps"
       ]
     },
@@ -93,7 +92,6 @@
       },
       "expected": 86731066,
       "tags": [
-        "hidden",
         "modulo"
       ]
     },
@@ -107,7 +105,6 @@
       },
       "expected": 863866916,
       "tags": [
-        "hidden",
         "large",
         "modulo"
       ]

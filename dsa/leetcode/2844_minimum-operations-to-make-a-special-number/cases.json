@@ -81,7 +81,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "already-special"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "trailing-deletion"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "suffix-50"
       ]
     },
@@ -123,7 +120,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "delete-all"
       ]
     },
@@ -137,7 +133,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "rightmost-pair"
       ]
     },
@@ -151,7 +146,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "fallback-comparison"
       ]
     }

@@ -107,7 +107,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -126,7 +125,6 @@
       },
       "expected": 13,
       "tags": [
-        "hidden",
         "tie-breaking"
       ]
     },
@@ -146,7 +144,6 @@
       },
       "expected": 18,
       "tags": [
-        "hidden",
         "repeated-minima"
       ]
     },
@@ -162,7 +159,6 @@
       },
       "expected": 30000,
       "tags": [
-        "hidden",
         "value-bound"
       ]
     },
@@ -180,7 +176,6 @@
       },
       "expected": 60004,
       "tags": [
-        "hidden",
         "value-bound",
         "valley"
       ]
@@ -201,7 +196,6 @@
       },
       "expected": 63,
       "tags": [
-        "hidden",
         "plateau"
       ]
     }

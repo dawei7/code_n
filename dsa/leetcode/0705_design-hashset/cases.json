@@ -205,7 +205,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "boundary-keys"
       ]
     },
@@ -252,7 +251,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "collision",
         "remove"
       ]
@@ -280,7 +278,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "empty-output"
       ]
     }

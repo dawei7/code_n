@@ -98,7 +98,6 @@
       },
       "expected": 480,
       "tags": [
-        "hidden",
         "gaps"
       ]
     },
@@ -118,7 +117,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "factorial"
       ]
     },
@@ -136,7 +134,6 @@
       },
       "expected": 24,
       "tags": [
-        "hidden",
         "internal-gap"
       ]
     },
@@ -154,7 +151,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "consecutive"
       ]
     },
@@ -173,7 +169,6 @@
       },
       "expected": 365734183,
       "tags": [
-        "hidden",
         "modulus"
       ]
     }

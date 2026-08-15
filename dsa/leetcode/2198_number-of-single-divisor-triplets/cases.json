@@ -108,7 +108,6 @@
       },
       "expected": 18,
       "tags": [
-        "hidden",
         "multiplicity"
       ]
     },
@@ -129,7 +128,6 @@
       },
       "expected": 36,
       "tags": [
-        "hidden",
         "multiplicity"
       ]
     },
@@ -148,7 +146,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "repeated-first"
       ]
     },
@@ -166,7 +163,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero-divisors"
       ]
     },
@@ -185,7 +181,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

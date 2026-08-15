@@ -200,7 +200,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "no-switch"
       ]
     },
@@ -227,7 +226,6 @@
       },
       "expected": 75,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -256,7 +254,6 @@
       },
       "expected": 99,
       "tags": [
-        "hidden",
         "switch-limit"
       ]
     },
@@ -285,7 +282,6 @@
       },
       "expected": 6000000000,
       "tags": [
-        "hidden",
         "wide-integer"
       ]
     },
@@ -308,7 +304,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero"
       ]
     }

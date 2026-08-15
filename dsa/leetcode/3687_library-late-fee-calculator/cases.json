@@ -84,7 +84,6 @@
       },
       "expected": 300,
       "tags": [
-        "hidden",
         "maximum",
         "singleton"
       ]
@@ -106,7 +105,6 @@
       },
       "expected": 47,
       "tags": [
-        "hidden",
         "boundaries",
         "all-ranges"
       ]
@@ -127,7 +125,6 @@
       },
       "expected": 333,
       "tags": [
-        "hidden",
         "mixed-order",
         "maximum"
       ]

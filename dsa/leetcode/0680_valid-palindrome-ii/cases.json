@@ -82,7 +82,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "single-character"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "interior-deletion"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "delete-center"
       ]
     },
@@ -124,7 +121,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "multiple-mismatches"
       ]
     }

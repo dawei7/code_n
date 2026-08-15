@@ -104,7 +104,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "parity"
       ]
     },
@@ -127,7 +126,6 @@
       },
       "expected": 22,
       "tags": [
-        "hidden",
         "zero",
         "choice-multiplicity"
       ]
@@ -149,7 +147,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "zero",
         "multiple-ranges"
       ]
@@ -171,7 +168,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

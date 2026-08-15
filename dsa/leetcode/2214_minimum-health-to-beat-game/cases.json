@@ -110,7 +110,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "zero-damage"
       ]
     },
@@ -129,7 +128,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "largest-last"
       ]
     },
@@ -149,7 +147,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "tied-maximum"
       ]
     },
@@ -167,7 +164,6 @@
       },
       "expected": 100001,
       "tags": [
-        "hidden",
         "upper-values"
       ]
     }

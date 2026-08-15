@@ -92,7 +92,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "ancestor-bound"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

@@ -144,7 +144,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-zero"
       ]
     },
@@ -167,7 +166,6 @@
       },
       "expected": 22,
       "tags": [
-        "hidden",
         "diagonal"
       ]
     },
@@ -197,7 +195,6 @@
       },
       "expected": 28,
       "tags": [
-        "hidden",
         "asymmetric"
       ]
     },
@@ -227,7 +224,6 @@
       },
       "expected": 27,
       "tags": [
-        "hidden",
         "sparse"
       ]
     },
@@ -250,7 +246,6 @@
       },
       "expected": 204,
       "tags": [
-        "hidden",
         "maximum-height",
         "dense"
       ]

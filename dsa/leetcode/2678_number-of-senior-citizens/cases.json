@@ -87,7 +87,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -103,7 +102,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     }

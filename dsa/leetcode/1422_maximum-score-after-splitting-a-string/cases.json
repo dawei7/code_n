@@ -81,7 +81,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "late"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": 499,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

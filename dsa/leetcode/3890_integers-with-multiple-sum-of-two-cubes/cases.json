@@ -143,7 +143,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "single-representation",
         "equal-bases"
       ]
@@ -158,7 +157,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "single-representation",
         "distinct-bases"
       ]
@@ -176,7 +174,6 @@
         4104
       ],
       "tags": [
-        "hidden",
         "post-threshold",
         "no-new-result"
       ]
@@ -194,7 +191,6 @@
         4104
       ],
       "tags": [
-        "hidden",
         "gap",
         "sorted-output"
       ]
@@ -212,7 +208,6 @@
         4104
       ],
       "tags": [
-        "hidden",
         "threshold",
         "exclusive-predecessor"
       ]
@@ -231,7 +226,6 @@
         13832
       ],
       "tags": [
-        "hidden",
         "threshold",
         "multiple-results"
       ]
@@ -251,7 +245,6 @@
         20683
       ],
       "tags": [
-        "hidden",
         "inclusive-boundary",
         "multiple-results"
       ]

@@ -81,7 +81,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "no-ones"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "unequal-runs"
       ]
     }

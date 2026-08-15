@@ -182,7 +182,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "diagonal"
       ]
     },
@@ -225,7 +224,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "components"
       ]
     },
@@ -264,7 +262,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "boundary-path"
       ]
     }

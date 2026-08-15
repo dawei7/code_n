@@ -82,7 +82,6 @@
       },
       "expected": 3536,
       "tags": [
-        "hidden",
         "larger-count"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 2947811,
       "tags": [
-        "hidden",
         "larger-count"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": 100469819,
       "tags": [
-        "hidden",
         "modulo"
       ]
     }

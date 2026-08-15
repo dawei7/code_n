@@ -63,7 +63,6 @@
       },
       "expected": "cat 2\nbee 2\nant 2",
       "tags": [
-        "hidden",
         "tie"
       ]
     }

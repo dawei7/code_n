@@ -100,7 +100,6 @@
       },
       "expected": "aaa",
       "tags": [
-        "hidden",
         "all-slots-required"
       ]
     },
@@ -117,7 +116,6 @@
       },
       "expected": "bba",
       "tags": [
-        "hidden",
         "protected-letter"
       ]
     },
@@ -134,7 +132,6 @@
       },
       "expected": "zaa",
       "tags": [
-        "hidden",
         "order-constraint"
       ]
     }

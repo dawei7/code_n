@@ -82,7 +82,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 67108863,
       "tags": [
-        "hidden",
         "alphabet"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": 64,
       "tags": [
-        "hidden",
         "repeat"
       ]
     }

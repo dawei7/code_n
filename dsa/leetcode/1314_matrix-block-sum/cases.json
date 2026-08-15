@@ -216,7 +216,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "single-row"
       ]
     },
@@ -257,7 +256,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "single-column"
       ]
     }

@@ -132,7 +132,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-duplicates"
       ]
     },
@@ -156,7 +155,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -178,7 +176,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

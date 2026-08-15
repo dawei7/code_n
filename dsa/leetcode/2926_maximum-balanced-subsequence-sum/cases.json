@@ -132,7 +132,6 @@
       },
       "expected": 44,
       "tags": [
-        "hidden",
         "mixed-signs"
       ]
     },
@@ -148,7 +147,6 @@
       },
       "expected": -1000000000,
       "tags": [
-        "hidden",
         "boundary",
         "singleton"
       ]
@@ -167,7 +165,6 @@
       },
       "expected": 1000000000,
       "tags": [
-        "hidden",
         "boundary",
         "wide-integer"
       ]

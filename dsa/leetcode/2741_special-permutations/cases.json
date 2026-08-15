@@ -70,7 +70,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "none"
       ]
     },
@@ -87,7 +86,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -104,7 +102,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -125,7 +122,6 @@
       },
       "expected": 56,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -144,7 +140,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "branching"
       ]
     }

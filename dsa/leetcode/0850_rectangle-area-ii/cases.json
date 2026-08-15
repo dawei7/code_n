@@ -187,7 +187,6 @@
       },
       "expected": 25,
       "tags": [
-        "hidden",
         "nested"
       ]
     },
@@ -214,7 +213,6 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "partial"
       ]
     },
@@ -241,7 +239,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "cross"
       ]
     },
@@ -268,7 +265,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "corner"
       ]
     },
@@ -307,7 +303,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "chain"
       ]
     },
@@ -340,7 +335,6 @@
       },
       "expected": 28,
       "tags": [
-        "hidden",
         "gaps"
       ]
     }

@@ -133,7 +133,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "plateau"
       ]
     },
@@ -153,7 +152,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "plateau"
       ]
     },
@@ -173,7 +171,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "plateau"
       ]
     },
@@ -194,7 +191,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "extra-phase"
       ]
     },
@@ -215,7 +211,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "negative-values"
       ]
     },
@@ -240,7 +235,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "long-phases"
       ]
     },
@@ -262,7 +256,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "late-breakpoints"
       ]
     }

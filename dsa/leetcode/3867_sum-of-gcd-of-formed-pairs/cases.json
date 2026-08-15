@@ -176,7 +176,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-maximum",
         "two-pairs"
       ]
@@ -201,7 +200,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-value",
         "duplicates"
       ]
@@ -222,7 +220,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "coprime"
       ]
@@ -243,7 +240,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "single-pair",
         "prefix-reduction"
       ]
@@ -267,7 +263,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "coprime",
         "odd-length"
       ]
@@ -292,7 +287,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-values",
         "three-pairs"
       ]
@@ -318,7 +312,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "late-maximum",
         "odd-length"
       ]

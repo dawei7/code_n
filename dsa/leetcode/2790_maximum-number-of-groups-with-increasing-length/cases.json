@@ -124,7 +124,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "triangular"
       ]
     },
@@ -145,7 +144,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "capacity"
       ]
     },
@@ -167,7 +165,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -187,7 +184,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

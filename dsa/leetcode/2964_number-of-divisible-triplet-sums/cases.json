@@ -137,7 +137,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -157,7 +156,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -178,7 +176,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "remainder-duplicates"
       ]
     }

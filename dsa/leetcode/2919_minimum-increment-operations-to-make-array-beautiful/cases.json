@@ -116,7 +116,6 @@
         "k": 0
       },
       "tags": [
-        "hidden",
         "boundary",
         "zero-threshold"
       ],
@@ -139,7 +138,6 @@
         "k": 6
       },
       "tags": [
-        "hidden",
         "overlap"
       ],
       "expected": 8
@@ -160,7 +158,6 @@
         "k": 3
       },
       "tags": [
-        "hidden",
         "gap"
       ],
       "expected": 3
@@ -179,7 +176,6 @@
         "k": 1000000000
       },
       "tags": [
-        "hidden",
         "boundary",
         "maximum"
       ],

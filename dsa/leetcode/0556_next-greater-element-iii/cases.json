@@ -82,7 +82,6 @@
       },
       "expected": 13222344,
       "tags": [
-        "hidden",
         "edge-case"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "edge-case"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "overflow"
       ]
     }

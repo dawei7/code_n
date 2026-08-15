@@ -143,7 +143,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "reuse"
       ]
     },
@@ -171,7 +170,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "filter"
       ]
     },
@@ -204,7 +202,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -232,7 +229,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero"
       ]
     }

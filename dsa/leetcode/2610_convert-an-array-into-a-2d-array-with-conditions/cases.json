@@ -169,7 +169,6 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -205,7 +204,6 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "equal-frequencies"
       ]
     },
@@ -243,7 +241,6 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "any-valid-answer"
       ]
     }

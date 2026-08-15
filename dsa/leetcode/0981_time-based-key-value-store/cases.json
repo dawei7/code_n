@@ -235,7 +235,6 @@
         "a2"
       ],
       "tags": [
-        "hidden",
         "timestamp-bound"
       ]
     },
@@ -284,7 +283,6 @@
         "y1"
       ],
       "tags": [
-        "hidden",
         "interleaved"
       ]
     },
@@ -332,7 +330,6 @@
         "new"
       ],
       "tags": [
-        "hidden",
         "repeat-query"
       ]
     }

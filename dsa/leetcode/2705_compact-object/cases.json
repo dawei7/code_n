@@ -141,7 +141,6 @@
         "f": true
       },
       "tags": [
-        "hidden",
         "deep"
       ]
     },
@@ -181,7 +180,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "nested-arrays"
       ]
     },
@@ -202,7 +200,6 @@
         "keep": {}
       },
       "tags": [
-        "hidden",
         "empty-object"
       ]
     },
@@ -238,7 +235,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "mixed-containers"
       ]
     },
@@ -257,7 +253,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "all-falsy"
       ]
     }

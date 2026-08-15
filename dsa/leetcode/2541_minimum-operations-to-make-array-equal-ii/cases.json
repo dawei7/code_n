@@ -116,7 +116,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "divisibility"
       ]
     },
@@ -142,7 +141,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-transfers"
       ]
     },
@@ -164,7 +162,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "balance"
       ]
     }

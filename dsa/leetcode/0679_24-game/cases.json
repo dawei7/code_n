@@ -112,7 +112,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "fraction"
       ]
     },
@@ -131,7 +130,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "unsatisfiable"
       ]
     },
@@ -150,7 +148,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "operand-order"
       ]
     },
@@ -169,7 +166,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "exhaustive"
       ]
     }

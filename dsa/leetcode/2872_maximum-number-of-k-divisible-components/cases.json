@@ -170,7 +170,6 @@
         "k": 3
       },
       "tags": [
-        "hidden",
         "no-cut"
       ],
       "expected": 1
@@ -205,7 +204,6 @@
         "k": 3
       },
       "tags": [
-        "hidden",
         "zero-subtree"
       ],
       "expected": 2
@@ -240,7 +238,6 @@
         "k": 3
       },
       "tags": [
-        "hidden",
         "postorder"
       ],
       "expected": 3

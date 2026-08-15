@@ -287,7 +287,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "diamond",
         "deduplication"
       ]
@@ -349,7 +348,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "unordered-edges"
       ]
     },
@@ -405,7 +403,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "components"
       ]
     }

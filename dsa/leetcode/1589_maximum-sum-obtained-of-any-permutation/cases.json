@@ -170,7 +170,6 @@
       },
       "expected": 25,
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -207,7 +206,6 @@
       },
       "expected": 30,
       "tags": [
-        "hidden",
         "prefix-ranges"
       ]
     },
@@ -236,7 +234,6 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "disjoint"
       ]
     },
@@ -272,7 +269,6 @@
       },
       "expected": 42,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -304,7 +300,6 @@
       },
       "expected": 42,
       "tags": [
-        "hidden",
         "whole-array",
         "repeated-request"
       ]
@@ -826,7 +821,6 @@
       },
       "expected": 9999993,
       "tags": [
-        "hidden",
         "modulo",
         "value-boundary"
       ]

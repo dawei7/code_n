@@ -158,7 +158,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-quotient"
       ]
     },
@@ -175,7 +174,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-consonants",
         "zero-vowels"
       ]
@@ -193,7 +191,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "alphabet",
         "y-is-consonant"
       ]
@@ -211,7 +208,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "ignored-characters"
       ]

@@ -173,7 +173,6 @@
       },
       "expected": "443",
       "tags": [
-        "hidden",
         "remainder-feasibility"
       ]
     },
@@ -198,7 +197,6 @@
       },
       "expected": "9",
       "tags": [
-        "hidden",
         "minimum-target"
       ]
     },
@@ -223,7 +221,6 @@
       },
       "expected": "32211",
       "tags": [
-        "hidden",
         "unbounded-knapsack"
       ]
     }

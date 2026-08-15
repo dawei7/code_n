@@ -121,7 +121,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "all-divisible"
       ]
     },
@@ -141,7 +140,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "none-divisible"
       ]
     },
@@ -162,7 +160,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "overlap",
         "pattern"
       ]

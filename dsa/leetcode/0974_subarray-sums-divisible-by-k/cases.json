@@ -110,7 +110,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -130,7 +129,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "large-k"
       ]
     },
@@ -151,7 +149,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "remainder"
       ]
     }

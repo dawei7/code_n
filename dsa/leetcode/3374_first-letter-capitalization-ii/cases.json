@@ -194,7 +194,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "punctuation"
       ]
     },
@@ -228,7 +227,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "empty-text"
       ]
     },
@@ -280,7 +278,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "ordering"
       ]
     },
@@ -314,7 +311,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "single-letter",
         "hyphenated"
       ]

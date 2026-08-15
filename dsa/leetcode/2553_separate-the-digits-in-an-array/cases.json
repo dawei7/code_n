@@ -141,7 +141,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
@@ -166,7 +165,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "repeated"
       ]
     },
@@ -192,7 +190,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "zero-digits"
       ]
     }

@@ -63,7 +63,6 @@
       },
       "expected": "a 1 w\nb 2 x\nc 3 y\nd 4 z",
       "tags": [
-        "hidden",
         "rectangular"
       ]
     }

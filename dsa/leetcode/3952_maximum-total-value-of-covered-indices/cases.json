@@ -227,7 +227,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-blocks",
         "independence"
       ]
@@ -250,7 +249,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "initial-run",
         "line-boundary"
       ]
@@ -274,7 +272,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "trailing-run",
         "preceding-index"
       ]
@@ -297,7 +294,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "equal-values",
         "initial-run"
       ]
@@ -321,7 +317,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-values",
         "token-run"
       ]
@@ -347,7 +342,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-runs",
         "local-minima"
       ]

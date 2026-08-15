@@ -89,7 +89,6 @@
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "highest-group"
       ]
     },
@@ -103,7 +102,6 @@
       },
       "expected": 38,
       "tags": [
-        "hidden",
         "mapping-boundaries"
       ]
     },
@@ -117,7 +115,6 @@
       },
       "expected": 23,
       "tags": [
-        "hidden",
         "mixed-averages"
       ]
     },
@@ -131,7 +128,6 @@
       },
       "expected": 52,
       "tags": [
-        "hidden",
         "overlapping"
       ]
     }

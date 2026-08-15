@@ -84,7 +84,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "odd-total"
       ]
     },
@@ -98,7 +97,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "late-scan",
         "unbalanced"
       ]
@@ -113,7 +111,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "middle-split"
       ]
     },
@@ -127,7 +124,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "alphabet-boundary",
         "unequal-length-halves"
       ]
@@ -142,7 +138,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "non-empty-substrings"
       ]
     },
@@ -156,7 +151,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "repeated-letters",
         "middle-split"
       ]
@@ -171,7 +165,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "maximum-length",
         "full-scan"
       ]

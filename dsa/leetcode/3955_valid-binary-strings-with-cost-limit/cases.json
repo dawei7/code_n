@@ -204,7 +204,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "multiple-ones",
         "cost-boundary"
       ]
@@ -231,7 +230,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "multiple-ones",
         "backtracking"
       ]
@@ -261,7 +259,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "cost-pruning",
         "adjacency-pruning"
       ]
@@ -288,7 +285,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "longer-string",
         "small-budget"
       ]
@@ -310,7 +306,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "maximum-n",
         "zero-budget"
       ]
@@ -333,7 +328,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "maximum-n",
         "small-budget"
       ]
@@ -366,7 +360,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "maximum-n",
         "multiple-ones"
       ]

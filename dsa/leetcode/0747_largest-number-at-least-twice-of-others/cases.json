@@ -110,7 +110,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "end-index"
       ]
     },
@@ -127,7 +126,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "equality"
       ]
     },
@@ -147,7 +145,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "interior-index"
       ]
     }

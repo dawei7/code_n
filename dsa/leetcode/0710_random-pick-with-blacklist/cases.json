@@ -157,7 +157,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "empty-blacklist"
       ]
     },
@@ -185,7 +184,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "dense-blacklist"
       ]
     },
@@ -215,7 +213,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "repeated-draw"
       ]
     }

@@ -81,7 +81,6 @@
       },
       "expected": 779502179,
       "tags": [
-        "hidden",
         "modulo"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": 30228214,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

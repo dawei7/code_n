@@ -143,7 +143,6 @@
         "Push"
       ],
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -170,7 +169,6 @@
         "Push"
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

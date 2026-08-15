@@ -155,7 +155,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "skewed"
       ]
     },
@@ -184,7 +183,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "siblings"
       ]
     },
@@ -230,7 +228,6 @@
         27
       ],
       "tags": [
-        "hidden",
         "multiple-depths"
       ]
     }

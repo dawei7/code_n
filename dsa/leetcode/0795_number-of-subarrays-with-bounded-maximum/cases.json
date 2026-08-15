@@ -142,7 +142,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "split",
         "below-range"
       ]
@@ -161,7 +160,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "singleton",
         "boundaries"
       ]
@@ -185,7 +183,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "split"
       ]
     }

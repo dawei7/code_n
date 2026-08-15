@@ -154,7 +154,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zeros",
         "overlapping-subarrays"
       ]
@@ -178,7 +177,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zeros",
         "nested-subarrays"
       ]
@@ -201,7 +199,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "full-range"
       ]
     },
@@ -224,7 +221,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "overlapping-subarrays"
       ]
@@ -246,7 +242,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -267,7 +262,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary",
         "negative-values"
       ]
@@ -290,7 +284,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero-boundary",
         "negative-values"
       ]

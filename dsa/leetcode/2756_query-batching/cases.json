@@ -232,7 +232,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "single",
         "maximum-throttle"
       ]
@@ -291,7 +290,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "multiple-batches"
       ]
     },
@@ -389,7 +387,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "maximum-calls",
         "mapping"
       ]

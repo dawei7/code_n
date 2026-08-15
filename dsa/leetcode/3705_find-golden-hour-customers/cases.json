@@ -670,7 +670,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "completion-threshold",
         "null-ratings"
       ]
@@ -730,7 +729,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "percentage-rounding",
         "null-ratings"
       ]
@@ -820,7 +818,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ordering",
         "tie-break"
       ]
@@ -873,7 +870,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "all-unrated",
         "empty-result"
       ]

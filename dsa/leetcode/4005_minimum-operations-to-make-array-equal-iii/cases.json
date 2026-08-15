@@ -193,7 +193,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "common-multiple"
       ]
     },
@@ -211,7 +210,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "absent-target"
       ]
     },
@@ -229,7 +227,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "duplicates",
         "frequency"
       ]
@@ -248,7 +245,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "one",
         "duplicates"
       ]
@@ -267,7 +263,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "both-directions"
       ]
     },
@@ -285,7 +280,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "maximum-value",
         "divisibility-chain"
       ]
@@ -304,7 +298,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "large-primes",
         "absent-target"
       ]
@@ -324,7 +317,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "divisors"
       ]
     },
@@ -343,7 +335,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "one",
         "divisors"
       ]
@@ -364,7 +355,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "composites",
         "divisors"
       ]

@@ -88,7 +88,6 @@
       },
       "expected": "A-1B2",
       "tags": [
-        "hidden",
         "dashes"
       ]
     },
@@ -103,7 +102,6 @@
       },
       "expected": "A-BCDE-FGHI",
       "tags": [
-        "hidden",
         "remainder"
       ]
     }

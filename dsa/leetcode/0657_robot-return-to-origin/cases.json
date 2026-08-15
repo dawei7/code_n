@@ -82,7 +82,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "grouped"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "unbalanced"
       ]
     }

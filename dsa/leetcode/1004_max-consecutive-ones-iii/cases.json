@@ -140,7 +140,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -165,7 +164,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "zero-budget"
       ]
     },
@@ -189,7 +187,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -206,7 +203,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "minimum"
       ]
     }

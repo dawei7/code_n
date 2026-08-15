@@ -120,7 +120,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "floor"
       ]
     },
@@ -143,7 +142,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "empty-subset"
       ]
     },
@@ -168,7 +166,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "unused-coupons"
       ]
     },
@@ -193,7 +190,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "zero-value"
       ]
     }

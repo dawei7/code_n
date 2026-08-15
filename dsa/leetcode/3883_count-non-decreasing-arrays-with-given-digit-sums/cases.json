@@ -183,7 +183,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "equality",
         "combinations-with-repetition"
       ]
@@ -205,7 +204,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-sum",
         "non-decreasing"
       ]
@@ -227,7 +225,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "source-extension",
         "equality"
       ]
@@ -248,7 +245,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "upper-endpoint",
         "boundary-transition"
       ]
@@ -269,7 +265,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "upper-boundary",
         "no-successor"
       ]
@@ -292,7 +287,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-sum",
         "larger-bucket"
       ]
@@ -313,7 +307,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "upper-boundary",
         "direction-sensitive"
       ]

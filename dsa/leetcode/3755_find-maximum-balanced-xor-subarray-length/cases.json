@@ -128,7 +128,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "parity-failure"
       ]
     },
@@ -150,7 +149,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "prefix"
       ]
     },
@@ -176,7 +174,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-state"
       ]
     }

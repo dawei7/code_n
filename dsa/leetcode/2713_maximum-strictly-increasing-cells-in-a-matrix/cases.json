@@ -134,7 +134,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "column"
       ]
     },
@@ -157,7 +156,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -180,7 +178,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -210,7 +207,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "long-path"
       ]
     },
@@ -235,7 +231,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "rectangular",
         "duplicates"
       ]

@@ -87,7 +87,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "small-limit"
       ]
     },
@@ -102,7 +101,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-length"
       ]
     }

@@ -81,7 +81,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "power-of-ten"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "distribution"
       ]
     }

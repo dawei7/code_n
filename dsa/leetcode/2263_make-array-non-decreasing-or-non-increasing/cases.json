@@ -108,7 +108,6 @@
       },
       "expected": 1000,
       "tags": [
-        "hidden",
         "boundary-values",
         "tie"
       ]
@@ -128,7 +127,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -148,7 +146,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "blocks"
       ]
     }

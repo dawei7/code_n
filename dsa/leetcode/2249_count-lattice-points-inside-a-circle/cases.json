@@ -146,7 +146,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "disjoint"
       ]
     },
@@ -171,7 +170,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "squared-distance"
       ]
     },
@@ -191,7 +189,6 @@
       },
       "expected": 49,
       "tags": [
-        "hidden",
         "large-radius"
       ]
     }

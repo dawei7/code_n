@@ -87,7 +87,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "sign-change"
       ]
     },
@@ -102,7 +101,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "dominance"
       ]
     }

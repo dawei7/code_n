@@ -100,7 +100,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "nested-multiples"
       ]
     },
@@ -117,7 +116,6 @@
       },
       "expected": 39,
       "tags": [
-        "hidden",
         "individual-capacity"
       ]
     },
@@ -134,7 +132,6 @@
       },
       "expected": 4799,
       "tags": [
-        "hidden",
         "large-counts"
       ]
     }

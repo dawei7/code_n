@@ -191,7 +191,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zeros",
         "duplicates"
       ]
@@ -213,7 +212,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero",
         "missing-full-or"
       ]
@@ -236,7 +234,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "incompatible-bits"
       ]
@@ -260,7 +257,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "rightmost-witness",
         "duplicates"
       ]
@@ -282,7 +278,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "zero"
       ]
@@ -303,7 +298,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "high-bits",
         "incompatible-bits"
       ]
@@ -328,7 +322,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-boundaries",
         "multiple-witnesses"
       ]

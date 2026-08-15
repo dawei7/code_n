@@ -189,7 +189,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "late-removal"
       ]
     },
@@ -221,7 +220,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "empty"
       ]
     },
@@ -259,7 +257,6 @@
         8
       ],
       "tags": [
-        "hidden",
         "sorting"
       ]
     }

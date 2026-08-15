@@ -99,7 +99,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "zero-target",
         "value-boundaries"
       ]
@@ -117,7 +116,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -140,7 +138,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "mixed",
         "duplicates"
       ]
@@ -207,7 +204,6 @@
       },
       "expected": 25,
       "tags": [
-        "hidden",
         "maximum-length",
         "maximum-value"
       ]

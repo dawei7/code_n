@@ -115,7 +115,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "stack-pops",
         "greater-survivor"
       ]
@@ -137,7 +136,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "blocked-candidate"
       ]
     },
@@ -159,7 +157,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "alternating"
       ]
     }

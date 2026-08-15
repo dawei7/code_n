@@ -118,7 +118,6 @@
       },
       "expected": 100000,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -139,7 +138,6 @@
       },
       "expected": 19,
       "tags": [
-        "hidden",
         "skewed"
       ]
     },
@@ -161,7 +159,6 @@
       },
       "expected": 50,
       "tags": [
-        "hidden",
         "ancestor-only"
       ]
     }

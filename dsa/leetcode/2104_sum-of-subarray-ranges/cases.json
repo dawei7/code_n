@@ -105,7 +105,6 @@
       },
       "expected": 2000000000,
       "tags": [
-        "hidden",
         "integer-width",
         "negative-values"
       ]
@@ -125,7 +124,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "duplicates",
         "tie-handling"
       ]

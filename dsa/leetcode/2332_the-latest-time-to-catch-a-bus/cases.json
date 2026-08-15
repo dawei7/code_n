@@ -135,7 +135,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "multiple-buses"
       ]
     },
@@ -160,7 +159,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "spare-seat"
       ]
     }

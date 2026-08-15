@@ -104,7 +104,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -122,7 +121,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "mixed-bit-ranges"
       ]
     },
@@ -139,7 +137,6 @@
       },
       "expected": 2143280640,
       "tags": [
-        "hidden",
         "maximum-value",
         "large-carry"
       ]

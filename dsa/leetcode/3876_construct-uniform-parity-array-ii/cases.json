@@ -216,7 +216,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "even-minimum",
         "mixed-parity"
       ]
@@ -238,7 +237,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "even-minimum",
         "minimum-at-end"
       ]
@@ -260,7 +258,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundaries",
         "odd-minimum"
       ]
@@ -282,7 +279,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundaries",
         "even-minimum"
       ]
@@ -306,7 +302,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "irregular",
         "odd-minimum"
       ]
@@ -330,7 +325,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "irregular",
         "even-minimum"
       ]

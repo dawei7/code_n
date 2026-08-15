@@ -98,7 +98,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "impossible"
       ]
     },
@@ -121,7 +120,6 @@
         " a<7/7>"
       ],
       "tags": [
-        "hidden",
         "nonmonotone-capacity"
       ]
     },
@@ -141,7 +139,6 @@
         "aces<4/4>"
       ],
       "tags": [
-        "hidden",
         "spaces"
       ]
     },
@@ -156,7 +153,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "suffix-capacity"
       ]
     }

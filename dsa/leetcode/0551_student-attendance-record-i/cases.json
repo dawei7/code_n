@@ -82,7 +82,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "minimum-violation"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "reset"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "global-count"
       ]
     }

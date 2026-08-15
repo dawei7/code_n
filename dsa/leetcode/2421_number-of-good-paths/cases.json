@@ -151,7 +151,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "blocker"
       ]
     },
@@ -189,7 +188,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "component-counting"
       ]
     },
@@ -237,7 +235,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "separate-components"
       ]
     },
@@ -270,7 +267,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "zero",
         "unordered-paths"
       ]

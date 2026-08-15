@@ -150,7 +150,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "left-end"
       ]
     },
@@ -176,7 +175,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "uneven-gaps"
       ]
     },
@@ -200,7 +198,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "adjacent"
       ]
     }

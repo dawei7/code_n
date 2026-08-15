@@ -159,7 +159,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "extreme"
       ]
     },
@@ -197,7 +196,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "multiple"
       ]
     },
@@ -221,7 +219,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "negative-only"
       ]
     }

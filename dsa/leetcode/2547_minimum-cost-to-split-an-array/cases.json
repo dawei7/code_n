@@ -121,7 +121,6 @@
       },
       "expected": 1000000000,
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
@@ -140,7 +139,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "second-occurrence"
       ]
     },
@@ -165,7 +163,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

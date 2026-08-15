@@ -173,7 +173,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "full-block",
         "proper-divisors-fail"
       ]
@@ -193,7 +192,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "bad-cut",
         "global-order"
       ]
@@ -215,7 +213,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "circular-descents",
         "block-order"
       ]
@@ -235,7 +232,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "duplicates",
         "multiple-sortable-divisors"
       ]
@@ -257,7 +253,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "all-equal",
         "all-divisors"
       ]
@@ -276,7 +271,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "value-boundary",
         "duplicates"
       ]
@@ -300,7 +294,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "multiple-blocks",
         "block-length-four"
       ]

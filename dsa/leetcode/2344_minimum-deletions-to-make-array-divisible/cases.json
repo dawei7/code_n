@@ -136,7 +136,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "gcd"
       ]
     },
@@ -159,7 +158,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "one"
       ]
     }

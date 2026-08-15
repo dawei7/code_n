@@ -96,7 +96,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "reordered"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "reordered"
       ]
     },
@@ -124,7 +122,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "false"
       ]
     },
@@ -138,7 +135,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "maximum"
       ]
     },
@@ -152,7 +148,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -166,7 +161,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "original-order"
       ]
     }

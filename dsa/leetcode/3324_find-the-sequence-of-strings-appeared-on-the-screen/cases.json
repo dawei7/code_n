@@ -166,8 +166,7 @@
         "az"
       ],
       "tags": [
-        "mixed-cost",
-        "hidden"
+        "mixed-cost"
       ]
     },
     {
@@ -208,8 +207,7 @@
         "za"
       ],
       "tags": [
-        "prefix",
-        "hidden"
+        "prefix"
       ]
     }
   ]

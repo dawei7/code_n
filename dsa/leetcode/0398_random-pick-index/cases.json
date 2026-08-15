@@ -196,7 +196,6 @@
         "targets_param": "targets"
       },
       "tags": [
-        "hidden",
         "interleaved"
       ]
     },
@@ -227,7 +226,6 @@
         "targets_param": "targets"
       },
       "tags": [
-        "hidden",
         "last"
       ]
     },
@@ -260,7 +258,6 @@
         "targets_param": "targets"
       },
       "tags": [
-        "hidden",
         "all-equal"
       ]
     }

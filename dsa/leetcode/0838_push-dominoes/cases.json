@@ -96,7 +96,6 @@
       },
       "expected": "RRRLLL",
       "tags": [
-        "hidden",
         "even-gap"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": "L...R",
       "tags": [
-        "hidden",
         "outward"
       ]
     },
@@ -124,7 +122,6 @@
       },
       "expected": "........",
       "tags": [
-        "hidden",
         "all-upright"
       ]
     },
@@ -138,7 +135,6 @@
       },
       "expected": "LLLL.RRRR",
       "tags": [
-        "hidden",
         "same-direction"
       ]
     },
@@ -152,7 +148,6 @@
       },
       "expected": "RLLLR",
       "tags": [
-        "hidden",
         "adjacent"
       ]
     }

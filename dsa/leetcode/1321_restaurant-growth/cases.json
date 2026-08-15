@@ -447,7 +447,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "date-boundary"
       ]
     },
@@ -561,7 +560,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "multiple-visits"
       ]
     },
@@ -710,7 +708,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "rolling-window"
       ]
     }

@@ -85,7 +85,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
@@ -100,7 +99,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "leading-zeroes"
       ]
     },
@@ -115,7 +113,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "skip-prefix"
       ]
     }

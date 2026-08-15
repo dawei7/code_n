@@ -116,7 +116,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "maximum",
         "equality"
       ]
@@ -139,7 +138,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "unsorted",
         "mixed"
       ]
@@ -206,7 +204,6 @@
       },
       "expected": 25,
       "tags": [
-        "hidden",
         "maximum-length",
         "full-scan"
       ]

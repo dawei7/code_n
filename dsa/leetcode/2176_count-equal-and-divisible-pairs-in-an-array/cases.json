@@ -117,7 +117,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "zero-index",
         "nondivisible"
       ]
@@ -141,7 +140,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "combined-factors"
       ]
     },
@@ -165,7 +163,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "value-groups",
         "divisibility"
       ]

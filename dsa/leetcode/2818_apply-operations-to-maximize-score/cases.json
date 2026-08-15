@@ -114,7 +114,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "value-one"
       ]
     },
@@ -133,7 +132,6 @@
       },
       "expected": 1500,
       "tags": [
-        "hidden",
         "equal-scores"
       ]
     },
@@ -153,7 +151,6 @@
       },
       "expected": 340200,
       "tags": [
-        "hidden",
         "boundary-asymmetry"
       ]
     },
@@ -172,7 +169,6 @@
       },
       "expected": 999657007,
       "tags": [
-        "hidden",
         "modulo",
         "value-boundary"
       ]

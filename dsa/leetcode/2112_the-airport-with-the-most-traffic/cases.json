@@ -234,7 +234,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "ties",
         "disconnected-routes"
       ]
@@ -279,7 +278,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "weighted-counts",
         "route-degree-trap"
       ]

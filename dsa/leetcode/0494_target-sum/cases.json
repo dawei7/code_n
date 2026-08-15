@@ -115,7 +115,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "zero-target"
       ]
     },
@@ -134,7 +133,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "negative-target"
       ]
     }

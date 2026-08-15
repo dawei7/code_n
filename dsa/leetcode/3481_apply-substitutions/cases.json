@@ -152,7 +152,6 @@
       },
       "expected": "mn_m_mn",
       "tags": [
-        "hidden",
         "dependency-order"
       ]
     },
@@ -184,7 +183,6 @@
       },
       "expected": "xyxz_xz_xy_x",
       "tags": [
-        "hidden",
         "branching"
       ]
     },
@@ -216,7 +214,6 @@
       },
       "expected": "a_b_ab_xaby",
       "tags": [
-        "hidden",
         "multiple-dependencies"
       ]
     },
@@ -272,7 +269,6 @@
       },
       "expected": "abcdefghij_abcdefghi_abcdefgh_abcdefg_abcdef_abcde_abcd_abc_ab_a",
       "tags": [
-        "hidden",
         "maximum-keys",
         "deep-chain"
       ]
@@ -305,7 +301,6 @@
       },
       "expected": "two_tail_one_three",
       "tags": [
-        "hidden",
         "literal-only"
       ]
     },
@@ -341,7 +336,6 @@
       },
       "expected": "rrrrrrrrrrrrrrrr_rrrrrrrr_rrrr_rr_r",
       "tags": [
-        "hidden",
         "output-growth"
       ]
     },
@@ -377,7 +371,6 @@
       },
       "expected": "pq_pqppq_p_pqp_q",
       "tags": [
-        "hidden",
         "dag"
       ]
     }

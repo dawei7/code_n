@@ -82,7 +82,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "separated-pairs"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "clusters"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": 50,
       "tags": [
-        "hidden",
         "maximum",
         "no-pair"
       ]

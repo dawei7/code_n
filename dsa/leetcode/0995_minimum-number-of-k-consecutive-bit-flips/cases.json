@@ -133,7 +133,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "disjoint"
       ]
     },
@@ -155,7 +154,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "forced"
       ]
     },
@@ -174,7 +172,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "suffix"
       ]
     }

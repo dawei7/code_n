@@ -144,7 +144,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "later-start"
       ]
     },
@@ -163,7 +162,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -188,7 +186,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "dense"
       ]
     },
@@ -208,7 +205,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "none"
       ]
     },
@@ -232,7 +228,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "shared-states"
       ]
     }

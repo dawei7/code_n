@@ -135,7 +135,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-mines"
       ]
     },
@@ -167,7 +166,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "blocked-arms"
       ]
     },
@@ -199,7 +197,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "large-plus"
       ]
     }

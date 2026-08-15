@@ -114,7 +114,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "selection-budget"
       ]
     },
@@ -133,7 +132,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "large-gap"
       ]
     },
@@ -152,7 +150,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "small-extra"
       ]
     },
@@ -171,7 +168,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "large-values"
       ]
     },
@@ -189,7 +185,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "lower-bound"
       ]
     }

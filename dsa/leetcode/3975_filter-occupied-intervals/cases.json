@@ -282,7 +282,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "right-trim",
         "inclusive-boundary"
       ]
@@ -317,7 +316,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "disjoint",
         "multiple-components"
       ]
@@ -360,7 +358,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "transitive-merge",
         "split"
       ]
@@ -399,7 +396,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "duplicates",
         "singleton-removal"
       ]
@@ -438,7 +434,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "multiple-components",
         "complete-removal"
       ]
@@ -469,7 +464,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "maximum-coordinate",
         "touching"
       ]
@@ -504,7 +498,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "overlap",
         "two-sided-removal"
       ]

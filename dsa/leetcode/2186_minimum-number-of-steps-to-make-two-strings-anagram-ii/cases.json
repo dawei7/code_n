@@ -86,7 +86,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "identical"
       ]
     },
@@ -101,7 +100,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "multiplicity"
       ]
     },
@@ -116,7 +114,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "disjoint",
         "unequal-lengths"
       ]

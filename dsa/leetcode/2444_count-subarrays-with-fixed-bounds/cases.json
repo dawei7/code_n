@@ -105,7 +105,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "reset"
       ]
     },
@@ -125,7 +124,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "missing-bound"
       ]
     },
@@ -146,7 +144,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "equal-bounds",
         "reset"
       ]
@@ -167,7 +164,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

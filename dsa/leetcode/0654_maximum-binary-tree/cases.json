@@ -139,7 +139,6 @@
         -2
       ],
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -169,7 +168,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "skewed"
       ]
     }

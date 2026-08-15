@@ -190,7 +190,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "mismatch"
       ]
     },
@@ -216,7 +215,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "odd-row"
       ]
     },
@@ -248,7 +246,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "periodic"
       ]
     },
@@ -278,7 +275,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "rectangular"
       ]
     }

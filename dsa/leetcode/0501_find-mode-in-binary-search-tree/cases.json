@@ -138,7 +138,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "all-equal"
       ]
     },
@@ -161,7 +160,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "negative"
       ]
     }

@@ -130,7 +130,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "single-element",
         "impossible"
       ]
@@ -154,7 +153,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "impossible"
       ]
     },
@@ -174,7 +172,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

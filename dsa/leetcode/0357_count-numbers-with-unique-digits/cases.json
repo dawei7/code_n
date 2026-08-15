@@ -79,7 +79,7 @@
       },
       "expected": 32491,
       "tags": [
-        "hidden"
+        "trial"
       ]
     },
     {
@@ -92,7 +92,7 @@
       },
       "expected": 712891,
       "tags": [
-        "hidden"
+        "trial"
       ]
     },
     {
@@ -105,7 +105,6 @@
       },
       "expected": 2345851,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

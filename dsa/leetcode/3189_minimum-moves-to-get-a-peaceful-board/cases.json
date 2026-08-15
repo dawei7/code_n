@@ -172,7 +172,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "same-column"
       ]
     },
@@ -203,7 +202,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "corners",
         "duplicates"
       ]
@@ -235,7 +233,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "permutation",
         "zero-moves"
       ]
@@ -267,7 +264,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "both-axes"
       ]
     },
@@ -306,7 +302,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "asymmetric"
       ]
     },
@@ -349,7 +344,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "duplicates",
         "permuted-input"
       ]
@@ -2365,7 +2359,6 @@
       },
       "expected": 124750,
       "tags": [
-        "hidden",
         "maximum-n",
         "same-column"
       ]

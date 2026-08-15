@@ -88,7 +88,6 @@
       },
       "expected": 28,
       "tags": [
-        "hidden",
         "late-peak"
       ]
     },
@@ -108,7 +107,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-prefixes"
       ]
     },
@@ -125,7 +123,6 @@
       },
       "expected": 1000000000,
       "tags": [
-        "hidden",
         "large-value"
       ]
     },
@@ -150,7 +147,6 @@
       },
       "expected": 100000000,
       "tags": [
-        "hidden",
         "large-prefix-sum"
       ]
     }

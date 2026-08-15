@@ -141,7 +141,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "orientation"
       ]
     },
@@ -167,7 +166,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -192,7 +190,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "negative-values"
       ]
     }

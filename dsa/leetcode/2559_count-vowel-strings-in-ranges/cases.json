@@ -198,7 +198,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "inclusive-range"
       ]
     },
@@ -240,7 +239,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "repeated-query",
         "overlap"
       ]
@@ -276,7 +274,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "maximum-word-length"
       ]
     }

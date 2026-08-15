@@ -243,7 +243,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "greedy"
       ]
     },
@@ -279,7 +278,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "redundant"
       ]
     },
@@ -311,7 +309,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "zero-length"
       ]
     }

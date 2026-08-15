@@ -179,7 +179,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "distinct-semantics",
         "duplicates"
       ]
@@ -203,7 +202,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "late-answer"
       ]
     },
@@ -226,7 +224,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "whole-array"
       ]
     },
@@ -247,7 +244,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value"
       ]
     },
@@ -269,7 +265,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-threshold",
         "impossible"
       ]

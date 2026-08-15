@@ -200,7 +200,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "value-boundaries",
         "final-index"
       ]
@@ -220,7 +219,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "inclusive-ranges",
         "off-by-one"
       ]
@@ -240,7 +238,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "nonmonotone",
         "binary-search-trap"
       ]
@@ -260,7 +257,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-threshold",
         "boundary"
       ]
@@ -377,7 +373,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "maximum-length",
         "no-solution"
       ]

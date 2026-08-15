@@ -255,7 +255,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "assignee-irrelevant"
       ]
     },
@@ -296,7 +295,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "year-boundary"
       ]
     },
@@ -337,7 +335,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "leap-day"
       ]
     }

@@ -81,7 +81,6 @@
       },
       "expected": 27,
       "tags": [
-        "hidden",
         "remainder-zero"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": 18,
       "tags": [
-        "hidden",
         "remainder-two"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": 1549681956,
       "tags": [
-        "hidden",
         "boundary",
         "remainder-one"
       ]

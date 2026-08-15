@@ -143,7 +143,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "permutation"
       ]
     },
@@ -168,7 +167,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -189,7 +187,6 @@
       },
       "expected": 499999,
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

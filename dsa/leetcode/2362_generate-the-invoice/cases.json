@@ -258,7 +258,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "tie"
       ]
     },
@@ -308,7 +307,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "line-price"
       ]
     }

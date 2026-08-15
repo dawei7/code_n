@@ -117,7 +117,6 @@
       },
       "expected": 100,
       "tags": [
-        "hidden",
         "expiry"
       ]
     },
@@ -2133,7 +2132,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "long-input"
       ]
     }

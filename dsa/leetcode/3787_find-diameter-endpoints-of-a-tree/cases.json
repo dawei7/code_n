@@ -239,7 +239,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "branches"
       ]
     },
@@ -282,7 +281,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-diameters"
       ]
     },
@@ -321,7 +319,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "non-special-leaf"
       ]
     },
@@ -368,7 +365,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-diameters"
       ]
     },
@@ -403,7 +399,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "renumbered"
       ]
     },
@@ -450,7 +445,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unequal-arms"
       ]
     }

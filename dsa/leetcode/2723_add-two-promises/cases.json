@@ -97,7 +97,6 @@
         "completionTime": 900
       },
       "tags": [
-        "hidden",
         "first-slower"
       ]
     },
@@ -117,7 +116,6 @@
         "completionTime": 70
       },
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -137,7 +135,6 @@
         "completionTime": 30
       },
       "tags": [
-        "hidden",
         "large-values"
       ]
     },
@@ -157,7 +154,6 @@
         "completionTime": 100
       },
       "tags": [
-        "hidden",
         "equal-delay"
       ]
     }

@@ -96,7 +96,6 @@
       },
       "expected": "One two six three",
       "tags": [
-        "hidden",
         "stable-ties"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": "A a bb bb ccc longer",
       "tags": [
-        "hidden",
         "duplicates",
         "capitalization"
       ]

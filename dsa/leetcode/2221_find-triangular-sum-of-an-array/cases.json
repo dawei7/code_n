@@ -86,7 +86,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zeros"
       ]
     },
@@ -105,7 +104,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "multiple-rounds"
       ]
     },
@@ -125,7 +123,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -148,7 +145,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "longer-row"
       ]
     }

@@ -81,7 +81,6 @@
       },
       "expected": "bac",
       "tags": [
-        "hidden",
         "last-occurrence"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": "adbc",
       "tags": [
-        "hidden",
         "monotonic-stack"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": "eacb",
       "tags": [
-        "hidden",
         "last-occurrence"
       ]
     }

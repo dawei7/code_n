@@ -153,7 +153,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "blocked-start"
       ]
     },
@@ -183,7 +182,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "detour"
       ]
     },
@@ -201,7 +199,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "tree-at-start"
       ]
     }

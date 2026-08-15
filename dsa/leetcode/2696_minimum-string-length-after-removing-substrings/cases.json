@@ -82,7 +82,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "direction"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "multiple-pairs"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "cascade",
         "chain"
       ]
@@ -125,7 +122,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundaries"
       ]
     }

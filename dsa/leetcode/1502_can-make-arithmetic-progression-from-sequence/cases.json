@@ -108,7 +108,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "divisibility"
       ]
     },
@@ -126,7 +125,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "duplicate",
         "cardinality"
       ]
@@ -147,7 +145,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "missing-term",
         "duplicate"
       ]
@@ -170,7 +167,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "descending",
         "negative-values"
       ]

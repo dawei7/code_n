@@ -95,7 +95,6 @@
       },
       "expected": "aiia",
       "tags": [
-        "hidden",
         "independent-pairs"
       ]
     },
@@ -109,7 +108,6 @@
       },
       "expected": "wxxw",
       "tags": [
-        "hidden",
         "all-mismatch"
       ]
     },
@@ -123,7 +121,6 @@
       },
       "expected": "aybya",
       "tags": [
-        "hidden",
         "middle-character"
       ]
     }

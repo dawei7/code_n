@@ -110,7 +110,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "small-budget"
       ]
     },
@@ -128,7 +127,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "budget-boundary"
       ]
     },
@@ -148,7 +146,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "even-window"
       ]
     },
@@ -169,7 +166,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "middle-window"
       ]
     }

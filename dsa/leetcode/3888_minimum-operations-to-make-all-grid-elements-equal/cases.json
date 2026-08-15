@@ -198,7 +198,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "negative-values",
         "forced-target"
       ]
@@ -225,7 +224,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "boundary",
         "impossible"
       ]
@@ -257,7 +255,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "dense-overlap",
         "constructed"
       ]
@@ -289,7 +286,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "boundary",
         "impossible"
       ]
@@ -324,7 +320,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "rectangular-grid",
         "zero-operations"
       ]
@@ -347,7 +342,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "single-row",
         "unit-square"
       ]
@@ -368,7 +362,6 @@
       },
       "expected": 200000,
       "tags": [
-        "hidden",
         "value-boundary",
         "large-answer"
       ]
@@ -413,7 +406,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "dense-overlap",
         "rectangular-grid"
       ]

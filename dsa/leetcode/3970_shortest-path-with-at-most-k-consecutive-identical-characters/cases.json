@@ -260,7 +260,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "positive-weights",
         "maximum-edge-weight"
       ]
@@ -289,7 +288,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "directed-graph",
         "unreachable"
       ]
@@ -323,7 +321,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "parallel-edges",
         "weighted-choice"
       ]
@@ -367,7 +364,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "stateful-distance",
         "run-length"
       ]
@@ -406,7 +402,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "alternating-labels",
         "k-one"
       ]
@@ -440,7 +435,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "exact-limit",
         "same-label-chain"
       ]
@@ -479,7 +473,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "over-limit",
         "same-label-chain"
       ]

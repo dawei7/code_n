@@ -161,7 +161,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "first-task"
       ]
     },
@@ -193,7 +192,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "later-tie"
       ]
     },
@@ -221,7 +219,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "repeated-employee"
       ]
     }

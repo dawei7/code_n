@@ -139,7 +139,6 @@
         "kind": "next_right_pointers"
       },
       "tags": [
-        "hidden",
         "sparse"
       ]
     }

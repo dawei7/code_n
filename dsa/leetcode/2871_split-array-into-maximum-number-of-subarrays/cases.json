@@ -87,7 +87,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "maximum-splits"
       ],
       "expected": 4
@@ -106,7 +105,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "positive-and"
       ],
       "expected": 1
@@ -125,7 +123,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "late-reset"
       ],
       "expected": 1
@@ -150,7 +147,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "leftover-suffix"
       ],
       "expected": 3

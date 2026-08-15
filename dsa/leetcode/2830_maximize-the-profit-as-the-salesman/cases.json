@@ -209,7 +209,6 @@
       },
       "expected": 22,
       "tags": [
-        "hidden",
         "unsold-houses"
       ]
     },
@@ -245,7 +244,6 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "same-end",
         "dp-prefix"
       ]
@@ -287,7 +285,6 @@
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "nested-intervals"
       ]
     },
@@ -318,7 +315,6 @@
       },
       "expected": 1300,
       "tags": [
-        "hidden",
         "maximum-n",
         "boundary"
       ]

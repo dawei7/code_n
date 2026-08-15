@@ -200,7 +200,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "k-one"
       ]
     },
@@ -228,7 +227,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "all"
       ]
     },
@@ -258,7 +256,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -288,7 +285,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "heap"
       ]
     },
@@ -320,7 +316,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -350,7 +345,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "equal-wage"
       ]
     }

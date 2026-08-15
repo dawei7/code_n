@@ -239,7 +239,6 @@
         "tolerance": 1e-09
       },
       "tags": [
-        "hidden",
         "interior-point"
       ]
     },
@@ -270,7 +269,6 @@
         "tolerance": 1e-09
       },
       "tags": [
-        "hidden",
         "orientation"
       ]
     },
@@ -305,7 +303,6 @@
         "tolerance": 1e-09
       },
       "tags": [
-        "hidden",
         "collinear"
       ]
     }

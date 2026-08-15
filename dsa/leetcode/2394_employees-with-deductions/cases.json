@@ -255,7 +255,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "left-join"
       ]
     },
@@ -301,7 +300,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "seconds",
         "rounding"
       ]
@@ -368,7 +366,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "aggregation"
       ]
     }

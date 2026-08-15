@@ -154,7 +154,6 @@
       },
       "expected": 999999937,
       "tags": [
-        "hidden",
         "modulo"
       ]
     },
@@ -176,7 +175,6 @@
       },
       "expected": 280,
       "tags": [
-        "hidden",
         "asymmetric"
       ]
     }

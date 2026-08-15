@@ -125,7 +125,6 @@
         "values_param": "head"
       },
       "tags": [
-        "hidden",
         "balanced-bst"
       ]
     }

@@ -135,7 +135,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "fifo"
       ]
     },
@@ -171,7 +170,6 @@
         8
       ],
       "tags": [
-        "hidden",
         "batching"
       ]
     },
@@ -204,7 +202,6 @@
         7
       ],
       "tags": [
-        "hidden",
         "idle-reset"
       ]
     }

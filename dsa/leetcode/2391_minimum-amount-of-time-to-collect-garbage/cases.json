@@ -106,7 +106,6 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "final-house"
       ]
     },
@@ -128,7 +127,6 @@
       },
       "expected": 19,
       "tags": [
-        "hidden",
         "absent-later"
       ]
     },
@@ -150,7 +148,6 @@
       },
       "expected": 52,
       "tags": [
-        "hidden",
         "pickup-count"
       ]
     }

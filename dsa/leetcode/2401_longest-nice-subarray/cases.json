@@ -107,7 +107,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "shared-bit"
       ]
     },
@@ -128,7 +127,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "multiple-removals"
       ]
     },
@@ -150,7 +148,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "suffix"
       ]
     }

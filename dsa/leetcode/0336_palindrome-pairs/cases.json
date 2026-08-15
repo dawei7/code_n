@@ -191,7 +191,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "many-output"
       ]
     },
@@ -225,7 +224,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "unequal-length"
       ]
     },
@@ -259,7 +257,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

@@ -175,7 +175,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "open-route"
       ]
     },
@@ -215,7 +214,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "dominance"
       ]
     }

@@ -103,7 +103,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "boundary"
       ],
       "expected": 1
@@ -121,7 +120,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "boundary",
         "last-occurrence"
       ],
@@ -143,7 +141,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "segment-tree",
         "last-occurrence"
       ],
@@ -169,7 +166,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "all-equal"
       ],
       "expected": 55

@@ -174,7 +174,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "atomic-failure",
         "invalid-destination"
       ]
@@ -218,7 +217,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "exact-balance",
         "zero-money"
       ]
@@ -257,7 +255,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "self-transfer"
       ]
     },
@@ -302,7 +299,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "money-boundary",
         "wide-balance"
       ]

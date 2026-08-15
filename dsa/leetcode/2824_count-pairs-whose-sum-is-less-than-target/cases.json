@@ -116,7 +116,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "none"
       ]
     },
@@ -136,7 +135,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -156,7 +154,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "boundaries",
         "unsorted"
       ]
@@ -179,7 +176,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "mixed",
         "unsorted"
       ]

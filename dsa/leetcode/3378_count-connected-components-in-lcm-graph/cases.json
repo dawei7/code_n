@@ -136,7 +136,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "value-one",
         "connected-domain"
       ]
@@ -154,7 +153,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "single-node",
         "maximum-value",
         "maximum-threshold"
@@ -180,7 +178,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "mixed-components"
       ]
     }

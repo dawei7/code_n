@@ -235,7 +235,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "remainder"
       ]
     },
@@ -293,7 +292,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "remainder"
       ]
     },
@@ -347,7 +345,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "complete-overlap"
       ]
     },
@@ -409,7 +406,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -439,7 +435,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "maximum-values"
       ]
     }

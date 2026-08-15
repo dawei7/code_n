@@ -345,7 +345,6 @@
         "e.com"
       ],
       "tags": [
-        "hidden",
         "multiple-branches"
       ]
     },
@@ -418,7 +417,6 @@
         "a.com"
       ],
       "tags": [
-        "hidden",
         "clamping"
       ]
     },
@@ -477,7 +475,6 @@
         "one.com"
       ],
       "tags": [
-        "hidden",
         "step-bound"
       ]
     }

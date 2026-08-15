@@ -129,7 +129,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "greedy-exchange"
       ]
     },
@@ -147,7 +146,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "prefix-feasibility"
       ]
     },
@@ -169,7 +167,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "multiple-exchanges"
       ]
     },
@@ -189,7 +186,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "value-boundary",
         "wide-integer"
       ]
@@ -212,7 +208,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "early-rejections",
         "later-receipts"
       ]
@@ -233,7 +228,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "zero-balance",
         "take-all"
       ]

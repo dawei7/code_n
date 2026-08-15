@@ -82,7 +82,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "overlength"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "long-run"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "deletion-order"
       ]
     },
@@ -124,7 +121,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "missing-types"
       ]
     }

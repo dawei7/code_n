@@ -86,7 +86,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "leading-zeroes"
       ]
     },
@@ -101,7 +100,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "missing"
       ]
     },
@@ -116,7 +114,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "large-n"
       ]
     }

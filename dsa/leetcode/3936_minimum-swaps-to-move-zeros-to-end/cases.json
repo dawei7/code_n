@@ -192,7 +192,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "one-zero",
         "leading-zero"
       ]
@@ -215,7 +214,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero-majority",
         "trailing-nonzero"
       ]
@@ -240,7 +238,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "alternating",
         "multiple-swaps"
       ]
@@ -265,7 +262,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "already-partitioned",
         "multiple-zeroes"
       ]
@@ -290,7 +286,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "value-irrelevance"
       ]
@@ -409,7 +404,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "maximum-swaps"
       ]
@@ -528,7 +522,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "alternating"
       ]

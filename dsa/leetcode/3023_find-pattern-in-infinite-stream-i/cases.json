@@ -153,7 +153,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "fallback"
       ]
     },
@@ -177,7 +176,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "single-bit"
       ]
     },
@@ -299,7 +297,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-pattern"
       ]
     },
@@ -328,7 +325,6 @@
       },
       "expected": 128,
       "tags": [
-        "hidden",
         "late-match"
       ]
     }

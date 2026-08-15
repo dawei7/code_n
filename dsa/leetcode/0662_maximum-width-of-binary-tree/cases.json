@@ -128,7 +128,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "extreme-gap"
       ]
     },
@@ -150,7 +149,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "skewed"
       ]
     }

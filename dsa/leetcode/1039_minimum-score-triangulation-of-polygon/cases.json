@@ -129,7 +129,6 @@
       },
       "expected": 38,
       "tags": [
-        "hidden",
         "order"
       ]
     },
@@ -149,7 +148,6 @@
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -170,7 +168,6 @@
       },
       "expected": 198,
       "tags": [
-        "hidden",
         "asymmetric"
       ]
     }

@@ -130,7 +130,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-zero",
         "forced-zeroes"
       ]
@@ -149,7 +148,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-one",
         "forced-zeroes"
       ]
@@ -168,7 +166,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "ones-exhausted",
         "earliest-position"
       ]
@@ -187,7 +184,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zeroes-exhausted",
         "earliest-position"
       ]
@@ -206,7 +202,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "balanced-counts",
         "complete-complement"
       ]
@@ -225,7 +220,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "leading-zero",
         "fixed-length"
       ]

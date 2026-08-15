@@ -124,7 +124,6 @@
       },
       "expected": 24,
       "tags": [
-        "hidden",
         "minimum-complement"
       ]
     },
@@ -144,7 +143,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "ordinary-wins"
       ]
     },
@@ -164,7 +162,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "multi-segment-wrap"
       ]
     },
@@ -182,7 +179,6 @@
       },
       "expected": 60000,
       "tags": [
-        "hidden",
         "value-bounds"
       ]
     }

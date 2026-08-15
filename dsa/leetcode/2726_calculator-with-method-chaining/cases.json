@@ -117,7 +117,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "all-operations"
       ]
     },
@@ -141,7 +140,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "fraction"
       ]
     },
@@ -165,7 +163,6 @@
       },
       "expected": -9,
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -187,7 +184,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "zero-exponent"
       ]
     }

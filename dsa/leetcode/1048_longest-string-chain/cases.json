@@ -129,7 +129,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "branching"
       ]
     },
@@ -149,7 +148,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "internal-insertion"
       ]
     },
@@ -168,7 +166,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "missing-intermediate"
       ]
     }

@@ -230,7 +230,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "maximum-frequency"
       ]
     },
@@ -262,7 +261,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "multiple-runs"
       ]
     }

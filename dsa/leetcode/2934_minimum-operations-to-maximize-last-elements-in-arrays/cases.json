@@ -153,7 +153,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "ties"
       ]
     },
@@ -174,7 +173,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

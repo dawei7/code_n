@@ -95,7 +95,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "half-step-collision"
       ]
     },
@@ -116,7 +115,6 @@
       },
       "expected": 83,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -136,7 +134,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
@@ -155,7 +152,6 @@
       },
       "expected": 999999965,
       "tags": [
-        "hidden",
         "boundary",
         "modulo"
       ]

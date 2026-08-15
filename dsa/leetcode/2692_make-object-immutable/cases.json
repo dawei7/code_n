@@ -203,7 +203,6 @@
         "error": "Error Modifying: inner"
       },
       "tags": [
-        "hidden",
         "nested-set"
       ]
     },
@@ -228,7 +227,6 @@
         "error": "Error Modifying: keep"
       },
       "tags": [
-        "hidden",
         "delete"
       ]
     }

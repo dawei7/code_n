@@ -146,7 +146,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "deep",
         "left"
       ]
@@ -183,7 +182,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "interior"
       ]
     },
@@ -212,7 +210,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "skewed",
         "right"
       ]

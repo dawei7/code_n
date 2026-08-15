@@ -157,7 +157,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "concave"
       ]
     },
@@ -196,7 +195,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "border"
       ]
     }

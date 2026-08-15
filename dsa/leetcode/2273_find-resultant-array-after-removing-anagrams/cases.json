@@ -125,7 +125,6 @@
         "abb"
       ],
       "tags": [
-        "hidden",
         "multiplicity"
       ]
     },
@@ -147,7 +146,6 @@
         "ba"
       ],
       "tags": [
-        "hidden",
         "nonadjacent"
       ]
     },
@@ -172,7 +170,6 @@
         "below"
       ],
       "tags": [
-        "hidden",
         "boundaries",
         "multiple-runs"
       ]

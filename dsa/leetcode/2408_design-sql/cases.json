@@ -435,7 +435,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "multiple-tables"
       ]
     },
@@ -497,7 +496,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "counter"
       ]
     },
@@ -559,7 +557,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "no-op"
       ]
     }

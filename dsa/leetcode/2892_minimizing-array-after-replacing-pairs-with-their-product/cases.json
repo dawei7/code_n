@@ -105,7 +105,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "value-above-k",
         "mixed-groups"
       ]

@@ -124,7 +124,6 @@
         -2
       ],
       "tags": [
-        "hidden",
         "left-survivors"
       ]
     },
@@ -146,7 +145,6 @@
         -9
       ],
       "tags": [
-        "hidden",
         "separate-chains"
       ]
     },
@@ -170,7 +168,6 @@
         25
       ],
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

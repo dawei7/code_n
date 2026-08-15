@@ -63,7 +63,6 @@
       },
       "expected": 46339,
       "tags": [
-        "hidden",
         "overflow"
       ]
     }

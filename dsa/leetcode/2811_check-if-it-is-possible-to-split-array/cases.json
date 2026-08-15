@@ -112,7 +112,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "equality"
       ]
     },
@@ -133,7 +132,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "global-sum-trap"
       ]
     },
@@ -154,7 +152,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "edge-pair"
       ]
     }

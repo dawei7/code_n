@@ -238,7 +238,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "square"
       ]
     },
@@ -276,7 +275,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -302,7 +300,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -336,7 +333,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "tall"
       ]
     },
@@ -380,7 +376,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "wide"
       ]
     },
@@ -426,7 +421,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

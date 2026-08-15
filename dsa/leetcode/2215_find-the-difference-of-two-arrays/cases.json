@@ -158,7 +158,6 @@
         "kind": "ordered_groups_unordered_items"
       },
       "tags": [
-        "hidden",
         "one-sided"
       ]
     },
@@ -196,7 +195,6 @@
         "kind": "ordered_groups_unordered_items"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "negative-values"
       ]
@@ -222,7 +220,6 @@
         "kind": "ordered_groups_unordered_items"
       },
       "tags": [
-        "hidden",
         "singletons"
       ]
     },
@@ -255,7 +252,6 @@
         "kind": "ordered_groups_unordered_items"
       },
       "tags": [
-        "hidden",
         "boundaries"
       ]
     }

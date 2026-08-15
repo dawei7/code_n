@@ -213,7 +213,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "balanced",
         "exhaustion"
       ]
@@ -261,7 +260,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "right-skewed"
       ]
     },
@@ -309,7 +307,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "left-skewed"
       ]
     },
@@ -343,7 +340,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "two-nodes"
       ]
     },
@@ -378,7 +374,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "two-nodes"
       ]
     },
@@ -413,7 +408,6 @@
         500000
       ],
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

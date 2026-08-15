@@ -82,7 +82,6 @@
       },
       "expected": 55,
       "tags": [
-        "hidden",
         "recurrence"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 832040,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

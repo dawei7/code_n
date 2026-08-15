@@ -175,7 +175,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "repeated-position"
       ]
     },
@@ -202,7 +201,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

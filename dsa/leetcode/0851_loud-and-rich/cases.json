@@ -236,7 +236,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "incomparable"
       ]
     },
@@ -278,7 +277,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "self-best"
       ]
     },
@@ -318,7 +316,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "components"
       ]
     },
@@ -356,7 +353,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "middle"
       ]
     },
@@ -394,7 +390,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "shared"
       ]
     },
@@ -428,7 +423,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "partial-order"
       ]
     }

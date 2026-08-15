@@ -80,7 +80,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "product"
       ]
     },
@@ -94,7 +93,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "forced-boundaries"
       ]
     },
@@ -108,7 +106,6 @@
       },
       "expected": 29,
       "tags": [
-        "hidden",
         "four-letter-key"
       ]
     }

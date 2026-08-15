@@ -155,7 +155,6 @@
         "kind": "unordered_nested_list"
       },
       "tags": [
-        "hidden",
         "exact-content"
       ]
     },
@@ -189,7 +188,6 @@
         "kind": "unordered_nested_list"
       },
       "tags": [
-        "hidden",
         "nested-directories"
       ]
     }

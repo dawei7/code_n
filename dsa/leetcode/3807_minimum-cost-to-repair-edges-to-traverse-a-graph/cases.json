@@ -252,7 +252,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "competing-paths",
         "bottleneck"
       ]
@@ -293,7 +292,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "direct-edge",
         "hop-limit"
       ]
@@ -344,7 +342,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "cycle",
         "shortcut"
       ]
@@ -390,7 +387,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "equal-costs",
         "multiple-paths"
       ]
@@ -421,7 +417,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "cost-boundary",
         "chain"
       ]

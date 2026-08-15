@@ -132,7 +132,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "fractional"
       ]
     },
@@ -154,7 +153,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "loss-bound"
       ]
     },
@@ -177,7 +175,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "zero"
       ]
     }

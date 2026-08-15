@@ -75,7 +75,6 @@
       },
       "expected": 26,
       "tags": [
-        "hidden",
         "prefix-count",
         "digit-boundary"
       ]
@@ -91,7 +90,6 @@
       },
       "expected": 32,
       "tags": [
-        "hidden",
         "borrow",
         "lower-bound"
       ]
@@ -107,7 +105,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "long-input",
         "singleton"
       ]
@@ -123,7 +120,6 @@
       },
       "expected": 125046265,
       "tags": [
-        "hidden",
         "maximum-digits",
         "modulo"
       ]

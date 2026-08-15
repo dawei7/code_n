@@ -96,7 +96,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "square-factor"
       ]
     },
@@ -114,7 +113,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -137,7 +135,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -160,7 +157,6 @@
       },
       "expected": 254,
       "tags": [
-        "hidden",
         "disjoint",
         "ones"
       ]

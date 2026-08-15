@@ -177,7 +177,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "odd-duplicates",
         "unique-even"
       ]
@@ -200,7 +199,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "repeated-even"
       ]
@@ -225,7 +223,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-repeated",
         "fallback"
       ]
@@ -248,7 +245,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "first-index",
         "early-candidate"
       ]
@@ -272,7 +268,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-even",
         "fallback"
       ]
@@ -391,7 +386,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "late-candidate"
       ]

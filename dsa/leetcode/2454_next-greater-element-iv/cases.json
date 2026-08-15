@@ -119,7 +119,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -145,7 +144,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "decreasing"
       ]
     },
@@ -163,7 +161,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "singleton"
       ]
     },
@@ -189,7 +186,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

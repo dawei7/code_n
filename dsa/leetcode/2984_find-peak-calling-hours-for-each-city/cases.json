@@ -264,7 +264,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "multiple-dates"
       ]
     },
@@ -325,7 +324,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ties"
       ]
     }

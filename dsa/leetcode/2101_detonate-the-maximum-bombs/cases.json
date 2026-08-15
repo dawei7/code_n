@@ -132,7 +132,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "inclusive-boundary"
       ]
     },
@@ -162,7 +161,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "same-center"
       ]
     },
@@ -187,7 +185,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "large-coordinates"
       ]
     },
@@ -222,7 +219,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "directed-chain"
       ]
     }

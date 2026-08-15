@@ -124,7 +124,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -144,7 +143,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
@@ -163,7 +161,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "large-coin"
       ]
     },
@@ -184,7 +181,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "powers"
       ]
     }

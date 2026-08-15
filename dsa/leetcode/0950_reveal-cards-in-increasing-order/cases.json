@@ -132,7 +132,6 @@
         1000000
       ],
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -158,7 +157,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "odd-length"
       ]
     }

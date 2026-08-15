@@ -140,7 +140,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "duplicate-pairs"
       ]
     },
@@ -168,7 +167,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "second-maximum"
       ]
     },
@@ -196,7 +194,6 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "nested"
       ]
     },
@@ -232,7 +229,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "dominance-changes"
       ]
     },
@@ -268,7 +264,6 @@
       },
       "expected": 25,
       "tags": [
-        "hidden",
         "sweep"
       ]
     },
@@ -296,7 +291,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "pair-identity"
       ]
     },
@@ -340,7 +334,6 @@
       },
       "expected": 37,
       "tags": [
-        "hidden",
         "crossing"
       ]
     }

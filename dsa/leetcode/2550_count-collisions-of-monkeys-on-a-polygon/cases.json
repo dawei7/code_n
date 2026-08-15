@@ -65,7 +65,6 @@
       },
       "expected": 976371283,
       "tags": [
-        "hidden",
         "modulus"
       ]
     },
@@ -79,7 +78,6 @@
       },
       "expected": 688423208,
       "tags": [
-        "hidden",
         "larger"
       ]
     }

@@ -199,7 +199,6 @@
       },
       "expected": 255,
       "tags": [
-        "hidden",
         "pure-ones",
         "ties"
       ]
@@ -223,7 +222,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "pure-zeros",
         "zero-value"
       ]
@@ -247,7 +245,6 @@
       },
       "expected": 3276,
       "tags": [
-        "hidden",
         "identical-segments",
         "ties"
       ]
@@ -275,7 +272,6 @@
       },
       "expected": 1038592,
       "tags": [
-        "hidden",
         "all-categories",
         "unsorted-input"
       ]
@@ -301,7 +297,6 @@
       },
       "expected": 3906672,
       "tags": [
-        "hidden",
         "tie-break",
         "trailing-zeros"
       ]
@@ -323,7 +318,6 @@
       },
       "expected": 614428879,
       "tags": [
-        "hidden",
         "modulo",
         "long-runs"
       ]
@@ -381,7 +375,6 @@
       },
       "expected": 568171769,
       "tags": [
-        "hidden",
         "upper-bound",
         "modulo",
         "all-categories"
@@ -406,7 +399,6 @@
       },
       "expected": 530122693,
       "tags": [
-        "hidden",
         "large-runs",
         "mixed-segments",
         "modulo"
@@ -433,7 +425,6 @@
       },
       "expected": 448,
       "tags": [
-        "hidden",
         "pure-zeros",
         "unsorted-input"
       ]

@@ -147,7 +147,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -169,7 +168,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -191,7 +189,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "month-boundary"
       ]
     }

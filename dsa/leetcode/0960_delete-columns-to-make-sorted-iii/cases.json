@@ -116,7 +116,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "descending"
       ]
     },
@@ -133,7 +132,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "subsequence"
       ]
     },
@@ -151,7 +149,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

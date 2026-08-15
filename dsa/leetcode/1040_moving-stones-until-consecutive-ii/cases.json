@@ -153,7 +153,6 @@
         12
       ],
       "tags": [
-        "hidden",
         "sliding-window"
       ]
     },
@@ -177,7 +176,6 @@
         16
       ],
       "tags": [
-        "hidden",
         "endpoint-gaps"
       ]
     },
@@ -200,7 +198,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "edge",
         "large-coordinates"
       ]

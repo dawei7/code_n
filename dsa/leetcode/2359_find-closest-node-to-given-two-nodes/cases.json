@@ -121,7 +121,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "cycle",
         "merge"
       ]
@@ -144,7 +143,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "sink"
       ]
     },
@@ -166,7 +164,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "chain"
       ]
     }

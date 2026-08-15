@@ -324,7 +324,6 @@
       },
       "expected": 27,
       "tags": [
-        "hidden",
         "three-heights",
         "unequal-levels"
       ]
@@ -372,7 +371,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "singleton-height"
       ]
     },
@@ -403,7 +401,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "rectangle"
       ]
     },
@@ -434,7 +431,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "coordinate-bounds"
       ]
     },
@@ -477,7 +473,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "shuffled",
         "three-heights"
       ]
@@ -2893,7 +2888,6 @@
       },
       "expected": 11522486,
       "tags": [
-        "hidden",
         "modulo",
         "large-count"
       ]

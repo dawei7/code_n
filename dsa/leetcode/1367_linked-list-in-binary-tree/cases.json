@@ -166,7 +166,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -188,7 +187,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "direction"
       ]
     }

@@ -253,7 +253,6 @@
         5000
       ],
       "tags": [
-        "hidden",
         "value-boundaries"
       ]
     },
@@ -301,7 +300,6 @@
         9
       ],
       "tags": [
-        "hidden",
         "full-tree"
       ]
     },
@@ -355,7 +353,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "mixed-operations"
       ]
     },
@@ -446,7 +443,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "larger-tree"
       ]
     }

@@ -117,7 +117,6 @@
         "m"
       ],
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -142,7 +141,6 @@
         "aaaa"
       ],
       "tags": [
-        "hidden",
         "late-witness"
       ]
     },
@@ -166,7 +164,6 @@
         "code"
       ],
       "tags": [
-        "hidden",
         "duplicates",
         "order"
       ]
@@ -188,7 +185,6 @@
         "abcdefghij"
       ],
       "tags": [
-        "hidden",
         "exactly-two"
       ]
     }

@@ -166,7 +166,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero-cost"
       ]
     },
@@ -199,7 +198,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "cycle"
       ]
     }

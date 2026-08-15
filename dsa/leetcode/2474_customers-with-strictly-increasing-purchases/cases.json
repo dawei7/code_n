@@ -207,7 +207,6 @@
         "rows": []
       },
       "tags": [
-        "hidden",
         "equal-totals"
       ]
     },
@@ -247,7 +246,6 @@
         "rows": []
       },
       "tags": [
-        "hidden",
         "decrease"
       ]
     },
@@ -281,7 +279,6 @@
         "rows": []
       },
       "tags": [
-        "hidden",
         "missing-year"
       ]
     },
@@ -340,7 +337,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "partitioning",
         "single-year"
       ]

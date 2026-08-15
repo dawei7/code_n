@@ -96,7 +96,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "alphabet-boundary"
       ]
     },
@@ -111,7 +110,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "pattern"
       ]
     }

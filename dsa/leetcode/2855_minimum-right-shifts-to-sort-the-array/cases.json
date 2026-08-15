@@ -107,7 +107,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "pivot-near-front"
       ]
     },
@@ -127,7 +126,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "pivot-near-end"
       ]
     },
@@ -146,7 +144,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "multiple-breaks"
       ]
     },
@@ -169,7 +166,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "distinct-values",
         "rotation"
       ]

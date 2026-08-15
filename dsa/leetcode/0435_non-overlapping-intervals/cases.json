@@ -160,7 +160,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -199,7 +198,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "nested"
       ]
     },
@@ -230,7 +228,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "all-overlap"
       ]
     }

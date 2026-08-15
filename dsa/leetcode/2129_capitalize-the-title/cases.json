@@ -82,7 +82,6 @@
       },
       "expected": "a b cd Efg",
       "tags": [
-        "hidden",
         "mixed-lengths"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": "Keep it Simple",
       "tags": [
-        "hidden",
         "idempotent"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": "to be or Not to be",
       "tags": [
-        "hidden",
         "uppercase"
       ]
     }

@@ -146,7 +146,6 @@
         20
       ],
       "tags": [
-        "hidden",
         "sorted"
       ]
     },
@@ -173,7 +172,6 @@
         9
       ],
       "tags": [
-        "hidden",
         "reverse"
       ]
     },
@@ -198,7 +196,6 @@
         -3
       ],
       "tags": [
-        "hidden",
         "negative-key"
       ]
     },
@@ -239,7 +236,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "objects",
         "negative"
       ]

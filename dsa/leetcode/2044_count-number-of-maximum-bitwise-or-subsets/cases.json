@@ -103,7 +103,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "index-identity",
         "duplicates"
       ]
@@ -120,7 +119,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -138,7 +136,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "early-target",
         "remaining-choices"
       ]

@@ -96,7 +96,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "negative"
       ]
     }

@@ -313,7 +313,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "kadane-restart",
         "rectangular"
       ]
@@ -356,7 +355,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-negative",
         "interior-singleton"
       ]
@@ -389,7 +387,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "two-rows",
         "horizontal"
       ]
@@ -428,7 +425,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "two-columns",
         "vertical"
       ]
@@ -462,7 +458,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "orientation-tie",
         "boundary"
       ]
@@ -509,7 +504,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "positive"
       ]
@@ -544,7 +538,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-value",
         "two-rows"
       ]
@@ -587,7 +580,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "interior-singleton",
         "mixed-values"
       ]

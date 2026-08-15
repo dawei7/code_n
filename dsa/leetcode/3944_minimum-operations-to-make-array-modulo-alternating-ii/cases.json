@@ -199,7 +199,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "second-best",
         "tie"
       ]
@@ -225,7 +224,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-modulus"
       ]
     },
@@ -249,7 +247,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "odd-length"
       ]
     },
@@ -272,7 +269,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "even-modulus",
         "antipodes"
       ]
@@ -297,7 +293,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-values",
         "large-modulus"
       ]
@@ -337,7 +332,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "distributed-remainders"
       ]
     },
@@ -360,7 +354,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "sparse",
         "large-modulus"
       ]

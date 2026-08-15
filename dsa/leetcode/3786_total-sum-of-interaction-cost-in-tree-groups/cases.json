@@ -212,7 +212,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "path"
       ]
     },
@@ -254,7 +253,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-groups"
       ]
     },
@@ -306,7 +304,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "branches"
       ]
     },
@@ -353,7 +350,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -400,7 +396,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "single-pair"
       ]
     },
@@ -442,7 +437,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary-label",
         "star"
       ]

@@ -222,7 +222,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "rounding"
       ]
     },
@@ -282,7 +281,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "ordering"
       ]
     }

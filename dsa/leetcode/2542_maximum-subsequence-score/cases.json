@@ -123,7 +123,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -147,7 +146,6 @@
       },
       "expected": 18,
       "tags": [
-        "hidden",
         "ties"
       ]
     },
@@ -167,7 +165,6 @@
       },
       "expected": 10000000000,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

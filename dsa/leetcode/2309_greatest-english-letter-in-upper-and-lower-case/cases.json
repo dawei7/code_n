@@ -93,7 +93,6 @@
       },
       "expected": "M",
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -107,7 +106,6 @@
       },
       "expected": "Y",
       "tags": [
-        "hidden",
         "unpaired"
       ]
     }

@@ -167,7 +167,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "both-boundaries",
         "empty-output"
       ]
@@ -195,7 +194,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "even-pairs",
         "one-odd"
       ]
@@ -221,7 +219,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary-values",
         "middle-value"
       ]
@@ -441,7 +438,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "complete-domain"
       ]
@@ -560,7 +556,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "all-even"
       ]
@@ -594,7 +589,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-frequencies",
         "ascending-output"
       ]

@@ -151,7 +151,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
@@ -178,7 +177,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "disconnected"
       ]
     },
@@ -206,7 +204,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "reverse-chain"
       ]
     },
@@ -235,7 +232,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "repeated-destination"
       ]
     },
@@ -263,7 +259,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "isolated"
       ]
     }

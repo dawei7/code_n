@@ -92,7 +92,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "capacity-cap"
       ]
     },
@@ -113,7 +112,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "balanced"
       ]
     },
@@ -132,7 +130,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "leftover"
       ]
     }

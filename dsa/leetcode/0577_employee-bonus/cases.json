@@ -333,7 +333,6 @@
         "rows": []
       },
       "tags": [
-        "hidden",
         "empty-result"
       ]
     },
@@ -407,7 +406,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "ordering"
       ]
     }

@@ -289,7 +289,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "siblings",
         "distance-boundary"
       ]
@@ -322,7 +321,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "root-inversion",
         "large-k"
       ]
@@ -360,7 +358,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "chain",
         "spaced-inversions"
       ]
@@ -398,7 +395,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "chain",
         "large-k"
       ]
@@ -451,7 +447,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "branching",
         "cross-subtree-distance"
       ]
@@ -494,7 +489,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero-values",
         "neutral-inversions"
       ]
@@ -532,7 +526,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary",
         "wide-sum"
       ]

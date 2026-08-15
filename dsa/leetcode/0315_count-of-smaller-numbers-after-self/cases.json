@@ -137,7 +137,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -161,7 +160,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "negative",
         "duplicates"
       ]
@@ -184,7 +182,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "coordinate-compression"
       ]
     }

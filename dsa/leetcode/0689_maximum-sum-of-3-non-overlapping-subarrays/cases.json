@@ -164,7 +164,6 @@
         7
       ],
       "tags": [
-        "hidden",
         "separated-peaks"
       ]
     },
@@ -192,7 +191,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "touching-windows"
       ]
     },
@@ -219,7 +217,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "right-tie"
       ]
     }

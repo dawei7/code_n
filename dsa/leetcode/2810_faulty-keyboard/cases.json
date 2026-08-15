@@ -82,7 +82,6 @@
       },
       "expected": "dabc",
       "tags": [
-        "hidden",
         "even-parity"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": "cabd",
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": "ab",
       "tags": [
-        "hidden",
         "many-triggers"
       ]
     }

@@ -197,7 +197,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zeros",
         "missing-both"
       ]
@@ -221,7 +220,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "reverse-order",
         "zeros"
       ]
@@ -244,7 +242,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "alternating",
         "adjacent"
       ]
@@ -269,7 +266,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "block-boundary"
       ]
@@ -294,7 +290,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-twos",
         "two-sided"
       ]
@@ -413,7 +408,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "maximum-distance"
       ]
@@ -439,7 +433,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "late-improvement",
         "adjacent"
       ]

@@ -127,7 +127,6 @@
       },
       "expected": 22,
       "tags": [
-        "hidden",
         "middle-window"
       ]
     },
@@ -100143,7 +100142,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

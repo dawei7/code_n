@@ -90,7 +90,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "ancestor-overlap"
       ]
     },
@@ -108,7 +107,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "leaves"
       ]
     },
@@ -127,7 +125,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "root",
         "subtree"
       ]
@@ -145,7 +142,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "incomplete-level"
       ]
     }

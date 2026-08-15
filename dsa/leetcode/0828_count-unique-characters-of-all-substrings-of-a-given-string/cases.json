@@ -110,7 +110,6 @@
       },
       "expected": 3276,
       "tags": [
-        "hidden",
         "all-distinct",
         "alphabet"
       ]
@@ -125,7 +124,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -139,7 +137,6 @@
       },
       "expected": 24,
       "tags": [
-        "hidden",
         "mixed-frequency"
       ]
     },
@@ -153,7 +150,6 @@
       },
       "expected": 36,
       "tags": [
-        "hidden",
         "repeated-substring"
       ]
     },
@@ -167,7 +163,6 @@
       },
       "expected": 32,
       "tags": [
-        "hidden",
         "endpoint-repeat",
         "clustered"
       ]

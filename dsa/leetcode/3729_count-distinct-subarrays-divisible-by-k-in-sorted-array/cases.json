@@ -155,7 +155,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "strictly-increasing"
       ]
     },
@@ -178,7 +177,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-runs"
       ]
     },
@@ -201,7 +199,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "k-one",
         "multiple-runs"
       ]
@@ -226,7 +223,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "equal-value-run"
       ]
     },
@@ -251,7 +247,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-runs",
         "duplicates"
       ]
@@ -273,7 +268,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary",
         "k-boundary"
       ]
@@ -296,7 +290,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "k-boundary",
         "empty-result"
       ]

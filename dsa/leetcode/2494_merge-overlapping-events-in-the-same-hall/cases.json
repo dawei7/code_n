@@ -199,7 +199,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "inclusive-endpoints"
       ]
     },
@@ -244,7 +243,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "strict-gap"
       ]
     },
@@ -299,7 +297,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "running-maximum",
         "nested"
       ]
@@ -345,7 +342,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "same-start"
       ]
     },
@@ -405,7 +401,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "partitioning",
         "multiple-halls"
       ]

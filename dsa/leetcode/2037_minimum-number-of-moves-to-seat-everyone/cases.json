@@ -136,7 +136,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "position-boundary",
         "permutation"
       ]
@@ -160,7 +159,6 @@
       },
       "expected": 297,
       "tags": [
-        "hidden",
         "duplicates",
         "maximum-distance"
       ]
@@ -184,7 +182,6 @@
       },
       "expected": 18,
       "tags": [
-        "hidden",
         "asymmetric"
       ]
     }

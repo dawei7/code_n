@@ -96,7 +96,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "unequal-frequencies"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "three-distinct-characters"
       ]
     },
@@ -124,7 +122,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "whole-string"
       ]
     },
@@ -138,7 +135,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "interior-balance"
       ]
     },
@@ -152,7 +148,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "whole-string",
         "equal-frequency-three"
       ]
@@ -167,7 +162,6 @@
       },
       "expected": 26,
       "tags": [
-        "hidden",
         "alphabet-boundary",
         "absent-characters"
       ]

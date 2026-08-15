@@ -82,7 +82,6 @@
       },
       "expected": "Radiant",
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": "Dire",
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": "Radiant",
       "tags": [
-        "hidden",
         "later-round"
       ]
     }

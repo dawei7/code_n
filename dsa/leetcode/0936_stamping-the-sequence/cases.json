@@ -147,7 +147,6 @@
         "kind": "stamping_sequence"
       },
       "tags": [
-        "hidden",
         "chain"
       ]
     },
@@ -168,7 +167,6 @@
         "kind": "stamping_sequence"
       },
       "tags": [
-        "hidden",
         "overwrite"
       ]
     },
@@ -190,7 +188,6 @@
         "kind": "stamping_sequence"
       },
       "tags": [
-        "hidden",
         "repeated"
       ]
     },
@@ -208,7 +205,6 @@
         "kind": "stamping_sequence"
       },
       "tags": [
-        "hidden",
         "impossible"
       ]
     }

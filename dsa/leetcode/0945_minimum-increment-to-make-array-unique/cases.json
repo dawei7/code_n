@@ -110,7 +110,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "chain"
       ]
     },
@@ -128,7 +127,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     },
@@ -148,7 +146,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "multiple-groups"
       ]
     },
@@ -169,7 +166,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "unsorted"
       ]
     }

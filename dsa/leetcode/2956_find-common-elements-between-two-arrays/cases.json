@@ -179,7 +179,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "frequency"
       ]
     },
@@ -208,7 +207,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "partial-overlap"
       ]
     }

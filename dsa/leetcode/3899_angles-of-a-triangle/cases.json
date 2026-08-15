@@ -178,7 +178,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "degenerate",
         "strict-inequality"
       ]
@@ -201,7 +200,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "invalid",
         "upper-bound"
       ]
@@ -228,7 +226,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "equilateral",
         "maximum-values"
       ]
@@ -255,7 +252,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "near-degenerate",
         "floating-point"
       ]
@@ -278,7 +274,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "degenerate",
         "permutation",
         "upper-bound"
@@ -306,7 +301,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "near-equilateral",
         "upper-bound",
         "sorted-output"

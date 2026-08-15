@@ -81,7 +81,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "multiple-parts"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "semantic-trap"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": 50,
       "tags": [
-        "hidden",
         "long-input",
         "alternating"
       ]

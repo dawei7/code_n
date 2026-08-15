@@ -167,7 +167,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "duplicate-points",
         "zero-factor"
       ]
@@ -199,7 +198,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "collinear",
         "distance-order"
       ]
@@ -227,7 +225,6 @@
       },
       "expected": 400000000,
       "tags": [
-        "hidden",
         "coordinate-boundary",
         "singleton-group"
       ]
@@ -263,7 +260,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "equal-distance-batch"
       ]
     },
@@ -302,7 +298,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "grid",
         "multiple-cycles"
       ]
@@ -338,7 +333,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "negative-coordinates"
       ]
     }

@@ -152,7 +152,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "diagonal"
       ]
     },
@@ -182,7 +181,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "unreachable"
       ]
     },
@@ -221,7 +219,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "shortest"
       ]
     }

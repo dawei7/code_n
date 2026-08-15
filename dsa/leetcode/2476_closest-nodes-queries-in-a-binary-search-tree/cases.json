@@ -189,7 +189,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "skewed-tree"
       ]
     },
@@ -230,7 +229,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "skewed-tree"
       ]
     },
@@ -270,7 +268,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "duplicate-queries"
       ]
     },
@@ -305,7 +302,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "minimum-size"
       ]
     }

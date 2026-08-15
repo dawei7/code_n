@@ -94,7 +94,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "gcd"
       ]
     },
@@ -126,7 +124,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "capacity"
       ]
     }

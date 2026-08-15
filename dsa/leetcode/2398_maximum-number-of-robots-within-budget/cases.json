@@ -141,7 +141,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "middle"
       ]
     },
@@ -167,7 +166,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "equal-maxima"
       ]
     },
@@ -191,7 +189,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

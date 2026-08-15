@@ -82,7 +82,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "odd-only"
       ]
     },
@@ -99,7 +98,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "even-only"
       ]
     },
@@ -116,7 +114,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

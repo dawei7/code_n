@@ -150,7 +150,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "positive-balance"
       ]
     },
@@ -173,7 +172,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "alternating",
         "ties"
       ]
@@ -197,7 +195,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary-prefix"
       ]
     },
@@ -220,7 +217,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -244,7 +240,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-target"
       ]
     }

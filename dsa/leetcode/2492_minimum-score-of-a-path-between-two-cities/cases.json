@@ -158,7 +158,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "disconnected"
       ]
     },
@@ -199,7 +198,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
@@ -230,7 +228,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "distance-bound"
       ]
     }

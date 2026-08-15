@@ -138,7 +138,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -157,7 +156,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "leading-deletion"
       ]
     },
@@ -177,7 +175,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "empty-group"
       ]
     },
@@ -198,7 +195,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

@@ -166,7 +166,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "case-sensitive"
       ]
     },
@@ -187,7 +186,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "later-alignment"
       ]
     },
@@ -208,7 +206,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "optional"
       ]
     }

@@ -136,7 +136,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -162,7 +161,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "suffix"
       ]
     }

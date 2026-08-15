@@ -122,7 +122,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "ties"
       ]
     },
@@ -143,7 +142,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "weighted"
       ]
     },
@@ -261,7 +259,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "modulo",
         "remote-regression"
       ]

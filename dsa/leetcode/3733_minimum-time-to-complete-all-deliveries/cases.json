@@ -166,7 +166,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "individual-capacity"
       ]
     },
@@ -190,7 +189,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "individual-capacity"
       ]
     },
@@ -214,7 +212,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "coprime-intervals"
       ]
     },
@@ -238,7 +235,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "dividing-intervals"
       ]
     },
@@ -262,7 +258,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "quota-boundary",
         "interval-boundary"
       ]
@@ -287,7 +282,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "quota-boundary",
         "skewed-quotas"
       ]

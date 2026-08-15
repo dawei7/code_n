@@ -93,7 +93,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "left-accumulation"
       ]
     },
@@ -112,7 +111,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "right-accumulation"
       ]
     },
@@ -131,7 +129,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "even"
       ]
     },
@@ -151,7 +148,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "group-sums"
       ]
     }

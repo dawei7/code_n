@@ -127,7 +127,6 @@
       },
       "expected": "e",
       "tags": [
-        "hidden",
         "large"
       ]
     },
@@ -147,7 +146,6 @@
       },
       "expected": "oodf",
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -167,7 +165,6 @@
       },
       "expected": "jigd",
       "tags": [
-        "hidden",
         "suffix"
       ]
     },
@@ -188,7 +185,6 @@
       },
       "expected": "ccccc",
       "tags": [
-        "hidden",
         "full-prefix"
       ]
     },
@@ -209,7 +205,6 @@
       },
       "expected": "caaaa",
       "tags": [
-        "hidden",
         "first-prefix"
       ]
     },
@@ -233,7 +228,6 @@
       },
       "expected": "leetcode",
       "tags": [
-        "hidden",
         "cycles"
       ]
     }

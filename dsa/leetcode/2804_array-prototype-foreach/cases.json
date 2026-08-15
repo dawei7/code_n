@@ -154,7 +154,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "array-argument"
       ]
     },
@@ -180,7 +179,6 @@
         8
       ],
       "tags": [
-        "hidden",
         "context",
         "negative-value"
       ]
@@ -207,7 +205,6 @@
         10
       ],
       "tags": [
-        "hidden",
         "array-reference",
         "live-mutation"
       ]

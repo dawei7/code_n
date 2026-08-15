@@ -86,7 +86,6 @@
       },
       "expected": "deal $990000000.00 today",
       "tags": [
-        "hidden",
         "large-price"
       ]
     },
@@ -101,7 +100,6 @@
       },
       "expected": "5$ x$5 $5x $5$",
       "tags": [
-        "hidden",
         "whole-token"
       ]
     },
@@ -116,7 +114,6 @@
       },
       "expected": "save $1.75 and $5.00 but not 7$",
       "tags": [
-        "hidden",
         "formatting"
       ]
     },
@@ -131,7 +128,6 @@
       },
       "expected": "$0.00",
       "tags": [
-        "hidden",
         "single-token"
       ]
     }

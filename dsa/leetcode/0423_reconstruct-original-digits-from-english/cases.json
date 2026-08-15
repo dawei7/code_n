@@ -82,7 +82,6 @@
       },
       "expected": "1133557799",
       "tags": [
-        "hidden",
         "derived"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": "02468",
       "tags": [
-        "hidden",
         "unique-letters"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": "11111",
       "tags": [
-        "hidden",
         "multiplicity"
       ]
     }

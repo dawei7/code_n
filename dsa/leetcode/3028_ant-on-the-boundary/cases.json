@@ -86,7 +86,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -105,7 +104,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "crossing"
       ]
     },
@@ -127,7 +125,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "prefix-sum"
       ]
     },
@@ -148,7 +145,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "boundary-values"
       ]
     }

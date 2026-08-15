@@ -82,7 +82,6 @@
       },
       "expected": "adbc",
       "tags": [
-        "hidden",
         "pops"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": "eacb",
       "tags": [
-        "hidden",
         "fixed"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": "letcod",
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

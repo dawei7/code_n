@@ -58,7 +58,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
@@ -73,7 +72,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "remainder"
       ]
     },
@@ -88,7 +86,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -103,7 +100,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -118,7 +114,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "enumeration"
       ]
     }

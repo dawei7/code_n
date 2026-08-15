@@ -106,7 +106,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "combinations"
       ]
     },
@@ -124,7 +123,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "gcd"
       ]
     }

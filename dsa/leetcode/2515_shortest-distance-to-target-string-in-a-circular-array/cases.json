@@ -121,7 +121,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -139,7 +138,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "minimum-length",
         "absent-target"
       ]
@@ -163,7 +161,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "equal-directions"
       ]
     }

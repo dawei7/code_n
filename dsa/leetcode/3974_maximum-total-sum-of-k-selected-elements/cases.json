@@ -187,7 +187,6 @@
       },
       "expected": 36,
       "tags": [
-        "hidden",
         "duplicates",
         "all-multiplied"
       ]
@@ -209,7 +208,6 @@
       },
       "expected": 299,
       "tags": [
-        "hidden",
         "selection",
         "exchange-argument"
       ]
@@ -230,7 +228,6 @@
       },
       "expected": 45,
       "tags": [
-        "hidden",
         "ordering",
         "rearrangement"
       ]
@@ -253,7 +250,6 @@
       },
       "expected": 50,
       "tags": [
-        "hidden",
         "negative-multiplier",
         "exactly-k"
       ]
@@ -275,7 +271,6 @@
       },
       "expected": 67,
       "tags": [
-        "hidden",
         "all-selected",
         "ordering"
       ]
@@ -296,7 +291,6 @@
       },
       "expected": 29999700000,
       "tags": [
-        "hidden",
         "large-values",
         "wide-integer"
       ]
@@ -320,7 +314,6 @@
       },
       "expected": 115,
       "tags": [
-        "hidden",
         "selection",
         "mixed-factors"
       ]

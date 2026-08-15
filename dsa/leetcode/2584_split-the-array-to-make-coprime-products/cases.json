@@ -90,7 +90,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "ones"
       ]
     },
@@ -109,7 +108,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "smallest-index"
       ]
     },
@@ -129,7 +127,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "repeated-factors"
       ]
     },
@@ -148,7 +145,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "overlapping-intervals"
       ]
     },
@@ -168,7 +164,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "one",
         "first-index"
       ]
@@ -186,7 +181,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "two-elements"
       ]
     },
@@ -203,7 +197,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-value"
       ]
     }

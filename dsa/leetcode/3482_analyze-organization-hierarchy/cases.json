@@ -527,7 +527,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "budget-order"
       ]
     },
@@ -599,7 +598,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "name-order"
       ]
     },
@@ -685,7 +683,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "unordered-input"
       ]
     },
@@ -813,7 +810,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "branches"
       ]
     },
@@ -885,7 +881,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "leaf"
       ]
     },
@@ -971,7 +966,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "department"
       ]
     },
@@ -1057,7 +1051,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "self-salary"
       ]
     }

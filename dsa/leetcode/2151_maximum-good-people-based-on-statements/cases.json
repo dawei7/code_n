@@ -147,7 +147,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "chain"
       ]
     },
@@ -177,7 +176,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "contradiction-cycle"
       ]
     },
@@ -216,7 +214,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "ignored-bad-statements"
       ]
     }

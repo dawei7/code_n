@@ -87,7 +87,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "start-direction"
       ]
     },
@@ -108,7 +107,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "restart"
       ]
     },
@@ -127,7 +125,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "repeated-rise"
       ]
     },
@@ -148,7 +145,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicate",
         "restart"
       ]
@@ -168,7 +164,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -189,7 +184,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "full-array"
       ]
     }

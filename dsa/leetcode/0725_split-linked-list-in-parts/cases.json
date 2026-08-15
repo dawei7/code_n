@@ -188,7 +188,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "front-loaded-remainder"
       ]
     },
@@ -221,7 +220,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "singleton-parts"
       ]
     },
@@ -252,7 +250,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

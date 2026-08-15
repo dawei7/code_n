@@ -173,7 +173,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -197,7 +196,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "minimum-size"
       ]
     },
@@ -246,7 +244,6 @@
       },
       "expected": 116,
       "tags": [
-        "hidden",
         "edge-order",
         "branches"
       ]
@@ -281,7 +278,6 @@
       },
       "expected": 1286561280,
       "tags": [
-        "hidden",
         "large-sums"
       ]
     }

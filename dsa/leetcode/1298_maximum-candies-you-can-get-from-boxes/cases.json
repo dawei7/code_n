@@ -250,7 +250,6 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "unreachable"
       ]
     },
@@ -290,7 +289,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "possession"
       ]
     }

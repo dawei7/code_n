@@ -144,7 +144,6 @@
       },
       "expected": 27,
       "tags": [
-        "hidden",
         "boundary-tie"
       ]
     },
@@ -173,7 +172,6 @@
       },
       "expected": 44,
       "tags": [
-        "hidden",
         "stint-composition"
       ]
     },
@@ -194,7 +192,6 @@
       },
       "expected": 39900000,
       "tags": [
-        "hidden",
         "many-laps",
         "large-values"
       ]

@@ -136,7 +136,6 @@
       },
       "expected": 37,
       "tags": [
-        "hidden",
         "internal-subarray"
       ]
     },
@@ -161,7 +160,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "whole-array"
       ]
     }

@@ -136,7 +136,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "empty"
       ]
     },
@@ -166,7 +165,6 @@
       },
       "expected": 116,
       "tags": [
-        "hidden",
         "branching"
       ]
     },
@@ -189,7 +187,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "restoration"
       ]
     }

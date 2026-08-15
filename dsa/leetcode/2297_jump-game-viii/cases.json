@@ -140,7 +140,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "decreasing"
       ]
     },
@@ -163,7 +162,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "peak"
       ]
     },
@@ -190,7 +188,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "direct-jump"
       ]
     },
@@ -215,7 +212,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "falling-jump"
       ]
     }

@@ -202,7 +202,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "frequency-ratio",
         "whole-array"
       ]
@@ -227,7 +226,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "proper-subarray",
         "equal-whole-frequencies"
       ]
@@ -253,7 +251,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "three-values",
         "bucket-updates"
       ]
@@ -278,7 +275,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "grouped-values",
         "proper-subarray"
       ]
@@ -304,7 +300,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "frequency-ratio",
         "proper-subarray"
       ]
@@ -326,7 +321,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary",
         "frequency-ratio"
       ]
@@ -377,7 +371,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "longer-array",
         "frequency-ratio"
       ]

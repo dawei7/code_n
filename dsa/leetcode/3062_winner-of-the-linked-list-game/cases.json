@@ -98,7 +98,6 @@
       },
       "expected": "Odd",
       "tags": [
-        "hidden",
         "odd"
       ]
     },
@@ -123,7 +122,6 @@
       },
       "expected": "Even",
       "tags": [
-        "hidden",
         "full-traversal"
       ]
     },
@@ -150,7 +148,6 @@
       },
       "expected": "Tie",
       "tags": [
-        "hidden",
         "tie",
         "alternating"
       ]

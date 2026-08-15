@@ -67,7 +67,6 @@
       },
       "expected": 41,
       "tags": [
-        "hidden",
         "layer-count"
       ]
     },
@@ -81,7 +80,6 @@
       },
       "expected": 181,
       "tags": [
-        "hidden",
         "arithmetic-series"
       ]
     },
@@ -95,7 +93,7 @@
       },
       "expected": 19801,
       "tags": [
-        "hidden"
+        "trial"
       ]
     },
     {
@@ -108,7 +106,6 @@
       },
       "expected": 1994005,
       "tags": [
-        "hidden",
         "odd"
       ]
     },
@@ -122,7 +119,6 @@
       },
       "expected": 1998001,
       "tags": [
-        "hidden",
         "power-of-ten"
       ]
     },
@@ -136,7 +132,6 @@
       },
       "expected": 19999800001,
       "tags": [
-        "hidden",
         "maximum-input",
         "64-bit"
       ]

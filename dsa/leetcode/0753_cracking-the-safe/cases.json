@@ -106,7 +106,6 @@
         "kind": "de_bruijn_sequence"
       },
       "tags": [
-        "hidden",
         "eulerian"
       ]
     },
@@ -124,7 +123,6 @@
         "kind": "de_bruijn_sequence"
       },
       "tags": [
-        "hidden",
         "eulerian"
       ]
     },
@@ -142,7 +140,6 @@
         "kind": "de_bruijn_sequence"
       },
       "tags": [
-        "hidden",
         "longer-password"
       ]
     }

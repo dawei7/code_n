@@ -198,7 +198,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-length",
         "maximum-value"
       ]
@@ -227,7 +226,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-delay",
         "all-equal"
       ]
@@ -258,7 +256,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-distinct",
         "zero-delay"
       ]
@@ -289,7 +286,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-equal",
         "zero-delay"
       ]
@@ -318,7 +314,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundaries",
         "delay"
       ]
@@ -353,7 +348,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "late-matches",
         "mixed-values"
       ]

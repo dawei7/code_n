@@ -232,7 +232,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "detour"
       ]
     },
@@ -258,7 +257,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "strict-boundary"
       ]
     }

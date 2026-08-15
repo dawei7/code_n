@@ -242,7 +242,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "multiple"
       ]
     },
@@ -272,7 +271,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -292,7 +290,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "empty"
       ]
     }

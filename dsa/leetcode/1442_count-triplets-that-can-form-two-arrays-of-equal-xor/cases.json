@@ -106,7 +106,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "repeated-prefix"
       ]
     },
@@ -126,7 +125,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -147,7 +145,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "upper-bound-values"
       ]
     },
@@ -168,7 +165,6 @@
       },
       "expected": 19,
       "tags": [
-        "hidden",
         "dense-matches"
       ]
     }

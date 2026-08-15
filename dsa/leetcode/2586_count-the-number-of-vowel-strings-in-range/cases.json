@@ -95,7 +95,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "range-boundary"
       ]
     },
@@ -114,7 +113,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "last-character"
       ]
     },
@@ -132,7 +130,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "first-character"
       ]
     },
@@ -154,7 +151,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "all-vowels"
       ]
     },
@@ -174,7 +170,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "inclusive-range"
       ]
     },
@@ -196,7 +191,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "subrange"
       ]
     },
@@ -215,7 +209,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "maximum-word-length"
       ]
     }

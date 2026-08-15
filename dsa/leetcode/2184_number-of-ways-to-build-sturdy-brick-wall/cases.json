@@ -108,7 +108,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "alternating-layouts"
       ]
     },
@@ -127,7 +126,6 @@
       },
       "expected": 470199269,
       "tags": [
-        "hidden",
         "maximum-height",
         "modulus"
       ]
@@ -150,7 +148,6 @@
       },
       "expected": 625,
       "tags": [
-        "hidden",
         "all-masks"
       ]
     }

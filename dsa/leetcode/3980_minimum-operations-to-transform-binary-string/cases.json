@@ -140,7 +140,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "odd-run",
         "overlapping-pairs"
       ]
@@ -156,7 +155,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "isolated-one",
         "promote-neighbor"
       ]
@@ -172,7 +170,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "separated-ones",
         "chained-pairs"
       ]
@@ -188,7 +185,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "alternating",
         "restore-left"
       ]
@@ -204,7 +200,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "trailing-one",
         "left-neighbor"
       ]
@@ -220,7 +215,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "mixed-target",
         "both-operations"
       ]
@@ -236,7 +230,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "alternating",
         "odd-length"
       ]

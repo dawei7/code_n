@@ -112,7 +112,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "zigzag"
       ]
     },
@@ -131,7 +130,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "bounds"
       ]
     }

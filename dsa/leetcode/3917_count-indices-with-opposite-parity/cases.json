@@ -349,7 +349,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "irregular",
         "value-boundaries"
       ]
@@ -566,7 +565,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "maximum-length",
         "alternating",
         "value-boundary"

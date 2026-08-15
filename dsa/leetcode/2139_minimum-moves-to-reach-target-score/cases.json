@@ -86,7 +86,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "odd-target"
       ]
     },
@@ -101,7 +100,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "limited-doubles"
       ]
     },
@@ -116,7 +114,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "power-of-two"
       ]
     }

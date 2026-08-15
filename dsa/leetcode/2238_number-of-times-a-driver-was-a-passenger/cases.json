@@ -243,7 +243,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "passenger-only"
       ]
     },
@@ -316,7 +315,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "multiple-groups"
       ]
     },
@@ -361,7 +359,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "large-identifiers"
       ]
     }

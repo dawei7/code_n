@@ -124,7 +124,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "containment"
       ]
     },
@@ -145,7 +144,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "day-boundary"
       ]
     },
@@ -166,7 +164,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "order-independent"
       ]
     }

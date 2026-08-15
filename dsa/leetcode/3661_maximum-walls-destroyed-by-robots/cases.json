@@ -188,7 +188,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "co-located-walls"
       ]
     },
@@ -215,7 +214,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "blocking",
         "range-truncation"
       ]
@@ -244,7 +242,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "exterior",
         "gap-union"
       ]

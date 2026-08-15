@@ -393,7 +393,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "all-transactions-activity",
         "refund-under-twenty"
       ]
@@ -440,7 +439,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "activity-boundary",
         "empty-result"
       ]
@@ -543,7 +541,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ordering",
         "mixed-filters"
       ]

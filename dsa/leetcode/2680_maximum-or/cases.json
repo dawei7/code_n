@@ -106,7 +106,6 @@
       },
       "expected": 119,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -126,7 +125,6 @@
       },
       "expected": 262151,
       "tags": [
-        "hidden",
         "large-shift"
       ]
     },
@@ -145,7 +143,6 @@
       },
       "expected": 32142785056,
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

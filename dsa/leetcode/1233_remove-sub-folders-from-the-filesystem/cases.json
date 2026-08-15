@@ -144,7 +144,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "prefix-boundary"
       ]
     },
@@ -174,7 +173,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "multiple-roots"
       ]
     }

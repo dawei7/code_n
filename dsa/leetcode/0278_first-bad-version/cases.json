@@ -56,7 +56,6 @@
       },
       "expected": 100,
       "tags": [
-        "hidden",
         "last"
       ]
     }

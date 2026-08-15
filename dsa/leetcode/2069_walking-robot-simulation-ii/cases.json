@@ -135,7 +135,6 @@
         "South"
       ],
       "tags": [
-        "hidden",
         "full-cycle"
       ]
     },
@@ -187,7 +186,6 @@
         "North"
       ],
       "tags": [
-        "hidden",
         "corner-direction"
       ]
     },
@@ -225,7 +223,6 @@
         "South"
       ],
       "tags": [
-        "hidden",
         "large-step",
         "full-cycle"
       ]
@@ -269,7 +266,6 @@
         "West"
       ],
       "tags": [
-        "hidden",
         "persistent-state"
       ]
     }

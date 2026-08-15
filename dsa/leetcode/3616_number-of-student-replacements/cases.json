@@ -155,7 +155,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "last-replacement",
         "tie"
       ]
@@ -177,7 +176,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum-rank",
         "tie"
       ]
@@ -197,7 +195,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "maximum-value"
       ]
     },
@@ -219,7 +216,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "record-minimum"
       ]
     },
@@ -239,7 +235,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-equal",
         "no-replacement"
       ]
@@ -100255,7 +100250,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-input",
         "all-equal"
       ]

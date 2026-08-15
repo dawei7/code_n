@@ -183,7 +183,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "two-sided-envelope"
       ]
     },
@@ -224,7 +223,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "dense-restrictions"
       ]
     },
@@ -255,7 +253,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "suffix-peak"
       ]
     },
@@ -293,7 +290,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unsorted-restrictions"
       ]
     },
@@ -321,7 +317,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-bound",
         "anchor-propagation"
       ]

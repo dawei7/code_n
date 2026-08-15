@@ -163,7 +163,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "blocked-finish"
       ]
     },
@@ -184,7 +183,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "same-row-state"
       ]
     },
@@ -206,7 +204,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "three-rows",
         "obstacle"
       ]
@@ -228,7 +225,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "blocked-start"
       ]
     },
@@ -250,7 +246,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "three-rows",
         "unit-distance"
       ]

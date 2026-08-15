@@ -199,7 +199,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "disconnected"
       ]
     },
@@ -235,7 +234,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "large-k"
       ]
     },
@@ -285,7 +283,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "multiple-sources"
       ]
     },
@@ -333,7 +330,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "cycle"
       ]
     }

@@ -132,7 +132,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "maximum"
       ]
     },
@@ -151,7 +150,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "speed-one"
       ]
     },
@@ -168,7 +166,6 @@
       },
       "expected": 1000000000,
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -186,7 +183,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "ceilings"
       ]
     },
@@ -205,7 +201,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

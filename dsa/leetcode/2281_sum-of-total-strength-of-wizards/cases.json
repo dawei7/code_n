@@ -103,7 +103,6 @@
       },
       "expected": 33,
       "tags": [
-        "hidden",
         "decreasing"
       ]
     },
@@ -121,7 +120,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -137,7 +135,6 @@
       },
       "expected": 49,
       "tags": [
-        "hidden",
         "modulo",
         "maximum-value"
       ]

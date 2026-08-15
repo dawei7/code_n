@@ -174,7 +174,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "boundaries"
       ]
     },
@@ -203,7 +202,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "case"
       ]
     }

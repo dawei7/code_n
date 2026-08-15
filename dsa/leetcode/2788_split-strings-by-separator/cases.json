@@ -149,7 +149,6 @@
         "m"
       ],
       "tags": [
-        "hidden",
         "order"
       ]
     },
@@ -168,7 +167,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "empty-result"
       ]
     },
@@ -187,7 +185,6 @@
         "abcdefghijklmnopqrst"
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -214,7 +211,6 @@
         "e"
       ],
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

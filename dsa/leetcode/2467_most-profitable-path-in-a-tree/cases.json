@@ -152,7 +152,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "simultaneous-arrival"
       ]
     },
@@ -181,7 +180,6 @@
       },
       "expected": -4,
       "tags": [
-        "hidden",
         "negative-values"
       ]
     },
@@ -225,7 +223,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "deep-branch"
       ]
     },
@@ -264,7 +261,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "bob-off-path"
       ]
     }

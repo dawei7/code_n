@@ -120,7 +120,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
@@ -145,7 +144,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "type-limit"
       ]
     }

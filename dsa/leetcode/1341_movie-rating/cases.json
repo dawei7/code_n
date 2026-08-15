@@ -376,7 +376,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "average"
       ]
     },
@@ -437,7 +436,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "movie-tie"
       ]
     },
@@ -488,7 +486,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "row-order"
       ]
     }

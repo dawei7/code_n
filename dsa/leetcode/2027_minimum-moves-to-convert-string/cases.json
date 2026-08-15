@@ -80,7 +80,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "tail-boundary"
       ]
     },
@@ -94,7 +93,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

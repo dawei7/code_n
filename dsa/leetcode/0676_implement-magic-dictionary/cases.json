@@ -239,7 +239,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "two-differences"
       ]
     },
@@ -278,7 +277,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "length-filter"
       ]
     },
@@ -312,7 +310,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "exact-query"
       ]
     }

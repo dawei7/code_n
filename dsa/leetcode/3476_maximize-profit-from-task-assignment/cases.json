@@ -176,7 +176,6 @@
       },
       "expected": 26,
       "tags": [
-        "hidden",
         "duplicate-skills"
       ]
     },
@@ -204,7 +203,6 @@
       },
       "expected": 13,
       "tags": [
-        "hidden",
         "task-uniqueness"
       ]
     },
@@ -239,7 +237,6 @@
       },
       "expected": 240,
       "tags": [
-        "hidden",
         "global-leftover"
       ]
     },
@@ -270,7 +267,6 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "no-match"
       ]
     },
@@ -292,7 +288,6 @@
       },
       "expected": 99,
       "tags": [
-        "hidden",
         "single-task"
       ]
     },
@@ -328,7 +323,6 @@
       },
       "expected": 3999999997,
       "tags": [
-        "hidden",
         "large-values"
       ]
     },
@@ -368,7 +362,6 @@
       },
       "expected": 28,
       "tags": [
-        "hidden",
         "ties",
         "ordering"
       ]

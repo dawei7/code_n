@@ -250,7 +250,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "country-grouping"
       ]
     },
@@ -300,7 +299,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "zero-amount"
       ]
     },
@@ -365,7 +363,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "ordering"
       ]
     }

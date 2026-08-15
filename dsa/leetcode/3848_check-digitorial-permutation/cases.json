@@ -123,7 +123,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero-digit",
         "five-digits"
       ]
@@ -141,7 +140,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "permutation",
         "zero-digit"
       ]
@@ -159,7 +157,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "single-digit",
         "false-case"
       ]
@@ -177,7 +174,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "two-digits",
         "factorial-sum"
       ]
@@ -195,7 +191,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-zero",
         "leading-zero"
       ]
@@ -213,7 +208,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "upper-bound",
         "ten-digits"
       ]

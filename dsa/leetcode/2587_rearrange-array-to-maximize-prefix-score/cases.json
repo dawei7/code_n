@@ -88,7 +88,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
@@ -106,7 +105,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "zeros"
       ]
     },
@@ -123,7 +121,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "strict-positivity"
       ]
     },
@@ -142,7 +139,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "negative-tail"
       ]
     },
@@ -160,7 +156,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-negative"
       ]
     },
@@ -185,7 +180,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "overflow",
         "maximum-values"
       ]
@@ -204,7 +198,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zeros",
         "nonpositive"
       ]
@@ -224,7 +217,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "strict-positivity",
         "rearrangement"
       ]

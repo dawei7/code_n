@@ -260,7 +260,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "structural-sharing"
       ]
     },
@@ -302,7 +301,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "repeated-write"
       ]
     }

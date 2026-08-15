@@ -133,7 +133,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -153,7 +152,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "boundary-values"
       ]
     },
@@ -174,7 +172,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "descending"
       ]
     }

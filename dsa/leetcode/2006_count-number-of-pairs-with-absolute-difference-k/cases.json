@@ -113,7 +113,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "boundaries",
         "duplicates"
       ]
@@ -135,7 +134,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "both-directions"
       ]
     }

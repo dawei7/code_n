@@ -90,7 +90,6 @@
       },
       "expected": "hell helper",
       "tags": [
-        "hidden",
         "equal",
         "shortest"
       ]
@@ -110,7 +109,6 @@
       },
       "expected": "a a",
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -127,7 +125,6 @@
       },
       "expected": "run run run",
       "tags": [
-        "hidden",
         "repeated"
       ]
     }

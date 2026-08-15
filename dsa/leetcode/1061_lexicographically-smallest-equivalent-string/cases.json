@@ -109,7 +109,6 @@
       },
       "expected": "hbdf",
       "tags": [
-        "hidden",
         "components"
       ]
     },
@@ -125,7 +124,6 @@
       },
       "expected": "xyzaa",
       "tags": [
-        "hidden",
         "disconnected"
       ]
     },
@@ -141,7 +139,6 @@
       },
       "expected": "aaaa",
       "tags": [
-        "hidden",
         "duplicate"
       ]
     }

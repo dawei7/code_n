@@ -184,7 +184,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "tall"
       ]
     },
@@ -204,7 +203,6 @@
         42
       ],
       "tags": [
-        "hidden",
         "singleton"
       ]
     }

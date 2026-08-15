@@ -123,7 +123,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "tie"
       ]
     },
@@ -145,7 +144,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "late-winner"
       ]
     },
@@ -163,7 +161,6 @@
       },
       "expected": 100000,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

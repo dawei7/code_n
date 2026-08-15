@@ -153,7 +153,6 @@
       },
       "expected": 13,
       "tags": [
-        "hidden",
         "non-greedy"
       ]
     },
@@ -181,7 +180,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "order"
       ]
     }

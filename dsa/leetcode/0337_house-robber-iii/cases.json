@@ -109,7 +109,6 @@
       },
       "expected": 44,
       "tags": [
-        "hidden",
         "grandchildren"
       ]
     },
@@ -127,7 +126,6 @@
       },
       "expected": 13,
       "tags": [
-        "hidden",
         "children"
       ]
     },
@@ -149,7 +147,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

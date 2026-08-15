@@ -131,7 +131,6 @@
         60
       ],
       "tags": [
-        "hidden",
         "cascade"
       ]
     },
@@ -152,7 +151,6 @@
         12
       ],
       "tags": [
-        "hidden",
         "divisibility"
       ]
     },
@@ -172,7 +170,6 @@
         72
       ],
       "tags": [
-        "hidden",
         "new-factor"
       ]
     },
@@ -198,7 +195,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "ones"
       ]
     },
@@ -219,7 +215,6 @@
         210
       ],
       "tags": [
-        "hidden",
         "full-collapse"
       ]
     },
@@ -239,7 +234,6 @@
         99991
       ],
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

@@ -134,7 +134,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -167,7 +166,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "variadic"
       ]
     },
@@ -188,7 +186,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "strings",
         "cancelled"
       ]
@@ -213,7 +210,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "late-cancel"
       ]
     },
@@ -232,7 +228,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

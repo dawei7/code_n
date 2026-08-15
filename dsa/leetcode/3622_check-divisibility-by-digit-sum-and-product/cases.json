@@ -133,7 +133,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "true",
         "zero-digit"
       ]
@@ -148,7 +147,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "true",
         "multiple-zeroes"
       ]
@@ -163,7 +161,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "true",
         "proper-divisor"
       ]
@@ -178,7 +175,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "false",
         "no-zero"
       ]
@@ -193,7 +189,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "false",
         "large-product"
       ]
@@ -208,7 +203,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "true",
         "multiple-zeroes"
       ]
@@ -223,7 +217,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "false",
         "upper-bound"
       ]
@@ -238,7 +231,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "true",
         "maximum",
         "seven-digits"

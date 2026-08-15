@@ -107,7 +107,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "all-unplaced"
       ]
     },
@@ -128,7 +127,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "basket-uniqueness"
       ]
     },
@@ -151,7 +149,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "prefix-scan"
       ]
     },
@@ -172,7 +169,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "fruit-order"
       ]
     },
@@ -197,7 +193,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -216,7 +211,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -235,7 +229,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -258,7 +251,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-values"
       ]
     }

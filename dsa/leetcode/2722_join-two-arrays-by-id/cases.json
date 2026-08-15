@@ -192,7 +192,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "empty-input"
       ]
     },
@@ -226,7 +225,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "partial-overlap"
       ]
     },
@@ -258,7 +256,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "null"
       ]
     },
@@ -300,7 +297,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "ordering"
       ]
     }

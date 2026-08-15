@@ -103,7 +103,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "gcd-cycles"
       ]
     },
@@ -124,7 +123,6 @@
       },
       "expected": 1999999998,
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

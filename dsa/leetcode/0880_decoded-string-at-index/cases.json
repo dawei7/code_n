@@ -103,7 +103,6 @@
       },
       "expected": "c",
       "tags": [
-        "hidden",
         "copy-boundary"
       ]
     },
@@ -118,7 +117,6 @@
       },
       "expected": "a",
       "tags": [
-        "hidden",
         "copy-start"
       ]
     },
@@ -133,7 +131,6 @@
       },
       "expected": "c",
       "tags": [
-        "hidden",
         "copy-end"
       ]
     },
@@ -148,7 +145,6 @@
       },
       "expected": "a",
       "tags": [
-        "hidden",
         "nested"
       ]
     },
@@ -163,7 +159,6 @@
       },
       "expected": "x",
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

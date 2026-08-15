@@ -145,7 +145,6 @@
       },
       "expected": -9,
       "tags": [
-        "hidden",
         "interior-split"
       ]
     },
@@ -169,7 +168,6 @@
       },
       "expected": -199991,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

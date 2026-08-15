@@ -112,7 +112,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "leading"
       ]
     },
@@ -132,7 +131,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "trailing"
       ]
     },
@@ -150,7 +148,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

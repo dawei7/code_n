@@ -167,7 +167,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "strict-boundary"
       ]
     },
@@ -202,7 +201,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "empty-result"
       ]
     },
@@ -249,7 +247,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ordering"
       ]
     }

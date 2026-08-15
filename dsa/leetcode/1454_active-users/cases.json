@@ -339,7 +339,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "ordering",
         "multiple-accounts"
       ]
@@ -394,7 +393,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "year-boundary"
       ]
     },
@@ -472,7 +470,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "multiple-streaks",
         "dedup-output"
       ]

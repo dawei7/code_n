@@ -155,7 +155,6 @@
         "kind": "master_guessed"
       },
       "tags": [
-        "hidden",
         "first-guess"
       ]
     },
@@ -185,7 +184,6 @@
         "kind": "master_guessed"
       },
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -214,7 +212,6 @@
         "kind": "master_guessed"
       },
       "tags": [
-        "hidden",
         "common-prefix"
       ]
     }

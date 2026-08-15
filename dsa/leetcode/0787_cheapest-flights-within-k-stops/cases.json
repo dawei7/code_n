@@ -261,7 +261,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
@@ -310,7 +309,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "stop-limit"
       ]
     },
@@ -328,7 +326,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "unreachable"
       ]
     }

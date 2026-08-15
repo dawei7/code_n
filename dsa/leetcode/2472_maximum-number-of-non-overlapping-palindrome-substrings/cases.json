@@ -72,7 +72,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "odd-length"
       ]
     },
@@ -87,7 +86,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "long-palindromes"
       ]
     },
@@ -102,7 +100,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -117,7 +114,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "full-string"
       ]
     },
@@ -132,7 +128,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "full-string"
       ]
     }

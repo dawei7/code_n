@@ -163,7 +163,6 @@
         "kind": "parity_partition"
       },
       "tags": [
-        "hidden",
         "reversed"
       ]
     },
@@ -194,7 +193,6 @@
         "kind": "parity_partition"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -223,7 +221,6 @@
         "kind": "parity_partition"
       },
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -250,7 +247,6 @@
         "kind": "parity_partition"
       },
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -285,7 +281,6 @@
         "kind": "parity_partition"
       },
       "tags": [
-        "hidden",
         "alternating"
       ]
     }

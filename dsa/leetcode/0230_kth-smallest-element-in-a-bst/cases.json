@@ -83,7 +83,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "skewed",
         "largest"
       ]

@@ -361,7 +361,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "overlapping-options",
         "minimum-cost-choice"
       ]
@@ -386,7 +385,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "pattern-mismatch",
         "impossible"
       ]
@@ -411,7 +409,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "replacement-mismatch",
         "impossible"
       ]
@@ -436,7 +433,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "multiple-wildcards",
         "arbitrary-matches"
       ]
@@ -461,7 +457,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "four-wildcards",
         "long-pattern"
       ]
@@ -486,7 +481,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "maximum-wildcards",
         "whole-string-rule"
       ]
@@ -511,7 +505,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "rule-reuse",
         "disjoint-positions"
       ]
@@ -541,7 +534,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "uncovered-position",
         "impossible"
       ]

@@ -129,7 +129,6 @@
       },
       "expected": "Amy",
       "tags": [
-        "hidden",
         "accumulation"
       ]
     },
@@ -152,7 +151,6 @@
       },
       "expected": "Zoe",
       "tags": [
-        "hidden",
         "tie"
       ]
     },
@@ -175,7 +173,6 @@
       },
       "expected": "A",
       "tags": [
-        "hidden",
         "word-count"
       ]
     }

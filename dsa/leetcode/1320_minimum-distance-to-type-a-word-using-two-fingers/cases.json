@@ -82,7 +82,6 @@
       },
       "expected": 36,
       "tags": [
-        "hidden",
         "all-keys"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 52,
       "tags": [
-        "hidden",
         "all-keys",
         "reordering"
       ]

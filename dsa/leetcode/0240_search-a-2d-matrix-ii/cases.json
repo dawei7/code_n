@@ -92,7 +92,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "empty"
       ]
     }

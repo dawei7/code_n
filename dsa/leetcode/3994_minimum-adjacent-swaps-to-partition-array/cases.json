@@ -301,7 +301,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "duplicates",
         "all-inversion-types"
       ]
@@ -325,7 +324,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "interleaved",
         "all-groups"
       ]
@@ -347,7 +345,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "inclusive-boundaries"
       ]
     },
@@ -368,7 +365,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "already-good",
         "inclusive-boundaries"
       ]
@@ -389,7 +385,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "maximum-value",
         "wide-range"
       ]
@@ -419,7 +414,6 @@
       },
       "expected": 48,
       "tags": [
-        "hidden",
         "descending-groups",
         "all-inversion-types"
       ]

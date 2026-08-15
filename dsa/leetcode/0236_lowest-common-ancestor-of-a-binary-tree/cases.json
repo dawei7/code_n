@@ -115,7 +115,6 @@
         "kind": "node_value"
       },
       "tags": [
-        "hidden",
         "same-side"
       ]
     }

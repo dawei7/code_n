@@ -88,7 +88,6 @@
       },
       "expected": 22,
       "tags": [
-        "hidden",
         "central"
       ]
     },
@@ -103,7 +102,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "symmetry"
       ]
     }

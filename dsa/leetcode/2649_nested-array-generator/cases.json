@@ -127,7 +127,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "mixed-depth",
         "order"
       ]
@@ -151,7 +150,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "empty-branches"
       ]
     },
@@ -185,7 +183,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "duplicates",
         "zero"
       ]
@@ -226,7 +223,6 @@
         7
       ],
       "tags": [
-        "hidden",
         "asymmetric",
         "order"
       ]

@@ -121,7 +121,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "sequential"
       ]
     },
@@ -145,7 +144,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "multiple-merges"
       ]
     },
@@ -169,7 +167,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "all-zero"
       ]
     },
@@ -195,7 +192,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "no-op"
       ]
     }

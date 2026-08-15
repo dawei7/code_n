@@ -100,7 +100,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-zeros"
       ]
     },
@@ -117,7 +116,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-input"
       ]
     },
@@ -134,7 +132,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "no-zeros"
       ]
     },
@@ -151,7 +148,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-bound"
       ]
     }

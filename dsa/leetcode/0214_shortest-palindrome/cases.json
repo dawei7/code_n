@@ -51,7 +51,6 @@
       },
       "expected": "racecar",
       "tags": [
-        "hidden",
         "palindrome"
       ]
     }

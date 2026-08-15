@@ -132,7 +132,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "alternating",
         "impossible"
       ]
@@ -155,7 +154,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum-prefix",
         "mixed"
       ]
@@ -177,7 +175,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "all-ones",
         "strict-majority"
       ]

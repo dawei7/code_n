@@ -187,7 +187,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "two-cycles"
       ]
     },
@@ -240,7 +239,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "tail"
       ]
     },
@@ -280,7 +278,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "dense"
       ]
     }

@@ -199,7 +199,6 @@
         "JFK"
       ],
       "tags": [
-        "hidden",
         "cycles"
       ]
     },
@@ -241,7 +240,6 @@
         "ZZZ"
       ],
       "tags": [
-        "hidden",
         "lexical"
       ]
     },
@@ -283,7 +281,6 @@
         "C"
       ],
       "tags": [
-        "hidden",
         "nested-cycle"
       ]
     }

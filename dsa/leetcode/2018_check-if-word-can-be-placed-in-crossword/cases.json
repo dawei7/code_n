@@ -152,7 +152,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "letter-mismatch"
       ]
     },
@@ -177,7 +176,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "blockers",
         "blank"
       ]
@@ -203,7 +201,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "vertical",
         "backward"
       ]

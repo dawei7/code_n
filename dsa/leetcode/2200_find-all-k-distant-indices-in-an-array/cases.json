@@ -155,7 +155,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "left-boundary"
       ]
     },
@@ -181,7 +180,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "right-boundary"
       ]
     },
@@ -211,7 +209,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "large-k"
       ]
     },
@@ -243,7 +240,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "touching-intervals"
       ]
     }

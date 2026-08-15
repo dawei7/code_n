@@ -317,7 +317,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "top-insertion",
         "fixed-rank"
       ]
@@ -353,7 +352,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "remaining-insertion",
         "fixed-rank"
       ]
@@ -395,7 +393,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "rank-movement"
       ]
@@ -429,7 +426,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "maximum-base"
       ]
@@ -481,7 +477,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "alternating-rank",
         "difference-nine"
       ]
@@ -517,7 +512,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "first-rank",
         "complete-partition"
       ]
@@ -557,7 +551,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "modular-wrap",
         "sequential-state"
       ]

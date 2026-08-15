@@ -219,7 +219,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-runs"
       ]
     },
@@ -260,7 +259,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "equal-values"
       ]
     },
@@ -295,7 +293,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "run-boundary"
       ]
     },
@@ -336,7 +333,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "run-boundary"
       ]
     },
@@ -383,7 +379,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "nested-queries"
       ]
     }

@@ -124,7 +124,6 @@
         "kind": "dining_philosophers"
       },
       "tags": [
-        "hidden",
         "same-philosopher"
       ]
     },
@@ -155,7 +154,6 @@
         "kind": "dining_philosophers"
       },
       "tags": [
-        "hidden",
         "randomized"
       ]
     },
@@ -187,7 +185,6 @@
         "kind": "dining_philosophers"
       },
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

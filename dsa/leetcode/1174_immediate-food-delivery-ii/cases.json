@@ -186,7 +186,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "rounding"
       ]
     },
@@ -230,7 +229,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "row-order"
       ]
     }

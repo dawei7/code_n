@@ -168,7 +168,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "integer-division"
       ]
     },
@@ -200,7 +199,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero-tolls"
       ]
     },
@@ -242,7 +240,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "no-discounts"
       ]
     }

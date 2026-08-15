@@ -168,7 +168,6 @@
         "tolerance": 1e-09
       },
       "tags": [
-        "hidden",
         "partition"
       ]
     },
@@ -192,7 +191,6 @@
         "tolerance": 1e-09
       },
       "tags": [
-        "hidden",
         "uniform"
       ]
     },
@@ -217,7 +215,6 @@
         "tolerance": 1e-09
       },
       "tags": [
-        "hidden",
         "outliers"
       ]
     }

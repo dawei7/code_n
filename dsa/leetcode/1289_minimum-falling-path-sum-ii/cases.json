@@ -152,7 +152,6 @@
       },
       "expected": -10,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -191,7 +190,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "four-rows"
       ]
     }

@@ -87,7 +87,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "one-palindrome"
       ]
     },
@@ -102,7 +101,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "odd-counts"
       ]
     }

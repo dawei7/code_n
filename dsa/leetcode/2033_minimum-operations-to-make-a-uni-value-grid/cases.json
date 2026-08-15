@@ -133,7 +133,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-equal"
       ]
     },
@@ -153,7 +152,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -179,7 +177,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "rectangular",
         "even-count"
       ]

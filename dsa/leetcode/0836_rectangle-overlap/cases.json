@@ -173,7 +173,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "identical"
       ]
     },
@@ -198,7 +197,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "vertical-gap"
       ]
     },
@@ -223,7 +221,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "horizontal-gap"
       ]
     },
@@ -248,7 +245,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "unit-overlap"
       ]
     },
@@ -273,7 +269,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "large-coordinates"
       ]
     }

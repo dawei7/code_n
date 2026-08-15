@@ -279,7 +279,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "full-brightness",
         "singleton-interval"
       ]
@@ -312,7 +311,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "nested",
         "union"
       ]
@@ -345,7 +343,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "adjacent-intervals",
         "ceiling"
       ]
@@ -370,7 +367,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary",
         "maximum-values"
       ]
@@ -403,7 +399,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "overlap"
       ]
@@ -440,7 +435,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unsorted",
         "multiple-components"
       ]

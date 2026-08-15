@@ -283,7 +283,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "diagonals"
       ]
     },
@@ -316,7 +315,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "dense"
       ]
     },
@@ -363,7 +361,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "horizontal-shift"
       ]
     },
@@ -410,7 +407,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "translated-shape"
       ]
     },
@@ -457,7 +453,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "count-bound"
       ]
     }

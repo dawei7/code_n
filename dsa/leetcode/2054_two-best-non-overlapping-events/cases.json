@@ -147,7 +147,6 @@
       },
       "expected": 27,
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
@@ -182,7 +181,6 @@
       },
       "expected": 13,
       "tags": [
-        "hidden",
         "suffix-maximum"
       ]
     },
@@ -212,7 +210,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "all-overlap"
       ]
     }

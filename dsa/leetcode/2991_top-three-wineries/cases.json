@@ -295,7 +295,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "aggregation"
       ]
     },
@@ -354,7 +353,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "top-three"
       ]
     }

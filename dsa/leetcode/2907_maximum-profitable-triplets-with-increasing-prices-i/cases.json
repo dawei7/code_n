@@ -155,7 +155,6 @@
       },
       "expected": 74,
       "tags": [
-        "hidden",
         "side-maxima"
       ]
     },
@@ -178,7 +177,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "minimum-length",
         "duplicate-prices"
       ]
@@ -202,7 +200,6 @@
       },
       "expected": 3000000,
       "tags": [
-        "hidden",
         "profit-boundary"
       ]
     }

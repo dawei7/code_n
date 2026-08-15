@@ -195,7 +195,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "count-tie"
       ]
     },
@@ -219,7 +218,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "idle-rooms"
       ]
     },
@@ -243,7 +241,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "unsorted"
       ]
     }

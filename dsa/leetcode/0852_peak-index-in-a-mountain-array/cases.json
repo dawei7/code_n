@@ -136,7 +136,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "right-peak"
       ]
     },
@@ -160,7 +159,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "left-peak"
       ]
     },
@@ -182,7 +180,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "asymmetric"
       ]
     },
@@ -203,7 +200,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "even"
       ]
     },
@@ -224,7 +220,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "off-center"
       ]
     },
@@ -246,7 +241,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "symmetric-values"
       ]
     }

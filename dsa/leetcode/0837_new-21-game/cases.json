@@ -138,7 +138,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     },
@@ -158,7 +157,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "probability"
       ]
     },
@@ -178,7 +176,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "multi-draw"
       ]
     },
@@ -198,7 +195,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "wide-range"
       ]
     }

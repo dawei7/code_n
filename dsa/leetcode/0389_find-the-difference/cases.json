@@ -88,7 +88,6 @@
       },
       "expected": "q",
       "tags": [
-        "hidden",
         "distinct"
       ]
     },
@@ -103,7 +102,6 @@
       },
       "expected": "o",
       "tags": [
-        "hidden",
         "multiplicity"
       ]
     },
@@ -118,7 +116,6 @@
       },
       "expected": "z",
       "tags": [
-        "hidden",
         "groups"
       ]
     }

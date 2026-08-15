@@ -109,7 +109,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "duplicates",
         "tie-break"
       ]
@@ -129,7 +128,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "positive"
       ]
     },
@@ -149,7 +147,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "tie-break"
       ]
     }

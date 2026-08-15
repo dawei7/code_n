@@ -114,7 +114,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "single-maximum"
       ]
     },
@@ -135,7 +134,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -155,7 +153,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "insufficient-frequency"
       ]
     },
@@ -177,7 +174,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "multiple-windows"
       ]
     }

@@ -143,7 +143,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "negative-values"
       ]
     },
@@ -162,7 +161,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "full-span",
         "value-bounds"
       ]
@@ -183,7 +181,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-equal",
         "strict-inequality"
       ]

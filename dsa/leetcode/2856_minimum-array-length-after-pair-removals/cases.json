@@ -130,7 +130,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "dominant-first-run"
       ]
     },
@@ -150,7 +149,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "middle-run"
       ]
     },
@@ -170,7 +168,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "tied-frequency",
         "parity"
       ]
@@ -189,7 +186,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "all-equal"
       ]
     }

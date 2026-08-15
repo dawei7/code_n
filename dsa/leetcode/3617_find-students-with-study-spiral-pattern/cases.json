@@ -691,7 +691,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "same-date",
         "session-order"
       ]
@@ -900,7 +899,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "output-order",
         "tie-break"
       ]
@@ -998,7 +996,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "invalid-pattern",
         "no-sessions"
       ]

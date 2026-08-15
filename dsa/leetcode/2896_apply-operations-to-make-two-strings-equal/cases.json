@@ -94,7 +94,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "dynamic-programming",
         "four-mismatches"
       ]

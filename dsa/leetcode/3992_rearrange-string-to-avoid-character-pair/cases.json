@@ -256,7 +256,6 @@
         "kind": "character_pair_rearrangement"
       },
       "tags": [
-        "hidden",
         "all-x",
         "absent-y"
       ]
@@ -276,7 +275,6 @@
         "kind": "character_pair_rearrangement"
       },
       "tags": [
-        "hidden",
         "all-y",
         "absent-x"
       ]
@@ -296,7 +294,6 @@
         "kind": "character_pair_rearrangement"
       },
       "tags": [
-        "hidden",
         "alphabet",
         "x-less-than-y"
       ]
@@ -316,7 +313,6 @@
         "kind": "character_pair_rearrangement"
       },
       "tags": [
-        "hidden",
         "alphabet",
         "x-greater-than-y"
       ]
@@ -336,7 +332,6 @@
         "kind": "character_pair_rearrangement"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "neutral-characters"
       ]
@@ -356,7 +351,6 @@
         "kind": "character_pair_rearrangement"
       },
       "tags": [
-        "hidden",
         "alternating",
         "no-neutral-characters"
       ]
@@ -376,7 +370,6 @@
         "kind": "character_pair_rearrangement"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "mixed-characters"
       ]
@@ -396,7 +389,6 @@
         "kind": "character_pair_rearrangement"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "both-absent"
       ]

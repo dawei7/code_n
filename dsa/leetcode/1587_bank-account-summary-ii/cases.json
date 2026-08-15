@@ -312,7 +312,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "negative-amount",
         "boundary"
       ]
@@ -357,7 +356,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "no-transactions"
       ]
     },
@@ -402,7 +400,6 @@
         "rows": []
       },
       "tags": [
-        "hidden",
         "empty-result"
       ]
     },
@@ -448,7 +445,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "date-irrelevant"
       ]
     },
@@ -494,7 +490,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

@@ -143,7 +143,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
@@ -177,7 +176,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

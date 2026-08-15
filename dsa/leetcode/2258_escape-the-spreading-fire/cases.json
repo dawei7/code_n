@@ -197,7 +197,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "safehouse-tie"
       ]
     },
@@ -230,7 +229,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "corridor"
       ]
     },
@@ -260,7 +258,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "intermediate-tie"
       ]
     }

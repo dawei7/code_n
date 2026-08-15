@@ -138,7 +138,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -162,7 +161,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "increasing"
       ]
     },
@@ -192,7 +190,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

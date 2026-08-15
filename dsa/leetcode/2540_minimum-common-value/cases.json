@@ -113,7 +113,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "last-value"
       ]
     },
@@ -132,7 +131,6 @@
       },
       "expected": 1000000000,
       "tags": [
-        "hidden",
         "singleton",
         "upper-bound"
       ]

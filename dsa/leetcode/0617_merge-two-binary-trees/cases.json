@@ -166,7 +166,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "negative-values"
       ]
     },
@@ -200,7 +199,6 @@
         30
       ],
       "tags": [
-        "hidden",
         "shape-union"
       ]
     }

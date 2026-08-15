@@ -139,7 +139,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "outgoing-mode",
         "tie-break"
       ]
@@ -159,7 +158,6 @@
       },
       "expected": 199998,
       "tags": [
-        "hidden",
         "maximum-value"
       ]
     },
@@ -181,7 +179,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "all-distinct",
         "sliding"
       ]

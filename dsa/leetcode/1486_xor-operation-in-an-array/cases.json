@@ -59,7 +59,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "zero",
         "short"
       ]
@@ -75,7 +74,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "odd-start",
         "odd-length"
       ]
@@ -91,7 +89,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "bit-boundaries"
       ]
     },
@@ -106,7 +103,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-length",
         "maximum-start"
       ]
@@ -122,7 +118,6 @@
       },
       "expected": 1998,
       "tags": [
-        "hidden",
         "odd-length",
         "zero"
       ]

@@ -51,7 +51,6 @@
       },
       "expected": 25,
       "tags": [
-        "hidden",
         "sieve"
       ]
     }

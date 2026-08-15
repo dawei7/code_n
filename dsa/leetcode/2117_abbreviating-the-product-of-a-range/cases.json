@@ -89,7 +89,6 @@
       },
       "expected": "64023...05728e3",
       "tags": [
-        "hidden",
         "zero-padding"
       ]
     },
@@ -104,7 +103,6 @@
       },
       "expected": "15268...09088e84",
       "tags": [
-        "hidden",
         "wide-range",
         "many-zeros"
       ]

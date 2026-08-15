@@ -152,7 +152,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-equal"
       ]
     },
@@ -175,7 +174,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-parts"
       ]
     },
@@ -197,7 +195,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "odd-length"
       ]
     },
@@ -220,7 +217,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "wrapped-part"
       ]
     },
@@ -243,7 +239,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "single-part"
       ]
     },
@@ -266,7 +261,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundaries",
         "large-score"
       ]

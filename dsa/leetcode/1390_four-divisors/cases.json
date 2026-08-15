@@ -86,7 +86,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "many-divisors"
       ]
     },
@@ -106,7 +105,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "too-few-divisors"
       ]
     },
@@ -127,7 +125,6 @@
       },
       "expected": 94,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

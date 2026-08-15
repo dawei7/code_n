@@ -103,7 +103,6 @@
       },
       "expected": 56,
       "tags": [
-        "hidden",
         "balancing"
       ]
     },
@@ -119,7 +118,6 @@
       },
       "expected": 705,
       "tags": [
-        "hidden",
         "high-bits"
       ]
     },
@@ -135,7 +133,6 @@
       },
       "expected": 178448631,
       "tags": [
-        "hidden",
         "maximum-n"
       ]
     },
@@ -151,7 +148,6 @@
       },
       "expected": 544612161,
       "tags": [
-        "hidden",
         "maximum-n",
         "balancing"
       ]

@@ -202,7 +202,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "decreasing-orientation"
       ]
     },
@@ -227,7 +226,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "decreasing-orientation"
       ]
     },
@@ -249,7 +247,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unreachable"
       ]
     },
@@ -272,7 +269,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unreachable"
       ]
     },
@@ -292,7 +288,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "length-two"
       ]
     },
@@ -322,7 +317,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "increasing-orientation"
       ]
     },
@@ -352,7 +346,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "decreasing-orientation"
       ]
     }

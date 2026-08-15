@@ -87,7 +87,6 @@
       },
       "expected": "bcaba",
       "tags": [
-        "hidden",
         "block-boundary"
       ]
     },
@@ -102,7 +101,6 @@
       },
       "expected": "abacbabacb",
       "tags": [
-        "hidden",
         "maximum-rank"
       ]
     }

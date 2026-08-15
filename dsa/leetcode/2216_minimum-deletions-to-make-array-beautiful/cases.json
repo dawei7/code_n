@@ -92,7 +92,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "all-equal"
       ]
     },
@@ -112,7 +111,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "odd-tail"
       ]
     },
@@ -135,7 +133,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "parity-shift"
       ]
     },
@@ -160,7 +157,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "duplicate-runs"
       ]
     }

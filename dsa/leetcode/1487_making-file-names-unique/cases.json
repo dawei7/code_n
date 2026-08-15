@@ -120,7 +120,6 @@
         "kaido(1)(1)"
       ],
       "tags": [
-        "hidden",
         "nested-suffix"
       ]
     },
@@ -144,7 +143,6 @@
         "x(3)"
       ],
       "tags": [
-        "hidden",
         "suffix-gap",
         "preoccupied"
       ]
@@ -169,7 +167,6 @@
         "a(2)"
       ],
       "tags": [
-        "hidden",
         "literal-parentheses",
         "nested-suffix"
       ]
@@ -192,7 +189,6 @@
         "doc(1)(1)"
       ],
       "tags": [
-        "hidden",
         "generated-name",
         "nested-suffix"
       ]
@@ -213,7 +209,6 @@
         "abcdefghijklmnopqrst(1)"
       ],
       "tags": [
-        "hidden",
         "maximum-length"
       ]
     }

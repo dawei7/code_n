@@ -103,7 +103,6 @@
       },
       "expected": "vwxyz",
       "tags": [
-        "hidden",
         "full-prefix"
       ]
     },
@@ -118,7 +117,6 @@
       },
       "expected": "aaccaaddbb",
       "tags": [
-        "hidden",
         "rotation",
         "duplicates"
       ]
@@ -134,7 +132,6 @@
       },
       "expected": "aaaazzzz",
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -149,7 +146,6 @@
       },
       "expected": "abcdefg",
       "tags": [
-        "hidden",
         "late-minimum"
       ]
     }

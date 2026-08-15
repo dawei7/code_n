@@ -107,7 +107,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "wraparound"
       ]
     },
@@ -124,7 +123,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "blocked-target"
       ]
     },
@@ -139,7 +137,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "multi-wheel"
       ]
     }

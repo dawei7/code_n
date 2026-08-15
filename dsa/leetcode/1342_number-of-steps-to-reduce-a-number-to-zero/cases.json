@@ -82,7 +82,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "bit-pattern"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 19,
       "tags": [
-        "hidden",
         "dense-bits"
       ]
     }

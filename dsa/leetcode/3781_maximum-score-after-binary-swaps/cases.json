@@ -153,7 +153,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "directionality"
       ]
     },
@@ -175,7 +174,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "long-move"
       ]
     },
@@ -195,7 +193,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-length",
         "zero"
       ]
@@ -216,7 +213,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-length",
         "large-value"
       ]
@@ -240,7 +236,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "prefix-deadline"
       ]
     },
@@ -265,7 +260,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

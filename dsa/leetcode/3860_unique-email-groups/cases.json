@@ -148,7 +148,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "plus-suffix",
         "duplicates"
       ]
@@ -169,7 +168,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "domain-distinction",
         "same-local"
       ]
@@ -191,7 +189,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "case-folding",
         "dot-removal"
       ]
@@ -213,7 +210,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "digits",
         "local-distinction"
       ]
@@ -235,7 +231,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "exact-duplicates",
         "case-folding"
       ]
@@ -256,7 +251,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "first-plus",
         "ignored-suffix"
       ]
@@ -279,7 +273,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-unique",
         "local-domain-pair"
       ]

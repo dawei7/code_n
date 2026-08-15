@@ -137,7 +137,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "components"
       ]
     },
@@ -160,7 +159,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
@@ -183,7 +181,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

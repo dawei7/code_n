@@ -149,7 +149,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "same-orientation",
         "cross-and-swap"
       ]
@@ -171,7 +170,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "same-orientation",
         "flips"
       ]
@@ -193,7 +191,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-mismatches",
         "pairing-order"
       ]
@@ -215,7 +212,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "even-remainder",
         "cross-and-swap"
       ]
@@ -237,7 +233,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "odd-remainder",
         "large-cost"
       ]
@@ -259,7 +254,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "matching-positions",
         "mixed-mismatches"
       ]

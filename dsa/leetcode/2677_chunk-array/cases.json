@@ -209,7 +209,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -240,7 +239,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "remainder"
       ]
     }

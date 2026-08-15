@@ -93,7 +93,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "self-loop"
       ]
     }

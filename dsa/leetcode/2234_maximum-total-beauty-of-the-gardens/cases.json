@@ -126,7 +126,6 @@
       },
       "expected": 13,
       "tags": [
-        "hidden",
         "unused-budget"
       ]
     },
@@ -148,7 +147,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "all-incomplete"
       ]
     },
@@ -170,7 +168,6 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "existing-complete"
       ]
     }

@@ -237,7 +237,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "maximum",
         "lower-bound"
       ],
@@ -354,7 +353,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "maximum",
         "early-break"
       ],

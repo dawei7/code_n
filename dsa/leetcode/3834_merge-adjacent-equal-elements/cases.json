@@ -200,7 +200,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "separated-duplicates",
         "no-merge"
       ]
@@ -226,7 +225,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "independent-pairs"
       ]
     },
@@ -250,7 +248,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "odd-run",
         "leftmost-order"
       ]
@@ -273,7 +270,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "output-growth"
       ]
@@ -300,7 +296,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multi-stage-cascade",
         "leftmost-order"
       ]

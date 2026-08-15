@@ -96,7 +96,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "skipped"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "large-target",
         "skipped"
       ]
@@ -125,7 +123,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "large-target",
         "present"
       ]

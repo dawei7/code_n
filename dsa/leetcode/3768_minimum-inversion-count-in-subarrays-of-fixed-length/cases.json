@@ -183,7 +183,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "descending",
         "positive-minimum"
       ]
@@ -208,7 +207,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "window-transition",
         "mixed-order"
       ]
@@ -232,7 +230,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary",
         "duplicates"
       ]

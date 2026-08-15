@@ -147,7 +147,6 @@
       },
       "expected": 34,
       "tags": [
-        "hidden",
         "dynamic-programming"
       ]
     },
@@ -167,7 +166,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "zeros"
       ]
     },
@@ -188,7 +186,6 @@
       },
       "expected": 39,
       "tags": [
-        "hidden",
         "partition-boundary"
       ]
     }

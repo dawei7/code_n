@@ -174,7 +174,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "average-semantics",
         "mixed-order"
       ]
@@ -197,7 +196,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "late-dominance",
         "duplicates"
       ]
@@ -220,7 +218,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "first-index",
         "mixed-order"
       ]
@@ -244,7 +241,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-value",
         "maximum-value"
       ]
@@ -363,7 +359,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "maximum-value"
       ]

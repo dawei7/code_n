@@ -139,7 +139,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "full-cascade"
       ]
     },
@@ -168,7 +167,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "mixed-values"
       ]
     }

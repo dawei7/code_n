@@ -91,7 +91,6 @@
       },
       "expected": "Thursday",
       "tags": [
-        "hidden",
         "leap-year"
       ]
     },
@@ -107,7 +106,6 @@
       },
       "expected": "Monday",
       "tags": [
-        "hidden",
         "century"
       ]
     },
@@ -123,7 +121,6 @@
       },
       "expected": "Friday",
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

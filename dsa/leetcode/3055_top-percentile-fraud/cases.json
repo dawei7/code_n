@@ -489,7 +489,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ceil",
         "boundary-tie"
       ]
@@ -558,7 +557,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "partition",
         "ordering"
       ]

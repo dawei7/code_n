@@ -124,7 +124,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "monotonic"
       ]
     },
@@ -142,7 +141,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "peak"
       ]
     },
@@ -160,7 +158,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-turns"
       ]
     },
@@ -178,7 +175,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "range"
       ]
     },
@@ -196,7 +192,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-bound"
       ]
     }

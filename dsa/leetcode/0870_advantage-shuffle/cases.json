@@ -202,7 +202,6 @@
         "kind": "advantage_shuffle"
       },
       "tags": [
-        "hidden",
         "singleton"
       ]
     },
@@ -232,7 +231,6 @@
         "kind": "advantage_shuffle"
       },
       "tags": [
-        "hidden",
         "zeros"
       ]
     },
@@ -265,7 +263,6 @@
         "kind": "advantage_shuffle"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -292,7 +289,6 @@
         "kind": "advantage_shuffle"
       },
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -322,7 +318,6 @@
         "kind": "advantage_shuffle"
       },
       "tags": [
-        "hidden",
         "sacrifice"
       ]
     },
@@ -355,7 +350,6 @@
         "kind": "advantage_shuffle"
       },
       "tags": [
-        "hidden",
         "cycle"
       ]
     }

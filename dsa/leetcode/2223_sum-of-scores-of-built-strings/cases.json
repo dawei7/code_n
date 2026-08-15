@@ -66,7 +66,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "no-proper-match"
       ]
     },
@@ -80,7 +79,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -94,7 +92,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "partial-matches"
       ]
     },
@@ -108,7 +105,6 @@
       },
       "expected": 18,
       "tags": [
-        "hidden",
         "repeated-block"
       ]
     }

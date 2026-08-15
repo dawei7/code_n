@@ -135,7 +135,6 @@
         "1*a*c"
       ],
       "tags": [
-        "hidden",
         "distribution"
       ]
     },
@@ -159,7 +158,6 @@
         "9"
       ],
       "tags": [
-        "hidden",
         "constant"
       ]
     },
@@ -179,7 +177,6 @@
         "1*c"
       ],
       "tags": [
-        "hidden",
         "parentheses"
       ]
     },
@@ -195,7 +192,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "zero"
       ]
     }

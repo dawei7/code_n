@@ -162,7 +162,6 @@
       },
       "expected": 190,
       "tags": [
-        "hidden",
         "early-prefix-maximum",
         "late-right"
       ]
@@ -184,7 +183,6 @@
       },
       "expected": 190,
       "tags": [
-        "hidden",
         "newly-eligible",
         "prefix-update"
       ]
@@ -204,7 +202,6 @@
       },
       "expected": 101,
       "tags": [
-        "hidden",
         "invalid-near-pair",
         "distance"
       ]
@@ -226,7 +223,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "increasing",
         "late-prefix"
       ]
@@ -248,7 +244,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "decreasing",
         "early-prefix"
       ]
@@ -270,7 +265,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "repeated-maxima",
         "gap-boundary"
       ]
@@ -291,7 +285,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "prefix-tie",
         "late-right"
       ]
@@ -314,7 +307,6 @@
       },
       "expected": 90,
       "tags": [
-        "hidden",
         "interior-pair",
         "exact-gap"
       ]

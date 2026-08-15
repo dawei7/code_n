@@ -159,7 +159,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-zero"
       ]
     },
@@ -181,7 +180,6 @@
       },
       "expected": 3000000000,
       "tags": [
-        "hidden",
         "maximum-value",
         "negative-value"
       ]
@@ -205,7 +203,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "index-semantics"
       ]
     },
@@ -228,7 +225,6 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "empty-b-sum",
         "prime-indices"
       ]
@@ -259,7 +255,6 @@
       },
       "expected": 22,
       "tags": [
-        "hidden",
         "mixed-signs",
         "longer-array"
       ]
@@ -100275,7 +100270,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-input",
         "all-zero"
       ]

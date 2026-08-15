@@ -105,7 +105,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "singletons"
       ]
     },
@@ -127,7 +126,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "overfull"
       ]
     },
@@ -147,7 +145,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "singleton"
       ]
     }

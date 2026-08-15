@@ -152,7 +152,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "overflow",
         "product-cap"
       ]
@@ -175,7 +174,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "interior-index",
         "exact-equality"
       ]
@@ -198,7 +196,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiplicative-identity",
         "suffix-product"
       ]
@@ -221,7 +218,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "penultimate-index",
         "right-product"
       ]
@@ -245,7 +241,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "overflow-guard",
         "no-balance"
       ]
@@ -265,7 +260,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "singleton",
         "maximum-value"
       ]
@@ -288,7 +282,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary-value",
         "large-equality"
       ]

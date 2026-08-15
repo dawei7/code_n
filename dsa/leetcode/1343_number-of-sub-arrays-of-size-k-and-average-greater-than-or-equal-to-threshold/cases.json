@@ -134,7 +134,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "whole-array"
       ]
     },
@@ -154,7 +153,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "fractional-average"
       ]
     }

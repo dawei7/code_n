@@ -514,7 +514,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "ordering"
       ]
     },
@@ -598,7 +597,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "skew",
         "duplicates"
       ]

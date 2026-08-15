@@ -403,7 +403,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "complete-graph",
         "uniform-degrees"
       ]
@@ -474,7 +473,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "empty-graph",
         "all-isolated"
       ]
@@ -545,7 +543,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "disconnected",
         "regular-components"
       ]
@@ -632,7 +629,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "irregular-graph",
         "mixed-degrees"
       ]
@@ -719,7 +715,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "bipartite",
         "two-degree-values"
       ]
@@ -11036,7 +11031,6 @@
         99
       ],
       "tags": [
-        "hidden",
         "upper-bound",
         "complete-graph",
         "maximum-degree"

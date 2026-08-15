@@ -162,7 +162,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "vertical"
       ]
     },
@@ -193,7 +192,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "border"
       ]
     },
@@ -236,7 +234,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "geometry"
       ]
     },
@@ -263,7 +260,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

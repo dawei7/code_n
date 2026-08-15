@@ -79,7 +79,6 @@
       },
       "expected": 20736,
       "tags": [
-        "hidden",
         "dynamic-programming"
       ]
     },
@@ -93,7 +92,6 @@
       },
       "expected": 142129,
       "tags": [
-        "hidden",
         "larger-input"
       ]
     }

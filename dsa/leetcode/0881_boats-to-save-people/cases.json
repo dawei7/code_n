@@ -130,7 +130,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -150,7 +149,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "greedy"
       ]
     },
@@ -170,7 +168,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -191,7 +188,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "complements"
       ]
     },
@@ -209,7 +205,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "bounds"
       ]
     }

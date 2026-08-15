@@ -114,7 +114,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "mixed-values"
       ]
     },
@@ -135,7 +134,6 @@
       },
       "expected": 103,
       "tags": [
-        "hidden",
         "mixed-values"
       ]
     },
@@ -154,7 +152,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "mixed-values"
       ]
     }

@@ -110,7 +110,6 @@
         12
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -162,7 +161,6 @@
         123456789
       ],
       "tags": [
-        "hidden",
         "full-domain"
       ]
     }

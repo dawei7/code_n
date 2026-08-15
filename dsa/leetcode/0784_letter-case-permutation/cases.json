@@ -140,7 +140,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "digits-only"
       ]
     },
@@ -162,7 +161,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -188,7 +186,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

@@ -202,7 +202,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "single-element",
         "triangular-cost"
       ]
@@ -222,7 +221,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "distribution-invariance"
       ]
     },
@@ -240,7 +238,6 @@
       },
       "expected": 55,
       "tags": [
-        "hidden",
         "late-deficit",
         "batched-operations"
       ]
@@ -259,7 +256,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-k",
         "exact-multiple"
       ]
@@ -277,7 +273,6 @@
       },
       "expected": 28,
       "tags": [
-        "hidden",
         "maximum-value",
         "modulo"
       ]
@@ -296,7 +291,6 @@
       },
       "expected": 105,
       "tags": [
-        "hidden",
         "wide-integer",
         "modulo"
       ]
@@ -318,7 +312,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "maximum-values",
         "exact-multiple"
       ]
@@ -355,7 +348,6 @@
       },
       "expected": 190,
       "tags": [
-        "hidden",
         "repeated-values",
         "triangular-cost"
       ]

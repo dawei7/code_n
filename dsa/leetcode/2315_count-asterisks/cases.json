@@ -80,7 +80,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "empty-region"
       ]
     },
@@ -94,7 +93,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "no-bars"
       ]
     }

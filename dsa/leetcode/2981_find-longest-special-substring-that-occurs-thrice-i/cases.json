@@ -78,7 +78,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "three-runs"
       ]
     },
@@ -92,7 +91,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "competing-letters"
       ]
     }

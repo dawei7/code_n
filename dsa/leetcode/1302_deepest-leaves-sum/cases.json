@@ -138,7 +138,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "skewed"
       ]
     },
@@ -166,7 +165,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "uneven"
       ]
     }

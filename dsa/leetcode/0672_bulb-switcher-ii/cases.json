@@ -88,7 +88,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "two-bulbs"
       ]
     },
@@ -103,7 +102,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "large-press-count"
       ]
     },
@@ -118,7 +116,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "large-n"
       ]
     }

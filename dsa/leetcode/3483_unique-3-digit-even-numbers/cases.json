@@ -122,7 +122,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -142,7 +141,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "deduplication"
       ]
     },
@@ -160,7 +158,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "frequency"
       ]
     },
@@ -179,7 +176,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "distinct-numbers"
       ]
     },
@@ -204,7 +200,6 @@
       },
       "expected": 328,
       "tags": [
-        "hidden",
         "maximum-length"
       ]
     },
@@ -224,7 +219,6 @@
       },
       "expected": 48,
       "tags": [
-        "hidden",
         "even-digits"
       ]
     }

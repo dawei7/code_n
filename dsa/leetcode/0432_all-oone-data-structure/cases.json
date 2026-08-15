@@ -256,7 +256,6 @@
         "kind": "all_one_trace"
       },
       "tags": [
-        "hidden",
         "bucket-removal"
       ]
     },
@@ -299,7 +298,6 @@
         "kind": "all_one_trace"
       },
       "tags": [
-        "hidden",
         "reinsert"
       ]
     }

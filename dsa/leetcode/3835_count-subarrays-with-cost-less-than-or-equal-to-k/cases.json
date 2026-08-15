@@ -179,7 +179,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "outlier",
         "window-recovery"
       ]
@@ -203,7 +202,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "equal-run",
         "zero-threshold"
       ]
@@ -228,7 +226,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "alternating",
         "duplicate-extrema"
       ]
@@ -251,7 +248,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-k",
         "value-boundaries"
       ]
@@ -371,7 +367,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "equal-run",
         "triangular-count"
       ]

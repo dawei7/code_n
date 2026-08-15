@@ -110,7 +110,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -129,7 +128,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "endpoint"
       ]
     }

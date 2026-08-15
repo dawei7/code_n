@@ -89,7 +89,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "independent-bits"
       ]
     },
@@ -106,7 +105,6 @@
       },
       "expected": 1000000000,
       "tags": [
-        "hidden",
         "maximum-value",
         "zero"
       ]
@@ -126,7 +124,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "basis-reduction"
       ]
     },
@@ -147,7 +144,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates",
         "linear-dependence"
       ]

@@ -122,7 +122,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "decreasing"
       ]
     },
@@ -142,7 +141,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "bridge"
       ]
     },
@@ -163,7 +161,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "multiple-descents"
       ]
     }

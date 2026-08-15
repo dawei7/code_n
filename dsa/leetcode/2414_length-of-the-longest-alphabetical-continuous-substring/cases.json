@@ -78,7 +78,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-runs"
       ]
     },
@@ -92,7 +91,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -106,7 +104,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "middle"
       ]
     }

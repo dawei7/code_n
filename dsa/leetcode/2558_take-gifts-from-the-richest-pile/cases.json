@@ -109,7 +109,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "repeated"
       ]
     },
@@ -128,7 +127,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "fixed-point",
         "maximum-k"
       ]
@@ -148,7 +146,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "repeated-maximum"
       ]
     }

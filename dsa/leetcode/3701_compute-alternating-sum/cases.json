@@ -142,7 +142,6 @@
       },
       "expected": -95,
       "tags": [
-        "hidden",
         "negative-result"
       ]
     },
@@ -162,7 +161,6 @@
       },
       "expected": 30,
       "tags": [
-        "hidden",
         "odd-length"
       ]
     },
@@ -183,7 +181,6 @@
       },
       "expected": -291,
       "tags": [
-        "hidden",
         "negative-result",
         "even-length"
       ]
@@ -299,7 +296,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-length",
         "equal-values"
       ]
@@ -322,7 +318,6 @@
       },
       "expected": 100,
       "tags": [
-        "hidden",
         "maximum-value",
         "odd-length"
       ]

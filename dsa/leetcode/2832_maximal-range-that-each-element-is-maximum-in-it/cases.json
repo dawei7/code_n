@@ -147,7 +147,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "nested-ranges"
       ]
     },
@@ -173,7 +172,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "both-boundaries"
       ]
     },
@@ -203,7 +201,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "interior-maximum"
       ]
     },
@@ -227,7 +224,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -261,7 +257,6 @@
         9
       ],
       "tags": [
-        "hidden",
         "stack-pops"
       ]
     }

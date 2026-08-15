@@ -127,7 +127,6 @@
         "kind": "beautiful_array"
       },
       "tags": [
-        "hidden",
         "even-length"
       ]
     },
@@ -152,7 +151,6 @@
         "kind": "beautiful_array"
       },
       "tags": [
-        "hidden",
         "odd-length"
       ]
     },
@@ -186,7 +184,6 @@
         "kind": "beautiful_array"
       },
       "tags": [
-        "hidden",
         "power-of-two"
       ]
     },
@@ -235,7 +232,6 @@
         "kind": "beautiful_array"
       },
       "tags": [
-        "hidden",
         "truncation"
       ]
     }

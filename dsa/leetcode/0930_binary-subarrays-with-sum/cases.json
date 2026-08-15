@@ -113,7 +113,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "all-one"
       ]
     },
@@ -134,7 +133,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "zero-padding"
       ]
     },
@@ -158,7 +156,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "zero-runs"
       ]
     },
@@ -178,7 +175,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "full-array"
       ]
     },
@@ -200,7 +196,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "alternating"
       ]
     }

@@ -106,7 +106,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "multiple-transactions"
       ]
     }

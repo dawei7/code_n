@@ -109,7 +109,6 @@
       },
       "expected": 16579,
       "tags": [
-        "hidden",
         "leading-digit"
       ]
     },
@@ -128,7 +127,6 @@
       },
       "expected": 11111,
       "tags": [
-        "hidden",
         "maximum-value"
       ]
     },
@@ -150,7 +148,6 @@
       },
       "expected": 129,
       "tags": [
-        "hidden",
         "many-candidates"
       ]
     }

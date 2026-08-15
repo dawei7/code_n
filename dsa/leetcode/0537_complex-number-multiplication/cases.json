@@ -88,7 +88,6 @@
       },
       "expected": "15+0i",
       "tags": [
-        "hidden",
         "real"
       ]
     },
@@ -103,7 +102,6 @@
       },
       "expected": "-9+38i",
       "tags": [
-        "hidden",
         "general"
       ]
     }

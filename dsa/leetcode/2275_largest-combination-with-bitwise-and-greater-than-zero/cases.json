@@ -107,7 +107,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "combination"
       ]
     },
@@ -126,7 +125,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -144,7 +142,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "pairwise-overlap"
       ]
     }

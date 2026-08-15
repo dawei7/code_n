@@ -108,7 +108,6 @@
       },
       "expected": -2147483648,
       "tags": [
-        "hidden",
         "extremes"
       ]
     },
@@ -130,7 +129,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "many-duplicates"
       ]
     },
@@ -148,7 +146,6 @@
       },
       "expected": -5,
       "tags": [
-        "hidden",
         "negative-fallback"
       ]
     }

@@ -82,7 +82,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "word-boundaries"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 189347824,
       "tags": [
-        "hidden",
         "modulo"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "multiple-words"
       ]
     }

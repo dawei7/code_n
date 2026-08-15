@@ -93,7 +93,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -113,7 +112,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "index-order"
       ]
     },
@@ -134,7 +132,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "multiple-matches"
       ]
     }

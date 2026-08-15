@@ -81,7 +81,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "incomplete"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "predecessor"
       ]
     }

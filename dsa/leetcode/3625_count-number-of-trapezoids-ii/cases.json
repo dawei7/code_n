@@ -267,7 +267,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "rational-slopes"
       ]
     },
@@ -306,7 +305,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "parallelograms",
         "collinear"
       ]
@@ -346,7 +344,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "vertical",
         "same-line-exclusion"
       ]
@@ -382,7 +379,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero-answer"
       ]
     },
@@ -421,7 +417,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "multiple-slopes",
         "parallelograms"
       ]

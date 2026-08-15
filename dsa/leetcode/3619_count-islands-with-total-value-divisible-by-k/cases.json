@@ -269,7 +269,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "four-directional",
         "multiple-islands"
       ]
@@ -314,7 +313,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "modulo",
         "multiple-islands"
       ]
@@ -346,7 +344,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "maximum-value",
         "large-sum"
       ]
@@ -372,7 +369,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "one-row",
         "horizontal"
       ]
@@ -410,7 +406,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "one-column",
         "vertical"
       ]
@@ -100429,7 +100424,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-input",
         "all-water"
       ]

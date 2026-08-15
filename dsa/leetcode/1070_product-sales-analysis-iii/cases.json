@@ -267,7 +267,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "composite-key"
       ]
     },
@@ -326,7 +325,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "ordering"
       ]
     }

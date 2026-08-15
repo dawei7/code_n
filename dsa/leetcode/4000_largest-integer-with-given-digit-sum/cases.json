@@ -165,7 +165,6 @@
       },
       "expected": 100,
       "tags": [
-        "hidden",
         "trailing-zero"
       ]
     },
@@ -180,7 +179,6 @@
       },
       "expected": 800,
       "tags": [
-        "hidden",
         "trailing-zero"
       ]
     },
@@ -195,7 +193,6 @@
       },
       "expected": 910,
       "tags": [
-        "hidden",
         "remainder"
       ]
     },
@@ -210,7 +207,6 @@
       },
       "expected": 980,
       "tags": [
-        "hidden",
         "greedy"
       ]
     },
@@ -225,7 +221,6 @@
       },
       "expected": 991,
       "tags": [
-        "hidden",
         "remainder"
       ]
     },
@@ -240,7 +235,6 @@
       },
       "expected": 999,
       "tags": [
-        "hidden",
         "maximum-feasible"
       ]
     },
@@ -255,7 +249,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "impossible",
         "boundary"
       ]
@@ -271,7 +264,6 @@
       },
       "expected": 9920,
       "tags": [
-        "hidden",
         "greedy"
       ]
     },
@@ -286,7 +278,6 @@
       },
       "expected": 99998,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     },
@@ -301,7 +292,6 @@
       },
       "expected": 99999,
       "tags": [
-        "hidden",
         "maximum-feasible",
         "upper-bound"
       ]

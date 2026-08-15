@@ -167,7 +167,6 @@
       },
       "expected": 120,
       "tags": [
-        "hidden",
         "full-range"
       ]
     },
@@ -195,7 +194,6 @@
       },
       "expected": 29,
       "tags": [
-        "hidden",
         "narrow"
       ]
     },
@@ -219,7 +217,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "empty-range"
       ]
     }

@@ -72,7 +72,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "fill-low"
       ]
     },
@@ -87,7 +86,6 @@
       },
       "expected": 1000000000,
       "tags": [
-        "hidden",
         "maximum"
       ]
     },
@@ -102,7 +100,6 @@
       },
       "expected": 536870911,
       "tags": [
-        "hidden",
         "wide"
       ]
     },
@@ -117,7 +114,6 @@
       },
       "expected": 536870915,
       "tags": [
-        "hidden",
         "high-source"
       ]
     }

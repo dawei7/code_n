@@ -166,7 +166,6 @@
       },
       "expected": 30,
       "tags": [
-        "hidden",
         "all-unique"
       ]
     },
@@ -206,7 +205,6 @@
       },
       "expected": 73,
       "tags": [
-        "hidden",
         "multiple-exchanges"
       ]
     },
@@ -234,7 +232,6 @@
       },
       "expected": 3000000006,
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

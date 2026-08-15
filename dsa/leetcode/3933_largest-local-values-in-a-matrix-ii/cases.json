@@ -303,7 +303,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "single-row",
         "rectangular"
       ]
@@ -334,7 +333,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "rectangular",
         "mixed-values"
       ]
@@ -363,7 +361,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "ties",
         "clipped-neighborhood"
@@ -404,7 +401,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-zero",
         "rectangular"
       ]
@@ -438,7 +434,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "ties",
         "strictly-greater"
       ]
@@ -492,7 +487,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "excluded-corner",
         "considered-boundary"
       ]
@@ -532,7 +526,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-thresholds",
         "ties"
       ]

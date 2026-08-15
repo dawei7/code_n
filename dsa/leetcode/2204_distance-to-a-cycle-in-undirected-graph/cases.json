@@ -238,7 +238,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "square"
       ]
     },
@@ -295,7 +294,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "mixed-depth"
       ]
     },
@@ -347,7 +345,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "unordered-labels"
       ]
     },
@@ -399,7 +396,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "five-cycle"
       ]
     }

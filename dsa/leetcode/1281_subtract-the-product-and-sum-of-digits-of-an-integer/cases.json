@@ -79,7 +79,6 @@
       },
       "expected": 59004,
       "tags": [
-        "hidden",
         "repeated-digits"
       ]
     },
@@ -93,7 +92,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "boundary",
         "zero"
       ]

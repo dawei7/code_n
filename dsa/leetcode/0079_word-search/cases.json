@@ -138,7 +138,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "adjacency"
       ]
     }

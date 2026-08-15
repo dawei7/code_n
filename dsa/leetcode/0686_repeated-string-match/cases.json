@@ -88,7 +88,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "multiple-boundaries"
       ]
     },
@@ -103,7 +102,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "ordering"
       ]
     },
@@ -118,7 +116,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "periodic-source"
       ]
     }

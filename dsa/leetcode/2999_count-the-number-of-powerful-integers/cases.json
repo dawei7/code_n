@@ -112,7 +112,6 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "range"
       ]
     },
@@ -129,7 +128,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -146,7 +144,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "full-limit"
       ]
     }

@@ -237,7 +237,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -293,7 +292,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "repeated-value"
       ]
     },
@@ -349,7 +347,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "input-order"
       ]
     }

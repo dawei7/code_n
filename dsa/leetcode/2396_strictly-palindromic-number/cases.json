@@ -81,7 +81,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "power-of-two"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "prime"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

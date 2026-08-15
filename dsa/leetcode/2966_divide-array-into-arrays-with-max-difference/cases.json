@@ -240,7 +240,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "clusters"
       ]
     },
@@ -262,7 +261,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "early-failure"
       ]
     },
@@ -295,7 +293,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

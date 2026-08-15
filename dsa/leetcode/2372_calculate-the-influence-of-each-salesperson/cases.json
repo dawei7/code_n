@@ -328,7 +328,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "coalesce"
       ]
     },
@@ -393,7 +392,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "join-key"
       ]
     }

@@ -173,7 +173,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "enclosed"
       ]
     },
@@ -212,7 +211,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "detour"
       ]
     },
@@ -247,7 +245,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "open"
       ]
     }

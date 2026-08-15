@@ -307,7 +307,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "multiple-wraps"
       ]
     },
@@ -360,7 +359,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "refill"
       ]
     }

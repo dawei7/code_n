@@ -89,7 +89,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "no-spare-store"
       ]
     },
@@ -107,7 +106,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "uneven-quantities"
       ]
     },
@@ -126,7 +124,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "ceiling-division"
       ]
     }

@@ -105,7 +105,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "patterns"
       ]
     },
@@ -123,7 +122,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "high-bit"
       ]
     }

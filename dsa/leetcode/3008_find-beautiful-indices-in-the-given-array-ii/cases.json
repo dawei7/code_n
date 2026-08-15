@@ -107,7 +107,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "failure-links"
       ]
     },
@@ -127,7 +126,6 @@
         9
       ],
       "tags": [
-        "hidden",
         "merge"
       ]
     },
@@ -146,7 +144,6 @@
         12
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

@@ -157,7 +157,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
@@ -180,7 +179,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "single-gap"
       ]
     },
@@ -201,7 +199,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -226,7 +223,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary",
         "endpoints-only"
       ]
@@ -250,7 +246,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unsorted",
         "endpoints-only"
       ]
@@ -279,7 +274,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-gaps",
         "unsorted"
       ]

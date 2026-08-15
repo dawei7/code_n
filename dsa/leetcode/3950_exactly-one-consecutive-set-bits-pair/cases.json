@@ -171,7 +171,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "exactly-one-pair",
         "isolated-bit"
       ]
@@ -189,7 +188,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "overlapping-pairs"
       ]
     },
@@ -206,7 +204,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "overlapping-pairs"
       ]
     },
@@ -223,7 +220,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "disjoint-pairs"
       ]
     },
@@ -240,7 +236,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "exactly-one-pair",
         "isolated-bits"
       ]
@@ -258,7 +253,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary",
         "maximum-value",
         "multiple-pairs"

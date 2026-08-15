@@ -150,7 +150,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "branch"
       ]
     },
@@ -178,7 +177,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "skewed",
         "zero-ancestor"
       ]
@@ -209,7 +207,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "multiple-prunes"
       ]
     }

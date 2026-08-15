@@ -226,7 +226,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "same-row"
       ]
     },
@@ -267,7 +266,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "zero-threshold"
       ]
     }

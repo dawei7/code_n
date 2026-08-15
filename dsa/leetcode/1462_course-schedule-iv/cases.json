@@ -257,7 +257,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "disconnected"
       ]
     },
@@ -312,7 +311,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "redundant-edge"
       ]
     },
@@ -364,7 +362,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "isolated-course"
       ]
     },
@@ -432,7 +429,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "branch-merge"
       ]
     }

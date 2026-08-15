@@ -111,7 +111,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "square"
       ]
     },
@@ -126,7 +125,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "no-consonants"
       ]
     },
@@ -141,7 +139,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

@@ -106,7 +106,6 @@
       },
       "expected": 10098,
       "tags": [
-        "hidden",
         "odd-length",
         "digit-width"
       ]
@@ -124,7 +123,6 @@
       },
       "expected": 1000010000,
       "tags": [
-        "hidden",
         "maximum-value"
       ]
     },
@@ -141,7 +139,6 @@
       },
       "expected": 123,
       "tags": [
-        "hidden",
         "order"
       ]
     }

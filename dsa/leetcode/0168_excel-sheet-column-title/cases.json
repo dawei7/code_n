@@ -65,7 +65,6 @@
       },
       "expected": "AAA",
       "tags": [
-        "hidden",
         "wrap"
       ]
     }

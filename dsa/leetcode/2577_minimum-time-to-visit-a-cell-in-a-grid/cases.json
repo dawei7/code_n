@@ -133,7 +133,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "exact-parity"
       ]
     },
@@ -158,7 +157,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "parity-adjustment"
       ]
     },
@@ -181,7 +179,6 @@
       },
       "expected": 100000,
       "tags": [
-        "hidden",
         "maximum-value"
       ]
     },
@@ -216,7 +213,6 @@
       },
       "expected": 89,
       "tags": [
-        "hidden",
         "nonmonotone",
         "dijkstra"
       ]
@@ -247,7 +243,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "zero-release"
       ]
     },
@@ -277,7 +272,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "detour",
         "oscillation"
       ]

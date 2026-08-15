@@ -192,7 +192,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "neighbors"
       ]
     },
@@ -222,7 +221,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "upward"
       ]
     },
@@ -251,7 +249,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "cross-subtree"
       ]
     },
@@ -280,7 +277,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "chain"
       ]
     },
@@ -312,7 +308,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "balanced"
       ]
     },
@@ -335,7 +330,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "bounds"
       ]
     }

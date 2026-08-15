@@ -131,7 +131,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "odd-frequencies"
       ]
     },
@@ -154,7 +153,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "boundaries"
       ]
     }

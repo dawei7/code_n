@@ -120,7 +120,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "inorder-adjacent"
       ]
     },
@@ -141,7 +140,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "skewed"
       ]
     }

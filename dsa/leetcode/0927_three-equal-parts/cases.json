@@ -193,7 +193,6 @@
         "values_param": "arr"
       },
       "tags": [
-        "hidden",
         "leading-zeroes"
       ]
     },
@@ -219,7 +218,6 @@
         "values_param": "arr"
       },
       "tags": [
-        "hidden",
         "one-count"
       ]
     },
@@ -247,7 +245,6 @@
         "values_param": "arr"
       },
       "tags": [
-        "hidden",
         "dense-ones"
       ]
     },
@@ -278,7 +275,6 @@
         "values_param": "arr"
       },
       "tags": [
-        "hidden",
         "pattern-mismatch"
       ]
     }

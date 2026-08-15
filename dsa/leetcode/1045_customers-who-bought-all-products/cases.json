@@ -293,7 +293,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "three-products"
       ]
     },
@@ -350,7 +349,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "nonconsecutive-keys"
       ]
     }

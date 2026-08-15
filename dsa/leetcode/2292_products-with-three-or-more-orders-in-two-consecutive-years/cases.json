@@ -329,7 +329,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "quantity"
       ]
     },
@@ -412,7 +411,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "deduplicate"
       ]
     },
@@ -461,7 +459,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "threshold"
       ]
     }

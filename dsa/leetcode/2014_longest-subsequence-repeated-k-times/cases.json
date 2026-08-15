@@ -87,7 +87,6 @@
       },
       "expected": "abcdefg",
       "tags": [
-        "hidden",
         "maximum-answer-length"
       ]
     },
@@ -102,7 +101,6 @@
       },
       "expected": "aaaaaaa",
       "tags": [
-        "hidden",
         "large-k",
         "maximum-answer-length"
       ]
@@ -118,7 +116,6 @@
       },
       "expected": "abc",
       "tags": [
-        "hidden",
         "pattern"
       ]
     }

@@ -120,7 +120,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -139,7 +138,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "no-boundaries"
       ]
     },
@@ -164,7 +162,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "boundary-reset"
       ]
     }

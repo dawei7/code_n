@@ -114,7 +114,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "long-cycle",
         "tail"
       ]
@@ -134,7 +133,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "multiple-two-cycles"
       ]
     },
@@ -157,7 +155,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "multiple-components",
         "chains"
       ]

@@ -112,7 +112,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "ones"
       ]
     },
@@ -131,7 +130,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "dominant"
       ]
     },
@@ -151,7 +149,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "combination"
       ]
     }

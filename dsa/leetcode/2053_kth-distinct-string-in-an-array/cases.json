@@ -95,7 +95,6 @@
       },
       "expected": "",
       "tags": [
-        "hidden",
         "all-repeated"
       ]
     },
@@ -115,7 +114,6 @@
       },
       "expected": "last",
       "tags": [
-        "hidden",
         "late-duplicate",
         "order"
       ]
@@ -139,7 +137,6 @@
       },
       "expected": "ee",
       "tags": [
-        "hidden",
         "last-rank"
       ]
     }

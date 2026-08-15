@@ -138,7 +138,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "stack"
       ]
     },
@@ -160,7 +159,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "increasing"
       ]
     }

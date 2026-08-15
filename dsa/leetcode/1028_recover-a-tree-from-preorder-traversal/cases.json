@@ -140,7 +140,6 @@
         40
       ],
       "tags": [
-        "hidden",
         "stack-pop"
       ]
     },
@@ -160,7 +159,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "right-child"
       ]
     },
@@ -180,7 +178,6 @@
         789
       ],
       "tags": [
-        "hidden",
         "digits"
       ]
     }

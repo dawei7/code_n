@@ -308,7 +308,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "duplicate-output",
         "judge-semantics"
       ]
@@ -371,7 +370,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ordering",
         "tie"
       ]

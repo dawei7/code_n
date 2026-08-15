@@ -191,7 +191,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "multiple-demands"
       ]
     },
@@ -209,7 +208,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "wraparound",
         "multiple-sources"
       ]
@@ -229,7 +227,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "route-choice"
       ]
     },
@@ -248,7 +245,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "wraparound"
       ]
     },
@@ -267,7 +263,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "multiple-demands"
       ]
     },
@@ -286,7 +281,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "unused-surplus",
         "distance"
       ]
@@ -304,7 +298,6 @@
       },
       "expected": 100000,
       "tags": [
-        "hidden",
         "maximum-value",
         "two-people"
       ]
@@ -323,7 +316,6 @@
       },
       "expected": 100000,
       "tags": [
-        "hidden",
         "maximum-value",
         "multiple-demands"
       ]
@@ -344,7 +336,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "alternating",
         "odd-cycle"
       ]
@@ -366,7 +357,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "single-demand",
         "unused-surplus"
       ]

@@ -150,7 +150,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "multiple-pops"
       ]
     },
@@ -168,7 +167,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "singleton"
       ]
     },
@@ -192,7 +190,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

@@ -129,7 +129,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "insufficient-window"
       ]
     },
@@ -159,7 +158,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "equality",
         "plateau"
       ]
@@ -184,7 +182,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "decreasing"
       ]
     },
@@ -214,7 +211,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "multiple-valleys"
       ]
     }

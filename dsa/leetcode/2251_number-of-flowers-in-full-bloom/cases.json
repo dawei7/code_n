@@ -212,7 +212,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "large-coordinate"
       ]
     },
@@ -256,7 +255,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
@@ -294,7 +292,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "shared-end"
       ]
     }

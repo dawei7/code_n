@@ -104,7 +104,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "large-gap"
       ]
     },
@@ -124,7 +123,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "no-patch"
       ]
     },
@@ -139,7 +137,6 @@
       },
       "expected": 31,
       "tags": [
-        "hidden",
         "large"
       ]
     }

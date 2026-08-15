@@ -116,7 +116,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "orientation"
       ]
     },
@@ -136,7 +135,6 @@
       },
       "expected": 999999999,
       "tags": [
-        "hidden",
         "large-values"
       ]
     },
@@ -155,7 +153,6 @@
       },
       "expected": -11,
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -180,7 +177,6 @@
       },
       "expected": 19,
       "tags": [
-        "hidden",
         "prefix-sum"
       ]
     }

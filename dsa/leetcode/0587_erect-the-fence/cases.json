@@ -308,7 +308,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "two-points"
       ]
     },
@@ -383,7 +382,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "vertical-edge"
       ]
     }

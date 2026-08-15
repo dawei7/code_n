@@ -181,7 +181,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "ride-selection"
       ]
     },
@@ -208,7 +207,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "ride-selection"
       ]
     },
@@ -237,7 +235,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "order-choice"
       ]
     },
@@ -266,7 +263,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "order-choice"
       ]
     },
@@ -299,7 +295,6 @@
       },
       "expected": 9400,
       "tags": [
-        "hidden",
         "mixed-options"
       ]
     },
@@ -328,7 +323,6 @@
       },
       "expected": 100001,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

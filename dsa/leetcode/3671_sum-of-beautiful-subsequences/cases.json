@@ -104,7 +104,6 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "common-divisor"
       ]
     },
@@ -122,7 +121,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "index-order"
       ]
     },
@@ -140,7 +138,6 @@
       },
       "expected": 210000,
       "tags": [
-        "hidden",
         "maximum-value",
         "duplicates"
       ]
@@ -186,7 +183,6 @@
       },
       "expected": 73777711,
       "tags": [
-        "hidden",
         "modulo",
         "many-subsequences"
       ]

@@ -147,7 +147,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zeros"
       ]
     },
@@ -169,7 +168,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zeros"
       ]
     },
@@ -191,7 +189,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-signs"
       ]
     },
@@ -212,7 +209,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -234,7 +230,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "distinct-indices"
       ]
     },
@@ -257,7 +252,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "negative-values"
       ]
     }

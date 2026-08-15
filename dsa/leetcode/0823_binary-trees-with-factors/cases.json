@@ -144,7 +144,6 @@
       },
       "expected": 23,
       "tags": [
-        "hidden",
         "unsorted",
         "chained-factors"
       ]
@@ -164,7 +163,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "unsorted",
         "ordered-children"
       ]
@@ -183,7 +181,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "value-boundary",
         "square-factor"
       ]
@@ -219,7 +216,6 @@
       },
       "expected": 47166081,
       "tags": [
-        "hidden",
         "modulus",
         "dense-factors"
       ]
@@ -238,7 +234,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "large-values",
         "leaves-only"
       ]

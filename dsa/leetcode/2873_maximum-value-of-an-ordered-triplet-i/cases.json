@@ -90,7 +90,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "large-product"
       ],
       "expected": 999999000000
@@ -112,7 +111,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "duplicates"
       ],
       "expected": 63
@@ -134,7 +132,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "index-order"
       ],
       "expected": 270
@@ -153,7 +150,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "zero"
       ],
       "expected": 0

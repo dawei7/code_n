@@ -188,7 +188,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "strict-threshold"
       ]
     },
@@ -236,7 +235,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -278,7 +276,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "rounding"
       ]
     }

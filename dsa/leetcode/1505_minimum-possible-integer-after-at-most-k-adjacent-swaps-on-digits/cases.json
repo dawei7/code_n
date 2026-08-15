@@ -88,7 +88,6 @@
       },
       "expected": "0276581",
       "tags": [
-        "hidden",
         "budget-exhaustion",
         "suffix-order"
       ]
@@ -104,7 +103,6 @@
       },
       "expected": "12120",
       "tags": [
-        "hidden",
         "duplicates",
         "queue-order"
       ]
@@ -120,7 +118,6 @@
       },
       "expected": "009909",
       "tags": [
-        "hidden",
         "multiple-zeroes"
       ]
     },
@@ -135,7 +132,6 @@
       },
       "expected": "0345989723478563548",
       "tags": [
-        "hidden",
         "fenwick-ranks",
         "repeated-digits"
       ]

@@ -103,7 +103,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "large-row"
       ]
     },
@@ -118,7 +117,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "large-row",
         "last-position"
       ]
@@ -134,7 +132,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "large-row",
         "set-bit-parity"
       ]

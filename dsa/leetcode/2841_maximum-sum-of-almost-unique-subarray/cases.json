@@ -134,7 +134,6 @@
       },
       "expected": 103,
       "tags": [
-        "hidden",
         "eligibility"
       ]
     },
@@ -156,7 +155,6 @@
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "frequency-map"
       ]
     },
@@ -176,7 +174,6 @@
       },
       "expected": 1000000000,
       "tags": [
-        "hidden",
         "minimum-window",
         "maximum-value"
       ]
@@ -199,7 +196,6 @@
       },
       "expected": 28,
       "tags": [
-        "hidden",
         "full-window"
       ]
     },
@@ -226,7 +222,6 @@
       },
       "expected": 156,
       "tags": [
-        "hidden",
         "late-window"
       ]
     }

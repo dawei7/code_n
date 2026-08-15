@@ -114,7 +114,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -134,7 +133,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "blocks"
       ]
     },
@@ -155,7 +153,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "symmetric"
       ]
     }

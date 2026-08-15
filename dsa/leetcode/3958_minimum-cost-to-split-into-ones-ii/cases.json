@@ -141,7 +141,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "small",
         "pair-count"
       ]
@@ -159,7 +158,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "decimal",
         "pair-count"
       ]
@@ -177,7 +175,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "three-digits",
         "arithmetic"
       ]
@@ -195,7 +192,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "odd",
         "arithmetic"
       ]
@@ -213,7 +209,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large",
         "arithmetic"
       ]
@@ -231,7 +226,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "wide-integer",
         "arithmetic"
       ]
@@ -249,7 +243,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "wide-integer",
         "irregular"
       ]
@@ -267,7 +260,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-boundary",
         "wide-integer"
       ]

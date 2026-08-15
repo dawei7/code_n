@@ -133,7 +133,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "null-prototype"
       ]
     },
@@ -150,7 +149,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "primitive-boxing"
       ]
     },
@@ -168,7 +166,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "deep-chain"
       ]
     },
@@ -186,7 +183,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "deep-chain",
         "absent"
       ]

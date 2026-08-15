@@ -70,7 +70,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "large-component"
       ]
     }

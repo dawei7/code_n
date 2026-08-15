@@ -100,7 +100,6 @@
         "kind": "unordered_string"
       },
       "tags": [
-        "hidden",
         "tie-break"
       ]
     },
@@ -117,7 +116,6 @@
         "kind": "unordered_string"
       },
       "tags": [
-        "hidden",
         "multiple-groups"
       ]
     },
@@ -134,7 +132,6 @@
         "kind": "unordered_string"
       },
       "tags": [
-        "hidden",
         "maximum-length"
       ]
     }

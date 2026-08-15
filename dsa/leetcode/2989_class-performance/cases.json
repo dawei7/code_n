@@ -250,7 +250,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ties"
       ]
     },
@@ -293,7 +292,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

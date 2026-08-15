@@ -105,7 +105,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "same-parity",
         "duplicates"
       ]
@@ -126,7 +125,6 @@
       },
       "expected": 30,
       "tags": [
-        "hidden",
         "alternating",
         "subsequence-adjacency"
       ]
@@ -147,7 +145,6 @@
       },
       "expected": 30,
       "tags": [
-        "hidden",
         "parity-runs"
       ]
     }

@@ -110,7 +110,6 @@
       },
       "expected": 42,
       "tags": [
-        "hidden",
         "replays"
       ]
     },
@@ -126,7 +125,6 @@
       },
       "expected": 168,
       "tags": [
-        "hidden",
         "larger-separation"
       ]
     },
@@ -142,7 +140,6 @@
       },
       "expected": 8400,
       "tags": [
-        "hidden",
         "unrestricted"
       ]
     },
@@ -158,7 +155,6 @@
       },
       "expected": 252498779,
       "tags": [
-        "hidden",
         "modulo"
       ]
     }

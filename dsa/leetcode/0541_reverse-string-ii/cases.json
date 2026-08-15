@@ -88,7 +88,6 @@
       },
       "expected": "cbadefg",
       "tags": [
-        "hidden",
         "between"
       ]
     },
@@ -103,7 +102,6 @@
       },
       "expected": "babaccddee",
       "tags": [
-        "hidden",
         "repeated"
       ]
     }

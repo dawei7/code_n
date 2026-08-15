@@ -255,7 +255,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "two-elements",
         "lower-bound"
       ]
@@ -280,7 +279,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "duplicates",
         "index-counting"
       ]
@@ -305,7 +303,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "maximum-value",
         "alternating-parity"
       ]
@@ -330,7 +327,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "coordinate-compression",
         "large-gaps"
       ]
@@ -367,7 +363,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "irregular-order",
         "suffix-counts"
       ]

@@ -81,7 +81,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "perfect-square"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "rounding"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": 31622,
       "tags": [
-        "hidden",
         "large"
       ]
     }

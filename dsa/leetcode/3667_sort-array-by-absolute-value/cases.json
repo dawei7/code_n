@@ -156,7 +156,6 @@
         "kind": "absolute_value_sorted"
       },
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -189,7 +188,6 @@
         "kind": "absolute_value_sorted"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "multiple-buckets"
       ]
@@ -221,7 +219,6 @@
         "kind": "absolute_value_sorted"
       },
       "tags": [
-        "hidden",
         "already-sorted"
       ]
     },
@@ -250,7 +247,6 @@
         "kind": "absolute_value_sorted"
       },
       "tags": [
-        "hidden",
         "reverse"
       ]
     }

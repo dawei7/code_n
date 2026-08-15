@@ -130,7 +130,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "alternating",
         "cascade"
       ]
@@ -149,7 +148,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-k",
         "multiple-characters"
       ]
@@ -168,7 +166,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "smallest-left",
         "preemption"
       ]
@@ -187,7 +184,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-unique",
         "no-merge"
       ]
@@ -206,7 +202,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "adjacent-run",
         "left-copy-retained"
       ]
@@ -225,7 +220,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "priority",
         "inclusive-boundary"
       ]
@@ -244,7 +238,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-blocks",
         "successive-merges"
       ]

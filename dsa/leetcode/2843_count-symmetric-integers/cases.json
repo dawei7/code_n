@@ -73,7 +73,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "odd-digits"
       ]
     },
@@ -88,7 +87,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "digit-boundary"
       ]
     },
@@ -103,7 +101,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "four-digits"
       ]
     },
@@ -118,7 +115,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "maximum-bound",
         "inclusive"
       ]
@@ -134,7 +130,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "minimum-bound"
       ]
     }

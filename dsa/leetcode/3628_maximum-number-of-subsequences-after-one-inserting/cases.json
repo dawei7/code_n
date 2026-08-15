@@ -111,7 +111,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "insert-t"
       ]
     },
@@ -125,7 +124,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "insert-l"
       ]
     },
@@ -139,7 +137,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "insert-c",
         "irrelevant-letters"
       ]
@@ -154,7 +151,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "existing-subsequences"
       ]
     },
@@ -168,7 +164,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero-or-small"
       ]
     },
@@ -182,7 +177,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "irrelevant-letters",
         "mixed"
       ]

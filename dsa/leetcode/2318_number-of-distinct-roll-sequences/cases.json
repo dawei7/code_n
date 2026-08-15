@@ -79,7 +79,6 @@
       },
       "expected": 1472,
       "tags": [
-        "hidden",
         "dynamic-programming"
       ]
     },
@@ -93,7 +92,6 @@
       },
       "expected": 4136,
       "tags": [
-        "hidden",
         "dynamic-programming"
       ]
     }

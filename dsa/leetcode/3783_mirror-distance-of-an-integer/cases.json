@@ -118,7 +118,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
@@ -135,7 +134,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "trailing-zeros"
       ]
     },
@@ -152,7 +150,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "palindrome",
         "zero"
       ]
@@ -170,7 +167,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large"
       ]
     },
@@ -187,7 +183,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large",
         "palindrome"
       ]
@@ -205,7 +200,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum",
         "trailing-zeros"
       ]

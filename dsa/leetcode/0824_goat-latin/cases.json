@@ -98,7 +98,6 @@
       },
       "expected": "AEIOUmaa",
       "tags": [
-        "hidden",
         "uppercase-vowel"
       ]
     },
@@ -112,7 +111,6 @@
       },
       "expected": "MILESmaa orangemaaa",
       "tags": [
-        "hidden",
         "case-preservation",
         "mixed-initials"
       ]
@@ -127,7 +125,6 @@
       },
       "expected": "amaa bmaaa cmaaaa dmaaaaa emaaaaaa",
       "tags": [
-        "hidden",
         "indexed-suffix",
         "one-letter"
       ]
@@ -142,7 +139,6 @@
       },
       "expected": "undermaa reeTmaaa",
       "tags": [
-        "hidden",
         "word-order",
         "case-preservation"
       ]
@@ -157,7 +153,6 @@
       },
       "expected": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbmaa",
       "tags": [
-        "hidden",
         "length-boundary",
         "single-word"
       ]

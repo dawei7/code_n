@@ -122,7 +122,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "parity"
       ]
     },
@@ -145,7 +144,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "parity"
       ]
     }

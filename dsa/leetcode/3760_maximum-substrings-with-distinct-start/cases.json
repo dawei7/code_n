@@ -100,7 +100,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "singleton"
       ]
     },
@@ -117,7 +116,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -134,7 +132,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "reverse"
       ]
     }

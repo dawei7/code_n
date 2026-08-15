@@ -185,7 +185,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "components"
       ]
     },
@@ -241,7 +240,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "overlapping-cycles"
       ]
     }

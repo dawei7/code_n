@@ -146,7 +146,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -177,7 +176,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-weak"
       ]
     },
@@ -208,7 +206,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "chain"
       ]
     }

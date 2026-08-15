@@ -82,7 +82,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "cdata-scope"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "mixed-content"
       ]
     }

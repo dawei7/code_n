@@ -79,7 +79,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "touching"
       ]
     }

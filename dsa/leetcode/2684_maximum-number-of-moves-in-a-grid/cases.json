@@ -182,7 +182,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "early-stop"
       ]
     },
@@ -221,7 +220,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "boundaries"
       ]
     }

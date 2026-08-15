@@ -115,7 +115,6 @@
       },
       "expected": 70,
       "tags": [
-        "hidden",
         "cancel-derived"
       ]
     },
@@ -134,7 +133,6 @@
       },
       "expected": -32,
       "tags": [
-        "hidden",
         "negative-derived"
       ]
     },
@@ -155,7 +153,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-cancels"
       ]
     }

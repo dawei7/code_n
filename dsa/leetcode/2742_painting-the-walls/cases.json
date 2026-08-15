@@ -92,7 +92,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "length-boundary"
       ]
     },
@@ -115,7 +114,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "tradeoff"
       ]
     },
@@ -138,7 +136,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "combination"
       ]
     },
@@ -165,7 +162,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "unit-times"
       ]
     },
@@ -186,7 +182,6 @@
       },
       "expected": 999999,
       "tags": [
-        "hidden",
         "cost-boundary"
       ]
     }

@@ -94,7 +94,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "common-multiple"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "single-character"
       ]
     },
@@ -126,7 +124,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "frequency-counting"
       ]
     }

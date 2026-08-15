@@ -225,7 +225,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "balanced"
       ]
     },
@@ -268,7 +267,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "nested",
         "path"
       ]
@@ -302,7 +300,6 @@
       },
       "expected": 510,
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

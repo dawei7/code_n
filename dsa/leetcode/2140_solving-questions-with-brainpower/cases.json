@@ -139,7 +139,6 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "skip-past-end"
       ]
     },
@@ -174,7 +173,6 @@
       },
       "expected": 18,
       "tags": [
-        "hidden",
         "suffix"
       ]
     },
@@ -209,7 +207,6 @@
       },
       "expected": 28,
       "tags": [
-        "hidden",
         "skip-choice"
       ]
     }

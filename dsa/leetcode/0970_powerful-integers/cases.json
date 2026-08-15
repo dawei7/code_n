@@ -143,7 +143,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -169,7 +168,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "large"
       ]
     },
@@ -190,7 +188,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

@@ -89,7 +89,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "whole-string"
       ]
     },
@@ -108,7 +107,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -126,7 +124,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "interior-gap"
       ]
     },
@@ -144,7 +141,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "single-character"
       ]
     },
@@ -162,7 +158,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "long-word"
       ]
     },
@@ -179,7 +174,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "repeated-occurrence"
       ]
     }

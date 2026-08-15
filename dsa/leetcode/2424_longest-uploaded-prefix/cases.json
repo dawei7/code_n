@@ -247,7 +247,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "reverse"
       ]
     },
@@ -321,7 +320,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "multiple-gaps"
       ]
     },
@@ -384,7 +382,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "repeated-query"
       ]
     }

@@ -135,7 +135,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "minimum-n"
       ]
     },
@@ -168,7 +167,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "two-at-once"
       ]
     },
@@ -204,7 +202,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "delayed-overlap"
       ]
     },
@@ -237,7 +234,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "mixed-growth"
       ]
     }

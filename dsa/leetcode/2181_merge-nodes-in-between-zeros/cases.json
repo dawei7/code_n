@@ -148,7 +148,6 @@
         1000
       ],
       "tags": [
-        "hidden",
         "equal-sums",
         "large-values"
       ]
@@ -178,7 +177,6 @@
         9
       ],
       "tags": [
-        "hidden",
         "boundaries"
       ]
     },
@@ -203,7 +201,6 @@
         1000
       ],
       "tags": [
-        "hidden",
         "maximum-value"
       ]
     }

@@ -247,7 +247,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "endpoint"
       ]
     },
@@ -297,7 +296,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "partial-bucket"
       ]
     },
@@ -348,7 +346,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "day"
       ]
     }

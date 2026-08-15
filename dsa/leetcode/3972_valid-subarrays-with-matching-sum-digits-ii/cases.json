@@ -161,7 +161,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "non-monotone-validity",
         "three-digits"
       ]
@@ -180,7 +179,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "overlap",
         "two-digit"
       ]
@@ -199,7 +197,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "carry",
         "three-digits"
       ]
@@ -218,7 +215,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "large-values",
         "carry"
       ]
@@ -238,7 +234,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates",
         "single-digit"
       ]
@@ -258,7 +253,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "nested",
         "multiple-digit-lengths"
       ]
@@ -278,7 +272,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "digit-nine",
         "overlap"
       ]

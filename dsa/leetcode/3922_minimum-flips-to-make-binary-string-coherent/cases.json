@@ -222,7 +222,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "endpoint-pattern",
         "already-coherent"
       ]
@@ -237,7 +236,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "alternating",
         "at-most-one-one"
       ]
@@ -252,7 +250,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "all-one-target",
         "endpoint-zeros"
       ]
@@ -267,7 +264,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "grouped-ones",
         "at-most-one-one"
       ]

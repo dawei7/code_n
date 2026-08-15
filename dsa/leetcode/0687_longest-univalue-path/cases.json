@@ -112,7 +112,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "empty-tree"
       ]
     },
@@ -134,7 +133,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "skewed-tree"
       ]
     },
@@ -158,7 +156,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "below-root"
       ]
     }

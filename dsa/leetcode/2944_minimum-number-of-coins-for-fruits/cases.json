@@ -121,7 +121,6 @@
       },
       "expected": 101,
       "tags": [
-        "hidden",
         "coverage-boundary"
       ]
     },
@@ -144,7 +143,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "equal-prices"
       ]
     },
@@ -168,7 +166,6 @@
       },
       "expected": 19,
       "tags": [
-        "hidden",
         "decreasing"
       ]
     },
@@ -192,7 +189,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "increasing"
       ]
     }

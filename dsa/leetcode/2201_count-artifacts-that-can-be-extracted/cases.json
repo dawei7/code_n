@@ -211,7 +211,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "missing-corner"
       ]
     },
@@ -267,7 +266,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "mixed-shapes"
       ]
     },
@@ -305,7 +303,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "partial"
       ]
     },
@@ -355,7 +352,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "unordered"
       ]
     }

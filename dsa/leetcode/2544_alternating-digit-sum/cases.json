@@ -81,7 +81,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": 45,
       "tags": [
-        "hidden",
         "zero-digit"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

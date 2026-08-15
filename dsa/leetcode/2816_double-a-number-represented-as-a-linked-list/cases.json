@@ -120,7 +120,6 @@
         8
       ],
       "tags": [
-        "hidden",
         "internal-carry"
       ]
     },
@@ -145,7 +144,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "separated-carries"
       ]
     },
@@ -170,7 +168,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "alternating"
       ]
     }

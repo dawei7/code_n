@@ -109,7 +109,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "one-deletion"
       ]
     },
@@ -129,7 +128,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "bridge"
       ]
     },
@@ -146,7 +144,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero"
       ]
     }

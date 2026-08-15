@@ -107,7 +107,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "disconnected"
       ]
     }

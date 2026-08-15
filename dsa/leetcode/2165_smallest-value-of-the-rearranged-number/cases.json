@@ -96,7 +96,6 @@
       },
       "expected": -9876543210,
       "tags": [
-        "hidden",
         "negative",
         "already-ordered"
       ]
@@ -111,7 +110,6 @@
       },
       "expected": 1000000000000000,
       "tags": [
-        "hidden",
         "upper-bound",
         "multiple-zeros"
       ]

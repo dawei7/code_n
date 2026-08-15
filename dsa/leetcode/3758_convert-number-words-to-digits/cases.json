@@ -117,7 +117,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "fallback"
       ]
     },
@@ -134,7 +133,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

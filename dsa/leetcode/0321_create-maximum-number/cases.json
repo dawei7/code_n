@@ -164,7 +164,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "equal-prefix"
       ]
     },
@@ -194,7 +193,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -222,7 +220,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "subsequence"
       ]
     }

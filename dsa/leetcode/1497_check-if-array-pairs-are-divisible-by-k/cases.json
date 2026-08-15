@@ -134,7 +134,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "k-one",
         "boundaries"
       ]
@@ -155,7 +154,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "remainder-zero",
         "odd-count"
       ]
@@ -178,7 +176,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "even-k",
         "half-remainder",
         "odd-count"
@@ -200,7 +197,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "negative-values",
         "maximum-k"
       ]
@@ -223,7 +219,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "unequal-counts"
       ]
     }

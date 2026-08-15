@@ -138,7 +138,6 @@
         "tolerance": 1e-09
       },
       "tags": [
-        "hidden",
         "edge",
         "fractional"
       ]
@@ -159,7 +158,6 @@
         "tolerance": 1e-09
       },
       "tags": [
-        "hidden",
         "cap",
         "merge"
       ]
@@ -180,7 +178,6 @@
         "tolerance": 1e-09
       },
       "tags": [
-        "hidden",
         "deep",
         "cap"
       ]

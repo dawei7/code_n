@@ -72,7 +72,6 @@
       },
       "expected": "abc def",
       "tags": [
-        "hidden",
         "internal-space"
       ]
     },
@@ -87,7 +86,6 @@
       },
       "expected": "ab",
       "tags": [
-        "hidden",
         "narrow-matrix"
       ]
     },
@@ -102,7 +100,6 @@
       },
       "expected": "a b c",
       "tags": [
-        "hidden",
         "space-preservation"
       ]
     },
@@ -117,7 +114,6 @@
       },
       "expected": "trailing padding",
       "tags": [
-        "hidden",
         "partial-diagonal"
       ]
     }

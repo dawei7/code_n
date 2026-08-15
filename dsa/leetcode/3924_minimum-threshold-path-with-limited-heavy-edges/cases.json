@@ -510,7 +510,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "candidate-boundary",
         "one-heavy-edge"
       ]
@@ -550,7 +549,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "duplicate-weights",
         "monotonicity"
       ]
@@ -590,7 +588,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "threshold-zero",
         "exact-budget"
       ]
@@ -630,7 +627,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "candidate-boundary",
         "exact-budget"
       ]
@@ -655,7 +651,6 @@
       },
       "expected": 1000000000,
       "tags": [
-        "hidden",
         "maximum-weight",
         "k-zero"
       ]
@@ -700,7 +695,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "disconnected",
         "large-budget"
       ]
@@ -755,7 +749,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "alternative-paths",
         "first-feasible"
       ]

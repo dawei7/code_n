@@ -357,7 +357,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "stale-mode",
         "frequency-decrease"
       ]
@@ -409,7 +408,6 @@
         500000000
       ],
       "tags": [
-        "hidden",
         "maximum-value",
         "sum"
       ]
@@ -477,7 +475,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "near-empty",
         "refill"
       ]
@@ -555,7 +552,6 @@
         40
       ],
       "tags": [
-        "hidden",
         "rebalance",
         "alternating"
       ]

@@ -80,7 +80,6 @@
       },
       "expected": "(1+9)9",
       "tags": [
-        "hidden",
         "right-multiplier"
       ]
     },
@@ -94,7 +93,6 @@
       },
       "expected": "1(23+45)6",
       "tags": [
-        "hidden",
         "enumeration"
       ]
     },
@@ -108,7 +106,6 @@
       },
       "expected": "9(999+1)",
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

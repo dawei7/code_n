@@ -181,7 +181,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "equal-reflections"
       ]
@@ -207,7 +206,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "palindromic-bits"
       ]
     },
@@ -232,7 +230,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary",
         "leading-zero-reflection"
       ]

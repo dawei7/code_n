@@ -266,7 +266,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "boundary-order"
       ]
     },
@@ -331,7 +330,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "bursts"
       ]
     },
@@ -420,7 +418,6 @@
         }
       ],
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

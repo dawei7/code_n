@@ -130,7 +130,6 @@
         "kind": "unordered_nested_list"
       },
       "tags": [
-        "hidden",
         "cubic"
       ]
     },
@@ -165,7 +164,6 @@
         "kind": "unordered_nested_list"
       },
       "tags": [
-        "hidden",
         "asymmetric"
       ]
     },
@@ -200,7 +198,6 @@
         "kind": "unordered_nested_list"
       },
       "tags": [
-        "hidden",
         "asymmetric"
       ]
     }

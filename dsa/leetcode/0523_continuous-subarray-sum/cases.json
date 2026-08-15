@@ -115,7 +115,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -134,7 +133,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "zero"
       ]
     }

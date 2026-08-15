@@ -188,7 +188,6 @@
       },
       "expected": 1600000000,
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -227,7 +226,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple"
       ]
     },
@@ -266,7 +264,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "noise"
       ]
     }

@@ -126,7 +126,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "insertion-order"
       ]
     },
@@ -145,7 +144,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "nested-suffixes"
       ]
     },
@@ -165,7 +163,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "duplicates",
         "branches"
       ]
@@ -186,7 +183,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "multiple-leaves"
       ]
     }

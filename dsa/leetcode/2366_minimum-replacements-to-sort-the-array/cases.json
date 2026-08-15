@@ -103,7 +103,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "descending"
       ]
     },
@@ -121,7 +120,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

@@ -204,7 +204,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "chain",
         "reuse"
       ]
@@ -235,7 +234,6 @@
         999999
       ],
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -275,7 +273,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "ordering"
       ]
     },
@@ -315,7 +312,6 @@
         77
       ],
       "tags": [
-        "hidden",
         "same-position"
       ]
     }

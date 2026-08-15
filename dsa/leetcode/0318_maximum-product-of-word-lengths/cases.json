@@ -115,7 +115,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "disjoint"
       ]
     },
@@ -134,7 +133,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "length-product"
       ]
     },
@@ -153,7 +151,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "overlap"
       ]
     }

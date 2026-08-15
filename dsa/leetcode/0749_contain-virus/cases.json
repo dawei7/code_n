@@ -202,7 +202,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -227,7 +226,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "wall-edges"
       ]
     },
@@ -257,7 +255,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "interior"
       ]
     }

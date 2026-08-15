@@ -187,7 +187,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "valid-tour"
       ]
     },
@@ -217,7 +216,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "early-failure"
       ]
     },
@@ -295,7 +293,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "maximum",
         "valid-tour"
       ]

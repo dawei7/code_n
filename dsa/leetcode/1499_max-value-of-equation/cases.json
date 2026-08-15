@@ -142,7 +142,6 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "nonadjacent"
       ]
     },
@@ -166,7 +165,6 @@
       },
       "expected": -29,
       "tags": [
-        "hidden",
         "negative-result"
       ]
     },
@@ -198,7 +196,6 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "equal-scores",
         "dominance"
       ]
@@ -223,7 +220,6 @@
       },
       "expected": 200000000,
       "tags": [
-        "hidden",
         "coordinate-boundaries"
       ]
     },
@@ -259,7 +255,6 @@
       },
       "expected": 22,
       "tags": [
-        "hidden",
         "multiple-windows"
       ]
     }

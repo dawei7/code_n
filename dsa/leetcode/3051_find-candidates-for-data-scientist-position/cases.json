@@ -253,7 +253,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "output-order"
       ]
     },
@@ -290,7 +289,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "group-boundary"
       ]
     }

@@ -395,7 +395,6 @@
         "kind": "ordered_results_unordered_lists"
       },
       "tags": [
-        "hidden",
         "immutable-type",
         "old-bucket"
       ]
@@ -455,7 +454,6 @@
         "kind": "ordered_results_unordered_lists"
       },
       "tags": [
-        "hidden",
         "cancel",
         "shared-bucket"
       ]
@@ -525,7 +523,6 @@
         "kind": "ordered_results_unordered_lists"
       },
       "tags": [
-        "hidden",
         "repeated-modify",
         "single-membership"
       ]
@@ -585,7 +582,6 @@
         "kind": "ordered_results_unordered_lists"
       },
       "tags": [
-        "hidden",
         "value-boundaries",
         "modify"
       ]
@@ -664,7 +660,6 @@
         "kind": "ordered_results_unordered_lists"
       },
       "tags": [
-        "hidden",
         "cancel",
         "modify",
         "bucket-isolation"

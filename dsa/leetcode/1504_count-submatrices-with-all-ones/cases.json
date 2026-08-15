@@ -154,7 +154,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "single-row",
         "triangular-runs"
       ]
@@ -188,7 +187,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "single-column"
       ]
     },
@@ -218,7 +216,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "isolated-ones"
       ]
     },
@@ -257,7 +254,6 @@
       },
       "expected": 100,
       "tags": [
-        "hidden",
         "all-ones",
         "closed-form"
       ]

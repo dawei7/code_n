@@ -176,7 +176,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "collinear"
       ]
     },
@@ -204,7 +203,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "separated"
       ]
     },
@@ -236,7 +234,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "interior"
       ]
     },
@@ -272,7 +269,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "negative",
         "translation"
       ]

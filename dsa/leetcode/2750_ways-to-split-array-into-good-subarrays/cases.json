@@ -70,7 +70,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
@@ -89,7 +88,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "adjacent"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "outer-zeros"
       ]
     },
@@ -134,7 +131,6 @@
       },
       "expected": 24,
       "tags": [
-        "hidden",
         "product"
       ]
     },
@@ -157,7 +153,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "gaps"
       ]
     }

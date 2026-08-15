@@ -174,7 +174,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "proper-subarray"
       ]
     },
@@ -196,7 +195,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary",
         "duplicates"
       ]
@@ -235,7 +233,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "long-subarray"
       ]
@@ -262,7 +259,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-distinct",
         "whole-array"
       ]
@@ -288,7 +284,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "last-occurrence",
         "duplicates"
       ]

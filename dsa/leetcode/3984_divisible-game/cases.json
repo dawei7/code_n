@@ -176,7 +176,6 @@
       },
       "expected": 125,
       "tags": [
-        "hidden",
         "kadane-restart",
         "prime-five"
       ]
@@ -195,7 +194,6 @@
       },
       "expected": 91,
       "tags": [
-        "hidden",
         "bridge",
         "prime-seven"
       ]
@@ -214,7 +212,6 @@
       },
       "expected": 27,
       "tags": [
-        "hidden",
         "singleton-range",
         "candidate-comparison"
       ]
@@ -232,7 +229,6 @@
       },
       "expected": 27,
       "tags": [
-        "hidden",
         "disjoint-factors",
         "prime-three"
       ]
@@ -251,7 +247,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "kadane-restart",
         "even"
       ]
@@ -270,7 +265,6 @@
       },
       "expected": 106,
       "tags": [
-        "hidden",
         "tie-break",
         "composite-values"
       ]
@@ -289,7 +283,6 @@
       },
       "expected": 511,
       "tags": [
-        "hidden",
         "prime-powers",
         "full-range"
       ]
@@ -308,7 +301,6 @@
       },
       "expected": 5999991,
       "tags": [
-        "hidden",
         "large-values",
         "bridge"
       ]
@@ -325,7 +317,6 @@
       },
       "expected": 965993296,
       "tags": [
-        "hidden",
         "large-prime",
         "modulo"
       ]
@@ -342,7 +333,6 @@
       },
       "expected": 2000000,
       "tags": [
-        "hidden",
         "maximum-value",
         "smallest-k"
       ]

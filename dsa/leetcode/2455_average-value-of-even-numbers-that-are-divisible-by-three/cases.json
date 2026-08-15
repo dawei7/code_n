@@ -96,7 +96,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "divisibility"
       ]
     },
@@ -114,7 +113,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "single-qualifier"
       ]
     },
@@ -130,7 +128,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "singleton"
       ]
     },
@@ -149,7 +146,6 @@
       },
       "expected": 501,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

@@ -143,7 +143,6 @@
       },
       "expected": 35,
       "tags": [
-        "hidden",
         "full-window"
       ]
     },
@@ -164,7 +163,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -187,7 +185,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "outlier"
       ]
     },
@@ -210,7 +207,6 @@
       },
       "expected": 32,
       "tags": [
-        "hidden",
         "rebalancing"
       ]
     },
@@ -230,7 +226,6 @@
       },
       "expected": 1999998,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -252,7 +247,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "multiple-optima"
       ]
     }

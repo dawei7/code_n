@@ -102,7 +102,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "multiple-ways"
       ]
     },
@@ -117,7 +116,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "high-exponent"
       ]
     },
@@ -132,7 +130,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "fourth-powers"
       ]
     },
@@ -147,7 +144,6 @@
       },
       "expected": 872471266,
       "tags": [
-        "hidden",
         "maximum",
         "modulo"
       ]

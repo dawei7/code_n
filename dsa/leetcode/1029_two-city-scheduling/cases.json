@@ -228,7 +228,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "sorting"
       ]
     },
@@ -251,7 +250,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -290,7 +288,6 @@
       },
       "expected": 195,
       "tags": [
-        "hidden",
         "greedy"
       ]
     }

@@ -191,7 +191,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ordering",
         "partitions"
       ]
@@ -242,7 +241,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "zero-balance"
       ]
     },
@@ -314,7 +312,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "prefix-sums"
       ]
     }

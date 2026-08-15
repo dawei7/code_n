@@ -263,7 +263,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "transitions"
       ]
     },
@@ -324,7 +323,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "zero",
         "boundary"
       ]

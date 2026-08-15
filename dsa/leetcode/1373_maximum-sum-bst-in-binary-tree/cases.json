@@ -128,7 +128,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "internal-subtree"
       ]
     },
@@ -146,7 +145,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "leaf"
       ]
     }

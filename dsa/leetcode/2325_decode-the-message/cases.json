@@ -86,7 +86,6 @@
       },
       "expected": "cab bag",
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -101,7 +100,6 @@
       },
       "expected": "zaaz ynn",
       "tags": [
-        "hidden",
         "rotation"
       ]
     }

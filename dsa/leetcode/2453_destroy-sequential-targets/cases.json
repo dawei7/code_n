@@ -117,7 +117,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "singleton"
       ]
     },
@@ -137,7 +136,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "dominant-class"
       ]
     },
@@ -157,7 +155,6 @@
       },
       "expected": 999999986,
       "tags": [
-        "hidden",
         "large-values",
         "duplicates"
       ]

@@ -113,7 +113,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "density"
       ]
     },
@@ -133,7 +132,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "single"
       ]
     },
@@ -157,7 +155,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "tie"
       ]
     },
@@ -181,7 +178,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "impossible"
       ]
     }

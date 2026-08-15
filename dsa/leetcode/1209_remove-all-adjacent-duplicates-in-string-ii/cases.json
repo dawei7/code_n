@@ -72,7 +72,6 @@
       },
       "expected": "aa",
       "tags": [
-        "hidden",
         "remainder"
       ]
     },
@@ -87,7 +86,6 @@
       },
       "expected": "",
       "tags": [
-        "hidden",
         "bridge"
       ]
     },
@@ -102,7 +100,6 @@
       },
       "expected": "zzxyzz",
       "tags": [
-        "hidden",
         "large-k"
       ]
     },
@@ -117,7 +114,6 @@
       },
       "expected": "",
       "tags": [
-        "hidden",
         "multiple-groups"
       ]
     }

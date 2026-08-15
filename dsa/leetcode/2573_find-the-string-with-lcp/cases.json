@@ -303,7 +303,6 @@
         "lcp_param": "lcp"
       },
       "tags": [
-        "hidden",
         "periodic"
       ]
     },
@@ -337,7 +336,6 @@
         "lcp_param": "lcp"
       },
       "tags": [
-        "hidden",
         "asymmetry"
       ]
     },
@@ -371,7 +369,6 @@
         "lcp_param": "lcp"
       },
       "tags": [
-        "hidden",
         "recurrence"
       ]
     },
@@ -1173,7 +1170,6 @@
         "lcp_param": "lcp"
       },
       "tags": [
-        "hidden",
         "alphabet-limit"
       ]
     }

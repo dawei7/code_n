@@ -115,7 +115,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "one-column"
       ]
     },
@@ -148,7 +147,6 @@
       },
       "expected": 27,
       "tags": [
-        "hidden",
         "rectangular"
       ]
     },
@@ -184,7 +182,6 @@
       },
       "expected": 500,
       "tags": [
-        "hidden",
         "ties",
         "maximum-value"
       ]

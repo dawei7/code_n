@@ -52,7 +52,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

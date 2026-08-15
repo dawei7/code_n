@@ -81,7 +81,6 @@
       },
       "expected": "abcd",
       "tags": [
-        "hidden",
         "decreasing"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": "aabbcc",
       "tags": [
-        "hidden",
         "equal"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": "fnohopzv",
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

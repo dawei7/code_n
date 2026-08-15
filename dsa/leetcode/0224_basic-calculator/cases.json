@@ -51,7 +51,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "nested-sign"
       ]
     }

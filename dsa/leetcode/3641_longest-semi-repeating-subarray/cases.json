@@ -164,7 +164,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "frequency-transition"
       ]
     },
@@ -186,7 +185,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "duplicate-occurrences"
       ]
     },
@@ -210,7 +208,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "separated-duplicates"
       ]
     },
@@ -232,7 +229,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "full-window"
       ]
     },
@@ -253,7 +249,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "large-values"
       ]
     },
@@ -276,7 +271,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "alternating"
       ]
     }

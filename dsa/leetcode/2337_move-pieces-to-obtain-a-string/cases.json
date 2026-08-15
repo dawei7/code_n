@@ -86,7 +86,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "blanks"
       ]
     },
@@ -101,7 +100,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "order"
       ]
     }

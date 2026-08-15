@@ -321,7 +321,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "decrease"
       ]
     },
@@ -384,7 +383,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "maximal"
       ]
     },
@@ -458,7 +456,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "partition",
         "ordering"
       ]
@@ -492,7 +489,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     }

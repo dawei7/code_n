@@ -81,7 +81,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "valid"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "repeated"
       ]
     }

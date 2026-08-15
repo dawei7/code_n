@@ -91,7 +91,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "minimum-size"
       ]
     },
@@ -118,7 +117,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "modulo-cycle"
       ]
     },
@@ -137,7 +135,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "multiple-matches"
       ]
     }

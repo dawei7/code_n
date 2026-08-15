@@ -150,7 +150,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "even-cycle"
       ]
     },
@@ -182,7 +181,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "disconnected",
         "isolated-node"
       ]
@@ -223,7 +221,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "complete-bipartite"
       ]
     },
@@ -255,7 +252,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "disconnected",
         "odd-cycle"
       ]

@@ -144,7 +144,6 @@
       },
       "expected": "yza",
       "tags": [
-        "hidden",
         "full-range"
       ]
     },
@@ -185,7 +184,6 @@
       },
       "expected": "ba",
       "tags": [
-        "hidden",
         "modulo"
       ]
     },
@@ -211,7 +209,6 @@
       },
       "expected": "lmoprs",
       "tags": [
-        "hidden",
         "disjoint"
       ]
     }

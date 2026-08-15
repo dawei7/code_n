@@ -139,7 +139,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "occupied-destination"
       ]
     },
@@ -169,7 +168,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "merged-group",
         "chain"
       ]
@@ -195,7 +193,6 @@
         999999999
       ],
       "tags": [
-        "hidden",
         "coordinate-boundary"
       ]
     },
@@ -225,7 +222,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "reoccupied-source"
       ]
     },
@@ -256,7 +252,6 @@
         40
       ],
       "tags": [
-        "hidden",
         "many-to-one"
       ]
     },
@@ -288,7 +283,6 @@
         8
       ],
       "tags": [
-        "hidden",
         "self-move",
         "mixed"
       ]

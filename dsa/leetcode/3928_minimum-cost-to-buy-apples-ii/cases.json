@@ -407,7 +407,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "overflow",
         "local-buy"
       ]
@@ -453,7 +452,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "chain",
         "indirect-purchase"
       ]
@@ -493,7 +491,6 @@
         20
       ],
       "tags": [
-        "hidden",
         "disconnected",
         "cheap-island"
       ]
@@ -547,7 +544,6 @@
         44
       ],
       "tags": [
-        "hidden",
         "purchase-choice",
         "travel-tradeoff"
       ]
@@ -607,7 +603,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "different-paths",
         "route-reversal"
       ]

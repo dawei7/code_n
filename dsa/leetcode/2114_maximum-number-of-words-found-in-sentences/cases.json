@@ -87,7 +87,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "first-maximum"
       ]
     },
@@ -107,7 +106,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "increasing-counts"
       ]
     },
@@ -124,7 +122,6 @@
       },
       "expected": 50,
       "tags": [
-        "hidden",
         "maximum-length",
         "many-words"
       ]

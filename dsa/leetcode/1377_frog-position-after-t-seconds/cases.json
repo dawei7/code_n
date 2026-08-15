@@ -197,7 +197,6 @@
       },
       "expected": 0.5,
       "tags": [
-        "hidden",
         "stationary"
       ]
     },
@@ -227,7 +226,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "depth"
       ]
     }

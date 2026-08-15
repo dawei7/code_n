@@ -110,7 +110,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "maximum-length",
         "minimum-range"
       ]
@@ -127,7 +126,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "maximum-length",
         "modulo"
       ]
@@ -144,7 +142,6 @@
       },
       "expected": 64603622,
       "tags": [
-        "hidden",
         "binary-exponentiation",
         "shift-invariance"
       ]
@@ -161,7 +158,6 @@
       },
       "expected": 674068812,
       "tags": [
-        "hidden",
         "modulo",
         "matrix-power"
       ]
@@ -178,7 +174,6 @@
       },
       "expected": 275650,
       "tags": [
-        "hidden",
         "maximum-range",
         "minimum-length"
       ]
@@ -195,7 +190,6 @@
       },
       "expected": 14409613,
       "tags": [
-        "hidden",
         "modulo",
         "shift-invariance"
       ]

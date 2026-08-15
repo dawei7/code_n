@@ -112,7 +112,6 @@
       },
       "expected": 2000,
       "tags": [
-        "hidden",
         "bound"
       ]
     },
@@ -132,7 +131,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "gap"
       ]
     },
@@ -155,7 +153,6 @@
       },
       "expected": 128,
       "tags": [
-        "hidden",
         "powers-of-two"
       ]
     }

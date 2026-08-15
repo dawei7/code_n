@@ -203,7 +203,6 @@
         12
       ],
       "tags": [
-        "hidden",
         "stale-minimum",
         "stale-maximum"
       ]
@@ -246,7 +245,6 @@
         1000000000
       ],
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -294,7 +292,6 @@
         9
       ],
       "tags": [
-        "hidden",
         "duplicate-price",
         "correction"
       ]

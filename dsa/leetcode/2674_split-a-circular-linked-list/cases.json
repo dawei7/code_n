@@ -152,7 +152,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -189,7 +188,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -228,7 +226,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "even"
       ]
     }

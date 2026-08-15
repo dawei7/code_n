@@ -224,7 +224,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "parallel-edges"
       ]
     },
@@ -278,7 +277,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
@@ -312,7 +310,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "isolated"
       ]
     },
@@ -346,7 +343,6 @@
       },
       "expected": 300000,
       "tags": [
-        "hidden",
         "large-weights"
       ]
     }

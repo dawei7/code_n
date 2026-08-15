@@ -72,7 +72,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "maximal-prefix"
       ]
     },
@@ -87,7 +86,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "remainder"
       ]
     },
@@ -102,7 +100,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

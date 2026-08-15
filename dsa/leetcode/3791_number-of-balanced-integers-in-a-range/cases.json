@@ -124,7 +124,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "three-digits"
       ]
     },
@@ -142,7 +141,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "length-boundary"
       ]
     },
@@ -160,7 +158,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zeros",
         "singleton-range"
       ]
@@ -179,7 +176,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "prefix-range"
       ]
     },
@@ -197,7 +193,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum",
         "singleton-range"
       ]
@@ -216,7 +211,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zeros"
       ]
     }

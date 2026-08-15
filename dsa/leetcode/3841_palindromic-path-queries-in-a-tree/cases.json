@@ -276,7 +276,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "root-update",
         "star-tree"
       ]
@@ -333,7 +332,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "balanced-tree",
         "root-lca"
       ]
@@ -389,7 +387,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "chain",
         "successive-updates"
       ]
@@ -429,7 +426,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "no-op-update",
         "effective-update"
       ]
@@ -479,7 +475,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "subtree-update",
         "separate-branch"
       ]
@@ -614,7 +609,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "full-alphabet",
         "bit-boundaries"
       ]

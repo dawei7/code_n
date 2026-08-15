@@ -159,7 +159,6 @@
       },
       "expected": 28,
       "tags": [
-        "hidden",
         "mixed-jumps"
       ]
     },
@@ -185,7 +184,6 @@
       },
       "expected": 40026,
       "tags": [
-        "hidden",
         "maximum-cost"
       ]
     },
@@ -208,7 +206,6 @@
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -233,7 +230,6 @@
       },
       "expected": 28,
       "tags": [
-        "hidden",
         "alternating",
         "final-landing"
       ]
@@ -257,7 +253,6 @@
       },
       "expected": 18,
       "tags": [
-        "hidden",
         "route-choice"
       ]
     }

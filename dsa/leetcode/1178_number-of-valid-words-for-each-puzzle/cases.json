@@ -140,7 +140,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "multiplicity"
       ]
     },
@@ -164,7 +163,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "required-only"
       ]
     },
@@ -190,7 +188,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "first-letter"
       ]
     }

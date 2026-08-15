@@ -409,7 +409,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "repeated-updates"
       ]
     },
@@ -455,7 +454,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "maximum-value",
         "depth-four"
       ]
@@ -509,7 +507,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "overlapping-ranges"
       ]
     },
@@ -562,7 +559,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "boundary-indices",
         "updates"
       ]
@@ -613,7 +609,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "repeated-query"
       ]
     },
@@ -658,7 +653,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "depth-five",
         "updates"
       ]

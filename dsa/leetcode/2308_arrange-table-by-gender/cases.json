@@ -296,7 +296,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "sparse-ids"
       ]
     },
@@ -347,7 +346,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "category-order"
       ]
     }

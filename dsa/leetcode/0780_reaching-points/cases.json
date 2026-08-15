@@ -117,7 +117,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "large-target"
       ]
     },
@@ -134,7 +133,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "large-target",
         "boundary-divisibility"
       ]
@@ -152,7 +150,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "large-target",
         "unreachable"
       ]

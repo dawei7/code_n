@@ -149,7 +149,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
@@ -179,7 +178,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "factorial"
       ]
     },
@@ -206,7 +204,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "hat-40"
       ]
     }

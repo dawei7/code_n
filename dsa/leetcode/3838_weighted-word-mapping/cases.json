@@ -390,7 +390,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-input",
         "minimum-weight"
       ]
@@ -438,7 +437,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "whole-alphabet",
         "residue-zero"
       ]
@@ -511,7 +509,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-letters",
         "all-residues"
       ]
@@ -562,7 +559,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-words",
         "order"
       ]
@@ -709,7 +705,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-word-count",
         "maximum-weight"
       ]

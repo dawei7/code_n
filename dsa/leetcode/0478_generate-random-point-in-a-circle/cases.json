@@ -183,7 +183,6 @@
         "tolerance": 1e-09
       },
       "tags": [
-        "hidden",
         "center"
       ]
     },
@@ -213,7 +212,6 @@
         "tolerance": 1e-09
       },
       "tags": [
-        "hidden",
         "diagonal"
       ]
     }

@@ -174,7 +174,6 @@
       },
       "expected": "x",
       "tags": [
-        "hidden",
         "whole-string"
       ]
     },
@@ -200,7 +199,6 @@
       },
       "expected": "leftbcderight",
       "tags": [
-        "hidden",
         "boundaries"
       ]
     },
@@ -226,7 +224,6 @@
       },
       "expected": "baaa",
       "tags": [
-        "hidden",
         "adjacent"
       ]
     },
@@ -252,7 +249,6 @@
       },
       "expected": "cdx",
       "tags": [
-        "hidden",
         "simultaneous"
       ]
     },
@@ -275,7 +271,6 @@
       },
       "expected": "abc",
       "tags": [
-        "hidden",
         "suffix-mismatch"
       ]
     },
@@ -301,7 +296,6 @@
       },
       "expected": "0a3456bcdef9",
       "tags": [
-        "hidden",
         "gaps"
       ]
     }

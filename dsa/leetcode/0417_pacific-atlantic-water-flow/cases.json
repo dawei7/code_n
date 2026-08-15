@@ -284,7 +284,6 @@
         "kind": "unordered_nested_list"
       },
       "tags": [
-        "hidden",
         "increasing"
       ]
     },
@@ -338,7 +337,6 @@
         "kind": "unordered_nested_list"
       },
       "tags": [
-        "hidden",
         "decreasing"
       ]
     },
@@ -384,7 +382,6 @@
         "kind": "unordered_nested_list"
       },
       "tags": [
-        "hidden",
         "ridges"
       ]
     }

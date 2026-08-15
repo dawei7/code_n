@@ -123,7 +123,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "even-length",
         "skewed"
       ]
@@ -146,7 +145,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "path-identity"
       ]
     },
@@ -167,7 +165,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "multiple-odd"
       ]
     },
@@ -190,7 +187,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "parity-toggle"
       ]
     }

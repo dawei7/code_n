@@ -147,7 +147,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "backtracking"
       ]
@@ -166,7 +165,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "next-permutation"
       ]
@@ -185,7 +183,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unavailable-match"
       ]
     },
@@ -203,7 +200,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "empty-result"
       ]
     },
@@ -221,7 +217,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length"
       ]
     }

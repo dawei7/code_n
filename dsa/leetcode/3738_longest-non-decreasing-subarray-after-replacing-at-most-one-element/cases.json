@@ -129,7 +129,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "bridge"
       ]
     },
@@ -151,7 +150,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "left-boundary"
       ]
     },
@@ -173,7 +171,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "right-boundary"
       ]
     },
@@ -195,7 +192,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "interior-replacement"
       ]
     },
@@ -218,7 +214,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "equal-values"
       ]
     },
@@ -239,7 +234,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundaries"
       ]
     },
@@ -260,7 +254,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "bridge"
       ]
     }

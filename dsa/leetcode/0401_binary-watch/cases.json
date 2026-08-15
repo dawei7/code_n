@@ -389,7 +389,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "high"
       ]
     },
@@ -415,7 +414,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "maximum"
       ]
     },
@@ -432,7 +430,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "invalid"
       ]
     }

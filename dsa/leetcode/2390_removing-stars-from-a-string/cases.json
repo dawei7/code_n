@@ -66,7 +66,6 @@
       },
       "expected": "",
       "tags": [
-        "hidden",
         "consecutive-stars"
       ]
     },
@@ -80,7 +79,6 @@
       },
       "expected": "c",
       "tags": [
-        "hidden",
         "suffix"
       ]
     },
@@ -94,7 +92,6 @@
       },
       "expected": "ae",
       "tags": [
-        "hidden",
         "multiple-runs"
       ]
     }

@@ -83,7 +83,6 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "boundary-prefix"
       ]
     },
@@ -97,7 +96,6 @@
       },
       "expected": 31,
       "tags": [
-        "hidden",
         "complete-bit-length"
       ]
     },
@@ -111,7 +109,6 @@
       },
       "expected": 63356754,
       "tags": [
-        "hidden",
         "maximum-bound"
       ]
     }

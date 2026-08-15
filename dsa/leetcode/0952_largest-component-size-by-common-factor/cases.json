@@ -131,7 +131,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "one"
       ]
     },
@@ -150,7 +149,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "prime-powers"
       ]
     },
@@ -169,7 +167,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "tie"
       ]
     }

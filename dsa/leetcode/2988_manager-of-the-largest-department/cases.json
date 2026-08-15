@@ -300,7 +300,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "count-all"
       ]
     },
@@ -359,7 +358,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ordering"
       ]
     }

@@ -104,7 +104,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "partial-level"
       ]
     },
@@ -123,7 +122,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "insufficient-levels"
       ]
     },
@@ -146,7 +144,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "skewed-tree"
       ]
     },
@@ -169,7 +166,6 @@
       },
       "expected": 2000000,
       "tags": [
-        "hidden",
         "large-values"
       ]
     },
@@ -192,7 +188,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "sparse-tree"
       ]
     },
@@ -215,7 +210,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "duplicate-sums"
       ]
     }

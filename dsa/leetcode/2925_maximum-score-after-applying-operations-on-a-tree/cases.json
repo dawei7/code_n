@@ -200,7 +200,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "root-retained"
       ],
       "expected": 200
@@ -248,7 +247,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "branching",
         "subtree-dp"
       ],
@@ -272,7 +270,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "boundary"
       ],
       "expected": 1000000000

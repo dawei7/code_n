@@ -161,7 +161,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "irrelevant"
       ]
     },
@@ -185,7 +184,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "blocked"
       ]
     }

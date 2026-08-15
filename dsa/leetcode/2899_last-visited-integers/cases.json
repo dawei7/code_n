@@ -128,7 +128,6 @@
         11
       ],
       "tags": [
-        "hidden",
         "simulation",
         "resets"
       ]
@@ -295,7 +294,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "maximum-length",
         "boundary"
       ]

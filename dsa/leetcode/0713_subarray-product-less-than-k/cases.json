@@ -109,7 +109,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "strict"
       ]
     },
@@ -129,7 +128,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "window-shrink"
       ]
     },
@@ -149,7 +147,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "boundary-threshold"
       ]
     }

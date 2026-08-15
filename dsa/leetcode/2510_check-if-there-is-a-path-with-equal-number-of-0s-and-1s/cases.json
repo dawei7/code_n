@@ -167,7 +167,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "all-one"
       ]
     },
@@ -200,7 +199,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "route-choice"
       ]
     },
@@ -229,7 +227,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "narrow-grid"
       ]
     }

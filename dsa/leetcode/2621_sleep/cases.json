@@ -67,7 +67,6 @@
       },
       "expected": 37,
       "tags": [
-        "hidden",
         "odd-duration"
       ]
     },
@@ -81,7 +80,6 @@
       },
       "expected": 1000,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

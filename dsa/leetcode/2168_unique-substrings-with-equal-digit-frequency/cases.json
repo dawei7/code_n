@@ -96,7 +96,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "alternating",
         "deduplication"
       ]
@@ -111,7 +110,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "clusters"
       ]
     },
@@ -125,7 +123,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "three-digits",
         "blocks"
       ]

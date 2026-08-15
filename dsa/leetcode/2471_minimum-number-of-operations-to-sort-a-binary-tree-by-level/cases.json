@@ -124,7 +124,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
@@ -145,7 +144,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "sparse-tree"
       ]
     },
@@ -166,7 +164,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "skewed-tree"
       ]
     },
@@ -188,7 +185,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "fixed-point"
       ]
     }

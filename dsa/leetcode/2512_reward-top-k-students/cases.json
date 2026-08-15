@@ -159,7 +159,6 @@
         999999999
       ],
       "tags": [
-        "hidden",
         "minimum-students"
       ]
     },
@@ -193,7 +192,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "negative-scores"
       ]
     },
@@ -227,7 +225,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "ranking-priority"
       ]
     }

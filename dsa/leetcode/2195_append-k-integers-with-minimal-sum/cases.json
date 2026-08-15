@@ -107,7 +107,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "excluded-prefix"
       ]
     },
@@ -128,7 +127,6 @@
       },
       "expected": 24,
       "tags": [
-        "hidden",
         "unsorted",
         "duplicates"
       ]
@@ -146,7 +144,6 @@
       },
       "expected": 500500,
       "tags": [
-        "hidden",
         "large-k",
         "large-value"
       ]

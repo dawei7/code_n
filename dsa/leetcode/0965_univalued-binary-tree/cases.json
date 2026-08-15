@@ -113,7 +113,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "perfect"
       ]
     },
@@ -134,7 +133,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "deep"
       ]
     },
@@ -154,7 +152,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "zero"
       ]
     }

@@ -71,7 +71,6 @@
       },
       "expected": 999999999,
       "tags": [
-        "hidden",
         "length-boundary"
       ]
     },
@@ -91,7 +90,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "close-pair"
       ]
     },
@@ -112,7 +110,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -131,7 +128,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -152,7 +148,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "middle-gap"
       ]
     }

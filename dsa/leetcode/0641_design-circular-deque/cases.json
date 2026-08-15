@@ -266,7 +266,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -319,7 +318,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "refill"
       ]
     }

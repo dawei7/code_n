@@ -58,7 +58,6 @@
       },
       "expected": 1010,
       "tags": [
-        "hidden",
         "reserve-boundary"
       ]
     },
@@ -73,7 +72,6 @@
       },
       "expected": 40,
       "tags": [
-        "hidden",
         "below-threshold"
       ]
     },
@@ -88,7 +86,6 @@
       },
       "expected": 1240,
       "tags": [
-        "hidden",
         "maximum"
       ]
     },
@@ -103,7 +100,6 @@
       },
       "expected": 90,
       "tags": [
-        "hidden",
         "threshold"
       ]
     },
@@ -118,7 +114,6 @@
       },
       "expected": 110,
       "tags": [
-        "hidden",
         "threshold"
       ]
     }

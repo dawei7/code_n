@@ -201,7 +201,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "append-index"
       ]
     },
@@ -234,7 +233,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "invalid-delete"
       ]
     },
@@ -280,7 +278,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "endpoint-delete"
       ]
     }

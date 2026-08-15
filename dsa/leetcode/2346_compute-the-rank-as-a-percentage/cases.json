@@ -229,7 +229,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "two-students"
       ]
     },
@@ -287,7 +286,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "all-tied"
       ]
     },
@@ -365,7 +363,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "partitioning"
       ]
     }

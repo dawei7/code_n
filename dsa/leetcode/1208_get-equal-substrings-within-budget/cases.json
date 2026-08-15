@@ -77,7 +77,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "zero-cost"
       ]
     },
@@ -93,7 +92,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "shrink"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "exact-budget"
       ]
     }

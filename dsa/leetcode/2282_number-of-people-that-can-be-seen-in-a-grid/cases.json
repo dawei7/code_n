@@ -182,7 +182,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "duplicates",
         "column"
       ]
@@ -229,7 +228,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "two-directions"
       ]
     },
@@ -265,7 +263,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "monotonic"
       ]
     }

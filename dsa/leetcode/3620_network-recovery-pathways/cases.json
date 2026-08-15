@@ -321,7 +321,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "topological-order",
         "multiple-paths"
       ]
@@ -370,7 +369,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "budget",
         "bottleneck"
       ]
@@ -413,7 +411,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero-cost",
         "multiple-paths"
       ]
@@ -462,7 +459,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "equal-costs",
         "dag"
       ]
@@ -500,7 +496,6 @@
       },
       "expected": 1000000000,
       "tags": [
-        "hidden",
         "maximum-cost",
         "large-budget"
       ]
@@ -532,7 +527,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "directed-edges",
         "no-path"
       ]

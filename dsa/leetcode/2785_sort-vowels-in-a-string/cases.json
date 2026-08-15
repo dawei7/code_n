@@ -95,7 +95,6 @@
       },
       "expected": "zAEauux",
       "tags": [
-        "hidden",
         "duplicates",
         "mixed-case"
       ]
@@ -110,7 +109,6 @@
       },
       "expected": "BCdfgXYZ",
       "tags": [
-        "hidden",
         "no-vowels"
       ]
     },
@@ -124,7 +122,6 @@
       },
       "expected": "AqErItOvUzaeiou",
       "tags": [
-        "hidden",
         "already-sorted"
       ]
     },
@@ -138,7 +135,6 @@
       },
       "expected": "AbEcIdOfUgahejikolu",
       "tags": [
-        "hidden",
         "reverse-order",
         "fixed-indices"
       ]

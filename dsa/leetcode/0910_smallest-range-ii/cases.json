@@ -127,7 +127,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "gap"
       ]
     },
@@ -145,7 +144,6 @@
       },
       "expected": 10000,
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -165,7 +163,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
@@ -185,7 +182,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -204,7 +200,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "crossing"
       ]
     }

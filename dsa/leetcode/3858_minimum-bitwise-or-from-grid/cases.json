@@ -187,7 +187,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "shared-choice",
         "multiple-rows"
       ]
@@ -218,7 +217,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "overlapping-bits",
         "three-rows"
       ]
@@ -247,7 +245,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "forced-or"
       ]
@@ -274,7 +271,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "greedy-trap",
         "row-minimum"
       ]
@@ -297,7 +293,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "one-row"
       ]
@@ -328,7 +323,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "high-bit",
         "avoidable-bit"
       ]
@@ -358,7 +352,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "high-bit",
         "forced-bit"
       ]

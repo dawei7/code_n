@@ -147,7 +147,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -177,7 +176,6 @@
       },
       "expected": -29,
       "tags": [
-        "hidden",
         "diagonal"
       ]
     },
@@ -207,7 +205,6 @@
       },
       "expected": -99,
       "tags": [
-        "hidden",
         "global-optimum"
       ]
     },
@@ -230,7 +227,6 @@
       },
       "expected": -6,
       "tags": [
-        "hidden",
         "all-negative"
       ]
     }

@@ -85,7 +85,6 @@
       },
       "expected": "equilateral",
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
@@ -103,7 +102,6 @@
       },
       "expected": "equilateral",
       "tags": [
-        "hidden",
         "maximum"
       ]
     },
@@ -121,7 +119,6 @@
       },
       "expected": "none",
       "tags": [
-        "hidden",
         "invalid"
       ]
     },
@@ -139,7 +136,6 @@
       },
       "expected": "isosceles",
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -157,7 +153,6 @@
       },
       "expected": "isosceles",
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
@@ -175,7 +170,6 @@
       },
       "expected": "scalene",
       "tags": [
-        "hidden",
         "unsorted"
       ]
     }

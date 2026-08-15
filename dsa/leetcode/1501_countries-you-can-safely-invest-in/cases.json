@@ -463,7 +463,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "multiple-results",
         "international"
       ]
@@ -532,7 +531,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "caller-callee-symmetry",
         "domestic"
       ]
@@ -600,7 +598,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "leading-zero",
         "prefix"
       ]

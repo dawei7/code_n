@@ -86,7 +86,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -103,7 +102,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "palindrome"
       ]
     },
@@ -121,7 +119,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "leading-zero",
         "overlap"
       ]
@@ -138,7 +135,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

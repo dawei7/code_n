@@ -82,7 +82,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "whole-string"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "zero-counts"
       ]
     }

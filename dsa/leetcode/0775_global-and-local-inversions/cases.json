@@ -127,7 +127,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "local-only"
       ]
     },
@@ -146,7 +145,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "nonlocal"
       ]
     },
@@ -164,7 +162,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "descending"
       ]
     }

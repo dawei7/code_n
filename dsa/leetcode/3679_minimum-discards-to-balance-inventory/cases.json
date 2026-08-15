@@ -110,7 +110,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "expiry",
         "single-capacity"
       ]
@@ -134,7 +133,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "multiple-types"
       ]
     },
@@ -156,7 +154,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "maximum-limit",
         "no-discards"
       ]
@@ -182,7 +179,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "sparse-repeat",
         "expiry"
       ]

@@ -129,7 +129,6 @@
       },
       "expected": 13,
       "tags": [
-        "hidden",
         "omit-largest"
       ]
     },
@@ -148,7 +147,6 @@
       },
       "expected": 4000000000,
       "tags": [
-        "hidden",
         "integer-boundary"
       ]
     },
@@ -169,7 +167,6 @@
       },
       "expected": 33,
       "tags": [
-        "hidden",
         "sorting"
       ]
     }

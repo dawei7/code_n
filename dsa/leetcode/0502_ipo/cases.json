@@ -138,7 +138,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "greedy"
       ]
     },
@@ -161,7 +160,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "excess-k"
       ]
     }

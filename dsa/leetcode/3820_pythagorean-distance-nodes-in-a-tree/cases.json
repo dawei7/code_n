@@ -335,7 +335,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "asymmetric-tree",
         "branch-distances"
       ]
@@ -370,7 +369,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "star",
         "center-target"
       ]
@@ -421,7 +419,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "two-junctions",
         "multiple-special"
       ]
@@ -480,7 +477,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-star",
         "unselected-leaves"
       ]
@@ -523,7 +519,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "path",
         "empty-count"
       ]

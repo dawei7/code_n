@@ -87,7 +87,6 @@
       },
       "expected": "a! a! a! a! ",
       "tags": [
-        "hidden",
         "content-preservation"
       ]
     },
@@ -102,7 +101,6 @@
       },
       "expected": "xyxyxyxyxyxyxyxyxyxyxyxyxy",
       "tags": [
-        "hidden",
         "mixed-bits"
       ]
     },
@@ -117,7 +115,6 @@
       },
       "expected": "prototypeprototypeprototypeprototype",
       "tags": [
-        "hidden",
         "longer-receiver"
       ]
     }

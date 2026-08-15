@@ -79,7 +79,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "odd-length"
       ]
     },
@@ -93,7 +92,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "center-shift"
       ]
     },
@@ -107,7 +105,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "grouped-pairs"
       ]
     }

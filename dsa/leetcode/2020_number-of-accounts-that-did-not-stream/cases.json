@@ -215,7 +215,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "stream-boundary"
       ]
     },
@@ -266,7 +265,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "subscription-overlap"
       ]
     },
@@ -317,7 +315,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "duplicate-account-streams"
       ]
     }

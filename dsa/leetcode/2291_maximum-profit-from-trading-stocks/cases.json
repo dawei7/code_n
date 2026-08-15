@@ -144,7 +144,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "zero-one"
       ]
     },
@@ -168,7 +167,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "negative-gain"
       ]
     },
@@ -192,7 +190,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "large-budget"
       ]
     },
@@ -218,7 +215,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

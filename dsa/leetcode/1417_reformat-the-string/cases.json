@@ -99,7 +99,6 @@
         "kind": "reformatted_string"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -116,7 +115,6 @@
         "kind": "reformatted_string"
       },
       "tags": [
-        "hidden",
         "impossible"
       ]
     }

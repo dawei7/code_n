@@ -142,7 +142,6 @@
         "16"
       ],
       "tags": [
-        "hidden",
         "after-fifteen"
       ]
     },
@@ -187,7 +186,6 @@
         "FizzBuzz"
       ],
       "tags": [
-        "hidden",
         "multiple-combined"
       ]
     },
@@ -249,7 +247,6 @@
         "47"
       ],
       "tags": [
-        "hidden",
         "prime"
       ]
     }

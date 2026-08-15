@@ -177,7 +177,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "zero-result"
       ]
     },
@@ -226,7 +225,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "deduplication"
       ]
     },
@@ -275,7 +273,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "customer-identities"
       ]
     }

@@ -306,7 +306,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "decimal-boundary",
         "descending-order"
       ]
@@ -360,7 +359,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "priority",
         "descending-order"
       ]

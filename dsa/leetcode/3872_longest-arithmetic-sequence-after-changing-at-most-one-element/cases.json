@@ -191,7 +191,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "left-compatible",
         "one-sided-run"
       ]
@@ -216,7 +215,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "right-compatible",
         "one-sided-run"
       ]
@@ -242,7 +240,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "even-gap",
         "difference-mismatch"
       ]
@@ -267,7 +264,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero-difference",
         "unchanged"
       ]
@@ -290,7 +286,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-value",
         "maximum-value"
       ]
@@ -314,7 +309,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "decreasing",
         "large-difference"
       ]
@@ -341,7 +335,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "long-run",
         "unchanged"
       ]
@@ -367,7 +360,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "central-replacement",
         "complete-array"
       ]

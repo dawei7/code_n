@@ -89,7 +89,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "impossible"
       ]
     },
@@ -105,7 +104,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "long-prefix"
       ]
     },
@@ -121,7 +119,6 @@
       },
       "expected": 13,
       "tags": [
-        "hidden",
         "unequal-lengths"
       ]
     }

@@ -272,7 +272,6 @@
         "far"
       ],
       "tags": [
-        "hidden",
         "shortest-path",
         "cycle"
       ]
@@ -318,7 +317,6 @@
         "x"
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

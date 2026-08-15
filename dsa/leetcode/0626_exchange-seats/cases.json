@@ -310,7 +310,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "even-count"
       ]
     },
@@ -390,7 +389,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "odd-final"
       ]
     }

@@ -107,7 +107,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "endpoint"
       ]
     },
@@ -128,7 +127,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "sweep"
       ]
     },
@@ -147,7 +145,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

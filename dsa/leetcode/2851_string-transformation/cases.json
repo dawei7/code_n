@@ -79,7 +79,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "equal-target",
         "exact-operations"
       ]
@@ -96,7 +95,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "equal-target",
         "return-count"
       ]
@@ -113,7 +111,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "periodic",
         "matching-offsets"
       ]
@@ -130,7 +127,6 @@
       },
       "expected": 27,
       "tags": [
-        "hidden",
         "uniform",
         "all-offsets-match"
       ]
@@ -147,7 +143,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "huge-k",
         "parity"
       ]
@@ -164,7 +159,6 @@
       },
       "expected": 468606845,
       "tags": [
-        "hidden",
         "huge-k",
         "modulo"
       ]

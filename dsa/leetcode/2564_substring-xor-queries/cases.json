@@ -162,7 +162,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "leading-zeroes"
       ]
     },
@@ -187,7 +186,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "tie-break"
       ]
     },
@@ -236,7 +234,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "mixed-results"
       ]
     }

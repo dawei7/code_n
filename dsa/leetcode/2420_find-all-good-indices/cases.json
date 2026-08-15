@@ -139,7 +139,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "excluded-center"
       ]
     },
@@ -160,7 +159,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "failure"
       ]
     },
@@ -183,7 +181,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

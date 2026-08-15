@@ -126,7 +126,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "second-rise"
       ]
     },
@@ -148,7 +147,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "valid"
       ]
     },
@@ -169,7 +167,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "plateau"
       ]
     },
@@ -187,7 +184,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

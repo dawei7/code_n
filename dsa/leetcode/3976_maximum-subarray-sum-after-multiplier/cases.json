@@ -178,7 +178,6 @@
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "restart",
         "multiplication"
       ]
@@ -201,7 +200,6 @@
       },
       "expected": 42,
       "tags": [
-        "hidden",
         "negative-gap",
         "positive-run"
       ]
@@ -221,7 +219,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "mixed-sign",
         "contiguous-operation"
       ]
@@ -241,7 +238,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "singleton-operation",
         "negative-boundaries"
       ]
@@ -261,7 +257,6 @@
       },
       "expected": 10000000000,
       "tags": [
-        "hidden",
         "maximum-values",
         "wide-integer"
       ]
@@ -285,7 +280,6 @@
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "state-transition",
         "mixed-sign"
       ]
@@ -304,7 +298,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "truncation",
         "all-negative"
       ]

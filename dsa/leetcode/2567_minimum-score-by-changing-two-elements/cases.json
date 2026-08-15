@@ -96,7 +96,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "split-extremes"
       ]
     },
@@ -115,7 +114,6 @@
       },
       "expected": 25,
       "tags": [
-        "hidden",
         "four-values"
       ]
     },
@@ -135,7 +133,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -155,7 +152,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "duplicates",
         "extremes"
       ]
@@ -175,7 +171,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "maximum-values"
       ]
     }

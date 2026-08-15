@@ -85,7 +85,6 @@
       },
       "expected": 50,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -104,7 +103,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "later-values"
       ]
     },
@@ -124,7 +122,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
@@ -142,7 +139,6 @@
       },
       "expected": 99,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

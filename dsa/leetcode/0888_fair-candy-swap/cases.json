@@ -196,7 +196,6 @@
         "kind": "fair_candy_swap"
       },
       "tags": [
-        "hidden",
         "unequal-lengths"
       ]
     },
@@ -225,7 +224,7 @@
         "kind": "fair_candy_swap"
       },
       "tags": [
-        "hidden"
+        "trial"
       ]
     },
     {
@@ -251,7 +250,6 @@
         "kind": "fair_candy_swap"
       },
       "tags": [
-        "hidden",
         "maximum-size"
       ]
     },
@@ -280,7 +278,6 @@
         "kind": "fair_candy_swap"
       },
       "tags": [
-        "hidden",
         "alice-larger"
       ]
     },
@@ -311,7 +308,6 @@
         "kind": "fair_candy_swap"
       },
       "tags": [
-        "hidden",
         "multiple-answers"
       ]
     }

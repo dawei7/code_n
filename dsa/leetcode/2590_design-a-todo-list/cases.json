@@ -244,7 +244,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "ownership"
       ]
     },
@@ -290,7 +289,6 @@
         []
       ],
       "tags": [
-        "hidden",
         "completion"
       ]
     },
@@ -351,7 +349,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "tags",
         "ordering"
       ]
@@ -407,7 +404,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "tags",
         "completion"
       ]
@@ -450,7 +446,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "empty-tags"
       ]
     },
@@ -492,7 +487,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "unknown-id"
       ]
     },
@@ -549,7 +543,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "multiple-users",
         "tags"
       ]

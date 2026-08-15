@@ -172,7 +172,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "left-endpoint",
         "longer-array"
       ]
@@ -196,7 +195,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "right-endpoint",
         "longer-array"
       ]
@@ -218,7 +216,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "interior-maximum"
       ]
@@ -239,7 +236,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "left-endpoint"
       ]
@@ -263,7 +259,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "interior-peaks",
         "right-endpoint"
       ]

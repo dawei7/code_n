@@ -118,7 +118,6 @@
         "leftright"
       ],
       "tags": [
-        "hidden",
         "markers-inside-block"
       ]
     },
@@ -138,7 +137,6 @@
         "code"
       ],
       "tags": [
-        "hidden",
         "non-delimiters"
       ]
     },
@@ -159,7 +157,6 @@
         "last"
       ],
       "tags": [
-        "hidden",
         "cross-line-buffer"
       ]
     }

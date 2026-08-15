@@ -168,7 +168,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "all-zero"
       ]
     },
@@ -198,7 +197,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "all-one"
       ]
     },
@@ -234,7 +232,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "late-winner"
       ]
     }

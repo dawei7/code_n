@@ -82,7 +82,6 @@
       },
       "expected": "az",
       "tags": [
-        "hidden",
         "leading-change"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": "aaaab",
       "tags": [
-        "hidden",
         "suffix-change"
       ]
     }

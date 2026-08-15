@@ -168,7 +168,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "first-swap"
       ]
     },
@@ -199,7 +198,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-swaps"
       ]
     },
@@ -224,7 +222,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "both-alignments",
         "zero-swaps"
       ]

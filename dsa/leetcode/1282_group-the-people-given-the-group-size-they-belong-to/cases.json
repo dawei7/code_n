@@ -202,7 +202,6 @@
         "kind": "group_people"
       },
       "tags": [
-        "hidden",
         "interleaved"
       ]
     },
@@ -247,7 +246,6 @@
         "kind": "group_people"
       },
       "tags": [
-        "hidden",
         "multiple-groups"
       ]
     }

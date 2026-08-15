@@ -143,7 +143,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "latest-index"
       ]
     },
@@ -163,7 +162,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

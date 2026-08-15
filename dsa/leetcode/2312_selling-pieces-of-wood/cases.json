@@ -198,7 +198,6 @@
       },
       "expected": 44,
       "tags": [
-        "hidden",
         "mixed-cuts"
       ]
     },
@@ -220,7 +219,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "unsold-piece"
       ]
     }

@@ -254,7 +254,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "odd-block-length"
       ]
@@ -299,7 +298,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "semantic-trap",
         "block-count"
       ]
@@ -332,7 +330,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "palindrome",
         "unchanged"
       ]
@@ -369,7 +366,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "alternating",
         "pair-blocks"
       ]
@@ -402,7 +398,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "pair-blocks",
         "block-order"
       ]
@@ -433,7 +428,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "one-block",
         "odd-block-length"
       ]

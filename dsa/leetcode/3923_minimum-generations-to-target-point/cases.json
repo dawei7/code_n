@@ -472,7 +472,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "floor",
         "mixed-coordinates"
       ]
@@ -533,7 +532,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "cube-corners",
         "generation-two"
       ]
@@ -594,7 +592,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "cube-corners",
         "face-point"
       ]
@@ -715,7 +712,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "maximum-input-count",
         "stable-closure"
       ]

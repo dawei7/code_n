@@ -118,7 +118,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "many-children"
       ]
     },
@@ -139,7 +138,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "partition"
       ]
     },
@@ -163,7 +161,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "maximum-n",
         "symmetry"
       ]

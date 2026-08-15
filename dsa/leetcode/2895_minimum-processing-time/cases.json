@@ -154,7 +154,6 @@
       },
       "expected": 1000000001,
       "tags": [
-        "hidden",
         "maximum-values",
         "integer-range"
       ]

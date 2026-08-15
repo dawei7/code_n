@@ -157,7 +157,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "divisibility"
       ]
     },
@@ -190,7 +189,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "star"
       ]
     },
@@ -223,7 +221,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "topology"
       ]
     },
@@ -261,7 +258,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "maximum-cuts",
         "star"
       ]

@@ -82,7 +82,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "dynamic-programming"
       ]
     },
@@ -99,7 +98,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -116,7 +114,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "exact-length"
       ]
     },
@@ -133,7 +130,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "asymmetric"
       ]
     }

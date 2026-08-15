@@ -166,7 +166,6 @@
       },
       "expected": 27,
       "tags": [
-        "hidden",
         "counts"
       ]
     },
@@ -197,7 +196,6 @@
       },
       "expected": 40,
       "tags": [
-        "hidden",
         "use-limit"
       ]
     },
@@ -224,7 +222,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "ties"
       ]
     }

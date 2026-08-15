@@ -112,7 +112,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "right-boundary"
       ]
     },
@@ -133,7 +132,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "negative"
       ]
     }

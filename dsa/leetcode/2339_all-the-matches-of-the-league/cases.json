@@ -225,7 +225,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "both-directions"
       ]
     },
@@ -285,7 +284,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "names"
       ]
     }

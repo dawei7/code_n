@@ -150,7 +150,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "alternating"
       ],
       "validator": {
@@ -177,7 +176,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "all-decreasing"
       ],
       "validator": {
@@ -206,7 +204,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "mixed"
       ],
       "validator": {
@@ -237,7 +234,6 @@
         12
       ],
       "tags": [
-        "hidden",
         "all-increasing"
       ],
       "validator": {

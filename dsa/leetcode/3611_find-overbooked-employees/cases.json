@@ -488,7 +488,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "output-order",
         "tie-break"
       ]
@@ -543,7 +542,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "minimum-weeks",
         "no-meetings"
       ]
@@ -621,7 +619,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "meeting-types",
         "same-day"
       ]

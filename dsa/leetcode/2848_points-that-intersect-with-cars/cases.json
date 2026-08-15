@@ -116,7 +116,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -143,7 +142,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "contained"
       ]
     },
@@ -170,7 +168,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "disjoint",
         "boundaries"
       ]
@@ -190,7 +187,6 @@
       },
       "expected": 100,
       "tags": [
-        "hidden",
         "full-domain"
       ]
     },
@@ -217,7 +213,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "bridge",
         "overlap"
       ]
@@ -245,7 +240,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "unordered",
         "disjoint"
       ]

@@ -81,7 +81,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "included-endpoint"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": 49,
       "tags": [
-        "hidden",
         "decade-blocks"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": 499,
       "tags": [
-        "hidden",
         "maximum",
         "power-of-ten"
       ]

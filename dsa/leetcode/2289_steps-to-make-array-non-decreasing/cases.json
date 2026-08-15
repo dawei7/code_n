@@ -121,7 +121,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "equality",
         "cascade"
       ]
@@ -144,7 +143,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-regions"
       ]
     },
@@ -168,7 +166,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "late-cascade"
       ]
     },
@@ -191,7 +188,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "simultaneous"
       ]
     }

@@ -88,7 +88,6 @@
       },
       "expected": "firstsecondthird",
       "tags": [
-        "hidden",
         "concurrency"
       ]
     },
@@ -106,7 +105,6 @@
       },
       "expected": "firstsecondthird",
       "tags": [
-        "hidden",
         "concurrency"
       ]
     }

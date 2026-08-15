@@ -147,7 +147,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "threshold"
       ]
     },
@@ -170,7 +169,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

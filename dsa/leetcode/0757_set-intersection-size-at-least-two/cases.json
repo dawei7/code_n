@@ -160,7 +160,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "nested"
       ]
     },
@@ -183,7 +182,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "shared-pair"
       ]
     },
@@ -210,7 +208,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "equal-end"
       ]
     }

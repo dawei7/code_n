@@ -118,7 +118,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "middle-window",
         "duplicates"
       ]
@@ -141,7 +140,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "window-choice",
         "duplicates"
       ]

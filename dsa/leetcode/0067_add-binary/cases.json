@@ -69,7 +69,6 @@
       },
       "expected": "110001000",
       "tags": [
-        "hidden",
         "carry"
       ]
     }

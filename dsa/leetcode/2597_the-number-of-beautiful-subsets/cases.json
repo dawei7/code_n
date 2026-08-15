@@ -93,7 +93,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "duplicates",
         "conflict"
       ]
@@ -114,7 +113,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "chain"
       ]
     },
@@ -135,7 +133,6 @@
       },
       "expected": 31,
       "tags": [
-        "hidden",
         "all-subsets"
       ]
     },
@@ -156,7 +153,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "multiple-groups"
       ]
     }

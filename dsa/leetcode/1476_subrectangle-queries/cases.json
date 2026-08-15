@@ -369,7 +369,6 @@
         9
       ],
       "tags": [
-        "hidden",
         "disjoint"
       ]
     },
@@ -467,7 +466,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "nested",
         "overlap"
       ]
@@ -517,7 +515,6 @@
         1000000000
       ],
       "tags": [
-        "hidden",
         "bounds"
       ]
     }

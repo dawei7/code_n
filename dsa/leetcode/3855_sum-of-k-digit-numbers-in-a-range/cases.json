@@ -137,7 +137,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-k",
         "zero-digit"
       ]
@@ -157,7 +156,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "single-digit-choice",
         "geometric-series"
       ]
@@ -177,7 +175,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-digit",
         "modulo"
       ]
@@ -197,7 +194,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "middle-range",
         "four-positions"
       ]
@@ -217,7 +213,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "full-digit-range",
         "maximum-k"
       ]
@@ -237,7 +232,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-k",
         "nonzero-range"
       ]
@@ -257,7 +251,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "one-position",
         "single-choice"
       ]

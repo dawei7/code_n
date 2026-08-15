@@ -206,7 +206,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "multiple-components"
       ]
     },
@@ -245,7 +244,6 @@
       },
       "expected": 18,
       "tags": [
-        "hidden",
         "same-parity",
         "transitive-connectivity"
       ]
@@ -276,7 +274,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -302,7 +299,6 @@
       },
       "expected": 24,
       "tags": [
-        "hidden",
         "same-parity"
       ]
     },
@@ -337,7 +333,6 @@
       },
       "expected": 288,
       "tags": [
-        "hidden",
         "multiple-components",
         "cross-parity"
       ]

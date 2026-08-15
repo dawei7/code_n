@@ -115,7 +115,6 @@
       },
       "expected": "aabbc",
       "tags": [
-        "hidden",
         "repeated"
       ]
     },
@@ -134,7 +133,6 @@
       },
       "expected": "ac",
       "tags": [
-        "hidden",
         "tie"
       ]
     }

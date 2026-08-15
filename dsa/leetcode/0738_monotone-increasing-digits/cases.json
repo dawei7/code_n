@@ -82,7 +82,6 @@
       },
       "expected": 9999,
       "tags": [
-        "hidden",
         "cascade"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 999999999,
       "tags": [
-        "hidden",
         "upper-boundary"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": 134999,
       "tags": [
-        "hidden",
         "internal-descent"
       ]
     }

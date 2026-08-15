@@ -114,7 +114,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "zero",
         "skewed"
       ]
@@ -137,7 +136,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "internal-node"
       ]
     },
@@ -157,7 +155,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "upper-bound",
         "unbalanced"
       ]

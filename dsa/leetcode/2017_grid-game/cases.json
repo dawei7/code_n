@@ -145,7 +145,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "balanced"
       ]
     },
@@ -168,7 +167,6 @@
       },
       "expected": 100000,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

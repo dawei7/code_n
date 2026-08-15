@@ -117,7 +117,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "no-deletion"
       ]
     },
@@ -134,7 +133,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "long-suffix-deletion"
       ]
     },
@@ -151,7 +149,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "suffix-deletion"
       ]
     },
@@ -168,7 +165,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum",
         "impossible"
       ]

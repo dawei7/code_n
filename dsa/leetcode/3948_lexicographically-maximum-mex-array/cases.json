@@ -218,7 +218,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary",
         "maximum-value"
       ]
@@ -242,7 +241,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "distinct-requirements"
       ]
@@ -270,7 +268,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "decreasing-mex",
         "three-segments"
       ]
@@ -298,7 +295,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "reordered-values",
         "two-segments"
       ]
@@ -326,7 +322,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero-mex",
         "length-tiebreak"
       ]
@@ -353,7 +348,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "full-prefix",
         "suffix-zero"
       ]
@@ -382,7 +376,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-mex",
         "duplicate-four"
       ]

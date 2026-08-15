@@ -136,7 +136,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "value-mismatch"
       ]
     },
@@ -164,7 +163,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "structure-mismatch"
       ]
     },
@@ -186,7 +184,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "one-child"
       ]
     }

@@ -110,7 +110,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "invalid"
       ]
     },
@@ -132,7 +131,6 @@
         "Alaska"
       ],
       "tags": [
-        "hidden",
         "order"
       ]
     }

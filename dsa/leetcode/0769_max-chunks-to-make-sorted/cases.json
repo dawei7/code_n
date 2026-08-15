@@ -131,7 +131,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "suffix"
       ]
     },
@@ -150,7 +149,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
@@ -170,7 +168,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

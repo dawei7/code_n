@@ -159,7 +159,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "palindrome",
         "outer-match"
       ]
@@ -177,7 +176,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "interior-match",
         "minimum-index"
       ]
@@ -195,7 +193,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-character",
         "early-return"
       ]
@@ -213,7 +210,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "no-match"
       ]
@@ -231,7 +227,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "late-match"
       ]
@@ -249,7 +244,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "odd-length",
         "center-only"
       ]
@@ -267,7 +261,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "distinct-characters",
         "no-match"
       ]

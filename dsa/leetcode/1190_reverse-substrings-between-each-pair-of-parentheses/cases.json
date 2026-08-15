@@ -82,7 +82,6 @@
       },
       "expected": "badc",
       "tags": [
-        "hidden",
         "adjacent-pairs"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": "dbca",
       "tags": [
-        "hidden",
         "parity"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": "",
       "tags": [
-        "hidden",
         "empty-content"
       ]
     }

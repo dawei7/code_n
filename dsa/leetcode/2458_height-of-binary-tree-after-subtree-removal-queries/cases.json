@@ -155,7 +155,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "skewed-tree"
       ]
     },
@@ -187,7 +186,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "sibling-subtree"
       ]
     },
@@ -221,7 +219,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "outside-height"
       ]
     },
@@ -252,7 +249,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "balanced-tree"
       ]
     }

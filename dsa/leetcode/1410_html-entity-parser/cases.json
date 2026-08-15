@@ -81,7 +81,6 @@
       },
       "expected": "&gt;&amp;",
       "tags": [
-        "hidden",
         "single-pass"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": "a &unknown; b &amp c <",
       "tags": [
-        "hidden",
         "incomplete"
       ]
     }

@@ -118,7 +118,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "nested",
         "partial-credit"
       ]
@@ -137,7 +136,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "maximum-operators"
       ]
     }

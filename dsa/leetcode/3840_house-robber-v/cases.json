@@ -217,7 +217,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "two-houses",
         "different-colors"
       ]
@@ -246,7 +245,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "color-change",
         "non-adjacent-equal-colors"
       ]
@@ -275,7 +273,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "two-color-runs",
         "unequal-values"
       ]
@@ -306,7 +303,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-boundaries",
         "multiple-runs"
       ]
@@ -339,7 +335,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-values",
         "all-selected"
       ]

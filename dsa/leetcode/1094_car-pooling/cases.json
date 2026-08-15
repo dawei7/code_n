@@ -132,7 +132,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -168,7 +167,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "unsorted",
         "shared-endpoints"
       ]

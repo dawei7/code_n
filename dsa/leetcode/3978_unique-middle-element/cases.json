@@ -152,7 +152,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "positional-middle",
         "unsorted"
       ]
@@ -173,7 +172,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "symmetric",
         "other-duplicates"
       ]
@@ -194,7 +192,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "minimum-value",
         "boundary"
       ]
@@ -213,7 +210,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "maximum-value",
         "duplicate"
       ]
@@ -234,7 +230,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "adjacent-duplicate",
         "left-side"
       ]
@@ -255,7 +250,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "distant-duplicate",
         "right-side"
       ]
@@ -370,7 +364,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "maximum-length",
         "all-distinct"
       ]
@@ -485,7 +478,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "maximum-length",
         "final-duplicate"
       ]

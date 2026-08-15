@@ -90,7 +90,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "single-element"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "reset"
       ]
     },
@@ -129,7 +127,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -147,7 +144,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "non-divisor"
       ]
     },
@@ -169,7 +165,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "state-compression"
       ]
     }

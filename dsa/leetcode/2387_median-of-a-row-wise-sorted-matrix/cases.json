@@ -127,7 +127,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "row-ranges"
       ]
     },
@@ -147,7 +146,6 @@
       },
       "expected": 999999,
       "tags": [
-        "hidden",
         "maximum-values"
       ]
     }

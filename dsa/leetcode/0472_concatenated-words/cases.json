@@ -146,7 +146,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "many-pieces"
       ]
     },
@@ -173,7 +172,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "prefixes"
       ]
     }

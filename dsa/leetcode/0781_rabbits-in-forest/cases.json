@@ -124,7 +124,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "mixed-groups"
       ]
     },
@@ -140,7 +139,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "partial-group"
       ]
     },
@@ -163,7 +161,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "multiple-groups"
       ]
     }

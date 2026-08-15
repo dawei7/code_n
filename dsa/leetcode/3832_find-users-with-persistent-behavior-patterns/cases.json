@@ -415,7 +415,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "calendar-gap",
         "maximum-run"
       ]
@@ -480,7 +479,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "exactly-one-action",
         "composite-primary-key",
         "empty-result"
@@ -554,7 +552,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "exactly-one-action",
         "boundary-date"
       ]
@@ -637,7 +634,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "action-return",
         "separate-islands"
       ]
@@ -769,7 +765,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ordering",
         "user-id-tie-break"
       ]
@@ -832,7 +827,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "calendar-boundary",
         "date-arithmetic"
       ]
@@ -872,7 +866,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "multi-action",
         "empty-result"
       ]
@@ -907,7 +900,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "singleton",
         "empty-result"
       ]

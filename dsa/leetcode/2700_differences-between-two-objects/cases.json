@@ -256,7 +256,6 @@
       },
       "expected": {},
       "tags": [
-        "hidden",
         "disjoint-keys"
       ]
     },
@@ -286,7 +285,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "primitive-types"
       ]
     },
@@ -329,7 +327,6 @@
         }
       },
       "tags": [
-        "hidden",
         "array-tail",
         "nested"
       ]

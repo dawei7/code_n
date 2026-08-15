@@ -267,7 +267,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-runs"
       ]
     },
@@ -298,7 +297,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value"
       ]
     },
@@ -333,7 +331,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary-runs"
       ]
     },
@@ -361,7 +358,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-limit"
       ]
     },
@@ -407,7 +403,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "many-groups"
       ]
     },
@@ -627,7 +622,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "distinct"
       ]
@@ -675,7 +669,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "single-run"
       ]
     }

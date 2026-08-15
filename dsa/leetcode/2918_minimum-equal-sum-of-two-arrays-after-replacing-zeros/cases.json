@@ -128,7 +128,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "impossible"
       ],
       "expected": -1
@@ -148,7 +147,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "impossible",
         "opposite-direction"
       ],
@@ -168,7 +166,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "boundary",
         "one-flexible-side"
       ],
@@ -190,7 +187,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "boundary",
         "impossible"
       ],

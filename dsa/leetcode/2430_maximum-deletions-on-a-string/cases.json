@@ -81,7 +81,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "periodic"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "choice"
       ]
     }

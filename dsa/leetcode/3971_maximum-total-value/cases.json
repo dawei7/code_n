@@ -205,7 +205,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "m-one",
         "maximum-initial"
       ]
@@ -228,7 +227,6 @@
       },
       "expected": 27,
       "tags": [
-        "hidden",
         "decay-ranking",
         "repeated-selection"
       ]
@@ -253,7 +251,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "large-decay",
         "all-indices"
       ]
@@ -274,7 +271,6 @@
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "maximum-values",
         "modulo"
       ]
@@ -297,7 +293,6 @@
       },
       "expected": 999999993,
       "tags": [
-        "hidden",
         "at-most-m",
         "modulo"
       ]
@@ -320,7 +315,6 @@
       },
       "expected": 31,
       "tags": [
-        "hidden",
         "cutoff",
         "unequal-decay"
       ]
@@ -347,7 +341,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "surplus-threshold",
         "ties"
       ]

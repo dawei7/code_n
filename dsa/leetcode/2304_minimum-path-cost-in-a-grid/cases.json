@@ -229,7 +229,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "arbitrary-start"
       ]
     },
@@ -306,7 +305,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "all-transitions"
       ]
     }

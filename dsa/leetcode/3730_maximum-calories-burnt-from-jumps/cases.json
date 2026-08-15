@@ -140,7 +140,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary",
         "single-block"
       ]
@@ -163,7 +162,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -184,7 +182,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "wide-gap"
       ]
@@ -207,7 +204,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "even-length"
       ]
@@ -228,7 +224,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary",
         "two-blocks"
       ]
@@ -252,7 +247,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "odd-length"
       ]
     },
@@ -276,7 +270,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "even-length",
         "alternating-extremes"
       ]

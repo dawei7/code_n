@@ -151,7 +151,6 @@
         "aa"
       ],
       "tags": [
-        "hidden",
         "prefix-words"
       ]
     },
@@ -175,7 +174,6 @@
         "y"
       ],
       "tags": [
-        "hidden",
         "tie-group"
       ]
     },
@@ -196,7 +194,6 @@
         "only"
       ],
       "tags": [
-        "hidden",
         "single-distinct"
       ]
     }

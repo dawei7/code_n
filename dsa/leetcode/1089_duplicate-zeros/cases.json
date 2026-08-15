@@ -118,7 +118,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -144,7 +143,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "consecutive"
       ]
     },
@@ -170,7 +168,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "all-zero"
       ]
     },
@@ -198,7 +195,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "interleaved"
       ]
     }

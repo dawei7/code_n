@@ -178,7 +178,6 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "unique"
       ]
     },
@@ -212,7 +211,6 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "heavy-duplicates"
       ]
     },
@@ -244,7 +242,6 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

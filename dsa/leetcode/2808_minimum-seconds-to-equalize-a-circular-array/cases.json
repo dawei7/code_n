@@ -116,7 +116,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "wraparound"
       ]
     },
@@ -140,7 +139,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "clustered"
       ]
     },
@@ -161,7 +159,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

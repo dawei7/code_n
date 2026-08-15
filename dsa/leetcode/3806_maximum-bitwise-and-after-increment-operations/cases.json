@@ -184,7 +184,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unused-budget",
         "duplicates"
       ]
@@ -207,7 +206,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "shared-bits",
         "carry"
       ]
@@ -230,7 +228,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "carry",
         "all-indices"
       ]
@@ -255,7 +252,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-bits",
         "subset"
       ]
@@ -279,7 +275,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary",
         "budget-boundary"
       ]
@@ -305,7 +300,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "subset",
         "mixed-bits"
       ]

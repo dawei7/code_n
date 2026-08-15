@@ -127,7 +127,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "odd-parity"
       ]
     },
@@ -148,7 +147,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "six-piles"
       ]
     },
@@ -171,7 +169,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "eight-piles"
       ]
     },
@@ -190,7 +187,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "value-bounds"
       ]
     },
@@ -211,7 +207,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "parity-strategy"
       ]
     }

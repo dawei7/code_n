@@ -92,7 +92,6 @@
         "ce"
       ],
       "tags": [
-        "hidden",
         "precedence"
       ]
     },
@@ -110,7 +109,6 @@
         "c"
       ],
       "tags": [
-        "hidden",
         "nested",
         "deduplication"
       ]

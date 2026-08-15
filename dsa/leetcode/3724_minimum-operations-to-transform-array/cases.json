@@ -195,7 +195,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "source-choice"
       ]
     },
@@ -220,7 +219,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unchanged-position"
       ]
     },
@@ -243,7 +241,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "detour-distance"
       ]
     },
@@ -268,7 +265,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundaries",
         "large-cost"
       ]
@@ -298,7 +294,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-directions"
       ]
     }

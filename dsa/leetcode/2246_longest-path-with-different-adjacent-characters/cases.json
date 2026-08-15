@@ -118,7 +118,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "subtree"
       ]
     },
@@ -139,7 +138,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "nonadjacent-equality"
       ]
     },
@@ -165,7 +163,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "top-two-branches"
       ]
     }

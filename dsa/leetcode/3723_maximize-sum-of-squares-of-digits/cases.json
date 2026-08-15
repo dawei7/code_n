@@ -146,7 +146,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "remainder"
       ]
     },
@@ -164,7 +163,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "trailing-zeros",
         "exact-length"
       ]
@@ -183,7 +181,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "infeasible",
         "capacity-boundary"
       ]
@@ -202,7 +199,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-output"
       ]
     },
@@ -220,7 +216,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-inputs",
         "infeasible"
       ]

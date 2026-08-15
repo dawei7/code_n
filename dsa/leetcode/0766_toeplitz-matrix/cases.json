@@ -172,7 +172,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "singleton"
       ]
     },
@@ -202,7 +201,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "all-equal"
       ]
     },
@@ -235,7 +233,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "late-mismatch"
       ]
     }

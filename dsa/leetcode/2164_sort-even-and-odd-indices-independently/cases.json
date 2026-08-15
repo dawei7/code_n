@@ -171,7 +171,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "reverse-order"
       ]
     },
@@ -201,7 +200,6 @@
         100
       ],
       "tags": [
-        "hidden",
         "value-boundary",
         "duplicates"
       ]

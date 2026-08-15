@@ -106,7 +106,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "remainder-zero"
       ]
     },
@@ -127,7 +126,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -151,7 +149,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -170,7 +167,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

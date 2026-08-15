@@ -240,7 +240,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "capacity-priority",
         "two-machines"
       ]
@@ -268,7 +267,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "prefix-maximum",
         "strict-budget"
       ]
@@ -296,7 +294,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundaries",
         "strict-budget"
       ]
@@ -326,7 +323,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicate-costs",
         "top-two-capacities"
       ]

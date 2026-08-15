@@ -80,7 +80,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "remainder-zero"
       ]
     },
@@ -94,7 +93,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "remainder-one"
       ]
     },
@@ -108,7 +106,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "remainder-two"
       ]
     },
@@ -122,7 +119,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "remainder-three"
       ]
     }

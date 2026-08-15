@@ -106,7 +106,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "groups"
       ]
     },
@@ -124,7 +123,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

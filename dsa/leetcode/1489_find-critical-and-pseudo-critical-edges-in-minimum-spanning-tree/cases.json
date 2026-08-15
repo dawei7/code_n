@@ -200,7 +200,6 @@
         "kind": "ordered_groups_unordered_items"
       },
       "tags": [
-        "hidden",
         "contracted-parallel",
         "equal-weight"
       ]
@@ -241,7 +240,6 @@
         "kind": "ordered_groups_unordered_items"
       },
       "tags": [
-        "hidden",
         "unused-heavy",
         "unique-mst"
       ]
@@ -296,7 +294,6 @@
         "kind": "ordered_groups_unordered_items"
       },
       "tags": [
-        "hidden",
         "bridge",
         "cycle"
       ]
@@ -356,7 +353,6 @@
         "kind": "ordered_groups_unordered_items"
       },
       "tags": [
-        "hidden",
         "dense",
         "all-pseudo"
       ]
@@ -428,7 +424,6 @@
         "kind": "ordered_groups_unordered_items"
       },
       "tags": [
-        "hidden",
         "multiple-groups",
         "unused-heavy"
       ]

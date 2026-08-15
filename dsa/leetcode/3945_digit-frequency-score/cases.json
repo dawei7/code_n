@@ -154,7 +154,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-digit",
         "maximum-score"
       ]
@@ -172,7 +171,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary",
         "maximum-value",
         "zero-digit"
@@ -191,7 +189,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "distinct-digits"
       ]
     },
@@ -208,7 +205,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-digit"
       ]
     },
@@ -225,7 +221,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero-digit",
         "sparse-nonzero"
       ]
@@ -243,7 +238,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero-digit",
         "repeated-digit"
       ]
@@ -261,7 +255,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero-digit",
         "repeated-digit"
       ]

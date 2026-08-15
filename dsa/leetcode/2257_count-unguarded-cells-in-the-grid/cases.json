@@ -196,7 +196,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "single-column"
       ]
     },
@@ -227,7 +226,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "guard-blocker"
       ]
     },
@@ -270,7 +268,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "corners",
         "shadows"
       ]

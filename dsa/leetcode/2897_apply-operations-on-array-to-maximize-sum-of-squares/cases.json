@@ -109,7 +109,6 @@
       },
       "expected": 98,
       "tags": [
-        "hidden",
         "modulo",
         "maximum-values"
       ]

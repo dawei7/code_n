@@ -149,7 +149,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "cycle",
         "isolated-node"
       ]
@@ -186,7 +185,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "connected"
       ]
     }

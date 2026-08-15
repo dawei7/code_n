@@ -141,7 +141,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "suffix-required",
         "prime-whole"
       ]
@@ -159,7 +158,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "four-digits",
         "complete-prime"
       ]
@@ -177,7 +175,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "prefix-required",
         "prime-whole"
       ]
@@ -195,7 +192,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "upper-bound",
         "trailing-zero"
       ]

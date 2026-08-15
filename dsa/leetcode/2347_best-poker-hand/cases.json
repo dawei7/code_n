@@ -158,7 +158,6 @@
       },
       "expected": "Flush",
       "tags": [
-        "hidden",
         "priority"
       ]
     },
@@ -185,7 +184,6 @@
       },
       "expected": "Pair",
       "tags": [
-        "hidden",
         "two-pairs"
       ]
     }

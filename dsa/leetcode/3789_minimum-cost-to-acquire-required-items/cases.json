@@ -145,7 +145,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "oversupply"
       ]
     },
@@ -166,7 +165,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -187,7 +185,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -208,7 +205,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "oversupply"
       ]
     },
@@ -229,7 +225,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-cost",
         "large-result"
       ]
@@ -251,7 +246,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "asymmetric"
       ]
     }

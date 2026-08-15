@@ -76,7 +76,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "whole-array"
       ]
     }

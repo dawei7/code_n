@@ -113,7 +113,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "no-break"
       ]
     },
@@ -134,7 +133,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "multiple-types"
       ]
     },
@@ -153,7 +151,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

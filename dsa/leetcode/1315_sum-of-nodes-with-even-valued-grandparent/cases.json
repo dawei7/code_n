@@ -133,7 +133,6 @@
       },
       "expected": 18,
       "tags": [
-        "hidden",
         "mixed-parity"
       ]
     },
@@ -157,7 +156,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "skewed"
       ]
     }

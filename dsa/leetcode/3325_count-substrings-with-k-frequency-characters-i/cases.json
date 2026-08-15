@@ -102,8 +102,7 @@
       },
       "expected": 5,
       "tags": [
-        "overlapping",
-        "hidden"
+        "overlapping"
       ]
     }
   ]

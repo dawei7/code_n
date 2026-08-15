@@ -158,7 +158,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "multiple-islands"
       ]
     },
@@ -191,7 +190,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "boundary",
         "irregular"
       ]
@@ -225,7 +223,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "dense",
         "full-grid"
       ]

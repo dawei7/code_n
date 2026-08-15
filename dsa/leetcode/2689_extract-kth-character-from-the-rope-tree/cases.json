@@ -193,7 +193,6 @@
       },
       "expected": "w",
       "tags": [
-        "hidden",
         "missing-child"
       ]
     },
@@ -243,7 +242,6 @@
       },
       "expected": "g",
       "tags": [
-        "hidden",
         "deep"
       ]
     }

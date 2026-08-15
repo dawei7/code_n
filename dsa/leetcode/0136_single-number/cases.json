@@ -67,7 +67,6 @@
       },
       "expected": -2,
       "tags": [
-        "hidden",
         "negative"
       ]
     }

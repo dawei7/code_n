@@ -290,7 +290,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "partition-boundary"
       ]
     },
@@ -358,7 +357,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "overlapping-windows",
         "input-order"
       ]
@@ -407,7 +405,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "month-boundary"
       ]
     },
@@ -449,7 +446,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "insufficient-history"
       ]
     }

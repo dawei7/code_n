@@ -212,7 +212,6 @@
         "rows": []
       },
       "tags": [
-        "hidden",
         "empty-output"
       ]
     },
@@ -245,7 +244,6 @@
         "rows": []
       },
       "tags": [
-        "hidden",
         "empty-output"
       ]
     },
@@ -292,7 +290,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "electron-semantics"
       ]
     },
@@ -365,7 +362,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "output-bound"
       ]
     }

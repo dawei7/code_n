@@ -126,7 +126,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "negative-values"
       ]
     },
@@ -148,7 +147,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "frequency"
       ]
     },
@@ -171,7 +169,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "competing-modes"
       ]
     }

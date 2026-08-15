@@ -225,7 +225,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -261,7 +260,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "tie-break"
       ]
     }

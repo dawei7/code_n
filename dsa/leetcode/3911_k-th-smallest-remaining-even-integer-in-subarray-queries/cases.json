@@ -398,7 +398,6 @@
         12
       ],
       "tags": [
-        "hidden",
         "inclusive-range",
         "all-even"
       ]
@@ -448,7 +447,6 @@
         10
       ],
       "tags": [
-        "hidden",
         "mixed-parity",
         "overlapping-queries"
       ]
@@ -495,7 +493,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "consecutive-ranks",
         "prefix-removal"
       ]
@@ -534,7 +531,6 @@
         2000000002
       ],
       "tags": [
-        "hidden",
         "maximum-k",
         "maximum-value",
         "wide-answer"
@@ -575,7 +571,6 @@
         1000000000
       ],
       "tags": [
-        "hidden",
         "large-values",
         "adjacent-removed-ranks",
         "wide-answer"

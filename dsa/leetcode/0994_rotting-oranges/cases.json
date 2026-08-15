@@ -160,7 +160,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "multi-source"
       ]
     },
@@ -190,7 +189,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "barrier"
       ]
     },
@@ -229,7 +227,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "corridor"
       ]
     }

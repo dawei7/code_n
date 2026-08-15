@@ -150,7 +150,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "gaps"
       ]
     },
@@ -170,7 +169,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -192,7 +190,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "duplicate-shortage"
       ]
     },
@@ -212,7 +209,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "whole-hand"
       ]
     },
@@ -230,7 +226,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "equal"
       ]
     },
@@ -255,7 +250,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "multiplicity"
       ]
     }

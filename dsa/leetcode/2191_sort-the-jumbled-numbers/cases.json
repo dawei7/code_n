@@ -202,7 +202,6 @@
         123456789
       ],
       "tags": [
-        "hidden",
         "long-values",
         "zero"
       ]
@@ -239,7 +238,6 @@
         102
       ],
       "tags": [
-        "hidden",
         "digit-permutation"
       ]
     },
@@ -273,7 +271,6 @@
         999999999
       ],
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

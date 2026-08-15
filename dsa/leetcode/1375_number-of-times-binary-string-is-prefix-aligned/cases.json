@@ -110,7 +110,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "reverse"
       ]
     },
@@ -130,7 +129,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "gaps"
       ]
     }

@@ -188,7 +188,6 @@
       },
       "expected": 100000,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -213,7 +212,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "no-eligible-job"
       ]
     },
@@ -244,7 +242,6 @@
       },
       "expected": 400,
       "tags": [
-        "hidden",
         "running-maximum"
       ]
     },
@@ -273,7 +270,6 @@
       },
       "expected": 45,
       "tags": [
-        "hidden",
         "reusable-job",
         "unsorted"
       ]
@@ -304,7 +300,6 @@
       },
       "expected": 300,
       "tags": [
-        "hidden",
         "paired-arrays",
         "dominated-job"
       ]

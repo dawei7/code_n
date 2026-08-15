@@ -94,7 +94,6 @@
       },
       "expected": -3,
       "tags": [
-        "hidden",
         "all-negative"
       ]
     },
@@ -112,7 +111,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -131,7 +129,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "last-rank"
       ]
     },
@@ -150,7 +147,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

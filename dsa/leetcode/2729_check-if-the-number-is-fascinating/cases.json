@@ -67,7 +67,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "length"
       ]
     },
@@ -81,7 +80,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -95,7 +93,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "fascinating"
       ]
     },
@@ -109,7 +106,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "fascinating"
       ]
     }

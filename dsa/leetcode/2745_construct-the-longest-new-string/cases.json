@@ -62,7 +62,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
@@ -78,7 +77,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "aa-surplus",
         "maximum"
       ]
@@ -95,7 +93,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "bb-surplus",
         "maximum"
       ]
@@ -112,7 +109,6 @@
       },
       "expected": 300,
       "tags": [
-        "hidden",
         "balanced",
         "maximum"
       ]
@@ -129,7 +125,6 @@
       },
       "expected": 108,
       "tags": [
-        "hidden",
         "ab-heavy"
       ]
     }

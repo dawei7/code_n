@@ -52,7 +52,6 @@
       },
       "expected": 23,
       "tags": [
-        "hidden",
         "partial-cycle"
       ]
     }

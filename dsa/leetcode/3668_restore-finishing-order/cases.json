@@ -157,7 +157,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "id-boundaries"
       ]
     },
@@ -191,7 +190,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "interleaving"
       ]
     },
@@ -319,7 +317,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "maximum-length",
         "reverse"
       ]

@@ -281,7 +281,6 @@
         }
       },
       "tags": [
-        "hidden",
         "special-keys"
       ]
     },
@@ -328,7 +327,6 @@
         }
       },
       "tags": [
-        "hidden",
         "type-sensitive",
         "nested"
       ]
@@ -373,7 +371,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "order",
         "compaction"
       ]

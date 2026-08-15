@@ -175,7 +175,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-boundary",
         "squares"
       ]
@@ -195,7 +194,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-boundary",
         "exact-lower-endpoint"
       ]
@@ -215,7 +213,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-boundary",
         "empty-answer"
       ]
@@ -235,7 +232,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-exponent",
         "empty-answer"
       ]
@@ -255,7 +251,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "odd-exponent",
         "zero",
         "maximum-boundary"
@@ -276,7 +271,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "exact-endpoints",
         "fifth-powers"
       ]
@@ -296,7 +290,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "cubes",
         "exact-endpoints"
       ]

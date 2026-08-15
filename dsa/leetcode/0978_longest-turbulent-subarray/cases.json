@@ -133,7 +133,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "reset"
       ]
     },
@@ -151,7 +150,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -172,7 +170,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

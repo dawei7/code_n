@@ -221,7 +221,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "touching",
         "merge"
       ]
@@ -261,7 +260,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "touching"
       ]
     },
@@ -320,7 +318,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "nested"
       ]
     }

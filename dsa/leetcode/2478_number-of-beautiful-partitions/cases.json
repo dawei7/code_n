@@ -94,7 +94,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "invalid-start"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "invalid-end"
       ]
     },
@@ -126,7 +124,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -142,7 +139,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "invalid-boundary"
       ]
     }

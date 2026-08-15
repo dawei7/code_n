@@ -105,7 +105,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "mixed-sign"
       ]
     },
@@ -123,7 +122,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     },
@@ -141,7 +139,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "zero"
       ]
     }

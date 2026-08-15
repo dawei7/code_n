@@ -72,7 +72,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "first-pass"
       ]
     },
@@ -91,7 +90,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "suffix-cutoff"
       ]
     },
@@ -111,7 +109,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "early-finishers"
       ]
     },
@@ -128,7 +125,6 @@
       },
       "expected": 100,
       "tags": [
-        "hidden",
         "demand-boundary"
       ]
     }

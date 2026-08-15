@@ -146,7 +146,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -168,7 +167,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "even-circle",
         "distance-tie"
       ]
@@ -192,7 +190,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-donors"
       ]
     },
@@ -212,7 +209,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-balance"
       ]
     },
@@ -233,7 +229,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "surplus"
       ]
     },
@@ -256,7 +251,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zeros",
         "distance-two"
       ]

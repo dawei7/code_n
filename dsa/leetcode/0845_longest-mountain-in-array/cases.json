@@ -132,7 +132,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "decreasing"
       ]
     },
@@ -153,7 +152,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "whole-array"
       ]
     },
@@ -180,7 +178,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "multiple"
       ]
     },
@@ -203,7 +200,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "later-longest"
       ]
     },
@@ -223,7 +219,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "adjacent"
       ]
     },
@@ -244,7 +239,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "flats"
       ]
     }

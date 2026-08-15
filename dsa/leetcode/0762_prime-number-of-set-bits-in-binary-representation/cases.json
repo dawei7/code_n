@@ -88,7 +88,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "power-of-two"
       ]
     },
@@ -103,7 +102,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -118,7 +116,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

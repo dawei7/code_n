@@ -80,7 +80,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "valid"
       ]
     },
@@ -94,7 +93,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "maximum-length",
         "valid"
       ]
@@ -109,7 +107,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "leading-zero"
       ]
     }

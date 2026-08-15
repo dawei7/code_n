@@ -70,7 +70,6 @@
       },
       "expected": "AABBC",
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

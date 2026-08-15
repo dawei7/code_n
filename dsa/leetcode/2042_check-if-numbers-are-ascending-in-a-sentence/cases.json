@@ -82,7 +82,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "late-violation"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "number-boundary"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "words",
         "equality"
       ]

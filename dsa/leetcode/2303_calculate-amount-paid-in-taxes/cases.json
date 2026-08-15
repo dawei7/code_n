@@ -172,7 +172,6 @@
       },
       "expected": 3.0,
       "tags": [
-        "hidden",
         "nonmonotonic-rates"
       ]
     },
@@ -192,7 +191,6 @@
       },
       "expected": 1000.0,
       "tags": [
-        "hidden",
         "maximum",
         "full-rate"
       ]

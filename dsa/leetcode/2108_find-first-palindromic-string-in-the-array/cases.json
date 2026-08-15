@@ -104,7 +104,6 @@
       },
       "expected": "level",
       "tags": [
-        "hidden",
         "late-mismatch"
       ]
     },
@@ -122,7 +121,6 @@
       },
       "expected": "bbbb",
       "tags": [
-        "hidden",
         "duplicates",
         "first-match"
       ]

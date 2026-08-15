@@ -117,7 +117,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -142,7 +141,6 @@
       },
       "expected": 63,
       "tags": [
-        "hidden",
         "bit-boundary"
       ]
     },
@@ -160,7 +158,6 @@
       },
       "expected": 121,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

@@ -72,7 +72,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "avoid-four"
       ]
     },
@@ -87,7 +86,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "small-total"
       ]
     },
@@ -102,7 +100,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "one-eight"
       ]
     },
@@ -117,7 +114,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "forbidden-four"
       ]
     },
@@ -132,7 +128,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "leftover"
       ]
     },
@@ -147,7 +142,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "two-eights"
       ]
     },
@@ -162,7 +156,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "all-eight"
       ]
     },
@@ -177,7 +170,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "leftover"
       ]
     },
@@ -192,7 +184,6 @@
       },
       "expected": 24,
       "tags": [
-        "hidden",
         "maximum-values"
       ]
     },
@@ -207,7 +198,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "maximum-children",
         "impossible"
       ]

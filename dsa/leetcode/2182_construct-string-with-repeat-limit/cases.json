@@ -87,7 +87,6 @@
       },
       "expected": "cbcba",
       "tags": [
-        "hidden",
         "limit-one",
         "unused-character"
       ]
@@ -103,7 +102,6 @@
       },
       "expected": "ccbbabbaa",
       "tags": [
-        "hidden",
         "multiple-letters"
       ]
     },
@@ -118,7 +116,6 @@
       },
       "expected": "zzyzyyxx",
       "tags": [
-        "hidden",
         "separator-reuse"
       ]
     }

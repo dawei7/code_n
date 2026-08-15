@@ -116,7 +116,6 @@
       },
       "expected": 400000,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     },
@@ -133,7 +132,6 @@
       },
       "expected": 600000,
       "tags": [
-        "hidden",
         "multiple-representations",
         "cost-boundary"
       ]

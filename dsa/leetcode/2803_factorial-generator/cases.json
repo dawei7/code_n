@@ -105,7 +105,6 @@
         24
       ],
       "tags": [
-        "hidden",
         "sequence"
       ]
     },
@@ -130,7 +129,6 @@
         3628800
       ],
       "tags": [
-        "hidden",
         "persistent-state"
       ]
     },
@@ -163,7 +161,6 @@
         6402373705728000
       ],
       "tags": [
-        "hidden",
         "maximum",
         "numeric-boundary"
       ]

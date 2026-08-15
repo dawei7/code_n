@@ -223,7 +223,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "midnight"
       ]
     },
@@ -255,7 +254,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -311,7 +309,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

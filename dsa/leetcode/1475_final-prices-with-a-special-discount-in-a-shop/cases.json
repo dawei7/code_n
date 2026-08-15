@@ -141,7 +141,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "equality"
       ]
     },
@@ -165,7 +164,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "nearest"
       ]
     },
@@ -191,7 +189,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "multiple-pop"
       ]
     },
@@ -213,7 +210,6 @@
         1000
       ],
       "tags": [
-        "hidden",
         "bounds"
       ]
     }

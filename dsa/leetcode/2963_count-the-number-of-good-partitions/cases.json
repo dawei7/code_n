@@ -136,7 +136,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "nested-intervals"
       ]
     },
@@ -157,7 +156,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -178,7 +176,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "single-component"
       ]
     }

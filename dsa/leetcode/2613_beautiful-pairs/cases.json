@@ -140,7 +140,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "same-first-coordinate"
       ]
     },
@@ -170,7 +169,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "coordinate-boundary"
       ]
     },
@@ -202,7 +200,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "lexicographic-tie"
       ]
     }

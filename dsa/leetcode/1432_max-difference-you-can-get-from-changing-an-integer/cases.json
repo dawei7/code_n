@@ -81,7 +81,6 @@
       },
       "expected": 8808050,
       "tags": [
-        "hidden",
         "repeated"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": 88888,
       "tags": [
-        "hidden",
         "all-nine"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": 800000000,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

@@ -108,7 +108,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "maximum"
       ]
     },
@@ -127,7 +126,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "minimum-value"
       ]
     },
@@ -146,7 +144,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -165,7 +162,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "single-swap"
       ]
     },
@@ -185,7 +181,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

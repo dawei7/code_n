@@ -261,7 +261,6 @@
         2000000000
       ],
       "tags": [
-        "hidden",
         "score-boundary",
         "wide-integer"
       ]
@@ -307,7 +306,6 @@
         14
       ],
       "tags": [
-        "hidden",
         "time-boundary"
       ]
     },
@@ -352,7 +350,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "empty-prefix-range"
       ]
     },
@@ -421,7 +418,6 @@
         16
       ],
       "tags": [
-        "hidden",
         "binary-search-gaps"
       ]
     },
@@ -478,7 +474,6 @@
         16
       ],
       "tags": [
-        "hidden",
         "interleaved-calls",
         "chronological"
       ]
@@ -530,7 +525,6 @@
         11
       ],
       "tags": [
-        "hidden",
         "point-query",
         "empty-interval"
       ]

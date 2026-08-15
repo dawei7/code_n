@@ -123,7 +123,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "collisions"
       ]
     },
@@ -142,7 +141,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "duplicates",
         "boundary-collision"
       ]
@@ -162,7 +160,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "all-distinct"
       ]
     }

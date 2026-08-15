@@ -80,7 +80,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "complement"
       ]
     },
@@ -94,7 +93,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -108,7 +106,6 @@
       },
       "expected": 36,
       "tags": [
-        "hidden",
         "maximum-length"
       ]
     }

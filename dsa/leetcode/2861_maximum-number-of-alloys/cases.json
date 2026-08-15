@@ -233,7 +233,6 @@
       },
       "expected": 100,
       "tags": [
-        "hidden",
         "stock-only",
         "upper-bound"
       ]
@@ -264,7 +263,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "large-stock",
         "limiting-metal"
       ]

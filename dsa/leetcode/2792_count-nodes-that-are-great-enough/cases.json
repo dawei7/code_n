@@ -139,7 +139,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "grandchild"
       ]
     },
@@ -162,7 +161,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "bounded-summary"
       ]
     },
@@ -193,7 +191,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "maximum-k"
       ]
     },
@@ -224,7 +221,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "complete-tree"
       ]
     }

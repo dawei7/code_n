@@ -130,7 +130,6 @@
         7
       ],
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -153,7 +152,6 @@
         8
       ],
       "tags": [
-        "hidden",
         "order"
       ]
     }

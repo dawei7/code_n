@@ -96,7 +96,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "balanced"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "leftward"
       ]
     },
@@ -124,7 +122,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "balanced"
       ]
     },
@@ -138,7 +135,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "no-flexible"
       ]
     },
@@ -152,7 +148,6 @@
       },
       "expected": 50,
       "tags": [
-        "hidden",
         "maximum-length",
         "all-flexible"
       ]

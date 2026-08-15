@@ -82,7 +82,6 @@
       },
       "expected": 41,
       "tags": [
-        "hidden",
         "odd"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 250,
       "tags": [
-        "hidden",
         "scaling"
       ]
     }

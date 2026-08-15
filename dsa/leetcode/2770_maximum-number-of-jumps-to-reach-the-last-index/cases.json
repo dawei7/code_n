@@ -147,7 +147,6 @@
         "target": 2
       },
       "tags": [
-        "hidden",
         "skip"
       ],
       "expected": 4
@@ -165,7 +164,6 @@
         "target": 5
       },
       "tags": [
-        "hidden",
         "unreachable",
         "boundary"
       ],
@@ -187,7 +185,6 @@
         "target": 20
       },
       "tags": [
-        "hidden",
         "all-indices"
       ],
       "expected": 4
@@ -207,7 +204,6 @@
         "target": 1
       },
       "tags": [
-        "hidden",
         "extreme-values"
       ],
       "expected": 2
@@ -227,7 +223,6 @@
         "target": 1
       },
       "tags": [
-        "hidden",
         "reachability"
       ],
       "expected": 1

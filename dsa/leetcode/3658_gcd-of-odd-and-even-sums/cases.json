@@ -82,7 +82,6 @@
       },
       "expected": 997,
       "tags": [
-        "hidden",
         "prime"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 1000,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

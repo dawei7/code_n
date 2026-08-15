@@ -73,7 +73,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "balance"
       ]
     },
@@ -88,7 +87,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "numeric-ambiguity"
       ]
     },
@@ -103,7 +101,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "literal-mismatch"
       ]
     }

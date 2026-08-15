@@ -66,7 +66,6 @@
       },
       "expected": "1002003",
       "tags": [
-        "hidden",
         "interior-zeros"
       ]
     },
@@ -80,7 +79,6 @@
       },
       "expected": "9",
       "tags": [
-        "hidden",
         "single-zero"
       ]
     },
@@ -94,7 +92,6 @@
       },
       "expected": "9999999999",
       "tags": [
-        "hidden",
         "unchanged"
       ]
     },
@@ -108,7 +105,6 @@
       },
       "expected": "1010105",
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

@@ -241,7 +241,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "experience-filter"
       ]
     },
@@ -289,7 +288,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "missing-match"
       ]
     },
@@ -345,7 +343,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "shared-interview",
         "ordering"
       ]

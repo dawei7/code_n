@@ -197,7 +197,6 @@
       },
       "expected": 22,
       "tags": [
-        "hidden",
         "branching"
       ]
     },
@@ -231,7 +230,6 @@
       },
       "expected": -7,
       "tags": [
-        "hidden",
         "negative-total"
       ]
     },
@@ -266,7 +264,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "nonconsecutive-ids"
       ]
     }

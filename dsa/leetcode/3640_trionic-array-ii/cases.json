@@ -119,7 +119,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "multiple-patterns"
       ]
     },
@@ -143,7 +142,6 @@
       },
       "expected": 48,
       "tags": [
-        "hidden",
         "long-phases"
       ]
     },
@@ -166,7 +164,6 @@
       },
       "expected": 34,
       "tags": [
-        "hidden",
         "plateau",
         "reset"
       ]
@@ -187,7 +184,6 @@
       },
       "expected": 3499999999,
       "tags": [
-        "hidden",
         "large-values"
       ]
     },
@@ -208,7 +204,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "negative-values"
       ]
     },
@@ -230,7 +225,6 @@
       },
       "expected": 29,
       "tags": [
-        "hidden",
         "overlapping"
       ]
     },
@@ -251,7 +245,6 @@
       },
       "expected": 39,
       "tags": [
-        "hidden",
         "final-extension"
       ]
     }

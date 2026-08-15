@@ -114,7 +114,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "experience"
       ]
     },
@@ -141,7 +140,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "repeated"
       ]
     },
@@ -166,7 +164,6 @@
       },
       "expected": 400,
       "tags": [
-        "hidden",
         "maximum-values"
       ]
     }

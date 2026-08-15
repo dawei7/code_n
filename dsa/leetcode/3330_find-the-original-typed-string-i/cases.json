@@ -95,8 +95,7 @@
       },
       "expected": 5,
       "tags": [
-        "mixed-lengths",
-        "hidden"
+        "mixed-lengths"
       ]
     }
   ]

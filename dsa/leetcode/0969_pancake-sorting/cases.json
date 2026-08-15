@@ -137,7 +137,6 @@
         "kind": "pancake_sort"
       },
       "tags": [
-        "hidden",
         "middle"
       ]
     },
@@ -163,7 +162,6 @@
         "kind": "pancake_sort"
       },
       "tags": [
-        "hidden",
         "pairs"
       ]
     },
@@ -189,7 +187,6 @@
         "kind": "pancake_sort"
       },
       "tags": [
-        "hidden",
         "front"
       ]
     }

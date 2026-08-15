@@ -158,7 +158,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-zero"
       ]
     },
@@ -181,7 +180,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "shared-face"
       ]
     },
@@ -204,7 +202,6 @@
       },
       "expected": 18,
       "tags": [
-        "hidden",
         "height-difference"
       ]
     },
@@ -227,7 +224,6 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "disconnected"
       ]
     },
@@ -250,7 +246,6 @@
       },
       "expected": 24,
       "tags": [
-        "hidden",
         "dense"
       ]
     }

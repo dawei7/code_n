@@ -227,7 +227,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "zero-maximum"
       ]
     },
@@ -267,7 +266,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "rectangular",
         "value-boundaries"
       ]
@@ -316,7 +314,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "maximum-position"
       ]
     }

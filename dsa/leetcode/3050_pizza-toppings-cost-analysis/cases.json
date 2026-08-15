@@ -295,7 +295,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "primary-order"
       ]
     },
@@ -382,7 +381,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "output-cardinality",
         "ordering"
       ]

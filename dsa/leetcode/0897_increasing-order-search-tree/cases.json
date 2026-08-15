@@ -173,7 +173,6 @@
         7
       ],
       "tags": [
-        "hidden",
         "complete"
       ]
     },
@@ -218,7 +217,6 @@
         14
       ],
       "tags": [
-        "hidden",
         "sparse"
       ]
     },
@@ -236,7 +234,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -264,7 +261,6 @@
         1000
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -310,7 +306,6 @@
         20
       ],
       "tags": [
-        "hidden",
         "uneven"
       ]
     }

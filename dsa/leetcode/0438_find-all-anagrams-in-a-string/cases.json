@@ -104,7 +104,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "all-match"
       ]
     },
@@ -119,7 +118,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "none"
       ]
     },
@@ -136,7 +134,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

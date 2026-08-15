@@ -100,7 +100,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "multiple-pairs"
       ]
     },
@@ -117,7 +116,6 @@
         10
       ],
       "tags": [
-        "hidden",
         "square"
       ]
     }

@@ -146,7 +146,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "no-valid-pattern"
       ]
     },
@@ -167,7 +166,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-bound"
       ]
     },
@@ -189,7 +187,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-choice"
       ]
     },
@@ -211,7 +208,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -233,7 +229,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "discard-extra"
       ]
     },
@@ -255,7 +250,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "exact-three"
       ]
     }

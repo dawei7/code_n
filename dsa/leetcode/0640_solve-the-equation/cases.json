@@ -82,7 +82,6 @@
       },
       "expected": "x=1",
       "tags": [
-        "hidden",
         "implicit-one"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": "x=-2",
       "tags": [
-        "hidden",
         "multi-digit"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": "Infinite solutions",
       "tags": [
-        "hidden",
         "zero-coefficient"
       ]
     },
@@ -124,7 +121,6 @@
       },
       "expected": "No solution",
       "tags": [
-        "hidden",
         "zero-coefficient"
       ]
     }

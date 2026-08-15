@@ -94,7 +94,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "all-equal"
       ]
     },
@@ -115,7 +114,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "distinct-averages"
       ]
     },
@@ -134,7 +132,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "fractional-average"
       ]
     },
@@ -155,7 +152,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundaries"
       ]
     }

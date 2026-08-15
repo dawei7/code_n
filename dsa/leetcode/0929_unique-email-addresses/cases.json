@@ -103,7 +103,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "combined-rules"
       ]
     },
@@ -120,7 +119,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "domain"
       ]
     },
@@ -139,7 +137,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "canonical"
       ]
     },
@@ -157,7 +154,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "duplicate"
       ]
     }

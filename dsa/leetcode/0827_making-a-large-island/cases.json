@@ -188,7 +188,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "bridge",
         "multiple-components"
       ]
@@ -219,7 +218,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "diagonal"
       ]
     },
@@ -258,7 +256,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "irregular",
         "multiple-components"
       ]
@@ -289,7 +286,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "diagonal",
         "choice"
       ]
@@ -320,7 +316,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "bridge",
         "component-sizes"
       ]

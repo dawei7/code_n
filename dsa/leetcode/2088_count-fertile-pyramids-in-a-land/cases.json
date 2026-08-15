@@ -141,7 +141,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "upright-only"
       ]
     },
@@ -171,7 +170,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "inverse-only"
       ]
     },
@@ -193,7 +191,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "single-row"
       ]
     },
@@ -223,7 +220,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-zero"
       ]
     }

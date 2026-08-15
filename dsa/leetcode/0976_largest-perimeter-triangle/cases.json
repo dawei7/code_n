@@ -107,7 +107,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "repeated"
       ]
     },
@@ -126,7 +125,6 @@
       },
       "expected": 3000000,
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -147,7 +145,6 @@
       },
       "expected": 25,
       "tags": [
-        "hidden",
         "scan"
       ]
     }

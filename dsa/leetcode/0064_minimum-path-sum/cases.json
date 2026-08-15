@@ -130,7 +130,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "greedy-trap"
       ]
     }

@@ -127,7 +127,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "length"
       ]
     },
@@ -146,7 +145,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "late-mismatch"
       ]
     },
@@ -166,7 +164,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "maximum-word-length"
       ]
     },
@@ -282,7 +279,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "maximum-size"
       ]
     }

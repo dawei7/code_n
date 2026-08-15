@@ -123,7 +123,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "boundaries"
       ]
     },
@@ -151,7 +150,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -178,7 +176,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

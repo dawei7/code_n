@@ -109,7 +109,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "uneven"
       ]
     },
@@ -131,7 +130,6 @@
       },
       "expected": 28,
       "tags": [
-        "hidden",
         "perfect-tree"
       ]
     },
@@ -155,7 +153,6 @@
       },
       "expected": 32,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

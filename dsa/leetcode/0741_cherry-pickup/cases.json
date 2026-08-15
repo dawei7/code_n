@@ -159,7 +159,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "empty-cells"
       ]
     },
@@ -189,7 +188,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "shared-path"
       ]
     },
@@ -228,7 +226,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "asymmetric"
       ]
     }

@@ -204,7 +204,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
@@ -253,7 +252,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "reverse-order"
       ]
     },
@@ -300,7 +298,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "row-integrity"
       ]
     }

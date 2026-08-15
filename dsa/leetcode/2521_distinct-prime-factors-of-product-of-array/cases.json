@@ -89,7 +89,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "large-prime"
       ]
     },
@@ -107,7 +106,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "boundary",
         "leftover-prime"
       ]
@@ -126,7 +124,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "prime-powers",
         "shared-factors"
       ]

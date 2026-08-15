@@ -336,7 +336,7 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden"
+        "trial"
       ]
     },
     {
@@ -416,7 +416,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "empty-result"
       ]
     }

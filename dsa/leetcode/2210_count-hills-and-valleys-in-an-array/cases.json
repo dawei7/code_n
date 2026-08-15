@@ -97,7 +97,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-equal"
       ]
     },
@@ -119,7 +118,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -139,7 +137,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "endpoints"
       ]
     },
@@ -163,7 +160,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-plateaus"
       ]
     }

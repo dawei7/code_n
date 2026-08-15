@@ -90,7 +90,6 @@
         16
       ],
       "tags": [
-        "hidden",
         "power-of-two"
       ]
     },
@@ -110,7 +109,6 @@
         31
       ],
       "tags": [
-        "hidden",
         "level-boundary"
       ]
     }

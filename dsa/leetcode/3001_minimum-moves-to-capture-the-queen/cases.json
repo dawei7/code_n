@@ -108,7 +108,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "bishop",
         "blocked"
       ]
@@ -128,7 +127,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "diagonal"
       ]
     },
@@ -147,7 +145,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "rook",
         "blocked"
       ]

@@ -215,7 +215,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "repeated-id"
       ]
     },
@@ -267,7 +266,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "leftmost"
       ]
     },
@@ -301,7 +299,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "missing-id"
       ]
     }

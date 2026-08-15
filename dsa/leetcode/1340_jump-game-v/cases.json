@@ -124,7 +124,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "barrier"
       ]
     },
@@ -145,7 +144,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "both-directions"
       ]
     }

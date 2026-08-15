@@ -382,7 +382,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "empty-flight"
       ]
     },
@@ -451,7 +450,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "overbooked"
       ]
     },
@@ -502,7 +500,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "under-capacity"
       ]
     }

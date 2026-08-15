@@ -89,7 +89,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "sparse"
       ]
     }

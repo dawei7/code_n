@@ -164,7 +164,6 @@
         "kind": "duplicate_subtrees"
       },
       "tags": [
-        "hidden",
         "multiple"
       ]
     },
@@ -193,7 +192,6 @@
         "kind": "duplicate_subtrees"
       },
       "tags": [
-        "hidden",
         "shape"
       ]
     }

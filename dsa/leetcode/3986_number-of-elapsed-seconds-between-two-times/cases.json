@@ -148,7 +148,6 @@
       },
       "expected": 86399,
       "tags": [
-        "hidden",
         "maximum-duration",
         "boundaries"
       ]
@@ -164,7 +163,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "maximum-time",
         "minimum-positive-duration"
       ]
@@ -180,7 +178,6 @@
       },
       "expected": 37230,
       "tags": [
-        "hidden",
         "seconds-since-midnight"
       ]
     },
@@ -195,7 +192,6 @@
       },
       "expected": 49169,
       "tags": [
-        "hidden",
         "maximum-time"
       ]
     },
@@ -210,7 +206,6 @@
       },
       "expected": 3661,
       "tags": [
-        "hidden",
         "leading-zeroes"
       ]
     },
@@ -225,7 +220,6 @@
       },
       "expected": 3865,
       "tags": [
-        "hidden",
         "multiple-boundaries"
       ]
     },
@@ -240,7 +234,6 @@
       },
       "expected": 2735,
       "tags": [
-        "hidden",
         "same-hour"
       ]
     }

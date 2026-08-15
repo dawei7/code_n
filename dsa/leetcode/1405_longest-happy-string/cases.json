@@ -112,7 +112,6 @@
         "kind": "longest_happy_string"
       },
       "tags": [
-        "hidden",
         "dominant"
       ]
     },
@@ -131,7 +130,6 @@
         "kind": "longest_happy_string"
       },
       "tags": [
-        "hidden",
         "all-used"
       ]
     }

@@ -221,7 +221,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "existing-selected-value",
         "shared-factors"
       ]
@@ -243,7 +242,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary",
         "large-coprime-values"
       ]
@@ -265,7 +263,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary",
         "duplicates"
       ]
@@ -289,7 +286,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "above-limit",
         "multiple-prime-factors"
       ]
@@ -312,7 +308,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "ones",
         "created-selected-value"
       ]
@@ -335,7 +330,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "single-prime-factor",
         "above-limit"
       ]

@@ -145,7 +145,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "divisibility"
       ]
     },
@@ -172,7 +171,6 @@
         75
       ],
       "tags": [
-        "hidden",
         "nontrivial-gcd"
       ]
     },
@@ -199,7 +197,6 @@
         1000
       ],
       "tags": [
-        "hidden",
         "value-boundaries"
       ]
     }

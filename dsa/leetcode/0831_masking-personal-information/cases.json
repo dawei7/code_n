@@ -117,7 +117,6 @@
       },
       "expected": "+***-***-***-0123",
       "tags": [
-        "hidden",
         "phone",
         "country-code-3",
         "visible-zero"
@@ -133,7 +132,6 @@
       },
       "expected": "+**-***-***-9012",
       "tags": [
-        "hidden",
         "phone",
         "separators"
       ]
@@ -148,7 +146,6 @@
       },
       "expected": "l*****e@example.com",
       "tags": [
-        "hidden",
         "email",
         "mixed-case"
       ]
@@ -163,7 +160,6 @@
       },
       "expected": "x*****y@subdomain.org",
       "tags": [
-        "hidden",
         "email",
         "minimum-name"
       ]
@@ -178,7 +174,6 @@
       },
       "expected": "***-***-0123",
       "tags": [
-        "hidden",
         "phone",
         "visible-zero"
       ]

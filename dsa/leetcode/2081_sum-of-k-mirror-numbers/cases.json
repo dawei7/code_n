@@ -73,7 +73,6 @@
       },
       "expected": 58,
       "tags": [
-        "hidden",
         "even-decimal-length"
       ]
     },
@@ -88,7 +87,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "one-digit-values"
       ]
     },
@@ -103,7 +101,6 @@
       },
       "expected": 36,
       "tags": [
-        "hidden",
         "single-digit-prefix"
       ]
     }

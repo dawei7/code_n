@@ -120,7 +120,6 @@
       },
       "expected": 119,
       "tags": [
-        "hidden",
         "mixed-pieces"
       ]
     },
@@ -147,7 +146,6 @@
       },
       "expected": 366,
       "tags": [
-        "hidden",
         "queen",
         "bishop"
       ]
@@ -180,7 +178,6 @@
       },
       "expected": 2753,
       "tags": [
-        "hidden",
         "three-pieces"
       ]
     }

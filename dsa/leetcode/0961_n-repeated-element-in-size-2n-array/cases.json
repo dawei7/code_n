@@ -143,7 +143,6 @@
       },
       "expected": 10000,
       "tags": [
-        "hidden",
         "maximum"
       ]
     },
@@ -168,7 +167,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "separated"
       ]
     },
@@ -191,7 +189,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

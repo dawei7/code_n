@@ -177,7 +177,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero-score"
       ]
     },
@@ -202,7 +201,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "health-reset",
         "non-positive-health"
       ]
@@ -230,7 +228,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary",
         "maximum-score"
       ]

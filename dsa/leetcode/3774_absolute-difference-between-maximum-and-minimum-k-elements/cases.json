@@ -156,7 +156,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "value-boundaries"
       ]
@@ -181,7 +180,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -204,7 +202,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundaries"
       ]
     }

@@ -104,7 +104,6 @@
       },
       "expected": 29,
       "tags": [
-        "hidden",
         "frequency-update"
       ]
     },
@@ -126,7 +125,6 @@
       },
       "expected": 998993008,
       "tags": [
-        "hidden",
         "modulo-semantics"
       ]
     },
@@ -146,7 +144,6 @@
       },
       "expected": 999993007,
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

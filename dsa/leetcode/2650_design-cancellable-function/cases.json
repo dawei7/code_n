@@ -102,7 +102,6 @@
         "resolved": 4
       },
       "tags": [
-        "hidden",
         "promise-rejection",
         "caught"
       ]
@@ -120,7 +119,6 @@
         "resolved": 4
       },
       "tags": [
-        "hidden",
         "cancellation",
         "yield-recovery",
         "stop"
@@ -139,7 +137,6 @@
         "resolved": "Success"
       },
       "tags": [
-        "hidden",
         "late-cancel",
         "completion"
       ]

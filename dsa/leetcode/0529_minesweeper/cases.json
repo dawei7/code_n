@@ -258,7 +258,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "row"
       ]
     },
@@ -308,7 +307,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "count"
       ]
     }

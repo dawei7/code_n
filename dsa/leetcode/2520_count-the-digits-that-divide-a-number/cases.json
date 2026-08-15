@@ -81,7 +81,7 @@
       },
       "expected": 1,
       "tags": [
-        "hidden"
+        "trial"
       ]
     },
     {
@@ -94,7 +94,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "large"
       ]
     },
@@ -108,7 +107,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "boundary",
         "repeated-digits"
       ]

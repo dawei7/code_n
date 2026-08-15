@@ -82,7 +82,6 @@
       },
       "expected": "7",
       "tags": [
-        "hidden",
         "fallback"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": "2",
       "tags": [
-        "hidden",
         "base-two"
       ]
     }

@@ -119,7 +119,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "single-stop"
       ]
     },
@@ -140,7 +139,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "zero-edges"
       ]
     },
@@ -161,7 +159,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "tie"
       ]
     }

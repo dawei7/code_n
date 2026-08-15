@@ -401,7 +401,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "overlapping-updates"
       ]
     },
@@ -461,7 +460,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-values",
         "duplicates"
       ]
@@ -522,7 +520,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "point-update",
         "accumulation"
       ]
@@ -582,7 +579,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "nested-ranges"
       ]
     },
@@ -647,7 +643,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "five-distinct-values"
       ]
     },
@@ -695,7 +690,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "point-update"
       ]
@@ -744,7 +738,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-target"
       ]
     }

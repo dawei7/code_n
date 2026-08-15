@@ -135,7 +135,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "row-boundary"
       ]
     }

@@ -87,7 +87,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "cross-parity",
         "anagram-trap"
       ]
@@ -103,7 +102,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "duplicates",
         "both-swaps"
       ]
@@ -119,7 +117,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "duplicates",
         "zero-operations"
       ]
@@ -135,7 +132,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "parity-mismatch"
       ]
     }

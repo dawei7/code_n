@@ -130,7 +130,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "even-length"
       ]
     },
@@ -156,7 +155,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -184,7 +182,6 @@
         -6
       ],
       "tags": [
-        "hidden",
         "negative"
       ]
     }

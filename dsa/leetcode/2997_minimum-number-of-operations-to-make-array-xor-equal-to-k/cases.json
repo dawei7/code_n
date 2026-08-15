@@ -104,7 +104,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -125,7 +124,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "zeros"
       ]
     }

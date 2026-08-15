@@ -116,7 +116,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "leading-run"
       ]
     },
@@ -136,7 +135,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "trailing-run"
       ]
     }

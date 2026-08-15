@@ -191,7 +191,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "ordering",
         "maximum-power"
       ]
@@ -233,7 +232,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "signs",
         "factor-boundaries"
       ]

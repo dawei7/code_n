@@ -256,7 +256,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "alternative-routes"
       ]
     },
@@ -315,7 +314,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "cycles"
       ]
     },
@@ -349,7 +347,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-result"
       ]
     },
@@ -388,7 +385,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-tied"
       ]
     },
@@ -432,7 +428,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "route-comparison"
       ]
     },
@@ -466,7 +461,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "direct-path"
       ]
     }

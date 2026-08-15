@@ -242,7 +242,6 @@
         "operations_param": "operations"
       },
       "tags": [
-        "hidden",
         "swap"
       ]
     },
@@ -281,7 +280,6 @@
         "operations_param": "operations"
       },
       "tags": [
-        "hidden",
         "missing"
       ]
     },
@@ -319,7 +317,6 @@
         "operations_param": "operations"
       },
       "tags": [
-        "hidden",
         "random"
       ]
     }

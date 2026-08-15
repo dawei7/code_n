@@ -109,7 +109,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "mixed-groups"
       ]
     },
@@ -126,7 +125,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "parity"
       ]
     },
@@ -143,7 +141,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "equivalent"
       ]
     },
@@ -160,7 +157,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "odd-length"
       ]
     },
@@ -180,7 +176,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "duplicates",
         "mixed-groups"
       ]

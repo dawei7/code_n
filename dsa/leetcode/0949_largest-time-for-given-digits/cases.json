@@ -112,7 +112,6 @@
       },
       "expected": "23:59",
       "tags": [
-        "hidden",
         "latest"
       ]
     },
@@ -131,7 +130,6 @@
       },
       "expected": "19:59",
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -150,7 +148,6 @@
       },
       "expected": "10:00",
       "tags": [
-        "hidden",
         "zeros"
       ]
     },
@@ -169,7 +166,6 @@
       },
       "expected": "",
       "tags": [
-        "hidden",
         "invalid"
       ]
     }

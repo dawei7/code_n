@@ -223,7 +223,6 @@
         "k_param": "k"
       },
       "tags": [
-        "hidden",
         "tie"
       ]
     },
@@ -264,7 +263,6 @@
         "k_param": "k"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -290,7 +288,6 @@
         "k_param": "k"
       },
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

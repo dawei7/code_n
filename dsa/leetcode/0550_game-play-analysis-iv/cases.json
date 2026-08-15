@@ -298,7 +298,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "first-login-only"
       ]
     },
@@ -360,7 +359,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "distinct-players"
       ]
     }

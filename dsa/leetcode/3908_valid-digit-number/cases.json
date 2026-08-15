@@ -173,7 +173,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "maximum",
         "leading-digit"
       ]
@@ -189,7 +188,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "maximum",
         "absent"
       ]
@@ -205,7 +203,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "absent",
         "repeated-digits"
       ]
@@ -221,7 +218,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "trailing-digit",
         "valid"
       ]
@@ -237,7 +233,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "leading-digit",
         "distinct-digits"
       ]

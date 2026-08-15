@@ -151,7 +151,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "ending-boundary"
       ]
     },
@@ -181,7 +180,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "overlapping-candidates"
       ]
     },
@@ -200,7 +198,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     }

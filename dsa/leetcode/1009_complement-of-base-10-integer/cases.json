@@ -93,7 +93,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "bit-width"
       ]
     },
@@ -107,7 +106,6 @@
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -121,7 +119,6 @@
       },
       "expected": 73741824,
       "tags": [
-        "hidden",
         "large"
       ]
     }

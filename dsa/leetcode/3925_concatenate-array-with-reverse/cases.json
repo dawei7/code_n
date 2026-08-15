@@ -353,7 +353,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "extreme-values",
         "two-elements"
       ]
@@ -388,7 +387,6 @@
         100
       ],
       "tags": [
-        "hidden",
         "palindrome",
         "duplicates"
       ]
@@ -426,7 +424,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "odd-length",
         "mixed-values"
       ]
@@ -467,7 +464,6 @@
         8
       ],
       "tags": [
-        "hidden",
         "even-length",
         "mixed-values"
       ]
@@ -784,7 +780,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "maximum-length",
         "distinct-values"
       ]
@@ -1101,7 +1096,6 @@
         100
       ],
       "tags": [
-        "hidden",
         "maximum-length",
         "duplicates"
       ]

@@ -106,7 +106,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "singleton",
         "all-odd"
       ]
@@ -125,7 +124,6 @@
       },
       "expected": 96,
       "tags": [
-        "hidden",
         "overlapping-bits"
       ]
     },
@@ -144,7 +142,6 @@
       },
       "expected": 102,
       "tags": [
-        "hidden",
         "mixed-parity",
         "maximum"
       ]

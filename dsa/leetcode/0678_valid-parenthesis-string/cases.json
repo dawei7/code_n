@@ -82,7 +82,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "all-wildcards"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "unmatched-openings"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "mixed-choices"
       ]
     },
@@ -124,7 +121,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "too-many-closes"
       ]
     }

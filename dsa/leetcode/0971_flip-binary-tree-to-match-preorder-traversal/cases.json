@@ -196,7 +196,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "multiple"
       ]
     },
@@ -233,7 +232,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "multiple"
       ]
     },
@@ -260,7 +258,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "chain"
       ]
     }

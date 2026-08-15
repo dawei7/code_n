@@ -56,7 +56,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "reverse"
       ]
     }

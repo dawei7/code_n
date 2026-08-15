@@ -184,7 +184,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zeros",
         "uniform"
       ]
@@ -215,7 +214,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "center"
       ]
     },
@@ -245,7 +243,6 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "diagonal-maxima"
       ]
     }

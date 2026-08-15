@@ -157,7 +157,6 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
@@ -182,7 +181,6 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "tie"
       ]
     },
@@ -211,7 +209,6 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "transitive"
       ]
     }

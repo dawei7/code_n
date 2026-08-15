@@ -87,7 +87,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "singleton"
       ]
     },
@@ -102,7 +101,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "repeated"
       ]
     },
@@ -117,7 +115,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "distinct-gap"
       ]
     }

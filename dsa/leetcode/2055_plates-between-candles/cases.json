@@ -147,7 +147,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "one-candle"
       ]
     },
@@ -179,7 +178,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "outer-plates"
       ]
     },
@@ -211,7 +209,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "consecutive-candles"
       ]
     }

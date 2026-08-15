@@ -200,7 +200,6 @@
         "values_from_tree": true
       },
       "tags": [
-        "hidden",
         "uneven"
       ]
     },
@@ -226,7 +225,6 @@
         "values_from_tree": true
       },
       "tags": [
-        "hidden",
         "small"
       ]
     }

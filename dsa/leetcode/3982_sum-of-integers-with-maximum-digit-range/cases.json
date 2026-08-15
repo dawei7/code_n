@@ -144,7 +144,6 @@
       },
       "expected": 91,
       "tags": [
-        "hidden",
         "late-reset",
         "two-digits"
       ]
@@ -163,7 +162,6 @@
       },
       "expected": 54321,
       "tags": [
-        "hidden",
         "upper-bound",
         "unique-winner"
       ]
@@ -183,7 +181,6 @@
       },
       "expected": 33,
       "tags": [
-        "hidden",
         "tie",
         "mixed-ranges"
       ]
@@ -202,7 +199,6 @@
       },
       "expected": 110989,
       "tags": [
-        "hidden",
         "range-nine",
         "tie"
       ]
@@ -222,7 +218,6 @@
       },
       "expected": 111100,
       "tags": [
-        "hidden",
         "zero-digit",
         "all-qualify"
       ]
@@ -242,7 +237,6 @@
       },
       "expected": 90909,
       "tags": [
-        "hidden",
         "late-reset",
         "range-nine"
       ]
@@ -262,7 +256,6 @@
       },
       "expected": 110,
       "tags": [
-        "hidden",
         "digit-order",
         "tie"
       ]
@@ -280,7 +273,6 @@
       },
       "expected": 100010,
       "tags": [
-        "hidden",
         "domain-boundaries",
         "tie"
       ]
@@ -299,7 +291,6 @@
       },
       "expected": 1080,
       "tags": [
-        "hidden",
         "duplicates",
         "all-qualify"
       ]

@@ -122,7 +122,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "bridge"
       ]
     },
@@ -143,7 +142,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "multiple-descents"
       ]
     },
@@ -162,7 +160,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

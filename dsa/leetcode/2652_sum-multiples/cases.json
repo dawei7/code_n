@@ -81,7 +81,6 @@
       },
       "expected": 81,
       "tags": [
-        "hidden",
         "overlap",
         "inclusion-exclusion"
       ]
@@ -96,7 +95,6 @@
       },
       "expected": 3045,
       "tags": [
-        "hidden",
         "triple-overlap"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": 272066,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

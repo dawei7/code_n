@@ -221,7 +221,6 @@
         50000
       ],
       "tags": [
-        "hidden",
         "large-values"
       ]
     },
@@ -265,7 +264,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "child-first"
       ]
     },
@@ -318,7 +316,6 @@
         7
       ],
       "tags": [
-        "hidden",
         "complete-tree",
         "unordered"
       ]

@@ -158,7 +158,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "negative",
         "tie-break"
       ]
@@ -192,7 +191,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -224,7 +222,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "k-equals-n"
       ]
     },
@@ -250,7 +247,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "bounds",
         "tie-break"
       ]

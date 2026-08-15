@@ -181,7 +181,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "inclusive-boundaries"
       ]
     },
@@ -231,7 +230,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "zero-frequency"
       ]
     },
@@ -280,7 +278,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "read-only-state"
       ]
     }

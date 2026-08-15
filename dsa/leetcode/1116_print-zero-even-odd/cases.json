@@ -53,7 +53,6 @@
       },
       "expected": "010203040506",
       "tags": [
-        "hidden",
         "even-terminal"
       ]
     },
@@ -67,7 +66,6 @@
       },
       "expected": "010203040506070809010",
       "tags": [
-        "hidden",
         "handoff"
       ]
     }

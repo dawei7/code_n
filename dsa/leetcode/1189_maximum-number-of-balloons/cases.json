@@ -81,7 +81,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "multiplicity"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "repetition"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "limiting-resource",
         "irrelevant-letters"
       ]

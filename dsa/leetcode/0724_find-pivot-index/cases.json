@@ -110,7 +110,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "negative-values"
       ]
     },
@@ -129,7 +128,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "leftmost"
       ]
     },
@@ -150,7 +148,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "mixed-signs"
       ]
     }

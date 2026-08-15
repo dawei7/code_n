@@ -106,7 +106,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "stopping-rule"
       ]
     },
@@ -125,7 +124,6 @@
       },
       "expected": 25,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

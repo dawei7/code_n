@@ -111,7 +111,6 @@
         "error": null
       },
       "tags": [
-        "hidden",
         "null"
       ]
     },
@@ -130,7 +129,6 @@
         "error": "Not Equal"
       },
       "tags": [
-        "hidden",
         "boolean"
       ]
     },
@@ -149,7 +147,6 @@
         "error": null
       },
       "tags": [
-        "hidden",
         "no-coercion"
       ]
     },
@@ -168,7 +165,6 @@
         "error": "Equal"
       },
       "tags": [
-        "hidden",
         "empty-string"
       ]
     }

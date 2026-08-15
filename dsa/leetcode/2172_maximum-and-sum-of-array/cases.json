@@ -129,7 +129,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -147,7 +146,6 @@
       },
       "expected": 18,
       "tags": [
-        "hidden",
         "upper-bound",
         "empty-slots"
       ]

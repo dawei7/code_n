@@ -94,7 +94,6 @@
       },
       "expected": 27,
       "tags": [
-        "hidden",
         "upper-boundary",
         "clear-bits"
       ]
@@ -111,7 +110,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "upper-boundary",
         "set-bits"
       ]

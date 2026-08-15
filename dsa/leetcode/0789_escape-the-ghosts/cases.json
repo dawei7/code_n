@@ -167,7 +167,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "negative-coordinates"
       ]
     },
@@ -198,7 +197,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "tie",
         "multiple-ghosts"
       ]
@@ -230,7 +228,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "multiple-ghosts",
         "safe"
       ]

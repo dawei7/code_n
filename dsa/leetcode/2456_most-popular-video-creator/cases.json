@@ -182,7 +182,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "singleton"
       ]
     },
@@ -218,7 +217,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "late-update"
       ]
     },
@@ -254,7 +252,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "lexicographic-tie"
       ]
     },
@@ -301,7 +298,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "creator-tie"
       ]
     }

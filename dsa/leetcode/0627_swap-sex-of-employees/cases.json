@@ -334,7 +334,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "preserve-columns"
       ]
     },
@@ -408,7 +407,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "alternating"
       ]
     }

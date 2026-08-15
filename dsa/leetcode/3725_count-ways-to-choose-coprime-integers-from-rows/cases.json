@@ -177,7 +177,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unit-value"
       ]
     },
@@ -210,7 +209,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-gcd-classes"
       ]
     },
@@ -243,7 +241,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "common-factor",
         "empty-result"
       ]
@@ -274,7 +271,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "prime-overlaps"
       ]
     },
@@ -492,7 +488,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "modulo",
         "duplicates"
       ]
@@ -526,7 +521,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

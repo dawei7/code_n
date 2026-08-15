@@ -139,7 +139,6 @@
       },
       "expected": 45,
       "tags": [
-        "hidden",
         "square-class"
       ]
     },
@@ -166,7 +165,6 @@
       },
       "expected": 100,
       "tags": [
-        "hidden",
         "singleton-group"
       ]
     },
@@ -190,7 +188,6 @@
       },
       "expected": 3000000000,
       "tags": [
-        "hidden",
         "large-sum",
         "integer-range"
       ]

@@ -73,7 +73,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "exact-width"
       ]
     },
@@ -88,7 +87,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "space-counting"
       ]
     },
@@ -103,7 +101,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "last-row-free"
       ]
     }

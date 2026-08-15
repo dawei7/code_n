@@ -67,7 +67,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "exact-set"
       ]
     },
@@ -81,7 +80,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "multiple-starts"
       ]
     },
@@ -95,7 +93,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "reset"
       ]
     },
@@ -109,7 +106,6 @@
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "overlapping-ranges"
       ]
     }

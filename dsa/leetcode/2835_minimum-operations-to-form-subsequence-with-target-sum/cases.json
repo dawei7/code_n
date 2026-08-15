@@ -129,7 +129,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "cascade"
       ]
     },
@@ -147,7 +146,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "mixed-sources"
       ]
     },
@@ -164,7 +162,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "sibling-reuse"
       ]
     },
@@ -182,7 +179,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "nearest-higher"
       ]
     },
@@ -200,7 +196,6 @@
       },
       "expected": 30,
       "tags": [
-        "hidden",
         "maximum-target",
         "maximum-value"
       ]

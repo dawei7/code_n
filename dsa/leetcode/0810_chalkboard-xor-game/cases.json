@@ -123,7 +123,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "odd",
         "duplicates"
       ]
@@ -142,7 +141,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "odd",
         "zero-xor"
       ]
@@ -162,7 +160,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "even",
         "duplicates"
       ]

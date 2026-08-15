@@ -82,7 +82,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "parity"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "even-excess"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "negative"
       ]
     }

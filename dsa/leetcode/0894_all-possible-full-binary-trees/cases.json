@@ -185,7 +185,6 @@
         "kind": "forest_roots"
       },
       "tags": [
-        "hidden",
         "impossible-even"
       ]
     },
@@ -413,7 +412,6 @@
         "kind": "forest_roots"
       },
       "tags": [
-        "hidden",
         "fourteen-shapes"
       ]
     },
@@ -430,7 +428,6 @@
         "kind": "forest_roots"
       },
       "tags": [
-        "hidden",
         "impossible-even"
       ]
     },
@@ -447,7 +444,6 @@
         "kind": "forest_roots"
       },
       "tags": [
-        "hidden",
         "maximum",
         "impossible-even"
       ]
@@ -465,7 +461,6 @@
         "kind": "forest_roots"
       },
       "tags": [
-        "hidden",
         "impossible-even"
       ]
     }

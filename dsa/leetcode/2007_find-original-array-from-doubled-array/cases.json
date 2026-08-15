@@ -120,7 +120,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "insufficient-frequency"
       ]
     },
@@ -145,7 +144,6 @@
         50000
       ],
       "tags": [
-        "hidden",
         "boundaries",
         "shuffled"
       ]

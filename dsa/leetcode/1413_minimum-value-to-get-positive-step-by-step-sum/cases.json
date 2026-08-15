@@ -109,7 +109,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "first-prefix"
       ]
     },
@@ -224,7 +223,6 @@
       },
       "expected": 10001,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

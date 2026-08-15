@@ -309,7 +309,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-bad"
       ]
     },
@@ -363,7 +362,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "branched-tree",
         "rerooting"
       ]
@@ -412,7 +410,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "star",
         "negative-branches"
       ]

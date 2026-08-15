@@ -172,7 +172,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "translated"
       ]
     },
@@ -201,7 +200,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "negative"
       ]
     }

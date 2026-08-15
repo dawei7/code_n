@@ -114,7 +114,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "perfect"
       ]
     },
@@ -136,7 +135,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "inner-gap"
       ]
     },
@@ -156,7 +154,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "partial-level"
       ]
     }

@@ -88,7 +88,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "high-bit"
       ]
     },
@@ -103,7 +102,6 @@
       },
       "expected": 31,
       "tags": [
-        "hidden",
         "alternating"
       ]
     }

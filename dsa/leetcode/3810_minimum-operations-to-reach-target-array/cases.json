@@ -246,7 +246,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-matches",
         "repeated-values"
       ]
@@ -275,7 +274,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "alternating",
         "cycle",
         "separated-segments"
@@ -299,7 +297,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "single-element",
         "one-operation"
       ]
@@ -326,7 +323,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-values",
         "one-distinct-mismatch"
       ]

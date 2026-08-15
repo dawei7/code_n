@@ -157,7 +157,6 @@
       },
       "expected": 32,
       "tags": [
-        "hidden",
         "duplicates",
         "fillers"
       ]
@@ -179,7 +178,6 @@
       },
       "expected": 2000000000,
       "tags": [
-        "hidden",
         "maximum-value"
       ]
     },
@@ -206,7 +204,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "duplicates",
         "boundary"
       ]
@@ -234,7 +231,6 @@
       },
       "expected": 215,
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
@@ -258,7 +254,6 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "greedy"
       ]
     },
@@ -276,7 +271,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum-value"
       ]
     }

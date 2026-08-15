@@ -344,7 +344,6 @@
         10
       ],
       "tags": [
-        "hidden",
         "frequency"
       ]
     },
@@ -394,7 +393,6 @@
         80
       ],
       "tags": [
-        "hidden",
         "capacity-one"
       ]
     }

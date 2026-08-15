@@ -294,7 +294,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "unbalanced"
       ]
     },
@@ -337,7 +336,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "null-semantics"
       ]
     }

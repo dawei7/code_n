@@ -209,7 +209,6 @@
         -197
       ],
       "tags": [
-        "hidden",
         "negative-loss"
       ]
     },
@@ -235,7 +234,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "all-affordable"
       ]
     },
@@ -265,7 +263,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -304,7 +301,6 @@
         -19
       ],
       "tags": [
-        "hidden",
         "interior-split"
       ]
     }

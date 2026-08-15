@@ -282,7 +282,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "holes"
       ]
     },
@@ -337,7 +336,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "separate-region"
       ]
     },
@@ -384,7 +382,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "rectangular"
       ]
     }

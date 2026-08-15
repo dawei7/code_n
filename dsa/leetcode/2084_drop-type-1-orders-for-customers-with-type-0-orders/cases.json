@@ -243,7 +243,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "singleton-partitions"
       ]
     },
@@ -306,7 +305,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "input-order"
       ]
     },
@@ -384,7 +382,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "partition-isolation"
       ]
     }

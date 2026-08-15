@@ -148,7 +148,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "nested"
       ]
     },
@@ -175,7 +174,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "shared-suffix"
       ]
     },
@@ -594,7 +592,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

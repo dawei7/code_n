@@ -82,7 +82,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "halving"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 54,
       "tags": [
-        "hidden",
         "even"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": 504,
       "tags": [
-        "hidden",
         "odd"
       ]
     }

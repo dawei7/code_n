@@ -82,7 +82,6 @@
       },
       "expected": 9666,
       "tags": [
-        "hidden",
         "multiple-options"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 9999,
       "tags": [
-        "hidden",
         "leading-digit"
       ]
     }

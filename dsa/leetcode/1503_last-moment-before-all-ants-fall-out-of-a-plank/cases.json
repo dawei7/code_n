@@ -137,7 +137,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "right-dominates"
       ]
     },
@@ -159,7 +158,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "tie"
       ]
     },
@@ -185,7 +183,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "collision-chain",
         "pass-through"
       ]
@@ -204,7 +201,6 @@
       },
       "expected": 5679,
       "tags": [
-        "hidden",
         "single-ant",
         "maximum-plank"
       ]

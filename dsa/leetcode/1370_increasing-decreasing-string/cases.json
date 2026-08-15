@@ -82,7 +82,6 @@
       },
       "expected": "abcdeffedcba",
       "tags": [
-        "hidden",
         "balanced"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": "vwxyz",
       "tags": [
-        "hidden",
         "distinct"
       ]
     }

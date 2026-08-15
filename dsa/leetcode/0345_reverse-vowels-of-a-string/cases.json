@@ -81,7 +81,6 @@
       },
       "expected": "aeiOu",
       "tags": [
-        "hidden",
         "all-vowels"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": "i.!E?a",
       "tags": [
-        "hidden",
         "symbols"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": "bcEAd",
       "tags": [
-        "hidden",
         "internal"
       ]
     }

@@ -167,7 +167,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "branching"
       ]
     },
@@ -195,7 +194,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "alternating"
       ]
     }

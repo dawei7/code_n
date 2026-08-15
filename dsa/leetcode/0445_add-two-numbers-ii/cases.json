@@ -151,7 +151,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "carry-chain"
       ]
     },
@@ -179,7 +178,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "different-lengths"
       ]
     }

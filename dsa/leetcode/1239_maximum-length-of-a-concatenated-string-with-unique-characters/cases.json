@@ -105,7 +105,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "mixed-validity"
       ]
     },
@@ -125,7 +124,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "overlap"
       ]
     }

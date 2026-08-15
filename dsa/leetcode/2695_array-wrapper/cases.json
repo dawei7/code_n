@@ -127,7 +127,6 @@
       },
       "expected": "[0,0,7,0]",
       "tags": [
-        "hidden",
         "zero",
         "string"
       ]
@@ -153,7 +152,6 @@
       },
       "expected": 4000,
       "tags": [
-        "hidden",
         "boundary",
         "add"
       ]
@@ -173,7 +171,6 @@
       },
       "expected": "[1000]",
       "tags": [
-        "hidden",
         "single",
         "string"
       ]

@@ -150,7 +150,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "reverse"
       ]
     },
@@ -173,7 +172,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "blocked"
       ]
     },
@@ -198,7 +196,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "late-invalid"
       ]
     },
@@ -227,7 +224,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

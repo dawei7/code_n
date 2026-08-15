@@ -330,7 +330,6 @@
         "kind": "quad_tree"
       },
       "tags": [
-        "hidden",
         "quadrants"
       ]
     },
@@ -391,7 +390,6 @@
         "kind": "quad_tree"
       },
       "tags": [
-        "hidden",
         "quadrants"
       ]
     }

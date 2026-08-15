@@ -102,7 +102,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "prime-destination"
       ]
     },
@@ -117,7 +116,6 @@
       },
       "expected": 629,
       "tags": [
-        "hidden",
         "dijkstra"
       ]
     },
@@ -132,7 +130,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "unreachable"
       ]
     },
@@ -147,7 +144,6 @@
       },
       "expected": 2001,
       "tags": [
-        "hidden",
         "fixed-width",
         "four-digits"
       ]
@@ -163,7 +159,6 @@
       },
       "expected": 9999,
       "tags": [
-        "hidden",
         "four-digits",
         "identity"
       ]

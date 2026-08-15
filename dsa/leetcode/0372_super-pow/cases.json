@@ -108,7 +108,6 @@
       },
       "expected": 1198,
       "tags": [
-        "hidden",
         "large-base"
       ]
     },
@@ -127,7 +126,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "zero-digit"
       ]
     },
@@ -145,7 +143,6 @@
       },
       "expected": 626,
       "tags": [
-        "hidden",
         "negative"
       ]
     }

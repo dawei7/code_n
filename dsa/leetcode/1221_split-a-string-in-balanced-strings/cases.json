@@ -66,7 +66,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "mixed-shapes"
       ]
     },
@@ -80,7 +79,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -94,7 +92,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "negative-balance"
       ]
     }

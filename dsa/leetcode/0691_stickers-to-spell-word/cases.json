@@ -109,7 +109,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "extra-letters"
       ]
     },
@@ -128,7 +127,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -147,7 +145,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "one-sticker"
       ]
     }

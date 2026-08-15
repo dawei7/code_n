@@ -308,7 +308,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "rollback",
         "nonmultiple"
       ]
@@ -352,7 +351,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "largest-first"
       ]
     },
@@ -402,7 +400,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "state",
         "depletion"
       ]

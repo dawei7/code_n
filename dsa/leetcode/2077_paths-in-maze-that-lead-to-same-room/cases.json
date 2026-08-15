@@ -129,7 +129,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "complete-graph"
       ]
     },
@@ -165,7 +164,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "shared-diagonal"
       ]
     },
@@ -205,7 +203,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "disconnected-triangles"
       ]
     },
@@ -237,7 +234,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "non-triangle-cycle"
       ]
     }

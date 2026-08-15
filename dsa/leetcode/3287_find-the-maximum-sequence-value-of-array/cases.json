@@ -113,7 +113,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -133,7 +132,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "order"
       ]
     },
@@ -155,7 +153,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "or-states"
       ]
     },
@@ -178,7 +175,6 @@
       },
       "expected": 126,
       "tags": [
-        "hidden",
         "bit-boundary"
       ]
     }

@@ -108,7 +108,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "unreachable"
       ]
     },
@@ -131,7 +130,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "branching"
       ]
     }

@@ -145,7 +145,6 @@
         7
       ],
       "tags": [
-        "hidden",
         "all-duplicates"
       ]
     },
@@ -168,7 +167,6 @@
         999999999
       ],
       "tags": [
-        "hidden",
         "maximum-value",
         "duplicates"
       ]
@@ -195,7 +193,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "ordering",
         "top-k"
       ]

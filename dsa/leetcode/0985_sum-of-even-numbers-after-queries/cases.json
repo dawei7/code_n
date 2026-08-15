@@ -175,7 +175,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "repeated-index"
       ]
     },
@@ -205,7 +204,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -235,7 +233,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "bounds"
       ]
     }

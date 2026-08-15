@@ -140,7 +140,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-pops",
         "distinct-result"
       ]
@@ -158,7 +157,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "helpful-interior-duplicate"
       ]
     },
@@ -175,7 +173,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "descending-blocks",
         "future-copies"
       ]
@@ -193,7 +190,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "overlapping-duplicates",
         "required-last-copy"
       ]
@@ -211,7 +207,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "alphabet",
         "all-distinct"
       ]

@@ -215,7 +215,6 @@
       },
       "expected": 29,
       "tags": [
-        "hidden",
         "whole-array",
         "repeated-pattern"
       ]
@@ -237,7 +236,6 @@
       },
       "expected": 100,
       "tags": [
-        "hidden",
         "singleton",
         "sum-not-length"
       ]
@@ -259,7 +257,6 @@
       },
       "expected": 200,
       "tags": [
-        "hidden",
         "even-palindrome",
         "suffix"
       ]
@@ -281,7 +278,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "even-palindrome",
         "nested-radii"
       ]
@@ -304,7 +300,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "odd-palindrome",
         "nested-radii"
       ]
@@ -324,7 +319,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "mismatch",
         "singleton"
       ]
@@ -345,7 +339,6 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "odd-palindrome",
         "repeated-values"
       ]
@@ -368,7 +361,6 @@
       },
       "expected": 31,
       "tags": [
-        "hidden",
         "odd-palindrome",
         "whole-array"
       ]
@@ -387,7 +379,6 @@
       },
       "expected": 2000000001,
       "tags": [
-        "hidden",
         "large-values",
         "wide-integer"
       ]
@@ -413,7 +404,6 @@
       },
       "expected": 10000000000,
       "tags": [
-        "hidden",
         "large-values",
         "even-palindrome"
       ]

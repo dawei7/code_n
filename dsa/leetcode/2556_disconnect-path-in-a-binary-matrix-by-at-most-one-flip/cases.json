@@ -141,7 +141,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
@@ -160,7 +159,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "endpoint-protection"
       ]
     },
@@ -187,7 +185,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "single-column"
       ]
     }

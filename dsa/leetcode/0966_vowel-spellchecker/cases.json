@@ -154,7 +154,6 @@
         "mAke"
       ],
       "tags": [
-        "hidden",
         "first-match"
       ]
     },
@@ -177,7 +176,6 @@
         ""
       ],
       "tags": [
-        "hidden",
         "consonants"
       ]
     },
@@ -205,7 +203,6 @@
         ""
       ],
       "tags": [
-        "hidden",
         "order"
       ]
     }

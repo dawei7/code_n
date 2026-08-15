@@ -103,7 +103,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "length"
       ]
     },
@@ -118,7 +117,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "one-mismatch"
       ]
     },
@@ -133,7 +131,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "duplicate"
       ]
     },
@@ -148,7 +145,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "unique"
       ]
     },
@@ -163,7 +159,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "crossing"
       ]
     },
@@ -178,7 +173,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "non-adjacent"
       ]
     }

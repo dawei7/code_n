@@ -120,7 +120,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "row-failure"
       ]
     },
@@ -159,7 +158,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "valid"
       ]
     },
@@ -189,7 +187,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "late-failure"
       ]
     }

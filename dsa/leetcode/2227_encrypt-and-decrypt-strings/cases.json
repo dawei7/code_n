@@ -225,7 +225,6 @@
         "pqpq"
       ],
       "tags": [
-        "hidden",
         "unmapped-dictionary"
       ]
     },
@@ -278,7 +277,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "query-stability"
       ]
     },
@@ -332,7 +330,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "order"
       ]
     },
@@ -371,7 +368,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "zero-match"
       ]
     }

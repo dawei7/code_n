@@ -148,7 +148,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -169,7 +168,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "boundaries"
       ]
     },
@@ -187,7 +185,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "negative-target"
       ]
     }

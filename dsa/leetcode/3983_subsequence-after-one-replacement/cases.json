@@ -124,7 +124,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "replace-first",
         "equal-length"
       ]
@@ -140,7 +139,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "greedy-trap",
         "skip-text"
       ]
@@ -156,7 +154,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "no-replacement",
         "leading-extra"
       ]
@@ -172,7 +169,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "order",
         "two-mismatches"
       ]
@@ -188,7 +184,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "repeated-letters",
         "no-replacement"
       ]
@@ -204,7 +199,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "replace-first",
         "equal-length"
       ]
@@ -220,7 +214,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "two-mismatches",
         "equal-length"
       ]
@@ -236,7 +229,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "one-replacement",
         "trailing-extra"
       ]
@@ -252,7 +244,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "no-replacement",
         "leading-extra"
       ]
@@ -268,7 +259,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "repeated-letters",
         "middle-replacement"
       ]
@@ -284,7 +274,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "two-mismatches",
         "boundary-positions"
       ]

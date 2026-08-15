@@ -242,7 +242,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "column"
       ]
     },
@@ -275,7 +274,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "anti-diagonal"
       ]
     },
@@ -312,7 +310,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "large-grid"
       ]
     }

@@ -150,7 +150,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "index-order"
       ],
       "expected": 111
@@ -173,7 +172,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "minimum-size"
       ],
       "expected": 31
@@ -196,7 +194,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "boundary"
       ],
       "expected": 2999997

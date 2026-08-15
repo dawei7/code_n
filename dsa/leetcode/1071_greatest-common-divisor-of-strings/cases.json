@@ -102,7 +102,6 @@
       },
       "expected": "TAUTAU",
       "tags": [
-        "hidden",
         "periodic"
       ]
     },
@@ -117,7 +116,6 @@
       },
       "expected": "",
       "tags": [
-        "hidden",
         "prefix"
       ]
     },
@@ -132,7 +130,6 @@
       },
       "expected": "HELLO",
       "tags": [
-        "hidden",
         "one-copy"
       ]
     }

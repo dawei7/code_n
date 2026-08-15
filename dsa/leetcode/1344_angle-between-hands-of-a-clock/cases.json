@@ -103,7 +103,6 @@
       },
       "expected": 5.5,
       "tags": [
-        "hidden",
         "wraparound"
       ]
     },
@@ -118,7 +117,6 @@
       },
       "expected": 22.5,
       "tags": [
-        "hidden",
         "complement"
       ]
     }

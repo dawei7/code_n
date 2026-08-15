@@ -85,7 +85,6 @@
       },
       "expected": 252,
       "tags": [
-        "hidden",
         "combinatorics"
       ]
     }

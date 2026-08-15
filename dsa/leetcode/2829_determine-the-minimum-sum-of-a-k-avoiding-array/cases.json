@@ -104,7 +104,6 @@
       },
       "expected": 55,
       "tags": [
-        "hidden",
         "minimum-k"
       ]
     },
@@ -119,7 +118,6 @@
       },
       "expected": 325,
       "tags": [
-        "hidden",
         "block-boundary",
         "maximum-k"
       ]
@@ -135,7 +133,6 @@
       },
       "expected": 375,
       "tags": [
-        "hidden",
         "block-boundary",
         "maximum-k"
       ]
@@ -151,7 +148,6 @@
       },
       "expected": 1875,
       "tags": [
-        "hidden",
         "maximum-size"
       ]
     }

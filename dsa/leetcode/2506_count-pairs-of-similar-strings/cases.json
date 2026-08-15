@@ -108,7 +108,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -129,7 +128,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "frequency-groups"
       ]
     },
@@ -147,7 +145,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "all-letters",
         "maximum-mask"
       ]

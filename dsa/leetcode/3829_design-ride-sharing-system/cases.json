@@ -407,7 +407,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "cancel-before-add",
         "no-effect"
       ]
@@ -474,7 +473,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "cancel-middle",
         "fifo"
       ]
@@ -526,7 +524,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "matched-cancellation",
         "no-effect"
       ]
@@ -567,7 +564,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-id",
         "independent-namespaces"
       ]
@@ -638,7 +634,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "long-canceled-prefix",
         "lazy-cleanup"
       ]

@@ -64,7 +64,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "trailing-spaces"
       ]
     }

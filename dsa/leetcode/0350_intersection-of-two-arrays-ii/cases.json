@@ -165,7 +165,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -198,7 +197,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "size-order"
       ]
     },
@@ -224,7 +222,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "disjoint"
       ]
     }

@@ -113,7 +113,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-negative"
       ]
     },
@@ -130,7 +129,6 @@
       },
       "expected": 20000000,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -151,7 +149,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "duplicates",
         "odd-total"
       ]

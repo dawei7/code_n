@@ -154,7 +154,6 @@
         "kind": "missing_rolls"
       },
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     },
@@ -176,7 +175,6 @@
         "kind": "missing_rolls"
       },
       "tags": [
-        "hidden",
         "impossible"
       ]
     }

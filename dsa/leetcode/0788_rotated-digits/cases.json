@@ -96,7 +96,6 @@
       },
       "expected": 40,
       "tags": [
-        "hidden",
         "prefix-boundary"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": 230,
       "tags": [
-        "hidden",
         "three-digits"
       ]
     },
@@ -124,7 +122,6 @@
       },
       "expected": 2320,
       "tags": [
-        "hidden",
         "large-bound"
       ]
     }

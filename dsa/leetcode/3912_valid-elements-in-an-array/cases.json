@@ -271,7 +271,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "symmetric",
         "all-valid"
       ]
@@ -295,7 +294,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "symmetric",
         "endpoints-only"
       ]
@@ -319,7 +317,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "repeated-maximum",
         "strictness"
       ]
@@ -437,7 +434,6 @@
         100
       ],
       "tags": [
-        "hidden",
         "long-array",
         "alternating",
         "duplicates"
@@ -655,7 +651,6 @@
         100
       ],
       "tags": [
-        "hidden",
         "maximum-n",
         "strictly-increasing",
         "all-valid"
@@ -774,7 +769,6 @@
         100
       ],
       "tags": [
-        "hidden",
         "maximum-n",
         "all-equal",
         "endpoints"

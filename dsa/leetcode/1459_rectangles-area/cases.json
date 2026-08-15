@@ -187,7 +187,6 @@
         "rows": []
       },
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
@@ -232,7 +231,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "negative-coordinates",
         "id-order"
       ]
@@ -283,7 +281,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "duplicate-coordinates"
       ]
     },
@@ -338,7 +335,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "area-order"
       ]
     }

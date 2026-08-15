@@ -162,7 +162,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "simultaneous"
       ]
     },
@@ -188,7 +187,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "separate"
       ]
     },
@@ -214,7 +212,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "cascade"
       ]
     },
@@ -240,7 +237,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "unsorted-order"
       ]
     },
@@ -264,7 +260,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "fast-front"
       ]
     },
@@ -290,7 +285,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "groups"
       ]
     }

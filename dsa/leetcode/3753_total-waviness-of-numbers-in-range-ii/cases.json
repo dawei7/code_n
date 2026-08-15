@@ -88,7 +88,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "prefix-aggregation"
       ]
     }

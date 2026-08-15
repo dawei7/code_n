@@ -113,7 +113,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "sparse"
       ]
     }

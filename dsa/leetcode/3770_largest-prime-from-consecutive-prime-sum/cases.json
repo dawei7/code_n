@@ -135,7 +135,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "between-prefixes"
       ]
     },
@@ -152,7 +151,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "exact-boundary"
       ]
     },
@@ -169,7 +167,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "upper-boundary",
         "large-sieve"
       ]

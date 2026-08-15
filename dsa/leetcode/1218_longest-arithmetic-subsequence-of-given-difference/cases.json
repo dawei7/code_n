@@ -105,7 +105,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "descending"
       ]
     },
@@ -127,7 +126,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "noncontiguous"
       ]
     },
@@ -146,7 +144,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "bounds"
       ]
     }

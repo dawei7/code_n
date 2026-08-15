@@ -191,7 +191,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "partial-chain"
       ]
     },
@@ -223,7 +222,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "both-ends"
       ]
     },
@@ -245,7 +243,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "disconnected"
       ]
     },
@@ -277,7 +274,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
@@ -309,7 +305,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "shortest-path"
       ]
     }

@@ -227,7 +227,6 @@
         "kind": "condition_matrix"
       },
       "tags": [
-        "hidden",
         "row-cycle"
       ]
     },
@@ -264,7 +263,6 @@
         "kind": "condition_matrix"
       },
       "tags": [
-        "hidden",
         "column-cycle"
       ]
     },
@@ -345,7 +343,6 @@
         "kind": "condition_matrix"
       },
       "tags": [
-        "hidden",
         "chains"
       ]
     }

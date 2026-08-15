@@ -120,7 +120,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "adjacent"
       ]
     },
@@ -144,7 +143,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "singleton"
       ]
     },
@@ -167,7 +165,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "overlap",
         "global-minimum"
       ]
@@ -189,7 +186,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "bounds"
       ]
     }

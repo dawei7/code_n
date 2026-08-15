@@ -230,7 +230,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "ordering"
       ]
     },
@@ -285,7 +284,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

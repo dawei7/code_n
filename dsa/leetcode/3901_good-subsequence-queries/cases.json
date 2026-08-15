@@ -347,7 +347,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "critical-index",
         "repeated-state"
       ]
@@ -386,7 +385,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "prime-powers",
         "distinct-factors"
       ]
@@ -424,7 +422,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "critical-multiplicity",
         "shared-missing-index"
       ]
@@ -463,7 +460,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "same-factor-set",
         "segment-tree-update"
       ]
@@ -502,7 +498,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "mixed-updates",
         "normalized-values"
       ]

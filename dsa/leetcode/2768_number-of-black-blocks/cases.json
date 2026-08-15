@@ -207,7 +207,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "three-black"
       ],
       "expected": [
@@ -238,7 +237,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "boundary",
         "overlap"
       ],
@@ -298,7 +296,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "dense",
         "full-blocks"
       ],
@@ -338,7 +335,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "corners",
         "separated"
       ],
@@ -386,7 +382,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "mixed",
         "overlap"
       ],

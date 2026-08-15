@@ -201,7 +201,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "two-layer-trim"
       ]
     },
@@ -259,7 +258,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "coinless-pruning",
         "branching"
       ]

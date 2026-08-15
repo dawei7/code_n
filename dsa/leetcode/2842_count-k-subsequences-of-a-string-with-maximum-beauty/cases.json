@@ -72,7 +72,6 @@
       },
       "expected": 48,
       "tags": [
-        "hidden",
         "partial-tie"
       ]
     },
@@ -87,7 +86,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "top-tie"
       ]
     },
@@ -102,7 +100,6 @@
       },
       "expected": 180,
       "tags": [
-        "hidden",
         "frequency-levels"
       ]
     },
@@ -117,7 +114,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "minimum-k"
       ]
     },
@@ -132,7 +128,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "single-subsequence"
       ]
     },
@@ -147,7 +142,6 @@
       },
       "expected": 915677733,
       "tags": [
-        "hidden",
         "modulo",
         "alphabet-boundary"
       ]

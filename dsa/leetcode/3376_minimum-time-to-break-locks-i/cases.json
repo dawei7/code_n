@@ -112,7 +112,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "bitmask-dp"
       ]
     },
@@ -131,7 +130,6 @@
       },
       "expected": 138530,
       "tags": [
-        "hidden",
         "upper-bound",
         "ceiling"
       ]
@@ -154,7 +152,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "ordering"
       ]
     }

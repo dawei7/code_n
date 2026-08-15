@@ -367,7 +367,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "boundary-indices"
       ]
     },
@@ -422,7 +421,6 @@
         "110111"
       ],
       "tags": [
-        "hidden",
         "query-idempotence"
       ]
     }

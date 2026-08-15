@@ -211,7 +211,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "two-peaks",
         "small-k"
       ]
@@ -234,7 +233,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "negative-values",
         "single-peak"
       ]
@@ -261,7 +259,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "three-peaks",
         "alternating"
       ]
@@ -288,7 +285,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "uneven-spacing",
         "distance-limit"
       ]
@@ -314,7 +310,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "early-peak",
         "k-clipping"
       ]
@@ -340,7 +335,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "irregular",
         "multiple-peaks"
       ]
@@ -369,7 +363,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "four-peaks",
         "neighbor-boundary"
       ]

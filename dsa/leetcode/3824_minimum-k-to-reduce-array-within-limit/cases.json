@@ -144,7 +144,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "minimality"
       ]
@@ -263,7 +262,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "length-bound",
         "exact-square"
       ]
@@ -285,7 +283,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "mixed-scale"
       ]
@@ -306,7 +303,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "at-most",
         "equality"
       ]
@@ -329,7 +325,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-values",
         "binary-search-boundary"
       ]

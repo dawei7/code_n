@@ -296,7 +296,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "lexicographic"
       ]
     },
@@ -358,7 +357,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "zero"
       ]
     }

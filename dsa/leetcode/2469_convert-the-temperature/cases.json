@@ -82,7 +82,6 @@
         32.018
       ],
       "tags": [
-        "hidden",
         "precision"
       ]
     },
@@ -99,7 +98,6 @@
         1832.0
       ],
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     },
@@ -116,7 +114,6 @@
         63.014
       ],
       "tags": [
-        "hidden",
         "precision"
       ]
     }

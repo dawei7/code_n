@@ -121,7 +121,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "circular-boundary"
       ]
     },
@@ -145,7 +144,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "equal"
       ]
     }

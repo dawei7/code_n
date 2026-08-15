@@ -149,7 +149,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "type-identity"
       ]
     },
@@ -169,7 +168,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "count-bound"
       ]
     },
@@ -189,7 +187,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "count-bound"
       ]
     },
@@ -213,7 +210,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "large-mark"
       ]
     },
@@ -237,7 +233,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "multiple-combinations"
       ]
     },
@@ -453,7 +448,6 @@
       },
       "expected": 828355871,
       "tags": [
-        "hidden",
         "modulus",
         "maximum-types"
       ]

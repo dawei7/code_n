@@ -162,7 +162,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "ranking"
       ]
     },
@@ -190,7 +189,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "zero"
       ]
     },
@@ -221,7 +219,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "order"
       ]
     }

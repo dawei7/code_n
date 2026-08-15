@@ -103,7 +103,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "minimum-balance"
       ]
     },
@@ -118,7 +117,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "editable-endpoints"
       ]
     }

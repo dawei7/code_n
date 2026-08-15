@@ -211,7 +211,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "no-partition",
         "two-elements"
       ]
@@ -236,7 +235,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-prefix-xor",
         "both-parities"
       ]
@@ -261,7 +259,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "multiple-cuts"
       ]
@@ -288,7 +285,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "many-partitions",
         "alternating-states"
       ]

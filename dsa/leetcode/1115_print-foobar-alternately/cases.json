@@ -52,7 +52,6 @@
       },
       "expected": "foobarfoobarfoobarfoobarfoobarfoobarfoobarfoobar",
       "tags": [
-        "hidden",
         "handoff"
       ]
     }

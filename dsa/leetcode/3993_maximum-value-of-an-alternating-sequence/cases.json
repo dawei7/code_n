@@ -213,7 +213,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "unit-limit",
         "many-elements"
       ]
@@ -230,7 +229,6 @@
       },
       "expected": 43,
       "tags": [
-        "hidden",
         "unit-limit",
         "odd-length"
       ]
@@ -247,7 +245,6 @@
       },
       "expected": 61,
       "tags": [
-        "hidden",
         "odd-length",
         "moderate-values"
       ]
@@ -264,7 +261,6 @@
       },
       "expected": 67,
       "tags": [
-        "hidden",
         "even-length",
         "moderate-values"
       ]
@@ -281,7 +277,6 @@
       },
       "expected": 1000000001,
       "tags": [
-        "hidden",
         "maximum-n",
         "maximum-s",
         "unit-limit"
@@ -299,7 +294,6 @@
       },
       "expected": 50000499900002,
       "tags": [
-        "hidden",
         "large-result",
         "odd-length",
         "maximum-m"
@@ -317,7 +311,6 @@
       },
       "expected": 49999500000002,
       "tags": [
-        "hidden",
         "large-result",
         "maximum-n",
         "maximum-m"
@@ -335,7 +328,6 @@
       },
       "expected": 50000500000001,
       "tags": [
-        "hidden",
         "large-result",
         "maximum-values"
       ]

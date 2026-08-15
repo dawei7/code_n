@@ -156,7 +156,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "inclusive-boundary",
         "alternating"
       ]
@@ -174,7 +173,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "interior-violation"
       ]
     },
@@ -191,7 +189,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "equal-digits"
       ]
@@ -209,7 +206,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "direction-changes"
       ]
@@ -227,7 +223,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "late-violation"
       ]
@@ -245,7 +240,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "monotone",
         "unit-differences"
       ]
@@ -263,7 +257,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "direction-change",
         "inclusive-boundary"
       ]

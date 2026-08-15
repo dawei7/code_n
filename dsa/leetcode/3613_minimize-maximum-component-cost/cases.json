@@ -281,7 +281,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "parallel-edges"
       ]
     },
@@ -338,7 +337,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "dense-graph",
         "cycles"
       ]
@@ -386,7 +384,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "two-components",
         "clusters"
       ]
@@ -409,7 +406,6 @@
       },
       "expected": 1000000,
       "tags": [
-        "hidden",
         "maximum-weight"
       ]
     },
@@ -456,7 +452,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "tree",
         "unsorted"
       ]
@@ -504,7 +499,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "cycle",
         "component-count"
       ]

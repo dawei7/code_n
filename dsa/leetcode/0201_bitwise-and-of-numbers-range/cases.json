@@ -55,7 +55,6 @@
       },
       "expected": 48,
       "tags": [
-        "hidden",
         "prefix"
       ]
     }

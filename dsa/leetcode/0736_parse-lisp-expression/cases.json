@@ -82,7 +82,6 @@
       },
       "expected": 18,
       "tags": [
-        "hidden",
         "outer-lookup"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 28,
       "tags": [
-        "hidden",
         "variable-token"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "nested-final"
       ]
     }

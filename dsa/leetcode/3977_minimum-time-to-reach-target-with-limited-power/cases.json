@@ -363,7 +363,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "parallel-edges",
         "weighted-graph"
       ]
@@ -401,7 +400,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "exact-power",
         "boundary"
       ]
@@ -455,7 +453,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "cycle",
         "positive-times"
       ]
@@ -492,7 +489,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "self-loop",
         "positive-cost"
       ]
@@ -536,7 +532,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "maximum-edge-time",
         "wide-integer"
       ]
@@ -574,7 +569,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "directed-edges",
         "unreachable"
       ]
@@ -623,7 +617,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "state-dimension",
         "power-feasibility"
       ]

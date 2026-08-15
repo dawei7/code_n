@@ -96,7 +96,6 @@
       },
       "expected": "!C-ba?",
       "tags": [
-        "hidden",
         "anchored-ends"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": "d1C2b3A",
       "tags": [
-        "hidden",
         "case"
       ]
     },
@@ -124,7 +122,6 @@
       },
       "expected": "eD!!Cb--a",
       "tags": [
-        "hidden",
         "repeated-symbols"
       ]
     },
@@ -138,7 +135,6 @@
       },
       "expected": "!zZa~",
       "tags": [
-        "hidden",
         "ascii-bounds"
       ]
     }

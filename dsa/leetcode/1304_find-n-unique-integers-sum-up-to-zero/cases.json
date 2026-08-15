@@ -222,7 +222,6 @@
         "kind": "unique_sum_zero"
       },
       "tags": [
-        "hidden",
         "odd"
       ]
     },
@@ -1240,7 +1239,6 @@
         "kind": "unique_sum_zero"
       },
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

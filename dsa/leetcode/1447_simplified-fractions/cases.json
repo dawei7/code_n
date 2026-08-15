@@ -133,7 +133,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "composite"
       ]
     },
@@ -182,7 +181,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "mixed-denominators"
       ]
     }

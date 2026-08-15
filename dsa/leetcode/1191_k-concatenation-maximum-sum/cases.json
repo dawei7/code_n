@@ -108,7 +108,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "suffix-prefix"
       ]
     },
@@ -126,7 +125,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "large-k",
         "zero-total"
       ]
@@ -145,7 +143,6 @@
       },
       "expected": 999999993,
       "tags": [
-        "hidden",
         "modulo",
         "large-sum"
       ]

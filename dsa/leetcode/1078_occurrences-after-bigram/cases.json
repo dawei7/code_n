@@ -86,7 +86,6 @@
         "a"
       ],
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -105,7 +104,6 @@
         "z"
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

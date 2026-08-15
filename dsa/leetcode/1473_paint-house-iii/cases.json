@@ -222,7 +222,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "one-neighborhood"
       ]
     },
@@ -262,7 +261,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "maximum-neighborhoods"
       ]
     },
@@ -297,7 +295,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "fixed-colors"
       ]
     },
@@ -329,7 +326,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "impossible",
         "one-color"
       ]
@@ -380,7 +376,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "global-optimum"
       ]
     }

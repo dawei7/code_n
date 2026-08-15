@@ -169,7 +169,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "independent"
       ]
     },
@@ -195,7 +194,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "shared-parent"
       ]
     },
@@ -221,7 +219,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "aggregation"
       ]
     }

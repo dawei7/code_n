@@ -198,7 +198,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "same-time",
         "adversarial-order"
       ]
@@ -244,7 +243,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "multiple-components"
       ]
     },
@@ -283,7 +281,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "late-seed"
       ]
     }

@@ -82,7 +82,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "equal"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "noncontiguous"
       ]
     }

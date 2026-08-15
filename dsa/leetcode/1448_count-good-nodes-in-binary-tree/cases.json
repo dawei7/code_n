@@ -123,7 +123,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "equality"
       ]
     },
@@ -145,7 +144,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "branch-independence"
       ]
     },
@@ -167,7 +165,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "skewed",
         "increasing"
       ]
@@ -189,7 +186,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "skewed",
         "decreasing"
       ]

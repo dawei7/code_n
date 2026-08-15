@@ -239,7 +239,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "points",
         "duplicate"
       ]
@@ -276,7 +275,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "domain-boundary"
       ]
     },
@@ -315,7 +313,6 @@
         1000000000
       ],
       "tags": [
-        "hidden",
         "full-domain",
         "nested"
       ]

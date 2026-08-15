@@ -88,7 +88,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "whole-string"
       ]
     },
@@ -103,7 +102,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "center"
       ]
     },
@@ -118,7 +116,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "targets"
       ]
     },
@@ -133,7 +130,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "single"
       ]
     }

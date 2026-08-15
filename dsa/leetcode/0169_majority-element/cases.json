@@ -92,7 +92,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "late"
       ]
     }

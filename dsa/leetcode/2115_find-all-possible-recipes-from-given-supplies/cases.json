@@ -214,7 +214,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "mixed-components",
         "cycle"
       ]
@@ -266,7 +265,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "fan-out",
         "fan-in"
       ]

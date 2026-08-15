@@ -506,7 +506,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "unit-gaps",
         "tie-break"
       ]
@@ -550,7 +549,6 @@
         1000000000
       ],
       "tags": [
-        "hidden",
         "large-cost",
         "integer-width"
       ]
@@ -604,7 +602,6 @@
         101
       ],
       "tags": [
-        "hidden",
         "repeated-pattern",
         "tie-break"
       ]
@@ -658,7 +655,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "decreasing-gaps",
         "closest-chain"
       ]

@@ -114,7 +114,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "duplicates-both"
       ]
     },
@@ -141,7 +140,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "asymmetric-duplicates"
       ]
     },
@@ -166,7 +164,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "permuted"
       ]
     }

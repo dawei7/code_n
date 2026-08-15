@@ -221,7 +221,6 @@
         "kind": "random_flip_matrix_trace"
       },
       "tags": [
-        "hidden",
         "column"
       ]
     },
@@ -268,7 +267,6 @@
         "kind": "random_flip_matrix_trace"
       },
       "tags": [
-        "hidden",
         "reset"
       ]
     }

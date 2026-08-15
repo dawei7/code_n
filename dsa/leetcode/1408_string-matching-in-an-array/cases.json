@@ -133,7 +133,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "equal-length"
       ]
     },
@@ -157,7 +156,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "deduplicate"
       ]
     }

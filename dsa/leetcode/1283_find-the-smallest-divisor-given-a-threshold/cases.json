@@ -116,7 +116,7 @@
       },
       "expected": 3,
       "tags": [
-        "hidden"
+        "trial"
       ]
     },
     {
@@ -134,7 +134,6 @@
       },
       "expected": 1000000,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

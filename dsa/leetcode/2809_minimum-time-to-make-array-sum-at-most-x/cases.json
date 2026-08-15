@@ -140,7 +140,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "all-resets"
       ]
     },
@@ -164,7 +163,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "large-limit"
       ]
     },
@@ -190,7 +188,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "subset-selection"
       ]
     }

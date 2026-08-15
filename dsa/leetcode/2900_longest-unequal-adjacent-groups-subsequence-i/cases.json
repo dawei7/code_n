@@ -149,7 +149,6 @@
         "kind": "alternating_groups_subsequence"
       },
       "tags": [
-        "hidden",
         "run-boundaries"
       ]
     },
@@ -470,7 +469,6 @@
         "kind": "alternating_groups_subsequence"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "fully-alternating"
       ]

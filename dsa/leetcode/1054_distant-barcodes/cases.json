@@ -196,7 +196,6 @@
         "kind": "distant_barcodes"
       },
       "tags": [
-        "hidden",
         "three-values"
       ]
     },
@@ -227,7 +226,6 @@
         "kind": "distant_barcodes"
       },
       "tags": [
-        "hidden",
         "singletons"
       ]
     },
@@ -262,7 +260,6 @@
         "kind": "distant_barcodes"
       },
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

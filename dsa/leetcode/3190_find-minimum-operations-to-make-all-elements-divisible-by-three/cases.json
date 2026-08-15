@@ -99,7 +99,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -130,7 +129,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-divisible"
       ]
     },
@@ -162,7 +160,6 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "remainder-one"
       ]
     },
@@ -194,7 +191,6 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "remainder-two"
       ]
     },
@@ -217,7 +213,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -282,7 +277,6 @@
       },
       "expected": 34,
       "tags": [
-        "hidden",
         "maximum-n",
         "value-range"
       ]
@@ -348,7 +342,6 @@
       },
       "expected": 50,
       "tags": [
-        "hidden",
         "maximum-n",
         "duplicates"
       ]

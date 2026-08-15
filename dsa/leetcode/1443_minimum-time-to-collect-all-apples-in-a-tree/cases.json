@@ -231,7 +231,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "deep-chain"
       ]
     },
@@ -270,7 +269,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "nested-apples"
       ]
     },
@@ -314,7 +312,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "separate-branches"
       ]
     },
@@ -358,7 +355,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "internal-apple"
       ]
     }

@@ -123,7 +123,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "boundaries"
       ]
     },
@@ -170,7 +169,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "separate-files"
       ]
     },
@@ -217,7 +215,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "zero-count"
       ]
     },
@@ -260,7 +257,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "file-count"
       ]
     },
@@ -307,7 +303,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -350,7 +345,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "literal-space"
       ]
     }

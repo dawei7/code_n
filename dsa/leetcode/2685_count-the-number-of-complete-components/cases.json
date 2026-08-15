@@ -164,7 +164,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "cycle"
       ]
     },
@@ -204,7 +203,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

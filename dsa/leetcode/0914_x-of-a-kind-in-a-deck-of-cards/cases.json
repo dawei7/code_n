@@ -140,7 +140,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "coprime-frequencies"
       ]
     },
@@ -167,7 +166,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "gcd-three"
       ]
     },
@@ -186,7 +184,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "zero-value"
       ]
     },
@@ -207,7 +204,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "value-bounds"
       ]
     }

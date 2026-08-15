@@ -145,7 +145,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "independent-runs"
       ]
     },
@@ -171,7 +170,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "alternating",
         "late-stop"
       ]

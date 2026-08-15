@@ -224,7 +224,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -258,7 +257,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "tie-order"
       ]
     },
@@ -286,7 +284,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "bounds"
       ]
     }

@@ -68,7 +68,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "ones"
       ]
     },
@@ -82,7 +81,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "impossible"
       ]
     },
@@ -96,7 +94,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "multiple-representations"
       ]
     },
@@ -110,7 +107,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "large",
         "perfect-square"
       ]

@@ -116,7 +116,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -136,7 +135,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "all-candies"
       ]
     },
@@ -154,7 +152,6 @@
       },
       "expected": 999999999,
       "tags": [
-        "hidden",
         "large-values"
       ]
     },
@@ -175,7 +172,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

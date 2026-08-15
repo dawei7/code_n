@@ -356,7 +356,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "duplicate-removal"
       ]
     },
@@ -442,7 +441,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "independent-state"
       ]
     },
@@ -510,7 +508,6 @@
         "-1"
       ],
       "tags": [
-        "hidden",
         "removal",
         "isolation"
       ]

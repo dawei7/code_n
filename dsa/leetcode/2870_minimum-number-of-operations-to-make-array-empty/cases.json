@@ -95,7 +95,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "remainder-one"
       ],
       "expected": 2
@@ -115,7 +114,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "remainder-two"
       ],
       "expected": 2
@@ -150,7 +148,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "all-remainders"
       ],
       "expected": 8
@@ -171,7 +168,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "singleton"
       ],
       "expected": -1

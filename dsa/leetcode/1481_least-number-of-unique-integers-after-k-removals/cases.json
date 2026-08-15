@@ -88,7 +88,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "boundary",
         "k-zero"
       ]
@@ -110,7 +109,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "boundary",
         "empty-result"
       ]
@@ -136,7 +134,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "partial-final-frequency"
       ]
     },
@@ -160,7 +157,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "ties"
       ]
     },
@@ -181,7 +177,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "all-unique"
       ]
     },
@@ -201,7 +196,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "one-distinct",
         "partial-final-frequency"
       ]
@@ -219,7 +213,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "boundary",
         "maximum-value"
       ]

@@ -322,7 +322,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "partial-coverage"
       ]
     },
@@ -375,7 +374,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "zero-threshold"
       ]
     },
@@ -428,7 +426,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "two-stage-rounding"
       ]
     }

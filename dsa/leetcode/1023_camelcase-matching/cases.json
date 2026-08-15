@@ -164,7 +164,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "skeleton"
       ]
     },
@@ -187,7 +186,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "order"
       ]
     },
@@ -212,7 +210,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "uppercase"
       ]
     }

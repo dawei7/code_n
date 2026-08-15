@@ -105,7 +105,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
@@ -129,7 +128,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "upper-values"
       ]
     },
@@ -152,7 +150,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "difference-positive"
       ]
     }

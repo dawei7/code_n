@@ -156,7 +156,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "all-zero"
       ]
     },
@@ -183,7 +182,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "majority"
       ]
     },
@@ -208,7 +206,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "tie"
       ]
     },
@@ -232,7 +229,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "single-column"
       ]
     },
@@ -262,7 +258,6 @@
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "optimal"
       ]
     },
@@ -292,7 +287,6 @@
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "checkerboard"
       ]
     }

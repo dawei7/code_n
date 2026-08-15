@@ -242,7 +242,6 @@
       },
       "expected": 10000,
       "tags": [
-        "hidden",
         "coordinate-boundary",
         "maximum-area"
       ]
@@ -290,7 +289,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "multiple-rectangles"
       ]
     },
@@ -345,7 +343,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "maximum-length",
         "interior-point"
       ]

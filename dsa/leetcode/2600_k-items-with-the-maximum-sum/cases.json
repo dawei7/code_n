@@ -82,7 +82,6 @@
       },
       "expected": -4,
       "tags": [
-        "hidden",
         "all-negative"
       ]
     },
@@ -99,7 +98,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-zero"
       ]
     },
@@ -116,7 +114,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "full-bag"
       ]
     },
@@ -133,7 +130,6 @@
       },
       "expected": 25,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

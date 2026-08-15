@@ -87,7 +87,6 @@
       },
       "expected": "2A2B",
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

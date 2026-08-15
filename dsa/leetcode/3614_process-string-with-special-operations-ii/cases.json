@@ -153,7 +153,6 @@
       },
       "expected": "t",
       "tags": [
-        "hidden",
         "reverse"
       ]
     },
@@ -168,7 +167,6 @@
       },
       "expected": "c",
       "tags": [
-        "hidden",
         "remove",
         "empty-result"
       ]
@@ -184,7 +182,6 @@
       },
       "expected": "d",
       "tags": [
-        "hidden",
         "mixed-operations"
       ]
     },
@@ -199,7 +196,6 @@
       },
       "expected": "a",
       "tags": [
-        "hidden",
         "huge-result",
         "maximum-scale"
       ]
@@ -215,7 +211,6 @@
       },
       "expected": ".",
       "tags": [
-        "hidden",
         "maximum-index",
         "out-of-range"
       ]
@@ -231,7 +226,6 @@
       },
       "expected": "d",
       "tags": [
-        "hidden",
         "maximum-input",
         "letters-only"
       ]

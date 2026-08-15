@@ -226,7 +226,6 @@
         "ace"
       ],
       "tags": [
-        "hidden",
         "carry"
       ]
     },
@@ -279,7 +278,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "exhaustion"
       ]
     }

@@ -121,7 +121,6 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "dominant"
       ]
     },
@@ -143,7 +142,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "equal"
       ]
     },
@@ -166,7 +164,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "groups"
       ]
     }

@@ -101,7 +101,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "component"
       ]
     }

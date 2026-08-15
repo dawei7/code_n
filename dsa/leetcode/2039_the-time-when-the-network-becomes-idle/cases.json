@@ -139,7 +139,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "star",
         "mixed-patience"
       ]
@@ -177,7 +176,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "multiple-shortest-paths"
       ]
     },
@@ -210,7 +208,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "path",
         "no-resend"
       ]

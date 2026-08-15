@@ -118,7 +118,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -140,7 +139,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "position-sensitive"
       ]
     }

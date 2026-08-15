@@ -67,7 +67,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "all-equal"
       ]
     },
@@ -81,7 +80,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "interleaved"
       ]
     },
@@ -95,7 +93,6 @@
       },
       "expected": 26,
       "tags": [
-        "hidden",
         "fixed-alphabet"
       ]
     }

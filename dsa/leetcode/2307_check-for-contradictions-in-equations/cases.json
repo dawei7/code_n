@@ -172,7 +172,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "duplicate"
       ]
     },
@@ -214,7 +213,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "chain"
       ]
     },
@@ -236,7 +234,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "self-ratio"
       ]
     },
@@ -263,7 +260,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "tolerance"
       ]
     },
@@ -290,7 +286,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "tolerance-boundary"
       ]
     }

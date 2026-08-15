@@ -124,7 +124,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "long-prefix"
       ]
     },
@@ -142,7 +141,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "one-character-suffix"
       ]
     },
@@ -160,7 +158,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "boundary"
       ]
@@ -179,7 +176,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum",
         "whole-string"
       ]

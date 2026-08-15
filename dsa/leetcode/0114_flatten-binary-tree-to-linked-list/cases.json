@@ -124,7 +124,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "idempotent"
       ]
     }

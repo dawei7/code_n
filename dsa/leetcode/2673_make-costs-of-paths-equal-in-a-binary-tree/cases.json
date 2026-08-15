@@ -103,7 +103,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "leaf"
       ]
     },
@@ -134,7 +133,6 @@
       },
       "expected": 27,
       "tags": [
-        "hidden",
         "depth"
       ]
     },
@@ -157,7 +155,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

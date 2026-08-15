@@ -150,7 +150,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "right-skewed"
       ]
     },
@@ -174,7 +173,6 @@
         10
       ],
       "tags": [
-        "hidden",
         "left-branch"
       ]
     },
@@ -204,7 +202,6 @@
         9
       ],
       "tags": [
-        "hidden",
         "asymmetric"
       ]
     }

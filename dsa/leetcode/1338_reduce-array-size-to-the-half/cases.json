@@ -132,7 +132,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "ties"
       ]
     },
@@ -159,7 +158,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "mixed-frequencies"
       ]
     }

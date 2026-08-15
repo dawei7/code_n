@@ -200,7 +200,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "boundaries"
       ]
     },
@@ -261,7 +260,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
@@ -307,7 +305,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "missing"
       ]
     },
@@ -353,7 +350,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "reinsert"
       ]
     }

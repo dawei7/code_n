@@ -110,7 +110,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "minimum-n",
         "impossible"
       ]
@@ -129,7 +128,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "forced-flip",
         "impossible"
       ]
@@ -151,7 +149,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "disjoint-windows"
       ]
     },
@@ -174,7 +171,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -196,7 +192,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "overlapping",
         "solvable"
       ]
@@ -227,7 +222,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "dense",
         "solvable"
       ]
@@ -255,7 +249,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "mixed",
         "impossible"
       ]

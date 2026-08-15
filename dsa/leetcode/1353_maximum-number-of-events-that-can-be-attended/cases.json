@@ -156,7 +156,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "nested"
       ]
     },
@@ -187,7 +186,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "capacity"
       ]
     }

@@ -180,7 +180,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "odd-cycle",
         "equal-values"
       ]
@@ -202,7 +201,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "odd-cycle",
         "impossible"
       ]
@@ -222,7 +220,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "negative-values",
         "strict-inequality"
       ]
@@ -244,7 +241,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "constraint-boundary",
         "equal-values"
       ]
@@ -267,7 +263,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "even-cycle",
         "maximum-count"
       ]
@@ -289,7 +284,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "greedy-trap",
         "nonadjacent-selection"
       ]
@@ -311,7 +305,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "circular-boundary",
         "greedy-trap"
       ]

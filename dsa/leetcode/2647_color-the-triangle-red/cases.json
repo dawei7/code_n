@@ -190,7 +190,6 @@
         "kind": "color_red_triangle"
       },
       "tags": [
-        "hidden",
         "remainder-one"
       ]
     },
@@ -264,7 +263,6 @@
         "kind": "color_red_triangle"
       },
       "tags": [
-        "hidden",
         "remainder-two"
       ]
     },
@@ -370,7 +368,6 @@
         "kind": "color_red_triangle"
       },
       "tags": [
-        "hidden",
         "multiple-blocks"
       ]
     },
@@ -568,7 +565,6 @@
         "kind": "color_red_triangle"
       },
       "tags": [
-        "hidden",
         "multiple-blocks"
       ]
     }

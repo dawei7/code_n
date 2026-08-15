@@ -98,7 +98,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "inclusive"
       ]
     },
@@ -115,7 +114,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "non-leap"
       ]
     },
@@ -132,7 +130,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "year-boundary"
       ]
     }

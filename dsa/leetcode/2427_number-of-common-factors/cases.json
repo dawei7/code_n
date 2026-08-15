@@ -72,7 +72,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "perfect-square"
       ]
     },
@@ -87,7 +86,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "divisibility"
       ]
     },
@@ -102,7 +100,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "gcd-reduction"
       ]
     },
@@ -117,7 +114,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

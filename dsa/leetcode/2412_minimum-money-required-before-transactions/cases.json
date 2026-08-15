@@ -141,7 +141,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "cashback"
       ]
     },
@@ -164,7 +163,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -187,7 +185,6 @@
       },
       "expected": 2000000000,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

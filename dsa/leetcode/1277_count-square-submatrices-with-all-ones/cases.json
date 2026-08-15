@@ -166,7 +166,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "checkerboard"
       ]
     },
@@ -205,7 +204,6 @@
       },
       "expected": 30,
       "tags": [
-        "hidden",
         "nested-squares"
       ]
     }

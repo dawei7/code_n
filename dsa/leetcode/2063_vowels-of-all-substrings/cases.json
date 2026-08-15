@@ -67,7 +67,6 @@
       },
       "expected": 35,
       "tags": [
-        "hidden",
         "all-vowels"
       ]
     },
@@ -81,7 +80,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -95,7 +93,6 @@
       },
       "expected": 58,
       "tags": [
-        "hidden",
         "repeated-vowels"
       ]
     }

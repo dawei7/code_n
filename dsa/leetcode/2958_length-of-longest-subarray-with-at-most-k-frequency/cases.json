@@ -153,7 +153,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -176,7 +175,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "late-best"
       ]
     },
@@ -196,7 +194,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "k-boundary"
       ]
     }

@@ -126,7 +126,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "no-lonely-nodes"
       ]
     },
@@ -157,7 +156,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "mixed-sides"
       ]
     }

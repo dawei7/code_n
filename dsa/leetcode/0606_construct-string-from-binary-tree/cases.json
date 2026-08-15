@@ -110,7 +110,6 @@
       },
       "expected": "-1(-2)(3(4)(-5))",
       "tags": [
-        "hidden",
         "negative"
       ]
     },
@@ -130,7 +129,6 @@
       },
       "expected": "1()(2()(3))",
       "tags": [
-        "hidden",
         "skewed"
       ]
     }

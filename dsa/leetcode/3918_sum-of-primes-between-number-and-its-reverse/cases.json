@@ -192,7 +192,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "palindrome",
         "composite"
       ]
@@ -207,7 +206,6 @@
       },
       "expected": 26049,
       "tags": [
-        "hidden",
         "reversal-smaller",
         "prime-endpoint"
       ]
@@ -222,7 +220,6 @@
       },
       "expected": 76127,
       "tags": [
-        "hidden",
         "maximum",
         "trailing-zeroes",
         "full-range"

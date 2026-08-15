@@ -140,7 +140,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "order"
       ]
     },
@@ -161,7 +160,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "lower-bound"
       ]
     },
@@ -184,7 +182,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "partition"
       ]
     }

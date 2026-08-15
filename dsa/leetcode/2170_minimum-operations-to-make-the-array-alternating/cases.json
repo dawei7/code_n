@@ -146,7 +146,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "mode-conflict",
         "runner-up"
       ]
@@ -167,7 +166,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "odd-length",
         "already-alternating"
       ]

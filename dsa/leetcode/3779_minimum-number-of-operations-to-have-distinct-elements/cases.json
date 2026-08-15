@@ -152,7 +152,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "removed-duplicate"
       ]
     },
@@ -178,7 +177,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "partial-final-chunk"
       ]
     },
@@ -201,7 +199,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "cross-boundary"
       ]
     },
@@ -226,7 +223,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "one-element-suffix"
       ]
     },
@@ -250,7 +246,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "two-operations"
       ]
     },
@@ -272,7 +267,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-bound"
       ]
     }

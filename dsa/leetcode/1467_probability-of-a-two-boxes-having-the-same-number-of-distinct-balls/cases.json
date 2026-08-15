@@ -106,7 +106,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "asymmetric"
       ]
     },
@@ -128,7 +127,6 @@
         "tolerance": 1e-05
       },
       "tags": [
-        "hidden",
         "maximum-count"
       ]
     }

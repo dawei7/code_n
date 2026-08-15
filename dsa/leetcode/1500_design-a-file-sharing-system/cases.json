@@ -425,7 +425,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "acquired-ownership",
         "leave"
       ]
@@ -514,7 +513,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "identity-reuse",
         "ownership-reset"
       ]
@@ -596,7 +594,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "sorting",
         "snapshot-before-transfer"
       ]

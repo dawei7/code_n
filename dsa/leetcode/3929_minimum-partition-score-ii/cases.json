@@ -208,7 +208,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-groups",
         "mixed-values"
       ]
@@ -232,7 +231,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "symmetric",
         "interior-cut"
       ]
@@ -254,7 +252,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "wide-integer"
       ]
@@ -276,7 +273,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "singletons"
       ]
@@ -302,7 +298,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "three-groups",
         "competing-cuts"
       ]
@@ -326,7 +321,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "penalty-tie",
         "exact-groups"
       ]
@@ -351,7 +345,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "boundary-groups",
         "convex-cost"
       ]

@@ -117,7 +117,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "collision"
       ]
     },
@@ -140,7 +139,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "minimum-dimensions"
       ]
     },
@@ -173,7 +171,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero-values"
       ]
     },
@@ -208,7 +205,6 @@
       },
       "expected": 62,
       "tags": [
-        "hidden",
         "boundaries",
         "collision"
       ]

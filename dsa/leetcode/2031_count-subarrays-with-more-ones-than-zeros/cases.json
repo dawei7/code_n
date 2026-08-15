@@ -104,7 +104,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-zeros"
       ]
     },
@@ -129,7 +128,6 @@
       },
       "expected": 55,
       "tags": [
-        "hidden",
         "all-ones"
       ]
     },
@@ -147,7 +145,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "leading-zero"
       ]
     }

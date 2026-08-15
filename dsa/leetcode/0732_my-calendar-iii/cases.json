@@ -262,7 +262,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "domain-boundary"
       ]
     },
@@ -314,7 +313,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "separate-peaks"
       ]
     },
@@ -360,7 +358,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "narrow-peak"
       ]
     }

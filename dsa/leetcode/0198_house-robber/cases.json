@@ -69,7 +69,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "zero"
       ]
     }

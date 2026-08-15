@@ -103,7 +103,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "intersection"
       ]
     },
@@ -123,7 +122,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "multiple-groups"
       ]
     },
@@ -144,7 +142,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "shared-suffix"
       ]
     }

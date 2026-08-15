@@ -142,7 +142,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -164,7 +163,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "all-qualify"
       ]
     }

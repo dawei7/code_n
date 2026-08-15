@@ -483,7 +483,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "complete-consistency",
         "content-ids"
       ]
@@ -607,7 +606,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "descending-order",
         "different-totals"
       ]
@@ -816,7 +814,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "rounded-ordering",
         "secondary-key"
       ]
@@ -905,7 +902,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "composite-primary-key",
         "multiple-users"
       ]

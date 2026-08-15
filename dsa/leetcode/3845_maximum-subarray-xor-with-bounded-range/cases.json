@@ -156,7 +156,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "trie-deletion",
         "zero-range"
       ]
@@ -182,7 +181,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "moving-window",
         "prefix-removal"
       ]
@@ -205,7 +203,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicate-prefix",
         "zero-values"
       ]
@@ -228,7 +225,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "upper-value-bound",
         "tight-range"
       ]
@@ -251,7 +247,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "full-array",
         "xor-combination"
       ]
@@ -274,7 +269,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "prefix-cancellation",
         "duplicate-prefix"
       ]

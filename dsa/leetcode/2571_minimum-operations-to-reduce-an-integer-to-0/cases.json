@@ -67,7 +67,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "shifted-run",
         "greedy-trap"
       ]
@@ -82,7 +81,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "tie"
       ]
     },
@@ -96,7 +94,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "isolated-bits"
       ]
     },
@@ -110,7 +107,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

@@ -93,7 +93,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "invalid"
       ]
     },
@@ -107,7 +106,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "invalid"
       ]
     }

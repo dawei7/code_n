@@ -93,7 +93,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "prefix"
       ]
     },
@@ -107,7 +106,6 @@
       },
       "expected": 69,
       "tags": [
-        "hidden",
         "distinct-bound"
       ]
     },
@@ -121,7 +119,6 @@
       },
       "expected": 4726,
       "tags": [
-        "hidden",
         "digit-length"
       ]
     }

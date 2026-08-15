@@ -127,7 +127,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "chain"
       ]
     },
@@ -146,7 +145,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "duplicate"
       ]
     },
@@ -165,7 +163,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "missing"
       ]
     }

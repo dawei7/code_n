@@ -103,7 +103,6 @@
       },
       "expected": "<a|b|c>",
       "tags": [
-        "hidden",
         "argument-order"
       ]
     },
@@ -126,7 +125,6 @@
       },
       "expected": 42,
       "tags": [
-        "hidden",
         "nested-context"
       ]
     },
@@ -245,7 +243,6 @@
       },
       "expected": 5060,
       "tags": [
-        "hidden",
         "maximum-arguments",
         "boundary"
       ]

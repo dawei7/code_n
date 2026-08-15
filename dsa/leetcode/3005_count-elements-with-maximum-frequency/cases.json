@@ -116,7 +116,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "tie"
       ]
     },
@@ -139,7 +138,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "winner"
       ]
     },
@@ -159,7 +157,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

@@ -273,7 +273,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "idempotent"
       ]
     },
@@ -318,7 +317,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "self-follow"
       ]
     },
@@ -349,7 +347,6 @@
         []
       ],
       "tags": [
-        "hidden",
         "idempotent"
       ]
     }

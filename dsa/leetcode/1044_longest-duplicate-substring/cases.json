@@ -99,7 +99,6 @@
       },
       "expected": "issi",
       "tags": [
-        "hidden",
         "rolling-hash"
       ]
     },
@@ -113,7 +112,6 @@
       },
       "expected": "abc",
       "tags": [
-        "hidden",
         "prefix"
       ]
     },
@@ -127,7 +125,6 @@
       },
       "expected": "abca",
       "tags": [
-        "hidden",
         "overlap"
       ]
     }

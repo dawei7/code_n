@@ -149,7 +149,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "last-rank",
         "two-one-bits"
       ]
@@ -168,7 +167,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-rank",
         "last-rank",
         "twenty-five-bits"
@@ -188,7 +186,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "forty-nine-bits",
         "last-rank"
       ]
@@ -207,7 +204,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-rank",
         "ten-one-bits"
       ]
@@ -226,7 +222,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-rank",
         "twenty-one-bits",
         "interior-rank"

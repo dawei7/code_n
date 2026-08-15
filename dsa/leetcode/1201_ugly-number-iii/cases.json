@@ -100,7 +100,6 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "redundant"
       ]
     },
@@ -117,7 +116,6 @@
       },
       "expected": 66,
       "tags": [
-        "hidden",
         "coprime"
       ]
     },
@@ -134,7 +132,6 @@
       },
       "expected": 33390314,
       "tags": [
-        "hidden",
         "large-divisors"
       ]
     }

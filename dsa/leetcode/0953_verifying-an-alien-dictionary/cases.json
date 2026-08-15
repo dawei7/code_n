@@ -125,7 +125,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "custom-order"
       ]
     },
@@ -143,7 +142,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "long-prefix"
       ]
     },
@@ -162,7 +160,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "later-pair"
       ]
     }

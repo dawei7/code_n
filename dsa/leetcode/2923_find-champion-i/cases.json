@@ -202,7 +202,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "permuted-order"
       ]
     },
@@ -297,7 +296,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "candidate-replacement"
       ]
     },
@@ -432,7 +430,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "transitive"
       ]
     }

@@ -80,7 +80,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "minor-first"
       ]
     },
@@ -94,7 +93,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -108,7 +106,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "multiple-pairs"
       ]
     }

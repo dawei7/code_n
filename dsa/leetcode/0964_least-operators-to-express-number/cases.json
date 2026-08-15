@@ -103,7 +103,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "complement"
       ]
     },
@@ -118,7 +117,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "carry"
       ]
     },
@@ -133,7 +131,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

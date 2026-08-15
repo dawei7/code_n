@@ -115,7 +115,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "uniform"
       ]
     },
@@ -134,7 +133,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "tied-leaders"
       ]
     },
@@ -157,7 +155,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "zero",
         "late-degree"
       ]

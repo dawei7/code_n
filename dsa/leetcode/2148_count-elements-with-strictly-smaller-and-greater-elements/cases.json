@@ -107,7 +107,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "repeated-extrema"
       ]
     },
@@ -129,7 +128,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -151,7 +149,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "mixed-signs",
         "unsorted"
       ]

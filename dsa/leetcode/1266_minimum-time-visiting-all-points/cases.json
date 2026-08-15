@@ -144,7 +144,6 @@
       },
       "expected": 4000,
       "tags": [
-        "hidden",
         "boundaries"
       ]
     },
@@ -171,7 +170,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "ordered-visits"
       ]
     }

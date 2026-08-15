@@ -88,7 +88,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -103,7 +102,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "counterclockwise"
       ]
     }

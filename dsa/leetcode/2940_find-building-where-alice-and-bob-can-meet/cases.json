@@ -217,7 +217,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "impossible"
       ]
     },
@@ -254,7 +253,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "threshold"
       ]
     },
@@ -291,7 +289,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "strict-inequality"
       ]
     },
@@ -328,7 +325,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "direct"
       ]
     }

@@ -158,7 +158,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "sibling-subtrees"
       ]
     },
@@ -193,7 +192,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "closed-subtree"
       ]
     },
@@ -232,7 +230,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "deep-unwind"
       ]
     },
@@ -267,7 +264,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "parent-order"
       ]
     },
@@ -290,7 +286,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "root-order"
       ]
     },
@@ -313,7 +308,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "id-boundary"
       ]
     }

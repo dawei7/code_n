@@ -152,7 +152,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "weighted-exponents",
         "cancellation"
       ]
@@ -175,7 +174,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "coupled-primes",
         "repeated-values"
       ]
@@ -199,7 +197,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "three-primes",
         "mixed-actions"
       ]
@@ -222,7 +219,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unsupported-prime",
         "unreachable"
       ]
@@ -245,7 +241,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unreachable-exponent",
         "zero-count"
       ]
@@ -284,7 +279,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "all-actions-valid"
       ]
@@ -323,7 +317,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "upper-target"
       ]

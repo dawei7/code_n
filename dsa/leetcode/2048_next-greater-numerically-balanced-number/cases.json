@@ -81,7 +81,6 @@
       },
       "expected": 122,
       "tags": [
-        "hidden",
         "zero-trap"
       ]
     },
@@ -95,7 +94,6 @@
       },
       "expected": 221,
       "tags": [
-        "hidden",
         "minimality"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": 14444,
       "tags": [
-        "hidden",
         "large-gap"
       ]
     },
@@ -123,7 +120,6 @@
       },
       "expected": 1224444,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

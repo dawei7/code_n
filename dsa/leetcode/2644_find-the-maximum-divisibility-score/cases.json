@@ -138,7 +138,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -162,7 +161,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "tie"
       ]
     },
@@ -184,7 +182,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

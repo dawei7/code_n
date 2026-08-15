@@ -228,7 +228,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "ties"
       ]
     },
@@ -272,7 +271,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -312,7 +310,6 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden",
         "ordering"
       ]
     }

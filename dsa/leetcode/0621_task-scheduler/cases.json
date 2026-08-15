@@ -135,7 +135,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "three-leaders"
       ]
     },
@@ -156,7 +155,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "skewed"
       ]
     }

@@ -332,7 +332,6 @@
         99
       ],
       "tags": [
-        "hidden",
         "carry"
       ]
     },
@@ -1347,7 +1346,6 @@
         999
       ],
       "tags": [
-        "hidden",
         "power-of-ten"
       ]
     },
@@ -1419,7 +1417,6 @@
         9
       ],
       "tags": [
-        "hidden",
         "inclusive-bound"
       ]
     }

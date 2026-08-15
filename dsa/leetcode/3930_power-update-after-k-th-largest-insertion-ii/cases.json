@@ -314,7 +314,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-duplicates",
         "varying-ranks"
       ]
@@ -354,7 +353,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-k",
         "rank-conversion"
       ]
@@ -388,7 +386,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "modular-exponentiation"
       ]
@@ -429,7 +426,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicate-boundary",
         "largest-rank"
       ]
@@ -464,7 +460,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "rank-extremes",
         "state-carry"
       ]
@@ -510,7 +505,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "interior-ranks",
         "multiple-queries"
       ]
@@ -545,7 +539,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "base-one",
         "large-exponent"
       ]

@@ -152,7 +152,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "spaced-occurrences"
       ]
     },
@@ -175,7 +174,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "overlapping-triples"
       ]
     },
@@ -199,7 +197,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-values"
       ]
     },
@@ -223,7 +220,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "later-minimum"
       ]
     },
@@ -246,7 +242,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

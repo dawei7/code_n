@@ -111,7 +111,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero",
         "tie"
       ]
@@ -131,7 +130,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "unlisted"
       ]
     }

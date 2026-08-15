@@ -250,7 +250,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "repeated-flip"
       ]
     },
@@ -282,7 +281,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "range-boundaries"
       ]
     },
@@ -318,7 +316,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unaffected-range"
       ]
     },
@@ -360,7 +357,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "two-edge-update"
       ]
     },
@@ -404,7 +400,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-queries"
       ]
     },
@@ -444,7 +439,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "both-endpoints"
       ]
     }

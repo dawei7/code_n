@@ -173,7 +173,6 @@
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "deep"
       ]
     },
@@ -198,7 +197,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "reachable"
       ]
     },
@@ -223,7 +221,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "unreachable"
       ]
     }

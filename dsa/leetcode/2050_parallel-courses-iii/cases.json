@@ -147,7 +147,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "diamond",
         "join"
       ]
@@ -184,7 +183,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "disconnected-dag"
       ]
     }

@@ -171,7 +171,6 @@
       },
       "expected": 200,
       "tags": [
-        "hidden",
         "long-job"
       ]
     },
@@ -208,7 +207,6 @@
       },
       "expected": 88,
       "tags": [
-        "hidden",
         "mixed-choice"
       ]
     }

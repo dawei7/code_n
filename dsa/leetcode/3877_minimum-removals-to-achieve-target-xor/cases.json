@@ -195,7 +195,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "xor-cancellation"
       ]
@@ -218,7 +217,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero-values",
         "maximize-kept"
       ]
@@ -240,7 +238,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero-value",
         "one-removal"
       ]
@@ -263,7 +260,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-representations",
         "maximize-kept"
       ]
@@ -285,7 +281,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundaries",
         "maximum-target"
       ]
@@ -306,7 +301,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundaries",
         "unreachable"
       ]
@@ -331,7 +325,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "powers-of-two",
         "four-removals"
       ]

@@ -82,7 +82,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "near-pivot",
         "no-pivot"
       ]
@@ -97,7 +96,6 @@
       },
       "expected": 204,
       "tags": [
-        "hidden",
         "perfect-square"
       ]
     },
@@ -111,7 +109,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "upper-bound",
         "no-pivot"
       ]

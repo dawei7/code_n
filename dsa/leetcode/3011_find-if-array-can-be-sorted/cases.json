@@ -110,7 +110,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "separated"
       ]
     },
@@ -129,7 +128,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -149,7 +147,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

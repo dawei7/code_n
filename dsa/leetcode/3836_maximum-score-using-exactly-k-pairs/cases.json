@@ -212,7 +212,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zeros",
         "exact-count"
       ]
@@ -238,7 +237,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unequal-lengths",
         "role-swap"
       ]
@@ -266,7 +264,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "64-bit"
       ]
@@ -294,7 +291,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-value",
         "negative-answer",
         "64-bit"
@@ -321,7 +317,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "strict-order",
         "value-boundaries",
         "64-bit"

@@ -158,7 +158,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "symmetric"
       ]
     },
@@ -188,7 +187,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "multiplicity"
       ]
     }

@@ -102,7 +102,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "bottleneck"
       ]
     },
@@ -117,7 +116,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "multiplicity"
       ]
     },
@@ -132,7 +130,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "irrelevant-letters"
       ]
     }

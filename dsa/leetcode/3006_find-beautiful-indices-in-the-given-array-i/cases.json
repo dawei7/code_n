@@ -107,7 +107,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "distance"
       ]
     },
@@ -127,7 +126,6 @@
         9
       ],
       "tags": [
-        "hidden",
         "two-pointer"
       ]
     },
@@ -146,7 +144,6 @@
         12
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

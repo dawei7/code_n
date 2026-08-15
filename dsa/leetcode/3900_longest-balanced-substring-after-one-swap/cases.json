@@ -148,7 +148,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "symmetry",
         "one-swap"
       ]
@@ -163,7 +162,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "outside-bit",
         "imbalance-two"
       ]
@@ -178,7 +176,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "balanced-prefix",
         "no-swap"
       ]
@@ -193,7 +190,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "separated-minority",
         "adversarial"
       ]
@@ -208,7 +204,6 @@
       },
       "expected": 38,
       "tags": [
-        "hidden",
         "irregular-runs",
         "prefix-balance",
         "adversarial"

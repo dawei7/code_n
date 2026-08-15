@@ -104,7 +104,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "single-step"
       ]
     },
@@ -119,7 +118,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "skipping",
         "order",
         "cyclic-wrap"
@@ -136,7 +134,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "order"
       ]
     },
@@ -151,7 +148,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "duplicates",
         "all-increment"
       ]

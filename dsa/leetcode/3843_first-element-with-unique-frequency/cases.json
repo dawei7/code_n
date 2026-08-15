@@ -161,7 +161,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "several-qualifiers",
         "order"
       ]
@@ -187,7 +186,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "frequency-collision",
         "later-answer"
       ]
@@ -214,7 +212,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "high-frequency",
         "shared-pairs"
       ]
@@ -243,7 +240,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-frequency-groups",
         "sentinel"
       ]
@@ -265,7 +261,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "upper-bound",
         "first-element"
       ]
@@ -295,7 +290,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "mixed-frequencies",
         "order"
       ]

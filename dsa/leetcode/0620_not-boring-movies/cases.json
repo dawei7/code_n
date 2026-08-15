@@ -303,7 +303,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "description-column"
       ]
     },
@@ -377,7 +376,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

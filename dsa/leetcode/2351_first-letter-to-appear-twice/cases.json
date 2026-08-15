@@ -80,7 +80,6 @@
       },
       "expected": "z",
       "tags": [
-        "hidden",
         "early-return"
       ]
     },
@@ -94,7 +93,6 @@
       },
       "expected": "t",
       "tags": [
-        "hidden",
         "multiple-repeats"
       ]
     }

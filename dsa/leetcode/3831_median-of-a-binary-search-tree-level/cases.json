@@ -164,7 +164,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "single-node",
         "maximum-value"
       ]
@@ -193,7 +192,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "right-skewed",
         "deep-level"
       ]
@@ -221,7 +219,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "left-skewed",
         "deep-level"
       ]
@@ -248,7 +245,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "even-width",
         "upper-median"
       ]
@@ -283,7 +279,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "sparse-tree",
         "even-width",
         "bst-order"
@@ -307,7 +302,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "minimum-value",
         "maximum-value",
         "upper-median"
@@ -331,7 +325,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-level",
         "missing-level"
       ]
@@ -366,7 +359,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "uneven-tree",
         "even-width",
         "bst-order"

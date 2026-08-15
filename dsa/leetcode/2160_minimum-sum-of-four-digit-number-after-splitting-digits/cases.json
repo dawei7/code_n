@@ -94,7 +94,6 @@
       },
       "expected": 198,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     },
@@ -108,7 +107,6 @@
       },
       "expected": 26,
       "tags": [
-        "hidden",
         "leading-zero",
         "duplicates"
       ]

@@ -220,7 +220,6 @@
         "kind": "random_binary_tree_copy"
       },
       "tags": [
-        "hidden",
         "boundary",
         "empty"
       ]
@@ -274,7 +273,6 @@
         "kind": "random_binary_tree_copy"
       },
       "tags": [
-        "hidden",
         "sparse",
         "cross-level"
       ]
@@ -318,7 +316,6 @@
         "kind": "random_binary_tree_copy"
       },
       "tags": [
-        "hidden",
         "duplicate-values",
         "identity"
       ]
@@ -394,7 +391,6 @@
         "kind": "random_binary_tree_copy"
       },
       "tags": [
-        "hidden",
         "null-random",
         "complete-tree"
       ]
@@ -448,7 +444,6 @@
         "kind": "random_binary_tree_copy"
       },
       "tags": [
-        "hidden",
         "cycle",
         "cross-subtree"
       ]

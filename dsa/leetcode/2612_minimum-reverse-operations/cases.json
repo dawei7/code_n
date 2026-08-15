@@ -153,7 +153,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "parity-change"
       ]
     },
@@ -181,7 +180,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "parity-preserved"
       ]
     },
@@ -207,7 +205,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "whole-array-reversal"
       ]
     }

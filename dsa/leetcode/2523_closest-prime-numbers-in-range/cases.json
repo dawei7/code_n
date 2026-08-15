@@ -88,7 +88,6 @@
         7
       ],
       "tags": [
-        "hidden",
         "tie-breaking"
       ]
     },
@@ -106,7 +105,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "no-primes"
       ]
     },
@@ -124,7 +122,6 @@
         103
       ],
       "tags": [
-        "hidden",
         "range-scan"
       ]
     },
@@ -142,7 +139,6 @@
         999961
       ],
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

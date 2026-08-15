@@ -204,7 +204,6 @@
         "mid"
       ],
       "tags": [
-        "hidden",
         "boundary-swap"
       ]
     },
@@ -252,7 +251,6 @@
         "z"
       ],
       "tags": [
-        "hidden",
         "lexical-boundary"
       ]
     },
@@ -297,7 +295,6 @@
         "bbb"
       ],
       "tags": [
-        "hidden",
         "score-priority"
       ]
     }

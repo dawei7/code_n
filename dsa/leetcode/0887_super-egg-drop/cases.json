@@ -103,7 +103,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "two-eggs"
       ]
     },
@@ -118,7 +117,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "exact-coverage"
       ]
     },
@@ -133,7 +131,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "four-eggs"
       ]
     },
@@ -148,7 +145,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "maximum"
       ]
     },
@@ -163,7 +159,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "single-floor"
       ]
     }

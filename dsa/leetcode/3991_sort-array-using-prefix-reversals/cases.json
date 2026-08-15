@@ -244,7 +244,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "unreachable",
         "two-state-component"
       ]
@@ -271,7 +270,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "reachable",
         "multiple-generators"
       ]
@@ -297,7 +295,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "restricted-prefixes",
         "minimum-distance"
       ]
@@ -322,7 +319,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "one-operation",
         "full-prefix"
       ]
@@ -352,7 +348,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "deep-search",
         "all-prefixes"
       ]
@@ -382,7 +377,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "maximum-length",
         "one-operation"
       ]
@@ -412,7 +406,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "maximum-length",
         "unreachable"
       ]
@@ -439,7 +432,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "maximum-length",
         "two-state-component"
       ]
@@ -462,7 +454,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "self-loop",
         "visited-set"
       ]
@@ -488,7 +479,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "all-prefixes",
         "deep-search"
       ]

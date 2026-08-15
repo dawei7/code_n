@@ -141,7 +141,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "one-move",
         "neither"
       ]
@@ -166,7 +165,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "minimum-grid",
         "cycles"
       ]
@@ -191,7 +189,6 @@
       },
       "expected": 296694948,
       "tags": [
-        "hidden",
         "large-dimensions",
         "modulo"
       ]

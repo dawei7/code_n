@@ -136,7 +136,6 @@
         9
       ],
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -156,7 +155,6 @@
         100000000
       ],
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -182,7 +180,6 @@
         81
       ],
       "tags": [
-        "hidden",
         "mixed"
       ]
     }

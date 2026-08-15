@@ -282,7 +282,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -317,7 +316,6 @@
         "rows": []
       },
       "tags": [
-        "hidden",
         "below-threshold"
       ]
     },
@@ -381,7 +379,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "multiple-groups"
       ]
     }

@@ -115,7 +115,6 @@
       },
       "expected": "c",
       "tags": [
-        "hidden",
         "wraparound"
       ]
     },
@@ -133,7 +132,6 @@
       },
       "expected": "a",
       "tags": [
-        "hidden",
         "upper-boundary"
       ]
     },
@@ -153,7 +151,6 @@
       },
       "expected": "y",
       "tags": [
-        "hidden",
         "duplicates"
       ]
     }

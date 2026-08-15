@@ -208,7 +208,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "complete"
       ]
     },
@@ -241,7 +240,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "revisit"
       ]
     },
@@ -276,7 +274,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "tail"
       ]
     },
@@ -317,7 +314,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "tree"
       ]
     },
@@ -360,7 +356,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "chords"
       ]
     }

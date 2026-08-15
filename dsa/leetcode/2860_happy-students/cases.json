@@ -131,7 +131,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "multiple-boundaries",
         "unsorted"
       ]
@@ -152,7 +151,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "maximum-threshold"
       ]
     }

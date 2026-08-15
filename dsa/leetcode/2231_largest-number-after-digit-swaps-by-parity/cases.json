@@ -80,7 +80,6 @@
       },
       "expected": 984752031,
       "tags": [
-        "hidden",
         "mixed-parity"
       ]
     },
@@ -94,7 +93,6 @@
       },
       "expected": 33441122,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -108,7 +106,6 @@
       },
       "expected": 1000000000,
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

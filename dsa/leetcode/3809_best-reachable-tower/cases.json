@@ -345,7 +345,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero-radius",
         "repeated-coordinate"
       ]
@@ -382,7 +381,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zero-quality",
         "lexicographic-tie"
       ]
@@ -424,7 +422,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-unreachable",
         "fallback"
       ]
@@ -466,7 +463,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-values",
         "inclusive-radius",
         "lexicographic-y"

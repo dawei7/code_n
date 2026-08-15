@@ -147,7 +147,6 @@
       },
       "expected": "D",
       "tags": [
-        "hidden",
         "unordered"
       ]
     },
@@ -182,7 +181,6 @@
       },
       "expected": "F",
       "tags": [
-        "hidden",
         "chain"
       ]
     }

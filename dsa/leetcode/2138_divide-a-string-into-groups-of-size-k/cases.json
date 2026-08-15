@@ -93,7 +93,6 @@
         "mnnn"
       ],
       "tags": [
-        "hidden",
         "minimum-length"
       ]
     },
@@ -112,7 +111,6 @@
         "efxx"
       ],
       "tags": [
-        "hidden",
         "padding"
       ]
     },
@@ -131,7 +129,6 @@
         "xax"
       ],
       "tags": [
-        "hidden",
         "fill-collision"
       ]
     }

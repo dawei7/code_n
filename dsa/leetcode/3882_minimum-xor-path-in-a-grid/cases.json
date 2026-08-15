@@ -227,7 +227,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "zeros",
         "rectangle"
       ]
@@ -254,7 +253,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "odd-path-length"
       ]
@@ -283,7 +281,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-value",
         "even-path-length"
       ]
@@ -312,7 +309,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "powers-of-two",
         "multiple-paths"
       ]
@@ -346,7 +342,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "three-by-three",
         "state-competition"
       ]
@@ -372,7 +367,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "single-row",
         "value-boundaries"
       ]
@@ -415,7 +409,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "four-by-four",
         "zero-minimum"
       ]

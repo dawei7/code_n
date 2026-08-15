@@ -324,7 +324,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "prefix"
       ]
     },
@@ -381,7 +380,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "motif",
         "overlap"
       ]
@@ -467,7 +465,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "consecutive"
       ]
     },
@@ -538,7 +535,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "independence",
         "anchors"
       ]

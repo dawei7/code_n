@@ -104,7 +104,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "incomplete"
       ]
     },
@@ -124,7 +123,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "invalid-width"
       ]
     },
@@ -146,7 +144,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "mixed-width"
       ]
     }

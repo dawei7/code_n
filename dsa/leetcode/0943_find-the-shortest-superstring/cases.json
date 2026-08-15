@@ -120,7 +120,6 @@
       },
       "expected": "abcab",
       "tags": [
-        "hidden",
         "tie"
       ],
       "validator": {
@@ -142,7 +141,6 @@
       },
       "expected": "aaabaaa",
       "tags": [
-        "hidden",
         "dense-overlap"
       ],
       "validator": {
@@ -163,7 +161,6 @@
       },
       "expected": "dogfishurn",
       "tags": [
-        "hidden",
         "no-overlap"
       ],
       "validator": {

@@ -141,7 +141,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates",
         "whole-array"
       ]
@@ -161,7 +160,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "zero-total-xor",
         "zeros"
       ]
@@ -180,7 +178,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "maximum-value",
         "zero-total-xor"
       ]
@@ -201,7 +198,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "zeros",
         "zero-total-xor"
       ]
@@ -224,7 +220,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "duplicates",
         "whole-array"
       ]

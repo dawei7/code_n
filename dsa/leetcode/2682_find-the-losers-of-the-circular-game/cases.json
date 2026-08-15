@@ -107,7 +107,6 @@
         10
       ],
       "tags": [
-        "hidden",
         "sequence"
       ]
     },
@@ -161,7 +160,6 @@
         50
       ],
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

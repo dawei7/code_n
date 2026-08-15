@@ -82,7 +82,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "small-boundary"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "witness"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "no-witness"
       ]
     }

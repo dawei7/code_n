@@ -149,7 +149,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "all-equal"
       ]
     },
@@ -181,7 +180,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "overlapping"
       ]
     },
@@ -208,7 +206,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "inclusive"
       ]
     },
@@ -235,7 +232,6 @@
         19
       ],
       "tags": [
-        "hidden",
         "frequencies"
       ]
     },
@@ -267,7 +263,6 @@
         6
       ],
       "tags": [
-        "hidden",
         "repeated-query"
       ]
     }

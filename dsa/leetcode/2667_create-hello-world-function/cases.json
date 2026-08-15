@@ -87,7 +87,6 @@
       },
       "expected": "Hello World",
       "tags": [
-        "hidden",
         "nested"
       ]
     },
@@ -112,7 +111,6 @@
       },
       "expected": "Hello World",
       "tags": [
-        "hidden",
         "maximum-arity"
       ]
     },
@@ -130,7 +128,6 @@
       },
       "expected": "Hello World",
       "tags": [
-        "hidden",
         "exact-string"
       ]
     }

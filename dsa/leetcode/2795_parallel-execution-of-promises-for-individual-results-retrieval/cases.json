@@ -208,7 +208,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "multiple-rejections",
         "ordering"
       ]
@@ -258,7 +257,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "tie",
         "ordering"
       ]
@@ -371,7 +369,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "maximum-functions",
         "parallel-start"
       ]
@@ -429,7 +426,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "structured-values"
       ]
     }

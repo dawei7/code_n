@@ -144,7 +144,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "negative-result"
       ]
     },
@@ -168,7 +167,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "suffix-minimum"
       ]
     },
@@ -189,7 +187,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "first-split"
       ]
     },
@@ -211,7 +208,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "last-split"
       ]
     },
@@ -232,7 +228,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "large-value"
       ]
     },
@@ -254,7 +249,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "ties",
         "zero"
       ]

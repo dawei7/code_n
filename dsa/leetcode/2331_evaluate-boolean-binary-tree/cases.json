@@ -108,7 +108,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "nested"
       ]
     },
@@ -130,7 +129,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "mixed-operators"
       ]
     }

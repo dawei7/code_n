@@ -401,7 +401,6 @@
       },
       "expected": 860,
       "tags": [
-        "hidden",
         "matrix-order",
         "deep-chain"
       ]
@@ -482,7 +481,6 @@
       },
       "expected": 38,
       "tags": [
-        "hidden",
         "internal-lca",
         "balanced-tree"
       ]
@@ -533,7 +531,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "xor",
         "duplicate-queries"
       ]
@@ -596,7 +593,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "xor",
         "mixed-colors"
       ]
@@ -671,7 +667,6 @@
       },
       "expected": 22,
       "tags": [
-        "hidden",
         "parent-order",
         "depth"
       ]
@@ -770,7 +765,6 @@
       },
       "expected": 1000872199,
       "tags": [
-        "hidden",
         "modulo",
         "deep-chain",
         "xor"
@@ -834,7 +828,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "blocked-route",
         "empty-route",
         "xor"

@@ -154,7 +154,6 @@
         "kind": "recovered_original_array"
       },
       "tags": [
-        "hidden",
         "multiplicity"
       ]
     },
@@ -176,7 +175,6 @@
         "kind": "recovered_original_array"
       },
       "tags": [
-        "hidden",
         "large-values"
       ]
     }

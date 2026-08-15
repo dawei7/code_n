@@ -112,7 +112,6 @@
       },
       "expected": 125,
       "tags": [
-        "hidden",
         "pair"
       ]
     },
@@ -132,7 +131,6 @@
       },
       "expected": 6125,
       "tags": [
-        "hidden",
         "gcd-transitions"
       ]
     },
@@ -152,7 +150,6 @@
       },
       "expected": 224,
       "tags": [
-        "hidden",
         "at-least-k"
       ]
     },
@@ -169,7 +166,6 @@
       },
       "expected": 49,
       "tags": [
-        "hidden",
         "minimum"
       ]
     },
@@ -187,7 +183,6 @@
       },
       "expected": 2000000000000,
       "tags": [
-        "hidden",
         "large-result"
       ]
     }

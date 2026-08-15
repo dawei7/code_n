@@ -82,7 +82,6 @@
       },
       "expected": "6",
       "tags": [
-        "hidden",
         "single-digit"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": "1000000",
       "tags": [
-        "hidden",
         "power"
       ]
     }

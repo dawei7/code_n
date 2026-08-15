@@ -99,7 +99,6 @@
       },
       "expected": 105,
       "tags": [
-        "hidden",
         "expensive"
       ]
     },
@@ -122,7 +121,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "uniform"
       ]
     },
@@ -144,7 +142,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -163,7 +160,6 @@
       },
       "expected": 200000,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

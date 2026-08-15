@@ -129,7 +129,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "prefix-xor",
         "inclusive-threshold"
       ]
@@ -148,7 +147,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "xor-cancellation"
       ]
     },
@@ -167,7 +165,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "duplicates",
         "inclusive-threshold"
       ]
@@ -187,7 +184,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "full-array"
       ]
     },
@@ -206,7 +202,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "large-values"
       ]
     },
@@ -226,7 +221,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "prefix-xor",
         "duplicates"
       ]
@@ -247,7 +241,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "bit-boundary"
       ]
     }

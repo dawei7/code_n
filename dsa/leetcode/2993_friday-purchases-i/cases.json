@@ -267,7 +267,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "weekday-filter"
       ]
     },
@@ -315,7 +314,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "missing-weeks"
       ]
     }

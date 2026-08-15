@@ -112,7 +112,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "maximum"
       ]
     },
@@ -136,7 +135,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "near-miss"
       ]
     }

@@ -374,7 +374,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "multiple-items",
         "isolation"
       ]
@@ -437,7 +436,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "tie-transition",
         "update-lower"
       ]
@@ -504,7 +502,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "remove",
         "readd",
         "stale-history"
@@ -542,7 +539,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundaries"
       ]
     },
@@ -585,7 +581,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "replacement",
         "single-bidder"
       ]
@@ -684,7 +679,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "lazy-deletion",
         "many-stale-entries"
       ]

@@ -137,7 +137,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "turns"
       ]
     },
@@ -160,7 +159,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "reciprocal"
       ]
     },
@@ -182,7 +180,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "destination"
       ]
     }

@@ -183,7 +183,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "equal-frequency-skip",
         "late-answer"
       ]
@@ -210,7 +209,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-distinct",
         "uniform-frequency"
       ]
@@ -238,7 +236,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates",
         "uniform-frequency"
       ]
@@ -263,7 +260,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "domain-boundaries",
         "sparse-values"
       ]
@@ -294,7 +290,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "smallest-most-frequent",
         "multiple-frequencies"
       ]
@@ -326,7 +321,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "input-order",
         "lexicographic"
       ]
@@ -357,7 +351,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "late-answer",
         "maximum-value"
       ]

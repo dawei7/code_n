@@ -82,7 +82,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "late-duplicate"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "groups"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "all-same"
       ]
     }

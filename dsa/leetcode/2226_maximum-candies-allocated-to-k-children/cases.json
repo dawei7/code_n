@@ -87,7 +87,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "even-splits"
       ]
     },
@@ -104,7 +103,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero-answer"
       ]
     },
@@ -123,7 +121,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "mixed-piles"
       ]
     },
@@ -141,7 +138,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "large-k"
       ]
     }

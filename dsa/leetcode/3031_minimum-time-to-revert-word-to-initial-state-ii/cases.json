@@ -102,7 +102,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "full-removal"
       ]
     },
@@ -117,7 +116,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "ceiling-division"
       ]
     },
@@ -132,7 +130,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "late-overlap"
       ]
     },
@@ -147,7 +144,6 @@
       },
       "expected": 1000,
       "tags": [
-        "hidden",
         "long-input",
         "worst-case"
       ]

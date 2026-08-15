@@ -67,7 +67,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "mixed-order"
       ]
     },
@@ -81,7 +80,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "missing-color"
       ]
     },
@@ -95,7 +93,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "all-rods"
       ]
     }

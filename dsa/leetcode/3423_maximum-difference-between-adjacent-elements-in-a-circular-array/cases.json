@@ -108,7 +108,6 @@
       },
       "expected": 200,
       "tags": [
-        "hidden",
         "wrap-around"
       ]
     },
@@ -128,7 +127,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "monotone"
       ]
     },
@@ -147,7 +145,6 @@
       },
       "expected": 200,
       "tags": [
-        "hidden",
         "extremes"
       ]
     },
@@ -168,7 +165,6 @@
       },
       "expected": 50,
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -185,7 +181,6 @@
       },
       "expected": 200,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

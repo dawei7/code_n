@@ -112,7 +112,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -135,7 +134,6 @@
       },
       "expected": 40,
       "tags": [
-        "hidden",
         "sorted-greedy"
       ]
     },
@@ -154,7 +152,6 @@
       },
       "expected": 1000000000,
       "tags": [
-        "hidden",
         "large-coordinate"
       ]
     }

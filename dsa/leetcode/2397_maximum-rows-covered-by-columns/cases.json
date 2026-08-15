@@ -187,7 +187,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -233,7 +232,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "competing"
       ]
     },
@@ -274,7 +272,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "single-column"
       ]
     }

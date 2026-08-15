@@ -159,7 +159,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unit-k",
         "unsorted"
       ]
@@ -180,7 +179,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-k",
         "answer-above-bound"
       ]
@@ -205,7 +203,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "interior-gap"
       ]
     },
@@ -229,7 +226,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unsorted",
         "prefix"
       ]
@@ -349,7 +345,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-length",
         "pigeonhole-bound"
       ]

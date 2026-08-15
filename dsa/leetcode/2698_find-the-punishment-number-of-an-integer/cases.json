@@ -80,7 +80,6 @@
       },
       "expected": 1478,
       "tags": [
-        "hidden",
         "endpoint"
       ]
     },
@@ -94,7 +93,6 @@
       },
       "expected": 3503,
       "tags": [
-        "hidden",
         "zero-piece"
       ]
     },
@@ -108,7 +106,6 @@
       },
       "expected": 41334,
       "tags": [
-        "hidden",
         "hundred"
       ]
     },
@@ -122,7 +119,6 @@
       },
       "expected": 10804657,
       "tags": [
-        "hidden",
         "maximum-n"
       ]
     }

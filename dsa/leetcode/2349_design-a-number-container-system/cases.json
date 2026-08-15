@@ -266,7 +266,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "lazy-deletion"
       ]
     },
@@ -310,7 +309,6 @@
         7
       ],
       "tags": [
-        "hidden",
         "reassignment"
       ]
     }

@@ -117,7 +117,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "full-reversal"
       ]
     },
@@ -134,7 +133,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "k-one"
       ]
     },
@@ -151,7 +149,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -168,7 +165,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "prefix-reversal"
       ]
     },
@@ -185,7 +181,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "suffix-reversal"
       ]
     },
@@ -202,7 +197,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "prefix-reversal",
         "duplicates"
       ]

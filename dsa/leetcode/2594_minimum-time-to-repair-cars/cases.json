@@ -91,7 +91,6 @@
       },
       "expected": 32,
       "tags": [
-        "hidden",
         "quadratic-time"
       ]
     },
@@ -109,7 +108,6 @@
       },
       "expected": 100,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -128,7 +126,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "binary-search-boundary"
       ]
     },
@@ -145,7 +142,6 @@
       },
       "expected": 1000000000000,
       "tags": [
-        "hidden",
         "maximum",
         "integer-width"
       ]

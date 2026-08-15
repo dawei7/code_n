@@ -70,7 +70,6 @@
       },
       "expected": 25,
       "tags": [
-        "hidden",
         "existing-target",
         "merge"
       ]
@@ -85,7 +84,6 @@
       },
       "expected": 14,
       "tags": [
-        "hidden",
         "smallest-rank"
       ]
     },
@@ -99,7 +97,6 @@
       },
       "expected": 25,
       "tags": [
-        "hidden",
         "full-alphabet"
       ]
     },
@@ -113,7 +110,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "duplicates",
         "already-target"
       ]

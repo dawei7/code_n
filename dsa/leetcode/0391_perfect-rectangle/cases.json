@@ -209,7 +209,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "duplicate"
       ]
     },
@@ -254,7 +253,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "area-insufficient"
       ]
     },
@@ -287,7 +285,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "shared-edge"
       ]
     }

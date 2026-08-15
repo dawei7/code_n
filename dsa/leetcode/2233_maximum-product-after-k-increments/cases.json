@@ -106,7 +106,6 @@
       },
       "expected": 12,
       "tags": [
-        "hidden",
         "remainder"
       ]
     },
@@ -124,7 +123,6 @@
       },
       "expected": 993000,
       "tags": [
-        "hidden",
         "modulo"
       ]
     },
@@ -141,7 +139,6 @@
       },
       "expected": 4096,
       "tags": [
-        "hidden",
         "large-k"
       ]
     }

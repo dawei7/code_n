@@ -95,7 +95,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "upper-terminal"
       ]
     },
@@ -113,7 +112,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "negative-operand"
       ]
     },
@@ -131,7 +129,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "operand-reuse"
       ]
     }

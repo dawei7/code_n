@@ -280,7 +280,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "same-color"
       ]
     },
@@ -301,7 +300,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "opposite-colors",
         "boundary"
       ]
@@ -323,7 +321,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "opposite-colors",
         "edges"
       ]
@@ -345,7 +342,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "opposite-colors",
         "interior"
       ]
@@ -367,7 +363,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "same-color",
         "interior"
       ]
@@ -389,7 +384,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "same-color",
         "reflection"
       ]
@@ -411,7 +405,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "opposite-colors",
         "interior"
       ]
@@ -433,7 +426,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "same-color",
         "edge"
       ]

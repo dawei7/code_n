@@ -110,7 +110,6 @@
       },
       "expected": 11,
       "tags": [
-        "hidden",
         "singleton",
         "large-k"
       ]
@@ -128,7 +127,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "singleton",
         "large-k"
       ]
@@ -148,7 +146,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "exact-length"
       ]
     },
@@ -167,7 +164,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "beyond-length"
       ]
     },
@@ -185,7 +181,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero-value"
       ]
     }

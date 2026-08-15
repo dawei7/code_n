@@ -106,7 +106,6 @@
       },
       "expected": 19,
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -124,7 +123,6 @@
       },
       "expected": 22,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -141,7 +139,6 @@
       },
       "expected": 1001,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -162,7 +159,6 @@
       },
       "expected": 98,
       "tags": [
-        "hidden",
         "even-length-array"
       ]
     },
@@ -277,7 +273,6 @@
       },
       "expected": 85850000,
       "tags": [
-        "hidden",
         "maximum-domain"
       ]
     }

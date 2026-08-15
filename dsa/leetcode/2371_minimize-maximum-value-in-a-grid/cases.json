@@ -185,7 +185,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "matrix"
       ]
     },
@@ -231,7 +230,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "chains"
       ]
     }

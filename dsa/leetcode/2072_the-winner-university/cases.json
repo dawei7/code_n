@@ -224,7 +224,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "zero-counts"
       ]
     },
@@ -279,7 +278,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "count-not-total"
       ]
     },
@@ -342,7 +340,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "california-wins"
       ]
     }

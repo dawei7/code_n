@@ -208,7 +208,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "all-dominant"
       ]
     },
@@ -230,7 +229,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "leaves-only"
       ]
     },
@@ -252,7 +250,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "branching"
       ]
     },
@@ -274,7 +271,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "duplicates",
         "equality"
       ]
@@ -296,7 +292,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "partial-level",
         "equality"
       ]
@@ -317,7 +312,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "maximum-value",
         "equality"
       ]
@@ -348,7 +342,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "minimum-value",
         "equality"
       ]
@@ -379,7 +372,6 @@
       },
       "expected": 13,
       "tags": [
-        "hidden",
         "four-levels",
         "mixed"
       ]
@@ -401,7 +393,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "partial-level",
         "branching"
       ]
@@ -427,7 +418,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "partial-level",
         "four-levels"
       ]

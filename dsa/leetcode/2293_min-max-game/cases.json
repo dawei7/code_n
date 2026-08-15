@@ -117,7 +117,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "parity"
       ]
     },
@@ -136,7 +135,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -167,7 +165,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "deep-reduction"
       ]
     }

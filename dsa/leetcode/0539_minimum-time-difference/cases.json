@@ -103,7 +103,6 @@
       },
       "expected": 147,
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
@@ -121,7 +120,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "adjacent"
       ]
     }

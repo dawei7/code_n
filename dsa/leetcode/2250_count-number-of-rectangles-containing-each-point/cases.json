@@ -229,7 +229,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "large-coordinate"
       ]
     },
@@ -273,7 +272,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "height-filter"
       ]
     },
@@ -323,7 +321,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "query-order"
       ]
     }

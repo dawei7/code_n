@@ -306,7 +306,6 @@
         9
       ],
       "tags": [
-        "hidden",
         "leftmost"
       ]
     },
@@ -387,7 +386,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "trim"
       ]
     },
@@ -430,7 +428,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "invalid-index"
       ]
     }

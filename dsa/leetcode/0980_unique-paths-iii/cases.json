@@ -169,7 +169,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "dense"
       ]
     },
@@ -199,7 +198,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "impossible"
       ]
     },
@@ -224,7 +222,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "early-end"
       ]
     }

@@ -72,7 +72,6 @@
         "t": 1
       },
       "tags": [
-        "hidden",
         "maximum-number"
       ],
       "expected": 52
@@ -87,7 +86,6 @@
         "t": 50
       },
       "tags": [
-        "hidden",
         "maximum"
       ],
       "expected": 150
@@ -102,7 +100,6 @@
         "t": 25
       },
       "tags": [
-        "hidden",
         "interior"
       ],
       "expected": 75
@@ -117,7 +114,6 @@
         "t": 43
       },
       "tags": [
-        "hidden",
         "interior",
         "asymmetric"
       ],

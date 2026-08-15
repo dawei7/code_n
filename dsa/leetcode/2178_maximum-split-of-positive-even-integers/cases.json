@@ -114,7 +114,6 @@
         "kind": "maximum_even_split"
       },
       "tags": [
-        "hidden",
         "minimum",
         "odd"
       ]
@@ -134,7 +133,6 @@
         "kind": "maximum_even_split"
       },
       "tags": [
-        "hidden",
         "large",
         "triangular-total"
       ]
@@ -154,7 +152,6 @@
         "kind": "maximum_even_split"
       },
       "tags": [
-        "hidden",
         "maximum",
         "large-output"
       ]

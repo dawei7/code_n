@@ -212,7 +212,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "star"
       ]
     },
@@ -252,7 +251,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "path"
       ]
     }

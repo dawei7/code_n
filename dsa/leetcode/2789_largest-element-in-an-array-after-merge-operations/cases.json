@@ -126,7 +126,6 @@
       },
       "expected": 20,
       "tags": [
-        "hidden",
         "barrier"
       ]
     },
@@ -145,7 +144,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "separate-blocks"
       ]
     },
@@ -166,7 +164,6 @@
       },
       "expected": 17,
       "tags": [
-        "hidden",
         "reset"
       ]
     },
@@ -184,7 +181,6 @@
       },
       "expected": 3000000,
       "tags": [
-        "hidden",
         "large-sum"
       ]
     }

@@ -192,7 +192,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "chain",
         "same-kernel"
       ]
@@ -222,7 +221,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "sibling-trap",
         "path-scope"
       ]
@@ -247,7 +245,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "square-free-kernel"
       ]
     },
@@ -281,7 +278,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "star",
         "perfect-squares"
       ]
@@ -326,7 +322,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "branch-exit",
         "active-path"
       ]
@@ -361,7 +356,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "value-boundary",
         "sieve-limit"
       ]

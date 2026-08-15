@@ -161,7 +161,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "blocked-start"
       ]
     },
@@ -191,7 +190,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "zigzag"
       ]
     }

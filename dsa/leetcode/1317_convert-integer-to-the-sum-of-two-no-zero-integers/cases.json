@@ -118,7 +118,6 @@
         "kind": "no_zero_sum"
       },
       "tags": [
-        "hidden",
         "power-of-ten"
       ]
     },
@@ -138,7 +137,6 @@
         "kind": "no_zero_sum"
       },
       "tags": [
-        "hidden",
         "search"
       ]
     }

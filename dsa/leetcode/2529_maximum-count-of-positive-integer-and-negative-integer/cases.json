@@ -111,7 +111,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "all-negative"
       ]
     },
@@ -129,7 +128,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "value-boundaries"
       ]
     },
@@ -152,7 +150,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "boundary-search"
       ]
     }

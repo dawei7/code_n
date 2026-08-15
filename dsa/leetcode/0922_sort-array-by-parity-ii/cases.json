@@ -198,7 +198,6 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "grouped"
       ]
     },
@@ -226,7 +225,6 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "bounds"
       ]
     },
@@ -262,7 +260,6 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "blocks"
       ]
     },
@@ -290,7 +287,6 @@
         "values_param": "nums"
       },
       "tags": [
-        "hidden",
         "semantic-validator"
       ]
     }

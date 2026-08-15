@@ -276,7 +276,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "ordering"
       ]
     },
@@ -324,7 +323,6 @@
         ]
       },
       "tags": [
-        "hidden",
         "names"
       ]
     }

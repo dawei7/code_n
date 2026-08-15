@@ -114,7 +114,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-banned"
       ]
     },
@@ -132,7 +131,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "zero-picks"
       ]
     },
@@ -150,7 +148,6 @@
       },
       "expected": 14141,
       "tags": [
-        "hidden",
         "large-range",
         "large-arithmetic"
       ]

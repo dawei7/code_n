@@ -312,7 +312,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "interleaved"
       ]
     },
@@ -355,7 +354,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "reuse"
       ]
     },
@@ -413,7 +411,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "three-way-tie"
       ]
     },
@@ -489,7 +486,6 @@
         8
       ],
       "tags": [
-        "hidden",
         "frequency-cascade"
       ]
     }

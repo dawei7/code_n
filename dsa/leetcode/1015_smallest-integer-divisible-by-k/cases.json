@@ -93,7 +93,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "digit-sum"
       ]
     },
@@ -107,7 +106,6 @@
       },
       "expected": 27,
       "tags": [
-        "hidden",
         "composite"
       ]
     },
@@ -121,7 +119,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "maximum"
       ]
     }

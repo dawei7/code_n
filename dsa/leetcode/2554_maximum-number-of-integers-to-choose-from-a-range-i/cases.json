@@ -115,7 +115,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "smallest-banned"
       ]
     },
@@ -135,7 +134,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "all-banned"
       ]
     },
@@ -153,7 +151,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "budget-stop"
       ]
     }

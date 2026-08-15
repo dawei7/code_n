@@ -124,7 +124,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -143,7 +142,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "off-by-one"
       ]
     }

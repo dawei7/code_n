@@ -490,7 +490,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "rounding"
       ]
     },
@@ -625,7 +624,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "ordering",
         "tie-break"
       ]
@@ -698,7 +696,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "missing-inventory"
       ]
     },
@@ -772,7 +769,6 @@
         "kind": "ordered_table"
       },
       "tags": [
-        "hidden",
         "extreme-prices"
       ]
     }

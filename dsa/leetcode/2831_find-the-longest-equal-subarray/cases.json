@@ -144,7 +144,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "budget-boundary"
       ]
     },
@@ -168,7 +167,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "multiple-values"
       ]
     },
@@ -191,7 +189,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "outside-span"
       ]
     },
@@ -213,7 +210,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "at-most-k"
       ]
     },
@@ -235,7 +231,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     },
@@ -256,7 +251,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "zero-k",
         "alternating"
       ]

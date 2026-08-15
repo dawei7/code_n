@@ -85,7 +85,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "minimum",
         "empty"
       ]
@@ -105,7 +104,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "small",
         "equal-members"
       ]
@@ -125,7 +123,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "single-pair"
       ]
     },
@@ -164,7 +161,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "multiple-pairs",
         "ordering"
       ]
@@ -184,7 +180,6 @@
         ]
       ],
       "tags": [
-        "hidden",
         "odd-target"
       ]
     },
@@ -198,7 +193,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "odd-target",
         "empty"
       ]

@@ -108,7 +108,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "diagonal",
         "exact-time"
       ]
@@ -127,7 +126,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "diagonal",
         "insufficient-time"
       ]
@@ -146,7 +144,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "axis",
         "extra-time"
       ]
@@ -165,7 +162,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "zero-time"
       ]
     },
@@ -183,7 +179,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "adjacent"
       ]
     },
@@ -201,7 +196,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "detour"
       ]
     },
@@ -219,7 +213,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "maximum",
         "exact-time"
       ]

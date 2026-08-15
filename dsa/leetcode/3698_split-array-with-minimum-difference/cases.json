@@ -143,7 +143,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "mountain"
       ]
     },
@@ -160,7 +159,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "strictness"
       ]
     },
@@ -178,7 +176,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "strictness"
       ]
     },
@@ -196,7 +193,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "strictness"
       ]
     },
@@ -214,7 +210,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "invalid"
       ]
     }

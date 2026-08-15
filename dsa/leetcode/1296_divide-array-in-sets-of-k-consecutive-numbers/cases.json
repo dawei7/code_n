@@ -132,7 +132,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "gap"
       ]
     },
@@ -154,7 +153,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "frequency"
       ]
     }

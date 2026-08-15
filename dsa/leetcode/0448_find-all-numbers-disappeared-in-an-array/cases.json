@@ -125,7 +125,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "boundary"
       ]
     },
@@ -149,7 +148,6 @@
         5
       ],
       "tags": [
-        "hidden",
         "interleaved"
       ]
     }

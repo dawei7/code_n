@@ -142,7 +142,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "chain",
         "all-forward"
       ]
@@ -181,7 +180,6 @@
         0
       ],
       "tags": [
-        "hidden",
         "chain",
         "all-backward"
       ]
@@ -220,7 +218,6 @@
         1
       ],
       "tags": [
-        "hidden",
         "star",
         "outward"
       ]
@@ -259,7 +256,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "star",
         "inward"
       ]
@@ -303,7 +299,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "mixed-directions",
         "branches"
       ]

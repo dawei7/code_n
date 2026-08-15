@@ -68,7 +68,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "odd"
       ]
     },
@@ -82,7 +81,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "even"
       ]
     },
@@ -96,7 +94,6 @@
       },
       "expected": 99,
       "tags": [
-        "hidden",
         "upper-bound",
         "odd"
       ]
@@ -111,7 +108,6 @@
       },
       "expected": 50,
       "tags": [
-        "hidden",
         "upper-bound",
         "even"
       ]

@@ -119,7 +119,6 @@
         15
       ],
       "tags": [
-        "hidden",
         "repeated-digit"
       ]
     },
@@ -139,7 +138,6 @@
         128
       ],
       "tags": [
-        "hidden",
         "three-digit"
       ]
     },
@@ -154,7 +152,6 @@
       },
       "expected": [],
       "tags": [
-        "hidden",
         "upper-bound"
       ]
     }

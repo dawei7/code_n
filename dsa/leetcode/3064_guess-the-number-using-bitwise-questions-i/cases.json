@@ -80,7 +80,6 @@
       },
       "expected": 1073741823,
       "tags": [
-        "hidden",
         "maximum",
         "all-bits"
       ]
@@ -95,7 +94,6 @@
       },
       "expected": 715827882,
       "tags": [
-        "hidden",
         "alternating-bits"
       ]
     },
@@ -109,7 +107,6 @@
       },
       "expected": 536870917,
       "tags": [
-        "hidden",
         "sparse",
         "boundaries"
       ]

@@ -147,7 +147,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "single-helper"
       ]
     },
@@ -172,7 +171,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "dominant-value",
         "helper"
       ]
@@ -202,7 +200,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "multiple-helpers",
         "boundary-balance"
       ]
@@ -228,7 +225,6 @@
       },
       "expected": -1,
       "tags": [
-        "hidden",
         "impossible",
         "constant"
       ]

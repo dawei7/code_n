@@ -265,7 +265,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "wildcard-placement"
       ]
     },
@@ -288,7 +287,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "total-count"
       ]
     },
@@ -311,7 +309,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "wildcard-capacity"
       ]
     },
@@ -334,7 +331,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "greedy"
       ]
     },
@@ -359,7 +355,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "prefix-violation"
       ]
     },
@@ -384,7 +379,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "prefix-condition"
       ]
     },
@@ -413,7 +407,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -442,7 +435,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "mixed"
       ]
     },
@@ -471,7 +463,6 @@
         false
       ],
       "tags": [
-        "hidden",
         "mixed",
         "longer"
       ]
@@ -501,7 +492,6 @@
         true
       ],
       "tags": [
-        "hidden",
         "mixed",
         "longer"
       ]

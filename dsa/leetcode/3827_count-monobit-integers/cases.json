@@ -141,7 +141,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "after-boundary",
         "power-of-two"
       ]
@@ -159,7 +158,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-ones-boundary",
         "four-bit"
       ]
@@ -177,7 +175,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "after-boundary",
         "five-bit"
       ]
@@ -195,7 +192,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "all-ones-boundary",
         "nine-bit"
       ]
@@ -213,7 +209,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "maximum-input",
         "upper-bound"
       ]

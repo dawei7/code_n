@@ -160,7 +160,6 @@
         10
       ],
       "tags": [
-        "hidden",
         "numeric-order"
       ]
     },
@@ -184,7 +183,6 @@
         1000
       ],
       "tags": [
-        "hidden",
         "bit-counts"
       ]
     }

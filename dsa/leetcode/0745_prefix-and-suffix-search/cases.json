@@ -223,7 +223,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "query-variation"
       ]
     },
@@ -262,7 +261,6 @@
         2
       ],
       "tags": [
-        "hidden",
         "exact"
       ]
     },
@@ -307,7 +305,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "missing"
       ]
     }

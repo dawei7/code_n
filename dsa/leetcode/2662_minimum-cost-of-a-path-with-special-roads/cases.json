@@ -247,7 +247,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "chain"
       ]
     },
@@ -291,7 +290,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "duplicate-destination"
       ]
     },
@@ -328,7 +326,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "dominated-road"
       ]
     },
@@ -372,7 +369,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "direction",
         "cycle"
       ]

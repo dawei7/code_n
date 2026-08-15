@@ -159,7 +159,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "general-position"
       ]
     },
@@ -194,7 +193,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "general-position",
         "odd"
       ]
@@ -234,7 +232,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "parallel-lines"
       ]
     }

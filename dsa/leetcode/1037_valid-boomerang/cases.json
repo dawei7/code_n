@@ -158,7 +158,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "vertical"
       ]
     },
@@ -185,7 +184,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "ordering"
       ]
     },
@@ -212,7 +210,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

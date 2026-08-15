@@ -82,7 +82,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "singleton"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "singleton"
       ]
     }

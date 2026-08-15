@@ -114,7 +114,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "same-parity",
         "odd"
       ]
@@ -134,7 +133,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "threshold",
         "none"
       ]
@@ -156,7 +154,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "threshold",
         "separator"
       ]
@@ -176,7 +173,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "restart"
       ]
     },
@@ -196,7 +192,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "duplicate",
         "parity"
       ]

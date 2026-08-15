@@ -127,7 +127,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -148,7 +147,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "duplicates"
       ]
     },
@@ -169,7 +167,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "value-boundaries"
       ]
     },
@@ -191,7 +188,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unsorted"
       ]
     },
@@ -214,7 +210,6 @@
         "kind": "exact"
       },
       "tags": [
-        "hidden",
         "unsorted"
       ]
     }

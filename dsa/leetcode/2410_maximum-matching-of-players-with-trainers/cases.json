@@ -135,7 +135,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "greedy"
       ]
     },
@@ -159,7 +158,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "skips"
       ]
     },
@@ -180,7 +178,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

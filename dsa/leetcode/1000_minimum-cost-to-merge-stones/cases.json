@@ -130,7 +130,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "full-row"
       ]
     },
@@ -150,7 +149,6 @@
       },
       "expected": 40,
       "tags": [
-        "hidden",
         "pairwise"
       ]
     },
@@ -171,7 +169,6 @@
       },
       "expected": 8,
       "tags": [
-        "hidden",
         "three-way"
       ]
     }

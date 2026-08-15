@@ -204,7 +204,6 @@
         "k": 5
       },
       "tags": [
-        "hidden",
         "zero-coins"
       ],
       "expected": 0
@@ -243,7 +242,6 @@
         "k": 10000
       },
       "tags": [
-        "hidden",
         "path",
         "maximum-values"
       ],
@@ -288,7 +286,6 @@
         "k": 0
       },
       "tags": [
-        "hidden",
         "boundary",
         "zero-penalty"
       ],

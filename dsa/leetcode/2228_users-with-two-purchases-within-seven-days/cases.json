@@ -212,7 +212,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "deduplicate"
       ]
     },
@@ -257,7 +256,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "partition"
       ]
     },
@@ -306,7 +304,6 @@
         "kind": "unordered_table"
       },
       "tags": [
-        "hidden",
         "month-boundary"
       ]
     }

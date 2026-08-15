@@ -82,7 +82,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "empty"
       ]
     },
@@ -96,7 +95,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "punctuation"
       ]
     },
@@ -110,7 +108,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "alternating"
       ]
     }

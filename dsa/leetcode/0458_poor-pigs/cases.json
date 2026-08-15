@@ -94,7 +94,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "exact-power"
       ]
     },
@@ -110,7 +109,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "one-round"
       ]
     }

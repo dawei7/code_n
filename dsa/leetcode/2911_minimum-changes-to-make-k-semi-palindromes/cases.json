@@ -87,7 +87,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "divisor-one"
       ]
     },
@@ -102,7 +101,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "maximum-parts"
       ]
     },
@@ -117,7 +115,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "uniform"
       ]
     }

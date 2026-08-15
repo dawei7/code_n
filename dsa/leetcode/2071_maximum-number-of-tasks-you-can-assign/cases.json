@@ -121,7 +121,6 @@
       },
       "expected": 3,
       "tags": [
-        "hidden",
         "zero-values"
       ]
     },
@@ -144,7 +143,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "pill-allocation"
       ]
     },
@@ -169,7 +167,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "worker-shortage"
       ]
     },
@@ -190,7 +187,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "value-boundary"
       ]
     }

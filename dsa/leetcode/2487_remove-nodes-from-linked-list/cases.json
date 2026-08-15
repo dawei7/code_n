@@ -134,7 +134,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "strict-comparison"
       ]
     },
@@ -159,7 +158,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "multiple-peaks"
       ]
     },
@@ -180,7 +178,6 @@
         100000
       ],
       "tags": [
-        "hidden",
         "value-bound",
         "duplicates"
       ]

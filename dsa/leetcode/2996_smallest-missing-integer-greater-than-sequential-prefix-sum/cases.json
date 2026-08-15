@@ -110,7 +110,6 @@
       },
       "expected": 6,
       "tags": [
-        "hidden",
         "prefix-only"
       ]
     },
@@ -134,7 +133,6 @@
       },
       "expected": 9,
       "tags": [
-        "hidden",
         "membership"
       ]
     }

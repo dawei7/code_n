@@ -95,7 +95,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "one-distinct"
       ]
     },
@@ -117,7 +116,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "collision"
       ]
     },
@@ -142,7 +140,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "unsorted"
       ]
     }

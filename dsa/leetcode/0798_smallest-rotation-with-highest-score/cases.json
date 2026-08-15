@@ -131,7 +131,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "descending",
         "tie"
       ]
@@ -151,7 +150,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "mostly-zero"
       ]
     },
@@ -169,7 +167,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "tie"
       ]
     }

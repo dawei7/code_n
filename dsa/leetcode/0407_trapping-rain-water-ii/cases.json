@@ -201,7 +201,6 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
         "flat"
       ]
     },
@@ -244,7 +243,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "rectangular"
       ]
     },
@@ -283,7 +281,6 @@
       },
       "expected": 16,
       "tags": [
-        "hidden",
         "boundary-level"
       ]
     }

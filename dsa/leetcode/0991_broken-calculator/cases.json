@@ -100,7 +100,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "overshoot"
       ]
     },
@@ -115,7 +114,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "power-of-two"
       ]
     },
@@ -130,7 +128,6 @@
       },
       "expected": 999999999,
       "tags": [
-        "hidden",
         "bounds"
       ]
     }

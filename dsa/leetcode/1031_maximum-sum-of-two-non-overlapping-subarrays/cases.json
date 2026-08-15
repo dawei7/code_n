@@ -164,7 +164,6 @@
       },
       "expected": 22,
       "tags": [
-        "hidden",
         "overlap"
       ]
     },
@@ -186,7 +185,6 @@
       },
       "expected": 19,
       "tags": [
-        "hidden",
         "unit"
       ]
     },
@@ -209,7 +207,6 @@
       },
       "expected": 3000,
       "tags": [
-        "hidden",
         "boundary"
       ]
     }

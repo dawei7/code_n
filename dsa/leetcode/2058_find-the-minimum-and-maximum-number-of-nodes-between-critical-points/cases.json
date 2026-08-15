@@ -115,7 +115,6 @@
         -1
       ],
       "tags": [
-        "hidden",
         "strictness",
         "plateau"
       ]
@@ -140,7 +139,6 @@
         3
       ],
       "tags": [
-        "hidden",
         "alternating"
       ]
     },
@@ -165,7 +163,6 @@
         4
       ],
       "tags": [
-        "hidden",
         "separated-critical"
       ]
     }

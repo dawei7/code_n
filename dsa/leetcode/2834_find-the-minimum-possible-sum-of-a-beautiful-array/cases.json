@@ -104,7 +104,6 @@
       },
       "expected": 19,
       "tags": [
-        "hidden",
         "both-blocks"
       ]
     },
@@ -119,7 +118,6 @@
       },
       "expected": 10,
       "tags": [
-        "hidden",
         "target-one"
       ]
     },
@@ -134,7 +132,6 @@
       },
       "expected": 15,
       "tags": [
-        "hidden",
         "even-target"
       ]
     },
@@ -149,7 +146,6 @@
       },
       "expected": 156198582,
       "tags": [
-        "hidden",
         "modulo"
       ]
     },
@@ -164,7 +160,6 @@
       },
       "expected": 750000042,
       "tags": [
-        "hidden",
         "maximum",
         "modulo"
       ]
@@ -180,7 +175,6 @@
       },
       "expected": 21,
       "tags": [
-        "hidden",
         "maximum",
         "target-one"
       ]

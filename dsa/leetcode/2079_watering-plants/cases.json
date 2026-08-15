@@ -99,7 +99,6 @@
       },
       "expected": 2,
       "tags": [
-        "hidden",
         "strict-insufficiency"
       ]
     },
@@ -118,7 +117,6 @@
       },
       "expected": 7,
       "tags": [
-        "hidden",
         "final-refill"
       ]
     },
@@ -135,7 +133,6 @@
       },
       "expected": 1,
       "tags": [
-        "hidden",
         "minimum-length",
         "large-value"
       ]
@@ -157,7 +154,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "large-capacity"
       ]
     }

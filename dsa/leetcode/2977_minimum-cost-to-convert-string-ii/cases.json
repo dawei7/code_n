@@ -169,7 +169,6 @@
       },
       "expected": 4,
       "tags": [
-        "hidden",
         "duplicate-rules"
       ]
     },
@@ -196,7 +195,6 @@
       },
       "expected": 5,
       "tags": [
-        "hidden",
         "whole-string"
       ]
     }

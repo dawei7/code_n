@@ -152,7 +152,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "rectangular"
       ]
     },
@@ -179,7 +178,6 @@
       },
       "expected": false,
       "tags": [
-        "hidden",
         "late-mismatch"
       ]
     },
@@ -206,7 +204,6 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
         "single-column"
       ]
     }

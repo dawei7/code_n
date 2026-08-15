@@ -87,7 +87,6 @@
       },
       "expected": 358358,
       "tags": [
-        "hidden",
         "maximum-n",
         "arithmetic-series"
       ]
